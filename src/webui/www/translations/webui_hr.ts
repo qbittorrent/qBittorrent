@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Status veze</translation>
+        <translation type="vanished">Status veze</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>

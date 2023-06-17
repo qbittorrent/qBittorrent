@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>وضعیت اتصال</translation>
+        <translation type="vanished">وضعیت اتصال</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>

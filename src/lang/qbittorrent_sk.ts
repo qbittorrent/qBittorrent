@@ -82,32 +82,32 @@
         <translation>qBittorrent bol vytvorený s následujúcimi knižnicami:</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <location filename="../gui/aboutdialog.cpp" line="66"/>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
         <translation>Pokročilý BitTorrent klient naprogramovaný v jazyku C++, založený na Qt toolkit a libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="69"/>
+        <location filename="../gui/aboutdialog.cpp" line="68"/>
         <source>Copyright %1 2006-2022 The qBittorrent project</source>
         <translation>Copyright %1 2006-2022 The qBittorrent project</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="70"/>
+        <location filename="../gui/aboutdialog.cpp" line="69"/>
         <source>Home Page:</source>
         <translation>Domovská stránka:</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="71"/>
+        <location filename="../gui/aboutdialog.cpp" line="70"/>
         <source>Forum:</source>
         <translation>Fórum: </translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="72"/>
+        <location filename="../gui/aboutdialog.cpp" line="71"/>
         <source>Bug Tracker:</source>
         <translation>Sledovanie chýb:</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="111"/>
+        <location filename="../gui/aboutdialog.cpp" line="107"/>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
         <translation>Bezplatná databáza IP to Country Lite od DB-IP sa používa na riešenie krajín peerov. Databáza je licencovaná podľa medzinárodnej licencie Creative Commons Attribution 4.0</translation>
     </message>
@@ -554,22 +554,22 @@ Chyba: %2</translation>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulár</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="22"/>
         <source>Torrent Management Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim správy torrentov:</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="29"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished">Automatický režim znamená, že rôzne vlastnosti torrentu (napr. cesta na ukladanie) budú určené na základe priradenej kategórie.</translation>
+        <translation>Automatický režim znamená, že rôzne vlastnosti torrentu (napr. cesta na ukladanie) budú určené na základe priradenej kategórie.</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="51"/>
         <source>Save at</source>
-        <translation type="unfinished">Uložiť do</translation>
+        <translation>Uložiť do</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="62"/>
@@ -579,12 +579,12 @@ Chyba: %2</translation>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="74"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished">Pre nedokončené torrenty použiť inú cestu:</translation>
+        <translation>Pre nedokončené torrenty použiť inú cestu:</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="107"/>
         <source>Category:</source>
-        <translation type="unfinished">Kategória:</translation>
+        <translation>Kategória:</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="147"/>
@@ -604,7 +604,7 @@ Chyba: %2</translation>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="176"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="209"/>
@@ -614,12 +614,12 @@ Chyba: %2</translation>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="247"/>
         <source>Content layout:</source>
-        <translation type="unfinished">Rozloženie obsahu:</translation>
+        <translation>Rozloženie obsahu:</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="285"/>
         <source>Stop condition:</source>
-        <translation type="unfinished">Podmienka pre zastavenie:</translation>
+        <translation>Podmienka pre zastavenie:</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="323"/>
@@ -629,13 +629,13 @@ Chyba: %2</translation>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="346"/>
         <source>Skip hash check</source>
-        <translation type="unfinished"></translation>
+        <translation>Preskočiť kontrolu hash</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="77"/>
         <location filename="../gui/addtorrentparamswidget.cpp" line="80"/>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvoľte cieľový adresár</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="82"/>
@@ -645,621 +645,641 @@ Chyba: %2</translation>
         <location filename="../gui/addtorrentparamswidget.cpp" line="100"/>
         <location filename="../gui/addtorrentparamswidget.cpp" line="104"/>
         <source>Default</source>
-        <translation type="unfinished">Predvolený</translation>
+        <translation>Predvolený</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="83"/>
         <location filename="../gui/addtorrentparamswidget.cpp" line="101"/>
         <location filename="../gui/addtorrentparamswidget.cpp" line="105"/>
         <source>Yes</source>
-        <translation type="unfinished">Áno</translation>
+        <translation>Áno</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="84"/>
         <location filename="../gui/addtorrentparamswidget.cpp" line="102"/>
         <location filename="../gui/addtorrentparamswidget.cpp" line="106"/>
         <source>No</source>
-        <translation type="unfinished">Nie</translation>
+        <translation>Nie</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="87"/>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Manuálny</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="88"/>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatický</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="91"/>
         <source>Original</source>
-        <translation type="unfinished"></translation>
+        <translation>Pôvodné</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="92"/>
         <source>Create subfolder</source>
-        <translation type="unfinished">Vytvoriť podpriečinok</translation>
+        <translation>Vytvoriť podpriečinok</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="93"/>
         <source>Don&apos;t create subfolder</source>
-        <translation type="unfinished">Nevytvárať podpriečinok</translation>
+        <translation>Nevytvárať podpriečinok</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="96"/>
         <source>None</source>
-        <translation type="unfinished">Žiadna</translation>
+        <translation>Žiadna</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="97"/>
         <source>Metadata received</source>
-        <translation type="unfinished">Metadáta obdržané</translation>
+        <translation>Metadáta obdržané</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="98"/>
         <source>Files checked</source>
-        <translation type="unfinished">Súbory skontrolované</translation>
+        <translation>Súbory skontrolované</translation>
     </message>
 </context>
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="332"/>
-        <location filename="../gui/advancedsettings.cpp" line="434"/>
-        <location filename="../gui/advancedsettings.cpp" line="484"/>
+        <location filename="../gui/advancedsettings.cpp" line="345"/>
+        <location filename="../gui/advancedsettings.cpp" line="447"/>
+        <location filename="../gui/advancedsettings.cpp" line="497"/>
         <source> MiB</source>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="671"/>
+        <location filename="../gui/advancedsettings.cpp" line="684"/>
         <source>Recheck torrents on completion</source>
         <translation>Znovu skontrolovať torrenty po dokončení</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="344"/>
-        <location filename="../gui/advancedsettings.cpp" line="676"/>
+        <location filename="../gui/advancedsettings.cpp" line="357"/>
+        <location filename="../gui/advancedsettings.cpp" line="689"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation>ms</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="167"/>
+        <location filename="../gui/advancedsettings.cpp" line="173"/>
         <source>Setting</source>
         <translation>Nastavenie</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="167"/>
+        <location filename="../gui/advancedsettings.cpp" line="173"/>
         <source>Value</source>
         <comment>Value set for this setting</comment>
         <translation>Hodnota</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="328"/>
+        <location filename="../gui/advancedsettings.cpp" line="341"/>
         <source> (disabled)</source>
         <translation>(vypnuté)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="330"/>
+        <location filename="../gui/advancedsettings.cpp" line="343"/>
         <source> (auto)</source>
         <translation> (auto)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="606"/>
+        <location filename="../gui/advancedsettings.cpp" line="619"/>
         <source> min</source>
         <comment> minutes</comment>
         <translation>min</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="366"/>
+        <location filename="../gui/advancedsettings.cpp" line="379"/>
         <source>All addresses</source>
         <translation>Všetky adresy</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="414"/>
+        <location filename="../gui/advancedsettings.cpp" line="427"/>
         <source>qBittorrent Section</source>
         <translation>Sekcia qBittorent</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="411"/>
-        <location filename="../gui/advancedsettings.cpp" line="419"/>
+        <location filename="../gui/advancedsettings.cpp" line="424"/>
+        <location filename="../gui/advancedsettings.cpp" line="432"/>
         <source>Open documentation</source>
         <translation>Otvoriť dokumentáciu</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="367"/>
+        <location filename="../gui/advancedsettings.cpp" line="380"/>
         <source>All IPv4 addresses</source>
         <translation>Všetky adresy IPv4</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="368"/>
+        <location filename="../gui/advancedsettings.cpp" line="381"/>
         <source>All IPv6 addresses</source>
         <translation>Všetky adresy IPv6</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="422"/>
+        <location filename="../gui/advancedsettings.cpp" line="435"/>
         <source>libtorrent Section</source>
         <translation>Sekcia libtorrent</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="425"/>
+        <location filename="../gui/advancedsettings.cpp" line="438"/>
         <source>Fastresume files</source>
         <translation>Súbory rýchleho obnovenia</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="426"/>
+        <location filename="../gui/advancedsettings.cpp" line="439"/>
         <source>SQLite database (experimental)</source>
         <translation>SQLite databáza (experimentálne)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="428"/>
+        <location filename="../gui/advancedsettings.cpp" line="441"/>
         <source>Resume data storage type (requires restart)</source>
         <translation>Obnoviť typ úložiska dát (vyžadovaný reštart)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="441"/>
+        <location filename="../gui/advancedsettings.cpp" line="454"/>
         <source>Normal</source>
         <translation>Normálne</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="442"/>
+        <location filename="../gui/advancedsettings.cpp" line="455"/>
         <source>Below normal</source>
         <translation>Pod normálom</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="443"/>
+        <location filename="../gui/advancedsettings.cpp" line="456"/>
         <source>Medium</source>
         <translation>Stredná</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="444"/>
+        <location filename="../gui/advancedsettings.cpp" line="457"/>
         <source>Low</source>
         <translation>Malá</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="445"/>
+        <location filename="../gui/advancedsettings.cpp" line="458"/>
         <source>Very low</source>
         <translation>Veľmi malé</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="447"/>
+        <location filename="../gui/advancedsettings.cpp" line="460"/>
         <source>Process memory priority (Windows &gt;= 8 only)</source>
         <translation>Priorita pamäti procesu (iba Windows &gt;= 8)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="437"/>
+        <location filename="../gui/advancedsettings.cpp" line="450"/>
         <source>Physical memory (RAM) usage limit</source>
         <translation>Limit využitia fyzickej pamäti (RAM)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="455"/>
+        <location filename="../gui/advancedsettings.cpp" line="468"/>
         <source>Asynchronous I/O threads</source>
         <translation>Asynchrónne I/O vlákna</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="463"/>
+        <location filename="../gui/advancedsettings.cpp" line="476"/>
         <source>Hashing threads</source>
         <translation>Hašovacie vlákna</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="471"/>
+        <location filename="../gui/advancedsettings.cpp" line="484"/>
         <source>File pool size</source>
         <translation>Veľkosť súborového zásobníku</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="485"/>
+        <location filename="../gui/advancedsettings.cpp" line="498"/>
         <source>Outstanding memory when checking torrents</source>
         <translation>Mimoriadna pamäť pri kontrole torrentov</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="501"/>
+        <location filename="../gui/advancedsettings.cpp" line="514"/>
         <source>Disk cache</source>
         <translation>Disková vyrovnávacia pamäť</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="507"/>
-        <location filename="../gui/advancedsettings.cpp" line="629"/>
-        <location filename="../gui/advancedsettings.cpp" line="722"/>
-        <location filename="../gui/advancedsettings.cpp" line="819"/>
+        <location filename="../gui/advancedsettings.cpp" line="520"/>
+        <location filename="../gui/advancedsettings.cpp" line="642"/>
+        <location filename="../gui/advancedsettings.cpp" line="735"/>
+        <location filename="../gui/advancedsettings.cpp" line="832"/>
         <source> s</source>
         <comment> seconds</comment>
         <translation> s</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="508"/>
+        <location filename="../gui/advancedsettings.cpp" line="521"/>
         <source>Disk cache expiry interval</source>
         <translation>Interval vypršania platnosti diskovej vyrovnávacej pamäte</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="516"/>
+        <location filename="../gui/advancedsettings.cpp" line="529"/>
         <source>Disk queue size</source>
         <translation>Veľkosť diskovej fronty</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="529"/>
-        <location filename="../gui/advancedsettings.cpp" line="535"/>
+        <location filename="../gui/advancedsettings.cpp" line="542"/>
+        <location filename="../gui/advancedsettings.cpp" line="548"/>
         <source>Enable OS cache</source>
         <translation>Zapnúť vyrovnávaciu pamäť systému</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="545"/>
+        <location filename="../gui/advancedsettings.cpp" line="558"/>
         <source>Coalesce reads &amp; writes</source>
         <translation>Zlúčenie zapisovacích &amp; čítacích operácií</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="550"/>
+        <location filename="../gui/advancedsettings.cpp" line="563"/>
         <source>Use piece extent affinity</source>
         <translation>Použite afinitu k dielikovému rozsahu</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="553"/>
+        <location filename="../gui/advancedsettings.cpp" line="566"/>
         <source>Send upload piece suggestions</source>
         <translation>Doporučenie pre odosielanie častí uploadu</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="607"/>
-        <location filename="../gui/advancedsettings.cpp" line="613"/>
-        <location filename="../gui/advancedsettings.cpp" line="621"/>
-        <location filename="../gui/advancedsettings.cpp" line="723"/>
+        <location filename="../gui/advancedsettings.cpp" line="620"/>
+        <location filename="../gui/advancedsettings.cpp" line="626"/>
+        <location filename="../gui/advancedsettings.cpp" line="634"/>
+        <location filename="../gui/advancedsettings.cpp" line="736"/>
         <source>0 (disabled)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="608"/>
+        <location filename="../gui/advancedsettings.cpp" line="621"/>
         <source>Save resume data interval [0: disabled]</source>
         <comment>How often the fastresume file is saved.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="614"/>
+        <location filename="../gui/advancedsettings.cpp" line="627"/>
         <source>Outgoing ports (Min) [0: disabled]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="622"/>
+        <location filename="../gui/advancedsettings.cpp" line="635"/>
         <source>Outgoing ports (Max) [0: disabled]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="630"/>
+        <location filename="../gui/advancedsettings.cpp" line="643"/>
         <source>0 (permanent lease)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="631"/>
+        <location filename="../gui/advancedsettings.cpp" line="644"/>
         <source>UPnP lease duration [0: permanent lease]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="724"/>
+        <location filename="../gui/advancedsettings.cpp" line="737"/>
         <source>Stop tracker timeout [0: disabled]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="740"/>
+        <location filename="../gui/advancedsettings.cpp" line="753"/>
         <source>Notification timeout [0: infinite, -1: system default]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="827"/>
+        <location filename="../gui/advancedsettings.cpp" line="840"/>
         <source>Maximum outstanding requests to a single peer</source>
         <translation>Maximum nespracovaných požiadaviek na jedeného peera</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="515"/>
-        <location filename="../gui/advancedsettings.cpp" line="558"/>
-        <location filename="../gui/advancedsettings.cpp" line="564"/>
-        <location filename="../gui/advancedsettings.cpp" line="584"/>
-        <location filename="../gui/advancedsettings.cpp" line="592"/>
+        <location filename="../gui/advancedsettings.cpp" line="528"/>
+        <location filename="../gui/advancedsettings.cpp" line="571"/>
+        <location filename="../gui/advancedsettings.cpp" line="577"/>
+        <location filename="../gui/advancedsettings.cpp" line="597"/>
+        <location filename="../gui/advancedsettings.cpp" line="605"/>
         <source> KiB</source>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="340"/>
+        <location filename="../gui/advancedsettings.cpp" line="353"/>
         <source> (infinite)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="342"/>
+        <location filename="../gui/advancedsettings.cpp" line="355"/>
         <source> (system default)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="435"/>
+        <location filename="../gui/advancedsettings.cpp" line="448"/>
         <source>This option is less effective on Linux</source>
         <translation>Táto voľba je na Linuxe menej efektívna</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="520"/>
+        <location filename="../gui/advancedsettings.cpp" line="533"/>
         <source>Default</source>
         <translation>Predvolený</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="521"/>
+        <location filename="../gui/advancedsettings.cpp" line="534"/>
         <source>Memory mapped files</source>
         <translation>Súbory namapované v pamäti</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="522"/>
+        <location filename="../gui/advancedsettings.cpp" line="535"/>
         <source>POSIX-compliant</source>
         <translation>POSIX-vyhovujúci</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="524"/>
+        <location filename="../gui/advancedsettings.cpp" line="537"/>
         <source>Disk IO type (requires restart)</source>
         <translation>Disk IO typ (vyžaduje reštart)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="528"/>
-        <location filename="../gui/advancedsettings.cpp" line="534"/>
+        <location filename="../gui/advancedsettings.cpp" line="541"/>
+        <location filename="../gui/advancedsettings.cpp" line="547"/>
         <source>Disable OS cache</source>
         <translation>Vypnúť vyrovnávaciu pamäť operačného systému</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="531"/>
+        <location filename="../gui/advancedsettings.cpp" line="544"/>
         <source>Disk IO read mode</source>
         <translation>Režim IO čítania disku</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="537"/>
+        <location filename="../gui/advancedsettings.cpp" line="550"/>
         <source>Write-through</source>
         <translation>Prepisovanie</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="540"/>
+        <location filename="../gui/advancedsettings.cpp" line="553"/>
         <source>Disk IO write mode</source>
         <translation>Režim IO zapisovania disku</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="560"/>
+        <location filename="../gui/advancedsettings.cpp" line="573"/>
         <source>Send buffer watermark</source>
         <translation>Odoslať watermark bufferu</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="566"/>
+        <location filename="../gui/advancedsettings.cpp" line="579"/>
         <source>Send buffer low watermark</source>
         <translation>Odoslať buffer-low watermark</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="572"/>
+        <location filename="../gui/advancedsettings.cpp" line="585"/>
         <source>Send buffer watermark factor</source>
         <translation>Odoslať buffer watermark faktor</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="578"/>
+        <location filename="../gui/advancedsettings.cpp" line="591"/>
         <source>Outgoing connections per second</source>
         <translation>Odchádzajúce pripojenia za sekundu</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="585"/>
-        <location filename="../gui/advancedsettings.cpp" line="593"/>
+        <location filename="../gui/advancedsettings.cpp" line="598"/>
+        <location filename="../gui/advancedsettings.cpp" line="606"/>
         <source>0 (system default)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="586"/>
+        <location filename="../gui/advancedsettings.cpp" line="599"/>
         <source>Socket send buffer size [0: system default]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="594"/>
+        <location filename="../gui/advancedsettings.cpp" line="607"/>
         <source>Socket receive buffer size [0: system default]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="600"/>
+        <location filename="../gui/advancedsettings.cpp" line="613"/>
         <source>Socket backlog size</source>
         <translation>Velikost nevykonaného soketu</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="637"/>
+        <location filename="../gui/advancedsettings.cpp" line="650"/>
         <source>Type of service (ToS) for connections to peers</source>
         <translation>Typ služby (ToS) pre pripojenie k rovesníkom</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="640"/>
+        <location filename="../gui/advancedsettings.cpp" line="653"/>
         <source>Prefer TCP</source>
         <translation>Uprednostniť TCP</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="641"/>
+        <location filename="../gui/advancedsettings.cpp" line="654"/>
         <source>Peer proportional (throttles TCP)</source>
         <translation>Peer proportional (obmedziť TCP)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="648"/>
+        <location filename="../gui/advancedsettings.cpp" line="661"/>
         <source>Support internationalized domain name (IDN)</source>
         <translation>Podporovať domény obsahujúce špeciálne znaky (IDN)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="653"/>
+        <location filename="../gui/advancedsettings.cpp" line="666"/>
         <source>Allow multiple connections from the same IP address</source>
         <translation>Povoliť viacej spojení z rovnakej IP adresy</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="658"/>
+        <location filename="../gui/advancedsettings.cpp" line="671"/>
         <source>Validate HTTPS tracker certificates</source>
         <translation>Overovať HTTPS cerifikáty trackerov</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="663"/>
+        <location filename="../gui/advancedsettings.cpp" line="676"/>
         <source>Server-side request forgery (SSRF) mitigation</source>
         <translation>Zamedzenie falšovania požiadaviek na strane servera (SSRF) </translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="668"/>
+        <location filename="../gui/advancedsettings.cpp" line="681"/>
         <source>Disallow connection to peers on privileged ports</source>
         <translation>Nepovoliť pripojenie k peerom na privilegovaných portoch</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="677"/>
+        <location filename="../gui/advancedsettings.cpp" line="690"/>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
         <translation>Riadi interval aktualizácie vnútorného stavu, ktorý zase ovplyvní aktualizácie používateľského rozhrania</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="678"/>
+        <location filename="../gui/advancedsettings.cpp" line="691"/>
         <source>Refresh interval</source>
         <translation>Interval obnovenia</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="684"/>
+        <location filename="../gui/advancedsettings.cpp" line="697"/>
         <source>Resolve peer host names</source>
         <translation>Zisťovať sieťové názvy peerov</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="711"/>
+        <location filename="../gui/advancedsettings.cpp" line="724"/>
         <source>IP address reported to trackers (requires restart)</source>
         <translation>IP adresa nahlásená trackerom (vyžaduje reštart)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="744"/>
+        <location filename="../gui/advancedsettings.cpp" line="757"/>
         <source>Reannounce to all trackers when IP or port changed</source>
         <translation>Znovu oznámiť všetkým trackerom pri zmene IP alebo portu </translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="758"/>
+        <location filename="../gui/advancedsettings.cpp" line="771"/>
         <source>Enable icons in menus</source>
         <translation>Povoliť ikony v menu </translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="770"/>
+        <location filename="../gui/advancedsettings.cpp" line="783"/>
         <source>Enable port forwarding for embedded tracker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="809"/>
+        <location filename="../gui/advancedsettings.cpp" line="822"/>
         <source>Peer turnover disconnect percentage</source>
         <translation>Percento odpojenia pri peer turnover </translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="815"/>
+        <location filename="../gui/advancedsettings.cpp" line="828"/>
         <source>Peer turnover threshold percentage</source>
         <translation>Percento limitu pre peer turnover </translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="821"/>
+        <location filename="../gui/advancedsettings.cpp" line="834"/>
         <source>Peer turnover disconnect interval</source>
         <translation>Interval odpojenia pri peer turnover </translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="728"/>
+        <location filename="../gui/advancedsettings.cpp" line="846"/>
+        <source>I2P inbound quantity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="851"/>
+        <source>I2P outbound quantity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="856"/>
+        <source>I2P inbound length</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="861"/>
+        <source>I2P outbound length</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="741"/>
         <source>Display notifications</source>
         <translation>Zobrazovať hlásenia</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="731"/>
+        <location filename="../gui/advancedsettings.cpp" line="744"/>
         <source>Display notifications for added torrents</source>
         <translation>Zobrazovať hlásenia pre pridané torrenty</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="747"/>
+        <location filename="../gui/advancedsettings.cpp" line="760"/>
         <source>Download tracker&apos;s favicon</source>
         <translation>Stiahnuť logo trackera</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="751"/>
+        <location filename="../gui/advancedsettings.cpp" line="764"/>
         <source>Save path history length</source>
         <translation>Uložiť dĺžku histórie cesty</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="754"/>
+        <location filename="../gui/advancedsettings.cpp" line="767"/>
         <source>Enable speed graphs</source>
         <translation>Zapnúť graf rýchlosti</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="772"/>
+        <location filename="../gui/advancedsettings.cpp" line="785"/>
         <source>Fixed slots</source>
         <translation>Pevné sloty</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="773"/>
+        <location filename="../gui/advancedsettings.cpp" line="786"/>
         <source>Upload rate based</source>
         <translation>Podľa rýchlosti uploadu</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="775"/>
+        <location filename="../gui/advancedsettings.cpp" line="788"/>
         <source>Upload slots behavior</source>
         <translation>Chovanie upload slotov</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="778"/>
+        <location filename="../gui/advancedsettings.cpp" line="791"/>
         <source>Round-robin</source>
         <translation>Pomerné rozdelenie</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="779"/>
+        <location filename="../gui/advancedsettings.cpp" line="792"/>
         <source>Fastest upload</source>
         <translation>Najrýchlejší upload</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="780"/>
+        <location filename="../gui/advancedsettings.cpp" line="793"/>
         <source>Anti-leech</source>
         <translation>Priorita pre začínajúcich a končiacich leecherov</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="782"/>
+        <location filename="../gui/advancedsettings.cpp" line="795"/>
         <source>Upload choking algorithm</source>
         <translation>Škrtiaci algoritmus pre upload</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="787"/>
+        <location filename="../gui/advancedsettings.cpp" line="800"/>
         <source>Confirm torrent recheck</source>
         <translation>Potvrdenie opätovnej kontroly torrentu</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="791"/>
+        <location filename="../gui/advancedsettings.cpp" line="804"/>
         <source>Confirm removal of all tags</source>
         <translation>Potvrdiť odobranie všetkých značiek</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="795"/>
+        <location filename="../gui/advancedsettings.cpp" line="808"/>
         <source>Always announce to all trackers in a tier</source>
         <translation>Vždy oznamovať všetkým trackerom v triede</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="801"/>
+        <location filename="../gui/advancedsettings.cpp" line="814"/>
         <source>Always announce to all tiers</source>
         <translation>Vždy oznamovať všetkým triedam</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="686"/>
+        <location filename="../gui/advancedsettings.cpp" line="699"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Akékoľvek rozhranie</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="643"/>
+        <location filename="../gui/advancedsettings.cpp" line="656"/>
         <source>%1-TCP mixed mode algorithm</source>
         <comment>uTP-TCP mixed mode algorithm</comment>
         <translation>%1-TCP mixed mode algoritmus</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="681"/>
+        <location filename="../gui/advancedsettings.cpp" line="694"/>
         <source>Resolve peer countries</source>
         <translation>Zisťovať krajinu pôvodu peerov</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="705"/>
+        <location filename="../gui/advancedsettings.cpp" line="718"/>
         <source>Network interface</source>
         <translation>Sieťové rozhranie</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="708"/>
+        <location filename="../gui/advancedsettings.cpp" line="721"/>
         <source>Optional IP address to bind to</source>
         <translation>Voliteľná pridružená IP adresa</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="717"/>
+        <location filename="../gui/advancedsettings.cpp" line="730"/>
         <source>Max concurrent HTTP announces</source>
         <translation>Maximum súbežných HTTP oznámení</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="762"/>
+        <location filename="../gui/advancedsettings.cpp" line="775"/>
         <source>Enable embedded tracker</source>
         <translation>Zapnúť zabudovaný tracker</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="767"/>
+        <location filename="../gui/advancedsettings.cpp" line="780"/>
         <source>Embedded tracker port</source>
         <translation>Port zabudovaného trackera</translation>
     </message>
@@ -1459,22 +1479,27 @@ Chcete qBittorrent nastaviť ako predvolenú aplikáciu?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1222"/>
+        <location filename="../app/application.cpp" line="1134"/>
+        <source>Failed to set physical memory (RAM) usage hard limit. Requested size: %1. System hard limit: %2. Error code: %3. Error message: &quot;%4&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="1237"/>
         <source>qBittorrent termination initiated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1228"/>
+        <location filename="../app/application.cpp" line="1243"/>
         <source>qBittorrent is shutting down...</source>
         <translation>qBittorrent sa vypína...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1242"/>
+        <location filename="../app/application.cpp" line="1257"/>
         <source>Saving torrent progress...</source>
         <translation>Ukladá sa priebeh torrentu...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1276"/>
+        <location filename="../app/application.cpp" line="1291"/>
         <source>qBittorrent is now ready to exit</source>
         <translation>qBittorrent je pripravený na ukončenie</translation>
     </message>
@@ -1513,10 +1538,6 @@ Chcete qBittorrent nastaviť ako predvolenú aplikáciu?</translation>
 <context>
     <name>AutomatedRssDownloader</name>
     <message>
-        <source>Save to:</source>
-        <translation type="vanished">Uložiť do:</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="14"/>
         <source>RSS Downloader</source>
         <translation>Sťahovanie kanálov RSS</translation>
@@ -1527,21 +1548,17 @@ Chcete qBittorrent nastaviť ako predvolenú aplikáciu?</translation>
         <translation>Pravidlá sťahovania</translation>
     </message>
     <message>
-        <source>Rule Definition</source>
-        <translation type="vanished">Definícia pravidla</translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="145"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="172"/>
         <source>Use Regular Expressions</source>
         <translation>Používať regulárne výrazy</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="230"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="257"/>
         <source>Use Smart Episode Filter</source>
         <translation>Použite inteligentný filter epizód</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="154"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="181"/>
         <source>Must Contain:</source>
         <translation>Musí obsahovať:</translation>
     </message>
@@ -1556,151 +1573,116 @@ Chcete qBittorrent nastaviť ako predvolenú aplikáciu?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="161"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="147"/>
+        <source>Priority:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="188"/>
         <source>Must Not Contain:</source>
         <translation>Nesmie obsahovať:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="168"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="195"/>
         <source>Episode Filter:</source>
         <translation>Filter epizód:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="226"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="253"/>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
         <translation>Chytrý Filter Epizód skontroluje číslo epizódy pre zabránenie sťahovanie duplikátov. 
 Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty dátumu - ako oddeľovač)</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="277"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="304"/>
         <source>Torrent parameters</source>
-        <translation type="unfinished">Parametre torrentu</translation>
+        <translation>Parametre torrentu</translation>
     </message>
     <message>
-        <source>Category:</source>
-        <translation type="vanished">Kategória:</translation>
-    </message>
-    <message>
-        <source>Save to a Different Directory</source>
-        <translation type="vanished">Uložiť do iného adresára</translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="239"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="266"/>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
         <extracomment>... X days</extracomment>
         <translation>Ignorovať následné zhody po dobu (0 pre vypnutie)</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="249"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="276"/>
         <source>Disabled</source>
         <translation>Vypnuté</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="252"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="279"/>
         <source> days</source>
         <translation>dní</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Pridať pozastavený:</translation>
-    </message>
-    <message>
-        <source>Use global settings</source>
-        <translation type="vanished">Použiť globálne nastavenie</translation>
-    </message>
-    <message>
-        <source>Always</source>
-        <translation type="vanished">Vždy</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation type="vanished">Nikdy</translation>
-    </message>
-    <message>
-        <source>Torrent content layout:</source>
-        <translation type="vanished">Rozvrhnutie obsahu torrentu:</translation>
-    </message>
-    <message>
-        <source>Original</source>
-        <translation type="vanished">Pôvodný</translation>
-    </message>
-    <message>
-        <source>Create subfolder</source>
-        <translation type="vanished">Vytvoriť podpriečinok</translation>
-    </message>
-    <message>
-        <source>Don&apos;t create subfolder</source>
-        <translation type="vanished">Nevytvárať podpriečinok</translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="327"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="354"/>
         <source>Apply Rule to Feeds:</source>
         <translation>Použiť pravidlo na kanály:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="347"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="374"/>
         <source>Matching RSS Articles</source>
         <translation>Zodpovedajúce články RSS</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="375"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="402"/>
         <source>&amp;Import...</source>
         <translation>&amp;Importovať...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="385"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="412"/>
         <source>&amp;Export...</source>
         <translation>&amp;Exportovať...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="106"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="109"/>
         <source>Matches articles based on episode filter.</source>
         <translation>Nájde články podľa filtra epizód.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="106"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="109"/>
         <source>Example: </source>
         <translation>Príklad:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="107"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="110"/>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
         <comment>example X will match</comment>
         <translation>nájde epizódy 2, 5, 8 až 15, 30 a všetky nasledujúce z prvej sezóny</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="108"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="111"/>
         <source>Episode filter rules: </source>
         <translation>Pravidlá pre filtrovanie epizód:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="108"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="111"/>
         <source>Season number is a mandatory non-zero value</source>
         <translation>Číslo sezóny je povinná, nenulová hodnota</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="110"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="113"/>
         <source>Filter must end with semicolon</source>
         <translation>Filter musí končiť bodkočiarkou</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="111"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="114"/>
         <source>Three range types for episodes are supported: </source>
         <translation>Tri druhy rozsahov pre epizódy sú podporované:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="112"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="115"/>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
         <translation>Jedno číslo: &lt;b&gt;1x25;&lt;/b&gt; zodpovedá epizóde 25 prvej sezóny</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="113"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="116"/>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
         <translation>Normálny rozsah: &lt;b&gt;1x25-40;&lt;/b&gt; zodpovedá epizódam 25 až 40 prvej sezóny</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="109"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="112"/>
         <source>Episode number is a mandatory positive value</source>
         <translation>Číslo epizódy je povinná pozitívna hodnota</translation>
     </message>
@@ -1715,206 +1697,210 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
         <translation>Pravidlá (pôvodné)</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="114"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="117"/>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
         <translation>Neohraničený rozsah: &lt;b&gt;1x25-;&lt;/b&gt; zodpovedá epizóde 25 a všetkým nasledujúcim z prvej sezóny a všetkým nasledujúcim</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="302"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="307"/>
         <source>Last Match: %1 days ago</source>
         <translation>Naposledy nájdené: pred %1 dňami</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="304"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="309"/>
         <source>Last Match: Unknown</source>
         <translation>Naposledy nájdené: neznáme</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="369"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="376"/>
         <source>New rule name</source>
         <translation>Nový názov pravidla</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="369"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="376"/>
         <source>Please type the name of the new download rule.</source>
         <translation>Prosím, napíšte nový názov pre tonto pravidlo sťahovania.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="375"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="535"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="382"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="542"/>
         <source>Rule name conflict</source>
         <translation>Konflikt v názvoch pravidel</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="376"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="536"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="383"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="543"/>
         <source>A rule with this name already exists, please choose another name.</source>
         <translation>Pravidlo s týmto názvom už existuje. Prosím, zvoľte iný názov.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="390"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="397"/>
         <source>Are you sure you want to remove the download rule named &apos;%1&apos;?</source>
         <translation>Ste si istý, že chcete odstrániť pravidlo sťahovania s názvom &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="392"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="399"/>
         <source>Are you sure you want to remove the selected download rules?</source>
         <translation>Ste si istý, že chcete odstrániť vybrané pravidlá sťahovania?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="393"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="400"/>
         <source>Rule deletion confirmation</source>
         <translation>Potvrdenie zmazania pravidla</translation>
     </message>
     <message>
-        <source>Destination directory</source>
-        <translation type="vanished">Cieľový adresár</translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="409"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="416"/>
         <source>Invalid action</source>
         <translation>Neplatná operácia</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="410"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="417"/>
         <source>The list is empty, there is nothing to export.</source>
         <translation>Zoznam je prázdny, niet čo exportovať.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="416"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="423"/>
         <source>Export RSS rules</source>
         <translation>Export RSS pravidiel</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="443"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="461"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="450"/>
         <source>I/O Error</source>
         <translation>I/O chyba</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="444"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="451"/>
         <source>Failed to create the destination file. Reason: %1</source>
         <translation>Nepodarilo sa vytvoriť cieľový súbor. Dôvod: %1</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="452"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="459"/>
         <source>Import RSS rules</source>
         <translation>Import RSS pravidiel</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="462"/>
         <source>Failed to open the file. Reason: %1</source>
-        <translation>Nepodarilo sa otvoriť súbor. Dôvod: %1</translation>
+        <translation type="vanished">Nepodarilo sa otvoriť súbor. Dôvod: %1</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="480"/>
         <source>Import Error</source>
-        <translation>Chyba importu</translation>
+        <translation type="vanished">Chyba importu</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="481"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="488"/>
         <source>Failed to import the selected rules file. Reason: %1</source>
         <translation>Nepodarilo sa importovať vybraný súbor pravidiel. Dôvod: %1</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="490"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="497"/>
         <source>Add new rule...</source>
         <translation>Pridať nové pravidlo...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="499"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="506"/>
         <source>Delete rule</source>
         <translation>Zmazať pravidlo</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="502"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="509"/>
         <source>Rename rule...</source>
         <translation>Premenovať pravidlo...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="507"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="514"/>
         <source>Delete selected rules</source>
         <translation>Zmazať vybrané pravidlá</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="512"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="519"/>
         <source>Clear downloaded episodes...</source>
         <translation>Odstrániť stiahnuté epizódy...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="528"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="535"/>
         <source>Rule renaming</source>
         <translation>Premenovanie pravidiel</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="528"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="535"/>
         <source>Please type the new rule name</source>
         <translation>Prosím, napíšte názov nového pravidla</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="556"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="563"/>
         <source>Clear downloaded episodes</source>
         <translation>Odstrániť stiahnuté epizódy</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="557"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="564"/>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
         <translation>Naozaj chcete vymazať zoznam stiahnutých epizód pre vybrané pravidlo?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="671"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="678"/>
         <source>Regex mode: use Perl-compatible regular expressions</source>
         <translation>Regex mód: použite regulárny výraz komatibilní s Perlom</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="721"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="768"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="728"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="775"/>
         <source>Position %1: %2</source>
         <translation>Pozícia %1: %2</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="675"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="682"/>
         <source>Wildcard mode: you can use</source>
         <translation>Mód zástupných znakov: môžete použiť</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="676"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="469"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="487"/>
+        <source>Import error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="470"/>
+        <source>Failed to read the file. %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="683"/>
         <source>? to match any single character</source>
         <translation>? pre zhodu s ľubovoľným jediným znakom</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="677"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="684"/>
         <source>* to match zero or more of any characters</source>
         <translation>* pre zhodu so žiadnym alebo viac s akýmikoľvek znakmi</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="678"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="685"/>
         <source>Whitespaces count as AND operators (all words, any order)</source>
         <translation>Medzera slúži ako operátor AND (všetky slová v akomkoľvek poradí)</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="679"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="686"/>
         <source>| is used as OR operator</source>
         <translation>| slúži ako operátor OR</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="680"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="687"/>
         <source>If word order is important use * instead of whitespace.</source>
         <translation>Ak je dôležité poradie slov, použite * namiesto medzery.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="687"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="694"/>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
         <comment>We talk about regex/wildcards in the RSS filters section here. So a valid sentence would be: An expression with an empty | clause (e.g. expr|)</comment>
         <translation>Výraz s prázdnym %1 obsahom (napr. %2)</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="691"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="698"/>
         <source> will match all articles.</source>
         <translation>zahrnie všetky položky.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="692"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="699"/>
         <source> will exclude all articles.</source>
         <translation>vylúči všetky položky</translation>
     </message>
@@ -1956,59 +1942,57 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
 <context>
     <name>BitTorrent::BencodeResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="101"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="102"/>
         <source>Cannot create torrent resume folder: &quot;%1&quot;</source>
         <translation>Nie je možné vytvoriť zložku pre obnovenie torrentu: &quot;% 1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="204"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="209"/>
         <source>Cannot parse resume data: invalid format</source>
         <translation>Nedajú sa spracovať dáta pre obnovenie: neplatný formát</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="268"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="275"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="273"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="280"/>
         <source>Cannot parse torrent info: %1</source>
         <translation>Nedajú sa spracovať informácie torrentu: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="271"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="276"/>
         <source>Cannot parse torrent info: invalid format</source>
         <translation>Nedajú sa spracovať informácie torrentu: neplatný formát</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="372"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="377"/>
         <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
         <translation>Metadáta torrentu sa nepodarilo uložiť do &apos;%1&apos;. Chyba: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="398"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="403"/>
         <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="138"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="142"/>
         <source>Cannot read file %1: %2</source>
-        <translation>Súbor %1 sa nedá čítať: %2</translation>
+        <translation type="vanished">Súbor %1 sa nedá čítať: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="170"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="175"/>
         <source>Couldn&apos;t load torrents queue: %1</source>
         <translation>Nepodarilo sa načítať poradovník torrentov: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="201"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="206"/>
         <source>Cannot parse resume data: %1</source>
         <translation>Nepodarilo sa spracovať dáta pre obnovenie: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="295"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="300"/>
         <source>Resume data is invalid: neither metadata nor info-hash was found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="423"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="428"/>
         <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
         <translation>Nebolo možné uložiť dáta do &apos;%1&apos;. Chyba: %2</translation>
     </message>
@@ -2016,38 +2000,38 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
 <context>
     <name>BitTorrent::DBResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="375"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="374"/>
         <source>Not found.</source>
         <translation>Nenájdené.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="379"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="378"/>
         <source>Couldn&apos;t load resume data of torrent &apos;%1&apos;. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="463"/>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="468"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="462"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="467"/>
         <source>Database is corrupted.</source>
         <translation>Databáza je poškodená.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="481"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="480"/>
         <source>Couldn&apos;t enable Write-Ahead Logging (WAL) journaling mode. Error: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="633"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="632"/>
         <source>Couldn&apos;t obtain query result.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="637"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="636"/>
         <source>WAL mode is probably unsupported due to filesystem limitations.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="685"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Couldn&apos;t begin transaction. Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2055,22 +2039,22 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
 <context>
     <name>BitTorrent::ResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="809"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="808"/>
         <source>Couldn&apos;t save torrent metadata. Error: %1.</source>
         <translation>Nepodarilo sa uložiť metadáta torrentu. Chyba: %1.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="859"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="858"/>
         <source>Couldn&apos;t store resume data for torrent &apos;%1&apos;. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="887"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="886"/>
         <source>Couldn&apos;t delete resume data of torrent &apos;%1&apos;. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="921"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="920"/>
         <source>Couldn&apos;t store torrents queue positions. Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2078,475 +2062,475 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
 <context>
     <name>BitTorrent::SessionImpl</name>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="651"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1542"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="654"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1545"/>
         <source>Distributed Hash Table (DHT) support: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="651"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="666"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1542"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1543"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1544"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="654"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="669"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1545"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1546"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3568"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4277"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1547"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1548"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1549"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3579"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4344"/>
         <source>ON</source>
         <translation>Zapnuté</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="651"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="666"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1542"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1543"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1544"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="654"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="669"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1545"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1546"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3568"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4277"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1547"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1548"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1549"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3579"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4344"/>
         <source>OFF</source>
         <translation>Vypnuté</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="666"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1543"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="669"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1546"/>
         <source>Local Peer Discovery support: %1</source>
         <translation>podpora Local Peer Discovery: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="680"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="683"/>
         <source>Restart is required to toggle Peer Exchange (PeX) support</source>
         <translation>Pre zmenu podpory Peer Exchange (PeX) je potrebný reštart</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1270"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1273"/>
         <source>Failed to resume torrent. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1324"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1334"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1327"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1337"/>
         <source>Failed to resume torrent: inconsistent torrent ID is detected. Torrent: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1368"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1371"/>
         <source>Detected inconsistent data: category is missing from the configuration file. Category will be recovered but its settings will be reset to default. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1375"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1378"/>
         <source>Detected inconsistent data: invalid category. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1390"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1393"/>
         <source>Detected mismatch between the save paths of the recovered category and the current save path of the torrent. Torrent is now switched to Manual mode. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1404"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1407"/>
         <source>Detected inconsistent data: tag is missing from the configuration file. Tag will be recovered. Torrent: &quot;%1&quot;. Tag: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1410"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1413"/>
         <source>Detected inconsistent data: invalid tag. Torrent: &quot;%1&quot;. Tag: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1479"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1482"/>
         <source>System wake-up event detected. Re-announcing to all the trackers...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1540"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1543"/>
         <source>Peer ID: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1541"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1544"/>
         <source>HTTP User-Agent: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1544"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1547"/>
         <source>Peer Exchange (PeX) support: %1</source>
         <translation>Podpora Peer Exchange (PeX): %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1545"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4277"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1548"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4344"/>
         <source>Anonymous mode: %1</source>
         <translation>Anonymný režim: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1546"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3567"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1549"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3578"/>
         <source>Encryption support: %1</source>
         <translation>Podpora šifrovania: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1546"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3568"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1549"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3579"/>
         <source>FORCED</source>
         <translation>Vynútené</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1959"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1970"/>
         <source>Could not find GUID of network interface. Interface: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1974"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1985"/>
         <source>Trying to listen on the following list of IP addresses: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2133"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2144"/>
         <source>Torrent reached the share ratio limit.</source>
         <translation>Torrent dosiahol limit pomeru zdieľania.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2134"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2177"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2145"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2188"/>
         <source>Torrent: &quot;%1&quot;.</source>
         <translation>Torrent: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2138"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2181"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2149"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2192"/>
         <source>Removed torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2143"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2186"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2154"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2197"/>
         <source>Removed torrent and deleted its content.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2149"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2192"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2160"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2203"/>
         <source>Torrent paused.</source>
         <translation>Torrent pozastavený.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2154"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2197"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2165"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2208"/>
         <source>Super seeding enabled.</source>
         <translation>Režim super seedovania je zapnutý.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2176"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2187"/>
         <source>Torrent reached the seeding time limit.</source>
         <translation>Torrent dosiahol limit času zdieľania.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2216"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5270"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2227"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5338"/>
         <source>Failed to load torrent. Reason: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2546"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2557"/>
         <source>Downloading torrent, please wait... Source: &quot;%1&quot;</source>
         <translation>Sťahovanie torrentu, počkajte prosím... Zdroj: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2563"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2574"/>
         <source>Failed to load torrent. Source: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2874"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2885"/>
         <source>UPnP/NAT-PMP support: ON</source>
         <translation>podpora UPnP/NAT-PMP: ZAPNUTÁ</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2893"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2904"/>
         <source>UPnP/NAT-PMP support: OFF</source>
         <translation>podpora UPnP/NAT-PMP: VYPNUTÁ</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3018"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3029"/>
         <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3065"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3076"/>
         <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3178"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3189"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>Stav siete systému sa zmenil na %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3178"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3189"/>
         <source>ONLINE</source>
         <translation>ONLINE</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3178"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3189"/>
         <source>OFFLINE</source>
         <translation>OFFLINE</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3192"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3203"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>Konfigurácia siete %1 sa zmenila, obnovuje sa väzba relácie</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3210"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3221"/>
         <source>The configured network address is invalid. Address: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3251"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3285"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3262"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3296"/>
         <source>Failed to find the configured network address to listen on. Address: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3264"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3275"/>
         <source>The configured network interface is invalid. Interface: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3812"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3879"/>
         <source>Rejected invalid IP address while applying the list of banned IP addresses. IP: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4786"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4853"/>
         <source>Added tracker to torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4796"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4863"/>
         <source>Removed tracker from torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4811"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4878"/>
         <source>Added URL seed to torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4817"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4884"/>
         <source>Removed URL seed from torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4830"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4897"/>
         <source>Torrent paused. Torrent: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4836"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4903"/>
         <source>Torrent resumed. Torrent: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4847"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4914"/>
         <source>Torrent download finished. Torrent: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4919"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4986"/>
         <source>Torrent move canceled. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4930"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4997"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: torrent is currently moving to the destination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4939"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5006"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot; Destination: &quot;%3&quot;. Reason: both paths point to the same location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4947"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5014"/>
         <source>Enqueued torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4964"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5031"/>
         <source>Start moving torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>Začiatok presunu torrentu. Torrent: &quot;%1&quot;. Cieľ: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5013"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5080"/>
         <source>Failed to save Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5050"/>
-        <source>Failed to load Categories. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5059"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5127"/>
         <source>Failed to parse Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5066"/>
-        <source>Failed to load Categories configuration. File: &quot;%1&quot;. Reason: invalid data format</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5153"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5221"/>
         <source>Recursive download .torrent file within torrent. Source torrent: &quot;%1&quot;. File: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5166"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5234"/>
         <source>Failed to load .torrent file within torrent. Source torrent: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5210"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5278"/>
         <source>Successfully parsed the IP filter file. Number of rules applied: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5220"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5288"/>
         <source>Failed to parse the IP filter file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5496"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5564"/>
         <source>Restored torrent. Torrent: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5500"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5568"/>
         <source>Added new torrent. Torrent: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5506"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5574"/>
         <source>Torrent errored. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5524"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5575"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5592"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5643"/>
         <source>Removed torrent. Torrent: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5547"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5615"/>
         <source>Removed torrent and deleted its content. Torrent: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5626"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5694"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5637"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5705"/>
         <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5643"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5711"/>
         <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5652"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5720"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
         <translation>IP filter</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5655"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5723"/>
         <source>filtered port (%1)</source>
         <comment>this peer was blocked. Reason: filtered port (8899).</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5661"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5729"/>
         <source>privileged port (%1)</source>
         <comment>this peer was blocked. Reason: privileged port (80).</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5920"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5988"/>
         <source>SOCKS5 proxy error. Address: %1. Message: &quot;%2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5658"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5726"/>
         <source>%1 mixed mode restrictions</source>
         <comment>this peer was blocked. Reason: I2P mixed mode restrictions.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5569"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5119"/>
+        <source>Failed to load Categories. %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5134"/>
+        <source>Failed to load Categories configuration. File: &quot;%1&quot;. Error: &quot;Invalid data format&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5637"/>
         <source>Removed torrent but failed to delete its content and/or partfile. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5664"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5732"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: uTP is disabled.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5667"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5735"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: TCP is disabled.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5691"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5759"/>
         <source>URL seed DNS lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5697"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5765"/>
         <source>Received error message from URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5706"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5774"/>
         <source>Successfully listening on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5713"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5781"/>
         <source>Failed to listen on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;. Reason: &quot;%4&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5721"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5789"/>
         <source>Detected external IP. IP: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5830"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5898"/>
         <source>Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5852"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5920"/>
         <source>Moved torrent successfully. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5875"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5943"/>
         <source>Failed to move torrent. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: &quot;%4&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2568,62 +2552,62 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
 <context>
     <name>BitTorrent::TorrentImpl</name>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="733"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="732"/>
         <source>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</source>
         <translation>Nepodarilo sa pridať peer &quot;%1&quot; k torrentu &quot;%2&quot;. Dôvod: %3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="738"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="737"/>
         <source>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</source>
         <translation>Peer &quot;%1&quot; je pridaný do torrentu &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="782"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="781"/>
         <source>Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1132"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1131"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1538"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1537"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
         <translation>Stiahnuť najprv prvú a poslednú časť: %1, torrentu: &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1539"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1538"/>
         <source>On</source>
         <translation>Zapnuté</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1539"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1538"/>
         <source>Off</source>
         <translation>Vypnuté</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2031"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2030"/>
         <source>Generate resume data failed. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2042"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2041"/>
         <source>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2522"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2521"/>
         <source>Missing metadata</source>
         <translation>Chýbajúce metadáta</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2085"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2084"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
         <translation>Premenovanie súboru zlyhalo. Torrent: &quot;%1&quot;, súbor: &quot;%2&quot;, dôvod: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2147"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2146"/>
         <source>Performance alert: %1. More info: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2639,6 +2623,191 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
         <location filename="../base/bittorrent/tracker.cpp" line="231"/>
         <source>Embedded Tracker: Unable to bind to IP: %1, port: %2. Reason: %3</source>
         <translation>Zabudovaný tracker: Nemožno viazať na IP: %1, port: %2. Dôvod: %3</translation>
+    </message>
+</context>
+<context>
+    <name>CMD Options</name>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="156"/>
+        <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
+        <comment>e.g. Parameter &apos;--webui-port&apos; must follow syntax &apos;--webui-port=value&apos;</comment>
+        <translation type="unfinished">Parameter &apos;%1&apos; musia dodržiavať syntax &apos;%1 =%2&apos;</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="207"/>
+        <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
+        <comment>e.g. Parameter &apos;--webui-port&apos; must follow syntax &apos;--webui-port=&lt;value&gt;&apos;</comment>
+        <translation type="unfinished">Parameter &apos;%1&apos; musia dodržiavať syntax &apos;%1 =%2&apos;</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="223"/>
+        <source>Expected integer number in environment variable &apos;%1&apos;, but got &apos;%2&apos;</source>
+        <translation type="unfinished">V premennej je predpokladané celé číslo &apos;%1&apos;, ale doručených &apos;%2&apos;</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="279"/>
+        <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
+        <comment>e.g. Parameter &apos;--add-paused&apos; must follow syntax &apos;--add-paused=&lt;true|false&gt;&apos;</comment>
+        <translation type="unfinished">Parameter &apos;%1&apos; musia dodržiavať syntax &apos;%1 =%2&apos;</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="306"/>
+        <source>Expected %1 in environment variable &apos;%2&apos;, but got &apos;%3&apos;</source>
+        <translation type="unfinished">Očakával %1 v premennej prostredia &apos;%2&apos;, ale dostal &apos;%3&apos;</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="392"/>
+        <location filename="../app/cmdoptions.cpp" line="400"/>
+        <source>%1 must specify a valid port (1 to 65535).</source>
+        <translation type="unfinished">%1 musí určovať správny port (1 to 65535).</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="503"/>
+        <source>Usage:</source>
+        <translation type="unfinished">Použitie:</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="504"/>
+        <source>[options] [(&lt;filename&gt; | &lt;url&gt;)...]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="506"/>
+        <source>Options:</source>
+        <translation type="unfinished">Voľby:</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="508"/>
+        <source>Display program version and exit</source>
+        <translation type="unfinished">Zobraz verziu programu a skonči</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="510"/>
+        <source>Display this help message and exit</source>
+        <translation type="unfinished">Zobraz túto nápovedu a skonči</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="511"/>
+        <location filename="../app/cmdoptions.cpp" line="514"/>
+        <source>port</source>
+        <translation type="unfinished">port</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="512"/>
+        <source>Change the Web UI port</source>
+        <translation type="unfinished">Zmeň port webového rozhrania</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="515"/>
+        <source>Change the torrenting port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="518"/>
+        <source>Disable splash screen</source>
+        <translation type="unfinished">vypni štartovaciu obrazovku</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="520"/>
+        <source>Run in daemon-mode (background)</source>
+        <translation type="unfinished">spusti v režime démona (na pozadí)</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="523"/>
+        <source>dir</source>
+        <extracomment>Use appropriate short form or abbreviation of &quot;directory&quot;</extracomment>
+        <translation type="unfinished">adr</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="524"/>
+        <source>Store configuration files in &lt;dir&gt;</source>
+        <translation type="unfinished">Uložiť súbory konfigurácie do &lt;dir&gt;</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="525"/>
+        <location filename="../app/cmdoptions.cpp" line="538"/>
+        <source>name</source>
+        <translation type="unfinished">meno</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="526"/>
+        <source>Store configuration files in directories qBittorrent_&lt;name&gt;</source>
+        <translation type="unfinished">Uložiť súbory konfigurácie v adresároch qBittorrent_&lt;name&gt;</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="528"/>
+        <source>Hack into libtorrent fastresume files and make file paths relative to the profile directory</source>
+        <translation type="unfinished">Vniknúť do súborov libtorrent fastresume a vztiahnuť cesty k súborom podľa adresára profilu</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="530"/>
+        <source>files or URLs</source>
+        <translation type="unfinished">súbory alebo URL adresy</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="531"/>
+        <source>Download the torrents passed by the user</source>
+        <translation type="unfinished">Stiahni torrenty zadané užívateľom</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="534"/>
+        <source>Options when adding new torrents:</source>
+        <translation type="unfinished">Voľby pri pridávaní torrentu</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="535"/>
+        <source>path</source>
+        <translation type="unfinished">cesta</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="535"/>
+        <source>Torrent save path</source>
+        <translation type="unfinished">Cesta uloženia torrentu</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="536"/>
+        <source>Add torrents as started or paused</source>
+        <translation type="unfinished">Pridať torrenty ako spustené alebo pozastavené</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="537"/>
+        <source>Skip hash check</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="539"/>
+        <source>Assign torrents to category. If the category doesn&apos;t exist, it will be created.</source>
+        <translation type="unfinished">Priraďte torrenty do kategórie. Ak kategória neexistuje, vytvorí sa.</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="541"/>
+        <source>Download files in sequential order</source>
+        <translation type="unfinished">Sťahovať súbory v poradí</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="543"/>
+        <source>Download first and last pieces first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="545"/>
+        <source>Specify whether the &quot;Add New Torrent&quot; dialog opens when adding a torrent.</source>
+        <translation type="unfinished">Určiť, či sa otvorí dialóg &quot;Pridať nový torrent&quot; keď je torrent pridávaný.</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="549"/>
+        <source>Option values may be supplied via environment variables. For option named &apos;parameter-name&apos;, environment variable name is &apos;QBT_PARAMETER_NAME&apos; (in upper case, &apos;-&apos; replaced with &apos;_&apos;). To pass flag values, set the variable to &apos;1&apos; or &apos;TRUE&apos;. For example, to disable the splash screen: </source>
+        <translation type="unfinished">Možné hodnoty sa môžu dodávať prostredníctvom premenných prostredia. Pri možnosti s názvom &quot;parameter-name&quot; je názov premennej prostredia &quot;QBT_PARAMETER_NAME&quot; (vo veľkom prípade &quot;-&quot; nahradený znakom &quot;_&quot;). Ak chcete prejsť hodnoty vlajok, nastavte premennú na hodnotu &quot;1&quot; alebo &quot;TRUE&quot;. Ak napríklad chcete zakázať úvodnú obrazovku:</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="554"/>
+        <source>Command line parameters take precedence over environment variables</source>
+        <translation type="unfinished">Parametre príkazového riadka majú prednosť pred parametrami premenných prostredia</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="562"/>
+        <source>Help</source>
+        <translation type="unfinished">Nápoveda</translation>
     </message>
 </context>
 <context>
@@ -2705,12 +2874,12 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
 <context>
     <name>ColorWidget</name>
     <message>
-        <location filename="../gui/uithemedialog.cpp" line="100"/>
+        <location filename="../gui/uithemedialog.cpp" line="99"/>
         <source>Edit...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/uithemedialog.cpp" line="101"/>
+        <location filename="../gui/uithemedialog.cpp" line="100"/>
         <source>Reset</source>
         <translation>Vrátiť pôvodné</translation>
     </message>
@@ -2749,6 +2918,27 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
         <location filename="../gui/cookiesmodel.cpp" line="59"/>
         <source>Expiration Date</source>
         <translation>Dátum expirácie</translation>
+    </message>
+</context>
+<context>
+    <name>CustomThemeSource</name>
+    <message>
+        <location filename="../gui/uithemesource.cpp" line="236"/>
+        <source>Failed to load custom theme style sheet. %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/uithemesource.cpp" line="255"/>
+        <source>Failed to load custom theme colors. %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DefaultThemeSource</name>
+    <message>
+        <location filename="../gui/uithemesource.cpp" line="159"/>
+        <source>Failed to load default theme colors. %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3061,22 +3251,22 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
 <context>
     <name>IconWidget</name>
     <message>
-        <location filename="../gui/uithemedialog.cpp" line="172"/>
+        <location filename="../gui/uithemedialog.cpp" line="171"/>
         <source>Browse...</source>
         <translation>Prechádzať...</translation>
     </message>
     <message>
-        <location filename="../gui/uithemedialog.cpp" line="173"/>
+        <location filename="../gui/uithemedialog.cpp" line="172"/>
         <source>Reset</source>
         <translation>Vrátiť pôvodné</translation>
     </message>
     <message>
-        <location filename="../gui/uithemedialog.cpp" line="200"/>
+        <location filename="../gui/uithemedialog.cpp" line="199"/>
         <source>Select icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/uithemedialog.cpp" line="201"/>
+        <location filename="../gui/uithemedialog.cpp" line="200"/>
         <source>Supported image files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3094,6 +3284,85 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
         <source>%1 was banned</source>
         <comment>0.0.0.0 was banned</comment>
         <translation>%1 bol zablokovaný</translation>
+    </message>
+</context>
+<context>
+    <name>Main</name>
+    <message>
+        <location filename="../app/main.cpp" line="136"/>
+        <source>%1 is an unknown command line parameter.</source>
+        <comment>--random-parameter is an unknown command line parameter.</comment>
+        <translation type="unfinished">%1 je neznámy parameter príkazového riadka</translation>
+    </message>
+    <message>
+        <location filename="../app/main.cpp" line="148"/>
+        <location filename="../app/main.cpp" line="159"/>
+        <source>%1 must be the single command line parameter.</source>
+        <translation type="unfinished">%1 musí byť jediný parameter príkazového riadka</translation>
+    </message>
+    <message>
+        <location filename="../app/main.cpp" line="191"/>
+        <source>You cannot use %1: qBittorrent is already running for this user.</source>
+        <translation type="unfinished">Nemožno použiť %1: qBitorrent bol už pre tohto užívateľa spustený.</translation>
+    </message>
+    <message>
+        <location filename="../app/main.cpp" line="299"/>
+        <source>Run application with -h option to read about command line parameters.</source>
+        <translation type="unfinished">Spustite aplikáciu s parametrom -h pre zobrazenie nápovedy o prípustných parametroch.</translation>
+    </message>
+    <message>
+        <location filename="../app/main.cpp" line="301"/>
+        <source>Bad command line</source>
+        <translation type="unfinished">Chyba v príkazovom riadku</translation>
+    </message>
+    <message>
+        <location filename="../app/main.cpp" line="307"/>
+        <source>Bad command line: </source>
+        <translation type="unfinished">Chyba v príkazovom riadku:</translation>
+    </message>
+    <message>
+        <location filename="../app/main.cpp" line="320"/>
+        <source>Legal Notice</source>
+        <translation type="unfinished">Právne upozornenie</translation>
+    </message>
+    <message>
+        <location filename="../app/main.cpp" line="321"/>
+        <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
+        <translation type="unfinished">qBittorrent je program na zdieľanie súborov. Keď spustíte torrent, jeho dáta sa sprístupnia iným prostredníctvom nahrávania. Za akýkoľvek obsah, ktorý zdieľate, nesiete zodpovednosť vy.</translation>
+    </message>
+    <message>
+        <location filename="../app/main.cpp" line="322"/>
+        <source>No further notices will be issued.</source>
+        <translation type="unfinished">Už vás nebudeme ďalej upozorňovať.</translation>
+    </message>
+    <message>
+        <location filename="../app/main.cpp" line="323"/>
+        <source>Press %1 key to accept and continue...</source>
+        <translation type="unfinished">Pre akceptovanie a pokračovanie stlačte kláves %1....</translation>
+    </message>
+    <message>
+        <location filename="../app/main.cpp" line="335"/>
+        <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
+
+No further notices will be issued.</source>
+        <translation type="unfinished">qBittorrent je program na zdieľanie súborov. Spustením torrentu sa jeho dáta sprístupnia iným prostredníctvom nahrávania. Za akýkoľvek obsah, ktorý zdieľate, nesiete výlučnú zodpovednosť Vy.
+
+Žiadne ďalšie upozornenie už nebude zobrazené.</translation>
+    </message>
+    <message>
+        <location filename="../app/main.cpp" line="336"/>
+        <source>Legal notice</source>
+        <translation type="unfinished">Právne upozornenie</translation>
+    </message>
+    <message>
+        <location filename="../app/main.cpp" line="337"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Zrušiť</translation>
+    </message>
+    <message>
+        <location filename="../app/main.cpp" line="338"/>
+        <source>I Agree</source>
+        <translation type="unfinished">Súhlasím</translation>
     </message>
 </context>
 <context>
@@ -3662,7 +3931,7 @@ Prosím, nainštalujte ho ručne.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="205"/>
+        <location filename="../gui/mainwindow.cpp" line="206"/>
         <source>Filter by:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3758,10 +4027,6 @@ Prosím, nainštalujte ho ručne.</translation>
         <location filename="../base/net/dnsupdater.cpp" line="226"/>
         <source>Dynamic DNS error: %1 was returned by the service, please submit a bug report at https://bugs.qbittorrent.org.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please submit a bug report at http://bugs.qbittorrent.org.</source>
-        <translation type="vanished">Dynamická chyba DNS: Služba qBittorrent zaradila na čiernu listinu, odošlite prosím hlásenie o chybe na http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="234"/>
@@ -5324,238 +5589,248 @@ Prosím, nainštalujte ho ručne.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="245"/>
+        <source>Shows a confirmation dialog upon pausing/resuming all the torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="248"/>
+        <source>Confirm &quot;Pause/Resume all&quot; actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="258"/>
         <source>Use alternating row colors</source>
         <extracomment>In table elements, every other row will have a grey background.</extracomment>
         <translation>Používať striedavé farby pozadia riadkov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="257"/>
+        <location filename="../gui/optionsdialog.ui" line="270"/>
         <source>Hide zero and infinity values</source>
         <translation>Skryť nulové a nekonečné hodnoty</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="265"/>
+        <location filename="../gui/optionsdialog.ui" line="278"/>
         <source>Always</source>
         <translation>Vždy</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="270"/>
+        <location filename="../gui/optionsdialog.ui" line="283"/>
         <source>Paused torrents only</source>
         <translation>Len pozastavené torrenty</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="293"/>
+        <location filename="../gui/optionsdialog.ui" line="306"/>
         <source>Action on double-click</source>
         <translation>Akcia po dvojitom kliknutí</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="299"/>
+        <location filename="../gui/optionsdialog.ui" line="312"/>
         <source>Downloading torrents:</source>
         <translation>Sťahované torrenty:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="310"/>
-        <location filename="../gui/optionsdialog.ui" line="346"/>
+        <location filename="../gui/optionsdialog.ui" line="323"/>
+        <location filename="../gui/optionsdialog.ui" line="359"/>
         <source>Start / Stop Torrent</source>
         <translation>Spusti / zastavi torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="315"/>
-        <location filename="../gui/optionsdialog.ui" line="351"/>
+        <location filename="../gui/optionsdialog.ui" line="328"/>
+        <location filename="../gui/optionsdialog.ui" line="364"/>
         <source>Open destination folder</source>
         <translation>Otvor cieľový priečinok</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="330"/>
-        <location filename="../gui/optionsdialog.ui" line="366"/>
+        <location filename="../gui/optionsdialog.ui" line="343"/>
+        <location filename="../gui/optionsdialog.ui" line="379"/>
         <source>No action</source>
         <translation>Neurob nič</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="338"/>
+        <location filename="../gui/optionsdialog.ui" line="351"/>
         <source>Completed torrents:</source>
         <translation>Dokončené torrenty:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="390"/>
+        <location filename="../gui/optionsdialog.ui" line="403"/>
         <source>Auto hide zero status filters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="400"/>
+        <location filename="../gui/optionsdialog.ui" line="413"/>
         <source>Desktop</source>
         <translation>Plocha</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="406"/>
+        <location filename="../gui/optionsdialog.ui" line="419"/>
         <source>Start qBittorrent on Windows start up</source>
         <translation>Spustiť qBittorrent pri štarte Windows</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="413"/>
+        <location filename="../gui/optionsdialog.ui" line="426"/>
         <source>Show splash screen on start up</source>
         <translation>Zobraziť pri spustení štartovaciu obrazovku</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="457"/>
+        <location filename="../gui/optionsdialog.ui" line="470"/>
         <source>Confirmation on exit when torrents are active</source>
         <translation>Vyžiadať potvrdenie pri ukončení programu ak sú torrenty aktívne</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="467"/>
+        <location filename="../gui/optionsdialog.ui" line="480"/>
         <source>Confirmation on auto-exit when downloads finish</source>
         <translation>Vyžiadať potvrdenie pri automatickom ukončení programu ak sťahovanie skončilo</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="655"/>
+        <location filename="../gui/optionsdialog.ui" line="668"/>
         <source> KiB</source>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="833"/>
+        <location filename="../gui/optionsdialog.ui" line="846"/>
         <source>Torrent content layout:</source>
         <translation>Rozloženie obsahu torrentu:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="844"/>
+        <location filename="../gui/optionsdialog.ui" line="857"/>
         <source>Original</source>
         <translation>Pôvodné</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="849"/>
+        <location filename="../gui/optionsdialog.ui" line="862"/>
         <source>Create subfolder</source>
         <translation>Vytvoriť podpriečinok</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="854"/>
+        <location filename="../gui/optionsdialog.ui" line="867"/>
         <source>Don&apos;t create subfolder</source>
         <translation>Nevytvárať podpriečinok</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="877"/>
+        <location filename="../gui/optionsdialog.ui" line="890"/>
         <source>The torrent will be added to the top of the download queue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="880"/>
+        <location filename="../gui/optionsdialog.ui" line="893"/>
         <source>Add to top of queue</source>
         <extracomment>The torrent will be added to the top of the download queue</extracomment>
         <translation>Pridať navrch poradovníka</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1311"/>
+        <location filename="../gui/optionsdialog.ui" line="1324"/>
         <source>Add...</source>
         <translation>Pridať...</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1321"/>
+        <location filename="../gui/optionsdialog.ui" line="1334"/>
         <source>Options..</source>
         <translation>Možnosti..</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1331"/>
+        <location filename="../gui/optionsdialog.ui" line="1344"/>
         <source>Remove</source>
         <translation>Odstrániť</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1395"/>
+        <location filename="../gui/optionsdialog.ui" line="1408"/>
         <source>Email notification &amp;upon download completion</source>
         <translation>Upozornenie o dokončení sťahovania emailom</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1592"/>
+        <location filename="../gui/optionsdialog.ui" line="1605"/>
         <source>Peer connection protocol:</source>
         <translation>Protokol peer pripojenia:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1651"/>
+        <location filename="../gui/optionsdialog.ui" line="1664"/>
         <source>Any</source>
         <translation>Akýkoľvek</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1801"/>
+        <location filename="../gui/optionsdialog.ui" line="1814"/>
         <source>I2P (experimental)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1860"/>
+        <location filename="../gui/optionsdialog.ui" line="1873"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;mixed mode&amp;quot; is enabled I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1863"/>
+        <location filename="../gui/optionsdialog.ui" line="1876"/>
         <source>Mixed mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1944"/>
+        <location filename="../gui/optionsdialog.ui" line="1957"/>
         <source>Some options are incompatible with the chosen proxy type!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1951"/>
+        <location filename="../gui/optionsdialog.ui" line="1964"/>
         <source>If checked, hostname lookups are done via the proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1954"/>
+        <location filename="../gui/optionsdialog.ui" line="1967"/>
         <source>Perform hostname lookup via proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2014"/>
+        <location filename="../gui/optionsdialog.ui" line="2027"/>
         <source>Use proxy for BitTorrent purposes</source>
         <translation>Použiť proxy pre účely BitTorrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2039"/>
+        <location filename="../gui/optionsdialog.ui" line="2052"/>
         <source>RSS feeds will use proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2042"/>
+        <location filename="../gui/optionsdialog.ui" line="2055"/>
         <source>Use proxy for RSS purposes</source>
         <translation>Použiť proxy pre účely RSS</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2052"/>
+        <location filename="../gui/optionsdialog.ui" line="2065"/>
         <source>Search engine, software updates or anything else will use proxy</source>
         <translation>Vyhľadávač, softvérové aktualizácie alebo čokoľvek iné bude používať proxy</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2055"/>
+        <location filename="../gui/optionsdialog.ui" line="2068"/>
         <source>Use proxy for general purposes</source>
         <translation>Použiť proxy pre všeobecné účely</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2068"/>
+        <location filename="../gui/optionsdialog.ui" line="2081"/>
         <source>IP Fi&amp;ltering</source>
         <translation>IP fi&amp;ltrovanie</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2262"/>
+        <location filename="../gui/optionsdialog.ui" line="2275"/>
         <source>Schedule &amp;the use of alternative rate limits</source>
         <translation>Naplánovať použitie alternatívnych rýchlostných obmedzení</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2277"/>
+        <location filename="../gui/optionsdialog.ui" line="2290"/>
         <source>From:</source>
         <comment>From start time</comment>
         <translation>Od:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2304"/>
+        <location filename="../gui/optionsdialog.ui" line="2317"/>
         <source>To:</source>
         <comment>To end time</comment>
         <translation>Do:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2509"/>
+        <location filename="../gui/optionsdialog.ui" line="2522"/>
         <source>Find peers on the DHT network</source>
         <translation>Hľadať peery v sieti DHT</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2557"/>
+        <location filename="../gui/optionsdialog.ui" line="2570"/>
         <source>Allow encryption: Connect to peers regardless of setting
 Require encryption: Only connect to peers with protocol encryption
 Disable encryption: Only connect to peers without protocol encryption</source>
@@ -5564,134 +5839,134 @@ Vyžadovať šifrovanie: Pripojí sa iba k peerom pomocou šifrovania protokolu
 Zakázať šifrovanie: Pripojí sa iba k peerom bez šifrovania protokolu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2563"/>
+        <location filename="../gui/optionsdialog.ui" line="2576"/>
         <source>Allow encryption</source>
         <translation>Povoliť šifrovanie</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2608"/>
+        <location filename="../gui/optionsdialog.ui" line="2621"/>
         <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Ďalšie informácie&lt;/a&gt;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2638"/>
+        <location filename="../gui/optionsdialog.ui" line="2651"/>
         <source>Maximum active checking torrents:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2673"/>
+        <location filename="../gui/optionsdialog.ui" line="2686"/>
         <source>&amp;Torrent Queueing</source>
         <translation>Zaraďovanie &amp;torrentov do frontu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2957"/>
+        <location filename="../gui/optionsdialog.ui" line="2970"/>
         <source>A&amp;utomatically add these trackers to new downloads:</source>
         <translation>Automaticky pridať tieto trackery k novým sťahovaniam:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3023"/>
+        <location filename="../gui/optionsdialog.ui" line="3036"/>
         <source>RSS Reader</source>
         <translation>RSS čítačka</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3029"/>
+        <location filename="../gui/optionsdialog.ui" line="3042"/>
         <source>Enable fetching RSS feeds</source>
         <translation>Zapnúť načítanie RSS kanálov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3038"/>
+        <location filename="../gui/optionsdialog.ui" line="3051"/>
         <source>Feeds refresh interval:</source>
         <translation>Interval obnovovania kanálov:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3055"/>
+        <location filename="../gui/optionsdialog.ui" line="3068"/>
         <source>Maximum number of articles per feed:</source>
         <translation>Maximálny počet článkov na kanál:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2861"/>
-        <location filename="../gui/optionsdialog.ui" line="3062"/>
+        <location filename="../gui/optionsdialog.ui" line="2874"/>
+        <location filename="../gui/optionsdialog.ui" line="3075"/>
         <source> min</source>
         <extracomment>minutes</extracomment>
         <translation>min</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2852"/>
+        <location filename="../gui/optionsdialog.ui" line="2865"/>
         <source>Seeding Limits</source>
         <translation>Limity seedovania</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2874"/>
+        <location filename="../gui/optionsdialog.ui" line="2887"/>
         <source>When seeding time reaches</source>
         <translation>Ak je dosiahnutý limit seedovania</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2895"/>
+        <location filename="../gui/optionsdialog.ui" line="2908"/>
         <source>Pause torrent</source>
         <translation>Pozastaviť torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2900"/>
+        <location filename="../gui/optionsdialog.ui" line="2913"/>
         <source>Remove torrent</source>
         <translation>Odstrániť torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2905"/>
+        <location filename="../gui/optionsdialog.ui" line="2918"/>
         <source>Remove torrent and its files</source>
         <translation>Zmazať torrent a jeho súbory</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2910"/>
+        <location filename="../gui/optionsdialog.ui" line="2923"/>
         <source>Enable super seeding for torrent</source>
         <translation>Povoliť super seeding pre torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2918"/>
+        <location filename="../gui/optionsdialog.ui" line="2931"/>
         <source>When ratio reaches</source>
         <translation>Keď je dosiahnuté ratio</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3096"/>
+        <location filename="../gui/optionsdialog.ui" line="3109"/>
         <source>RSS Torrent Auto Downloader</source>
         <translation>Automatické RSS sťahovanie torrentov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3102"/>
+        <location filename="../gui/optionsdialog.ui" line="3115"/>
         <source>Enable auto downloading of RSS torrents</source>
         <translation>Zapnúť automatické RSS sťahovanie torrentov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3109"/>
+        <location filename="../gui/optionsdialog.ui" line="3122"/>
         <source>Edit auto downloading rules...</source>
         <translation>Upraviť pravidlá automatického sťahovania...</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3119"/>
+        <location filename="../gui/optionsdialog.ui" line="3132"/>
         <source>RSS Smart Episode Filter</source>
         <translation>RSS inteligentný filter epizód</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3125"/>
+        <location filename="../gui/optionsdialog.ui" line="3138"/>
         <source>Download REPACK/PROPER episodes</source>
         <translation>Stiahnuť REPACK/PROPER epizódy</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3132"/>
+        <location filename="../gui/optionsdialog.ui" line="3145"/>
         <source>Filters:</source>
         <translation>Filtre:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3193"/>
+        <location filename="../gui/optionsdialog.ui" line="3206"/>
         <source>Web User Interface (Remote control)</source>
         <translation>Webové rozhranie (vzdialené ovládanie)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3207"/>
+        <location filename="../gui/optionsdialog.ui" line="3220"/>
         <source>IP address:</source>
         <translation>IP adresa:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3214"/>
+        <location filename="../gui/optionsdialog.ui" line="3227"/>
         <source>IP address that the Web UI will bind to.
 Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv4 address,
 &quot;::&quot; for any IPv6 address, or &quot;*&quot; for both IPv4 and IPv6.</source>
@@ -5700,42 +5975,42 @@ Zvolte IPv4 alebo IPv6 adresu. Môžete zadať &quot;0.0.0.0&quot; pre akúkoľv
  &quot;::&quot; pre akúkoľvek IPv6 adresu, alebo &quot;*&quot; pre akékoľvek IPv4 alebo IPv6 adresy.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3372"/>
+        <location filename="../gui/optionsdialog.ui" line="3385"/>
         <source>Ban client after consecutive failures:</source>
         <translation>Zakázať klienta po následných zlyhaniach:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3392"/>
+        <location filename="../gui/optionsdialog.ui" line="3405"/>
         <source>Never</source>
         <translation>Nikdy</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3402"/>
+        <location filename="../gui/optionsdialog.ui" line="3415"/>
         <source>ban for:</source>
         <translation>ban pre:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3429"/>
+        <location filename="../gui/optionsdialog.ui" line="3442"/>
         <source>Session timeout:</source>
         <translation>Časový limit relácie:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3436"/>
+        <location filename="../gui/optionsdialog.ui" line="3449"/>
         <source>Disabled</source>
         <translation>Vypnuté</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3512"/>
+        <location filename="../gui/optionsdialog.ui" line="3525"/>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>Povoliť príznak zabezpečenie súborov cookie (vyžaduje HTTPS)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3530"/>
+        <location filename="../gui/optionsdialog.ui" line="3543"/>
         <source>Server domains:</source>
         <translation>Serverové domény:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3537"/>
+        <location filename="../gui/optionsdialog.ui" line="3550"/>
         <source>Whitelist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
@@ -5748,37 +6023,37 @@ mali vložiť doménové názvy použité pre WebUI server.
 Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť masku &apos;*&apos;.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3255"/>
+        <location filename="../gui/optionsdialog.ui" line="3268"/>
         <source>&amp;Use HTTPS instead of HTTP</source>
         <translation>&amp;Používať HTTPS namiesto HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3343"/>
+        <location filename="../gui/optionsdialog.ui" line="3356"/>
         <source>Bypass authentication for clients on localhost</source>
         <translation>Obísť autentifikáciu pri prihlasovaní z lokálneho počítača</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3350"/>
+        <location filename="../gui/optionsdialog.ui" line="3363"/>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
         <translation>Preskočiť overenie klientov na zozname povolených IP podsietí</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3363"/>
+        <location filename="../gui/optionsdialog.ui" line="3376"/>
         <source>IP subnet whitelist...</source>
         <translation>Zoznam povolených IP podsietí...</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3596"/>
+        <location filename="../gui/optionsdialog.ui" line="3609"/>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3608"/>
+        <location filename="../gui/optionsdialog.ui" line="3621"/>
         <source>Upda&amp;te my dynamic domain name</source>
         <translation>Aktualizovať môj dynamický doménový názov </translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="489"/>
+        <location filename="../gui/optionsdialog.ui" line="502"/>
         <source>Minimize qBittorrent to notification area</source>
         <translation>Minimalizovať qBittorrent do oznamovacej oblasti</translation>
     </message>
@@ -5793,170 +6068,170 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
         <translation>Jazyk:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="511"/>
+        <location filename="../gui/optionsdialog.ui" line="524"/>
         <source>Tray icon style:</source>
         <translation>Štýl ikony v oznamovacej oblasti:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="519"/>
-        <location filename="../gui/optionsdialog.cpp" line="257"/>
+        <location filename="../gui/optionsdialog.ui" line="532"/>
+        <location filename="../gui/optionsdialog.cpp" line="259"/>
         <source>Normal</source>
         <translation>Normálny</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="555"/>
+        <location filename="../gui/optionsdialog.ui" line="568"/>
         <source>File association</source>
         <translation>Asociácia typu súboru</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="561"/>
+        <location filename="../gui/optionsdialog.ui" line="574"/>
         <source>Use qBittorrent for .torrent files</source>
         <translation>Otvárať .torrent súbory programom qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="568"/>
+        <location filename="../gui/optionsdialog.ui" line="581"/>
         <source>Use qBittorrent for magnet links</source>
         <translation>Otvárať odkazy magnet programom qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="578"/>
+        <location filename="../gui/optionsdialog.ui" line="591"/>
         <source>Check for program updates</source>
         <translation>Skontrolovať aktualizácie programu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="588"/>
+        <location filename="../gui/optionsdialog.ui" line="601"/>
         <source>Power Management</source>
         <translation>Správa napájania</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="631"/>
+        <location filename="../gui/optionsdialog.ui" line="644"/>
         <source>Save path:</source>
         <translation>Uložiť do:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="648"/>
+        <location filename="../gui/optionsdialog.ui" line="661"/>
         <source>Backup the log file after:</source>
         <translation>Zálohovať log súbor po dosiahnutí:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="688"/>
+        <location filename="../gui/optionsdialog.ui" line="701"/>
         <source>Delete backup logs older than:</source>
         <translation>Vymazať zálohy log súborov staršie ako:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="803"/>
+        <location filename="../gui/optionsdialog.ui" line="816"/>
         <source>When adding a torrent</source>
         <translation>Pri pridávaní torrentu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="818"/>
+        <location filename="../gui/optionsdialog.ui" line="831"/>
         <source>Bring torrent dialog to the front</source>
         <translation>Preniesť dialóg torrentu do popredia</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="958"/>
+        <location filename="../gui/optionsdialog.ui" line="971"/>
         <source>Also delete .torrent files whose addition was cancelled</source>
         <translation>Vymazať tiež .torrent súbory, ktorých pridanie zlyhalo</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="961"/>
+        <location filename="../gui/optionsdialog.ui" line="974"/>
         <source>Also when addition is cancelled</source>
         <translation>Vymazať tiež ak bolo pridanie zrušené</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="983"/>
+        <location filename="../gui/optionsdialog.ui" line="996"/>
         <source>Warning! Data loss possible!</source>
         <translation>Upozornenie! Vyskytla sa možná strata dát!</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1025"/>
+        <location filename="../gui/optionsdialog.ui" line="1038"/>
         <source>Saving Management</source>
         <translation>Správa ukladania</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1033"/>
+        <location filename="../gui/optionsdialog.ui" line="1046"/>
         <source>Default Torrent Management Mode:</source>
         <translation>Prednastavený režim správy torrentov:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1050"/>
+        <location filename="../gui/optionsdialog.ui" line="1063"/>
         <source>Manual</source>
         <translation>Manuálny</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1055"/>
+        <location filename="../gui/optionsdialog.ui" line="1068"/>
         <source>Automatic</source>
         <translation>Automatický</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1078"/>
+        <location filename="../gui/optionsdialog.ui" line="1091"/>
         <source>When Torrent Category changed:</source>
         <translation>Ak sa zmení kategória torrentu:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1088"/>
+        <location filename="../gui/optionsdialog.ui" line="1101"/>
         <source>Relocate torrent</source>
         <translation>Premiestni torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1093"/>
+        <location filename="../gui/optionsdialog.ui" line="1106"/>
         <source>Switch torrent to Manual Mode</source>
         <translation>Prepni torrent do manuálneho režimu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1129"/>
-        <location filename="../gui/optionsdialog.ui" line="1170"/>
+        <location filename="../gui/optionsdialog.ui" line="1142"/>
+        <location filename="../gui/optionsdialog.ui" line="1183"/>
         <source>Relocate affected torrents</source>
         <translation>Premiestni torrenty, ktorých sa zmena týka</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1134"/>
-        <location filename="../gui/optionsdialog.ui" line="1175"/>
+        <location filename="../gui/optionsdialog.ui" line="1147"/>
+        <location filename="../gui/optionsdialog.ui" line="1188"/>
         <source>Switch affected torrents to Manual Mode</source>
         <translation>Prepni torrenty, ktorých sa zmena týka, do manuálneho režimu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1200"/>
+        <location filename="../gui/optionsdialog.ui" line="1213"/>
         <source>Use Subcategories</source>
         <translation>Použi podkategórie</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1219"/>
+        <location filename="../gui/optionsdialog.ui" line="1232"/>
         <source>Default Save Path:</source>
         <translation>Predvolená cesta pre ukladanie:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1239"/>
+        <location filename="../gui/optionsdialog.ui" line="1252"/>
         <source>Copy .torrent files to:</source>
         <translation>Kopírovať .torrent súbory do:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="477"/>
+        <location filename="../gui/optionsdialog.ui" line="490"/>
         <source>Show &amp;qBittorrent in notification area</source>
         <translation>Zobraziť qBittorrent v oznamovacej oblasti</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="611"/>
+        <location filename="../gui/optionsdialog.ui" line="624"/>
         <source>&amp;Log file</source>
         <translation>Log súbor</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="809"/>
+        <location filename="../gui/optionsdialog.ui" line="822"/>
         <source>Display &amp;torrent content and some options</source>
         <translation>Zobraziť obsah torrentu a ďalšie voľby</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="946"/>
+        <location filename="../gui/optionsdialog.ui" line="959"/>
         <source>De&amp;lete .torrent files afterwards </source>
         <translation>Neskôr zm&amp;azať .torrent súbory</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1252"/>
+        <location filename="../gui/optionsdialog.ui" line="1265"/>
         <source>Copy .torrent files for finished downloads to:</source>
         <translation>Kopírovať .torrent súbory po dokončení sťahovania do:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1001"/>
+        <location filename="../gui/optionsdialog.ui" line="1014"/>
         <source>Pre-allocate disk space for all files</source>
         <translation>Dopredu alokovať miesto pre všetky súbory</translation>
     </message>
@@ -5981,146 +6256,146 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
         <translation>Zobrazí dialóg pre potvrdenie po odstránení torrentu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="320"/>
-        <location filename="../gui/optionsdialog.ui" line="356"/>
+        <location filename="../gui/optionsdialog.ui" line="333"/>
+        <location filename="../gui/optionsdialog.ui" line="369"/>
         <source>Preview file, otherwise open destination folder</source>
         <translation>Náhľad súboru, inak otvoriť cieľový priečinok</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="325"/>
-        <location filename="../gui/optionsdialog.ui" line="361"/>
+        <location filename="../gui/optionsdialog.ui" line="338"/>
+        <location filename="../gui/optionsdialog.ui" line="374"/>
         <source>Show torrent options</source>
         <translation>Zobraziť možnosti torrentu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="454"/>
+        <location filename="../gui/optionsdialog.ui" line="467"/>
         <source>Shows a confirmation dialog when exiting with active torrents</source>
         <translation>Zobrazí dialógové okno s potvrdením pri ukončení s aktívnymi torrentami</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="486"/>
+        <location filename="../gui/optionsdialog.ui" line="499"/>
         <source>When minimizing, the main window is closed and must be reopened from the systray icon</source>
         <translation>Pri minimalizácii je hlavné okno zatvorené a musí byť znovu otvorené z ikony systray</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="499"/>
+        <location filename="../gui/optionsdialog.ui" line="512"/>
         <source>The systray icon will still be visible when closing the main window</source>
         <translation>Po zatvorení hlavného okna bude ikona systray stále viditeľná</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="502"/>
+        <location filename="../gui/optionsdialog.ui" line="515"/>
         <source>Close qBittorrent to notification area</source>
         <extracomment>The systray icon will still be visible when closing the main window</extracomment>
         <translation>Po zatvorení minimalizuj qBittorrent do oznamovacej oblasti</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="524"/>
+        <location filename="../gui/optionsdialog.ui" line="537"/>
         <source>Monochrome (for dark theme)</source>
         <translation>Monochromatický (Tmavý motív)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="529"/>
+        <location filename="../gui/optionsdialog.ui" line="542"/>
         <source>Monochrome (for light theme)</source>
         <translation>Monochromatický (Svetlý motív)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="594"/>
+        <location filename="../gui/optionsdialog.ui" line="607"/>
         <source>Inhibit system sleep when torrents are downloading</source>
         <translation>Potlačiť prechod systému do režimu spánku ak sú torrenty sťahované</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="601"/>
+        <location filename="../gui/optionsdialog.ui" line="614"/>
         <source>Inhibit system sleep when torrents are seeding</source>
         <translation>Potlačiť prechod systému do režimu spánku ak sú torrenty odosielané</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="645"/>
+        <location filename="../gui/optionsdialog.ui" line="658"/>
         <source>Creates an additional log file after the log file reaches the specified file size</source>
         <translation>Vytvorí ďalší súbor protokolu potom, čo súbor protokolu dosiahne zadanej veľkosti súboru</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="712"/>
+        <location filename="../gui/optionsdialog.ui" line="725"/>
         <source>days</source>
         <extracomment>Delete backup logs older than 10 days</extracomment>
         <translation>dní</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="717"/>
+        <location filename="../gui/optionsdialog.ui" line="730"/>
         <source>months</source>
         <extracomment>Delete backup logs older than 10 months</extracomment>
         <translation>mesiacov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="722"/>
+        <location filename="../gui/optionsdialog.ui" line="735"/>
         <source>years</source>
         <extracomment>Delete backup logs older than 10 years</extracomment>
         <translation>rokov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="748"/>
+        <location filename="../gui/optionsdialog.ui" line="761"/>
         <source>Log performance warnings</source>
         <translation>Logovať upozornenia ohľadom výkonu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="887"/>
+        <location filename="../gui/optionsdialog.ui" line="900"/>
         <source>The torrent will be added to download list in a paused state</source>
         <translation>Torrent bude pridaný do zoznamu sťahovania v pozastavenom stave</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="890"/>
+        <location filename="../gui/optionsdialog.ui" line="903"/>
         <source>Do not start the download automatically</source>
         <extracomment>The torrent will be added to download list in a paused state</extracomment>
         <translation>Nespúšťať sťahovanie automaticky</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="943"/>
+        <location filename="../gui/optionsdialog.ui" line="956"/>
         <source>Whether the .torrent file should be deleted after adding it</source>
         <translation>Či sa má súbor .torrent po pridaní odstrániť</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="998"/>
+        <location filename="../gui/optionsdialog.ui" line="1011"/>
         <source>Allocate full file sizes on disk before starting downloads, to minimize fragmentation. Only useful for HDDs.</source>
         <translation>Pred začatím sťahovania vyhradí všetko potrebné miesto na disku, aby sa minimalizovala fragmentácia. Užitočné iba pre HDD.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1008"/>
+        <location filename="../gui/optionsdialog.ui" line="1021"/>
         <source>Append .!qB extension to incomplete files</source>
         <translation>Pridať príponu .!qB k nedokončeným súborom</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1015"/>
+        <location filename="../gui/optionsdialog.ui" line="1028"/>
         <source>When a torrent is downloaded, offer to add torrents from any .torrent files found inside it</source>
         <translation>Po stiahnutí torrentu ponúknite pridanie torrentov zo všetkých .torrent súborov, ktoré sa v ňom nachádzajú</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1018"/>
+        <location filename="../gui/optionsdialog.ui" line="1031"/>
         <source>Enable recursive download dialog</source>
         <translation>Zapnúť dialóg rekurzívneho sťahovania</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1045"/>
+        <location filename="../gui/optionsdialog.ui" line="1058"/>
         <source>Automatic: Various torrent properties (e.g. save path) will be decided by the associated category
 Manual: Various torrent properties (e.g. save path) must be assigned manually</source>
         <translation>Automaticky: O rôznych vlastnostiach torrentu (napr. cesta uloženie) rozhodne príslušná kategória
 Ručne: Rôzne vlastnosti torrentu (napr. cesta uloženia) musia byť priradené ručne</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1116"/>
+        <location filename="../gui/optionsdialog.ui" line="1129"/>
         <source>When Default Save/Incomplete Path changed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1157"/>
+        <location filename="../gui/optionsdialog.ui" line="1170"/>
         <source>When Category Save Path changed:</source>
         <translation>Ak sa zmení cesta pre ukladanie kategórie:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1210"/>
+        <location filename="../gui/optionsdialog.ui" line="1223"/>
         <source>Use Category paths in Manual Mode</source>
         <translation>Použiť cesty kategórií v manuálnom režime</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1207"/>
+        <location filename="../gui/optionsdialog.ui" line="1220"/>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6130,55 +6405,55 @@ Ručne: Rôzne vlastnosti torrentu (napr. cesta uloženia) musia byť priradené
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="425"/>
+        <location filename="../gui/optionsdialog.ui" line="438"/>
         <source>Window state on start up:</source>
         <translation>Stav okna po spustení:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="432"/>
+        <location filename="../gui/optionsdialog.ui" line="445"/>
         <source>qBittorrent window state on start up</source>
         <translation>Stav okna qBittorrentu po spustení</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="899"/>
+        <location filename="../gui/optionsdialog.ui" line="912"/>
         <source>Torrent stop condition:</source>
         <translation>Podmienka pre zastavenie torrentu:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="910"/>
-        <location filename="../gui/optionsdialog.cpp" line="491"/>
+        <location filename="../gui/optionsdialog.ui" line="923"/>
+        <location filename="../gui/optionsdialog.cpp" line="495"/>
         <source>None</source>
         <translation>Žiadna</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="915"/>
-        <location filename="../gui/optionsdialog.cpp" line="492"/>
+        <location filename="../gui/optionsdialog.ui" line="928"/>
+        <location filename="../gui/optionsdialog.cpp" line="496"/>
         <source>Metadata received</source>
         <translation>Metadáta obdržané</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="920"/>
-        <location filename="../gui/optionsdialog.cpp" line="494"/>
+        <location filename="../gui/optionsdialog.ui" line="933"/>
+        <location filename="../gui/optionsdialog.cpp" line="498"/>
         <source>Files checked</source>
         <translation>Súbory skontrolované</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1229"/>
+        <location filename="../gui/optionsdialog.ui" line="1242"/>
         <source>Use another path for incomplete torrents:</source>
         <translation>Pre nedokončené torrenty použiť inú cestu:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1264"/>
+        <location filename="../gui/optionsdialog.ui" line="1277"/>
         <source>Automatically add torrents from:</source>
         <translation>Automaticky pridať torrenty z:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1358"/>
+        <location filename="../gui/optionsdialog.ui" line="1371"/>
         <source>Excluded file names</source>
         <translation>Vynechané názvy súborov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1370"/>
+        <location filename="../gui/optionsdialog.ui" line="1383"/>
         <source>Blacklist filtered file names from being downloaded from torrent(s).
 Files matching any of the filters in this list will have their priority automatically set to &quot;Do not download&quot;.
 
@@ -6195,755 +6470,755 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1412"/>
+        <location filename="../gui/optionsdialog.ui" line="1425"/>
         <source>Receiver</source>
         <translation>Príjemca</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1415"/>
+        <location filename="../gui/optionsdialog.ui" line="1428"/>
         <source>To:</source>
         <comment>To receiver</comment>
         <translation>Do:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1422"/>
+        <location filename="../gui/optionsdialog.ui" line="1435"/>
         <source>SMTP server:</source>
         <translation>SMTP server:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1435"/>
+        <location filename="../gui/optionsdialog.ui" line="1448"/>
         <source>Sender</source>
         <translation>Odosielateľ</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1438"/>
+        <location filename="../gui/optionsdialog.ui" line="1451"/>
         <source>From:</source>
         <comment>From sender</comment>
         <translation>Od:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1447"/>
+        <location filename="../gui/optionsdialog.ui" line="1460"/>
         <source>This server requires a secure connection (SSL)</source>
         <translation>Tento server vyžaduje zabezpečené pripojenie (SSL)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1454"/>
-        <location filename="../gui/optionsdialog.ui" line="3306"/>
+        <location filename="../gui/optionsdialog.ui" line="1467"/>
+        <location filename="../gui/optionsdialog.ui" line="3319"/>
         <source>Authentication</source>
         <translation>Autentifikácia</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1466"/>
-        <location filename="../gui/optionsdialog.ui" line="1978"/>
-        <location filename="../gui/optionsdialog.ui" line="3314"/>
-        <location filename="../gui/optionsdialog.ui" line="3666"/>
+        <location filename="../gui/optionsdialog.ui" line="1479"/>
+        <location filename="../gui/optionsdialog.ui" line="1991"/>
+        <location filename="../gui/optionsdialog.ui" line="3327"/>
+        <location filename="../gui/optionsdialog.ui" line="3679"/>
         <source>Username:</source>
         <translation>Meno používateľa:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1476"/>
-        <location filename="../gui/optionsdialog.ui" line="1988"/>
-        <location filename="../gui/optionsdialog.ui" line="3324"/>
-        <location filename="../gui/optionsdialog.ui" line="3676"/>
+        <location filename="../gui/optionsdialog.ui" line="1489"/>
+        <location filename="../gui/optionsdialog.ui" line="2001"/>
+        <location filename="../gui/optionsdialog.ui" line="3337"/>
+        <location filename="../gui/optionsdialog.ui" line="3689"/>
         <source>Password:</source>
         <translation>Heslo:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1496"/>
+        <location filename="../gui/optionsdialog.ui" line="1509"/>
         <source>Run external program</source>
         <translation>Spustiť externý program</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1502"/>
+        <location filename="../gui/optionsdialog.ui" line="1515"/>
         <source>Run on torrent added</source>
         <translation>Spustiť pri pridaní torrentu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1520"/>
+        <location filename="../gui/optionsdialog.ui" line="1533"/>
         <source>Run on torrent finished</source>
         <translation>Spustiť pri dokončení torrentu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1538"/>
+        <location filename="../gui/optionsdialog.ui" line="1551"/>
         <source>Show console window</source>
         <translation>Zobraziť okno konzoli</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1600"/>
+        <location filename="../gui/optionsdialog.ui" line="1613"/>
         <source>TCP and μTP</source>
         <translation>TCP a μTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1633"/>
+        <location filename="../gui/optionsdialog.ui" line="1646"/>
         <source>Listening Port</source>
         <translation>Načúvací port</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1641"/>
+        <location filename="../gui/optionsdialog.ui" line="1654"/>
         <source>Port used for incoming connections:</source>
         <translation>Port pre prichádzajúce spojenia:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1648"/>
+        <location filename="../gui/optionsdialog.ui" line="1661"/>
         <source>Set to 0 to let your system pick an unused port</source>
         <translation>Nastavte na 0, aby váš systém vybral nepoužívaný port</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1661"/>
+        <location filename="../gui/optionsdialog.ui" line="1674"/>
         <source>Random</source>
         <translation>Náhodný</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1683"/>
+        <location filename="../gui/optionsdialog.ui" line="1696"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Použiť presmerovanie portov UPnP/NAT-PMP z môjho smerovača</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1696"/>
+        <location filename="../gui/optionsdialog.ui" line="1709"/>
         <source>Connections Limits</source>
         <translation>Obmedzenia spojení</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1712"/>
+        <location filename="../gui/optionsdialog.ui" line="1725"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Maximálny počet spojení na torrent:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1722"/>
+        <location filename="../gui/optionsdialog.ui" line="1735"/>
         <source>Global maximum number of connections:</source>
         <translation>Maximálny celkový počet spojení:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1761"/>
+        <location filename="../gui/optionsdialog.ui" line="1774"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Maximálny počet slotov pre nahrávanie na torrent:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1768"/>
+        <location filename="../gui/optionsdialog.ui" line="1781"/>
         <source>Global maximum number of upload slots:</source>
         <translation>Maximálny celkový počet slotov na nahrávanie:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1876"/>
+        <location filename="../gui/optionsdialog.ui" line="1889"/>
         <source>Proxy Server</source>
         <translation>Proxy server</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1884"/>
+        <location filename="../gui/optionsdialog.ui" line="1897"/>
         <source>Type:</source>
         <translation>Typ:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="798"/>
+        <location filename="../gui/optionsdialog.cpp" line="802"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="799"/>
+        <location filename="../gui/optionsdialog.cpp" line="803"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="800"/>
+        <location filename="../gui/optionsdialog.cpp" line="804"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1815"/>
-        <location filename="../gui/optionsdialog.ui" line="1894"/>
+        <location filename="../gui/optionsdialog.ui" line="1828"/>
+        <location filename="../gui/optionsdialog.ui" line="1907"/>
         <source>Host:</source>
         <translation>Host:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1825"/>
-        <location filename="../gui/optionsdialog.ui" line="1904"/>
-        <location filename="../gui/optionsdialog.ui" line="3223"/>
+        <location filename="../gui/optionsdialog.ui" line="1838"/>
+        <location filename="../gui/optionsdialog.ui" line="1917"/>
+        <location filename="../gui/optionsdialog.ui" line="3236"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2026"/>
+        <location filename="../gui/optionsdialog.ui" line="2039"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
         <translation>Inak sa proxy server použije iba na pripojenia k trackeru</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2029"/>
+        <location filename="../gui/optionsdialog.ui" line="2042"/>
         <source>Use proxy for peer connections</source>
         <translation>Používať proxy na spojenia s rovesníkmi</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1964"/>
+        <location filename="../gui/optionsdialog.ui" line="1977"/>
         <source>A&amp;uthentication</source>
         <translation>Overenie</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2004"/>
+        <location filename="../gui/optionsdialog.ui" line="2017"/>
         <source>Info: The password is saved unencrypted</source>
         <translation>Info: Heslo sa ukladá nezašifrované</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2076"/>
+        <location filename="../gui/optionsdialog.ui" line="2089"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Cesta k filtrom (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2086"/>
+        <location filename="../gui/optionsdialog.ui" line="2099"/>
         <source>Reload the filter</source>
         <translation>Znovu načítať filter</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2101"/>
+        <location filename="../gui/optionsdialog.ui" line="2114"/>
         <source>Manually banned IP addresses...</source>
         <translation>Manuálne zablokované IP adresy...</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2108"/>
+        <location filename="../gui/optionsdialog.ui" line="2121"/>
         <source>Apply to trackers</source>
         <translation>Použiť na trackery</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2166"/>
+        <location filename="../gui/optionsdialog.ui" line="2179"/>
         <source>Global Rate Limits</source>
         <translation>Globálne rýchlostné obmedzenia</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2172"/>
-        <location filename="../gui/optionsdialog.ui" line="2188"/>
-        <location filename="../gui/optionsdialog.ui" line="2243"/>
-        <location filename="../gui/optionsdialog.ui" line="2379"/>
-        <location filename="../gui/optionsdialog.ui" line="2692"/>
-        <location filename="../gui/optionsdialog.ui" line="2712"/>
-        <location filename="../gui/optionsdialog.ui" line="2732"/>
+        <location filename="../gui/optionsdialog.ui" line="2185"/>
+        <location filename="../gui/optionsdialog.ui" line="2201"/>
+        <location filename="../gui/optionsdialog.ui" line="2256"/>
+        <location filename="../gui/optionsdialog.ui" line="2392"/>
+        <location filename="../gui/optionsdialog.ui" line="2705"/>
+        <location filename="../gui/optionsdialog.ui" line="2725"/>
+        <location filename="../gui/optionsdialog.ui" line="2745"/>
         <source>∞</source>
         <translation>∞</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2175"/>
-        <location filename="../gui/optionsdialog.ui" line="2191"/>
-        <location filename="../gui/optionsdialog.ui" line="2246"/>
-        <location filename="../gui/optionsdialog.ui" line="2382"/>
-        <location filename="../gui/optionsdialog.ui" line="2770"/>
+        <location filename="../gui/optionsdialog.ui" line="2188"/>
+        <location filename="../gui/optionsdialog.ui" line="2204"/>
+        <location filename="../gui/optionsdialog.ui" line="2259"/>
+        <location filename="../gui/optionsdialog.ui" line="2395"/>
         <location filename="../gui/optionsdialog.ui" line="2783"/>
+        <location filename="../gui/optionsdialog.ui" line="2796"/>
         <source> KiB/s</source>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2220"/>
-        <location filename="../gui/optionsdialog.ui" line="2408"/>
+        <location filename="../gui/optionsdialog.ui" line="2233"/>
+        <location filename="../gui/optionsdialog.ui" line="2421"/>
         <source>Upload:</source>
         <translation>Nahrávanie:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2227"/>
-        <location filename="../gui/optionsdialog.ui" line="2415"/>
+        <location filename="../gui/optionsdialog.ui" line="2240"/>
+        <location filename="../gui/optionsdialog.ui" line="2428"/>
         <source>Download:</source>
         <translation>Sťahovanie:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2237"/>
+        <location filename="../gui/optionsdialog.ui" line="2250"/>
         <source>Alternative Rate Limits</source>
         <translation>Alternatívne rýchlostné obmedzenia</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2274"/>
+        <location filename="../gui/optionsdialog.ui" line="2287"/>
         <source>Start time</source>
         <translation>Doba spustenia</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2301"/>
+        <location filename="../gui/optionsdialog.ui" line="2314"/>
         <source>End time</source>
         <translation>Doba ukončenia</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2331"/>
+        <location filename="../gui/optionsdialog.ui" line="2344"/>
         <source>When:</source>
         <translation>Kedy:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2345"/>
+        <location filename="../gui/optionsdialog.ui" line="2358"/>
         <source>Every day</source>
         <translation>Každý deň</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2350"/>
+        <location filename="../gui/optionsdialog.ui" line="2363"/>
         <source>Weekdays</source>
         <translation>Dni v týždni</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2355"/>
+        <location filename="../gui/optionsdialog.ui" line="2368"/>
         <source>Weekends</source>
         <translation>Víkendy</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2425"/>
+        <location filename="../gui/optionsdialog.ui" line="2438"/>
         <source>Rate Limits Settings</source>
         <translation>Nastavenia rýchlostných obmedzení</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2445"/>
+        <location filename="../gui/optionsdialog.ui" line="2458"/>
         <source>Apply rate limit to peers on LAN</source>
         <translation>Použiť rýchlostné obmedzenie na rovesníkov v LAN</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2438"/>
+        <location filename="../gui/optionsdialog.ui" line="2451"/>
         <source>Apply rate limit to transport overhead</source>
         <translation>Použiť rýchlostné obmedzenie na réžiu prenosu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2431"/>
+        <location filename="../gui/optionsdialog.ui" line="2444"/>
         <source>Apply rate limit to µTP protocol</source>
         <translation>Použiť obmedzenie rýchlosti na protokol µTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2503"/>
+        <location filename="../gui/optionsdialog.ui" line="2516"/>
         <source>Privacy</source>
         <translation>Súkromie</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2512"/>
+        <location filename="../gui/optionsdialog.ui" line="2525"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Zapnúť DHT (decentralizovaná sieť) - umožní nájsť viac rovesníkov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2522"/>
+        <location filename="../gui/optionsdialog.ui" line="2535"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Vymieňať si zoznam rovesníkov s kompatibilnými klientmi siete Bittorrent (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2525"/>
+        <location filename="../gui/optionsdialog.ui" line="2538"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Zapnúť Peer eXchange (PeX) - umožní nájsť viac rovesníkov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2535"/>
+        <location filename="../gui/optionsdialog.ui" line="2548"/>
         <source>Look for peers on your local network</source>
         <translation>Hľadať rovesníkov na vašej lokálnej sieti</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2538"/>
+        <location filename="../gui/optionsdialog.ui" line="2551"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Zapnúť Local Peer Discovery - umožní nájsť viac rovesníkov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2550"/>
+        <location filename="../gui/optionsdialog.ui" line="2563"/>
         <source>Encryption mode:</source>
         <translation>Režim šifrovania:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2568"/>
+        <location filename="../gui/optionsdialog.ui" line="2581"/>
         <source>Require encryption</source>
         <translation>Vyžadovať šifrovanie</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2573"/>
+        <location filename="../gui/optionsdialog.ui" line="2586"/>
         <source>Disable encryption</source>
         <translation>Vypnúť šifrovanie</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2598"/>
+        <location filename="../gui/optionsdialog.ui" line="2611"/>
         <source>Enable when using a proxy or a VPN connection</source>
         <translation>Zapnúť počas používania proxy alebo spojenia VPN</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2601"/>
+        <location filename="../gui/optionsdialog.ui" line="2614"/>
         <source>Enable anonymous mode</source>
         <translation>Zapnúť anonymný režim</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2685"/>
+        <location filename="../gui/optionsdialog.ui" line="2698"/>
         <source>Maximum active downloads:</source>
         <translation>Maximálny počet aktívnych sťahovaní:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2705"/>
+        <location filename="../gui/optionsdialog.ui" line="2718"/>
         <source>Maximum active uploads:</source>
         <translation>Maximálny počet aktívnych nahrávaní:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2725"/>
+        <location filename="../gui/optionsdialog.ui" line="2738"/>
         <source>Maximum active torrents:</source>
         <translation>Maximálny počet aktívnych torrentov:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2758"/>
+        <location filename="../gui/optionsdialog.ui" line="2771"/>
         <source>Do not count slow torrents in these limits</source>
         <translation>Nepočítať pomalé torrenty do týchto obmedzení</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2796"/>
+        <location filename="../gui/optionsdialog.ui" line="2809"/>
         <source>Upload rate threshold:</source>
         <translation>Limit rýchlosti odosielania:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2803"/>
+        <location filename="../gui/optionsdialog.ui" line="2816"/>
         <source>Download rate threshold:</source>
         <translation>Limit rýchlosti sťahovania:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2823"/>
-        <location filename="../gui/optionsdialog.ui" line="3412"/>
-        <location filename="../gui/optionsdialog.ui" line="3439"/>
+        <location filename="../gui/optionsdialog.ui" line="2836"/>
+        <location filename="../gui/optionsdialog.ui" line="3425"/>
+        <location filename="../gui/optionsdialog.ui" line="3452"/>
         <source> sec</source>
         <extracomment>seconds</extracomment>
         <translation> sec</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2839"/>
+        <location filename="../gui/optionsdialog.ui" line="2852"/>
         <source>Torrent inactivity timer:</source>
         <translation>Časovač nečinnosti torrentu:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2881"/>
+        <location filename="../gui/optionsdialog.ui" line="2894"/>
         <source>then</source>
         <translation>potom</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3245"/>
+        <location filename="../gui/optionsdialog.ui" line="3258"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>Použiť presmerovanie portov UPnP/NAT-PMP z môjho smerovača</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3274"/>
+        <location filename="../gui/optionsdialog.ui" line="3287"/>
         <source>Certificate:</source>
         <translation>Certifikát:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3267"/>
+        <location filename="../gui/optionsdialog.ui" line="3280"/>
         <source>Key:</source>
         <translation>Kľúč:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3287"/>
+        <location filename="../gui/optionsdialog.ui" line="3300"/>
         <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Informácie o certifikátoch&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3334"/>
+        <location filename="../gui/optionsdialog.ui" line="3347"/>
         <source>Change current password</source>
         <translation>Zmena aktuálneho hesla</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3467"/>
+        <location filename="../gui/optionsdialog.ui" line="3480"/>
         <source>Use alternative Web UI</source>
         <translation>Použiť alternatívne Web UI</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3479"/>
+        <location filename="../gui/optionsdialog.ui" line="3492"/>
         <source>Files location:</source>
         <translation>Umiestnenie súborov:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3492"/>
+        <location filename="../gui/optionsdialog.ui" line="3505"/>
         <source>Security</source>
         <translation>Zabezpečenie</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3498"/>
+        <location filename="../gui/optionsdialog.ui" line="3511"/>
         <source>Enable clickjacking protection</source>
         <translation>Zapnúť ochranu clickjacking</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3505"/>
+        <location filename="../gui/optionsdialog.ui" line="3518"/>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
         <translation>Zapnúť ochranu Cross-Site Request Forgery (CSRF)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3519"/>
+        <location filename="../gui/optionsdialog.ui" line="3532"/>
         <source>Enable Host header validation</source>
         <translation>Zapnúť overovanie hlavičky hostiteľa</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3556"/>
+        <location filename="../gui/optionsdialog.ui" line="3569"/>
         <source>Add custom HTTP headers</source>
         <translation>Pridať vlastné HTTP hlavičky</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3568"/>
+        <location filename="../gui/optionsdialog.ui" line="3581"/>
         <source>Header: value pairs, one per line</source>
         <translation>Hlavička: páry hodnôt, jedna na riadok</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3578"/>
+        <location filename="../gui/optionsdialog.ui" line="3591"/>
         <source>Enable reverse proxy support</source>
         <translation>Povoliť podporu reverzného servera proxy</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3589"/>
+        <location filename="../gui/optionsdialog.ui" line="3602"/>
         <source>Trusted proxies list:</source>
         <translation>Zoznam dôveryhodných serverov proxy:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3620"/>
+        <location filename="../gui/optionsdialog.ui" line="3633"/>
         <source>Service:</source>
         <translation>Služba:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3643"/>
+        <location filename="../gui/optionsdialog.ui" line="3656"/>
         <source>Register</source>
         <translation>Zaregistrovať sa</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3652"/>
+        <location filename="../gui/optionsdialog.ui" line="3665"/>
         <source>Domain name:</source>
         <translation>Názov domény:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="510"/>
+        <location filename="../gui/optionsdialog.cpp" line="514"/>
         <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
         <translation>Nastavením týchto volieb môžete &lt;strong&gt;nenávratne stratiť&lt;/strong&gt; vaše .torrent súbory!</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="517"/>
+        <location filename="../gui/optionsdialog.cpp" line="521"/>
         <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
         <translation>Ak zapnete druhú voľbu (&amp;ldquo;Tiež, keď je pridanie zrušené&amp;rdquo;) .torrent súbor &lt;strong&gt;bude zmazaný&lt;/strong&gt; aj keď stlačíte &amp;ldquo;&lt;strong&gt;Zrušiť&lt;/strong&gt;&amp;rdquo; v dialógu &amp;ldquo;Pridať torrent &amp;rdquo;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="214"/>
+        <location filename="../gui/optionsdialog.cpp" line="215"/>
         <source>Select qBittorrent UI Theme file</source>
         <translation>Vyberte súbor motívu používateľského rozhrania qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1154"/>
+        <location filename="../gui/optionsdialog.cpp" line="1158"/>
         <source>Choose Alternative UI files location</source>
         <translation>Vybrať umiestnenie súborov Alternatívneho UI</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="589"/>
+        <location filename="../gui/optionsdialog.cpp" line="593"/>
         <source>Supported parameters (case sensitive):</source>
         <translation>Podporované parametre (rozlišujú sa veľké a malé písmená):</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="258"/>
+        <location filename="../gui/optionsdialog.cpp" line="260"/>
         <source>Minimized</source>
         <translation>Minimalizované</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="260"/>
+        <location filename="../gui/optionsdialog.cpp" line="262"/>
         <source>Hidden</source>
         <translation>Skryté</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="275"/>
+        <location filename="../gui/optionsdialog.cpp" line="277"/>
         <source>Disabled due to failed to detect system tray presence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="491"/>
+        <location filename="../gui/optionsdialog.cpp" line="495"/>
         <source>No stop condition is set.</source>
         <translation>Žiadna podmienka pre zastavenie nie je nastavená.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="492"/>
+        <location filename="../gui/optionsdialog.cpp" line="496"/>
         <source>Torrent will stop after metadata is received.</source>
         <translation>Torrent sa zastaví po obdržaní metadát.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="493"/>
+        <location filename="../gui/optionsdialog.cpp" line="497"/>
         <source>Torrents that have metadata initially aren&apos;t affected.</source>
         <translation>Torrenty, ktoré majú iniciálne metadáta, nie sú ovplyvnené.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="494"/>
+        <location filename="../gui/optionsdialog.cpp" line="498"/>
         <source>Torrent will stop after files are initially checked.</source>
         <translation>Torrent sa zastaví po iniciálnej kontrole súborov.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="495"/>
+        <location filename="../gui/optionsdialog.cpp" line="499"/>
         <source>This will also download metadata if it wasn&apos;t there initially.</source>
         <translation>Toto nastavenie taktiež stiahne metadáta, ak nie sú iniciálne prítomné.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="590"/>
+        <location filename="../gui/optionsdialog.cpp" line="594"/>
         <source>%N: Torrent name</source>
         <translation>%N: Názov torrentu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="591"/>
+        <location filename="../gui/optionsdialog.cpp" line="595"/>
         <source>%L: Category</source>
         <translation>%L: Kategória</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="593"/>
+        <location filename="../gui/optionsdialog.cpp" line="597"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation>%F: Cesta k obsahu (rovnaká ako koreňová cesta k torrentu s viacerými súbormi)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="594"/>
+        <location filename="../gui/optionsdialog.cpp" line="598"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
         <translation>%R: Koreňová cesta (cesta prvého podadresára torrentu)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="595"/>
+        <location filename="../gui/optionsdialog.cpp" line="599"/>
         <source>%D: Save path</source>
         <translation>%D: Uložiť do</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="596"/>
+        <location filename="../gui/optionsdialog.cpp" line="600"/>
         <source>%C: Number of files</source>
         <translation>%C: Počet súborov</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="597"/>
+        <location filename="../gui/optionsdialog.cpp" line="601"/>
         <source>%Z: Torrent size (bytes)</source>
         <translation>%Z: Veľkosť torrentu (v bajtoch)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="598"/>
+        <location filename="../gui/optionsdialog.cpp" line="602"/>
         <source>%T: Current tracker</source>
         <translation>%T: Aktuálny tracker</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="602"/>
+        <location filename="../gui/optionsdialog.cpp" line="606"/>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
         <translation>Tip: Ohraničiť parameter úvodzovkami, aby nedošlo k odstrihnutiu textu za medzerou (napr. &quot;%N&quot;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="988"/>
+        <location filename="../gui/optionsdialog.cpp" line="992"/>
         <source>A torrent will be considered slow if its download and upload rates stay below these values for &quot;Torrent inactivity timer&quot; seconds</source>
         <translation>Torrent bude uznaný pomalým ak rýchlosti sťahovania a odosielania zostanú pod týmito hodnotami &quot;Časovače nečinnosti torrentu&quot; v sekundách</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1148"/>
+        <location filename="../gui/optionsdialog.cpp" line="1152"/>
         <source>Certificate</source>
         <translation>Certifikát</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1149"/>
+        <location filename="../gui/optionsdialog.cpp" line="1153"/>
         <source>Select certificate</source>
         <translation>Vybrať certifikát</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1151"/>
+        <location filename="../gui/optionsdialog.cpp" line="1155"/>
         <source>Private key</source>
         <translation>Privátny kľúč</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1152"/>
+        <location filename="../gui/optionsdialog.cpp" line="1156"/>
         <source>Select private key</source>
         <translation>Vybrať privátny kľúč</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1667"/>
+        <location filename="../gui/optionsdialog.cpp" line="1671"/>
         <source>Select folder to monitor</source>
         <translation>Vyberte sledovaný adresár</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1689"/>
+        <location filename="../gui/optionsdialog.cpp" line="1693"/>
         <source>Adding entry failed</source>
         <translation>Pridanie položky zlyhalo</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1827"/>
+        <location filename="../gui/optionsdialog.cpp" line="1807"/>
         <source>Location Error</source>
         <translation>Chyba umiestnenia</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1827"/>
+        <location filename="../gui/optionsdialog.cpp" line="1807"/>
         <source>The alternative Web UI files location cannot be blank.</source>
         <translation>Umiestnenie súborov Alternatívneho UI nemôže byť prázdne.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="546"/>
-        <location filename="../gui/optionsdialog.cpp" line="554"/>
+        <location filename="../gui/optionsdialog.cpp" line="550"/>
+        <location filename="../gui/optionsdialog.cpp" line="558"/>
         <source>Choose export directory</source>
         <translation>Vyberte adresár pre export</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="512"/>
+        <location filename="../gui/optionsdialog.cpp" line="516"/>
         <source>When these options are enabled, qBittorrent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="215"/>
+        <location filename="../gui/optionsdialog.cpp" line="216"/>
         <source>qBittorrent UI Theme file (*.qbtheme config.json)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="592"/>
+        <location filename="../gui/optionsdialog.cpp" line="596"/>
         <source>%G: Tags (separated by comma)</source>
         <translation>%G: Značky (oddelené čiarkou)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="599"/>
+        <location filename="../gui/optionsdialog.cpp" line="603"/>
         <source>%I: Info hash v1 (or &apos;-&apos; if unavailable)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="600"/>
+        <location filename="../gui/optionsdialog.cpp" line="604"/>
         <source>%J: Info hash v2 (or &apos;-&apos; if unavailable)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="601"/>
+        <location filename="../gui/optionsdialog.cpp" line="605"/>
         <source>%K: Torrent ID (either sha-1 info hash for v1 torrent or truncated sha-256 info hash for v2/hybrid torrent)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="304"/>
-        <location filename="../gui/optionsdialog.cpp" line="534"/>
-        <location filename="../gui/optionsdialog.cpp" line="539"/>
+        <location filename="../gui/optionsdialog.cpp" line="306"/>
+        <location filename="../gui/optionsdialog.cpp" line="538"/>
+        <location filename="../gui/optionsdialog.cpp" line="543"/>
         <source>Choose a save directory</source>
         <translation>Vyberte adresár pre ukladanie</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="817"/>
+        <location filename="../gui/optionsdialog.cpp" line="821"/>
         <source>Choose an IP filter file</source>
         <translation>Zvoliť súbor filtra IP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="819"/>
+        <location filename="../gui/optionsdialog.cpp" line="823"/>
         <source>All supported filters</source>
         <translation>Všetky podporované filtre</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1864"/>
+        <location filename="../gui/optionsdialog.cpp" line="1844"/>
         <source>Parsing error</source>
         <translation>Chyba pri spracovaní</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1864"/>
+        <location filename="../gui/optionsdialog.cpp" line="1844"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Nepodarilo sa spracovať poskytnutý filter IP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1866"/>
+        <location filename="../gui/optionsdialog.cpp" line="1846"/>
         <source>Successfully refreshed</source>
         <translation>Úspešne obnovené</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1866"/>
+        <location filename="../gui/optionsdialog.cpp" line="1846"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Zadaný filter IP bol úspešne spracovaný: %1 pravidiel bolo použitých.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="123"/>
+        <location filename="../gui/optionsdialog.cpp" line="124"/>
         <source>Preferences</source>
         <translation>Voľby</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1875"/>
+        <location filename="../gui/optionsdialog.cpp" line="1855"/>
         <source>Time Error</source>
         <translation>Chyba času</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1875"/>
+        <location filename="../gui/optionsdialog.cpp" line="1855"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Čas začiatku a čas ukončenia nemôžu byť rovnaké.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1812"/>
-        <location filename="../gui/optionsdialog.cpp" line="1817"/>
+        <location filename="../gui/optionsdialog.cpp" line="1792"/>
+        <location filename="../gui/optionsdialog.cpp" line="1797"/>
         <source>Length Error</source>
         <translation>Chyba dĺžky</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1812"/>
+        <location filename="../gui/optionsdialog.cpp" line="1792"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Používateľské meno pre webové rozhranie musí mať dĺžku aspoň 3 znaky.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1817"/>
+        <location filename="../gui/optionsdialog.cpp" line="1797"/>
         <source>The Web UI password must be at least 6 characters long.</source>
         <translation>Heslo pre webové rozhranie musí mať dĺžku aspoň 6 znakov.</translation>
     </message>
@@ -6951,77 +7226,77 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
 <context>
     <name>PeerInfo</name>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="200"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="221"/>
         <source>Unknown</source>
         <translation>Neznáma</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="277"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="298"/>
         <source>Interested (local) and choked (peer)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="282"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="303"/>
         <source>Interested (local) and unchoked (peer)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="291"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="312"/>
         <source>Interested (peer) and choked (local)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="296"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="317"/>
         <source>Interested (peer) and unchoked (local)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="302"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="323"/>
         <source>Not interested (local) and unchoked (peer)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="306"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="327"/>
         <source>Not interested (peer) and unchoked (local)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="310"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="331"/>
         <source>Optimistic unchoke</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="314"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="335"/>
         <source>Peer snubbed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="318"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="339"/>
         <source>Incoming connection</source>
         <translation>Prichádzajúce spojenie</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="322"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="343"/>
         <source>Peer from DHT</source>
         <translation>Peer z DHT</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="326"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="347"/>
         <source>Peer from PEX</source>
         <translation>Peer z PEX</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="330"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="351"/>
         <source>Peer from LSD</source>
         <translation>Peer z LSD</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="334"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="355"/>
         <source>Encrypted traffic</source>
         <translation>Šifrovaný prenos</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="338"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="359"/>
         <source>Encrypted handshake</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7034,9 +7309,13 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <translation>Krajina/Oblasť</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="124"/>
         <source>IP</source>
-        <translation>IP</translation>
+        <translation type="vanished">IP</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="124"/>
+        <source>IP/Address</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="125"/>
@@ -7180,8 +7459,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <translation>Rovesník &quot;%1&quot; je ručne zablokovaný</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="451"/>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="457"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="454"/>
         <source>N/A</source>
         <translation>nie je k dispozícií</translation>
     </message>
@@ -7312,10 +7590,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/search/pluginselectdialog.ui" line="96"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="vanished">Nové zásuvné moduly vyhľadávačov nájdete tu: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="108"/>
@@ -7480,47 +7754,47 @@ Tieto moduly však boli vypnuté.</translation>
 <context>
     <name>PreviewSelectDialog</name>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="64"/>
+        <location filename="../gui/previewselectdialog.cpp" line="63"/>
         <source>The following files from torrent &quot;%1&quot; support previewing, please select one of them:</source>
         <translation>Nasledujúce súbory torrentu &quot;%1&quot; podporujú náhľad, prosím vyberte jeden z nich:</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="67"/>
+        <location filename="../gui/previewselectdialog.cpp" line="66"/>
         <source>Preview</source>
         <translation>Náhľad</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="75"/>
+        <location filename="../gui/previewselectdialog.cpp" line="74"/>
         <source>Name</source>
         <translation>Názov</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="76"/>
+        <location filename="../gui/previewselectdialog.cpp" line="75"/>
         <source>Size</source>
         <translation>Veľkosť</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="77"/>
+        <location filename="../gui/previewselectdialog.cpp" line="76"/>
         <source>Progress</source>
         <translation>Priebeh</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="135"/>
+        <location filename="../gui/previewselectdialog.cpp" line="134"/>
         <source>Preview impossible</source>
         <translation>Náhľad nie je možný</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="136"/>
+        <location filename="../gui/previewselectdialog.cpp" line="135"/>
         <source>Sorry, we can&apos;t preview this file: &quot;%1&quot;.</source>
         <translation>Je nám ľúto, nemôžeme zobraziť náhľad tohto súboru: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="152"/>
+        <location filename="../gui/previewselectdialog.cpp" line="151"/>
         <source>Resize columns</source>
         <translation>Zmeniť rozmery stĺpcov</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="160"/>
+        <location filename="../gui/previewselectdialog.cpp" line="159"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
         <translation>Zmeniť rozmery viditeľných stĺpcov podľa veľkosti ich obsahu</translation>
     </message>
@@ -7864,307 +8138,245 @@ Tieto moduly však boli vypnuté.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="135"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
-        <translation>%1 je neznámy parameter príkazového riadka</translation>
+        <translation type="vanished">%1 je neznámy parameter príkazového riadka</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="147"/>
-        <location filename="../app/main.cpp" line="158"/>
         <source>%1 must be the single command line parameter.</source>
-        <translation>%1 musí byť jediný parameter príkazového riadka</translation>
+        <translation type="vanished">%1 musí byť jediný parameter príkazového riadka</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="190"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
-        <translation>Nemožno použiť %1: qBitorrent bol už pre tohto užívateľa spustený.</translation>
+        <translation type="vanished">Nemožno použiť %1: qBitorrent bol už pre tohto užívateľa spustený.</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="502"/>
         <source>Usage:</source>
-        <translation>Použitie:</translation>
+        <translation type="vanished">Použitie:</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="505"/>
         <source>Options:</source>
-        <translation>Voľby:</translation>
+        <translation type="vanished">Voľby:</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="155"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
         <comment>e.g. Parameter &apos;--webui-port&apos; must follow syntax &apos;--webui-port=value&apos;</comment>
-        <translation>Parameter &apos;%1&apos; musia dodržiavať syntax &apos;%1 =%2&apos;</translation>
+        <translation type="vanished">Parameter &apos;%1&apos; musia dodržiavať syntax &apos;%1 =%2&apos;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="206"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
         <comment>e.g. Parameter &apos;--webui-port&apos; must follow syntax &apos;--webui-port=&lt;value&gt;&apos;</comment>
-        <translation>Parameter &apos;%1&apos; musia dodržiavať syntax &apos;%1 =%2&apos;</translation>
+        <translation type="vanished">Parameter &apos;%1&apos; musia dodržiavať syntax &apos;%1 =%2&apos;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="222"/>
         <source>Expected integer number in environment variable &apos;%1&apos;, but got &apos;%2&apos;</source>
-        <translation>V premennej je predpokladané celé číslo &apos;%1&apos;, ale doručených &apos;%2&apos;</translation>
+        <translation type="vanished">V premennej je predpokladané celé číslo &apos;%1&apos;, ale doručených &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="278"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
         <comment>e.g. Parameter &apos;--add-paused&apos; must follow syntax &apos;--add-paused=&lt;true|false&gt;&apos;</comment>
-        <translation>Parameter &apos;%1&apos; musia dodržiavať syntax &apos;%1 =%2&apos;</translation>
+        <translation type="vanished">Parameter &apos;%1&apos; musia dodržiavať syntax &apos;%1 =%2&apos;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="305"/>
         <source>Expected %1 in environment variable &apos;%2&apos;, but got &apos;%3&apos;</source>
-        <translation>Očakával %1 v premennej prostredia &apos;%2&apos;, ale dostal &apos;%3&apos;</translation>
+        <translation type="vanished">Očakával %1 v premennej prostredia &apos;%2&apos;, ale dostal &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="510"/>
-        <location filename="../app/cmdoptions.cpp" line="513"/>
         <source>port</source>
-        <translation>port</translation>
+        <translation type="vanished">port</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="391"/>
-        <location filename="../app/cmdoptions.cpp" line="399"/>
         <source>%1 must specify a valid port (1 to 65535).</source>
-        <translation>%1 musí určovať správny port (1 to 65535).</translation>
+        <translation type="vanished">%1 musí určovať správny port (1 to 65535).</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="503"/>
-        <source>[options] [(&lt;filename&gt; | &lt;url&gt;)...]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../app/cmdoptions.cpp" line="507"/>
         <source>Display program version and exit</source>
-        <translation>Zobraz verziu programu a skonči</translation>
+        <translation type="vanished">Zobraz verziu programu a skonči</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="509"/>
         <source>Display this help message and exit</source>
-        <translation>Zobraz túto nápovedu a skonči</translation>
+        <translation type="vanished">Zobraz túto nápovedu a skonči</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="511"/>
         <source>Change the Web UI port</source>
-        <translation>Zmeň port webového rozhrania</translation>
+        <translation type="vanished">Zmeň port webového rozhrania</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="514"/>
-        <source>Change the torrenting port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../app/cmdoptions.cpp" line="517"/>
         <source>Disable splash screen</source>
-        <translation>vypni štartovaciu obrazovku</translation>
+        <translation type="vanished">vypni štartovaciu obrazovku</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="519"/>
         <source>Run in daemon-mode (background)</source>
-        <translation>spusti v režime démona (na pozadí)</translation>
+        <translation type="vanished">spusti v režime démona (na pozadí)</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="522"/>
         <source>dir</source>
         <extracomment>Use appropriate short form or abbreviation of &quot;directory&quot;</extracomment>
-        <translation>adr</translation>
+        <translation type="vanished">adr</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="523"/>
         <source>Store configuration files in &lt;dir&gt;</source>
-        <translation>Uložiť súbory konfigurácie do &lt;dir&gt;</translation>
+        <translation type="vanished">Uložiť súbory konfigurácie do &lt;dir&gt;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="524"/>
-        <location filename="../app/cmdoptions.cpp" line="537"/>
         <source>name</source>
-        <translation>meno</translation>
+        <translation type="vanished">meno</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="525"/>
         <source>Store configuration files in directories qBittorrent_&lt;name&gt;</source>
-        <translation>Uložiť súbory konfigurácie v adresároch qBittorrent_&lt;name&gt;</translation>
+        <translation type="vanished">Uložiť súbory konfigurácie v adresároch qBittorrent_&lt;name&gt;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="527"/>
         <source>Hack into libtorrent fastresume files and make file paths relative to the profile directory</source>
-        <translation>Vniknúť do súborov libtorrent fastresume a vztiahnuť cesty k súborom podľa adresára profilu</translation>
+        <translation type="vanished">Vniknúť do súborov libtorrent fastresume a vztiahnuť cesty k súborom podľa adresára profilu</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="529"/>
         <source>files or URLs</source>
-        <translation>súbory alebo URL adresy</translation>
+        <translation type="vanished">súbory alebo URL adresy</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="530"/>
         <source>Download the torrents passed by the user</source>
-        <translation>Stiahni torrenty zadané užívateľom</translation>
+        <translation type="vanished">Stiahni torrenty zadané užívateľom</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="544"/>
         <source>Specify whether the &quot;Add New Torrent&quot; dialog opens when adding a torrent.</source>
-        <translation>Určiť, či sa otvorí dialóg &quot;Pridať nový torrent&quot; keď je torrent pridávaný.</translation>
+        <translation type="vanished">Určiť, či sa otvorí dialóg &quot;Pridať nový torrent&quot; keď je torrent pridávaný.</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="533"/>
         <source>Options when adding new torrents:</source>
-        <translation>Voľby pri pridávaní torrentu</translation>
+        <translation type="vanished">Voľby pri pridávaní torrentu</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="534"/>
         <source>path</source>
-        <translation>cesta</translation>
+        <translation type="vanished">cesta</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="534"/>
         <source>Torrent save path</source>
-        <translation>Cesta uloženia torrentu</translation>
+        <translation type="vanished">Cesta uloženia torrentu</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="535"/>
         <source>Add torrents as started or paused</source>
-        <translation>Pridať torrenty ako spustené alebo pozastavené</translation>
+        <translation type="vanished">Pridať torrenty ako spustené alebo pozastavené</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="536"/>
         <source>Skip hash check</source>
-        <translation>Preskočiť kontrolu hash</translation>
+        <translation type="vanished">Preskočiť kontrolu hash</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="538"/>
         <source>Assign torrents to category. If the category doesn&apos;t exist, it will be created.</source>
-        <translation>Priraďte torrenty do kategórie. Ak kategória neexistuje, vytvorí sa.</translation>
+        <translation type="vanished">Priraďte torrenty do kategórie. Ak kategória neexistuje, vytvorí sa.</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="540"/>
         <source>Download files in sequential order</source>
-        <translation>Sťahovať súbory v poradí</translation>
+        <translation type="vanished">Sťahovať súbory v poradí</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="542"/>
         <source>Download first and last pieces first</source>
-        <translation>Sťahovať najprv prvú a poslednú časť</translation>
+        <translation type="vanished">Sťahovať najprv prvú a poslednú časť</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="548"/>
         <source>Option values may be supplied via environment variables. For option named &apos;parameter-name&apos;, environment variable name is &apos;QBT_PARAMETER_NAME&apos; (in upper case, &apos;-&apos; replaced with &apos;_&apos;). To pass flag values, set the variable to &apos;1&apos; or &apos;TRUE&apos;. For example, to disable the splash screen: </source>
-        <translation>Možné hodnoty sa môžu dodávať prostredníctvom premenných prostredia. Pri možnosti s názvom &quot;parameter-name&quot; je názov premennej prostredia &quot;QBT_PARAMETER_NAME&quot; (vo veľkom prípade &quot;-&quot; nahradený znakom &quot;_&quot;). Ak chcete prejsť hodnoty vlajok, nastavte premennú na hodnotu &quot;1&quot; alebo &quot;TRUE&quot;. Ak napríklad chcete zakázať úvodnú obrazovku:</translation>
+        <translation type="vanished">Možné hodnoty sa môžu dodávať prostredníctvom premenných prostredia. Pri možnosti s názvom &quot;parameter-name&quot; je názov premennej prostredia &quot;QBT_PARAMETER_NAME&quot; (vo veľkom prípade &quot;-&quot; nahradený znakom &quot;_&quot;). Ak chcete prejsť hodnoty vlajok, nastavte premennú na hodnotu &quot;1&quot; alebo &quot;TRUE&quot;. Ak napríklad chcete zakázať úvodnú obrazovku:</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="553"/>
         <source>Command line parameters take precedence over environment variables</source>
-        <translation>Parametre príkazového riadka majú prednosť pred parametrami premenných prostredia</translation>
+        <translation type="vanished">Parametre príkazového riadka majú prednosť pred parametrami premenných prostredia</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="561"/>
         <source>Help</source>
-        <translation>Nápoveda</translation>
+        <translation type="vanished">Nápoveda</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="298"/>
         <source>Run application with -h option to read about command line parameters.</source>
-        <translation>Spustite aplikáciu s parametrom -h pre zobrazenie nápovedy o prípustných parametroch.</translation>
+        <translation type="vanished">Spustite aplikáciu s parametrom -h pre zobrazenie nápovedy o prípustných parametroch.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="300"/>
         <source>Bad command line</source>
-        <translation>Chyba v príkazovom riadku</translation>
+        <translation type="vanished">Chyba v príkazovom riadku</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="306"/>
         <source>Bad command line: </source>
-        <translation>Chyba v príkazovom riadku:</translation>
+        <translation type="vanished">Chyba v príkazovom riadku:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="319"/>
         <source>Legal Notice</source>
-        <translation>Právne upozornenie</translation>
+        <translation type="vanished">Právne upozornenie</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="320"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
-        <translation>qBittorrent je program na zdieľanie súborov. Keď spustíte torrent, jeho dáta sa sprístupnia iným prostredníctvom nahrávania. Za akýkoľvek obsah, ktorý zdieľate, nesiete zodpovednosť vy.</translation>
+        <translation type="vanished">qBittorrent je program na zdieľanie súborov. Keď spustíte torrent, jeho dáta sa sprístupnia iným prostredníctvom nahrávania. Za akýkoľvek obsah, ktorý zdieľate, nesiete zodpovednosť vy.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="321"/>
         <source>No further notices will be issued.</source>
-        <translation>Už vás nebudeme ďalej upozorňovať.</translation>
+        <translation type="vanished">Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="334"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation>qBittorrent je program na zdieľanie súborov. Spustením torrentu sa jeho dáta sprístupnia iným prostredníctvom nahrávania. Za akýkoľvek obsah, ktorý zdieľate, nesiete výlučnú zodpovednosť Vy.
+        <translation type="vanished">qBittorrent je program na zdieľanie súborov. Spustením torrentu sa jeho dáta sprístupnia iným prostredníctvom nahrávania. Za akýkoľvek obsah, ktorý zdieľate, nesiete výlučnú zodpovednosť Vy.
 
 Žiadne ďalšie upozornenie už nebude zobrazené.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="322"/>
         <source>Press %1 key to accept and continue...</source>
-        <translation>Pre akceptovanie a pokračovanie stlačte kláves %1....</translation>
+        <translation type="vanished">Pre akceptovanie a pokračovanie stlačte kláves %1....</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="335"/>
         <source>Legal notice</source>
-        <translation>Právne upozornenie</translation>
+        <translation type="vanished">Právne upozornenie</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="336"/>
         <source>Cancel</source>
-        <translation>Zrušiť</translation>
+        <translation type="vanished">Zrušiť</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="337"/>
         <source>I Agree</source>
-        <translation>Súhlasím</translation>
+        <translation type="vanished">Súhlasím</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.cpp" line="57"/>
         <source>Migrate preferences failed: WebUI https, file: &quot;%1&quot;, error: &quot;%2&quot;</source>
-        <translation>Migrácia predvolieb zlyhala: WebUI https, súbor: &quot;%1&quot;, chyba: &quot;%2&quot;</translation>
+        <translation type="vanished">Migrácia predvolieb zlyhala: WebUI https, súbor: &quot;%1&quot;, chyba: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.cpp" line="72"/>
         <source>Migrated preferences: WebUI https, exported data to file: &quot;%1&quot;</source>
-        <translation>Migrácia predvolieb: WebUI https, dáta uložené do súboru: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <location filename="../app/upgrade.cpp" line="164"/>
-        <location filename="../app/upgrade.cpp" line="195"/>
-        <location filename="../app/upgrade.cpp" line="226"/>
-        <location filename="../app/upgrade.cpp" line="364"/>
-        <source>Invalid value found in configuration file, reverting it to default. Key: &quot;%1&quot;. Invalid value: &quot;%2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Migrácia predvolieb: WebUI https, dáta uložené do súboru: &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
     <name>RSS::AutoDownloader</name>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="74"/>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="82"/>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="77"/>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="85"/>
         <source>Invalid data format.</source>
         <translation>Neplatný formát dát.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="116"/>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="119"/>
         <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
         <translation>Nie je možné uložiť dáta AutoDownloaderu RSS v %1. Chyba: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="288"/>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="302"/>
         <source>Invalid data format</source>
         <translation>Neplatný formát dát</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="468"/>
-        <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
-        <translation>Nie je možné čítať pravidlá RSS AutoDownloader od %1. Chyba: %2</translation>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="471"/>
+        <source>RSS article &apos;%1&apos; is accepted by rule &apos;%2&apos;. Trying to add torrent...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="483"/>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="507"/>
+        <source>Failed to read RSS AutoDownloader rules. %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
+        <translation type="vanished">Nie je možné čítať pravidlá RSS AutoDownloader od %1. Chyba: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="525"/>
         <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
         <translation>Nie je možné načítať pravidlá RSS AutoDownloader. Príčina: %1</translation>
     </message>
@@ -8195,27 +8407,31 @@ No further notices will be issued.</source>
 <context>
     <name>RSS::Private::FeedSerializer</name>
     <message>
-        <location filename="../base/rss/feed_serializer.cpp" line="62"/>
         <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
-        <translation>Nebolo možné načítať dáta RSS relácie z %1. Chyba: %2</translation>
+        <translation type="vanished">Nebolo možné načítať dáta RSS relácie z %1. Chyba: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/feed_serializer.cpp" line="83"/>
+        <location filename="../base/rss/feed_serializer.cpp" line="58"/>
+        <source>Failed to read RSS session data. %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/feed_serializer.cpp" line="80"/>
         <source>Failed to save RSS feed in &apos;%1&apos;, Reason: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/feed_serializer.cpp" line="94"/>
+        <location filename="../base/rss/feed_serializer.cpp" line="91"/>
         <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
         <translation>Nebolo možné spracovať dáta RSS relácie. Chyba: %1</translation>
     </message>
     <message>
-        <location filename="../base/rss/feed_serializer.cpp" line="101"/>
+        <location filename="../base/rss/feed_serializer.cpp" line="98"/>
         <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
         <translation>Nebolo možné získať dáta RSS relácie. Neplatný formát dát.</translation>
     </message>
     <message>
-        <location filename="../base/rss/feed_serializer.cpp" line="113"/>
+        <location filename="../base/rss/feed_serializer.cpp" line="110"/>
         <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
         <translation>Nebolo možné získať RSS článok &apos;%1 #%2&apos;. Neplatný formát dát.</translation>
     </message>
@@ -8236,99 +8452,99 @@ No further notices will be issued.</source>
 <context>
     <name>RSS::Session</name>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="75"/>
+        <location filename="../base/rss/rss_session.cpp" line="76"/>
         <source>Couldn&apos;t save RSS session configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="84"/>
+        <location filename="../base/rss/rss_session.cpp" line="85"/>
         <source>Couldn&apos;t save RSS session data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="152"/>
-        <location filename="../base/rss/rss_session.cpp" line="185"/>
+        <location filename="../base/rss/rss_session.cpp" line="153"/>
+        <location filename="../base/rss/rss_session.cpp" line="186"/>
         <source>RSS feed with given URL already exists: %1.</source>
         <translation>RSS kanál so zadanou URL už už existuje: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="172"/>
+        <location filename="../base/rss/rss_session.cpp" line="173"/>
         <source>Feed doesn&apos;t exist: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="199"/>
+        <location filename="../base/rss/rss_session.cpp" line="200"/>
         <source>Cannot move root folder.</source>
         <translation>Nemožno presunúť koreňový adresár.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="203"/>
-        <location filename="../base/rss/rss_session.cpp" line="240"/>
+        <location filename="../base/rss/rss_session.cpp" line="204"/>
+        <location filename="../base/rss/rss_session.cpp" line="241"/>
         <source>Item doesn&apos;t exist: %1.</source>
         <translation>Položka neexistuje: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="219"/>
+        <location filename="../base/rss/rss_session.cpp" line="220"/>
         <source>Couldn&apos;t move folder into itself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="236"/>
+        <location filename="../base/rss/rss_session.cpp" line="237"/>
         <source>Cannot delete root folder.</source>
         <translation>Nemožno zmazať koreňový adresár.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="273"/>
-        <source>Couldn&apos;t read RSS session data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
+        <location filename="../base/rss/rss_session.cpp" line="277"/>
+        <source>Failed to read RSS session data. %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="282"/>
-        <source>Couldn&apos;t parse RSS session data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
+        <location filename="../base/rss/rss_session.cpp" line="285"/>
+        <source>Failed to parse RSS session data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="289"/>
-        <source>Couldn&apos;t load RSS session data. File: &quot;%1&quot;. Error: Invalid data format.</source>
+        <location filename="../base/rss/rss_session.cpp" line="292"/>
+        <source>Failed to load RSS session data. File: &quot;%1&quot;. Error: &quot;Invalid data format.&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="319"/>
+        <location filename="../base/rss/rss_session.cpp" line="322"/>
         <source>Couldn&apos;t load RSS feed. Feed: &quot;%1&quot;. Reason: URL is required.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="330"/>
+        <location filename="../base/rss/rss_session.cpp" line="333"/>
         <source>Couldn&apos;t load RSS feed. Feed: &quot;%1&quot;. Reason: UID is invalid.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="337"/>
+        <location filename="../base/rss/rss_session.cpp" line="340"/>
         <source>Duplicate RSS feed found. UID: &quot;%1&quot;. Error: Configuration seems to be corrupted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="358"/>
+        <location filename="../base/rss/rss_session.cpp" line="361"/>
         <source>Couldn&apos;t load RSS item. Item: &quot;%1&quot;. Invalid data format.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="373"/>
+        <location filename="../base/rss/rss_session.cpp" line="376"/>
         <source>Corrupted RSS list, not loading it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="407"/>
+        <location filename="../base/rss/rss_session.cpp" line="410"/>
         <source>Incorrect RSS Item path: %1.</source>
         <translation>Nesprávna cesta položky RSS: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="410"/>
+        <location filename="../base/rss/rss_session.cpp" line="413"/>
         <source>RSS item with given path already exists: %1.</source>
         <translation>Položka RSS s danou cestou už existuje: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="415"/>
+        <location filename="../base/rss/rss_session.cpp" line="418"/>
         <source>Parent folder doesn&apos;t exist: %1.</source>
         <translation>Nadradený adresár neexistuje: %1.</translation>
     </message>
@@ -8745,89 +8961,89 @@ No further notices will be issued.</source>
 <context>
     <name>SearchPluginManager</name>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="233"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="234"/>
         <source>Unknown search engine plugin file format.</source>
         <translation>Neznámy formát súboru pluginu vyhľadávača.</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="244"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="245"/>
         <source>Plugin already at version %1, which is greater than %2</source>
         <translation>Verzia nainštalovaného pluginu %1 je vyššia ako %2</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="245"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="246"/>
         <source>A more recent version of this plugin is already installed.</source>
         <translation>Novšia verzia tohto pluginu je už nainštalovaná.</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="269"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="270"/>
         <source>Plugin %1 is not supported.</source>
         <translation>Plugin %1 nie je podporovaný.</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="277"/>
-        <location filename="../base/search/searchpluginmanager.cpp" line="281"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="278"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="282"/>
         <source>Plugin is not supported.</source>
         <translation>Plugin nie je podporovaný.</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="289"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="290"/>
         <source>Plugin %1 has been successfully updated.</source>
         <translation>Plugin %1 bol úspešne aktualizovaný.</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="356"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="357"/>
         <source>All categories</source>
         <translation>Všetky kategórie</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="357"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="358"/>
         <source>Movies</source>
         <translation>Filmy</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="358"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="359"/>
         <source>TV shows</source>
         <translation>TV relácie</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="359"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="360"/>
         <source>Music</source>
         <translation>Hudba</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="360"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="361"/>
         <source>Games</source>
         <translation>Hry</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="361"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="362"/>
         <source>Anime</source>
         <translation>Anime</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="362"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="363"/>
         <source>Software</source>
         <translation>Softvér</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="363"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="364"/>
         <source>Pictures</source>
         <translation>Obrázky</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="364"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="365"/>
         <source>Books</source>
         <translation>Knihy</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="444"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="445"/>
         <source>Update server is temporarily unavailable. %1</source>
         <translation>Aktualizačný server je dočasne nedostupný. %1</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="464"/>
-        <location filename="../base/search/searchpluginmanager.cpp" line="466"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="465"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="467"/>
         <source>Failed to download the plugin file. %1</source>
         <translation>Stiahnutie pluginu zlyhalo. %1</translation>
     </message>
@@ -8842,7 +9058,7 @@ No further notices will be issued.</source>
         <translation>Obdržané nesprávne informácie o aktualizácii pre %1 z %2 pluginov.</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="647"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="649"/>
         <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
         <translation>Vyhľadávací plugin &apos;%1&apos; obsahuje neplatný reťazec verzia (&apos;%2&apos;)</translation>
     </message>
@@ -10179,32 +10395,32 @@ Please choose a different name and try again.</source>
 <context>
     <name>TorrentFilesWatcher</name>
     <message>
-        <location filename="../base/torrentfileswatcher.cpp" line="189"/>
-        <source>Couldn&apos;t load Watched Folders configuration from %1. Error: %2</source>
+        <location filename="../base/torrentfileswatcher.cpp" line="192"/>
+        <source>Failed to load Watched Folders configuration. %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/torrentfileswatcher.cpp" line="198"/>
-        <source>Couldn&apos;t parse Watched Folders configuration from %1. Error: %2</source>
+        <location filename="../base/torrentfileswatcher.cpp" line="200"/>
+        <source>Failed to parse Watched Folders configuration from %1. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/torrentfileswatcher.cpp" line="205"/>
-        <source>Couldn&apos;t load Watched Folders configuration from %1. Invalid data format.</source>
+        <location filename="../base/torrentfileswatcher.cpp" line="207"/>
+        <source>Failed to load Watched Folders configuration from %1. Error: &quot;Invalid data format.&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/torrentfileswatcher.cpp" line="278"/>
+        <location filename="../base/torrentfileswatcher.cpp" line="280"/>
         <source>Couldn&apos;t store Watched Folders configuration to %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/torrentfileswatcher.cpp" line="297"/>
+        <location filename="../base/torrentfileswatcher.cpp" line="299"/>
         <source>Watched folder Path cannot be empty.</source>
         <translation>Cesta sledovaného adresára nemôže byť prázdna.</translation>
     </message>
     <message>
-        <location filename="../base/torrentfileswatcher.cpp" line="300"/>
+        <location filename="../base/torrentfileswatcher.cpp" line="302"/>
         <source>Watched folder Path cannot be relative.</source>
         <translation>Cesta sledovaného adresára nemôže byť relatívna.</translation>
     </message>
@@ -10212,17 +10428,22 @@ Please choose a different name and try again.</source>
 <context>
     <name>TorrentFilesWatcher::Worker</name>
     <message>
-        <location filename="../base/torrentfileswatcher.cpp" line="443"/>
+        <location filename="../base/torrentfileswatcher.cpp" line="449"/>
+        <source>Magnet file too big. File: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/torrentfileswatcher.cpp" line="454"/>
         <source>Failed to open magnet file: %1</source>
         <translation>Nepodarilo sa otvoriť magnet súbor: %1</translation>
     </message>
     <message>
-        <location filename="../base/torrentfileswatcher.cpp" line="515"/>
+        <location filename="../base/torrentfileswatcher.cpp" line="526"/>
         <source>Rejecting failed torrent file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/torrentfileswatcher.cpp" line="554"/>
+        <location filename="../base/torrentfileswatcher.cpp" line="565"/>
         <source>Watching folder: &quot;%1&quot;</source>
         <translation>Sledovanie adresára: &quot;%1&quot;</translation>
     </message>
@@ -10230,22 +10451,24 @@ Please choose a different name and try again.</source>
 <context>
     <name>TorrentInfo</name>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="111"/>
         <source>File size exceeds max limit %1</source>
-        <translation>Veľkosť súboru prekračuje maximálny limit %1</translation>
+        <translation type="vanished">Veľkosť súboru prekračuje maximálny limit %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="120"/>
         <source>Torrent file read error: %1</source>
-        <translation>Chyba pri čítaní torrent súboru: %1</translation>
+        <translation type="vanished">Chyba pri čítaní torrent súboru: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="124"/>
         <source>Torrent file read error: size mismatch</source>
-        <translation>Chyba pri čítaní torrent súboru: veľkosti sa líšia</translation>
+        <translation type="vanished">Chyba pri čítaní torrent súboru: veľkosti sa líšia</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="134"/>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="116"/>
+        <source>Failed to allocate memory when reading file. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="126"/>
         <source>Invalid metadata</source>
         <translation>Neplatné metadáta</translation>
     </message>
@@ -10783,67 +11006,67 @@ Please choose a different name and try again.</source>
 <context>
     <name>TrackersFilterWidget</name>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="87"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="83"/>
         <source>All (0)</source>
         <comment>this is for the tracker filter</comment>
         <translation>Všetky (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="90"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="86"/>
         <source>Trackerless (0)</source>
         <translation>Bez trackeru (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="93"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="89"/>
         <source>Error (0)</source>
         <translation>Chyby (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="96"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="92"/>
         <source>Warning (0)</source>
         <translation>Upozornenia (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="150"/>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="206"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="146"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="202"/>
         <source>Trackerless</source>
         <translation>Bez trackeru</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="249"/>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="362"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="245"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="358"/>
         <source>Error (%1)</source>
         <translation>Chyby (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="263"/>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="363"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="259"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="359"/>
         <source>Warning (%1)</source>
         <translation>Upozornenia (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="287"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="283"/>
         <source>Trackerless (%1)</source>
         <translation>Bez trackeru (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="421"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="417"/>
         <source>Resume torrents</source>
         <translation>Obnoviť torrenty</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="423"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="419"/>
         <source>Pause torrents</source>
         <translation>Pozastaviť torrenty</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="425"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="421"/>
         <source>Remove torrents</source>
         <translation>Odstrániť torrenty</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="462"/>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="476"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="458"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="472"/>
         <source>All (%1)</source>
         <comment>this is for the tracker filter</comment>
         <translation>Všetky (%1)</translation>
@@ -11188,27 +11411,27 @@ Please choose a different name and try again.</source>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="659"/>
+        <location filename="../gui/transferlistwidget.cpp" line="661"/>
         <source>Column visibility</source>
         <translation>Viditeľnosť stĺpca</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="628"/>
+        <location filename="../gui/transferlistwidget.cpp" line="630"/>
         <source>Recheck confirmation</source>
         <translation>Znovu skontrolovať potvrdenie</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="628"/>
+        <location filename="../gui/transferlistwidget.cpp" line="630"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
         <translation>Ste si istý, že chcete znovu skontrolovať vybrané torrenty?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="891"/>
+        <location filename="../gui/transferlistwidget.cpp" line="893"/>
         <source>Rename</source>
         <translation>Premenovať</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="891"/>
+        <location filename="../gui/transferlistwidget.cpp" line="893"/>
         <source>New name:</source>
         <translation>Nový názov:</translation>
     </message>
@@ -11218,304 +11441,304 @@ Please choose a different name and try again.</source>
         <translation>Zvoľte cieľový adresár</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="367"/>
+        <location filename="../gui/transferlistwidget.cpp" line="368"/>
         <source>Confirm pause</source>
         <translation>Potvrdiť pozastavenie</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="368"/>
+        <location filename="../gui/transferlistwidget.cpp" line="369"/>
         <source>Would you like to pause all torrents?</source>
         <translation>Chcete pozastaviť všetky torrenty?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="382"/>
+        <location filename="../gui/transferlistwidget.cpp" line="384"/>
         <source>Confirm resume</source>
         <translation>Potvrdiť obnovenie</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="383"/>
+        <location filename="../gui/transferlistwidget.cpp" line="385"/>
         <source>Would you like to resume all torrents?</source>
         <translation>Chcete obnoviť všetky torrenty?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="608"/>
+        <location filename="../gui/transferlistwidget.cpp" line="610"/>
         <source>Unable to preview</source>
         <translation>Nie je možné vykonať náhľad súboru</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="608"/>
+        <location filename="../gui/transferlistwidget.cpp" line="610"/>
         <source>The selected torrent &quot;%1&quot; does not contain previewable files</source>
         <translation>Vybraný torrent &quot;%1&quot; neobsahuje súbory, u ktorých sa dá zobraziť náhľad.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="685"/>
+        <location filename="../gui/transferlistwidget.cpp" line="687"/>
         <source>Resize columns</source>
         <translation>Zmeniť rozmery stĺpcov</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="694"/>
+        <location filename="../gui/transferlistwidget.cpp" line="696"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
         <translation>Zmeniť veľkosť všetkých viditeľných stĺpcov na dĺžku ich obsahu</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="724"/>
+        <location filename="../gui/transferlistwidget.cpp" line="726"/>
         <source>Enable automatic torrent management</source>
         <translation>Povoliť automatickú správu torrentu</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="725"/>
+        <location filename="../gui/transferlistwidget.cpp" line="727"/>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
         <translation>Naozaj chcete aktivovať automatickú správu pre vybrané torrenty? Môžu byť presunuté.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="743"/>
+        <location filename="../gui/transferlistwidget.cpp" line="745"/>
         <source>Add Tags</source>
         <translation>Pridať značky</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="788"/>
+        <location filename="../gui/transferlistwidget.cpp" line="790"/>
         <source>Choose folder to save exported .torrent files</source>
         <translation>Vyberte adresár pre ukladanie exportovaných .torrent súborov</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="802"/>
+        <location filename="../gui/transferlistwidget.cpp" line="804"/>
         <source>Export .torrent file failed. Torrent: &quot;%1&quot;. Save path: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Export .torrent súboru zlyhal. Torrent: &quot;%1&quot;. Umiestnenie: &quot;%2&quot;. Dôvod: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="810"/>
+        <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>A file with the same name already exists</source>
         <translation>Súbor s rovnakým názvom už existuje</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="826"/>
+        <location filename="../gui/transferlistwidget.cpp" line="828"/>
         <source>Export .torrent file error</source>
         <translation>Chyba exportu .torrent súboru</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="837"/>
+        <location filename="../gui/transferlistwidget.cpp" line="839"/>
         <source>Remove All Tags</source>
         <translation>Odstrániť všetky štítky</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="837"/>
+        <location filename="../gui/transferlistwidget.cpp" line="839"/>
         <source>Remove all tags from selected torrents?</source>
         <translation>Odstrániť všetky štítky z vybratých torrentov?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="852"/>
+        <location filename="../gui/transferlistwidget.cpp" line="854"/>
         <source>Comma-separated tags:</source>
         <translation>Čiarkou oddelené značky:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="861"/>
+        <location filename="../gui/transferlistwidget.cpp" line="863"/>
         <source>Invalid tag</source>
         <translation>Zlá značka</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="862"/>
+        <location filename="../gui/transferlistwidget.cpp" line="864"/>
         <source>Tag name: &apos;%1&apos; is invalid</source>
         <translation>Názov značky: &apos;%1&apos; je neplatný</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="932"/>
+        <location filename="../gui/transferlistwidget.cpp" line="934"/>
         <source>&amp;Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Pok&amp;račovať</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="934"/>
+        <location filename="../gui/transferlistwidget.cpp" line="936"/>
         <source>&amp;Pause</source>
         <comment>Pause the torrent</comment>
         <translation>&amp;Pozastaviť</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="936"/>
+        <location filename="../gui/transferlistwidget.cpp" line="938"/>
         <source>Force Resu&amp;me</source>
         <comment>Force Resume/start the torrent</comment>
         <translation>Vynútiť pokračovanie</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="940"/>
+        <location filename="../gui/transferlistwidget.cpp" line="942"/>
         <source>Pre&amp;view file...</source>
         <translation>Náhľad súboru...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="942"/>
+        <location filename="../gui/transferlistwidget.cpp" line="944"/>
         <source>Torrent &amp;options...</source>
         <translation>Nastavenia torrentu...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="944"/>
+        <location filename="../gui/transferlistwidget.cpp" line="946"/>
         <source>Open destination &amp;folder</source>
         <translation>Otvoriť cieľový adresár</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="946"/>
+        <location filename="../gui/transferlistwidget.cpp" line="948"/>
         <source>Move &amp;up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Pos&amp;unúť hore</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="948"/>
+        <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Move &amp;down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Posunúť &amp;dole</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="950"/>
+        <location filename="../gui/transferlistwidget.cpp" line="952"/>
         <source>Move to &amp;top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>Posunúť navrch</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="952"/>
+        <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Move to &amp;bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>Posunúť nadol</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="954"/>
+        <location filename="../gui/transferlistwidget.cpp" line="956"/>
         <source>Set loc&amp;ation...</source>
         <translation>Nastaviť umiestnenie...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="956"/>
+        <location filename="../gui/transferlistwidget.cpp" line="958"/>
         <source>Force rec&amp;heck</source>
         <translation>Vynútiť opätovnú kontrolu</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="958"/>
+        <location filename="../gui/transferlistwidget.cpp" line="960"/>
         <source>Force r&amp;eannounce</source>
         <translation>Vynútiť znovuohlás&amp;enie</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="960"/>
+        <location filename="../gui/transferlistwidget.cpp" line="962"/>
         <source>&amp;Magnet link</source>
         <translation>&amp;Magnet odkaz</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="962"/>
+        <location filename="../gui/transferlistwidget.cpp" line="964"/>
         <source>Torrent &amp;ID</source>
         <translation>&amp;ID torrentu</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="964"/>
+        <location filename="../gui/transferlistwidget.cpp" line="966"/>
         <source>&amp;Name</source>
         <translation>&amp;Názov</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="966"/>
+        <location filename="../gui/transferlistwidget.cpp" line="968"/>
         <source>Info &amp;hash v1</source>
         <translation>Info &amp;hash v1</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="968"/>
+        <location filename="../gui/transferlistwidget.cpp" line="970"/>
         <source>Info h&amp;ash v2</source>
         <translation>Info h&amp;ash v2</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="972"/>
+        <location filename="../gui/transferlistwidget.cpp" line="974"/>
         <source>Re&amp;name...</source>
         <translation>Preme&amp;novať...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="981"/>
+        <location filename="../gui/transferlistwidget.cpp" line="983"/>
         <source>Edit trac&amp;kers...</source>
         <translation>Upraviť trac&amp;kery...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="983"/>
+        <location filename="../gui/transferlistwidget.cpp" line="985"/>
         <source>E&amp;xport .torrent...</source>
         <translation>E&amp;xportovať .torrent...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1129"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1131"/>
         <source>Categor&amp;y</source>
         <translation>Kategória</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1131"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1133"/>
         <source>&amp;New...</source>
         <comment>New category...</comment>
         <translation>&amp;Nová...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1133"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1135"/>
         <source>&amp;Reset</source>
         <comment>Reset category</comment>
         <translation>&amp;Resetovať</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1154"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1156"/>
         <source>Ta&amp;gs</source>
         <translation>Značky</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1156"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1158"/>
         <source>&amp;Add...</source>
         <comment>Add / assign multiple tags...</comment>
         <translation>Prid&amp;ať...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1158"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1160"/>
         <source>&amp;Remove All</source>
         <comment>Remove all tags</comment>
         <translation>Odst&amp;rániť všetko</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1240"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1242"/>
         <source>&amp;Queue</source>
         <translation>Poradovník</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1247"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1249"/>
         <source>&amp;Copy</source>
         <translation>Kopírovať</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1256"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1258"/>
         <source>Exported torrent is not necessarily the same as the imported</source>
         <translation>Exportovaný torrent nie je nutne rovnaký ako ten importovaný</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="974"/>
+        <location filename="../gui/transferlistwidget.cpp" line="976"/>
         <source>Download in sequential order</source>
         <translation>Sťahovať v poradí</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="827"/>
+        <location filename="../gui/transferlistwidget.cpp" line="829"/>
         <source>Errors occurred when exporting .torrent files. Check execution log for details.</source>
         <translation>Pri exportovaní .torrent súborov nastali chyby. Pre detaily skontrolujte log vykonávania.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="938"/>
+        <location filename="../gui/transferlistwidget.cpp" line="940"/>
         <source>&amp;Remove</source>
         <comment>Remove the torrent</comment>
         <translation>Odstr&amp;rániť</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="976"/>
+        <location filename="../gui/transferlistwidget.cpp" line="978"/>
         <source>Download first and last pieces first</source>
         <translation>Sťahovať najprv prvú a poslednú časť</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="978"/>
+        <location filename="../gui/transferlistwidget.cpp" line="980"/>
         <source>Automatic Torrent Management</source>
         <translation>Automatické spravovanie torrentu</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="979"/>
+        <location filename="../gui/transferlistwidget.cpp" line="981"/>
         <source>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</source>
         <translation>Automatický režim znamená, že niektoré vlastnosti torrentu (napr. cesta na ukladanie) budú určené na základe priradenej kategórie</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1233"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1235"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation>Vynútenie znovuohlásenia nie je možné ak je torrent pozastavený / v poradovníku / v chybovom stave / kontrolovaný</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="970"/>
+        <location filename="../gui/transferlistwidget.cpp" line="972"/>
         <source>Super seeding mode</source>
         <translation>Režim super seedovania</translation>
     </message>
@@ -11560,28 +11783,28 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/uithemedialog.cpp" line="249"/>
+        <location filename="../gui/uithemedialog.cpp" line="248"/>
         <source>UI Theme Configuration.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/uithemedialog.cpp" line="250"/>
+        <location filename="../gui/uithemedialog.cpp" line="249"/>
         <source>The UI Theme changes could not be fully applied. The details can be found in the Log.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/uithemedialog.cpp" line="334"/>
+        <location filename="../gui/uithemedialog.cpp" line="333"/>
         <source>Couldn&apos;t save UI Theme configuration. Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/uithemedialog.cpp" line="365"/>
-        <location filename="../gui/uithemedialog.cpp" line="374"/>
+        <location filename="../gui/uithemedialog.cpp" line="364"/>
+        <location filename="../gui/uithemedialog.cpp" line="373"/>
         <source>Couldn&apos;t remove icon file. File: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/uithemedialog.cpp" line="383"/>
+        <location filename="../gui/uithemedialog.cpp" line="382"/>
         <source>Couldn&apos;t copy icon file. Source: %1. Destination: %2.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11597,28 +11820,44 @@ Please choose a different name and try again.</source>
 <context>
     <name>UIThemeSource</name>
     <message>
-        <location filename="../gui/uithemesource.cpp" line="52"/>
-        <source>UITheme - Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/uithemesource.cpp" line="67"/>
+        <location filename="../gui/uithemesource.cpp" line="54"/>
         <source>Couldn&apos;t parse UI Theme configuration file. Reason: %1</source>
         <translation>Nepodarilo sa spracovať konfiguračný súbor UI. Dôvod: %1</translation>
     </message>
     <message>
-        <location filename="../gui/uithemesource.cpp" line="74"/>
+        <location filename="../gui/uithemesource.cpp" line="61"/>
         <source>UI Theme configuration file has invalid format. Reason: %1</source>
         <translation>Konfiguračný súbor UI nemá platný formát. Dôvod: %1</translation>
     </message>
     <message>
-        <location filename="../gui/uithemesource.cpp" line="75"/>
+        <location filename="../gui/uithemesource.cpp" line="62"/>
         <source>Root JSON value is not an object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/uithemesource.cpp" line="90"/>
+        <location filename="../gui/uithemesource.cpp" line="77"/>
         <source>Invalid color for ID &quot;%1&quot; is provided by theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Upgrade</name>
+    <message>
+        <location filename="../app/upgrade.cpp" line="58"/>
+        <source>Migrate preferences failed: WebUI https, file: &quot;%1&quot;, error: &quot;%2&quot;</source>
+        <translation type="unfinished">Migrácia predvolieb zlyhala: WebUI https, súbor: &quot;%1&quot;, chyba: &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <location filename="../app/upgrade.cpp" line="73"/>
+        <source>Migrated preferences: WebUI https, exported data to file: &quot;%1&quot;</source>
+        <translation type="unfinished">Migrácia predvolieb: WebUI https, dáta uložené do súboru: &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <location filename="../app/upgrade.cpp" line="165"/>
+        <location filename="../app/upgrade.cpp" line="196"/>
+        <location filename="../app/upgrade.cpp" line="227"/>
+        <location filename="../app/upgrade.cpp" line="365"/>
+        <source>Invalid value found in configuration file, reverting it to default. Key: &quot;%1&quot;. Invalid value: &quot;%2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11633,6 +11872,24 @@ Please choose a different name and try again.</source>
         <location filename="../base/utils/foreignapps.cpp" line="270"/>
         <source>Python not detected</source>
         <translation>Python nebol nájdený.</translation>
+    </message>
+</context>
+<context>
+    <name>Utils::IO</name>
+    <message>
+        <location filename="../base/utils/io.cpp" line="79"/>
+        <source>File open error. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/utils/io.cpp" line="87"/>
+        <source>File size exceeds limit. File: &quot;%1&quot;. File size: %2. Size limit: %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/utils/io.cpp" line="96"/>
+        <source>Read size mismatch. File: &quot;%1&quot;. Expected: %2. Actual: %3</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -11656,66 +11913,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="47"/>
         <source>Torrent parameters</source>
         <translation>Parametre torrentu</translation>
-    </message>
-    <message>
-        <source>Torrent Management Mode:</source>
-        <translation type="vanished">Režim správy torrentov:</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">Automatický režim znamená, že rôzne vlastnosti torrentu (napr. cesta na ukladanie) budú určené na základe priradenej kategórie.</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation type="vanished">Manuálny</translation>
-    </message>
-    <message>
-        <source>Automatic</source>
-        <translation type="vanished">Automatický</translation>
-    </message>
-    <message>
-        <source>Save at</source>
-        <translation type="vanished">Uložiť do</translation>
-    </message>
-    <message>
-        <source>Use another path for incomplete torrents</source>
-        <translation type="vanished">Pre nedokončené torrenty použiť inú cestu</translation>
-    </message>
-    <message>
-        <source>Category:</source>
-        <translation type="vanished">Kategória:</translation>
-    </message>
-    <message>
-        <source>Start torrent</source>
-        <translation type="vanished">Spustiť torrent</translation>
-    </message>
-    <message>
-        <source>Add to top of queue</source>
-        <translation type="vanished">Pridať navrch poradovníka</translation>
-    </message>
-    <message>
-        <source>Skip hash check</source>
-        <translation type="vanished">Preskočiť kontrolu hash</translation>
-    </message>
-    <message>
-        <source>Content layout:</source>
-        <translation type="vanished">Rozloženie obsahu:</translation>
-    </message>
-    <message>
-        <source>Original</source>
-        <translation type="vanished">Pôvodné</translation>
-    </message>
-    <message>
-        <source>Create subfolder</source>
-        <translation type="vanished">Vytvoriť podpriečinok</translation>
-    </message>
-    <message>
-        <source>Don&apos;t create subfolder</source>
-        <translation type="vanished">Nevytvárať podpriečinok</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Zvoľte cieľový adresár</translation>
     </message>
 </context>
 <context>
@@ -11789,32 +11986,41 @@ Please choose a different name and try again.</source>
         <translation>Nepodarilo sa načítať preklad Web UI do vybraného jazyka (%1).</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="435"/>
+        <location filename="../webui/webapplication.cpp" line="438"/>
         <source>Missing &apos;:&apos; separator in WebUI custom HTTP header: &quot;%1&quot;</source>
         <translation>Chýbajúce &apos;:&apos; oddeľovač vo vlastnej HTTP hlavičke WebUI: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="509"/>
-        <source>Exceeded the maximum allowed file size (%1)!</source>
-        <translation>Prekročená maximálna veľkosť súboru (%1)!</translation>
+        <location filename="../webui/webapplication.cpp" line="505"/>
+        <source>Web server error. %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="734"/>
+        <location filename="../webui/webapplication.cpp" line="524"/>
+        <source>Web server error. Unknown error.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exceeded the maximum allowed file size (%1)!</source>
+        <translation type="vanished">Prekročená maximálna veľkosť súboru (%1)!</translation>
+    </message>
+    <message>
+        <location filename="../webui/webapplication.cpp" line="746"/>
         <source>WebUI: Origin header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>WebUI: Zdrojové hlavičky a cieľový pôvod nesúhlasí! Zdrojová IP: &apos;%1&apos;. Pôvod hlavičky: &apos;%2&apos;. Cieľový zdroj: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="746"/>
+        <location filename="../webui/webapplication.cpp" line="758"/>
         <source>WebUI: Referer header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>WebUI: Hlavička referera a cieľový pôvod nesúhlasí! Zdrojová IP: &apos;%1&apos;. Pôvod hlavičky: &apos;%2&apos;. Cieľový zdroj: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="765"/>
+        <location filename="../webui/webapplication.cpp" line="777"/>
         <source>WebUI: Invalid Host header, port mismatch. Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
         <translation>WebUI: Neplatné záhlavie hostiteľa, nesúlad portov. Požiadavka zdroje IP: &apos;%1&apos;. Serverový port: &apos;%2&apos;. Prijaté hlavičky hostiteľa: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="786"/>
+        <location filename="../webui/webapplication.cpp" line="798"/>
         <source>WebUI: Invalid Host header. Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
         <translation>WebUI: Neplatné hlavičky hostiteľa. Požiadavka zdroje IP: &apos;%1&apos;. Prijaté hlavičky hostiteľa: &apos;%2&apos;</translation>
     </message>
@@ -11822,22 +12028,22 @@ Please choose a different name and try again.</source>
 <context>
     <name>WebUI</name>
     <message>
-        <location filename="../webui/webui.cpp" line="98"/>
+        <location filename="../webui/webui.cpp" line="95"/>
         <source>Web UI: HTTPS setup successful</source>
         <translation>Web UI: HTTPS úspešne nastavené</translation>
     </message>
     <message>
-        <location filename="../webui/webui.cpp" line="100"/>
+        <location filename="../webui/webui.cpp" line="97"/>
         <source>Web UI: HTTPS setup failed, fallback to HTTP</source>
         <translation>Web UI: Nastavenie HTTPS zlyhalo, prechádzam späť na HTTP</translation>
     </message>
     <message>
-        <location filename="../webui/webui.cpp" line="114"/>
+        <location filename="../webui/webui.cpp" line="111"/>
         <source>Web UI: Now listening on IP: %1, port: %2</source>
         <translation>Web UI: načúva na IP: %1, portu: %2</translation>
     </message>
     <message>
-        <location filename="../webui/webui.cpp" line="118"/>
+        <location filename="../webui/webui.cpp" line="115"/>
         <source>Web UI: Unable to bind to IP: %1, port: %2. Reason: %3</source>
         <translation>Web UI: Nie je možné viazať na IP: %1, port: %2. Dôvod: %3</translation>
     </message>

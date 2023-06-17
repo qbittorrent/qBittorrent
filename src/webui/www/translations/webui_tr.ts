@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Bağlantı durumu</translation>
+        <translation type="vanished">Bağlantı durumu</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>

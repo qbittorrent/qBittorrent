@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>连接状态</translation>
+        <translation type="vanished">连接状态</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>

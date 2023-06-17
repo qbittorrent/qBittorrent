@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Ühenduse olek</translation>
+        <translation type="vanished">Ühenduse olek</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>

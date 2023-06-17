@@ -561,7 +561,7 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>Status koneksi: Ter-Firewall</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Status koneksi</translation>
+        <translation type="vanished">Status koneksi</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
@@ -613,11 +613,11 @@
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Ingin lanjutkan semua torrents?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Ingin tunda semua torrents?</translation>
     </message>
     <message>
         <source>Execution Log</source>
@@ -1078,7 +1078,7 @@
     </message>
     <message>
         <source>0 means unlimited</source>
-        <translation type="unfinished" />
+        <translation>0 berarti tanpa batas</translation>
     </message>
     <message>
         <source>Relocate torrent</source>
@@ -1102,7 +1102,7 @@
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished" />
+        <translation>detik</translation>
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
@@ -1178,7 +1178,7 @@
     </message>
     <message>
         <source>File pool size:</source>
-        <translation type="unfinished" />
+        <translation>Ukuran file pool:</translation>
     </message>
     <message>
         <source>Any interface</source>
@@ -1350,7 +1350,7 @@
     </message>
     <message>
         <source>Network interface:</source>
-        <translation type="unfinished" />
+        <translation>Antarmuka jaringan:</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -1438,7 +1438,7 @@
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>%K: ID Torrent</translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
@@ -1454,11 +1454,11 @@
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>%J: Informasi hash v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>%I: Informasi hash v1</translation>
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
@@ -1542,7 +1542,7 @@
     </message>
     <message>
         <source>Excluded file names</source>
-        <translation type="unfinished" />
+        <translation>Tidak termasuk nama file</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
@@ -1578,7 +1578,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
-        <translation type="unfinished" />
+        <translation>HTTPS key tidak boleh kosong</translation>
     </message>
     <message>
         <source>Run external program</source>
@@ -1813,11 +1813,11 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Tambah peers...</translation>
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation type="unfinished" />
+        <translation>Klien ID Peer</translation>
     </message>
 </context>
 <context>
@@ -2030,7 +2030,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Informasi HASH v1:</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2046,11 +2046,11 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation>Nama file</translation>
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation type="unfinished" />
+        <translation>Nama file + Ekstensi</translation>
     </message>
     <message>
         <source>Enumerate Files</source>
@@ -2078,7 +2078,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Extension</source>
-        <translation type="unfinished" />
+        <translation>Ekstensi</translation>
     </message>
     <message>
         <source>Replace All</source>
@@ -3914,7 +3914,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Banned</source>
-        <translation type="unfinished" />
+        <translation>Dilarang</translation>
     </message>
     <message>
         <source>Normal Messages</source>
@@ -3922,7 +3922,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Critical</source>
-        <translation type="unfinished" />
+        <translation>Kritis</translation>
     </message>
     <message>
         <source>Critical Messages</source>
@@ -3934,7 +3934,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>items</source>
-        <translation type="unfinished" />
+        <translation>item</translation>
     </message>
     <message>
         <source>Results</source>
@@ -3942,11 +3942,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished" />
+        <translation>Informasi</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation type="unfinished" />
+        <translation>Pilih level log...</translation>
     </message>
 </context>
 </TS>

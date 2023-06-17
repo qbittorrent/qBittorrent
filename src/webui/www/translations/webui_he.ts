@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>מעמד חיבור</translation>
+        <translation type="vanished">מעמד חיבור</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>

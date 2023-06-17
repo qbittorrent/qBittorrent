@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="pt">
+<TS version="2.1" language="pt_PT">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Estado da ligação</translation>
+        <translation type="vanished">Estado da ligação</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
@@ -1658,7 +1658,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Save path:</source>
-        <translation>Caminho de gravação:</translation>
+        <translation>Guardar em:</translation>
     </message>
     <message>
         <source>months</source>
@@ -1678,7 +1678,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Intervalo de validade da cache do disco (requer o libtorrent &amp;lt; 2.0):</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
@@ -1698,7 +1698,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation>Portas de saída (Máx) [0: desativado]:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
@@ -2691,7 +2691,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished" />
+        <translation>Recolher/expandir</translation>
     </message>
 </context>
 <context>

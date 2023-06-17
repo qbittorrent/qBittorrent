@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Kapcsolat állapota</translation>
+        <translation type="vanished">Kapcsolat állapota</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>

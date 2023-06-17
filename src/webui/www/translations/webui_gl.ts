@@ -578,7 +578,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Estado da conexión</translation>
+        <translation type="vanished">Estado da conexión</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>

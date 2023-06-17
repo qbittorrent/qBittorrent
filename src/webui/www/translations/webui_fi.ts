@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Yhteyden tila</translation>
+        <translation type="vanished">Yhteyden tila</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>

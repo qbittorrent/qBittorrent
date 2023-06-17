@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Savienojuma statuss</translation>
+        <translation type="vanished">Savienojuma statuss</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>

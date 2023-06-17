@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Stav pripojenia</translation>
+        <translation type="vanished">Stav pripojenia</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
