@@ -36,7 +36,7 @@
 
 namespace Utils::ForeignApps
 {
-    inline const QString PYTHON_ISOLATE_MODE_FLAG = u"-I"_qs;
+    inline const QString PYTHON_ISOLATE_MODE_FLAG = u"-I"_s;
 
     struct PythonInfo
     {

@@ -67,11 +67,11 @@
 namespace
 {
 #define SETTINGS_KEY(name) u"AddNewTorrentDialog/" name
-    const QString KEY_ENABLED = SETTINGS_KEY(u"Enabled"_qs);
-    const QString KEY_TOPLEVEL = SETTINGS_KEY(u"TopLevel"_qs);
-    const QString KEY_SAVEPATHHISTORY = SETTINGS_KEY(u"SavePathHistory"_qs);
-    const QString KEY_DOWNLOADPATHHISTORY = SETTINGS_KEY(u"DownloadPathHistory"_qs);
-    const QString KEY_SAVEPATHHISTORYLENGTH = SETTINGS_KEY(u"SavePathHistoryLength"_qs);
+    const QString KEY_ENABLED = SETTINGS_KEY(u"Enabled"_s);
+    const QString KEY_TOPLEVEL = SETTINGS_KEY(u"TopLevel"_s);
+    const QString KEY_SAVEPATHHISTORY = SETTINGS_KEY(u"SavePathHistory"_s);
+    const QString KEY_DOWNLOADPATHHISTORY = SETTINGS_KEY(u"DownloadPathHistory"_s);
+    const QString KEY_SAVEPATHHISTORYLENGTH = SETTINGS_KEY(u"SavePathHistoryLength"_s);
 
     // just a shortcut
     inline SettingsStorage *settings()
@@ -286,15 +286,15 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     , m_ui(new Ui::AddNewTorrentDialog)
     , m_filterLine(new LineEdit(this))
     , m_torrentParams(inParams)
-    , m_storeDialogSize(SETTINGS_KEY(u"DialogSize"_qs))
-    , m_storeDefaultCategory(SETTINGS_KEY(u"DefaultCategory"_qs))
-    , m_storeRememberLastSavePath(SETTINGS_KEY(u"RememberLastSavePath"_qs))
+    , m_storeDialogSize(SETTINGS_KEY(u"DialogSize"_s))
+    , m_storeDefaultCategory(SETTINGS_KEY(u"DefaultCategory"_s))
+    , m_storeRememberLastSavePath(SETTINGS_KEY(u"RememberLastSavePath"_s))
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    , m_storeTreeHeaderState(u"GUI/Qt6/" SETTINGS_KEY(u"TreeHeaderState"_qs))
-    , m_storeSplitterState(u"GUI/Qt6/" SETTINGS_KEY(u"SplitterState"_qs))
+    , m_storeTreeHeaderState(u"GUI/Qt6/" SETTINGS_KEY(u"TreeHeaderState"_s))
+    , m_storeSplitterState(u"GUI/Qt6/" SETTINGS_KEY(u"SplitterState"_s))
 #else
-    , m_storeTreeHeaderState(SETTINGS_KEY(u"TreeHeaderState"_qs))
-    , m_storeSplitterState(SETTINGS_KEY(u"SplitterState"_qs))
+    , m_storeTreeHeaderState(SETTINGS_KEY(u"TreeHeaderState"_s))
+    , m_storeSplitterState(SETTINGS_KEY(u"SplitterState"_s))
 #endif
 {
     // TODO: set dialog file properties using m_torrentParams.filePriorities
@@ -365,7 +365,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
         m_ui->categoryComboBox->addItem(m_torrentParams.category);
     if (!defaultCategory.isEmpty())
         m_ui->categoryComboBox->addItem(defaultCategory);
-    m_ui->categoryComboBox->addItem(u""_qs);
+    m_ui->categoryComboBox->addItem(u""_s);
 
     for (const QString &category : asConst(categories))
     {
@@ -373,7 +373,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
             m_ui->categoryComboBox->addItem(category);
     }
 
-    m_ui->tagsLineEdit->setText(m_torrentParams.tags.join(u", "_qs));
+    m_ui->tagsLineEdit->setText(m_torrentParams.tags.join(u", "_s));
     connect(m_ui->tagsEditButton, &QAbstractButton::clicked, this, [this]
     {
         auto *dlg = new TorrentTagsDialog(m_torrentParams.tags, this);
@@ -381,7 +381,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
         connect(dlg, &TorrentTagsDialog::accepted, this, [this, dlg]
         {
             m_torrentParams.tags = dlg->tags();
-            m_ui->tagsLineEdit->setText(m_torrentParams.tags.join(u", "_qs));
+            m_ui->tagsLineEdit->setText(m_torrentParams.tags.join(u", "_s));
         });
         dlg->open();
     });

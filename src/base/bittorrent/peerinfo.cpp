@@ -262,8 +262,8 @@ QString PeerInfo::connectionType() const
         return C_UTP;
 
     return (m_nativeInfo.connection_type == lt::peer_info::standard_bittorrent)
-        ? u"BT"_qs
-        : u"Web"_qs;
+        ? u"BT"_s
+        : u"Web"_s;
 }
 
 qreal PeerInfo::calcRelevance(const QBitArray &allPieces) const
@@ -287,7 +287,7 @@ void PeerInfo::determineFlags()
     const auto updateFlags = [this](const QChar specifier, const QString &explanation)
     {
         m_flags += (specifier + u' ');
-        m_flagsDescription += u"%1 = %2\n"_qs.arg(specifier, explanation);
+        m_flagsDescription += u"%1 = %2\n"_s.arg(specifier, explanation);
     };
 
     if (isInteresting())

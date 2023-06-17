@@ -152,16 +152,16 @@ namespace
         {
             QStringList parts = arg.split(u'=');
             if (parts.size() == 2)
-                return Utils::String::unquote(parts[1], u"'\""_qs);
+                return Utils::String::unquote(parts[1], u"'\""_s);
             throw CommandLineParameterError(QCoreApplication::translate("CMD Options", "Parameter '%1' must follow syntax '%1=%2'",
                                                         "e.g. Parameter '--webui-port' must follow syntax '--webui-port=value'")
-                                            .arg(fullParameter(), u"<value>"_qs));
+                                            .arg(fullParameter(), u"<value>"_s));
         }
 
         QString value(const QProcessEnvironment &env, const QString &defaultValue = {}) const
         {
             QString val = env.value(envVarName());
-            return val.isEmpty() ? defaultValue : Utils::String::unquote(val, u"'\""_qs);
+            return val.isEmpty() ? defaultValue : Utils::String::unquote(val, u"'\""_s);
         }
 
         QString usage(const QString &valueName) const
@@ -206,7 +206,7 @@ namespace
             {
                 throw CommandLineParameterError(QCoreApplication::translate("CMD Options", "Parameter '%1' must follow syntax '%1=%2'",
                                                             "e.g. Parameter '--webui-port' must follow syntax '--webui-port=<value>'")
-                                                .arg(fullParameter(), u"<integer value>"_qs));
+                                                .arg(fullParameter(), u"<integer value>"_s));
             }
             return res;
         }
@@ -279,12 +279,12 @@ namespace
             throw CommandLineParameterError(QCoreApplication::translate("CMD Options", "Parameter '%1' must follow syntax '%1=%2'",
                                                         "e.g. Parameter '--add-paused' must follow syntax "
                                                         "'--add-paused=<true|false>'")
-                                            .arg(fullParameter(), u"<true|false>"_qs));
+                                            .arg(fullParameter(), u"<true|false>"_s));
         }
 
         std::optional<bool> value(const QProcessEnvironment &env) const
         {
-            const QString val = env.value(envVarName(), u"-1"_qs);
+            const QString val = env.value(envVarName(), u"-1"_s);
 
             if (val.isEmpty())
             {
@@ -304,7 +304,7 @@ namespace
             }
 
             qDebug() << QCoreApplication::translate("CMD Options", "Expected %1 in environment variable '%2', but got '%3'")
-                .arg(u"true|false"_qs, envVarName(), val);
+                .arg(u"true|false"_s, envVarName(), val);
             return std::nullopt;
         }
 
@@ -390,7 +390,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
                 result.webUiPort = WEBUI_PORT_OPTION.value(arg);
                 if ((result.webUiPort < 1) || (result.webUiPort > 65535))
                     throw CommandLineParameterError(QCoreApplication::translate("CMD Options", "%1 must specify a valid port (1 to 65535).")
-                                                    .arg(u"--webui-port"_qs));
+                                                    .arg(u"--webui-port"_s));
             }
             else if (arg == TORRENTING_PORT_OPTION)
             {
@@ -398,7 +398,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
                 if ((result.torrentingPort < 1) || (result.torrentingPort > 65535))
                 {
                     throw CommandLineParameterError(QCoreApplication::translate("CMD Options", "%1 must specify a valid port (1 to 65535).")
-                                                    .arg(u"--torrenting-port"_qs));
+                                                    .arg(u"--torrenting-port"_s));
                 }
             }
 #ifndef DISABLE_GUI

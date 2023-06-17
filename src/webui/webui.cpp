@@ -49,7 +49,7 @@ void WebUI::configure()
 {
     m_isErrored = false; // clear previous error state
 
-    const QString portForwardingProfile = u"webui"_qs;
+    const QString portForwardingProfile = u"webui"_s;
     const Preferences *pref = Preferences::instance();
     const quint16 port = pref->getWebUiPort();
 

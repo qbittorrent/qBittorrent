@@ -48,7 +48,7 @@ namespace
 {
     QString makeLink(const QStringView url, const QStringView linkLabel)
     {
-         return u"<a href=\"%1\">%2</a>"_qs.arg(url, linkLabel);
+         return u"<a href=\"%1\">%2</a>"_s.arg(url, linkLabel);
     }
 
     enum AdvSettingsCols
@@ -424,7 +424,7 @@ void AdvancedSettings::loadAdvancedSettings()
                  , tr("Open documentation"))
         , this);
     labelQbtLink->setOpenExternalLinks(true);
-    addRow(QBITTORRENT_HEADER, u"<b>%1</b>"_qs.arg(tr("qBittorrent Section")), labelQbtLink);
+    addRow(QBITTORRENT_HEADER, u"<b>%1</b>"_s.arg(tr("qBittorrent Section")), labelQbtLink);
     static_cast<QLabel *>(cellWidget(QBITTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
     auto *labelLibtorrentLink = new QLabel(
@@ -432,7 +432,7 @@ void AdvancedSettings::loadAdvancedSettings()
                  , tr("Open documentation"))
         , this);
     labelLibtorrentLink->setOpenExternalLinks(true);
-    addRow(LIBTORRENT_HEADER, u"<b>%1</b>"_qs.arg(tr("libtorrent Section")), labelLibtorrentLink);
+    addRow(LIBTORRENT_HEADER, u"<b>%1</b>"_s.arg(tr("libtorrent Section")), labelLibtorrentLink);
     static_cast<QLabel *>(cellWidget(LIBTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
     m_comboBoxResumeDataStorage.addItem(tr("Fastresume files"), QVariant::fromValue(BitTorrent::ResumeDataStorageType::Legacy));
@@ -580,7 +580,7 @@ void AdvancedSettings::loadAdvancedSettings()
             , &m_spinBoxSendBufferLowWatermark);
     m_spinBoxSendBufferWatermarkFactor.setMinimum(1);
     m_spinBoxSendBufferWatermarkFactor.setMaximum(std::numeric_limits<int>::max());
-    m_spinBoxSendBufferWatermarkFactor.setSuffix(u" %"_qs);
+    m_spinBoxSendBufferWatermarkFactor.setSuffix(u" %"_s);
     m_spinBoxSendBufferWatermarkFactor.setValue(session->sendBufferWatermarkFactor());
     addRow(SEND_BUF_WATERMARK_FACTOR, (tr("Send buffer watermark factor") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#send_buffer_watermark_factor", u"(?)"))
             , &m_spinBoxSendBufferWatermarkFactor);
@@ -818,12 +818,12 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxPeerTurnover.setMinimum(0);
     m_spinBoxPeerTurnover.setMaximum(100);
     m_spinBoxPeerTurnover.setValue(session->peerTurnover());
-    m_spinBoxPeerTurnover.setSuffix(u" %"_qs);
+    m_spinBoxPeerTurnover.setSuffix(u" %"_s);
     addRow(PEER_TURNOVER, (tr("Peer turnover disconnect percentage") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#peer_turnover", u"(?)"))
             , &m_spinBoxPeerTurnover);
     m_spinBoxPeerTurnoverCutoff.setMinimum(0);
     m_spinBoxPeerTurnoverCutoff.setMaximum(100);
-    m_spinBoxPeerTurnoverCutoff.setSuffix(u" %"_qs);
+    m_spinBoxPeerTurnoverCutoff.setSuffix(u" %"_s);
     m_spinBoxPeerTurnoverCutoff.setValue(session->peerTurnoverCutoff());
     addRow(PEER_TURNOVER_CUTOFF, (tr("Peer turnover threshold percentage") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#peer_turnover", u"(?)"))
             , &m_spinBoxPeerTurnoverCutoff);

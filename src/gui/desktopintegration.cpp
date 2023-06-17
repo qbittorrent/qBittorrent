@@ -70,13 +70,13 @@ namespace
 using namespace std::chrono_literals;
 
 #define SETTINGS_KEY(name) u"GUI/" name
-#define NOTIFICATIONS_SETTINGS_KEY(name) (SETTINGS_KEY(u"Notifications/"_qs) name)
+#define NOTIFICATIONS_SETTINGS_KEY(name) (SETTINGS_KEY(u"Notifications/"_s) name)
 
 DesktopIntegration::DesktopIntegration(QObject *parent)
     : QObject(parent)
-    , m_storeNotificationEnabled {NOTIFICATIONS_SETTINGS_KEY(u"Enabled"_qs), true}
+    , m_storeNotificationEnabled {NOTIFICATIONS_SETTINGS_KEY(u"Enabled"_s), true}
 #ifdef QBT_USES_DBUS
-    , m_storeNotificationTimeOut {NOTIFICATIONS_SETTINGS_KEY(u"Timeout"_qs), -1}
+    , m_storeNotificationTimeOut {NOTIFICATIONS_SETTINGS_KEY(u"Timeout"_s), -1}
 #endif
 {
 #ifdef Q_OS_MACOS
@@ -290,13 +290,13 @@ QIcon DesktopIntegration::getSystrayIcon() const
     {
     default:
     case TrayIcon::Style::Normal:
-        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray"_qs);
+        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray"_s);
 
     case TrayIcon::Style::MonoDark:
-        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray-dark"_qs);
+        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray-dark"_s);
 
     case TrayIcon::Style::MonoLight:
-        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray-light"_qs);
+        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray-light"_s);
     }
 }
 #endif // Q_OS_MACOS

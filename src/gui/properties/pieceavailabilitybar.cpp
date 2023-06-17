@@ -170,7 +170,7 @@ void PieceAvailabilityBar::clear()
 QString PieceAvailabilityBar::simpleToolTipText() const
 {
     const QString borderColor = colorBoxBorderColor().name();
-    const QString rowHTML = u"<tr><td width=20 bgcolor='%1' style='border: 1px solid \"%2\";'></td><td>%3</td></tr>"_qs;
+    const QString rowHTML = u"<tr><td width=20 bgcolor='%1' style='border: 1px solid \"%2\";'></td><td>%3</td></tr>"_s;
     return u"<table cellspacing=4>"
            + rowHTML.arg(backgroundColor().name(), borderColor, tr("Unavailable pieces"))
            + rowHTML.arg(pieceColor().name(), borderColor, tr("Available pieces"))

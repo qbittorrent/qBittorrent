@@ -36,21 +36,21 @@
 
 #include "base/utils/string.h"
 
-const QString PARAM_CATEGORY = u"category"_qs;
-const QString PARAM_TAGS = u"tags"_qs;
-const QString PARAM_SAVEPATH = u"save_path"_qs;
-const QString PARAM_USEDOWNLOADPATH = u"use_download_path"_qs;
-const QString PARAM_DOWNLOADPATH = u"download_path"_qs;
-const QString PARAM_OPERATINGMODE = u"operating_mode"_qs;
-const QString PARAM_QUEUETOP = u"add_to_top_of_queue"_qs;
-const QString PARAM_STOPPED = u"stopped"_qs;
-const QString PARAM_SKIPCHECKING = u"skip_checking"_qs;
-const QString PARAM_CONTENTLAYOUT = u"content_layout"_qs;
-const QString PARAM_AUTOTMM = u"use_auto_tmm"_qs;
-const QString PARAM_UPLOADLIMIT = u"upload_limit"_qs;
-const QString PARAM_DOWNLOADLIMIT = u"download_limit"_qs;
-const QString PARAM_SEEDINGTIMELIMIT = u"seeding_time_limit"_qs;
-const QString PARAM_RATIOLIMIT = u"ratio_limit"_qs;
+const QString PARAM_CATEGORY = u"category"_s;
+const QString PARAM_TAGS = u"tags"_s;
+const QString PARAM_SAVEPATH = u"save_path"_s;
+const QString PARAM_USEDOWNLOADPATH = u"use_download_path"_s;
+const QString PARAM_DOWNLOADPATH = u"download_path"_s;
+const QString PARAM_OPERATINGMODE = u"operating_mode"_s;
+const QString PARAM_QUEUETOP = u"add_to_top_of_queue"_s;
+const QString PARAM_STOPPED = u"stopped"_s;
+const QString PARAM_SKIPCHECKING = u"skip_checking"_s;
+const QString PARAM_CONTENTLAYOUT = u"content_layout"_s;
+const QString PARAM_AUTOTMM = u"use_auto_tmm"_s;
+const QString PARAM_UPLOADLIMIT = u"upload_limit"_s;
+const QString PARAM_DOWNLOADLIMIT = u"download_limit"_s;
+const QString PARAM_SEEDINGTIMELIMIT = u"seeding_time_limit"_s;
+const QString PARAM_RATIOLIMIT = u"ratio_limit"_s;
 
 namespace
 {

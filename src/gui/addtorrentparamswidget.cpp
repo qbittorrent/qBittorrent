@@ -112,7 +112,7 @@ AddTorrentParamsWidget::AddTorrentParamsWidget(BitTorrent::AddTorrentParams addT
         connect(dlg, &TorrentTagsDialog::accepted, this, [this, dlg]
         {
             m_addTorrentParams.tags = dlg->tags();
-            m_ui->tagsLineEdit->setText(m_addTorrentParams.tags.join(u", "_qs));
+            m_ui->tagsLineEdit->setText(m_addTorrentParams.tags.join(u", "_s));
         });
         dlg->open();
     });
@@ -163,7 +163,7 @@ void AddTorrentParamsWidget::populate()
     std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
     if (!m_addTorrentParams.category.isEmpty())
         m_ui->categoryComboBox->addItem(m_addTorrentParams.category);
-    m_ui->categoryComboBox->addItem(u""_qs);
+    m_ui->categoryComboBox->addItem(u""_s);
     for (const QString &category : asConst(categories))
     {
         if (category != m_addTorrentParams.category)
@@ -230,7 +230,7 @@ void AddTorrentParamsWidget::populate()
             m_addTorrentParams.stopCondition = data.value<BitTorrent::Torrent::StopCondition>();
     });
 
-    m_ui->tagsLineEdit->setText(m_addTorrentParams.tags.join(u", "_qs));
+    m_ui->tagsLineEdit->setText(m_addTorrentParams.tags.join(u", "_s));
 
     m_ui->startTorrentComboBox->disconnect(this);
     m_ui->startTorrentComboBox->setCurrentIndex(m_addTorrentParams.addPaused

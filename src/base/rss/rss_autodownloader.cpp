@@ -61,8 +61,8 @@ struct ProcessingJob
     QVariantHash articleData;
 };
 
-const QString CONF_FOLDER_NAME = u"rss"_qs;
-const QString RULES_FILE_NAME = u"download_rules.json"_qs;
+const QString CONF_FOLDER_NAME = u"rss"_s;
+const QString RULES_FILE_NAME = u"download_rules.json"_s;
 
 namespace
 {
@@ -97,13 +97,13 @@ QPointer<AutoDownloader> AutoDownloader::m_instance = nullptr;
 
 QString computeSmartFilterRegex(const QStringList &filters)
 {
-    return u"(?:_|\\b)(?:%1)(?:_|\\b)"_qs.arg(filters.join(u")|(?:"));
+    return u"(?:_|\\b)(?:%1)(?:_|\\b)"_s.arg(filters.join(u")|(?:"));
 }
 
 AutoDownloader::AutoDownloader()
-    : m_storeProcessingEnabled(u"RSS/AutoDownloader/EnableProcessing"_qs, false)
-    , m_storeSmartEpisodeFilter(u"RSS/AutoDownloader/SmartEpisodeFilter"_qs)
-    , m_storeDownloadRepacks(u"RSS/AutoDownloader/DownloadRepacks"_qs)
+    : m_storeProcessingEnabled(u"RSS/AutoDownloader/EnableProcessing"_s, false)
+    , m_storeSmartEpisodeFilter(u"RSS/AutoDownloader/SmartEpisodeFilter"_s)
+    , m_storeDownloadRepacks(u"RSS/AutoDownloader/DownloadRepacks"_s)
     , m_processingTimer(new QTimer(this))
     , m_ioThread(new QThread)
 {
@@ -175,7 +175,7 @@ bool AutoDownloader::hasRule(const QString &ruleName) const
 AutoDownloadRule AutoDownloader::ruleByName(const QString &ruleName) const
 {
     const auto index = m_rulesByName.value(ruleName, -1);
-    return m_rules.value(index, AutoDownloadRule(u"Unknown Rule"_qs));
+    return m_rules.value(index, AutoDownloadRule(u"Unknown Rule"_s));
 }
 
 QList<AutoDownloadRule> AutoDownloader::rules() const
@@ -312,10 +312,10 @@ QStringList AutoDownloader::smartEpisodeFilters() const
     {
         const QStringList defaultFilters =
         {
-            u"s(\\d+)e(\\d+)"_qs,                       // Format 1: s01e01
-            u"(\\d+)x(\\d+)"_qs,                        // Format 2: 01x01
-            u"(\\d{4}[.\\-]\\d{1,2}[.\\-]\\d{1,2})"_qs, // Format 3: 2017.01.01
-            u"(\\d{1,2}[.\\-]\\d{1,2}[.\\-]\\d{4})"_qs  // Format 4: 01.01.2017
+            u"s(\\d+)e(\\d+)"_s,                       // Format 1: s01e01
+            u"(\\d+)x(\\d+)"_s,                        // Format 2: 01x01
+            u"(\\d{4}[.\\-]\\d{1,2}[.\\-]\\d{1,2})"_s, // Format 3: 2017.01.01
+            u"(\\d{1,2}[.\\-]\\d{1,2}[.\\-]\\d{4})"_s  // Format 4: 01.01.2017
         };
         return defaultFilters;
     }
@@ -529,8 +529,8 @@ void AutoDownloader::loadRules(const QByteArray &data)
 
 void AutoDownloader::loadRulesLegacy()
 {
-    const std::unique_ptr<QSettings> settings = Profile::instance()->applicationSettings(u"qBittorrent-rss"_qs);
-    const QVariantHash rules = settings->value(u"download_rules"_qs).toHash();
+    const std::unique_ptr<QSettings> settings = Profile::instance()->applicationSettings(u"qBittorrent-rss"_s);
+    const QVariantHash rules = settings->value(u"download_rules"_s).toHash();
     for (const QVariant &ruleVar : rules)
     {
         const auto rule = AutoDownloadRule::fromLegacyDict(ruleVar.toHash());

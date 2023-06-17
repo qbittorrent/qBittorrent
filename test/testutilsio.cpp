@@ -44,9 +44,9 @@ public:
 private slots:
     void testReadFile() const
     {
-        const Path testFolder = Path(QString::fromUtf8(__FILE__)).parentPath() / Path(u"testdata"_qs);
+        const Path testFolder = Path(QString::fromUtf8(__FILE__)).parentPath() / Path(u"testdata"_s);
 
-        const Path size10File = testFolder / Path(u"size10.txt"_qs);
+        const Path size10File = testFolder / Path(u"size10.txt"_s);
         const QByteArray size10Data = QByteArrayLiteral("123456789\n");
 
         {
@@ -78,7 +78,7 @@ private slots:
         }
 
         {
-            const Path nonExistFile = testFolder / Path(u".non_existent_file_1234"_qs);
+            const Path nonExistFile = testFolder / Path(u".non_existent_file_1234"_s);
             const auto readResult = Utils::IO::readFile(nonExistFile, 1);
             QCOMPARE(readResult.has_value(), false);
             QCOMPARE(readResult.error().status, Utils::IO::ReadError::NotExist);
@@ -87,23 +87,23 @@ private slots:
 
 #ifdef Q_OS_UNIX
         {
-            const auto readResult = Utils::IO::readFile(Path(u"/dev/null"_qs), 10);
+            const auto readResult = Utils::IO::readFile(Path(u"/dev/null"_s), 10);
             QCOMPARE(readResult.has_value(), true);
             QCOMPARE(readResult.value().length(), 0);
         }
         {
-            const auto readResult = Utils::IO::readFile(Path(u"/dev/null"_qs), -1);
+            const auto readResult = Utils::IO::readFile(Path(u"/dev/null"_s), -1);
             QCOMPARE(readResult.has_value(), true);
             QCOMPARE(readResult.value().length(), 0);
         }
 
         {
-            const auto readResult = Utils::IO::readFile(Path(u"/dev/zero"_qs), 10);
+            const auto readResult = Utils::IO::readFile(Path(u"/dev/zero"_s), 10);
             QCOMPARE(readResult.has_value(), true);
             QCOMPARE(readResult.value().length(), 0);
         }
         {
-            const auto readResult = Utils::IO::readFile(Path(u"/dev/zero"_qs), -1);
+            const auto readResult = Utils::IO::readFile(Path(u"/dev/zero"_s), -1);
             QCOMPARE(readResult.has_value(), true);
             QCOMPARE(readResult.value().length(), 0);
         }

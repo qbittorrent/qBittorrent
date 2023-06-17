@@ -48,23 +48,23 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
     : QDialog(parent)
     , m_ui(new Ui::TorrentCreatorDialog)
     , m_creatorThread(new BitTorrent::TorrentCreatorThread(this))
-    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
-    , m_storePieceSize(SETTINGS_KEY(u"PieceSize"_qs))
-    , m_storePrivateTorrent(SETTINGS_KEY(u"PrivateTorrent"_qs))
-    , m_storeStartSeeding(SETTINGS_KEY(u"StartSeeding"_qs))
-    , m_storeIgnoreRatio(SETTINGS_KEY(u"IgnoreRatio"_qs))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_s))
+    , m_storePieceSize(SETTINGS_KEY(u"PieceSize"_s))
+    , m_storePrivateTorrent(SETTINGS_KEY(u"PrivateTorrent"_s))
+    , m_storeStartSeeding(SETTINGS_KEY(u"StartSeeding"_s))
+    , m_storeIgnoreRatio(SETTINGS_KEY(u"IgnoreRatio"_s))
 #ifdef QBT_USES_LIBTORRENT2
-    , m_storeTorrentFormat(SETTINGS_KEY(u"TorrentFormat"_qs))
+    , m_storeTorrentFormat(SETTINGS_KEY(u"TorrentFormat"_s))
 #else
-    , m_storeOptimizeAlignment(SETTINGS_KEY(u"OptimizeAlignment"_qs))
-    , m_paddedFileSizeLimit(SETTINGS_KEY(u"PaddedFileSizeLimit"_qs))
+    , m_storeOptimizeAlignment(SETTINGS_KEY(u"OptimizeAlignment"_s))
+    , m_paddedFileSizeLimit(SETTINGS_KEY(u"PaddedFileSizeLimit"_s))
 #endif
-    , m_storeLastAddPath(SETTINGS_KEY(u"LastAddPath"_qs))
-    , m_storeTrackerList(SETTINGS_KEY(u"TrackerList"_qs))
-    , m_storeWebSeedList(SETTINGS_KEY(u"WebSeedList"_qs))
-    , m_storeComments(SETTINGS_KEY(u"Comments"_qs))
-    , m_storeLastSavePath(SETTINGS_KEY(u"LastSavePath"_qs))
-    , m_storeSource(SETTINGS_KEY(u"Source"_qs))
+    , m_storeLastAddPath(SETTINGS_KEY(u"LastAddPath"_s))
+    , m_storeTrackerList(SETTINGS_KEY(u"TrackerList"_s))
+    , m_storeWebSeedList(SETTINGS_KEY(u"WebSeedList"_s))
+    , m_storeComments(SETTINGS_KEY(u"Comments"_s))
+    , m_storeLastSavePath(SETTINGS_KEY(u"LastSavePath"_s))
+    , m_storeSource(SETTINGS_KEY(u"Source"_s))
 {
     m_ui->setupUi(this);
 
@@ -163,7 +163,7 @@ void TorrentCreatorDialog::dropEvent(QDropEvent *event)
 
 void TorrentCreatorDialog::dragEnterEvent(QDragEnterEvent *event)
 {
-    if (event->mimeData()->hasFormat(u"text/plain"_qs) || event->mimeData()->hasFormat(u"text/uri-list"_qs))
+    if (event->mimeData()->hasFormat(u"text/plain"_s) || event->mimeData()->hasFormat(u"text/uri-list"_s))
         event->acceptProposedAction();
 }
 
@@ -193,7 +193,7 @@ void TorrentCreatorDialog::onCreateButtonClicked()
     setCursor(QCursor(Qt::WaitCursor));
 
     const QStringList trackers = m_ui->trackersList->toPlainText().trimmed()
-        .replace(QRegularExpression(u"\n\n[\n]+"_qs), u"\n\n"_qs).split(u'\n');
+        .replace(QRegularExpression(u"\n\n[\n]+"_s), u"\n\n"_s).split(u'\n');
     const BitTorrent::TorrentCreatorParams params
     {
         m_ui->checkPrivate->isChecked()
@@ -251,7 +251,7 @@ void TorrentCreatorDialog::handleCreationSuccess(const Path &path, const Path &b
         BitTorrent::Session::instance()->addTorrent(result.value(), params);
     }
     QMessageBox::information(this, tr("Torrent creator")
-        , u"%1\n%2"_qs.arg(tr("Torrent created:"), path.toString()));
+        , u"%1\n%2"_s.arg(tr("Torrent created:"), path.toString()));
     setInteractionEnabled(true);
 }
 

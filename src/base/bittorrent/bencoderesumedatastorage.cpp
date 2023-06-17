@@ -103,8 +103,8 @@ BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(const Path &path,
                     .arg(path.toString()));
     }
 
-    const QRegularExpression filenamePattern {u"^([A-Fa-f0-9]{40})\\.fastresume$"_qs};
-    const QStringList filenames = QDir(path.data()).entryList(QStringList(u"*.fastresume"_qs), QDir::Files, QDir::Unsorted);
+    const QRegularExpression filenamePattern {u"^([A-Fa-f0-9]{40})\\.fastresume$"_s};
+    const QStringList filenames = QDir(path.data()).entryList(QStringList(u"*.fastresume"_s), QDir::Files, QDir::Unsorted);
 
     m_registeredTorrents.reserve(filenames.size());
     for (const QString &filename : filenames)
@@ -114,7 +114,7 @@ BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(const Path &path,
              m_registeredTorrents.append(TorrentID::fromString(rxMatch.captured(1)));
     }
 
-    loadQueue(path / Path(u"queue"_qs));
+    loadQueue(path / Path(u"queue"_s));
 
     qDebug() << "Registered torrents count: " << m_registeredTorrents.size();
 
@@ -176,7 +176,7 @@ void BitTorrent::BencodeResumeDataStorage::loadQueue(const Path &queueFilename)
         return;
     }
 
-    const QRegularExpression hashPattern {u"^([A-Fa-f0-9]{40})$"_qs};
+    const QRegularExpression hashPattern {u"^([A-Fa-f0-9]{40})$"_s};
     int start = 0;
     while (true)
     {
@@ -370,7 +370,7 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
         metadataDict.insert(dataDict.extract("created by"));
         metadataDict.insert(dataDict.extract("comment"));
 
-        const Path torrentFilepath = m_resumeDataDir / Path(u"%1.torrent"_qs.arg(id.toString()));
+        const Path torrentFilepath = m_resumeDataDir / Path(u"%1.torrent"_s.arg(id.toString()));
         const nonstd::expected<void, QString> result = Utils::IO::saveToFile(torrentFilepath, metadata);
         if (!result)
         {
@@ -396,7 +396,7 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
         data["qBt-downloadPath"] = Profile::instance()->toPortablePath(resumeData.downloadPath).data().toStdString();
     }
 
-    const Path resumeFilepath = m_resumeDataDir / Path(u"%1.fastresume"_qs.arg(id.toString()));
+    const Path resumeFilepath = m_resumeDataDir / Path(u"%1.fastresume"_s.arg(id.toString()));
     const nonstd::expected<void, QString> result = Utils::IO::saveToFile(resumeFilepath, data);
     if (!result)
     {
@@ -407,10 +407,10 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
 
 void BitTorrent::BencodeResumeDataStorage::Worker::remove(const TorrentID &id) const
 {
-    const Path resumeFilename {u"%1.fastresume"_qs.arg(id.toString())};
+    const Path resumeFilename {u"%1.fastresume"_s.arg(id.toString())};
     Utils::Fs::removeFile(m_resumeDataDir / resumeFilename);
 
-    const Path torrentFilename {u"%1.torrent"_qs.arg(id.toString())};
+    const Path torrentFilename {u"%1.torrent"_s.arg(id.toString())};
     Utils::Fs::removeFile(m_resumeDataDir / torrentFilename);
 }
 
@@ -421,7 +421,7 @@ void BitTorrent::BencodeResumeDataStorage::Worker::storeQueue(const QVector<Torr
     for (const BitTorrent::TorrentID &torrentID : queue)
         data += (torrentID.toString().toLatin1() + '\n');
 
-    const Path filepath = m_resumeDataDir / Path(u"queue"_qs);
+    const Path filepath = m_resumeDataDir / Path(u"queue"_s);
     const nonstd::expected<void, QString> result = Utils::IO::saveToFile(filepath, data);
     if (!result)
     {

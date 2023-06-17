@@ -70,7 +70,7 @@ public:
         if (!m_parent || m_parent->name().isEmpty())
             return m_name;
 
-        return u"%1/%2"_qs.arg(m_parent->fullName(), m_name);
+        return u"%1/%2"_s.arg(m_parent->fullName(), m_name);
     }
 
     CategoryModelItem *parent() const
@@ -208,12 +208,12 @@ QVariant CategoryFilterModel::data(const QModelIndex &index, int role) const
 
     if ((index.column() == 0) && (role == Qt::DecorationRole))
     {
-        return UIThemeManager::instance()->getIcon(u"view-categories"_qs, u"inode-directory"_qs);
+        return UIThemeManager::instance()->getIcon(u"view-categories"_s, u"inode-directory"_s);
     }
 
     if ((index.column() == 0) && (role == Qt::DisplayRole))
     {
-        return u"%1 (%2)"_qs.arg(item->name(), QString::number(item->torrentsCount()));
+        return u"%1 (%2)"_s.arg(item->name(), QString::number(item->torrentsCount()));
     }
 
     if ((index.column() == 0) && (role == Qt::UserRole))

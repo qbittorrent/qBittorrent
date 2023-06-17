@@ -78,7 +78,7 @@ namespace
             for (const QString &file : files)
             {
                 const Path path {file};
-                if (path.hasExtension(u".pyc"_qs))
+                if (path.hasExtension(u".pyc"_s))
                     Utils::Fs::removeFile(path);
             }
         }
@@ -88,7 +88,7 @@ namespace
 QPointer<SearchPluginManager> SearchPluginManager::m_instance = nullptr;
 
 SearchPluginManager::SearchPluginManager()
-    : m_updateUrl(u"https://searchplugins.qbittorrent.org/nova3/engines/"_qs)
+    : m_updateUrl(u"https://searchplugins.qbittorrent.org/nova3/engines/"_s)
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
@@ -204,7 +204,7 @@ void SearchPluginManager::enablePlugin(const QString &name, const bool enabled)
 // Updates shipped plugin
 void SearchPluginManager::updatePlugin(const QString &name)
 {
-    installPlugin(u"%1%2.py"_qs.arg(m_updateUrl, name));
+    installPlugin(u"%1%2.py"_s.arg(m_updateUrl, name));
 }
 
 // Install or update plugin from file or url
@@ -354,15 +354,15 @@ QString SearchPluginManager::categoryFullName(const QString &categoryName)
 {
     const QHash<QString, QString> categoryTable
     {
-        {u"all"_qs, tr("All categories")},
-        {u"movies"_qs, tr("Movies")},
-        {u"tv"_qs, tr("TV shows")},
-        {u"music"_qs, tr("Music")},
-        {u"games"_qs, tr("Games")},
-        {u"anime"_qs, tr("Anime")},
-        {u"software"_qs, tr("Software")},
-        {u"pictures"_qs, tr("Pictures")},
-        {u"books"_qs, tr("Books")}
+        {u"all"_s, tr("All categories")},
+        {u"movies"_s, tr("Movies")},
+        {u"tv"_s, tr("TV shows")},
+        {u"music"_s, tr("Music")},
+        {u"games"_s, tr("Games")},
+        {u"anime"_s, tr("Anime")},
+        {u"software"_s, tr("Software")},
+        {u"pictures"_s, tr("Pictures")},
+        {u"books"_s, tr("Books")}
     };
     return categoryTable.value(categoryName);
 }
@@ -374,7 +374,7 @@ QString SearchPluginManager::pluginFullName(const QString &pluginName) const
 
 Path SearchPluginManager::pluginsLocation()
 {
-    return (engineLocation() / Path(u"engines"_qs));
+    return (engineLocation() / Path(u"engines"_s));
 }
 
 Path SearchPluginManager::engineLocation()
@@ -382,7 +382,7 @@ Path SearchPluginManager::engineLocation()
     static Path location;
     if (location.isEmpty())
     {
-        location = specialFolderLocation(SpecialFolder::Data) / Path(u"nova3"_qs);
+        location = specialFolderLocation(SpecialFolder::Data) / Path(u"nova3"_s);
         Utils::Fs::mkpath(location);
     }
 
@@ -403,24 +403,24 @@ void SearchPluginManager::applyProxySettings()
         case Net::ProxyType::HTTP:
             if (proxyConfig.authEnabled)
             {
-                proxyStrHTTP = u"http://%1:%2@%3:%4"_qs.arg(proxyConfig.username
+                proxyStrHTTP = u"http://%1:%2@%3:%4"_s.arg(proxyConfig.username
                         , proxyConfig.password, proxyConfig.ip, QString::number(proxyConfig.port));
             }
             else
             {
-                proxyStrHTTP = u"http://%1:%2"_qs.arg(proxyConfig.ip, QString::number(proxyConfig.port));
+                proxyStrHTTP = u"http://%1:%2"_s.arg(proxyConfig.ip, QString::number(proxyConfig.port));
             }
             break;
 
         case Net::ProxyType::SOCKS5:
             if (proxyConfig.authEnabled)
             {
-                proxyStrSOCK = u"%1:%2@%3:%4"_qs.arg(proxyConfig.username
+                proxyStrSOCK = u"%1:%2@%3:%4"_s.arg(proxyConfig.username
                     , proxyConfig.password, proxyConfig.ip, QString::number(proxyConfig.port));
             }
             else
             {
-                proxyStrSOCK = u"%1:%2"_qs.arg(proxyConfig.ip, QString::number(proxyConfig.port));
+                proxyStrSOCK = u"%1:%2"_s.arg(proxyConfig.ip, QString::number(proxyConfig.port));
             }
             break;
 
@@ -459,7 +459,7 @@ void SearchPluginManager::pluginDownloadFinished(const Net::DownloadResult &resu
     {
         const QString url = result.url;
         QString pluginName = url.mid(url.lastIndexOf(u'/') + 1);
-        pluginName.replace(u".py"_qs, u""_qs, Qt::CaseInsensitive);
+        pluginName.replace(u".py"_s, u""_s, Qt::CaseInsensitive);
 
         if (pluginInfo(pluginName))
             emit pluginUpdateFailed(pluginName, tr("Failed to download the plugin file. %1").arg(result.errorString));
@@ -474,20 +474,20 @@ void SearchPluginManager::updateNova()
     // create nova directory if necessary
     const Path enginePath = engineLocation();
 
-    QFile packageFile {(enginePath / Path(u"__init__.py"_qs)).data()};
+    QFile packageFile {(enginePath / Path(u"__init__.py"_s)).data()};
     packageFile.open(QIODevice::WriteOnly);
     packageFile.close();
 
-    Utils::Fs::mkdir(enginePath / Path(u"engines"_qs));
+    Utils::Fs::mkdir(enginePath / Path(u"engines"_s));
 
-    QFile packageFile2 {(enginePath / Path(u"engines/__init__.py"_qs)).data()};
+    QFile packageFile2 {(enginePath / Path(u"engines/__init__.py"_s)).data()};
     packageFile2.open(QIODevice::WriteOnly);
     packageFile2.close();
 
     // Copy search plugin files (if necessary)
     const auto updateFile = [&enginePath](const Path &filename, const bool compareVersion)
     {
-        const Path filePathBundled = Path(u":/searchengine/nova3"_qs) / filename;
+        const Path filePathBundled = Path(u":/searchengine/nova3"_s) / filename;
         const Path filePathDisk = enginePath / filename;
 
         if (compareVersion && (getPluginVersion(filePathBundled) <= getPluginVersion(filePathDisk)))
@@ -497,11 +497,11 @@ void SearchPluginManager::updateNova()
         Utils::Fs::copyFile(filePathBundled, filePathDisk);
     };
 
-    updateFile(Path(u"helpers.py"_qs), true);
-    updateFile(Path(u"nova2.py"_qs), true);
-    updateFile(Path(u"nova2dl.py"_qs), true);
-    updateFile(Path(u"novaprinter.py"_qs), true);
-    updateFile(Path(u"socks.py"_qs), false);
+    updateFile(Path(u"helpers.py"_s), true);
+    updateFile(Path(u"nova2.py"_s), true);
+    updateFile(Path(u"nova2dl.py"_s), true);
+    updateFile(Path(u"novaprinter.py"_s), true);
+    updateFile(Path(u"socks.py"_s), false);
 }
 
 void SearchPluginManager::update()
@@ -512,8 +512,8 @@ void SearchPluginManager::update()
     const QStringList params
     {
         Utils::ForeignApps::PYTHON_ISOLATE_MODE_FLAG,
-        (engineLocation() / Path(u"/nova2.py"_qs)).toString(),
-        u"--capabilities"_qs
+        (engineLocation() / Path(u"/nova2.py"_s)).toString(),
+        u"--capabilities"_s
     };
     nova.start(Utils::ForeignApps::pythonInfo().executableName, params, QIODevice::ReadOnly);
     nova.waitForFinished();
@@ -544,10 +544,10 @@ void SearchPluginManager::update()
             auto plugin = std::make_unique<PluginInfo>();
             plugin->name = pluginName;
             plugin->version = getPluginVersion(pluginPath(pluginName));
-            plugin->fullName = engineElem.elementsByTagName(u"name"_qs).at(0).toElement().text();
-            plugin->url = engineElem.elementsByTagName(u"url"_qs).at(0).toElement().text();
+            plugin->fullName = engineElem.elementsByTagName(u"name"_s).at(0).toElement().text();
+            plugin->url = engineElem.elementsByTagName(u"url"_s).at(0).toElement().text();
 
-            const QStringList categories = engineElem.elementsByTagName(u"categories"_qs).at(0).toElement().text().split(u' ');
+            const QStringList categories = engineElem.elementsByTagName(u"categories"_s).at(0).toElement().text().split(u' ');
             for (QString cat : categories)
             {
                 cat = cat.trimmed();

@@ -43,15 +43,15 @@ private slots:
     void testSplitCommand() const
     {
         QCOMPARE(Utils::String::splitCommand({}), {});
-        QCOMPARE(Utils::String::splitCommand(u""_qs), {});
-        QCOMPARE(Utils::String::splitCommand(u"  "_qs), {});
-        QCOMPARE(Utils::String::splitCommand(uR"("")"_qs), {uR"("")"_qs});
-        QCOMPARE(Utils::String::splitCommand(uR"(" ")"_qs), {uR"(" ")"_qs});
-        QCOMPARE(Utils::String::splitCommand(u"\"\"\""_qs), {u"\"\"\""_qs});
-        QCOMPARE(Utils::String::splitCommand(uR"(" """)"_qs), {uR"(" """)"_qs});
-        QCOMPARE(Utils::String::splitCommand(u" app a b c  "_qs), QStringList({u"app"_qs, u"a"_qs, u"b"_qs, u"c"_qs}));
-        QCOMPARE(Utils::String::splitCommand(u"   cmd.exe /d --arg2 \"arg3\" \"\" arg5 \"\"arg6 \"arg7 "_qs)
-            , QStringList({u"cmd.exe"_qs, u"/d"_qs, u"--arg2"_qs, u"\"arg3\""_qs, u"\"\""_qs, u"arg5"_qs, u"\"\"arg6"_qs, u"\"arg7 "_qs}));
+        QCOMPARE(Utils::String::splitCommand(u""_s), {});
+        QCOMPARE(Utils::String::splitCommand(u"  "_s), {});
+        QCOMPARE(Utils::String::splitCommand(uR"("")"_s), {uR"("")"_s});
+        QCOMPARE(Utils::String::splitCommand(uR"(" ")"_s), {uR"(" ")"_s});
+        QCOMPARE(Utils::String::splitCommand(u"\"\"\""_s), {u"\"\"\""_s});
+        QCOMPARE(Utils::String::splitCommand(uR"(" """)"_s), {uR"(" """)"_s});
+        QCOMPARE(Utils::String::splitCommand(u" app a b c  "_s), QStringList({u"app"_s, u"a"_s, u"b"_s, u"c"_s}));
+        QCOMPARE(Utils::String::splitCommand(u"   cmd.exe /d --arg2 \"arg3\" \"\" arg5 \"\"arg6 \"arg7 "_s)
+            , QStringList({u"cmd.exe"_s, u"/d"_s, u"--arg2"_s, u"\"arg3\""_s, u"\"\""_s, u"arg5"_s, u"\"\"arg6"_s, u"\"arg7 "_s}));
     }
 };
 

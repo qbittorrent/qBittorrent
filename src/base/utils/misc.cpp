@@ -193,59 +193,59 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
     if (action != ShutdownDialogAction::Shutdown)
     {
         // Some recent systems use systemd's logind
-        QDBusInterface login1Iface(u"org.freedesktop.login1"_qs, u"/org/freedesktop/login1"_qs,
-                                   u"org.freedesktop.login1.Manager"_qs, QDBusConnection::systemBus());
+        QDBusInterface login1Iface(u"org.freedesktop.login1"_s, u"/org/freedesktop/login1"_s,
+                                   u"org.freedesktop.login1.Manager"_s, QDBusConnection::systemBus());
         if (login1Iface.isValid())
         {
             if (action == ShutdownDialogAction::Suspend)
-                login1Iface.call(u"Suspend"_qs, false);
+                login1Iface.call(u"Suspend"_s, false);
             else
-                login1Iface.call(u"Hibernate"_qs, false);
+                login1Iface.call(u"Hibernate"_s, false);
             return;
         }
         // Else, other recent systems use UPower
-        QDBusInterface upowerIface(u"org.freedesktop.UPower"_qs, u"/org/freedesktop/UPower"_qs,
-                                   u"org.freedesktop.UPower"_qs, QDBusConnection::systemBus());
+        QDBusInterface upowerIface(u"org.freedesktop.UPower"_s, u"/org/freedesktop/UPower"_s,
+                                   u"org.freedesktop.UPower"_s, QDBusConnection::systemBus());
         if (upowerIface.isValid())
         {
             if (action == ShutdownDialogAction::Suspend)
-                upowerIface.call(u"Suspend"_qs);
+                upowerIface.call(u"Suspend"_s);
             else
-                upowerIface.call(u"Hibernate"_qs);
+                upowerIface.call(u"Hibernate"_s);
             return;
         }
         // HAL (older systems)
-        QDBusInterface halIface(u"org.freedesktop.Hal"_qs, u"/org/freedesktop/Hal/devices/computer"_qs,
-                                u"org.freedesktop.Hal.Device.SystemPowerManagement"_qs,
+        QDBusInterface halIface(u"org.freedesktop.Hal"_s, u"/org/freedesktop/Hal/devices/computer"_s,
+                                u"org.freedesktop.Hal.Device.SystemPowerManagement"_s,
                                 QDBusConnection::systemBus());
         if (action == ShutdownDialogAction::Suspend)
-            halIface.call(u"Suspend"_qs, 5);
+            halIface.call(u"Suspend"_s, 5);
         else
-            halIface.call(u"Hibernate"_qs);
+            halIface.call(u"Hibernate"_s);
     }
     else
     {
         // Some recent systems use systemd's logind
-        QDBusInterface login1Iface(u"org.freedesktop.login1"_qs, u"/org/freedesktop/login1"_qs,
-                                   u"org.freedesktop.login1.Manager"_qs, QDBusConnection::systemBus());
+        QDBusInterface login1Iface(u"org.freedesktop.login1"_s, u"/org/freedesktop/login1"_s,
+                                   u"org.freedesktop.login1.Manager"_s, QDBusConnection::systemBus());
         if (login1Iface.isValid())
         {
-            login1Iface.call(u"PowerOff"_qs, false);
+            login1Iface.call(u"PowerOff"_s, false);
             return;
         }
         // Else, other recent systems use ConsoleKit
-        QDBusInterface consolekitIface(u"org.freedesktop.ConsoleKit"_qs, u"/org/freedesktop/ConsoleKit/Manager"_qs,
-                                       u"org.freedesktop.ConsoleKit.Manager"_qs, QDBusConnection::systemBus());
+        QDBusInterface consolekitIface(u"org.freedesktop.ConsoleKit"_s, u"/org/freedesktop/ConsoleKit/Manager"_s,
+                                       u"org.freedesktop.ConsoleKit.Manager"_s, QDBusConnection::systemBus());
         if (consolekitIface.isValid())
         {
-            consolekitIface.call(u"Stop"_qs);
+            consolekitIface.call(u"Stop"_s);
             return;
         }
         // HAL (older systems)
-        QDBusInterface halIface(u"org.freedesktop.Hal"_qs, u"/org/freedesktop/Hal/devices/computer"_qs,
-                                u"org.freedesktop.Hal.Device.SystemPowerManagement"_qs,
+        QDBusInterface halIface(u"org.freedesktop.Hal"_s, u"/org/freedesktop/Hal/devices/computer"_s,
+                                u"org.freedesktop.Hal.Device.SystemPowerManagement"_s,
                                 QDBusConnection::systemBus());
-        halIface.call(u"Shutdown"_qs);
+        halIface.call(u"Shutdown"_s);
     }
 
 #else
@@ -308,48 +308,48 @@ bool Utils::Misc::isPreviewable(const Path &filePath)
 
     const QSet<QString> multimediaExtensions =
     {
-        u".3GP"_qs,
-        u".AAC"_qs,
-        u".AC3"_qs,
-        u".AIF"_qs,
-        u".AIFC"_qs,
-        u".AIFF"_qs,
-        u".ASF"_qs,
-        u".AU"_qs,
-        u".AVI"_qs,
-        u".FLAC"_qs,
-        u".FLV"_qs,
-        u".M3U"_qs,
-        u".M4A"_qs,
-        u".M4P"_qs,
-        u".M4V"_qs,
-        u".MID"_qs,
-        u".MKV"_qs,
-        u".MOV"_qs,
-        u".MP2"_qs,
-        u".MP3"_qs,
-        u".MP4"_qs,
-        u".MPC"_qs,
-        u".MPE"_qs,
-        u".MPEG"_qs,
-        u".MPG"_qs,
-        u".MPP"_qs,
-        u".OGG"_qs,
-        u".OGM"_qs,
-        u".OGV"_qs,
-        u".QT"_qs,
-        u".RA"_qs,
-        u".RAM"_qs,
-        u".RM"_qs,
-        u".RMV"_qs,
-        u".RMVB"_qs,
-        u".SWA"_qs,
-        u".SWF"_qs,
-        u".TS"_qs,
-        u".VOB"_qs,
-        u".WAV"_qs,
-        u".WMA"_qs,
-        u".WMV"_qs
+        u".3GP"_s,
+        u".AAC"_s,
+        u".AC3"_s,
+        u".AIF"_s,
+        u".AIFC"_s,
+        u".AIFF"_s,
+        u".ASF"_s,
+        u".AU"_s,
+        u".AVI"_s,
+        u".FLAC"_s,
+        u".FLV"_s,
+        u".M3U"_s,
+        u".M4A"_s,
+        u".M4P"_s,
+        u".M4V"_s,
+        u".MID"_s,
+        u".MKV"_s,
+        u".MOV"_s,
+        u".MP2"_s,
+        u".MP3"_s,
+        u".MP4"_s,
+        u".MPC"_s,
+        u".MPE"_s,
+        u".MPEG"_s,
+        u".MPG"_s,
+        u".MPP"_s,
+        u".OGG"_s,
+        u".OGM"_s,
+        u".OGV"_s,
+        u".QT"_s,
+        u".RA"_s,
+        u".RAM"_s,
+        u".RM"_s,
+        u".RMV"_s,
+        u".RMVB"_s,
+        u".SWA"_s,
+        u".SWF"_s,
+        u".TS"_s,
+        u".VOB"_s,
+        u".WAV"_s,
+        u".WMA"_s,
+        u".WMV"_s
     };
     return multimediaExtensions.contains(filePath.extension().toUpper());
 }
@@ -362,7 +362,7 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
         return C_INFINITY;
 
     if (seconds == 0)
-        return u"0"_qs;
+        return u"0"_s;
 
     if (seconds < 60)
         return QCoreApplication::translate("misc", "< 1m", "< 1 minute");
@@ -392,7 +392,7 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
 
 QString Utils::Misc::getUserIDString()
 {
-    QString uid = u"0"_qs;
+    QString uid = u"0"_s;
 #ifdef Q_OS_WIN
     const int UNLEN = 256;
     WCHAR buffer[UNLEN + 1] = {0};
@@ -540,15 +540,15 @@ QString Utils::Misc::parseHtmlLinks(const QString &rawText)
         u"[a-zA-Z]{2,}"                              // one ab  (2 char or longer) --> us
         u"([a-zA-Z0-9\\?%=&/_\\.:#;-]*)"             // everything to 1st non-URI char, maybe nothing  in case of del.icio.us/path
         u")"
-        u")"_qs
+        u")"_s
         );
 
     // Capture links
-    result.replace(reURL, u"\\1<a href=\"\\2\">\\2</a>"_qs);
+    result.replace(reURL, u"\\1<a href=\"\\2\">\\2</a>"_s);
 
     // Capture links without scheme
-    const QRegularExpression reNoScheme(u"<a\\s+href=\"(?!https?)([a-zA-Z0-9\\?%=&/_\\.-:#]+)\\s*\">"_qs);
-    result.replace(reNoScheme, u"<a href=\"http://\\1\">"_qs);
+    const QRegularExpression reNoScheme(u"<a\\s+href=\"(?!https?)([a-zA-Z0-9\\?%=&/_\\.-:#]+)\\s*\">"_s);
+    result.replace(reNoScheme, u"<a href=\"http://\\1\">"_s);
 
     // to preserve plain text formatting
     result = u"<p style=\"white-space: pre-wrap;\">" + result + u"</p>";
@@ -559,7 +559,7 @@ QString Utils::Misc::osName()
 {
     // static initialization for usage in signal handler
     static const QString name =
-        u"%1 %2 %3"_qs
+        u"%1 %2 %3"_s
         .arg(QSysInfo::prettyProductName()
             , QSysInfo::kernelVersion()
             , QSysInfo::currentCpuArchitecture());
@@ -569,7 +569,7 @@ QString Utils::Misc::osName()
 QString Utils::Misc::boostVersionString()
 {
     // static initialization for usage in signal handler
-    static const QString ver = u"%1.%2.%3"_qs
+    static const QString ver = u"%1.%2.%3"_s
         .arg(QString::number(BOOST_VERSION / 100000)
             , QString::number((BOOST_VERSION / 100) % 1000)
             , QString::number(BOOST_VERSION % 100));

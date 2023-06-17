@@ -53,7 +53,7 @@ namespace
     bool testPythonInstallation(const QString &exeName, PythonInfo &info)
     {
         QProcess proc;
-        proc.start(exeName, {u"--version"_qs}, QIODevice::ReadOnly);
+        proc.start(exeName, {u"--version"_s}, QIODevice::ReadOnly);
         if (proc.waitForFinished() && (proc.exitCode() == QProcess::NormalExit))
         {
             QByteArray procOutput = proc.readAllStandardOutput();
@@ -71,7 +71,7 @@ namespace
             // User reports: `python --version` -> "Python 3.6.6+"
             // So trim off unrelated characters
             const auto versionStr = QString::fromLocal8Bit(outputSplit[1]);
-            const int idx = versionStr.indexOf(QRegularExpression(u"[^\\.\\d]"_qs));
+            const int idx = versionStr.indexOf(QRegularExpression(u"[^\\.\\d]"_s));
             const auto version = PythonInfo::Version::fromString(versionStr.left(idx));
             if (!version.isValid())
                 return false;
@@ -186,15 +186,15 @@ namespace
                     {
                         const QDir baseDir {path};
 
-                        if (baseDir.exists(u"python3.exe"_qs))
+                        if (baseDir.exists(u"python3.exe"_s))
                         {
                             found = true;
-                            path = baseDir.filePath(u"python3.exe"_qs);
+                            path = baseDir.filePath(u"python3.exe"_s);
                         }
-                        else if (baseDir.exists(u"python.exe"_qs))
+                        else if (baseDir.exists(u"python.exe"_s))
                         {
                             found = true;
-                            path = baseDir.filePath(u"python.exe"_qs);
+                            path = baseDir.filePath(u"python.exe"_s);
                         }
                     }
                 }
@@ -224,7 +224,7 @@ namespace
             return path;
 
         // Fallback: Detect python from default locations
-        const QFileInfoList dirs = QDir(u"C:/"_qs).entryInfoList({u"Python*"_qs}, QDir::Dirs, (QDir::Name | QDir::Reversed));
+        const QFileInfoList dirs = QDir(u"C:/"_s).entryInfoList({u"Python*"_s}, QDir::Dirs, (QDir::Name | QDir::Reversed));
         for (const QFileInfo &info : dirs)
         {
             const QString py3Path {info.absolutePath() + u"/python3.exe"};
@@ -256,10 +256,10 @@ PythonInfo Utils::ForeignApps::pythonInfo()
     static PythonInfo pyInfo;
     if (!pyInfo.isValid())
     {
-        if (testPythonInstallation(u"python3"_qs, pyInfo))
+        if (testPythonInstallation(u"python3"_s, pyInfo))
             return pyInfo;
 
-        if (testPythonInstallation(u"python"_qs, pyInfo))
+        if (testPythonInstallation(u"python"_s, pyInfo))
             return pyInfo;
 
 #if defined(Q_OS_WIN)

@@ -93,13 +93,13 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     connect(header(), &QHeaderView::sortIndicatorChanged, this, &TrackerListWidget::saveSettings);
 
     // Set DHT, PeX, LSD items
-    m_DHTItem = new QTreeWidgetItem({ u""_qs,  u"** [DHT] **"_qs, u""_qs, u"0"_qs, u""_qs, u""_qs, u"0"_qs });
+    m_DHTItem = new QTreeWidgetItem({ u""_s,  u"** [DHT] **"_s, u""_s, u"0"_s, u""_s, u""_s, u"0"_s });
     insertTopLevelItem(0, m_DHTItem);
     setRowColor(0, QColorConstants::Svg::grey);
-    m_PEXItem = new QTreeWidgetItem({ u""_qs,  u"** [PeX] **"_qs, u""_qs, u"0"_qs, u""_qs, u""_qs, u"0"_qs });
+    m_PEXItem = new QTreeWidgetItem({ u""_s,  u"** [PeX] **"_s, u""_s, u"0"_s, u""_s, u""_s, u"0"_s });
     insertTopLevelItem(1, m_PEXItem);
     setRowColor(1, QColorConstants::Svg::grey);
-    m_LSDItem = new QTreeWidgetItem({ u""_qs,  u"** [LSD] **"_qs, u""_qs, u"0"_qs, u""_qs, u""_qs, u"0"_qs });
+    m_LSDItem = new QTreeWidgetItem({ u""_s,  u"** [LSD] **"_s, u""_s, u"0"_s, u""_s, u""_s, u"0"_s });
     insertTopLevelItem(2, m_LSDItem);
     setRowColor(2, QColorConstants::Svg::grey);
 
@@ -573,25 +573,25 @@ void TrackerListWidget::showTrackerListMenu()
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
     // Add actions
-    menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_qs), tr("Add trackers...")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_s), tr("Add trackers...")
         , this, &TrackerListWidget::openAddTrackersDialog);
 
     if (!getSelectedTrackerItems().isEmpty())
     {
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_qs),tr("Edit tracker URL...")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s),tr("Edit tracker URL...")
             , this, &TrackerListWidget::editSelectedTracker);
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_qs, u"list-remove"_qs), tr("Remove tracker")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove tracker")
             , this, &TrackerListWidget::deleteSelectedTrackers);
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Copy tracker URL")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("Copy tracker URL")
             , this, &TrackerListWidget::copyTrackerUrl);
     }
 
     if (!torrent->isPaused())
     {
-        menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_qs, u"view-refresh"_qs), tr("Force reannounce to selected trackers")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"view-refresh"_s), tr("Force reannounce to selected trackers")
             , this, &TrackerListWidget::reannounceSelected);
         menu->addSeparator();
-        menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_qs, u"view-refresh"_qs), tr("Force reannounce to all trackers")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"view-refresh"_s), tr("Force reannounce to all trackers")
             , this, [this]()
         {
             BitTorrent::Torrent *h = m_properties->getCurrentTorrent();

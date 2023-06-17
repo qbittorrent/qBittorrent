@@ -37,7 +37,7 @@
 AsyncFileStorage::AsyncFileStorage(const Path &storageFolderPath, QObject *parent)
     : QObject(parent)
     , m_storageDir(storageFolderPath)
-    , m_lockFile((m_storageDir / Path(u"storage.lock"_qs)).data())
+    , m_lockFile((m_storageDir / Path(u"storage.lock"_s)).data())
 {
     Q_ASSERT(m_storageDir.isAbsolute());
 

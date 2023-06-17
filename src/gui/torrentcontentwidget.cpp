@@ -351,12 +351,12 @@ void TorrentContentWidget::displayContextMenu()
 
         if (!contentHandler()->actualStorageLocation().isEmpty())
         {
-            menu->addAction(UIThemeManager::instance()->getIcon(u"folder-documents"_qs), tr("Open")
+            menu->addAction(UIThemeManager::instance()->getIcon(u"folder-documents"_s), tr("Open")
                             , this, [this, index]() { openItem(index); });
-            menu->addAction(UIThemeManager::instance()->getIcon(u"directory"_qs), tr("Open containing folder")
+            menu->addAction(UIThemeManager::instance()->getIcon(u"directory"_s), tr("Open containing folder")
                             , this, [this, index]() { openParentFolder(index); });
         }
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_qs), tr("Rename...")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Rename...")
                         , this, &TorrentContentWidget::renameSelectedFile);
         menu->addSeparator();
 

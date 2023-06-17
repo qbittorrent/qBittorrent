@@ -92,7 +92,7 @@ Path Private::DefaultProfile::dataLocation() const
     // On Linux keep using the legacy directory ~/.local/share/data/ if it exists
     const Path genericDataPath {QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)};
     const Path profilePath {profileName()};
-    const Path legacyDir = genericDataPath / Path(u"data"_qs) / profilePath;
+    const Path legacyDir = genericDataPath / Path(u"data"_s) / profilePath;
 
     const Path dataDir = genericDataPath / profilePath;
 
@@ -131,10 +131,10 @@ Private::CustomProfile::CustomProfile(const Path &rootPath, const QString &confi
     : Profile {configurationName}
     , m_rootPath {rootPath}
     , m_basePath {m_rootPath / Path(profileName())}
-    , m_cacheLocation {m_basePath / Path(u"cache"_qs)}
-    , m_configLocation {m_basePath / Path(u"config"_qs)}
-    , m_dataLocation {m_basePath / Path(u"data"_qs)}
-    , m_downloadLocation {m_basePath / Path(u"downloads"_qs)}
+    , m_cacheLocation {m_basePath / Path(u"cache"_s)}
+    , m_configLocation {m_basePath / Path(u"config"_s)}
+    , m_dataLocation {m_basePath / Path(u"data"_s)}
+    , m_downloadLocation {m_basePath / Path(u"downloads"_s)}
 {
 }
 
@@ -172,9 +172,9 @@ std::unique_ptr<QSettings> Private::CustomProfile::applicationSettings(const QSt
 {
     // here we force QSettings::IniFormat format always because we need it to be portable across platforms
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    const auto CONF_FILE_EXTENSION = u".ini"_qs;
+    const auto CONF_FILE_EXTENSION = u".ini"_s;
 #else
-    const auto CONF_FILE_EXTENSION = u".conf"_qs;
+    const auto CONF_FILE_EXTENSION = u".conf"_s;
 #endif
     const Path settingsFilePath = configLocation() / Path(name + CONF_FILE_EXTENSION);
     return std::make_unique<QSettings>(settingsFilePath.data(), QSettings::IniFormat);

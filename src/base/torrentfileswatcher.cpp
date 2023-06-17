@@ -63,10 +63,10 @@ using namespace std::chrono_literals;
 
 const std::chrono::seconds WATCH_INTERVAL {10};
 const int MAX_FAILED_RETRIES = 5;
-const QString CONF_FILE_NAME = u"watched_folders.json"_qs;
+const QString CONF_FILE_NAME = u"watched_folders.json"_s;
 
-const QString OPTION_ADDTORRENTPARAMS = u"add_torrent_params"_qs;
-const QString OPTION_RECURSIVE = u"recursive"_qs;
+const QString OPTION_ADDTORRENTPARAMS = u"add_torrent_params"_s;
+const QString OPTION_RECURSIVE = u"recursive"_s;
 
 namespace
 {
@@ -227,7 +227,7 @@ void TorrentFilesWatcher::load()
 
 void TorrentFilesWatcher::loadLegacy()
 {
-    const auto dirs = SettingsStorage::instance()->loadValue<QVariantHash>(u"Preferences/Downloads/ScanDirsV2"_qs);
+    const auto dirs = SettingsStorage::instance()->loadValue<QVariantHash>(u"Preferences/Downloads/ScanDirsV2"_s);
 
     for (auto it = dirs.cbegin(); it != dirs.cend(); ++it)
     {
@@ -259,7 +259,7 @@ void TorrentFilesWatcher::loadLegacy()
     }
 
     store();
-    SettingsStorage::instance()->removeValue(u"Preferences/Downloads/ScanDirsV2"_qs);
+    SettingsStorage::instance()->removeValue(u"Preferences/Downloads/ScanDirsV2"_s);
 }
 
 void TorrentFilesWatcher::store() const
@@ -406,7 +406,7 @@ void TorrentFilesWatcher::Worker::processWatchedFolder(const Path &path)
 void TorrentFilesWatcher::Worker::processFolder(const Path &path, const Path &watchedFolderPath
                                               , const TorrentFilesWatcher::WatchedFolderOptions &options)
 {
-    QDirIterator dirIter {path.data(), {u"*.torrent"_qs, u"*.magnet"_qs}, QDir::Files};
+    QDirIterator dirIter {path.data(), {u"*.torrent"_s, u"*.magnet"_s}, QDir::Files};
     while (dirIter.hasNext())
     {
         const Path filePath {dirIter.next()};
@@ -426,7 +426,7 @@ void TorrentFilesWatcher::Worker::processFolder(const Path &path, const Path &wa
             }
         }
 
-        if (filePath.hasExtension(u".magnet"_qs))
+        if (filePath.hasExtension(u".magnet"_s))
         {
             const int fileMaxSize = 100 * 1024 * 1024;
 

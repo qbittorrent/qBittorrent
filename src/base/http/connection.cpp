@@ -82,8 +82,8 @@ void Connection::read()
                     LogMsg(tr("Http request size exceeds limitation, closing socket. Limit: %1, IP: %2")
                         .arg(bufferLimit).arg(m_socket->peerAddress().toString()), Log::WARNING);
 
-                    Response resp(413, u"Payload Too Large"_qs);
-                    resp.headers[HEADER_CONNECTION] = u"close"_qs;
+                    Response resp(413, u"Payload Too Large"_s);
+                    resp.headers[HEADER_CONNECTION] = u"close"_s;
 
                     sendResponse(resp);
                     m_socket->close();
@@ -96,8 +96,8 @@ void Connection::read()
                 LogMsg(tr("Bad Http request, closing socket. IP: %1")
                     .arg(m_socket->peerAddress().toString()), Log::WARNING);
 
-                Response resp(400, u"Bad Request"_qs);
-                resp.headers[HEADER_CONNECTION] = u"close"_qs;
+                Response resp(400, u"Bad Request"_s);
+                resp.headers[HEADER_CONNECTION] = u"close"_s;
 
                 sendResponse(resp);
                 m_socket->close();
@@ -110,10 +110,10 @@ void Connection::read()
 
                 Response resp = m_requestHandler->processRequest(result.request, env);
 
-                if (acceptsGzipEncoding(result.request.headers[u"accept-encoding"_qs]))
-                    resp.headers[HEADER_CONTENT_ENCODING] = u"gzip"_qs;
+                if (acceptsGzipEncoding(result.request.headers[u"accept-encoding"_s]))
+                    resp.headers[HEADER_CONTENT_ENCODING] = u"gzip"_s;
 
-                resp.headers[HEADER_CONNECTION] = u"keep-alive"_qs;
+                resp.headers[HEADER_CONNECTION] = u"keep-alive"_s;
 
                 sendResponse(resp);
                 m_receivedData = m_receivedData.mid(result.frameSize);
@@ -176,11 +176,11 @@ bool Connection::acceptsGzipEncoding(QString codings)
     if (list.isEmpty())
         return false;
 
-    const bool canGzip = isCodingAvailable(list, u"gzip"_qs);
+    const bool canGzip = isCodingAvailable(list, u"gzip"_s);
     if (canGzip)
         return true;
 
-    const bool canAny = isCodingAvailable(list, u"*"_qs);
+    const bool canAny = isCodingAvailable(list, u"*"_s);
     if (canAny)
         return true;
 

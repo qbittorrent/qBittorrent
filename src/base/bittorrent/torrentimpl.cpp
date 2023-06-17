@@ -330,8 +330,8 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
 
             // Remove .unwanted directory if empty
             const Path newPath = spath / newRelPath;
-            qDebug() << "Attempting to remove \".unwanted\" folder at " << (newPath / Path(u".unwanted"_qs)).toString();
-            Utils::Fs::rmdir(newPath / Path(u".unwanted"_qs));
+            qDebug() << "Attempting to remove \".unwanted\" folder at " << (newPath / Path(u".unwanted"_s)).toString();
+            Utils::Fs::rmdir(newPath / Path(u".unwanted"_s));
         }
     }
     // == END UPGRADE CODE ==
@@ -2143,7 +2143,7 @@ void TorrentImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert 
 
 void TorrentImpl::handlePerformanceAlert(const lt::performance_alert *p) const
 {
-    LogMsg((tr("Performance alert: %1. More info: %2").arg(QString::fromStdString(p->message()), u"https://libtorrent.org/reference-Alerts.html#enum-performance-warning-t"_qs))
+    LogMsg((tr("Performance alert: %1. More info: %2").arg(QString::fromStdString(p->message()), u"https://libtorrent.org/reference-Alerts.html#enum-performance-warning-t"_s))
            , Log::INFO);
 }
 
@@ -2480,7 +2480,7 @@ void TorrentImpl::flushCache() const
 
 QString TorrentImpl::createMagnetURI() const
 {
-    QString ret = u"magnet:?"_qs;
+    QString ret = u"magnet:?"_s;
 
     const SHA1Hash infoHash1 = infoHash().v1();
     if (infoHash1.isValid())

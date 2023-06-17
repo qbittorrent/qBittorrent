@@ -39,7 +39,7 @@ WatchedFolderOptionsDialog::WatchedFolderOptionsDialog(
     : QDialog {parent}
     , m_ui {new Ui::WatchedFolderOptionsDialog}
     , m_addTorrentParamsWidget {new AddTorrentParamsWidget(watchedFolderOptions.addTorrentParams)}
-    , m_storeDialogSize {SETTINGS_KEY(u"DialogSize"_qs)}
+    , m_storeDialogSize {SETTINGS_KEY(u"DialogSize"_s)}
 {
     m_ui->setupUi(this);
     m_ui->groupBoxParameters->layout()->addWidget(m_addTorrentParamsWidget);
