@@ -1,3 +1,8 @@
+Sun Jun 18 2023 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.5.4
+    - BUGFIX: Allow to disable confirmation of Pause/Resume All (glassez)
+    - BUGFIX: Sync flag icons with upstream (Priit Uring)
+    - WEBUI: Fix category save path (Raymond Ha)
+
 Sun May 28 2023 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.5.3
     - BUGFIX: Correctly check if database needs to be updated (glassez)
     - BUGFIX: Prevent incorrect log message about torrent content deletion (glassez)
