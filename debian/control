@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: sledgehammer999 <hammered999@gmail.com>
 Build-Depends: debhelper (>= 7.4.12),
                dpkg-dev (>= 1.16.1),
-               libtorrent-rasterbar-dev (> 2.0.7),
+               libtorrent-rasterbar-dev (> 2.0.8),
                libboost-dev (>= 1.40.0),
                libboost-system-dev (>= 1.40.0),
                qtbase5-dev (>= 5.9.0),
@@ -19,7 +19,7 @@ Homepage: http://www.qbittorrent.org/
 Package: qbittorrent
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
-         python3 (>= 3.3.0), libqt5svg5
+         python3 (>= 3.3.0), libqt5svg5 libqt5sql5-sqlite
 Suggests: qbittorrent-dbg
 Description: bittorrent client based on libtorrent-rasterbar with a Qt5 GUI
  BitTorrent client written in C++ and based on libtorrent-rasterbar with a Qt5
@@ -43,7 +43,7 @@ Description: bittorrent client based on libtorrent-rasterbar with a Qt5 GUI
 
 Package: qbittorrent-nox
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends} libqt5sql5-sqlite
 Suggests: qbittorrent-dbg
 Description: bittorrent client based on libtorrent-rasterbar (without X support)
  BitTorrent client written in C++ and based on libtorrent-rasterbar.
