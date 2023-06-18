@@ -9,9 +9,9 @@ include /usr/share/dpkg/buildflags.mk
 
 override_dh_auto_configure:
 	mkdir -p build-nox && cd build-nox && ../configure --prefix=/usr --disable-gui \
-		--with-boost-libdir=/usr/lib/$(DEB_HOST_MULTIARCH)
+		--enable-systemd --with-boost-libdir=/usr/lib/$(DEB_HOST_MULTIARCH)
 	mkdir -p build-gui && cd build-gui && ../configure --prefix=/usr \
-		--with-boost-libdir=/usr/lib/$(DEB_HOST_MULTIARCH)
+		--enable-systemd --with-boost-libdir=/usr/lib/$(DEB_HOST_MULTIARCH)
 
 override_dh_auto_build:
 	dh_auto_build --builddirectory build-nox
