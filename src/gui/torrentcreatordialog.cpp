@@ -106,14 +106,16 @@ void TorrentCreatorDialog::updateInputPath(const Path &path)
 void TorrentCreatorDialog::onAddFolderButtonClicked()
 {
     const QString oldPath = m_ui->textInputPath->text();
-    const Path path {QFileDialog::getExistingDirectory(this, tr("Select folder"), oldPath)};
+    const Path path {QFileDialog::getExistingDirectory(this, tr("Select folder"), oldPath,
+                                                       QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks)};
     updateInputPath(path);
 }
 
 void TorrentCreatorDialog::onAddFileButtonClicked()
 {
     const QString oldPath = m_ui->textInputPath->text();
-    const Path path {QFileDialog::getOpenFileName(this, tr("Select file"), oldPath)};
+    const Path path {QFileDialog::getOpenFileName(this, tr("Select file"), oldPath, QString(), nullptr,
+                                                  QFileDialog::DontResolveSymlinks)};
     updateInputPath(path);
 }
 
@@ -170,7 +172,7 @@ void TorrentCreatorDialog::dragEnterEvent(QDragEnterEvent *event)
 // Main function that create a .torrent file
 void TorrentCreatorDialog::onCreateButtonClicked()
 {
-    const auto inputPath = Utils::Fs::toCanonicalPath(Path(m_ui->textInputPath->text().trimmed()));
+    const auto inputPath = Path(m_ui->textInputPath->text().trimmed());
 
     // test if readable
     if (!Utils::Fs::isReadable(inputPath))
