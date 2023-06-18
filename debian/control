@@ -19,7 +19,7 @@ Homepage: http://www.qbittorrent.org/
 Package: qbittorrent
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
-         python3 (>= 3.3.0), libqt5svg5 libqt5sql5-sqlite
+         python3 (>= 3.3.0), libqt5svg5, libqt5sql5-sqlite
 Suggests: qbittorrent-dbg
 Description: bittorrent client based on libtorrent-rasterbar with a Qt5 GUI
  BitTorrent client written in C++ and based on libtorrent-rasterbar with a Qt5
@@ -43,7 +43,7 @@ Description: bittorrent client based on libtorrent-rasterbar with a Qt5 GUI
 
 Package: qbittorrent-nox
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends} libqt5sql5-sqlite
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt5sql5-sqlite
 Suggests: qbittorrent-dbg
 Description: bittorrent client based on libtorrent-rasterbar (without X support)
  BitTorrent client written in C++ and based on libtorrent-rasterbar.
