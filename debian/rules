@@ -11,7 +11,7 @@ override_dh_auto_configure:
 	mkdir -p build-nox && cd build-nox && ../configure --prefix=/usr --disable-gui \
 		--enable-systemd --with-boost-libdir=/usr/lib/$(DEB_HOST_MULTIARCH)
 	mkdir -p build-gui && cd build-gui && ../configure --prefix=/usr \
-		--enable-systemd --with-boost-libdir=/usr/lib/$(DEB_HOST_MULTIARCH)
+		--with-boost-libdir=/usr/lib/$(DEB_HOST_MULTIARCH)
 
 override_dh_auto_build:
 	dh_auto_build --builddirectory build-nox
