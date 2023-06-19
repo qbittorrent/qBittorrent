@@ -35,7 +35,7 @@ namespace
 {
     SettingValue<TorrentFileGuard::AutoDeleteMode> autoDeleteModeSetting()
     {
-        return SettingValue<TorrentFileGuard::AutoDeleteMode> {u"Core/AutoDeleteAddedTorrentFile"_qs};
+        return SettingValue<TorrentFileGuard::AutoDeleteMode> {u"Core/AutoDeleteAddedTorrentFile"_s};
     }
 }
 

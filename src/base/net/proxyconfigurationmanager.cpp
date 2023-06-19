@@ -52,18 +52,18 @@ ProxyConfigurationManager *ProxyConfigurationManager::m_instance = nullptr;
 
 ProxyConfigurationManager::ProxyConfigurationManager(QObject *parent)
     : QObject(parent)
-    , m_storeProxyType {SETTINGS_KEY(u"Type"_qs)}
-    , m_storeProxyIP {SETTINGS_KEY(u"IP"_qs)}
-    , m_storeProxyPort {SETTINGS_KEY(u"Port"_qs)}
-    , m_storeProxyAuthEnabled {SETTINGS_KEY(u"AuthEnabled"_qs)}
-    , m_storeProxyUsername {SETTINGS_KEY(u"Username"_qs)}
-    , m_storeProxyPassword {SETTINGS_KEY(u"Password"_qs)}
-    , m_storeProxyHostnameLookupEnabled {SETTINGS_KEY(u"HostnameLookupEnabled"_qs)}
+    , m_storeProxyType {SETTINGS_KEY(u"Type"_s)}
+    , m_storeProxyIP {SETTINGS_KEY(u"IP"_s)}
+    , m_storeProxyPort {SETTINGS_KEY(u"Port"_s)}
+    , m_storeProxyAuthEnabled {SETTINGS_KEY(u"AuthEnabled"_s)}
+    , m_storeProxyUsername {SETTINGS_KEY(u"Username"_s)}
+    , m_storeProxyPassword {SETTINGS_KEY(u"Password"_s)}
+    , m_storeProxyHostnameLookupEnabled {SETTINGS_KEY(u"HostnameLookupEnabled"_s)}
 {
     m_config.type = m_storeProxyType.get(ProxyType::HTTP);
     if ((m_config.type < ProxyType::HTTP) || (m_config.type > ProxyType::SOCKS4))
         m_config.type = ProxyType::HTTP;
-    m_config.ip = m_storeProxyIP.get(u"0.0.0.0"_qs);
+    m_config.ip = m_storeProxyIP.get(u"0.0.0.0"_s);
     m_config.port = m_storeProxyPort.get(8080);
     m_config.authEnabled = m_storeProxyAuthEnabled;
     m_config.username = m_storeProxyUsername;

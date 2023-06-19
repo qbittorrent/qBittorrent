@@ -51,11 +51,11 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
     : QDialog(parent)
     , m_ui(new Ui::PreviewSelectDialog)
     , m_torrent(torrent)
-    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_s))
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    , m_storeTreeHeaderState(u"GUI/Qt6/" SETTINGS_KEY(u"HeaderState"_qs))
+    , m_storeTreeHeaderState(u"GUI/Qt6/" SETTINGS_KEY(u"HeaderState"_s))
 #else
-    , m_storeTreeHeaderState(SETTINGS_KEY(u"HeaderState"_qs))
+    , m_storeTreeHeaderState(SETTINGS_KEY(u"HeaderState"_s))
 #endif
 {
     m_ui->setupUi(this);

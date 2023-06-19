@@ -74,9 +74,9 @@ UIThemeManager::UIThemeManager()
     {
         const Path themePath = Preferences::instance()->customUIThemePath();
 
-        if (themePath.hasExtension(u".qbtheme"_qs))
+        if (themePath.hasExtension(u".qbtheme"_s))
         {
-            if (QResource::registerResource(themePath.data(), u"/uitheme"_qs))
+            if (QResource::registerResource(themePath.data(), u"/uitheme"_s))
                 m_themeSource = std::make_unique<QRCThemeSource>();
             else
                 LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(themePath.toString()), Log::WARNING);
@@ -185,31 +185,31 @@ void UIThemeManager::applyPalette() const
 
     const ColorDescriptor paletteColorDescriptors[] =
     {
-        {u"Palette.Window"_qs, QPalette::Window, QPalette::Normal},
-        {u"Palette.WindowText"_qs, QPalette::WindowText, QPalette::Normal},
-        {u"Palette.Base"_qs, QPalette::Base, QPalette::Normal},
-        {u"Palette.AlternateBase"_qs, QPalette::AlternateBase, QPalette::Normal},
-        {u"Palette.Text"_qs, QPalette::Text, QPalette::Normal},
-        {u"Palette.ToolTipBase"_qs, QPalette::ToolTipBase, QPalette::Normal},
-        {u"Palette.ToolTipText"_qs, QPalette::ToolTipText, QPalette::Normal},
-        {u"Palette.BrightText"_qs, QPalette::BrightText, QPalette::Normal},
-        {u"Palette.Highlight"_qs, QPalette::Highlight, QPalette::Normal},
-        {u"Palette.HighlightedText"_qs, QPalette::HighlightedText, QPalette::Normal},
-        {u"Palette.Button"_qs, QPalette::Button, QPalette::Normal},
-        {u"Palette.ButtonText"_qs, QPalette::ButtonText, QPalette::Normal},
-        {u"Palette.Link"_qs, QPalette::Link, QPalette::Normal},
-        {u"Palette.LinkVisited"_qs, QPalette::LinkVisited, QPalette::Normal},
-        {u"Palette.Light"_qs, QPalette::Light, QPalette::Normal},
-        {u"Palette.Midlight"_qs, QPalette::Midlight, QPalette::Normal},
-        {u"Palette.Mid"_qs, QPalette::Mid, QPalette::Normal},
-        {u"Palette.Dark"_qs, QPalette::Dark, QPalette::Normal},
-        {u"Palette.Shadow"_qs, QPalette::Shadow, QPalette::Normal},
-        {u"Palette.WindowTextDisabled"_qs, QPalette::WindowText, QPalette::Disabled},
-        {u"Palette.TextDisabled"_qs, QPalette::Text, QPalette::Disabled},
-        {u"Palette.ToolTipTextDisabled"_qs, QPalette::ToolTipText, QPalette::Disabled},
-        {u"Palette.BrightTextDisabled"_qs, QPalette::BrightText, QPalette::Disabled},
-        {u"Palette.HighlightedTextDisabled"_qs, QPalette::HighlightedText, QPalette::Disabled},
-        {u"Palette.ButtonTextDisabled"_qs, QPalette::ButtonText, QPalette::Disabled}
+        {u"Palette.Window"_s, QPalette::Window, QPalette::Normal},
+        {u"Palette.WindowText"_s, QPalette::WindowText, QPalette::Normal},
+        {u"Palette.Base"_s, QPalette::Base, QPalette::Normal},
+        {u"Palette.AlternateBase"_s, QPalette::AlternateBase, QPalette::Normal},
+        {u"Palette.Text"_s, QPalette::Text, QPalette::Normal},
+        {u"Palette.ToolTipBase"_s, QPalette::ToolTipBase, QPalette::Normal},
+        {u"Palette.ToolTipText"_s, QPalette::ToolTipText, QPalette::Normal},
+        {u"Palette.BrightText"_s, QPalette::BrightText, QPalette::Normal},
+        {u"Palette.Highlight"_s, QPalette::Highlight, QPalette::Normal},
+        {u"Palette.HighlightedText"_s, QPalette::HighlightedText, QPalette::Normal},
+        {u"Palette.Button"_s, QPalette::Button, QPalette::Normal},
+        {u"Palette.ButtonText"_s, QPalette::ButtonText, QPalette::Normal},
+        {u"Palette.Link"_s, QPalette::Link, QPalette::Normal},
+        {u"Palette.LinkVisited"_s, QPalette::LinkVisited, QPalette::Normal},
+        {u"Palette.Light"_s, QPalette::Light, QPalette::Normal},
+        {u"Palette.Midlight"_s, QPalette::Midlight, QPalette::Normal},
+        {u"Palette.Mid"_s, QPalette::Mid, QPalette::Normal},
+        {u"Palette.Dark"_s, QPalette::Dark, QPalette::Normal},
+        {u"Palette.Shadow"_s, QPalette::Shadow, QPalette::Normal},
+        {u"Palette.WindowTextDisabled"_s, QPalette::WindowText, QPalette::Disabled},
+        {u"Palette.TextDisabled"_s, QPalette::Text, QPalette::Disabled},
+        {u"Palette.ToolTipTextDisabled"_s, QPalette::ToolTipText, QPalette::Disabled},
+        {u"Palette.BrightTextDisabled"_s, QPalette::BrightText, QPalette::Disabled},
+        {u"Palette.HighlightedTextDisabled"_s, QPalette::HighlightedText, QPalette::Disabled},
+        {u"Palette.ButtonTextDisabled"_s, QPalette::ButtonText, QPalette::Disabled}
     };
 
     QPalette palette = qApp->palette();

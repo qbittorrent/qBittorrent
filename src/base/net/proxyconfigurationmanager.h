@@ -48,7 +48,7 @@ namespace Net
     struct ProxyConfiguration
     {
         ProxyType type = ProxyType::HTTP;
-        QString ip = u"0.0.0.0"_qs;
+        QString ip = u"0.0.0.0"_s;
         ushort port = 8080;
         bool authEnabled = false;
         QString username;

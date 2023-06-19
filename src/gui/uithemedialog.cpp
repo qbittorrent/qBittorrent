@@ -55,12 +55,12 @@ namespace
 {
     Path userConfigPath()
     {
-        return specialFolderLocation(SpecialFolder::Config) / Path(u"themes/default"_qs);
+        return specialFolderLocation(SpecialFolder::Config) / Path(u"themes/default"_s);
     }
 
     Path defaultIconPath(const QString &iconID, [[maybe_unused]] const ColorMode colorMode)
     {
-        return Path(u":icons"_qs) / Path(iconID + u".svg");
+        return Path(u":icons"_s) / Path(iconID + u".svg");
     }
 }
 
@@ -73,7 +73,7 @@ public:
         : QFrame(parent)
         , m_defaultColor {defaultColor}
     {
-        setObjectName(u"colorWidget"_qs);
+        setObjectName(u"colorWidget"_s);
         setFrameShape(QFrame::Box);
         setFrameShadow(QFrame::Plain);
 
@@ -118,7 +118,7 @@ private:
 
     void applyColor(const QColor &color)
     {
-        setStyleSheet(u"#colorWidget { background-color: %1; }"_qs.arg(color.name()));
+        setStyleSheet(u"#colorWidget { background-color: %1; }"_s.arg(color.name()));
     }
 
     void showColorDialog()
@@ -146,7 +146,7 @@ public:
         : QLabel(parent)
         , m_defaultPath {defaultPath}
     {
-        setObjectName(u"iconWidget"_qs);
+        setObjectName(u"iconWidget"_s);
         setAlignment(Qt::AlignCenter);
 
         setCurrentPath(currentPath);
@@ -216,7 +216,7 @@ private:
 UIThemeDialog::UIThemeDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui {new Ui::UIThemeDialog}
-    , m_storeDialogSize {SETTINGS_KEY(u"Size"_qs)}
+    , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
 {
     m_ui->setupUi(this);
 
@@ -347,7 +347,7 @@ bool UIThemeDialog::storeIcons()
         const QHash<QString, IconWidget *> &iconWidgets = (colorMode == ColorMode::Light)
                 ? m_lightIconWidgets : m_darkIconWidgets;
         const Path subdirPath = (colorMode == ColorMode::Light)
-                ? Path(u"icons/light"_qs) : Path(u"icons/dark"_qs);
+                ? Path(u"icons/light"_s) : Path(u"icons/dark"_s);
 
         for (auto it = iconWidgets.cbegin(); it != iconWidgets.cend(); ++it)
         {

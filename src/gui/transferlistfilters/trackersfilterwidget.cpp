@@ -57,7 +57,7 @@ namespace
     QString getScheme(const QString &tracker)
     {
         const QString scheme = QUrl(tracker).scheme();
-        return !scheme.isEmpty() ? scheme : u"http"_qs;
+        return !scheme.isEmpty() ? scheme : u"http"_s;
     }
 
     QString getHost(const QString &url)
@@ -72,7 +72,7 @@ namespace
         return host;
     }
 
-    const QString NULL_HOST = u""_qs;
+    const QString NULL_HOST = u""_s;
 }
 
 TrackersFilterWidget::TrackersFilterWidget(QWidget *parent, TransferListWidget *transferList, const bool downloadFavicon)
@@ -81,16 +81,16 @@ TrackersFilterWidget::TrackersFilterWidget(QWidget *parent, TransferListWidget *
 {
     auto *allTrackers = new QListWidgetItem(this);
     allTrackers->setData(Qt::DisplayRole, tr("All (0)", "this is for the tracker filter"));
-    allTrackers->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackers"_qs, u"network-server"_qs));
+    allTrackers->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s));
     auto *noTracker = new QListWidgetItem(this);
     noTracker->setData(Qt::DisplayRole, tr("Trackerless (0)"));
-    noTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackerless"_qs, u"network-server"_qs));
+    noTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackerless"_s, u"network-server"_s));
     auto *errorTracker = new QListWidgetItem(this);
     errorTracker->setData(Qt::DisplayRole, tr("Error (0)"));
-    errorTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_qs, u"dialog-error"_qs));
+    errorTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
     auto *warningTracker = new QListWidgetItem(this);
     warningTracker->setData(Qt::DisplayRole, tr("Warning (0)"));
-    warningTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-warning"_qs, u"dialog-warning"_qs));
+    warningTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-warning"_s, u"dialog-warning"_s));
 
     m_trackers[NULL_HOST] = {{}, noTracker};
 
@@ -143,7 +143,7 @@ void TrackersFilterWidget::refreshTrackers(const BitTorrent::Torrent *torrent)
             return true;
         }
 
-        trackerItem->setText(u"%1 (%2)"_qs.arg((host.isEmpty() ? tr("Trackerless") : host), QString::number(torrentIDs.size())));
+        trackerItem->setText(u"%1 (%2)"_s.arg((host.isEmpty() ? tr("Trackerless") : host), QString::number(torrentIDs.size())));
         return false;
     });
 
@@ -184,13 +184,13 @@ void TrackersFilterWidget::addItems(const QString &trackerURL, const QVector<Bit
     else
     {
         trackerItem = new QListWidgetItem();
-        trackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackers"_qs, u"network-server"_qs));
+        trackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s));
 
         const TrackerData trackerData {{}, trackerItem};
         trackersIt = m_trackers.insert(host, trackerData);
 
         const QString scheme = getScheme(trackerURL);
-        downloadFavicon(u"%1://%2/favicon.ico"_qs.arg((scheme.startsWith(u"http") ? scheme : u"http"_qs), host));
+        downloadFavicon(u"%1://%2/favicon.ico"_s.arg((scheme.startsWith(u"http") ? scheme : u"http"_s), host));
     }
 
     Q_ASSERT(trackerItem);
@@ -199,7 +199,7 @@ void TrackersFilterWidget::addItems(const QString &trackerURL, const QVector<Bit
     for (const BitTorrent::TorrentID &torrentID : torrents)
         torrentIDs.insert(torrentID);
 
-    trackerItem->setText(u"%1 (%2)"_qs.arg(((host == NULL_HOST) ? tr("Trackerless") : host), QString::number(torrentIDs.size())));
+    trackerItem->setText(u"%1 (%2)"_s.arg(((host == NULL_HOST) ? tr("Trackerless") : host), QString::number(torrentIDs.size())));
     if (exists)
     {
         if (item(currentRow()) == trackerItem)
@@ -275,7 +275,7 @@ void TrackersFilterWidget::removeItem(const QString &trackerURL, const BitTorren
         }
 
         if (trackerItem)
-            trackerItem->setText(u"%1 (%2)"_qs.arg(host, QString::number(torrentIDs.size())));
+            trackerItem->setText(u"%1 (%2)"_s.arg(host, QString::number(torrentIDs.size())));
     }
     else
     {
@@ -302,8 +302,8 @@ void TrackersFilterWidget::setDownloadTrackerFavicon(bool value)
             if (!tracker.isEmpty())
             {
                 const QString scheme = getScheme(tracker);
-                downloadFavicon(u"%1://%2/favicon.ico"_qs
-                                .arg((scheme.startsWith(u"http") ? scheme : u"http"_qs), getHost(tracker)));
+                downloadFavicon(u"%1://%2/favicon.ico"_s
+                                .arg((scheme.startsWith(u"http") ? scheme : u"http"_s), getHost(tracker)));
              }
         }
     }
@@ -414,11 +414,11 @@ void TrackersFilterWidget::showMenu()
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start"_qs, u"media-playback-start"_qs), tr("Resume torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Resume torrents")
         , transferList(), &TransferListWidget::startVisibleTorrents);
-    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_qs, u"media-playback-pause"_qs), tr("Pause torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("Pause torrents")
         , transferList(), &TransferListWidget::pauseVisibleTorrents);
-    menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("Remove torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_s), tr("Remove torrents")
         , transferList(), &TransferListWidget::deleteVisibleTorrents);
 
     menu->popup(QCursor::pos());

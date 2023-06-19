@@ -37,42 +37,42 @@
 
 namespace Http
 {
-    inline const QString METHOD_GET = u"GET"_qs;
-    inline const QString METHOD_POST = u"POST"_qs;
+    inline const QString METHOD_GET = u"GET"_s;
+    inline const QString METHOD_POST = u"POST"_s;
 
-    inline const QString HEADER_CACHE_CONTROL = u"cache-control"_qs;
-    inline const QString HEADER_CONNECTION = u"connection"_qs;
-    inline const QString HEADER_CONTENT_DISPOSITION = u"content-disposition"_qs;
-    inline const QString HEADER_CONTENT_ENCODING = u"content-encoding"_qs;
-    inline const QString HEADER_CONTENT_LENGTH = u"content-length"_qs;
-    inline const QString HEADER_CONTENT_SECURITY_POLICY = u"content-security-policy"_qs;
-    inline const QString HEADER_CONTENT_TYPE = u"content-type"_qs;
-    inline const QString HEADER_CROSS_ORIGIN_OPENER_POLICY  = u"cross-origin-opener-policy"_qs;
-    inline const QString HEADER_DATE = u"date"_qs;
-    inline const QString HEADER_HOST = u"host"_qs;
-    inline const QString HEADER_ORIGIN = u"origin"_qs;
-    inline const QString HEADER_REFERER = u"referer"_qs;
-    inline const QString HEADER_REFERRER_POLICY = u"referrer-policy"_qs;
-    inline const QString HEADER_SET_COOKIE = u"set-cookie"_qs;
-    inline const QString HEADER_X_CONTENT_TYPE_OPTIONS = u"x-content-type-options"_qs;
-    inline const QString HEADER_X_FORWARDED_FOR = u"x-forwarded-for"_qs;
-    inline const QString HEADER_X_FORWARDED_HOST = u"x-forwarded-host"_qs;
-    inline const QString HEADER_X_FRAME_OPTIONS = u"x-frame-options"_qs;
-    inline const QString HEADER_X_XSS_PROTECTION = u"x-xss-protection"_qs;
+    inline const QString HEADER_CACHE_CONTROL = u"cache-control"_s;
+    inline const QString HEADER_CONNECTION = u"connection"_s;
+    inline const QString HEADER_CONTENT_DISPOSITION = u"content-disposition"_s;
+    inline const QString HEADER_CONTENT_ENCODING = u"content-encoding"_s;
+    inline const QString HEADER_CONTENT_LENGTH = u"content-length"_s;
+    inline const QString HEADER_CONTENT_SECURITY_POLICY = u"content-security-policy"_s;
+    inline const QString HEADER_CONTENT_TYPE = u"content-type"_s;
+    inline const QString HEADER_CROSS_ORIGIN_OPENER_POLICY  = u"cross-origin-opener-policy"_s;
+    inline const QString HEADER_DATE = u"date"_s;
+    inline const QString HEADER_HOST = u"host"_s;
+    inline const QString HEADER_ORIGIN = u"origin"_s;
+    inline const QString HEADER_REFERER = u"referer"_s;
+    inline const QString HEADER_REFERRER_POLICY = u"referrer-policy"_s;
+    inline const QString HEADER_SET_COOKIE = u"set-cookie"_s;
+    inline const QString HEADER_X_CONTENT_TYPE_OPTIONS = u"x-content-type-options"_s;
+    inline const QString HEADER_X_FORWARDED_FOR = u"x-forwarded-for"_s;
+    inline const QString HEADER_X_FORWARDED_HOST = u"x-forwarded-host"_s;
+    inline const QString HEADER_X_FRAME_OPTIONS = u"x-frame-options"_s;
+    inline const QString HEADER_X_XSS_PROTECTION = u"x-xss-protection"_s;
 
-    inline const QString HEADER_REQUEST_METHOD_GET = u"GET"_qs;
-    inline const QString HEADER_REQUEST_METHOD_HEAD = u"HEAD"_qs;
-    inline const QString HEADER_REQUEST_METHOD_POST = u"POST"_qs;
+    inline const QString HEADER_REQUEST_METHOD_GET = u"GET"_s;
+    inline const QString HEADER_REQUEST_METHOD_HEAD = u"HEAD"_s;
+    inline const QString HEADER_REQUEST_METHOD_POST = u"POST"_s;
 
-    inline const QString CONTENT_TYPE_HTML = u"text/html"_qs;
-    inline const QString CONTENT_TYPE_CSS = u"text/css"_qs;
-    inline const QString CONTENT_TYPE_TXT = u"text/plain; charset=UTF-8"_qs;
-    inline const QString CONTENT_TYPE_JS = u"application/javascript"_qs;
-    inline const QString CONTENT_TYPE_JSON = u"application/json"_qs;
-    inline const QString CONTENT_TYPE_GIF = u"image/gif"_qs;
-    inline const QString CONTENT_TYPE_PNG = u"image/png"_qs;
-    inline const QString CONTENT_TYPE_FORM_ENCODED = u"application/x-www-form-urlencoded"_qs;
-    inline const QString CONTENT_TYPE_FORM_DATA = u"multipart/form-data"_qs;
+    inline const QString CONTENT_TYPE_HTML = u"text/html"_s;
+    inline const QString CONTENT_TYPE_CSS = u"text/css"_s;
+    inline const QString CONTENT_TYPE_TXT = u"text/plain; charset=UTF-8"_s;
+    inline const QString CONTENT_TYPE_JS = u"application/javascript"_s;
+    inline const QString CONTENT_TYPE_JSON = u"application/json"_s;
+    inline const QString CONTENT_TYPE_GIF = u"image/gif"_s;
+    inline const QString CONTENT_TYPE_PNG = u"image/png"_s;
+    inline const QString CONTENT_TYPE_FORM_ENCODED = u"application/x-www-form-urlencoded"_s;
+    inline const QString CONTENT_TYPE_FORM_DATA = u"multipart/form-data"_s;
 
     // portability: "\r\n" doesn't guarantee mapping to the correct symbol
     inline const char CRLF[] = {0x0D, 0x0A, '\0'};
@@ -124,7 +124,7 @@ namespace Http
         HeaderMap headers;
         QByteArray content;
 
-        Response(uint code = 200, const QString &text = u"OK"_qs)
+        Response(uint code = 200, const QString &text = u"OK"_s)
             : status {code, text}
         {
         }

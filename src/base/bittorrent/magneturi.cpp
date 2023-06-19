@@ -53,9 +53,9 @@ namespace
         const int V1_BASE32_SIZE = SHA1Hash::length() * 1.6;
 
         return ((((string.size() == V1_HEX_SIZE))
-                && !string.contains(QRegularExpression(u"[^0-9A-Fa-f]"_qs)))
+                && !string.contains(QRegularExpression(u"[^0-9A-Fa-f]"_s)))
             || ((string.size() == V1_BASE32_SIZE)
-                && !string.contains(QRegularExpression(u"[^2-7A-Za-z]"_qs))));
+                && !string.contains(QRegularExpression(u"[^2-7A-Za-z]"_s))));
     }
 
     bool isV2Hash(const QString &string)
@@ -66,7 +66,7 @@ namespace
         const int V2_HEX_SIZE = SHA256Hash::length() * 2;
 
         return (string.size() == V2_HEX_SIZE)
-                && !string.contains(QRegularExpression(u"[^0-9A-Fa-f]"_qs));
+                && !string.contains(QRegularExpression(u"[^0-9A-Fa-f]"_s));
     }
 }
 

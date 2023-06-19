@@ -190,7 +190,7 @@ QString GeoIPDatabase::lookup(const QHostAddress &hostAddr) const
                     const QVariant val = readDataField(tmp);
                     if (val.userType() == QMetaType::QVariantHash)
                     {
-                        country = val.toHash()[u"country"_qs].toHash()[u"iso_code"_qs].toString();
+                        country = val.toHash()[u"country"_s].toHash()[u"iso_code"_s].toString();
                         m_countries[id] = country;
                     }
                 }
@@ -233,26 +233,26 @@ bool GeoIPDatabase::parseMetadata(const QVariantHash &metadata, QString &error)
 
     qDebug() << "Parsing MaxMindDB metadata...";
 
-    CHECK_METADATA_REQ(u"binary_format_major_version"_qs, UShort);
-    CHECK_METADATA_REQ(u"binary_format_minor_version"_qs, UShort);
-    const uint versionMajor = metadata.value(u"binary_format_major_version"_qs).toUInt();
-    const uint versionMinor = metadata.value(u"binary_format_minor_version"_qs).toUInt();
+    CHECK_METADATA_REQ(u"binary_format_major_version"_s, UShort);
+    CHECK_METADATA_REQ(u"binary_format_minor_version"_s, UShort);
+    const uint versionMajor = metadata.value(u"binary_format_major_version"_s).toUInt();
+    const uint versionMinor = metadata.value(u"binary_format_minor_version"_s).toUInt();
     if (versionMajor != 2)
     {
         error = tr("Unsupported database version: %1.%2").arg(versionMajor).arg(versionMinor);
         return false;
     }
 
-    CHECK_METADATA_REQ(u"ip_version"_qs, UShort);
-    m_ipVersion = metadata.value(u"ip_version"_qs).value<quint16>();
+    CHECK_METADATA_REQ(u"ip_version"_s, UShort);
+    m_ipVersion = metadata.value(u"ip_version"_s).value<quint16>();
     if (m_ipVersion != 6)
     {
         error = tr("Unsupported IP version: %1").arg(m_ipVersion);
         return false;
     }
 
-    CHECK_METADATA_REQ(u"record_size"_qs, UShort);
-    m_recordSize = metadata.value(u"record_size"_qs).value<quint16>();
+    CHECK_METADATA_REQ(u"record_size"_s, UShort);
+    m_recordSize = metadata.value(u"record_size"_s).value<quint16>();
     if (m_recordSize != 24)
     {
         error = tr("Unsupported record size: %1").arg(m_recordSize);
@@ -261,18 +261,18 @@ bool GeoIPDatabase::parseMetadata(const QVariantHash &metadata, QString &error)
     m_nodeSize = m_recordSize / 4;
     m_recordBytes = m_nodeSize / 2;
 
-    CHECK_METADATA_REQ(u"node_count"_qs, UInt);
-    m_nodeCount = metadata.value(u"node_count"_qs).value<quint32>();
+    CHECK_METADATA_REQ(u"node_count"_s, UInt);
+    m_nodeCount = metadata.value(u"node_count"_s).value<quint32>();
     m_indexSize = m_nodeCount * m_nodeSize;
 
-    CHECK_METADATA_REQ(u"database_type"_qs, QString);
-    m_dbType = metadata.value(u"database_type"_qs).toString();
+    CHECK_METADATA_REQ(u"database_type"_s, QString);
+    m_dbType = metadata.value(u"database_type"_s).toString();
 
-    CHECK_METADATA_REQ(u"build_epoch"_qs, ULongLong);
-    m_buildEpoch = QDateTime::fromSecsSinceEpoch(metadata.value(u"build_epoch"_qs).toULongLong());
+    CHECK_METADATA_REQ(u"build_epoch"_s, ULongLong);
+    m_buildEpoch = QDateTime::fromSecsSinceEpoch(metadata.value(u"build_epoch"_s).toULongLong());
 
-    CHECK_METADATA_OPT(u"languages"_qs, QVariantList);
-    CHECK_METADATA_OPT(u"description"_qs, QVariantHash);
+    CHECK_METADATA_OPT(u"languages"_s, QVariantList);
+    CHECK_METADATA_OPT(u"description"_s, QVariantHash);
 
     return true;
 }

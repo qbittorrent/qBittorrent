@@ -47,13 +47,13 @@ void AuthController::loginAction()
 {
     if (m_sessionManager->session())
     {
-        setResult(u"Ok."_qs);
+        setResult(u"Ok."_s);
         return;
     }
 
     const QString clientAddr {m_sessionManager->clientId()};
-    const QString usernameFromWeb {params()[u"username"_qs]};
-    const QString passwordFromWeb {params()[u"password"_qs]};
+    const QString usernameFromWeb {params()[u"username"_s]};
+    const QString passwordFromWeb {params()[u"password"_s]};
 
     if (isBanned())
     {
@@ -76,14 +76,14 @@ void AuthController::loginAction()
         m_clientFailedLogins.remove(clientAddr);
 
         m_sessionManager->sessionStart();
-        setResult(u"Ok."_qs);
+        setResult(u"Ok."_s);
         LogMsg(tr("WebAPI login success. IP: %1").arg(clientAddr));
     }
     else
     {
         if (Preferences::instance()->getWebUIMaxAuthFailCount() > 0)
             increaseFailedAttempts();
-        setResult(u"Fails."_qs);
+        setResult(u"Fails."_s);
         LogMsg(tr("WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3")
                 .arg(QString::number(failedAttemptsCount()), clientAddr, usernameFromWeb)
             , Log::WARNING);

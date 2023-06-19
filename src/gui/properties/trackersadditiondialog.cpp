@@ -48,12 +48,12 @@ TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::Torr
     : QDialog(parent)
     , m_ui(new Ui::TrackersAdditionDialog)
     , m_torrent(torrent)
-    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
-    , m_storeTrackersListURL(SETTINGS_KEY(u"TrackersListURL"_qs))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_s))
+    , m_storeTrackersListURL(SETTINGS_KEY(u"TrackersListURL"_s))
 {
     m_ui->setupUi(this);
 
-    m_ui->downloadButton->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_qs, u"download"_qs));
+    m_ui->downloadButton->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Add"));
 
     connect(m_ui->downloadButton, &QAbstractButton::clicked, this, &TrackersAdditionDialog::onDownloadButtonClicked);
@@ -108,7 +108,7 @@ void TrackersAdditionDialog::onTorrentListDownloadFinished(const Net::DownloadRe
     // Add fetched trackers to the list
     const QString existingText = m_ui->textEditTrackersList->toPlainText();
     if (!existingText.isEmpty() && !existingText.endsWith(u'\n'))
-        m_ui->textEditTrackersList->insertPlainText(u"\n"_qs);
+        m_ui->textEditTrackersList->insertPlainText(u"\n"_s);
 
     // append the data as-is
     const auto trackers = QString::fromUtf8(result.data).trimmed();

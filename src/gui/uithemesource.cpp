@@ -100,8 +100,8 @@ namespace
 }
 
 DefaultThemeSource::DefaultThemeSource()
-    : m_defaultPath {u":"_qs}
-    , m_userPath {specialFolderLocation(SpecialFolder::Config) / Path(u"themes/default"_qs)}
+    : m_defaultPath {u":"_s}
+    , m_userPath {specialFolderLocation(SpecialFolder::Config) / Path(u"themes/default"_s)}
     , m_colors {defaultUIThemeColors()}
 {
     loadColors();
@@ -120,9 +120,9 @@ QColor DefaultThemeSource::getColor(const QString &colorId, const ColorMode colo
 
 Path DefaultThemeSource::getIconPath(const QString &iconId, const ColorMode colorMode) const
 {
-    const Path iconsPath {u"icons"_qs};
-    const Path lightModeIconsPath = iconsPath / Path(u"light"_qs);
-    const Path darkModeIconsPath = iconsPath / Path(u"dark"_qs);
+    const Path iconsPath {u"icons"_s};
+    const Path lightModeIconsPath = iconsPath / Path(u"light"_s);
+    const Path darkModeIconsPath = iconsPath / Path(u"dark"_s);
 
     if (colorMode == ColorMode::Dark)
     {
@@ -206,8 +206,8 @@ QColor CustomThemeSource::getColor(const QString &colorId, const ColorMode color
 
 Path CustomThemeSource::getIconPath(const QString &iconId, const ColorMode colorMode) const
 {
-    const Path iconsPath {u"icons"_qs};
-    const Path darkModeIconsPath = iconsPath / Path(u"dark"_qs);
+    const Path iconsPath {u"icons"_s};
+    const Path darkModeIconsPath = iconsPath / Path(u"dark"_s);
 
     if (colorMode == ColorMode::Dark)
     {
@@ -269,7 +269,7 @@ void CustomThemeSource::loadColors()
 
 Path QRCThemeSource::themeRootPath() const
 {
-    return Path(u":/uitheme"_qs);
+    return Path(u":/uitheme"_s);
 }
 
 FolderThemeSource::FolderThemeSource(const Path &folderPath)
@@ -282,7 +282,7 @@ QByteArray FolderThemeSource::readStyleSheet()
     // Directory used by stylesheet to reference internal resources
     // for example `icon: url(:/uitheme/file.svg)` will be expected to
     // point to a file `file.svg` in root directory of CONFIG_FILE_NAME
-    const QString stylesheetResourcesDir = u":/uitheme"_qs;
+    const QString stylesheetResourcesDir = u":/uitheme"_s;
 
     QByteArray styleSheetData = CustomThemeSource::readStyleSheet();
     return styleSheetData.replace(stylesheetResourcesDir.toUtf8(), themeRootPath().data().toUtf8());

@@ -63,7 +63,7 @@ namespace
 #ifdef Q_OS_WIN
     bool hasDriveLetter(const QStringView path)
     {
-        const QRegularExpression driveLetterRegex {u"^[A-Za-z]:/"_qs};
+        const QRegularExpression driveLetterRegex {u"^[A-Za-z]:/"_s};
         return driveLetterRegex.match(path).hasMatch();
     }
 #endif
@@ -93,12 +93,12 @@ bool Path::isValid() const
         view = view.mid(3);
 
     // \\37 is using base-8 number system
-    const QRegularExpression regex {u"[\\0-\\37:?\"*<>|]"_qs};
+    const QRegularExpression regex {u"[\\0-\\37:?\"*<>|]"_s};
     return !regex.match(view).hasMatch();
 #elif defined(Q_OS_MACOS)
-    const QRegularExpression regex {u"[\\0:]"_qs};
+    const QRegularExpression regex {u"[\\0:]"_s};
 #else
-    const QRegularExpression regex {u"\\0"_qs};
+    const QRegularExpression regex {u"\\0"_s};
 #endif
     return !m_pathStr.contains(regex);
 }
@@ -138,7 +138,7 @@ Path Path::rootItem() const
         return *this;
 
     if (slashIndex == 0) // *nix absolute path
-        return createUnchecked(u"/"_qs);
+        return createUnchecked(u"/"_s);
 
 #ifdef Q_OS_WIN
     // should be `c:/` instead of `c:`
@@ -157,7 +157,7 @@ Path Path::parentPath() const
         return {};
 
     if (slashIndex == 0) // *nix absolute path
-        return (m_pathStr.size() == 1) ? Path() : createUnchecked(u"/"_qs);
+        return (m_pathStr.size() == 1) ? Path() : createUnchecked(u"/"_s);
 
 #ifdef Q_OS_WIN
     // should be `c:/` instead of `c:`

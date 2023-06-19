@@ -62,15 +62,15 @@ void PowerManagementInhibitor::requestIdle()
 
     QDBusMessage call = m_useGSM
         ? QDBusMessage::createMethodCall(
-            u"org.gnome.SessionManager"_qs,
-            u"/org/gnome/SessionManager"_qs,
-            u"org.gnome.SessionManager"_qs,
-            u"Uninhibit"_qs)
+            u"org.gnome.SessionManager"_s,
+            u"/org/gnome/SessionManager"_s,
+            u"org.gnome.SessionManager"_s,
+            u"Uninhibit"_s)
         : QDBusMessage::createMethodCall(
-            u"org.freedesktop.PowerManagement"_qs,
-            u"/org/freedesktop/PowerManagement/Inhibit"_qs,
-            u"org.freedesktop.PowerManagement.Inhibit"_qs,
-            u"UnInhibit"_qs);
+            u"org.freedesktop.PowerManagement"_s,
+            u"/org/freedesktop/PowerManagement/Inhibit"_s,
+            u"org.freedesktop.PowerManagement.Inhibit"_s,
+            u"UnInhibit"_s);
     call.setArguments({m_cookie});
 
     QDBusPendingCall pcall = QDBusConnection::sessionBus().asyncCall(call, 1000);
@@ -90,20 +90,20 @@ void PowerManagementInhibitor::requestBusy()
 
     QDBusMessage call = m_useGSM
         ? QDBusMessage::createMethodCall(
-            u"org.gnome.SessionManager"_qs,
-            u"/org/gnome/SessionManager"_qs,
-            u"org.gnome.SessionManager"_qs,
-            u"Inhibit"_qs)
+            u"org.gnome.SessionManager"_s,
+            u"/org/gnome/SessionManager"_s,
+            u"org.gnome.SessionManager"_s,
+            u"Inhibit"_s)
         : QDBusMessage::createMethodCall(
-                u"org.freedesktop.PowerManagement"_qs,
-                u"/org/freedesktop/PowerManagement/Inhibit"_qs,
-                u"org.freedesktop.PowerManagement.Inhibit"_qs,
-                u"Inhibit"_qs);
+                u"org.freedesktop.PowerManagement"_s,
+                u"/org/freedesktop/PowerManagement/Inhibit"_s,
+                u"org.freedesktop.PowerManagement.Inhibit"_s,
+                u"Inhibit"_s);
 
-    QList<QVariant> args = {u"qBittorrent"_qs};
+    QList<QVariant> args = {u"qBittorrent"_s};
     if (m_useGSM)
         args << 0u;
-    args << u"Active torrents are presented"_qs;
+    args << u"Active torrents are presented"_s;
     if (m_useGSM)
         args << 8u;
     call.setArguments(args);

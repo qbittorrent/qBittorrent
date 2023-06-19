@@ -38,8 +38,8 @@
 
 DBusNotifier::DBusNotifier(QObject *parent)
     : QObject(parent)
-    , m_notificationsInterface {new DBusNotificationsInterface(u"org.freedesktop.Notifications"_qs
-                  , u"/org/freedesktop/Notifications"_qs, QDBusConnection::sessionBus(), this)}
+    , m_notificationsInterface {new DBusNotificationsInterface(u"org.freedesktop.Notifications"_s
+                  , u"/org/freedesktop/Notifications"_s, QDBusConnection::sessionBus(), this)}
 {
     // Testing for 'DBusNotificationsInterface::isValid()' isn't helpful here.
     // If the notification daemon is configured to run 'as needed'
@@ -58,10 +58,10 @@ DBusNotifier::DBusNotifier(QObject *parent)
 void DBusNotifier::showMessage(const QString &title, const QString &message, const int timeout)
 {
     // Assign "default" action to notification to make it clickable
-    const QStringList actions {u"default"_qs, {}};
-    const QVariantMap hints {{u"desktop-entry"_qs, u"org.qbittorrent.qBittorrent"_qs}};
-    const QDBusPendingReply<uint> reply = m_notificationsInterface->notify(u"qBittorrent"_qs, 0
-            , u"qbittorrent"_qs, title, message, actions, hints, timeout);
+    const QStringList actions {u"default"_s, {}};
+    const QVariantMap hints {{u"desktop-entry"_s, u"org.qbittorrent.qBittorrent"_s}};
+    const QDBusPendingReply<uint> reply = m_notificationsInterface->notify(u"qBittorrent"_s, 0
+            , u"qbittorrent"_s, title, message, actions, hints, timeout);
     auto *watcher = new QDBusPendingCallWatcher(reply, this);
     connect(watcher, &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher *self)
     {

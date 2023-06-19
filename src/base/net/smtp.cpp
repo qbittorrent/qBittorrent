@@ -85,7 +85,7 @@ namespace
     {
         QString hostname = QHostInfo::localHostName();
         if (hostname.isEmpty())
-            hostname = u"localhost"_qs;
+            hostname = u"localhost"_s;
 
         return hostname.toLocal8Bit();
     }
@@ -138,16 +138,16 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
 {
     const Preferences *const pref = Preferences::instance();
     m_message = "Date: " + getCurrentDateTime().toLatin1() + "\r\n"
-                + encodeMimeHeader(u"From"_qs, u"qBittorrent <%1>"_qs.arg(from))
-                + encodeMimeHeader(u"Subject"_qs, subject)
-                + encodeMimeHeader(u"To"_qs, to)
+                + encodeMimeHeader(u"From"_s, u"qBittorrent <%1>"_s.arg(from))
+                + encodeMimeHeader(u"Subject"_s, subject)
+                + encodeMimeHeader(u"To"_s, to)
                 + "MIME-Version: 1.0\r\n"
                 + "Content-Type: text/plain; charset=UTF-8\r\n"
                 + "Content-Transfer-Encoding: base64\r\n"
                 + "\r\n";
     // Encode the body in base64
     QString crlfBody = body;
-    const QByteArray b = crlfBody.replace(u"\n"_qs, u"\r\n"_qs).toUtf8().toBase64();
+    const QByteArray b = crlfBody.replace(u"\n"_s, u"\r\n"_s).toUtf8().toBase64();
     const int ct = b.length();
     for (int i = 0; i < ct; i += 78)
         m_message += b.mid(i, 78);
@@ -424,7 +424,7 @@ void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const
 
     if (m_state != EhloDone) return;
 
-    if (m_extensions.contains(u"STARTTLS"_qs) && m_useSsl)
+    if (m_extensions.contains(u"STARTTLS"_s) && m_useSsl)
     {
         qDebug() << "STARTTLS";
         startTLS();
@@ -438,7 +438,7 @@ void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const
 void Smtp::authenticate()
 {
     qDebug() << Q_FUNC_INFO;
-    if (!m_extensions.contains(u"AUTH"_qs) ||
+    if (!m_extensions.contains(u"AUTH"_s) ||
         m_username.isEmpty() || m_password.isEmpty())
         {
         // Skip authentication
@@ -453,7 +453,7 @@ void Smtp::authenticate()
     // AUTH extension is supported, check which
     // authentication modes are supported by
     // the server
-    const QStringList auth = m_extensions[u"AUTH"_qs].toUpper().split(u' ', Qt::SkipEmptyParts);
+    const QStringList auth = m_extensions[u"AUTH"_s].toUpper().split(u' ', Qt::SkipEmptyParts);
     if (auth.contains(u"CRAM-MD5"))
     {
         qDebug() << "Using CRAM-MD5 authentication...";

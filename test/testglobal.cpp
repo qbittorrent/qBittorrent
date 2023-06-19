@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2023  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,45 +26,28 @@
  * exception statement from your version.
  */
 
-#pragma once
-
-/**
- * Utility functions related to file system.
- */
-
-#include <QString>
+#include <QtGlobal>
+#include <QTest>
 
 #include "base/global.h"
-#include "base/pathfwd.h"
 
-class QDateTime;
-
-namespace Utils::Fs
+class TestGlobal final : public QObject
 {
-    qint64 computePathSize(const Path &path);
-    qint64 freeDiskSpaceOnPath(const Path &path);
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TestGlobal)
 
-    bool isRegularFile(const Path &path);
-    bool isDir(const Path &path);
-    bool isReadable(const Path &path);
-    bool isWritable(const Path &path);
-    bool isNetworkFileSystem(const Path &path);
-    QDateTime lastModified(const Path &path);
-    bool sameFiles(const Path &path1, const Path &path2);
+public:
+    TestGlobal() = default;
 
-    QString toValidFileName(const QString &name, const QString &pad = u" "_s);
-    Path toValidPath(const QString &name, const QString &pad = u" "_s);
-    Path toCanonicalPath(const Path &path);
+private slots:
+#if (QT_VERSION < QT_VERSION_CHECK(6, 4, 0))
+    void testStringLiteral() const
+    {
+        QCOMPARE(u""_s, QStringLiteral(""));
+        QCOMPARE(u"abc"_s, QStringLiteral("abc"));
+    }
+#endif
+};
 
-    bool copyFile(const Path &from, const Path &to);
-    bool renameFile(const Path &from, const Path &to);
-    bool removeFile(const Path &path);
-    bool mkdir(const Path &dirPath);
-    bool mkpath(const Path &dirPath);
-    bool rmdir(const Path &dirPath);
-    void removeDirRecursively(const Path &path);
-    bool smartRemoveEmptyFolderTree(const Path &path);
-
-    Path homePath();
-    Path tempPath();
-}
+QTEST_APPLESS_MAIN(TestGlobal)
+#include "testglobal.moc"
