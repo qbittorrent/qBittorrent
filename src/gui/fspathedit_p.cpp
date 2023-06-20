@@ -66,6 +66,16 @@ void Private::FileSystemPathValidator::setExistingOnly(const bool value)
     m_existingOnly = value;
 }
 
+bool Private::FileSystemPathValidator::filesOnly() const
+{
+    return m_filesOnly;
+}
+
+void Private::FileSystemPathValidator::setFilesOnly(const bool value)
+{
+    m_filesOnly = value;
+}
+
 bool Private::FileSystemPathValidator::directoriesOnly() const
 {
     return m_directoriesOnly;
@@ -105,15 +115,16 @@ Private::FileSystemPathValidator::testPath(const Path &path) const
     if (!info.exists())
         return existingOnly() ? TestResult::DoesNotExist : TestResult::OK;
 
+    if (filesOnly())
+    {
+        if (!info.isFile())
+            return TestResult::NotAFile;
+    }
+
     if (directoriesOnly())
     {
         if (!info.isDir())
             return TestResult::NotADir;
-    }
-    else
-    {
-        if (!info.isFile())
-            return TestResult::NotAFile;
     }
 
     if (checkReadPermission() && !info.isReadable())

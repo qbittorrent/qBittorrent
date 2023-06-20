@@ -63,7 +63,8 @@ public:
         FileOpen,        //!< opening files, shows open file dialog
         FileSave,        //!< saving files, shows save file dialog
         DirectoryOpen,   //!< selecting existing directories
-        DirectorySave    //!< selecting directories for saving
+        DirectorySave,   //!< selecting directories for saving
+        ReadOnly         //!< no browse button and no dialog, only validate path and check read permission
     };
     Q_ENUM(Mode)
 
