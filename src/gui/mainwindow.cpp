@@ -878,7 +878,7 @@ void MainWindow::createKeyboardShortcuts()
 // Keyboard shortcuts slots
 void MainWindow::displayTransferTab() const
 {
-    m_tabs->setCurrentWidget(m_transferListWidget);
+    m_tabs->setCurrentWidget(m_splitter);
 }
 
 void MainWindow::displaySearchTab()
