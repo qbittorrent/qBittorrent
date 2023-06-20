@@ -145,6 +145,8 @@ SearchWidget::SearchWidget(IGUIApplication *app, MainWindow *mainWindow)
 
     const auto *focusSearchHotkey = new QShortcut(QKeySequence::Find, this);
     connect(focusSearchHotkey, &QShortcut::activated, this, &SearchWidget::toggleFocusBetweenLineEdits);
+    const auto *focusSearchHotkeyAlternative = new QShortcut((Qt::CTRL | Qt::Key_E), this);
+    connect(focusSearchHotkeyAlternative, &QShortcut::activated, this, &SearchWidget::toggleFocusBetweenLineEdits);
 }
 
 bool SearchWidget::eventFilter(QObject *object, QEvent *event)
