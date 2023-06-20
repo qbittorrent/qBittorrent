@@ -184,7 +184,7 @@ QString PeerInfo::I2PAddress() const
     if (!useI2PSocket())
         return {};
 
-#ifdef QBT_USES_LIBTORRENT2
+#if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
     if (m_I2PAddress.isEmpty())
     {
         const lt::sha256_hash destHash = m_nativeInfo.i2p_destination();
