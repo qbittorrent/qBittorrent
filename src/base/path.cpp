@@ -318,7 +318,7 @@ void Path::stripRootFolder(PathList &filePaths)
         return;
 
     for (Path &filePath : filePaths)
-        filePath.m_pathStr = filePath.m_pathStr.mid(commonRootFolder.m_pathStr.size() + 1);
+        filePath.m_pathStr.remove(0, (commonRootFolder.m_pathStr.size() + 1));
 }
 
 void Path::addRootFolder(PathList &filePaths, const Path &rootFolder)

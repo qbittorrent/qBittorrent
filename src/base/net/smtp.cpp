@@ -191,7 +191,7 @@ void Smtp::readyRead()
         const int pos = m_buffer.indexOf("\r\n");
         if (pos < 0) return; // Loop exit condition
         const QByteArray line = m_buffer.left(pos);
-        m_buffer = m_buffer.mid(pos + 2);
+        m_buffer.remove(0, (pos + 2));
         qDebug() << "Response line:" << line;
         // Extract response code
         const QByteArray code = line.left(3);
