@@ -183,7 +183,11 @@ void TorrentCreatorDialog::dragEnterEvent(QDragEnterEvent *event)
 // Main function that create a .torrent file
 void TorrentCreatorDialog::onCreateButtonClicked()
 {
-    const auto inputPath = Path(m_ui->textInputPath->text().trimmed());
+    auto inputPath = Path(m_ui->textInputPath->text().trimmed());
+#ifdef Q_OS_WIN
+    // We don't want .lnk to be the root of the created torrent
+    inputPath = Utils::Fs::toCanonicalPath(inputPath);
+#endif
 
     // test if readable
     if (!Utils::Fs::isReadable(inputPath))
