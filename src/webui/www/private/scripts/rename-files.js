@@ -110,7 +110,7 @@ window.qBittorrent.MultiRename = (function() {
                     else if (input.substring(i, i + search.length) === search) {
                         result += replacement;
                         i += search.length;
-                        // Append characters that didn't meet the previous critera
+                        // Append characters that didn't meet the previous criteria
                     }
                     else {
                         result += input[i];
@@ -200,7 +200,7 @@ window.qBittorrent.MultiRename = (function() {
                     for (let namedGroup in match.groups) {
                         replacement = replaceGroup(replacement, `$${namedGroup}`, match.groups[namedGroup], '\\', false);
                     }
-                    // Replace auxillary variables
+                    // Replace auxiliary variables
                     for (let v = 'dddddddd'; v !== ''; v = v.substring(1)) {
                         let fileCount = fileEnumeration.toString().padStart(v.length, '0');
                         replacement = replaceGroup(replacement, `$${v}`, fileCount, '\\', false);
