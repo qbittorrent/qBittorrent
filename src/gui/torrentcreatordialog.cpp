@@ -126,7 +126,7 @@ void TorrentCreatorDialog::onAddFolderButtonClicked()
 void TorrentCreatorDialog::onAddFileButtonClicked()
 {
     const QString oldPath = m_ui->textInputPath->text();
-    const Path path {QFileDialog::getOpenFileName(this, tr("Select file"), oldPath, QString(), nullptr, fileDialogOptions)};
+    const Path path {QFileDialog::getOpenFileName(this, tr("Select file"), oldPath, QString(), nullptr, FILE_DIALOG_OPTIONS)};
     updateInputPath(path);
 }
 
