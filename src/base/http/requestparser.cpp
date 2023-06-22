@@ -189,7 +189,7 @@ bool RequestParser::parseRequestLine(const QString &line)
 {
     // [rfc7230] 3.1.1. Request Line
 
-    const QRegularExpression re(u"^([A-Z]+)\\s+(\\S+)\\s+HTTP\\/(\\d\\.\\d)$"_s);
+    static const QRegularExpression re(u"^([A-Z]+)\\s+(\\S+)\\s+HTTP\\/(\\d\\.\\d)$"_s);
     const QRegularExpressionMatch match = re.match(line);
 
     if (!match.hasMatch())
