@@ -1668,6 +1668,7 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::active_checking, maxActiveCheckingTorrents());
 
     // I2P
+#if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
     if (isI2PEnabled())
     {
         settingsPack.set_str(lt::settings_pack::i2p_hostname, I2PAddress().toStdString());
@@ -1681,7 +1682,6 @@ lt::settings_pack SessionImpl::loadLTSettings() const
         settingsPack.set_bool(lt::settings_pack::allow_i2p_mixed, false);
     }
 
-#ifdef QBT_USES_LIBTORRENT2
     // I2P session options
     settingsPack.set_int(lt::settings_pack::i2p_inbound_quantity, I2PInboundQuantity());
     settingsPack.set_int(lt::settings_pack::i2p_outbound_quantity, I2POutboundQuantity());
