@@ -1779,8 +1779,12 @@ void TorrentImpl::moveStorage(const Path &newPath, const MoveStorageContext cont
             ? MoveStorageMode::Overwrite : MoveStorageMode::KeepExistingFiles;
     if (m_session->addMoveTorrentStorageJob(this, newPath, mode, context))
     {
-        m_storageIsMoving = true;
-        updateState();
+        if (!m_storageIsMoving)
+        {
+            m_storageIsMoving = true;
+            updateState();
+            m_session->handleTorrentStorageMovingStateChanged(this);
+        }
     }
 }
 
@@ -1813,6 +1817,9 @@ void TorrentImpl::handleMoveStorageJobFinished(const Path &path, const MoveStora
 
     if (!m_storageIsMoving)
     {
+        updateState();
+        m_session->handleTorrentStorageMovingStateChanged(this);
+
         if (m_hasMissingFiles)
         {
             // it can be moved to the proper location
