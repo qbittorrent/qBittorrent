@@ -30,10 +30,12 @@
 
 #include <chrono>
 
+#include <QtGlobal>
 #include <QDateTime>
 #include <QDebug>
 #include <QDir>
 #include <QTextStream>
+#include <QThread>
 
 #include "base/global.h"
 #include "base/logger.h"
@@ -61,51 +63,80 @@ namespace
         return modificationDate <= QDateTime::currentDateTime();
     }
 
-    bool compressBackupFile(const Path &sourcePath, const Path &destPath, int level, QString &msg)
+    class WorkerThread final : public QThread
     {
-        QFile source {sourcePath.data()};
-        const QDateTime atime = source.fileTime(QFileDevice::FileAccessTime);
-        const QDateTime mtime = source.fileTime(QFileDevice::FileModificationTime);
-        // It seems the created time can't be modified on UNIX.
-        const QDateTime ctime = source.fileTime(QFileDevice::FileBirthTime);
-        const QDateTime mctime = source.fileTime(QFileDevice::FileMetadataChangeTime);
+        Q_OBJECT
+        Q_DISABLE_COPY_MOVE(WorkerThread)
 
-        if (!source.open(QIODevice::ReadOnly))
+    public:
+        WorkerThread(const Path &p)
+            : m_path {p}
+        {}
+
+        void run() override
         {
-            msg = FileLogger::tr("Can't open %1!").arg(sourcePath.data());
-            return false;
+            Path destPath {m_path + u"."_s + QString::number(QDateTime::currentSecsSinceEpoch(), 36) + u".gz"_s};
+            QString err;
+            if (compressBackupFile(m_path, destPath, 6, err))
+            {
+                Utils::Fs::removeFile(m_path);
+                emit finished(destPath, err, true);
+            }
         }
 
-        bool ok = false;
-        const QByteArray data = Utils::Gzip::compress(source.readAll(), level, &ok);
+    signals:
+        void finished(const Path &p, const QString &e, const bool c);
 
-        if (ok)
+    private:
+        bool compressBackupFile(const Path &sourcePath, const Path &destPath, int level, QString &msg)
         {
-            QFile dest {destPath.data()};
-            if (!dest.open(QFile::WriteOnly) || (dest.write(data) == -1))
+            QFile source {sourcePath.data()};
+            const QDateTime atime = source.fileTime(QFileDevice::FileAccessTime);
+            const QDateTime mtime = source.fileTime(QFileDevice::FileModificationTime);
+            // It seems the created time can't be modified on UNIX.
+            const QDateTime ctime = source.fileTime(QFileDevice::FileBirthTime);
+            const QDateTime mctime = source.fileTime(QFileDevice::FileMetadataChangeTime);
+
+            if (!source.open(QIODevice::ReadOnly))
             {
-                msg = FileLogger::tr("Couldn't save to %1.").arg(destPath.data());
-                ok = false;
+                msg = FileLogger::tr("Can't open %1!").arg(sourcePath.data());
+                return false;
             }
-            dest.close();
+
+            bool ok = false;
+            const QByteArray data = Utils::Gzip::compress(source.readAll(), level, &ok);
+            source.close();
 
             if (ok)
             {
-                // Change the file's timestamp.
-                dest.open(QIODevice::Append);
-                dest.setFileTime(atime, QFileDevice::FileAccessTime);
-                dest.setFileTime(mtime, QFileDevice::FileModificationTime);
-                dest.setFileTime(ctime, QFileDevice::FileBirthTime);
-                dest.setFileTime(mctime, QFileDevice::FileMetadataChangeTime);
+                QFile dest {destPath.data()};
+                if (!dest.open(QFile::WriteOnly) || (dest.write(data) == -1))
+                {
+                    msg = FileLogger::tr("Couldn't save to %1.").arg(destPath.data());
+                    ok = false;
+                }
                 dest.close();
+
+                if (ok)
+                {
+                    // Change the file's timestamp.
+                    dest.open(QIODevice::Append);
+                    dest.setFileTime(atime, QFileDevice::FileAccessTime);
+                    dest.setFileTime(mtime, QFileDevice::FileModificationTime);
+                    dest.setFileTime(ctime, QFileDevice::FileBirthTime);
+                    dest.setFileTime(mctime, QFileDevice::FileMetadataChangeTime);
+                    dest.close();
+                }
+                else
+                {
+                    Utils::Fs::removeFile(destPath);
+                }
             }
-            else
-            {
-                Utils::Fs::removeFile(destPath);
-            }
+            return ok;
         }
-        return ok;
-    }
+
+        Path m_path;
+    };
 }
 
 FileLogger::FileLogger(const Path &path, const bool backup
@@ -169,40 +200,41 @@ void FileLogger::changePath(const Path &newPath)
     openLogFile();
 }
 
-void FileLogger::makeBackup()
+Path FileLogger::handleResults(const Path &renameFrom, const QString &msg, const bool compressed) const
 {
-    Path renameFrom = m_path;
-    QString renameToPattern = m_path.data() + u".bak%1"_s;
-    int counter = 1;
-    if (m_compressBackups)
+    if (!(msg.isEmpty()))
     {
-        renameFrom = m_path + u".gz."_s + QString::number(QDateTime::currentSecsSinceEpoch(), 36);
-        QString err;
-        if (!compressBackupFile(m_path, renameFrom, 6, err))
-        {
-            renameFrom = m_path;
-            m_compressBackups = false;
-            qWarning() << err;
-        }
-        else
-        {
-            renameToPattern = m_path.data() + u".%1.gz"_s;
-            Utils::Fs::removeFile(m_path);
-        }
+        qDebug() << u"Error: "_s << msg;
     }
 
-    Path renameTo {renameToPattern.arg(counter)};
+    Path renameTo = m_path + u".bak"_s + (compressed ? u".gz"_s :  u""_s);
+    int counter = 0;
+
     while(renameTo.exists())
     {
-        renameTo = Path(renameToPattern.arg(++counter));
+        renameTo = m_path + u".bak"_s + QString::number(++counter) + (compressed ? u".gz"_s :  u""_s);
     }
 
     Utils::Fs::renameFile(renameFrom, renameTo);
+    return renameTo;
+}
+
+void FileLogger::makeBackup()
+{
+    Path renameTo = handleResults(m_path, {}, false);
+
+    if (m_compressBackups)
+    {
+        WorkerThread *thread = new WorkerThread(renameTo);
+        connect(thread, &WorkerThread::finished, this, &FileLogger::handleResults);
+        connect(thread, &WorkerThread::finished, thread, &QObject::deleteLater);
+        thread->start();
+    }
 }
 
 void FileLogger::deleteOld()
 {
-    const QStringList nameFilter { u"qbittorrent.log"_s + (m_compressBackups ? u".*.gz"_s : u".bak*"_s) };
+    const QStringList nameFilter { u"qbittorrent.log.bak*"_s + (m_compressBackups ? u".gz"_s : u""_s) };
     const QFileInfoList fileList = QDir(m_path.parentPath().data()).entryInfoList(
             nameFilter, (QDir::Files | QDir::Writable), (QDir::Time | QDir::Reversed));
 
@@ -312,3 +344,5 @@ void FileLogger::closeLogFile()
     m_flusher.stop();
     m_logFile.close();
 }
+
+#include "filelogger.moc"

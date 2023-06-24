@@ -34,6 +34,8 @@
 
 #include "base/path.h"
 
+class QThread;
+
 namespace Log
 {
     struct Msg;
@@ -66,6 +68,7 @@ public:
 private slots:
     void addLogMessage(const Log::Msg &msg);
     void flushLog();
+    Path handleResults(const Path &renameFrom, const QString &msg, const bool compressed) const;
 
 private:
     void makeBackup();
