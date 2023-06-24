@@ -661,7 +661,7 @@ void BitTorrent::DBResumeDataStorage::Worker::run()
                     db.commit();
                     m_dbLock.unlock();
 
-                    qDebug() << "Resume data changes are commited. Transacted jobs:" << transactedJobsCount;
+                    qDebug() << "Resume data changes are committed. Transacted jobs:" << transactedJobsCount;
                     transactedJobsCount = 0;
                 }
 

@@ -206,7 +206,7 @@ namespace
                 {u"Theta"_s,    u"&#920;"_s}, // greek capital letter theta, U+0398 ISOgrk3
                 {u"Iota"_s,     u"&#921;"_s}, // greek capital letter iota, U+0399
                 {u"Kappa"_s,    u"&#922;"_s}, // greek capital letter kappa, U+039A
-                {u"Lambda"_s,   u"&#923;"_s}, // greek capital letter lamda, U+039B ISOgrk3
+                {u"Lambda"_s,   u"&#923;"_s}, // greek capital letter lambda, U+039B ISOgrk3
                 {u"Mu"_s,       u"&#924;"_s}, // greek capital letter mu, U+039C
                 {u"Nu"_s,       u"&#925;"_s}, // greek capital letter nu, U+039D
                 {u"Xi"_s,       u"&#926;"_s}, // greek capital letter xi, U+039E ISOgrk3
@@ -230,7 +230,7 @@ namespace
                 {u"theta"_s,    u"&#952;"_s}, // greek small letter theta, U+03B8 ISOgrk3
                 {u"iota"_s,     u"&#953;"_s}, // greek small letter iota, U+03B9 ISOgrk3
                 {u"kappa"_s,    u"&#954;"_s}, // greek small letter kappa, U+03BA ISOgrk3
-                {u"lambda"_s,   u"&#955;"_s}, // greek small letter lamda, U+03BB ISOgrk3
+                {u"lambda"_s,   u"&#955;"_s}, // greek small letter lambda, U+03BB ISOgrk3
                 {u"mu"_s,       u"&#956;"_s}, // greek small letter mu, U+03BC ISOgrk3
                 {u"nu"_s,       u"&#957;"_s}, // greek small letter nu, U+03BD ISOgrk3
                 {u"xi"_s,       u"&#958;"_s}, // greek small letter xi, U+03BE ISOgrk3
