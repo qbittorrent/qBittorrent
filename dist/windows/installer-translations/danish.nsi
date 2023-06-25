@@ -2,8 +2,8 @@
 
 ;LangString inst_qbt_req ${LANG_ENGLISH} "qBittorrent (required)"
 LangString inst_qbt_req ${LANG_DANISH} "qBittorrent (påkrævet)"
-;LangString inst_dekstop ${LANG_ENGLISH} "Create Desktop Shortcut"
-LangString inst_dekstop ${LANG_DANISH} "Opret skrivebordsgenvej"
+;LangString inst_desktop ${LANG_ENGLISH} "Create Desktop Shortcut"
+LangString inst_desktop ${LANG_DANISH} "Opret skrivebordsgenvej"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_startmenu ${LANG_DANISH} "Opret genvej i menuen Start"
 ;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"

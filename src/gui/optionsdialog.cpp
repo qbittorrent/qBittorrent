@@ -173,7 +173,7 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     m_applyButton->setEnabled(false);
     connect(m_applyButton, &QPushButton::clicked, this, &OptionsDialog::applySettings);
 
-    // disable mouse wheel event on widgets to avoid mis-selection
+    // disable mouse wheel event on widgets to avoid misselection
     auto *wheelEventEater = new WheelEventEater(this);
     for (QComboBox *widget : asConst(findChildren<QComboBox *>()))
         widget->installEventFilter(wheelEventEater);

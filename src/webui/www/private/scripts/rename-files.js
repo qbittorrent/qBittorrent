@@ -31,7 +31,7 @@ window.qBittorrent.MultiRename = (function() {
             this.onChanged(this.matchedFiles);
         },
         useRegex: false,
-        matchAllOccurences: false,
+        matchAllOccurrences: false,
         caseSensitive: false,
 
         // Replacement Options
@@ -129,7 +129,7 @@ window.qBittorrent.MultiRename = (function() {
 
             // Setup regex flags
             let regexFlags = "";
-            if (this.matchAllOccurences) { regexFlags += "g"; }
+            if (this.matchAllOccurrences) { regexFlags += "g"; }
             if (!this.caseSensitive) { regexFlags += "i"; }
 
             // Setup regex search

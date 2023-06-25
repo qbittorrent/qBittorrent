@@ -184,7 +184,7 @@
 
         let customSyncLogDataInterval = null;
         let logFilterTimer;
-        let inputedFilterText = "";
+        let inputtedFilterText = "";
         let selectBox;
         let selectedLogLevels = JSON.parse(LocalPreferences.get('qbt_selected_log_levels')) || ['1', '2', '4', '8'];
 
@@ -220,7 +220,7 @@
                             tableInfo[currentSelectedTab].instance.removeRow(rowId);
                         });
 
-                        updateLableCount();
+                        updateLabelCount();
                     }
                 },
                 offsets: {
@@ -264,7 +264,7 @@
         };
 
         const getFilterText = () => {
-            return inputedFilterText;
+            return inputtedFilterText;
         };
 
         const getSelectedLevels = () => {
@@ -288,8 +288,8 @@
 
         const filterTextChanged = () => {
             const value = $('filterTextInput').get('value').trim();
-            if (inputedFilterText !== value) {
-                inputedFilterText = value;
+            if (inputtedFilterText !== value) {
+                inputtedFilterText = value;
                 logFilterChanged();
             }
         };
@@ -298,7 +298,7 @@
             clearTimeout(logFilterTimer);
             logFilterTimer = setTimeout((curTab) => {
                 tableInfo[curTab].instance.updateTable(false);
-                updateLableCount(curTab);
+                updateLabelCount(curTab);
             }, 400, currentSelectedTab);
         };
 
@@ -326,14 +326,14 @@
             if (tableInfo[currentSelectedTab].instance.filterText !== getFilterText()) {
                 tableInfo[currentSelectedTab].instance.updateTable();
             }
-            updateLableCount();
+            updateLabelCount();
         };
 
-        const updateLableCount = (curTab) => {
+        const updateLabelCount = (curTab) => {
             if (curTab === undefined)
                 curTab = currentSelectedTab;
 
-            $('numFilteredLogs').set('text', tableInfo[curTab].instance.filterdLength());
+            $('numFilteredLogs').set('text', tableInfo[curTab].instance.filteredLength());
             $('numTotalLogs').set('text', tableInfo[curTab].instance.getRowIds().length);
         };
 
@@ -402,7 +402,7 @@
 
                         tableInfo[curTab].instance.updateTable();
                         tableInfo[curTab].instance.altRow();
-                        updateLableCount(curTab);
+                        updateLabelCount(curTab);
                     }
 
                     tableInfo[curTab].progress = false;

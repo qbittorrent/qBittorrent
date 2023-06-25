@@ -99,7 +99,7 @@ void Private::FileSystemPathValidator::setCheckWritePermission(const bool value)
 Private::FileSystemPathValidator::TestResult
 Private::FileSystemPathValidator::testPath(const Path &path) const
 {
-    // `QFileInfo` will cache the query results and avoid exessive querying to filesystem
+    // `QFileInfo` will cache the query results and avoid excessive querying to filesystem
     const QFileInfo info {path.data()};
 
     if (!info.exists())

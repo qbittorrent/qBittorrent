@@ -45,7 +45,7 @@ namespace
 bool NativeSessionExtension::isSessionListening() const
 {
     const QReadLocker locker {&m_lock};
-    return m_isSesssionListening;
+    return m_isSessionListening;
 }
 
 void NativeSessionExtension::added(const lt::session_handle &nativeSession)
@@ -81,5 +81,5 @@ void NativeSessionExtension::on_alert(const lt::alert *alert)
 void NativeSessionExtension::handleSessionStatsAlert([[maybe_unused]] const lt::session_stats_alert *alert)
 {
     const QWriteLocker locker {&m_lock};
-    m_isSesssionListening = m_nativeSession.is_listening();
+    m_isSessionListening = m_nativeSession.is_listening();
 }

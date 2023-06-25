@@ -65,7 +65,7 @@ Section $(inst_qbt_req) ;"qBittorrent (required)"
 SectionEnd
 
 ; Optional section (can be disabled by the user)
-Section /o $(inst_dekstop) ;"Create Desktop Shortcut"
+Section /o $(inst_desktop) ;"Create Desktop Shortcut"
 
   CreateShortCut "$DESKTOP\qBittorrent.lnk" "$INSTDIR\qbittorrent.exe"
 

@@ -52,5 +52,5 @@ private:
     lt::session_handle m_nativeSession;
 
     mutable QReadWriteLock m_lock;
-    bool m_isSesssionListening = false;
+    bool m_isSessionListening = false;
 };

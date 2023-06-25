@@ -50,7 +50,7 @@ before_build:
 
 build_script:
   - cd "%REPO_DIR%"
-  # lupdate chokes when it parses headers from system inludes, especially Boost
+  # lupdate chokes when it parses headers from system includes, especially Boost
   # it also chokes with the sources from src/app/qtlocalpeer (formerly qtsingleapplication)
   # Workaround: temporarily rename them to run lupdate with the .pro file
   - RENAME conf.pri conf.pri.temp
