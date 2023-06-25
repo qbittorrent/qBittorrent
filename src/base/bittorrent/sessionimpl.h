@@ -451,6 +451,7 @@ namespace BitTorrent
         void handleTorrentUrlSeedsRemoved(TorrentImpl *torrent, const QVector<QUrl> &urlSeeds);
         void handleTorrentResumeDataReady(TorrentImpl *torrent, const LoadTorrentParams &data);
         void handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoHash &prevInfoHash);
+        void handleTorrentStorageMovingStateChanged(TorrentImpl *torrent);
 
         bool addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, MoveStorageMode mode, MoveStorageContext context);
 
