@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016  Mike Tzou
+ * Copyright (C) 2016-2023  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -48,12 +48,18 @@ constexpr typename std::add_const_t<T> asConst(T &&t) noexcept { return std::for
 template <typename T>
 void asConst(const T &&) = delete;
 
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-// https://doc.qt.io/qt-6/qstring.html#operator-22-22_qs
-inline QString operator"" _qs(const char16_t *str, const std::size_t size)
+#if (QT_VERSION < QT_VERSION_CHECK(6, 4, 0))
+// https://doc.qt.io/qt-6/qstring.html#operator-22-22_s
+inline QString operator"" _s(const char16_t *str, const std::size_t size)
 {
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     return QString::fromRawData(reinterpret_cast<const QChar *>(str), static_cast<int>(size));
+#else
+    return operator""_qs(str, size);
+#endif
 }
+#else
+using namespace Qt::Literals::StringLiterals;
 #endif
 
-inline const QString TORRENT_FILE_EXTENSION = u".torrent"_qs;
+inline const QString TORRENT_FILE_EXTENSION = u".torrent"_s;

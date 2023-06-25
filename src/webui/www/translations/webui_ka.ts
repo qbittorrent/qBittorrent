@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>კავშირის სტატუსი</translation>
+        <translation type="vanished">კავშირის სტატუსი</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>

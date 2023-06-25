@@ -74,7 +74,7 @@ namespace
     {
     public:
         UnifiedFileIconProvider()
-            : m_textPlainIcon {UIThemeManager::instance()->getIcon(u"help-about"_qs, u"text-plain"_qs)}
+            : m_textPlainIcon {UIThemeManager::instance()->getIcon(u"help-about"_s, u"text-plain"_s)}
         {
         }
 
@@ -163,7 +163,7 @@ namespace
      */
     bool doesQFileIconProviderWork()
     {
-        const Path PSEUDO_UNIQUE_FILE_NAME = Utils::Fs::tempPath() / Path(u"qBittorrent-test-QFileIconProvider-845eb448-7ad5-4cdb-b764-b3f322a266a9"_qs);
+        const Path PSEUDO_UNIQUE_FILE_NAME = Utils::Fs::tempPath() / Path(u"qBittorrent-test-QFileIconProvider-845eb448-7ad5-4cdb-b764-b3f322a266a9"_s);
         QFileIconProvider provider;
         const QIcon testIcon1 = provider.icon(QFileInfo((PSEUDO_UNIQUE_FILE_NAME + u".pdf").data()));
         const QIcon testIcon2 = provider.icon(QFileInfo((PSEUDO_UNIQUE_FILE_NAME + u".png").data()));

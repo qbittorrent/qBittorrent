@@ -31,7 +31,6 @@
 
 #include "feed_serializer.h"
 
-#include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -46,23 +45,21 @@ const int ARTICLEDATALIST_TYPEID = qRegisterMetaType<QVector<QVariantHash>>();
 
 void RSS::Private::FeedSerializer::load(const Path &dataFileName, const QString &url)
 {
-    QFile file {dataFileName.data()};
+    const int fileMaxSize = 10 * 1024 * 1024;
+    const auto readResult = Utils::IO::readFile(dataFileName, fileMaxSize);
+    if (!readResult)
+    {
+        if (readResult.error().status == Utils::IO::ReadError::NotExist)
+        {
+            emit loadingFinished({});
+            return;
+        }
 
-    if (!file.exists())
-    {
-        emit loadingFinished({});
+        LogMsg(tr("Failed to read RSS session data. %1").arg(readResult.error().message), Log::WARNING);
+        return;
     }
-    else if (file.open(QFile::ReadOnly))
-    {
-        emit loadingFinished(loadArticles(file.readAll(), url));
-        file.close();
-    }
-    else
-    {
-        LogMsg(tr("Couldn't read RSS Session data from %1. Error: %2")
-               .arg(dataFileName.toString(), file.errorString())
-               , Log::WARNING);
-    }
+
+    emit loadingFinished(loadArticles(readResult.value(), url));
 }
 
 void RSS::Private::FeedSerializer::store(const Path &dataFileName, const QVector<QVariantHash> &articlesData)

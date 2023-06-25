@@ -61,6 +61,9 @@ namespace RSS
         bool isEnabled() const;
         void setEnabled(bool enable);
 
+        int priority() const;
+        void setPriority(int value);
+
         QString mustContain() const;
         void setMustContain(const QString &tokens);
         QString mustNotContain() const;

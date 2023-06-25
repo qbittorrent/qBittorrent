@@ -63,10 +63,10 @@ using namespace std::chrono_literals;
 
 const std::chrono::seconds WATCH_INTERVAL {10};
 const int MAX_FAILED_RETRIES = 5;
-const QString CONF_FILE_NAME = u"watched_folders.json"_qs;
+const QString CONF_FILE_NAME = u"watched_folders.json"_s;
 
-const QString OPTION_ADDTORRENTPARAMS = u"add_torrent_params"_qs;
-const QString OPTION_RECURSIVE = u"recursive"_qs;
+const QString OPTION_ADDTORRENTPARAMS = u"add_torrent_params"_s;
+const QString OPTION_RECURSIVE = u"recursive"_s;
 
 namespace
 {
@@ -177,33 +177,35 @@ void TorrentFilesWatcher::initWorker()
 
 void TorrentFilesWatcher::load()
 {
-    QFile confFile {(specialFolderLocation(SpecialFolder::Config) / Path(CONF_FILE_NAME)).data()};
-    if (!confFile.exists())
-    {
-        loadLegacy();
-        return;
-    }
+    const int fileMaxSize = 10 * 1024 * 1024;
+    const Path path = specialFolderLocation(SpecialFolder::Config) / Path(CONF_FILE_NAME);
 
-    if (!confFile.open(QFile::ReadOnly))
+    const auto readResult = Utils::IO::readFile(path, fileMaxSize);
+    if (!readResult)
     {
-        LogMsg(tr("Couldn't load Watched Folders configuration from %1. Error: %2")
-            .arg(confFile.fileName(), confFile.errorString()), Log::WARNING);
+        if (readResult.error().status == Utils::IO::ReadError::NotExist)
+        {
+            loadLegacy();
+            return;
+        }
+
+        LogMsg(tr("Failed to load Watched Folders configuration. %1").arg(readResult.error().message), Log::WARNING);
         return;
     }
 
     QJsonParseError jsonError;
-    const QJsonDocument jsonDoc = QJsonDocument::fromJson(confFile.readAll(), &jsonError);
+    const QJsonDocument jsonDoc = QJsonDocument::fromJson(readResult.value(), &jsonError);
     if (jsonError.error != QJsonParseError::NoError)
     {
-        LogMsg(tr("Couldn't parse Watched Folders configuration from %1. Error: %2")
-            .arg(confFile.fileName(), jsonError.errorString()), Log::WARNING);
+        LogMsg(tr("Failed to parse Watched Folders configuration from %1. Error: \"%2\"")
+            .arg(path.toString(), jsonError.errorString()), Log::WARNING);
         return;
     }
 
     if (!jsonDoc.isObject())
     {
-        LogMsg(tr("Couldn't load Watched Folders configuration from %1. Invalid data format.")
-            .arg(confFile.fileName()), Log::WARNING);
+        LogMsg(tr("Failed to load Watched Folders configuration from %1. Error: \"Invalid data format.\"")
+            .arg(path.toString()), Log::WARNING);
         return;
     }
 
@@ -225,7 +227,7 @@ void TorrentFilesWatcher::load()
 
 void TorrentFilesWatcher::loadLegacy()
 {
-    const auto dirs = SettingsStorage::instance()->loadValue<QVariantHash>(u"Preferences/Downloads/ScanDirsV2"_qs);
+    const auto dirs = SettingsStorage::instance()->loadValue<QVariantHash>(u"Preferences/Downloads/ScanDirsV2"_s);
 
     for (auto it = dirs.cbegin(); it != dirs.cend(); ++it)
     {
@@ -257,7 +259,7 @@ void TorrentFilesWatcher::loadLegacy()
     }
 
     store();
-    SettingsStorage::instance()->removeValue(u"Preferences/Downloads/ScanDirsV2"_qs);
+    SettingsStorage::instance()->removeValue(u"Preferences/Downloads/ScanDirsV2"_s);
 }
 
 void TorrentFilesWatcher::store() const
@@ -404,7 +406,7 @@ void TorrentFilesWatcher::Worker::processWatchedFolder(const Path &path)
 void TorrentFilesWatcher::Worker::processFolder(const Path &path, const Path &watchedFolderPath
                                               , const TorrentFilesWatcher::WatchedFolderOptions &options)
 {
-    QDirIterator dirIter {path.data(), {u"*.torrent"_qs, u"*.magnet"_qs}, QDir::Files};
+    QDirIterator dirIter {path.data(), {u"*.torrent"_s, u"*.magnet"_s}, QDir::Files};
     while (dirIter.hasNext())
     {
         const Path filePath {dirIter.next()};
@@ -424,19 +426,28 @@ void TorrentFilesWatcher::Worker::processFolder(const Path &path, const Path &wa
             }
         }
 
-        if (filePath.hasExtension(u".magnet"_qs))
+        if (filePath.hasExtension(u".magnet"_s))
         {
+            const int fileMaxSize = 100 * 1024 * 1024;
+
             QFile file {filePath.data()};
             if (file.open(QIODevice::ReadOnly | QIODevice::Text))
             {
-                while (!file.atEnd())
+                if (file.size() <= fileMaxSize)
                 {
-                    const auto line = QString::fromLatin1(file.readLine()).trimmed();
-                    emit magnetFound(BitTorrent::MagnetUri(line), addTorrentParams);
-                }
+                    while (!file.atEnd())
+                    {
+                        const auto line = QString::fromLatin1(file.readLine()).trimmed();
+                        emit magnetFound(BitTorrent::MagnetUri(line), addTorrentParams);
+                    }
 
-                file.close();
-                Utils::Fs::removeFile(filePath);
+                    file.close();
+                    Utils::Fs::removeFile(filePath);
+                }
+                else
+                {
+                    LogMsg(tr("Magnet file too big. File: %1").arg(file.errorString()));
+                }
             }
             else
             {

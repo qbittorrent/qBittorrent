@@ -45,7 +45,7 @@
 TorrentTagsDialog::TorrentTagsDialog(const TagSet &initialTags, QWidget *parent)
     : QDialog(parent)
     , m_ui {new Ui::TorrentTagsDialog}
-    , m_storeDialogSize {SETTINGS_KEY(u"Size"_qs)}
+    , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
 {
     m_ui->setupUi(this);
 
@@ -58,7 +58,7 @@ TorrentTagsDialog::TorrentTagsDialog(const TagSet &initialTags, QWidget *parent)
         tagsLayout->addWidget(tagWidget);
     }
 
-    auto *addTagButton = new QPushButton(u"+"_qs);
+    auto *addTagButton = new QPushButton(u"+"_s);
     connect(addTagButton, &QPushButton::clicked, this, &TorrentTagsDialog::addNewTag);
     tagsLayout->addWidget(addTagButton);
 

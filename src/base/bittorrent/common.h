@@ -32,4 +32,4 @@
 
 #include "base/global.h"
 
-inline const QString QB_EXT = u".!qB"_qs;
+inline const QString QB_EXT = u".!qB"_s;

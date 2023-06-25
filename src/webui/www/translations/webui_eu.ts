@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Konexio egoera</translation>
+        <translation type="vanished">Konexio egoera</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>

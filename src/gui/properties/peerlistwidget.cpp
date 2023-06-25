@@ -121,7 +121,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     // List Model
     m_listModel = new QStandardItemModel(0, PeerListColumns::COL_COUNT, this);
     m_listModel->setHeaderData(PeerListColumns::COUNTRY, Qt::Horizontal, tr("Country/Region")); // Country flag column
-    m_listModel->setHeaderData(PeerListColumns::IP, Qt::Horizontal, tr("IP"));
+    m_listModel->setHeaderData(PeerListColumns::IP, Qt::Horizontal, tr("IP/Address"));
     m_listModel->setHeaderData(PeerListColumns::PORT, Qt::Horizontal, tr("Port"));
     m_listModel->setHeaderData(PeerListColumns::FLAGS, Qt::Horizontal, tr("Flags"));
     m_listModel->setHeaderData(PeerListColumns::CONNECTION, Qt::Horizontal, tr("Connection"));
@@ -298,7 +298,7 @@ void PeerListWidget::showPeerListMenu()
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->setToolTipsVisible(true);
 
-    QAction *addNewPeer = menu->addAction(UIThemeManager::instance()->getIcon(u"peers-add"_qs), tr("Add peers...")
+    QAction *addNewPeer = menu->addAction(UIThemeManager::instance()->getIcon(u"peers-add"_s), tr("Add peers...")
         , this, [this, torrent]()
     {
         const QVector<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
@@ -311,10 +311,10 @@ void PeerListWidget::showPeerListMenu()
         else if (peerCount > 0)
             QMessageBox::information(this, tr("Adding peers"), tr("Peers are added to this torrent."));
     });
-    QAction *copyPeers = menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Copy IP:port")
+    QAction *copyPeers = menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("Copy IP:port")
         , this, &PeerListWidget::copySelectedPeers);
     menu->addSeparator();
-    QAction *banPeers = menu->addAction(UIThemeManager::instance()->getIcon(u"peers-remove"_qs), tr("Ban peer permanently")
+    QAction *banPeers = menu->addAction(UIThemeManager::instance()->getIcon(u"peers-remove"_s), tr("Ban peer permanently")
         , this, &PeerListWidget::banSelectedPeers);
 
     // disable actions
@@ -434,9 +434,6 @@ void PeerListWidget::loadPeers(const BitTorrent::Torrent *torrent)
         const bool hideZeroValues = Preferences::instance()->getHideZeroValues();
         for (const BitTorrent::PeerInfo &peer : peers)
         {
-            if (peer.address().ip.isNull())
-                continue;
-
             const PeerEndpoint peerEndpoint {peer.address(), peer.connectionType()};
 
             auto itemIter = m_peerItems.find(peerEndpoint);
@@ -448,7 +445,7 @@ void PeerListWidget::loadPeers(const BitTorrent::Torrent *torrent)
 
                 const bool useI2PSocket = peer.useI2PSocket();
 
-                const QString peerIPString = useI2PSocket ? tr("N/A") : peerEndpoint.address.ip.toString();
+                const QString peerIPString = useI2PSocket ? peer.I2PAddress() : peerEndpoint.address.ip.toString();
                 setModelData(m_listModel, row, PeerListColumns::IP, peerIPString, peerIPString, {}, peerIPString);
 
                 const QString peerIPHiddenString = useI2PSocket ? QString() : peerEndpoint.address.ip.toString();

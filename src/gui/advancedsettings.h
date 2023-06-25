@@ -28,6 +28,8 @@
 
 #pragma once
 
+#include <libtorrent/config.hpp>
+
 #include <QCheckBox>
 #include <QComboBox>
 #include <QLineEdit>
@@ -86,6 +88,10 @@ private:
 #else
     QComboBox m_comboBoxDiskIOType;
     QSpinBox m_spinBoxMemoryWorkingSetLimit, m_spinBoxHashingThreads;
+#endif
+
+#if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
+    QSpinBox m_spinBoxI2PInboundQuantity, m_spinBoxI2POutboundQuantity, m_spinBoxI2PInboundLength, m_spinBoxI2POutboundLength;
 #endif
 
     // OS dependent settings

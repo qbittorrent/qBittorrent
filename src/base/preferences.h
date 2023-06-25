@@ -315,6 +315,8 @@ public:
     void setConfirmTorrentRecheck(bool enabled);
     bool confirmRemoveAllTags() const;
     void setConfirmRemoveAllTags(bool enabled);
+    bool confirmPauseAndResumeAll() const;
+    void setConfirmPauseAndResumeAll(bool enabled);
 #ifndef Q_OS_MACOS
     bool systemTrayEnabled() const;
     void setSystemTrayEnabled(bool enabled);

@@ -57,24 +57,24 @@ namespace
 
         const TorrentStateColorDescriptor colorDescriptors[] =
         {
-            {BitTorrent::TorrentState::Downloading, u"TransferList.Downloading"_qs},
-            {BitTorrent::TorrentState::StalledDownloading, u"TransferList.StalledDownloading"_qs},
-            {BitTorrent::TorrentState::DownloadingMetadata, u"TransferList.DownloadingMetadata"_qs},
-            {BitTorrent::TorrentState::ForcedDownloadingMetadata, u"TransferList.ForcedDownloadingMetadata"_qs},
-            {BitTorrent::TorrentState::ForcedDownloading, u"TransferList.ForcedDownloading"_qs},
-            {BitTorrent::TorrentState::Uploading, u"TransferList.Uploading"_qs},
-            {BitTorrent::TorrentState::StalledUploading, u"TransferList.StalledUploading"_qs},
-            {BitTorrent::TorrentState::ForcedUploading, u"TransferList.ForcedUploading"_qs},
-            {BitTorrent::TorrentState::QueuedDownloading, u"TransferList.QueuedDownloading"_qs},
-            {BitTorrent::TorrentState::QueuedUploading, u"TransferList.QueuedUploading"_qs},
-            {BitTorrent::TorrentState::CheckingDownloading, u"TransferList.CheckingDownloading"_qs},
-            {BitTorrent::TorrentState::CheckingUploading, u"TransferList.CheckingUploading"_qs},
-            {BitTorrent::TorrentState::CheckingResumeData, u"TransferList.CheckingResumeData"_qs},
-            {BitTorrent::TorrentState::PausedDownloading, u"TransferList.PausedDownloading"_qs},
-            {BitTorrent::TorrentState::PausedUploading, u"TransferList.PausedUploading"_qs},
-            {BitTorrent::TorrentState::Moving, u"TransferList.Moving"_qs},
-            {BitTorrent::TorrentState::MissingFiles, u"TransferList.MissingFiles"_qs},
-            {BitTorrent::TorrentState::Error, u"TransferList.Error"_qs}
+            {BitTorrent::TorrentState::Downloading, u"TransferList.Downloading"_s},
+            {BitTorrent::TorrentState::StalledDownloading, u"TransferList.StalledDownloading"_s},
+            {BitTorrent::TorrentState::DownloadingMetadata, u"TransferList.DownloadingMetadata"_s},
+            {BitTorrent::TorrentState::ForcedDownloadingMetadata, u"TransferList.ForcedDownloadingMetadata"_s},
+            {BitTorrent::TorrentState::ForcedDownloading, u"TransferList.ForcedDownloading"_s},
+            {BitTorrent::TorrentState::Uploading, u"TransferList.Uploading"_s},
+            {BitTorrent::TorrentState::StalledUploading, u"TransferList.StalledUploading"_s},
+            {BitTorrent::TorrentState::ForcedUploading, u"TransferList.ForcedUploading"_s},
+            {BitTorrent::TorrentState::QueuedDownloading, u"TransferList.QueuedDownloading"_s},
+            {BitTorrent::TorrentState::QueuedUploading, u"TransferList.QueuedUploading"_s},
+            {BitTorrent::TorrentState::CheckingDownloading, u"TransferList.CheckingDownloading"_s},
+            {BitTorrent::TorrentState::CheckingUploading, u"TransferList.CheckingUploading"_s},
+            {BitTorrent::TorrentState::CheckingResumeData, u"TransferList.CheckingResumeData"_s},
+            {BitTorrent::TorrentState::PausedDownloading, u"TransferList.PausedDownloading"_s},
+            {BitTorrent::TorrentState::PausedUploading, u"TransferList.PausedUploading"_s},
+            {BitTorrent::TorrentState::Moving, u"TransferList.Moving"_s},
+            {BitTorrent::TorrentState::MissingFiles, u"TransferList.MissingFiles"_s},
+            {BitTorrent::TorrentState::Error, u"TransferList.Error"_s}
         };
 
         QHash<BitTorrent::TorrentState, QColor> colors;
@@ -113,15 +113,15 @@ TransferListModel::TransferListModel(QObject *parent)
           {BitTorrent::TorrentState::Error, tr("Errored", "Torrent status, the torrent has an error")}
     }
     , m_stateThemeColors {torrentStateColorsFromUITheme()}
-    , m_checkingIcon {UIThemeManager::instance()->getIcon(u"force-recheck"_qs, u"checking"_qs)}
-    , m_completedIcon {UIThemeManager::instance()->getIcon(u"checked-completed"_qs, u"completed"_qs)}
-    , m_downloadingIcon {UIThemeManager::instance()->getIcon(u"downloading"_qs)}
-    , m_errorIcon {UIThemeManager::instance()->getIcon(u"error"_qs)}
-    , m_pausedIcon {UIThemeManager::instance()->getIcon(u"stopped"_qs, u"media-playback-pause"_qs)}
-    , m_queuedIcon {UIThemeManager::instance()->getIcon(u"queued"_qs)}
-    , m_stalledDLIcon {UIThemeManager::instance()->getIcon(u"stalledDL"_qs)}
-    , m_stalledUPIcon {UIThemeManager::instance()->getIcon(u"stalledUP"_qs)}
-    , m_uploadingIcon {UIThemeManager::instance()->getIcon(u"upload"_qs, u"uploading"_qs)}
+    , m_checkingIcon {UIThemeManager::instance()->getIcon(u"force-recheck"_s, u"checking"_s)}
+    , m_completedIcon {UIThemeManager::instance()->getIcon(u"checked-completed"_s, u"completed"_s)}
+    , m_downloadingIcon {UIThemeManager::instance()->getIcon(u"downloading"_s)}
+    , m_errorIcon {UIThemeManager::instance()->getIcon(u"error"_s)}
+    , m_pausedIcon {UIThemeManager::instance()->getIcon(u"stopped"_s, u"media-playback-pause"_s)}
+    , m_queuedIcon {UIThemeManager::instance()->getIcon(u"queued"_s)}
+    , m_stalledDLIcon {UIThemeManager::instance()->getIcon(u"stalledDL"_s)}
+    , m_stalledUPIcon {UIThemeManager::instance()->getIcon(u"stalledUP"_s)}
+    , m_uploadingIcon {UIThemeManager::instance()->getIcon(u"upload"_s, u"uploading"_s)}
 {
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &TransferListModel::configure);
@@ -268,7 +268,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     {
         if (hideValues && (value == 0) && (total == 0))
             return {};
-        return u"%1 (%2)"_qs.arg(QString::number(value), QString::number(total));
+        return u"%1 (%2)"_s.arg(QString::number(value), QString::number(total));
     };
 
     const auto etaString = [hideValues](const qlonglong value) -> QString
@@ -289,7 +289,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
 
     const auto queuePositionString = [](const qint64 value) -> QString
     {
-        return (value >= 0) ? QString::number(value + 1) : u"*"_qs;
+        return (value >= 0) ? QString::number(value + 1) : u"*"_s;
     };
 
     const auto lastActivityString = [hideValues](qint64 value) -> QString
@@ -323,7 +323,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     const auto progressString = [](const qreal progress) -> QString
     {
         return (progress >= 1)
-                ? u"100%"_qs
+                ? u"100%"_s
                 : (Utils::String::fromDouble((progress * 100), 1) + u'%');
     };
 
@@ -370,7 +370,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_CATEGORY:
         return torrent->category();
     case TR_TAGS:
-        return torrent->tags().join(u", "_qs);
+        return torrent->tags().join(u", "_s);
     case TR_ADD_DATE:
         return QLocale().toString(torrent->addedTime().toLocalTime(), QLocale::ShortFormat);
     case TR_SEED_DATE:

@@ -46,7 +46,6 @@
 
 #include <QByteArray>
 #include <QDebug>
-#include <QFile>
 #include <QPointer>
 #include <QSet>
 #include <QStringList>
@@ -331,8 +330,8 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
 
             // Remove .unwanted directory if empty
             const Path newPath = spath / newRelPath;
-            qDebug() << "Attempting to remove \".unwanted\" folder at " << (newPath / Path(u".unwanted"_qs)).toString();
-            Utils::Fs::rmdir(newPath / Path(u".unwanted"_qs));
+            qDebug() << "Attempting to remove \".unwanted\" folder at " << (newPath / Path(u".unwanted"_s)).toString();
+            Utils::Fs::rmdir(newPath / Path(u".unwanted"_s));
         }
     }
     // == END UPGRADE CODE ==
@@ -1780,8 +1779,12 @@ void TorrentImpl::moveStorage(const Path &newPath, const MoveStorageContext cont
             ? MoveStorageMode::Overwrite : MoveStorageMode::KeepExistingFiles;
     if (m_session->addMoveTorrentStorageJob(this, newPath, mode, context))
     {
-        m_storageIsMoving = true;
-        updateState();
+        if (!m_storageIsMoving)
+        {
+            m_storageIsMoving = true;
+            updateState();
+            m_session->handleTorrentStorageMovingStateChanged(this);
+        }
     }
 }
 
@@ -1814,6 +1817,9 @@ void TorrentImpl::handleMoveStorageJobFinished(const Path &path, const MoveStora
 
     if (!m_storageIsMoving)
     {
+        updateState();
+        m_session->handleTorrentStorageMovingStateChanged(this);
+
         if (m_hasMissingFiles)
         {
             // it can be moved to the proper location
@@ -2144,7 +2150,7 @@ void TorrentImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert 
 
 void TorrentImpl::handlePerformanceAlert(const lt::performance_alert *p) const
 {
-    LogMsg((tr("Performance alert: %1. More info: %2").arg(QString::fromStdString(p->message()), u"https://libtorrent.org/reference-Alerts.html#enum-performance-warning-t"_qs))
+    LogMsg((tr("Performance alert: %1. More info: %2").arg(QString::fromStdString(p->message()), u"https://libtorrent.org/reference-Alerts.html#enum-performance-warning-t"_s))
            , Log::INFO);
 }
 
@@ -2481,7 +2487,7 @@ void TorrentImpl::flushCache() const
 
 QString TorrentImpl::createMagnetURI() const
 {
-    QString ret = u"magnet:?"_qs;
+    QString ret = u"magnet:?"_s;
 
     const SHA1Hash infoHash1 = infoHash().v1();
     if (infoHash1.isValid())

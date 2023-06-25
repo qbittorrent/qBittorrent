@@ -93,8 +93,8 @@ namespace
 
 TransferListSortModel::TransferListSortModel(QObject *parent)
     : QSortFilterProxyModel {parent}
-    , m_subSortColumn {u"TransferList/SubSortColumn"_qs, TransferListModel::TR_NAME, adjustSubSortColumn}
-    , m_subSortOrder {u"TransferList/SubSortOrder"_qs, 0}
+    , m_subSortColumn {u"TransferList/SubSortColumn"_s, TransferListModel::TR_NAME, adjustSubSortColumn}
+    , m_subSortOrder {u"TransferList/SubSortOrder"_s, 0}
 {
     setSortRole(TransferListModel::UnderlyingDataRole);
 }

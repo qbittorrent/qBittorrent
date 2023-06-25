@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -76,6 +76,7 @@ namespace BitTorrent
         bool isPlaintextEncrypted() const;
 
         PeerAddress address() const;
+        QString I2PAddress() const;
         QString client() const;
         QString peerIdClient() const;
         qreal progress() const;
@@ -101,5 +102,6 @@ namespace BitTorrent
         QString m_flagsDescription;
 
         mutable QString m_country;
+        mutable QString m_I2PAddress;
     };
 }

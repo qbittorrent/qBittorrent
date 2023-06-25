@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Bağlantının vəziyyəti</translation>
+        <translation type="vanished">Bağlantının vəziyyəti</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
@@ -2636,7 +2636,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Downloading metadata</source>
-        <translation>Endirilmə meta verilənləri</translation>
+        <translation>Torrent verilənləri alınır</translation>
     </message>
     <message>
         <source>Checking</source>
@@ -2668,7 +2668,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation>[F] Meta verilənləri endirilir</translation>
+        <translation>[F] Torrent verilənləri endirilir</translation>
     </message>
 </context>
 <context>

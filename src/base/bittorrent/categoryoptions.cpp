@@ -33,8 +33,8 @@
 
 #include "base/global.h"
 
-const QString OPTION_SAVEPATH = u"save_path"_qs;
-const QString OPTION_DOWNLOADPATH = u"download_path"_qs;
+const QString OPTION_SAVEPATH = u"save_path"_s;
+const QString OPTION_DOWNLOADPATH = u"download_path"_s;
 
 BitTorrent::CategoryOptions BitTorrent::CategoryOptions::fromJSON(const QJsonObject &jsonObj)
 {

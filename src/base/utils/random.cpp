@@ -56,7 +56,7 @@ namespace
         using result_type = uint32_t;
 
         RandomLayer()
-            : m_rtlGenRandom {Utils::Misc::loadWinAPI<PRTLGENRANDOM>(u"Advapi32.dll"_qs, "SystemFunction036")}
+            : m_rtlGenRandom {Utils::Misc::loadWinAPI<PRTLGENRANDOM>(u"Advapi32.dll"_s, "SystemFunction036")}
         {
             if (!m_rtlGenRandom)
                 qFatal("Failed to load RtlGenRandom()");

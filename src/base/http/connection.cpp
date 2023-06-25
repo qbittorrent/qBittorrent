@@ -46,6 +46,10 @@ Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObj
 {
     m_socket->setParent(this);
 
+    // reserve common size for requests, don't use the max allowed size which is too big for
+    // memory constrained platforms
+    m_receivedData.reserve(1024 * 1024);
+
     // reset timer when there are activity
     m_idleTimer.start();
     connect(m_socket, &QIODevice::readyRead, this, [this]()
@@ -66,7 +70,18 @@ Connection::~Connection()
 
 void Connection::read()
 {
-    m_receivedData.append(m_socket->readAll());
+    // reuse existing buffer and avoid unnecessary memory allocation/relocation
+    const qsizetype previousSize = m_receivedData.size();
+    const qint64 bytesAvailable = m_socket->bytesAvailable();
+    m_receivedData.resize(previousSize + bytesAvailable);
+    const qint64 bytesRead = m_socket->read((m_receivedData.data() + previousSize), bytesAvailable);
+    if (Q_UNLIKELY(bytesRead < 0))
+    {
+        m_socket->close();
+        return;
+    }
+    if (Q_UNLIKELY(bytesRead < bytesAvailable))
+        m_receivedData.chop(bytesAvailable - bytesRead);
 
     while (!m_receivedData.isEmpty())
     {
@@ -82,8 +97,8 @@ void Connection::read()
                     LogMsg(tr("Http request size exceeds limitation, closing socket. Limit: %1, IP: %2")
                         .arg(bufferLimit).arg(m_socket->peerAddress().toString()), Log::WARNING);
 
-                    Response resp(413, u"Payload Too Large"_qs);
-                    resp.headers[HEADER_CONNECTION] = u"close"_qs;
+                    Response resp(413, u"Payload Too Large"_s);
+                    resp.headers[HEADER_CONNECTION] = u"close"_s;
 
                     sendResponse(resp);
                     m_socket->close();
@@ -96,8 +111,8 @@ void Connection::read()
                 LogMsg(tr("Bad Http request, closing socket. IP: %1")
                     .arg(m_socket->peerAddress().toString()), Log::WARNING);
 
-                Response resp(400, u"Bad Request"_qs);
-                resp.headers[HEADER_CONNECTION] = u"close"_qs;
+                Response resp(400, u"Bad Request"_s);
+                resp.headers[HEADER_CONNECTION] = u"close"_s;
 
                 sendResponse(resp);
                 m_socket->close();
@@ -110,13 +125,13 @@ void Connection::read()
 
                 Response resp = m_requestHandler->processRequest(result.request, env);
 
-                if (acceptsGzipEncoding(result.request.headers[u"accept-encoding"_qs]))
-                    resp.headers[HEADER_CONTENT_ENCODING] = u"gzip"_qs;
+                if (acceptsGzipEncoding(result.request.headers[u"accept-encoding"_s]))
+                    resp.headers[HEADER_CONTENT_ENCODING] = u"gzip"_s;
 
-                resp.headers[HEADER_CONNECTION] = u"keep-alive"_qs;
+                resp.headers[HEADER_CONNECTION] = u"keep-alive"_s;
 
                 sendResponse(resp);
-                m_receivedData = m_receivedData.mid(result.frameSize);
+                m_receivedData.remove(0, result.frameSize);
             }
             break;
 
@@ -176,11 +191,11 @@ bool Connection::acceptsGzipEncoding(QString codings)
     if (list.isEmpty())
         return false;
 
-    const bool canGzip = isCodingAvailable(list, u"gzip"_qs);
+    const bool canGzip = isCodingAvailable(list, u"gzip"_s);
     if (canGzip)
         return true;
 
-    const bool canAny = isCodingAvailable(list, u"*"_qs);
+    const bool canAny = isCodingAvailable(list, u"*"_s);
     if (canAny)
         return true;
 

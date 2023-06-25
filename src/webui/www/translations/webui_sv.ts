@@ -297,7 +297,7 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>Hämta torrenter från deras URLs eller magnetlänkar</translation>
+        <translation>Hämta torrenter från deras URL:er eller magnetlänkar</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Anslutningsstatus</translation>
+        <translation type="vanished">Anslutningsstatus</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
@@ -1178,7 +1178,7 @@
     </message>
     <message>
         <source>File pool size:</source>
-        <translation>Filpool storlek:</translation>
+        <translation>Filpoolstorlek:</translation>
     </message>
     <message>
         <source>Any interface</source>
@@ -2935,7 +2935,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation>Hämta från URLs</translation>
+        <translation>Hämta från URL:er</translation>
     </message>
     <message>
         <source>Download</source>

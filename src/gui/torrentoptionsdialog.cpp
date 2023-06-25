@@ -62,8 +62,8 @@ namespace
 TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::Torrent *> &torrents)
     : QDialog {parent}
     , m_ui {new Ui::TorrentOptionsDialog}
-    , m_storeDialogSize {SETTINGS_KEY(u"Size"_qs)}
-    , m_currentCategoriesString {u"--%1--"_qs.arg(tr("Currently used categories"))}
+    , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
+    , m_currentCategoriesString {u"--%1--"_s.arg(tr("Currently used categories"))}
 {
     Q_ASSERT(!torrents.empty());
 

@@ -12,10 +12,13 @@ include_directories("../src")
 set(testFiles
     testalgorithm.cpp
     testbittorrenttrackerentry.cpp
+    testglobal.cpp
     testorderedset.cpp
     testpath.cpp
     testutilscompare.cpp
+    testutilsbytearray.cpp
     testutilsgzip.cpp
+    testutilsio.cpp
     testutilsstring.cpp
     testutilsversion.cpp
 )

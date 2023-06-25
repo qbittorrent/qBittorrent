@@ -19,7 +19,7 @@ def main() -> int:
     tmp_translations: List[str] = glob.glob(f'{args.qt_translations_folder}/qt_??.qm')
     tmp_translations += glob.glob(f'{args.qt_translations_folder}/qt_??_??.qm')
     tmp_translations += glob.glob(f'{args.qt_translations_folder}/qtbase_??.qm')
-    tmp_translations += glob.glob(f'{args.qt_translations_folder}qtbase_??_??.qm')
+    tmp_translations += glob.glob(f'{args.qt_translations_folder}/qtbase_??_??.qm')
 
     filtered = filter(isNotStub, tmp_translations)
     for file in filtered:

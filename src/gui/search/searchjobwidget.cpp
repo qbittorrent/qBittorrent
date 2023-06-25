@@ -56,7 +56,7 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     : QWidget(parent)
     , m_ui(new Ui::SearchJobWidget)
     , m_searchHandler(searchHandler)
-    , m_nameFilteringMode(u"Search/FilteringMode"_qs)
+    , m_nameFilteringMode(u"Search/FilteringMode"_s)
 {
     m_ui->setupUi(this);
 
@@ -390,22 +390,22 @@ void SearchJobWidget::contextMenuEvent(QContextMenuEvent *event)
     auto *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"download"_qs)
+    menu->addAction(UIThemeManager::instance()->getIcon(u"download"_s)
         , tr("Open download window"), this, [this]() { downloadTorrents(AddTorrentOption::ShowDialog); });
-    menu->addAction(UIThemeManager::instance()->getIcon(u"downloading"_qs, u"download"_qs)
+    menu->addAction(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s)
         , tr("Download"), this, [this]() { downloadTorrents(AddTorrentOption::SkipDialog); });
     menu->addSeparator();
-    menu->addAction(UIThemeManager::instance()->getIcon(u"application-url"_qs), tr("Open description page")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"application-url"_s), tr("Open description page")
         , this, &SearchJobWidget::openTorrentPages);
 
     QMenu *copySubMenu = menu->addMenu(
-        UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Copy"));
+        UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("Copy"));
 
-    copySubMenu->addAction(UIThemeManager::instance()->getIcon(u"name"_qs, u"edit-copy"_qs), tr("Name")
+    copySubMenu->addAction(UIThemeManager::instance()->getIcon(u"name"_s, u"edit-copy"_s), tr("Name")
         , this, &SearchJobWidget::copyTorrentNames);
-    copySubMenu->addAction(UIThemeManager::instance()->getIcon(u"insert-link"_qs, u"edit-copy"_qs), tr("Download link")
+    copySubMenu->addAction(UIThemeManager::instance()->getIcon(u"insert-link"_s, u"edit-copy"_s), tr("Download link")
         , this, &SearchJobWidget::copyTorrentDownloadLinks);
-    copySubMenu->addAction(UIThemeManager::instance()->getIcon(u"application-url"_qs, u"edit-copy"_qs), tr("Description page URL")
+    copySubMenu->addAction(UIThemeManager::instance()->getIcon(u"application-url"_s, u"edit-copy"_s), tr("Description page URL")
         , this, &SearchJobWidget::copyTorrentURLs);
 
     menu->popup(event->globalPos());

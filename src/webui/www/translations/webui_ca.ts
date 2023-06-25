@@ -578,7 +578,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Estat de la connexió</translation>
+        <translation type="vanished">Estat de la connexió</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>

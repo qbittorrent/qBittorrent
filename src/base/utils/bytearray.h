@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2018  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
@@ -41,4 +42,6 @@ namespace Utils::ByteArray
     // Mimic QByteArray::mid(pos, len) but instead of returning a full-copy,
     // we only return a partial view
     const QByteArray midView(const QByteArray &in, int pos, int len = -1);
+
+    QByteArray toBase32(const QByteArray &in);
 }

@@ -111,9 +111,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
 
     // Tracker list
     m_trackerList = new TrackerListWidget(this);
-    m_ui->trackerUpButton->setIcon(UIThemeManager::instance()->getIcon(u"go-up"_qs));
+    m_ui->trackerUpButton->setIcon(UIThemeManager::instance()->getIcon(u"go-up"_s));
     m_ui->trackerUpButton->setIconSize(Utils::Gui::smallIconSize());
-    m_ui->trackerDownButton->setIcon(UIThemeManager::instance()->getIcon(u"go-down"_qs));
+    m_ui->trackerDownButton->setIcon(UIThemeManager::instance()->getIcon(u"go-down"_s));
     m_ui->trackerDownButton->setIconSize(Utils::Gui::smallIconSize());
     connect(m_ui->trackerUpButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::moveSelectionUp);
     connect(m_ui->trackerDownButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::moveSelectionDown);
@@ -512,16 +512,16 @@ void PropertiesWidget::displayWebSeedListMenu()
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_qs), tr("New Web seed"), this, &PropertiesWidget::askWebSeed);
+    menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_s), tr("New Web seed"), this, &PropertiesWidget::askWebSeed);
 
     if (!rows.isEmpty())
     {
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_qs, u"list-remove"_qs), tr("Remove Web seed")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove Web seed")
             , this, &PropertiesWidget::deleteSelectedUrlSeeds);
         menu->addSeparator();
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Copy Web seed URL")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("Copy Web seed URL")
             , this, &PropertiesWidget::copySelectedWebSeedsToClipboard);
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_qs), tr("Edit Web seed URL")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Edit Web seed URL")
             , this, &PropertiesWidget::editWebSeed);
     }
 
@@ -555,7 +555,7 @@ void PropertiesWidget::configure()
                 delete m_speedWidget;
             }
 
-            const auto displayText = u"<center><b>%1</b><p>%2</p></center>"_qs
+            const auto displayText = u"<center><b>%1</b><p>%2</p></center>"_s
                 .arg(tr("Speed graphs are disabled"), tr("You can enable it in Advanced Options"));
             auto *label = new QLabel(displayText, this);
             label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -571,12 +571,12 @@ void PropertiesWidget::askWebSeed()
     // Ask user for a new url seed
     const QString urlSeed = AutoExpandableDialog::getText(this, tr("New URL seed", "New HTTP source"),
                                                            tr("New URL seed:"), QLineEdit::Normal,
-                                                           u"http://www."_qs, &ok);
+                                                           u"http://www."_s, &ok);
     if (!ok) return;
     qDebug("Adding %s web seed", qUtf8Printable(urlSeed));
     if (!m_ui->listWebSeeds->findItems(urlSeed, Qt::MatchFixedString).empty())
     {
-        QMessageBox::warning(this, u"qBittorrent"_qs, tr("This URL seed is already in the list."), QMessageBox::Ok);
+        QMessageBox::warning(this, u"qBittorrent"_s, tr("This URL seed is already in the list."), QMessageBox::Ok);
         return;
     }
     if (m_torrent)
@@ -628,7 +628,7 @@ void PropertiesWidget::editWebSeed()
 
     if (!m_ui->listWebSeeds->findItems(newSeed, Qt::MatchFixedString).empty())
     {
-        QMessageBox::warning(this, u"qBittorrent"_qs,
+        QMessageBox::warning(this, u"qBittorrent"_s,
                              tr("This URL seed is already in the list."),
                              QMessageBox::Ok);
         return;

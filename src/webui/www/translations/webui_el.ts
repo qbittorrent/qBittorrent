@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Κατάσταση σύνδεσης</translation>
+        <translation type="vanished">Κατάσταση σύνδεσης</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>

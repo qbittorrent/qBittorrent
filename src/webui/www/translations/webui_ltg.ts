@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Škārsteikla salaiduma statuss</translation>
+        <translation type="vanished">Škārsteikla salaiduma statuss</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>

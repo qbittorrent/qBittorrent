@@ -42,32 +42,32 @@ namespace
 
     QColor getTimestampColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.TimeStamp"_qs);
+        return UIThemeManager::instance()->getColor(u"Log.TimeStamp"_s);
     }
 
     QColor getLogNormalColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.Normal"_qs);
+        return UIThemeManager::instance()->getColor(u"Log.Normal"_s);
     }
 
     QColor getLogInfoColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.Info"_qs);
+        return UIThemeManager::instance()->getColor(u"Log.Info"_s);
     }
 
     QColor getLogWarningColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.Warning"_qs);
+        return UIThemeManager::instance()->getColor(u"Log.Warning"_s);
     }
 
     QColor getLogCriticalColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.Critical"_qs);
+        return UIThemeManager::instance()->getColor(u"Log.Critical"_s);
     }
 
     QColor getPeerBannedColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.BannedPeer"_qs);
+        return UIThemeManager::instance()->getColor(u"Log.BannedPeer"_s);
     }
 }
 

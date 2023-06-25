@@ -58,70 +58,70 @@ namespace
     const int FREEDISKSPACE_CHECK_TIMEOUT = 30000;
 
     // Sync main data keys
-    const QString KEY_SYNC_MAINDATA_QUEUEING = u"queueing"_qs;
-    const QString KEY_SYNC_MAINDATA_REFRESH_INTERVAL = u"refresh_interval"_qs;
-    const QString KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS = u"use_alt_speed_limits"_qs;
-    const QString KEY_SYNC_MAINDATA_USE_SUBCATEGORIES = u"use_subcategories"_qs;
+    const QString KEY_SYNC_MAINDATA_QUEUEING = u"queueing"_s;
+    const QString KEY_SYNC_MAINDATA_REFRESH_INTERVAL = u"refresh_interval"_s;
+    const QString KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS = u"use_alt_speed_limits"_s;
+    const QString KEY_SYNC_MAINDATA_USE_SUBCATEGORIES = u"use_subcategories"_s;
 
     // Sync torrent peers keys
-    const QString KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS = u"show_flags"_qs;
+    const QString KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS = u"show_flags"_s;
 
     // Peer keys
-    const QString KEY_PEER_CLIENT = u"client"_qs;
-    const QString KEY_PEER_ID_CLIENT = u"peer_id_client"_qs;
-    const QString KEY_PEER_CONNECTION_TYPE = u"connection"_qs;
-    const QString KEY_PEER_COUNTRY = u"country"_qs;
-    const QString KEY_PEER_COUNTRY_CODE = u"country_code"_qs;
-    const QString KEY_PEER_DOWN_SPEED = u"dl_speed"_qs;
-    const QString KEY_PEER_FILES = u"files"_qs;
-    const QString KEY_PEER_FLAGS = u"flags"_qs;
-    const QString KEY_PEER_FLAGS_DESCRIPTION = u"flags_desc"_qs;
-    const QString KEY_PEER_IP = u"ip"_qs;
-    const QString KEY_PEER_PORT = u"port"_qs;
-    const QString KEY_PEER_PROGRESS = u"progress"_qs;
-    const QString KEY_PEER_RELEVANCE = u"relevance"_qs;
-    const QString KEY_PEER_TOT_DOWN = u"downloaded"_qs;
-    const QString KEY_PEER_TOT_UP = u"uploaded"_qs;
-    const QString KEY_PEER_UP_SPEED = u"up_speed"_qs;
+    const QString KEY_PEER_CLIENT = u"client"_s;
+    const QString KEY_PEER_ID_CLIENT = u"peer_id_client"_s;
+    const QString KEY_PEER_CONNECTION_TYPE = u"connection"_s;
+    const QString KEY_PEER_COUNTRY = u"country"_s;
+    const QString KEY_PEER_COUNTRY_CODE = u"country_code"_s;
+    const QString KEY_PEER_DOWN_SPEED = u"dl_speed"_s;
+    const QString KEY_PEER_FILES = u"files"_s;
+    const QString KEY_PEER_FLAGS = u"flags"_s;
+    const QString KEY_PEER_FLAGS_DESCRIPTION = u"flags_desc"_s;
+    const QString KEY_PEER_IP = u"ip"_s;
+    const QString KEY_PEER_PORT = u"port"_s;
+    const QString KEY_PEER_PROGRESS = u"progress"_s;
+    const QString KEY_PEER_RELEVANCE = u"relevance"_s;
+    const QString KEY_PEER_TOT_DOWN = u"downloaded"_s;
+    const QString KEY_PEER_TOT_UP = u"uploaded"_s;
+    const QString KEY_PEER_UP_SPEED = u"up_speed"_s;
 
     // TransferInfo keys
-    const QString KEY_TRANSFER_CONNECTION_STATUS = u"connection_status"_qs;
-    const QString KEY_TRANSFER_DHT_NODES = u"dht_nodes"_qs;
-    const QString KEY_TRANSFER_DLDATA = u"dl_info_data"_qs;
-    const QString KEY_TRANSFER_DLRATELIMIT = u"dl_rate_limit"_qs;
-    const QString KEY_TRANSFER_DLSPEED = u"dl_info_speed"_qs;
-    const QString KEY_TRANSFER_FREESPACEONDISK = u"free_space_on_disk"_qs;
-    const QString KEY_TRANSFER_UPDATA = u"up_info_data"_qs;
-    const QString KEY_TRANSFER_UPRATELIMIT = u"up_rate_limit"_qs;
-    const QString KEY_TRANSFER_UPSPEED = u"up_info_speed"_qs;
+    const QString KEY_TRANSFER_CONNECTION_STATUS = u"connection_status"_s;
+    const QString KEY_TRANSFER_DHT_NODES = u"dht_nodes"_s;
+    const QString KEY_TRANSFER_DLDATA = u"dl_info_data"_s;
+    const QString KEY_TRANSFER_DLRATELIMIT = u"dl_rate_limit"_s;
+    const QString KEY_TRANSFER_DLSPEED = u"dl_info_speed"_s;
+    const QString KEY_TRANSFER_FREESPACEONDISK = u"free_space_on_disk"_s;
+    const QString KEY_TRANSFER_UPDATA = u"up_info_data"_s;
+    const QString KEY_TRANSFER_UPRATELIMIT = u"up_rate_limit"_s;
+    const QString KEY_TRANSFER_UPSPEED = u"up_info_speed"_s;
 
     // Statistics keys
-    const QString KEY_TRANSFER_ALLTIME_DL = u"alltime_dl"_qs;
-    const QString KEY_TRANSFER_ALLTIME_UL = u"alltime_ul"_qs;
-    const QString KEY_TRANSFER_AVERAGE_TIME_QUEUE = u"average_time_queue"_qs;
-    const QString KEY_TRANSFER_GLOBAL_RATIO = u"global_ratio"_qs;
-    const QString KEY_TRANSFER_QUEUED_IO_JOBS = u"queued_io_jobs"_qs;
-    const QString KEY_TRANSFER_READ_CACHE_HITS = u"read_cache_hits"_qs;
-    const QString KEY_TRANSFER_READ_CACHE_OVERLOAD = u"read_cache_overload"_qs;
-    const QString KEY_TRANSFER_TOTAL_BUFFERS_SIZE = u"total_buffers_size"_qs;
-    const QString KEY_TRANSFER_TOTAL_PEER_CONNECTIONS = u"total_peer_connections"_qs;
-    const QString KEY_TRANSFER_TOTAL_QUEUED_SIZE = u"total_queued_size"_qs;
-    const QString KEY_TRANSFER_TOTAL_WASTE_SESSION = u"total_wasted_session"_qs;
-    const QString KEY_TRANSFER_WRITE_CACHE_OVERLOAD = u"write_cache_overload"_qs;
+    const QString KEY_TRANSFER_ALLTIME_DL = u"alltime_dl"_s;
+    const QString KEY_TRANSFER_ALLTIME_UL = u"alltime_ul"_s;
+    const QString KEY_TRANSFER_AVERAGE_TIME_QUEUE = u"average_time_queue"_s;
+    const QString KEY_TRANSFER_GLOBAL_RATIO = u"global_ratio"_s;
+    const QString KEY_TRANSFER_QUEUED_IO_JOBS = u"queued_io_jobs"_s;
+    const QString KEY_TRANSFER_READ_CACHE_HITS = u"read_cache_hits"_s;
+    const QString KEY_TRANSFER_READ_CACHE_OVERLOAD = u"read_cache_overload"_s;
+    const QString KEY_TRANSFER_TOTAL_BUFFERS_SIZE = u"total_buffers_size"_s;
+    const QString KEY_TRANSFER_TOTAL_PEER_CONNECTIONS = u"total_peer_connections"_s;
+    const QString KEY_TRANSFER_TOTAL_QUEUED_SIZE = u"total_queued_size"_s;
+    const QString KEY_TRANSFER_TOTAL_WASTE_SESSION = u"total_wasted_session"_s;
+    const QString KEY_TRANSFER_WRITE_CACHE_OVERLOAD = u"write_cache_overload"_s;
 
-    const QString KEY_SUFFIX_REMOVED = u"_removed"_qs;
+    const QString KEY_SUFFIX_REMOVED = u"_removed"_s;
 
-    const QString KEY_CATEGORIES = u"categories"_qs;
+    const QString KEY_CATEGORIES = u"categories"_s;
     const QString KEY_CATEGORIES_REMOVED = KEY_CATEGORIES + KEY_SUFFIX_REMOVED;
-    const QString KEY_TAGS = u"tags"_qs;
+    const QString KEY_TAGS = u"tags"_s;
     const QString KEY_TAGS_REMOVED = KEY_TAGS + KEY_SUFFIX_REMOVED;
-    const QString KEY_TORRENTS = u"torrents"_qs;
+    const QString KEY_TORRENTS = u"torrents"_s;
     const QString KEY_TORRENTS_REMOVED = KEY_TORRENTS + KEY_SUFFIX_REMOVED;
-    const QString KEY_TRACKERS = u"trackers"_qs;
+    const QString KEY_TRACKERS = u"trackers"_s;
     const QString KEY_TRACKERS_REMOVED = KEY_TRACKERS + KEY_SUFFIX_REMOVED;
-    const QString KEY_SERVER_STATE = u"server_state"_qs;
-    const QString KEY_FULL_UPDATE = u"full_update"_qs;
-    const QString KEY_RESPONSE_ID = u"rid"_qs;
+    const QString KEY_SERVER_STATE = u"server_state"_s;
+    const QString KEY_FULL_UPDATE = u"full_update"_s;
+    const QString KEY_RESPONSE_ID = u"rid"_s;
 
     void processMap(const QVariantMap &prevData, const QVariantMap &data, QVariantMap &syncData);
     void processHash(QVariantHash prevData, const QVariantHash &data, QVariantMap &syncData, QVariantList &removedItems);
@@ -147,19 +147,19 @@ namespace
         map[KEY_TRANSFER_ALLTIME_DL] = atd;
         map[KEY_TRANSFER_ALLTIME_UL] = atu;
         map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted;
-        map[KEY_TRANSFER_GLOBAL_RATIO] = ((atd > 0) && (atu > 0)) ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2) : u"-"_qs;
+        map[KEY_TRANSFER_GLOBAL_RATIO] = ((atd > 0) && (atu > 0)) ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2) : u"-"_s;
         map[KEY_TRANSFER_TOTAL_PEER_CONNECTIONS] = sessionStatus.peersCount;
 
         const qreal readRatio = cacheStatus.readRatio;  // TODO: remove when LIBTORRENT_VERSION_NUM >= 20000
-        map[KEY_TRANSFER_READ_CACHE_HITS] = (readRatio > 0) ? Utils::String::fromDouble(100 * readRatio, 2) : u"0"_qs;
+        map[KEY_TRANSFER_READ_CACHE_HITS] = (readRatio > 0) ? Utils::String::fromDouble(100 * readRatio, 2) : u"0"_s;
         map[KEY_TRANSFER_TOTAL_BUFFERS_SIZE] = cacheStatus.totalUsedBuffers * 16 * 1024;
 
         map[KEY_TRANSFER_WRITE_CACHE_OVERLOAD] = ((sessionStatus.diskWriteQueue > 0) && (sessionStatus.peersCount > 0))
             ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue / sessionStatus.peersCount), 2)
-            : u"0"_qs;
+            : u"0"_s;
         map[KEY_TRANSFER_READ_CACHE_OVERLOAD] = ((sessionStatus.diskReadQueue > 0) && (sessionStatus.peersCount > 0))
             ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue / sessionStatus.peersCount), 2)
-            : u"0"_qs;
+            : u"0"_s;
 
         map[KEY_TRANSFER_QUEUED_IO_JOBS] = cacheStatus.jobQueueLength;
         map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime;
@@ -167,8 +167,8 @@ namespace
 
         map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes;
         map[KEY_TRANSFER_CONNECTION_STATUS] = session->isListening()
-            ? (sessionStatus.hasIncomingConnections ? u"connected"_qs : u"firewalled"_qs)
-            : u"disconnected"_qs;
+            ? (sessionStatus.hasIncomingConnections ? u"connected"_s : u"firewalled"_s)
+            : u"disconnected"_s;
 
         return map;
     }
@@ -231,7 +231,7 @@ namespace
                 break;
             default:
                 Q_ASSERT_X(false, "processMap"
-                           , u"Unexpected type: %1"_qs
+                           , u"Unexpected type: %1"_s
                            .arg(QString::fromLatin1(QMetaType::typeName(static_cast<QMetaType::Type>(value.type()))))
                            .toUtf8().constData());
             }
@@ -485,7 +485,7 @@ void SyncController::maindataAction()
         connect(btSession, &BitTorrent::Session::trackersChanged, this, &SyncController::onTorrentTrackersChanged);
     }
 
-    const int acceptedID = params()[u"rid"_qs].toInt();
+    const int acceptedID = params()[u"rid"_s].toInt();
     bool fullUpdate = true;
     if ((acceptedID > 0) && (m_maindataLastSentID > 0))
     {
@@ -534,8 +534,8 @@ void SyncController::makeMaindataSnapshot()
         const BitTorrent::CategoryOptions categoryOptions = session->categoryOptions(categoryName);
         QJsonObject category = categoryOptions.toJSON();
         // adjust it to be compatible with existing WebAPI
-        category[u"savePath"_qs] = category.take(u"save_path"_qs);
-        category.insert(u"name"_qs, categoryName);
+        category[u"savePath"_s] = category.take(u"save_path"_s);
+        category.insert(u"name"_s, categoryName);
         m_maindataSnapshot.categories[categoryName] = category.toVariantMap();
     }
 
@@ -589,8 +589,8 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
         const BitTorrent::CategoryOptions categoryOptions = session->categoryOptions(categoryName);
         auto category = categoryOptions.toJSON().toVariantMap();
         // adjust it to be compatible with existing WebAPI
-        category[u"savePath"_qs] = category.take(u"save_path"_qs);
-        category.insert(u"name"_qs, categoryName);
+        category[u"savePath"_s] = category.take(u"save_path"_s);
+        category.insert(u"name"_s, categoryName);
 
         auto &categorySnapshot = m_maindataSnapshot.categories[categoryName];
         processMap(categorySnapshot, category, m_maindataSyncBuf.categories[categoryName]);
@@ -723,7 +723,7 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
 //   - rid (int): last response id
 void SyncController::torrentPeersAction()
 {
-    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
     const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
@@ -776,9 +776,9 @@ void SyncController::torrentPeersAction()
 
         peers[pi.address().toString()] = peer;
     }
-    data[u"peers"_qs] = peers;
+    data[u"peers"_s] = peers;
 
-    const int acceptedResponseId = params()[u"rid"_qs].toInt();
+    const int acceptedResponseId = params()[u"rid"_s].toInt();
     setResult(generateSyncData(acceptedResponseId, data, m_lastAcceptedPeersResponse, m_lastPeersResponse));
 }
 

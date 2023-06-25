@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Холболтын төлөв</translation>
+        <translation type="vanished">Холболтын төлөв</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>

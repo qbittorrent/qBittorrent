@@ -31,7 +31,9 @@
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
 
+#include <QCoreApplication>
 #include <QByteArray>
+#include <QFile>
 #include <QFileDevice>
 #include <QSaveFile>
 #include <QString>
@@ -67,6 +69,36 @@ Utils::IO::FileDeviceOutputIterator &Utils::IO::FileDeviceOutputIterator::operat
         m_buffer->clear();
     }
     return *this;
+}
+
+nonstd::expected<QByteArray, Utils::IO::ReadError> Utils::IO::readFile(const Path &path, const qint64 maxSize, const QIODevice::OpenMode additionalMode)
+{
+    QFile file {path.data()};
+    if (!file.open(QIODevice::ReadOnly | additionalMode))
+    {
+        const QString message = QCoreApplication::translate("Utils::IO", "File open error. File: \"%1\". Error: \"%2\"")
+            .arg(file.fileName(), file.errorString());
+        return nonstd::make_unexpected(ReadError {ReadError::NotExist, message});
+    }
+
+    const qint64 fileSize = file.size();
+    if ((maxSize >= 0) && (fileSize > maxSize))
+    {
+        const QString message = QCoreApplication::translate("Utils::IO", "File size exceeds limit. File: \"%1\". File size: %2. Size limit: %3")
+            .arg(file.fileName(), QString::number(fileSize), QString::number(maxSize));
+        return nonstd::make_unexpected(ReadError {ReadError::ExceedSize, message});
+    }
+
+    // Do not use `QIODevice::readAll()` it won't stop when reading `/dev/zero`
+    const QByteArray data = file.read(fileSize);
+    if (const qint64 dataSize = data.size(); dataSize != fileSize)
+    {
+        const QString message = QCoreApplication::translate("Utils::IO", "Read size mismatch. File: \"%1\". Expected: %2. Actual: %3")
+            .arg(file.fileName(), QString::number(fileSize), QString::number(dataSize));
+        return nonstd::make_unexpected(ReadError {ReadError::SizeMismatch, message});
+    }
+
+    return data;
 }
 
 nonstd::expected<void, QString> Utils::IO::saveToFile(const Path &path, const QByteArray &data)

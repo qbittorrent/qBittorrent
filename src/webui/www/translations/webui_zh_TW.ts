@@ -361,7 +361,7 @@
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation>無法新增 peers。請確保您遵循 IP:連接埠號 格式。</translation>
+        <translation>無法新增節點。請確認您遵循 IP:連接埠 格式。</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>連線狀態</translation>
+        <translation type="vanished">連線狀態</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
@@ -2924,7 +2924,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>confirmDeletionDlg</name>
     <message>
         <source>Also permanently delete the files</source>
-        <translation>並永久刪除檔案</translation>
+        <translation>同時永久刪除檔案</translation>
     </message>
     <message>
         <source>Remove torrent(s)</source>
@@ -3033,7 +3033,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Plugin path:</source>
-        <translation>外掛路徑：</translation>
+        <translation>附加元件路徑：</translation>
     </message>
     <message>
         <source>URL or local directory</source>
@@ -3041,7 +3041,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Install plugin</source>
-        <translation>安裝外掛</translation>
+        <translation>安裝附加元件</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -3056,7 +3056,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>All plugins</source>
-        <translation>所有外掛</translation>
+        <translation>所有附加元件</translation>
     </message>
     <message>
         <source>Size:</source>
@@ -3072,7 +3072,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search plugins...</source>
-        <translation>搜尋外掛…</translation>
+        <translation>搜尋附加元件…</translation>
     </message>
     <message>
         <source>All categories</source>
@@ -3124,11 +3124,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>點擊視窗右下角的「搜尋外掛程式...」按鈕來安裝一些。</translation>
+        <translation>點選視窗右下角的「搜尋附加元件…」按鈕來安裝一些吧。</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
-        <translation>沒有安裝任何搜尋外掛程式。</translation>
+        <translation>沒有安裝任何搜尋附加元件。</translation>
     </message>
 </context>
 <context>
@@ -3139,11 +3139,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Install new plugin</source>
-        <translation>安裝新的外掛</translation>
+        <translation>安裝新的附加元件</translation>
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
-        <translation>您可以在這裡取得新的搜尋引擎外掛：</translation>
+        <translation>您可以在這裡取得新的搜尋引擎附加元件：</translation>
     </message>
     <message>
         <source>Close</source>
@@ -3151,7 +3151,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Installed search plugins:</source>
-        <translation>已安裝的搜尋外掛：</translation>
+        <translation>已安裝的搜尋附加元件：</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -3167,7 +3167,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search plugins</source>
-        <translation>搜尋外掛</translation>
+        <translation>搜尋附加元件</translation>
     </message>
 </context>
 <context>
@@ -3652,7 +3652,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation>您確定要移除所選的下載規則嗎？</translation>
+        <translation>您確定要移除選取的下載規則嗎？</translation>
     </message>
     <message>
         <source>Use global settings</source>

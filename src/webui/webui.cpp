@@ -28,14 +28,13 @@
 
 #include "webui.h"
 
-#include <QFile>
-
 #include "base/http/server.h"
 #include "base/logger.h"
 #include "base/net/dnsupdater.h"
 #include "base/net/portforwarder.h"
 #include "base/path.h"
 #include "base/preferences.h"
+#include "base/utils/io.h"
 #include "base/utils/net.h"
 #include "webapplication.h"
 
@@ -50,7 +49,7 @@ void WebUI::configure()
 {
     m_isErrored = false; // clear previous error state
 
-    const QString portForwardingProfile = u"webui"_qs;
+    const QString portForwardingProfile = u"webui"_s;
     const Preferences *pref = Preferences::instance();
     const quint16 port = pref->getWebUiPort();
 
@@ -85,10 +84,8 @@ void WebUI::configure()
         {
             const auto readData = [](const Path &path) -> QByteArray
             {
-                QFile file {path.data()};
-                if (!file.open(QIODevice::ReadOnly))
-                    return {};
-                return file.read(Utils::Net::MAX_SSL_FILE_SIZE);
+                const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
+                return readResult.value_or(QByteArray());
             };
             const QByteArray cert = readData(pref->getWebUIHttpsCertificatePath());
             const QByteArray key = readData(pref->getWebUIHttpsKeyPath());

@@ -59,8 +59,8 @@ namespace
     {
         QJsonArray categoriesInfo
         {QJsonObject {
-            {u"id"_qs, u"all"_qs},
-            {u"name"_qs, SearchPluginManager::categoryFullName(u"all"_qs)}
+            {u"id"_s, u"all"_s},
+            {u"name"_s, SearchPluginManager::categoryFullName(u"all"_s)}
         }};
 
         categories.sort(Qt::CaseInsensitive);
@@ -68,8 +68,8 @@ namespace
         {
             categoriesInfo << QJsonObject
             {
-                {u"id"_qs, category},
-                {u"name"_qs, SearchPluginManager::categoryFullName(category)}
+                {u"id"_s, category},
+                {u"name"_s, SearchPluginManager::categoryFullName(category)}
             };
         }
 
@@ -79,14 +79,14 @@ namespace
 
 void SearchController::startAction()
 {
-    requireParams({u"pattern"_qs, u"category"_qs, u"plugins"_qs});
+    requireParams({u"pattern"_s, u"category"_s, u"plugins"_s});
 
     if (!Utils::ForeignApps::pythonInfo().isValid())
         throw APIError(APIErrorType::Conflict, tr("Python must be installed to use the Search Engine."));
 
-    const QString pattern = params()[u"pattern"_qs].trimmed();
-    const QString category = params()[u"category"_qs].trimmed();
-    const QStringList plugins = params()[u"plugins"_qs].split(u'|');
+    const QString pattern = params()[u"pattern"_s].trimmed();
+    const QString category = params()[u"category"_s].trimmed();
+    const QStringList plugins = params()[u"plugins"_s].split(u'|');
 
     QStringList pluginsToUse;
     if (plugins.size() == 1)
@@ -116,15 +116,15 @@ void SearchController::startAction()
 
     m_activeSearches.insert(id);
 
-    const QJsonObject result = {{u"id"_qs, id}};
+    const QJsonObject result = {{u"id"_s, id}};
     setResult(result);
 }
 
 void SearchController::stopAction()
 {
-    requireParams({u"id"_qs});
+    requireParams({u"id"_s});
 
-    const int id = params()[u"id"_qs].toInt();
+    const int id = params()[u"id"_s].toInt();
 
     const auto iter = m_searchHandlers.find(id);
     if (iter == m_searchHandlers.end())
@@ -141,7 +141,7 @@ void SearchController::stopAction()
 
 void SearchController::statusAction()
 {
-    const int id = params()[u"id"_qs].toInt();
+    const int id = params()[u"id"_s].toInt();
 
     if ((id != 0) && !m_searchHandlers.contains(id))
         throw APIError(APIErrorType::NotFound);
@@ -154,9 +154,9 @@ void SearchController::statusAction()
         const std::shared_ptr<SearchHandler> &searchHandler = m_searchHandlers[searchId];
         statusArray << QJsonObject
         {
-            {u"id"_qs, searchId},
-            {u"status"_qs, searchHandler->isActive() ? u"Running"_qs : u"Stopped"_qs},
-            {u"total"_qs, searchHandler->results().size()}
+            {u"id"_s, searchId},
+            {u"status"_s, searchHandler->isActive() ? u"Running"_s : u"Stopped"_s},
+            {u"total"_s, searchHandler->results().size()}
         };
     }
 
@@ -165,11 +165,11 @@ void SearchController::statusAction()
 
 void SearchController::resultsAction()
 {
-    requireParams({u"id"_qs});
+    requireParams({u"id"_s});
 
-    const int id = params()[u"id"_qs].toInt();
-    int limit = params()[u"limit"_qs].toInt();
-    int offset = params()[u"offset"_qs].toInt();
+    const int id = params()[u"id"_s].toInt();
+    int limit = params()[u"limit"_s].toInt();
+    int offset = params()[u"offset"_s].toInt();
 
     const auto iter = m_searchHandlers.find(id);
     if (iter == m_searchHandlers.end())
@@ -198,9 +198,9 @@ void SearchController::resultsAction()
 
 void SearchController::deleteAction()
 {
-    requireParams({u"id"_qs});
+    requireParams({u"id"_s});
 
-    const int id = params()[u"id"_qs].toInt();
+    const int id = params()[u"id"_s].toInt();
 
     const auto iter = m_searchHandlers.find(id);
     if (iter == m_searchHandlers.end())
@@ -220,28 +220,28 @@ void SearchController::pluginsAction()
 
 void SearchController::installPluginAction()
 {
-    requireParams({u"sources"_qs});
+    requireParams({u"sources"_s});
 
-    const QStringList sources = params()[u"sources"_qs].split(u'|');
+    const QStringList sources = params()[u"sources"_s].split(u'|');
     for (const QString &source : sources)
         SearchPluginManager::instance()->installPlugin(source);
 }
 
 void SearchController::uninstallPluginAction()
 {
-    requireParams({u"names"_qs});
+    requireParams({u"names"_s});
 
-    const QStringList names = params()[u"names"_qs].split(u'|');
+    const QStringList names = params()[u"names"_s].split(u'|');
     for (const QString &name : names)
         SearchPluginManager::instance()->uninstallPlugin(name.trimmed());
 }
 
 void SearchController::enablePluginAction()
 {
-    requireParams({u"names"_qs, u"enable"_qs});
+    requireParams({u"names"_s, u"enable"_s});
 
-    const QStringList names = params()[u"names"_qs].split(u'|');
-    const bool enable = Utils::String::parseBool(params()[u"enable"_qs].trimmed()).value_or(false);
+    const QStringList names = params()[u"names"_s].split(u'|');
+    const bool enable = Utils::String::parseBool(params()[u"enable"_s].trimmed()).value_or(false);
 
     for (const QString &name : names)
         SearchPluginManager::instance()->enablePlugin(name.trimmed(), enable);
@@ -309,21 +309,21 @@ QJsonObject SearchController::getResults(const QList<SearchResult> &searchResult
     {
         searchResultsArray << QJsonObject
         {
-            {u"fileName"_qs, searchResult.fileName},
-            {u"fileUrl"_qs, searchResult.fileUrl},
-            {u"fileSize"_qs, searchResult.fileSize},
-            {u"nbSeeders"_qs, searchResult.nbSeeders},
-            {u"nbLeechers"_qs, searchResult.nbLeechers},
-            {u"siteUrl"_qs, searchResult.siteUrl},
-            {u"descrLink"_qs, searchResult.descrLink}
+            {u"fileName"_s, searchResult.fileName},
+            {u"fileUrl"_s, searchResult.fileUrl},
+            {u"fileSize"_s, searchResult.fileSize},
+            {u"nbSeeders"_s, searchResult.nbSeeders},
+            {u"nbLeechers"_s, searchResult.nbLeechers},
+            {u"siteUrl"_s, searchResult.siteUrl},
+            {u"descrLink"_s, searchResult.descrLink}
         };
     }
 
     const QJsonObject result =
     {
-        {u"status"_qs, isSearchActive ? u"Running"_qs : u"Stopped"_qs},
-        {u"results"_qs, searchResultsArray},
-        {u"total"_qs, totalResults}
+        {u"status"_s, isSearchActive ? u"Running"_s : u"Stopped"_s},
+        {u"results"_s, searchResultsArray},
+        {u"total"_s, totalResults}
     };
 
     return result;
@@ -352,12 +352,12 @@ QJsonArray SearchController::getPluginsInfo(const QStringList &plugins) const
 
         pluginsArray << QJsonObject
         {
-            {u"name"_qs, pluginInfo->name},
-            {u"version"_qs, pluginInfo->version.toString()},
-            {u"fullName"_qs, pluginInfo->fullName},
-            {u"url"_qs, pluginInfo->url},
-            {u"supportedCategories"_qs, getPluginCategories(pluginInfo->supportedCategories)},
-            {u"enabled"_qs, pluginInfo->enabled}
+            {u"name"_s, pluginInfo->name},
+            {u"version"_s, pluginInfo->version.toString()},
+            {u"fullName"_s, pluginInfo->fullName},
+            {u"url"_s, pluginInfo->url},
+            {u"supportedCategories"_s, getPluginCategories(pluginInfo->supportedCategories)},
+            {u"enabled"_s, pluginInfo->enabled}
         };
     }
 

@@ -48,7 +48,7 @@ namespace
 {
     QString makeLink(const QStringView url, const QStringView linkLabel)
     {
-         return u"<a href=\"%1\">%2</a>"_qs.arg(url, linkLabel);
+         return u"<a href=\"%1\">%2</a>"_s.arg(url, linkLabel);
     }
 
     enum AdvSettingsCols
@@ -153,6 +153,12 @@ namespace
         PEER_TURNOVER_CUTOFF,
         PEER_TURNOVER_INTERVAL,
         REQUEST_QUEUE_SIZE,
+#if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
+        I2P_INBOUND_QUANTITY,
+        I2P_OUTBOUND_QUANTITY,
+        I2P_INBOUND_LENGTH,
+        I2P_OUTBOUND_LENGTH,
+#endif
 
         ROW_COUNT
     };
@@ -319,6 +325,13 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setPeerTurnoverInterval(m_spinBoxPeerTurnoverInterval.value());
     // Maximum outstanding requests to a single peer
     session->setRequestQueueSize(m_spinBoxRequestQueueSize.value());
+#if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
+    // I2P session options
+    session->setI2PInboundQuantity(m_spinBoxI2PInboundQuantity.value());
+    session->setI2POutboundQuantity(m_spinBoxI2POutboundQuantity.value());
+    session->setI2PInboundLength(m_spinBoxI2PInboundLength.value());
+    session->setI2POutboundLength(m_spinBoxI2POutboundLength.value());
+#endif
 }
 
 #ifndef QBT_USES_LIBTORRENT2
@@ -411,7 +424,7 @@ void AdvancedSettings::loadAdvancedSettings()
                  , tr("Open documentation"))
         , this);
     labelQbtLink->setOpenExternalLinks(true);
-    addRow(QBITTORRENT_HEADER, u"<b>%1</b>"_qs.arg(tr("qBittorrent Section")), labelQbtLink);
+    addRow(QBITTORRENT_HEADER, u"<b>%1</b>"_s.arg(tr("qBittorrent Section")), labelQbtLink);
     static_cast<QLabel *>(cellWidget(QBITTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
     auto *labelLibtorrentLink = new QLabel(
@@ -419,7 +432,7 @@ void AdvancedSettings::loadAdvancedSettings()
                  , tr("Open documentation"))
         , this);
     labelLibtorrentLink->setOpenExternalLinks(true);
-    addRow(LIBTORRENT_HEADER, u"<b>%1</b>"_qs.arg(tr("libtorrent Section")), labelLibtorrentLink);
+    addRow(LIBTORRENT_HEADER, u"<b>%1</b>"_s.arg(tr("libtorrent Section")), labelLibtorrentLink);
     static_cast<QLabel *>(cellWidget(LIBTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
     m_comboBoxResumeDataStorage.addItem(tr("Fastresume files"), QVariant::fromValue(BitTorrent::ResumeDataStorageType::Legacy));
@@ -567,7 +580,7 @@ void AdvancedSettings::loadAdvancedSettings()
             , &m_spinBoxSendBufferLowWatermark);
     m_spinBoxSendBufferWatermarkFactor.setMinimum(1);
     m_spinBoxSendBufferWatermarkFactor.setMaximum(std::numeric_limits<int>::max());
-    m_spinBoxSendBufferWatermarkFactor.setSuffix(u" %"_qs);
+    m_spinBoxSendBufferWatermarkFactor.setSuffix(u" %"_s);
     m_spinBoxSendBufferWatermarkFactor.setValue(session->sendBufferWatermarkFactor());
     addRow(SEND_BUF_WATERMARK_FACTOR, (tr("Send buffer watermark factor") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#send_buffer_watermark_factor", u"(?)"))
             , &m_spinBoxSendBufferWatermarkFactor);
@@ -805,12 +818,12 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxPeerTurnover.setMinimum(0);
     m_spinBoxPeerTurnover.setMaximum(100);
     m_spinBoxPeerTurnover.setValue(session->peerTurnover());
-    m_spinBoxPeerTurnover.setSuffix(u" %"_qs);
+    m_spinBoxPeerTurnover.setSuffix(u" %"_s);
     addRow(PEER_TURNOVER, (tr("Peer turnover disconnect percentage") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#peer_turnover", u"(?)"))
             , &m_spinBoxPeerTurnover);
     m_spinBoxPeerTurnoverCutoff.setMinimum(0);
     m_spinBoxPeerTurnoverCutoff.setMaximum(100);
-    m_spinBoxPeerTurnoverCutoff.setSuffix(u" %"_qs);
+    m_spinBoxPeerTurnoverCutoff.setSuffix(u" %"_s);
     m_spinBoxPeerTurnoverCutoff.setValue(session->peerTurnoverCutoff());
     addRow(PEER_TURNOVER_CUTOFF, (tr("Peer turnover threshold percentage") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#peer_turnover", u"(?)"))
             , &m_spinBoxPeerTurnoverCutoff);
@@ -826,6 +839,28 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxRequestQueueSize.setValue(session->requestQueueSize());
     addRow(REQUEST_QUEUE_SIZE, (tr("Maximum outstanding requests to a single peer") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#max_out_request_queue", u"(?)"))
             , &m_spinBoxRequestQueueSize);
+#if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
+    m_spinBoxI2PInboundQuantity.setMinimum(1);
+    m_spinBoxI2PInboundQuantity.setMaximum(16);
+    m_spinBoxI2PInboundQuantity.setValue(session->I2PInboundQuantity());
+    addRow(I2P_INBOUND_QUANTITY, (tr("I2P inbound quantity") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#i2p_inbound_quantity", u"(?)"))
+        , &m_spinBoxI2PInboundQuantity);
+    m_spinBoxI2POutboundQuantity.setMinimum(1);
+    m_spinBoxI2POutboundQuantity.setMaximum(16);
+    m_spinBoxI2POutboundQuantity.setValue(session->I2POutboundQuantity());
+    addRow(I2P_OUTBOUND_QUANTITY, (tr("I2P outbound quantity") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#i2p_outbound_quantity", u"(?)"))
+        , &m_spinBoxI2POutboundQuantity);
+    m_spinBoxI2PInboundLength.setMinimum(0);
+    m_spinBoxI2PInboundLength.setMaximum(7);
+    m_spinBoxI2PInboundLength.setValue(session->I2PInboundLength());
+    addRow(I2P_INBOUND_LENGTH, (tr("I2P inbound length") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#i2p_inbound_length", u"(?)"))
+        , &m_spinBoxI2PInboundLength);
+    m_spinBoxI2POutboundLength.setMinimum(0);
+    m_spinBoxI2POutboundLength.setMaximum(7);
+    m_spinBoxI2POutboundLength.setValue(session->I2POutboundLength());
+    addRow(I2P_OUTBOUND_LENGTH, (tr("I2P outbound length") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#i2p_outbound_length", u"(?)"))
+        , &m_spinBoxI2POutboundLength);
+#endif
 }
 
 template <typename T>

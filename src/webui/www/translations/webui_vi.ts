@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Trạng thái kết nối</translation>
+        <translation type="vanished">Trạng thái kết nối</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
