@@ -26,6 +26,7 @@
  * exception statement from your version.
  */
 
+#include <QBuffer>
 #include <QObject>
 #include <QTest>
 
@@ -49,6 +50,9 @@ private slots:
         bool ok = false;
         const QByteArray compressedData = Utils::Gzip::compress(data, 6, &ok);
         QVERIFY(ok);
+
+        const QByteArray compressedData_s1 = Utils::Gzip::compress(data, 6);
+        QVERIFY(!compressedData_s1.isEmpty());
     }
 
     void testDecompress() const
@@ -64,6 +68,80 @@ private slots:
         const QByteArray decompressedData = Utils::Gzip::decompress(compressedData, &ok);
         QVERIFY(ok);
         QCOMPARE(decompressedData, data);
+
+        const QByteArray decompressedData_s1 = Utils::Gzip::decompress(compressedData);
+        QCOMPARE(decompressedData_s1, data);
+    }
+
+    void testCompressQIODevice() const
+    {
+        const QByteArray data = QByteArrayLiteral("abc");
+        bool ok = false;
+
+        QBuffer inBuff;
+        inBuff.setData(data);
+        inBuff.open(QIODevice::ReadOnly);
+        QBuffer outBuff;
+        outBuff.open(QIODevice::WriteOnly);
+        ok = Utils::Gzip::compress(inBuff, outBuff, 6);
+        inBuff.close();
+        outBuff.close();
+        QVERIFY(ok);
+
+        QFile file {};
+        outBuff.open(QIODevice::WriteOnly);
+        ok = Utils::Gzip::compress(file, outBuff, 6);
+        outBuff.close();
+        QVERIFY(!ok);
+
+        inBuff.open(QIODevice::ReadOnly);
+        ok = Utils::Gzip::compress(inBuff, file, 6);
+        inBuff.close();
+        QVERIFY(!ok);
+
+        ok = Utils::Gzip::compress(file, file, 6);
+        QVERIFY(!ok);
+    }
+
+    void testDecompressQIODevice() const
+    {
+        const QByteArray data = QByteArrayLiteral("abc");
+        bool ok = false;
+
+        QBuffer inBuff;
+        inBuff.setData(data);
+        inBuff.open(QIODevice::ReadOnly);
+        QBuffer outBuff;
+        outBuff.open(QIODevice::WriteOnly);
+        ok = Utils::Gzip::compress(inBuff, outBuff, 6);
+        const QByteArray compressedData = outBuff.data();
+        inBuff.close();
+        outBuff.close();
+        QVERIFY(ok);
+
+        inBuff.setData(compressedData);
+        inBuff.open(QIODevice::ReadOnly);
+        outBuff.buffer().clear();
+        outBuff.open(QIODevice::WriteOnly);
+        ok = Utils::Gzip::decompress(inBuff, outBuff);
+        inBuff.close();
+        outBuff.close();
+        QVERIFY(ok);
+        QCOMPARE(data, outBuff.data());
+
+        QFile file {};
+        outBuff.open(QIODevice::WriteOnly);
+        ok = Utils::Gzip::decompress(file, outBuff);
+        outBuff.close();
+        QVERIFY(!ok);
+
+        inBuff.open(QIODevice::ReadOnly);
+        ok = Utils::Gzip::decompress(inBuff, file);
+        inBuff.close();
+        QVERIFY(!ok);
+
+        ok = Utils::Gzip::decompress(file, file);
+        QVERIFY(!ok);
     }
 };
 
