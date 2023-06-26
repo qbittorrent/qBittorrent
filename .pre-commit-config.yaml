@@ -81,3 +81,28 @@ repos:
         )$
       exclude_types:
         - ts
+
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.15.5
+    hooks:
+    - id: typos
+      name: Check spelling (typos)
+      args: ["--config", ".github/workflows/helper/pre-commit/.typos.toml"]
+      exclude: |
+        (?x)^(
+          .*\.asc |
+          .*\.desktop |
+          .*\.qrc |
+          \.pre-commit-config\.yaml |
+          build-aux/.* |
+          Changelog |
+          configure.* |
+          dist/windows/installer-translations/.* |
+          m4/.* |
+          src/base/3rdparty/.* |
+          src/searchengine/nova3/socks.py |
+          src/webui/www/private/scripts/lib/.*
+        )$
+      exclude_types:
+        - svg
+        - ts
