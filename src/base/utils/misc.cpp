@@ -385,16 +385,19 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
         return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days), QString::number(hours));
     }
 
-    qlonglong weeks = (days / 7);
+    qlonglong months = (days / 30);
     if (days < 365)
     {
-        days -= (weeks * 7);
-        return QCoreApplication::translate("misc", "%1w %2d", "e.g.: 3weeks 4days").arg(QString::number(weeks), QString::number(days));
+        qlonglong months = (days / 30);
+        days -= (months * 30);
+        return QCoreApplication::translate("misc", "%1m %2d", "e.g.: 3months 4days").arg(QString::number(months), QString::number(days));
     }
 
     qlonglong years = (days / 365);
     days -= (years * 365);
-    return QCoreApplication::translate("misc", "%1y %2d", "e.g: 2years 10days").arg(QString::number(years), QString::number(days));
+    months = (days / 30);
+    days -= (months * 30);
+    return QCoreApplication::translate("misc", "%1y %2m %3d", "e.g: 2years 7 months 10days").arg(QString::number(years), QString::number(months), QString::number(days));
 }
 
 QString Utils::Misc::getUserIDString()
