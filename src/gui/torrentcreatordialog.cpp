@@ -187,7 +187,7 @@ void TorrentCreatorDialog::onCreateButtonClicked()
     // Resolve the path in case it contains a shortcut (otherwise, the following usages will consider it invalid)
     const auto inputPath = Utils::Fs::toCanonicalPath(Path(m_ui->textInputPath->text().trimmed()));
 #else
-    const auto inputPath = Path(m_ui->textInputPath->text().trimmed()); 
+    const auto inputPath = Path(m_ui->textInputPath->text().trimmed());
 #endif
 
     // test if readable
