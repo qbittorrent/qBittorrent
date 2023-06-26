@@ -46,12 +46,12 @@
 
 namespace
 {
-#ifndef Q_OS_WIN
     // When the root file/directory of the created torrent is a symlink, we want to keep the symlink name in the torrent.
-    const QFileDialog::Options FILE_DIALOG_OPTIONS {QFileDialog::DontResolveSymlinks};
-#else
     // On Windows, however, QFileDialog::DontResolveSymlinks disables shortcuts (.lnk files) expansion, making it impossible to pick a file if its path contains a shortcut.
     // As of NTFS symlinks, they don't seem to be resolved anyways.
+#ifndef Q_OS_WIN
+    const QFileDialog::Options FILE_DIALOG_OPTIONS {QFileDialog::DontResolveSymlinks};
+#else
     const QFileDialog::Options FILE_DIALOG_OPTIONS {};
 #endif
 }
@@ -118,8 +118,8 @@ void TorrentCreatorDialog::updateInputPath(const Path &path)
 void TorrentCreatorDialog::onAddFolderButtonClicked()
 {
     const QString oldPath = m_ui->textInputPath->text();
-    const Path path {QFileDialog::getExistingDirectory(this, tr("Select folder"), oldPath,
-                                                       QFileDialog::ShowDirsOnly | FILE_DIALOG_OPTIONS)};
+    const Path path {QFileDialog::getExistingDirectory(this, tr("Select folder")
+            , oldPath, (QFileDialog::ShowDirsOnly | FILE_DIALOG_OPTIONS))};
     updateInputPath(path);
 }
 
@@ -183,10 +183,11 @@ void TorrentCreatorDialog::dragEnterEvent(QDragEnterEvent *event)
 // Main function that create a .torrent file
 void TorrentCreatorDialog::onCreateButtonClicked()
 {
-    auto inputPath = Path(m_ui->textInputPath->text().trimmed());
 #ifdef Q_OS_WIN
     // Resolve the path in case it contains a shortcut (otherwise, the following usages will consider it invalid)
-    inputPath = Utils::Fs::toCanonicalPath(inputPath);
+    const auto inputPath = Utils::Fs::toCanonicalPath(Path(m_ui->textInputPath->text().trimmed()));
+#else
+    const auto inputPath = Path(m_ui->textInputPath->text().trimmed()); 
 #endif
 
     // test if readable
