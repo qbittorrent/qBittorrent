@@ -2,8 +2,8 @@
 
 ;LangString inst_qbt_req ${LANG_ENGLISH} "qBittorrent (required)"
 LangString inst_qbt_req ${LANG_UKRAINIAN} "qBittorrent (необхідний)"
-;LangString inst_dekstop ${LANG_ENGLISH} "Create Desktop Shortcut"
-LangString inst_dekstop ${LANG_UKRAINIAN} "Створити ярлик на стільниці"
+;LangString inst_desktop ${LANG_ENGLISH} "Create Desktop Shortcut"
+LangString inst_desktop ${LANG_UKRAINIAN} "Створити ярлик на стільниці"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_startmenu ${LANG_UKRAINIAN} "Створити ярлик в меню Пуск"
 ;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"

@@ -103,9 +103,9 @@
             fileRenamer.useRegex = multirename_useRegex === 'true';
             $('use_regex_search').checked = fileRenamer.useRegex;
 
-            var multirename_matchAllOccurences = LocalPreferences.get('multirename_matchAllOccurences', false);
-            fileRenamer.matchAllOccurences = multirename_matchAllOccurences === 'true';
-            $('match_all_occurences').checked = fileRenamer.matchAllOccurences;
+            var multirename_matchAllOccurrences = LocalPreferences.get('multirename_matchAllOccurrences', false);
+            fileRenamer.matchAllOccurrences = multirename_matchAllOccurrences === 'true';
+            $('match_all_occurrences').checked = fileRenamer.matchAllOccurrences;
 
             var multirename_caseSensitive = LocalPreferences.get('multirename_caseSensitive', false);
             fileRenamer.caseSensitive = multirename_caseSensitive === 'true';
@@ -138,7 +138,7 @@
             $('renameButton').set('value', renameButtonValue);
         }
 
-        // Fires everytime a row's selection changes
+        // Fires every time a row's selection changes
         bulkRenameFilesTable.onRowSelectionChange = function(row) {
             fileRenamer.selectedFiles = bulkRenameFilesTable.getSelectedRows();
             fileRenamer.update();
@@ -159,9 +159,9 @@
             LocalPreferences.set('multirename_useRegex', e.target.checked);
             fileRenamer.update();
         });
-        $('match_all_occurences').addEvent('change', function(e) {
-            fileRenamer.matchAllOccurences = e.target.checked;
-            LocalPreferences.set('multirename_matchAllOccurences', e.target.checked);
+        $('match_all_occurrences').addEvent('change', function(e) {
+            fileRenamer.matchAllOccurrences = e.target.checked;
+            LocalPreferences.set('multirename_matchAllOccurrences', e.target.checked);
             fileRenamer.update();
         });
         $('case_sensitive').addEvent('change', function(e) {
@@ -232,7 +232,7 @@
             // Disable Search Options
             $('multiRenameSearch').disabled = true;
             $('use_regex_search').disabled = true;
-            $('match_all_occurences').disabled = true;
+            $('match_all_occurrences').disabled = true;
             $('case_sensitive').disabled = true;
             // Disable Replace Options
             $('multiRenameReplace').disabled = true;
@@ -251,7 +251,7 @@
             // Disable Search Options
             $('multiRenameSearch').disabled = false;
             $('use_regex_search').disabled = false;
-            $('match_all_occurences').disabled = false;
+            $('match_all_occurrences').disabled = false;
             $('case_sensitive').disabled = false;
             // Disable Replace Options
             $('multiRenameReplace').disabled = false;
@@ -427,8 +427,8 @@
                 <label for="use_regex_search">QBT_TR(Use regular expressions)QBT_TR[CONTEXT=PropertiesWidget]</label>
             </div>
             <div class="formRow">
-                <input type="checkbox" id="match_all_occurences" />
-                <label for="match_all_occurences">QBT_TR(Match all occurrences)QBT_TR[CONTEXT=PropertiesWidget]</label>
+                <input type="checkbox" id="match_all_occurrences" />
+                <label for="match_all_occurrences">QBT_TR(Match all occurrences)QBT_TR[CONTEXT=PropertiesWidget]</label>
             </div>
             <div class="formRow">
                 <input type="checkbox" id="case_sensitive" />

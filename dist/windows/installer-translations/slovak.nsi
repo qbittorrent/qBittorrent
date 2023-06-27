@@ -2,8 +2,8 @@
 
 ;LangString inst_qbt_req ${LANG_ENGLISH} "qBittorrent (required)"
 LangString inst_qbt_req ${LANG_SLOVAK} "qBittorrent (požadované)"
-;LangString inst_dekstop ${LANG_ENGLISH} "Create Desktop Shortcut"
-LangString inst_dekstop ${LANG_SLOVAK} "Vytvoriť odkaz na pracovnej ploche"
+;LangString inst_desktop ${LANG_ENGLISH} "Create Desktop Shortcut"
+LangString inst_desktop ${LANG_SLOVAK} "Vytvoriť odkaz na pracovnej ploche"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_startmenu ${LANG_SLOVAK} "Vytvoriť odkaz v štart menu"
 ;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"
