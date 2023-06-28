@@ -31,6 +31,7 @@
 
 #include <functional>
 #include <memory>
+#include <optional>
 
 #include <libtorrent/add_torrent_params.hpp>
 #include <libtorrent/fwd.hpp>
@@ -78,7 +79,8 @@ namespace BitTorrent
     enum class MaintenanceJob
     {
         None,
-        HandleMetadata
+        HandleMetadata,
+        Reload
     };
 
     struct FileErrorInfo
@@ -300,9 +302,9 @@ namespace BitTorrent
         void manageIncompleteFiles();
         void applyFirstLastPiecePriority(bool enabled);
 
-        void prepareResumeData(const lt::add_torrent_params &params);
+        void prepareResumeData(lt::add_torrent_params ltAddTorrentParams);
         void endReceivedMetadataHandling(const Path &savePath, const PathList &fileNames);
-        void reload();
+        void reload(lt::add_torrent_params ltAddTorrentParams);
 
         nonstd::expected<lt::entry, QString> exportTorrent() const;
 
@@ -336,6 +338,7 @@ namespace BitTorrent
         QVector<TrackerEntry> m_trackerEntries;
         QVector<QUrl> m_urlSeeds;
         FileErrorInfo m_lastFileError;
+        bool m_hasMissingFiles = false;
 
         // Persistent data
         QString m_name;
@@ -348,7 +351,6 @@ namespace BitTorrent
         TorrentOperatingMode m_operatingMode;
         TorrentContentLayout m_contentLayout;
         bool m_hasFinishedStatus;
-        bool m_hasMissingFiles = false;
         bool m_hasFirstLastPiecePriority = false;
         bool m_useAutoTMM;
         bool m_isStopped;
@@ -356,7 +358,18 @@ namespace BitTorrent
 
         bool m_unchecked = false;
 
-        lt::add_torrent_params m_ltAddTorrentParams;
+        struct ProgressGuard
+        {
+            std::map<lt::piece_index_t, lt::bitfield> unfinishedPieces;
+            lt::typed_bitfield<lt::piece_index_t> havePieces;
+            lt::typed_bitfield<lt::piece_index_t> verifiedPieces;
+        };
+
+        std::optional<ProgressGuard> m_progressGuard;
+        std::optional<lt::add_torrent_params> m_ltAddTorrentParams;
+        bool m_seedMode = false;
+        bool m_hasRenamedFiles = false;
+        std::vector<std::string> m_watchedURLSeeds;
 
         int m_downloadLimit = 0;
         int m_uploadLimit = 0;
