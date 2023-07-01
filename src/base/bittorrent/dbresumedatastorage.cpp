@@ -58,6 +58,7 @@
 #include "base/profile.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
+#include "common.h"
 #include "infohash.h"
 #include "loadtorrentparams.h"
 
@@ -247,7 +248,8 @@ namespace
         const QByteArray bencodedResumeData = query.value(DB_COLUMN_RESUMEDATA.name).toByteArray();
 
         lt::error_code ec;
-        const lt::bdecode_node resumeDataRoot = lt::bdecode(bencodedResumeData, ec);
+        const lt::bdecode_node resumeDataRoot = lt::bdecode(bencodedResumeData, ec
+                , nullptr, BENCODE_DEPTH_LIMIT, BENCODE_TOKEN_LIMIT);
 
         lt::add_torrent_params &p = resumeData.ltAddTorrentParams;
 
@@ -256,7 +258,8 @@ namespace
         if (const QByteArray bencodedMetadata = query.value(DB_COLUMN_METADATA.name).toByteArray()
                 ; !bencodedMetadata.isEmpty())
         {
-            const lt::bdecode_node torentInfoRoot = lt::bdecode(bencodedMetadata, ec);
+            const lt::bdecode_node torentInfoRoot = lt::bdecode(bencodedMetadata, ec
+                    , nullptr, BENCODE_DEPTH_LIMIT, BENCODE_TOKEN_LIMIT);
             p.ti = std::make_shared<lt::torrent_info>(torentInfoRoot, ec);
         }
 
