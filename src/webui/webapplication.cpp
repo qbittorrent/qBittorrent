@@ -516,6 +516,7 @@ void WebApplication::sendFile(const Path &path)
             LogMsg(message, Log::WARNING);
             throw InternalServerErrorHTTPError(readResult.error().message);
 
+        case Utils::IO::ReadError::Failed:
         case Utils::IO::ReadError::SizeMismatch:
             LogMsg(message, Log::WARNING);
             throw InternalServerErrorHTTPError(readResult.error().message);

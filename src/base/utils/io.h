@@ -89,6 +89,7 @@ namespace Utils::IO
         {
             NotExist,
             ExceedSize,
+            Failed,  // `read()` operation failed
             SizeMismatch
         };
 

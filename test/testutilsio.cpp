@@ -78,6 +78,13 @@ private slots:
         }
 
         {
+            const Path crlfFile = testFolder / Path(u"crlf.txt"_s);
+            const auto readResult = Utils::IO::readFile(crlfFile, -1, QIODevice::Text);
+            QCOMPARE(readResult.has_value(), true);
+            QCOMPARE(readResult.value(), "\n\n");
+        }
+
+        {
             const Path nonExistFile = testFolder / Path(u".non_existent_file_1234"_s);
             const auto readResult = Utils::IO::readFile(nonExistFile, 1);
             QCOMPARE(readResult.has_value(), false);
