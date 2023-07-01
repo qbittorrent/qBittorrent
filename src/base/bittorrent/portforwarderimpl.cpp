@@ -67,7 +67,7 @@ void PortForwarderImpl::setPorts(const QString &profile, QSet<quint16> ports)
 {
     const QSet<quint16> oldForwardedPorts = std::accumulate(m_portProfiles.cbegin(), m_portProfiles.cend(), QSet<quint16>());
 
-    m_portProfiles[profile] = ports;
+    m_portProfiles[profile] = std::move(ports);
     const QSet<quint16> newForwardedPorts = std::accumulate(m_portProfiles.cbegin(), m_portProfiles.cend(), QSet<quint16>());
 
     m_provider->removeMappedPorts(oldForwardedPorts - newForwardedPorts);
