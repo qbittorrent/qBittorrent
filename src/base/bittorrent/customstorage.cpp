@@ -92,7 +92,7 @@ bool CustomDiskIOThread::async_write(lt::storage_index_t storage, const lt::peer
                                      , const char *buf, std::shared_ptr<lt::disk_observer> diskObserver
                                      , std::function<void (const lt::storage_error &)> handler, lt::disk_job_flags_t flags)
 {
-    return m_nativeDiskIO->async_write(storage, peerRequest, buf, diskObserver, std::move(handler), flags);
+    return m_nativeDiskIO->async_write(storage, peerRequest, buf, std::move(diskObserver), std::move(handler), flags);
 }
 
 void CustomDiskIOThread::async_hash(lt::storage_index_t storage, lt::piece_index_t piece
