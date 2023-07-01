@@ -6091,7 +6091,8 @@ void SessionImpl::processTrackerStatuses()
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
                         updatedTrackerEntries[trackerEntry.url] = std::move(trackerEntry);
 #else
-                        updatedTrackerEntries.emplace(trackerEntry.url, std::move(trackerEntry));
+                        const QString url = trackerEntry.url;
+                        updatedTrackerEntries.emplace(url, std::move(trackerEntry));
 #endif
                     }
 
