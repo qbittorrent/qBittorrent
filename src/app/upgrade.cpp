@@ -344,7 +344,7 @@ namespace
             switch (number)
             {
             case 0:
-                settingsStorage->storeValue(key, u"None"_s);
+                settingsStorage->storeValue(key, Net::ProxyType::None);
                 break;
             case 1:
                 settingsStorage->storeValue(key, Net::ProxyType::HTTP);
@@ -363,7 +363,7 @@ namespace
                 break;
             default:
                 LogMsg(QCoreApplication::translate("Upgrade", "Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
-                           .arg(key, QString::number(number)), Log::WARNING);
+                        .arg(key, QString::number(number)), Log::WARNING);
                 settingsStorage->removeValue(key);
                 break;
             }
@@ -377,30 +377,19 @@ namespace
         const auto onlyForTorrents = settingsStorage->loadValue<bool>(u"Network/Proxy/OnlyForTorrents"_s)
                 || (proxyType == u"SOCKS4");
 
-        if (proxyType == u"None")
+        settingsStorage->storeValue(u"Network/Proxy/Profiles/BitTorrent"_s, true);
+        settingsStorage->storeValue(u"Network/Proxy/Profiles/RSS"_s, !onlyForTorrents);
+        settingsStorage->storeValue(u"Network/Proxy/Profiles/Misc"_s, !onlyForTorrents);
+
+        if (proxyType == u"HTTP_PW"_s)
         {
             settingsStorage->storeValue(u"Network/Proxy/Type"_s, Net::ProxyType::HTTP);
-
-            settingsStorage->storeValue(u"Network/Proxy/Profiles/BitTorrent"_s, false);
-            settingsStorage->storeValue(u"Network/Proxy/Profiles/RSS"_s, false);
-            settingsStorage->storeValue(u"Network/Proxy/Profiles/Misc"_s, false);
+            settingsStorage->storeValue(u"Network/Proxy/AuthEnabled"_s, true);
         }
-        else
+        else if (proxyType == u"SOCKS5_PW"_s)
         {
-            settingsStorage->storeValue(u"Network/Proxy/Profiles/BitTorrent"_s, true);
-            settingsStorage->storeValue(u"Network/Proxy/Profiles/RSS"_s, !onlyForTorrents);
-            settingsStorage->storeValue(u"Network/Proxy/Profiles/Misc"_s, !onlyForTorrents);
-
-            if (proxyType == u"HTTP_PW"_s)
-            {
-                settingsStorage->storeValue(u"Network/Proxy/Type"_s, Net::ProxyType::HTTP);
-                settingsStorage->storeValue(u"Network/Proxy/AuthEnabled"_s, true);
-            }
-            else if (proxyType == u"SOCKS5_PW"_s)
-            {
-                settingsStorage->storeValue(u"Network/Proxy/Type"_s, Net::ProxyType::SOCKS5);
-                settingsStorage->storeValue(u"Network/Proxy/AuthEnabled"_s, true);
-            }
+            settingsStorage->storeValue(u"Network/Proxy/Type"_s, Net::ProxyType::SOCKS5);
+            settingsStorage->storeValue(u"Network/Proxy/AuthEnabled"_s, true);
         }
 
         settingsStorage->removeValue(u"Network/Proxy/OnlyForTorrents"_s);

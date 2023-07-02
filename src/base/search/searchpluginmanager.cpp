@@ -396,7 +396,7 @@ void SearchPluginManager::applyProxySettings()
 
     // Define environment variables for urllib in search engine plugins
     QString proxyStrHTTP, proxyStrSOCK;
-    if (Preferences::instance()->useProxyForGeneralPurposes())
+    if ((proxyConfig.type != Net::ProxyType::None) && Preferences::instance()->useProxyForGeneralPurposes())
     {
         switch (proxyConfig.type)
         {

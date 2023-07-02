@@ -1691,11 +1691,10 @@ lt::settings_pack SessionImpl::loadLTSettings() const
 
     // proxy
     settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::none);
-    if (Preferences::instance()->useProxyForBT())
+    const auto *proxyManager = Net::ProxyConfigurationManager::instance();
+    const Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
+    if ((proxyConfig.type != Net::ProxyType::None) && Preferences::instance()->useProxyForBT())
     {
-        const auto *proxyManager = Net::ProxyConfigurationManager::instance();
-        const Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
-
         switch (proxyConfig.type)
         {
         case Net::ProxyType::SOCKS4:

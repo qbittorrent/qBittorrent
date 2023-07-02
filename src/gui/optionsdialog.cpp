@@ -804,6 +804,7 @@ void OptionsDialog::loadConnectionTabOptions()
     const auto *proxyConfigManager = Net::ProxyConfigurationManager::instance();
     const Net::ProxyConfiguration proxyConf = proxyConfigManager->proxyConfiguration();
 
+    m_ui->comboProxyType->addItem(tr("(None)"), QVariant::fromValue(Net::ProxyType::None));
     m_ui->comboProxyType->addItem(tr("SOCKS4"), QVariant::fromValue(Net::ProxyType::SOCKS4));
     m_ui->comboProxyType->addItem(tr("SOCKS5"), QVariant::fromValue(Net::ProxyType::SOCKS5));
     m_ui->comboProxyType->addItem(tr("HTTP"), QVariant::fromValue(Net::ProxyType::HTTP));
@@ -1537,26 +1538,53 @@ void OptionsDialog::toggleComboRatioLimitAct()
 void OptionsDialog::adjustProxyOptions()
 {
     const auto currentProxyType = m_ui->comboProxyType->currentData().value<Net::ProxyType>();
-    const bool isAuthSupported = (currentProxyType != Net::ProxyType::SOCKS4);
+    const bool isAuthSupported = ((currentProxyType == Net::ProxyType::SOCKS5)
+            || (currentProxyType == Net::ProxyType::HTTP));
 
     m_ui->checkProxyAuth->setEnabled(isAuthSupported);
 
-    if (currentProxyType == Net::ProxyType::SOCKS4)
+    if (currentProxyType == Net::ProxyType::None)
     {
-        m_ui->labelProxyTypeIncompatible->setVisible(true);
+        m_ui->labelProxyTypeIncompatible->setVisible(false);
+
+        m_ui->lblProxyIP->setEnabled(false);
+        m_ui->textProxyIP->setEnabled(false);
+        m_ui->lblProxyPort->setEnabled(false);
+        m_ui->spinProxyPort->setEnabled(false);
 
         m_ui->checkProxyHostnameLookup->setEnabled(false);
         m_ui->checkProxyRSS->setEnabled(false);
         m_ui->checkProxyMisc->setEnabled(false);
+        m_ui->checkProxyBitTorrent->setEnabled(false);
+        m_ui->checkProxyPeerConnections->setEnabled(false);
     }
     else
     {
-        // SOCKS5 or HTTP
-        m_ui->labelProxyTypeIncompatible->setVisible(false);
+        m_ui->lblProxyIP->setEnabled(true);
+        m_ui->textProxyIP->setEnabled(true);
+        m_ui->lblProxyPort->setEnabled(true);
+        m_ui->spinProxyPort->setEnabled(true);
 
-        m_ui->checkProxyHostnameLookup->setEnabled(true);
-        m_ui->checkProxyRSS->setEnabled(true);
-        m_ui->checkProxyMisc->setEnabled(true);
+        m_ui->checkProxyBitTorrent->setEnabled(true);
+        m_ui->checkProxyPeerConnections->setEnabled(true);
+
+        if (currentProxyType == Net::ProxyType::SOCKS4)
+        {
+            m_ui->labelProxyTypeIncompatible->setVisible(true);
+
+            m_ui->checkProxyHostnameLookup->setEnabled(false);
+            m_ui->checkProxyRSS->setEnabled(false);
+            m_ui->checkProxyMisc->setEnabled(false);
+        }
+        else
+        {
+            // SOCKS5 or HTTP
+            m_ui->labelProxyTypeIncompatible->setVisible(false);
+
+            m_ui->checkProxyHostnameLookup->setEnabled(true);
+            m_ui->checkProxyRSS->setEnabled(true);
+            m_ui->checkProxyMisc->setEnabled(true);
+        }
     }
 }
 
