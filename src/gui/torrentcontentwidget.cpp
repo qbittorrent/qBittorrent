@@ -61,6 +61,7 @@ TorrentContentWidget::TorrentContentWidget(QWidget *parent)
 {
     setExpandsOnDoubleClick(false);
     setSortingEnabled(true);
+    setUniformRowHeights(true);
     header()->setSortIndicator(0, Qt::AscendingOrder);
     header()->setFirstSectionMovable(true);
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
