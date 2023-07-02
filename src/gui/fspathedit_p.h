@@ -68,6 +68,9 @@ namespace Private
         bool existingOnly() const;
         void setExistingOnly(bool value);
 
+        bool filesOnly() const;
+        void setFilesOnly(bool value);
+
         bool directoriesOnly() const;
         void setDirectoriesOnly(bool value);
 
@@ -87,6 +90,7 @@ namespace Private
 
         bool m_strictMode = false;
         bool m_existingOnly = false;
+        bool m_filesOnly = false;
         bool m_directoriesOnly = false;
         bool m_checkReadPermission = false;
         bool m_checkWritePermission = false;
