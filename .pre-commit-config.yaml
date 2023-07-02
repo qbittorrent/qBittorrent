@@ -33,19 +33,19 @@ repos:
       args: ["--fix=lf"]
       exclude: |
         (?x)^(
-          compile_commands.json |
           src/webui/www/private/css/lib/.* |
-          src/webui/www/private/scripts/lib/.*
+          src/webui/www/private/scripts/lib/.* |
+          test/testdata/crlf.txt
         )$
 
     - id: end-of-file-fixer
       name: Check trailing newlines
       exclude: |
         (?x)^(
-          compile_commands.json |
           configure |
           src/webui/www/private/css/lib/.* |
-          src/webui/www/private/scripts/lib/.*
+          src/webui/www/private/scripts/lib/.* |
+          test/testdata/crlf.txt
         )$
       exclude_types:
         - svg
