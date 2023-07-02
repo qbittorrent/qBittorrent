@@ -84,7 +84,7 @@ private:
     class Data;
 
     explicit Digest32(QSharedDataPointer<Data> dataPtr)
-        : m_dataPtr {dataPtr}
+        : m_dataPtr {std::move(dataPtr)}
     {
     }
 

@@ -1318,7 +1318,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
                 std::shared_ptr<lt::torrent_info> ti = resumeData.ltAddTorrentParams.ti;
                 resumeData = *loadPreferredResumeDataResult;
                 if (!resumeData.ltAddTorrentParams.ti)
-                    resumeData.ltAddTorrentParams.ti = ti;
+                    resumeData.ltAddTorrentParams.ti = std::move(ti);
             }
         }
     }
@@ -6091,7 +6091,8 @@ void SessionImpl::processTrackerStatuses()
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
                         updatedTrackerEntries[trackerEntry.url] = std::move(trackerEntry);
 #else
-                        updatedTrackerEntries.emplace(trackerEntry.url, std::move(trackerEntry));
+                        const QString url = trackerEntry.url;
+                        updatedTrackerEntries.emplace(url, std::move(trackerEntry));
 #endif
                     }
 
