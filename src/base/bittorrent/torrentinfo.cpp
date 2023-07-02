@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -45,6 +45,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
+#include "common.h"
 #include "infohash.h"
 #include "trackerentry.h"
 
@@ -91,12 +92,9 @@ nonstd::expected<TorrentInfo, QString> TorrentInfo::load(const QByteArray &data)
 {
     // 2-step construction to overcome default limits of `depth_limit` & `token_limit` which are
     // used in `torrent_info()` constructor
-    const int depthLimit = 100;
-    const int tokenLimit = 10000000;
-
     lt::error_code ec;
     const lt::bdecode_node node = lt::bdecode(data, ec
-        , nullptr, depthLimit, tokenLimit);
+            , nullptr, BENCODE_DEPTH_LIMIT, BENCODE_TOKEN_LIMIT);
     if (ec)
         return nonstd::make_unexpected(QString::fromStdString(ec.message()));
 
