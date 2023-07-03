@@ -33,14 +33,18 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: |
-          export \
-            HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1 \
-            HOMEBREW_NO_INSTALL_CLEANUP=1
-          brew update > /dev/null
-          brew install \
-            cmake ninja \
-            openssl@1.1 zlib
+        uses: Wandalen/wretry.action@v1
+        with:
+          attempt_delay: 20000
+          attempt_limit: 6
+          command: |
+            export \
+              HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1 \
+              HOMEBREW_NO_INSTALL_CLEANUP=1
+            brew update > /dev/null
+            brew install \
+              cmake ninja \
+              openssl@1.1 zlib
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
