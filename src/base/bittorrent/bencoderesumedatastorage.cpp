@@ -44,6 +44,7 @@
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
+#include "base/preferences.h"
 #include "base/profile.h"
 #include "base/tagset.h"
 #include "base/utils/fs.h"
@@ -134,12 +135,13 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::load(cons
     const QString idString = id.toString();
     const Path fastresumePath = path() / Path(idString + u".fastresume");
     const Path torrentFilePath = path() / Path(idString + u".torrent");
+    const qint64 torrentSizeLimit = Preferences::instance()->getTorrentFileSizeLimit();
 
-    const auto resumeDataReadResult = Utils::IO::readFile(fastresumePath, MAX_TORRENT_SIZE);
+    const auto resumeDataReadResult = Utils::IO::readFile(fastresumePath, torrentSizeLimit);
     if (!resumeDataReadResult)
         return nonstd::make_unexpected(resumeDataReadResult.error().message);
 
-    const auto metadataReadResult = Utils::IO::readFile(torrentFilePath, MAX_TORRENT_SIZE);
+    const auto metadataReadResult = Utils::IO::readFile(torrentFilePath, torrentSizeLimit);
     if (!metadataReadResult)
     {
         if (metadataReadResult.error().status != Utils::IO::ReadError::NotExist)

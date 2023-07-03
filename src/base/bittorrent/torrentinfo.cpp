@@ -42,6 +42,7 @@
 
 #include "base/global.h"
 #include "base/path.h"
+#include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
@@ -104,7 +105,8 @@ nonstd::expected<TorrentInfo, QString> TorrentInfo::loadFromFile(const Path &pat
     QByteArray data;
     try
     {
-        const auto readResult = Utils::IO::readFile(path, MAX_TORRENT_SIZE);
+        const qint64 torrentSizeLimit = Preferences::instance()->getTorrentFileSizeLimit();
+        const auto readResult = Utils::IO::readFile(path, torrentSizeLimit);
         if (!readResult)
             return nonstd::make_unexpected(readResult.error().message);
         data = readResult.value();

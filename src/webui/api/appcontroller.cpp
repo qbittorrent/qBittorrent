@@ -323,6 +323,8 @@ void AppController::preferencesAction()
     data[u"current_interface_address"_s] = BitTorrent::Session::instance()->networkInterfaceAddress();
     // Save resume data interval
     data[u"save_resume_data_interval"_s] = session->saveResumeDataInterval();
+    // .torrent file size limit
+    data[u"torrent_file_size_limit"_s] = pref->getTorrentFileSizeLimit();
     // Recheck completed torrents
     data[u"recheck_completed_torrents"_s] = pref->recheckTorrentsOnCompletion();
     // Refresh interval
@@ -853,6 +855,9 @@ void AppController::setPreferencesAction()
     // Save resume data interval
     if (hasKey(u"save_resume_data_interval"_s))
         session->setSaveResumeDataInterval(it.value().toInt());
+    // .torrent file size limit
+    if (hasKey(u"torrent_file_size_limit"_s))
+        pref->setTorrentFileSizeLimit(it.value().toLongLong());
     // Recheck completed torrents
     if (hasKey(u"recheck_completed_torrents"_s))
         pref->recheckTorrentsOnCompletion(it.value().toBool());

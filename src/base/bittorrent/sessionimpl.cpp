@@ -96,7 +96,6 @@
 #include "base/version.h"
 #include "bandwidthscheduler.h"
 #include "bencoderesumedatastorage.h"
-#include "common.h"
 #include "customstorage.h"
 #include "dbresumedatastorage.h"
 #include "downloadpriority.h"
@@ -2554,9 +2553,10 @@ bool SessionImpl::addTorrent(const QString &source, const AddTorrentParams &para
     if (Net::DownloadManager::hasSupportedScheme(source))
     {
         LogMsg(tr("Downloading torrent, please wait... Source: \"%1\"").arg(source));
+        const auto *pref = Preferences::instance();
         // Launch downloader
-        Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(MAX_TORRENT_SIZE)
-                , Preferences::instance()->useProxyForGeneralPurposes(), this, &SessionImpl::handleDownloadFinished);
+        Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(pref->getTorrentFileSizeLimit())
+                , pref->useProxyForGeneralPurposes(), this, &SessionImpl::handleDownloadFinished);
         m_downloadedTorrents[source] = params;
         return true;
     }

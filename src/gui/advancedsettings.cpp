@@ -75,6 +75,7 @@ namespace
         NETWORK_IFACE_ADDRESS,
         // behavior
         SAVE_RESUME_DATA_INTERVAL,
+        TORRENT_FILE_SIZE_LIMIT,
         CONFIRM_RECHECK_TORRENT,
         RECHECK_COMPLETED,
         // UI related
@@ -244,6 +245,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setSocketBacklogSize(m_spinBoxSocketBacklogSize.value());
     // Save resume data interval
     session->setSaveResumeDataInterval(m_spinBoxSaveResumeDataInterval.value());
+    // .torrent file size limit
+    pref->setTorrentFileSizeLimit(m_spinBoxTorrentFileSizeLimit.value() * 1024 * 1024);
     // Outgoing ports
     session->setOutgoingPortsMin(m_spinBoxOutgoingPortsMin.value());
     session->setOutgoingPortsMax(m_spinBoxOutgoingPortsMax.value());
@@ -619,6 +622,12 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxSaveResumeDataInterval.setSuffix(tr(" min", " minutes"));
     m_spinBoxSaveResumeDataInterval.setSpecialValueText(tr("0 (disabled)"));
     addRow(SAVE_RESUME_DATA_INTERVAL, tr("Save resume data interval [0: disabled]", "How often the fastresume file is saved."), &m_spinBoxSaveResumeDataInterval);
+    // .torrent file size limit
+    m_spinBoxTorrentFileSizeLimit.setMinimum(1);
+    m_spinBoxTorrentFileSizeLimit.setMaximum(std::numeric_limits<int>::max() / 1024 / 1024);
+    m_spinBoxTorrentFileSizeLimit.setValue(pref->getTorrentFileSizeLimit() / 1024 / 1024);
+    m_spinBoxTorrentFileSizeLimit.setSuffix(tr(" MiB"));
+    addRow(TORRENT_FILE_SIZE_LIMIT, tr(".torrent file size limit"), &m_spinBoxTorrentFileSizeLimit);
     // Outgoing port Min
     m_spinBoxOutgoingPortsMin.setMinimum(0);
     m_spinBoxOutgoingPortsMin.setMaximum(65535);

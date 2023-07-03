@@ -43,7 +43,6 @@
 #include <QUrl>
 #include <QVector>
 
-#include "base/bittorrent/common.h"
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/magneturi.h"
@@ -489,10 +488,11 @@ void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorre
 
     if (Net::DownloadManager::hasSupportedScheme(source))
     {
+        const auto *pref = Preferences::instance();
         // Launch downloader
         Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(source).limit(MAX_TORRENT_SIZE)
-                , Preferences::instance()->useProxyForGeneralPurposes()
+                Net::DownloadRequest(source).limit(pref->getTorrentFileSizeLimit())
+                , pref->useProxyForGeneralPurposes()
                 , dlg, &AddNewTorrentDialog::handleDownloadFinished);
         return;
     }

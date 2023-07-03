@@ -304,6 +304,19 @@ void Preferences::setIconsInMenusEnabled(const bool enable)
 }
 #endif // Q_OS_MACOS
 
+qint64 Preferences::getTorrentFileSizeLimit() const
+{
+    return value(u"BitTorrent/TorrentFileSizeLimit"_s, (100 * 1024 * 1024));
+}
+
+void Preferences::setTorrentFileSizeLimit(const qint64 value)
+{
+    if (value == getTorrentFileSizeLimit())
+        return;
+
+    setValue(u"BitTorrent/TorrentFileSizeLimit"_s, value);
+}
+
 bool Preferences::isToolbarDisplayed() const
 {
     return value(u"Preferences/General/ToolbarDisplayed"_s, true);

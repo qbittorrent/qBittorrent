@@ -979,6 +979,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             </tr>
             <tr>
                 <td>
+                    <label for="torrentFileSizeLimit">QBT_TR(.torrent file size limit:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="torrentFileSizeLimit" style="width: 15em;">&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="recheckTorrentsOnCompletion">QBT_TR(Recheck torrents on completion:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
@@ -2147,6 +2155,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         updateNetworkInterfaces(pref.current_network_interface);
                         updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address);
                         $('saveResumeDataInterval').setProperty('value', pref.save_resume_data_interval);
+                        $('torrentFileSizeLimit').setProperty('value', (pref.torrent_file_size_limit / 1024 / 1024));
                         $('recheckTorrentsOnCompletion').setProperty('checked', pref.recheck_completed_torrents);
                         $('refreshInterval').setProperty('value', pref.refresh_interval);
                         $('resolvePeerCountries').setProperty('checked', pref.resolve_peer_countries);
@@ -2563,6 +2572,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings.set('current_network_interface', $('networkInterface').getProperty('value'));
             settings.set('current_interface_address', $('optionalIPAddressToBind').getProperty('value'));
             settings.set('save_resume_data_interval', $('saveResumeDataInterval').getProperty('value'));
+            settings.set('torrent_file_size_limit', ($('torrentFileSizeLimit').getProperty('value') * 1024 * 1024));
             settings.set('recheck_completed_torrents', $('recheckTorrentsOnCompletion').getProperty('checked'));
             settings.set('refresh_interval', $('refreshInterval').getProperty('value'));
             settings.set('resolve_peer_countries', $('resolvePeerCountries').getProperty('checked'));
