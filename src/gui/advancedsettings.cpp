@@ -101,6 +101,8 @@ namespace
         TRACKER_PORT_FORWARDING,
         // libtorrent section
         LIBTORRENT_HEADER,
+        BDECODE_DEPTH_LIMIT,
+        BDECODE_TOKEN_LIMIT,
         ASYNC_IO_THREADS,
 #ifdef QBT_USES_LIBTORRENT2
         HASHING_THREADS,
@@ -199,6 +201,10 @@ void AdvancedSettings::saveAdvancedSettings() const
 #if defined(Q_OS_WIN)
     app()->setProcessMemoryPriority(m_comboBoxOSMemoryPriority.currentData().value<MemoryPriority>());
 #endif
+    // Bdecode depth limit
+    pref->setBdecodeDepthLimit(m_spinBoxBdecodeDepthLimit.value());
+    // Bdecode token limit
+    pref->setBdecodeTokenLimit(m_spinBoxBdecodeTokenLimit.value());
     // Async IO threads
     session->setAsyncIOThreads(m_spinBoxAsyncIOThreads.value());
 #ifdef QBT_USES_LIBTORRENT2
@@ -464,6 +470,18 @@ void AdvancedSettings::loadAdvancedSettings()
         + u' ' + makeLink(u"https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-memory_priority_information", u"(?)"))
         , &m_comboBoxOSMemoryPriority);
 #endif
+    // Bdecode depth limit
+    m_spinBoxBdecodeDepthLimit.setMinimum(0);
+    m_spinBoxBdecodeDepthLimit.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxBdecodeDepthLimit.setValue(pref->getBdecodeDepthLimit());
+    addRow(BDECODE_DEPTH_LIMIT, (tr("Bdecode depth limit") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Bdecoding.html#bdecode()", u"(?)"))
+            , &m_spinBoxBdecodeDepthLimit);
+    // Bdecode token limit
+    m_spinBoxBdecodeTokenLimit.setMinimum(0);
+    m_spinBoxBdecodeTokenLimit.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxBdecodeTokenLimit.setValue(pref->getBdecodeTokenLimit());
+    addRow(BDECODE_TOKEN_LIMIT, (tr("Bdecode token limit") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Bdecoding.html#bdecode()", u"(?)"))
+            , &m_spinBoxBdecodeTokenLimit);
     // Async IO threads
     m_spinBoxAsyncIOThreads.setMinimum(1);
     m_spinBoxAsyncIOThreads.setMaximum(1024);

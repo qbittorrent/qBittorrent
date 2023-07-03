@@ -33,6 +33,3 @@
 #include "base/global.h"
 
 inline const QString QB_EXT = u".!qB"_s;
-
-inline const int BENCODE_DEPTH_LIMIT = 100;
-inline const int BENCODE_TOKEN_LIMIT = 10'000'000;

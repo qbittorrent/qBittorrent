@@ -1740,6 +1740,10 @@ lt::settings_pack SessionImpl::loadLTSettings() const
 
     settingsPack.set_int(lt::settings_pack::max_out_request_queue, requestQueueSize());
 
+#ifdef QBT_USES_LIBTORRENT2
+    settingsPack.set_int(lt::settings_pack::metadata_token_limit, Preferences::instance()->getBdecodeTokenLimit());
+#endif
+
     settingsPack.set_int(lt::settings_pack::aio_threads, asyncIOThreads());
 #ifdef QBT_USES_LIBTORRENT2
     settingsPack.set_int(lt::settings_pack::hashing_threads, hashingThreads());

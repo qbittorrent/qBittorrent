@@ -335,6 +335,10 @@ void AppController::preferencesAction()
     data[u"reannounce_when_address_changed"_s] = session->isReannounceWhenAddressChangedEnabled();
 
     // libtorrent preferences
+    // Bdecode depth limit
+    data[u"bdecode_depth_limit"_s] = pref->getBdecodeDepthLimit();
+    // Bdecode token limit
+    data[u"bdecode_token_limit"_s] = pref->getBdecodeTokenLimit();
     // Async IO threads
     data[u"async_io_threads"_s] = session->asyncIOThreads();
     // Hashing threads
@@ -872,6 +876,12 @@ void AppController::setPreferencesAction()
         session->setReannounceWhenAddressChangedEnabled(it.value().toBool());
 
     // libtorrent preferences
+    // Bdecode depth limit
+    if (hasKey(u"bdecode_depth_limit"_s))
+        pref->setBdecodeDepthLimit(it.value().toInt());
+    // Bdecode token limit
+    if (hasKey(u"bdecode_token_limit"_s))
+        pref->setBdecodeTokenLimit(it.value().toInt());
     // Async IO threads
     if (hasKey(u"async_io_threads"_s))
         session->setAsyncIOThreads(it.value().toInt());

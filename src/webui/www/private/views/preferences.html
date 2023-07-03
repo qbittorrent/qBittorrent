@@ -1048,6 +1048,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         <table>
             <tr>
                 <td>
+                    <label for="bdecodeDepthLimit">QBT_TR(Bdecode depth limit:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Bdecoding.html#bdecode()" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="bdecodeDepthLimit" style="width: 15em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="bdecodeTokenLimit">QBT_TR(Bdecode token limit:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Bdecoding.html#bdecode()" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="bdecodeTokenLimit" style="width: 15em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="asyncIOThreads">QBT_TR(Asynchronous I/O threads:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#aio_threads" target="_blank">(?)</a></label>
                 </td>
                 <td>
@@ -2161,6 +2177,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         $('resolvePeerCountries').setProperty('checked', pref.resolve_peer_countries);
                         $('reannounceWhenAddressChanged').setProperty('checked', pref.reannounce_when_address_changed);
                         // libtorrent section
+                        $('bdecodeDepthLimit').setProperty('value', pref.bdecode_depth_limit);
+                        $('bdecodeTokenLimit').setProperty('value', pref.bdecode_token_limit);
                         $('asyncIOThreads').setProperty('value', pref.async_io_threads);
                         $('hashingThreads').setProperty('value', pref.hashing_threads);
                         $('filePoolSize').setProperty('value', pref.file_pool_size);
@@ -2579,6 +2597,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings.set('reannounce_when_address_changed', $('reannounceWhenAddressChanged').getProperty('checked'));
 
             // libtorrent section
+            settings.set('bdecode_depth_limit', $('bdecodeDepthLimit').getProperty('value'));
+            settings.set('bdecode_token_limit', $('bdecodeTokenLimit').getProperty('value'));
             settings.set('async_io_threads', $('asyncIOThreads').getProperty('value'));
             settings.set('hashing_threads', $('hashingThreads').getProperty('value'));
             settings.set('file_pool_size', $('filePoolSize').getProperty('value'));
