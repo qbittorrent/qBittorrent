@@ -79,8 +79,10 @@ SettingsStorage *SettingsStorage::instance()
 
 bool SettingsStorage::save()
 {
+    // return `true` only when settings is different AND is saved successfully
+
     const QWriteLocker locker(&m_lock);  // guard for `m_dirty` too
-    if (!m_dirty) return true;
+    if (!m_dirty) return false;
 
     if (!writeNativeSettings())
     {
