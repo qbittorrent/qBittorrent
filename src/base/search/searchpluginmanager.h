@@ -58,7 +58,7 @@ struct PluginInfo
 class SearchDownloadHandler;
 class SearchHandler;
 
-class SearchPluginManager : public QObject
+class SearchPluginManager final : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(SearchPluginManager)

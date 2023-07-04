@@ -86,7 +86,7 @@ namespace TrayIcon
     Q_ENUM_NS(Style)
 }
 
-class Preferences : public QObject
+class Preferences final : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(Preferences)

@@ -126,7 +126,7 @@ namespace Net
 
     class DownloadHandlerImpl;
 
-    class DownloadManager : public QObject
+    class DownloadManager final : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(DownloadManager)
