@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2016-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -60,10 +60,10 @@ ProxyConfigurationManager::ProxyConfigurationManager(QObject *parent)
     , m_storeProxyPassword {SETTINGS_KEY(u"Password"_s)}
     , m_storeProxyHostnameLookupEnabled {SETTINGS_KEY(u"HostnameLookupEnabled"_s)}
 {
-    m_config.type = m_storeProxyType.get(ProxyType::HTTP);
-    if ((m_config.type < ProxyType::HTTP) || (m_config.type > ProxyType::SOCKS4))
-        m_config.type = ProxyType::HTTP;
-    m_config.ip = m_storeProxyIP.get(u"0.0.0.0"_s);
+    m_config.type = m_storeProxyType.get(ProxyType::None);
+    if ((m_config.type < ProxyType::None) || (m_config.type > ProxyType::SOCKS4))
+        m_config.type = ProxyType::None;
+    m_config.ip = m_storeProxyIP.get((m_config.type == ProxyType::None) ? u""_s : u"0.0.0.0"_s);
     m_config.port = m_storeProxyPort.get(8080);
     m_config.authEnabled = m_storeProxyAuthEnabled;
     m_config.username = m_storeProxyUsername;

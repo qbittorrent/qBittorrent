@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2016-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -39,6 +39,7 @@ namespace Net
 
     enum class ProxyType
     {
+        None = 0,
         HTTP = 1,
         SOCKS5 = 2,
         SOCKS4 = 5
@@ -47,8 +48,8 @@ namespace Net
 
     struct ProxyConfiguration
     {
-        ProxyType type = ProxyType::HTTP;
-        QString ip = u"0.0.0.0"_s;
+        ProxyType type = ProxyType::None;
+        QString ip;
         ushort port = 8080;
         bool authEnabled = false;
         QString username;

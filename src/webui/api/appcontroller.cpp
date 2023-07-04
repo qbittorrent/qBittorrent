@@ -619,7 +619,7 @@ void AppController::setPreferencesAction()
     auto *proxyManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf = proxyManager->proxyConfiguration();
     if (hasKey(u"proxy_type"_s))
-        proxyConf.type = Utils::String::toEnum(it.value().toString(), Net::ProxyType::HTTP);
+        proxyConf.type = Utils::String::toEnum(it.value().toString(), Net::ProxyType::None);
     if (hasKey(u"proxy_ip"_s))
         proxyConf.ip = it.value().toString();
     if (hasKey(u"proxy_port"_s))
