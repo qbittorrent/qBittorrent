@@ -142,7 +142,7 @@ public:
     QString getMailNotificationEmail() const;
     void setMailNotificationEmail(const QString &mail);
     QString getMailNotificationSMTP() const;
-    void setMailNotificationSMTP(const QString &smtp_server);
+    void setMailNotificationSMTP(const QString &smtpServer);
     bool getMailNotificationSMTPSSL() const;
     void setMailNotificationSMTPSSL(bool use);
     bool getMailNotificationSMTPAuth() const;
@@ -291,14 +291,14 @@ public:
     bool neverCheckFileAssoc() const;
     void setNeverCheckFileAssoc(bool check = true);
     static bool isTorrentFileAssocSet();
-    static bool isMagnetLinkAssocSet();
     static void setTorrentFileAssoc(bool set);
+    static bool isMagnetLinkAssocSet();
     static void setMagnetLinkAssoc(bool set);
 #endif
 #ifdef Q_OS_MACOS
     static bool isTorrentFileAssocSet();
-    static bool isMagnetLinkAssocSet();
     static void setTorrentFileAssoc();
+    static bool isMagnetLinkAssocSet();
     static void setMagnetLinkAssoc();
 #endif
     int getTrackerPort() const;
