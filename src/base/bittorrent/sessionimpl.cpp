@@ -523,6 +523,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_excludedFileNames(BITTORRENT_SESSION_KEY(u"ExcludedFileNames"_s))
     , m_bannedIPs(u"State/BannedIPs"_s, QStringList(), Algorithm::sorted<QStringList>)
     , m_resumeDataStorageType(BITTORRENT_SESSION_KEY(u"ResumeDataStorageType"_s), ResumeDataStorageType::Legacy)
+    , m_isMergeTrackersEnabled(BITTORRENT_KEY(u"MergeTrackersEnabled"_s), false)
     , m_isI2PEnabled {BITTORRENT_SESSION_KEY(u"I2P/Enabled"_s), false}
     , m_I2PAddress {BITTORRENT_SESSION_KEY(u"I2P/Address"_s), u"127.0.0.1"_s}
     , m_I2PPort {BITTORRENT_SESSION_KEY(u"I2P/Port"_s), 7656}
@@ -2677,10 +2678,31 @@ bool SessionImpl::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &so
 
     if (Torrent *torrent = findTorrent(infoHash); torrent)
     {
+        // a duplicate torrent is being added
+        if (torrent->isPrivate())
+            return false;
+
         if (hasMetadata)
         {
             // Trying to set metadata to existing torrent in case if it has none
             torrent->setMetadata(std::get<TorrentInfo>(source));
+
+            const TorrentInfo &torrentInfo = std::get<TorrentInfo>(source);
+
+            if (torrentInfo.isPrivate())
+                return false;
+
+            // merge trackers and web seeds
+            torrent->addTrackers(torrentInfo.trackers());
+            torrent->addUrlSeeds(torrentInfo.urlSeeds());
+        }
+        else
+        {
+            const MagnetUri &magnetUri = std::get<MagnetUri>(source);
+
+            // merge trackers and web seeds
+            torrent->addTrackers(magnetUri.trackers());
+            torrent->addUrlSeeds(magnetUri.urlSeeds());
         }
 
         return false;
@@ -3902,6 +3924,16 @@ ResumeDataStorageType SessionImpl::resumeDataStorageType() const
 void SessionImpl::setResumeDataStorageType(const ResumeDataStorageType type)
 {
     m_resumeDataStorageType = type;
+}
+
+bool SessionImpl::isMergeTrackersEnabled() const
+{
+    return m_isMergeTrackersEnabled;
+}
+
+void SessionImpl::setMergeTrackersEnabled(const bool enabled)
+{
+    m_isMergeTrackersEnabled = enabled;
 }
 
 QStringList SessionImpl::bannedIPs() const

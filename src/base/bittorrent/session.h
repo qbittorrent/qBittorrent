@@ -419,6 +419,8 @@ namespace BitTorrent
         virtual void setBannedIPs(const QStringList &newList) = 0;
         virtual ResumeDataStorageType resumeDataStorageType() const = 0;
         virtual void setResumeDataStorageType(ResumeDataStorageType type) = 0;
+        virtual bool isMergeTrackersEnabled() const = 0;
+        virtual void setMergeTrackersEnabled(bool enabled) = 0;
 
         virtual bool isRestored() const = 0;
 

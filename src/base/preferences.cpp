@@ -1234,6 +1234,19 @@ void Preferences::setConfirmPauseAndResumeAll(const bool enabled)
     setValue(u"GUI/ConfirmActions/PauseAndResumeAllTorrents"_s, enabled);
 }
 
+bool Preferences::confirmMergeTrackers() const
+{
+    return value(u"GUI/ConfirmActions/MergeTrackers"_s, true);
+}
+
+void Preferences::setConfirmMergeTrackers(const bool enabled)
+{
+    if (enabled == confirmMergeTrackers())
+        return;
+
+    setValue(u"GUI/ConfirmActions/MergeTrackers"_s, enabled);
+}
+
 #ifndef Q_OS_MACOS
 TrayIcon::Style Preferences::trayIconStyle() const
 {

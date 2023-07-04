@@ -539,9 +539,10 @@ bool AddNewTorrentDialog::loadTorrentImpl()
     const BitTorrent::InfoHash infoHash = m_torrentInfo.infoHash();
 
     // Prevent showing the dialog if download is already present
-    if (BitTorrent::Session::instance()->isKnownTorrent(infoHash))
+    const auto *btSession = BitTorrent::Session::instance();
+    if (btSession->isKnownTorrent(infoHash))
     {
-        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
+        BitTorrent::Torrent *const torrent = btSession->findTorrent(infoHash);
         if (torrent)
         {
             // Trying to set metadata to existing torrent in case if it has none
@@ -553,10 +554,16 @@ bool AddNewTorrentDialog::loadTorrentImpl()
             }
             else
             {
-                const QMessageBox::StandardButton btn = RaisedMessageBox::question(this, tr("Torrent is already present")
-                        , tr("Torrent '%1' is already in the transfer list. Do you want to merge trackers from new source?").arg(torrent->name())
-                        , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
-                if (btn == QMessageBox::Yes)
+                bool mergeTrackers = btSession->isMergeTrackersEnabled();
+                if (Preferences::instance()->confirmMergeTrackers())
+                {
+                    const QMessageBox::StandardButton btn = RaisedMessageBox::question(this, tr("Torrent is already present")
+                            , tr("Torrent '%1' is already in the transfer list. Do you want to merge trackers from new source?").arg(torrent->name())
+                            , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
+                    mergeTrackers = (btn == QMessageBox::Yes);
+                }
+
+                if (mergeTrackers)
                 {
                     torrent->addTrackers(m_torrentInfo.trackers());
                     torrent->addUrlSeeds(m_torrentInfo.urlSeeds());
@@ -592,9 +599,10 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
     const BitTorrent::InfoHash infoHash = magnetUri.infoHash();
 
     // Prevent showing the dialog if download is already present
-    if (BitTorrent::Session::instance()->isKnownTorrent(infoHash))
+    auto *btSession = BitTorrent::Session::instance();
+    if (btSession->isKnownTorrent(infoHash))
     {
-        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
+        BitTorrent::Torrent *const torrent = btSession->findTorrent(infoHash);
         if (torrent)
         {
             if (torrent->isPrivate())
@@ -603,10 +611,16 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
             }
             else
             {
-                const QMessageBox::StandardButton btn = RaisedMessageBox::question(this, tr("Torrent is already present")
-                        , tr("Torrent '%1' is already in the transfer list. Do you want to merge trackers from new source?").arg(torrent->name())
-                        , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
-                if (btn == QMessageBox::Yes)
+                bool mergeTrackers = btSession->isMergeTrackersEnabled();
+                if (Preferences::instance()->confirmMergeTrackers())
+                {
+                    const QMessageBox::StandardButton btn = RaisedMessageBox::question(this, tr("Torrent is already present")
+                            , tr("Torrent '%1' is already in the transfer list. Do you want to merge trackers from new source?").arg(torrent->name())
+                            , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
+                    mergeTrackers = (btn == QMessageBox::Yes);
+                }
+
+                if (mergeTrackers)
                 {
                     torrent->addTrackers(magnetUri.trackers());
                     torrent->addUrlSeeds(magnetUri.urlSeeds());
@@ -621,7 +635,7 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
         return false;
     }
 
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataDownloaded, this, &AddNewTorrentDialog::updateMetadata);
+    connect(btSession, &BitTorrent::Session::metadataDownloaded, this, &AddNewTorrentDialog::updateMetadata);
 
     // Set dialog title
     const QString torrentName = magnetUri.name();
@@ -630,7 +644,7 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
     updateDiskSpaceLabel();
     TMMChanged(m_ui->comboTTM->currentIndex());
 
-    BitTorrent::Session::instance()->downloadMetadata(magnetUri);
+    btSession->downloadMetadata(magnetUri);
     setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
     m_ui->labelInfohash1Data->setText(magnetUri.infoHash().v1().isValid() ? magnetUri.infoHash().v1().toString() : tr("N/A"));
     m_ui->labelInfohash2Data->setText(magnetUri.infoHash().v2().isValid() ? magnetUri.infoHash().v2().toString() : tr("N/A"));

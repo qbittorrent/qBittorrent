@@ -504,6 +504,9 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->stopConditionLabel->setEnabled(!m_ui->checkStartPaused->isChecked());
     m_ui->stopConditionComboBox->setEnabled(!m_ui->checkStartPaused->isChecked());
 
+    m_ui->checkMergeTrackers->setChecked(session->isMergeTrackersEnabled());
+    m_ui->checkConfirmMergeTrackers->setChecked(pref->confirmMergeTrackers());
+
     const TorrentFileGuard::AutoDeleteMode autoDeleteMode = TorrentFileGuard::autoDeleteMode();
     m_ui->deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
     m_ui->deleteCancelledTorrentBox->setChecked(autoDeleteMode == TorrentFileGuard::Always);
@@ -619,6 +622,8 @@ void OptionsDialog::loadDownloadsTabOptions()
         m_ui->stopConditionComboBox->setEnabled(!checked);
     });
     connect(m_ui->stopConditionComboBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMergeTrackers, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkConfirmMergeTrackers, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->deleteTorrentBox, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->deleteCancelledTorrentBox, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
@@ -684,6 +689,8 @@ void OptionsDialog::saveDownloadsTabOptions() const
     TorrentFileGuard::setAutoDeleteMode(!m_ui->deleteTorrentBox->isChecked() ? TorrentFileGuard::Never
                              : !m_ui->deleteCancelledTorrentBox->isChecked() ? TorrentFileGuard::IfAdded
                              : TorrentFileGuard::Always);
+    session->setMergeTrackersEnabled(m_ui->checkMergeTrackers->isChecked());
+    pref->setConfirmMergeTrackers(m_ui->checkConfirmMergeTrackers->isChecked());
 
     session->setPreallocationEnabled(preAllocateAllFiles());
     session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());
