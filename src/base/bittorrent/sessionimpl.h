@@ -29,8 +29,8 @@
 
 #pragma once
 
+#include <memory>
 #include <utility>
-#include <variant>
 #include <vector>
 
 #include <libtorrent/fwd.hpp>
@@ -76,9 +76,9 @@ namespace Net
 namespace BitTorrent
 {
     class InfoHash;
-    class MagnetUri;
     class ResumeDataStorage;
     class Torrent;
+    class TorrentDescriptor;
     class TorrentImpl;
     class Tracker;
     struct LoadTorrentParams;
@@ -416,10 +416,9 @@ namespace BitTorrent
 
         bool isKnownTorrent(const InfoHash &infoHash) const override;
         bool addTorrent(const QString &source, const AddTorrentParams &params = {}) override;
-        bool addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &params = {}) override;
-        bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = {}) override;
+        bool addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params = {}) override;
         bool deleteTorrent(const TorrentID &id, DeleteOption deleteOption = DeleteTorrent) override;
-        bool downloadMetadata(const MagnetUri &magnetUri) override;
+        bool downloadMetadata(const TorrentDescriptor &torrentDescr) override;
         bool cancelDownloadMetadata(const TorrentID &id) override;
 
         void recursiveTorrentDownload(const TorrentID &id) override;
@@ -532,7 +531,7 @@ namespace BitTorrent
         void endStartup(ResumeSessionContext *context);
 
         LoadTorrentParams initLoadTorrentParams(const AddTorrentParams &addTorrentParams);
-        bool addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source, const AddTorrentParams &addTorrentParams);
+        bool addTorrent_impl(const TorrentDescriptor &source, const AddTorrentParams &addTorrentParams);
 
         void updateSeedingLimitTimer();
         void exportTorrentFile(const Torrent *torrent, const Path &folderPath);

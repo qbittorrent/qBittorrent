@@ -41,8 +41,8 @@
 #include <QVariant>
 #include <QVector>
 
-#include "../bittorrent/magneturi.h"
 #include "../bittorrent/session.h"
+#include "../bittorrent/torrentdescriptor.h"
 #include "../asyncfilestorage.h"
 #include "../global.h"
 #include "../logger.h"
@@ -474,7 +474,7 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
         const auto torrentURL = job->articleData.value(Article::KeyTorrentURL).toString();
         BitTorrent::Session::instance()->addTorrent(torrentURL, rule.addTorrentParams());
 
-        if (BitTorrent::MagnetUri(torrentURL).isValid())
+        if (BitTorrent::TorrentDescriptor::parse(torrentURL))
         {
             if (Feed *feed = Session::instance()->feedByURL(job->feedURL))
             {

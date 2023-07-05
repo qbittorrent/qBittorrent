@@ -58,8 +58,8 @@ enum DeleteOption
 namespace BitTorrent
 {
     class InfoHash;
-    class MagnetUri;
     class Torrent;
+    class TorrentDescriptor;
     class TorrentID;
     class TorrentInfo;
     struct CacheStatus;
@@ -441,10 +441,9 @@ namespace BitTorrent
 
         virtual bool isKnownTorrent(const InfoHash &infoHash) const = 0;
         virtual bool addTorrent(const QString &source, const AddTorrentParams &params = {}) = 0;
-        virtual bool addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &params = {}) = 0;
-        virtual bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = {}) = 0;
+        virtual bool addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params = {}) = 0;
         virtual bool deleteTorrent(const TorrentID &id, DeleteOption deleteOption = DeleteOption::DeleteTorrent) = 0;
-        virtual bool downloadMetadata(const MagnetUri &magnetUri) = 0;
+        virtual bool downloadMetadata(const TorrentDescriptor &torrentDescr) = 0;
         virtual bool cancelDownloadMetadata(const TorrentID &id) = 0;
 
         virtual void recursiveTorrentDownload(const TorrentID &id) = 0;

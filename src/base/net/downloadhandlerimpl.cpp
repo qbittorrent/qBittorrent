@@ -199,11 +199,9 @@ void Net::DownloadHandlerImpl::handleRedirection(const QUrl &newUrl)
     // Redirect to magnet workaround
     if (newUrlString.startsWith(u"magnet:", Qt::CaseInsensitive))
     {
-        qDebug("Magnet redirect detected.");
         m_result.status = Net::DownloadStatus::RedirectedToMagnet;
-        m_result.magnet = newUrlString;
+        m_result.magnetURI = newUrlString;
         m_result.errorString = tr("Redirected to magnet URI");
-
         finish();
         return;
     }
