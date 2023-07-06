@@ -88,7 +88,7 @@ namespace RSS
     class Folder;
     class Item;
 
-    class Session : public QObject
+    class Session final : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(Session)

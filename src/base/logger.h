@@ -69,7 +69,7 @@ namespace Log
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(Log::MsgTypes)
 
-class Logger : public QObject
+class Logger final : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(Logger)

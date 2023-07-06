@@ -68,6 +68,9 @@ void WebUI::configure()
 
         // http server
         const QString serverAddressString = pref->getWebUiAddress();
+        const auto serverAddress = ((serverAddressString == u"*") || serverAddressString.isEmpty())
+            ? QHostAddress::Any : QHostAddress(serverAddressString);
+
         if (!m_httpServer)
         {
             m_webapp = new WebApplication(app(), this);
@@ -75,8 +78,7 @@ void WebUI::configure()
         }
         else
         {
-            if ((m_httpServer->serverAddress().toString() != serverAddressString)
-                    || (m_httpServer->serverPort() != port))
+            if ((m_httpServer->serverAddress() != serverAddress) || (m_httpServer->serverPort() != port))
                 m_httpServer->close();
         }
 
@@ -103,9 +105,7 @@ void WebUI::configure()
 
         if (!m_httpServer->isListening())
         {
-            const auto address = ((serverAddressString == u"*") || serverAddressString.isEmpty())
-                ? QHostAddress::Any : QHostAddress(serverAddressString);
-            bool success = m_httpServer->listen(address, port);
+            const bool success = m_httpServer->listen(serverAddress, port);
             if (success)
             {
                 LogMsg(tr("Web UI: Now listening on IP: %1, port: %2").arg(serverAddressString).arg(port));
