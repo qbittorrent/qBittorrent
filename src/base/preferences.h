@@ -317,6 +317,8 @@ public:
     void setConfirmRemoveAllTags(bool enabled);
     bool confirmPauseAndResumeAll() const;
     void setConfirmPauseAndResumeAll(bool enabled);
+    bool confirmMergeTrackers() const;
+    void setConfirmMergeTrackers(bool enabled);
 #ifndef Q_OS_MACOS
     bool systemTrayEnabled() const;
     void setSystemTrayEnabled(bool enabled);

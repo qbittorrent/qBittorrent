@@ -398,6 +398,8 @@ namespace BitTorrent
         void setBannedIPs(const QStringList &newList) override;
         ResumeDataStorageType resumeDataStorageType() const override;
         void setResumeDataStorageType(ResumeDataStorageType type) override;
+        bool isMergeTrackersEnabled() const override;
+        void setMergeTrackersEnabled(bool enabled) override;
 
         bool isRestored() const override;
 
@@ -704,6 +706,7 @@ namespace BitTorrent
         CachedSettingValue<QStringList> m_excludedFileNames;
         CachedSettingValue<QStringList> m_bannedIPs;
         CachedSettingValue<ResumeDataStorageType> m_resumeDataStorageType;
+        CachedSettingValue<bool> m_isMergeTrackersEnabled;
         CachedSettingValue<bool> m_isI2PEnabled;
         CachedSettingValue<QString> m_I2PAddress;
         CachedSettingValue<int> m_I2PPort;

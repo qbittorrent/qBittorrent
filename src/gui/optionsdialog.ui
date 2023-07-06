@@ -951,6 +951,41 @@
                 </layout>
                </item>
                <item>
+                <widget class="QGroupBox" name="duplicateTorrentGroup">
+                 <property name="title">
+                  <string>When duplicate torrent is being added</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="deleteTorrentBoxLayout">
+                  <item>
+                   <widget class="QCheckBox" name="checkMergeTrackers">
+                    <property name="toolTip">
+                     <string>Whether trackers should be merged to existing torrent</string>
+                    </property>
+                    <property name="text">
+                     <string>Merge trackers to existing torrent</string>
+                    </property>
+                    <property name="checked">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkConfirmMergeTrackers">
+                    <property name="toolTip">
+                     <string>Shows a confirmation dialog upon merging trackers to existing torrent</string>
+                    </property>
+                    <property name="text">
+                     <string>Confirm merging trackers</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="deleteTorrentBox">
                  <property name="toolTip">
                   <string>Whether the .torrent file should be deleted after adding it</string>

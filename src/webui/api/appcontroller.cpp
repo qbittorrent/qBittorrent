@@ -126,6 +126,7 @@ void AppController::preferencesAction()
     data[u"add_to_top_of_queue"_s] = session->isAddTorrentToQueueTop();
     data[u"start_paused_enabled"_s] = session->isAddTorrentPaused();
     data[u"torrent_stop_condition"_s] = Utils::String::fromEnum(session->torrentStopCondition());
+    data[u"merge_trackers"_s] = session->isMergeTrackersEnabled();
     data[u"auto_delete_mode"_s] = static_cast<int>(TorrentFileGuard::autoDeleteMode());
     data[u"preallocate_all"_s] = session->isPreallocationEnabled();
     data[u"incomplete_files_ext"_s] = session->isAppendExtensionEnabled();
@@ -477,6 +478,8 @@ void AppController::setPreferencesAction()
         session->setAddTorrentPaused(it.value().toBool());
     if (hasKey(u"torrent_stop_condition"_s))
         session->setTorrentStopCondition(Utils::String::toEnum(it.value().toString(), BitTorrent::Torrent::StopCondition::None));
+    if (hasKey(u"merge_trackers"_s))
+        session->setMergeTrackersEnabled(it.value().toBool());
     if (hasKey(u"auto_delete_mode"_s))
         TorrentFileGuard::setAutoDeleteMode(static_cast<TorrentFileGuard::AutoDeleteMode>(it.value().toInt()));
 
