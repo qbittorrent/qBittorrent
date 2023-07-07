@@ -1760,8 +1760,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     alert("Could not contact qBittorrent");
                 },
                 onSuccess: function(ifaces) {
-                    if (!ifaces)
+                    if (!Array.isArray(ifaces))
                         return;
+
+                    // add the current network interface to the options if needed
+                    if (default_iface && !ifaces.some((item) => item.value === default_iface))
+                        ifaces.push({ name: default_iface_name || default_iface, value: default_iface });
 
                     $('networkInterface').options.add(new Option('QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]', ''));
                     ifaces.forEach(function(item, index) {
