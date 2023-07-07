@@ -1749,7 +1749,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         // Advanced Tab
-        const updateNetworkInterfaces = function(default_iface) {
+        const updateNetworkInterfaces = function(default_iface, default_iface_name) {
             const url = 'api/v2/app/networkInterfaceList';
             $('networkInterface').empty();
             new Request.JSON({
@@ -2148,7 +2148,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         // qBittorrent section
                         $('resumeDataStorageType').setProperty('value', pref.resume_data_storage_type);
                         $('memoryWorkingSetLimit').setProperty('value', pref.memory_working_set_limit);
-                        updateNetworkInterfaces(pref.current_network_interface);
+                        updateNetworkInterfaces(pref.current_network_interface, pref.current_interface_name);
                         updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address);
                         $('saveResumeDataInterval').setProperty('value', pref.save_resume_data_interval);
                         $('recheckTorrentsOnCompletion').setProperty('checked', pref.recheck_completed_torrents);
