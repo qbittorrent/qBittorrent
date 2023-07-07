@@ -845,7 +845,8 @@ void AppController::setPreferencesAction()
         const QString ifaceName = (ifacesIter != ifaces.cend()) ? ifacesIter->humanReadableName() : QString {};
 
         session->setNetworkInterface(ifaceValue);
-        session->setNetworkInterfaceName(ifaceName);
+        if (!ifaceName.isEmpty() || ifaceValue.isEmpty())
+            session->setNetworkInterfaceName(ifaceName);
     }
     // Current network interface address
     if (hasKey(u"current_interface_address"_s))
