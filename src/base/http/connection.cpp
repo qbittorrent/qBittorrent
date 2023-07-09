@@ -123,14 +123,30 @@ void Connection::read()
             {
                 const Environment env {m_socket->localAddress(), m_socket->localPort(), m_socket->peerAddress(), m_socket->peerPort()};
 
-                Response resp = m_requestHandler->processRequest(result.request, env);
+                if (result.request.method == HEADER_REQUEST_METHOD_HEAD)
+                {
+                    Request getRequest = result.request;
+                    getRequest.method = HEADER_REQUEST_METHOD_GET;
 
-                if (acceptsGzipEncoding(result.request.headers[u"accept-encoding"_s]))
-                    resp.headers[HEADER_CONTENT_ENCODING] = u"gzip"_s;
+                    Response resp = m_requestHandler->processRequest(getRequest, env);
 
-                resp.headers[HEADER_CONNECTION] = u"keep-alive"_s;
+                    resp.headers[HEADER_CONNECTION] = u"keep-alive"_s;
+                    resp.headers[HEADER_CONTENT_LENGTH] = QString::number(resp.content.length());
+                    resp.content.clear();
 
-                sendResponse(resp);
+                    sendResponse(resp);
+                }
+                else
+                {
+                    Response resp = m_requestHandler->processRequest(result.request, env);
+
+                    if (acceptsGzipEncoding(result.request.headers.value(u"accept-encoding"_s)))
+                        resp.headers[HEADER_CONTENT_ENCODING] = u"gzip"_s;
+                    resp.headers[HEADER_CONNECTION] = u"keep-alive"_s;
+
+                    sendResponse(resp);
+                }
+
                 m_receivedData.remove(0, result.frameSize);
             }
             break;
