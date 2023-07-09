@@ -103,6 +103,7 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArray &data)
     // handle supported methods
     if ((m_request.method == HEADER_REQUEST_METHOD_GET) || (m_request.method == HEADER_REQUEST_METHOD_HEAD))
         return {ParseStatus::OK, m_request, headerLength};
+
     if (m_request.method == HEADER_REQUEST_METHOD_POST)
     {
         const auto parseContentLength = [this]() -> int
@@ -146,8 +147,7 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArray &data)
         return {ParseStatus::OK, m_request, (headerLength + contentLength)};
     }
 
-    qWarning() << Q_FUNC_INFO << "unsupported request method: " << m_request.method;
-    return {ParseStatus::BadRequest, Request(), 0};  // TODO: SHOULD respond "501 Not Implemented"
+    return {ParseStatus::BadMethod, m_request, 0};
 }
 
 bool RequestParser::parseStartLines(const QStringView data)

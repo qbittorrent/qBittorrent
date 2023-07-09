@@ -41,6 +41,7 @@ namespace Http
         {
             OK,
             Incomplete,
+            BadMethod,
             BadRequest
         };
 

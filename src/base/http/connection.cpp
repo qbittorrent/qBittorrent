@@ -106,6 +106,19 @@ void Connection::read()
             }
             return;
 
+        case RequestParser::ParseStatus::BadMethod:
+            {
+                LogMsg(tr("Bad Http request method, closing socket. IP: %1. Method: \"%2\"")
+                    .arg(m_socket->peerAddress().toString(), result.request.method), Log::WARNING);
+
+                Response resp(501, u"Not Implemented"_s);
+                resp.headers[HEADER_CONNECTION] = u"close"_s;
+
+                sendResponse(resp);
+                m_socket->close();
+            }
+            return;
+
         case RequestParser::ParseStatus::BadRequest:
             {
                 LogMsg(tr("Bad Http request, closing socket. IP: %1")
