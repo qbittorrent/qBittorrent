@@ -166,6 +166,7 @@ private:
     int getEncryptionSetting() const;
     qreal getMaxRatio() const;
     int getMaxSeedingMinutes() const;
+    int getMaxInactiveSeedingMinutes() const;
     // Proxy options
     bool isProxyEnabled() const;
     QString getProxyIp() const;

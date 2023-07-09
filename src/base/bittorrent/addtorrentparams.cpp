@@ -50,6 +50,7 @@ const QString PARAM_AUTOTMM = u"use_auto_tmm"_s;
 const QString PARAM_UPLOADLIMIT = u"upload_limit"_s;
 const QString PARAM_DOWNLOADLIMIT = u"download_limit"_s;
 const QString PARAM_SEEDINGTIMELIMIT = u"seeding_time_limit"_s;
+const QString PARAM_INACTIVESEEDINGTIMELIMIT = u"inactive_seeding_time_limit"_s;
 const QString PARAM_RATIOLIMIT = u"ratio_limit"_s;
 
 namespace
@@ -107,14 +108,14 @@ bool BitTorrent::operator==(const AddTorrentParams &lhs, const AddTorrentParams 
                 lhs.addToQueueTop, lhs.addPaused, lhs.stopCondition,
                 lhs.filePaths, lhs.filePriorities, lhs.skipChecking,
                 lhs.contentLayout, lhs.useAutoTMM, lhs.uploadLimit,
-                lhs.downloadLimit, lhs.seedingTimeLimit, lhs.ratioLimit)
+                lhs.downloadLimit, lhs.seedingTimeLimit, lhs.inactiveSeedingTimeLimit, lhs.ratioLimit)
             == std::tie(rhs.name, rhs.category, rhs.tags,
                 rhs.savePath, rhs.useDownloadPath, rhs.downloadPath,
                 rhs.sequential, rhs.firstLastPiecePriority, rhs.addForced,
                 rhs.addToQueueTop, rhs.addPaused, rhs.stopCondition,
                 rhs.filePaths, rhs.filePriorities, rhs.skipChecking,
                 rhs.contentLayout, rhs.useAutoTMM, rhs.uploadLimit,
-                rhs.downloadLimit, rhs.seedingTimeLimit, rhs.ratioLimit);
+                rhs.downloadLimit, rhs.seedingTimeLimit, rhs.inactiveSeedingTimeLimit, rhs.ratioLimit);
 }
 
 BitTorrent::AddTorrentParams BitTorrent::parseAddTorrentParams(const QJsonObject &jsonObj)
@@ -134,6 +135,7 @@ BitTorrent::AddTorrentParams BitTorrent::parseAddTorrentParams(const QJsonObject
     params.uploadLimit = jsonObj.value(PARAM_UPLOADLIMIT).toInt(-1);
     params.downloadLimit = jsonObj.value(PARAM_DOWNLOADLIMIT).toInt(-1);
     params.seedingTimeLimit = jsonObj.value(PARAM_SEEDINGTIMELIMIT).toInt(BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME);
+    params.inactiveSeedingTimeLimit = jsonObj.value(PARAM_INACTIVESEEDINGTIMELIMIT).toInt(BitTorrent::Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME);
     params.ratioLimit = jsonObj.value(PARAM_RATIOLIMIT).toDouble(BitTorrent::Torrent::USE_GLOBAL_RATIO);
 
     return params;
@@ -152,6 +154,7 @@ QJsonObject BitTorrent::serializeAddTorrentParams(const AddTorrentParams &params
         {PARAM_UPLOADLIMIT, params.uploadLimit},
         {PARAM_DOWNLOADLIMIT, params.downloadLimit},
         {PARAM_SEEDINGTIMELIMIT, params.seedingTimeLimit},
+        {PARAM_INACTIVESEEDINGTIMELIMIT, params.inactiveSeedingTimeLimit},
         {PARAM_RATIOLIMIT, params.ratioLimit}
     };
 

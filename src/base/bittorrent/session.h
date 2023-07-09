@@ -203,6 +203,8 @@ namespace BitTorrent
         virtual void setGlobalMaxRatio(qreal ratio) = 0;
         virtual int globalMaxSeedingMinutes() const = 0;
         virtual void setGlobalMaxSeedingMinutes(int minutes) = 0;
+        virtual int globalMaxInactiveSeedingMinutes() const = 0;
+        virtual void setGlobalMaxInactiveSeedingMinutes(int minutes) = 0;
         virtual bool isDHTEnabled() const = 0;
         virtual void setDHTEnabled(bool enabled) = 0;
         virtual bool isLSDEnabled() const = 0;
