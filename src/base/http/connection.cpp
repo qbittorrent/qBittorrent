@@ -32,7 +32,6 @@
 
 #include <QTcpSocket>
 
-#include "base/logger.h"
 #include "irequesthandler.h"
 #include "requestparser.h"
 #include "responsegenerator.h"
@@ -94,8 +93,8 @@ void Connection::read()
                 const long bufferLimit = RequestParser::MAX_CONTENT_SIZE * 1.1;  // some margin for headers
                 if (m_receivedData.size() > bufferLimit)
                 {
-                    LogMsg(tr("Http request size exceeds limitation, closing socket. Limit: %1, IP: %2")
-                        .arg(bufferLimit).arg(m_socket->peerAddress().toString()), Log::WARNING);
+                    qWarning("%s", qUtf8Printable(tr("Http request size exceeds limitation, closing socket. Limit: %1, IP: %2")
+                        .arg(QString::number(bufferLimit), m_socket->peerAddress().toString())));
 
                     Response resp(413, u"Payload Too Large"_s);
                     resp.headers[HEADER_CONNECTION] = u"close"_s;
@@ -108,8 +107,8 @@ void Connection::read()
 
         case RequestParser::ParseStatus::BadMethod:
             {
-                LogMsg(tr("Bad Http request method, closing socket. IP: %1. Method: \"%2\"")
-                    .arg(m_socket->peerAddress().toString(), result.request.method), Log::WARNING);
+                qWarning("%s", qUtf8Printable(tr("Bad Http request method, closing socket. IP: %1. Method: \"%2\"")
+                    .arg(m_socket->peerAddress().toString(), result.request.method)));
 
                 Response resp(501, u"Not Implemented"_s);
                 resp.headers[HEADER_CONNECTION] = u"close"_s;
@@ -121,8 +120,8 @@ void Connection::read()
 
         case RequestParser::ParseStatus::BadRequest:
             {
-                LogMsg(tr("Bad Http request, closing socket. IP: %1")
-                    .arg(m_socket->peerAddress().toString()), Log::WARNING);
+                qWarning("%s", qUtf8Printable(tr("Bad Http request, closing socket. IP: %1")
+                    .arg(m_socket->peerAddress().toString())));
 
                 Response resp(400, u"Bad Request"_s);
                 resp.headers[HEADER_CONNECTION] = u"close"_s;
