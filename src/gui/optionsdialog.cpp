@@ -1048,7 +1048,8 @@ void OptionsDialog::loadBittorrentTabOptions()
         m_ui->checkMaxSeedingMinutes->setChecked(false);
         m_ui->spinMaxSeedingMinutes->setEnabled(false);
     }
-    if (session->globalMaxInactiveSeedingMinutes() >= 0) {
+    if (session->globalMaxInactiveSeedingMinutes() >= 0)
+    {
         // Enable
         m_ui->checkMaxInactiveSeedingMinutes->setChecked(true);
         m_ui->spinMaxInactiveSeedingMinutes->setEnabled(true);
