@@ -95,7 +95,7 @@ Thu Jan 06 2022 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.4.0
     - FEATURE: Add tooltip to listening port spinbox (Chocobo1)
     - FEATURE: Add "Skip hash check" option for watched folders (glassez)
     - FEATURE: Add "Show torrent options" double-click action (glassez)
-    - FEATURE: Allow setting temp folder per torrent/catergory (glassez)
+    - FEATURE: Allow setting temp folder per torrent/category (glassez)
     - FEATURE: Support folder based UI Themes (Prince Gupta)
     - BUGFIX: Save "resume data" once file priority is changed (glassez)
     - BUGFIX: Show priority menu at top level if there is no other in Add New Torrent dialog (FozzeY)
@@ -980,7 +980,7 @@ Tue Dec 03 2019 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.2.0
 * Sun Dec 17 2017 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.0.3
     - BUGFIX: Add height padding to the transfer list icons. Closes #7951. (sledgehammer999)
     - BUGFIX: Allow to drag-n-drop URLs into mainwindow to initiate download. (Chocobo1)
-    - BUGFIX: Fix crash when fitlering search results. Stable sorting is removed. Closes #7952.(Chocobo1)
+    - BUGFIX: Fix crash when filtering search results. Stable sorting is removed. Closes #7952.(Chocobo1)
     - WEBUI: Fix missing qbt logo on login page in webUI. Closes #7953. (Chocobo1)
     - WEBUI: Add check to avoid type error after logout. (Chocobo1)
     - WEBUI: Use POST for logout command. This is to avoid browser being smart to prefetch the link then logging out the user. (Chocobo1)
@@ -2309,7 +2309,7 @@ Tue Dec 03 2019 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.2.0
     - FEATURE: Added HTTPS support to Web UI (Ishan Arora)
     - BUGFIX: Change systray icon on the fly (no restart needed)
     - BUGFIX: Remember peer-level rate limits (requires libtorrent v0.16)
-    - BUGFIX: Stop annoncing to trackers an all tiers (more respectful)
+    - BUGFIX: Stop announcing to trackers an all tiers (more respectful)
     - BUGFIX: Stop sharing private trackers with other peers
     - BUGFIX: Tracker exchange extension can be disabled
     - BUGFIX: Cleaner program exit on system log out
