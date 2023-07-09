@@ -31,6 +31,11 @@
 #include <algorithm>
 #include <chrono>
 
+#if defined(Q_OS_WIN)
+#include <Windows.h>
+#include <versionhelpers.h>  // must follow after Windows.h
+#endif
+
 #include <QActionGroup>
 #include <QClipboard>
 #include <QCloseEvent>
@@ -273,9 +278,15 @@ MainWindow::MainWindow(IGUIApplication *app, const State initialState)
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     connect(m_ui->actionCheckForUpdates, &QAction::triggered, this, [this]() { checkProgramUpdate(true); });
 
+#ifdef Q_OS_WIN
+    if (::IsWindows10OrGreater() && pref->isUpdateCheckEnabled())
+        checkProgramUpdate(false);
+#else
+
     // trigger an early check on startup
     if (pref->isUpdateCheckEnabled())
         checkProgramUpdate(false);
+#endif
 #else
     m_ui->actionCheckForUpdates->setVisible(false);
 #endif
@@ -1483,7 +1494,11 @@ void MainWindow::loadPreferences()
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     if (pref->isUpdateCheckEnabled())
     {
+#ifdef Q_OS_WIN
+        if (::IsWindows10OrGreater() && !m_programUpdateTimer)
+#else
         if (!m_programUpdateTimer)
+#endif
         {
             m_programUpdateTimer = new QTimer(this);
             m_programUpdateTimer->setInterval(24h);
@@ -1919,6 +1934,21 @@ void MainWindow::updatePowerManagementState()
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 void MainWindow::checkProgramUpdate(const bool invokedByUser)
 {
+#ifdef Q_OS_WIN
+    if (!::IsWindows10OrGreater())
+    {
+        if (invokedByUser) {
+            auto *msgBox = new QMessageBox {QMessageBox::Information, u"qBittorrent"_qs
+                                           , tr("This is the last supported version for your Windows version.")
+                                           , QMessageBox::Ok, this};
+            msgBox->setAttribute(Qt::WA_DeleteOnClose);
+            msgBox->show();
+        }
+
+        return;
+    }
+#endif
+
     if (m_programUpdateTimer)
         m_programUpdateTimer->stop();
 
