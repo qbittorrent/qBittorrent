@@ -743,10 +743,8 @@ void AppController::setPreferencesAction()
     }
     if (hasKey(u"max_inactive_seeding_time_enabled"_s))
     {
-        if (it.value().toBool())
-            session->setGlobalMaxInactiveSeedingMinutes(m[u"max_inactive_seeding_time"_s].toInt());
-        else
-            session->setGlobalMaxInactiveSeedingMinutes(-1);
+        session->setGlobalMaxInactiveSeedingMinutes(it.value().toBool()
+            ? m[u"max_inactive_seeding_time"_s].toInt() : -1);
     }
     if (hasKey(u"max_ratio_act"_s))
         session->setMaxRatioAction(static_cast<MaxRatioAction>(it.value().toInt()));

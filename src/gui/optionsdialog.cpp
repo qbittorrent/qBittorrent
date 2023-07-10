@@ -1463,9 +1463,9 @@ int OptionsDialog::getMaxSeedingMinutes() const
 // Return Inactive Seeding Minutes
 int OptionsDialog::getMaxInactiveSeedingMinutes() const
 {
-    if (m_ui->checkMaxInactiveSeedingMinutes->isChecked())
-        return m_ui->spinMaxInactiveSeedingMinutes->value();
-    return -1;
+    return m_ui->checkMaxInactiveSeedingMinutes->isChecked()
+        ? m_ui->spinMaxInactiveSeedingMinutes->value()
+        : -1;
 }
 
 // Return max connections number

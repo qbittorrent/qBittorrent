@@ -1200,8 +1200,7 @@ qlonglong TorrentImpl::eta() const
         if (maxInactiveSeedingTimeValue >= 0)
         {
             inactiveSeedingTimeEta = (maxInactiveSeedingTimeValue * 60) - timeSinceActivity();
-            if (inactiveSeedingTimeEta < 0)
-                inactiveSeedingTimeEta = 0;
+            inactiveSeedingTimeEta = std::max(inactiveSeedingTimeEta, 0);
         }
 
         return std::min({ratioEta, seedingTimeEta, inactiveSeedingTimeEta});

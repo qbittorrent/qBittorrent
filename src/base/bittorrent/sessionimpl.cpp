@@ -1126,8 +1126,7 @@ int SessionImpl::globalMaxInactiveSeedingMinutes() const
 
 void SessionImpl::setGlobalMaxInactiveSeedingMinutes(int minutes)
 {
-    if (minutes < 0)
-        minutes = -1;
+    minutes = std::max(minutes, -1);
 
     if (minutes != globalMaxInactiveSeedingMinutes())
     {
