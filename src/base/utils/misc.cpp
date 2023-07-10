@@ -379,7 +379,7 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
     }
 
     qlonglong days = (hours / 24);
-    if (days < 7)
+    if (days < 30)
     {
         hours -= (days * 24);
         return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days), QString::number(hours));
