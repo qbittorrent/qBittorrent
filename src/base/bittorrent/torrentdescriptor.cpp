@@ -41,8 +41,8 @@
 #include <QUrl>
 
 #include "base/global.h"
+#include "base/preferences.h"
 #include "base/utils/io.h"
-#include "common.h"
 #include "infohash.h"
 #include "trackerentry.h"
 
@@ -74,12 +74,14 @@ namespace
         return (string.size() == V2_HEX_SIZE) && !string.contains(QRegularExpression(u"[^0-9A-Fa-f]"_s));
     }
 
-    constexpr lt::load_torrent_limits loadTorrentLimits()
+    lt::load_torrent_limits loadTorrentLimits()
     {
+        const auto *pref = Preferences::instance();
+
         lt::load_torrent_limits limits;
-        limits.max_buffer_size = MAX_TORRENT_SIZE;
-        limits.max_decode_depth = BENCODE_DEPTH_LIMIT;
-        limits.max_decode_tokens = BENCODE_TOKEN_LIMIT;
+        limits.max_buffer_size = static_cast<int>(pref->getTorrentFileSizeLimit());
+        limits.max_decode_depth = pref->getBdecodeDepthLimit();
+        limits.max_decode_tokens = pref->getBdecodeTokenLimit();
 
         return limits;
     }
@@ -215,8 +217,6 @@ QVector<BitTorrent::TrackerEntry> BitTorrent::TorrentDescriptor::trackers() cons
 
 QVector<QUrl> BitTorrent::TorrentDescriptor::urlSeeds() const
 {
-    // TODO: Check it!!!
-
     QVector<QUrl> urlSeeds;
     urlSeeds.reserve(static_cast<decltype(urlSeeds)::size_type>(m_ltAddTorrentParams.url_seeds.size()));
 

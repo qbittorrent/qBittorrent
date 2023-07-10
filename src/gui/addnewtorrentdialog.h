@@ -97,9 +97,8 @@ private:
 
     explicit AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
 
-    bool loadTorrentFile(const QString &source);
+    bool loadTorrent(const QString &source);
     bool loadTorrentImpl();
-    bool loadMagnet(const BitTorrent::TorrentDescriptor &torrentDescr);
     void populateSavePaths();
     void loadState();
     void saveState();
