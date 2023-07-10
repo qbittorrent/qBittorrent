@@ -66,6 +66,7 @@ TorrentContentTreeView::TorrentContentTreeView(QWidget *parent)
     : QTreeView(parent)
 {
     setExpandsOnDoubleClick(false);
+    setUniformRowHeights(true);
     header()->setFirstSectionMovable(true);
 }
 

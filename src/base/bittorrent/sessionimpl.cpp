@@ -4637,6 +4637,11 @@ void SessionImpl::handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoH
     }
 }
 
+void SessionImpl::handleTorrentStorageMovingStateChanged(TorrentImpl *torrent)
+{
+    emit torrentsUpdated({torrent});
+}
+
 bool SessionImpl::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, const MoveStorageMode mode)
 {
     Q_ASSERT(torrent);

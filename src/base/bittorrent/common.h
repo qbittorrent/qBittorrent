@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2020-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -33,3 +33,7 @@
 #include "base/global.h"
 
 inline const QString QB_EXT = u".!qB"_qs;
+
+inline const int MAX_TORRENT_SIZE = 100 * 1024 * 1024; // 100 MiB
+inline const int BENCODE_DEPTH_LIMIT = 100;
+inline const int BENCODE_TOKEN_LIMIT = 10'000'000;

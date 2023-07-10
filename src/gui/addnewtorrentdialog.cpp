@@ -41,6 +41,7 @@
 #include <QUrl>
 #include <QVector>
 
+#include "base/bittorrent/common.h"
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/magneturi.h"

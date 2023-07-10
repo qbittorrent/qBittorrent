@@ -48,6 +48,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/string.h"
+#include "common.h"
 #include "infohash.h"
 #include "loadtorrentparams.h"
 
@@ -196,7 +197,8 @@ void BitTorrent::BencodeResumeDataStorage::loadQueue(const Path &queueFilename)
 BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorrentResumeData(const QByteArray &data, const QByteArray &metadata) const
 {
     lt::error_code ec;
-    const lt::bdecode_node resumeDataRoot = lt::bdecode(data, ec);
+    const lt::bdecode_node resumeDataRoot = lt::bdecode(data, ec
+            , nullptr, BENCODE_DEPTH_LIMIT, BENCODE_TOKEN_LIMIT);
     if (ec)
         return nonstd::make_unexpected(tr("Cannot parse resume data: %1").arg(QString::fromStdString(ec.message())));
 
@@ -263,7 +265,8 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
 
     if (!metadata.isEmpty())
     {
-        const lt::bdecode_node torentInfoRoot = lt::bdecode(metadata, ec);
+        const lt::bdecode_node torentInfoRoot = lt::bdecode(metadata, ec
+                , nullptr, BENCODE_DEPTH_LIMIT, BENCODE_TOKEN_LIMIT);
         if (ec)
             return nonstd::make_unexpected(tr("Cannot parse torrent info: %1").arg(QString::fromStdString(ec.message())));
 
