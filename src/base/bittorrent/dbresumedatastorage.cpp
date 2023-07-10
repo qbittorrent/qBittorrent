@@ -66,7 +66,7 @@ namespace
 {
     const QString DB_CONNECTION_NAME = u"ResumeDataStorage"_s;
 
-    const int DB_VERSION = 4;
+    const int DB_VERSION = 5;
 
     const QString DB_TABLE_META = u"meta"_s;
     const QString DB_TABLE_TORRENTS = u"torrents"_s;
@@ -607,6 +607,19 @@ void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
                     .arg(quoted(torrentsQueuePositionIndexName), quoted(DB_TABLE_TORRENTS), quoted(DB_COLUMN_QUEUE_POSITION.name));
             if (!query.exec(createTorrentsQueuePositionIndexQuery))
                 throw RuntimeError(query.lastError().text());
+        }
+
+        if (fromVersion <= 4)
+        {
+            const auto testQuery = u"SELECT COUNT(%1) FROM %2;"_s
+                    .arg(quoted(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT.name), quoted(DB_TABLE_TORRENTS));
+            if (!query.exec(testQuery))
+            {
+                const auto alterTableTorrentsQuery = u"ALTER TABLE %1 ADD %2"_s
+                        .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT, "INTEGER NOT NULL"));
+                if (!query.exec(alterTableTorrentsQuery))
+                    throw RuntimeError(query.lastError().text());
+            }
         }
 
         const QString updateMetaVersionQuery = makeUpdateStatement(DB_TABLE_META, {DB_COLUMN_NAME, DB_COLUMN_VALUE});
