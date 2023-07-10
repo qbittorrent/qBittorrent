@@ -1103,6 +1103,7 @@ void OptionsDialog::loadBittorrentTabOptions()
     connect(m_ui->spinMaxSeedingMinutes, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMaxInactiveSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMaxInactiveSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
+    connect(m_ui->checkMaxInactiveSeedingMinutes, &QAbstractButton::toggled, m_ui->spinMaxInactiveSeedingMinutes, &ThisType::setEnabled);
     connect(m_ui->spinMaxInactiveSeedingMinutes, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkEnableAddTrackers, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
