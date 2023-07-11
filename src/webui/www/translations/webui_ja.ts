@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ja">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ja">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>サブフォルダーを作成する</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>サブフォルダーを作成しない</translation>
     </message>
     <message>
@@ -576,10 +574,6 @@
         <translation>ダウンロード速度アイコン</translation>
     </message>
     <message>
-        <source>Connection status</source>
-        <translation type="vanished">接続状態</translation>
-    </message>
-    <message>
         <source>Alternative speed limits: On</source>
         <translation>代替速度制限：オン</translation>
     </message>
@@ -716,11 +710,11 @@
     </message>
     <message>
         <source>Copy .torrent files to:</source>
-        <translation>".torrent"ファイルのコピー先:</translation>
+        <translation>&quot;.torrent&quot;ファイルのコピー先:</translation>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>ダウンロードが完了した".torrent"ファイルのコピー先:</translation>
+        <translation>ダウンロードが完了した&quot;.torrent&quot;ファイルのコピー先:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -997,8 +991,8 @@
         <translation>%T: 現在のトラッカー</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>ヒント: パラメーターに空白が含まれるときはダブルクオーテーションで括ってください (例: "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>ヒント: パラメーターに空白が含まれるときはダブルクオーテーションで括ってください (例: &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1026,7 +1020,7 @@
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
-        <translation>その後".torrent"ファイルを削除</translation>
+        <translation>その後&quot;.torrent&quot;ファイルを削除</translation>
     </message>
     <message>
         <source>Download rate threshold:</source>
@@ -1421,7 +1415,7 @@
         <translation>オリジナル</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>サブフォルダーを作成しない</translation>
     </message>
     <message>
@@ -1557,12 +1551,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use ';' to split multiple entries. Can use wildcard '*'.</source>
+Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
         <translation>HTTPのHostヘッダーをフィルタリングするためのホワイトリストです。
 DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用する
 ドメイン名を入力する必要があります。
 
-複数のエントリに分けるには';'を使用します。ワイルドカード'*'を使用できます。</translation>
+複数のエントリに分けるには&apos;;&apos;を使用します。ワイルドカード&apos;*&apos;を使用できます。</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1573,8 +1567,8 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation>HTTPS用の証明書を追加してください</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation> 転送クライアントアドレス(X-Forwarded-Forヘッダー)を使用するためのリバースプロキシのIP(または0.0.0.0/24などのサブネット)を指定します。複数項目は';'で区切ります。</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
+        <translation> 転送クライアントアドレス(X-Forwarded-Forヘッダー)を使用するためのリバースプロキシのIP(または0.0.0.0/24などのサブネット)を指定します。複数項目は&apos;;&apos;で区切ります。</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1678,31 +1672,31 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use Subcategories</source>
@@ -1710,7 +1704,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1718,23 +1712,23 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2691,7 +2685,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2875,7 +2869,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Export .torrent</source>
-        <translation>".torrent"をエクスポート</translation>
+        <translation>&quot;.torrent&quot;をエクスポート</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -3123,11 +3117,11 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation>表示中</translation>
     </message>
     <message>
-        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>ウィンドウ右下の"プラグインを検索..."ボタンをクリックしてインストールしてください。</translation>
+        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
+        <translation>ウィンドウ右下の&quot;プラグインを検索...&quot;ボタンをクリックしてインストールしてください。</translation>
     </message>
     <message>
-        <source>There aren't any search plugins installed.</source>
+        <source>There aren&apos;t any search plugins installed.</source>
         <translation>検索プラグインがインストールされていません。</translation>
     </message>
 </context>
@@ -3158,7 +3152,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation>有効</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>警告: これら検索エンジンからTorrentをダウンロードする際は、あなたの国の法を遵守していることを必ず確認してください。</translation>
     </message>
     <message>
@@ -3584,7 +3578,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>? to match any single character</source>
-        <translation>"?"は任意の1文字にマッチします</translation>
+        <translation>&quot;?&quot;は任意の1文字にマッチします</translation>
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
@@ -3600,7 +3594,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>| is used as OR operator</source>
-        <translation>"|"は"OR"演算子として使用します</translation>
+        <translation>&quot;|&quot;は&quot;OR&quot;演算子として使用します</translation>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
@@ -3608,11 +3602,11 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation>空白は"AND"演算子とみなされます(すべての単語、語順は任意)</translation>
+        <translation>空白は&quot;AND&quot;演算子とみなされます(すべての単語、語順は任意)</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
-        <translation>空の"%1"を指定した場合(例: %2)は、</translation>
+        <translation>空の&quot;%1&quot;を指定した場合(例: %2)は、</translation>
     </message>
     <message>
         <source>Example: </source>
@@ -3720,7 +3714,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
-        <translation>語順が重要な場合は、空白ではなく'"*"を使用します。</translation>
+        <translation>語順が重要な場合は、空白ではなく&apos;&quot;*&quot;を使用します。</translation>
     </message>
     <message>
         <source>Add Paused:</source>
@@ -3777,7 +3771,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>オリジナル</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>サブフォルダーを作成しない</translation>
     </message>
 </context>
