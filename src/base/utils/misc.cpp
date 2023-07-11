@@ -385,7 +385,6 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
         return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days), QString::number(hours));
     }
 
-    qlonglong months = (days / 31);
     if (days < 365)
     {
         qlonglong months = (days / 31);
@@ -394,6 +393,7 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
     }
 
     qlonglong years = (days / 365);
+    qlonglong months;
     days -= (years * 365);
     months = (days / 31);
     days -= (months * 31);
