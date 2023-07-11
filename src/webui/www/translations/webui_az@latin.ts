@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="az@latin">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="az@latin">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Alt qovluq yarat</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Alt qovluq yaratmamaq</translation>
     </message>
     <message>
@@ -117,7 +115,7 @@
     <name>HttpServer</name>
     <message>
         <source>Exit qBittorrent</source>
-        <translation>qBittorrent'dən çıxmaq</translation>
+        <translation>qBittorrent&apos;dən çıxmaq</translation>
     </message>
     <message>
         <source>Only one link per line</source>
@@ -357,7 +355,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>JavaScript tələb olunur! Düzgün şəkildə işləməsi üçün Veb İİ üçün JavaScript'i aktiv etməlisiniz</translation>
+        <translation>JavaScript tələb olunur! Düzgün şəkildə işləməsi üçün Veb İİ üçün JavaScript&apos;i aktiv etməlisiniz</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -484,7 +482,7 @@
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
-        <translation>qBittorent'dən çıxmaq istədiyinizə əminsiniz?</translation>
+        <translation>qBittorent&apos;dən çıxmaq istədiyinizə əminsiniz?</translation>
     </message>
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
@@ -981,8 +979,8 @@
         <translation>%T: Cari izləyici</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Növ: Mətni, ara boşluğunda kəsilmələrndən qorumaq üçün parametrləri dırnaq işarəsinə alın (məs., "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Növ: Mətni, ara boşluğunda kəsilmələrndən qorumaq üçün parametrləri dırnaq işarəsinə alın (məs., &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1242,7 +1240,7 @@
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation>İştirakçılarla mütənasib (TCP'ni məhdudlaşdırır)</translation>
+        <translation>İştirakçılarla mütənasib (TCP&apos;ni məhdudlaşdırır)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
@@ -1437,7 +1435,7 @@
         <translation>Orijinal</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Alt qovluq yaratmamaq</translation>
     </message>
     <message>
@@ -1470,11 +1468,11 @@
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation>%J: Məlumat heş'i v2</translation>
+        <translation>%J: Məlumat heş&apos;i v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation>%I: Məlumat heş'i v1</translation>
+        <translation>%I: Məlumat heş&apos;i v1</translation>
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
@@ -1585,12 +1583,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use ';' to split multiple entries. Can use wildcard '*'.</source>
+Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
         <translation>HTTP Host başlıqlarının göstəricilərini filtrləmək üçün ağ siyahı.
 DNS ilə təkrar bağlantı hücumundan qorunmaq üçün WebUI 
 serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
 
-Çoxsaylı elementləri bölmək üçün ';' istifadə edin. '*' ümumi nişanından istifadə edə bilərsiniz</translation>
+Çoxsaylı elementləri bölmək üçün &apos;;&apos; istifadə edin. &apos;*&apos; ümumi nişanından istifadə edə bilərsiniz</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1601,8 +1599,8 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>HTTPS sertifikat boş olmamalıdır</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>Yönləndirilmiş müştəri ünvanından (X-Forwarded-For header) istifadə etmək üçün əks proxy IP-lərini (və ya alt şəbəkələri, məs., 0.0.0.0/24) göstərin. Birdən çox girişi bölmək üçün ';' işarəsindən istifadə edin.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
+        <translation>Yönləndirilmiş müştəri ünvanından (X-Forwarded-For header) istifadə etmək üçün əks proxy IP-lərini (və ya alt şəbəkələri, məs., 0.0.0.0/24) göstərin. Birdən çox girişi bölmək üçün &apos;;&apos; işarəsindən istifadə edin.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1954,11 +1952,11 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation>Məlumat heş'i v2:</translation>
+        <translation>Məlumat heş&apos;i v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation>Məlumat heş'i v1</translation>
+        <translation>Məlumat heş&apos;i v1</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2719,11 +2717,11 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation>məlumat heş'i v1</translation>
+        <translation>məlumat heş&apos;i v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation>məlumat heş'i v2</translation>
+        <translation>məlumat heş&apos;i v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
@@ -2971,11 +2969,11 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>göstərərək</translation>
     </message>
     <message>
-        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>Pəncərənin aşağı sağındakı "Axtarış plaqinləri..." düyməsinə vuraraq onlardan birini quraşdırın.</translation>
+        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
+        <translation>Pəncərənin aşağı sağındakı &quot;Axtarış plaqinləri...&quot; düyməsinə vuraraq onlardan birini quraşdırın.</translation>
     </message>
     <message>
-        <source>There aren't any search plugins installed.</source>
+        <source>There aren&apos;t any search plugins installed.</source>
         <translation>Heç bir axtarış plaqini quraşdırılmayıb</translation>
     </message>
 </context>
@@ -3006,7 +3004,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>Aktiv edildi</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Xəbərdarlıq: Bu axtarış sistemlərinin hər hansı birindən istifadə edərək torrentləri yükləyərkən, mütləq ölkənizin müəllif hüquqları haqqında qanununa rəayət edin.</translation>
     </message>
     <message>
@@ -3621,7 +3619,7 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
         <translation>Orijinal</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Alt qovluq yaratmamaq</translation>
     </message>
 </context>

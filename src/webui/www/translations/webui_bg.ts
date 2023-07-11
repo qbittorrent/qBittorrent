@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="bg">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="bg">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Създай подпапка</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Не създавай подпапка</translation>
     </message>
     <message>
@@ -982,8 +980,8 @@
         <translation>%T: Сегашен тракер</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Подсказка: Обградете параметър с кавички за предотвратяваме орязването на текста при пауза (пр., "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Подсказка: Обградете параметър с кавички за предотвратяваме орязването на текста при пауза (пр., &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1438,7 +1436,7 @@
         <translation>Оригинал</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Не създавай подпапка</translation>
     </message>
     <message>
@@ -1586,8 +1584,8 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use ';' to split multiple entries. Can use wildcard '*'.</source>
-        <translation>Списък с разрешени за филтриране стойности на HTTP хост хедъри. За защита срещу атака "ДНС повторно свързване" въведете тук домейните използвани от Уеб ПИ сървъра. Използвайте ';' за разделител. Може да се използва и заместител '*'.</translation>
+Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
+        <translation>Списък с разрешени за филтриране стойности на HTTP хост хедъри. За защита срещу атака &quot;ДНС повторно свързване&quot; въведете тук домейните използвани от Уеб ПИ сървъра. Използвайте &apos;;&apos; за разделител. Може да се използва и заместител &apos;*&apos;.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1598,8 +1596,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>HTTPS сертификат не бива да бъде празен</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>Посочете ИП-та на обратно прокси (или подмрежи, напр. 0.0.0.0/24), за да използвате препратени клиент адреси (X-Препратени-За заглавка). Използвайте ';' да разделите множество вписвания.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
+        <translation>Посочете ИП-та на обратно прокси (или подмрежи, напр. 0.0.0.0/24), за да използвате препратени клиент адреси (X-Препратени-За заглавка). Използвайте &apos;;&apos; да разделите множество вписвания.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1647,7 +1645,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Fastresume files</source>
@@ -2968,11 +2966,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>показване</translation>
     </message>
     <message>
-        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>Щракнете бутонът "Търси приставки..." на дъното вдясно на прозореца да инсталирате някакви.</translation>
+        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
+        <translation>Щракнете бутонът &quot;Търси приставки...&quot; на дъното вдясно на прозореца да инсталирате някакви.</translation>
     </message>
     <message>
-        <source>There aren't any search plugins installed.</source>
+        <source>There aren&apos;t any search plugins installed.</source>
         <translation>Няма никакви инсталирани търсещи приставки.</translation>
     </message>
 </context>
@@ -3003,7 +3001,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Активирано</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Предупреждение: Уверете се, че се придържате към законите на авторското право на вашата страна, когато сваляте торенти от която и да е то тези търсачки.</translation>
     </message>
     <message>
@@ -3618,7 +3616,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Оригинал</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Не създавай подпапка</translation>
     </message>
 </context>

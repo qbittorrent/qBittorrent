@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pt_PT">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pt_PT">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Criar subpasta</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Não criar subpasta</translation>
     </message>
     <message>
@@ -866,7 +864,7 @@
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
-        <translation>Aplicar os limites de rácio para o transporte "overhead"</translation>
+        <translation>Aplicar os limites de rácio para o transporte &quot;overhead&quot;</translation>
     </message>
     <message>
         <source>Apply rate limit to µTP protocol</source>
@@ -882,11 +880,11 @@
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Ativar a 'Troca de Fontes' (PeX) para encontrar mais fontes</translation>
+        <translation>Ativar a &apos;Troca de Fontes&apos; (PeX) para encontrar mais fontes</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Ativar 'Descoberta de fontes locais' para encontrar mais fontes</translation>
+        <translation>Ativar &apos;Descoberta de fontes locais&apos; para encontrar mais fontes</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -981,8 +979,8 @@
         <translation>%T: Tracker atual</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Dica: Encapsule o parâmetro entre aspas para evitar que sejam cortados os espaços em branco do texto (ex: "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Dica: Encapsule o parâmetro entre aspas para evitar que sejam cortados os espaços em branco do texto (ex: &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1002,7 +1000,7 @@
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation>Ativar a proteção contra o "clickjacking"</translation>
+        <translation>Ativar a proteção contra o &quot;clickjacking&quot;</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
@@ -1034,7 +1032,7 @@
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation>Caminho padrão para o 'Guardar':</translation>
+        <translation>Caminho padrão para o &apos;Guardar&apos;:</translation>
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
@@ -1046,11 +1044,11 @@
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
-        <translation>Mudar o torrent para o 'Modo manual'</translation>
+        <translation>Mudar o torrent para o &apos;Modo manual&apos;</translation>
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation>Quando a 'Categoria do torrent' for alterada:</translation>
+        <translation>Quando a &apos;Categoria do torrent&apos; for alterada:</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
@@ -1070,7 +1068,7 @@
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation>Quando o 'Caminho padrão para guardar' for alterado:</translation>
+        <translation>Quando o &apos;Caminho padrão para guardar&apos; for alterado:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
@@ -1082,7 +1080,7 @@
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation>Quando alterar a 'Categoria do caminho para guardar':</translation>
+        <translation>Quando alterar a &apos;Categoria do caminho para guardar&apos;:</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -1090,7 +1088,7 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>Mudar os torrents afetados para o 'Modo manual'</translation>
+        <translation>Mudar os torrents afetados para o &apos;Modo manual&apos;</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1437,7 +1435,7 @@
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Não criar subpasta</translation>
     </message>
     <message>
@@ -1585,12 +1583,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use ';' to split multiple entries. Can use wildcard '*'.</source>
+Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
         <translation>Lista branca para filtrar os valores do cabeçalho de hosts HTTP.
 Para se defender contra ataques de reinserção de DNS,
 você deverá colocar os nomes de domínio usados pelo servidor da interface web.
 
-Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translation>
+Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos;*&apos;.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1601,8 +1599,8 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
         <translation>O certificado HTTPS não deverá estar vazio</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>Especifique IPs de proxies reversos (ou sub-máscaras, ex.: 0.0.0.0/24) para utilizar no endereço do cliente encaminhado (atributo X-Forwarded-For). Utilize ';' para dividir múltiplas entradas.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
+        <translation>Especifique IPs de proxies reversos (ou sub-máscaras, ex.: 0.0.0.0/24) para utilizar no endereço do cliente encaminhado (atributo X-Forwarded-For). Utilize &apos;;&apos; para dividir múltiplas entradas.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1985,7 +1983,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Default save location</source>
-        <translation>Local por defeito para o 'Guardar'</translation>
+        <translation>Local por defeito para o &apos;Guardar&apos;</translation>
     </message>
     <message>
         <source>Other...</source>
@@ -2971,11 +2969,11 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
         <translation>a mostrar</translation>
     </message>
     <message>
-        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>Clique em "Plugins de pesquisa..." na parte inferior da janela para instalar alguns.</translation>
+        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
+        <translation>Clique em &quot;Plugins de pesquisa...&quot; na parte inferior da janela para instalar alguns.</translation>
     </message>
     <message>
-        <source>There aren't any search plugins installed.</source>
+        <source>There aren&apos;t any search plugins installed.</source>
         <translation>Não existe nenhum plugin de busca instalado.</translation>
     </message>
 </context>
@@ -3006,7 +3004,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
         <translation>Ativo</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Aviso: Certifique-se que cumpre as leis de direitos de autor do seu país ao fazer a transferência de torrents a partir de qualquer um destes motores de busca.</translation>
     </message>
     <message>
@@ -3177,7 +3175,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Um cliente avançado de BitTorrent programado em C++, baseado em ferramentas QT e em 'libtorrent-rasterbar'.</translation>
+        <translation>Um cliente avançado de BitTorrent programado em C++, baseado em ferramentas QT e em &apos;libtorrent-rasterbar&apos;.</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -3560,7 +3558,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
-        <translation>Utilizar o 'Filtro inteligente de episódios'</translation>
+        <translation>Utilizar o &apos;Filtro inteligente de episódios&apos;</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
@@ -3576,7 +3574,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Wildcard mode: you can use</source>
-        <translation>Modo 'Wildcard': você pode utilizar</translation>
+        <translation>Modo &apos;Wildcard&apos;: você pode utilizar</translation>
     </message>
     <message>
         <source> will exclude all articles.</source>
@@ -3621,7 +3619,7 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Não criar subpasta</translation>
     </message>
 </context>
