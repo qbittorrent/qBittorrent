@@ -32,7 +32,6 @@
 
 #include <QTcpSocket>
 
-#include "base/logger.h"
 #include "irequesthandler.h"
 #include "requestparser.h"
 #include "responsegenerator.h"
@@ -94,8 +93,8 @@ void Connection::read()
                 const long bufferLimit = RequestParser::MAX_CONTENT_SIZE * 1.1;  // some margin for headers
                 if (m_receivedData.size() > bufferLimit)
                 {
-                    LogMsg(tr("Http request size exceeds limitation, closing socket. Limit: %1, IP: %2")
-                        .arg(bufferLimit).arg(m_socket->peerAddress().toString()), Log::WARNING);
+                    qWarning("%s", qUtf8Printable(tr("Http request size exceeds limitation, closing socket. Limit: %1, IP: %2")
+                        .arg(QString::number(bufferLimit), m_socket->peerAddress().toString())));
 
                     Response resp(413, u"Payload Too Large"_s);
                     resp.headers[HEADER_CONNECTION] = u"close"_s;
@@ -106,10 +105,23 @@ void Connection::read()
             }
             return;
 
+        case RequestParser::ParseStatus::BadMethod:
+            {
+                qWarning("%s", qUtf8Printable(tr("Bad Http request method, closing socket. IP: %1. Method: \"%2\"")
+                    .arg(m_socket->peerAddress().toString(), result.request.method)));
+
+                Response resp(501, u"Not Implemented"_s);
+                resp.headers[HEADER_CONNECTION] = u"close"_s;
+
+                sendResponse(resp);
+                m_socket->close();
+            }
+            return;
+
         case RequestParser::ParseStatus::BadRequest:
             {
-                LogMsg(tr("Bad Http request, closing socket. IP: %1")
-                    .arg(m_socket->peerAddress().toString()), Log::WARNING);
+                qWarning("%s", qUtf8Printable(tr("Bad Http request, closing socket. IP: %1")
+                    .arg(m_socket->peerAddress().toString())));
 
                 Response resp(400, u"Bad Request"_s);
                 resp.headers[HEADER_CONNECTION] = u"close"_s;
@@ -123,14 +135,30 @@ void Connection::read()
             {
                 const Environment env {m_socket->localAddress(), m_socket->localPort(), m_socket->peerAddress(), m_socket->peerPort()};
 
-                Response resp = m_requestHandler->processRequest(result.request, env);
+                if (result.request.method == HEADER_REQUEST_METHOD_HEAD)
+                {
+                    Request getRequest = result.request;
+                    getRequest.method = HEADER_REQUEST_METHOD_GET;
 
-                if (acceptsGzipEncoding(result.request.headers[u"accept-encoding"_s]))
-                    resp.headers[HEADER_CONTENT_ENCODING] = u"gzip"_s;
+                    Response resp = m_requestHandler->processRequest(getRequest, env);
 
-                resp.headers[HEADER_CONNECTION] = u"keep-alive"_s;
+                    resp.headers[HEADER_CONNECTION] = u"keep-alive"_s;
+                    resp.headers[HEADER_CONTENT_LENGTH] = QString::number(resp.content.length());
+                    resp.content.clear();
 
-                sendResponse(resp);
+                    sendResponse(resp);
+                }
+                else
+                {
+                    Response resp = m_requestHandler->processRequest(result.request, env);
+
+                    if (acceptsGzipEncoding(result.request.headers.value(u"accept-encoding"_s)))
+                        resp.headers[HEADER_CONTENT_ENCODING] = u"gzip"_s;
+                    resp.headers[HEADER_CONNECTION] = u"keep-alive"_s;
+
+                    sendResponse(resp);
+                }
+
                 m_receivedData.remove(0, result.frameSize);
             }
             break;

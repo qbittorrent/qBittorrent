@@ -38,8 +38,9 @@ QByteArray Http::toByteArray(Response response)
 {
     compressContent(response);
 
-    response.headers[HEADER_CONTENT_LENGTH] = QString::number(response.content.length());
     response.headers[HEADER_DATE] = httpDate();
+    if (QString &value = response.headers[HEADER_CONTENT_LENGTH]; value.isEmpty())
+        value = QString::number(response.content.length());
 
     QByteArray buf;
     buf.reserve(1024 + response.content.length());
@@ -63,7 +64,7 @@ QByteArray Http::toByteArray(Response response)
     // the first empty line
     buf += CRLF;
 
-    // message body  // TODO: support HEAD request
+    // message body
     buf += response.content;
 
     return buf;
