@@ -47,6 +47,8 @@ IPSubnetWhitelistOptionsDialog::IPSubnetWhitelistOptionsDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
     QStringList authSubnetWhitelistStringList;
     for (const Utils::Net::Subnet &subnet : asConst(Preferences::instance()->getWebUiAuthSubnetWhitelist()))
         authSubnetWhitelistStringList << Utils::Net::subnetToString(subnet);

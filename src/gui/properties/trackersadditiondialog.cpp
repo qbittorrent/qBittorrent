@@ -53,10 +53,13 @@ TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::Torr
 {
     m_ui->setupUi(this);
 
-    m_ui->downloadButton->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Add"));
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
+    m_ui->downloadButton->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
     connect(m_ui->downloadButton, &QAbstractButton::clicked, this, &TrackersAdditionDialog::onDownloadButtonClicked);
+
     connect(this, &QDialog::accepted, this, &TrackersAdditionDialog::onAccepted);
 
     loadSettings();

@@ -300,6 +300,9 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     // TODO: set dialog file properties using m_torrentParams.filePriorities
     m_ui->setupUi(this);
 
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
     m_ui->lblMetaLoading->setVisible(false);
     m_ui->progMetaLoading->setVisible(false);
     m_ui->buttonSave->setVisible(false);
@@ -339,6 +342,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     m_ui->comboTTM->blockSignals(true); // the TreeView size isn't correct if the slot does its job at this point
     m_ui->comboTTM->setCurrentIndex(session->isAutoTMMDisabledByDefault() ? 0 : 1);
     m_ui->comboTTM->blockSignals(false);
+    connect(m_ui->comboTTM, &QComboBox::currentIndexChanged, this, &AddNewTorrentDialog::TMMChanged);
 
     connect(m_ui->savePath, &FileSystemPathEdit::selectedPathChanged, this, &AddNewTorrentDialog::onSavePathChanged);
     connect(m_ui->downloadPath, &FileSystemPathEdit::selectedPathChanged, this, &AddNewTorrentDialog::onDownloadPathChanged);
@@ -372,6 +376,8 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
         if ((category != defaultCategory) && (category != m_torrentParams.category))
             m_ui->categoryComboBox->addItem(category);
     }
+
+    connect(m_ui->categoryComboBox, &QComboBox::currentIndexChanged, this, &AddNewTorrentDialog::categoryChanged);
 
     m_ui->tagsLineEdit->setText(m_torrentParams.tags.join(u", "_s));
     connect(m_ui->tagsEditButton, &QAbstractButton::clicked, this, [this]

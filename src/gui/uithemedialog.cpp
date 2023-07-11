@@ -220,6 +220,9 @@ UIThemeDialog::UIThemeDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
     loadColors();
     loadIcons();
 

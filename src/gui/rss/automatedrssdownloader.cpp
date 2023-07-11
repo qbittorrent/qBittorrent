@@ -76,6 +76,10 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
 #endif
 {
     m_ui->setupUi(this);
+
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
     m_ui->torrentParametersGroupBox->layout()->addWidget(m_addTorrentParamsWidget);
 
     m_ui->prioritySpinBox->setMinimum(std::numeric_limits<int>::min());

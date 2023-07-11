@@ -69,6 +69,9 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
 
     m_ui->setupUi(this);
 
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
     m_ui->savePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->savePath->setDialogCaption(tr("Choose save path"));
     m_ui->downloadPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
@@ -385,8 +388,8 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     connect(m_ui->spinDownloadLimit, qOverload<int>(&QSpinBox::valueChanged)
             , this, [this](const int value) { updateSliderValue(m_ui->sliderDownloadLimit, value); });
 
-    connect(m_ui->checkMaxRatio, &QCheckBox::toggled, m_ui->spinRatioLimit, &QDoubleSpinBox::setEnabled);
-    connect(m_ui->checkMaxTime, &QCheckBox::toggled, m_ui->spinTimeLimit, &QSpinBox::setEnabled);
+    connect(m_ui->checkMaxRatio, &QCheckBox::toggled, m_ui->spinRatioLimit, &QWidget::setEnabled);
+    connect(m_ui->checkMaxTime, &QCheckBox::toggled, m_ui->spinTimeLimit, &QWidget::setEnabled);
 
     connect(m_ui->buttonGroup, &QButtonGroup::idClicked, this, &TorrentOptionsDialog::handleRatioTypeChanged);
 

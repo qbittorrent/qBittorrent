@@ -49,6 +49,9 @@ TorrentTagsDialog::TorrentTagsDialog(const TagSet &initialTags, QWidget *parent)
 {
     m_ui->setupUi(this);
 
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
     auto *tagsLayout = new FlowLayout(m_ui->scrollArea);
     for (const QString &tag : asConst(initialTags.united(BitTorrent::Session::instance()->tags())))
     {

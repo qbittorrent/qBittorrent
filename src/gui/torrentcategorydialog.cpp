@@ -51,6 +51,8 @@ TorrentCategoryDialog::TorrentCategoryDialog(QWidget *parent)
 
     // disable save button
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
     connect(m_ui->textCategoryName, &QLineEdit::textChanged, this, &TorrentCategoryDialog::categoryNameChanged);
     connect(m_ui->comboUseDownloadPath, &QComboBox::currentIndexChanged, this, &TorrentCategoryDialog::useDownloadPathChanged);

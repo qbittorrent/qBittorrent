@@ -109,22 +109,5 @@
   <tabstop>buttonDeleteIP</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>BanListOptionsDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>179</x>
-     <y>427</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>179</x>
-     <y>224</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

@@ -492,38 +492,5 @@
   <tabstop>txtComment</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>checkStartSeeding</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>checkIgnoreShareLimits</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>295</x>
-     <y>532</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>295</x>
-     <y>555</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>TorrentCreatorDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>295</x>
-     <y>635</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>295</x>
-     <y>328</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

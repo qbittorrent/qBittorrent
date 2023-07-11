@@ -56,6 +56,9 @@ SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
     m_ui->labelGlobalSpeedIcon->setPixmap(
             UIThemeManager::instance()->getScaledPixmap(u"slow_off"_s, Utils::Gui::mediumIconSize(this).height()));
     m_ui->labelAltGlobalSpeedIcon->setPixmap(

@@ -44,6 +44,9 @@ WatchedFolderOptionsDialog::WatchedFolderOptionsDialog(
     m_ui->setupUi(this);
     m_ui->groupBoxParameters->layout()->addWidget(m_addTorrentParamsWidget);
 
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
     loadState();
 }
 
