@@ -955,7 +955,7 @@
                  <property name="title">
                   <string>When duplicate torrent is being added</string>
                  </property>
-                 <layout class="QVBoxLayout" name="deleteTorrentBoxLayout">
+                 <layout class="QVBoxLayout" name="duplicateTorrentBoxLayout">
                   <item>
                    <widget class="QCheckBox" name="checkMergeTrackers">
                     <property name="toolTip">
