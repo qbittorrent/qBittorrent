@@ -320,8 +320,10 @@ void AppController::preferencesAction()
     data[u"memory_working_set_limit"_s] = app()->memoryWorkingSetLimit();
     // Current network interface
     data[u"current_network_interface"_s] = session->networkInterface();
+    // Current network interface name
+    data[u"current_interface_name"_s] = session->networkInterfaceName();
     // Current network interface address
-    data[u"current_interface_address"_s] = BitTorrent::Session::instance()->networkInterfaceAddress();
+    data[u"current_interface_address"_s] = session->networkInterfaceAddress();
     // Save resume data interval
     data[u"save_resume_data_interval"_s] = session->saveResumeDataInterval();
     // Recheck completed torrents
@@ -845,7 +847,8 @@ void AppController::setPreferencesAction()
         const QString ifaceName = (ifacesIter != ifaces.cend()) ? ifacesIter->humanReadableName() : QString {};
 
         session->setNetworkInterface(ifaceValue);
-        session->setNetworkInterfaceName(ifaceName);
+        if (!ifaceName.isEmpty() || ifaceValue.isEmpty())
+            session->setNetworkInterfaceName(ifaceName);
     }
     // Current network interface address
     if (hasKey(u"current_interface_address"_s))
