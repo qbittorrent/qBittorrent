@@ -1479,8 +1479,21 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
             const auto now = QDateTime::currentDateTime();
             if (m_wakeupCheckTimestamp.secsTo(now) > 100)
             {
-                LogMsg(tr("System wake-up event detected. Re-announcing to all the trackers..."));
-                reannounceToAllTrackers();
+                QTimer::singleShot(30s, Qt::CoarseTimer, this, [this]
+                {
+                    for (const TorrentImpl *torrent : asConst(m_torrents))
+                    {
+                        try
+                        {
+                            torrent->nativeHandle().force_reannounce();
+                            torrent->nativeHandle().force_dht_announce();
+#ifdef QBT_USES_LIBTORRENT2
+                            torrent->nativeHandle().force_lsd_announce();
+#endif
+                        }
+                        catch (const std::exception &) {}
+                    }
+                });
             }
 
             m_wakeupCheckTimestamp = QDateTime::currentDateTime();
