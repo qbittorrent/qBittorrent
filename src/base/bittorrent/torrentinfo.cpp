@@ -42,10 +42,10 @@
 
 #include "base/global.h"
 #include "base/path.h"
+#include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
-#include "common.h"
 #include "infohash.h"
 #include "trackerentry.h"
 
@@ -86,9 +86,11 @@ nonstd::expected<TorrentInfo, QString> TorrentInfo::load(const QByteArray &data)
 {
     // 2-step construction to overcome default limits of `depth_limit` & `token_limit` which are
     // used in `torrent_info()` constructor
+    const auto *pref = Preferences::instance();
+
     lt::error_code ec;
     const lt::bdecode_node node = lt::bdecode(data, ec
-            , nullptr, BENCODE_DEPTH_LIMIT, BENCODE_TOKEN_LIMIT);
+            , nullptr, pref->getBdecodeDepthLimit(), pref->getBdecodeTokenLimit());
     if (ec)
         return nonstd::make_unexpected(QString::fromStdString(ec.message()));
 
@@ -104,7 +106,8 @@ nonstd::expected<TorrentInfo, QString> TorrentInfo::loadFromFile(const Path &pat
     QByteArray data;
     try
     {
-        const auto readResult = Utils::IO::readFile(path, MAX_TORRENT_SIZE);
+        const qint64 torrentSizeLimit = Preferences::instance()->getTorrentFileSizeLimit();
+        const auto readResult = Utils::IO::readFile(path, torrentSizeLimit);
         if (!readResult)
             return nonstd::make_unexpected(readResult.error().message);
         data = readResult.value();

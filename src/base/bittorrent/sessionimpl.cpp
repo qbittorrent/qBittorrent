@@ -96,7 +96,6 @@
 #include "base/version.h"
 #include "bandwidthscheduler.h"
 #include "bencoderesumedatastorage.h"
-#include "common.h"
 #include "customstorage.h"
 #include "dbresumedatastorage.h"
 #include "downloadpriority.h"
@@ -1742,6 +1741,10 @@ lt::settings_pack SessionImpl::loadLTSettings() const
 
     settingsPack.set_int(lt::settings_pack::max_out_request_queue, requestQueueSize());
 
+#ifdef QBT_USES_LIBTORRENT2
+    settingsPack.set_int(lt::settings_pack::metadata_token_limit, Preferences::instance()->getBdecodeTokenLimit());
+#endif
+
     settingsPack.set_int(lt::settings_pack::aio_threads, asyncIOThreads());
 #ifdef QBT_USES_LIBTORRENT2
     settingsPack.set_int(lt::settings_pack::hashing_threads, hashingThreads());
@@ -2555,9 +2558,10 @@ bool SessionImpl::addTorrent(const QString &source, const AddTorrentParams &para
     if (Net::DownloadManager::hasSupportedScheme(source))
     {
         LogMsg(tr("Downloading torrent, please wait... Source: \"%1\"").arg(source));
+        const auto *pref = Preferences::instance();
         // Launch downloader
-        Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(MAX_TORRENT_SIZE)
-                , Preferences::instance()->useProxyForGeneralPurposes(), this, &SessionImpl::handleDownloadFinished);
+        Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(pref->getTorrentFileSizeLimit())
+                , pref->useProxyForGeneralPurposes(), this, &SessionImpl::handleDownloadFinished);
         m_downloadedTorrents[source] = params;
         return true;
     }

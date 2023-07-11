@@ -33,7 +33,3 @@
 #include "base/global.h"
 
 inline const QString QB_EXT = u".!qB"_s;
-
-inline const int MAX_TORRENT_SIZE = 100 * 1024 * 1024; // 100 MiB
-inline const int BENCODE_DEPTH_LIMIT = 100;
-inline const int BENCODE_TOKEN_LIMIT = 10'000'000;

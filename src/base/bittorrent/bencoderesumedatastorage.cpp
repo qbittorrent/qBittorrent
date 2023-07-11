@@ -44,12 +44,12 @@
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
+#include "base/preferences.h"
 #include "base/profile.h"
 #include "base/tagset.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/string.h"
-#include "common.h"
 #include "infohash.h"
 #include "loadtorrentparams.h"
 
@@ -134,12 +134,13 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::load(cons
     const QString idString = id.toString();
     const Path fastresumePath = path() / Path(idString + u".fastresume");
     const Path torrentFilePath = path() / Path(idString + u".torrent");
+    const qint64 torrentSizeLimit = Preferences::instance()->getTorrentFileSizeLimit();
 
-    const auto resumeDataReadResult = Utils::IO::readFile(fastresumePath, MAX_TORRENT_SIZE);
+    const auto resumeDataReadResult = Utils::IO::readFile(fastresumePath, torrentSizeLimit);
     if (!resumeDataReadResult)
         return nonstd::make_unexpected(resumeDataReadResult.error().message);
 
-    const auto metadataReadResult = Utils::IO::readFile(torrentFilePath, MAX_TORRENT_SIZE);
+    const auto metadataReadResult = Utils::IO::readFile(torrentFilePath, torrentSizeLimit);
     if (!metadataReadResult)
     {
         if (metadataReadResult.error().status != Utils::IO::ReadError::NotExist)
@@ -201,9 +202,11 @@ void BitTorrent::BencodeResumeDataStorage::loadQueue(const Path &queueFilename)
 
 BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorrentResumeData(const QByteArray &data, const QByteArray &metadata) const
 {
+    const auto *pref = Preferences::instance();
+
     lt::error_code ec;
     const lt::bdecode_node resumeDataRoot = lt::bdecode(data, ec
-            , nullptr, BENCODE_DEPTH_LIMIT, BENCODE_TOKEN_LIMIT);
+            , nullptr, pref->getBdecodeDepthLimit(), pref->getBdecodeTokenLimit());
     if (ec)
         return nonstd::make_unexpected(tr("Cannot parse resume data: %1").arg(QString::fromStdString(ec.message())));
 
@@ -270,8 +273,9 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
 
     if (!metadata.isEmpty())
     {
+        const auto *pref = Preferences::instance();
         const lt::bdecode_node torentInfoRoot = lt::bdecode(metadata, ec
-                , nullptr, BENCODE_DEPTH_LIMIT, BENCODE_TOKEN_LIMIT);
+                , nullptr, pref->getBdecodeDepthLimit(), pref->getBdecodeTokenLimit());
         if (ec)
             return nonstd::make_unexpected(tr("Cannot parse torrent info: %1").arg(QString::fromStdString(ec.message())));
 

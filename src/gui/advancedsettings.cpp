@@ -75,6 +75,7 @@ namespace
         NETWORK_IFACE_ADDRESS,
         // behavior
         SAVE_RESUME_DATA_INTERVAL,
+        TORRENT_FILE_SIZE_LIMIT,
         CONFIRM_RECHECK_TORRENT,
         RECHECK_COMPLETED,
         // UI related
@@ -100,6 +101,8 @@ namespace
         TRACKER_PORT_FORWARDING,
         // libtorrent section
         LIBTORRENT_HEADER,
+        BDECODE_DEPTH_LIMIT,
+        BDECODE_TOKEN_LIMIT,
         ASYNC_IO_THREADS,
 #ifdef QBT_USES_LIBTORRENT2
         HASHING_THREADS,
@@ -198,6 +201,10 @@ void AdvancedSettings::saveAdvancedSettings() const
 #if defined(Q_OS_WIN)
     app()->setProcessMemoryPriority(m_comboBoxOSMemoryPriority.currentData().value<MemoryPriority>());
 #endif
+    // Bdecode depth limit
+    pref->setBdecodeDepthLimit(m_spinBoxBdecodeDepthLimit.value());
+    // Bdecode token limit
+    pref->setBdecodeTokenLimit(m_spinBoxBdecodeTokenLimit.value());
     // Async IO threads
     session->setAsyncIOThreads(m_spinBoxAsyncIOThreads.value());
 #ifdef QBT_USES_LIBTORRENT2
@@ -244,6 +251,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setSocketBacklogSize(m_spinBoxSocketBacklogSize.value());
     // Save resume data interval
     session->setSaveResumeDataInterval(m_spinBoxSaveResumeDataInterval.value());
+    // .torrent file size limit
+    pref->setTorrentFileSizeLimit(m_spinBoxTorrentFileSizeLimit.value() * 1024 * 1024);
     // Outgoing ports
     session->setOutgoingPortsMin(m_spinBoxOutgoingPortsMin.value());
     session->setOutgoingPortsMax(m_spinBoxOutgoingPortsMax.value());
@@ -461,6 +470,18 @@ void AdvancedSettings::loadAdvancedSettings()
         + u' ' + makeLink(u"https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-memory_priority_information", u"(?)"))
         , &m_comboBoxOSMemoryPriority);
 #endif
+    // Bdecode depth limit
+    m_spinBoxBdecodeDepthLimit.setMinimum(0);
+    m_spinBoxBdecodeDepthLimit.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxBdecodeDepthLimit.setValue(pref->getBdecodeDepthLimit());
+    addRow(BDECODE_DEPTH_LIMIT, (tr("Bdecode depth limit") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Bdecoding.html#bdecode()", u"(?)"))
+            , &m_spinBoxBdecodeDepthLimit);
+    // Bdecode token limit
+    m_spinBoxBdecodeTokenLimit.setMinimum(0);
+    m_spinBoxBdecodeTokenLimit.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxBdecodeTokenLimit.setValue(pref->getBdecodeTokenLimit());
+    addRow(BDECODE_TOKEN_LIMIT, (tr("Bdecode token limit") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Bdecoding.html#bdecode()", u"(?)"))
+            , &m_spinBoxBdecodeTokenLimit);
     // Async IO threads
     m_spinBoxAsyncIOThreads.setMinimum(1);
     m_spinBoxAsyncIOThreads.setMaximum(1024);
@@ -619,6 +640,12 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxSaveResumeDataInterval.setSuffix(tr(" min", " minutes"));
     m_spinBoxSaveResumeDataInterval.setSpecialValueText(tr("0 (disabled)"));
     addRow(SAVE_RESUME_DATA_INTERVAL, tr("Save resume data interval [0: disabled]", "How often the fastresume file is saved."), &m_spinBoxSaveResumeDataInterval);
+    // .torrent file size limit
+    m_spinBoxTorrentFileSizeLimit.setMinimum(1);
+    m_spinBoxTorrentFileSizeLimit.setMaximum(std::numeric_limits<int>::max() / 1024 / 1024);
+    m_spinBoxTorrentFileSizeLimit.setValue(pref->getTorrentFileSizeLimit() / 1024 / 1024);
+    m_spinBoxTorrentFileSizeLimit.setSuffix(tr(" MiB"));
+    addRow(TORRENT_FILE_SIZE_LIMIT, tr(".torrent file size limit"), &m_spinBoxTorrentFileSizeLimit);
     // Outgoing port Min
     m_spinBoxOutgoingPortsMin.setMinimum(0);
     m_spinBoxOutgoingPortsMin.setMaximum(65535);

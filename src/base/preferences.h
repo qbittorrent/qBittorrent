@@ -335,6 +335,12 @@ public:
     bool iconsInMenusEnabled() const;
     void setIconsInMenusEnabled(bool enable);
 #endif // Q_OS_MACOS
+    qint64 getTorrentFileSizeLimit() const;
+    void setTorrentFileSizeLimit(qint64 value);
+    int getBdecodeDepthLimit() const;
+    void setBdecodeDepthLimit(int value);
+    int getBdecodeTokenLimit() const;
+    void setBdecodeTokenLimit(int value);
 
     // Stuff that don't appear in the Options GUI but are saved
     // in the same file.

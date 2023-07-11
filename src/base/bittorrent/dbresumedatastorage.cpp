@@ -55,10 +55,10 @@
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/path.h"
+#include "base/preferences.h"
 #include "base/profile.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
-#include "common.h"
 #include "infohash.h"
 #include "loadtorrentparams.h"
 
@@ -246,10 +246,13 @@ namespace
         }
 
         const QByteArray bencodedResumeData = query.value(DB_COLUMN_RESUMEDATA.name).toByteArray();
+        const auto *pref = Preferences::instance();
+        const int bdecodeDepthLimit = pref->getBdecodeDepthLimit();
+        const int bdecodeTokenLimit = pref->getBdecodeTokenLimit();
 
         lt::error_code ec;
         const lt::bdecode_node resumeDataRoot = lt::bdecode(bencodedResumeData, ec
-                , nullptr, BENCODE_DEPTH_LIMIT, BENCODE_TOKEN_LIMIT);
+                , nullptr, bdecodeDepthLimit, bdecodeTokenLimit);
 
         lt::add_torrent_params &p = resumeData.ltAddTorrentParams;
 
@@ -259,7 +262,7 @@ namespace
                 ; !bencodedMetadata.isEmpty())
         {
             const lt::bdecode_node torentInfoRoot = lt::bdecode(bencodedMetadata, ec
-                    , nullptr, BENCODE_DEPTH_LIMIT, BENCODE_TOKEN_LIMIT);
+                    , nullptr, bdecodeDepthLimit, bdecodeTokenLimit);
             p.ti = std::make_shared<lt::torrent_info>(torentInfoRoot, ec);
         }
 
