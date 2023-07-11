@@ -379,24 +379,24 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
     }
 
     qlonglong days = (hours / 24);
-    if (days < 30)
+    if (days < 31)
     {
         hours -= (days * 24);
         return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days), QString::number(hours));
     }
 
-    qlonglong months = (days / 30);
+    qlonglong months = (days / 31);
     if (days < 365)
     {
-        qlonglong months = (days / 30);
-        days -= (months * 30);
+        qlonglong months = (days / 31);
+        days -= (months * 31);
         return QCoreApplication::translate("misc", "%1m %2d", "e.g.: 3months 4days").arg(QString::number(months), QString::number(days));
     }
 
     qlonglong years = (days / 365);
     days -= (years * 365);
-    months = (days / 30);
-    days -= (months * 30);
+    months = (days / 31);
+    days -= (months * 31);
     return QCoreApplication::translate("misc", "%1y %2m %3d", "e.g: 2years 7 months 10days").arg(QString::number(years), QString::number(months), QString::number(days));
 }
 
