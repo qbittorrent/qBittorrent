@@ -2680,21 +2680,25 @@ bool SessionImpl::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &so
     if (m_loadingTorrents.contains(id) || (infoHash.isHybrid() && m_loadingTorrents.contains(altID)))
         return false;
 
-    if (Torrent *torrent = findTorrent(infoHash); torrent)
+    if (Torrent *torrent = findTorrent(infoHash))
     {
         // a duplicate torrent is being added
-        if (torrent->isPrivate())
-            return false;
-
         if (hasMetadata)
         {
             // Trying to set metadata to existing torrent in case if it has none
             torrent->setMetadata(std::get<TorrentInfo>(source));
+        }
 
+        const bool isPrivate = torrent->isPrivate() || (hasMetadata && std::get<TorrentInfo>(source).isPrivate());
+        if (isPrivate)
+        {
+            LogMsg(tr("Found existing torrent. Trackers cannot be merged because it is a private torrent. Torrent: %1").arg(torrent->name()));
+            return false;
+        }
+
+        if (hasMetadata)
+        {
             const TorrentInfo &torrentInfo = std::get<TorrentInfo>(source);
-
-            if (torrentInfo.isPrivate())
-                return false;
 
             // merge trackers and web seeds
             torrent->addTrackers(torrentInfo.trackers());
@@ -2709,6 +2713,7 @@ bool SessionImpl::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &so
             torrent->addUrlSeeds(magnetUri.urlSeeds());
         }
 
+        LogMsg(tr("Found existing torrent. Trackers are merged from new source. Torrent: %1").arg(torrent->name()));
         return false;
     }
 
