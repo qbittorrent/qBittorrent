@@ -52,11 +52,18 @@ CookiesDialog::CookiesDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
     setWindowIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_s));
+
     m_ui->buttonAdd->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
-    m_ui->buttonDelete->setIcon(UIThemeManager::instance()->getIcon(u"list-remove"_s));
     m_ui->buttonAdd->setIconSize(Utils::Gui::mediumIconSize());
+    connect(m_ui->buttonAdd, &QToolButton::clicked, this, &CookiesDialog::onButtonAddClicked);
+
+    m_ui->buttonDelete->setIcon(UIThemeManager::instance()->getIcon(u"list-remove"_s));
     m_ui->buttonDelete->setIconSize(Utils::Gui::mediumIconSize());
+    connect(m_ui->buttonDelete, &QToolButton::clicked, this, &CookiesDialog::onButtonDeleteClicked);
 
     m_ui->treeView->setModel(m_cookiesModel);
     if (m_cookiesModel->rowCount() > 0)

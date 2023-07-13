@@ -48,6 +48,8 @@ BanListOptionsDialog::BanListOptionsDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
     m_sortFilter = new QSortFilterProxyModel(this);
     m_sortFilter->setDynamicSortFilter(true);
     m_sortFilter->setSourceModel(m_model);

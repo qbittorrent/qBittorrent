@@ -245,7 +245,7 @@
                   <string>Shows a confirmation dialog upon pausing/resuming all the torrents</string>
                  </property>
                  <property name="text">
-                  <string>Confirm "Pause/Resume all" actions</string>
+                  <string>Confirm &quot;Pause/Resume all&quot; actions</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>
@@ -955,7 +955,7 @@
                  <property name="title">
                   <string>When duplicate torrent is being added</string>
                  </property>
-                 <layout class="QVBoxLayout" name="deleteTorrentBoxLayout">
+                 <layout class="QVBoxLayout" name="duplicateTorrentBoxLayout">
                   <item>
                    <widget class="QCheckBox" name="checkMergeTrackers">
                     <property name="toolTip">
@@ -3910,134 +3910,5 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>DNSPasswordTxt</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>checkMaxConnections</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinMaxConnec</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>604</x>
-     <y>205</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>677</x>
-     <y>206</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkMaxConnectionsPerTorrent</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinMaxConnecPerTorrent</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>604</x>
-     <y>238</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>677</x>
-     <y>239</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkMaxUploadsPerTorrent</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinMaxUploadsPerTorrent</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>604</x>
-     <y>304</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>677</x>
-     <y>305</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkMaxUploads</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinMaxUploads</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>547</x>
-     <y>415</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>642</x>
-     <y>414</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkMaxRatio</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinMaxRatio</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>395</x>
-     <y>203</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>496</x>
-     <y>204</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkMaxSeedingMinutes</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinMaxSeedingMinutes</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>395</x>
-     <y>170</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>496</x>
-     <y>171</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>deleteTorrentBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>deleteTorrentWarningIcon</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>554</x>
-     <y>153</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>324</x>
-     <y>214</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>deleteTorrentBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>deleteTorrentWarningLabel</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>646</x>
-     <y>158</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>629</x>
-     <y>207</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
