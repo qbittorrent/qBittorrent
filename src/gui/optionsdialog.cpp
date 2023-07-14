@@ -976,6 +976,7 @@ void OptionsDialog::loadSpeedTabOptions()
     connect(m_ui->spinDownloadLimitAlt, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkScheduleEnable, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkScheduleEnable, &QAbstractButton::toggled, m_ui->tabSchedule, &QWidget::setEnabled);
 
     connect(m_ui->checkLimituTPConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimitTransportOverhead, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
