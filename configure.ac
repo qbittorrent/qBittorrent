@@ -1,4 +1,4 @@
-AC_INIT([qbittorrent], [v4.6.0alpha1], [bugs.qbittorrent.org], [], [https://www.qbittorrent.org/])
+AC_INIT([qbittorrent], [v4.6.0beta2], [bugs.qbittorrent.org], [], [https://www.qbittorrent.org/])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 : ${CFLAGS=""}
@@ -165,7 +165,7 @@ AS_CASE(["x$enable_qt_dbus"],
                FIND_QTDBUS()
                AS_IF([test "x$HAVE_QTDBUS" = "xfalse"],
                      [AC_MSG_ERROR([Could not find QtDBus])],
-                     [QBT_ADD_CONFIG="$QBT_ADD_CONFIG dbus"]
+                     [QBT_ADD_CONFIG="$QBT_ADD_CONFIG dbus" QBT_ADD_DEFINES="$QBT_ADD_DEFINES QBT_USES_DBUS"]
                     )],
         ["xno"],
               [AC_MSG_RESULT([no])
@@ -188,10 +188,10 @@ m4_define([DETECT_BOOST_VERSION_PROGRAM],
                      [[(void) ((void)sizeof(char[1 - 2*!!((BOOST_VERSION) < ($1))]));]])])
 
 PKG_CHECK_MODULES(libtorrent,
-                  [libtorrent-rasterbar >= 2.0.8],
+                  [libtorrent-rasterbar >= 2.0.9],
                   [CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS" LIBS="$libtorrent_LIBS $LIBS" QBT_ADD_DEFINES="$QBT_ADD_DEFINES QBT_USES_LIBTORRENT2"],
                   [PKG_CHECK_MODULES(libtorrent,
-                                     [libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2],
+                                     [libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2],
                                      [CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS" LIBS="$libtorrent_LIBS $LIBS"])])
 
 PKG_CHECK_MODULES(openssl,

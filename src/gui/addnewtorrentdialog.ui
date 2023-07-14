@@ -202,8 +202,48 @@
                </widget>
               </item>
               <item>
+               <layout class="QHBoxLayout" name="tagsLayout" stretch="0,0,0">
+                <item>
+                 <widget class="QLabel" name="tagsLabel">
+                  <property name="text">
+                   <string>Tags:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="tagsLineEdit">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
+                  <property name="placeholderText">
+                   <string>Click [...] button to add/remove tags.</string>
+                  </property>
+                  <property name="clearButtonEnabled">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="tagsEditButton">
+                  <property name="toolTip">
+                   <string>Add/remove tags</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
                <layout class="QGridLayout" name="gridLayout">
-               <item row="0" column="0">
+                <item row="0" column="0">
                  <widget class="QCheckBox" name="startTorrentCheckBox">
                   <property name="text">
                    <string>Start torrent</string>
@@ -212,35 +252,35 @@
                 </item>
                 <item row="0" column="1">
                  <layout class="QHBoxLayout" name="stopConditionLayout">
-                 <item>
-                 <widget class="QLabel" name="stopConditionLabel">
-                  <property name="text">
-                   <string>Stop condition:</string>
-                  </property>
-                 </widget>
-                 </item>
-                 <item>
-                 <widget class="QComboBox" name="stopConditionComboBox">
-                  <property name="currentIndex">
-                   <number>0</number>
-                  </property>
                   <item>
-                   <property name="text">
-                    <string>None</string>
-                   </property>
+                   <widget class="QLabel" name="stopConditionLabel">
+                    <property name="text">
+                     <string>Stop condition:</string>
+                    </property>
+                   </widget>
                   </item>
                   <item>
-                   <property name="text">
-                    <string>Metadata received</string>
-                   </property>
+                   <widget class="QComboBox" name="stopConditionComboBox">
+                    <property name="currentIndex">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>None</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Metadata received</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Files checked</string>
+                     </property>
+                    </item>
+                   </widget>
                   </item>
-                  <item>
-                   <property name="text">
-                    <string>Files checked</string>
-                   </property>
-                  </item>
-                 </widget>
-                 </item>
                  </layout>
                 </item>
                 <item row="0" column="2">
@@ -257,6 +297,13 @@
                  </spacer>
                 </item>
                 <item row="1" column="0">
+                 <widget class="QCheckBox" name="addToQueueTopCheckBox">
+                  <property name="text">
+                   <string>Add to top of queue</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
                  <widget class="QCheckBox" name="skipCheckingCheckBox">
                   <property name="text">
                    <string>Skip hash check</string>
@@ -503,7 +550,7 @@
             </layout>
            </item>
            <item>
-            <widget class="TorrentContentTreeView" name="contentTreeView">
+            <widget class="TorrentContentWidget" name="contentTreeView">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                <horstretch>1</horstretch>
@@ -605,9 +652,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TorrentContentTreeView</class>
+   <class>TorrentContentWidget</class>
    <extends>QTreeView</extends>
-   <header>gui/torrentcontenttreeview.h</header>
+   <header>gui/torrentcontentwidget.h</header>
   </customwidget>
   <customwidget>
    <class>FileSystemPathComboEdit</class>
@@ -617,75 +664,5 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>AddNewTorrentDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>928</x>
-     <y>855</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>AddNewTorrentDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>928</x>
-     <y>855</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>comboTTM</sender>
-   <signal>currentIndexChanged(int)</signal>
-   <receiver>AddNewTorrentDialog</receiver>
-   <slot>TMMChanged(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>250</x>
-     <y>53</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>467</x>
-     <y>249</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>categoryComboBox</sender>
-   <signal>currentIndexChanged(int)</signal>
-   <receiver>AddNewTorrentDialog</receiver>
-   <slot>categoryChanged(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>266</x>
-     <y>231</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>467</x>
-     <y>249</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
- <slots>
-  <slot>savingModeChanged(bool)</slot>
-  <slot>categoryChanged(int)</slot>
-  <slot>TMMChanged(int)</slot>
- </slots>
+ <connections/>
 </ui>

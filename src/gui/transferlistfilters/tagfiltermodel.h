@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017  Tony Gregerson <tony.gregerson@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,46 +32,52 @@
 #include <QAbstractItemModel>
 
 #include "base/bittorrent/torrent.h"
+#include "base/tagset.h"
 
 class QModelIndex;
 
-class CategoryModelItem;
+class TagModelItem;
 
-class CategoryFilterModel final : public QAbstractItemModel
+class TagFilterModel final : public QAbstractListModel
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(CategoryFilterModel)
+    Q_DISABLE_COPY_MOVE(TagFilterModel)
 
 public:
-    explicit CategoryFilterModel(QObject *parent = nullptr);
-    ~CategoryFilterModel();
+    explicit TagFilterModel(QObject *parent = nullptr);
+    ~TagFilterModel() override;
 
     static bool isSpecialItem(const QModelIndex &index);
 
-    int columnCount(const QModelIndex &parent = {}) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     Qt::ItemFlags flags(const QModelIndex &index) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
     QModelIndex index(int row, int column, const QModelIndex &parent = {}) const override;
-    QModelIndex parent(const QModelIndex &index) const override;
     int rowCount(const QModelIndex &parent = {}) const override;
 
-    QModelIndex index(const QString &categoryName) const;
-    QString categoryName(const QModelIndex &index) const;
+    QModelIndex index(const QString &tag) const;
+    QString tag(const QModelIndex &index) const;
 
 private slots:
-    void categoryAdded(const QString &categoryName);
-    void categoryRemoved(const QString &categoryName);
+    void tagAdded(const QString &tag);
+    void tagRemoved(const QString &tag);
+    void torrentTagAdded(BitTorrent::Torrent *torrent, const QString &tag);
+    void torrentTagRemoved(BitTorrent::Torrent *, const QString &tag);
     void torrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents);
-    void torrentAboutToBeRemoved(BitTorrent::Torrent *const torrent);
-    void torrentCategoryChanged(BitTorrent::Torrent *const torrent, const QString &oldCategory);
-    void subcategoriesSupportChanged();
+    void torrentAboutToBeRemoved(BitTorrent::Torrent *torrent);
 
 private:
-    void populate();
-    QModelIndex index(CategoryModelItem *item) const;
-    CategoryModelItem *findItem(const QString &fullName) const;
+    static QString tagDisplayName(const QString &tag);
 
-    bool m_isSubcategoriesEnabled;
-    CategoryModelItem *m_rootItem = nullptr;
+    void populate();
+    void addToModel(const QString &tag, int count);
+    void removeFromModel(int row);
+    bool isValidRow(int row) const;
+    int findRow(const QString &tag) const;
+    TagModelItem *findItem(const QString &tag);
+    QVector<TagModelItem *> findItems(const TagSet &tags);
+    TagModelItem *allTagsItem();
+    TagModelItem *untaggedItem();
+
+    QList<TagModelItem> m_tagItems;  // Index corresponds to its row
 };

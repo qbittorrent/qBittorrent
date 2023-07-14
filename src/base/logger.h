@@ -35,7 +35,7 @@
 #include <QString>
 #include <QtContainerFwd>
 
-const int MAX_LOG_MESSAGES = 20000;
+inline const int MAX_LOG_MESSAGES = 20000;
 
 namespace Log
 {
@@ -51,17 +51,17 @@ namespace Log
 
     struct Msg
     {
-        int id;
-        MsgType type;
-        qint64 timestamp;
+        int id = -1;
+        MsgType type = ALL;
+        qint64 timestamp = -1;
         QString message;
     };
 
     struct Peer
     {
-        int id;
-        bool blocked;
-        qint64 timestamp;
+        int id = -1;
+        bool blocked = false;
+        qint64 timestamp = -1;
         QString ip;
         QString reason;
     };
@@ -69,7 +69,7 @@ namespace Log
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(Log::MsgTypes)
 
-class Logger : public QObject
+class Logger final : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(Logger)

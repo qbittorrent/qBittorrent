@@ -92,7 +92,7 @@ bool CustomDiskIOThread::async_write(lt::storage_index_t storage, const lt::peer
                                      , const char *buf, std::shared_ptr<lt::disk_observer> diskObserver
                                      , std::function<void (const lt::storage_error &)> handler, lt::disk_job_flags_t flags)
 {
-    return m_nativeDiskIO->async_write(storage, peerRequest, buf, diskObserver, std::move(handler), flags);
+    return m_nativeDiskIO->async_write(storage, peerRequest, buf, std::move(diskObserver), std::move(handler), flags);
 }
 
 void CustomDiskIOThread::async_hash(lt::storage_index_t storage, lt::piece_index_t piece
@@ -120,7 +120,11 @@ void CustomDiskIOThread::async_move_storage(lt::storage_index_t storage, std::st
     m_nativeDiskIO->async_move_storage(storage, path, flags
                                        , [=, handler = std::move(handler)](lt::status_t status, const std::string &path, const lt::storage_error &error)
     {
+#if LIBTORRENT_VERSION_NUM < 20100
         if ((status != lt::status_t::fatal_disk_error) && (status != lt::status_t::file_exist))
+#else
+        if ((status != lt::disk_status::fatal_disk_error) && (status != lt::disk_status::file_exist))
+#endif
             m_storageData[storage].savePath = newSavePath;
 
         handler(status, path, error);
@@ -137,7 +141,7 @@ void CustomDiskIOThread::async_check_files(lt::storage_index_t storage, const lt
                                            , std::function<void (lt::status_t, const lt::storage_error &)> handler)
 {
     handleCompleteFiles(storage, m_storageData[storage].savePath);
-    m_nativeDiskIO->async_check_files(storage, resume_data, links, std::move(handler));
+    m_nativeDiskIO->async_check_files(storage, resume_data, std::move(links), std::move(handler));
 }
 
 void CustomDiskIOThread::async_stop_torrent(lt::storage_index_t storage, std::function<void ()> handler)
@@ -166,8 +170,8 @@ void CustomDiskIOThread::async_delete_files(lt::storage_index_t storage, lt::rem
 void CustomDiskIOThread::async_set_file_priority(lt::storage_index_t storage, lt::aux::vector<lt::download_priority_t, lt::file_index_t> priorities
                                                  , std::function<void (const lt::storage_error &, lt::aux::vector<lt::download_priority_t, lt::file_index_t>)> handler)
 {
-    m_nativeDiskIO->async_set_file_priority(storage, priorities
-                                            , [=, handler = std::move(handler)](const lt::storage_error &error, lt::aux::vector<lt::download_priority_t, lt::file_index_t> priorities)
+    m_nativeDiskIO->async_set_file_priority(storage, std::move(priorities)
+                                            , [=, handler = std::move(handler)](const lt::storage_error &error, const lt::aux::vector<lt::download_priority_t, lt::file_index_t> &priorities)
     {
         m_storageData[storage].filePriorities = priorities;
         handler(error, priorities);

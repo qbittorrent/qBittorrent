@@ -7,11 +7,12 @@
   },
   "scripts": {
     "format": "js-beautify private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js && prettier --write **.css",
-    "lint": "eslint private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js && stylelint **/*.css"
+    "lint": "eslint private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js && stylelint **/*.css && html-validate private public"
   },
   "devDependencies": {
     "eslint": "*",
     "eslint-plugin-html": "*",
+    "html-validate": "*",
     "js-beautify": "*",
     "prettier": "*",
     "stylelint": "*",

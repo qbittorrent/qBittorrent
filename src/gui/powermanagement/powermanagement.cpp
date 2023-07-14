@@ -38,20 +38,16 @@
 #include <windows.h>
 #endif
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+#ifdef QBT_USES_DBUS
 #include "powermanagement_x11.h"
 #endif
 
 PowerManagement::PowerManagement(QObject *parent)
     : QObject(parent)
 {
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+#ifdef QBT_USES_DBUS
     m_inhibitor = new PowerManagementInhibitor(this);
 #endif
-}
-
-PowerManagement::~PowerManagement()
-{
 }
 
 void PowerManagement::setActivityState(const bool busy)
@@ -69,7 +65,7 @@ void PowerManagement::setBusy()
 
 #ifdef Q_OS_WIN
     SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED);
-#elif (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+#elif defined(QBT_USES_DBUS)
     m_inhibitor->requestBusy();
 #elif defined(Q_OS_MACOS)
     IOReturn success = IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep, kIOPMAssertionLevelOn
@@ -86,7 +82,7 @@ void PowerManagement::setIdle()
 
 #ifdef Q_OS_WIN
     SetThreadExecutionState(ES_CONTINUOUS);
-#elif (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+#elif defined(QBT_USES_DBUS)
     m_inhibitor->requestIdle();
 #elif defined(Q_OS_MACOS)
     IOPMAssertionRelease(m_assertionID);

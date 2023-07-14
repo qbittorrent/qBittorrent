@@ -39,7 +39,7 @@ Images Authors:
   license: GPLv2+
 
 * files: src/qbittorrent_file.ico src/icons/fileicon.svg
-  copyright: 'uknown.svg' (LGPLv3+) from Oxygen Icon Theme was used as base which was slightly modified and 'qbittorrent-tray.svg' (GPLv2+) was overlayed above it.
+  copyright: 'unknown.svg' (LGPLv3+) from Oxygen Icon Theme was used as base which was slightly modified and 'qbittorrent-tray.svg' (GPLv2+) was overlaid above it.
   license: GPLv3+
 
 * files: src/icons/flags/*.svg

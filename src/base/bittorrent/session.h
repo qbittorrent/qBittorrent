@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -170,6 +170,9 @@ namespace BitTorrent
         virtual bool useCategoryPathsInManualMode() const = 0;
         virtual void setUseCategoryPathsInManualMode(bool value) = 0;
 
+        virtual Path suggestedSavePath(const QString &categoryName, std::optional<bool> useAutoTMM) const = 0;
+        virtual Path suggestedDownloadPath(const QString &categoryName, std::optional<bool> useAutoTMM) const = 0;
+
         static bool isValidTag(const QString &tag);
         virtual QSet<QString> tags() const = 0;
         virtual bool hasTag(const QString &tag) const = 0;
@@ -206,6 +209,8 @@ namespace BitTorrent
         virtual void setLSDEnabled(bool enabled) = 0;
         virtual bool isPeXEnabled() const = 0;
         virtual void setPeXEnabled(bool enabled) = 0;
+        virtual bool isAddTorrentToQueueTop() const = 0;
+        virtual void setAddTorrentToQueueTop(bool value) = 0;
         virtual bool isAddTorrentPaused() const = 0;
         virtual void setAddTorrentPaused(bool value) = 0;
         virtual Torrent::StopCondition torrentStopCondition() const = 0;
@@ -258,10 +263,24 @@ namespace BitTorrent
         virtual void setEncryption(int state) = 0;
         virtual int maxActiveCheckingTorrents() const = 0;
         virtual void setMaxActiveCheckingTorrents(int val) = 0;
+        virtual bool isI2PEnabled() const = 0;
+        virtual void setI2PEnabled(bool enabled) = 0;
+        virtual QString I2PAddress() const = 0;
+        virtual void setI2PAddress(const QString &address) = 0;
+        virtual int I2PPort() const = 0;
+        virtual void setI2PPort(int port) = 0;
+        virtual bool I2PMixedMode() const = 0;
+        virtual void setI2PMixedMode(bool enabled) = 0;
+        virtual int I2PInboundQuantity() const = 0;
+        virtual void setI2PInboundQuantity(int value) = 0;
+        virtual int I2POutboundQuantity() const = 0;
+        virtual void setI2POutboundQuantity(int value) = 0;
+        virtual int I2PInboundLength() const = 0;
+        virtual void setI2PInboundLength(int value) = 0;
+        virtual int I2POutboundLength() const = 0;
+        virtual void setI2POutboundLength(int value) = 0;
         virtual bool isProxyPeerConnectionsEnabled() const = 0;
         virtual void setProxyPeerConnectionsEnabled(bool enabled) = 0;
-        virtual bool isProxyHostnameLookupEnabled() const = 0;
-        virtual void setProxyHostnameLookupEnabled(bool enabled) = 0;
         virtual ChokingAlgorithm chokingAlgorithm() const = 0;
         virtual void setChokingAlgorithm(ChokingAlgorithm mode) = 0;
         virtual SeedChokingAlgorithm seedChokingAlgorithm() const = 0;
@@ -320,6 +339,10 @@ namespace BitTorrent
         virtual void setSendBufferWatermarkFactor(int value) = 0;
         virtual int connectionSpeed() const = 0;
         virtual void setConnectionSpeed(int value) = 0;
+        virtual int socketSendBufferSize() const = 0;
+        virtual void setSocketSendBufferSize(int value) = 0;
+        virtual int socketReceiveBufferSize() const = 0;
+        virtual void setSocketReceiveBufferSize(int value) = 0;
         virtual int socketBacklogSize() const = 0;
         virtual void setSocketBacklogSize(int value) = 0;
         virtual bool isAnonymousModeEnabled() const = 0;
@@ -388,7 +411,7 @@ namespace BitTorrent
         virtual bool isTrackerFilteringEnabled() const = 0;
         virtual void setTrackerFilteringEnabled(bool enabled) = 0;
         virtual bool isExcludedFileNamesEnabled() const = 0;
-        virtual void setExcludedFileNamesEnabled(const bool enabled) = 0;
+        virtual void setExcludedFileNamesEnabled(bool enabled) = 0;
         virtual QStringList excludedFileNames() const = 0;
         virtual void setExcludedFileNames(const QStringList &newList) = 0;
         virtual bool isFilenameExcluded(const QString &fileName) const = 0;
@@ -396,6 +419,8 @@ namespace BitTorrent
         virtual void setBannedIPs(const QStringList &newList) = 0;
         virtual ResumeDataStorageType resumeDataStorageType() const = 0;
         virtual void setResumeDataStorageType(ResumeDataStorageType type) = 0;
+        virtual bool isMergeTrackersEnabled() const = 0;
+        virtual void setMergeTrackersEnabled(bool enabled) = 0;
 
         virtual bool isRestored() const = 0;
 
@@ -432,6 +457,7 @@ namespace BitTorrent
         void allTorrentsFinished();
         void categoryAdded(const QString &categoryName);
         void categoryRemoved(const QString &categoryName);
+        void categoryOptionsChanged(const QString &categoryName);
         void downloadFromUrlFailed(const QString &url, const QString &reason);
         void downloadFromUrlFinished(const QString &url);
         void fullDiskError(Torrent *torrent, const QString &msg);

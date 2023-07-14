@@ -54,7 +54,7 @@ namespace BitTorrent
 
     public:
         TorrentInfo() = default;
-        TorrentInfo(const TorrentInfo &other);
+        TorrentInfo(const TorrentInfo &other) = default;
 
         explicit TorrentInfo(const lt::torrent_info &nativeInfo);
 

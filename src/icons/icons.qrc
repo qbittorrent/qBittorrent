@@ -97,6 +97,7 @@
         <file>flags/er.svg</file>
         <file>flags/es-ct.svg</file>
         <file>flags/es-ga.svg</file>
+        <file>flags/es-pv.svg</file>
         <file>flags/es.svg</file>
         <file>flags/et.svg</file>
         <file>flags/eu.svg</file>
@@ -336,6 +337,7 @@
         <file>splash.png</file>
         <file>stalledDL.svg</file>
         <file>stalledUP.svg</file>
+        <file>stopped.svg</file>
         <file>system-log-out.svg</file>
         <file>tags.svg</file>
         <file>task-complete.svg</file>

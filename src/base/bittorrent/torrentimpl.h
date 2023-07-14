@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -68,6 +68,13 @@ namespace BitTorrent
         Overwrite
     };
 
+    enum class MoveStorageContext
+    {
+        AdjustCurrentLocation,
+        ChangeSavePath,
+        ChangeDownloadPath
+    };
+
     enum class MaintenanceJob
     {
         None,
@@ -77,7 +84,7 @@ namespace BitTorrent
     struct FileErrorInfo
     {
         lt::error_code error;
-        lt::operation_t operation;
+        lt::operation_t operation = lt::operation_t::unknown;
     };
 
     class TorrentImpl final : public Torrent
@@ -139,7 +146,7 @@ namespace BitTorrent
         QVector<DownloadPriority> filePriorities() const override;
 
         TorrentInfo info() const override;
-        bool isSeed() const override;
+        bool isFinished() const override;
         bool isPaused() const override;
         bool isQueued() const override;
         bool isForced() const override;
@@ -238,7 +245,6 @@ namespace BitTorrent
 
         void fetchPeerInfo(std::function<void (QVector<PeerInfo>)> resultHandler) const override;
         void fetchURLSeeds(std::function<void (QVector<QUrl>)> resultHandler) const override;
-        void fetchFilesProgress(std::function<void (QVector<qreal>)> resultHandler) const override;
         void fetchPieceAvailability(std::function<void (QVector<int>)> resultHandler) const override;
         void fetchDownloadingPieces(std::function<void (QBitArray)> resultHandler) const override;
         void fetchAvailableFileFractions(std::function<void (QVector<qreal>)> resultHandler) const override;
@@ -253,7 +259,7 @@ namespace BitTorrent
         void handleCategoryOptionsChanged();
         void handleAppendExtensionToggled();
         void saveResumeData(lt::resume_data_flags_t flags = {});
-        void handleMoveStorageJobFinished(const Path &path, bool hasOutstandingJob);
+        void handleMoveStorageJobFinished(const Path &path, MoveStorageContext context, bool hasOutstandingJob);
         void fileSearchFinished(const Path &savePath, const PathList &fileNames);
         TrackerEntry updateTrackerEntry(const lt::announce_entry &announceEntry, const QMap<TrackerEntry::Endpoint, int> &updateInfo);
 
@@ -263,6 +269,7 @@ namespace BitTorrent
         std::shared_ptr<const lt::torrent_info> nativeTorrentInfo() const;
 
         void updateStatus(const lt::torrent_status &nativeStatus);
+        void updateProgress();
         void updateState();
 
         void handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p);
@@ -289,7 +296,7 @@ namespace BitTorrent
         Path wantedActualPath(int index, const Path &path) const;
         void adjustStorageLocation();
         void doRenameFile(int index, const Path &path);
-        void moveStorage(const Path &newPath, MoveStorageMode mode);
+        void moveStorage(const Path &newPath, MoveStorageContext context);
         void manageIncompleteFiles();
         void applyFirstLastPiecePriority(bool enabled);
 
@@ -327,6 +334,7 @@ namespace BitTorrent
         MaintenanceJob m_maintenanceJob = MaintenanceJob::None;
 
         QVector<TrackerEntry> m_trackerEntries;
+        QVector<QUrl> m_urlSeeds;
         FileErrorInfo m_lastFileError;
 
         // Persistent data
@@ -339,7 +347,7 @@ namespace BitTorrent
         int m_seedingTimeLimit;
         TorrentOperatingMode m_operatingMode;
         TorrentContentLayout m_contentLayout;
-        bool m_hasSeedStatus;
+        bool m_hasFinishedStatus;
         bool m_hasMissingFiles = false;
         bool m_hasFirstLastPiecePriority = false;
         bool m_useAutoTMM;
@@ -353,6 +361,7 @@ namespace BitTorrent
         int m_downloadLimit = 0;
         int m_uploadLimit = 0;
 
-        mutable QBitArray m_pieces;
+        QBitArray m_pieces;
+        QVector<std::int64_t> m_filesProgress;
     };
 }

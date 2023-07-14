@@ -45,6 +45,7 @@
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
+#include "base/preferences.h"
 #include "base/profile.h"
 #include "base/utils/fs.h"
 #include "feed_serializer.h"
@@ -52,13 +53,13 @@
 #include "rss_parser.h"
 #include "rss_session.h"
 
-const QString KEY_UID = u"uid"_qs;
-const QString KEY_URL = u"url"_qs;
-const QString KEY_TITLE = u"title"_qs;
-const QString KEY_LASTBUILDDATE = u"lastBuildDate"_qs;
-const QString KEY_ISLOADING = u"isLoading"_qs;
-const QString KEY_HASERROR = u"hasError"_qs;
-const QString KEY_ARTICLES = u"articles"_qs;
+const QString KEY_UID = u"uid"_s;
+const QString KEY_URL = u"url"_s;
+const QString KEY_TITLE = u"title"_s;
+const QString KEY_LASTBUILDDATE = u"lastBuildDate"_s;
+const QString KEY_ISLOADING = u"isLoading"_s;
+const QString KEY_HASERROR = u"hasError"_s;
+const QString KEY_ARTICLES = u"articles"_s;
 
 using namespace RSS;
 
@@ -72,7 +73,7 @@ Feed::Feed(const QUuid &uid, const QString &url, const QString &path, Session *s
     m_dataFileName = Path(uidHex + u".json");
 
     // Move to new file naming scheme (since v4.1.2)
-    const QString legacyFilename = Utils::Fs::toValidFileName(m_url, u"_"_qs) + u".json";
+    const QString legacyFilename = Utils::Fs::toValidFileName(m_url, u"_"_s) + u".json";
     const Path storageDir = m_session->dataFileStorage()->storageDir();
     const Path dataFilePath = storageDir / m_dataFileName;
     if (!dataFilePath.exists())
@@ -148,7 +149,7 @@ void Feed::refresh()
 
     // NOTE: Should we allow manually refreshing for disabled session?
 
-    m_downloadHandler = Net::DownloadManager::instance()->download(m_url);
+    m_downloadHandler = Net::DownloadManager::instance()->download(m_url, Preferences::instance()->useProxyForRSS());
     connect(m_downloadHandler, &Net::DownloadHandler::finished, this, &Feed::handleDownloadFinished);
 
     if (!m_iconPath.exists())
@@ -344,7 +345,7 @@ bool Feed::addArticle(const QVariantHash &articleData)
 
 void Feed::removeOldestArticle()
 {
-    auto oldestArticle = m_articlesByDate.last();
+    auto *oldestArticle = m_articlesByDate.last();
     emit articleAboutToBeRemoved(oldestArticle);
 
     m_articles.remove(oldestArticle->guid());
@@ -375,10 +376,10 @@ void Feed::downloadIcon()
     // Download the RSS Feed icon
     // XXX: This works for most sites but it is not perfect
     const QUrl url(m_url);
-    const auto iconUrl = u"%1://%2/favicon.ico"_qs.arg(url.scheme(), url.host());
+    const auto iconUrl = u"%1://%2/favicon.ico"_s.arg(url.scheme(), url.host());
     Net::DownloadManager::instance()->download(
             Net::DownloadRequest(iconUrl).saveToFile(true).destFileName(m_iconPath)
-                , this, &Feed::handleIconDownloadFinished);
+            , Preferences::instance()->useProxyForRSS(), this, &Feed::handleIconDownloadFinished);
 }
 
 int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
@@ -452,6 +453,13 @@ int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
 Path Feed::iconPath() const
 {
     return m_iconPath;
+}
+
+void Feed::setURL(const QString &url)
+{
+    const QString oldURL = m_url;
+    m_url = url;
+    emit urlChanged(oldURL);
 }
 
 QJsonValue Feed::toJsonValue(const bool withData) const

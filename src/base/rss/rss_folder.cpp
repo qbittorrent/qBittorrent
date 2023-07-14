@@ -49,7 +49,7 @@ Folder::~Folder()
 {
     emit aboutToBeDestroyed(this);
 
-    for (auto item : asConst(items()))
+    for (auto *item : asConst(items()))
         delete item;
 }
 
@@ -127,7 +127,7 @@ void Folder::addItem(Item *item)
     connect(item, &Item::articleAboutToBeRemoved, this, &Item::articleAboutToBeRemoved);
     connect(item, &Item::unreadCountChanged, this, &Folder::handleItemUnreadCountChanged);
 
-    for (auto article : asConst(item->articles()))
+    for (auto *article : asConst(item->articles()))
         emit newArticle(article);
 
     if (item->unreadCount() > 0)
@@ -138,7 +138,7 @@ void Folder::removeItem(Item *item)
 {
     Q_ASSERT(m_items.contains(item));
 
-    for (auto article : asConst(item->articles()))
+    for (auto *article : asConst(item->articles()))
         emit articleAboutToBeRemoved(article);
 
     item->disconnect(this);

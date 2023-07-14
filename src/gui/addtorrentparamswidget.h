@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Ivan Sorokin <vanyacpp@gmail.com>
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,27 +28,37 @@
 
 #pragma once
 
-#include <QTreeView>
+#include <QWidget>
 
-namespace BitTorrent
+#include "base/bittorrent/addtorrentparams.h"
+
+namespace Ui
 {
-    class AbstractFileStorage;
-    class Torrent;
-    class TorrentInfo;
+    class AddTorrentParamsWidget;
 }
 
-class TorrentContentTreeView final : public QTreeView
+class AddTorrentParamsWidget final : public QWidget
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(TorrentContentTreeView)
+    Q_DISABLE_COPY_MOVE(AddTorrentParamsWidget)
 
 public:
-    explicit TorrentContentTreeView(QWidget *parent = nullptr);
-    void keyPressEvent(QKeyEvent *event) override;
+    explicit AddTorrentParamsWidget(BitTorrent::AddTorrentParams addTorrentParams = {}, QWidget *parent = nullptr);
+    ~AddTorrentParamsWidget() override;
 
-    void renameSelectedFile(BitTorrent::AbstractFileStorage &fileStorage);
+    void setAddTorrentParams(BitTorrent::AddTorrentParams addTorrentParams);
+    BitTorrent::AddTorrentParams addTorrentParams() const;
 
 private:
-    QModelIndex currentNameCell() const;
-    void wheelEvent(QWheelEvent *event) override;
+    void populate();
+    void loadCustomSavePathOptions();
+    void loadCustomDownloadPath();
+    void loadCategorySavePathOptions();
+    void populateDefaultPaths();
+    void populateDefaultDownloadPath();
+    void populateSavePathOptions();
+
+
+    Ui::AddTorrentParamsWidget *m_ui;
+    BitTorrent::AddTorrentParams m_addTorrentParams;
 };

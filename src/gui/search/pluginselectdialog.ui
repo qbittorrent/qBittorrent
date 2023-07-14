@@ -93,7 +93,7 @@
       </font>
      </property>
      <property name="text">
-      <string>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</string>
+      <string>You can get new search engine plugins here: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</string>
      </property>
      <property name="openExternalLinks">
       <bool>true</bool>

@@ -46,7 +46,8 @@ SearchDownloadHandler::SearchDownloadHandler(const QString &siteUrl, const QStri
             , this, &SearchDownloadHandler::downloadProcessFinished);
     const QStringList params
     {
-        (m_manager->engineLocation() / Path(u"nova2dl.py"_qs)).toString(),
+        Utils::ForeignApps::PYTHON_ISOLATE_MODE_FLAG,
+        (SearchPluginManager::engineLocation() / Path(u"nova2dl.py"_s)).toString(),
         siteUrl,
         url
     };

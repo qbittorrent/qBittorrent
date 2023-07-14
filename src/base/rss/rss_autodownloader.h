@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -94,7 +94,7 @@ namespace RSS
         AutoDownloadRule ruleByName(const QString &ruleName) const;
         QList<AutoDownloadRule> rules() const;
 
-        void insertRule(const AutoDownloadRule &rule);
+        void setRule(const AutoDownloadRule &rule);
         bool renameRule(const QString &ruleName, const QString &newRuleName);
         void removeRule(const QString &ruleName);
 
@@ -113,10 +113,12 @@ namespace RSS
         void handleTorrentDownloadFinished(const QString &url);
         void handleTorrentDownloadFailed(const QString &url);
         void handleNewArticle(const Article *article);
+        void handleFeedURLChanged(Feed *feed, const QString &oldURL);
 
     private:
         void timerEvent(QTimerEvent *event) override;
         void setRule_impl(const AutoDownloadRule &rule);
+        void sortRules();
         void resetProcessingQueue();
         void startProcessing();
         void addJobForArticle(const Article *article);
@@ -140,7 +142,8 @@ namespace RSS
         QTimer *m_processingTimer = nullptr;
         Utils::Thread::UniquePtr m_ioThread;
         AsyncFileStorage *m_fileStorage = nullptr;
-        QHash<QString, AutoDownloadRule> m_rules;
+        QList<AutoDownloadRule> m_rules;
+        QHash<QString, qsizetype> m_rulesByName;
         QList<QSharedPointer<ProcessingJob>> m_processingQueue;
         QHash<QString, QSharedPointer<ProcessingJob>> m_waitingJobs;
         bool m_dirty = false;

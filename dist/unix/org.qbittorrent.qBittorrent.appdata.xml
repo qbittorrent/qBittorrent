@@ -68,9 +68,9 @@
   <update_contact>sledgehammer999@qbittorrent.org</update_contact>
   <developer_name>The qBittorrent Project</developer_name>
   <url type="homepage">https://www.qbittorrent.org/</url>
-  <url type="bugtracker">http://bugs.qbittorrent.org/</url>
+  <url type="bugtracker">https://bugs.qbittorrent.org/</url>
   <url type="donation">https://www.qbittorrent.org/donate</url>
-  <url type="help">http://forum.qbittorrent.org/</url>
+  <url type="help">https://forum.qbittorrent.org/</url>
   <url type="translate">https://github.com/qbittorrent/qBittorrent/wiki/How-to-translate-qBittorrent</url>
   <content_rating type="oars-1.1"/>
   <releases>

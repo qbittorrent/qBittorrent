@@ -73,7 +73,8 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
 
     const QStringList params
     {
-        (m_manager->engineLocation() / Path(u"nova2.py"_qs)).toString(),
+        Utils::ForeignApps::PYTHON_ISOLATE_MODE_FLAG,
+        (SearchPluginManager::engineLocation() / Path(u"nova2.py"_s)).toString(),
         m_usedPlugins.join(u','),
         m_category
     };

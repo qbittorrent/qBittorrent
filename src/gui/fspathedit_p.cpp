@@ -66,6 +66,16 @@ void Private::FileSystemPathValidator::setExistingOnly(const bool value)
     m_existingOnly = value;
 }
 
+bool Private::FileSystemPathValidator::filesOnly() const
+{
+    return m_filesOnly;
+}
+
+void Private::FileSystemPathValidator::setFilesOnly(const bool value)
+{
+    m_filesOnly = value;
+}
+
 bool Private::FileSystemPathValidator::directoriesOnly() const
 {
     return m_directoriesOnly;
@@ -99,21 +109,22 @@ void Private::FileSystemPathValidator::setCheckWritePermission(const bool value)
 Private::FileSystemPathValidator::TestResult
 Private::FileSystemPathValidator::testPath(const Path &path) const
 {
-    // `QFileInfo` will cache the query results and avoid exessive querying to filesystem
+    // `QFileInfo` will cache the query results and avoid excessive querying to filesystem
     const QFileInfo info {path.data()};
 
-    if (existingOnly() && !info.exists())
-        return TestResult::DoesNotExist;
+    if (!info.exists())
+        return existingOnly() ? TestResult::DoesNotExist : TestResult::OK;
+
+    if (filesOnly())
+    {
+        if (!info.isFile())
+            return TestResult::NotAFile;
+    }
 
     if (directoriesOnly())
     {
         if (!info.isDir())
             return TestResult::NotADir;
-    }
-    else
-    {
-        if (!info.isFile())
-            return TestResult::NotAFile;
     }
 
     if (checkReadPermission() && !info.isReadable())
@@ -152,8 +163,6 @@ Private::FileLineEdit::FileLineEdit(QWidget *parent)
     : QLineEdit {parent}
     , m_completerModel {new QFileSystemModel(this)}
     , m_completer {new QCompleter(this)}
-    , m_browseAction {nullptr}
-    , m_warningAction {nullptr}
 {
     m_iconProvider.setOptions(QFileIconProvider::DontUseCustomDirectoryIcons);
 

@@ -135,6 +135,11 @@ window.qBittorrent.FileTree = (function() {
     const FolderNode = new Class({
         Extends: FileNode,
 
+        /**
+         * Will automatically tick the checkbox for a folder if all subfolders and files are also ticked
+         */
+        autoCheckFolders: true,
+
         initialize: function() {
             this.isFolder = true;
         },
@@ -184,7 +189,7 @@ window.qBittorrent.FileTree = (function() {
 
             this.size = size;
             this.remaining = remaining;
-            this.checked = checked;
+            this.checked = this.autoCheckFolders ? checked : TriState.Checked;
             this.progress = (progress / size);
             this.priority = priority;
             this.availability = (availability / size);

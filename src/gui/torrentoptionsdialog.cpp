@@ -62,12 +62,15 @@ namespace
 TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::Torrent *> &torrents)
     : QDialog {parent}
     , m_ui {new Ui::TorrentOptionsDialog}
-    , m_storeDialogSize {SETTINGS_KEY(u"Size"_qs)}
-    , m_currentCategoriesString {u"--%1--"_qs.arg(tr("Currently used categories"))}
+    , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
+    , m_currentCategoriesString {u"--%1--"_s.arg(tr("Currently used categories"))}
 {
     Q_ASSERT(!torrents.empty());
 
     m_ui->setupUi(this);
+
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
     m_ui->savePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->savePath->setDialogCaption(tr("Choose save path"));
@@ -385,8 +388,8 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     connect(m_ui->spinDownloadLimit, qOverload<int>(&QSpinBox::valueChanged)
             , this, [this](const int value) { updateSliderValue(m_ui->sliderDownloadLimit, value); });
 
-    connect(m_ui->checkMaxRatio, &QCheckBox::toggled, m_ui->spinRatioLimit, &QDoubleSpinBox::setEnabled);
-    connect(m_ui->checkMaxTime, &QCheckBox::toggled, m_ui->spinTimeLimit, &QSpinBox::setEnabled);
+    connect(m_ui->checkMaxRatio, &QCheckBox::toggled, m_ui->spinRatioLimit, &QWidget::setEnabled);
+    connect(m_ui->checkMaxTime, &QCheckBox::toggled, m_ui->spinTimeLimit, &QWidget::setEnabled);
 
     connect(m_ui->buttonGroup, &QButtonGroup::idClicked, this, &TorrentOptionsDialog::handleRatioTypeChanged);
 

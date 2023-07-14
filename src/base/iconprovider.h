@@ -35,7 +35,7 @@
 
 class QString;
 
-class IconProvider : public QObject
+class IconProvider final : public QObject
 {
     Q_DISABLE_COPY_MOVE(IconProvider)
 
@@ -48,7 +48,7 @@ public:
 
 protected:
     explicit IconProvider(QObject *parent = nullptr);
-    ~IconProvider();
+    ~IconProvider() = default;
 
     static IconProvider *m_instance;
 };

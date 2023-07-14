@@ -45,6 +45,7 @@
 #include <io.h>
 #endif
 
+#include <QCoreApplication>
 #include <QDebug>
 #include <QThread>
 
@@ -118,10 +119,21 @@ int main(int argc, char *argv[])
         // Create Application
         auto app = std::make_unique<Application>(argc, argv);
 
+#ifdef Q_OS_WIN
+        // QCoreApplication::applicationDirPath() needs an Application object instantiated first
+        // Let's hope that there won't be a crash before this line
+        const char *envName = "_NT_SYMBOL_PATH";
+        const QString envValue = qEnvironmentVariable(envName);
+        if (envValue.isEmpty())
+            qputenv(envName, Application::applicationDirPath().toLocal8Bit());
+        else
+            qputenv(envName, u"%1;%2"_s.arg(envValue, Application::applicationDirPath()).toLocal8Bit());
+#endif
+
         const QBtCommandLineParameters params = app->commandLineArgs();
         if (!params.unknownParameter.isEmpty())
         {
-            throw CommandLineParameterError(QObject::tr("%1 is an unknown command line parameter.",
+            throw CommandLineParameterError(QCoreApplication::translate("Main", "%1 is an unknown command line parameter.",
                                                         "--random-parameter is an unknown command line parameter.")
                                                         .arg(params.unknownParameter));
         }
@@ -133,8 +145,8 @@ int main(int argc, char *argv[])
                 displayVersion();
                 return EXIT_SUCCESS;
             }
-            throw CommandLineParameterError(QObject::tr("%1 must be the single command line parameter.")
-                                     .arg(u"-v (or --version)"_qs));
+            throw CommandLineParameterError(QCoreApplication::translate("Main", "%1 must be the single command line parameter.")
+                                     .arg(u"-v (or --version)"_s));
         }
 #endif
         if (params.showHelp)
@@ -144,8 +156,8 @@ int main(int argc, char *argv[])
                 displayUsage(QString::fromLocal8Bit(argv[0]));
                 return EXIT_SUCCESS;
             }
-            throw CommandLineParameterError(QObject::tr("%1 must be the single command line parameter.")
-                                 .arg(u"-h (or --help)"_qs));
+            throw CommandLineParameterError(QCoreApplication::translate("Main", "%1 must be the single command line parameter.")
+                                 .arg(u"-h (or --help)"_s));
         }
 
         const bool firstTimeUser = !Preferences::instance()->getAcceptedLegal();
@@ -176,13 +188,13 @@ int main(int argc, char *argv[])
 #if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
             if (params.shouldDaemonize)
             {
-                throw CommandLineParameterError(QObject::tr("You cannot use %1: qBittorrent is already running for this user.")
-                                     .arg(u"-d (or --daemon)"_qs));
+                throw CommandLineParameterError(QCoreApplication::translate("Main", "You cannot use %1: qBittorrent is already running for this user.")
+                                     .arg(u"-d (or --daemon)"_s));
             }
 #endif
 
             QThread::msleep(300);
-            app->sendParams(params.paramList());
+            app->callMainInstance();
 
             return EXIT_SUCCESS;
         }
@@ -221,26 +233,6 @@ int main(int argc, char *argv[])
             app->setAttribute(Qt::AA_DontShowIconsInMenus);
 #endif
 
-        if (!firstTimeUser)
-        {
-            handleChangedDefaults(DefaultPreferencesMode::Legacy);
-
-#ifndef DISABLE_GUI
-            if (!upgrade()) return EXIT_FAILURE;
-#elif defined(Q_OS_WIN)
-            if (!upgrade(_isatty(_fileno(stdin))
-                         && _isatty(_fileno(stdout)))) return EXIT_FAILURE;
-#else
-            if (!upgrade(!params.shouldDaemonize
-                         && isatty(fileno(stdin))
-                         && isatty(fileno(stdout)))) return EXIT_FAILURE;
-#endif
-        }
-        else
-        {
-            handleChangedDefaults(DefaultPreferencesMode::Current);
-        }
-
 #if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
         if (params.shouldDaemonize)
         {
@@ -267,11 +259,16 @@ int main(int argc, char *argv[])
 
         registerSignalHandlers();
 
-        return app->exec(params.paramList());
+        return app->exec();
     }
     catch (const CommandLineParameterError &er)
     {
         displayBadArgMessage(er.message());
+        return EXIT_FAILURE;
+    }
+    catch (const RuntimeError &er)
+    {
+        qDebug() << er.message();
         return EXIT_FAILURE;
     }
 }
@@ -279,15 +276,15 @@ int main(int argc, char *argv[])
 #if !defined(DISABLE_GUI)
 void showSplashScreen()
 {
-    QPixmap splashImg(u":/icons/splash.png"_qs);
+    QPixmap splashImg(u":/icons/splash.png"_s);
     QPainter painter(&splashImg);
     const auto version = QStringLiteral(QBT_VERSION);
     painter.setPen(QPen(Qt::white));
-    painter.setFont(QFont(u"Arial"_qs, 22, QFont::Black));
+    painter.setFont(QFont(u"Arial"_s, 22, QFont::Black));
     painter.drawText(224 - painter.fontMetrics().horizontalAdvance(version), 270, version);
     QSplashScreen *splash = new QSplashScreen(splashImg);
     splash->show();
-    QTimer::singleShot(1500ms, splash, &QObject::deleteLater);
+    QTimer::singleShot(1500ms, Qt::CoarseTimer, splash, &QObject::deleteLater);
     qApp->processEvents();
 }
 #endif  // DISABLE_GUI
@@ -299,15 +296,15 @@ void displayVersion()
 
 void displayBadArgMessage(const QString &message)
 {
-    const QString help = QObject::tr("Run application with -h option to read about command line parameters.");
+    const QString help = QCoreApplication::translate("Main", "Run application with -h option to read about command line parameters.");
 #if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
-    QMessageBox msgBox(QMessageBox::Critical, QObject::tr("Bad command line"),
+    QMessageBox msgBox(QMessageBox::Critical, QCoreApplication::translate("Main", "Bad command line"),
                        (message + u'\n' + help), QMessageBox::Ok);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
     msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();
 #else
-    const QString errMsg = QObject::tr("Bad command line: ") + u'\n'
+    const QString errMsg = QCoreApplication::translate("Main", "Bad command line: ") + u'\n'
         + message + u'\n'
         + help + u'\n';
     fprintf(stderr, "%s", qUtf8Printable(errMsg));
@@ -320,10 +317,10 @@ bool userAgreesWithLegalNotice()
     Q_ASSERT(!pref->getAcceptedLegal());
 
 #ifdef DISABLE_GUI
-    const QString eula = u"\n*** %1 ***\n"_qs.arg(QObject::tr("Legal Notice"))
-        + QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.") + u"\n\n"
-        + QObject::tr("No further notices will be issued.") + u"\n\n"
-        + QObject::tr("Press %1 key to accept and continue...").arg(u"'y'"_qs) + u'\n';
+    const QString eula = u"\n*** %1 ***\n"_s.arg(QCoreApplication::translate("Main", "Legal Notice"))
+        + QCoreApplication::translate("Main", "qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.") + u"\n\n"
+        + QCoreApplication::translate("Main", "No further notices will be issued.") + u"\n\n"
+        + QCoreApplication::translate("Main", "Press %1 key to accept and continue...").arg(u"'y'"_s) + u'\n';
     printf("%s", qUtf8Printable(eula));
 
     const char ret = getchar(); // Read pressed key
@@ -335,10 +332,10 @@ bool userAgreesWithLegalNotice()
     }
 #else
     QMessageBox msgBox;
-    msgBox.setText(QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
-    msgBox.setWindowTitle(QObject::tr("Legal notice"));
-    msgBox.addButton(QObject::tr("Cancel"), QMessageBox::RejectRole);
-    const QAbstractButton *agreeButton = msgBox.addButton(QObject::tr("I Agree"), QMessageBox::AcceptRole);
+    msgBox.setText(QCoreApplication::translate("Main", "qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
+    msgBox.setWindowTitle(QCoreApplication::translate("Main", "Legal notice"));
+    msgBox.addButton(QCoreApplication::translate("Main", "Cancel"), QMessageBox::RejectRole);
+    const QAbstractButton *agreeButton = msgBox.addButton(QCoreApplication::translate("Main", "I Agree"), QMessageBox::AcceptRole);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
     msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();

@@ -122,8 +122,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>893</height>
+             <width>504</width>
+             <height>1064</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -133,7 +133,7 @@
                <string>Interface</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_81">
-               <item row="0" column="0" colspan="2">
+               <item row="0" column="0" colspan="3">
                 <widget class="QLabel" name="label_15">
                  <property name="font">
                   <font>
@@ -210,6 +210,13 @@
                  </property>
                 </widget>
                </item>
+               <item row="4" column="0" colspan="2">
+                <widget class="QPushButton" name="buttonCustomizeUITheme">
+                 <property name="text">
+                  <string>Customize UI Theme...</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -226,6 +233,19 @@
                  </property>
                  <property name="text">
                   <string>Confirm when deleting torrents</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkConfirmPauseAndResumeAll">
+                 <property name="toolTip">
+                  <string>Shows a confirmation dialog upon pausing/resuming all the torrents</string>
+                 </property>
+                 <property name="text">
+                  <string>Confirm &quot;Pause/Resume all&quot; actions</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>
@@ -375,6 +395,13 @@
                    </spacer>
                   </item>
                  </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBoxHideZeroStatusFilters">
+                 <property name="text">
+                  <string>Auto hide zero status filters</string>
+                 </property>
                 </widget>
                </item>
               </layout>
@@ -778,8 +805,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>591</width>
-             <height>1138</height>
+             <width>539</width>
+             <height>1457</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -858,6 +885,16 @@
                 </layout>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkAddToQueueTop">
+                 <property name="toolTip">
+                  <string>The torrent will be added to the top of the download queue</string>
+                 </property>
+                 <property name="text">
+                  <string extracomment="The torrent will be added to the top of the download queue">Add to top of queue</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QCheckBox" name="checkStartPaused">
                  <property name="toolTip">
                   <string>The torrent will be added to download list in a paused state</string>
@@ -912,6 +949,41 @@
                   </spacer>
                  </item>
                 </layout>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="duplicateTorrentGroup">
+                 <property name="title">
+                  <string>When duplicate torrent is being added</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="duplicateTorrentBoxLayout">
+                  <item>
+                   <widget class="QCheckBox" name="checkMergeTrackers">
+                    <property name="toolTip">
+                     <string>Whether trackers should be merged to existing torrent</string>
+                    </property>
+                    <property name="text">
+                     <string>Merge trackers to existing torrent</string>
+                    </property>
+                    <property name="checked">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkConfirmMergeTrackers">
+                    <property name="toolTip">
+                     <string>Shows a confirmation dialog upon merging trackers to existing torrent</string>
+                    </property>
+                    <property name="text">
+                     <string>Confirm merging trackers</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
                </item>
                <item>
                 <widget class="QGroupBox" name="deleteTorrentBox">
@@ -1554,8 +1626,8 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>745</height>
+             <width>504</width>
+             <height>848</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1771,6 +1843,78 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="groupI2P">
+              <property name="title">
+               <string>I2P (experimental)</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_40">
+               <item>
+                <layout class="QHBoxLayout" name="i2pLayout">
+                 <item>
+                  <widget class="QLabel" name="labelI2PHost">
+                   <property name="text">
+                    <string>Host:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="textI2PHost"/>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="labelI2PPort">
+                   <property name="text">
+                    <string>Port:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSpinBox" name="spinI2PPort">
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>65535</number>
+                   </property>
+                   <property name="value">
+                    <number>8080</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_22">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkI2PMixed">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;mixed mode&amp;quot; is enabled I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Mixed mode</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <widget class="QGroupBox" name="groupProxy">
               <property name="enabled">
                <bool>true</bool>
@@ -1789,51 +1933,20 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   </widget>
                  </item>
                  <item>
-                  <widget class="QComboBox" name="comboProxyType">
-                   <item>
-                    <property name="text">
-                     <string>(None)</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>SOCKS4</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>SOCKS5</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>HTTP</string>
-                    </property>
-                   </item>
-                  </widget>
+                  <widget class="QComboBox" name="comboProxyType"/>
                  </item>
                  <item>
                   <widget class="QLabel" name="lblProxyIP">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
                    <property name="text">
                     <string>Host:</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="textProxyIP">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
+                  <widget class="QLineEdit" name="textProxyIP"/>
                  </item>
                  <item>
                   <widget class="QLabel" name="lblProxyPort">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
                    <property name="text">
                     <string>Port:</string>
                    </property>
@@ -1841,9 +1954,6 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </item>
                  <item>
                   <widget class="QSpinBox" name="spinProxyPort">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
                    <property name="minimum">
                     <number>1</number>
                    </property>
@@ -1855,44 +1965,40 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                    </property>
                   </widget>
                  </item>
+                 <item>
+                  <spacer name="horizontalSpacer_24">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
                 </layout>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkProxyPeerConnections">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="toolTip">
-                  <string>Otherwise, the proxy server is only used for tracker connections</string>
-                 </property>
-                 <property name="text">
-                  <string>Use proxy for peer connections</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="isProxyOnlyForTorrents">
-                 <property name="toolTip">
-                  <string>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</string>
+                <widget class="QLabel" name="labelProxyTypeIncompatible">
+                 <property name="font">
+                  <font>
+                   <italic>true</italic>
+                  </font>
                  </property>
                  <property name="text">
-                  <string>Use proxy only for torrents</string>
-                 </property>
-                 <property name="checked">
-                  <bool>false</bool>
+                  <string>Some options are incompatible with the chosen proxy type!</string>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QCheckBox" name="checkProxyHostnameLookup">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
                  <property name="toolTip">
-                  <string>If checked, hostname lookups are done via the proxy.</string>
+                  <string>If checked, hostname lookups are done via the proxy</string>
                  </property>
                  <property name="text">
-                  <string>Use proxy for hostname lookups</string>
+                  <string>Perform hostname lookup via proxy</string>
                  </property>
                 </widget>
                </item>
@@ -1947,6 +2053,57 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                    </widget>
                   </item>
                  </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="checkProxyBitTorrent">
+                 <property name="title">
+                  <string>Use proxy for BitTorrent purposes</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayoutProxyBitTorrent">
+                  <item>
+                   <widget class="QCheckBox" name="checkProxyPeerConnections">
+                    <property name="toolTip">
+                     <string>Otherwise, the proxy server is only used for tracker connections</string>
+                    </property>
+                    <property name="text">
+                     <string>Use proxy for peer connections</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkProxyRSS">
+                 <property name="toolTip">
+                  <string>RSS feeds will use proxy</string>
+                 </property>
+                 <property name="text">
+                  <string>Use proxy for RSS purposes</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkProxyMisc">
+                 <property name="toolTip">
+                  <string>Search engine, software updates or anything else will use proxy</string>
+                 </property>
+                 <property name="text">
+                  <string>Use proxy for general purposes</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
                 </widget>
                </item>
               </layout>
@@ -2045,8 +2202,8 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>516</width>
-             <height>525</height>
+             <width>302</width>
+             <height>408</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2275,8 +2432,8 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>513</width>
-             <height>679</height>
+             <width>413</width>
+             <height>693</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2795,8 +2952,8 @@ Disable encryption: Only connect to peers without protocol encryption</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>516</width>
-             <height>525</height>
+             <width>336</width>
+             <height>391</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_27">
@@ -2965,8 +3122,8 @@ Disable encryption: Only connect to peers without protocol encryption</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>636</height>
+             <width>382</width>
+             <height>1045</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -3550,6 +3707,7 @@ you should put in domain names used by WebUI server.
   <tabstop>checkAltRowColors</tabstop>
   <tabstop>actionTorrentDlOnDblClBox</tabstop>
   <tabstop>actionTorrentFnOnDblClBox</tabstop>
+  <tabstop>checkBoxHideZeroStatusFilters</tabstop>
   <tabstop>checkStartup</tabstop>
   <tabstop>checkShowSplash</tabstop>
   <tabstop>windowStateComboBox</tabstop>
@@ -3597,12 +3755,14 @@ you should put in domain names used by WebUI server.
   <tabstop>comboProxyType</tabstop>
   <tabstop>textProxyIP</tabstop>
   <tabstop>spinProxyPort</tabstop>
-  <tabstop>checkProxyPeerConnections</tabstop>
-  <tabstop>isProxyOnlyForTorrents</tabstop>
   <tabstop>checkProxyHostnameLookup</tabstop>
   <tabstop>checkProxyAuth</tabstop>
   <tabstop>textProxyUsername</tabstop>
   <tabstop>textProxyPassword</tabstop>
+  <tabstop>checkProxyBitTorrent</tabstop>
+  <tabstop>checkProxyPeerConnections</tabstop>
+  <tabstop>checkProxyRSS</tabstop>
+  <tabstop>checkProxyMisc</tabstop>
   <tabstop>checkIPFilter</tabstop>
   <tabstop>textFilterPath</tabstop>
   <tabstop>IpFilterRefreshBtn</tabstop>
@@ -3639,150 +3799,5 @@ you should put in domain names used by WebUI server.
   <tabstop>DNSPasswordTxt</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>checkMaxConnections</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinMaxConnec</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>604</x>
-     <y>205</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>677</x>
-     <y>206</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkMaxConnectionsPerTorrent</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinMaxConnecPerTorrent</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>604</x>
-     <y>238</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>677</x>
-     <y>239</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkMaxUploadsPerTorrent</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinMaxUploadsPerTorrent</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>604</x>
-     <y>304</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>677</x>
-     <y>305</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkMaxUploads</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinMaxUploads</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>547</x>
-     <y>415</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>642</x>
-     <y>414</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkMaxRatio</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinMaxRatio</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>395</x>
-     <y>203</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>496</x>
-     <y>204</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkMaxSeedingMinutes</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinMaxSeedingMinutes</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>395</x>
-     <y>170</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>496</x>
-     <y>171</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>deleteTorrentBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>deleteTorrentWarningIcon</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>554</x>
-     <y>153</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>324</x>
-     <y>214</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>deleteTorrentBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>deleteTorrentWarningLabel</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>646</x>
-     <y>158</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>629</x>
-     <y>207</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkScheduleEnable</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>tabSchedule</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>499</x>
-     <y>31</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>499</x>
-     <y>192</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

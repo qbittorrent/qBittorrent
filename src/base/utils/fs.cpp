@@ -81,12 +81,12 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const Path &path)
     const QStringList deleteFilesList =
     {
         // Windows
-        u"Thumbs.db"_qs,
-        u"desktop.ini"_qs,
+        u"Thumbs.db"_s,
+        u"desktop.ini"_s,
         // Linux
-        u".directory"_qs,
+        u".directory"_s,
         // Mac OS
-        u".DS_Store"_qs
+        u".DS_Store"_s
     };
 
     // travel from the deepest folder and remove anything unwanted on the way out.
@@ -191,7 +191,7 @@ bool Utils::Fs::sameFiles(const Path &path1, const Path &path2)
 
 QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
 {
-    const QRegularExpression regex {u"[\\\\/:?\"*<>|]+"_qs};
+    const QRegularExpression regex {u"[\\\\/:?\"*<>|]+"_s};
 
     QString validName = name.trimmed();
     validName.replace(regex, pad);
@@ -201,7 +201,7 @@ QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
 
 Path Utils::Fs::toValidPath(const QString &name, const QString &pad)
 {
-    const QRegularExpression regex {u"[:?\"*<>|]+"_qs};
+    const QRegularExpression regex {u"[:?\"*<>|]+"_s};
 
     QString validPathStr = name;
     validPathStr.replace(regex, pad);
@@ -216,7 +216,7 @@ qint64 Utils::Fs::freeDiskSpaceOnPath(const Path &path)
 
 Path Utils::Fs::tempPath()
 {
-    static const Path path = Path(QDir::tempPath()) / Path(u".qBittorrent"_qs);
+    static const Path path = Path(QDir::tempPath()) / Path(u".qBittorrent"_s);
     mkdir(path);
     return path;
 }
@@ -292,6 +292,12 @@ bool Utils::Fs::isNetworkFileSystem(const Path &path)
 
 bool Utils::Fs::copyFile(const Path &from, const Path &to)
 {
+    if (!from.exists())
+        return false;
+
+    if (!mkpath(to.parentPath()))
+        return false;
+
     return QFile::copy(from.data(), to.data());
 }
 

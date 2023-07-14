@@ -51,37 +51,27 @@ PowerManagementInhibitor::PowerManagementInhibitor(QObject *parent)
     m_useGSM = false;
 }
 
-PowerManagementInhibitor::~PowerManagementInhibitor()
-{
-}
-
 void PowerManagementInhibitor::requestIdle()
 {
     m_intendedState = Idle;
     if ((m_state == Error) || (m_state == Idle) || (m_state == RequestIdle) || (m_state == RequestBusy))
         return;
 
+    m_state = RequestIdle;
     qDebug("D-Bus: PowerManagementInhibitor: Requesting idle");
 
-    QDBusMessage call;
-    if (!m_useGSM)
-        call = QDBusMessage::createMethodCall(
-                u"org.freedesktop.PowerManagement"_qs,
-                u"/org/freedesktop/PowerManagement/Inhibit"_qs,
-                u"org.freedesktop.PowerManagement.Inhibit"_qs,
-                u"UnInhibit"_qs);
-    else
-        call = QDBusMessage::createMethodCall(
-                u"org.gnome.SessionManager"_qs,
-                u"/org/gnome/SessionManager"_qs,
-                u"org.gnome.SessionManager"_qs,
-                u"Uninhibit"_qs);
-
-    m_state = RequestIdle;
-
-    QList<QVariant> args;
-    args << m_cookie;
-    call.setArguments(args);
+    QDBusMessage call = m_useGSM
+        ? QDBusMessage::createMethodCall(
+            u"org.gnome.SessionManager"_s,
+            u"/org/gnome/SessionManager"_s,
+            u"org.gnome.SessionManager"_s,
+            u"Uninhibit"_s)
+        : QDBusMessage::createMethodCall(
+            u"org.freedesktop.PowerManagement"_s,
+            u"/org/freedesktop/PowerManagement/Inhibit"_s,
+            u"org.freedesktop.PowerManagement.Inhibit"_s,
+            u"UnInhibit"_s);
+    call.setArguments({m_cookie});
 
     QDBusPendingCall pcall = QDBusConnection::sessionBus().asyncCall(call, 1000);
     auto *watcher = new QDBusPendingCallWatcher(pcall, this);
@@ -95,28 +85,27 @@ void PowerManagementInhibitor::requestBusy()
     if ((m_state == Error) || (m_state == Busy) || (m_state == RequestBusy) || (m_state == RequestIdle))
         return;
 
+    m_state = RequestBusy;
     qDebug("D-Bus: PowerManagementInhibitor: Requesting busy");
 
-    QDBusMessage call;
-    if (!m_useGSM)
-        call = QDBusMessage::createMethodCall(
-                u"org.freedesktop.PowerManagement"_qs,
-                u"/org/freedesktop/PowerManagement/Inhibit"_qs,
-                u"org.freedesktop.PowerManagement.Inhibit"_qs,
-                u"Inhibit"_qs);
-    else
-        call = QDBusMessage::createMethodCall(
-                u"org.gnome.SessionManager"_qs,
-                u"/org/gnome/SessionManager"_qs,
-                u"org.gnome.SessionManager"_qs,
-                u"Inhibit"_qs);
+    QDBusMessage call = m_useGSM
+        ? QDBusMessage::createMethodCall(
+            u"org.gnome.SessionManager"_s,
+            u"/org/gnome/SessionManager"_s,
+            u"org.gnome.SessionManager"_s,
+            u"Inhibit"_s)
+        : QDBusMessage::createMethodCall(
+                u"org.freedesktop.PowerManagement"_s,
+                u"/org/freedesktop/PowerManagement/Inhibit"_s,
+                u"org.freedesktop.PowerManagement.Inhibit"_s,
+                u"Inhibit"_s);
 
-    m_state = RequestBusy;
-
-    QList<QVariant> args = {u"qBittorrent"_qs};
-    if (m_useGSM) args << 0u;
-    args << u"Active torrents are presented"_qs;
-    if (m_useGSM) args << 8u;
+    QList<QVariant> args = {u"qBittorrent"_s};
+    if (m_useGSM)
+        args << 0u;
+    args << u"Active torrents are presented"_s;
+    if (m_useGSM)
+        args << 8u;
     call.setArguments(args);
 
     QDBusPendingCall pcall = QDBusConnection::sessionBus().asyncCall(call, 1000);

@@ -1,4 +1,4 @@
-#VERSION: 1.43
+#VERSION: 1.44
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -33,11 +33,13 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+import importlib
+import pathlib
+import sys
 import urllib.parse
-from os import path
 from glob import glob
-from sys import argv
 from multiprocessing import Pool, cpu_count
+from os import path
 
 THREADED = True
 try:
@@ -70,9 +72,7 @@ def initialize_engines():
             continue
         try:
             # import engines.[engine]
-            engine_module = __import__(".".join(("engines", engi)))
-            # get low-level module
-            engine_module = getattr(engine_module, engi)
+            engine_module = importlib.import_module("engines." + engi)
             # bind class name
             globals()[engi] = getattr(engine_module, engi)
             supported_engines.append(engi)
@@ -143,6 +143,11 @@ def run_search(engine_list):
 
 
 def main(args):
+    # qbt tend to run this script in 'isolate mode' so append the current path manually
+    current_path = str(pathlib.Path(__file__).parent.resolve())
+    if current_path not in sys.path:
+        sys.path.append(current_path)
+
     supported_engines = initialize_engines()
 
     if not args:
@@ -187,4 +192,4 @@ def main(args):
 
 
 if __name__ == "__main__":
-    main(argv[1:])
+    main(sys.argv[1:])

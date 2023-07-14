@@ -2,6 +2,9 @@ name: CI - macOS
 
 on: [pull_request, push]
 
+permissions:
+  actions: write
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: ${{ github.head_ref != '' }}
@@ -14,12 +17,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        libt_version: ["2.0.8", "1.2.18"]
+        libt_version: ["2.0.9", "1.2.19"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
-        qt_version: ["5.15.2", "6.4.0"]
+        qt_version: ["5.15.2", "6.5.0"]
         exclude:
-          - libt_version: "1.2.18"
-            qt_version: "6.4.0"
+          - libt_version: "1.2.19"
+            qt_version: "6.5.0"
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
@@ -30,11 +33,18 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: |
-          brew update > /dev/null
-          brew install \
-            cmake ninja \
-            openssl@1.1 zlib
+        uses: Wandalen/wretry.action@v1
+        env:
+           HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK: 1
+           HOMEBREW_NO_INSTALL_CLEANUP: 1
+        with:
+          attempt_delay: 20000
+          attempt_limit: 6
+          command: |
+            brew update > /dev/null
+            brew install \
+              cmake ninja \
+              openssl@1.1 zlib
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
@@ -46,7 +56,7 @@ jobs:
           curl \
             -L \
             -o "${{ runner.temp }}/boost.tar.bz2" \
-            "https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2"
+            "https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.bz2"
           tar -xf "${{ runner.temp }}/boost.tar.bz2" -C "${{ github.workspace }}/.."
           mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
 
@@ -68,6 +78,7 @@ jobs:
           cmake \
             -B build \
             -G "Ninja" \
+            -DBUILD_SHARED_LIBS=OFF \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_CXX_STANDARD=17 \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
@@ -78,13 +89,14 @@ jobs:
           sudo cmake --install build
 
       - name: Build qBittorrent (Qt5)
-        if: ${{ startsWith(matrix.qt_version, 5) }}
+        if: startsWith(matrix.qt_version, 5)
         run: |
+          CXXFLAGS="$CXXFLAGS -Werror -Wno-error=deprecated-declarations" \
+          LDFLAGS="$LDFLAGS -gz" \
           cmake \
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-            -DCMAKE_CXX_FLAGS="-Werror -Wno-error=deprecated-declarations" \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DBOOST_ROOT="${{ env.boost_path }}" \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
@@ -96,13 +108,14 @@ jobs:
           cmake --build build --target check
 
       - name: Build qBittorrent (Qt6)
-        if: ${{ startsWith(matrix.qt_version, 6) }}
+        if: startsWith(matrix.qt_version, 6)
         run: |
+          CXXFLAGS="$CXXFLAGS -Wno-gnu-zero-variadic-macro-arguments -Werror -Wno-error=deprecated-declarations" \
+          LDFLAGS="$LDFLAGS -gz" \
           cmake \
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-            -DCMAKE_CXX_FLAGS="-Wno-gnu-zero-variadic-macro-arguments -Werror -Wno-error=deprecated-declarations" \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DBOOST_ROOT="${{ env.boost_path }}" \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
@@ -116,7 +129,17 @@ jobs:
 
       - name: Prepare build artifacts
         run: |
+          # create .dmg
+          appName="qbittorrent"
+          if [ "${{ matrix.qbt_gui }}" = "GUI=OFF" ]; then
+            appName="qbittorrent-nox"
+          fi
+          pushd build
+          macdeployqt "$appName.app" -dmg -no-strip
+          popd
+          # prepare upload folder
           mkdir upload
+          cp "build/$appName.dmg" upload
           mkdir upload/cmake
           cp build/compile_commands.json upload/cmake
           mkdir upload/cmake/libtorrent
@@ -125,5 +148,5 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: build-info_macOS_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}
+          name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}
           path: upload

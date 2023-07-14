@@ -3,7 +3,7 @@ repos:
     hooks:
       - id: check-translation-tag
         name: Check newline characters in <translation> tag
-        entry: .github/workflows/check_translation_tag.py
+        entry: .github/workflows/helper/pre-commit/check_translation_tag.py
         language: script
         exclude: |
           (?x)^(
@@ -13,7 +13,7 @@ repos:
           - ts
 
   - repo: https://github.com/pre-commit/pre-commit-hooks.git
-    rev: v4.3.0
+    rev: v4.4.0
     hooks:
     - id: check-json
       name: Check JSON files
@@ -33,19 +33,19 @@ repos:
       args: ["--fix=lf"]
       exclude: |
         (?x)^(
-          compile_commands.json |
           src/webui/www/private/css/lib/.* |
-          src/webui/www/private/scripts/lib/.*
+          src/webui/www/private/scripts/lib/.* |
+          test/testdata/crlf.txt
         )$
 
     - id: end-of-file-fixer
       name: Check trailing newlines
       exclude: |
         (?x)^(
-          compile_commands.json |
           configure |
           src/webui/www/private/css/lib/.* |
-          src/webui/www/private/scripts/lib/.*
+          src/webui/www/private/scripts/lib/.* |
+          test/testdata/crlf.txt
         )$
       exclude_types:
         - svg
@@ -59,4 +59,50 @@ repos:
           src/webui/www/private/scripts/lib/.*
         )$
       exclude_types:
+        - ts
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.5
+    hooks:
+    - id: codespell
+      name: Check spelling (codespell)
+      args: ["--ignore-words-list", "additionals,curren,fo,ket,superseeding,te,ths"]
+      exclude: |
+        (?x)^(
+          .*\.desktop |
+          .*\.qrc |
+          build-aux/.* |
+          Changelog |
+          dist/windows/installer-translations/.* |
+          m4/.* |
+          src/base/3rdparty/.* |
+          src/searchengine/nova3/socks.py |
+          src/webui/www/private/scripts/lib/.*
+        )$
+      exclude_types:
+        - ts
+
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.15.5
+    hooks:
+    - id: typos
+      name: Check spelling (typos)
+      args: ["--config", ".github/workflows/helper/pre-commit/.typos.toml"]
+      exclude: |
+        (?x)^(
+          .*\.asc |
+          .*\.desktop |
+          .*\.qrc |
+          \.pre-commit-config\.yaml |
+          build-aux/.* |
+          Changelog |
+          configure.* |
+          dist/windows/installer-translations/.* |
+          m4/.* |
+          src/base/3rdparty/.* |
+          src/searchengine/nova3/socks.py |
+          src/webui/www/private/scripts/lib/.*
+        )$
+      exclude_types:
+        - svg
         - ts

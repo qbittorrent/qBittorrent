@@ -35,7 +35,7 @@
 #include <IOKit/pwr_mgt/IOPMLib.h>
 #endif
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+#ifdef QBT_USES_DBUS
 // Require DBus
 class PowerManagementInhibitor;
 #endif
@@ -47,7 +47,7 @@ class PowerManagement : public QObject
 
 public:
   PowerManagement(QObject *parent = nullptr);
-  virtual ~PowerManagement();
+  virtual ~PowerManagement() = default;
 
   void setActivityState(bool busy);
 
@@ -57,7 +57,7 @@ private:
 
   bool m_busy = false;
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+#ifdef QBT_USES_DBUS
   PowerManagementInhibitor *m_inhibitor = nullptr;
 #endif
 #ifdef Q_OS_MACOS

@@ -41,9 +41,11 @@ window.qBittorrent.Misc = (function() {
             friendlyFloat: friendlyFloat,
             parseHtmlLinks: parseHtmlLinks,
             escapeHtml: escapeHtml,
+            naturalSortCollator: naturalSortCollator,
             safeTrim: safeTrim,
             toFixedPointString: toFixedPointString,
             containsAllTerms: containsAllTerms,
+            sleep: sleep,
             MAX_ETA: 8640000
         };
     };
@@ -177,6 +179,8 @@ window.qBittorrent.Misc = (function() {
         return escapedString;
     };
 
+    const naturalSortCollator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
+
     const safeTrim = function(value) {
         try {
             return value.trim();
@@ -215,6 +219,12 @@ window.qBittorrent.Misc = (function() {
 
             const textContainsTerm = (textToSearch.indexOf(term) !== -1);
             return isTermExcluded ? !textContainsTerm : textContainsTerm;
+        });
+    };
+
+    const sleep = (ms) => {
+        return new Promise((resolve) => {
+            setTimeout(resolve, ms);
         });
     };
 

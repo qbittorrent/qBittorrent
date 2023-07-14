@@ -2,6 +2,9 @@ name: CI - WebUI
 
 on: [pull_request, push]
 
+permissions:
+  security-events: write
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: ${{ github.head_ref != '' }}
@@ -34,3 +37,12 @@ jobs:
         run: |
           npm run format
           git diff --exit-code
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          config-file: ./.github/workflows/helper/codeql/js.yaml
+          languages: javascript
+
+      - name: Run CodeQL analysis
+        uses: github/codeql-action/analyze@v2

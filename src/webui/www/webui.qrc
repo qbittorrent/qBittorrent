@@ -119,6 +119,7 @@
         <file>private/images/flags/er.svg</file>
         <file>private/images/flags/es-ct.svg</file>
         <file>private/images/flags/es-ga.svg</file>
+        <file>private/images/flags/es-pv.svg</file>
         <file>private/images/flags/es.svg</file>
         <file>private/images/flags/et.svg</file>
         <file>private/images/flags/eu.svg</file>
@@ -347,6 +348,7 @@
         <file>private/images/spinner.gif</file>
         <file>private/images/stalledDL.svg</file>
         <file>private/images/stalledUP.svg</file>
+        <file>private/images/stopped.svg</file>
         <file>private/images/system-log-out.svg</file>
         <file>private/images/tabs.gif</file>
         <file>private/images/tags.svg</file>
@@ -372,6 +374,7 @@
         <file>private/rename.html</file>
         <file>private/rename_feed.html</file>
         <file>private/rename_file.html</file>
+        <file>private/rename_files.html</file>
         <file>private/rename_rule.html</file>
         <file>private/scripts/client.js</file>
         <file>private/scripts/contextmenu.js</file>
@@ -393,6 +396,7 @@
         <file>private/scripts/prop-peers.js</file>
         <file>private/scripts/prop-trackers.js</file>
         <file>private/scripts/prop-webseeds.js</file>
+        <file>private/scripts/rename-files.js</file>
         <file>private/scripts/speedslider.js</file>
         <file>private/scripts/lib/vanillaSelectBox.js</file>
         <file>private/setlocation.html</file>

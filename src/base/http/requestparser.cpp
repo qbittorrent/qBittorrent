@@ -75,10 +75,6 @@ namespace
     }
 }
 
-RequestParser::RequestParser()
-{
-}
-
 RequestParser::ParseResult RequestParser::parse(const QByteArray &data)
 {
     // Warning! Header names are converted to lowercase
@@ -107,6 +103,7 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArray &data)
     // handle supported methods
     if ((m_request.method == HEADER_REQUEST_METHOD_GET) || (m_request.method == HEADER_REQUEST_METHOD_HEAD))
         return {ParseStatus::OK, m_request, headerLength};
+
     if (m_request.method == HEADER_REQUEST_METHOD_POST)
     {
         const auto parseContentLength = [this]() -> int
@@ -150,8 +147,7 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArray &data)
         return {ParseStatus::OK, m_request, (headerLength + contentLength)};
     }
 
-    qWarning() << Q_FUNC_INFO << "unsupported request method: " << m_request.method;
-    return {ParseStatus::BadRequest, Request(), 0};  // TODO: SHOULD respond "501 Not Implemented"
+    return {ParseStatus::BadMethod, m_request, 0};
 }
 
 bool RequestParser::parseStartLines(const QStringView data)
@@ -193,7 +189,7 @@ bool RequestParser::parseRequestLine(const QString &line)
 {
     // [rfc7230] 3.1.1. Request Line
 
-    const QRegularExpression re(u"^([A-Z]+)\\s+(\\S+)\\s+HTTP\\/(\\d\\.\\d)$"_qs);
+    static const QRegularExpression re(u"^([A-Z]+)\\s+(\\S+)\\s+HTTP\\/(\\d\\.\\d)$"_s);
     const QRegularExpressionMatch match = re.match(line);
 
     if (!match.hasMatch())
@@ -268,7 +264,7 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
         // [rfc2046] 5.1.1. Common Syntax
 
         // find boundary delimiter
-        const QString boundaryFieldName = u"boundary="_qs;
+        const QString boundaryFieldName = u"boundary="_s;
         const int idx = contentType.indexOf(boundaryFieldName);
         if (idx < 0)
         {
@@ -347,8 +343,8 @@ bool RequestParser::parseFormData(const QByteArray &data)
     }
 
     // pick data
-    const QString filename = u"filename"_qs;
-    const QString name = u"name"_qs;
+    const QString filename = u"filename"_s;
+    const QString name = u"name"_s;
 
     if (headersMap.contains(filename))
     {

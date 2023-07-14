@@ -130,38 +130,38 @@ private slots:
     void testToString() const
     {
         using OneMandatory = Utils::Version<2, 1>;
-        QCOMPARE(OneMandatory(10).toString(), u"10"_qs);
-        QCOMPARE(OneMandatory(2).toString(), u"2"_qs);
-        QCOMPARE(OneMandatory(2, 0).toString(), u"2"_qs);
-        QCOMPARE(OneMandatory(2, 2).toString(), u"2.2"_qs);
+        QCOMPARE(OneMandatory(10).toString(), u"10"_s);
+        QCOMPARE(OneMandatory(2).toString(), u"2"_s);
+        QCOMPARE(OneMandatory(2, 0).toString(), u"2"_s);
+        QCOMPARE(OneMandatory(2, 2).toString(), u"2.2"_s);
 
         using FourDigits = Utils::Version<4>;
-        QCOMPARE(FourDigits(10, 11, 12, 13).toString(), u"10.11.12.13"_qs);
+        QCOMPARE(FourDigits(10, 11, 12, 13).toString(), u"10.11.12.13"_s);
     }
 
     void testFromString() const
     {
         using OneMandatory = Utils::Version<2, 1>;
         const OneMandatory default1 {10, 11};
-        QCOMPARE(OneMandatory::fromString(u"1"_qs, default1), OneMandatory(1));
-        QCOMPARE(OneMandatory::fromString(u"1.2"_qs, default1), OneMandatory(1, 2));
-        QCOMPARE(OneMandatory::fromString(u"100.2000"_qs, default1), OneMandatory(100, 2000));
-        QCOMPARE(OneMandatory::fromString(u"1,2"_qs), OneMandatory());
-        QCOMPARE(OneMandatory::fromString(u"1,2"_qs, default1), default1);
-        QCOMPARE(OneMandatory::fromString(u"1.2a"_qs), OneMandatory());
-        QCOMPARE(OneMandatory::fromString(u"1.2.a"_qs), OneMandatory());
-        QCOMPARE(OneMandatory::fromString(u""_qs), OneMandatory());
-        QCOMPARE(OneMandatory::fromString(u""_qs, default1), default1);
-        QCOMPARE(OneMandatory::fromString(u"random_string"_qs), OneMandatory());
-        QCOMPARE(OneMandatory::fromString(u"random_string"_qs, default1), default1);
+        QCOMPARE(OneMandatory::fromString(u"1"_s, default1), OneMandatory(1));
+        QCOMPARE(OneMandatory::fromString(u"1.2"_s, default1), OneMandatory(1, 2));
+        QCOMPARE(OneMandatory::fromString(u"100.2000"_s, default1), OneMandatory(100, 2000));
+        QCOMPARE(OneMandatory::fromString(u"1,2"_s), OneMandatory());
+        QCOMPARE(OneMandatory::fromString(u"1,2"_s, default1), default1);
+        QCOMPARE(OneMandatory::fromString(u"1.2a"_s), OneMandatory());
+        QCOMPARE(OneMandatory::fromString(u"1.2.a"_s), OneMandatory());
+        QCOMPARE(OneMandatory::fromString(u""_s), OneMandatory());
+        QCOMPARE(OneMandatory::fromString(u""_s, default1), default1);
+        QCOMPARE(OneMandatory::fromString(u"random_string"_s), OneMandatory());
+        QCOMPARE(OneMandatory::fromString(u"random_string"_s, default1), default1);
 
         using FourDigits = Utils::Version<4, 3>;
         const FourDigits default2 {10, 11, 12, 13};
-        QCOMPARE(FourDigits::fromString(u"1"_qs, default2), default2);
-        QCOMPARE(FourDigits::fromString(u"1.2"_qs), FourDigits());
-        QCOMPARE(FourDigits::fromString(u"1.2.3"_qs), FourDigits(1, 2, 3));
-        QCOMPARE(FourDigits::fromString(u"1.2.3.0"_qs), FourDigits(1, 2, 3));
-        QCOMPARE(FourDigits::fromString(u"1.2.3.4"_qs), FourDigits(1, 2, 3, 4));
+        QCOMPARE(FourDigits::fromString(u"1"_s, default2), default2);
+        QCOMPARE(FourDigits::fromString(u"1.2"_s), FourDigits());
+        QCOMPARE(FourDigits::fromString(u"1.2.3"_s), FourDigits(1, 2, 3));
+        QCOMPARE(FourDigits::fromString(u"1.2.3.0"_s), FourDigits(1, 2, 3));
+        QCOMPARE(FourDigits::fromString(u"1.2.3.4"_s), FourDigits(1, 2, 3, 4));
     }
 
     void testComparisons() const

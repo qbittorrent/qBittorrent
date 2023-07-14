@@ -50,7 +50,7 @@
         <item>
          <widget class="QLineEdit" name="txtIPSubnet">
           <property name="placeholderText">
-            <string>Example: 172.17.32.0/24, fdff:ffff:c8::/40</string>
+           <string>Example: 172.17.32.0/24, fdff:ffff:c8::/40</string>
           </property>
          </widget>
         </item>
@@ -93,22 +93,5 @@
   <tabstop>buttonDeleteIPSubnet</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>IPSubnetWhitelistOptionsDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>179</x>
-     <y>427</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>179</x>
-     <y>224</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

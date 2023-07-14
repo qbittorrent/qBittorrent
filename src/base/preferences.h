@@ -86,7 +86,7 @@ namespace TrayIcon
     Q_ENUM_NS(Style)
 }
 
-class Preferences : public QObject
+class Preferences final : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(Preferences)
@@ -142,7 +142,7 @@ public:
     QString getMailNotificationEmail() const;
     void setMailNotificationEmail(const QString &mail);
     QString getMailNotificationSMTP() const;
-    void setMailNotificationSMTP(const QString &smtp_server);
+    void setMailNotificationSMTP(const QString &smtpServer);
     bool getMailNotificationSMTPSSL() const;
     void setMailNotificationSMTPSSL(bool use);
     bool getMailNotificationSMTPAuth() const;
@@ -253,7 +253,7 @@ public:
     void setUILocked(bool locked);
 
     bool isAutoRunOnTorrentAddedEnabled() const;
-    void setAutoRunOnTorrentAddedEnabled(const bool enabled);
+    void setAutoRunOnTorrentAddedEnabled(bool enabled);
     QString getAutoRunOnTorrentAddedProgram() const;
     void setAutoRunOnTorrentAddedProgram(const QString &program);
     bool isAutoRunOnTorrentFinishedEnabled() const;
@@ -291,14 +291,14 @@ public:
     bool neverCheckFileAssoc() const;
     void setNeverCheckFileAssoc(bool check = true);
     static bool isTorrentFileAssocSet();
-    static bool isMagnetLinkAssocSet();
     static void setTorrentFileAssoc(bool set);
+    static bool isMagnetLinkAssocSet();
     static void setMagnetLinkAssoc(bool set);
 #endif
 #ifdef Q_OS_MACOS
     static bool isTorrentFileAssocSet();
-    static bool isMagnetLinkAssocSet();
     static void setTorrentFileAssoc();
+    static bool isMagnetLinkAssocSet();
     static void setMagnetLinkAssoc();
 #endif
     int getTrackerPort() const;
@@ -315,6 +315,10 @@ public:
     void setConfirmTorrentRecheck(bool enabled);
     bool confirmRemoveAllTags() const;
     void setConfirmRemoveAllTags(bool enabled);
+    bool confirmPauseAndResumeAll() const;
+    void setConfirmPauseAndResumeAll(bool enabled);
+    bool confirmMergeTrackers() const;
+    void setConfirmMergeTrackers(bool enabled);
 #ifndef Q_OS_MACOS
     bool systemTrayEnabled() const;
     void setSystemTrayEnabled(bool enabled);
@@ -331,6 +335,12 @@ public:
     bool iconsInMenusEnabled() const;
     void setIconsInMenusEnabled(bool enable);
 #endif // Q_OS_MACOS
+    qint64 getTorrentFileSizeLimit() const;
+    void setTorrentFileSizeLimit(qint64 value);
+    int getBdecodeDepthLimit() const;
+    void setBdecodeDepthLimit(int value);
+    int getBdecodeTokenLimit() const;
+    void setBdecodeTokenLimit(int value);
 
     // Stuff that don't appear in the Options GUI but are saved
     // in the same file.
@@ -382,6 +392,8 @@ public:
     bool getTrackerFilterState() const;
     int getTransSelFilter() const;
     void setTransSelFilter(int index);
+    bool getHideZeroStatusFilters() const;
+    void setHideZeroStatusFilters(bool hide);
     QByteArray getTransHeaderState() const;
     void setTransHeaderState(const QByteArray &state);
     bool getRegexAsFilteringPatternForTransferList() const;
@@ -396,6 +408,13 @@ public:
     // Network
     QList<QNetworkCookie> getNetworkCookies() const;
     void setNetworkCookies(const QList<QNetworkCookie> &cookies);
+
+    bool useProxyForBT() const;
+    void setUseProxyForBT(bool value);
+    bool useProxyForRSS() const;
+    void setUseProxyForRSS(bool value);
+    bool useProxyForGeneralPurposes() const;
+    void setUseProxyForGeneralPurposes(bool value);
 
     // SpeedWidget
     bool isSpeedWidgetEnabled() const;

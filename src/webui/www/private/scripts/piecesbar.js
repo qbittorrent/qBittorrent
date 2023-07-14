@@ -106,7 +106,6 @@ window.qBittorrent.PiecesBar = (() => {
     }
 
     function refresh(force) {
-        const start = Date.now();
         if (!this.parentNode)
             return;
 

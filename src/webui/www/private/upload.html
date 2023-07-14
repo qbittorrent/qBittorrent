@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <iframe id="upload_frame" name="upload_frame" class="invisible" src="about:blank"></iframe>
+    <iframe id="upload_frame" name="upload_frame" class="invisible" title="" src="about:blank"></iframe>
     <form action="api/v2/torrents/add" enctype="multipart/form-data" method="post" id="uploadForm" style="text-align: center;" target="upload_frame" autocorrect="off" autocapitalize="none">
         <div style="margin-top: 25px; display: inline-block; border: 1px solid lightgrey; border-radius: 4px;">
             <input type="file" id="fileselect" accept=".torrent, application/x-bittorrent" name="fileselect[]" multiple />
@@ -65,6 +65,14 @@
                     <td>
                         <input type="hidden" id="startTorrentHidden" name="paused" />
                         <input type="checkbox" id="startTorrent" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="addToTopOfQueue">QBT_TR(Add to top of queue)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="addToTopOfQueue" name="addToTopOfQueue" value="true" />
                     </td>
                 </tr>
                 <tr>
@@ -158,6 +166,10 @@
             if (submitted)
                 window.parent.closeWindows();
         });
+
+        if (Browser.platform === 'ios') {
+            $('fileselect').accept = ".torrent";
+        }
     </script>
     <div id="upload_spinner" class="mochaSpinner"></div>
 </body>

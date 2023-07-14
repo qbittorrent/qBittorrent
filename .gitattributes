@@ -5,3 +5,5 @@ core.eol=lf
 *.png binary
 *.qm binary
 *.zip binary
+
+test/testdata/crlf.txt text eol=crlf

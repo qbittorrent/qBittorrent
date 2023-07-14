@@ -38,7 +38,6 @@
 #include <QSystemTrayIcon>
 #endif
 
-#include "base/logger.h"
 #include "base/preferences.h"
 #include "uithememanager.h"
 
@@ -46,7 +45,7 @@
 #include "macutilities.h"
 #endif
 
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
 #include "notifications/dbusnotifier.h"
 #endif
 
@@ -71,13 +70,13 @@ namespace
 using namespace std::chrono_literals;
 
 #define SETTINGS_KEY(name) u"GUI/" name
-#define NOTIFICATIONS_SETTINGS_KEY(name) (SETTINGS_KEY(u"Notifications/"_qs) name)
+#define NOTIFICATIONS_SETTINGS_KEY(name) (SETTINGS_KEY(u"Notifications/"_s) name)
 
 DesktopIntegration::DesktopIntegration(QObject *parent)
     : QObject(parent)
-    , m_storeNotificationEnabled {NOTIFICATIONS_SETTINGS_KEY(u"Enabled"_qs), true}
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
-    , m_storeNotificationTimeOut {NOTIFICATIONS_SETTINGS_KEY(u"Timeout"_qs), -1}
+    , m_storeNotificationEnabled {NOTIFICATIONS_SETTINGS_KEY(u"Enabled"_s), true}
+#ifdef QBT_USES_DBUS
+    , m_storeNotificationTimeOut {NOTIFICATIONS_SETTINGS_KEY(u"Timeout"_s), -1}
 #endif
 {
 #ifdef Q_OS_MACOS
@@ -87,7 +86,7 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     if (Preferences::instance()->systemTrayEnabled())
         createTrayIcon();
 
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
     if (isNotificationsEnabled())
     {
         m_notifier = new DBusNotifier(this);
@@ -97,6 +96,11 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
 #endif
 
     connect(Preferences::instance(), &Preferences::changed, this, &DesktopIntegration::onPreferencesChanged);
+}
+
+DesktopIntegration::~DesktopIntegration()
+{
+    delete m_menu;
 }
 
 bool DesktopIntegration::isActive() const
@@ -135,12 +139,36 @@ void DesktopIntegration::setMenu(QMenu *menu)
     if (menu == m_menu)
         return;
 
+#if defined Q_OS_MACOS
+    if (m_menu)
+        delete m_menu;
+
     m_menu = menu;
 
-#ifdef Q_OS_MACOS
     if (m_menu)
         m_menu->setAsDockMenu();
+#elif defined Q_OS_UNIX
+    const bool systemTrayEnabled = m_systrayIcon;
+    if (m_menu)
+    {
+        if (m_systrayIcon)
+        {
+            delete m_systrayIcon;
+            m_systrayIcon = nullptr;
+        }
+        delete m_menu;
+    }
+
+    m_menu = menu;
+
+    if (systemTrayEnabled && !m_systrayIcon)
+        createTrayIcon();
 #else
+    if (m_menu)
+        delete m_menu;
+
+    m_menu = menu;
+
     if (m_systrayIcon)
         m_systrayIcon->setContextMenu(m_menu);
 #endif
@@ -158,7 +186,7 @@ void DesktopIntegration::setNotificationsEnabled(const bool value)
 
     m_storeNotificationEnabled = value;
 
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
     if (value)
     {
         m_notifier = new DBusNotifier(this);
@@ -174,14 +202,14 @@ void DesktopIntegration::setNotificationsEnabled(const bool value)
 
 int DesktopIntegration::notificationTimeout() const
 {
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
     return m_storeNotificationTimeOut;
 #else
     return 5000;
 #endif
 }
 
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
 void DesktopIntegration::setNotificationTimeout(const int value)
 {
     m_storeNotificationTimeOut = value;
@@ -196,7 +224,7 @@ void DesktopIntegration::showNotification(const QString &title, const QString &m
 #ifdef Q_OS_MACOS
     MacUtils::displayNotification(title, msg);
 #else
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
     m_notifier->showMessage(title, msg, notificationTimeout());
 #else
     if (m_systrayIcon && QSystemTrayIcon::supportsMessages())
@@ -213,7 +241,7 @@ void DesktopIntegration::onPreferencesChanged()
         if (m_systrayIcon)
         {
             // Reload systray icon
-            m_systrayIcon->setIcon(UIThemeManager::instance()->getSystrayIcon());
+            m_systrayIcon->setIcon(getSystrayIcon());
         }
         else
         {
@@ -234,7 +262,7 @@ void DesktopIntegration::createTrayIcon()
 {
     Q_ASSERT(!m_systrayIcon);
 
-    m_systrayIcon = new QSystemTrayIcon(UIThemeManager::instance()->getSystrayIcon(), this);
+    m_systrayIcon = new QSystemTrayIcon(getSystrayIcon(), this);
 
     m_systrayIcon->setToolTip(m_toolTip);
 
@@ -247,11 +275,28 @@ void DesktopIntegration::createTrayIcon()
         if (reason == QSystemTrayIcon::Trigger)
             emit activationRequested();
     });
-#ifndef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifndef QBT_USES_DBUS
     connect(m_systrayIcon, &QSystemTrayIcon::messageClicked, this, &DesktopIntegration::notificationClicked);
 #endif
 
     m_systrayIcon->show();
     emit stateChanged();
+}
+
+QIcon DesktopIntegration::getSystrayIcon() const
+{
+    const TrayIcon::Style style = Preferences::instance()->trayIconStyle();
+    switch (style)
+    {
+    default:
+    case TrayIcon::Style::Normal:
+        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray"_s);
+
+    case TrayIcon::Style::MonoDark:
+        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray-dark"_s);
+
+    case TrayIcon::Style::MonoLight:
+        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray-light"_s);
+    }
 }
 #endif // Q_OS_MACOS

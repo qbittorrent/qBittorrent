@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,10 +30,17 @@
 
 #include <QElapsedTimer>
 #include <QVariantMap>
+#include <QSet>
 
+#include "base/bittorrent/infohash.h"
 #include "apicontroller.h"
 
 class QThread;
+
+namespace BitTorrent
+{
+    class Torrent;
+}
 
 class FreeDiskSpaceChecker;
 
@@ -55,12 +62,62 @@ private:
     qint64 getFreeDiskSpace();
     void invokeChecker();
 
+    void makeMaindataSnapshot();
+    QJsonObject generateMaindataSyncData(int id, bool fullUpdate);
+
+    void onCategoryAdded(const QString &categoryName);
+    void onCategoryRemoved(const QString &categoryName);
+    void onCategoryOptionsChanged(const QString &categoryName);
+    void onSubcategoriesSupportChanged();
+    void onTagAdded(const QString &tag);
+    void onTagRemoved(const QString &tag);
+    void onTorrentAdded(BitTorrent::Torrent *torrent);
+    void onTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent);
+    void onTorrentCategoryChanged(BitTorrent::Torrent *torrent, const QString &oldCategory);
+    void onTorrentMetadataReceived(BitTorrent::Torrent *torrent);
+    void onTorrentPaused(BitTorrent::Torrent *torrent);
+    void onTorrentResumed(BitTorrent::Torrent *torrent);
+    void onTorrentSavePathChanged(BitTorrent::Torrent *torrent);
+    void onTorrentSavingModeChanged(BitTorrent::Torrent *torrent);
+    void onTorrentTagAdded(BitTorrent::Torrent *torrent, const QString &tag);
+    void onTorrentTagRemoved(BitTorrent::Torrent *torrent, const QString &tag);
+    void onTorrentsUpdated(const QVector<BitTorrent::Torrent *> &torrents);
+    void onTorrentTrackersChanged(BitTorrent::Torrent *torrent);
+
     qint64 m_freeDiskSpace = 0;
     QElapsedTimer m_freeDiskSpaceElapsedTimer;
     bool m_isFreeDiskSpaceCheckerRunning = false;
 
-    QVariantMap m_lastMaindataResponse;
-    QVariantMap m_lastAcceptedMaindataResponse;
     QVariantMap m_lastPeersResponse;
     QVariantMap m_lastAcceptedPeersResponse;
+
+    QHash<QString, QSet<BitTorrent::TorrentID>> m_knownTrackers;
+
+    QSet<QString> m_updatedCategories;
+    QSet<QString> m_removedCategories;
+    QSet<QString> m_addedTags;
+    QSet<QString> m_removedTags;
+    QSet<QString> m_updatedTrackers;
+    QSet<QString> m_removedTrackers;
+    QSet<BitTorrent::TorrentID> m_updatedTorrents;
+    QSet<BitTorrent::TorrentID> m_removedTorrents;
+
+    struct MaindataSyncBuf
+    {
+        QHash<QString, QVariantMap> categories;
+        QVariantList tags;
+        QHash<QString, QVariantMap> torrents;
+        QHash<QString, QStringList> trackers;
+        QVariantMap serverState;
+
+        QStringList removedCategories;
+        QStringList removedTags;
+        QStringList removedTorrents;
+        QStringList removedTrackers;
+    };
+
+    MaindataSyncBuf m_maindataSnapshot;
+    MaindataSyncBuf m_maindataSyncBuf;
+    int m_maindataLastSentID = 0;
+    int m_maindataAcceptedID = -1;
 };

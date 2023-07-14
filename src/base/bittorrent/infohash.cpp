@@ -93,7 +93,7 @@ BitTorrent::InfoHash::operator WrappedType() const
 
 BitTorrent::TorrentID BitTorrent::TorrentID::fromString(const QString &hashString)
 {
-    return TorrentID(BaseType::fromString(hashString));
+    return {BaseType::fromString(hashString)};
 }
 
 BitTorrent::TorrentID BitTorrent::TorrentID::fromInfoHash(const BitTorrent::InfoHash &infoHash)
@@ -103,7 +103,7 @@ BitTorrent::TorrentID BitTorrent::TorrentID::fromInfoHash(const BitTorrent::Info
 
 BitTorrent::TorrentID BitTorrent::TorrentID::fromSHA1Hash(const SHA1Hash &hash)
 {
-    return TorrentID(hash);
+    return {hash};
 }
 
 BitTorrent::TorrentID BitTorrent::TorrentID::fromSHA256Hash(const SHA256Hash &hash)

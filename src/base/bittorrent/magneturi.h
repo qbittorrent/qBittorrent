@@ -54,7 +54,7 @@ namespace BitTorrent
         lt::add_torrent_params addTorrentParams() const;
 
     private:
-        bool m_valid;
+        bool m_valid = false;
         QString m_url;
         InfoHash m_infoHash;
         QString m_name;

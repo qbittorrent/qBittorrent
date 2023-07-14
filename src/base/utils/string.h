@@ -44,7 +44,7 @@ namespace Utils::String
     QString wildcardToRegexPattern(const QString &pattern);
 
     template <typename T>
-    T unquote(const T &str, const QString &quotes = u"\""_qs)
+    T unquote(const T &str, const QString &quotes = u"\""_s)
     {
         if (str.length() < 2) return str;
 

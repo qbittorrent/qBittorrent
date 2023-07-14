@@ -62,9 +62,11 @@ let recheckFN = function() {};
 let reannounceFN = function() {};
 let setLocationFN = function() {};
 let renameFN = function() {};
+let renameFilesFN = function() {};
 let torrentNewCategoryFN = function() {};
 let torrentSetCategoryFN = function() {};
 let createCategoryFN = function() {};
+let createSubcategoryFN = function() {};
 let editCategoryFN = function() {};
 let removeCategoryFN = function() {};
 let deleteUnusedCategoriesFN = function() {};
@@ -523,6 +525,31 @@ const initializeWindows = function() {
         }
     };
 
+    renameFilesFN = function() {
+        const hashes = torrentsTable.selectedRowsIds();
+        if (hashes.length == 1) {
+            const hash = hashes[0];
+            const row = torrentsTable.rows[hash];
+            if (row) {
+                new MochaUI.Window({
+                    id: 'multiRenamePage',
+                    title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TransferListWidget]",
+                    data: { hash: hash, selectedRows: [] },
+                    loadMethod: 'xhr',
+                    contentURL: 'rename_files.html',
+                    scrollbars: false,
+                    resizable: true,
+                    maximizable: false,
+                    paddingVertical: 0,
+                    paddingHorizontal: 0,
+                    width: 800,
+                    height: 420,
+                    resizeLimit: { 'x': [800], 'y': [420] }
+                });
+            }
+        }
+    };
+
     torrentNewCategoryFN = function() {
         const action = "set";
         const hashes = torrentsTable.selectedRowsIds();
@@ -567,6 +594,25 @@ const initializeWindows = function() {
             title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
             loadMethod: 'iframe',
             contentURL: new URI("newcategory.html").setData("action", action).toString(),
+            scrollbars: false,
+            resizable: true,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 400,
+            height: 150
+        });
+        updateMainData();
+    };
+
+    createSubcategoryFN = function(categoryHash) {
+        const action = "createSubcategory";
+        const categoryName = category_list[categoryHash].name + "/";
+        new MochaUI.Window({
+            id: 'newSubcategoryPage',
+            title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
+            loadMethod: 'iframe',
+            contentURL: new URI("newcategory.html").setData("action", action).setData("categoryName", categoryName).toString(),
             scrollbars: false,
             resizable: true,
             maximizable: false,
@@ -958,12 +1004,12 @@ const initializeWindows = function() {
         return torrentsTable.selectedRowsIds().join("\n");
     };
 
-    exportTorrentFN = function() {
+    exportTorrentFN = async function() {
         const hashes = torrentsTable.selectedRowsIds();
         for (const hash of hashes) {
             const row = torrentsTable.rows.get(hash);
             if (!row)
-                return;
+                continue;
 
             const name = row.full_data.name;
             const url = new URI("api/v2/torrents/export");
@@ -972,10 +1018,13 @@ const initializeWindows = function() {
             // download response to file
             const element = document.createElement("a");
             element.setAttribute("href", url);
-            element.setAttribute("download", name + ".torrent");
+            element.setAttribute("download", (name + ".torrent"));
             document.body.appendChild(element);
             element.click();
             document.body.removeChild(element);
+
+            // https://stackoverflow.com/questions/53560991/automatic-file-downloads-limited-to-10-files-on-chrome-browser
+            await window.qBittorrent.Misc.sleep(200);
         }
     };
 

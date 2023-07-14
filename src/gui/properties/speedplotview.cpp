@@ -45,7 +45,7 @@ namespace
     // table of supposed nice steps for grid marks to get nice looking quarters of scale
     const double roundingTable[] = {1.2, 1.6, 2, 2.4, 2.8, 3.2, 4, 6, 8};
 
-    struct SplittedValue
+    struct SplitValue
     {
         double arg;
         Utils::Misc::SizeUnit unit;
@@ -55,7 +55,7 @@ namespace
         }
     };
 
-    SplittedValue getRoundedYScale(double value)
+    SplitValue getRoundedYScale(double value)
     {
         using Utils::Misc::SizeUnit;
 
@@ -289,7 +289,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     QFontMetrics fontMetrics = painter.fontMetrics();
 
     rect.adjust(4, 4, 0, -4); // Add padding
-    const SplittedValue niceScale = getRoundedYScale(maxYValue());
+    const SplitValue niceScale = getRoundedYScale(maxYValue());
     rect.adjust(0, fontMetrics.height(), 0, 0); // Add top padding for top speed text
 
     // draw Y axis speed labels

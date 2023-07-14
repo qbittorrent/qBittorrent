@@ -49,7 +49,7 @@ namespace Utils::Net
     QString subnetToString(const Subnet &subnet);
     QHostAddress canonicalIPv6Addr(const QHostAddress &addr);
 
-    const int MAX_SSL_FILE_SIZE = 1024 * 1024;
+    inline const int MAX_SSL_FILE_SIZE = 1024 * 1024;
     QList<QSslCertificate> loadSSLCertificate(const QByteArray &data);
     bool isSSLCertificatesValid(const QByteArray &data);
     QSslKey loadSSLKey(const QByteArray &data);

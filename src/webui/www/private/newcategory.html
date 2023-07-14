@@ -44,6 +44,10 @@
                 $('savePath').set('value', window.qBittorrent.Misc.escapeHtml(uriSavePath));
                 $('savePath').focus();
             }
+            else if (uriAction === "createSubcategory") {
+                $('categoryName').set('value', window.qBittorrent.Misc.escapeHtml(uriCategoryName));
+                $('categoryName').focus();
+            }
             else {
                 $('categoryName').focus();
             }
@@ -95,6 +99,7 @@
                         }).send();
                         break;
                     case "create":
+                    case "createSubcategory":
                         if (!verifyCategoryName(categoryName))
                             return;
 

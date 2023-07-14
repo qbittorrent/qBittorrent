@@ -2,8 +2,8 @@
 
 ;LangString inst_qbt_req ${LANG_ENGLISH} "qBittorrent (required)"
 LangString inst_qbt_req ${LANG_GREEK} "qBittorrent (απαιτείται)"
-;LangString inst_dekstop ${LANG_ENGLISH} "Create Desktop Shortcut"
-LangString inst_dekstop ${LANG_GREEK} "Δημιουργία συντόμευσης στην Επιφάνεια Εργασίας"
+;LangString inst_desktop ${LANG_ENGLISH} "Create Desktop Shortcut"
+LangString inst_desktop ${LANG_GREEK} "Δημιουργία συντόμευσης στην Επιφάνεια Εργασίας"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_startmenu ${LANG_GREEK} "Δημιουργία συντόμευσης στο Μενού Έναρξης"
 ;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"

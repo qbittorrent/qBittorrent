@@ -35,6 +35,8 @@ Section $(inst_qbt_req) ;"qBittorrent (required)"
   SetOutPath "$INSTDIR\translations"
   ; Put files there
   File /r "translations\qt*.qm"
+  ; Restore output path because it affects `CreateShortCut`. It affects the "Start in" field.
+  SetOutPath $INSTDIR
 
   ; Write the installation path into the registry
   WriteRegStr HKLM "Software\qBittorrent" "InstallLocation" "$INSTDIR"
@@ -63,7 +65,7 @@ Section $(inst_qbt_req) ;"qBittorrent (required)"
 SectionEnd
 
 ; Optional section (can be disabled by the user)
-Section /o $(inst_dekstop) ;"Create Desktop Shortcut"
+Section /o $(inst_desktop) ;"Create Desktop Shortcut"
 
   CreateShortCut "$DESKTOP\qBittorrent.lnk" "$INSTDIR\qbittorrent.exe"
 

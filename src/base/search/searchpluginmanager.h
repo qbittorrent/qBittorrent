@@ -52,13 +52,13 @@ struct PluginInfo
     QString url;
     QStringList supportedCategories;
     Path iconPath;
-    bool enabled;
+    bool enabled = false;
 };
 
 class SearchDownloadHandler;
 class SearchHandler;
 
-class SearchPluginManager : public QObject
+class SearchPluginManager final : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(SearchPluginManager)
@@ -80,7 +80,7 @@ public:
     void updatePlugin(const QString &name);
     void installPlugin(const QString &source);
     bool uninstallPlugin(const QString &name);
-    static void updateIconPath(PluginInfo *const plugin);
+    static void updateIconPath(PluginInfo *plugin);
     void checkForUpdates();
 
     SearchHandler *startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins);
@@ -88,7 +88,7 @@ public:
 
     static PluginVersion getPluginVersion(const Path &filePath);
     static QString categoryFullName(const QString &categoryName);
-    QString pluginFullName(const QString &pluginName);
+    QString pluginFullName(const QString &pluginName) const;
     static Path pluginsLocation();
     static Path engineLocation();
 
@@ -104,11 +104,12 @@ signals:
     void checkForUpdatesFailed(const QString &reason);
 
 private:
+    void applyProxySettings();
     void update();
     void updateNova();
     void parseVersionInfo(const QByteArray &info);
     void installPlugin_impl(const QString &name, const Path &path);
-    bool isUpdateNeeded(const QString &pluginName, PluginVersion newVersion) const;
+    bool isUpdateNeeded(const QString &pluginName, const PluginVersion &newVersion) const;
 
     void versionInfoDownloadFinished(const Net::DownloadResult &result);
     void pluginDownloadFinished(const Net::DownloadResult &result);
