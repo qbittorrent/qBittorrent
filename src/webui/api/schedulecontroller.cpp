@@ -14,7 +14,7 @@ namespace
     using Utils::String::parseBool;
     using Utils::String::parseInt;
 
-    ScheduleEntry parseEntry(const QString &startTime, const QString &endTime, const QString &downloadLimit = u"0"_qs, const QString &uploadLimit = u"0"_qs, const QString &pause = u"false"_qs)
+    ScheduleEntry parseEntry(const QString &startTime, const QString &endTime, const QString &downloadLimit = u"0"_s, const QString &uploadLimit = u"0"_s, const QString &pause = u"false"_s)
     {
         const QStringList startSplit = startTime.split(u':');
         const QStringList endSplit = endTime.split(u':');
@@ -39,11 +39,11 @@ namespace
 
 void ScheduleController::isEntryValidAction()
 {
-    requireParams({u"day"_qs, u"startTime"_qs, u"endTime"_qs});
+    requireParams({u"day"_s, u"startTime"_s, u"endTime"_s});
 
-    const int day = params()[u"day"_qs].toInt();
-    const QString startTime = params()[u"startTime"_qs];
-    const QString endTime = params()[u"endTime"_qs];
+    const int day = params()[u"day"_s].toInt();
+    const QString startTime = params()[u"startTime"_s];
+    const QString endTime = params()[u"endTime"_s];
 
     if (day < 0 || day > 6)
         throw APIError(APIErrorType::BadParams, tr("Invalid schedule day index"));
@@ -54,21 +54,21 @@ void ScheduleController::isEntryValidAction()
     const ScheduleEntry entry = parseEntry(startTime, endTime);
     const TimeRangeConflict conflicts = BandwidthScheduler::instance()->scheduleDay(day)->conflicts(entry);
     setResult({
-        {u"timesValid"_qs, entry.isValid()},
-        {u"conflict"_qs, conflicts}
+        {u"timesValid"_s, entry.isValid()},
+        {u"conflict"_s, conflicts}
     });
 }
 
 void ScheduleController::addEntryAction()
 {
-    requireParams({u"day"_qs, u"startTime"_qs, u"endTime"_qs, u"download"_qs, u"upload"_qs, u"pause"_qs});
+    requireParams({u"day"_s, u"startTime"_s, u"endTime"_s, u"download"_s, u"upload"_s, u"pause"_s});
 
-    const int day = params()[u"day"_qs].toInt();
-    const QString startTime = params()[u"startTime"_qs];
-    const QString endTime = params()[u"endTime"_qs];
-    const QString download = params()[u"download"_qs];
-    const QString upload = params()[u"upload"_qs];
-    const QString pause = params()[u"pause"_qs];
+    const int day = params()[u"day"_s].toInt();
+    const QString startTime = params()[u"startTime"_s];
+    const QString endTime = params()[u"endTime"_s];
+    const QString download = params()[u"download"_s];
+    const QString upload = params()[u"upload"_s];
+    const QString pause = params()[u"pause"_s];
 
     if (day < 0 || day > 6)
         throw APIError(APIErrorType::BadParams, tr("Invalid schedule day index"));
@@ -80,10 +80,10 @@ void ScheduleController::addEntryAction()
 
 void ScheduleController::removeEntryAction()
 {
-    requireParams({u"day"_qs, u"indexes"_qs});
+    requireParams({u"day"_s, u"indexes"_s});
 
-    const int day = params()[u"day"_qs].toInt();
-    const QVector<int> indexes = parseIndexesParam(params()[u"indexes"_qs]);
+    const int day = params()[u"day"_s].toInt();
+    const QVector<int> indexes = parseIndexesParam(params()[u"indexes"_s]);
 
     if (day < 0 || day > 6)
         throw APIError(APIErrorType::BadParams, tr("Invalid schedule day index"));
@@ -96,9 +96,9 @@ void ScheduleController::removeEntryAction()
 
 void ScheduleController::clearDayAction()
 {
-    requireParams({u"day"_qs});
+    requireParams({u"day"_s});
 
-    const int day = params()[u"day"_qs].toInt();
+    const int day = params()[u"day"_s].toInt();
 
     if (day < 0 || day > 6)
         throw APIError(APIErrorType::BadParams, tr("Invalid schedule day index"));
@@ -108,10 +108,10 @@ void ScheduleController::clearDayAction()
 
 void ScheduleController::pasteAction()
 {
-    requireParams({u"entries"_qs, u"targetDay"_qs});
+    requireParams({u"entries"_s, u"targetDay"_s});
 
-    const QByteArray entriesParam = params()[u"entries"_qs].toLatin1();
-    const int targetDayIndex = params()[u"targetDay"_qs].toInt();
+    const QByteArray entriesParam = params()[u"entries"_s].toLatin1();
+    const int targetDayIndex = params()[u"targetDay"_s].toInt();
 
     const auto entries = QJsonDocument::fromJson(entriesParam).array();
 
@@ -122,12 +122,12 @@ void ScheduleController::pasteAction()
 
 void ScheduleController::copyToOtherDaysAction()
 {
-    requireParams({u"sourceDay"_qs, u"indexes"_qs});
+    requireParams({u"sourceDay"_s, u"indexes"_s});
 
-    const QVector<int> indexes = parseIndexesParam(params()[u"indexes"_qs]);
+    const QVector<int> indexes = parseIndexesParam(params()[u"indexes"_s]);
     if (indexes.length() == 0) return;
 
-    const int sourceDayIndex = params()[u"sourceDay"_qs].toInt();
+    const int sourceDayIndex = params()[u"sourceDay"_s].toInt();
     const auto &sourceEntries = asConst(BandwidthScheduler::instance()->scheduleDay(sourceDayIndex)->entries());
 
     for (int day = 0; day < 7; ++day)

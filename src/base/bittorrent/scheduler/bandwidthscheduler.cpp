@@ -113,13 +113,13 @@ void BandwidthScheduler::backupSchedule(const QString &errorMessage, bool preser
     LogMsg(errorMessage, Log::CRITICAL);
 
     Path filePath = m_fileStorage->storageDir() / Path(SCHEDULE_FILE_NAME);
-    Path errorFilePath = filePath + u".error"_qs;
+    Path errorFilePath = filePath + u".error"_s;
 
     int counter = 0;
     while (errorFilePath.exists())
     {
         ++counter;
-        errorFilePath = filePath + u".error"_qs + QString::number(counter);
+        errorFilePath = filePath + u".error"_s + QString::number(counter);
     }
 
     LogMsg(tr("Backing up errored schedule file in %1").arg(errorFilePath.toString()), Log::WARNING);

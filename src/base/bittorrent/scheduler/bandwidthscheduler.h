@@ -46,8 +46,8 @@ class BandwidthScheduler : public QObject
 
     friend class ::Application;
 
-    const QString SCHEDULE_FILE_NAME = u"schedule.json"_qs;
-    const QStringList DAY_KEYS {u"mon"_qs, u"tue"_qs, u"wed"_qs, u"thu"_qs, u"fri"_qs, u"sat"_qs, u"sun"_qs};
+    const QString SCHEDULE_FILE_NAME = u"schedule.json"_s;
+    const QStringList DAY_KEYS {u"mon"_s, u"tue"_s, u"wed"_s, u"thu"_s, u"fri"_s, u"sat"_s, u"sun"_s};
 
 public:
     explicit BandwidthScheduler(QObject *parent = nullptr);

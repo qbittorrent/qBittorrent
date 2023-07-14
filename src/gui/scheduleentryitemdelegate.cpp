@@ -36,7 +36,7 @@ QWidget *ScheduleEntryItemDelegate::createEditor(QWidget *parent, const QStyleOp
     if (col == DOWNLOAD || col == UPLOAD)
     {
         auto *spinBox = new QSpinBox(parent);
-        spinBox->setSuffix(u" KiB/s"_qs);
+        spinBox->setSuffix(u" KiB/s"_s);
         spinBox->setSpecialValueText(C_INFINITY);
         spinBox->setMaximum(1000000);
         return spinBox;
@@ -59,14 +59,14 @@ void ScheduleEntryItemDelegate::setEditorData(QWidget *editor, const QModelIndex
                 || (index.column() == TO && time != m_scheduleDay.entries().at(index.row()).endTime);
 
             if (!hasChanged)
-                timeEdit->setStyleSheet(u"border: none"_qs);
+                timeEdit->setStyleSheet(u"border: none"_s);
             else
             {
                 bool ok = (index.column() == FROM && m_scheduleDay.canSetStartTimeAt(index.row(), time))
                     || (index.column() == TO && m_scheduleDay.canSetEndTimeAt(index.row(), time));
 
-                QString color = ok ? u"green"_qs : u"red"_qs;
-                timeEdit->setStyleSheet(u"border: 1px solid "_qs + color);
+                QString color = ok ? u"green"_s : u"red"_s;
+                timeEdit->setStyleSheet(u"border: 1px solid "_s + color);
             }
         });
     }
@@ -78,9 +78,9 @@ void ScheduleEntryItemDelegate::setEditorData(QWidget *editor, const QModelIndex
         {
             bool hasChanged = m_scheduleDay.entries().at(index.row()).pause != (value == 2);
             if (!hasChanged)
-                checkBox->setStyleSheet(u"border: none"_qs);
+                checkBox->setStyleSheet(u"border: none"_s);
             else
-                checkBox->setStyleSheet(u"border: 2px solid green"_qs);
+                checkBox->setStyleSheet(u"border: 2px solid green"_s);
         });
     }
     else if (col == DOWNLOAD || col == UPLOAD)
