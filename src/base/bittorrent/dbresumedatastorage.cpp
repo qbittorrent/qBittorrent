@@ -66,7 +66,7 @@ namespace
 {
     const QString DB_CONNECTION_NAME = u"ResumeDataStorage"_s;
 
-    const int DB_VERSION = 4;
+    const int DB_VERSION = 5;
 
     const QString DB_TABLE_META = u"meta"_s;
     const QString DB_TABLE_TORRENTS = u"torrents"_s;
@@ -135,6 +135,7 @@ namespace
     const Column DB_COLUMN_CONTENT_LAYOUT = makeColumn("content_layout");
     const Column DB_COLUMN_RATIO_LIMIT = makeColumn("ratio_limit");
     const Column DB_COLUMN_SEEDING_TIME_LIMIT = makeColumn("seeding_time_limit");
+    const Column DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT = makeColumn("inactive_seeding_time_limit");
     const Column DB_COLUMN_HAS_OUTER_PIECES_PRIORITY = makeColumn("has_outer_pieces_priority");
     const Column DB_COLUMN_HAS_SEED_STATUS = makeColumn("has_seed_status");
     const Column DB_COLUMN_OPERATING_MODE = makeColumn("operating_mode");
@@ -228,6 +229,7 @@ namespace
         resumeData.firstLastPiecePriority = query.value(DB_COLUMN_HAS_OUTER_PIECES_PRIORITY.name).toBool();
         resumeData.ratioLimit = query.value(DB_COLUMN_RATIO_LIMIT.name).toInt() / 1000.0;
         resumeData.seedingTimeLimit = query.value(DB_COLUMN_SEEDING_TIME_LIMIT.name).toInt();
+        resumeData.inactiveSeedingTimeLimit = query.value(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT.name).toInt();
         resumeData.contentLayout = Utils::String::toEnum<TorrentContentLayout>(
                     query.value(DB_COLUMN_CONTENT_LAYOUT.name).toString(), TorrentContentLayout::Original);
         resumeData.operatingMode = Utils::String::toEnum<TorrentOperatingMode>(
@@ -527,6 +529,7 @@ void BitTorrent::DBResumeDataStorage::createDB() const
             makeColumnDefinition(DB_COLUMN_CONTENT_LAYOUT, "TEXT NOT NULL"),
             makeColumnDefinition(DB_COLUMN_RATIO_LIMIT, "INTEGER NOT NULL"),
             makeColumnDefinition(DB_COLUMN_SEEDING_TIME_LIMIT, "INTEGER NOT NULL"),
+            makeColumnDefinition(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT, "INTEGER NOT NULL"),
             makeColumnDefinition(DB_COLUMN_HAS_OUTER_PIECES_PRIORITY, "INTEGER NOT NULL"),
             makeColumnDefinition(DB_COLUMN_HAS_SEED_STATUS, "INTEGER NOT NULL"),
             makeColumnDefinition(DB_COLUMN_OPERATING_MODE, "TEXT NOT NULL"),
@@ -603,6 +606,14 @@ void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
             const QString createTorrentsQueuePositionIndexQuery = u"CREATE INDEX IF NOT EXISTS %1 ON %2 (%3)"_s
                     .arg(quoted(torrentsQueuePositionIndexName), quoted(DB_TABLE_TORRENTS), quoted(DB_COLUMN_QUEUE_POSITION.name));
             if (!query.exec(createTorrentsQueuePositionIndexQuery))
+                throw RuntimeError(query.lastError().text());
+        }
+
+        if (fromVersion <= 4)
+        {
+            const auto alterTableTorrentsQuery = u"ALTER TABLE %1 ADD %2"_s
+                    .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT, "INTEGER NOT NULL"));
+            if (!query.exec(alterTableTorrentsQuery))
                 throw RuntimeError(query.lastError().text());
         }
 
@@ -782,6 +793,7 @@ namespace
             DB_COLUMN_CONTENT_LAYOUT,
             DB_COLUMN_RATIO_LIMIT,
             DB_COLUMN_SEEDING_TIME_LIMIT,
+            DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT,
             DB_COLUMN_HAS_OUTER_PIECES_PRIORITY,
             DB_COLUMN_HAS_SEED_STATUS,
             DB_COLUMN_OPERATING_MODE,
@@ -840,6 +852,7 @@ namespace
             query.bindValue(DB_COLUMN_CONTENT_LAYOUT.placeholder, Utils::String::fromEnum(m_resumeData.contentLayout));
             query.bindValue(DB_COLUMN_RATIO_LIMIT.placeholder, static_cast<int>(m_resumeData.ratioLimit * 1000));
             query.bindValue(DB_COLUMN_SEEDING_TIME_LIMIT.placeholder, m_resumeData.seedingTimeLimit);
+            query.bindValue(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT.placeholder, m_resumeData.inactiveSeedingTimeLimit);
             query.bindValue(DB_COLUMN_HAS_OUTER_PIECES_PRIORITY.placeholder, m_resumeData.firstLastPiecePriority);
             query.bindValue(DB_COLUMN_HAS_SEED_STATUS.placeholder, m_resumeData.hasFinishedStatus);
             query.bindValue(DB_COLUMN_OPERATING_MODE.placeholder, Utils::String::fromEnum(m_resumeData.operatingMode));

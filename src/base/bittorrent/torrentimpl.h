@@ -138,6 +138,7 @@ namespace BitTorrent
         QDateTime addedTime() const override;
         qreal ratioLimit() const override;
         int seedingTimeLimit() const override;
+        int inactiveSeedingTimeLimit() const override;
 
         Path filePath(int index) const override;
         Path actualFilePath(int index) const override;
@@ -198,6 +199,7 @@ namespace BitTorrent
         qreal distributedCopies() const override;
         qreal maxRatio() const override;
         int maxSeedingTime() const override;
+        int maxInactiveSeedingTime() const override;
         qreal realRatio() const override;
         int uploadPayloadRate() const override;
         int downloadPayloadRate() const override;
@@ -220,6 +222,7 @@ namespace BitTorrent
         void prioritizeFiles(const QVector<DownloadPriority> &priorities) override;
         void setRatioLimit(qreal limit) override;
         void setSeedingTimeLimit(int limit) override;
+        void setInactiveSeedingTimeLimit(int limit) override;
         void setUploadLimit(int limit) override;
         void setDownloadLimit(int limit) override;
         void setSuperSeeding(bool enable) override;
@@ -345,6 +348,7 @@ namespace BitTorrent
         TagSet m_tags;
         qreal m_ratioLimit;
         int m_seedingTimeLimit;
+        int m_inactiveSeedingTimeLimit;
         TorrentOperatingMode m_operatingMode;
         TorrentContentLayout m_contentLayout;
         bool m_hasFinishedStatus;

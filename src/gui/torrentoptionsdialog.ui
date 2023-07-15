@@ -188,10 +188,10 @@
           </attribute>
          </widget>
         </item>
-        <item row="1" column="1">
-         <widget class="QCheckBox" name="checkMaxTime">
+        <item row="0" column="1">
+         <widget class="QCheckBox" name="checkMaxRatio">
           <property name="text">
-           <string>minutes</string>
+           <string>ratio</string>
           </property>
          </widget>
         </item>
@@ -205,6 +205,13 @@
           </property>
           <property name="value">
            <double>1.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QCheckBox" name="checkMaxTime">
+          <property name="text">
+           <string>total minutes</string>
           </property>
          </widget>
         </item>
@@ -231,10 +238,20 @@
           </property>
          </spacer>
         </item>
-        <item row="0" column="1">
-         <widget class="QCheckBox" name="checkMaxRatio">
+        <item row="2" column="1">
+         <widget class="QCheckBox" name="checkMaxInactiveTime">
           <property name="text">
-           <string>ratio</string>
+           <string>inactive minutes</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QSpinBox" name="spinInactiveTimeLimit">
+          <property name="maximum">
+           <number>525600</number>
+          </property>
+          <property name="value">
+           <number>1440</number>
           </property>
          </widget>
         </item>

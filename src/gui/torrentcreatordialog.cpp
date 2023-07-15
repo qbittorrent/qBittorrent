@@ -266,6 +266,7 @@ void TorrentCreatorDialog::handleCreationSuccess(const Path &path, const Path &b
         {
             params.ratioLimit = BitTorrent::Torrent::NO_RATIO_LIMIT;
             params.seedingTimeLimit = BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT;
+            params.inactiveSeedingTimeLimit = BitTorrent::Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT;
         }
         params.useAutoTMM = false;  // otherwise if it is on by default, it will overwrite `savePath` to the default save path
 

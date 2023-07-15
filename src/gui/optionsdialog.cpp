@@ -1048,7 +1048,20 @@ void OptionsDialog::loadBittorrentTabOptions()
         m_ui->checkMaxSeedingMinutes->setChecked(false);
         m_ui->spinMaxSeedingMinutes->setEnabled(false);
     }
-    m_ui->comboRatioLimitAct->setEnabled((session->globalMaxSeedingMinutes() >= 0) || (session->globalMaxRatio() >= 0.));
+    if (session->globalMaxInactiveSeedingMinutes() >= 0)
+    {
+        // Enable
+        m_ui->checkMaxInactiveSeedingMinutes->setChecked(true);
+        m_ui->spinMaxInactiveSeedingMinutes->setEnabled(true);
+        m_ui->spinMaxInactiveSeedingMinutes->setValue(session->globalMaxInactiveSeedingMinutes());
+    }
+    else
+    {
+        // Disable
+        m_ui->checkMaxInactiveSeedingMinutes->setChecked(false);
+        m_ui->spinMaxInactiveSeedingMinutes->setEnabled(false);
+    }
+    m_ui->comboRatioLimitAct->setEnabled((session->globalMaxSeedingMinutes() >= 0) || (session->globalMaxRatio() >= 0.) || (session->globalMaxInactiveSeedingMinutes() >= 0));
 
     const QHash<MaxRatioAction, int> actIndex =
     {
@@ -1088,6 +1101,10 @@ void OptionsDialog::loadBittorrentTabOptions()
     connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
     connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->spinMaxSeedingMinutes, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMaxInactiveSeedingMinutes, &QAbstractButton::toggled, m_ui->spinMaxInactiveSeedingMinutes, &QWidget::setEnabled);
+    connect(m_ui->checkMaxInactiveSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
+    connect(m_ui->checkMaxInactiveSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinMaxInactiveSeedingMinutes, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkEnableAddTrackers, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textTrackers, &QPlainTextEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -1116,6 +1133,7 @@ void OptionsDialog::saveBittorrentTabOptions() const
 
     session->setGlobalMaxRatio(getMaxRatio());
     session->setGlobalMaxSeedingMinutes(getMaxSeedingMinutes());
+    session->setGlobalMaxInactiveSeedingMinutes(getMaxInactiveSeedingMinutes());
     const QVector<MaxRatioAction> actIndex =
     {
         Pause,
@@ -1443,6 +1461,14 @@ int OptionsDialog::getMaxSeedingMinutes() const
     return -1;
 }
 
+// Return Inactive Seeding Minutes
+int OptionsDialog::getMaxInactiveSeedingMinutes() const
+{
+    return m_ui->checkMaxInactiveSeedingMinutes->isChecked()
+        ? m_ui->spinMaxInactiveSeedingMinutes->value()
+        : -1;
+}
+
 // Return max connections number
 int OptionsDialog::getMaxConnections() const
 {
@@ -1547,7 +1573,7 @@ void OptionsDialog::enableApplyButton()
 void OptionsDialog::toggleComboRatioLimitAct()
 {
     // Verify if the share action button must be enabled
-    m_ui->comboRatioLimitAct->setEnabled(m_ui->checkMaxRatio->isChecked() || m_ui->checkMaxSeedingMinutes->isChecked());
+    m_ui->comboRatioLimitAct->setEnabled(m_ui->checkMaxRatio->isChecked() || m_ui->checkMaxSeedingMinutes->isChecked() || m_ui->checkMaxInactiveSeedingMinutes->isChecked());
 }
 
 void OptionsDialog::adjustProxyOptions()

@@ -251,6 +251,7 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
     , m_tags(params.tags)
     , m_ratioLimit(params.ratioLimit)
     , m_seedingTimeLimit(params.seedingTimeLimit)
+    , m_inactiveSeedingTimeLimit(params.inactiveSeedingTimeLimit)
     , m_operatingMode(params.operatingMode)
     , m_contentLayout(params.contentLayout)
     , m_hasFinishedStatus(params.hasFinishedStatus)
@@ -862,6 +863,11 @@ int TorrentImpl::seedingTimeLimit() const
     return m_seedingTimeLimit;
 }
 
+int TorrentImpl::inactiveSeedingTimeLimit() const
+{
+    return m_inactiveSeedingTimeLimit;
+}
+
 Path TorrentImpl::filePath(const int index) const
 {
     Q_ASSERT(index >= 0);
@@ -1165,7 +1171,8 @@ qlonglong TorrentImpl::eta() const
     {
         const qreal maxRatioValue = maxRatio();
         const int maxSeedingTimeValue = maxSeedingTime();
-        if ((maxRatioValue < 0) && (maxSeedingTimeValue < 0)) return MAX_ETA;
+        const int maxInactiveSeedingTimeValue = maxInactiveSeedingTime();
+        if ((maxRatioValue < 0) && (maxSeedingTimeValue < 0) && (maxInactiveSeedingTimeValue < 0)) return MAX_ETA;
 
         qlonglong ratioEta = MAX_ETA;
 
@@ -1188,7 +1195,15 @@ qlonglong TorrentImpl::eta() const
                 seedingTimeEta = 0;
         }
 
-        return std::min(ratioEta, seedingTimeEta);
+        qlonglong inactiveSeedingTimeEta = MAX_ETA;
+
+        if (maxInactiveSeedingTimeValue >= 0)
+        {
+            inactiveSeedingTimeEta = (maxInactiveSeedingTimeValue * 60) - timeSinceActivity();
+            inactiveSeedingTimeEta = std::max<qlonglong>(inactiveSeedingTimeEta, 0);
+        }
+
+        return std::min({ratioEta, seedingTimeEta, inactiveSeedingTimeEta});
     }
 
     if (!speedAverage.download) return MAX_ETA;
@@ -1383,6 +1398,14 @@ int TorrentImpl::maxSeedingTime() const
         return m_session->globalMaxSeedingMinutes();
 
     return m_seedingTimeLimit;
+}
+
+int TorrentImpl::maxInactiveSeedingTime() const
+{
+    if (m_inactiveSeedingTimeLimit == USE_GLOBAL_INACTIVE_SEEDING_TIME)
+        return m_session->globalMaxInactiveSeedingMinutes();
+
+    return m_inactiveSeedingTimeLimit;
 }
 
 qreal TorrentImpl::realRatio() const
@@ -2014,6 +2037,7 @@ void TorrentImpl::prepareResumeData(const lt::add_torrent_params &params)
     resumeData.contentLayout = m_contentLayout;
     resumeData.ratioLimit = m_ratioLimit;
     resumeData.seedingTimeLimit = m_seedingTimeLimit;
+    resumeData.inactiveSeedingTimeLimit = m_inactiveSeedingTimeLimit;
     resumeData.firstLastPiecePriority = m_hasFirstLastPiecePriority;
     resumeData.hasFinishedStatus = m_hasFinishedStatus;
     resumeData.stopped = m_isStopped;
@@ -2401,6 +2425,21 @@ void TorrentImpl::setSeedingTimeLimit(int limit)
     if (m_seedingTimeLimit != limit)
     {
         m_seedingTimeLimit = limit;
+        m_session->handleTorrentNeedSaveResumeData(this);
+        m_session->handleTorrentShareLimitChanged(this);
+    }
+}
+
+void TorrentImpl::setInactiveSeedingTimeLimit(int limit)
+{
+    if (limit < USE_GLOBAL_INACTIVE_SEEDING_TIME)
+        limit = NO_INACTIVE_SEEDING_TIME_LIMIT;
+    else if (limit > MAX_INACTIVE_SEEDING_TIME)
+        limit = MAX_SEEDING_TIME;
+
+    if (m_inactiveSeedingTimeLimit != limit)
+    {
+        m_inactiveSeedingTimeLimit = limit;
         m_session->handleTorrentNeedSaveResumeData(this);
         m_session->handleTorrentShareLimitChanged(this);
     }

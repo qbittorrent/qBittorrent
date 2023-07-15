@@ -240,7 +240,8 @@ const initializeWindows = function() {
             for (let i = 0; i < hashes.length; ++i) {
                 const hash = hashes[i];
                 const row = torrentsTable.rows[hash].full_data;
-                const origValues = row.ratio_limit + "|" + row.seeding_time_limit + "|" + row.max_ratio + "|" + row.max_seeding_time;
+                const origValues = row.ratio_limit + "|" + row.seeding_time_limit + "|" + row.inactive_seeding_time_limit + "|"
+                    + row.max_ratio + "|" + row.max_seeding_time + "|" + row.max_inactive_seeding_time;
 
                 // initialize value
                 if (shareRatio === null)
