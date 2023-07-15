@@ -505,7 +505,13 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->stopConditionComboBox->setEnabled(!m_ui->checkStartPaused->isChecked());
 
     m_ui->checkMergeTrackers->setChecked(session->isMergeTrackersEnabled());
-    m_ui->checkConfirmMergeTrackers->setChecked(pref->confirmMergeTrackers());
+    m_ui->checkConfirmMergeTrackers->setEnabled(m_ui->checkAdditionDialog->isChecked());
+    m_ui->checkConfirmMergeTrackers->setChecked(m_ui->checkConfirmMergeTrackers->isEnabled() ? pref->confirmMergeTrackers() : false);
+    connect(m_ui->checkAdditionDialog, &QGroupBox::toggled, this, [this, pref]
+    {
+        m_ui->checkConfirmMergeTrackers->setEnabled(m_ui->checkAdditionDialog->isChecked());
+        m_ui->checkConfirmMergeTrackers->setChecked(m_ui->checkConfirmMergeTrackers->isEnabled() ? pref->confirmMergeTrackers() : false);
+    });
 
     const TorrentFileGuard::AutoDeleteMode autoDeleteMode = TorrentFileGuard::autoDeleteMode();
     m_ui->deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
@@ -692,7 +698,8 @@ void OptionsDialog::saveDownloadsTabOptions() const
                              : !m_ui->deleteCancelledTorrentBox->isChecked() ? TorrentFileGuard::IfAdded
                              : TorrentFileGuard::Always);
     session->setMergeTrackersEnabled(m_ui->checkMergeTrackers->isChecked());
-    pref->setConfirmMergeTrackers(m_ui->checkConfirmMergeTrackers->isChecked());
+    if (m_ui->checkConfirmMergeTrackers->isEnabled())
+        pref->setConfirmMergeTrackers(m_ui->checkConfirmMergeTrackers->isChecked());
 
     session->setPreallocationEnabled(preAllocateAllFiles());
     session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());

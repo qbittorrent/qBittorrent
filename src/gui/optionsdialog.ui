@@ -958,9 +958,6 @@
                  <layout class="QVBoxLayout" name="duplicateTorrentBoxLayout">
                   <item>
                    <widget class="QCheckBox" name="checkMergeTrackers">
-                    <property name="toolTip">
-                     <string>Whether trackers should be merged to existing torrent</string>
-                    </property>
                     <property name="text">
                      <string>Merge trackers to existing torrent</string>
                     </property>
@@ -971,11 +968,8 @@
                   </item>
                   <item>
                    <widget class="QCheckBox" name="checkConfirmMergeTrackers">
-                    <property name="toolTip">
-                     <string>Shows a confirmation dialog upon merging trackers to existing torrent</string>
-                    </property>
                     <property name="text">
-                     <string>Confirm merging trackers</string>
+                     <string>Ask for merging trackers when torrent is being added manually</string>
                     </property>
                     <property name="checked">
                      <bool>true</bool>
