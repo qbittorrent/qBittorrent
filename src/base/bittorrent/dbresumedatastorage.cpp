@@ -612,7 +612,7 @@ void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
         if (fromVersion <= 4)
         {
             const auto alterTableTorrentsQuery = u"ALTER TABLE %1 ADD %2"_s
-                    .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT, "INTEGER NOT NULL"));
+                    .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT, "INTEGER NOT NULL DEFAULT -2"));
             if (!query.exec(alterTableTorrentsQuery))
                 throw RuntimeError(query.lastError().text());
         }
