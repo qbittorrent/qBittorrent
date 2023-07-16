@@ -2747,10 +2747,16 @@ bool SessionImpl::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &so
             torrent->setMetadata(std::get<TorrentInfo>(source));
         }
 
+        if (!isMergeTrackersEnabled())
+        {
+            LogMsg(tr("Detected an attempt to add a duplicate torrent. Merging of trackers is disabled. Torrent: %1").arg(torrent->name()));
+            return false;
+        }
+
         const bool isPrivate = torrent->isPrivate() || (hasMetadata && std::get<TorrentInfo>(source).isPrivate());
         if (isPrivate)
         {
-            LogMsg(tr("Found existing torrent. Trackers cannot be merged because it is a private torrent. Torrent: %1").arg(torrent->name()));
+            LogMsg(tr("Detected an attempt to add a duplicate torrent. Trackers cannot be merged because it is a private torrent. Torrent: %1").arg(torrent->name()));
             return false;
         }
 
@@ -2771,7 +2777,7 @@ bool SessionImpl::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &so
             torrent->addUrlSeeds(magnetUri.urlSeeds());
         }
 
-        LogMsg(tr("Found existing torrent. Trackers are merged from new source. Torrent: %1").arg(torrent->name()));
+        LogMsg(tr("Detected an attempt to add a duplicate torrent. Trackers are merged from new source. Torrent: %1").arg(torrent->name()));
         return false;
     }
 
