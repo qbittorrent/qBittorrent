@@ -166,3 +166,4 @@ jobs:
         with:
           name: qBittorrent-CI_Windows-x64_libtorrent-${{ matrix.libt_version }}
           path: upload
+          asset_name: qBittorrent-CI_Windows-x64_libtorrent-${{ matrix.libt_version }}.exe
