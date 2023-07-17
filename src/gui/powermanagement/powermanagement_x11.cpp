@@ -48,7 +48,7 @@ PowerManagementInhibitor::PowerManagementInhibitor(QObject *parent)
 
     m_intendedState = Idle;
     m_cookie = 0;
-    m_useGSM = false;
+    m_useGSM = true;
 }
 
 void PowerManagementInhibitor::requestIdle()
@@ -135,9 +135,9 @@ void PowerManagementInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
         if (reply.isError()) {
             qDebug("D-Bus: Reply: Error: %s", qUtf8Printable(reply.error().message()));
 
-            if (!m_useGSM) {
-                qDebug("D-Bus: Falling back to org.gnome.SessionManager");
-                m_useGSM = true;
+            if (m_useGSM) {
+                qDebug("D-Bus: Falling back to org.freedesktop.PowerManagement");
+                m_useGSM = false;
                 m_state = Idle;
                 if (m_intendedState == Busy)
                     requestBusy();
