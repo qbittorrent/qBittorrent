@@ -32,7 +32,7 @@
 
 class QDBusPendingCallWatcher;
 
-class PowerManagementInhibitor : public QObject
+class PowerManagementInhibitor final : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(PowerManagementInhibitor)
@@ -57,9 +57,9 @@ private:
         RequestIdle
     };
 
-    enum State m_state;
-    enum State m_intendedState;
-    unsigned int m_cookie;
+    enum State m_state = Error;
+    enum State m_intendedState = Idle;
+    quint32 m_cookie = 0;
 
-    bool m_useGSM;
+    bool m_useGSM = true;
 };

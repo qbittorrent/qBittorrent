@@ -38,17 +38,15 @@
 PowerManagementInhibitor::PowerManagementInhibitor(QObject *parent)
     : QObject(parent)
 {
-    if (!QDBusConnection::sessionBus().isConnected()) {
+    if (!QDBusConnection::sessionBus().isConnected())
+    {
         qDebug("D-Bus: Could not connect to session bus");
         m_state = Error;
     }
-    else {
+    else
+    {
         m_state = Idle;
     }
-
-    m_intendedState = Idle;
-    m_cookie = 0;
-    m_useGSM = true;
 }
 
 void PowerManagementInhibitor::requestIdle()
@@ -73,11 +71,10 @@ void PowerManagementInhibitor::requestIdle()
             u"UnInhibit"_s);
     call.setArguments({m_cookie});
 
-    QDBusPendingCall pcall = QDBusConnection::sessionBus().asyncCall(call, 1000);
-    auto *watcher = new QDBusPendingCallWatcher(pcall, this);
+    const QDBusPendingCall pcall = QDBusConnection::sessionBus().asyncCall(call, 1000);
+    const auto *watcher = new QDBusPendingCallWatcher(pcall, this);
     connect(watcher, &QDBusPendingCallWatcher::finished, this, &PowerManagementInhibitor::onAsyncReply);
 }
-
 
 void PowerManagementInhibitor::requestBusy()
 {
@@ -108,45 +105,55 @@ void PowerManagementInhibitor::requestBusy()
         args << 4u;
     call.setArguments(args);
 
-    QDBusPendingCall pcall = QDBusConnection::sessionBus().asyncCall(call, 1000);
-    auto *watcher = new QDBusPendingCallWatcher(pcall, this);
+    const QDBusPendingCall pcall = QDBusConnection::sessionBus().asyncCall(call, 1000);
+    const auto *watcher = new QDBusPendingCallWatcher(pcall, this);
     connect(watcher, &QDBusPendingCallWatcher::finished, this, &PowerManagementInhibitor::onAsyncReply);
 }
 
 void PowerManagementInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
 {
-    if (m_state == RequestIdle) {
-        QDBusPendingReply<> reply = *call;
+    call->deleteLater();
 
-        if (reply.isError()) {
+    if (m_state == RequestIdle)
+    {
+        const QDBusPendingReply reply = *call;
+
+        if (reply.isError())
+        {
             qDebug("D-Bus: Reply: Error: %s", qUtf8Printable(reply.error().message()));
             m_state = Error;
         }
-        else {
+        else
+        {
             m_state = Idle;
             qDebug("D-Bus: PowerManagementInhibitor: Request successful");
             if (m_intendedState == Busy)
                 requestBusy();
         }
     }
-    else if (m_state == RequestBusy) {
-        QDBusPendingReply<uint> reply = *call;
+    else if (m_state == RequestBusy)
+    {
+        const QDBusPendingReply<quint32> reply = *call;
 
-        if (reply.isError()) {
+        if (reply.isError())
+        {
             qDebug("D-Bus: Reply: Error: %s", qUtf8Printable(reply.error().message()));
 
-            if (m_useGSM) {
+            if (m_useGSM)
+            {
                 qDebug("D-Bus: Falling back to org.freedesktop.PowerManagement");
                 m_useGSM = false;
                 m_state = Idle;
                 if (m_intendedState == Busy)
                     requestBusy();
             }
-            else {
+            else
+            {
                 m_state = Error;
             }
         }
-        else {
+        else
+        {
             m_state = Busy;
             m_cookie = reply.value();
             qDebug("D-Bus: PowerManagementInhibitor: Request successful, cookie is %d", m_cookie);
@@ -154,10 +161,9 @@ void PowerManagementInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
                 requestIdle();
         }
     }
-    else {
+    else
+    {
         qDebug("D-Bus: Unexpected reply in state %d", m_state);
         m_state = Error;
     }
-
-    call->deleteLater();
 }

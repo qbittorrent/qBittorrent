@@ -61,6 +61,6 @@ private:
   PowerManagementInhibitor *m_inhibitor = nullptr;
 #endif
 #ifdef Q_OS_MACOS
-  IOPMAssertionID m_assertionID;
+  IOPMAssertionID m_assertionID {};
 #endif
 };
