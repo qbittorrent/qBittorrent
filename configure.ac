@@ -1,4 +1,4 @@
-AC_INIT([qbittorrent], [v4.6.0beta2], [bugs.qbittorrent.org], [], [https://www.qbittorrent.org/])
+AC_INIT([qbittorrent], [v5.0.0alpha1], [bugs.qbittorrent.org], [], [https://www.qbittorrent.org/])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 : ${CFLAGS=""}
