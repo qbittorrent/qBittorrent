@@ -72,6 +72,14 @@ namespace
         return host;
     }
 
+    QString getFaviconHost(const QString &trackerHost)
+    {
+        if (!QHostAddress(trackerHost).isNull())
+            return trackerHost;
+
+        return trackerHost.section(u'.', -2, -1);
+    }
+
     const QString NULL_HOST = u""_s;
 }
 
@@ -190,7 +198,7 @@ void TrackersFilterWidget::addItems(const QString &trackerURL, const QVector<Bit
         trackersIt = m_trackers.insert(host, trackerData);
 
         const QString scheme = getScheme(trackerURL);
-        downloadFavicon(u"%1://%2/favicon.ico"_s.arg((scheme.startsWith(u"http") ? scheme : u"http"_s), host));
+        downloadFavicon(host, u"%1://%2/favicon.ico"_s.arg((scheme.startsWith(u"http") ? scheme : u"http"_s), getFaviconHost(host)));
     }
 
     Q_ASSERT(trackerItem);
@@ -302,8 +310,8 @@ void TrackersFilterWidget::setDownloadTrackerFavicon(bool value)
             if (!tracker.isEmpty())
             {
                 const QString scheme = getScheme(tracker);
-                downloadFavicon(u"%1://%2/favicon.ico"_s
-                                .arg((scheme.startsWith(u"http") ? scheme : u"http"_s), getHost(tracker)));
+                downloadFavicon(tracker, u"%1://%2/favicon.ico"_s
+                        .arg((scheme.startsWith(u"http") ? scheme : u"http"_s), getFaviconHost(tracker)));
              }
         }
     }
@@ -364,49 +372,83 @@ void TrackersFilterWidget::handleTrackerEntriesUpdated(const BitTorrent::Torrent
         applyFilter(WARNING_ROW);
 }
 
-void TrackersFilterWidget::downloadFavicon(const QString &url)
+void TrackersFilterWidget::downloadFavicon(const QString &trackerHost, const QString &faviconURL)
 {
-    if (!m_downloadTrackerFavicon) return;
-    Net::DownloadManager::instance()->download(
-            Net::DownloadRequest(url).saveToFile(true), Preferences::instance()->useProxyForGeneralPurposes()
-            , this, &TrackersFilterWidget::handleFavicoDownloadFinished);
+    if (!m_downloadTrackerFavicon)
+        return;
+
+    QSet<QString> &downloadingFaviconNode = m_downloadingFavicons[faviconURL];
+    if (downloadingFaviconNode.isEmpty())
+    {
+        Net::DownloadManager::instance()->download(
+                Net::DownloadRequest(faviconURL).saveToFile(true), Preferences::instance()->useProxyForGeneralPurposes()
+                , this, &TrackersFilterWidget::handleFavicoDownloadFinished);
+    }
+
+    downloadingFaviconNode.insert(trackerHost);
 }
 
 void TrackersFilterWidget::handleFavicoDownloadFinished(const Net::DownloadResult &result)
 {
+    const QSet<QString> trackerHosts = m_downloadingFavicons.take(result.url);
+    Q_ASSERT(!trackerHosts.isEmpty());
+    if (Q_UNLIKELY(trackerHosts.isEmpty()))
+        return;
+
+    QIcon icon;
+    bool failed = false;
     if (result.status != Net::DownloadStatus::Success)
     {
-        if (result.url.endsWith(u".ico", Qt::CaseInsensitive))
-            downloadFavicon(result.url.left(result.url.size() - 4) + u".png");
-        return;
-    }
-
-    const QString host = getHost(result.url);
-
-    if (!m_trackers.contains(host))
-    {
-        Utils::Fs::removeFile(result.filePath);
-        return;
-    }
-
-    QListWidgetItem *trackerItem = item(rowFromTracker(host));
-    if (!trackerItem) return;
-
-    const QIcon icon {result.filePath.data()};
-    //Detect a non-decodable icon
-    QList<QSize> sizes = icon.availableSizes();
-    bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
-    if (invalid)
-    {
-        if (result.url.endsWith(u".ico", Qt::CaseInsensitive))
-            downloadFavicon(result.url.left(result.url.size() - 4) + u".png");
-        Utils::Fs::removeFile(result.filePath);
+        failed = true;
     }
     else
     {
-        trackerItem->setData(Qt::DecorationRole, QIcon(result.filePath.data()));
-        m_iconPaths.append(result.filePath);
+        icon = QIcon(result.filePath.data());
+        //Detect a non-decodable icon
+        QList<QSize> sizes = icon.availableSizes();
+        const bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
+        if (invalid)
+        {
+            Utils::Fs::removeFile(result.filePath);
+            failed = true;
+        }
     }
+
+    if (failed)
+    {
+        if (result.url.endsWith(u".ico", Qt::CaseInsensitive))
+        {
+            const QString faviconURL = result.url.left(result.url.size() - 4) + u".png";
+            for (const auto &trackerHost : trackerHosts)
+            {
+                if (m_trackers.contains(trackerHost))
+                    downloadFavicon(trackerHost, faviconURL);
+            }
+        }
+
+        return;
+    }
+
+    bool matchedTrackerFound = false;
+    for (const auto &trackerHost : trackerHosts)
+    {
+        if (!m_trackers.contains(trackerHost))
+            continue;
+
+        matchedTrackerFound = true;
+
+        QListWidgetItem *trackerItem = item(rowFromTracker(trackerHost));
+        Q_ASSERT(trackerItem);
+        if (Q_UNLIKELY(!trackerItem))
+            continue;
+
+        trackerItem->setData(Qt::DecorationRole, icon);
+    }
+
+    if (matchedTrackerFound)
+        m_iconPaths.append(result.filePath);
+    else
+        Utils::Fs::removeFile(result.filePath);
 }
 
 void TrackersFilterWidget::showMenu()

@@ -76,7 +76,7 @@ private:
     QString trackerFromRow(int row) const;
     int rowFromTracker(const QString &tracker) const;
     QSet<BitTorrent::TorrentID> getTorrentIDs(int row) const;
-    void downloadFavicon(const QString &url);
+    void downloadFavicon(const QString &trackerHost, const QString &faviconURL);
 
     struct TrackerData
     {
@@ -90,4 +90,5 @@ private:
     PathList m_iconPaths;
     int m_totalTorrents = 0;
     bool m_downloadTrackerFavicon = false;
+    QHash<QString, QSet<QString>> m_downloadingFavicons;   // <favicon URL, tracker hosts>
 };
