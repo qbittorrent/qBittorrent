@@ -1676,7 +1676,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished"/>
+        <translation>물리적 메모리(RAM) 사용량 제한 (libtorrent &amp;gt;= 2.0인 경우 적용됨):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
@@ -1684,19 +1684,19 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished"/>
+        <translation>소켓 전송 버퍼 크기 [0: 시스템 기본값]:</translation>
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished"/>
+        <translation>읽기 &amp;amp; 쓰기 통합하기 (libtorrent &amp;lt; 2.0 필요):</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation type="unfinished"/>
+        <translation>나가는 포트 (최대) [0: 비활성화됨]:</translation>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation type="unfinished"/>
+        <translation>소켓 수신 버퍼 크기 [0: 시스템 기본값]:</translation>
     </message>
     <message>
         <source>Use Subcategories</source>
@@ -1704,7 +1704,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished"/>
+        <translation>디스크 IO 유형 (libtorrent &amp;gt;= 2.0; 다시 시작해야 함):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1712,7 +1712,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished"/>
+        <translation>연속 기입 (libtorrent &amp;gt;= 2.0.6 필요)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
@@ -1720,11 +1720,11 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished"/>
+        <translation>나가는 포트 (최소) [0: 비활성화됨]:</translation>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished"/>
+        <translation>해싱 쓰레드 (libtorrent &amp;gt;= 2.0 필요):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
@@ -3538,7 +3538,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Matching RSS Articles</source>
-        <translation>RSS 규약 일치</translation>
+        <translation>일치하는 RSS 규약</translation>
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
