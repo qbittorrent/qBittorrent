@@ -390,14 +390,14 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
     {
         qlonglong months = (days / 30);
         days -= (months * 30);
-        return QCoreApplication::translate("misc", "%1m %2d", "e.g.: 3months 4days").arg(QString::number(months), QString::number(days));
+        return QCoreApplication::translate("misc", "%1M %2d", "e.g.: 3months 4days").arg(QString::number(months), QString::number(days));
     }
 
     qlonglong years = (days / 365);
     days -= (years * 365);
     months = (days / 30);
     days -= (months * 30);
-    return QCoreApplication::translate("misc", "%1y %2m %3d", "e.g: 2years 7 months 10days").arg(QString::number(years), QString::number(months), QString::number(days));
+    return QCoreApplication::translate("misc", "%1y %2M %3d", "e.g: 2years 7 months 10days").arg(QString::number(years), QString::number(months), QString::number(days));
 }
 
 QString Utils::Misc::getUserIDString()
