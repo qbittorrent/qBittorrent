@@ -30,6 +30,7 @@
 
 #include <QObject>
 
+class QDBusInterface;
 class QDBusPendingCallWatcher;
 
 class PowerManagementInhibitor final : public QObject
@@ -57,9 +58,16 @@ private:
         RequestIdle
     };
 
+    enum class ManagerType
+    {
+        Freedesktop,  // https://www.freedesktop.org/wiki/Specifications/power-management-spec/
+        Gnome  // https://github.com/GNOME/gnome-settings-daemon/blob/master/gnome-settings-daemon/org.gnome.SessionManager.xml
+    };
+
+    QDBusInterface *m_busInterface = nullptr;
+    ManagerType m_manager = ManagerType::Gnome;
+
     enum State m_state = Error;
     enum State m_intendedState = Idle;
     quint32 m_cookie = 0;
-
-    bool m_useGSM = true;
 };
