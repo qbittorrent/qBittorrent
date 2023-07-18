@@ -86,7 +86,7 @@ void PowerManagementInhibitor::requestBusy()
     m_state = RequestBusy;
     qDebug("D-Bus: PowerManagementInhibitor: Requesting busy");
 
-    const QString message = u"Active torrents are presented"_s;
+    const QString message = u"Active torrents are currently present"_s;
     const auto args = (m_manager == ManagerType::Gnome)
         ? QList<QVariant> {u"qBittorrent"_s, 0u, message, 4u}
         : QList<QVariant> {u"qBittorrent"_s, message};
