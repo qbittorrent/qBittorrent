@@ -454,7 +454,7 @@ void TorrentContentWidget::onItemDoubleClicked(const QModelIndex &index)
     const auto *contentHandler = m_model->contentHandler();
     Q_ASSERT(contentHandler && contentHandler->hasMetadata());
 
-    if (Q_UNLIKELY(!contentHandler || !contentHandler->hasMetadata()))
+    if (!contentHandler || !contentHandler->hasMetadata()) [[unlikely]]
         return;
 
     if (m_doubleClickAction == DoubleClickAction::Rename)

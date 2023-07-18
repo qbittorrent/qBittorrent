@@ -212,7 +212,7 @@ void TorrentContentModel::updateFilesProgress()
     const QVector<qreal> &filesProgress = m_contentHandler->filesProgress();
     Q_ASSERT(m_filesIndex.size() == filesProgress.size());
     // XXX: Why is this necessary?
-    if (Q_UNLIKELY(m_filesIndex.size() != filesProgress.size()))
+    if (m_filesIndex.size() != filesProgress.size()) [[unlikely]]
         return;
 
     for (int i = 0; i < filesProgress.size(); ++i)
@@ -248,7 +248,7 @@ void TorrentContentModel::updateFilesAvailability()
 
         Q_ASSERT(m_filesIndex.size() == availableFileFractions.size());
         // XXX: Why is this necessary?
-        if (Q_UNLIKELY(m_filesIndex.size() != availableFileFractions.size()))
+        if (m_filesIndex.size() != availableFileFractions.size()) [[unlikely]]
             return;
 
         for (int i = 0; i < m_filesIndex.size(); ++i)

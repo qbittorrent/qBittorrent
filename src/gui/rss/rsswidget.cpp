@@ -434,7 +434,7 @@ void RSSWidget::editSelectedRSSFeedURL()
     QTreeWidgetItem *item = selectedItems.first();
     RSS::Feed *rssFeed = qobject_cast<RSS::Feed *>(m_feedListWidget->getRSSItem(item));
     Q_ASSERT(rssFeed);
-    if (Q_UNLIKELY(!rssFeed))
+    if (!rssFeed) [[unlikely]]
         return;
 
     bool ok = false;

@@ -1217,7 +1217,7 @@ QVector<qreal> TorrentImpl::filesProgress() const
 
     const int count = m_filesProgress.size();
     Q_ASSERT(count == filesCount());
-    if (Q_UNLIKELY(count != filesCount()))
+    if (count != filesCount()) [[unlikely]]
         return {};
 
     if (m_completedFiles.count(true) == count)
@@ -1613,8 +1613,7 @@ TrackerEntry TorrentImpl::updateTrackerEntry(const lt::announce_entry &announceE
     });
 
     Q_ASSERT(it != m_trackerEntries.end());
-    // TODO: use [[unlikely]] in C++20
-    if (Q_UNLIKELY(it == m_trackerEntries.end()))
+    if (it == m_trackerEntries.end()) [[unlikely]]
         return {};
 
 #ifdef QBT_USES_LIBTORRENT2
@@ -1813,7 +1812,7 @@ void TorrentImpl::moveStorage(const Path &newPath, const MoveStorageContext cont
 void TorrentImpl::renameFile(const int index, const Path &path)
 {
     Q_ASSERT((index >= 0) && (index < filesCount()));
-    if (Q_UNLIKELY((index < 0) || (index >= filesCount())))
+    if ((index < 0) || (index >= filesCount())) [[unlikely]]
         return;
 
     const Path wantedPath = wantedActualPath(index, path);
@@ -2276,7 +2275,7 @@ void TorrentImpl::doRenameFile(int index, const Path &path)
 
     Q_ASSERT(index >= 0);
     Q_ASSERT(index < nativeIndexes.size());
-    if (Q_UNLIKELY((index < 0) || (index >= nativeIndexes.size())))
+    if ((index < 0) || (index >= nativeIndexes.size())) [[unlikely]]
         return;
 
     ++m_renameCount;
@@ -2364,11 +2363,11 @@ void TorrentImpl::updateStatus(const lt::torrent_status &nativeStatus)
 void TorrentImpl::updateProgress()
 {
     Q_ASSERT(hasMetadata());
-    if (Q_UNLIKELY(!hasMetadata()))
+    if (!hasMetadata()) [[unlikely]]
         return;
 
     Q_ASSERT(!m_filesProgress.isEmpty());
-    if (Q_UNLIKELY(m_filesProgress.isEmpty()))
+    if (m_filesProgress.isEmpty()) [[unlikely]]
         m_filesProgress.resize(filesCount());
 
     const QBitArray oldPieces = std::exchange(m_pieces, LT::toQBitArray(m_nativeStatus.pieces));
