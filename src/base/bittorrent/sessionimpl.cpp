@@ -2924,7 +2924,7 @@ void SessionImpl::findIncompleteFiles(const TorrentInfo &torrentInfo, const Path
 
     const auto searchId = TorrentID::fromInfoHash(torrentInfo.infoHash());
     const PathList originalFileNames = (filePaths.isEmpty() ? torrentInfo.filePaths() : filePaths);
-    QMetaObject::invokeMethod(m_fileSearcher, [=]()
+    QMetaObject::invokeMethod(m_fileSearcher, [=, this]
     {
         m_fileSearcher->search(searchId, originalFileNames, savePath, downloadPath, isAppendExtensionEnabled());
     });
