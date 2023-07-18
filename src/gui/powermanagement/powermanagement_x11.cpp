@@ -105,7 +105,7 @@ void PowerManagementInhibitor::requestBusy()
         args << 0u;
     args << u"Active torrents are presented"_s;
     if (m_useGSM)
-        args << 8u;
+        args << 4u;
     call.setArguments(args);
 
     QDBusPendingCall pcall = QDBusConnection::sessionBus().asyncCall(call, 1000);
