@@ -455,8 +455,6 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     }
 #endif
 
-    m_propertiesWidget->readSettings();
-
     const bool isFiltersSidebarVisible = pref->isFiltersSidebarVisible();
     m_ui->actionShowFiltersSidebar->setChecked(isFiltersSidebarVisible);
     if (isFiltersSidebarVisible)
@@ -1091,6 +1089,12 @@ void MainWindow::showEvent(QShowEvent *e)
     if (isVisible())
     {
         // preparations before showing the window
+
+        if (m_neverShown)
+        {
+            m_propertiesWidget->readSettings();
+            m_neverShown = false;
+        }
 
         if (currentTabWidget() == m_transferListWidget)
             m_propertiesWidget->loadDynamicData();
