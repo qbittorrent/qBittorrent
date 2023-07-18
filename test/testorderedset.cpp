@@ -42,20 +42,6 @@ public:
     TestOrderedSet() = default;
 
 private slots:
-#if __cplusplus < 202002L
-    void testContains() const
-    {
-        const OrderedSet<QString> set {u"a"_s, u"b"_s, u"c"_s};
-        QVERIFY(set.contains(u"a"_s));
-        QVERIFY(set.contains(u"b"_s));
-        QVERIFY(set.contains(u"c"_s));
-        QVERIFY(!set.contains(u"z"_s));
-
-        const OrderedSet<QString> emptySet;
-        QVERIFY(!emptySet.contains(u"a"_s));
-    }
-#endif
-
     void testCount() const
     {
         const OrderedSet<QString> set {u"a"_s, u"b"_s, u"c"_s, u"c"_s};
