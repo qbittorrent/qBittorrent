@@ -382,14 +382,14 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
     if (days < 31)
     {
         hours -= (days * 24);
-        return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days), QString::number(hours));
+        return QCoreApplication::translate("misc", "%1D %2h", "e.g: 2days 10hours").arg(QString::number(days), QString::number(hours));
     }
 
     if (days < 365)
     {
         qlonglong months = (days / 31);
         days -= (months * 31);
-        return QCoreApplication::translate("misc", "%1M %2d", "e.g.: 3months 4days").arg(QString::number(months), QString::number(days));
+        return QCoreApplication::translate("misc", "%1M %2D", "e.g.: 3months 4days").arg(QString::number(months), QString::number(days));
     }
 
     qlonglong years = (days / 365);
@@ -397,7 +397,7 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
     days -= (years * 365);
     months = (days / 31);
     days -= (months * 31);
-    return QCoreApplication::translate("misc", "%1y %2M %3d", "e.g: 2years 7 months 10days").arg(QString::number(years), QString::number(months), QString::number(days));
+    return QCoreApplication::translate("misc", "%1Y %2M %3D", "e.g: 2years 7 months 10days").arg(QString::number(years), QString::number(months), QString::number(days));
 }
 
 QString Utils::Misc::getUserIDString()
