@@ -34,6 +34,7 @@
 #include <QDBusPendingReply>
 
 #include "base/global.h"
+#include "base/logger.h"
 
 PowerManagementInhibitor::PowerManagementInhibitor(QObject *parent)
     : QObject(parent)
@@ -53,11 +54,18 @@ PowerManagementInhibitor::PowerManagementInhibitor(QObject *parent)
             m_busInterface = nullptr;
 
             m_state = Error;
-            return;
         }
     }
 
-    m_busInterface->setTimeout(1000);
+    if (m_busInterface)
+    {
+        m_busInterface->setTimeout(1000);
+        LogMsg(tr("Power management found suitable D-Bus interface. Interface: %1").arg(m_busInterface->interface()));
+    }
+    else
+    {
+        LogMsg(tr("Power management error. Did not found suitable D-Bus interface."), Log::WARNING);
+    }
 }
 
 void PowerManagementInhibitor::requestIdle()
@@ -106,6 +114,8 @@ void PowerManagementInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
         if (reply.isError())
         {
             qDebug("D-Bus: Reply: Error: %s", qUtf8Printable(reply.error().message()));
+            LogMsg(tr("Power management error. Action: %1. Error: %2").arg(u"RequestIdle"_s
+                , reply.error().message()), Log::WARNING);
             m_state = Error;
         }
         else
@@ -123,6 +133,8 @@ void PowerManagementInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
         if (reply.isError())
         {
             qDebug("D-Bus: Reply: Error: %s", qUtf8Printable(reply.error().message()));
+            LogMsg(tr("Power management error. Action: %1. Error: %2").arg(u"RequestBusy"_s
+                , reply.error().message()), Log::WARNING);
             m_state = Error;
         }
         else
@@ -136,7 +148,15 @@ void PowerManagementInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
     }
     else
     {
+        const QDBusPendingReply reply = *call;
+        const QDBusError error = reply.error();
+
         qDebug("D-Bus: Unexpected reply in state %d", m_state);
+        if (error.isValid())
+        {
+            LogMsg(tr("Power management unexpected error. State: %1. Error: %2").arg(QString::number(m_state)
+                , error.message()), Log::WARNING);
+        }
         m_state = Error;
     }
 }
