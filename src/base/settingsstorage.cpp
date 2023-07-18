@@ -57,7 +57,7 @@ SettingsStorage::SettingsStorage()
 
 SettingsStorage::~SettingsStorage()
 {
-    save();
+
 }
 
 void SettingsStorage::initInstance()
