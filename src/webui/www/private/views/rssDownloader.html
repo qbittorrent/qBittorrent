@@ -577,40 +577,40 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             rulesList[rule].mustNotContain = $('mustNotContainText').value;
             rulesList[rule].episodeFilter = $('episodeFilterText').value;
             rulesList[rule].smartFilter = $('useSmartFilter').checked;
-            rulesList[rule].assignedCategory = $('assignCategoryCombobox').value;
-            rulesList[rule].savePath = $('savetoDifferentDir').checked ? $('saveToText').value : '';
             rulesList[rule].ignoreDays = parseInt($('ignoreDaysValue').value);
+            rulesList[rule].affectedFeeds = rssDownloaderFeedSelectionTable.rows.filter((row) => row.full_data.checked)
+                .map((row) => row.full_data.url)
+                .getValues();
+
+            rulesList[rule].torrentParams.category = $('assignCategoryCombobox').value;
+            rulesList[rule].torrentParams.save_path = $('savetoDifferentDir').checked ? $('saveToText').value : '';
 
             switch ($('addPausedCombobox').value) {
                 case 'default':
-                    rulesList[rule].addPaused = null;
+                    rulesList[rule].torrentParams.stopped = null;
                     break;
                 case 'always':
-                    rulesList[rule].addPaused = true;
+                    rulesList[rule].torrentParams.stopped = true;
                     break;
                 case 'never':
-                    rulesList[rule].addPaused = false;
+                    rulesList[rule].torrentParams.stopped = false;
                     break;
             }
 
             switch ($('contentLayoutCombobox').value) {
                 case 'Default':
-                    rulesList[rule].torrentContentLayout = null;
+                    rulesList[rule].torrentParams.content_layout = null;
                     break;
                 case 'Original':
-                    rulesList[rule].torrentContentLayout = 'Original';
+                    rulesList[rule].torrentParams.content_layout = 'Original';
                     break;
                 case 'Subfolder':
-                    rulesList[rule].torrentContentLayout = 'Subfolder';
+                    rulesList[rule].torrentParams.content_layout = 'Subfolder';
                     break;
                 case 'NoSubfolder':
-                    rulesList[rule].torrentContentLayout = 'NoSubfolder';
+                    rulesList[rule].torrentParams.content_layout = 'NoSubfolder';
                     break;
             }
-
-            rulesList[rule].affectedFeeds = rssDownloaderFeedSelectionTable.rows.filter((row) => row.full_data.checked)
-                .map((row) => row.full_data.url)
-                .getValues();
 
             new Request({
                 url: 'api/v2/rss/setRule',
@@ -702,8 +702,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 $('useSmartFilter').disabled = false;
                 $('assignCategoryCombobox').disabled = false;
                 $('savetoDifferentDir').disabled = false;
-                $('savetoDifferentDir').checked = rulesList[ruleName].savePath ? false : true;
-                $('saveToText').disabled = rulesList[ruleName].savePath ? false : true;
+                $('savetoDifferentDir').checked = rulesList[ruleName].torrentParams.save_path ? false : true;
+                $('saveToText').disabled = rulesList[ruleName].torrentParams.save_path ? false : true;
                 $('ignoreDaysValue').disabled = false;
                 $('addPausedCombobox').disabled = false;
                 $('contentLayoutCombobox').disabled = false;
@@ -715,9 +715,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 $('episodeFilterText').value = rulesList[ruleName].episodeFilter;
                 $('useSmartFilter').checked = rulesList[ruleName].smartFilter;
 
-                $('assignCategoryCombobox').value = rulesList[ruleName].assignedCategory ? rulesList[ruleName].assignedCategory : 'default';
-                $('savetoDifferentDir').checked = rulesList[ruleName].savePath !== '';
-                $('saveToText').value = rulesList[ruleName].savePath;
+                $('assignCategoryCombobox').value = rulesList[ruleName].torrentParams.category ? rulesList[ruleName].torrentParams.category : 'default';
+                $('savetoDifferentDir').checked = rulesList[ruleName].torrentParams.save_path !== '';
+                $('saveToText').value = rulesList[ruleName].torrentParams.save_path;
                 $('ignoreDaysValue').value = rulesList[ruleName].ignoreDays;
 
                 // calculate days since last match
@@ -730,15 +730,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     $('lastMatchText').textContent = 'QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]';
                 }
 
-                if (rulesList[ruleName].addPaused === null)
+                if (rulesList[ruleName].torrentParams.stopped === null)
                     $('addPausedCombobox').value = 'default';
                 else
-                    $('addPausedCombobox').value = rulesList[ruleName].addPaused ? 'always' : 'never';
+                    $('addPausedCombobox').value = rulesList[ruleName].torrentParams.stopped ? 'always' : 'never';
 
-                if (rulesList[ruleName].torrentContentLayout === null)
+                if (rulesList[ruleName].torrentParams.content_layout === null)
                     $('contentLayoutCombobox').value = 'Default';
                 else
-                    $('contentLayoutCombobox').value = rulesList[ruleName].torrentContentLayout;
+                    $('contentLayoutCombobox').value = rulesList[ruleName].torrentParams.content_layout;
 
                 setElementTitles();
 
