@@ -118,7 +118,6 @@ jobs:
             -DBOOST_ROOT="${{ env.boost_path }}" `
             -DLibtorrentRasterbar_DIR="${{ env.libtorrent_path }}/lib/cmake/LibtorrentRasterbar" `
             -DMSVC_RUNTIME_DYNAMIC=OFF `
-            -DQT6=ON `
             -DTESTING=ON `
             -DVCPKG_TARGET_TRIPLET=x64-windows-static-release `
             -DVERBOSE_CONFIGURE=ON `

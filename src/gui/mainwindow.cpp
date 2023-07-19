@@ -39,6 +39,7 @@
 #include <versionhelpers.h>  // must follow after Windows.h
 #endif
 
+#include <QAction>
 #include <QActionGroup>
 #include <QClipboard>
 #include <QCloseEvent>
@@ -49,6 +50,7 @@
 #include <QFileSystemWatcher>
 #include <QKeyEvent>
 #include <QLabel>
+#include <QMenu>
 #include <QMessageBox>
 #include <QMetaObject>
 #include <QMimeData>
@@ -870,7 +872,7 @@ void MainWindow::createKeyboardShortcuts()
     m_ui->actionIncreaseQueuePos->setShortcut(Qt::CTRL | Qt::Key_Plus);
     m_ui->actionTopQueuePos->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_Plus);
 #ifdef Q_OS_MACOS
-    m_ui->actionMinimize->setShortcut(Qt::CTRL + Qt::Key_M);
+    m_ui->actionMinimize->setShortcut(Qt::CTRL | Qt::Key_M);
     addAction(m_ui->actionMinimize);
 #endif
 }

@@ -484,7 +484,7 @@ QVariant GeoIPDatabase::readMapValue(quint32 &offset, const quint32 count) const
 
         const QString key = field.toString();
         field = readDataField(offset);
-        if (field.userType() == QVariant::Invalid)
+        if (field.userType() == QMetaType::UnknownType)
             return {};
 
         map[key] = field;
@@ -500,7 +500,7 @@ QVariant GeoIPDatabase::readArrayValue(quint32 &offset, const quint32 count) con
     for (quint32 i = 0; i < count; ++i)
     {
         const QVariant field = readDataField(offset);
-        if (field.userType() == QVariant::Invalid)
+        if (field.userType() == QMetaType::UnknownType)
             return {};
 
         array.append(field);

@@ -248,9 +248,6 @@ Application::Application(int &argc, char **argv)
     setOrganizationDomain(u"qbittorrent.org"_s);
 #if !defined(DISABLE_GUI)
     setDesktopFileName(u"org.qbittorrent.qBittorrent"_s);
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-    setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
-#endif
     setQuitOnLastWindowClosed(false);
     QPixmapCache::setCacheLimit(PIXMAP_CACHE_SIZE);
 #endif
@@ -1037,11 +1034,15 @@ void Application::initializeTranslation()
     // Load translation
     const QString localeStr = pref->getLocale();
 
-    if (m_qtTranslator.load((u"qtbase_" + localeStr), QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
-        m_qtTranslator.load((u"qt_" + localeStr), QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
-            qDebug("Qt %s locale recognized, using translation.", qUtf8Printable(localeStr));
+    if (m_qtTranslator.load((u"qtbase_" + localeStr), QLibraryInfo::path(QLibraryInfo::TranslationsPath))
+            || m_qtTranslator.load((u"qt_" + localeStr), QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
+    {
+        qDebug("Qt %s locale recognized, using translation.", qUtf8Printable(localeStr));
+    }
     else
+    {
         qDebug("Qt %s locale unrecognized, using default (en).", qUtf8Printable(localeStr));
+    }
 
     installTranslator(&m_qtTranslator);
 

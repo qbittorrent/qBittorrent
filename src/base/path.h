@@ -101,8 +101,4 @@ Path operator+(const Path &lhs, QStringView rhs);
 QDataStream &operator<<(QDataStream &out, const Path &path);
 QDataStream &operator>>(QDataStream &in, Path &path);
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 std::size_t qHash(const Path &key, std::size_t seed = 0);
-#else
-uint qHash(const Path &key, uint seed = 0);
-#endif

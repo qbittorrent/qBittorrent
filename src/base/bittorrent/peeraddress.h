@@ -45,9 +45,5 @@ namespace BitTorrent
     };
 
     bool operator==(const PeerAddress &left, const PeerAddress &right);
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     std::size_t qHash(const PeerAddress &addr, std::size_t seed = 0);
-#else
-    uint qHash(const PeerAddress &addr, uint seed = 0);
-#endif
 }

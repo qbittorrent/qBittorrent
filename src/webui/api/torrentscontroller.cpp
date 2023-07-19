@@ -302,9 +302,9 @@ void TorrentsController::infoAction()
 
         const auto lessThan = [](const QVariant &left, const QVariant &right) -> bool
         {
-            Q_ASSERT(left.type() == right.type());
+            Q_ASSERT(left.userType() == right.userType());
 
-            switch (static_cast<QMetaType::Type>(left.type()))
+            switch (left.userType())
             {
             case QMetaType::Bool:
                 return left.value<bool>() < right.value<bool>();
@@ -319,8 +319,8 @@ void TorrentsController::infoAction()
             case QMetaType::QString:
                 return left.value<QString>() < right.value<QString>();
             default:
-                qWarning("Unhandled QVariant comparison, type: %d, name: %s", left.type()
-                    , QMetaType::typeName(left.type()));
+                qWarning("Unhandled QVariant comparison, type: %d, name: %s"
+                        , left.userType(), left.metaType().name());
                 break;
             }
             return false;

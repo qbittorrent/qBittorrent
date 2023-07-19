@@ -20,7 +20,7 @@ jobs:
       matrix:
         libt_version: ["2.0.9", "1.2.19"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
-        qt_version: ["5.15.2", "6.2.0"]
+        qt_version: ["6.2.0"]
         exclude:
           - libt_version: "1.2.19"
             qt_version: "6.2.0"
@@ -75,25 +75,6 @@ jobs:
           config-file: ./.github/workflows/helper/codeql/cpp.yaml
           languages: cpp
 
-      - name: Build qBittorrent (Qt5)
-        if: startsWith(matrix.qt_version, 5)
-        run: |
-          CXXFLAGS="$CXXFLAGS -Werror -Wno-error=deprecated-declarations" \
-          LDFLAGS="$LDFLAGS -gz" \
-          cmake \
-            -B build \
-            -G "Ninja" \
-            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-            -DCMAKE_INSTALL_PREFIX="/usr" \
-            -DTESTING=ON \
-            -DVERBOSE_CONFIGURE=ON \
-            -D${{ matrix.qbt_gui }}
-          cmake --build build --target qbt_update_translations
-          cmake --build build
-          cmake --build build --target check
-          DESTDIR="qbittorrent" cmake --install build
-
       - name: Build qBittorrent (Qt6)
         if: startsWith(matrix.qt_version, 6)
         run: |
@@ -105,7 +86,6 @@ jobs:
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DCMAKE_INSTALL_PREFIX="/usr" \
-            -DQT6=ON \
             -DTESTING=ON \
             -DVERBOSE_CONFIGURE=ON \
             -D${{ matrix.qbt_gui }}

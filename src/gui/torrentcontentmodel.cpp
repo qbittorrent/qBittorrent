@@ -40,9 +40,6 @@
 #if defined(Q_OS_WIN)
 #include <Windows.h>
 #include <Shellapi.h>
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-#include <QtWin>
-#endif
 #else
 #include <QMimeDatabase>
 #include <QMimeType>
@@ -133,11 +130,7 @@ namespace
             if (FAILED(hr))
                 return {};
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
             const auto iconPixmap = QPixmap::fromImage(QImage::fromHICON(sfi.hIcon));
-#else
-            const QPixmap iconPixmap = QtWin::fromHICON(sfi.hIcon);
-#endif
             ::DestroyIcon(sfi.hIcon);
             return iconPixmap;
         }

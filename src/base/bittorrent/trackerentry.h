@@ -79,9 +79,5 @@ namespace BitTorrent
     QVector<TrackerEntry> parseTrackerEntries(QStringView str);
 
     bool operator==(const TrackerEntry &left, const TrackerEntry &right);
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     std::size_t qHash(const TrackerEntry &key, std::size_t seed = 0);
-#else
-    uint qHash(const TrackerEntry &key, uint seed = 0);
-#endif
 }

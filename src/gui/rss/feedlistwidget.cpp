@@ -242,7 +242,7 @@ void FeedListWidget::dragMoveEvent(QDragMoveEvent *event)
 {
     QTreeWidget::dragMoveEvent(event);
 
-    QTreeWidgetItem *item = itemAt(event->pos());
+    QTreeWidgetItem *item = itemAt(event->position().toPoint());
     if ((item == m_unreadStickyItem)  // Prohibit dropping onto global unread counter
         || selectedItems().contains(m_unreadStickyItem)  // Prohibit dragging of global unread counter
         || (item && isFeed(item)))  // Prohibit dropping onto feeds
@@ -253,7 +253,7 @@ void FeedListWidget::dragMoveEvent(QDragMoveEvent *event)
 
 void FeedListWidget::dropEvent(QDropEvent *event)
 {
-    QTreeWidgetItem *destFolderItem = itemAt(event->pos());
+    QTreeWidgetItem *destFolderItem = itemAt(event->position().toPoint());
     RSS::Folder *destFolder = (destFolderItem
                                ? static_cast<RSS::Folder *>(getRSSItem(destFolderItem))
                                : RSS::Session::instance()->rootFolder());

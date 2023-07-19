@@ -66,9 +66,6 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QNetworkAddressEntry>
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-#include <QNetworkConfigurationManager>
-#endif
 #include <QNetworkInterface>
 #include <QRegularExpression>
 #include <QString>
@@ -117,24 +114,6 @@ using namespace BitTorrent;
 const Path CATEGORIES_FILE_NAME {u"categories.json"_s};
 const int MAX_PROCESSING_RESUMEDATA_COUNT = 50;
 const int STATISTICS_SAVE_INTERVAL = std::chrono::milliseconds(15min).count();
-
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-namespace std
-{
-    uint qHash(const std::string &key, uint seed = 0)
-    {
-        return ::qHash(std::hash<std::string> {}(key), seed);
-    }
-}
-
-namespace libtorrent
-{
-    uint qHash(const libtorrent::torrent_handle &key)
-    {
-        return static_cast<uint>(libtorrent::hash_value(key));
-    }
-}
-#endif
 
 namespace
 {
@@ -537,9 +516,6 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_ioThread {new QThread}
     , m_asyncWorker {new QThreadPool(this)}
     , m_recentErroredTorrentsTimer {new QTimer(this)}
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-    , m_networkManager {new QNetworkConfigurationManager(this)}
-#endif
 {
     // It is required to perform async access to libtorrent sequentially
     m_asyncWorker->setMaxThreadCount(1);
@@ -579,14 +555,6 @@ SessionImpl::SessionImpl(QObject *parent)
     connect(Net::ProxyConfigurationManager::instance()
         , &Net::ProxyConfigurationManager::proxyConfigurationChanged
         , this, &SessionImpl::configureDeferred);
-
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-    // Network configuration monitor
-    connect(m_networkManager, &QNetworkConfigurationManager::onlineStateChanged, this, &SessionImpl::networkOnlineStateChanged);
-    connect(m_networkManager, &QNetworkConfigurationManager::configurationAdded, this, &SessionImpl::networkConfigurationChange);
-    connect(m_networkManager, &QNetworkConfigurationManager::configurationRemoved, this, &SessionImpl::networkConfigurationChange);
-    connect(m_networkManager, &QNetworkConfigurationManager::configurationChanged, this, &SessionImpl::networkConfigurationChange);
-#endif
 
     m_fileSearcher = new FileSearcher;
     m_fileSearcher->moveToThread(m_ioThread.get());
@@ -3148,13 +3116,7 @@ void SessionImpl::saveResumeData()
 
     // clear queued storage move jobs except the current ongoing one
     if (m_moveStorageQueue.size() > 1)
-    {
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-        m_moveStorageQueue = m_moveStorageQueue.mid(0, 1);
-#else
         m_moveStorageQueue.resize(1);
-#endif
-    }
 
     QElapsedTimer timer;
     timer.start();
@@ -3276,29 +3238,6 @@ void SessionImpl::setDownloadPath(const Path &path)
     for (TorrentImpl *const torrent : asConst(m_torrents))
         torrent->handleCategoryOptionsChanged();
 }
-
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-void SessionImpl::networkOnlineStateChanged(const bool online)
-{
-    LogMsg(tr("System network status changed to %1", "e.g: System network status changed to ONLINE").arg(online ? tr("ONLINE") : tr("OFFLINE")), Log::INFO);
-}
-
-void SessionImpl::networkConfigurationChange(const QNetworkConfiguration &cfg)
-{
-    const QString configuredInterfaceName = networkInterface();
-    // Empty means "Any Interface". In this case libtorrent has binded to 0.0.0.0 so any change to any interface will
-    // be automatically picked up. Otherwise we would rebinding here to 0.0.0.0 again.
-    if (configuredInterfaceName.isEmpty()) return;
-
-    const QString changedInterface = cfg.name();
-
-    if (configuredInterfaceName == changedInterface)
-    {
-        LogMsg(tr("Network configuration of %1 has changed, refreshing session binding", "e.g: Network configuration of tun0 has changed, refreshing session binding").arg(changedInterface), Log::INFO);
-        configureListeningInterface();
-    }
-}
-#endif
 
 QStringList SessionImpl::getListeningIPs() const
 {
@@ -6201,12 +6140,8 @@ void SessionImpl::processTrackerStatuses()
 
                         const QMap<TrackerEntry::Endpoint, int> &updateInfo = updatedTrackersIter.value();
                         TrackerEntry trackerEntry = torrent->updateTrackerEntry(announceEntry, updateInfo);
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-                        updatedTrackerEntries[trackerEntry.url] = std::move(trackerEntry);
-#else
                         const QString url = trackerEntry.url;
                         updatedTrackerEntries.emplace(url, std::move(trackerEntry));
-#endif
                     }
 
                     emit trackerEntriesUpdated(torrent, updatedTrackerEntries);

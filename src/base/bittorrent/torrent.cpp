@@ -35,11 +35,7 @@
 
 namespace BitTorrent
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     std::size_t qHash(const TorrentState key, const std::size_t seed)
-#else
-    uint qHash(const TorrentState key, const uint seed)
-#endif
     {
         return ::qHash(static_cast<std::underlying_type_t<TorrentState>>(key), seed);
     }
