@@ -42,6 +42,7 @@
 #include <QSslError>
 #include <QUrl>
 
+#include "base/algorithm.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -62,11 +63,10 @@ public:
     {
         const QDateTime now = QDateTime::currentDateTime();
         QList<QNetworkCookie> cookies = Preferences::instance()->getNetworkCookies();
-        for (const QNetworkCookie &cookie : asConst(Preferences::instance()->getNetworkCookies()))
+        Algorithm::removeIf(cookies, [&now](const QNetworkCookie &cookie)
         {
-            if (cookie.isSessionCookie() || (cookie.expirationDate() <= now))
-                cookies.removeAll(cookie);
-        }
+            return cookie.isSessionCookie() || (cookie.expirationDate() <= now);
+        });
 
         setAllCookies(cookies);
     }
@@ -75,11 +75,10 @@ public:
     {
         const QDateTime now = QDateTime::currentDateTime();
         QList<QNetworkCookie> cookies = allCookies();
-        for (const QNetworkCookie &cookie : asConst(allCookies()))
+        Algorithm::removeIf(cookies, [&now](const QNetworkCookie &cookie)
         {
-            if (cookie.isSessionCookie() || (cookie.expirationDate() <= now))
-                cookies.removeAll(cookie);
-        }
+            return cookie.isSessionCookie() || (cookie.expirationDate() <= now);
+        });
 
         Preferences::instance()->setNetworkCookies(cookies);
     }
@@ -91,11 +90,10 @@ public:
     {
         const QDateTime now = QDateTime::currentDateTime();
         QList<QNetworkCookie> cookies = QNetworkCookieJar::cookiesForUrl(url);
-        for (const QNetworkCookie &cookie : asConst(QNetworkCookieJar::cookiesForUrl(url)))
+        Algorithm::removeIf(cookies, [&now](const QNetworkCookie &cookie)
         {
-            if (!cookie.isSessionCookie() && (cookie.expirationDate() <= now))
-                cookies.removeAll(cookie);
-        }
+            return !cookie.isSessionCookie() && (cookie.expirationDate() <= now);
+        });
 
         return cookies;
     }
@@ -104,11 +102,10 @@ public:
     {
         const QDateTime now = QDateTime::currentDateTime();
         QList<QNetworkCookie> cookies = cookieList;
-        for (const QNetworkCookie &cookie : cookieList)
+        Algorithm::removeIf(cookies, [&now](const QNetworkCookie &cookie)
         {
-            if (!cookie.isSessionCookie() && (cookie.expirationDate() <= now))
-                cookies.removeAll(cookie);
-        }
+            return !cookie.isSessionCookie() && (cookie.expirationDate() <= now);
+        });
 
         return QNetworkCookieJar::setCookiesFromUrl(cookies, url);
     }
