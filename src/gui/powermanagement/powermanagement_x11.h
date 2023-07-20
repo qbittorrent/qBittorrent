@@ -30,9 +30,10 @@
 
 #include <QObject>
 
+class QDBusInterface;
 class QDBusPendingCallWatcher;
 
-class PowerManagementInhibitor : public QObject
+class PowerManagementInhibitor final : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(PowerManagementInhibitor)
@@ -57,9 +58,16 @@ private:
         RequestIdle
     };
 
-    enum State m_state;
-    enum State m_intendedState;
-    unsigned int m_cookie;
+    enum class ManagerType
+    {
+        Freedesktop,  // https://www.freedesktop.org/wiki/Specifications/power-management-spec/
+        Gnome  // https://github.com/GNOME/gnome-settings-daemon/blob/master/gnome-settings-daemon/org.gnome.SessionManager.xml
+    };
 
-    bool m_useGSM;
+    QDBusInterface *m_busInterface = nullptr;
+    ManagerType m_manager = ManagerType::Gnome;
+
+    enum State m_state = Error;
+    enum State m_intendedState = Idle;
+    quint32 m_cookie = 0;
 };
