@@ -44,10 +44,15 @@
 
 PowerManagement::PowerManagement(QObject *parent)
     : QObject(parent)
-{
 #ifdef QBT_USES_DBUS
-    m_inhibitor = new PowerManagementInhibitor(this);
+    , m_inhibitor {new PowerManagementInhibitor(this)}
 #endif
+{
+}
+
+PowerManagement::~PowerManagement()
+{
+    setIdle();
 }
 
 void PowerManagement::setActivityState(const bool busy)
@@ -60,15 +65,16 @@ void PowerManagement::setActivityState(const bool busy)
 
 void PowerManagement::setBusy()
 {
-    if (m_busy) return;
+    if (m_busy)
+        return;
     m_busy = true;
 
 #ifdef Q_OS_WIN
-    SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED);
+    ::SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED);
 #elif defined(QBT_USES_DBUS)
     m_inhibitor->requestBusy();
 #elif defined(Q_OS_MACOS)
-    IOReturn success = IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep, kIOPMAssertionLevelOn
+    const IOReturn success = ::IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep, kIOPMAssertionLevelOn
         , tr("qBittorrent is active").toCFString(), &m_assertionID);
     if (success != kIOReturnSuccess)
         m_busy = false;
@@ -77,14 +83,15 @@ void PowerManagement::setBusy()
 
 void PowerManagement::setIdle()
 {
-    if (!m_busy) return;
+    if (!m_busy)
+        return;
     m_busy = false;
 
 #ifdef Q_OS_WIN
-    SetThreadExecutionState(ES_CONTINUOUS);
+    ::SetThreadExecutionState(ES_CONTINUOUS);
 #elif defined(QBT_USES_DBUS)
     m_inhibitor->requestIdle();
 #elif defined(Q_OS_MACOS)
-    IOPMAssertionRelease(m_assertionID);
+    ::IOPMAssertionRelease(m_assertionID);
 #endif
 }

@@ -40,14 +40,14 @@
 class PowerManagementInhibitor;
 #endif
 
-class PowerManagement : public QObject
+class PowerManagement final : public QObject
 {
   Q_OBJECT
   Q_DISABLE_COPY_MOVE(PowerManagement)
 
 public:
   PowerManagement(QObject *parent = nullptr);
-  virtual ~PowerManagement() = default;
+  ~PowerManagement() override;
 
   void setActivityState(bool busy);
 
