@@ -1,4 +1,4 @@
-name: CI - Windows
+name: CI - Windows-Test
 
 on: [pull_request, push]
 
@@ -164,6 +164,12 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: qBittorrent-CI_Windows-x64_libtorrent-${{ matrix.libt_version }}
+          name: qBittorrent-CI_Windows-x64_libtorrent-${{ matrix.libt_version }}.exe
           path: upload
-          asset_name: qBittorrent-CI_Windows-x64_libtorrent-${{ matrix.libt_version }}.exe
+
+      - name: release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: "upload/**"
+        env:
+          GITHUB_TOKEN: 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
