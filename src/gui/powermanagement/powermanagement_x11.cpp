@@ -176,7 +176,7 @@ void PowerManagementInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
         }
         else
         {
-            const QDBusPendingReply<quint32> reply = *call;
+            const QDBusPendingReply<uint> reply = *call;
 
             if (reply.isError())
             {

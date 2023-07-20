@@ -71,6 +71,6 @@ private:
 
     enum State m_state = Error;
     enum State m_intendedState = Idle;
-    quint32 m_cookie = 0;
+    uint m_cookie = 0;
     QDBusUnixFileDescriptor m_fd;
 };
