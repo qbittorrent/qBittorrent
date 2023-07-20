@@ -74,17 +74,10 @@ bool operator==(const PeerEndpoint &left, const PeerEndpoint &right)
     return (left.address == right.address) && (left.connectionType == right.connectionType);
 }
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 std::size_t qHash(const PeerEndpoint &peerEndpoint, const std::size_t seed = 0)
 {
     return qHashMulti(seed, peerEndpoint.address, peerEndpoint.connectionType);
 }
-#else
-uint qHash(const PeerEndpoint &peerEndpoint, const uint seed = 0)
-{
-    return (qHash(peerEndpoint.address, seed) ^ ::qHash(peerEndpoint.connectionType));
-}
-#endif
 
 namespace
 {

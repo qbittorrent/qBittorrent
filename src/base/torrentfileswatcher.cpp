@@ -233,7 +233,7 @@ void TorrentFilesWatcher::loadLegacy()
     {
         const Path watchedFolder {it.key()};
         BitTorrent::AddTorrentParams params;
-        if (it.value().type() == QVariant::Int)
+        if (it.value().userType() == QMetaType::Int)
         {
             if (it.value().toInt() == 0)
             {

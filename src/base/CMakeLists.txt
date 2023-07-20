@@ -20,7 +20,6 @@ add_library(qbt_base STATIC
     bittorrent/infohash.h
     bittorrent/loadtorrentparams.h
     bittorrent/ltqbitarray.h
-    bittorrent/ltqhash.h
     bittorrent/lttypecast.h
     bittorrent/magneturi.h
     bittorrent/nativesessionextension.h

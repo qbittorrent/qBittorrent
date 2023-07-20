@@ -54,11 +54,7 @@ namespace Net
         static ServiceID fromURL(const QUrl &url);
     };
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     std::size_t qHash(const ServiceID &serviceID, std::size_t seed = 0);
-#else
-    uint qHash(const ServiceID &serviceID, uint seed = 0);
-#endif
     bool operator==(const ServiceID &lhs, const ServiceID &rhs);
 
     enum class DownloadStatus

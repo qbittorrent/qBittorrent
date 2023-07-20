@@ -65,11 +65,7 @@ namespace BitTorrent
 
     bool operator==(const Peer &left, const Peer &right);
     bool operator!=(const Peer &left, const Peer &right);
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     std::size_t qHash(const Peer &key, std::size_t seed = 0);
-#else
-    uint qHash(const Peer &key, uint seed = 0);
-#endif
 
     // *Basic* Bittorrent tracker implementation
     // [BEP-3] The BitTorrent Protocol Specification

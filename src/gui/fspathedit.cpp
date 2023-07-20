@@ -98,7 +98,7 @@ FileSystemPathEdit::FileSystemPathEditPrivate::FileSystemPathEditPrivate(
     , m_validator {new Private::FileSystemPathValidator(q)}
 {
     m_browseAction->setIconText(browseButtonBriefText.tr());
-    m_browseAction->setShortcut(Qt::CTRL + Qt::Key_B);
+    m_browseAction->setShortcut(Qt::CTRL | Qt::Key_B);
     m_browseAction->setToolTip(browseButtonFullText.tr().remove(u'&'));
 
     m_browseBtn->setDefaultAction(m_browseAction);

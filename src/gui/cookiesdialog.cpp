@@ -44,11 +44,7 @@ CookiesDialog::CookiesDialog(QWidget *parent)
     , m_ui(new Ui::CookiesDialog)
     , m_cookiesModel(new CookiesModel(Net::DownloadManager::instance()->allCookies(), this))
     , m_storeDialogSize(SETTINGS_KEY(u"Size"_s))
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     , m_storeViewState("GUI/Qt6/" SETTINGS_KEY(u"ViewState"_s))
-#else
-    , m_storeViewState(SETTINGS_KEY(u"CookiesViewState"_s))
-#endif
 {
     m_ui->setupUi(this);
 

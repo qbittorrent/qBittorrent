@@ -186,7 +186,7 @@ namespace
             const QVariant &value = i.value();
             QVariantList removedItems;
 
-            switch (static_cast<QMetaType::Type>(value.type()))
+            switch (value.userType())
             {
             case QMetaType::QVariantMap:
                 {
@@ -232,7 +232,7 @@ namespace
             default:
                 Q_ASSERT_X(false, "processMap"
                            , u"Unexpected type: %1"_s
-                           .arg(QString::fromLatin1(QMetaType::typeName(static_cast<QMetaType::Type>(value.type()))))
+                           .arg(QString::fromLatin1(value.metaType().name()))
                            .toUtf8().constData());
             }
         }
@@ -257,9 +257,9 @@ namespace
         {
             for (auto i = data.cbegin(); i != data.cend(); ++i)
             {
-                switch (i.value().type())
+                switch (i.value().userType())
                 {
-                case QVariant::Map:
+                case QMetaType::QVariantMap:
                     if (!prevData.contains(i.key()))
                     {
                         // new list item found - append it to syncData
@@ -278,7 +278,7 @@ namespace
                         }
                     }
                     break;
-                case QVariant::StringList:
+                case QMetaType::QStringList:
                     if (!prevData.contains(i.key()))
                     {
                         // new list item found - append it to syncData

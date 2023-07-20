@@ -153,16 +153,7 @@ public:
                                   : BitTorrent::TorrentContentLayout::Subfolder);
 
         if (!m_filePriorities.isEmpty())
-        {
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-            const int currentSize = m_filePriorities.size();
-            m_filePriorities.resize(filesCount());
-            for (int i = currentSize; i < filesCount(); ++i)
-                m_filePriorities[i] = BitTorrent::DownloadPriority::Normal;
-#else
             m_filePriorities.resize(filesCount(), BitTorrent::DownloadPriority::Normal);
-#endif
-        }
     }
 
     bool hasMetadata() const override
@@ -289,13 +280,8 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     , m_storeDialogSize(SETTINGS_KEY(u"DialogSize"_s))
     , m_storeDefaultCategory(SETTINGS_KEY(u"DefaultCategory"_s))
     , m_storeRememberLastSavePath(SETTINGS_KEY(u"RememberLastSavePath"_s))
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     , m_storeTreeHeaderState(u"GUI/Qt6/" SETTINGS_KEY(u"TreeHeaderState"_s))
     , m_storeSplitterState(u"GUI/Qt6/" SETTINGS_KEY(u"SplitterState"_s))
-#else
-    , m_storeTreeHeaderState(SETTINGS_KEY(u"TreeHeaderState"_s))
-    , m_storeSplitterState(SETTINGS_KEY(u"SplitterState"_s))
-#endif
 {
     // TODO: set dialog file properties using m_torrentParams.filePriorities
     m_ui->setupUi(this);

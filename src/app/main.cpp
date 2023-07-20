@@ -105,15 +105,6 @@ int main(int argc, char *argv[])
     // We must save it here because QApplication constructor may change it
     bool isOneArg = (argc == 2);
 
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0)) && !defined(DISABLE_GUI)
-    // Attribute Qt::AA_EnableHighDpiScaling must be set before QCoreApplication is created
-    if (qgetenv("QT_ENABLE_HIGHDPI_SCALING").isEmpty() && qgetenv("QT_AUTO_SCREEN_SCALE_FACTOR").isEmpty())
-        Application::setAttribute(Qt::AA_EnableHighDpiScaling, true);
-    // HighDPI scale factor policy must be set before QGuiApplication is created
-    if (qgetenv("QT_SCALE_FACTOR_ROUNDING_POLICY").isEmpty())
-        Application::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
-#endif
-
     try
     {
         // Create Application
@@ -212,10 +203,6 @@ int main(int argc, char *argv[])
         // 3. https://bugreports.qt.io/browse/QTBUG-46015
 
         qputenv("QT_BEARER_POLL_TIMEOUT", QByteArray::number(-1));
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0)) && !defined(DISABLE_GUI)
-        // this is the default in Qt6
-        app->setAttribute(Qt::AA_DisableWindowContextHelpButton);
-#endif
 #endif // Q_OS_WIN
 
 #ifdef Q_OS_MACOS
