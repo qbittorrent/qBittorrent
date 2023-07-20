@@ -164,5 +164,12 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: qBittorrent-CI_Windows-x64_libtorrent-${{ matrix.libt_version }}
+          name: qBittorrent-CI_Windows-x64_libtorrent-${{ matrix.libt_version }}.exe
           path: upload
+
+      - name: release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: "upload/**"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
