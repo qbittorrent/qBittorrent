@@ -65,7 +65,6 @@ PowerManagementInhibitor::PowerManagementInhibitor(QObject *parent)
 
     if (m_busInterface)
     {
-        m_busInterface->setTimeout(1000);
         m_state = Idle;
         LogMsg(tr("Power management found suitable D-Bus interface. Interface: %1").arg(m_busInterface->interface()));
     }
