@@ -15,8 +15,8 @@ qBittorrent - A BitTorrent client in C++ / Qt
 
   - zlib >= 1.2.11
 
-  - pkg-config *
-      * Compile-time only on *nix systems
+  - CMake >= 3.16
+      * Compile-time only
 
   - Python >= 3.7.0
       * Optional, run-time only
@@ -28,16 +28,18 @@ Please ensure you are building with an officially supported configuration when r
 
 2a) Compile and install qBittorrent with Qt graphical interface
 
-  $ ./configure
-  $ make && make install
+  $ cmake -B build -DCMAKE_BUILD_TYPE=Release
+  $ cmake --build build
+  $ cmake --install build
   $ qbittorrent
 
   will install and execute qBittorrent.
 
 2b) Compile and install qBittorrent without Qt graphical interface
 
-  $ ./configure --disable-gui
-  $ make && make install
+  $ cmake -B build -DCMAKE_BUILD_TYPE=Release -DGUI=OFF
+  $ cmake --build build
+  $ cmake --install build
   $ qbittorrent-nox
 
   will install and execute qBittorrent.
