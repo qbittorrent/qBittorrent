@@ -81,7 +81,6 @@ void PowerManagementInhibitor::requestIdle()
         return;
 
     m_state = RequestIdle;
-    qDebug("D-Bus: PowerManagementInhibitor: Requesting idle");
 
     if (m_manager == ManagerType::Systemd)
     {
@@ -105,7 +104,6 @@ void PowerManagementInhibitor::requestBusy()
         return;
 
     m_state = RequestBusy;
-    qDebug("D-Bus: PowerManagementInhibitor: Requesting busy");
 
     const QString message = u"Active torrents are currently present"_s;
 
@@ -138,7 +136,6 @@ void PowerManagementInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
 
         if (reply.isError())
         {
-            qDebug("D-Bus: Reply: Error: %s", qUtf8Printable(reply.error().message()));
             LogMsg(tr("Power management error. Action: %1. Error: %2").arg(u"RequestIdle"_s
                 , reply.error().message()), Log::WARNING);
             m_state = Error;
@@ -146,7 +143,6 @@ void PowerManagementInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
         else
         {
             m_state = Idle;
-            qDebug("D-Bus: PowerManagementInhibitor: Request successful");
             if (m_intendedState == Busy)
                 requestBusy();
         }
@@ -159,7 +155,6 @@ void PowerManagementInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
 
             if (reply.isError())
             {
-                qDebug("D-Bus: Reply: Error: %s", qUtf8Printable(reply.error().message()));
                 LogMsg(tr("Power management error. Action: %1. Error: %2").arg(u"RequestBusy"_s
                     , reply.error().message()), Log::WARNING);
                 m_state = Error;
@@ -168,7 +163,6 @@ void PowerManagementInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
             {
                 m_state = Busy;
                 m_fd = reply.value();
-                qDebug("D-Bus: PowerManagementInhibitor: Request successful, cookie is %d", m_cookie);
                 if (m_intendedState == Idle)
                     requestIdle();
             }
@@ -179,7 +173,6 @@ void PowerManagementInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
 
             if (reply.isError())
             {
-                qDebug("D-Bus: Reply: Error: %s", qUtf8Printable(reply.error().message()));
                 LogMsg(tr("Power management error. Action: %1. Error: %2").arg(u"RequestBusy"_s
                     , reply.error().message()), Log::WARNING);
                 m_state = Error;
@@ -188,7 +181,6 @@ void PowerManagementInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
             {
                 m_state = Busy;
                 m_cookie = reply.value();
-                qDebug("D-Bus: PowerManagementInhibitor: Request successful, cookie is %d", m_cookie);
                 if (m_intendedState == Idle)
                     requestIdle();
             }
@@ -199,7 +191,6 @@ void PowerManagementInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
         const QDBusPendingReply reply = *call;
         const QDBusError error = reply.error();
 
-        qDebug("D-Bus: Unexpected reply in state %d", m_state);
         if (error.isValid())
         {
             LogMsg(tr("Power management unexpected error. State: %1. Error: %2").arg(QString::number(m_state)
