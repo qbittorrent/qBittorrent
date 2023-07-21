@@ -28,6 +28,7 @@
 
 #pragma once
 
+#include <QDBusUnixFileDescriptor>
 #include <QObject>
 
 class QDBusInterface;
@@ -61,7 +62,8 @@ private:
     enum class ManagerType
     {
         Freedesktop,  // https://www.freedesktop.org/wiki/Specifications/power-management-spec/
-        Gnome  // https://github.com/GNOME/gnome-settings-daemon/blob/master/gnome-settings-daemon/org.gnome.SessionManager.xml
+        Gnome,  // https://github.com/GNOME/gnome-settings-daemon/blob/master/gnome-settings-daemon/org.gnome.SessionManager.xml
+        Systemd // https://www.freedesktop.org/software/systemd/man/org.freedesktop.login1.html
     };
 
     QDBusInterface *m_busInterface = nullptr;
@@ -69,5 +71,6 @@ private:
 
     enum State m_state = Error;
     enum State m_intendedState = Idle;
-    quint32 m_cookie = 0;
+    uint m_cookie = 0;
+    QDBusUnixFileDescriptor m_fd;
 };
