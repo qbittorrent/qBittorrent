@@ -702,7 +702,7 @@ QVector<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
 
 void Preferences::setWebUiAuthSubnetWhitelist(QStringList subnets)
 {
-    Algorithm::removeIf(subnets, [](const QString &subnet)
+    subnets.removeIf([](const QString &subnet)
     {
         return !Utils::Net::parseSubnet(subnet.trimmed()).has_value();
     });
