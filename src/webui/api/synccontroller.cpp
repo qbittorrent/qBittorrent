@@ -880,7 +880,7 @@ void SyncController::onTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent)
     {
         auto iter = m_knownTrackers.find(trackerEntry.url);
         Q_ASSERT(iter != m_knownTrackers.end());
-        if (Q_UNLIKELY(iter == m_knownTrackers.end()))
+        if (iter == m_knownTrackers.end()) [[unlikely]]
             continue;
 
         QSet<BitTorrent::TorrentID> &torrentIDs = iter.value();

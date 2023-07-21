@@ -392,7 +392,7 @@ void TrackersFilterWidget::handleFavicoDownloadFinished(const Net::DownloadResul
 {
     const QSet<QString> trackerHosts = m_downloadingFavicons.take(result.url);
     Q_ASSERT(!trackerHosts.isEmpty());
-    if (Q_UNLIKELY(trackerHosts.isEmpty()))
+    if (trackerHosts.isEmpty()) [[unlikely]]
         return;
 
     QIcon icon;
@@ -439,7 +439,7 @@ void TrackersFilterWidget::handleFavicoDownloadFinished(const Net::DownloadResul
 
         QListWidgetItem *trackerItem = item(rowFromTracker(trackerHost));
         Q_ASSERT(trackerItem);
-        if (Q_UNLIKELY(!trackerItem))
+        if (!trackerItem) [[unlikely]]
             continue;
 
         trackerItem->setData(Qt::DecorationRole, icon);

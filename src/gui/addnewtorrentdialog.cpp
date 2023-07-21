@@ -898,7 +898,7 @@ void AddNewTorrentDialog::setMetadataProgressIndicator(bool visibleIndicator, co
 void AddNewTorrentDialog::setupTreeview()
 {
     Q_ASSERT(hasMetadata());
-    if (Q_UNLIKELY(!hasMetadata()))
+    if (!hasMetadata()) [[unlikely]]
         return;
 
     // Set dialog title

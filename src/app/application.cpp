@@ -464,8 +464,7 @@ void Application::processMessage(const QString &message)
 #ifndef DISABLE_GUI
     if (message.isEmpty())
     {
-        // TODO: use [[likely]] in C++20
-        if (Q_LIKELY(BitTorrent::Session::instance()->isRestored()))
+        if (BitTorrent::Session::instance()->isRestored()) [[likely]]
         {
             m_window->activate(); // show UI
         }
