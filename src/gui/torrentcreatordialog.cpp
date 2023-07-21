@@ -36,7 +36,7 @@
 #include <QUrl>
 
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrentinfo.h"
+#include "base/bittorrent/torrentdescriptor.h"
 #include "base/global.h"
 #include "base/utils/fs.h"
 #include "ui_torrentcreatordialog.h"
@@ -252,8 +252,8 @@ void TorrentCreatorDialog::handleCreationSuccess(const Path &path, const Path &b
     if (m_ui->checkStartSeeding->isChecked())
     {
         // Create save path temp data
-        const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::loadFromFile(path);
-        if (!result)
+        const auto loadResult = BitTorrent::TorrentDescriptor::loadFromFile(path);
+        if (!loadResult)
         {
             QMessageBox::critical(this, tr("Torrent creation failed"), tr("Reason: Created torrent is invalid. It won't be added to download list."));
             return;
@@ -270,7 +270,7 @@ void TorrentCreatorDialog::handleCreationSuccess(const Path &path, const Path &b
         }
         params.useAutoTMM = false;  // otherwise if it is on by default, it will overwrite `savePath` to the default save path
 
-        BitTorrent::Session::instance()->addTorrent(result.value(), params);
+        BitTorrent::Session::instance()->addTorrent(loadResult.value(), params);
     }
     QMessageBox::information(this, tr("Torrent creator")
         , u"%1\n%2"_s.arg(tr("Torrent created:"), path.toString()));

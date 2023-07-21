@@ -45,7 +45,6 @@
 
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/infohash.h"
-#include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/torrentcontenthandler.h"
@@ -139,18 +138,18 @@ class AddNewTorrentDialog::TorrentContentAdaptor final
         : public BitTorrent::TorrentContentHandler
 {
 public:
-    TorrentContentAdaptor(BitTorrent::TorrentInfo &torrentInfo, PathList &filePaths
+    TorrentContentAdaptor(const BitTorrent::TorrentInfo &torrentInfo, PathList &filePaths
                           , QVector<BitTorrent::DownloadPriority> &filePriorities)
         : m_torrentInfo {torrentInfo}
         , m_filePaths {filePaths}
         , m_filePriorities {filePriorities}
     {
-        Q_ASSERT(filePaths.isEmpty() || (filePaths.size() == torrentInfo.filesCount()));
+        Q_ASSERT(filePaths.isEmpty() || (filePaths.size() == m_torrentInfo.filesCount()));
 
         m_originalRootFolder = Path::findRootFolder(m_torrentInfo.filePaths());
         m_currentContentLayout = (m_originalRootFolder.isEmpty()
-                                  ? BitTorrent::TorrentContentLayout::NoSubfolder
-                                  : BitTorrent::TorrentContentLayout::Subfolder);
+                ? BitTorrent::TorrentContentLayout::NoSubfolder
+                : BitTorrent::TorrentContentLayout::Subfolder);
 
         if (!m_filePriorities.isEmpty())
             m_filePriorities.resize(filesCount(), BitTorrent::DownloadPriority::Normal);
@@ -197,10 +196,10 @@ public:
         Q_ASSERT(!m_filePaths.isEmpty());
 
         const auto originalContentLayout = (m_originalRootFolder.isEmpty()
-                                            ? BitTorrent::TorrentContentLayout::NoSubfolder
-                                            : BitTorrent::TorrentContentLayout::Subfolder);
+                ? BitTorrent::TorrentContentLayout::NoSubfolder
+                : BitTorrent::TorrentContentLayout::Subfolder);
         const auto newContentLayout = ((contentLayout == BitTorrent::TorrentContentLayout::Original)
-                                       ? originalContentLayout : contentLayout);
+                ? originalContentLayout : contentLayout);
         if (newContentLayout != m_currentContentLayout)
         {
             if (newContentLayout == BitTorrent::TorrentContentLayout::NoSubfolder)
@@ -210,8 +209,7 @@ public:
             else
             {
                 const auto rootFolder = ((originalContentLayout == BitTorrent::TorrentContentLayout::Subfolder)
-                                         ? m_originalRootFolder
-                                         : m_filePaths.at(0).removedExtension());
+                        ? m_originalRootFolder : m_filePaths.at(0).removedExtension());
                 Path::addRootFolder(m_filePaths, rootFolder);
             }
 
@@ -262,7 +260,7 @@ public:
     }
 
 private:
-    BitTorrent::TorrentInfo &m_torrentInfo;
+    const BitTorrent::TorrentInfo &m_torrentInfo;
     PathList &m_filePaths;
     QVector<BitTorrent::DownloadPriority> &m_filePriorities;
     Path m_originalRootFolder;
@@ -489,12 +487,7 @@ void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorre
         return;
     }
 
-    const BitTorrent::MagnetUri magnetUri {source};
-    const bool isLoaded = magnetUri.isValid()
-        ? dlg->loadMagnet(magnetUri)
-        : dlg->loadTorrentFile(source);
-
-    if (isLoaded)
+    if (dlg->loadTorrent(source))
         dlg->QDialog::show();
     else
         delete dlg;
@@ -505,42 +498,56 @@ void AddNewTorrentDialog::show(const QString &source, QWidget *parent)
     show(source, BitTorrent::AddTorrentParams(), parent);
 }
 
-bool AddNewTorrentDialog::loadTorrentFile(const QString &source)
+bool AddNewTorrentDialog::loadTorrent(const QString &source)
 {
-    const Path decodedPath {source.startsWith(u"file://", Qt::CaseInsensitive)
-                ? QUrl::fromEncoded(source.toLocal8Bit()).toLocalFile()
-                : source};
-
-    const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::loadFromFile(decodedPath);
-    if (!result)
+    if (const auto parseResult = BitTorrent::TorrentDescriptor::parse(source))
+    {
+        m_torrentDescr = parseResult.value();
+        return loadTorrentImpl();
+    }
+    else if (source.startsWith(u"magnet:", Qt::CaseInsensitive))
     {
         RaisedMessageBox::critical(this, tr("Invalid torrent")
-            , tr("Failed to load the torrent: %1.\nError: %2", "Don't remove the '\n' characters. They insert a newline.")
-                .arg(decodedPath.toString(), result.error()));
+                , tr("Failed to load the torrent: %1.\nError: %2").arg(source, parseResult.error()));
         return false;
     }
 
-    m_torrentInfo = result.value();
-    m_torrentGuard = std::make_unique<TorrentFileGuard>(decodedPath);
+    const Path decodedPath {source.startsWith(u"file://", Qt::CaseInsensitive)
+            ? QUrl::fromEncoded(source.toLocal8Bit()).toLocalFile() : source};
 
-    return loadTorrentImpl();
+    if (const auto loadResult = BitTorrent::TorrentDescriptor::loadFromFile(decodedPath))
+    {
+        m_torrentDescr = loadResult.value();
+        m_torrentGuard = std::make_unique<TorrentFileGuard>(decodedPath);
+
+        return loadTorrentImpl();
+    }
+    else
+    {
+        RaisedMessageBox::critical(this, tr("Invalid torrent")
+                , tr("Failed to load the torrent: %1.\nError: %2", "Don't remove the '\n' characters. They insert a newline.")
+                        .arg(decodedPath.toString(), loadResult.error()));
+        return false;
+    }
 }
 
 bool AddNewTorrentDialog::loadTorrentImpl()
 {
-    const BitTorrent::InfoHash infoHash = m_torrentInfo.infoHash();
+    const BitTorrent::InfoHash infoHash = m_torrentDescr.infoHash();
 
     // Prevent showing the dialog if download is already present
     const auto *btSession = BitTorrent::Session::instance();
     if (btSession->isKnownTorrent(infoHash))
     {
-        BitTorrent::Torrent *const torrent = btSession->findTorrent(infoHash);
-        if (torrent)
+        if (BitTorrent::Torrent *torrent = btSession->findTorrent(infoHash))
         {
-            // Trying to set metadata to existing torrent in case if it has none
-            torrent->setMetadata(m_torrentInfo);
+            if (hasMetadata())
+            {
+                // Trying to set metadata to existing torrent in case if it has none
+                torrent->setMetadata(*m_torrentDescr.info());
+            }
 
-            if (torrent->isPrivate() || m_torrentInfo.isPrivate())
+            if (torrent->isPrivate() || (hasMetadata() && m_torrentDescr.info()->isPrivate()))
             {
                 RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers cannot be merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
             }
@@ -557,8 +564,8 @@ bool AddNewTorrentDialog::loadTorrentImpl()
 
                 if (mergeTrackers)
                 {
-                    torrent->addTrackers(m_torrentInfo.trackers());
-                    torrent->addUrlSeeds(m_torrentInfo.urlSeeds());
+                    torrent->addTrackers(m_torrentDescr.trackers());
+                    torrent->addUrlSeeds(m_torrentDescr.urlSeeds());
                 }
             }
         }
@@ -570,85 +577,35 @@ bool AddNewTorrentDialog::loadTorrentImpl()
         return false;
     }
 
-    m_ui->labelInfohash1Data->setText(m_torrentInfo.infoHash().v1().isValid() ? m_torrentInfo.infoHash().v1().toString() : tr("N/A"));
-    m_ui->labelInfohash2Data->setText(m_torrentInfo.infoHash().v2().isValid() ? m_torrentInfo.infoHash().v2().toString() : tr("N/A"));
-    setupTreeview();
-    TMMChanged(m_ui->comboTTM->currentIndex());
+    m_ui->labelInfohash1Data->setText(infoHash.v1().isValid() ? infoHash.v1().toString() : tr("N/A"));
+    m_ui->labelInfohash2Data->setText(infoHash.v2().isValid() ? infoHash.v2().toString() : tr("N/A"));
 
-    return true;
-}
-
-bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
-{
-    if (!magnetUri.isValid())
+    if (hasMetadata())
     {
-        RaisedMessageBox::critical(this, tr("Invalid magnet link"), tr("This magnet link was not recognized"));
-        return false;
+        setupTreeview();
+    }
+    else
+    {
+        connect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataDownloaded, this, &AddNewTorrentDialog::updateMetadata);
+
+        // Set dialog title
+        const QString torrentName = m_torrentDescr.name();
+        setWindowTitle(torrentName.isEmpty() ? tr("Magnet link") : torrentName);
+        updateDiskSpaceLabel();
+        BitTorrent::Session::instance()->downloadMetadata(m_torrentDescr);
+        setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
     }
 
-    m_torrentGuard = std::make_unique<TorrentFileGuard>();
-
-    const BitTorrent::InfoHash infoHash = magnetUri.infoHash();
-
-    // Prevent showing the dialog if download is already present
-    auto *btSession = BitTorrent::Session::instance();
-    if (btSession->isKnownTorrent(infoHash))
-    {
-        BitTorrent::Torrent *const torrent = btSession->findTorrent(infoHash);
-        if (torrent)
-        {
-            if (torrent->isPrivate())
-            {
-                RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers haven't been merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
-            }
-            else
-            {
-                bool mergeTrackers = btSession->isMergeTrackersEnabled();
-                if (Preferences::instance()->confirmMergeTrackers())
-                {
-                    const QMessageBox::StandardButton btn = RaisedMessageBox::question(this, tr("Torrent is already present")
-                            , tr("Torrent '%1' is already in the transfer list. Do you want to merge trackers from new source?").arg(torrent->name())
-                            , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
-                    mergeTrackers = (btn == QMessageBox::Yes);
-                }
-
-                if (mergeTrackers)
-                {
-                    torrent->addTrackers(magnetUri.trackers());
-                    torrent->addUrlSeeds(magnetUri.urlSeeds());
-                }
-            }
-        }
-        else
-        {
-            RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Magnet link is already queued for processing."), QMessageBox::Ok);
-        }
-
-        return false;
-    }
-
-    connect(btSession, &BitTorrent::Session::metadataDownloaded, this, &AddNewTorrentDialog::updateMetadata);
-
-    // Set dialog title
-    const QString torrentName = magnetUri.name();
-    setWindowTitle(torrentName.isEmpty() ? tr("Magnet link") : torrentName);
-
-    updateDiskSpaceLabel();
     TMMChanged(m_ui->comboTTM->currentIndex());
 
-    btSession->downloadMetadata(magnetUri);
-    setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
-    m_ui->labelInfohash1Data->setText(magnetUri.infoHash().v1().isValid() ? magnetUri.infoHash().v1().toString() : tr("N/A"));
-    m_ui->labelInfohash2Data->setText(magnetUri.infoHash().v2().isValid() ? magnetUri.infoHash().v2().toString() : tr("N/A"));
-
-    m_magnetURI = magnetUri;
     return true;
 }
 
 void AddNewTorrentDialog::showEvent(QShowEvent *event)
 {
     QDialog::showEvent(event);
-    if (!isTopLevel()) return;
+    if (!isTopLevel())
+        return;
 
     activateWindow();
     raise();
@@ -661,12 +618,13 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
 
     if (hasMetadata())
     {
+        const auto torrentInfo = *m_torrentDescr.info();
         const QVector<BitTorrent::DownloadPriority> &priorities = m_contentAdaptor->filePriorities();
-        Q_ASSERT(priorities.size() == m_torrentInfo.filesCount());
+        Q_ASSERT(priorities.size() == torrentInfo.filesCount());
         for (int i = 0; i < priorities.size(); ++i)
         {
             if (priorities[i] > BitTorrent::DownloadPriority::Ignored)
-                torrentSize += m_torrentInfo.fileSize(i);
+                torrentSize += torrentInfo.fileSize(i);
         }
     }
 
@@ -734,28 +692,32 @@ void AddNewTorrentDialog::contentLayoutChanged()
 void AddNewTorrentDialog::saveTorrentFile()
 {
     Q_ASSERT(hasMetadata());
+    if (Q_UNLIKELY(!hasMetadata()))
+        return;
+
+    const auto torrentInfo = *m_torrentDescr.info();
 
     const QString filter {tr("Torrent file (*%1)").arg(TORRENT_FILE_EXTENSION)};
 
     Path path {QFileDialog::getSaveFileName(this, tr("Save as torrent file")
-                , QDir::home().absoluteFilePath(m_torrentInfo.name() + TORRENT_FILE_EXTENSION)
-                , filter)};
+            , QDir::home().absoluteFilePath(torrentInfo.name() + TORRENT_FILE_EXTENSION)
+            , filter)};
     if (path.isEmpty()) return;
 
     if (!path.hasExtension(TORRENT_FILE_EXTENSION))
         path += TORRENT_FILE_EXTENSION;
 
-    const nonstd::expected<void, QString> result = m_torrentInfo.saveToFile(path);
+    const auto result = m_torrentDescr.saveToFile(path);
     if (!result)
     {
         QMessageBox::critical(this, tr("I/O Error")
-            , tr("Couldn't export torrent metadata file '%1'. Reason: %2.").arg(path.toString(), result.error()));
+                , tr("Couldn't export torrent metadata file '%1'. Reason: %2.").arg(path.toString(), result.error()));
     }
 }
 
 bool AddNewTorrentDialog::hasMetadata() const
 {
-    return m_torrentInfo.isValid();
+    return m_torrentDescr.info().has_value();
 }
 
 void AddNewTorrentDialog::populateSavePaths()
@@ -882,12 +844,10 @@ void AddNewTorrentDialog::accept()
     setEnabled(!m_ui->checkBoxNeverShow->isChecked());
 
     // Add torrent
-    if (!hasMetadata())
-        BitTorrent::Session::instance()->addTorrent(m_magnetURI, m_torrentParams);
-    else
-        BitTorrent::Session::instance()->addTorrent(m_torrentInfo, m_torrentParams);
+    BitTorrent::Session::instance()->addTorrent(m_torrentDescr, m_torrentParams);
 
-    m_torrentGuard->markAsAddedToSession();
+    if (m_torrentGuard)
+        m_torrentGuard->markAsAddedToSession();
     QDialog::accept();
 }
 
@@ -896,7 +856,7 @@ void AddNewTorrentDialog::reject()
     if (!hasMetadata())
     {
         setMetadataProgressIndicator(false);
-        BitTorrent::Session::instance()->cancelDownloadMetadata(m_magnetURI.infoHash().toTorrentID());
+        BitTorrent::Session::instance()->cancelDownloadMetadata(m_torrentDescr.infoHash().toTorrentID());
     }
 
     QDialog::reject();
@@ -906,12 +866,13 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &metadata
 {
     Q_ASSERT(metadata.isValid());
 
-    if (metadata.infoHash() != m_magnetURI.infoHash()) return;
+    if (!metadata.matchesInfoHash(m_torrentDescr.infoHash()))
+        return;
 
     disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataDownloaded, this, &AddNewTorrentDialog::updateMetadata);
 
     // Good to go
-    m_torrentInfo = metadata;
+    m_torrentDescr.setTorrentInfo(metadata);
     setMetadataProgressIndicator(true, tr("Parsing metadata..."));
 
     // Update UI
@@ -919,7 +880,7 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &metadata
     setMetadataProgressIndicator(false, tr("Metadata retrieval complete"));
 
     m_ui->buttonSave->setVisible(true);
-    if (m_torrentInfo.infoHash().v2().isValid())
+    if (m_torrentDescr.infoHash().v2().isValid())
     {
         m_ui->buttonSave->setEnabled(false);
         m_ui->buttonSave->setToolTip(tr("Cannot create v2 torrent until its data is fully downloaded."));
@@ -941,16 +902,18 @@ void AddNewTorrentDialog::setupTreeview()
         return;
 
     // Set dialog title
-    setWindowTitle(m_torrentInfo.name());
+    setWindowTitle(m_torrentDescr.name());
+
+    const auto &torrentInfo = *m_torrentDescr.info();
 
     // Set torrent information
-    m_ui->labelCommentData->setText(Utils::Misc::parseHtmlLinks(m_torrentInfo.comment().toHtmlEscaped()));
-    m_ui->labelDateData->setText(!m_torrentInfo.creationDate().isNull() ? QLocale().toString(m_torrentInfo.creationDate(), QLocale::ShortFormat) : tr("Not available"));
+    m_ui->labelCommentData->setText(Utils::Misc::parseHtmlLinks(torrentInfo.comment().toHtmlEscaped()));
+    m_ui->labelDateData->setText(!torrentInfo.creationDate().isNull() ? QLocale().toString(torrentInfo.creationDate(), QLocale::ShortFormat) : tr("Not available"));
 
     if (m_torrentParams.filePaths.isEmpty())
-        m_torrentParams.filePaths = m_torrentInfo.filePaths();
+        m_torrentParams.filePaths = torrentInfo.filePaths();
 
-    m_contentAdaptor = new TorrentContentAdaptor(m_torrentInfo, m_torrentParams.filePaths, m_torrentParams.filePriorities);
+    m_contentAdaptor = new TorrentContentAdaptor(torrentInfo, m_torrentParams.filePaths, m_torrentParams.filePriorities);
 
     const auto contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex());
     m_contentAdaptor->applyContentLayout(contentLayout);
@@ -964,7 +927,7 @@ void AddNewTorrentDialog::setupTreeview()
             if (priorities[i] == BitTorrent::DownloadPriority::Ignored)
                 continue;
 
-            if (BitTorrent::Session::instance()->isFilenameExcluded(m_torrentInfo.filePath(i).filename()))
+            if (BitTorrent::Session::instance()->isFilenameExcluded(torrentInfo.filePath(i).filename()))
                 priorities[i] = BitTorrent::DownloadPriority::Ignored;
         }
 
@@ -983,35 +946,43 @@ void AddNewTorrentDialog::handleDownloadFinished(const Net::DownloadResult &down
     switch (downloadResult.status)
     {
     case Net::DownloadStatus::Success:
+        if (const auto loadResult = BitTorrent::TorrentDescriptor::load(downloadResult.data))
         {
-            const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::load(downloadResult.data);
-            if (!result)
-            {
-                RaisedMessageBox::critical(this, tr("Invalid torrent"), tr("Failed to load from URL: %1.\nError: %2")
-                                           .arg(downloadResult.url, result.error()));
-                return;
-            }
-
-            m_torrentInfo = result.value();
-            m_torrentGuard = std::make_unique<TorrentFileGuard>();
-
-            if (loadTorrentImpl())
-                open();
-            else
-                deleteLater();
+            m_torrentDescr = loadResult.value();
+        }
+        else
+        {
+            RaisedMessageBox::critical(this, tr("Invalid torrent")
+                    , tr("Failed to load from URL: %1.\nError: %2").arg(downloadResult.url, loadResult.error()));
+            deleteLater();
+            return;
         }
         break;
     case Net::DownloadStatus::RedirectedToMagnet:
-        if (loadMagnet(BitTorrent::MagnetUri(downloadResult.magnet)))
-            open();
+        if (const auto parseResult = BitTorrent::TorrentDescriptor::parse(downloadResult.magnetURI))
+        {
+            m_torrentDescr = parseResult.value();
+        }
         else
+        {
+            RaisedMessageBox::critical(this, tr("Invalid torrent")
+                    , tr("Failed to load torrent. The request was redirected to invalid Magnet URI.\nError: %1")
+                            .arg(parseResult.error()));
             deleteLater();
+            return;
+        }
         break;
     default:
-        RaisedMessageBox::critical(this, tr("Download Error"),
-            tr("Cannot download '%1': %2").arg(downloadResult.url, downloadResult.errorString));
+        RaisedMessageBox::critical(this, tr("Download Error")
+                , tr("Cannot download '%1': %2").arg(downloadResult.url, downloadResult.errorString));
         deleteLater();
+        return;
     }
+
+    if (loadTorrentImpl())
+        open();
+    else
+        deleteLater();
 }
 
 void AddNewTorrentDialog::TMMChanged(int index)
@@ -1046,5 +1017,6 @@ void AddNewTorrentDialog::TMMChanged(int index)
 
 void AddNewTorrentDialog::doNotDeleteTorrentClicked(bool checked)
 {
-    m_torrentGuard->setAutoRemove(!checked);
+    if (m_torrentGuard)
+        m_torrentGuard->setAutoRemove(!checked);
 }

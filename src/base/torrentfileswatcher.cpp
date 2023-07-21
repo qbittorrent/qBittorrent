@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christian Kandeler, Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -44,11 +44,9 @@
 #include <QVariant>
 
 #include "base/algorithm.h"
-#include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/torrentcontentlayout.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
-#include "base/bittorrent/torrentinfo.h"
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
@@ -99,8 +97,7 @@ public slots:
     void removeWatchedFolder(const Path &path);
 
 signals:
-    void magnetFound(const BitTorrent::MagnetUri &magnetURI, const BitTorrent::AddTorrentParams &addTorrentParams);
-    void torrentFound(const BitTorrent::TorrentInfo &torrentInfo, const BitTorrent::AddTorrentParams &addTorrentParams);
+    void torrentFound(const BitTorrent::TorrentDescriptor &torrentDescr, const BitTorrent::AddTorrentParams &addTorrentParams);
 
 private:
     void onTimeout();
@@ -159,7 +156,6 @@ void TorrentFilesWatcher::initWorker()
 
     m_asyncWorker = new TorrentFilesWatcher::Worker;
 
-    connect(m_asyncWorker, &TorrentFilesWatcher::Worker::magnetFound, this, &TorrentFilesWatcher::onMagnetFound);
     connect(m_asyncWorker, &TorrentFilesWatcher::Worker::torrentFound, this, &TorrentFilesWatcher::onTorrentFound);
 
     m_asyncWorker->moveToThread(m_ioThread.get());
@@ -332,16 +328,10 @@ void TorrentFilesWatcher::removeWatchedFolder(const Path &path)
     }
 }
 
-void TorrentFilesWatcher::onMagnetFound(const BitTorrent::MagnetUri &magnetURI
-                                         , const BitTorrent::AddTorrentParams &addTorrentParams)
+void TorrentFilesWatcher::onTorrentFound(const BitTorrent::TorrentDescriptor &torrentDescr
+        , const BitTorrent::AddTorrentParams &addTorrentParams)
 {
-    BitTorrent::Session::instance()->addTorrent(magnetURI, addTorrentParams);
-}
-
-void TorrentFilesWatcher::onTorrentFound(const BitTorrent::TorrentInfo &torrentInfo
-                                         , const BitTorrent::AddTorrentParams &addTorrentParams)
-{
-    BitTorrent::Session::instance()->addTorrent(torrentInfo, addTorrentParams);
+    BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams);
 }
 
 TorrentFilesWatcher::Worker::Worker()
@@ -438,7 +428,10 @@ void TorrentFilesWatcher::Worker::processFolder(const Path &path, const Path &wa
                     while (!file.atEnd())
                     {
                         const auto line = QString::fromLatin1(file.readLine()).trimmed();
-                        emit magnetFound(BitTorrent::MagnetUri(line), addTorrentParams);
+                        if (const auto parseResult = BitTorrent::TorrentDescriptor::parse(line))
+                            emit torrentFound(parseResult.value(), addTorrentParams);
+                        else
+                            LogMsg(tr("Invalid Magnet URI. URI: %1. Reason: %2").arg(line, parseResult.error()), Log::WARNING);
                     }
 
                     file.close();
@@ -446,7 +439,7 @@ void TorrentFilesWatcher::Worker::processFolder(const Path &path, const Path &wa
                 }
                 else
                 {
-                    LogMsg(tr("Magnet file too big. File: %1").arg(file.errorString()));
+                    LogMsg(tr("Magnet file too big. File: %1").arg(file.errorString()), Log::WARNING);
                 }
             }
             else
@@ -456,10 +449,9 @@ void TorrentFilesWatcher::Worker::processFolder(const Path &path, const Path &wa
         }
         else
         {
-            const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::loadFromFile(filePath);
-            if (result)
+            if (const auto loadResult = BitTorrent::TorrentDescriptor::loadFromFile(filePath))
             {
-                emit torrentFound(result.value(), addTorrentParams);
+                emit torrentFound(loadResult.value(), addTorrentParams);
                 Utils::Fs::removeFile(filePath);
             }
             else
@@ -496,8 +488,7 @@ void TorrentFilesWatcher::Worker::processFailedTorrents()
             if (!torrentPath.exists())
                 return true;
 
-            const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::loadFromFile(torrentPath);
-            if (result)
+            if (const auto loadResult = BitTorrent::TorrentDescriptor::loadFromFile(torrentPath))
             {
                 BitTorrent::AddTorrentParams addTorrentParams = options.addTorrentParams;
                 if (torrentPath != watchedFolderPath)
@@ -515,7 +506,7 @@ void TorrentFilesWatcher::Worker::processFailedTorrents()
                     }
                 }
 
-                emit torrentFound(result.value(), addTorrentParams);
+                emit torrentFound(loadResult.value(), addTorrentParams);
                 Utils::Fs::removeFile(torrentPath);
 
                 return true;

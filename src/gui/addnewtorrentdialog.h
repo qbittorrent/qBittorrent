@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -34,8 +34,7 @@
 #include <QDialog>
 
 #include "base/bittorrent/addtorrentparams.h"
-#include "base/bittorrent/magneturi.h"
-#include "base/bittorrent/torrentinfo.h"
+#include "base/bittorrent/torrentdescriptor.h"
 #include "base/path.h"
 #include "base/settingvalue.h"
 
@@ -98,9 +97,8 @@ private:
 
     explicit AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
 
-    bool loadTorrentFile(const QString &source);
+    bool loadTorrent(const QString &source);
     bool loadTorrentImpl();
-    bool loadMagnet(const BitTorrent::MagnetUri &magnetUri);
     void populateSavePaths();
     void loadState();
     void saveState();
@@ -113,8 +111,7 @@ private:
 
     Ui::AddNewTorrentDialog *m_ui = nullptr;
     TorrentContentAdaptor *m_contentAdaptor = nullptr;
-    BitTorrent::MagnetUri m_magnetURI;
-    BitTorrent::TorrentInfo m_torrentInfo;
+    BitTorrent::TorrentDescriptor m_torrentDescr;
     int m_savePathIndex = -1;
     int m_downloadPathIndex = -1;
     bool m_useDownloadPath = false;

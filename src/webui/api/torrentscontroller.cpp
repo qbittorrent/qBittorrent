@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -45,7 +45,7 @@
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
-#include "base/bittorrent/torrentinfo.h"
+#include "base/bittorrent/torrentdescriptor.h"
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/logger.h"
@@ -739,14 +739,14 @@ void TorrentsController::addAction()
     const DataMap torrents = data();
     for (auto it = torrents.constBegin(); it != torrents.constEnd(); ++it)
     {
-        const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::load(it.value());
-        if (!result)
+        if (const auto loadResult = BitTorrent::TorrentDescriptor::load(it.value()))
         {
-            throw APIError(APIErrorType::BadData
-                           , tr("Error: '%1' is not a valid torrent file.").arg(it.key()));
+            partialSuccess |= BitTorrent::Session::instance()->addTorrent(loadResult.value(), addTorrentParams);
         }
-
-        partialSuccess |= BitTorrent::Session::instance()->addTorrent(result.value(), addTorrentParams);
+        else
+        {
+            throw APIError(APIErrorType::BadData, tr("Error: '%1' is not a valid torrent file.").arg(it.key()));
+        }
     }
 
     if (partialSuccess)

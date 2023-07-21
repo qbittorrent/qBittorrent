@@ -51,7 +51,7 @@
 
 using namespace BitTorrent;
 
-const int torrentInfoId = qRegisterMetaType<TorrentInfo>();
+const int TORRENTINFO_TYPEID = qRegisterMetaType<TorrentInfo>();
 
 TorrentInfo::TorrentInfo(const lt::torrent_info &nativeInfo)
     : m_nativeInfo {std::make_shared<const lt::torrent_info>(nativeInfo)}
@@ -399,6 +399,34 @@ TorrentInfo::PieceRange TorrentInfo::filePieces(const int fileIndex) const
     if (fileSize <= 0)
         return {beginIdx, 0};
     return makeInterval(beginIdx, endIdx);
+}
+
+bool TorrentInfo::matchesInfoHash(const InfoHash &otherInfoHash) const
+{
+    if (!isValid())
+        return false;
+
+    const InfoHash thisInfoHash = infoHash();
+
+    if (thisInfoHash.v1().isValid() && otherInfoHash.v1().isValid()
+            && (thisInfoHash.v1() != otherInfoHash.v1()))
+    {
+        return false;
+    }
+
+    if (thisInfoHash.v2().isValid() && otherInfoHash.v2().isValid()
+            && (thisInfoHash.v2() != otherInfoHash.v2()))
+    {
+        return false;
+    }
+
+    if (!thisInfoHash.v1().isValid() && otherInfoHash.v1().isValid())
+        return false;
+
+    if (!thisInfoHash.v2().isValid() && otherInfoHash.v2().isValid())
+        return false;
+
+    return true;
 }
 
 int TorrentInfo::fileIndex(const Path &filePath) const
