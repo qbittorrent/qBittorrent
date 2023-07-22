@@ -39,7 +39,7 @@ class MainWindow;
 class IGUIApplication : public IApplication
 {
 public:
-    virtual ~IGUIApplication() = default;
+    ~IGUIApplication() override = default;
 
     virtual DesktopIntegration *desktopIntegration() = 0;
     virtual MainWindow *mainWindow() = 0;
