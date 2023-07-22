@@ -54,16 +54,6 @@ namespace Algorithm
             it = (p(it.key(), it.value()) ? dict.erase(it) : ++it);
     }
 
-    // To be used with set types, such as QSet, std::set
-    template <typename T, typename UnaryPredicate
-        , typename std::enable_if_t<!HasMappedType<T>::value, int> = 0>
-    void removeIf(T &set, UnaryPredicate &&p)
-    {
-        auto it = set.begin();
-        while (it != set.end())
-            it = (p(*it) ? set.erase(it) : ++it);
-    }
-
     template <typename List>
     List sorted(List list)
     {

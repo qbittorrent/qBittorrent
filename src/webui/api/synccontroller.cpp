@@ -957,8 +957,7 @@ void SyncController::onTorrentTrackersChanged(BitTorrent::Torrent *torrent)
 
     const TorrentID torrentID = torrent->id();
     Algorithm::removeIf(m_knownTrackers
-            , [this, torrentID, currentTrackers]
-                    (const QString &knownTracker, QSet<TorrentID> &torrentIDs)
+        , [this, torrentID, currentTrackers](const QString &knownTracker, QSet<TorrentID> &torrentIDs)
     {
         if (auto idIter = torrentIDs.find(torrentID)
                 ; (idIter != torrentIDs.end()) && !currentTrackers.contains(knownTracker))

@@ -91,34 +91,11 @@ private slots:
         }
     }
 
-    void testNonMappedTypeRemoveIf() const
+    void testSorted() const
     {
-        {
-            QSet<char> data =
-            {
-                'a',
-                'b',
-                'c',
-                'b',
-                'd'
-            };
-            Algorithm::removeIf(data, [](const char value)
-            {
-                return (value == 'b');
-            });
-            QCOMPARE(data.size(), 3);
-            QVERIFY(data.contains('a'));
-            QVERIFY(data.contains('c'));
-            QVERIFY(data.contains('d'));
-        }
-        {
-            std::set<char> data;
-            Algorithm::removeIf(data, [](const char value)
-            {
-                return (value == 'b');
-            });
-            QVERIFY(data.empty());
-        }
+        const QStringList list = {u"c"_s, u"b"_s, u"a"_s};
+        const QStringList sortedList = {u"a"_s, u"b"_s, u"c"_s};
+        QCOMPARE(Algorithm::sorted(list), sortedList);
     }
 };
 
