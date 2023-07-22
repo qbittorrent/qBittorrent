@@ -80,14 +80,14 @@ void PowerManagementInhibitor::requestIdle()
     if ((m_state == Error) || (m_state == Idle) || (m_state == RequestIdle) || (m_state == RequestBusy))
         return;
 
-    m_state = RequestIdle;
-
     if (m_manager == ManagerType::Systemd)
     {
-        QDBusUnixFileDescriptor dummy;
-        m_fd.swap(dummy);
+        m_fd = {};
+        m_state = Idle;
         return;
     }
+
+    m_state = RequestIdle;
 
     const QString method = (m_manager == ManagerType::Gnome)
         ? u"Uninhibit"_s

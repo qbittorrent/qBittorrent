@@ -36,31 +36,30 @@
 #endif
 
 #ifdef QBT_USES_DBUS
-// Require DBus
 class PowerManagementInhibitor;
 #endif
 
-class PowerManagement : public QObject
+class PowerManagement final : public QObject
 {
-  Q_OBJECT
-  Q_DISABLE_COPY_MOVE(PowerManagement)
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(PowerManagement)
 
 public:
-  PowerManagement(QObject *parent = nullptr);
-  virtual ~PowerManagement() = default;
+    PowerManagement(QObject *parent = nullptr);
+    ~PowerManagement() override;
 
-  void setActivityState(bool busy);
+    void setActivityState(bool busy);
 
 private:
-  void setBusy();
-  void setIdle();
+    void setBusy();
+    void setIdle();
 
-  bool m_busy = false;
+    bool m_busy = false;
 
 #ifdef QBT_USES_DBUS
-  PowerManagementInhibitor *m_inhibitor = nullptr;
+    PowerManagementInhibitor *m_inhibitor = nullptr;
 #endif
 #ifdef Q_OS_MACOS
-  IOPMAssertionID m_assertionID {};
+    IOPMAssertionID m_assertionID {};
 #endif
 };

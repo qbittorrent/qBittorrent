@@ -323,8 +323,10 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     // Initialise system sleep inhibition timer
     m_pwr = new PowerManagement(this);
     m_preventTimer = new QTimer(this);
+    m_preventTimer->setSingleShot(true);
     connect(m_preventTimer, &QTimer::timeout, this, &MainWindow::updatePowerManagementState);
-    m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
+    connect(pref, &Preferences::changed, this, &MainWindow::updatePowerManagementState);
+    updatePowerManagementState();
 
     // Configure BT session according to options
     loadPreferences();
@@ -1465,8 +1467,6 @@ void MainWindow::loadPreferences()
 
     showStatusBar(pref->isStatusbarDisplayed());
 
-    updatePowerManagementState();
-
     m_transferListWidget->setAlternatingRowColors(pref->useAlternatingRowColors());
     m_propertiesWidget->getFilesList()->setAlternatingRowColors(pref->useAlternatingRowColors());
     m_propertiesWidget->getTrackerList()->setAlternatingRowColors(pref->useAlternatingRowColors());
@@ -1927,10 +1927,11 @@ void MainWindow::on_actionAutoShutdown_toggled(bool enabled)
     Preferences::instance()->setShutdownWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::updatePowerManagementState()
+void MainWindow::updatePowerManagementState() const
 {
-    const bool preventFromSuspendWhenDownloading = Preferences::instance()->preventFromSuspendWhenDownloading();
-    const bool preventFromSuspendWhenSeeding = Preferences::instance()->preventFromSuspendWhenSeeding();
+    const auto *pref = Preferences::instance();
+    const bool preventFromSuspendWhenDownloading = pref->preventFromSuspendWhenDownloading();
+    const bool preventFromSuspendWhenSeeding = pref->preventFromSuspendWhenSeeding();
 
     const QVector<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
     const bool inhibitSuspend = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [&](const BitTorrent::Torrent *torrent)
@@ -1944,6 +1945,8 @@ void MainWindow::updatePowerManagementState()
         return torrent->isMoving();
     });
     m_pwr->setActivityState(inhibitSuspend);
+
+    m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
 }
 
 void MainWindow::applyTransferListFilter()
