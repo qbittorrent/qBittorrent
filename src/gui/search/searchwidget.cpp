@@ -53,6 +53,7 @@
 #include "base/search/searchpluginmanager.h"
 #include "base/utils/foreignapps.h"
 #include "gui/desktopintegration.h"
+#include "gui/interfaces/iguiapplication.h"
 #include "gui/mainwindow.h"
 #include "gui/uithememanager.h"
 #include "pluginselectdialog.h"
@@ -346,7 +347,7 @@ void SearchWidget::on_searchButton_clicked()
     auto *searchHandler = SearchPluginManager::instance()->startSearch(pattern, selectedCategory(), plugins);
 
     // Tab Addition
-    auto *newTab = new SearchJobWidget(searchHandler, this);
+    auto *newTab = new SearchJobWidget(searchHandler, app(), this);
     m_allTabs.append(newTab);
 
     QString tabName = pattern;

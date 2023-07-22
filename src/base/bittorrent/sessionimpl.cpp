@@ -77,11 +77,9 @@
 #include "base/algorithm.h"
 #include "base/global.h"
 #include "base/logger.h"
-#include "base/net/downloadmanager.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
 #include "base/profile.h"
-#include "base/torrentfileguard.h"
 #include "base/torrentfilter.h"
 #include "base/unicodestrings.h"
 #include "base/utils/bytearray.h"
@@ -2254,35 +2252,6 @@ void SessionImpl::processShareLimits()
     }
 }
 
-// Add to BitTorrent session the downloaded torrent file
-void SessionImpl::handleDownloadFinished(const Net::DownloadResult &result)
-{
-    switch (result.status)
-    {
-    case Net::DownloadStatus::Success:
-        emit downloadFromUrlFinished(result.url);
-        if (const auto loadResult = TorrentDescriptor::load(result.data))
-            addTorrent(loadResult.value(), m_downloadedTorrents.take(result.url));
-        else
-            LogMsg(tr("Failed to load torrent. Reason: \"%1\"").arg(loadResult.error()), Log::WARNING);
-        break;
-    case Net::DownloadStatus::RedirectedToMagnet:
-        emit downloadFromUrlFinished(result.url);
-        if (const auto parseResult = TorrentDescriptor::parse(result.magnetURI))
-        {
-            addTorrent(parseResult.value(), m_downloadedTorrents.take(result.url));
-        }
-        else
-        {
-            LogMsg(tr("Failed to load torrent. The request was redirected to invalid Magnet URI. Reason: \"%1\"")
-                   .arg(parseResult.error()), Log::WARNING);
-        }
-        break;
-    default:
-        emit downloadFromUrlFailed(result.url, result.errorString);
-    }
-}
-
 void SessionImpl::fileSearchFinished(const TorrentID &id, const Path &savePath, const PathList &fileNames)
 {
     TorrentImpl *torrent = m_torrents.value(id);
@@ -2593,40 +2562,6 @@ qsizetype SessionImpl::torrentsCount() const
     return m_torrents.size();
 }
 
-bool SessionImpl::addTorrent(const QString &source, const AddTorrentParams &params)
-{
-    // `source`: .torrent file path/url or magnet uri
-
-    if (!isRestored())
-        return false;
-
-    if (Net::DownloadManager::hasSupportedScheme(source))
-    {
-        LogMsg(tr("Downloading torrent, please wait... Source: \"%1\"").arg(source));
-        const auto *pref = Preferences::instance();
-        // Launch downloader
-        Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(pref->getTorrentFileSizeLimit())
-                , pref->useProxyForGeneralPurposes(), this, &SessionImpl::handleDownloadFinished);
-        m_downloadedTorrents[source] = params;
-        return true;
-    }
-
-    if (const auto parseResult = TorrentDescriptor::parse(source))
-        return addTorrent(parseResult.value(), params);
-
-    const Path path {source};
-    TorrentFileGuard guard {path};
-    const auto loadResult = TorrentDescriptor::loadFromFile(path);
-    if (!loadResult)
-    {
-       LogMsg(tr("Failed to load torrent. Source: \"%1\". Reason: \"%2\"").arg(source, loadResult.error()), Log::WARNING);
-       return false;
-    }
-
-    guard.markAsAddedToSession();
-    return addTorrent(loadResult.value(), params);
-}
-
 bool SessionImpl::addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params)
 {
     if (!isRestored())
@@ -2713,35 +2648,8 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     if (m_loadingTorrents.contains(id) || (infoHash.isHybrid() && m_loadingTorrents.contains(altID)))
         return false;
 
-    if (Torrent *torrent = findTorrent(infoHash))
-    {
-        // a duplicate torrent is being added
-        if (hasMetadata)
-        {
-            // Trying to set metadata to existing torrent in case if it has none
-            torrent->setMetadata(*source.info());
-        }
-
-        if (!isMergeTrackersEnabled())
-        {
-            LogMsg(tr("Detected an attempt to add a duplicate torrent. Merging of trackers is disabled. Torrent: %1").arg(torrent->name()));
-            return false;
-        }
-
-        const bool isPrivate = torrent->isPrivate() || (hasMetadata && source.info()->isPrivate());
-        if (isPrivate)
-        {
-            LogMsg(tr("Detected an attempt to add a duplicate torrent. Trackers cannot be merged because it is a private torrent. Torrent: %1").arg(torrent->name()));
-            return false;
-        }
-
-        // merge trackers and web seeds
-        torrent->addTrackers(source.trackers());
-        torrent->addUrlSeeds(source.urlSeeds());
-
-        LogMsg(tr("Detected an attempt to add a duplicate torrent. Trackers are merged from new source. Torrent: %1").arg(torrent->name()));
+    if (findTorrent(infoHash))
         return false;
-    }
 
     // It looks illogical that we don't just use an existing handle,
     // but as previous experience has shown, it actually creates unnecessary

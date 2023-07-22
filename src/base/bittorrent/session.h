@@ -440,7 +440,6 @@ namespace BitTorrent
         virtual void banIP(const QString &ip) = 0;
 
         virtual bool isKnownTorrent(const InfoHash &infoHash) const = 0;
-        virtual bool addTorrent(const QString &source, const AddTorrentParams &params = {}) = 0;
         virtual bool addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params = {}) = 0;
         virtual bool deleteTorrent(const TorrentID &id, DeleteOption deleteOption = DeleteOption::DeleteTorrent) = 0;
         virtual bool downloadMetadata(const TorrentDescriptor &torrentDescr) = 0;
@@ -458,8 +457,6 @@ namespace BitTorrent
         void categoryAdded(const QString &categoryName);
         void categoryRemoved(const QString &categoryName);
         void categoryOptionsChanged(const QString &categoryName);
-        void downloadFromUrlFailed(const QString &url, const QString &reason);
-        void downloadFromUrlFinished(const QString &url);
         void fullDiskError(Torrent *torrent, const QString &msg);
         void IPFilterParsed(bool error, int ruleCount);
         void loadTorrentFailed(const QString &error);

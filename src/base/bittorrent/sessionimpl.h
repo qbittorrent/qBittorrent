@@ -67,11 +67,6 @@ class FileSearcher;
 class FilterParserThread;
 class NativeSessionExtension;
 
-namespace Net
-{
-    struct DownloadResult;
-}
-
 namespace BitTorrent
 {
     class InfoHash;
@@ -414,7 +409,6 @@ namespace BitTorrent
         void banIP(const QString &ip) override;
 
         bool isKnownTorrent(const InfoHash &infoHash) const override;
-        bool addTorrent(const QString &source, const AddTorrentParams &params = {}) override;
         bool addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params = {}) override;
         bool deleteTorrent(const TorrentID &id, DeleteOption deleteOption = DeleteTorrent) override;
         bool downloadMetadata(const TorrentDescriptor &torrentDescr) override;
@@ -477,7 +471,6 @@ namespace BitTorrent
         void generateResumeData();
         void handleIPFilterParsed(int ruleCount);
         void handleIPFilterError();
-        void handleDownloadFinished(const Net::DownloadResult &result);
         void fileSearchFinished(const TorrentID &id, const Path &savePath, const PathList &fileNames);
 
     private:
@@ -746,7 +739,6 @@ namespace BitTorrent
         QHash<TorrentID, TorrentImpl *> m_torrents;
         QHash<TorrentID, TorrentImpl *> m_hybridTorrentsByAltID;
         QHash<TorrentID, LoadTorrentParams> m_loadingTorrents;
-        QHash<QString, AddTorrentParams> m_downloadedTorrents;
         QHash<TorrentID, RemovingTorrentData> m_removingTorrents;
         QSet<TorrentID> m_needSaveResumeDataTorrents;
         QHash<TorrentID, TorrentID> m_changedTorrentIDs;

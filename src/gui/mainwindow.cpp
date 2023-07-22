@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -75,13 +75,13 @@
 #include "base/utils/password.h"
 #include "base/version.h"
 #include "aboutdialog.h"
-#include "addnewtorrentdialog.h"
 #include "autoexpandabledialog.h"
 #include "cookiesdialog.h"
 #include "desktopintegration.h"
 #include "downloadfromurldialog.h"
 #include "executionlogwidget.h"
 #include "hidabletabwidget.h"
+#include "interfaces/iguiapplication.h"
 #include "lineedit.h"
 #include "optionsdialog.h"
 #include "powermanagement/powermanagement.h"
@@ -673,7 +673,7 @@ void MainWindow::displayRSSTab(bool enable)
         // RSS tab
         if (!m_rssWidget)
         {
-            m_rssWidget = new RSSWidget(m_tabs);
+            m_rssWidget = new RSSWidget(app(), m_tabs);
             connect(m_rssWidget.data(), &RSSWidget::unreadCountUpdated, this, &MainWindow::handleRSSUnreadCountUpdated);
 #ifdef Q_OS_MACOS
             m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
@@ -1124,7 +1124,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
         if (mimeData->hasText())
         {
-            const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
             const QStringList lines = mimeData->text().split(u'\n', Qt::SkipEmptyParts);
 
             for (QString line : lines)
@@ -1134,10 +1133,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
                 if (!isTorrentLink(line))
                     continue;
 
-                if (useTorrentAdditionDialog)
-                    AddNewTorrentDialog::show(line, this);
-                else
-                    BitTorrent::Session::instance()->addTorrent(line);
+                app()->addTorrentManager()->addTorrent(line);
             }
 
             return;
@@ -1320,14 +1316,8 @@ void MainWindow::dropEvent(QDropEvent *event)
     }
 
     // Download torrents
-    const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     for (const QString &file : asConst(torrentFiles))
-    {
-        if (useTorrentAdditionDialog)
-            AddNewTorrentDialog::show(file, this);
-        else
-            BitTorrent::Session::instance()->addTorrent(file);
-    }
+        app()->addTorrentManager()->addTorrent(file);
     if (!torrentFiles.isEmpty()) return;
 
     // Create torrent
@@ -1364,22 +1354,14 @@ void MainWindow::on_actionOpen_triggered()
     Preferences *const pref = Preferences::instance();
     // Open File Open Dialog
     // Note: it is possible to select more than one file
-    const QStringList pathsList =
-        QFileDialog::getOpenFileNames(this, tr("Open Torrent Files"), pref->getMainLastDir().data(),
-                                      tr("Torrent Files") + u" (*" + TORRENT_FILE_EXTENSION + u')');
+    const QStringList pathsList = QFileDialog::getOpenFileNames(this, tr("Open Torrent Files")
+            , pref->getMainLastDir().data(),  tr("Torrent Files") + u" (*" + TORRENT_FILE_EXTENSION + u')');
 
     if (pathsList.isEmpty())
         return;
 
-    const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
-
     for (const QString &file : pathsList)
-    {
-        if (useTorrentAdditionDialog)
-            AddNewTorrentDialog::show(file, this);
-        else
-            BitTorrent::Session::instance()->addTorrent(file);
-    }
+        app()->addTorrentManager()->addTorrent(file);
 
     // Save last dir to remember it
     const Path topDir {pathsList.at(0)};
@@ -1576,14 +1558,8 @@ void MainWindow::reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torren
 
 void MainWindow::downloadFromURLList(const QStringList &urlList)
 {
-    const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     for (const QString &url : urlList)
-    {
-        if (useTorrentAdditionDialog)
-            AddNewTorrentDialog::show(url, this);
-        else
-            BitTorrent::Session::instance()->addTorrent(url);
-    }
+        app()->addTorrentManager()->addTorrent(url);
 }
 
 /*****************************************************

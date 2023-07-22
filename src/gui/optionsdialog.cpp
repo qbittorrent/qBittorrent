@@ -483,8 +483,8 @@ void OptionsDialog::loadDownloadsTabOptions()
     const auto *pref = Preferences::instance();
     const auto *session = BitTorrent::Session::instance();
 
-    m_ui->checkAdditionDialog->setChecked(AddNewTorrentDialog::isEnabled());
-    m_ui->checkAdditionDialogFront->setChecked(AddNewTorrentDialog::isTopLevel());
+    m_ui->checkAdditionDialog->setChecked(pref->isAddNewTorrentDialogEnabled());
+    m_ui->checkAdditionDialogFront->setChecked(pref->isAddNewTorrentDialogTopLevel());
 
     m_ui->contentLayoutComboBox->setCurrentIndex(static_cast<int>(session->torrentContentLayout()));
     m_ui->checkAddToQueueTop->setChecked(session->isAddTorrentToQueueTop());
@@ -685,8 +685,8 @@ void OptionsDialog::saveDownloadsTabOptions() const
     auto *pref = Preferences::instance();
     auto *session = BitTorrent::Session::instance();
 
-    AddNewTorrentDialog::setEnabled(useAdditionDialog());
-    AddNewTorrentDialog::setTopLevel(m_ui->checkAdditionDialogFront->isChecked());
+    pref->setAddNewTorrentDialogEnabled(useAdditionDialog());
+    pref->setAddNewTorrentDialogTopLevel(m_ui->checkAdditionDialogFront->isChecked());
 
     session->setTorrentContentLayout(static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex()));
 

@@ -63,6 +63,7 @@
 #endif // Q_OS_MACOS
 #endif
 
+#include "base/addtorrentmanager.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
@@ -81,7 +82,6 @@
 #include "base/search/searchpluginmanager.h"
 #include "base/settingsstorage.h"
 #include "base/torrentfileswatcher.h"
-#include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
@@ -91,7 +91,7 @@
 #include "upgrade.h"
 
 #ifndef DISABLE_GUI
-#include "gui/addnewtorrentdialog.h"
+#include "gui/guiaddtorrentmanager.h"
 #include "gui/desktopintegration.h"
 #include "gui/mainwindow.h"
 #include "gui/shutdownconfirmdialog.h"
@@ -744,18 +744,15 @@ void Application::processParams(const QBtCommandLineParameters &params)
     // be shown and skipTorrentDialog is undefined. The other is when
     // skipTorrentDialog is false, meaning that the application setting
     // should be overridden.
-    const bool showDialog = !params.skipDialog.value_or(!AddNewTorrentDialog::isEnabled());
-    if (showDialog)
-    {
-        for (const QString &torrentSource : params.torrentSources)
-            AddNewTorrentDialog::show(torrentSource, params.addTorrentParams, m_window);
-    }
-    else
+    AddTorrentOption addTorrentOption = AddTorrentOption::Default;
+    if (params.skipDialog.has_value())
+        addTorrentOption = params.skipDialog.value() ? AddTorrentOption::SkipDialog : AddTorrentOption::ShowDialog;
+    for (const QString &torrentSource : params.torrentSources)
+        m_addTorrentManager->addTorrent(torrentSource, params.addTorrentParams, addTorrentOption);
+#else
+    for (const QString &torrentSource : params.torrentSources)
+        m_addTorrentManager->addTorrent(torrentSource, params.addTorrentParams);
 #endif
-    {
-        for (const QString &torrentSource : params.torrentSources)
-            BitTorrent::Session::instance()->addTorrent(torrentSource, params.addTorrentParams);
-    }
 }
 
 int Application::exec()
@@ -823,11 +820,13 @@ try
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
+        m_addTorrentManager = new AddTorrentManagerImpl(this, BitTorrent::Session::instance(), this);
+
         Net::GeoIPManager::initInstance();
         TorrentFilesWatcher::initInstance();
 
         new RSS::Session; // create RSS::Session singleton
-        new RSS::AutoDownloader; // create RSS::AutoDownloader singleton
+        new RSS::AutoDownloader(this); // create RSS::AutoDownloader singleton
 
 #ifndef DISABLE_GUI
         const auto *btSession = BitTorrent::Session::instance();
@@ -835,8 +834,8 @@ try
                 , [this](const BitTorrent::Torrent *torrent, const QString &msg)
         {
             m_desktopIntegration->showNotification(tr("I/O Error", "i.e: Input/Output Error")
-                                                   , tr("An I/O error occurred for torrent '%1'.\n Reason: %2"
-                                                        , "e.g: An error occurred for torrent 'xxx.avi'.\n Reason: disk is full.").arg(torrent->name(), msg));
+                    , tr("An I/O error occurred for torrent '%1'.\n Reason: %2"
+                            , "e.g: An error occurred for torrent 'xxx.avi'.\n Reason: disk is full.").arg(torrent->name(), msg));
         });
         connect(btSession, &BitTorrent::Session::loadTorrentFailed, this
                 , [this](const QString &error)
@@ -854,11 +853,11 @@ try
         {
             m_desktopIntegration->showNotification(tr("Download completed"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
         });
-        connect(btSession, &BitTorrent::Session::downloadFromUrlFailed, this
+        connect(m_addTorrentManager, &GUIAddTorrentManager::downloadFromUrlFailed, this
                 , [this](const QString &url, const QString &reason)
         {
             m_desktopIntegration->showNotification(tr("URL download error")
-                                                   , tr("Couldn't download file at URL '%1', reason: %2.").arg(url, reason));
+                    , tr("Couldn't download file at URL '%1', reason: %2.").arg(url, reason));
         });
 
         disconnect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);
@@ -1278,6 +1277,7 @@ void Application::cleanup()
     delete RSS::Session::instance();
 
     TorrentFilesWatcher::freeInstance();
+    delete m_addTorrentManager;
     BitTorrent::Session::freeInstance();
     Net::GeoIPManager::freeInstance();
     Net::DownloadManager::freeInstance();
@@ -1311,4 +1311,9 @@ void Application::cleanup()
         qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
         Utils::Misc::shutdownComputer(m_shutdownAct);
     }
+}
+
+AddTorrentManagerImpl *Application::addTorrentManager() const
+{
+    return m_addTorrentManager;
 }

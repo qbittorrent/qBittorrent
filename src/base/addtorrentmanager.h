@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,14 +27,45 @@
  * exception statement from your version.
  */
 
-#include "guiapplicationcomponent.h"
+#pragma once
 
-GUIApplicationComponentBase::GUIApplicationComponentBase(IGUIApplication *app)
-    : ApplicationComponentBase(app)
+#include <QHash>
+#include <QObject>
+
+#include "base/applicationcomponent.h"
+#include "base/bittorrent/addtorrentparams.h"
+
+namespace Net
 {
+    struct DownloadResult;
 }
 
-IGUIApplication *GUIApplicationComponentBase::app() const
+namespace BitTorrent
 {
-    return static_cast<IGUIApplication *>(ApplicationComponentBase::app());
+    class Session;
+    class TorrentDescriptor;
 }
+
+class AddTorrentManager : public ApplicationComponent<QObject>
+{
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(AddTorrentManager)
+
+public:
+    AddTorrentManager(IApplication *app, BitTorrent::Session *btSession, QObject *parent = nullptr);
+
+    BitTorrent::Session *btSession() const;
+    bool addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params = {});
+
+signals:
+    void downloadFromUrlFailed(const QString &url, const QString &reason);
+    void downloadFromUrlFinished(const QString &url);
+
+private:
+    void onDownloadFinished(const Net::DownloadResult &result);
+    void handleError(const QString &source, const QString &reason);
+    bool processTorrent(const BitTorrent::TorrentDescriptor &torrentDescr, const BitTorrent::AddTorrentParams &addTorrentParams);
+
+    BitTorrent::Session *m_btSession = nullptr;
+    QHash<QString, BitTorrent::AddTorrentParams> m_downloadedTorrents;
+};

@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020, Will Da Silva <will@willdasilva.xyz>
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -30,60 +29,51 @@
 
 #pragma once
 
-#include <QList>
-#include <QPointer>
-#include <QWidget>
+#include <memory>
 
-#include "gui/guiapplicationcomponent.h"
+#include "base/addtorrentmanager.h"
+#include "base/bittorrent/infohash.h"
+#include "base/torrentfileguard.h"
+#include "guiapplicationcomponent.h"
 
-class QEvent;
-class QObject;
-class QTabWidget;
+#include <QHash>
 
-class MainWindow;
-class SearchJobWidget;
-
-namespace Ui
+namespace BitTorrent
 {
-    class SearchWidget;
+    class TorrentDescriptor;
 }
 
-class SearchWidget : public GUIApplicationComponent<QWidget>
+namespace Net
+{
+    struct DownloadResult;
+}
+
+class AddNewTorrentDialog;
+
+enum class AddTorrentOption
+{
+    Default,
+    ShowDialog,
+    SkipDialog,
+};
+
+class GUIAddTorrentManager : public GUIApplicationComponent<AddTorrentManager>
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(SearchWidget)
+    Q_DISABLE_COPY_MOVE(GUIAddTorrentManager)
 
 public:
-    explicit SearchWidget(IGUIApplication *app, MainWindow *mainWindow);
-    ~SearchWidget() override;
+    GUIAddTorrentManager(IGUIApplication *app, BitTorrent::Session *session, QObject *parent = nullptr);
 
-    void giveFocusToSearchInput();
-
-private slots:
-    void on_searchButton_clicked();
-    void on_pluginsButton_clicked();
+    bool addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params = {}, AddTorrentOption option = AddTorrentOption::Default);
 
 private:
-    bool eventFilter(QObject *object, QEvent *event) override;
-    void tabChanged(int index);
-    void closeTab(int index);
-    void closeAllTabs();
-    void tabStatusChanged(QWidget *tab);
-    void selectMultipleBox(int index);
-    void toggleFocusBetweenLineEdits();
+    void onDownloadFinished(const Net::DownloadResult &result);
+    void onMetadataDownloaded(const BitTorrent::TorrentInfo &metadata);
+    void handleError(const QString &source, const QString &reason);
+    bool processTorrent(const BitTorrent::TorrentDescriptor &torrentDescr, const BitTorrent::AddTorrentParams &params);
 
-    void fillCatCombobox();
-    void fillPluginComboBox();
-    void selectActivePage();
-    void searchTextEdited(const QString &);
-
-    QString selectedCategory() const;
-    QString selectedPlugin() const;
-
-    Ui::SearchWidget *m_ui = nullptr;
-    QPointer<SearchJobWidget> m_currentSearchTab; // Selected tab
-    QPointer<SearchJobWidget> m_activeSearchTab; // Tab with running search
-    QList<SearchJobWidget *> m_allTabs; // To store all tabs
-    MainWindow *m_mainWindow = nullptr;
-    bool m_isNewQueryString = false;
+    QHash<QString, BitTorrent::AddTorrentParams> m_downloadedTorrents;
+    QHash<BitTorrent::InfoHash, AddNewTorrentDialog *> m_dialogs;
+    QHash<BitTorrent::InfoHash, std::shared_ptr<TorrentFileGuard>> m_processingFiles;
 };

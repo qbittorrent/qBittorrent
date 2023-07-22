@@ -1,6 +1,7 @@
 add_library(qbt_base STATIC
     # headers
     3rdparty/expected.hpp
+    addtorrentmanager.h
     algorithm.h
     applicationcomponent.h
     asyncfilestorage.h
@@ -106,6 +107,7 @@ add_library(qbt_base STATIC
     version.h
 
     # sources
+    addtorrentmanager.cpp
     applicationcomponent.cpp
     asyncfilestorage.cpp
     bittorrent/abstractfilestorage.cpp

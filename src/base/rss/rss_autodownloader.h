@@ -36,6 +36,7 @@
 #include <QRegularExpression>
 #include <QSharedPointer>
 
+#include "base/applicationcomponent.h"
 #include "base/exceptions.h"
 #include "base/settingvalue.h"
 #include "base/utils/thread.h"
@@ -61,14 +62,14 @@ namespace RSS
         using RuntimeError::RuntimeError;
     };
 
-    class AutoDownloader final : public QObject
+    class AutoDownloader final : public ApplicationComponent<QObject>
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(AutoDownloader)
 
         friend class ::Application;
 
-        AutoDownloader();
+        explicit AutoDownloader(IApplication *app);
         ~AutoDownloader() override;
 
     public:

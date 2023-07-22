@@ -29,27 +29,38 @@
 #pragma once
 
 #include "base/applicationcomponent.h"
-#include "interfaces/iguiapplication.h"
 
-class GUIApplicationComponentBase : public ApplicationComponentBase
-{
-    Q_DISABLE_COPY_MOVE(GUIApplicationComponentBase)
-
-public:
-    IGUIApplication *app() const override;
-
-protected:
-    explicit GUIApplicationComponentBase(IGUIApplication *app);
-};
+class IGUIApplication;
 
 template <typename Base>
-class GUIApplicationComponent : public Base, public GUIApplicationComponentBase
+class GUIApplicationComponent : public Base, public ApplicationComponentBase
 {
 public:
     template <typename... Args>
     explicit GUIApplicationComponent(IGUIApplication *app, Args&&... args)
         : Base(std::forward<Args>(args)...)
-        , GUIApplicationComponentBase(app)
+        , ApplicationComponentBase(reinterpret_cast<IApplication *>(app))
     {
+    }
+
+    IGUIApplication *app() const
+    {
+        return reinterpret_cast<IGUIApplication *>(ApplicationComponentBase::app());
+    }
+};
+
+template <IsApplicationComponent Base>
+class GUIApplicationComponent<Base> : public Base
+{
+public:
+    template <typename... Args>
+    explicit GUIApplicationComponent(IGUIApplication *app, Args&&... args)
+        : Base(reinterpret_cast<IApplication *>(app), std::forward<Args>(args)...)
+    {
+    }
+
+    IGUIApplication *app() const
+    {
+        return reinterpret_cast<IGUIApplication *>(ApplicationComponentBase::app());
     }
 };
