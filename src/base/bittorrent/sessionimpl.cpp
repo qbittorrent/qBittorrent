@@ -1571,37 +1571,48 @@ void SessionImpl::initMetrics()
         return index;
     };
 
-    // TODO: switch to "designated initializers" in C++20
-    m_metricIndices.net.hasIncomingConnections = findMetricIndex("net.has_incoming_connections");
-    m_metricIndices.net.sentPayloadBytes = findMetricIndex("net.sent_payload_bytes");
-    m_metricIndices.net.recvPayloadBytes = findMetricIndex("net.recv_payload_bytes");
-    m_metricIndices.net.sentBytes = findMetricIndex("net.sent_bytes");
-    m_metricIndices.net.recvBytes = findMetricIndex("net.recv_bytes");
-    m_metricIndices.net.sentIPOverheadBytes = findMetricIndex("net.sent_ip_overhead_bytes");
-    m_metricIndices.net.recvIPOverheadBytes = findMetricIndex("net.recv_ip_overhead_bytes");
-    m_metricIndices.net.sentTrackerBytes = findMetricIndex("net.sent_tracker_bytes");
-    m_metricIndices.net.recvTrackerBytes = findMetricIndex("net.recv_tracker_bytes");
-    m_metricIndices.net.recvRedundantBytes = findMetricIndex("net.recv_redundant_bytes");
-    m_metricIndices.net.recvFailedBytes = findMetricIndex("net.recv_failed_bytes");
-
-    m_metricIndices.peer.numPeersConnected = findMetricIndex("peer.num_peers_connected");
-    m_metricIndices.peer.numPeersDownDisk = findMetricIndex("peer.num_peers_down_disk");
-    m_metricIndices.peer.numPeersUpDisk = findMetricIndex("peer.num_peers_up_disk");
-
-    m_metricIndices.dht.dhtBytesIn = findMetricIndex("dht.dht_bytes_in");
-    m_metricIndices.dht.dhtBytesOut = findMetricIndex("dht.dht_bytes_out");
-    m_metricIndices.dht.dhtNodes = findMetricIndex("dht.dht_nodes");
-
-    m_metricIndices.disk.diskBlocksInUse = findMetricIndex("disk.disk_blocks_in_use");
-    m_metricIndices.disk.numBlocksRead = findMetricIndex("disk.num_blocks_read");
+    m_metricIndices =
+    {
+        .net =
+        {
+            .hasIncomingConnections = findMetricIndex("net.has_incoming_connections"),
+            .sentPayloadBytes = findMetricIndex("net.sent_payload_bytes"),
+            .recvPayloadBytes = findMetricIndex("net.recv_payload_bytes"),
+            .sentBytes = findMetricIndex("net.sent_bytes"),
+            .recvBytes = findMetricIndex("net.recv_bytes"),
+            .sentIPOverheadBytes = findMetricIndex("net.sent_ip_overhead_bytes"),
+            .recvIPOverheadBytes = findMetricIndex("net.recv_ip_overhead_bytes"),
+            .sentTrackerBytes = findMetricIndex("net.sent_tracker_bytes"),
+            .recvTrackerBytes = findMetricIndex("net.recv_tracker_bytes"),
+            .recvRedundantBytes = findMetricIndex("net.recv_redundant_bytes"),
+            .recvFailedBytes = findMetricIndex("net.recv_failed_bytes")
+        },
+        .peer =
+        {
+            .numPeersConnected = findMetricIndex("peer.num_peers_connected"),
+            .numPeersUpDisk = findMetricIndex("peer.num_peers_up_disk"),
+            .numPeersDownDisk = findMetricIndex("peer.num_peers_down_disk")
+        },
+        .dht =
+        {
+            .dhtBytesIn = findMetricIndex("dht.dht_bytes_in"),
+            .dhtBytesOut = findMetricIndex("dht.dht_bytes_out"),
+            .dhtNodes = findMetricIndex("dht.dht_nodes")
+        },
+        .disk =
+        {
+            .diskBlocksInUse = findMetricIndex("disk.disk_blocks_in_use"),
+            .numBlocksRead = findMetricIndex("disk.num_blocks_read"),
 #ifndef QBT_USES_LIBTORRENT2
-    m_metricIndices.disk.numBlocksCacheHits = findMetricIndex("disk.num_blocks_cache_hits");
+            .numBlocksCacheHits = findMetricIndex("disk.num_blocks_cache_hits"),
 #endif
-    m_metricIndices.disk.writeJobs = findMetricIndex("disk.num_write_ops");
-    m_metricIndices.disk.readJobs = findMetricIndex("disk.num_read_ops");
-    m_metricIndices.disk.hashJobs = findMetricIndex("disk.num_blocks_hashed");
-    m_metricIndices.disk.queuedDiskJobs = findMetricIndex("disk.queued_disk_jobs");
-    m_metricIndices.disk.diskJobTime = findMetricIndex("disk.disk_job_time");
+            .writeJobs = findMetricIndex("disk.num_write_ops"),
+            .readJobs = findMetricIndex("disk.num_read_ops"),
+            .hashJobs = findMetricIndex("disk.num_blocks_hashed"),
+            .queuedDiskJobs = findMetricIndex("disk.queued_disk_jobs"),
+            .diskJobTime = findMetricIndex("disk.disk_job_time")
+        }
+    };
 }
 
 lt::settings_pack SessionImpl::loadLTSettings() const

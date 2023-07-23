@@ -67,12 +67,9 @@ struct PeerEndpoint
 {
     BitTorrent::PeerAddress address;
     QString connectionType; // matches return type of `PeerInfo::connectionType()`
-};
 
-bool operator==(const PeerEndpoint &left, const PeerEndpoint &right)
-{
-    return (left.address == right.address) && (left.connectionType == right.connectionType);
-}
+    friend bool operator==(const PeerEndpoint &left, const PeerEndpoint &right) = default;
+};
 
 std::size_t qHash(const PeerEndpoint &peerEndpoint, const std::size_t seed = 0)
 {

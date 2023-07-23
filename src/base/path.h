@@ -95,7 +95,6 @@ private:
 Q_DECLARE_METATYPE(Path)
 
 bool operator==(const Path &lhs, const Path &rhs);
-bool operator!=(const Path &lhs, const Path &rhs);
 Path operator+(const Path &lhs, QStringView rhs);
 
 QDataStream &operator<<(QDataStream &out, const Path &path);

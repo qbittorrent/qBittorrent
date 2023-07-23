@@ -342,11 +342,6 @@ bool operator==(const Path &lhs, const Path &rhs)
     return (lhs.data().compare(rhs.data(), CASE_SENSITIVITY) == 0);
 }
 
-bool operator!=(const Path &lhs, const Path &rhs)
-{
-    return !(lhs == rhs);
-}
-
 Path operator/(const Path &lhs, const Path &rhs)
 {
     if (rhs.isEmpty())

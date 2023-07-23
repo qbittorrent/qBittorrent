@@ -64,7 +64,6 @@ namespace BitTorrent
     };
 
     bool operator==(const Peer &left, const Peer &right);
-    bool operator!=(const Peer &left, const Peer &right);
     std::size_t qHash(const Peer &key, std::size_t seed = 0);
 
     // *Basic* Bittorrent tracker implementation

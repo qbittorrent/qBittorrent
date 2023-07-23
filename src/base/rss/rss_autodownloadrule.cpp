@@ -167,11 +167,6 @@ namespace RSS
         return (left.m_dataPtr == right.m_dataPtr) // optimization
                 || (*(left.m_dataPtr) == *(right.m_dataPtr));
     }
-
-    bool operator!=(const AutoDownloadRule &left, const AutoDownloadRule &right)
-    {
-        return !(left == right);
-    }
 }
 
 using namespace RSS;

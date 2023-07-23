@@ -107,11 +107,6 @@ public:
             return (*left == *right);
         }
 
-        friend constexpr bool operator!=(const Iterator &left, const Iterator &right)
-        {
-            return !(left == right);
-        }
-
     private:
         IndexType m_index;
     };

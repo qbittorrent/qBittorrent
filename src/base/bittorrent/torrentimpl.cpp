@@ -31,7 +31,6 @@
 
 #include <algorithm>
 #include <memory>
-#include <type_traits>
 
 #include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
@@ -551,8 +550,7 @@ QVector<TrackerEntry> TorrentImpl::trackers() const
 
 void TorrentImpl::addTrackers(QVector<TrackerEntry> trackers)
 {
-    // TODO: use std::erase_if() in C++20
-    trackers.erase(std::remove_if(trackers.begin(), trackers.end(), [](const TrackerEntry &entry) { return entry.url.isEmpty(); }), trackers.end());
+    trackers.removeIf([](const TrackerEntry &entry) { return entry.url.isEmpty(); });
 
     const auto newTrackers = QSet<TrackerEntry>(trackers.cbegin(), trackers.cend())
             - QSet<TrackerEntry>(m_trackerEntries.cbegin(), m_trackerEntries.cend());
@@ -596,8 +594,7 @@ void TorrentImpl::removeTrackers(const QStringList &trackers)
 
 void TorrentImpl::replaceTrackers(QVector<TrackerEntry> trackers)
 {
-    // TODO: use std::erase_if() in C++20
-    trackers.erase(std::remove_if(trackers.begin(), trackers.end(), [](const TrackerEntry &entry) { return entry.url.isEmpty(); }), trackers.end());
+    trackers.removeIf([](const TrackerEntry &entry) { return entry.url.isEmpty(); });
     std::sort(trackers.begin(), trackers.end()
         , [](const TrackerEntry &lhs, const TrackerEntry &rhs) { return lhs.tier < rhs.tier; });
 

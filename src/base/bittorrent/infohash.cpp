@@ -120,8 +120,3 @@ bool BitTorrent::operator==(const BitTorrent::InfoHash &left, const BitTorrent::
 {
     return (static_cast<InfoHash::WrappedType>(left) == static_cast<InfoHash::WrappedType>(right));
 }
-
-bool BitTorrent::operator!=(const BitTorrent::InfoHash &left, const BitTorrent::InfoHash &right)
-{
-    return !(left == right);
-}

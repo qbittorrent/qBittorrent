@@ -108,6 +108,4 @@ namespace RSS
 
         QSharedDataPointer<AutoDownloadRuleData> m_dataPtr;
     };
-
-    bool operator!=(const AutoDownloadRule &left, const AutoDownloadRule &right);
 }
