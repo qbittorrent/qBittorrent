@@ -1382,7 +1382,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
         }
     }
 
-    Algorithm::removeIf(resumeData.tags, [this, &torrentID](const QString &tag)
+    erase_if(resumeData.tags, [this, &torrentID](const QString &tag)
     {
         if (hasTag(tag))
             return false;

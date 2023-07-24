@@ -58,7 +58,7 @@ public:
 
     ThisType &intersect(const ThisType &other)
     {
-        Algorithm::removeIf(*this, [&other](const value_type &value) -> bool
+        std::erase_if(*this, [&other](const value_type &value) -> bool
         {
             return !other.contains(value);
         });
