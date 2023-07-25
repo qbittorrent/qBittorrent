@@ -33,6 +33,7 @@ repos:
         (?x)^(
           src/base/3rdparty/.* |
           src/base/3rdparty/lua/.* |
+          src/base/3rdparty/luabridge/.* |
           src/webui/www/private/css/lib/.* |
           src/webui/www/private/scripts/lib/.* |
           test/testdata/crlf.txt
@@ -61,6 +62,7 @@ repos:
           dist/windows/installer-translations/.* |
           src/base/3rdparty/.* |
           src/base/3rdparty/lua/.* |
+          src/base/3rdparty/luabridge/.* |
           src/searchengine/nova3/socks.py |
           src/webui/www/private/scripts/lib/.*
         )$
@@ -84,6 +86,7 @@ repos:
           dist/windows/installer-translations/.* |
           src/base/3rdparty/.* |
           src/base/3rdparty/lua/.* |
+          src/base/3rdparty/luabridge/.* |
           src/searchengine/nova3/socks.py |
           src/webui/www/private/scripts/lib/.*
         )$
