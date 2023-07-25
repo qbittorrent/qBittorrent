@@ -31,6 +31,8 @@ repos:
       name: Check trailing newlines
       exclude: |
         (?x)^(
+          src/base/3rdparty/.* |
+          src/base/3rdparty/lua/.* |
           src/webui/www/private/css/lib/.* |
           src/webui/www/private/scripts/lib/.* |
           test/testdata/crlf.txt
@@ -58,6 +60,7 @@ repos:
           Changelog |
           dist/windows/installer-translations/.* |
           src/base/3rdparty/.* |
+          src/base/3rdparty/lua/.* |
           src/searchengine/nova3/socks.py |
           src/webui/www/private/scripts/lib/.*
         )$
@@ -80,6 +83,7 @@ repos:
           dist/windows/3rdparty/.* |
           dist/windows/installer-translations/.* |
           src/base/3rdparty/.* |
+          src/base/3rdparty/lua/.* |
           src/searchengine/nova3/socks.py |
           src/webui/www/private/scripts/lib/.*
         )$
