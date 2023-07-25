@@ -168,8 +168,7 @@ namespace
 }
 
 AdvancedSettings::AdvancedSettings(IGUIApplication *app, QWidget *parent)
-    : QTableWidget(parent)
-    , GUIApplicationComponent(app)
+    : GUIApplicationComponent(app, parent)
 {
     // column
     setColumnCount(COL_COUNT);

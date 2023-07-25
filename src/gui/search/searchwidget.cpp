@@ -84,8 +84,7 @@ namespace
 }
 
 SearchWidget::SearchWidget(IGUIApplication *app, MainWindow *mainWindow)
-    : QWidget(mainWindow)
-    , GUIApplicationComponent(app)
+    : GUIApplicationComponent(app, mainWindow)
     , m_ui {new Ui::SearchWidget()}
     , m_mainWindow {mainWindow}
 {

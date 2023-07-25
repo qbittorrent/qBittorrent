@@ -45,7 +45,7 @@ namespace Net
 
 class WebApplication;
 
-class WebUI : public QObject, public ApplicationComponent
+class WebUI final : public ApplicationComponent<QObject>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(WebUI)

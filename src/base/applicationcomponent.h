@@ -32,16 +32,30 @@
 
 #include "interfaces/iapplication.h"
 
-class ApplicationComponent
+class ApplicationComponentBase
 {
-    Q_DISABLE_COPY_MOVE(ApplicationComponent)
+    Q_DISABLE_COPY_MOVE(ApplicationComponentBase)
 
 public:
-    explicit ApplicationComponent(IApplication *app);
-    virtual ~ApplicationComponent() = default;
+    virtual ~ApplicationComponentBase() = default;
 
     virtual IApplication *app() const;
 
+protected:
+    explicit ApplicationComponentBase(IApplication *app);
+
 private:
     IApplication *m_app = nullptr;
+};
+
+template <typename Base>
+class ApplicationComponent : public Base, public ApplicationComponentBase
+{
+public:
+    template <typename... Args>
+    explicit ApplicationComponent(IApplication *app, Args&&... args)
+        : Base(std::forward<Args>(args)...)
+        , ApplicationComponentBase(app)
+    {
+    }
 };

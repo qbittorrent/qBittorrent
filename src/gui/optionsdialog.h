@@ -57,8 +57,8 @@ namespace Ui
 {
     class OptionsDialog;
 }
-
-class OptionsDialog final : public QDialog, public GUIApplicationComponent
+    
+    class OptionsDialog final : public GUIApplicationComponent<QDialog>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(OptionsDialog)

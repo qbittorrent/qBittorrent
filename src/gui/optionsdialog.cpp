@@ -110,8 +110,7 @@ namespace
 
 // Constructor
 OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
-    : QDialog(parent)
-    , GUIApplicationComponent(app)
+    : GUIApplicationComponent(app, parent)
     , m_ui {new Ui::OptionsDialog}
     , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
     , m_storeHSplitterSize {SETTINGS_KEY(u"HorizontalSplitterSizes"_s)}

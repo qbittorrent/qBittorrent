@@ -70,8 +70,8 @@ namespace Ui
 {
     class MainWindow;
 }
-
-class MainWindow final : public QMainWindow, public GUIApplicationComponent
+    
+    class MainWindow final : public GUIApplicationComponent<QMainWindow>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(MainWindow)
