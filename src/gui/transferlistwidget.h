@@ -119,6 +119,7 @@ private slots:
 private:
     void wheelEvent(QWheelEvent *event) override;
     QModelIndex mapToSource(const QModelIndex &index) const;
+    QModelIndexList mapToSource(const QModelIndexList &indexes) const;
     QModelIndex mapFromSource(const QModelIndex &index) const;
     bool loadSettings();
     QVector<BitTorrent::Torrent *> getSelectedTorrents() const;
