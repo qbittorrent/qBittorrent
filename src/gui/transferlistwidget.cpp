@@ -254,6 +254,16 @@ QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) const
     return index;
 }
 
+QModelIndexList TransferListWidget::mapToSource(const QModelIndexList &indexes) const
+{
+    QModelIndexList result;
+    result.reserve(indexes.size());
+    for (const QModelIndex &index : indexes)
+        result.append(mapToSource(index));
+
+    return result;
+}
+
 QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) const
 {
     Q_ASSERT(index.isValid());
@@ -264,11 +274,13 @@ QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) const
 void TransferListWidget::torrentDoubleClicked()
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid()) return;
+    if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid())
+        return;
 
     const QModelIndex index = m_listModel->index(mapToSource(selectedIndexes.first()).row());
     BitTorrent::Torrent *const torrent = m_listModel->torrentHandle(index);
-    if (!torrent) return;
+    if (!torrent)
+        return;
 
     int action;
     if (torrent->isSeed())
@@ -872,9 +884,13 @@ QStringList TransferListWidget::askTagsForSelection(const QString &dialogTitle)
 
 void TransferListWidget::applyToSelectedTorrents(const std::function<void (BitTorrent::Torrent *const)> &fn)
 {
-    for (const QModelIndex &index : asConst(selectionModel()->selectedRows()))
+    // Changing the data may affect the layout of the sort/filter model, which in turn may invalidate
+    // the indexes previously obtained from selection model before we process them all.
+    // Therefore, we must map all the selected indexes to source before start processing them.
+    const QModelIndexList sourceRows = mapToSource(selectionModel()->selectedRows());
+    for (const QModelIndex &index : sourceRows)
     {
-        BitTorrent::Torrent *const torrent = m_listModel->torrentHandle(mapToSource(index));
+        BitTorrent::Torrent *const torrent = m_listModel->torrentHandle(index);
         Q_ASSERT(torrent);
         fn(torrent);
     }
@@ -883,11 +899,13 @@ void TransferListWidget::applyToSelectedTorrents(const std::function<void (BitTo
 void TransferListWidget::renameSelectedTorrent()
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid()) return;
+    if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid())
+        return;
 
     const QModelIndex mi = m_listModel->index(mapToSource(selectedIndexes.first()).row(), TransferListModel::TR_NAME);
     BitTorrent::Torrent *const torrent = m_listModel->torrentHandle(mi);
-    if (!torrent) return;
+    if (!torrent)
+        return;
 
     // Ask for a new Name
     bool ok = false;
@@ -902,8 +920,7 @@ void TransferListWidget::renameSelectedTorrent()
 
 void TransferListWidget::setSelectionCategory(const QString &category)
 {
-    for (const QModelIndex &index : asConst(selectionModel()->selectedRows()))
-        m_listModel->setData(m_listModel->index(mapToSource(index).row(), TransferListModel::TR_CATEGORY), category, Qt::DisplayRole);
+    applyToSelectedTorrents([&category](BitTorrent::Torrent *torrent) { torrent->setCategory(category); });
 }
 
 void TransferListWidget::addSelectionTag(const QString &tag)
@@ -924,7 +941,8 @@ void TransferListWidget::clearSelectionTags()
 void TransferListWidget::displayListMenu()
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    if (selectedIndexes.isEmpty()) return;
+    if (selectedIndexes.isEmpty())
+        return;
 
     auto *listMenu = new QMenu(this);
     listMenu->setAttribute(Qt::WA_DeleteOnClose);
