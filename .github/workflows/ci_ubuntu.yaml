@@ -21,9 +21,6 @@ jobs:
         libt_version: ["2.0.9", "1.2.19"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
         qt_version: ["6.5.2"]
-        exclude:
-          - libt_version: "1.2.19"
-            qt_version: "6.5.2"
 
     steps:
       - name: Checkout repository
