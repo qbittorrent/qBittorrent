@@ -2026,7 +2026,7 @@ void TorrentsController::removeTagsAction()
     {
         applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent)
         {
-            torrent->removeAllTags();
+            torrent->clearTags();
         });
     }
 

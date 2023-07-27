@@ -67,6 +67,7 @@
 #endif
 
 #include "base/addtorrentmanager.h"
+#include "base/bittorrent/addtorrentparams.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
@@ -78,6 +79,7 @@
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/net/reverseresolution.h"
 #include "base/net/smtpclient.h"
+#include "base/plugins/pluginsengine.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/rss/rss_autodownloader.h"
@@ -938,13 +940,14 @@ int Application::exec()
         connect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);
     }
 #endif
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::restored, this, [this]()
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::restored, this, [this]
     {
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAdded, this, &Application::torrentAdded);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
         m_addTorrentManager = new AddTorrentManagerImpl(this, BitTorrent::Session::instance(), this);
+        PluginsEngine::initInstance();
 
         Net::GeoIPManager::initInstance();
         Net::ReverseResolution::initInstance();
@@ -955,7 +958,7 @@ int Application::exec()
 
 #ifndef DISABLE_GUI
         const auto *btSession = BitTorrent::Session::instance();
-        connect(btSession, &BitTorrent::Session::fullDiskError, this
+        connect(btSession, &BitTorrent::Session::torrentIOError, this
                 , [this](const BitTorrent::Torrent *torrent, const QString &msg)
         {
             m_desktopIntegration->showNotification(tr("I/O Error", "i.e: Input/Output Error")
@@ -1463,6 +1466,8 @@ void Application::cleanup()
 #ifndef DISABLE_WEBUI
     delete m_webui;
 #endif
+
+    PluginsEngine::freeInstance();
 
     delete RSS::AutoDownloader::instance();
     delete RSS::Session::instance();

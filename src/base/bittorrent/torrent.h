@@ -203,7 +203,7 @@ namespace BitTorrent
         virtual bool hasTag(const Tag &tag) const = 0;
         virtual bool addTag(const Tag &tag) = 0;
         virtual bool removeTag(const Tag &tag) = 0;
-        virtual void removeAllTags() = 0;
+        virtual void clearTags() = 0;
 
         virtual int piecesCount() const = 0;
         virtual int piecesHave() const = 0;

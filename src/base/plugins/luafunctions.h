@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Thomas Piccirello <thomas@piccirello.com>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,52 +26,6 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include <lua/lua.hpp>
 
-#include <memory>
-
-#include <QtContainerFwd>
-#include <QHash>
-#include <QSet>
-
-#include "base/search/searchpluginmanager.h"
-#include "apicontroller.h"
-
-class QJsonArray;
-class QJsonObject;
-
-struct SearchResult;
-
-class SearchController : public APIController
-{
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(SearchController)
-
-public:
-    using APIController::APIController;
-
-private slots:
-    void startAction();
-    void stopAction();
-    void statusAction();
-    void resultsAction();
-    void deleteAction();
-    void downloadTorrentAction();
-    void pluginsAction();
-    void installPluginAction();
-    void uninstallPluginAction();
-    void enablePluginAction();
-    void updatePluginsAction();
-
-private:
-    const int MAX_CONCURRENT_SEARCHES = 5;
-
-    void checkForUpdatesFinished(const QHash<QString, SearchPluginVersion> &updateInfo);
-    void checkForUpdatesFailed(const QString &reason);
-    int generateSearchId() const;
-    QJsonObject getResults(const QList<SearchResult> &searchResults, bool isSearchActive, int totalResults) const;
-    QJsonArray getPluginsInfo(const QStringList &plugins) const;
-
-    QSet<int> m_activeSearches;
-    QHash<int, std::shared_ptr<SearchHandler>> m_searchHandlers;
-};
+void registerLuaFunctions(lua_State *luaState);

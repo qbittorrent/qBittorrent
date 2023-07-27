@@ -132,7 +132,7 @@ namespace BitTorrent
         bool hasTag(const Tag &tag) const override;
         bool addTag(const Tag &tag) override;
         bool removeTag(const Tag &tag) override;
-        void removeAllTags() override;
+        void clearTags() override;
 
         int filesCount() const override;
         int piecesCount() const override;

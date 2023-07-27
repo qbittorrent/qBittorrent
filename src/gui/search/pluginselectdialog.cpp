@@ -153,7 +153,7 @@ void PluginSelectDialog::on_updateButton_clicked()
 
 void PluginSelectDialog::togglePluginState(QTreeWidgetItem *item, int)
 {
-    PluginInfo *plugin = m_pluginManager->pluginInfo(item->text(PLUGIN_ID));
+    SearchPluginInfo *plugin = m_pluginManager->pluginInfo(item->text(PLUGIN_ID));
     m_pluginManager->enablePlugin(plugin->name, !plugin->enabled);
     if (plugin->enabled)
     {
@@ -287,7 +287,7 @@ void PluginSelectDialog::loadSupportedSearchPlugins()
 void PluginSelectDialog::addNewPlugin(const QString &pluginName)
 {
     auto *item = new QTreeWidgetItem(m_ui->pluginsTree);
-    PluginInfo *plugin = m_pluginManager->pluginInfo(pluginName);
+    SearchPluginInfo *plugin = m_pluginManager->pluginInfo(pluginName);
     item->setText(PLUGIN_NAME, plugin->fullName);
     item->setText(PLUGIN_URL, plugin->url);
     item->setText(PLUGIN_ID, plugin->name);
@@ -412,7 +412,7 @@ void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
         for (QTreeWidgetItem *item : asConst(findItemsWithUrl(result.url)))
         {
             QString id = item->text(PLUGIN_ID);
-            PluginInfo *plugin = m_pluginManager->pluginInfo(id);
+            SearchPluginInfo *plugin = m_pluginManager->pluginInfo(id);
             if (!plugin) continue;
 
             const QString ext = result.url.endsWith(u".ico", Qt::CaseInsensitive) ? u".ico"_s : u".png"_s;
@@ -440,7 +440,7 @@ void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
     Utils::Fs::removeFile(filePath);
 }
 
-void PluginSelectDialog::checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo)
+void PluginSelectDialog::checkForUpdatesFinished(const QHash<QString, SearchPluginVersion> &updateInfo)
 {
     finishAsyncOp();
     if (updateInfo.isEmpty())
@@ -482,7 +482,7 @@ void PluginSelectDialog::pluginInstallationFailed(const QString &name, const QSt
 void PluginSelectDialog::pluginUpdated(const QString &name)
 {
     finishAsyncOp();
-    PluginVersion version = m_pluginManager->pluginInfo(name)->version;
+    SearchPluginVersion version = m_pluginManager->pluginInfo(name)->version;
     QTreeWidgetItem *item = findItemWithID(name);
     item->setText(PLUGIN_VERSION, version.toString());
     m_updatedPlugins.append(name);
