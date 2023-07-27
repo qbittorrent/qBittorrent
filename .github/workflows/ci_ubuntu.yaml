@@ -20,10 +20,7 @@ jobs:
       matrix:
         libt_version: ["2.0.9", "1.2.19"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
-        qt_version: ["6.2.0"]
-        exclude:
-          - libt_version: "1.2.19"
-            qt_version: "6.2.0"
+        qt_version: ["6.5.2"]
 
     steps:
       - name: Checkout repository
@@ -34,7 +31,7 @@ jobs:
           sudo apt update
           sudo apt install \
             build-essential cmake ninja-build pkg-config \
-            libboost-dev libssl-dev libxkbcommon-x11-dev zlib1g-dev
+            libboost-dev libssl-dev libxkbcommon-x11-dev libxcb-cursor-dev zlib1g-dev
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
@@ -47,7 +44,7 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           version: ${{ matrix.qt_version }}
-          archives: icu qtbase qtsvg qttools
+          archives: icu qtbase qtdeclarative qtsvg qttools
 
       - name: Install libtorrent
         run: |

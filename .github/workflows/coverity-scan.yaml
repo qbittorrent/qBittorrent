@@ -26,7 +26,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: "6.5.0"
+          version: "6.5.2"
           archives: icu qtbase qtsvg qttools
 
       - name: Install libtorrent
