@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,14 +26,6 @@
  * exception statement from your version.
  */
 
-#include "pluginsengine.h"
+#pragma once
 
-#include <lua/lua.hpp>
-
-PluginsEngine::PluginsEngine(QObject *parent)
-    : QObject(parent)
-{
-    lua_State *luaState = luaL_newstate();
-    Q_ASSERT(luaState);
-    lua_close(luaState);
-}
+inline const char *QBT_NAMESPACE = "qBittorrent";
