@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,15 +26,6 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include <lua/lua.hpp>
 
-#include <QObject>
-
-class PluginsEngine : public QObject
-{
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(PluginsEngine)
-
-public:
-    explicit PluginsEngine(QObject *parent = nullptr);
-};
+void registerLuaClasses(lua_State *luaState);
