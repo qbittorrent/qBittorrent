@@ -585,12 +585,10 @@ QString Utils::Misc::libtorrentVersionString()
 
 QString Utils::Misc::opensslVersionString()
 {
-#if (OPENSSL_VERSION_NUMBER >= 0x1010000f)
-    static const auto version {QString::fromLatin1(OpenSSL_version(OPENSSL_VERSION))};
-#else
-    static const auto version {QString::fromLatin1(SSLeay_version(SSLEAY_VERSION))};
-#endif
-    return version.section(u' ', 1, 1);
+    // static initialization for usage in signal handler
+    static const auto version {QString::fromLatin1(::OpenSSL_version(OPENSSL_VERSION))
+        .section(u' ', 1, 1)};
+    return version;
 }
 
 QString Utils::Misc::zlibVersionString()
