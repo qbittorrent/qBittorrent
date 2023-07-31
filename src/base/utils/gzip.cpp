@@ -61,11 +61,7 @@ QByteArray Utils::Gzip::compress(const QByteArray &data, const int level, bool *
     if (initResult != Z_OK)
         return {};
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 5, 0))
     QByteArray ret {static_cast<qsizetype>(deflateBound(&strm, data.size())), Qt::Uninitialized};
-#else
-    QByteArray ret {static_cast<int>(deflateBound(&strm, data.size())), Qt::Uninitialized};
-#endif
     strm.next_out = reinterpret_cast<Bytef *>(ret.data());
     strm.avail_out = ret.size();
 
