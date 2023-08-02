@@ -195,7 +195,7 @@ void BitTorrent::TorrentDescriptor::setTorrentInfo(TorrentInfo torrentInfo)
     else
     {
         m_info = std::move(torrentInfo);
-        m_ltAddTorrentParams.ti = torrentInfo.nativeInfo();
+        m_ltAddTorrentParams.ti = m_info->nativeInfo();
 #ifdef QBT_USES_LIBTORRENT2
         m_ltAddTorrentParams.info_hashes = m_ltAddTorrentParams.ti->info_hashes();
 #else
