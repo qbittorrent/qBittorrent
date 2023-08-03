@@ -151,8 +151,8 @@ public:
                 ? BitTorrent::TorrentContentLayout::NoSubfolder
                 : BitTorrent::TorrentContentLayout::Subfolder);
 
-        if (!m_filePriorities.isEmpty())
-            m_filePriorities.resize(filesCount(), BitTorrent::DownloadPriority::Normal);
+        if (const int fileCount = filesCount(); !m_filePriorities.isEmpty() && (fileCount >= 0))
+            m_filePriorities.resize(fileCount, BitTorrent::DownloadPriority::Normal);
     }
 
     bool hasMetadata() const override

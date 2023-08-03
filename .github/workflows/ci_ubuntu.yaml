@@ -94,6 +94,8 @@ jobs:
       - name: Run CodeQL analysis
         uses: github/codeql-action/analyze@v2
         if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON') && startsWith(matrix.qt_version, 6)
+        with:
+          category: ${{ github.base_ref || github.ref_name }}
 
       - name: Prepare build artifacts
         run: |

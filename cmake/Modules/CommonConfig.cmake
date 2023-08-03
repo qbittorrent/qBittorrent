@@ -12,7 +12,7 @@ set(CMAKE_AUTORCC_OPTIONS --compress 9 --threshold 5)
 
 add_library(qbt_common_cfg INTERFACE)
 
-# Full C++ 20 support is required
+# C++ 20 support is required
 # See also https://cmake.org/cmake/help/latest/prop_gbl/CMAKE_CXX_KNOWN_FEATURES.html
 # for a breakdown of the features that CMake recognizes for each C++ standard
 target_compile_features(qbt_common_cfg INTERFACE
