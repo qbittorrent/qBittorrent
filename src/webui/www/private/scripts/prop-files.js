@@ -173,7 +173,7 @@ window.qBittorrent.PropFiles = (function() {
         elem.set('value', priority.toString());
         elem.set('html', html);
         if (selected)
-            elem.setAttribute('selected', '');
+            elem.selected = true;
         return elem;
     };
 
@@ -210,9 +210,9 @@ window.qBittorrent.PropFiles = (function() {
         for (let i = 0; i < options.length; ++i) {
             const option = options[i];
             if (parseInt(option.value) === priority)
-                option.setAttribute('selected', '');
+                option.selected = true;
             else
-                option.removeAttribute('selected');
+                option.selected = false;
         }
 
         combobox.value = priority;
