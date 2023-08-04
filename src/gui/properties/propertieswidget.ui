@@ -192,7 +192,7 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="3" colspan="4">
+              <item row="2" column="3">
                <widget class="QLabel" name="labelUpSpeedVal">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -382,7 +382,7 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="3" colspan="4">
+              <item row="1" column="3">
                <widget class="QLabel" name="labelUpTotalVal">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
