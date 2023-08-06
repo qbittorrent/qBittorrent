@@ -30,14 +30,15 @@
 #include "bytearray.h"
 
 #include <QByteArray>
-#include <QVector>
+#include <QByteArrayView>
+#include <QList>
 
-QVector<QByteArray> Utils::ByteArray::splitToViews(const QByteArray &in, const QByteArray &sep, const Qt::SplitBehavior behavior)
+QList<QByteArrayView> Utils::ByteArray::splitToViews(const QByteArrayView in, const QByteArrayView sep, const Qt::SplitBehavior behavior)
 {
     if (sep.isEmpty())
         return {in};
 
-    QVector<QByteArray> ret;
+    QList<QByteArrayView> ret;
     ret.reserve((behavior == Qt::KeepEmptyParts)
                 ? (1 + (in.size() / sep.size()))
                 : (1 + (in.size() / (sep.size() + 1))));
@@ -49,7 +50,7 @@ QVector<QByteArray> Utils::ByteArray::splitToViews(const QByteArray &in, const Q
             end = in.size();
 
         // omit empty parts
-        const QByteArray part = QByteArray::fromRawData((in.constData() + head), (end - head));
+        const QByteArrayView part = in.mid(head, (end - head));
         if (!part.isEmpty() || (behavior == Qt::KeepEmptyParts))
             ret += part;
 
@@ -57,17 +58,6 @@ QVector<QByteArray> Utils::ByteArray::splitToViews(const QByteArray &in, const Q
     }
 
     return ret;
-}
-
-const QByteArray Utils::ByteArray::midView(const QByteArray &in, const int pos, const int len)
-{
-    if ((pos < 0) || (pos >= in.size()) || (len == 0))
-        return {};
-
-    const int validLen = ((len < 0) || (pos + len) >= in.size())
-            ? in.size() - pos
-            : len;
-    return QByteArray::fromRawData(in.constData() + pos, validLen);
 }
 
 QByteArray Utils::ByteArray::toBase32(const QByteArray &in)
