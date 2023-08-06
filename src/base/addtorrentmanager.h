@@ -29,11 +29,14 @@
 
 #pragma once
 
+#include <memory>
+
 #include <QHash>
 #include <QObject>
 
 #include "base/applicationcomponent.h"
 #include "base/bittorrent/addtorrentparams.h"
+#include "base/torrentfileguard.h"
 
 namespace Net
 {
@@ -58,14 +61,26 @@ public:
     bool addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params = {});
 
 signals:
-    void downloadFromUrlFailed(const QString &url, const QString &reason);
-    void downloadFromUrlFinished(const QString &url);
+    void torrentAdded(const QString &source, BitTorrent::Torrent *torrent);
+    void addTorrentFailed(const QString &source, const QString &reason);
+
+protected:
+    bool addTorrentToSession(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr
+            , const BitTorrent::AddTorrentParams &addTorrentParams);
+    void handleAddTorrentFailed(const QString &source, const QString &reason);
+    void handleDuplicateTorrent(const QString &source, BitTorrent::Torrent *torrent, const QString &message);
+    void setTorrentFileGuard(const QString &source, std::shared_ptr<TorrentFileGuard> torrentFileGuard);
+    void releaseTorrentFileGuard(const QString &source);
 
 private:
     void onDownloadFinished(const Net::DownloadResult &result);
-    void handleError(const QString &source, const QString &reason);
-    bool processTorrent(const BitTorrent::TorrentDescriptor &torrentDescr, const BitTorrent::AddTorrentParams &addTorrentParams);
+    void onSessionTorrentAdded(BitTorrent::Torrent *torrent);
+    void onSessionAddTorrentFailed(const BitTorrent::InfoHash &infoHash, const QString &reason);
+    bool processTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr
+            , const BitTorrent::AddTorrentParams &addTorrentParams);
 
     BitTorrent::Session *m_btSession = nullptr;
     QHash<QString, BitTorrent::AddTorrentParams> m_downloadedTorrents;
+    QHash<BitTorrent::InfoHash, QString> m_sourcesByInfoHash;
+    QHash<QString, std::shared_ptr<TorrentFileGuard>> m_guardedTorrentFiles;
 };

@@ -34,6 +34,7 @@
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
+#include "base/torrentfileguard.h"
 #include "addnewtorrentdialog.h"
 #include "interfaces/iguiapplication.h"
 #include "mainwindow.h"
@@ -73,11 +74,11 @@ bool GUIAddTorrentManager::addTorrent(const QString &source, const BitTorrent::A
 
     if (const auto parseResult = BitTorrent::TorrentDescriptor::parse(source))
     {
-        return processTorrent(parseResult.value(), params);
+        return processTorrent(source, parseResult.value(), params);
     }
     else if (source.startsWith(u"magnet:", Qt::CaseInsensitive))
     {
-        handleError(source, parseResult.error());
+        handleAddTorrentFailed(source, parseResult.error());
         return false;
     }
 
@@ -87,14 +88,14 @@ bool GUIAddTorrentManager::addTorrent(const QString &source, const BitTorrent::A
     if (const auto loadResult = BitTorrent::TorrentDescriptor::loadFromFile(decodedPath))
     {
         const BitTorrent::TorrentDescriptor &torrentDescriptor = loadResult.value();
-        const bool isProcessing = processTorrent(torrentDescriptor, params);
+        const bool isProcessing = processTorrent(source, torrentDescriptor, params);
         if (isProcessing)
-            m_processingFiles.emplace(torrentDescriptor.infoHash(), std::move(torrentFileGuard));
+            setTorrentFileGuard(source, torrentFileGuard);
         return isProcessing;
     }
     else
     {
-        handleError(decodedPath.toString(), loadResult.error());
+        handleAddTorrentFailed(decodedPath.toString(), loadResult.error());
         return false;
     }
 
@@ -109,21 +110,19 @@ void GUIAddTorrentManager::onDownloadFinished(const Net::DownloadResult &result)
     switch (result.status)
     {
     case Net::DownloadStatus::Success:
-        emit downloadFromUrlFinished(result.url);
         if (const auto loadResult = BitTorrent::TorrentDescriptor::load(result.data))
-            processTorrent(loadResult.value(), addTorrentParams);
+            processTorrent(source, loadResult.value(), addTorrentParams);
         else
-            handleError(source, loadResult.error());
+            handleAddTorrentFailed(source, loadResult.error());
         break;
     case Net::DownloadStatus::RedirectedToMagnet:
-        emit downloadFromUrlFinished(result.url);
         if (const auto parseResult = BitTorrent::TorrentDescriptor::parse(result.magnetURI))
-            processTorrent(parseResult.value(), addTorrentParams);
+            processTorrent(source, parseResult.value(), addTorrentParams);
         else
-            handleError(source, parseResult.error());
+            handleAddTorrentFailed(source, parseResult.error());
         break;
     default:
-        emit downloadFromUrlFailed(result.url, result.errorString);
+        handleAddTorrentFailed(source, result.errorString);
     }
 }
 
@@ -140,13 +139,7 @@ void GUIAddTorrentManager::onMetadataDownloaded(const BitTorrent::TorrentInfo &m
     }
 }
 
-void GUIAddTorrentManager::handleError(const QString &source, const QString &reason)
-{
-    RaisedMessageBox::critical(app()->mainWindow(), tr("Invalid torrent")
-            , tr("Failed to load torrent.\nSource: %1\nReason: %2").arg(source, reason));
-}
-
-bool GUIAddTorrentManager::processTorrent(const BitTorrent::TorrentDescriptor &torrentDescr, const BitTorrent::AddTorrentParams &params)
+bool GUIAddTorrentManager::processTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr, const BitTorrent::AddTorrentParams &params)
 {
     const bool hasMetadata = torrentDescr.info().has_value();
     const BitTorrent::InfoHash infoHash = torrentDescr.infoHash();
@@ -162,9 +155,7 @@ bool GUIAddTorrentManager::processTorrent(const BitTorrent::TorrentDescriptor &t
 
         if (torrent->isPrivate() || (hasMetadata && torrentDescr.info()->isPrivate()))
         {
-            RaisedMessageBox::warning(app()->mainWindow(), tr("Torrent is already present")
-                    , tr("Torrent '%1' is already in the transfer list. Trackers cannot be merged because it is a private torrent.")
-                            .arg(torrent->name()), QMessageBox::Ok);
+            handleDuplicateTorrent(source, torrent, tr("Trackers cannot be merged because it is a private torrent"));
         }
         else
         {
@@ -193,16 +184,13 @@ bool GUIAddTorrentManager::processTorrent(const BitTorrent::TorrentDescriptor &t
     auto *dlg = new AddNewTorrentDialog(torrentDescr, params, app()->mainWindow());
     dlg->setAttribute(Qt::WA_DeleteOnClose);
     m_dialogs[infoHash] = dlg;
-    connect(dlg, &QDialog::finished, this, [this, infoHash, dlg](int result)
+    connect(dlg, &QDialog::finished, this, [this, source, infoHash, dlg](int result)
     {
-        auto torrentFileGuard = m_processingFiles.take(infoHash);
-        torrentFileGuard->setAutoRemove(!dlg->isDoNotDeleteTorrentChecked());
+        if (dlg->isDoNotDeleteTorrentChecked())
+            releaseTorrentFileGuard(source);
 
         if (result == QDialog::Accepted)
-        {
-            if (btSession()->addTorrent(dlg->torrentDescriptor(), dlg->addTorrentParams()))
-                torrentFileGuard->markAsAddedToSession();
-        }
+            addTorrentToSession(source, dlg->torrentDescriptor(), dlg->addTorrentParams());
 
         m_dialogs.remove(infoHash);
     });

@@ -111,8 +111,8 @@ namespace RSS
 
     private slots:
         void process();
-        void handleTorrentDownloadFinished(const QString &url);
-        void handleTorrentDownloadFailed(const QString &url);
+        void handleTorrentAdded(const QString &source);
+        void handleAddTorrentFailed(const QString &url);
         void handleNewArticle(const Article *article);
         void handleFeedURLChanged(Feed *feed, const QString &oldURL);
 

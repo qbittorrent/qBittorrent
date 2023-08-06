@@ -125,10 +125,10 @@ AutoDownloader::AutoDownloader(IApplication *app)
 
     m_ioThread->start();
 
-    connect(app->addTorrentManager(), &AddTorrentManager::downloadFromUrlFinished
-            , this, &AutoDownloader::handleTorrentDownloadFinished);
-    connect(app->addTorrentManager(), &AddTorrentManager::downloadFromUrlFailed
-            , this, &AutoDownloader::handleTorrentDownloadFailed);
+    connect(app->addTorrentManager(), &AddTorrentManager::torrentAdded
+            , this, &AutoDownloader::handleTorrentAdded);
+    connect(app->addTorrentManager(), &AddTorrentManager::addTorrentFailed
+            , this, &AutoDownloader::handleAddTorrentFailed);
 
     // initialise the smart episode regex
     const QString regex = computeSmartFilterRegex(smartEpisodeFilters());
@@ -361,9 +361,9 @@ void AutoDownloader::process()
     }
 }
 
-void AutoDownloader::handleTorrentDownloadFinished(const QString &url)
+void AutoDownloader::handleTorrentAdded(const QString &source)
 {
-    const auto job = m_waitingJobs.take(url);
+    const auto job = m_waitingJobs.take(source);
     if (!job)
         return;
 
@@ -374,9 +374,9 @@ void AutoDownloader::handleTorrentDownloadFinished(const QString &url)
     }
 }
 
-void AutoDownloader::handleTorrentDownloadFailed(const QString &url)
+void AutoDownloader::handleAddTorrentFailed(const QString &source)
 {
-    m_waitingJobs.remove(url);
+    m_waitingJobs.remove(source);
     // TODO: Re-schedule job here.
 }
 

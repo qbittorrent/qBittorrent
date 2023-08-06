@@ -837,27 +837,22 @@ try
                     , tr("An I/O error occurred for torrent '%1'.\n Reason: %2"
                             , "e.g: An error occurred for torrent 'xxx.avi'.\n Reason: disk is full.").arg(torrent->name(), msg));
         });
-        connect(btSession, &BitTorrent::Session::loadTorrentFailed, this
-                , [this](const QString &error)
-        {
-            m_desktopIntegration->showNotification(tr("Error"), tr("Failed to add torrent: %1").arg(error));
-        });
-        connect(btSession, &BitTorrent::Session::torrentAdded, this
-                , [this](const BitTorrent::Torrent *torrent)
-        {
-            if (isTorrentAddedNotificationsEnabled())
-                m_desktopIntegration->showNotification(tr("Torrent added"), tr("'%1' was added.", "e.g: xxx.avi was added.").arg(torrent->name()));
-        });
         connect(btSession, &BitTorrent::Session::torrentFinished, this
                 , [this](const BitTorrent::Torrent *torrent)
         {
             m_desktopIntegration->showNotification(tr("Download completed"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
         });
-        connect(m_addTorrentManager, &GUIAddTorrentManager::downloadFromUrlFailed, this
-                , [this](const QString &url, const QString &reason)
+        connect(m_addTorrentManager, &AddTorrentManager::torrentAdded, this
+                , [this]([[maybe_unused]] const QString &source, const BitTorrent::Torrent *torrent)
         {
-            m_desktopIntegration->showNotification(tr("URL download error")
-                    , tr("Couldn't download file at URL '%1', reason: %2.").arg(url, reason));
+            if (isTorrentAddedNotificationsEnabled())
+                m_desktopIntegration->showNotification(tr("Torrent added"), tr("'%1' was added.", "e.g: xxx.avi was added.").arg(torrent->name()));
+        });
+        connect(m_addTorrentManager, &AddTorrentManager::addTorrentFailed, this
+                , [this](const QString &source, const QString &reason)
+        {
+            m_desktopIntegration->showNotification(tr("Add torrent failed")
+                    , tr("Couldn't add torrent '%1', reason: %2.").arg(source, reason));
         });
 
         disconnect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);

@@ -471,7 +471,7 @@ void AddNewTorrentDialog::saveState()
 void AddNewTorrentDialog::showEvent(QShowEvent *event)
 {
     QDialog::showEvent(event);
-    if (!isTopLevel())
+    if (!Preferences::instance()->isAddNewTorrentDialogTopLevel())
         return;
 
     activateWindow();

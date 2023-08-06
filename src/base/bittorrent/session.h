@@ -453,6 +453,7 @@ namespace BitTorrent
 
     signals:
         void startupProgressUpdated(int progress);
+        void addTorrentFailed(const InfoHash &infoHash, const QString &reason);
         void allTorrentsFinished();
         void categoryAdded(const QString &categoryName);
         void categoryRemoved(const QString &categoryName);

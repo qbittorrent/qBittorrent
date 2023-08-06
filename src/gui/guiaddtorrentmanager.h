@@ -29,11 +29,8 @@
 
 #pragma once
 
-#include <memory>
-
 #include "base/addtorrentmanager.h"
 #include "base/bittorrent/infohash.h"
-#include "base/torrentfileguard.h"
 #include "guiapplicationcomponent.h"
 
 #include <QHash>
@@ -70,10 +67,8 @@ public:
 private:
     void onDownloadFinished(const Net::DownloadResult &result);
     void onMetadataDownloaded(const BitTorrent::TorrentInfo &metadata);
-    void handleError(const QString &source, const QString &reason);
-    bool processTorrent(const BitTorrent::TorrentDescriptor &torrentDescr, const BitTorrent::AddTorrentParams &params);
+    bool processTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr, const BitTorrent::AddTorrentParams &params);
 
     QHash<QString, BitTorrent::AddTorrentParams> m_downloadedTorrents;
     QHash<BitTorrent::InfoHash, AddNewTorrentDialog *> m_dialogs;
-    QHash<BitTorrent::InfoHash, std::shared_ptr<TorrentFileGuard>> m_processingFiles;
 };

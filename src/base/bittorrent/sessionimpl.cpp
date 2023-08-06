@@ -5306,6 +5306,7 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
             if (const auto loadingTorrentsIter = m_loadingTorrents.find(TorrentID::fromInfoHash(infoHash))
                     ; loadingTorrentsIter != m_loadingTorrents.end())
             {
+                emit addTorrentFailed(infoHash, msg);
                 m_loadingTorrents.erase(loadingTorrentsIter);
             }
             else if (const auto downloadedMetadataIter = m_downloadedMetadata.find(TorrentID::fromInfoHash(infoHash))
