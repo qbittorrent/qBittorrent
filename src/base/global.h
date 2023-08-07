@@ -29,7 +29,10 @@
 #pragma once
 
 #include <type_traits>
+
 #include <QtGlobal>
+
+#include <QString>
 
 #if (QT_POINTER_SIZE == 8)
 #define QBT_APP_64BIT
@@ -46,14 +49,6 @@ constexpr typename std::add_const_t<T> asConst(T &&t) noexcept { return std::for
 template <typename T>
 void asConst(const T &&) = delete;
 
-#if (QT_VERSION < QT_VERSION_CHECK(6, 4, 0))
-// https://doc.qt.io/qt-6/qstring.html#operator-22-22_s
-inline QString operator"" _s(const char16_t *str, const std::size_t size)
-{
-    return operator""_qs(str, size);
-}
-#else
 using namespace Qt::Literals::StringLiterals;
-#endif
 
 inline const QString TORRENT_FILE_EXTENSION = u".torrent"_s;
