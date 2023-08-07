@@ -99,12 +99,12 @@ bool Utils::Password::PBKDF2::verify(const QByteArray &secret, const QString &pa
 
 bool Utils::Password::PBKDF2::verify(const QByteArray &secret, const QByteArray &password)
 {
-    const QVector<QByteArray> list = ByteArray::splitToViews(secret, ":", Qt::SkipEmptyParts);
+    const QList<QByteArrayView> list = ByteArray::splitToViews(secret, ":", Qt::SkipEmptyParts);
     if (list.size() != 2)
         return false;
 
-    const QByteArray salt = QByteArray::fromBase64(list[0]);
-    const QByteArray key = QByteArray::fromBase64(list[1]);
+    const QByteArray salt = QByteArray::fromBase64(list[0].toByteArray());
+    const QByteArray key = QByteArray::fromBase64(list[1].toByteArray());
 
     std::array<unsigned char, 64> outBuf {};
     const int hmacResult = PKCS5_PBKDF2_HMAC(password.constData(), password.size()

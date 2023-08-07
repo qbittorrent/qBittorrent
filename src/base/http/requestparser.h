@@ -60,12 +60,12 @@ namespace Http
     private:
         RequestParser() = default;
 
-        ParseResult doParse(const QByteArray &data);
+        ParseResult doParse(QByteArrayView data);
         bool parseStartLines(QStringView data);
         bool parseRequestLine(const QString &line);
 
-        bool parsePostMessage(const QByteArray &data);
-        bool parseFormData(const QByteArray &data);
+        bool parsePostMessage(QByteArrayView data);
+        bool parseFormData(QByteArrayView data);
 
         Request m_request;
     };
