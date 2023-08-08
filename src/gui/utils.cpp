@@ -57,17 +57,15 @@
 #include "base/utils/fs.h"
 #include "base/utils/version.h"
 
-QPixmap Utils::Gui::scaledPixmap(const QIcon &icon, const QWidget *widget, const int height)
+QPixmap Utils::Gui::scaledPixmap(const QIcon &icon, const int height)
 {
-    Q_UNUSED(widget);  // TODO: remove it
     Q_ASSERT(height > 0);
 
     return icon.pixmap(height);
 }
 
-QPixmap Utils::Gui::scaledPixmap(const Path &path, const QWidget *widget, const int height)
+QPixmap Utils::Gui::scaledPixmap(const Path &path, const int height)
 {
-    Q_UNUSED(widget);
     Q_ASSERT(height >= 0);
 
     const QPixmap pixmap {path.data()};

@@ -71,7 +71,7 @@ AboutDialog::AboutDialog(QWidget *parent)
             , tr("Bug Tracker:"));
     m_ui->labelAbout->setText(aboutText);
 
-    m_ui->labelMascot->setPixmap(Utils::Gui::scaledPixmap(Path(u":/icons/mascot.png"_s), this));
+    m_ui->labelMascot->setPixmap(Utils::Gui::scaledPixmap(Path(u":/icons/mascot.png"_s)));
 
     // Thanks
     if (const auto readResult = Utils::IO::readFile(Path(u":/thanks.html"_s), -1, QIODevice::Text)
