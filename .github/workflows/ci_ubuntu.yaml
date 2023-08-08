@@ -80,13 +80,12 @@ jobs:
       # to avoid scanning 3rdparty codebases, initialize it just before building qbt
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
-        if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON') && startsWith(matrix.qt_version, 6)
+        if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON')
         with:
           config-file: ./.github/workflows/helper/codeql/cpp.yaml
           languages: cpp
 
-      - name: Build qBittorrent (Qt6)
-        if: startsWith(matrix.qt_version, 6)
+      - name: Build qBittorrent
         run: |
           CXXFLAGS="$CXXFLAGS -Werror" \
           LDFLAGS="$LDFLAGS -gz" \
@@ -107,7 +106,7 @@ jobs:
 
       - name: Run CodeQL analysis
         uses: github/codeql-action/analyze@v2
-        if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON') && startsWith(matrix.qt_version, 6)
+        if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON')
         with:
           category: ${{ github.base_ref || github.ref_name }}
 
