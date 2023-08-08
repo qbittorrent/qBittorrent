@@ -55,9 +55,9 @@ namespace Utils
 
         constexpr Version() = default;
 
-        template <typename ... Ts
-                , typename std::enable_if_t<std::conjunction_v<std::is_convertible<Ts, int>...>, int> = 0>
+        template <typename ... Ts>
         constexpr Version(Ts ... params)
+            requires std::conjunction_v<std::is_convertible<Ts, int>...>
             : m_components {{params ...}}
         {
             static_assert((sizeof...(Ts) <= N), "Too many parameters provided");

@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Mike Tzou (Chocobo1)
  * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
@@ -28,25 +29,16 @@
 
 #pragma once
 
-#include <type_traits>
-
 namespace Algorithm
 {
-    template <typename T, typename = void>
-    struct HasMappedType
-        : std::false_type
-    {
-    };
-
     template <typename T>
-    struct HasMappedType<T, std::void_t<typename T::mapped_type>>
-        : std::true_type
+    concept HasMappedType = requires
     {
+        typename T::mapped_type;
     };
 
     // To be used with associative array types, such as QMap, QHash and its variants
-    template <typename T, typename BinaryPredicate
-        , typename std::enable_if_t<HasMappedType<T>::value, int> = 0>
+    template <HasMappedType T, typename BinaryPredicate>
     void removeIf(T &dict, BinaryPredicate &&p)
     {
         auto it = dict.begin();

@@ -47,14 +47,14 @@ public:
 private slots:
     void testHasMappedType() const
     {
-        QVERIFY(static_cast<bool>(Algorithm::HasMappedType<std::map<bool, bool>>::value));
-        QVERIFY(static_cast<bool>(Algorithm::HasMappedType<std::unordered_map<bool, bool>>::value));
-        QVERIFY(static_cast<bool>(Algorithm::HasMappedType<QHash<bool, bool>>::value));
-        QVERIFY(static_cast<bool>(Algorithm::HasMappedType<QMap<bool, bool>>::value));
+        static_assert(Algorithm::HasMappedType<std::map<bool, bool>>);
+        static_assert(Algorithm::HasMappedType<std::unordered_map<bool, bool>>);
+        static_assert(Algorithm::HasMappedType<QHash<bool, bool>>);
+        static_assert(Algorithm::HasMappedType<QMap<bool, bool>>);
 
-        QVERIFY(!static_cast<bool>(Algorithm::HasMappedType<std::set<bool>>::value));
-        QVERIFY(!static_cast<bool>(Algorithm::HasMappedType<std::unordered_set<bool>>::value));
-        QVERIFY(!static_cast<bool>(Algorithm::HasMappedType<QSet<bool>>::value));
+        static_assert(!Algorithm::HasMappedType<std::set<bool>>);
+        static_assert(!Algorithm::HasMappedType<std::unordered_set<bool>>);
+        static_assert(!Algorithm::HasMappedType<QSet<bool>>);
     }
 
     void testMappedTypeRemoveIf() const
