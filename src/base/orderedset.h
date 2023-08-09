@@ -29,9 +29,9 @@
 
 #pragma once
 
+#include <concepts>
 #include <functional>
 #include <set>
-#include <type_traits>
 
 #include "algorithm.h"
 
@@ -70,8 +70,8 @@ public:
         return BaseType::empty();
     }
 
-    template <typename std::enable_if_t<std::is_same_v<value_type, QString>, int> = 0>
     QString join(const QString &separator) const
+        requires std::same_as<value_type, QString>
     {
         auto iter = BaseType::cbegin();
         if (iter == BaseType::cend())
