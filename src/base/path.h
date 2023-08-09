@@ -37,9 +37,7 @@
 
 #include "pathfwd.h"
 
-#include "base/interfaces/istringable.h"
-
-class Path final : public IStringable
+class Path final
 {
 public:
     Path() = default;
@@ -70,7 +68,7 @@ public:
     Path relativePathOf(const Path &childPath) const;
 
     QString data() const;
-    QString toString() const override;
+    QString toString() const;
     std::filesystem::path toStdFsPath() const;
 
     Path &operator/=(const Path &other);

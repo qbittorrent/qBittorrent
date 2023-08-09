@@ -40,6 +40,7 @@
 #include <QStringView>
 
 #include "base/global.h"
+#include "base/interfaces/istringable.h"
 
 #if defined(Q_OS_WIN)
 const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseInsensitive;
@@ -68,6 +69,8 @@ namespace
     }
 #endif
 }
+
+static_assert(Stringable<Path>);
 
 Path::Path(const QString &pathStr)
     : m_pathStr {cleanPath(pathStr)}
