@@ -85,8 +85,7 @@ jobs:
           cmake --build build
           sudo cmake --install build
 
-      - name: Build qBittorrent (Qt6)
-        if: startsWith(matrix.qt_version, 6)
+      - name: Build qBittorrent
         run: |
           CXXFLAGS="$CXXFLAGS -Wno-gnu-zero-variadic-macro-arguments -Werror -Wno-error=deprecated-declarations" \
           LDFLAGS="$LDFLAGS -gz" \

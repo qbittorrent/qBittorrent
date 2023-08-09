@@ -22,6 +22,9 @@ jobs:
         qbt_gui: ["GUI=ON", "GUI=OFF"]
         qt_version: ["6.5.2"]
 
+    env:
+      boost_path: "${{ github.workspace }}/../boost"
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -30,8 +33,8 @@ jobs:
         run: |
           sudo apt update
           sudo apt install \
-            build-essential cmake ninja-build pkg-config \
-            libboost-dev libssl-dev libxkbcommon-x11-dev libxcb-cursor-dev zlib1g-dev
+            build-essential cmake ninja-build \
+            libssl-dev libxkbcommon-x11-dev libxcb-cursor-dev zlib1g-dev
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
@@ -39,6 +42,15 @@ jobs:
           update_packager_index: false
           ccache_options: |
             max_size=2G
+
+      - name: Install boost
+        run: |
+          curl \
+            -L \
+            -o "${{ runner.temp }}/boost.tar.bz2" \
+            "https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2"
+          tar -xf "${{ runner.temp }}/boost.tar.bz2" -C "${{ github.workspace }}/.."
+          mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
@@ -60,6 +72,7 @@ jobs:
             -DBUILD_SHARED_LIBS=OFF \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DBOOST_ROOT="${{ env.boost_path }}" \
             -Ddeprecated-functions=OFF
           cmake --build build
           sudo cmake --install build
@@ -67,13 +80,12 @@ jobs:
       # to avoid scanning 3rdparty codebases, initialize it just before building qbt
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
-        if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON') && startsWith(matrix.qt_version, 6)
+        if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON')
         with:
           config-file: ./.github/workflows/helper/codeql/cpp.yaml
           languages: cpp
 
-      - name: Build qBittorrent (Qt6)
-        if: startsWith(matrix.qt_version, 6)
+      - name: Build qBittorrent
         run: |
           CXXFLAGS="$CXXFLAGS -Werror" \
           LDFLAGS="$LDFLAGS -gz" \
@@ -82,6 +94,7 @@ jobs:
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DBOOST_ROOT="${{ env.boost_path }}" \
             -DCMAKE_INSTALL_PREFIX="/usr" \
             -DTESTING=ON \
             -DVERBOSE_CONFIGURE=ON \
@@ -93,7 +106,7 @@ jobs:
 
       - name: Run CodeQL analysis
         uses: github/codeql-action/analyze@v2
-        if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON') && startsWith(matrix.qt_version, 6)
+        if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON')
         with:
           category: ${{ github.base_ref || github.ref_name }}
 
