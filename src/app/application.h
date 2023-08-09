@@ -30,7 +30,7 @@
 
 #pragma once
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 #include <QAtomicInt>
 #include <QCoreApplication>
 #include <QPointer>

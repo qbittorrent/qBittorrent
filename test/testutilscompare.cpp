@@ -28,6 +28,7 @@
 
 #include <tuple>
 
+#include <QObject>
 #include <QTest>
 
 #include "base/global.h"

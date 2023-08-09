@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include <QtGlobal>
+#include <QtClassHelperMacros>
 
 #include "interfaces/iapplication.h"
 

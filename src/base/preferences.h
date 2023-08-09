@@ -30,7 +30,7 @@
 #pragma once
 
 #include <QtContainerFwd>
-#include <QtGlobal>
+#include <QtSystemDetection>
 #include <QObject>
 
 #include "base/pathfwd.h"

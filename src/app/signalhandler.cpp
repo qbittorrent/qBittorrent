@@ -30,7 +30,7 @@
 
 #include "signalhandler.h"
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 
 #include <algorithm>
 #include <csignal>

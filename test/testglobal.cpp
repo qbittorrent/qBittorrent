@@ -26,7 +26,10 @@
  * exception statement from your version.
  */
 
-#include <QtGlobal>
+#include <type_traits>
+
+#include <QList>
+#include <QObject>
 #include <QTest>
 
 #include "base/global.h"
@@ -40,13 +43,27 @@ public:
     TestGlobal() = default;
 
 private slots:
-#if (QT_VERSION < QT_VERSION_CHECK(6, 4, 0))
-    void testStringLiteral() const
+    void testAsConst() const
     {
-        QCOMPARE(u""_s, QStringLiteral(""));
-        QCOMPARE(u"abc"_s, QStringLiteral("abc"));
+        {
+            QList<int> list = {0, 1, 2};
+
+            static_assert(std::is_const_v<std::remove_reference_t<decltype(asConst(list))>>);
+            QCOMPARE(list, asConst(list));
+            QCOMPARE(list, asConst(QList<int>(list)));
+        }
+
+        {
+            const QList<int> list = {0, 1, 2};
+
+            static_assert(std::is_const_v<std::remove_reference_t<decltype(asConst(list))>>);
+            QCOMPARE(list, asConst(list));
+            QCOMPARE(list, asConst(QList<int>(list)));
+
+            // should not compile:
+            //asConst(std::move(list));
+        }
     }
-#endif
 };
 
 QTEST_APPLESS_MAIN(TestGlobal)

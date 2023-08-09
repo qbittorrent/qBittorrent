@@ -29,8 +29,8 @@
 
 #pragma once
 
-#include <QtGlobal>
 #include <QtContainerFwd>
+#include <QtTypes>
 #include <QMetaType>
 #include <QString>
 

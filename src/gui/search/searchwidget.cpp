@@ -30,7 +30,7 @@
 
 #include "searchwidget.h"
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 
 #include <utility>
 

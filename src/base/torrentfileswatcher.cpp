@@ -31,7 +31,7 @@
 
 #include <chrono>
 
-#include <QtGlobal>
+#include <QtAssert>
 #include <QDir>
 #include <QDirIterator>
 #include <QFile>

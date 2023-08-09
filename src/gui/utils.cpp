@@ -28,7 +28,7 @@
 
 #include "utils.h"
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 
 #ifdef Q_OS_WIN
 #include <Objbase.h>

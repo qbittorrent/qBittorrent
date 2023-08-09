@@ -29,7 +29,7 @@
 #pragma once
 
 #include <Qt>
-#include <QtGlobal>
+#include <QtSystemDetection>
 
 #if !defined(Q_OS_WIN) && (!defined(Q_OS_UNIX) || defined(Q_OS_MACOS) || defined(QT_FEATURE_icu))
 #define QBT_USE_QCOLLATOR

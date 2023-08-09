@@ -26,6 +26,7 @@
  * exception statement from your version.
  */
 
+#include <QObject>
 #include <QTest>
 
 #include "base/global.h"

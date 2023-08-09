@@ -28,7 +28,6 @@
 
 #pragma once
 
-#include <QtGlobal>
 #include <QCoreApplication>
 
 #include "base/pathfwd.h"

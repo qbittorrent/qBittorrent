@@ -30,7 +30,7 @@
 
 #include <type_traits>
 
-#include <QtGlobal>
+#include <QtProcessorDetection>
 
 #include <QString>
 

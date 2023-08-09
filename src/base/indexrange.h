@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include <QtGlobal>
+#include <QtAssert>
 
 // Interval is defined via [first;last]
 template <typename Index>
