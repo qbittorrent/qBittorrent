@@ -39,6 +39,7 @@
 #include <QRegularExpression>
 #include <QStringView>
 
+#include "base/concepts/stringable.h"
 #include "base/global.h"
 
 #if defined(Q_OS_WIN)
@@ -68,6 +69,9 @@ namespace
     }
 #endif
 }
+
+// `Path` should satisfy `Stringable` concept in order to be stored in settings as string
+static_assert(Stringable<Path>);
 
 Path::Path(const QString &pathStr)
     : m_pathStr {cleanPath(pathStr)}

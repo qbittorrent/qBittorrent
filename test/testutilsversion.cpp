@@ -51,9 +51,9 @@ private slots:
         // Utils::Version<2, 0>();
 
         using TwoDigits = Utils::Version<2, 1>;
-        TwoDigits(0);
-        TwoDigits(50);
-        TwoDigits(0, 1);
+        QCOMPARE(TwoDigits(0), TwoDigits(u"0"_s));
+        QCOMPARE(TwoDigits(50), TwoDigits(u"50"_s));
+        QCOMPARE(TwoDigits(0, 1), TwoDigits(u"0.1"_s));
 
         using ThreeDigits = Utils::Version<3, 3>;
         // should not compile:
@@ -61,7 +61,7 @@ private slots:
         // ThreeDigits(1, 2);
         // ThreeDigits(1.0, 2, 3);
         // ThreeDigits(1, 2, 3, 4);
-        ThreeDigits(1, 2, 3);
+        QCOMPARE(ThreeDigits(1, 2, 3), ThreeDigits(u"1.2.3"_s));
     }
 
     void testIsValid() const

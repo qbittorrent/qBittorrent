@@ -38,7 +38,7 @@
 #include <QVariant>
 #include <QVariantHash>
 
-#include "base/interfaces/istringable.h"
+#include "base/concepts/stringable.h"
 #include "utils/string.h"
 
 template <typename T>
@@ -46,7 +46,7 @@ concept IsQFlags = std::same_as<T, QFlags<typename T::enum_type>>;
 
 // There are 2 ways for class `T` provide serialization support into `SettingsStorage`:
 // 1. If the `T` state is intended for users to edit (via a text editor), then
-//    implement `IStringable` interface
+//    `T` should satisfy `Stringable` concept
 // 2. Otherwise, use `Q_DECLARE_METATYPE(T)` and let `QMetaType` handle the serialization
 class SettingsStorage final : public QObject
 {
@@ -64,7 +64,12 @@ public:
     template <typename T>
     T loadValue(const QString &key, const T &defaultValue = {}) const
     {
-        if constexpr (std::is_base_of_v<IStringable, T>)
+        if constexpr (std::same_as<T, QVariant>)
+        {
+            // fast path for loading QVariant
+            return loadValueImpl(key, defaultValue);
+        }
+        else if constexpr (Stringable<T>)
         {
             const QString value = loadValue(key, defaultValue.toString());
             return T {value};
@@ -79,11 +84,6 @@ public:
             const typename T::Int value = loadValue(key, static_cast<typename T::Int>(defaultValue));
             return T {value};
         }
-        else if constexpr (std::is_same_v<T, QVariant>)
-        {
-            // fast path for loading QVariant
-            return loadValueImpl(key, defaultValue);
-        }
         else
         {
             const QVariant value = loadValueImpl(key);
@@ -95,7 +95,9 @@ public:
     template <typename T>
     void storeValue(const QString &key, const T &value)
     {
-        if constexpr (std::is_base_of_v<IStringable, T>)
+        if constexpr (std::same_as<T, QVariant>)
+            storeValueImpl(key, value);
+        else if constexpr (Stringable<T>)
             storeValueImpl(key, value.toString());
         else if constexpr (std::is_enum_v<T>)
             storeValueImpl(key, Utils::String::fromEnum(value));

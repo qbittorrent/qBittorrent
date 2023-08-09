@@ -28,13 +28,13 @@
 
 #pragma once
 
+#include <concepts>
+
 class QString;
 
-class IStringable
+template <typename T>
+concept Stringable = requires (T t)
 {
-public:
-    virtual ~IStringable() = default;
-
-    // requirement: T(const QString &) constructor for derived class `T`  // TODO: try enforce it in C++20 concept
-    virtual QString toString() const = 0;
+    requires std::constructible_from<T, QString>;
+    { t.toString() } -> std::same_as<QString>;
 };
