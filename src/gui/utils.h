@@ -40,8 +40,8 @@ namespace Utils::Gui
 {
     bool isDarkTheme();
 
-    QPixmap scaledPixmap(const QIcon &icon, const QWidget *widget, int height);
-    QPixmap scaledPixmap(const Path &path, const QWidget *widget, int height = 0);
+    QPixmap scaledPixmap(const QIcon &icon, int height);
+    QPixmap scaledPixmap(const Path &path, int height = 0);
 
     QSize smallIconSize(const QWidget *widget = nullptr);
     QSize mediumIconSize(const QWidget *widget = nullptr);
