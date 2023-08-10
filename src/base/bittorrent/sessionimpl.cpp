@@ -3003,7 +3003,7 @@ void SessionImpl::invokeAsync(std::function<void ()> func)
 bool SessionImpl::downloadMetadata(const TorrentDescriptor &torrentDescr)
 {
     Q_ASSERT(!torrentDescr.info().has_value());
-    if (Q_UNLIKELY(torrentDescr.info().has_value()))
+    if (torrentDescr.info().has_value()) [[unlikely]]
         return false;
 
     const InfoHash infoHash = torrentDescr.infoHash();
