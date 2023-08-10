@@ -271,6 +271,7 @@ void Session::load()
         if (readResult.error().status == Utils::IO::ReadError::NotExist)
         {
             loadLegacy();
+            store(); // convert to new format
             return;
         }
 
@@ -293,11 +294,12 @@ void Session::load()
             .arg(path.toString()), Log::WARNING);
         return;
     }
-
-    loadFolder(jsonDoc.object(), rootFolder());
+    
+    if (loadFolder(jsonDoc.object(), rootFolder()))
+        store(); // convert to updated format
 }
 
-void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
+bool Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
 {
     bool updated = false;
     for (const QString &key : asConst(jsonObj.keys()))
@@ -353,7 +355,7 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
             }
             else
             {
-                loadFolder(valObj, addSubfolder(key, folder));
+                update = update || loadFolder(valObj, addSubfolder(key, folder));
             }
         }
         else
@@ -363,8 +365,7 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
         }
     }
 
-    if (updated)
-        store(); // convert to updated format
+    return updated; // to update root after loading everything
 }
 
 void Session::loadLegacy()
@@ -394,8 +395,6 @@ void Session::loadLegacy()
         addFeed(feedUrl, feedPath);
         ++i;
     }
-
-    store(); // convert to new format
 }
 
 void Session::store()
