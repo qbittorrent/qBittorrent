@@ -84,21 +84,24 @@ public:
     QByteArray readStyleSheet() override;
 
 protected:
-    virtual Path themeRootPath() const = 0;
+    explicit CustomThemeSource(const Path &themeRootPath);
+
     DefaultThemeSource *defaultThemeSource() const;
 
 private:
+    Path themeRootPath() const;
     void loadColors();
 
     const std::unique_ptr<DefaultThemeSource> m_defaultThemeSource = std::make_unique<DefaultThemeSource>();
+    Path m_themeRootPath;
     QHash<QString, QColor> m_colors;
     QHash<QString, QColor> m_darkModeColors;
 };
 
 class QRCThemeSource final : public CustomThemeSource
 {
-private:
-    Path themeRootPath() const override;
+public:
+    QRCThemeSource();
 };
 
 class FolderThemeSource : public CustomThemeSource
@@ -109,7 +112,5 @@ public:
     QByteArray readStyleSheet() override;
 
 private:
-    Path themeRootPath() const override;
-
     const Path m_folder;
 };

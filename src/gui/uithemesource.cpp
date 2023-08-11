@@ -161,13 +161,13 @@ void DefaultThemeSource::loadColors()
         return;
     }
 
-    const QByteArray configData = readResult.value();
+    const QByteArray &configData = readResult.value();
     if (configData.isEmpty())
         return;
 
     const QJsonObject config = parseThemeConfig(configData);
 
-    QHash<QString, QColor> lightModeColorOverrides = colorsFromJSON(config.value(KEY_COLORS_LIGHT).toObject());
+    const QHash<QString, QColor> lightModeColorOverrides = colorsFromJSON(config.value(KEY_COLORS_LIGHT).toObject());
     for (auto overridesIt = lightModeColorOverrides.cbegin(); overridesIt != lightModeColorOverrides.cend(); ++overridesIt)
     {
         auto it = m_colors.find(overridesIt.key());
@@ -175,13 +175,19 @@ void DefaultThemeSource::loadColors()
             it.value().light = overridesIt.value();
     }
 
-    QHash<QString, QColor> darkModeColorOverrides = colorsFromJSON(config.value(KEY_COLORS_DARK).toObject());
+    const QHash<QString, QColor> darkModeColorOverrides = colorsFromJSON(config.value(KEY_COLORS_DARK).toObject());
     for (auto overridesIt = darkModeColorOverrides.cbegin(); overridesIt != darkModeColorOverrides.cend(); ++overridesIt)
     {
         auto it = m_colors.find(overridesIt.key());
         if (it != m_colors.end())
             it.value().dark = overridesIt.value();
     }
+}
+
+CustomThemeSource::CustomThemeSource(const Path &themeRootPath)
+    : m_themeRootPath {themeRootPath}
+{
+    loadColors();
 }
 
 QColor CustomThemeSource::getColor(const QString &colorId, const ColorMode colorMode) const
@@ -246,6 +252,11 @@ DefaultThemeSource *CustomThemeSource::defaultThemeSource() const
     return m_defaultThemeSource.get();
 }
 
+Path CustomThemeSource::themeRootPath() const
+{
+    return m_themeRootPath;
+}
+
 void CustomThemeSource::loadColors()
 {
     const auto readResult = Utils::IO::readFile((themeRootPath() / Path(CONFIG_FILE_NAME)), FILE_MAX_SIZE, QIODevice::Text);
@@ -257,7 +268,7 @@ void CustomThemeSource::loadColors()
         return;
     }
 
-    const QByteArray configData = readResult.value();
+    const QByteArray &configData = readResult.value();
     if (configData.isEmpty())
         return;
 
@@ -267,13 +278,9 @@ void CustomThemeSource::loadColors()
     m_darkModeColors.insert(colorsFromJSON(config.value(KEY_COLORS_DARK).toObject()));
 }
 
-Path QRCThemeSource::themeRootPath() const
-{
-    return Path(u":/uitheme"_s);
-}
-
 FolderThemeSource::FolderThemeSource(const Path &folderPath)
-    : m_folder {folderPath}
+    : CustomThemeSource(folderPath)
+    , m_folder {folderPath}
 {
 }
 
@@ -285,10 +292,10 @@ QByteArray FolderThemeSource::readStyleSheet()
     const QString stylesheetResourcesDir = u":/uitheme"_s;
 
     QByteArray styleSheetData = CustomThemeSource::readStyleSheet();
-    return styleSheetData.replace(stylesheetResourcesDir.toUtf8(), themeRootPath().data().toUtf8());
+    return styleSheetData.replace(stylesheetResourcesDir.toUtf8(), m_folder.data().toUtf8());
 }
 
-Path FolderThemeSource::themeRootPath() const
+QRCThemeSource::QRCThemeSource()
+    : CustomThemeSource(Path(u":/uitheme"_s))
 {
-    return m_folder;
 }
