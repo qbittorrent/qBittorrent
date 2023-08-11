@@ -27,6 +27,7 @@
  * exception statement from your version.
  */
 
+#include <QObject>
 #include <QSet>
 #include <QTest>
 

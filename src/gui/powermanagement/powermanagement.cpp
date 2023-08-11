@@ -28,7 +28,7 @@
 
 #include "powermanagement.h"
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 
 #ifdef Q_OS_MACOS
 #include <IOKit/pwr_mgt/IOPMLib.h>

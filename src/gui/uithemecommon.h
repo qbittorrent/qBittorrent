@@ -29,7 +29,6 @@
 
 #pragma once
 
-#include <QtGlobal>
 #include <QApplication>
 #include <QColor>
 #include <QHash>

@@ -34,7 +34,7 @@
 
 #include <libtorrent/entry.hpp>
 
-#include <QtGlobal>
+#include <QtTypes>
 #include <QHash>
 #include <QObject>
 #include <QSet>

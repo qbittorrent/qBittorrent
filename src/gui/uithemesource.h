@@ -32,8 +32,8 @@
 
 #include <memory>
 
-#include <QtGlobal>
 #include <QColor>
+#include <QCoreApplication>
 #include <QHash>
 #include <QIcon>
 #include <QString>

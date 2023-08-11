@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include <QtGlobal>
+#include <QtTypes>
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QHash>

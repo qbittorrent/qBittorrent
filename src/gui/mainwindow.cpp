@@ -29,7 +29,7 @@
 
 #include "mainwindow.h"
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 
 #include <algorithm>
 #include <chrono>
@@ -59,7 +59,6 @@
 #include <QShortcut>
 #include <QSplitter>
 #include <QStatusBar>
-#include <QtGlobal>
 #include <QTimer>
 
 #include "base/bittorrent/session.h"

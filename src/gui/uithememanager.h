@@ -30,7 +30,7 @@
 
 #pragma once
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 #include <QColor>
 #include <QHash>
 #include <QIcon>

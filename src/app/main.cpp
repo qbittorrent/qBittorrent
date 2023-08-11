@@ -27,7 +27,7 @@
  * exception statement from your version.
  */
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 
 #include <chrono>
 #include <cstdlib>

@@ -31,6 +31,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include <QObject>
 #include <QTest>
 
 #include "base/algorithm.h"

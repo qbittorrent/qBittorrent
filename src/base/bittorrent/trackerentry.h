@@ -31,7 +31,6 @@
 #include <libtorrent/socket.hpp>
 
 #include <QtContainerFwd>
-#include <QtGlobal>
 #include <QHash>
 #include <QMap>
 #include <QString>

@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include <QtGlobal>
+#include <QtTypes>
 #include <QHash>
 #include <QNetworkProxy>
 #include <QObject>

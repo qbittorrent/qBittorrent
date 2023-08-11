@@ -29,7 +29,6 @@
 
 #include "automatedrssdownloader.h"
 
-#include <QtGlobal>
 #include <QCursor>
 #include <QFileDialog>
 #include <QMenu>

@@ -33,7 +33,7 @@
 #include <boost/circular_buffer.hpp>
 #endif
 
-#include <QtGlobal>
+#include <QtTypes>
 
 template<typename T>
 struct Sample

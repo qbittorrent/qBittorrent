@@ -31,7 +31,6 @@
 
 #include <algorithm>
 
-#include <QtGlobal>
 #include <QApplication>
 #include <QClipboard>
 #include <QHeaderView>

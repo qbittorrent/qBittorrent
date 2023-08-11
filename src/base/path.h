@@ -31,13 +31,14 @@
 
 #include <filesystem>
 
-#include <QtGlobal>
 #include <QMetaType>
 #include <QString>
 
 #include "pathfwd.h"
 
 #include "base/interfaces/istringable.h"
+
+class QStringView;
 
 class Path final : public IStringable
 {

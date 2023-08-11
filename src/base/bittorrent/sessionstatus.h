@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include <QtGlobal>
+#include <QtTypes>
 
 namespace BitTorrent
 {

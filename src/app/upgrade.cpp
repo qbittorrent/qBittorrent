@@ -28,7 +28,7 @@
 
 #include "upgrade.h"
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 #include <QCoreApplication>
 #include <QMetaEnum>
 

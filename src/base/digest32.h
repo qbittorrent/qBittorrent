@@ -30,7 +30,6 @@
 
 #include <libtorrent/sha1_hash.hpp>
 
-#include <QtGlobal>
 #include <QByteArray>
 #include <QHash>
 #include <QSharedData>

@@ -32,7 +32,6 @@
 #include <libtorrent/info_hash.hpp>
 #endif
 
-#include <QtGlobal>
 #include <QMetaType>
 
 #include "base/digest32.h"

@@ -31,7 +31,7 @@
 
 #include <vector>
 
-#include <QtGlobal>
+#include <QtAssert>
 #include <QByteArray>
 
 #ifndef ZLIB_CONST
