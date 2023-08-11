@@ -14,7 +14,6 @@ set(minLibtorrent1Version 1.2.19)
 set(minLibtorrentVersion 2.0.9)
 set(minZlibVersion 1.2.11)
 
-include(CheckCXXSourceCompiles) # TODO: migrate to CheckSourceCompiles in CMake >= 3.19
 include(GNUInstallDirs)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)

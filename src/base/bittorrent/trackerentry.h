@@ -32,7 +32,6 @@
 
 #include <QtContainerFwd>
 #include <QHash>
-#include <QMap>
 #include <QString>
 #include <QStringView>
 
@@ -63,8 +62,7 @@ namespace BitTorrent
         QString url {};
         int tier = 0;
 
-        // TODO: Use QHash<TrackerEntry::Endpoint, QHash<int, EndpointStats>> once Qt5 is dropped.
-        QMap<Endpoint, QHash<int, EndpointStats>> stats {};
+        QHash<Endpoint, QHash<int, EndpointStats>> stats {};
 
         // Deprecated fields
         Status status = NotContacted;
