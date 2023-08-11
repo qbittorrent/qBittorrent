@@ -355,7 +355,8 @@ bool Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
             }
             else
             {
-                update = update || loadFolder(valObj, addSubfolder(key, folder));
+                if (loadFolder(valObj, addSubfolder(key, folder)))
+                    updated = true;
             }
         }
         else
@@ -365,7 +366,7 @@ bool Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
         }
     }
 
-    return updated; // to update root after loading everything
+    return updated;
 }
 
 void Session::loadLegacy()
