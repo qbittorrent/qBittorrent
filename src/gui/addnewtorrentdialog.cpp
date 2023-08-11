@@ -731,7 +731,7 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &metadata
     if (!metadata.isValid()) [[unlikely]]
         return;
 
-    Q_ASSERT(!metadata.matchesInfoHash(m_torrentDescr.infoHash()));
+    Q_ASSERT(metadata.matchesInfoHash(m_torrentDescr.infoHash()));
     if (!metadata.matchesInfoHash(m_torrentDescr.infoHash())) [[unlikely]]
         return;
 
