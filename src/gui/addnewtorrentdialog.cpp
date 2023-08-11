@@ -692,7 +692,7 @@ void AddNewTorrentDialog::contentLayoutChanged()
 void AddNewTorrentDialog::saveTorrentFile()
 {
     Q_ASSERT(hasMetadata());
-    if (Q_UNLIKELY(!hasMetadata()))
+    if (!hasMetadata()) [[unlikely]]
         return;
 
     const auto torrentInfo = *m_torrentDescr.info();
