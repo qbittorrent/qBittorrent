@@ -294,7 +294,7 @@ void Session::load()
             .arg(path.toString()), Log::WARNING);
         return;
     }
-    
+
     if (loadFolder(jsonDoc.object(), rootFolder()))
         store(); // convert to updated format
 }
