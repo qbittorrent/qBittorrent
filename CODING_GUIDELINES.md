@@ -276,7 +276,7 @@ struct StructName {};
 
 enum EnumName {};
 
-typedef QList<ClassName> SomeList;
+using SomeList = QList<ClassName>;
 
 namespace NamespaceName
 {
