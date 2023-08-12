@@ -36,14 +36,12 @@
 #include <QString>
 #include <QStringView>
 
-#include "base/interfaces/istringable.h"
-
 namespace Utils
 {
     // This class provides a default implementation of `isValid()` that should work for most cases
     // It is ultimately up to the user to decide whether the version numbers are useful/meaningful
     template <int N, int Mandatory = N>
-    class Version final : public IStringable
+    class Version final
     {
         static_assert((N > 0), "The number of version components may not be smaller than 1");
         static_assert((Mandatory > 0), "The number of mandatory components may not be smaller than 1");
@@ -54,6 +52,11 @@ namespace Utils
         using ThisType = Version<N, Mandatory>;
 
         constexpr Version() = default;
+
+        Version(const QStringView string)
+        {
+            *this = fromString(string);
+        }
 
         template <typename ... Ts>
         constexpr Version(Ts ... params)
@@ -108,7 +111,7 @@ namespace Utils
             return m_components.at(i);
         }
 
-        QString toString() const override
+        QString toString() const
         {
             // find the last one non-zero component
             int lastSignificantIndex = N - 1;
