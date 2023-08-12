@@ -414,7 +414,6 @@ namespace BitTorrent
         bool downloadMetadata(const TorrentDescriptor &torrentDescr) override;
         bool cancelDownloadMetadata(const TorrentID &id) override;
 
-        void recursiveTorrentDownload(const TorrentID &id) override;
         void increaseTorrentsQueuePos(const QVector<TorrentID> &ids) override;
         void decreaseTorrentsQueuePos(const QVector<TorrentID> &ids) override;
         void topTorrentsQueuePos(const QVector<TorrentID> &ids) override;

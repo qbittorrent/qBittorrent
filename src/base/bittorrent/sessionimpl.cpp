@@ -4861,16 +4861,6 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
     if (const Path exportPath = finishedTorrentExportDirectory(); !exportPath.isEmpty())
         exportTorrentFile(torrent, exportPath);
 
-    // Check whether it contains .torrent files
-    for (const Path &torrentRelpath : asConst(torrent->filePaths()))
-    {
-        if (torrentRelpath.hasExtension(u".torrent"_s))
-        {
-            emit recursiveTorrentDownloadPossible(torrent);
-            break;
-        }
-    }
-
     const bool hasUnfinishedTorrents = std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
     {
         return !(torrent->isFinished() || torrent->isPaused() || torrent->isErrored());
@@ -5161,37 +5151,6 @@ void SessionImpl::disableIPFilter()
     lt::ip_filter filter;
     processBannedIPs(filter);
     m_nativeSession->set_ip_filter(filter);
-}
-
-void SessionImpl::recursiveTorrentDownload(const TorrentID &id)
-{
-    const TorrentImpl *torrent = m_torrents.value(id);
-    if (!torrent)
-        return;
-
-    for (const Path &torrentRelpath : asConst(torrent->filePaths()))
-    {
-        if (torrentRelpath.hasExtension(u".torrent"_s))
-        {
-            const Path torrentFullpath = torrent->savePath() / torrentRelpath;
-
-            LogMsg(tr("Recursive download .torrent file within torrent. Source torrent: \"%1\". File: \"%2\"")
-                .arg(torrent->name(), torrentFullpath.toString()));
-
-            AddTorrentParams params;
-            // Passing the save path along to the sub torrent file
-            params.savePath = torrent->savePath();
-            if (const auto loadResult = TorrentDescriptor::loadFromFile(torrentFullpath))
-            {
-                addTorrent(loadResult.value(), params);
-            }
-            else
-            {
-                LogMsg(tr("Failed to load .torrent file within torrent. Source torrent: \"%1\". File: \"%2\". Error: \"%3\"")
-                    .arg(torrent->name(), torrentFullpath.toString(), loadResult.error()), Log::WARNING);
-            }
-        }
-    }
 }
 
 const SessionStatus &SessionImpl::status() const

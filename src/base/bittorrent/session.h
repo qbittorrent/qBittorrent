@@ -445,7 +445,6 @@ namespace BitTorrent
         virtual bool downloadMetadata(const TorrentDescriptor &torrentDescr) = 0;
         virtual bool cancelDownloadMetadata(const TorrentID &id) = 0;
 
-        virtual void recursiveTorrentDownload(const TorrentID &id) = 0;
         virtual void increaseTorrentsQueuePos(const QVector<TorrentID> &ids) = 0;
         virtual void decreaseTorrentsQueuePos(const QVector<TorrentID> &ids) = 0;
         virtual void topTorrentsQueuePos(const QVector<TorrentID> &ids) = 0;
@@ -462,7 +461,6 @@ namespace BitTorrent
         void IPFilterParsed(bool error, int ruleCount);
         void loadTorrentFailed(const QString &error);
         void metadataDownloaded(const TorrentInfo &info);
-        void recursiveTorrentDownloadPossible(Torrent *torrent);
         void restored();
         void speedLimitModeChanged(bool alternative);
         void statsUpdated();

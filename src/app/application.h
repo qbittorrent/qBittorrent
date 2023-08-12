@@ -172,6 +172,8 @@ private:
 #ifdef Q_OS_MACOS
     bool event(QEvent *) override;
 #endif
+    void askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torrent *torrent);
+    void recursiveTorrentDownload(const BitTorrent::TorrentID &torrentID);
 #endif
 
     ApplicationInstanceManager *m_instanceManager = nullptr;

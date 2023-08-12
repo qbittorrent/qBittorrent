@@ -184,7 +184,6 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
 
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::speedLimitModeChanged, this, &MainWindow::updateAltSpeedsBtn);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::recursiveTorrentDownloadPossible, this, &MainWindow::askRecursiveTorrentDownloadConfirmation);
 
     qDebug("create tabWidget");
     m_tabs = new HidableTabWidget(this);
@@ -918,37 +917,6 @@ void MainWindow::displayExecutionLogTab()
 }
 
 // End of keyboard shortcuts slots
-
-void MainWindow::askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torrent *torrent)
-{
-    if (!Preferences::instance()->isRecursiveDownloadEnabled())
-        return;
-
-    const auto torrentID = torrent->id();
-
-    QMessageBox *confirmBox = new QMessageBox(QMessageBox::Question, tr("Recursive download confirmation")
-        , tr("The torrent '%1' contains .torrent files, do you want to proceed with their downloads?").arg(torrent->name())
-        , (QMessageBox::Yes | QMessageBox::No | QMessageBox::NoToAll), this);
-    confirmBox->setAttribute(Qt::WA_DeleteOnClose);
-
-    const QAbstractButton *yesButton = confirmBox->button(QMessageBox::Yes);
-    QAbstractButton *neverButton = confirmBox->button(QMessageBox::NoToAll);
-    neverButton->setText(tr("Never"));
-
-    connect(confirmBox, &QMessageBox::buttonClicked, this
-        , [torrentID, yesButton, neverButton](const QAbstractButton *button)
-    {
-        if (button == yesButton)
-        {
-            BitTorrent::Session::instance()->recursiveTorrentDownload(torrentID);
-        }
-        else if (button == neverButton)
-        {
-            Preferences::instance()->setRecursiveDownloadEnabled(false);
-        }
-    });
-    confirmBox->open();
-}
 
 void MainWindow::on_actionSetGlobalSpeedLimits_triggered()
 {

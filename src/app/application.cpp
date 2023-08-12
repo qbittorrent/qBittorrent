@@ -50,6 +50,7 @@
 #include <QProcess>
 
 #ifndef DISABLE_GUI
+#include <QAbstractButton>
 #include <QMenu>
 #include <QMessageBox>
 #include <QPixmapCache>
@@ -682,6 +683,21 @@ void Application::torrentFinished(const BitTorrent::Torrent *torrent)
         LogMsg(tr("Torrent: %1, sending mail notification").arg(torrent->name()));
         sendNotificationEmail(torrent);
     }
+
+#ifndef DISABLE_GUI
+    if (Preferences::instance()->isRecursiveDownloadEnabled())
+    {
+        // Check whether it contains .torrent files
+        for (const Path &torrentRelpath : asConst(torrent->filePaths()))
+        {
+            if (torrentRelpath.hasExtension(u".torrent"_s))
+            {
+                askRecursiveTorrentDownloadConfirmation(torrent);
+                break;
+            }
+        }
+    }
+#endif
 }
 
 void Application::allTorrentsFinished()
@@ -993,6 +1009,57 @@ void Application::createStartupProgressDialog()
     });
 }
 
+void Application::askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torrent *torrent)
+{
+    const auto torrentID = torrent->id();
+
+    QMessageBox *confirmBox = new QMessageBox(QMessageBox::Question, tr("Recursive download confirmation")
+            , tr("The torrent '%1' contains .torrent files, do you want to proceed with their downloads?").arg(torrent->name())
+            , (QMessageBox::Yes | QMessageBox::No | QMessageBox::NoToAll), mainWindow());
+    confirmBox->setAttribute(Qt::WA_DeleteOnClose);
+
+    const QAbstractButton *yesButton = confirmBox->button(QMessageBox::Yes);
+    QAbstractButton *neverButton = confirmBox->button(QMessageBox::NoToAll);
+    neverButton->setText(tr("Never"));
+
+    connect(confirmBox, &QMessageBox::buttonClicked, this
+            , [this, torrentID, yesButton, neverButton](const QAbstractButton *button)
+    {
+        if (button == yesButton)
+        {
+            recursiveTorrentDownload(torrentID);
+        }
+        else if (button == neverButton)
+        {
+            Preferences::instance()->setRecursiveDownloadEnabled(false);
+        }
+    });
+    confirmBox->open();
+}
+
+void Application::recursiveTorrentDownload(const BitTorrent::TorrentID &torrentID)
+{
+    const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->getTorrent(torrentID);
+    if (!torrent)
+        return;
+
+    for (const Path &torrentRelpath : asConst(torrent->filePaths()))
+    {
+        if (torrentRelpath.hasExtension(u".torrent"_s))
+        {
+            const Path torrentFullpath = torrent->savePath() / torrentRelpath;
+
+            LogMsg(tr("Recursive download .torrent file within torrent. Source torrent: \"%1\". File: \"%2\"")
+                    .arg(torrent->name(), torrentFullpath.toString()));
+
+            BitTorrent::AddTorrentParams params;
+            // Passing the save path along to the sub torrent file
+            params.savePath = torrent->savePath();
+            addTorrentManager()->addTorrent(torrentFullpath.data(), params, AddTorrentOption::SkipDialog);
+        }
+    }
+}
+
 #ifdef Q_OS_MACOS
 bool Application::event(QEvent *ev)
 {
@@ -1028,7 +1095,7 @@ void Application::initializeTranslation()
     const QString localeStr = pref->getLocale();
 
     if (m_qtTranslator.load((u"qtbase_" + localeStr), QLibraryInfo::path(QLibraryInfo::TranslationsPath))
-            || m_qtTranslator.load((u"qt_" + localeStr), QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
+        || m_qtTranslator.load((u"qt_" + localeStr), QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
     {
         qDebug("Qt %s locale recognized, using translation.", qUtf8Printable(localeStr));
     }
