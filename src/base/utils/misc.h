@@ -31,7 +31,7 @@
 #include <QtGlobal>
 
 #ifdef Q_OS_WIN
-#include <Windows.h>
+#include <windows.h>
 #endif
 
 #include <QString>

@@ -37,8 +37,8 @@
 
 #ifdef Q_OS_WIN
 #include <memory>
-#include <Windows.h>
-#include <Shellapi.h>
+#include <windows.h>
+#include <shellapi.h>
 #elif defined(Q_OS_UNIX)
 #include <sys/resource.h>
 #endif

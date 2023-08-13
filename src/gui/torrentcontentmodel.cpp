@@ -38,8 +38,8 @@
 #include <QScopeGuard>
 
 #if defined(Q_OS_WIN)
-#include <Windows.h>
-#include <Shellapi.h>
+#include <windows.h>
+#include <shellapi.h>
 #else
 #include <QMimeDatabase>
 #include <QMimeType>
