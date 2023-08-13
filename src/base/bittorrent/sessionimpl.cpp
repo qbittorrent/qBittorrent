@@ -2909,7 +2909,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 }
 
 void SessionImpl::findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &savePath
-                                  , const Path &downloadPath, const PathList &filePaths) const
+        , const Path &downloadPath, const PathList &filePaths) const
 {
     Q_ASSERT(filePaths.isEmpty() || (filePaths.size() == torrentInfo.filesCount()));
 
