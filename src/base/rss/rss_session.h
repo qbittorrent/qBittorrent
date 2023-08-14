@@ -146,7 +146,7 @@ namespace RSS
     private:
         QUuid generateUID() const;
         void load();
-        void loadFolder(const QJsonObject &jsonObj, Folder *folder);
+        bool loadFolder(const QJsonObject &jsonObj, Folder *folder);
         void loadLegacy();
         void store();
         nonstd::expected<Folder *, QString> prepareItemDest(const QString &path);

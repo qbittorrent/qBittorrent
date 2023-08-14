@@ -236,6 +236,7 @@ void Session::load()
     if (!itemsFile.exists())
     {
         loadLegacy();
+        store(); // convert to new format
         return;
     }
 
@@ -262,10 +263,11 @@ void Session::load()
         return;
     }
 
-    loadFolder(jsonDoc.object(), rootFolder());
+    if (loadFolder(jsonDoc.object(), rootFolder()))
+        store(); // convert to updated format
 }
 
-void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
+bool Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
 {
     bool updated = false;
     for (const QString &key : asConst(jsonObj.keys()))
@@ -321,7 +323,8 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
             }
             else
             {
-                loadFolder(valObj, addSubfolder(key, folder));
+                if (loadFolder(valObj, addSubfolder(key, folder)))
+                    updated = true;
             }
         }
         else
@@ -331,8 +334,7 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
         }
     }
 
-    if (updated)
-        store(); // convert to updated format
+    return updated;
 }
 
 void Session::loadLegacy()
@@ -362,8 +364,6 @@ void Session::loadLegacy()
         addFeed(feedUrl, feedPath);
         ++i;
     }
-
-    store(); // convert to new format
 }
 
 void Session::store()
