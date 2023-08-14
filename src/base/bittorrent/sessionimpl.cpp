@@ -2950,7 +2950,7 @@ bool SessionImpl::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &so
 }
 
 void SessionImpl::findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &savePath
-                                  , const Path &downloadPath, const PathList &filePaths) const
+        , const Path &downloadPath, const PathList &filePaths) const
 {
     Q_ASSERT(filePaths.isEmpty() || (filePaths.size() == torrentInfo.filesCount()));
 
