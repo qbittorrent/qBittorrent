@@ -64,8 +64,8 @@ struct Sample
     T upload {};
 };
 
-typedef Sample<qlonglong> SpeedSample;
-typedef Sample<qreal> SpeedSampleAvg;
+using SpeedSample = Sample<qlonglong>;
+using SpeedSampleAvg = Sample<qreal>;
 
 class SpeedMonitor
 {

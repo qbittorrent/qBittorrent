@@ -35,7 +35,6 @@ Checks: >
   -modernize-use-auto,
   -modernize-use-nodiscard,
   -modernize-use-trailing-return-type,
-  -modernize-use-using,
   -readability-function-cognitive-complexity,
   -readability-function-size,
   -readability-identifier-length,
