@@ -1411,7 +1411,8 @@ bool Preferences::isTorrentFileAssocSet()
         if (defaultHandlerId != NULL)
         {
             const CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
-            isSet = CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
+            if (myBundleId != NULL)
+                isSet = CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
             CFRelease(defaultHandlerId);
         }
         CFRelease(torrentId);
@@ -1423,11 +1424,13 @@ void Preferences::setTorrentFileAssoc()
 {
     if (isTorrentFileAssocSet())
         return;
+
     const CFStringRef torrentId = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, torrentExtension, NULL);
     if (torrentId != NULL)
     {
         const CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
-        LSSetDefaultRoleHandlerForContentType(torrentId, kLSRolesViewer, myBundleId);
+        if (myBundleId != NULL)
+            LSSetDefaultRoleHandlerForContentType(torrentId, kLSRolesViewer, myBundleId);
         CFRelease(torrentId);
     }
 }
@@ -1439,7 +1442,8 @@ bool Preferences::isMagnetLinkAssocSet()
     if (defaultHandlerId != NULL)
     {
         const CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
-        isSet = CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
+        if (myBundleId != NULL)
+            isSet = CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
         CFRelease(defaultHandlerId);
     }
     return isSet;
@@ -1449,8 +1453,10 @@ void Preferences::setMagnetLinkAssoc()
 {
     if (isMagnetLinkAssocSet())
         return;
+
     const CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
-    LSSetDefaultHandlerForURLScheme(magnetUrlScheme, myBundleId);
+    if (myBundleId != NULL)
+        LSSetDefaultHandlerForURLScheme(magnetUrlScheme, myBundleId);
 }
 #endif // Q_OS_MACOS
 
