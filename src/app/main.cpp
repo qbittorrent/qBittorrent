@@ -46,7 +46,7 @@
 #endif
 
 #include <QCoreApplication>
-#include <QDebug>
+#include <QString>
 #include <QThread>
 
 #ifndef DISABLE_GUI
@@ -86,6 +86,7 @@ using namespace std::chrono_literals;
 void displayVersion();
 bool userAgreesWithLegalNotice();
 void displayBadArgMessage(const QString &message);
+void displayErrorMessage(const QString &message);
 
 #ifndef DISABLE_GUI
 void showSplashScreen();
@@ -114,10 +115,12 @@ int main(int argc, char *argv[])
         Application::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 #endif
 
+    // `app` must be declared out of try block to allow display message box in case of exception
+    std::unique_ptr<Application> app;
     try
     {
         // Create Application
-        auto app = std::make_unique<Application>(argc, argv);
+        app = std::make_unique<Application>(argc, argv);
 
 #ifdef Q_OS_WIN
         // QCoreApplication::applicationDirPath() needs an Application object instantiated first
@@ -268,7 +271,7 @@ int main(int argc, char *argv[])
     }
     catch (const RuntimeError &er)
     {
-        qDebug() << er.message();
+        displayErrorMessage(er.message());
         return EXIT_FAILURE;
     }
 }
@@ -307,6 +310,30 @@ void displayBadArgMessage(const QString &message)
     const QString errMsg = QCoreApplication::translate("Main", "Bad command line: ") + u'\n'
         + message + u'\n'
         + help + u'\n';
+    fprintf(stderr, "%s", qUtf8Printable(errMsg));
+#endif
+}
+
+void displayErrorMessage(const QString &message)
+{
+#ifndef DISABLE_GUI
+    if (QApplication::instance())
+    {
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.setText(QCoreApplication::translate("Main", "An unrecoverable error occurred."));
+        msgBox.setInformativeText(message);
+        msgBox.show(); // Need to be shown or to moveToCenter does not work
+        msgBox.move(Utils::Gui::screenCenter(&msgBox));
+        msgBox.exec();
+    }
+    else
+    {
+        const QString errMsg = QCoreApplication::translate("Main", "qBittorrent has encountered an unrecoverable error.") + u'\n' + message + u'\n';
+        fprintf(stderr, "%s", qUtf8Printable(errMsg));
+    }
+#else
+    const QString errMsg = QCoreApplication::translate("Main", "qBittorrent has encountered an unrecoverable error.") + u'\n' + message + u'\n';
     fprintf(stderr, "%s", qUtf8Printable(errMsg));
 #endif
 }

@@ -51,6 +51,7 @@
 #include <QStringList>
 #include <QUrl>
 
+#include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -1701,6 +1702,7 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
 }
 
 void TorrentImpl::reload()
+try
 {
     m_completedFiles.fill(false);
     m_filesProgress.fill(0);
@@ -1742,6 +1744,11 @@ void TorrentImpl::reload()
     m_nativeStatus.queue_position = queuePos;
 
     updateState();
+}
+catch (const lt::system_error &err)
+{
+    throw RuntimeError(tr("Failed to reload torrent. Torrent: %1. Reason: %2")
+            .arg(id().toString(), QString::fromLocal8Bit(err.what())));
 }
 
 void TorrentImpl::pause()

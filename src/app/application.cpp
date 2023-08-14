@@ -763,7 +763,6 @@ void Application::processParams(const QBtCommandLineParameters &params)
 }
 
 int Application::exec()
-try
 {
 #if !defined(DISABLE_WEBUI) && defined(DISABLE_GUI)
     const QString loadingStr = tr("WebUI will be started shortly after internal preparations. Please wait...");
@@ -931,21 +930,6 @@ try
         m_paramsQueue.append(params);
 
     return BaseApplication::exec();
-}
-catch (const RuntimeError &err)
-{
-#ifdef DISABLE_GUI
-    fprintf(stderr, "%s", qPrintable(err.message()));
-#else
-    QMessageBox msgBox;
-    msgBox.setIcon(QMessageBox::Critical);
-    msgBox.setText(QCoreApplication::translate("Application", "Application failed to start."));
-    msgBox.setInformativeText(err.message());
-    msgBox.show(); // Need to be shown or to moveToCenter does not work
-    msgBox.move(Utils::Gui::screenCenter(&msgBox));
-    msgBox.exec();
-#endif
-    return EXIT_FAILURE;
 }
 
 bool Application::isRunning()
