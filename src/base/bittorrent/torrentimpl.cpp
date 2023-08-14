@@ -1602,7 +1602,8 @@ void TorrentImpl::applyFirstLastPiecePriority(const bool enabled)
 
 void TorrentImpl::fileSearchFinished(const Path &savePath, const PathList &fileNames)
 {
-    endReceivedMetadataHandling(savePath, fileNames);
+    if (m_maintenanceJob == MaintenanceJob::HandleMetadata)
+        endReceivedMetadataHandling(savePath, fileNames);
 }
 
 TrackerEntry TorrentImpl::updateTrackerEntry(const lt::announce_entry &announceEntry, const QMap<TrackerEntry::Endpoint, int> &updateInfo)
@@ -1635,7 +1636,13 @@ std::shared_ptr<const libtorrent::torrent_info> TorrentImpl::nativeTorrentInfo()
 
 void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathList &fileNames)
 {
+    Q_ASSERT(m_maintenanceJob == MaintenanceJob::HandleMetadata);
+    if (Q_UNLIKELY(m_maintenanceJob != MaintenanceJob::HandleMetadata))
+        return;
+
     Q_ASSERT(m_filePaths.isEmpty());
+    if (Q_UNLIKELY(!m_filePaths.isEmpty()))
+        m_filePaths.clear();
 
     lt::add_torrent_params &p = m_ltAddTorrentParams;
 
@@ -1644,7 +1651,7 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
     m_filePriorities.reserve(filesCount());
     const auto nativeIndexes = m_torrentInfo.nativeIndexes();
     p.file_priorities = resized(p.file_priorities, metadata->files().num_files()
-                                , LT::toNative(p.file_priorities.empty() ? DownloadPriority::Normal : DownloadPriority::Ignored));
+            , LT::toNative(p.file_priorities.empty() ? DownloadPriority::Normal : DownloadPriority::Ignored));
 
     m_completedFiles.fill(static_cast<bool>(p.flags & lt::torrent_flags::seed_mode), filesCount());
     m_filesProgress.resize(filesCount());
