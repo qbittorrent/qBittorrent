@@ -28,20 +28,41 @@
 
 #pragma once
 
+#include <concepts>
+#include <utility>
+
 #include <QtClassHelperMacros>
 
-#include "interfaces/iapplication.h"
+class IApplication;
 
-class ApplicationComponent
+class ApplicationComponentBase
 {
-    Q_DISABLE_COPY_MOVE(ApplicationComponent)
+    Q_DISABLE_COPY_MOVE(ApplicationComponentBase)
 
 public:
-    explicit ApplicationComponent(IApplication *app);
-    virtual ~ApplicationComponent() = default;
+    virtual ~ApplicationComponentBase() = default;
 
-    virtual IApplication *app() const;
+    IApplication *app() const;
+
+protected:
+    explicit ApplicationComponentBase(IApplication *app);
 
 private:
     IApplication *m_app = nullptr;
+};
+
+template <typename T>
+concept IsApplicationComponent = std::derived_from<T, ApplicationComponentBase>;
+
+template <typename Base>
+requires (!IsApplicationComponent<Base>)
+class ApplicationComponent : public Base, public ApplicationComponentBase
+{
+public:
+    template <typename... Args>
+    explicit ApplicationComponent(IApplication *app, Args&&... args)
+        : Base(std::forward<Args>(args)...)
+        , ApplicationComponentBase(app)
+    {
+    }
 };

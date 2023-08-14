@@ -47,6 +47,7 @@
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/torrentdescriptor.h"
 #include "base/bittorrent/trackerentry.h"
+#include "base/interfaces/iapplication.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
@@ -732,7 +733,7 @@ void TorrentsController::addAction()
         if (!url.isEmpty())
         {
             Net::DownloadManager::instance()->setCookiesFromUrl(cookies, QUrl::fromEncoded(url.toUtf8()));
-            partialSuccess |= BitTorrent::Session::instance()->addTorrent(url, addTorrentParams);
+            partialSuccess |= app()->addTorrentManager()->addTorrent(url, addTorrentParams);
         }
     }
 

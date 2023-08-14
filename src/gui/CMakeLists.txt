@@ -54,6 +54,7 @@ add_library(qbt_gui STATIC
     flowlayout.h
     fspathedit.h
     fspathedit_p.h
+    guiaddtorrentmanager.h
     guiapplicationcomponent.h
     hidabletabwidget.h
     interfaces/iguiapplication.h
@@ -148,7 +149,7 @@ add_library(qbt_gui STATIC
     flowlayout.cpp
     fspathedit.cpp
     fspathedit_p.cpp
-    guiapplicationcomponent.cpp
+    guiaddtorrentmanager.cpp
     hidabletabwidget.cpp
     ipsubnetwhitelistoptionsdialog.cpp
     lineedit.cpp

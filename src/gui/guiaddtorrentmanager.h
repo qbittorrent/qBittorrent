@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,14 +27,48 @@
  * exception statement from your version.
  */
 
+#pragma once
+
+#include "base/addtorrentmanager.h"
+#include "base/bittorrent/infohash.h"
 #include "guiapplicationcomponent.h"
 
-GUIApplicationComponent::GUIApplicationComponent(IGUIApplication *app)
-    : ApplicationComponent(app)
+#include <QHash>
+
+namespace BitTorrent
 {
+    class TorrentDescriptor;
 }
 
-IGUIApplication *GUIApplicationComponent::app() const
+namespace Net
 {
-    return static_cast<IGUIApplication *>(ApplicationComponent::app());
+    struct DownloadResult;
 }
+
+class AddNewTorrentDialog;
+
+enum class AddTorrentOption
+{
+    Default,
+    ShowDialog,
+    SkipDialog,
+};
+
+class GUIAddTorrentManager : public GUIApplicationComponent<AddTorrentManager>
+{
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(GUIAddTorrentManager)
+
+public:
+    GUIAddTorrentManager(IGUIApplication *app, BitTorrent::Session *session, QObject *parent = nullptr);
+
+    bool addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params = {}, AddTorrentOption option = AddTorrentOption::Default);
+
+private:
+    void onDownloadFinished(const Net::DownloadResult &result);
+    void onMetadataDownloaded(const BitTorrent::TorrentInfo &metadata);
+    bool processTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr, const BitTorrent::AddTorrentParams &params);
+
+    QHash<QString, BitTorrent::AddTorrentParams> m_downloadedTorrents;
+    QHash<BitTorrent::InfoHash, AddNewTorrentDialog *> m_dialogs;
+};

@@ -33,6 +33,8 @@
 #include <QtSystemDetection>
 #include <QMetaObject>
 
+#include "base/addtorrentmanager.h"
+
 class QString;
 
 class Path;
@@ -83,4 +85,6 @@ public:
     virtual MemoryPriority processMemoryPriority() const = 0;
     virtual void setProcessMemoryPriority(MemoryPriority priority) = 0;
 #endif
+
+    virtual AddTorrentManager *addTorrentManager() const = 0;
 };

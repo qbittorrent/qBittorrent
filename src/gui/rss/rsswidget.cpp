@@ -39,7 +39,6 @@
 #include <QShortcut>
 #include <QString>
 
-#include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
@@ -47,17 +46,17 @@
 #include "base/rss/rss_feed.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
-#include "gui/addnewtorrentdialog.h"
 #include "gui/autoexpandabledialog.h"
+#include "gui/interfaces/iguiapplication.h"
 #include "gui/uithememanager.h"
 #include "articlelistwidget.h"
 #include "automatedrssdownloader.h"
 #include "feedlistwidget.h"
 #include "ui_rsswidget.h"
 
-RSSWidget::RSSWidget(QWidget *parent)
-    : QWidget(parent)
-    , m_ui(new Ui::RSSWidget)
+RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
+    : GUIApplicationComponent(app, parent)
+    , m_ui {new Ui::RSSWidget}
 {
     m_ui->setupUi(this);
 
@@ -370,13 +369,7 @@ void RSSWidget::downloadSelectedTorrents()
         // Mark as read
         article->markAsRead();
 
-        if (!article->torrentUrl().isEmpty())
-        {
-            if (AddNewTorrentDialog::isEnabled())
-                AddNewTorrentDialog::show(article->torrentUrl(), window());
-            else
-                BitTorrent::Session::instance()->addTorrent(article->torrentUrl());
-        }
+        app()->addTorrentManager()->addTorrent(article->torrentUrl());
     }
 }
 

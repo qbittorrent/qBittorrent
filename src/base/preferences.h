@@ -424,6 +424,14 @@ public:
     bool getSpeedWidgetGraphEnable(int id) const;
     void setSpeedWidgetGraphEnable(int id, bool enable);
 
+    // AddNewTorrentDialog
+    bool isAddNewTorrentDialogEnabled() const;
+    void setAddNewTorrentDialogEnabled(bool value);
+    bool isAddNewTorrentDialogTopLevel() const;
+    void setAddNewTorrentDialogTopLevel(bool value);
+    int addNewTorrentDialogSavePathHistoryLength() const;
+    void setAddNewTorrentDialogSavePathHistoryLength(int value);
+
 public slots:
     void setStatusFilterState(bool checked);
     void setCategoryFilterState(bool checked);

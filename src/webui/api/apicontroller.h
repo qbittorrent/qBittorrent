@@ -39,7 +39,7 @@ class QString;
 using DataMap = QHash<QString, QByteArray>;
 using StringMap = QHash<QString, QString>;
 
-class APIController : public QObject, public ApplicationComponent
+class APIController : public ApplicationComponent<QObject>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(APIController)

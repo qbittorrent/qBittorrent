@@ -29,8 +29,6 @@
 
 #pragma once
 
-#include <memory>
-
 #include <QDialog>
 
 #include "base/bittorrent/addtorrentparams.h"
@@ -38,23 +36,12 @@
 #include "base/path.h"
 #include "base/settingvalue.h"
 
-namespace BitTorrent
-{
-    class InfoHash;
-}
-
-namespace Net
-{
-    struct DownloadResult;
-}
-
 namespace Ui
 {
     class AddNewTorrentDialog;
 }
 
 class LineEdit;
-class TorrentFileGuard;
 
 class AddNewTorrentDialog final : public QDialog
 {
@@ -62,32 +49,24 @@ class AddNewTorrentDialog final : public QDialog
     Q_DISABLE_COPY_MOVE(AddNewTorrentDialog)
 
 public:
-    static const int minPathHistoryLength = 0;
-    static const int maxPathHistoryLength = 99;
-
+    explicit AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &torrentDescr
+            , const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
     ~AddNewTorrentDialog() override;
 
-    static bool isEnabled();
-    static void setEnabled(bool value);
-    static bool isTopLevel();
-    static void setTopLevel(bool value);
-    static int savePathHistoryLength();
-    static void setSavePathHistoryLength(int value);
+    BitTorrent::TorrentDescriptor torrentDescriptor() const;
+    BitTorrent::AddTorrentParams addTorrentParams() const;
+    bool isDoNotDeleteTorrentChecked() const;
 
-    static void show(const QString &source, const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
-    static void show(const QString &source, QWidget *parent);
+    void updateMetadata(const BitTorrent::TorrentInfo &metadata);
 
 private slots:
     void updateDiskSpaceLabel();
     void onSavePathChanged(const Path &newPath);
     void onDownloadPathChanged(const Path &newPath);
     void onUseDownloadPathChanged(bool checked);
-    void updateMetadata(const BitTorrent::TorrentInfo &metadata);
-    void handleDownloadFinished(const Net::DownloadResult &downloadResult);
     void TMMChanged(int index);
     void categoryChanged(int index);
     void contentLayoutChanged();
-    void doNotDeleteTorrentClicked(bool checked);
 
     void accept() override;
     void reject() override;
@@ -95,10 +74,6 @@ private slots:
 private:
     class TorrentContentAdaptor;
 
-    explicit AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
-
-    bool loadTorrent(const QString &source);
-    bool loadTorrentImpl();
     void populateSavePaths();
     void loadState();
     void saveState();
@@ -112,12 +87,11 @@ private:
     Ui::AddNewTorrentDialog *m_ui = nullptr;
     TorrentContentAdaptor *m_contentAdaptor = nullptr;
     BitTorrent::TorrentDescriptor m_torrentDescr;
+    BitTorrent::AddTorrentParams m_torrentParams;
     int m_savePathIndex = -1;
     int m_downloadPathIndex = -1;
     bool m_useDownloadPath = false;
     LineEdit *m_filterLine = nullptr;
-    std::unique_ptr<TorrentFileGuard> m_torrentGuard;
-    BitTorrent::AddTorrentParams m_torrentParams;
 
     SettingValue<QSize> m_storeDialogSize;
     SettingValue<QString> m_storeDefaultCategory;

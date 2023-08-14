@@ -31,6 +31,7 @@
 #pragma once
 
 #include "base/interfaces/iapplication.h"
+#include "gui/guiaddtorrentmanager.h"
 #include "gui/windowstate.h"
 
 class DesktopIntegration;
@@ -40,6 +41,8 @@ class IGUIApplication : public IApplication
 {
 public:
     ~IGUIApplication() override = default;
+
+    GUIAddTorrentManager *addTorrentManager() const override = 0;
 
     virtual DesktopIntegration *desktopIntegration() = 0;
     virtual MainWindow *mainWindow() = 0;

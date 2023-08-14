@@ -71,7 +71,7 @@ namespace Ui
     class MainWindow;
 }
 
-class MainWindow final : public QMainWindow, public GUIApplicationComponent
+class MainWindow final : public GUIApplicationComponent<QMainWindow>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(MainWindow)
@@ -122,7 +122,6 @@ private slots:
     void reloadSessionStats();
     void reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torrents);
     void loadPreferences();
-    void askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torrent *torrent);
     void optionsSaved();
     void toggleAlternativeSpeeds();
 

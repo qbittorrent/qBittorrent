@@ -2086,6 +2086,50 @@ void Preferences::setSpeedWidgetGraphEnable(const int id, const bool enable)
     setValue(u"SpeedWidget/graph_enable_%1"_s.arg(id), enable);
 }
 
+bool Preferences::isAddNewTorrentDialogEnabled() const
+{
+    return value(u"AddNewTorrentDialog/Enabled"_s, true);
+}
+
+void Preferences::setAddNewTorrentDialogEnabled(const bool value)
+{
+    if (value == isAddNewTorrentDialogEnabled())
+        return;
+
+    setValue(u"AddNewTorrentDialog/Enabled"_s, value);
+}
+
+bool Preferences::isAddNewTorrentDialogTopLevel() const
+{
+    return value(u"AddNewTorrentDialog/TopLevel"_s, true);
+}
+
+void Preferences::setAddNewTorrentDialogTopLevel(const bool value)
+{
+    if (value == isAddNewTorrentDialogTopLevel())
+        return;
+
+    setValue(u"AddNewTorrentDialog/TopLevel"_s, value);
+}
+
+int Preferences::addNewTorrentDialogSavePathHistoryLength() const
+{
+    const int defaultHistoryLength = 8;
+
+    const int val = value(u"AddNewTorrentDialog/SavePathHistoryLength"_s, defaultHistoryLength);
+    return std::clamp(val, 0, 99);
+}
+
+void Preferences::setAddNewTorrentDialogSavePathHistoryLength(const int value)
+{
+    const int clampedValue = qBound(0, value, 99);
+    const int oldValue = addNewTorrentDialogSavePathHistoryLength();
+    if (clampedValue == oldValue)
+        return;
+
+    setValue(u"AddNewTorrentDialog/SavePathHistoryLength"_s, clampedValue);
+}
+
 void Preferences::apply()
 {
     if (SettingsStorage::instance()->save())

@@ -38,7 +38,7 @@
 
 #include "guiapplicationcomponent.h"
 
-class AdvancedSettings final : public QTableWidget, public GUIApplicationComponent
+class AdvancedSettings final : public GUIApplicationComponent<QTableWidget>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(AdvancedSettings)

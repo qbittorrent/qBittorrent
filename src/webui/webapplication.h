@@ -58,7 +58,7 @@ class APIController;
 class AuthController;
 class WebApplication;
 
-class WebSession final : public QObject, public ApplicationComponent, public ISession
+class WebSession final : public ApplicationComponent<QObject>, public ISession
 {
 public:
     explicit WebSession(const QString &sid, IApplication *app);
@@ -83,8 +83,7 @@ private:
     QMap<QString, APIController *> m_apiControllers;
 };
 
-class WebApplication final
-        : public QObject, public ApplicationComponent
+class WebApplication final : public ApplicationComponent<QObject>
         , public Http::IRequestHandler, public ISessionManager
         , private Http::ResponseBuilder
 {

@@ -116,6 +116,11 @@ std::size_t BitTorrent::qHash(const BitTorrent::TorrentID &key, const std::size_
     return ::qHash(static_cast<TorrentID::BaseType>(key), seed);
 }
 
+std::size_t BitTorrent::qHash(const InfoHash &key, const std::size_t seed)
+{
+    return qHashMulti(seed, key.v1(), key.v2());
+}
+
 bool BitTorrent::operator==(const BitTorrent::InfoHash &left, const BitTorrent::InfoHash &right)
 {
     return (static_cast<InfoHash::WrappedType>(left) == static_cast<InfoHash::WrappedType>(right));

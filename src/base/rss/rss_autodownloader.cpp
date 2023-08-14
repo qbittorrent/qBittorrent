@@ -41,14 +41,16 @@
 #include <QVariant>
 #include <QVector>
 
-#include "../bittorrent/session.h"
-#include "../bittorrent/torrentdescriptor.h"
-#include "../asyncfilestorage.h"
-#include "../global.h"
-#include "../logger.h"
-#include "../profile.h"
-#include "../utils/fs.h"
-#include "../utils/io.h"
+#include "base/addtorrentmanager.h"
+#include "base/asyncfilestorage.h"
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/torrentdescriptor.h"
+#include "base/global.h"
+#include "base/interfaces/iapplication.h"
+#include "base/logger.h"
+#include "base/profile.h"
+#include "base/utils/fs.h"
+#include "base/utils/io.h"
 #include "rss_article.h"
 #include "rss_autodownloadrule.h"
 #include "rss_feed.h"
@@ -100,12 +102,13 @@ QString computeSmartFilterRegex(const QStringList &filters)
     return u"(?:_|\\b)(?:%1)(?:_|\\b)"_s.arg(filters.join(u")|(?:"));
 }
 
-AutoDownloader::AutoDownloader()
-    : m_storeProcessingEnabled(u"RSS/AutoDownloader/EnableProcessing"_s, false)
-    , m_storeSmartEpisodeFilter(u"RSS/AutoDownloader/SmartEpisodeFilter"_s)
-    , m_storeDownloadRepacks(u"RSS/AutoDownloader/DownloadRepacks"_s)
-    , m_processingTimer(new QTimer(this))
-    , m_ioThread(new QThread)
+AutoDownloader::AutoDownloader(IApplication *app)
+    : ApplicationComponent(app)
+    , m_storeProcessingEnabled {u"RSS/AutoDownloader/EnableProcessing"_s, false}
+    , m_storeSmartEpisodeFilter {u"RSS/AutoDownloader/SmartEpisodeFilter"_s}
+    , m_storeDownloadRepacks {u"RSS/AutoDownloader/DownloadRepacks"_s}
+    , m_processingTimer {new QTimer(this)}
+    , m_ioThread {new QThread}
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
@@ -122,17 +125,17 @@ AutoDownloader::AutoDownloader()
 
     m_ioThread->start();
 
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::downloadFromUrlFinished
-            , this, &AutoDownloader::handleTorrentDownloadFinished);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::downloadFromUrlFailed
-            , this, &AutoDownloader::handleTorrentDownloadFailed);
+    connect(app->addTorrentManager(), &AddTorrentManager::torrentAdded
+            , this, &AutoDownloader::handleTorrentAdded);
+    connect(app->addTorrentManager(), &AddTorrentManager::addTorrentFailed
+            , this, &AutoDownloader::handleAddTorrentFailed);
 
     // initialise the smart episode regex
     const QString regex = computeSmartFilterRegex(smartEpisodeFilters());
-    m_smartEpisodeRegex = QRegularExpression(regex,
-                                             QRegularExpression::CaseInsensitiveOption
-                                             | QRegularExpression::ExtendedPatternSyntaxOption
-                                             | QRegularExpression::UseUnicodePropertiesOption);
+    m_smartEpisodeRegex = QRegularExpression(regex
+            , QRegularExpression::CaseInsensitiveOption
+                    | QRegularExpression::ExtendedPatternSyntaxOption
+                    | QRegularExpression::UseUnicodePropertiesOption);
 
     load();
 
@@ -358,9 +361,9 @@ void AutoDownloader::process()
     }
 }
 
-void AutoDownloader::handleTorrentDownloadFinished(const QString &url)
+void AutoDownloader::handleTorrentAdded(const QString &source)
 {
-    const auto job = m_waitingJobs.take(url);
+    const auto job = m_waitingJobs.take(source);
     if (!job)
         return;
 
@@ -371,9 +374,9 @@ void AutoDownloader::handleTorrentDownloadFinished(const QString &url)
     }
 }
 
-void AutoDownloader::handleTorrentDownloadFailed(const QString &url)
+void AutoDownloader::handleAddTorrentFailed(const QString &source)
 {
-    m_waitingJobs.remove(url);
+    m_waitingJobs.remove(source);
     // TODO: Re-schedule job here.
 }
 
@@ -472,7 +475,7 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
                 .arg(job->articleData.value(Article::KeyTitle).toString(), rule.name()));
 
         const auto torrentURL = job->articleData.value(Article::KeyTorrentURL).toString();
-        BitTorrent::Session::instance()->addTorrent(torrentURL, rule.addTorrentParams());
+        app()->addTorrentManager()->addTorrent(torrentURL, rule.addTorrentParams());
 
         if (BitTorrent::TorrentDescriptor::parse(torrentURL))
         {

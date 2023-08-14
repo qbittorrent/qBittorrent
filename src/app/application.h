@@ -72,6 +72,7 @@ class QProgressDialog;
 class DesktopIntegration;
 class MainWindow;
 
+using AddTorrentManagerImpl = GUIAddTorrentManager;
 using BaseApplication = QApplication;
 using BaseIApplication = IGUIApplication;
 
@@ -79,6 +80,7 @@ using BaseIApplication = IGUIApplication;
 class QSessionManager;
 #endif
 #else // DISABLE_GUI
+using AddTorrentManagerImpl = AddTorrentManager;
 using BaseApplication = QCoreApplication;
 using BaseIApplication = IApplication;
 #endif // DISABLE_GUI
@@ -149,6 +151,8 @@ private slots:
 #endif
 
 private:
+    AddTorrentManagerImpl *addTorrentManager() const override;
+
     void initializeTranslation();
     void processParams(const QBtCommandLineParameters &params);
     void runExternalProgram(const QString &programTemplate, const BitTorrent::Torrent *torrent) const;
@@ -168,6 +172,8 @@ private:
 #ifdef Q_OS_MACOS
     bool event(QEvent *) override;
 #endif
+    void askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torrent *torrent);
+    void recursiveTorrentDownload(const BitTorrent::TorrentID &torrentID);
 #endif
 
     ApplicationInstanceManager *m_instanceManager = nullptr;
@@ -196,6 +202,8 @@ private:
 #ifdef Q_OS_WIN
     SettingValue<MemoryPriority> m_processMemoryPriority;
 #endif
+
+    AddTorrentManagerImpl *m_addTorrentManager = nullptr;
 
 #ifndef DISABLE_GUI
     SettingValue<WindowState> m_startUpWindowState;

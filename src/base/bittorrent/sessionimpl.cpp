@@ -77,11 +77,9 @@
 #include "base/algorithm.h"
 #include "base/global.h"
 #include "base/logger.h"
-#include "base/net/downloadmanager.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
 #include "base/profile.h"
-#include "base/torrentfileguard.h"
 #include "base/torrentfilter.h"
 #include "base/unicodestrings.h"
 #include "base/utils/bytearray.h"
@@ -2254,35 +2252,6 @@ void SessionImpl::processShareLimits()
     }
 }
 
-// Add to BitTorrent session the downloaded torrent file
-void SessionImpl::handleDownloadFinished(const Net::DownloadResult &result)
-{
-    switch (result.status)
-    {
-    case Net::DownloadStatus::Success:
-        emit downloadFromUrlFinished(result.url);
-        if (const auto loadResult = TorrentDescriptor::load(result.data))
-            addTorrent(loadResult.value(), m_downloadedTorrents.take(result.url));
-        else
-            LogMsg(tr("Failed to load torrent. Reason: \"%1\"").arg(loadResult.error()), Log::WARNING);
-        break;
-    case Net::DownloadStatus::RedirectedToMagnet:
-        emit downloadFromUrlFinished(result.url);
-        if (const auto parseResult = TorrentDescriptor::parse(result.magnetURI))
-        {
-            addTorrent(parseResult.value(), m_downloadedTorrents.take(result.url));
-        }
-        else
-        {
-            LogMsg(tr("Failed to load torrent. The request was redirected to invalid Magnet URI. Reason: \"%1\"")
-                   .arg(parseResult.error()), Log::WARNING);
-        }
-        break;
-    default:
-        emit downloadFromUrlFailed(result.url, result.errorString);
-    }
-}
-
 void SessionImpl::fileSearchFinished(const TorrentID &id, const Path &savePath, const PathList &fileNames)
 {
     TorrentImpl *torrent = m_torrents.value(id);
@@ -2593,40 +2562,6 @@ qsizetype SessionImpl::torrentsCount() const
     return m_torrents.size();
 }
 
-bool SessionImpl::addTorrent(const QString &source, const AddTorrentParams &params)
-{
-    // `source`: .torrent file path/url or magnet uri
-
-    if (!isRestored())
-        return false;
-
-    if (Net::DownloadManager::hasSupportedScheme(source))
-    {
-        LogMsg(tr("Downloading torrent, please wait... Source: \"%1\"").arg(source));
-        const auto *pref = Preferences::instance();
-        // Launch downloader
-        Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(pref->getTorrentFileSizeLimit())
-                , pref->useProxyForGeneralPurposes(), this, &SessionImpl::handleDownloadFinished);
-        m_downloadedTorrents[source] = params;
-        return true;
-    }
-
-    if (const auto parseResult = TorrentDescriptor::parse(source))
-        return addTorrent(parseResult.value(), params);
-
-    const Path path {source};
-    TorrentFileGuard guard {path};
-    const auto loadResult = TorrentDescriptor::loadFromFile(path);
-    if (!loadResult)
-    {
-       LogMsg(tr("Failed to load torrent. Source: \"%1\". Reason: \"%2\"").arg(source, loadResult.error()), Log::WARNING);
-       return false;
-    }
-
-    guard.markAsAddedToSession();
-    return addTorrent(loadResult.value(), params);
-}
-
 bool SessionImpl::addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params)
 {
     if (!isRestored())
@@ -2713,35 +2648,8 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     if (m_loadingTorrents.contains(id) || (infoHash.isHybrid() && m_loadingTorrents.contains(altID)))
         return false;
 
-    if (Torrent *torrent = findTorrent(infoHash))
-    {
-        // a duplicate torrent is being added
-        if (hasMetadata)
-        {
-            // Trying to set metadata to existing torrent in case if it has none
-            torrent->setMetadata(*source.info());
-        }
-
-        if (!isMergeTrackersEnabled())
-        {
-            LogMsg(tr("Detected an attempt to add a duplicate torrent. Merging of trackers is disabled. Torrent: %1").arg(torrent->name()));
-            return false;
-        }
-
-        const bool isPrivate = torrent->isPrivate() || (hasMetadata && source.info()->isPrivate());
-        if (isPrivate)
-        {
-            LogMsg(tr("Detected an attempt to add a duplicate torrent. Trackers cannot be merged because it is a private torrent. Torrent: %1").arg(torrent->name()));
-            return false;
-        }
-
-        // merge trackers and web seeds
-        torrent->addTrackers(source.trackers());
-        torrent->addUrlSeeds(source.urlSeeds());
-
-        LogMsg(tr("Detected an attempt to add a duplicate torrent. Trackers are merged from new source. Torrent: %1").arg(torrent->name()));
+    if (findTorrent(infoHash))
         return false;
-    }
 
     // It looks illogical that we don't just use an existing handle,
     // but as previous experience has shown, it actually creates unnecessary
@@ -4961,16 +4869,6 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
     if (const Path exportPath = finishedTorrentExportDirectory(); !exportPath.isEmpty())
         exportTorrentFile(torrent, exportPath);
 
-    // Check whether it contains .torrent files
-    for (const Path &torrentRelpath : asConst(torrent->filePaths()))
-    {
-        if (torrentRelpath.hasExtension(u".torrent"_s))
-        {
-            emit recursiveTorrentDownloadPossible(torrent);
-            break;
-        }
-    }
-
     const bool hasUnfinishedTorrents = std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
     {
         return !(torrent->isFinished() || torrent->isPaused() || torrent->isErrored());
@@ -5263,37 +5161,6 @@ void SessionImpl::disableIPFilter()
     m_nativeSession->set_ip_filter(filter);
 }
 
-void SessionImpl::recursiveTorrentDownload(const TorrentID &id)
-{
-    const TorrentImpl *torrent = m_torrents.value(id);
-    if (!torrent)
-        return;
-
-    for (const Path &torrentRelpath : asConst(torrent->filePaths()))
-    {
-        if (torrentRelpath.hasExtension(u".torrent"_s))
-        {
-            const Path torrentFullpath = torrent->savePath() / torrentRelpath;
-
-            LogMsg(tr("Recursive download .torrent file within torrent. Source torrent: \"%1\". File: \"%2\"")
-                .arg(torrent->name(), torrentFullpath.toString()));
-
-            AddTorrentParams params;
-            // Passing the save path along to the sub torrent file
-            params.savePath = torrent->savePath();
-            if (const auto loadResult = TorrentDescriptor::loadFromFile(torrentFullpath))
-            {
-                addTorrent(loadResult.value(), params);
-            }
-            else
-            {
-                LogMsg(tr("Failed to load .torrent file within torrent. Source torrent: \"%1\". File: \"%2\". Error: \"%3\"")
-                    .arg(torrent->name(), torrentFullpath.toString(), loadResult.error()), Log::WARNING);
-            }
-        }
-    }
-}
-
 const SessionStatus &SessionImpl::status() const
 {
     return m_status;
@@ -5406,6 +5273,7 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
             if (const auto loadingTorrentsIter = m_loadingTorrents.find(TorrentID::fromInfoHash(infoHash))
                     ; loadingTorrentsIter != m_loadingTorrents.end())
             {
+                emit addTorrentFailed(infoHash, msg);
                 m_loadingTorrents.erase(loadingTorrentsIter);
             }
             else if (const auto downloadedMetadataIter = m_downloadedMetadata.find(TorrentID::fromInfoHash(infoHash))

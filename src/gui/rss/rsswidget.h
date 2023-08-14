@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2006  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
@@ -32,6 +32,8 @@
 
 #include <QWidget>
 
+#include "gui/guiapplicationcomponent.h"
+
 class QListWidgetItem;
 class QTreeWidgetItem;
 
@@ -43,14 +45,14 @@ namespace Ui
     class RSSWidget;
 }
 
-class RSSWidget : public QWidget
+class RSSWidget final : public GUIApplicationComponent<QWidget>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(RSSWidget)
 
 public:
-    RSSWidget(QWidget *parent);
-    ~RSSWidget();
+    explicit RSSWidget(IGUIApplication *app, QWidget *parent = nullptr);
+    ~RSSWidget() override;
 
 public slots:
     void deleteSelectedItems();
