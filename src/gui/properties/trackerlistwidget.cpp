@@ -367,13 +367,16 @@ void TrackerListWidget::loadTrackers()
         for (TrackerListColumn col : {COL_TIER, COL_PROTOCOL, COL_PEERS, COL_SEEDS, COL_LEECHES, COL_TIMES_DOWNLOADED})
             item->setTextAlignment(col, (Qt::AlignRight | Qt::AlignVCenter));
     };
-    const auto numberIf = [](const int val)
+
+    const auto prettyCount = [](const int val)
     {
         return (val > -1) ? QString::number(val) : tr("N/A");
     };
+
     const auto toString = [](const BitTorrent::TrackerEntry::Status status)
     {
-        switch (status) {
+        switch (status)
+        {
         case BitTorrent::TrackerEntry::Status::Working:
             return tr("Working");
         case BitTorrent::TrackerEntry::Status::Updating:
@@ -425,30 +428,30 @@ void TrackerListWidget::loadTrackers()
                 leechesMax = std::max(leechesMax, protocolStats.numLeeches);
                 downloadedMax = std::max(downloadedMax, protocolStats.numDownloaded);
 
-                QTreeWidgetItem *child = (index < item->childCount()) ? item->child(index)
-                                                                      : new QTreeWidgetItem(item);
+                QTreeWidgetItem *child = (index < item->childCount()) ? item->child(index) : new QTreeWidgetItem(item);
                 child->setText(COL_URL, protocolStats.name);
                 child->setText(COL_PROTOCOL, tr("v%1").arg(protocolVersion));
                 child->setText(COL_STATUS, toString(protocolStats.status));
-                child->setText(COL_PEERS, numberIf(protocolStats.numPeers));
-                child->setText(COL_SEEDS, numberIf(protocolStats.numSeeds));
-                child->setText(COL_LEECHES, numberIf(protocolStats.numLeeches));
-                child->setText(COL_TIMES_DOWNLOADED, numberIf(protocolStats.numDownloaded));
+                child->setText(COL_PEERS, prettyCount(protocolStats.numPeers));
+                child->setText(COL_SEEDS, prettyCount(protocolStats.numSeeds));
+                child->setText(COL_LEECHES, prettyCount(protocolStats.numLeeches));
+                child->setText(COL_TIMES_DOWNLOADED, prettyCount(protocolStats.numDownloaded));
                 child->setText(COL_MSG, protocolStats.message);
                 child->setToolTip(COL_MSG, protocolStats.message);
                 setAlignment(child);
                 ++index;
             }
         }
+
         while (item->childCount() != index)
             delete item->takeChild(index);
 
         item->setText(COL_TIER, QString::number(entry.tier));
         item->setText(COL_STATUS, toString(entry.status));
-        item->setText(COL_PEERS, numberIf(peersMax));
-        item->setText(COL_SEEDS, numberIf(seedsMax));
-        item->setText(COL_LEECHES, numberIf(leechesMax));
-        item->setText(COL_TIMES_DOWNLOADED, numberIf(downloadedMax));
+        item->setText(COL_PEERS, prettyCount(peersMax));
+        item->setText(COL_SEEDS, prettyCount(seedsMax));
+        item->setText(COL_LEECHES, prettyCount(leechesMax));
+        item->setText(COL_TIMES_DOWNLOADED, prettyCount(downloadedMax));
         setAlignment(item);
     }
 
