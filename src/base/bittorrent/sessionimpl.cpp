@@ -3143,8 +3143,16 @@ void SessionImpl::generateResumeData()
 void SessionImpl::saveResumeData()
 {
     for (const TorrentImpl *torrent : asConst(m_torrents))
-        torrent->nativeHandle().save_resume_data(lt::torrent_handle::only_if_modified);
-    m_numResumeData += m_torrents.size();
+    {
+        // When the session is terminated due to unrecoverable error
+        // some of the torrent handles can be corrupted
+        try
+        {
+            torrent->nativeHandle().save_resume_data(lt::torrent_handle::only_if_modified);
+            ++m_numResumeData;
+        }
+        catch (const std::exception &) {}
+    }
 
     // clear queued storage move jobs except the current ongoing one
     if (m_moveStorageQueue.size() > 1)
