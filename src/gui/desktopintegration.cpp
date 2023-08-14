@@ -54,11 +54,8 @@ namespace
 #ifdef Q_OS_MACOS
     DesktopIntegration *desktopIntegrationInstance = nullptr;
 
-    bool handleDockClicked(id self, SEL cmd, ...)
+    bool handleDockClicked([[maybe_unused]] id self, [[maybe_unused]] SEL cmd, ...)
     {
-        Q_UNUSED(self);
-        Q_UNUSED(cmd);
-
         Q_ASSERT(desktopIntegrationInstance);
         emit desktopIntegrationInstance->activationRequested();
 

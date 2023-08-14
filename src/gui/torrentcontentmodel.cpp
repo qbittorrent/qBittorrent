@@ -293,9 +293,8 @@ QVector<BitTorrent::DownloadPriority> TorrentContentModel::getFilePriorities() c
     return prio;
 }
 
-int TorrentContentModel::columnCount(const QModelIndex &parent) const
+int TorrentContentModel::columnCount([[maybe_unused]] const QModelIndex &parent) const
 {
-    Q_UNUSED(parent);
     return TorrentContentModelItem::NB_COL;
 }
 

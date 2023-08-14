@@ -2572,9 +2572,8 @@ void SessionImpl::handleTorrentSaveResumeDataRequested(const TorrentImpl *torren
     ++m_numResumeData;
 }
 
-void SessionImpl::handleTorrentSaveResumeDataFailed(const TorrentImpl *torrent)
+void SessionImpl::handleTorrentSaveResumeDataFailed([[maybe_unused]] const TorrentImpl *torrent)
 {
-    Q_UNUSED(torrent);
     --m_numResumeData;
 }
 

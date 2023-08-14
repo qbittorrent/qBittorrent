@@ -462,13 +462,10 @@ bool GeoIPDatabase::readDataFieldDescriptor(quint32 &offset, DataFieldDescriptor
     return true;
 }
 
-void GeoIPDatabase::fromBigEndian(uchar *buf, const quint32 len) const
+void GeoIPDatabase::fromBigEndian([[maybe_unused]] uchar *buf, [[maybe_unused]] const quint32 len) const
 {
 #if (Q_BYTE_ORDER == Q_LITTLE_ENDIAN)
     std::reverse(buf, buf + len);
-#else
-    Q_UNUSED(buf);
-    Q_UNUSED(len);
 #endif
 }
 

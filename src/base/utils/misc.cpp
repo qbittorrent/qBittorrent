@@ -111,7 +111,7 @@ namespace
     }
 }
 
-void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
+void Utils::Misc::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &action)
 {
 #if defined(Q_OS_WIN)
     HANDLE hToken;            // handle to process token
@@ -247,9 +247,6 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
                                 QDBusConnection::systemBus());
         halIface.call(u"Shutdown"_s);
     }
-
-#else
-    Q_UNUSED(action);
 #endif
 }
 

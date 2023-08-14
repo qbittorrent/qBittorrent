@@ -255,16 +255,15 @@ SearchWidget::~SearchWidget()
     delete m_ui;
 }
 
-void SearchWidget::tabChanged(int index)
+void SearchWidget::tabChanged(const int index)
 {
     // when we switch from a tab that is not empty to another that is empty
     // the download button doesn't have to be available
     m_currentSearchTab = ((index < 0) ? nullptr : m_allTabs.at(m_ui->tabWidget->currentIndex()));
 }
 
-void SearchWidget::selectMultipleBox(int index)
+void SearchWidget::selectMultipleBox([[maybe_unused]] const int index)
 {
-    Q_UNUSED(index);
     if (selectedPlugin() == u"multi")
         on_pluginsButton_clicked();
 }

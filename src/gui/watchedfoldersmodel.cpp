@@ -49,9 +49,8 @@ int WatchedFoldersModel::rowCount(const QModelIndex &parent) const
     return parent.isValid() ? 0 : m_watchedFolders.count();
 }
 
-int WatchedFoldersModel::columnCount(const QModelIndex &parent) const
+int WatchedFoldersModel::columnCount([[maybe_unused]] const QModelIndex &parent) const
 {
-    Q_UNUSED(parent);
     return 1;
 }
 

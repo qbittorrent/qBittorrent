@@ -76,19 +76,15 @@ void DBusNotifier::showMessage(const QString &title, const QString &message, con
     });
 }
 
-void DBusNotifier::onActionInvoked(const uint messageID, const QString &action)
+void DBusNotifier::onActionInvoked(const uint messageID, [[maybe_unused]] const QString &action)
 {
-    Q_UNUSED(action);
-
     // Check whether the notification is sent by qBittorrent
     // to avoid reacting to unrelated notifications
     if (m_activeMessages.contains(messageID))
         emit messageClicked();
 }
 
-void DBusNotifier::onNotificationClosed(const uint messageID, const uint reason)
+void DBusNotifier::onNotificationClosed(const uint messageID, [[maybe_unused]] const uint reason)
 {
-    Q_UNUSED(reason);
-
     m_activeMessages.remove(messageID);
 }

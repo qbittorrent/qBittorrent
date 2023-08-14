@@ -97,10 +97,8 @@ QString CategoryFilterWidget::currentCategory() const
     return getCategoryFilter(static_cast<CategoryFilterProxyModel *>(model()), current);
 }
 
-void CategoryFilterWidget::onCurrentRowChanged(const QModelIndex &current, const QModelIndex &previous)
+void CategoryFilterWidget::onCurrentRowChanged(const QModelIndex &current, [[maybe_unused]] const QModelIndex &previous)
 {
-    Q_UNUSED(previous);
-
     emit categoryChanged(getCategoryFilter(static_cast<CategoryFilterProxyModel *>(model()), current));
 }
 
