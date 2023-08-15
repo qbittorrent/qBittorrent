@@ -132,6 +132,14 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     connect(copyHotkey, &QShortcut::activated, this, &TrackerListWidget::copyTrackerUrl);
 
     connect(this, &QAbstractItemView::doubleClicked, this, &TrackerListWidget::editSelectedTracker);
+    connect(this, &QTreeWidget::itemExpanded, this, [](QTreeWidgetItem *item)
+    {
+        item->setText(COL_MSG, QString());
+    });
+    connect(this, &QTreeWidget::itemCollapsed, this, [](QTreeWidgetItem *item)
+    {
+        item->setText(COL_MSG, item->data(COL_MSG, Qt::UserRole).toString());
+    });
 }
 
 TrackerListWidget::~TrackerListWidget()
@@ -464,7 +472,9 @@ void TrackerListWidget::loadTrackers()
         item->setText(COL_SEEDS, prettyCount(seedsMax));
         item->setText(COL_LEECHES, prettyCount(leechesMax));
         item->setText(COL_TIMES_DOWNLOADED, prettyCount(downloadedMax));
-        item->setText(COL_MSG, message);
+        item->setData(COL_MSG, Qt::UserRole, message);
+        if (!item->isExpanded())
+            item->setText(COL_MSG, message);
         setAlignment(item);
     }
 
