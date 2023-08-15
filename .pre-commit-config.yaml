@@ -83,7 +83,7 @@ repos:
         - ts
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.15.5
+    rev: v1.16.4
     hooks:
     - id: typos
       name: Check spelling (typos)
