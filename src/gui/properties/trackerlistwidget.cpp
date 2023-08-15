@@ -60,6 +60,10 @@
 TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     : m_properties(properties)
 {
+#ifdef QBT_USES_LIBTORRENT2
+    setColumnHidden(COL_PROTOCOL, true); // Must be set before calling loadSettings()
+#endif
+
     // Set header
     // Must be set before calling loadSettings() otherwise the header is reset on restart
     setHeaderLabels(headerLabels());
@@ -78,8 +82,10 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     // its size is 0, because explicitly 'showing' the column isn't enough
     // in the above scenario.
     for (int i = 0; i < COL_COUNT; ++i)
+    {
         if ((columnWidth(i) <= 0) && !isColumnHidden(i))
             resizeColumnToContents(i);
+    }
     // Context menu
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, &QWidget::customContextMenuRequested, this, &TrackerListWidget::showTrackerListMenu);
