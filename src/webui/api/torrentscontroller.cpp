@@ -496,8 +496,16 @@ void TorrentsController::trackersAction()
                 numSeeds = std::max(numSeeds, protocolStat.numSeeds);
                 numLeeches = std::max(numLeeches, protocolStat.numLeeches);
                 numDownloaded = std::max(numDownloaded, protocolStat.numDownloaded);
-                if (message.isEmpty())
-                    message = protocolStat.message;
+                if ((tracker.status == BitTorrent::TrackerEntry::Status::Working) && message.isEmpty())
+                {
+                    if (protocolStat.status == BitTorrent::TrackerEntry::Status::Working)
+                        message = protocolStat.message;
+                }
+                else if ((tracker.status == BitTorrent::TrackerEntry::Status::NotWorking) && message.isEmpty())
+                {
+                    if (protocolStat.status == BitTorrent::TrackerEntry::Status::NotWorking)
+                        message = protocolStat.message;
+                }
             }
         }
 

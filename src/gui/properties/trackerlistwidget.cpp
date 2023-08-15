@@ -364,7 +364,7 @@ void TrackerListWidget::loadTrackers()
 
     const auto setAlignment = [](QTreeWidgetItem *item)
     {
-        for (TrackerListColumn col : {COL_TIER, COL_PROTOCOL, COL_PEERS, COL_SEEDS, COL_LEECHES, COL_TIMES_DOWNLOADED})
+        for (const TrackerListColumn col : {COL_TIER, COL_PROTOCOL, COL_PEERS, COL_SEEDS, COL_LEECHES, COL_TIMES_DOWNLOADED})
             item->setTextAlignment(col, (Qt::AlignRight | Qt::AlignVCenter));
     };
 
@@ -414,19 +414,31 @@ void TrackerListWidget::loadTrackers()
         int seedsMax = -1;
         int leechesMax = -1;
         int downloadedMax = -1;
+        QString message;
 
         int index = 0;
         for (const auto &endpoint : entry.stats)
         {
             for (auto it = endpoint.cbegin(), end = endpoint.cend(); it != end; ++it)
             {
-                int protocolVersion = it.key();
+                const int protocolVersion = it.key();
                 const BitTorrent::TrackerEntry::EndpointStats &protocolStats = it.value();
 
                 peersMax = std::max(peersMax, protocolStats.numPeers);
                 seedsMax = std::max(seedsMax, protocolStats.numSeeds);
                 leechesMax = std::max(leechesMax, protocolStats.numLeeches);
                 downloadedMax = std::max(downloadedMax, protocolStats.numDownloaded);
+
+                if ((entry.status == BitTorrent::TrackerEntry::Status::Working) && message.isEmpty())
+                {
+                    if (protocolStats.status == BitTorrent::TrackerEntry::Status::Working)
+                        message = protocolStats.message;
+                }
+                else if ((entry.status == BitTorrent::TrackerEntry::Status::NotWorking) && message.isEmpty())
+                {
+                    if (protocolStats.status == BitTorrent::TrackerEntry::Status::NotWorking)
+                        message = protocolStats.message;
+                }
 
                 QTreeWidgetItem *child = (index < item->childCount()) ? item->child(index) : new QTreeWidgetItem(item);
                 child->setText(COL_URL, protocolStats.name);
@@ -452,6 +464,7 @@ void TrackerListWidget::loadTrackers()
         item->setText(COL_SEEDS, prettyCount(seedsMax));
         item->setText(COL_LEECHES, prettyCount(leechesMax));
         item->setText(COL_TIMES_DOWNLOADED, prettyCount(downloadedMax));
+        item->setText(COL_MSG, message);
         setAlignment(item);
     }
 
