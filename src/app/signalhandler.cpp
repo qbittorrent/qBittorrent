@@ -42,18 +42,16 @@
 #include <io.h>
 #endif
 
+#include <boost/stacktrace.hpp>
+
 #include <QCoreApplication>
 #include <QMetaObject>
 
 #include "base/version.h"
 
-#ifdef STACKTRACE
-#include "stacktrace.h"
-
 #ifndef DISABLE_GUI
 #include "gui/stacktracedialog.h"
 #endif
-#endif //STACKTRACE
 
 namespace
 {
@@ -93,7 +91,6 @@ namespace
         QMetaObject::invokeMethod(qApp, [] { QCoreApplication::exit(); }, Qt::QueuedConnection);  // unsafe, but exit anyway
     }
 
-#ifdef STACKTRACE
     void abnormalExitHandler(const int signum)
     {
         const char msg[] = "\n\n*************************************************************\n"
@@ -101,7 +98,7 @@ namespace
             "qBittorrent version: " QBT_VERSION "\n\n"
             "Caught signal: ";
         const char *sigName = sysSigName[signum];
-        const std::string stacktrace = getStacktrace();
+        const std::string stacktrace = boost::stacktrace::to_string(boost::stacktrace::stacktrace());
 
         const char *msgs[] = {msg, sigName, "\n```\n", stacktrace.c_str(), "```\n\n"};
         std::for_each(std::begin(msgs), std::end(msgs), safePrint);
@@ -115,16 +112,12 @@ namespace
         signal(signum, SIG_DFL);
         raise(signum);
     }
-#endif // STACKTRACE
 }
 
 void registerSignalHandlers()
 {
     signal(SIGINT, normalExitHandler);
     signal(SIGTERM, normalExitHandler);
-
-#ifdef STACKTRACE
     signal(SIGABRT, abnormalExitHandler);
     signal(SIGSEGV, abnormalExitHandler);
-#endif
 }

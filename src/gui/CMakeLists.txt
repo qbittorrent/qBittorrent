@@ -26,6 +26,7 @@ qt_wrap_ui(UI_HEADERS
     search/searchwidget.ui
     shutdownconfirmdialog.ui
     speedlimitdialog.ui
+    stacktracedialog.ui
     statsdialog.ui
     torrentcategorydialog.ui
     torrentcreatordialog.ui
@@ -52,8 +53,8 @@ add_library(qbt_gui STATIC
     downloadfromurldialog.h
     executionlogwidget.h
     flowlayout.h
-    fspathedit.h
     fspathedit_p.h
+    fspathedit.h
     guiaddtorrentmanager.h
     guiapplicationcomponent.h
     hidabletabwidget.h
@@ -94,6 +95,7 @@ add_library(qbt_gui STATIC
     search/searchwidget.h
     shutdownconfirmdialog.h
     speedlimitdialog.h
+    stacktracedialog.h
     statsdialog.h
     statusbar.h
     torrentcategorydialog.h
@@ -147,8 +149,8 @@ add_library(qbt_gui STATIC
     downloadfromurldialog.cpp
     executionlogwidget.cpp
     flowlayout.cpp
-    fspathedit.cpp
     fspathedit_p.cpp
+    fspathedit.cpp
     guiaddtorrentmanager.cpp
     hidabletabwidget.cpp
     ipsubnetwhitelistoptionsdialog.cpp
@@ -187,6 +189,7 @@ add_library(qbt_gui STATIC
     search/searchwidget.cpp
     shutdownconfirmdialog.cpp
     speedlimitdialog.cpp
+    stacktracedialog.cpp
     statsdialog.cpp
     statusbar.cpp
     torrentcategorydialog.cpp
@@ -248,16 +251,6 @@ if (DBUS)
         notifications/dbusnotificationsinterface.cpp
         powermanagement/powermanagement_x11.h
         powermanagement/powermanagement_x11.cpp
-    )
-endif()
-
-if (STACKTRACE)
-    qt_wrap_ui(STACKTRACE_UI_HEADERS stacktracedialog.ui)
-
-    target_sources(qbt_gui PRIVATE
-        stacktracedialog.h
-        stacktracedialog.cpp
-        ${STACKTRACE_UI_HEADERS}
     )
 endif()
 

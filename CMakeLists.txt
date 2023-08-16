@@ -23,7 +23,6 @@ include(FeatureOptionsSetup)
 # features, list is loosely sorted by user's interests
 feature_option(GUI "Build GUI application" ON)
 feature_option(WEBUI "Enable built-in HTTP server for remote control" ON)
-feature_option(STACKTRACE "Enable stacktrace support" ON)
 feature_option(TESTING "Build internal testing suite" OFF)
 feature_option(VERBOSE_CONFIGURE "Show information about PACKAGES_FOUND and PACKAGES_NOT_FOUND in the configure output (only useful for debugging the CMake build scripts)" OFF)
 
