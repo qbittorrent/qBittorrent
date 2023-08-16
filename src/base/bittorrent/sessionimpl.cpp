@@ -5920,7 +5920,7 @@ void SessionImpl::handleTrackerAlert(const lt::tracker_alert *a)
     if (!torrent)
         return;
 
-    QMap<TrackerEntry::Endpoint, int> &updateInfo = m_updatedTrackerEntries[torrent->nativeHandle()][std::string(a->tracker_url())];
+    QHash<TrackerEntry::Endpoint, int> &updateInfo = m_updatedTrackerEntries[torrent->nativeHandle()][std::string(a->tracker_url())];
 
     if (a->type() == lt::tracker_reply_alert::alert_type)
     {
@@ -6004,7 +6004,7 @@ void SessionImpl::processTrackerStatuses()
                         if (updatedTrackersIter == updatedTrackers.end())
                             continue;
 
-                        const QMap<TrackerEntry::Endpoint, int> &updateInfo = updatedTrackersIter.value();
+                        const QHash<TrackerEntry::Endpoint, int> &updateInfo = updatedTrackersIter.value();
                         TrackerEntry trackerEntry = torrent->updateTrackerEntry(announceEntry, updateInfo);
                         const QString url = trackerEntry.url;
                         updatedTrackerEntries.emplace(url, std::move(trackerEntry));

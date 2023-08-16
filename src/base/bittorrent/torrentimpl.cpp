@@ -80,10 +80,10 @@ namespace
 
 #ifdef QBT_USES_LIBTORRENT2
     void updateTrackerEntry(TrackerEntry &trackerEntry, const lt::announce_entry &nativeEntry
-            , const lt::info_hash_t &hashes, const QMap<TrackerEntry::Endpoint, int> &updateInfo)
+            , const lt::info_hash_t &hashes, const QHash<TrackerEntry::Endpoint, int> &updateInfo)
 #else
     void updateTrackerEntry(TrackerEntry &trackerEntry, const lt::announce_entry &nativeEntry
-            , const QMap<TrackerEntry::Endpoint, int> &updateInfo)
+            , const QHash<TrackerEntry::Endpoint, int> &updateInfo)
 #endif
     {
         Q_ASSERT(trackerEntry.url == QString::fromStdString(nativeEntry.url));
@@ -1603,7 +1603,7 @@ void TorrentImpl::fileSearchFinished(const Path &savePath, const PathList &fileN
         endReceivedMetadataHandling(savePath, fileNames);
 }
 
-TrackerEntry TorrentImpl::updateTrackerEntry(const lt::announce_entry &announceEntry, const QMap<TrackerEntry::Endpoint, int> &updateInfo)
+TrackerEntry TorrentImpl::updateTrackerEntry(const lt::announce_entry &announceEntry, const QHash<TrackerEntry::Endpoint, int> &updateInfo)
 {
     const auto it = std::find_if(m_trackerEntries.begin(), m_trackerEntries.end()
             , [&announceEntry](const TrackerEntry &trackerEntry)
