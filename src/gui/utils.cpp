@@ -31,9 +31,9 @@
 #include <QtSystemDetection>
 
 #ifdef Q_OS_WIN
-#include <Objbase.h>
-#include <Shlobj.h>
-#include <Shellapi.h>
+#include <objbase.h>
+#include <shlobj.h>
+#include <shellapi.h>
 #endif
 
 #include <QApplication>

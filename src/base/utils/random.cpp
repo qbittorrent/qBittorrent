@@ -33,8 +33,8 @@
 #include <QtSystemDetection>
 
 #ifdef Q_OS_WIN
-#include <Windows.h>
-#include <Ntsecapi.h>
+#include <windows.h>
+#include <ntsecapi.h>
 #else  // Q_OS_WIN
 #include <cerrno>
 #include <cstdio>

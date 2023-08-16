@@ -32,8 +32,8 @@
 #include <QtSystemDetection>
 
 #if defined(Q_OS_WIN)
-#include <Windows.h>
-#include <versionhelpers.h>  // must follow after Windows.h
+#include <windows.h>
+#include <versionhelpers.h>  // must follow after windows.h
 #endif
 
 #include <QDebug>

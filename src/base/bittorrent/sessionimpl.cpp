@@ -37,7 +37,7 @@
 #include <string>
 
 #ifdef Q_OS_WIN
-#include <Windows.h>
+#include <windows.h>
 #include <wincrypt.h>
 #include <iphlpapi.h>
 #endif
