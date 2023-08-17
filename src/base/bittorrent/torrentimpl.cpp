@@ -105,7 +105,8 @@ namespace
                 {
                     const lt::announce_infohash &infoHash = endpoint.info_hashes[protocolVersion];
 
-                    TrackerEntry::EndpointStats trackerEndpoint;
+                    TrackerEntry::EndpointStats &trackerEndpoint = trackerEntry.stats[endpoint.local_endpoint][(protocolVersion == lt::protocol_version::V1) ? 1 : 2];
+
                     trackerEndpoint.numPeers = updateInfo.value(endpoint.local_endpoint, trackerEndpoint.numPeers);
                     trackerEndpoint.numSeeds = infoHash.scrape_complete;
                     trackerEndpoint.numLeeches = infoHash.scrape_incomplete;
@@ -152,7 +153,8 @@ namespace
         const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size());
         for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
         {
-            TrackerEntry::EndpointStats trackerEndpoint;
+            TrackerEntry::EndpointStats &trackerEndpoint = trackerEntry.stats[endpoint.local_endpoint][1];
+
             trackerEndpoint.numPeers = updateInfo.value(endpoint.local_endpoint, trackerEndpoint.numPeers);
             trackerEndpoint.numSeeds = endpoint.scrape_complete;
             trackerEndpoint.numLeeches = endpoint.scrape_incomplete;
