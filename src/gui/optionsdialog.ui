@@ -2352,7 +2352,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <item>
              <widget class="QCheckBox" name="checkScheduleEnable">
               <property name="text">
-               <string>Enable advanced scheduler</string>
+               <string>Enable scheduler</string>
               </property>
              </widget>
             </item>
