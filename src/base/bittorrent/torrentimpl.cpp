@@ -90,6 +90,16 @@ namespace
 
         trackerEntry.tier = nativeEntry.tier;
 
+        // remove outdated endpoints
+        trackerEntry.stats.removeIf([&nativeEntry](const decltype(trackerEntry.stats)::iterator &iter)
+        {
+            return std::none_of(nativeEntry.endpoints.cbegin(), nativeEntry.endpoints.cend()
+                    , [&endpoint = iter.key()](const auto &existingEndpoint)
+            {
+                return (endpoint == existingEndpoint.local_endpoint);
+            });
+        });
+
         int numUpdating = 0;
         int numWorking = 0;
         int numNotWorking = 0;
