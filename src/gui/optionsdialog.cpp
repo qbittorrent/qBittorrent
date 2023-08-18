@@ -1454,7 +1454,7 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
 void OptionsDialog::openScheduleEntryDialog(ScheduleDay *scheduleDay)
 {
     auto *dialog = new ScheduleEntryDialog(this, scheduleDay);
-    connect(dialog, &QDialog::accepted, dialog, [=]()
+    connect(dialog, &QDialog::accepted, dialog, [=, this]()
     {
         scheduleDay->addEntry({
             dialog->timeFrom(),
@@ -1543,7 +1543,7 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
         enableApplyButton();
     });
 
-    connect(actionCopyToOtherDays, &QAction::triggered, scheduleDay, [=]()
+    connect(actionCopyToOtherDays, &QAction::triggered, scheduleDay, [=, this]()
     {
         for (QModelIndex index : asConst(selectedRows))
         {
