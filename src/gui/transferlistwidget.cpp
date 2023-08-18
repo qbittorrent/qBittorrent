@@ -587,7 +587,7 @@ void TransferListWidget::openSelectedTorrentsFolder() const
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
     {
         const Path contentPath = torrent->contentPath();
-        if(contentPath.isEmpty())
+        if (contentPath.isEmpty())
         {
             paths.insert(torrent->savePath());
         }
