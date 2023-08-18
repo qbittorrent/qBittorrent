@@ -29,8 +29,8 @@
 
 #pragma once
 
-#include <QtGlobal>
 #include <QtContainerFwd>
+#include <QtTypes>
 #include <QMetaType>
 #include <QString>
 
@@ -100,11 +100,7 @@ namespace BitTorrent
         Error
     };
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     std::size_t qHash(TorrentState key, std::size_t seed = 0);
-#else
-    uint qHash(TorrentState key, uint seed = 0);
-#endif
 
     class Torrent : public TorrentContentHandler
     {
@@ -126,8 +122,12 @@ namespace BitTorrent
         static const int USE_GLOBAL_SEEDING_TIME;
         static const int NO_SEEDING_TIME_LIMIT;
 
+        static const int USE_GLOBAL_INACTIVE_SEEDING_TIME;
+        static const int NO_INACTIVE_SEEDING_TIME_LIMIT;
+
         static const qreal MAX_RATIO;
         static const int MAX_SEEDING_TIME;
+        static const int MAX_INACTIVE_SEEDING_TIME;
 
         using TorrentContentHandler::TorrentContentHandler;
 
@@ -210,6 +210,7 @@ namespace BitTorrent
         virtual QDateTime addedTime() const = 0;
         virtual qreal ratioLimit() const = 0;
         virtual int seedingTimeLimit() const = 0;
+        virtual int inactiveSeedingTimeLimit() const = 0;
 
         virtual PathList filePaths() const = 0;
 
@@ -264,6 +265,7 @@ namespace BitTorrent
         virtual qreal distributedCopies() const = 0;
         virtual qreal maxRatio() const = 0;
         virtual int maxSeedingTime() const = 0;
+        virtual int maxInactiveSeedingTime() const = 0;
         virtual qreal realRatio() const = 0;
         virtual int uploadPayloadRate() const = 0;
         virtual int downloadPayloadRate() const = 0;
@@ -283,6 +285,7 @@ namespace BitTorrent
         virtual void forceRecheck() = 0;
         virtual void setRatioLimit(qreal limit) = 0;
         virtual void setSeedingTimeLimit(int limit) = 0;
+        virtual void setInactiveSeedingTimeLimit(int limit) = 0;
         virtual void setUploadLimit(int limit) = 0;
         virtual void setDownloadLimit(int limit) = 0;
         virtual void setSuperSeeding(bool enable) = 0;

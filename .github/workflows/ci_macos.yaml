@@ -19,10 +19,7 @@ jobs:
       matrix:
         libt_version: ["2.0.9", "1.2.19"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
-        qt_version: ["5.15.2", "6.5.0"]
-        exclude:
-          - libt_version: "1.2.19"
-            qt_version: "6.5.0"
+        qt_version: ["6.5.2"]
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
@@ -56,7 +53,7 @@ jobs:
           curl \
             -L \
             -o "${{ runner.temp }}/boost.tar.bz2" \
-            "https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.bz2"
+            "https://boostorg.jfrog.io/artifactory/main/release/1.83.0/source/boost_1_83_0.tar.bz2"
           tar -xf "${{ runner.temp }}/boost.tar.bz2" -C "${{ github.workspace }}/.."
           mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
 
@@ -88,27 +85,7 @@ jobs:
           cmake --build build
           sudo cmake --install build
 
-      - name: Build qBittorrent (Qt5)
-        if: startsWith(matrix.qt_version, 5)
-        run: |
-          CXXFLAGS="$CXXFLAGS -Werror -Wno-error=deprecated-declarations" \
-          LDFLAGS="$LDFLAGS -gz" \
-          cmake \
-            -B build \
-            -G "Ninja" \
-            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-            -DBOOST_ROOT="${{ env.boost_path }}" \
-            -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
-            -DTESTING=ON \
-            -DVERBOSE_CONFIGURE=ON \
-            -D${{ matrix.qbt_gui }}
-          cmake --build build --target qbt_update_translations
-          cmake --build build
-          cmake --build build --target check
-
-      - name: Build qBittorrent (Qt6)
-        if: startsWith(matrix.qt_version, 6)
+      - name: Build qBittorrent
         run: |
           CXXFLAGS="$CXXFLAGS -Wno-gnu-zero-variadic-macro-arguments -Werror -Wno-error=deprecated-declarations" \
           LDFLAGS="$LDFLAGS -gz" \
@@ -119,7 +96,6 @@ jobs:
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DBOOST_ROOT="${{ env.boost_path }}" \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
-            -DQT6=ON \
             -DTESTING=ON \
             -DVERBOSE_CONFIGURE=ON \
             -D${{ matrix.qbt_gui }}

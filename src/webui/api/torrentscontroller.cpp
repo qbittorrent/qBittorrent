@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -45,8 +45,9 @@
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
-#include "base/bittorrent/torrentinfo.h"
+#include "base/bittorrent/torrentdescriptor.h"
 #include "base/bittorrent/trackerentry.h"
+#include "base/interfaces/iapplication.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
@@ -302,9 +303,9 @@ void TorrentsController::infoAction()
 
         const auto lessThan = [](const QVariant &left, const QVariant &right) -> bool
         {
-            Q_ASSERT(left.type() == right.type());
+            Q_ASSERT(left.userType() == right.userType());
 
-            switch (static_cast<QMetaType::Type>(left.type()))
+            switch (left.userType())
             {
             case QMetaType::Bool:
                 return left.value<bool>() < right.value<bool>();
@@ -319,8 +320,8 @@ void TorrentsController::infoAction()
             case QMetaType::QString:
                 return left.value<QString>() < right.value<QString>();
             default:
-                qWarning("Unhandled QVariant comparison, type: %d, name: %s", left.type()
-                    , QMetaType::typeName(left.type()));
+                qWarning("Unhandled QVariant comparison, type: %d, name: %s"
+                        , left.userType(), left.metaType().name());
                 break;
             }
             return false;
@@ -673,6 +674,7 @@ void TorrentsController::addAction()
     const int dlLimit = parseInt(params()[u"dlLimit"_s]).value_or(-1);
     const double ratioLimit = parseDouble(params()[u"ratioLimit"_s]).value_or(BitTorrent::Torrent::USE_GLOBAL_RATIO);
     const int seedingTimeLimit = parseInt(params()[u"seedingTimeLimit"_s]).value_or(BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME);
+    const int inactiveSeedingTimeLimit = parseInt(params()[u"inactiveSeedingTimeLimit"_s]).value_or(BitTorrent::Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME);
     const std::optional<bool> autoTMM = parseBool(params()[u"autoTMM"_s]);
 
     const QString stopConditionParam = params()[u"stopCondition"_s];
@@ -720,6 +722,7 @@ void TorrentsController::addAction()
     addTorrentParams.uploadLimit = upLimit;
     addTorrentParams.downloadLimit = dlLimit;
     addTorrentParams.seedingTimeLimit = seedingTimeLimit;
+    addTorrentParams.inactiveSeedingTimeLimit = inactiveSeedingTimeLimit;
     addTorrentParams.ratioLimit = ratioLimit;
     addTorrentParams.useAutoTMM = autoTMM;
 
@@ -730,21 +733,21 @@ void TorrentsController::addAction()
         if (!url.isEmpty())
         {
             Net::DownloadManager::instance()->setCookiesFromUrl(cookies, QUrl::fromEncoded(url.toUtf8()));
-            partialSuccess |= BitTorrent::Session::instance()->addTorrent(url, addTorrentParams);
+            partialSuccess |= app()->addTorrentManager()->addTorrent(url, addTorrentParams);
         }
     }
 
     const DataMap torrents = data();
     for (auto it = torrents.constBegin(); it != torrents.constEnd(); ++it)
     {
-        const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::load(it.value());
-        if (!result)
+        if (const auto loadResult = BitTorrent::TorrentDescriptor::load(it.value()))
         {
-            throw APIError(APIErrorType::BadData
-                           , tr("Error: '%1' is not a valid torrent file.").arg(it.key()));
+            partialSuccess |= BitTorrent::Session::instance()->addTorrent(loadResult.value(), addTorrentParams);
         }
-
-        partialSuccess |= BitTorrent::Session::instance()->addTorrent(result.value(), addTorrentParams);
+        else
+        {
+            throw APIError(APIErrorType::BadData, tr("Error: '%1' is not a valid torrent file.").arg(it.key()));
+        }
     }
 
     if (partialSuccess)
@@ -980,16 +983,18 @@ void TorrentsController::setDownloadLimitAction()
 
 void TorrentsController::setShareLimitsAction()
 {
-    requireParams({u"hashes"_s, u"ratioLimit"_s, u"seedingTimeLimit"_s});
+    requireParams({u"hashes"_s, u"ratioLimit"_s, u"seedingTimeLimit"_s, u"inactiveSeedingTimeLimit"_s});
 
     const qreal ratioLimit = params()[u"ratioLimit"_s].toDouble();
     const qlonglong seedingTimeLimit = params()[u"seedingTimeLimit"_s].toLongLong();
+    const qlonglong inactiveSeedingTimeLimit = params()[u"inactiveSeedingTimeLimit"_s].toLongLong();
     const QStringList hashes = params()[u"hashes"_s].split(u'|');
 
-    applyToTorrents(hashes, [ratioLimit, seedingTimeLimit](BitTorrent::Torrent *const torrent)
+    applyToTorrents(hashes, [ratioLimit, seedingTimeLimit, inactiveSeedingTimeLimit](BitTorrent::Torrent *const torrent)
     {
         torrent->setRatioLimit(ratioLimit);
         torrent->setSeedingTimeLimit(seedingTimeLimit);
+        torrent->setInactiveSeedingTimeLimit(inactiveSeedingTimeLimit);
     });
 }
 

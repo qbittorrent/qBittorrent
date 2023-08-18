@@ -30,7 +30,7 @@
 #pragma once
 
 #include <QtContainerFwd>
-#include <QtGlobal>
+#include <QtSystemDetection>
 #include <QObject>
 
 #include "base/pathfwd.h"
@@ -423,6 +423,14 @@ public:
     void setSpeedWidgetPeriod(int period);
     bool getSpeedWidgetGraphEnable(int id) const;
     void setSpeedWidgetGraphEnable(int id, bool enable);
+
+    // AddNewTorrentDialog
+    bool isAddNewTorrentDialogEnabled() const;
+    void setAddNewTorrentDialogEnabled(bool value);
+    bool isAddNewTorrentDialogTopLevel() const;
+    void setAddNewTorrentDialogTopLevel(bool value);
+    int addNewTorrentDialogSavePathHistoryLength() const;
+    void setAddNewTorrentDialogSavePathHistoryLength(int value);
 
 public slots:
     void setStatusFilterState(bool checked);

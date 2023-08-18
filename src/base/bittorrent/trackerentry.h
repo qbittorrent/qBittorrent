@@ -31,9 +31,7 @@
 #include <libtorrent/socket.hpp>
 
 #include <QtContainerFwd>
-#include <QtGlobal>
 #include <QHash>
-#include <QMap>
 #include <QString>
 #include <QStringView>
 
@@ -64,8 +62,7 @@ namespace BitTorrent
         QString url {};
         int tier = 0;
 
-        // TODO: Use QHash<TrackerEntry::Endpoint, QHash<int, EndpointStats>> once Qt5 is dropped.
-        QMap<Endpoint, QHash<int, EndpointStats>> stats {};
+        QHash<Endpoint, QHash<int, EndpointStats>> stats {};
 
         // Deprecated fields
         Status status = NotContacted;
@@ -79,9 +76,5 @@ namespace BitTorrent
     QVector<TrackerEntry> parseTrackerEntries(QStringView str);
 
     bool operator==(const TrackerEntry &left, const TrackerEntry &right);
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     std::size_t qHash(const TrackerEntry &key, std::size_t seed = 0);
-#else
-    uint qHash(const TrackerEntry &key, uint seed = 0);
-#endif
 }

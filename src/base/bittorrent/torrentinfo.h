@@ -93,6 +93,8 @@ namespace BitTorrent
         PieceRange filePieces(const Path &filePath) const;
         PieceRange filePieces(int fileIndex) const;
 
+        bool matchesInfoHash(const InfoHash &otherInfoHash) const;
+
         std::shared_ptr<lt::torrent_info> nativeInfo() const;
         QVector<lt::file_index_t> nativeIndexes() const;
 

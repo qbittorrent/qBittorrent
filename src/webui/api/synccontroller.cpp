@@ -188,7 +188,7 @@ namespace
             const QVariant &value = i.value();
             QVariantList removedItems;
 
-            switch (static_cast<QMetaType::Type>(value.type()))
+            switch (value.userType())
             {
             case QMetaType::QVariantMap:
                 {
@@ -234,7 +234,7 @@ namespace
             default:
                 Q_ASSERT_X(false, "processMap"
                            , u"Unexpected type: %1"_s
-                           .arg(QString::fromLatin1(QMetaType::typeName(static_cast<QMetaType::Type>(value.type()))))
+                           .arg(QString::fromLatin1(value.metaType().name()))
                            .toUtf8().constData());
             }
         }
@@ -259,9 +259,9 @@ namespace
         {
             for (auto i = data.cbegin(); i != data.cend(); ++i)
             {
-                switch (i.value().type())
+                switch (i.value().userType())
                 {
-                case QVariant::Map:
+                case QMetaType::QVariantMap:
                     if (!prevData.contains(i.key()))
                     {
                         // new list item found - append it to syncData
@@ -280,7 +280,7 @@ namespace
                         }
                     }
                     break;
-                case QVariant::StringList:
+                case QMetaType::QStringList:
                     if (!prevData.contains(i.key()))
                     {
                         // new list item found - append it to syncData
@@ -882,7 +882,7 @@ void SyncController::onTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent)
     {
         auto iter = m_knownTrackers.find(trackerEntry.url);
         Q_ASSERT(iter != m_knownTrackers.end());
-        if (Q_UNLIKELY(iter == m_knownTrackers.end()))
+        if (iter == m_knownTrackers.end()) [[unlikely]]
             continue;
 
         QSet<BitTorrent::TorrentID> &torrentIDs = iter.value();
@@ -959,8 +959,7 @@ void SyncController::onTorrentTrackersChanged(BitTorrent::Torrent *torrent)
 
     const TorrentID torrentID = torrent->id();
     Algorithm::removeIf(m_knownTrackers
-            , [this, torrentID, currentTrackers]
-                    (const QString &knownTracker, QSet<TorrentID> &torrentIDs)
+        , [this, torrentID, currentTrackers](const QString &knownTracker, QSet<TorrentID> &torrentIDs)
     {
         if (auto idIter = torrentIDs.find(torrentID)
                 ; (idIter != torrentIDs.end()) && !currentTrackers.contains(knownTracker))

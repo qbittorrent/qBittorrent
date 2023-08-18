@@ -3,7 +3,7 @@ qBittorrent - A BitTorrent client in C++ / Qt
 
 1) Install these dependencies:
 
-  - Boost >= 1.71
+  - Boost >= 1.76
 
   - libtorrent-rasterbar 1.2.19 - 1.2.x || 2.0.9 - 2.0.x
       * By Arvid Norberg, https://www.libtorrent.org/
@@ -11,12 +11,12 @@ qBittorrent - A BitTorrent client in C++ / Qt
 
   - OpenSSL >= 1.1.1
 
-  - Qt 5.15.2 - 5.x || 6.2.0 - 6.x
+  - Qt 6.5.0 - 6.x
 
   - zlib >= 1.2.11
 
-  - pkg-config *
-      * Compile-time only on *nix systems
+  - CMake >= 3.16
+      * Compile-time only
 
   - Python >= 3.7.0
       * Optional, run-time only
@@ -28,16 +28,18 @@ Please ensure you are building with an officially supported configuration when r
 
 2a) Compile and install qBittorrent with Qt graphical interface
 
-  $ ./configure
-  $ make && make install
+  $ cmake -B build -DCMAKE_BUILD_TYPE=Release
+  $ cmake --build build
+  $ cmake --install build
   $ qbittorrent
 
   will install and execute qBittorrent.
 
 2b) Compile and install qBittorrent without Qt graphical interface
 
-  $ ./configure --disable-gui
-  $ make && make install
+  $ cmake -B build -DCMAKE_BUILD_TYPE=Release -DGUI=OFF
+  $ cmake --build build
+  $ cmake --install build
   $ qbittorrent-nox
 
   will install and execute qBittorrent.

@@ -39,6 +39,7 @@
 #include <QRegularExpression>
 #include <QStringView>
 
+#include "base/concepts/stringable.h"
 #include "base/global.h"
 
 #if defined(Q_OS_WIN)
@@ -68,6 +69,9 @@ namespace
     }
 #endif
 }
+
+// `Path` should satisfy `Stringable` concept in order to be stored in settings as string
+static_assert(Stringable<Path>);
 
 Path::Path(const QString &pathStr)
     : m_pathStr {cleanPath(pathStr)}
@@ -342,11 +346,6 @@ bool operator==(const Path &lhs, const Path &rhs)
     return (lhs.data().compare(rhs.data(), CASE_SENSITIVITY) == 0);
 }
 
-bool operator!=(const Path &lhs, const Path &rhs)
-{
-    return !(lhs == rhs);
-}
-
 Path operator/(const Path &lhs, const Path &rhs)
 {
     if (rhs.isEmpty())
@@ -377,11 +376,7 @@ QDataStream &operator>>(QDataStream &in, Path &path)
     return in;
 }
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 std::size_t qHash(const Path &key, const std::size_t seed)
-#else
-uint qHash(const Path &key, const uint seed)
-#endif
 {
     return ::qHash(key.data(), seed);
 }

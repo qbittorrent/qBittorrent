@@ -28,6 +28,7 @@
 
 #include <algorithm>
 
+#include <QObject>
 #include <QTest>
 #include <QVector>
 

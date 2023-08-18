@@ -1,11 +1,4 @@
-if (QT6)
-    find_package(Qt6 ${minQt6Version} REQUIRED COMPONENTS Widgets Svg)
-else()
-    find_package(Qt5 ${minQt5Version} REQUIRED COMPONENTS Widgets Svg)
-    if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-        find_package(Qt5 ${minQt5Version} REQUIRED COMPONENTS WinExtras)
-    endif()
-endif()
+find_package(Qt6 ${minQt6Version} REQUIRED COMPONENTS Widgets Svg)
 
 # CMAKE_AUTO_UI causes unnecessary rebuilds
 qt_wrap_ui(UI_HEADERS
@@ -62,6 +55,7 @@ add_library(qbt_gui STATIC
     flowlayout.h
     fspathedit.h
     fspathedit_p.h
+    guiaddtorrentmanager.h
     guiapplicationcomponent.h
     hidabletabwidget.h
     interfaces/iguiapplication.h
@@ -158,7 +152,7 @@ add_library(qbt_gui STATIC
     flowlayout.cpp
     fspathedit.cpp
     fspathedit_p.cpp
-    guiapplicationcomponent.cpp
+    guiaddtorrentmanager.cpp
     hidabletabwidget.cpp
     ipsubnetwhitelistoptionsdialog.cpp
     lineedit.cpp
@@ -281,9 +275,6 @@ endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     target_link_libraries(qbt_gui PRIVATE PowrProf)
-    if (NOT QT6)
-        target_link_libraries(qbt_gui PRIVATE Qt5::WinExtras)
-    endif()
 endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")

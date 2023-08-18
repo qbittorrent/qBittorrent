@@ -524,8 +524,7 @@ void Feed::handleArticleLoadFinished(QVector<QVariantHash> articles)
     for (const QVariantHash &articleData : articles)
     {
         const auto articleID = articleData.value(Article::KeyId).toString();
-        // TODO: use [[unlikely]] in C++20
-        if (Q_UNLIKELY(m_articles.contains(articleID)))
+        if (m_articles.contains(articleID)) [[unlikely]]
             continue;
 
         auto *article = new Article(this, articleData);
@@ -561,8 +560,7 @@ void Feed::cleanup()
     Utils::Fs::removeFile(m_iconPath);
 }
 
-void Feed::timerEvent(QTimerEvent *event)
+void Feed::timerEvent([[maybe_unused]] QTimerEvent *event)
 {
-    Q_UNUSED(event);
     store();
 }

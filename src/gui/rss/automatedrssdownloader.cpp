@@ -29,7 +29,6 @@
 
 #include "automatedrssdownloader.h"
 
-#include <QtGlobal>
 #include <QCursor>
 #include <QFileDialog>
 #include <QMenu>
@@ -67,13 +66,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     , m_ui {new Ui::AutomatedRssDownloader}
     , m_addTorrentParamsWidget {new AddTorrentParamsWidget}
     , m_storeDialogSize {u"RssFeedDownloader/geometrySize"_s}
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     , m_storeMainSplitterState {u"GUI/Qt6/RSSFeedDownloader/HSplitterSizes"_s}
     , m_storeRuleDefSplitterState {u"GUI/Qt6/RSSFeedDownloader/RuleDefSplitterState"_s}
-#else
-    , m_storeMainSplitterState {u"RssFeedDownloader/qt5/hsplitterSizes"_s}
-    , m_storeRuleDefSplitterState {u"RssFeedDownloader/qt5/RuleDefSplitterState"_s}
-#endif
 {
     m_ui->setupUi(this);
 

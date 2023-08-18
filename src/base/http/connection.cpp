@@ -74,12 +74,12 @@ void Connection::read()
     const qint64 bytesAvailable = m_socket->bytesAvailable();
     m_receivedData.resize(previousSize + bytesAvailable);
     const qint64 bytesRead = m_socket->read((m_receivedData.data() + previousSize), bytesAvailable);
-    if (Q_UNLIKELY(bytesRead < 0))
+    if (bytesRead < 0) [[unlikely]]
     {
         m_socket->close();
         return;
     }
-    if (Q_UNLIKELY(bytesRead < bytesAvailable))
+    if (bytesRead < bytesAvailable) [[unlikely]]
         m_receivedData.chop(bytesAvailable - bytesRead);
 
     while (!m_receivedData.isEmpty())

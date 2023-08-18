@@ -29,26 +29,49 @@
 #include "powermanagement_x11.h"
 
 #include <QDBusConnection>
-#include <QDBusMessage>
+#include <QDBusInterface>
 #include <QDBusPendingCall>
 #include <QDBusPendingReply>
 
 #include "base/global.h"
+#include "base/logger.h"
 
 PowerManagementInhibitor::PowerManagementInhibitor(QObject *parent)
     : QObject(parent)
+    , m_busInterface {new QDBusInterface(u"org.gnome.SessionManager"_s, u"/org/gnome/SessionManager"_s
+        , u"org.gnome.SessionManager"_s, QDBusConnection::sessionBus(), this)}
 {
-    if (!QDBusConnection::sessionBus().isConnected()) {
-        qDebug("D-Bus: Could not connect to session bus");
-        m_state = Error;
-    }
-    else {
-        m_state = Idle;
+    if (!m_busInterface->isValid())
+    {
+        delete m_busInterface;
+
+        m_busInterface = new QDBusInterface(u"org.freedesktop.login1"_s, u"/org/freedesktop/login1"_s
+            , u"org.freedesktop.login1.Manager"_s, QDBusConnection::systemBus(), this);
+        m_manager = ManagerType::Systemd;
+        if (!m_busInterface->isValid())
+        {
+            delete m_busInterface;
+
+            m_busInterface = new QDBusInterface(u"org.freedesktop.PowerManagement"_s, u"/org/freedesktop/PowerManagement/Inhibit"_s
+                , u"org.freedesktop.PowerManagement.Inhibit"_s, QDBusConnection::sessionBus(), this);
+            m_manager = ManagerType::Freedesktop;
+            if (!m_busInterface->isValid())
+            {
+                delete m_busInterface;
+                m_busInterface = nullptr;
+            }
+        }
     }
 
-    m_intendedState = Idle;
-    m_cookie = 0;
-    m_useGSM = false;
+    if (m_busInterface)
+    {
+        m_state = Idle;
+        LogMsg(tr("Power management found suitable D-Bus interface. Interface: %1").arg(m_busInterface->interface()));
+    }
+    else
+    {
+        LogMsg(tr("Power management error. Did not found suitable D-Bus interface."), Log::WARNING);
+    }
 }
 
 void PowerManagementInhibitor::requestIdle()
@@ -57,27 +80,22 @@ void PowerManagementInhibitor::requestIdle()
     if ((m_state == Error) || (m_state == Idle) || (m_state == RequestIdle) || (m_state == RequestBusy))
         return;
 
+    if (m_manager == ManagerType::Systemd)
+    {
+        m_fd = {};
+        m_state = Idle;
+        return;
+    }
+
     m_state = RequestIdle;
-    qDebug("D-Bus: PowerManagementInhibitor: Requesting idle");
 
-    QDBusMessage call = m_useGSM
-        ? QDBusMessage::createMethodCall(
-            u"org.gnome.SessionManager"_s,
-            u"/org/gnome/SessionManager"_s,
-            u"org.gnome.SessionManager"_s,
-            u"Uninhibit"_s)
-        : QDBusMessage::createMethodCall(
-            u"org.freedesktop.PowerManagement"_s,
-            u"/org/freedesktop/PowerManagement/Inhibit"_s,
-            u"org.freedesktop.PowerManagement.Inhibit"_s,
-            u"UnInhibit"_s);
-    call.setArguments({m_cookie});
-
-    QDBusPendingCall pcall = QDBusConnection::sessionBus().asyncCall(call, 1000);
-    auto *watcher = new QDBusPendingCallWatcher(pcall, this);
+    const QString method = (m_manager == ManagerType::Gnome)
+        ? u"Uninhibit"_s
+        : u"UnInhibit"_s;
+    const QDBusPendingCall pcall = m_busInterface->asyncCall(method, m_cookie);
+    const auto *watcher = new QDBusPendingCallWatcher(pcall, this);
     connect(watcher, &QDBusPendingCallWatcher::finished, this, &PowerManagementInhibitor::onAsyncReply);
 }
-
 
 void PowerManagementInhibitor::requestBusy()
 {
@@ -86,78 +104,98 @@ void PowerManagementInhibitor::requestBusy()
         return;
 
     m_state = RequestBusy;
-    qDebug("D-Bus: PowerManagementInhibitor: Requesting busy");
 
-    QDBusMessage call = m_useGSM
-        ? QDBusMessage::createMethodCall(
-            u"org.gnome.SessionManager"_s,
-            u"/org/gnome/SessionManager"_s,
-            u"org.gnome.SessionManager"_s,
-            u"Inhibit"_s)
-        : QDBusMessage::createMethodCall(
-                u"org.freedesktop.PowerManagement"_s,
-                u"/org/freedesktop/PowerManagement/Inhibit"_s,
-                u"org.freedesktop.PowerManagement.Inhibit"_s,
-                u"Inhibit"_s);
+    const QString message = u"Active torrents are currently present"_s;
 
-    QList<QVariant> args = {u"qBittorrent"_s};
-    if (m_useGSM)
-        args << 0u;
-    args << u"Active torrents are presented"_s;
-    if (m_useGSM)
-        args << 8u;
-    call.setArguments(args);
+    QList<QVariant> args;
+    switch (m_manager)
+    {
+    case ManagerType::Freedesktop:
+        args = {u"qBittorrent"_s, message};
+        break;
+    case ManagerType::Gnome:
+        args = {u"qBittorrent"_s, 0u, message, 4u};
+        break;
+    case ManagerType::Systemd:
+        args = {u"sleep"_s, u"qBittorrent"_s, message, u"block"_s};
+        break;
+    }
 
-    QDBusPendingCall pcall = QDBusConnection::sessionBus().asyncCall(call, 1000);
-    auto *watcher = new QDBusPendingCallWatcher(pcall, this);
+    const QDBusPendingCall pcall = m_busInterface->asyncCallWithArgumentList(u"Inhibit"_s, args);
+    const auto *watcher = new QDBusPendingCallWatcher(pcall, this);
     connect(watcher, &QDBusPendingCallWatcher::finished, this, &PowerManagementInhibitor::onAsyncReply);
 }
 
 void PowerManagementInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
 {
-    if (m_state == RequestIdle) {
-        QDBusPendingReply<> reply = *call;
+    call->deleteLater();
 
-        if (reply.isError()) {
-            qDebug("D-Bus: Reply: Error: %s", qUtf8Printable(reply.error().message()));
+    if (m_state == RequestIdle)
+    {
+        const QDBusPendingReply reply = *call;
+
+        if (reply.isError())
+        {
+            LogMsg(tr("Power management error. Action: %1. Error: %2").arg(u"RequestIdle"_s
+                , reply.error().message()), Log::WARNING);
             m_state = Error;
         }
-        else {
+        else
+        {
             m_state = Idle;
-            qDebug("D-Bus: PowerManagementInhibitor: Request successful");
             if (m_intendedState == Busy)
                 requestBusy();
         }
     }
-    else if (m_state == RequestBusy) {
-        QDBusPendingReply<uint> reply = *call;
+    else if (m_state == RequestBusy)
+    {
+        if (m_manager == ManagerType::Systemd)
+        {
+            const QDBusPendingReply<QDBusUnixFileDescriptor> reply = *call;
 
-        if (reply.isError()) {
-            qDebug("D-Bus: Reply: Error: %s", qUtf8Printable(reply.error().message()));
-
-            if (!m_useGSM) {
-                qDebug("D-Bus: Falling back to org.gnome.SessionManager");
-                m_useGSM = true;
-                m_state = Idle;
-                if (m_intendedState == Busy)
-                    requestBusy();
-            }
-            else {
+            if (reply.isError())
+            {
+                LogMsg(tr("Power management error. Action: %1. Error: %2").arg(u"RequestBusy"_s
+                    , reply.error().message()), Log::WARNING);
                 m_state = Error;
             }
+            else
+            {
+                m_state = Busy;
+                m_fd = reply.value();
+                if (m_intendedState == Idle)
+                    requestIdle();
+            }
         }
-        else {
-            m_state = Busy;
-            m_cookie = reply.value();
-            qDebug("D-Bus: PowerManagementInhibitor: Request successful, cookie is %d", m_cookie);
-            if (m_intendedState == Idle)
-                requestIdle();
+        else
+        {
+            const QDBusPendingReply<uint> reply = *call;
+
+            if (reply.isError())
+            {
+                LogMsg(tr("Power management error. Action: %1. Error: %2").arg(u"RequestBusy"_s
+                    , reply.error().message()), Log::WARNING);
+                m_state = Error;
+            }
+            else
+            {
+                m_state = Busy;
+                m_cookie = reply.value();
+                if (m_intendedState == Idle)
+                    requestIdle();
+            }
         }
     }
-    else {
-        qDebug("D-Bus: Unexpected reply in state %d", m_state);
+    else
+    {
+        const QDBusPendingReply reply = *call;
+        const QDBusError error = reply.error();
+
+        if (error.isValid())
+        {
+            LogMsg(tr("Power management unexpected error. State: %1. Error: %2").arg(QString::number(m_state)
+                , error.message()), Log::WARNING);
+        }
         m_state = Error;
     }
-
-    call->deleteLater();
 }

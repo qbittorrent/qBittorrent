@@ -33,7 +33,7 @@
 #include <boost/circular_buffer.hpp>
 #endif
 
-#include <QtGlobal>
+#include <QtTypes>
 
 template<typename T>
 struct Sample
@@ -64,8 +64,8 @@ struct Sample
     T upload {};
 };
 
-typedef Sample<qlonglong> SpeedSample;
-typedef Sample<qreal> SpeedSampleAvg;
+using SpeedSample = Sample<qlonglong>;
+using SpeedSampleAvg = Sample<qreal>;
 
 class SpeedMonitor
 {

@@ -41,7 +41,7 @@
 #include <sys/types.h>
 
 #if defined(Q_OS_WIN)
-#include <Windows.h>
+#include <windows.h>
 #elif defined(Q_OS_MACOS) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
 #include <sys/param.h>
 #include <sys/mount.h>

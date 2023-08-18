@@ -68,10 +68,10 @@
 
 #include "qtlocalpeer.h"
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 
 #if defined(Q_OS_WIN)
-#include <Windows.h>
+#include <windows.h>
 #endif
 
 #include <QDataStream>

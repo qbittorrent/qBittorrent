@@ -89,11 +89,7 @@ nonstd::expected<QByteArray, Utils::IO::ReadError> Utils::IO::readFile(const Pat
         return nonstd::make_unexpected(ReadError {ReadError::ExceedSize, message});
     }
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 5, 0))
     QByteArray ret {fileSize, Qt::Uninitialized};
-#else
-    QByteArray ret {static_cast<int>(fileSize), Qt::Uninitialized};
-#endif
     const qint64 actualSize = file.read(ret.data(), fileSize);
 
     if (actualSize < 0)

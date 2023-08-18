@@ -58,8 +58,8 @@ enum DeleteOption
 namespace BitTorrent
 {
     class InfoHash;
-    class MagnetUri;
     class Torrent;
+    class TorrentDescriptor;
     class TorrentID;
     class TorrentInfo;
     struct CacheStatus;
@@ -203,6 +203,8 @@ namespace BitTorrent
         virtual void setGlobalMaxRatio(qreal ratio) = 0;
         virtual int globalMaxSeedingMinutes() const = 0;
         virtual void setGlobalMaxSeedingMinutes(int minutes) = 0;
+        virtual int globalMaxInactiveSeedingMinutes() const = 0;
+        virtual void setGlobalMaxInactiveSeedingMinutes(int minutes) = 0;
         virtual bool isDHTEnabled() const = 0;
         virtual void setDHTEnabled(bool enabled) = 0;
         virtual bool isLSDEnabled() const = 0;
@@ -439,14 +441,11 @@ namespace BitTorrent
         virtual void banIP(const QString &ip) = 0;
 
         virtual bool isKnownTorrent(const InfoHash &infoHash) const = 0;
-        virtual bool addTorrent(const QString &source, const AddTorrentParams &params = {}) = 0;
-        virtual bool addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &params = {}) = 0;
-        virtual bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = {}) = 0;
+        virtual bool addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params = {}) = 0;
         virtual bool deleteTorrent(const TorrentID &id, DeleteOption deleteOption = DeleteOption::DeleteTorrent) = 0;
-        virtual bool downloadMetadata(const MagnetUri &magnetUri) = 0;
+        virtual bool downloadMetadata(const TorrentDescriptor &torrentDescr) = 0;
         virtual bool cancelDownloadMetadata(const TorrentID &id) = 0;
 
-        virtual void recursiveTorrentDownload(const TorrentID &id) = 0;
         virtual void increaseTorrentsQueuePos(const QVector<TorrentID> &ids) = 0;
         virtual void decreaseTorrentsQueuePos(const QVector<TorrentID> &ids) = 0;
         virtual void topTorrentsQueuePos(const QVector<TorrentID> &ids) = 0;
@@ -454,17 +453,15 @@ namespace BitTorrent
 
     signals:
         void startupProgressUpdated(int progress);
+        void addTorrentFailed(const InfoHash &infoHash, const QString &reason);
         void allTorrentsFinished();
         void categoryAdded(const QString &categoryName);
         void categoryRemoved(const QString &categoryName);
         void categoryOptionsChanged(const QString &categoryName);
-        void downloadFromUrlFailed(const QString &url, const QString &reason);
-        void downloadFromUrlFinished(const QString &url);
         void fullDiskError(Torrent *torrent, const QString &msg);
         void IPFilterParsed(bool error, int ruleCount);
         void loadTorrentFailed(const QString &error);
         void metadataDownloaded(const TorrentInfo &info);
-        void recursiveTorrentDownloadPossible(Torrent *torrent);
         void restored();
         void speedLimitModeChanged(bool alternative);
         void statsUpdated();

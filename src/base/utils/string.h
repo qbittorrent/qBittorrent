@@ -67,8 +67,9 @@ namespace Utils::String
 
     QString fromDouble(double n, int precision);
 
-    template <typename T, typename std::enable_if_t<std::is_enum_v<T>, int> = 0>
+    template <typename T>
     QString fromEnum(const T &value)
+        requires std::is_enum_v<T>
     {
         static_assert(std::is_same_v<int, typename std::underlying_type_t<T>>,
                       "Enumeration underlying type has to be int.");
@@ -77,8 +78,9 @@ namespace Utils::String
         return QString::fromLatin1(metaEnum.valueToKey(static_cast<int>(value)));
     }
 
-    template <typename T, typename std::enable_if_t<std::is_enum_v<T>, int> = 0>
+    template <typename T>
     T toEnum(const QString &serializedValue, const T &defaultValue)
+        requires std::is_enum_v<T>
     {
         static_assert(std::is_same_v<int, typename std::underlying_type_t<T>>,
                       "Enumeration underlying type has to be int.");

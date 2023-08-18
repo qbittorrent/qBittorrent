@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,26 +26,9 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "version.h"
 
-#include <QtGlobal>
+#include "base/concepts/stringable.h"
 
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-#include <functional>
-
-#include <libtorrent/units.hpp>
-
-#include <QHash>
-
-namespace libtorrent
-{
-    namespace aux
-    {
-        template <typename T, typename Tag>
-        uint qHash(const strong_typedef<T, Tag> &key, const uint seed = 0)
-        {
-            return ::qHash((std::hash<strong_typedef<T, Tag>> {})(key), seed);
-        }
-    }
-}
-#endif
+// `Version` should satisfy `Stringable` concept in order to be stored in settings as string
+static_assert(Stringable<Utils::Version<1>>);

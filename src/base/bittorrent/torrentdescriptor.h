@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,40 +28,57 @@
 
 #pragma once
 
+#include <optional>
+
 #include <libtorrent/add_torrent_params.hpp>
 
-#include <QString>
-#include <QUrl>
-#include <QVector>
+#include <QtContainerFwd>
+#include <QMetaType>
 
-#include "infohash.h"
-#include "trackerentry.h"
+#include "base/3rdparty/expected.hpp"
+#include "base/path.h"
+#include "torrentdescriptor.h"
+#include "torrentinfo.h"
+
+class QByteArray;
+class QDateTime;
+class QString;
+class QUrl;
 
 namespace BitTorrent
 {
-    class MagnetUri
+    class InfoHash;
+    struct TrackerEntry;
+
+    class TorrentDescriptor
     {
     public:
-        explicit MagnetUri(const QString &source = {});
+        TorrentDescriptor() = default;
 
-        bool isValid() const;
         InfoHash infoHash() const;
         QString name() const;
+        QDateTime creationDate() const;
+        QString creator() const;
+        QString comment() const;
         QVector<TrackerEntry> trackers() const;
         QVector<QUrl> urlSeeds() const;
-        QString url() const;
+        const std::optional<TorrentInfo> &info() const;
 
-        lt::add_torrent_params addTorrentParams() const;
+        void setTorrentInfo(TorrentInfo torrentInfo);
+
+        static nonstd::expected<TorrentDescriptor, QString> load(const QByteArray &data) noexcept;
+        static nonstd::expected<TorrentDescriptor, QString> loadFromFile(const Path &path) noexcept;
+        static nonstd::expected<TorrentDescriptor, QString> parse(const QString &str) noexcept;
+        nonstd::expected<void, QString> saveToFile(const Path &path) const;
+
+        const lt::add_torrent_params &ltAddTorrentParams() const;
 
     private:
-        bool m_valid = false;
-        QString m_url;
-        InfoHash m_infoHash;
-        QString m_name;
-        QVector<TrackerEntry> m_trackers;
-        QVector<QUrl> m_urlSeeds;
-        lt::add_torrent_params m_addTorrentParams;
+        explicit TorrentDescriptor(lt::add_torrent_params ltAddTorrentParams);
+
+        lt::add_torrent_params m_ltAddTorrentParams;
+        std::optional<TorrentInfo> m_info;
     };
 }
 
-Q_DECLARE_METATYPE(BitTorrent::MagnetUri)
+Q_DECLARE_METATYPE(BitTorrent::TorrentDescriptor)

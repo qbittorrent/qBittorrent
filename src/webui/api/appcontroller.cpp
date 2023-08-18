@@ -258,6 +258,8 @@ void AppController::preferencesAction()
     data[u"max_ratio"_s] = session->globalMaxRatio();
     data[u"max_seeding_time_enabled"_s] = (session->globalMaxSeedingMinutes() >= 0.);
     data[u"max_seeding_time"_s] = session->globalMaxSeedingMinutes();
+    data[u"max_inactive_seeding_time_enabled"_s] = (session->globalMaxInactiveSeedingMinutes() >= 0.);
+    data[u"max_inactive_seeding_time"_s] = session->globalMaxInactiveSeedingMinutes();
     data[u"max_ratio_act"_s] = session->maxRatioAction();
     // Add trackers
     data[u"add_trackers_enabled"_s] = session->isAddTrackersEnabled();
@@ -738,6 +740,11 @@ void AppController::setPreferencesAction()
             session->setGlobalMaxSeedingMinutes(m[u"max_seeding_time"_s].toInt());
         else
             session->setGlobalMaxSeedingMinutes(-1);
+    }
+    if (hasKey(u"max_inactive_seeding_time_enabled"_s))
+    {
+        session->setGlobalMaxInactiveSeedingMinutes(it.value().toBool()
+            ? m[u"max_inactive_seeding_time"_s].toInt() : -1);
     }
     if (hasKey(u"max_ratio_act"_s))
         session->setMaxRatioAction(static_cast<MaxRatioAction>(it.value().toInt()));

@@ -67,6 +67,7 @@ namespace BitTorrent
         int uploadLimit = -1;
         int downloadLimit = -1;
         int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
+        int inactiveSeedingTimeLimit = Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME;
         qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
     };
 

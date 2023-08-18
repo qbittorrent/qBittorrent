@@ -48,7 +48,7 @@ namespace Ui
     class SearchWidget;
 }
 
-class SearchWidget : public QWidget, public GUIApplicationComponent
+class SearchWidget : public GUIApplicationComponent<QWidget>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(SearchWidget)

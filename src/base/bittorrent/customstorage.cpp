@@ -118,7 +118,7 @@ void CustomDiskIOThread::async_move_storage(lt::storage_index_t storage, std::st
         handleCompleteFiles(storage, newSavePath);
 
     m_nativeDiskIO->async_move_storage(storage, path, flags
-                                       , [=, handler = std::move(handler)](lt::status_t status, const std::string &path, const lt::storage_error &error)
+            , [=, this, handler = std::move(handler)](lt::status_t status, const std::string &path, const lt::storage_error &error)
     {
 #if LIBTORRENT_VERSION_NUM < 20100
         if ((status != lt::status_t::fatal_disk_error) && (status != lt::status_t::file_exist))
@@ -153,7 +153,7 @@ void CustomDiskIOThread::async_rename_file(lt::storage_index_t storage, lt::file
                                            , std::function<void (const std::string &, lt::file_index_t, const lt::storage_error &)> handler)
 {
     m_nativeDiskIO->async_rename_file(storage, index, name
-                                      , [=, handler = std::move(handler)](const std::string &name, lt::file_index_t index, const lt::storage_error &error)
+            , [=, this, handler = std::move(handler)](const std::string &name, lt::file_index_t index, const lt::storage_error &error)
     {
         if (!error)
             m_storageData[storage].files.rename_file(index, name);
@@ -171,7 +171,7 @@ void CustomDiskIOThread::async_set_file_priority(lt::storage_index_t storage, lt
                                                  , std::function<void (const lt::storage_error &, lt::aux::vector<lt::download_priority_t, lt::file_index_t>)> handler)
 {
     m_nativeDiskIO->async_set_file_priority(storage, std::move(priorities)
-                                            , [=, handler = std::move(handler)](const lt::storage_error &error, const lt::aux::vector<lt::download_priority_t, lt::file_index_t> &priorities)
+            , [=, this, handler = std::move(handler)](const lt::storage_error &error, const lt::aux::vector<lt::download_priority_t, lt::file_index_t> &priorities)
     {
         m_storageData[storage].filePriorities = priorities;
         handler(error, priorities);

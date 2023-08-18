@@ -462,13 +462,10 @@ bool GeoIPDatabase::readDataFieldDescriptor(quint32 &offset, DataFieldDescriptor
     return true;
 }
 
-void GeoIPDatabase::fromBigEndian(uchar *buf, const quint32 len) const
+void GeoIPDatabase::fromBigEndian([[maybe_unused]] uchar *buf, [[maybe_unused]] const quint32 len) const
 {
 #if (Q_BYTE_ORDER == Q_LITTLE_ENDIAN)
     std::reverse(buf, buf + len);
-#else
-    Q_UNUSED(buf);
-    Q_UNUSED(len);
 #endif
 }
 
@@ -484,7 +481,7 @@ QVariant GeoIPDatabase::readMapValue(quint32 &offset, const quint32 count) const
 
         const QString key = field.toString();
         field = readDataField(offset);
-        if (field.userType() == QVariant::Invalid)
+        if (field.userType() == QMetaType::UnknownType)
             return {};
 
         map[key] = field;
@@ -500,7 +497,7 @@ QVariant GeoIPDatabase::readArrayValue(quint32 &offset, const quint32 count) con
     for (quint32 i = 0; i < count; ++i)
     {
         const QVariant field = readDataField(offset);
-        if (field.userType() == QVariant::Invalid)
+        if (field.userType() == QMetaType::UnknownType)
             return {};
 
         array.append(field);

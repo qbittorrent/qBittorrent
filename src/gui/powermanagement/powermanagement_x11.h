@@ -28,18 +28,20 @@
 
 #pragma once
 
+#include <QDBusUnixFileDescriptor>
 #include <QObject>
 
+class QDBusInterface;
 class QDBusPendingCallWatcher;
 
-class PowerManagementInhibitor : public QObject
+class PowerManagementInhibitor final : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(PowerManagementInhibitor)
 
 public:
     PowerManagementInhibitor(QObject *parent = nullptr);
-    virtual ~PowerManagementInhibitor() = default;
+    ~PowerManagementInhibitor() override = default;
 
     void requestIdle();
     void requestBusy();
@@ -57,9 +59,18 @@ private:
         RequestIdle
     };
 
-    enum State m_state;
-    enum State m_intendedState;
-    unsigned int m_cookie;
+    enum class ManagerType
+    {
+        Freedesktop,  // https://www.freedesktop.org/wiki/Specifications/power-management-spec/
+        Gnome,  // https://github.com/GNOME/gnome-settings-daemon/blob/master/gnome-settings-daemon/org.gnome.SessionManager.xml
+        Systemd // https://www.freedesktop.org/software/systemd/man/org.freedesktop.login1.html
+    };
 
-    bool m_useGSM;
+    QDBusInterface *m_busInterface = nullptr;
+    ManagerType m_manager = ManagerType::Gnome;
+
+    enum State m_state = Error;
+    enum State m_intendedState = Idle;
+    uint m_cookie = 0;
+    QDBusUnixFileDescriptor m_fd;
 };

@@ -695,7 +695,7 @@ QVector<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
 
 void Preferences::setWebUiAuthSubnetWhitelist(QStringList subnets)
 {
-    Algorithm::removeIf(subnets, [](const QString &subnet)
+    subnets.removeIf([](const QString &subnet)
     {
         return !Utils::Net::parseSubnet(subnet.trimmed()).has_value();
     });
@@ -1404,7 +1404,8 @@ bool Preferences::isTorrentFileAssocSet()
         if (defaultHandlerId != NULL)
         {
             const CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
-            isSet = CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
+            if (myBundleId != NULL)
+                isSet = CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
             CFRelease(defaultHandlerId);
         }
         CFRelease(torrentId);
@@ -1416,11 +1417,13 @@ void Preferences::setTorrentFileAssoc()
 {
     if (isTorrentFileAssocSet())
         return;
+
     const CFStringRef torrentId = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, torrentExtension, NULL);
     if (torrentId != NULL)
     {
         const CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
-        LSSetDefaultRoleHandlerForContentType(torrentId, kLSRolesViewer, myBundleId);
+        if (myBundleId != NULL)
+            LSSetDefaultRoleHandlerForContentType(torrentId, kLSRolesViewer, myBundleId);
         CFRelease(torrentId);
     }
 }
@@ -1432,7 +1435,8 @@ bool Preferences::isMagnetLinkAssocSet()
     if (defaultHandlerId != NULL)
     {
         const CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
-        isSet = CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
+        if (myBundleId != NULL)
+            isSet = CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
         CFRelease(defaultHandlerId);
     }
     return isSet;
@@ -1442,8 +1446,10 @@ void Preferences::setMagnetLinkAssoc()
 {
     if (isMagnetLinkAssocSet())
         return;
+
     const CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
-    LSSetDefaultHandlerForURLScheme(magnetUrlScheme, myBundleId);
+    if (myBundleId != NULL)
+        LSSetDefaultHandlerForURLScheme(magnetUrlScheme, myBundleId);
 }
 #endif // Q_OS_MACOS
 
@@ -1664,11 +1670,7 @@ void Preferences::setMainLastDir(const Path &path)
 
 QByteArray Preferences::getPeerListState() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     return value<QByteArray>(u"GUI/Qt6/TorrentProperties/PeerListState"_s);
-#else
-    return value<QByteArray>(u"TorrentProperties/Peers/qt5/PeerListState"_s);
-#endif
 }
 
 void Preferences::setPeerListState(const QByteArray &state)
@@ -1676,11 +1678,7 @@ void Preferences::setPeerListState(const QByteArray &state)
     if (state == getPeerListState())
         return;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     setValue(u"GUI/Qt6/TorrentProperties/PeerListState"_s, state);
-#else
-    setValue(u"TorrentProperties/Peers/qt5/PeerListState"_s, state);
-#endif
 }
 
 QString Preferences::getPropSplitterSizes() const
@@ -1698,11 +1696,7 @@ void Preferences::setPropSplitterSizes(const QString &sizes)
 
 QByteArray Preferences::getPropFileListState() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     return value<QByteArray>(u"GUI/Qt6/TorrentProperties/FilesListState"_s);
-#else
-    return value<QByteArray>(u"TorrentProperties/qt5/FilesListState"_s);
-#endif
 }
 
 void Preferences::setPropFileListState(const QByteArray &state)
@@ -1710,11 +1704,7 @@ void Preferences::setPropFileListState(const QByteArray &state)
     if (state == getPropFileListState())
         return;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     setValue(u"GUI/Qt6/TorrentProperties/FilesListState"_s, state);
-#else
-    setValue(u"TorrentProperties/qt5/FilesListState"_s, state);
-#endif
 }
 
 int Preferences::getPropCurTab() const
@@ -1745,11 +1735,7 @@ void Preferences::setPropVisible(const bool visible)
 
 QByteArray Preferences::getPropTrackerListState() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     return value<QByteArray>(u"GUI/Qt6/TorrentProperties/TrackerListState"_s);
-#else
-    return value<QByteArray>(u"TorrentProperties/Trackers/qt5/TrackerListState"_s);
-#endif
 }
 
 void Preferences::setPropTrackerListState(const QByteArray &state)
@@ -1757,11 +1743,7 @@ void Preferences::setPropTrackerListState(const QByteArray &state)
     if (state == getPropTrackerListState())
         return;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     setValue(u"GUI/Qt6/TorrentProperties/TrackerListState"_s, state);
-#else
-    setValue(u"TorrentProperties/Trackers/qt5/TrackerListState"_s, state);
-#endif
 }
 
 QStringList Preferences::getRssOpenFolders() const
@@ -1779,11 +1761,7 @@ void Preferences::setRssOpenFolders(const QStringList &folders)
 
 QByteArray Preferences::getRssSideSplitterState() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     return value<QByteArray>(u"GUI/Qt6/RSSWidget/SideSplitterState"_s);
-#else
-    return value<QByteArray>(u"GUI/RSSWidget/qt5/splitter_h"_s);
-#endif
 }
 
 void Preferences::setRssSideSplitterState(const QByteArray &state)
@@ -1791,20 +1769,12 @@ void Preferences::setRssSideSplitterState(const QByteArray &state)
     if (state == getRssSideSplitterState())
         return;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     setValue(u"GUI/Qt6/RSSWidget/SideSplitterState"_s, state);
-#else
-    setValue(u"GUI/RSSWidget/qt5/splitter_h"_s, state);
-#endif
 }
 
 QByteArray Preferences::getRssMainSplitterState() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     return value<QByteArray>(u"GUI/Qt6/RSSWidget/MainSplitterState"_s);
-#else
-    return value<QByteArray>(u"GUI/RSSWidget/qt5/splitterMain"_s);
-#endif
 }
 
 void Preferences::setRssMainSplitterState(const QByteArray &state)
@@ -1812,20 +1782,12 @@ void Preferences::setRssMainSplitterState(const QByteArray &state)
     if (state == getRssMainSplitterState())
         return;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     setValue(u"GUI/Qt6/RSSWidget/MainSplitterState"_s, state);
-#else
-    setValue(u"GUI/RSSWidget/qt5/splitterMain"_s, state);
-#endif
 }
 
 QByteArray Preferences::getSearchTabHeaderState() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     return value<QByteArray>(u"GUI/Qt6/SearchTab/HeaderState"_s);
-#else
-    return value<QByteArray>(u"SearchTab/qt5/HeaderState"_s);
-#endif
 }
 
 void Preferences::setSearchTabHeaderState(const QByteArray &state)
@@ -1833,11 +1795,7 @@ void Preferences::setSearchTabHeaderState(const QByteArray &state)
     if (state == getSearchTabHeaderState())
         return;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     setValue(u"GUI/Qt6/SearchTab/HeaderState"_s, state);
-#else
-    setValue(u"SearchTab/qt5/HeaderState"_s, state);
-#endif
 }
 
 bool Preferences::getRegexAsFilteringPatternForSearchJob() const
@@ -1972,11 +1930,7 @@ void Preferences::setHideZeroStatusFilters(const bool hide)
 
 QByteArray Preferences::getTransHeaderState() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     return value<QByteArray>(u"GUI/Qt6/TransferList/HeaderState"_s);
-#else
-    return value<QByteArray>(u"TransferList/qt5/HeaderState"_s);
-#endif
 }
 
 void Preferences::setTransHeaderState(const QByteArray &state)
@@ -1984,11 +1938,7 @@ void Preferences::setTransHeaderState(const QByteArray &state)
     if (state == getTransHeaderState())
         return;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     setValue(u"GUI/Qt6/TransferList/HeaderState"_s, state);
-#else
-    setValue(u"TransferList/qt5/HeaderState"_s, state);
-#endif
 }
 
 bool Preferences::getRegexAsFilteringPatternForTransferList() const
@@ -2127,6 +2077,50 @@ void Preferences::setSpeedWidgetGraphEnable(const int id, const bool enable)
         return;
 
     setValue(u"SpeedWidget/graph_enable_%1"_s.arg(id), enable);
+}
+
+bool Preferences::isAddNewTorrentDialogEnabled() const
+{
+    return value(u"AddNewTorrentDialog/Enabled"_s, true);
+}
+
+void Preferences::setAddNewTorrentDialogEnabled(const bool value)
+{
+    if (value == isAddNewTorrentDialogEnabled())
+        return;
+
+    setValue(u"AddNewTorrentDialog/Enabled"_s, value);
+}
+
+bool Preferences::isAddNewTorrentDialogTopLevel() const
+{
+    return value(u"AddNewTorrentDialog/TopLevel"_s, true);
+}
+
+void Preferences::setAddNewTorrentDialogTopLevel(const bool value)
+{
+    if (value == isAddNewTorrentDialogTopLevel())
+        return;
+
+    setValue(u"AddNewTorrentDialog/TopLevel"_s, value);
+}
+
+int Preferences::addNewTorrentDialogSavePathHistoryLength() const
+{
+    const int defaultHistoryLength = 8;
+
+    const int val = value(u"AddNewTorrentDialog/SavePathHistoryLength"_s, defaultHistoryLength);
+    return std::clamp(val, 0, 99);
+}
+
+void Preferences::setAddNewTorrentDialogSavePathHistoryLength(const int value)
+{
+    const int clampedValue = qBound(0, value, 99);
+    const int oldValue = addNewTorrentDialogSavePathHistoryLength();
+    if (clampedValue == oldValue)
+        return;
+
+    setValue(u"AddNewTorrentDialog/SavePathHistoryLength"_s, clampedValue);
 }
 
 void Preferences::apply()

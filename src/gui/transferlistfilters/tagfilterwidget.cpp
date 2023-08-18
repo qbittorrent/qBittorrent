@@ -95,10 +95,8 @@ QString TagFilterWidget::currentTag() const
     return getTagFilter(static_cast<TagFilterProxyModel *>(model()), current);
 }
 
-void TagFilterWidget::onCurrentRowChanged(const QModelIndex &current, const QModelIndex &previous)
+void TagFilterWidget::onCurrentRowChanged(const QModelIndex &current, [[maybe_unused]] const QModelIndex &previous)
 {
-    Q_UNUSED(previous);
-
     emit tagChanged(getTagFilter(static_cast<TagFilterProxyModel *>(model()), current));
 }
 

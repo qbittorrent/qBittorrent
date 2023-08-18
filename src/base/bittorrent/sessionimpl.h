@@ -30,7 +30,6 @@
 #pragma once
 
 #include <utility>
-#include <variant>
 #include <vector>
 
 #include <libtorrent/fwd.hpp>
@@ -57,10 +56,6 @@
 #include "torrentinfo.h"
 #include "trackerentry.h"
 
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-class QNetworkConfiguration;
-class QNetworkConfigurationManager;
-#endif
 class QString;
 class QThread;
 class QThreadPool;
@@ -72,17 +67,12 @@ class FileSearcher;
 class FilterParserThread;
 class NativeSessionExtension;
 
-namespace Net
-{
-    struct DownloadResult;
-}
-
 namespace BitTorrent
 {
     class InfoHash;
-    class MagnetUri;
     class ResumeDataStorage;
     class Torrent;
+    class TorrentDescriptor;
     class TorrentImpl;
     class Tracker;
     struct LoadTorrentParams;
@@ -182,6 +172,8 @@ namespace BitTorrent
         void setGlobalMaxRatio(qreal ratio) override;
         int globalMaxSeedingMinutes() const override;
         void setGlobalMaxSeedingMinutes(int minutes) override;
+        int globalMaxInactiveSeedingMinutes() const override;
+        void setGlobalMaxInactiveSeedingMinutes(int minutes) override;
         bool isDHTEnabled() const override;
         void setDHTEnabled(bool enabled) override;
         bool isLSDEnabled() const override;
@@ -418,14 +410,11 @@ namespace BitTorrent
         void banIP(const QString &ip) override;
 
         bool isKnownTorrent(const InfoHash &infoHash) const override;
-        bool addTorrent(const QString &source, const AddTorrentParams &params = {}) override;
-        bool addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &params = {}) override;
-        bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = {}) override;
+        bool addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params = {}) override;
         bool deleteTorrent(const TorrentID &id, DeleteOption deleteOption = DeleteTorrent) override;
-        bool downloadMetadata(const MagnetUri &magnetUri) override;
+        bool downloadMetadata(const TorrentDescriptor &torrentDescr) override;
         bool cancelDownloadMetadata(const TorrentID &id) override;
 
-        void recursiveTorrentDownload(const TorrentID &id) override;
         void increaseTorrentsQueuePos(const QVector<TorrentID> &ids) override;
         void decreaseTorrentsQueuePos(const QVector<TorrentID> &ids) override;
         void topTorrentsQueuePos(const QVector<TorrentID> &ids) override;
@@ -482,14 +471,7 @@ namespace BitTorrent
         void generateResumeData();
         void handleIPFilterParsed(int ruleCount);
         void handleIPFilterError();
-        void handleDownloadFinished(const Net::DownloadResult &result);
         void fileSearchFinished(const TorrentID &id, const Path &savePath, const PathList &fileNames);
-
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-        // Session reconfiguration triggers
-        void networkOnlineStateChanged(bool online);
-        void networkConfigurationChange(const QNetworkConfiguration &);
-#endif
 
     private:
         struct ResumeSessionContext;
@@ -514,6 +496,7 @@ namespace BitTorrent
 
         bool hasPerTorrentRatioLimit() const;
         bool hasPerTorrentSeedingTimeLimit() const;
+        bool hasPerTorrentInactiveSeedingTimeLimit() const;
 
         // Session configuration
         Q_INVOKABLE void configure();
@@ -540,7 +523,7 @@ namespace BitTorrent
         void endStartup(ResumeSessionContext *context);
 
         LoadTorrentParams initLoadTorrentParams(const AddTorrentParams &addTorrentParams);
-        bool addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source, const AddTorrentParams &addTorrentParams);
+        bool addTorrent_impl(const TorrentDescriptor &source, const AddTorrentParams &addTorrentParams);
 
         void updateSeedingLimitTimer();
         void exportTorrentFile(const Torrent *torrent, const Path &folderPath);
@@ -661,6 +644,7 @@ namespace BitTorrent
         CachedSettingValue<QString> m_additionalTrackers;
         CachedSettingValue<qreal> m_globalMaxRatio;
         CachedSettingValue<int> m_globalMaxSeedingMinutes;
+        CachedSettingValue<int> m_globalMaxInactiveSeedingMinutes;
         CachedSettingValue<bool> m_isAddTorrentToQueueTop;
         CachedSettingValue<bool> m_isAddTorrentPaused;
         CachedSettingValue<Torrent::StopCondition> m_torrentStopCondition;
@@ -755,7 +739,6 @@ namespace BitTorrent
         QHash<TorrentID, TorrentImpl *> m_torrents;
         QHash<TorrentID, TorrentImpl *> m_hybridTorrentsByAltID;
         QHash<TorrentID, LoadTorrentParams> m_loadingTorrents;
-        QHash<QString, AddTorrentParams> m_downloadedTorrents;
         QHash<TorrentID, RemovingTorrentData> m_removingTorrents;
         QSet<TorrentID> m_needSaveResumeDataTorrents;
         QHash<TorrentID, TorrentID> m_changedTorrentIDs;
@@ -775,9 +758,6 @@ namespace BitTorrent
 
         SessionStatus m_status;
         CacheStatus m_cacheStatus;
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-        QNetworkConfigurationManager *m_networkManager = nullptr;
-#endif
 
         QList<MoveStorageJob> m_moveStorageQueue;
 

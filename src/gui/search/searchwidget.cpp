@@ -30,7 +30,7 @@
 
 #include "searchwidget.h"
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 
 #include <utility>
 
@@ -53,6 +53,7 @@
 #include "base/search/searchpluginmanager.h"
 #include "base/utils/foreignapps.h"
 #include "gui/desktopintegration.h"
+#include "gui/interfaces/iguiapplication.h"
 #include "gui/mainwindow.h"
 #include "gui/uithememanager.h"
 #include "pluginselectdialog.h"
@@ -84,8 +85,7 @@ namespace
 }
 
 SearchWidget::SearchWidget(IGUIApplication *app, MainWindow *mainWindow)
-    : QWidget(mainWindow)
-    , GUIApplicationComponent(app)
+    : GUIApplicationComponent(app, mainWindow)
     , m_ui {new Ui::SearchWidget()}
     , m_mainWindow {mainWindow}
 {
@@ -255,16 +255,15 @@ SearchWidget::~SearchWidget()
     delete m_ui;
 }
 
-void SearchWidget::tabChanged(int index)
+void SearchWidget::tabChanged(const int index)
 {
     // when we switch from a tab that is not empty to another that is empty
     // the download button doesn't have to be available
     m_currentSearchTab = ((index < 0) ? nullptr : m_allTabs.at(m_ui->tabWidget->currentIndex()));
 }
 
-void SearchWidget::selectMultipleBox(int index)
+void SearchWidget::selectMultipleBox([[maybe_unused]] const int index)
 {
-    Q_UNUSED(index);
     if (selectedPlugin() == u"multi")
         on_pluginsButton_clicked();
 }
@@ -347,7 +346,7 @@ void SearchWidget::on_searchButton_clicked()
     auto *searchHandler = SearchPluginManager::instance()->startSearch(pattern, selectedCategory(), plugins);
 
     // Tab Addition
-    auto *newTab = new SearchJobWidget(searchHandler, this);
+    auto *newTab = new SearchJobWidget(searchHandler, app(), this);
     m_allTabs.append(newTab);
 
     QString tabName = pattern;

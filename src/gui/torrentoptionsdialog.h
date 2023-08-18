@@ -73,6 +73,7 @@ private slots:
 private:
     qreal getRatio() const;
     int getSeedingTime() const;
+    int getInactiveSeedingTime() const;
 
     QVector<BitTorrent::TorrentID> m_torrentIDs;
     Ui::TorrentOptionsDialog *m_ui = nullptr;
@@ -88,6 +89,7 @@ private:
         QString category;
         qreal ratio;
         int seedingTime;
+        int inactiveSeedingTime;
         int upSpeedLimit;
         int downSpeedLimit;
         Qt::CheckState autoTMM;

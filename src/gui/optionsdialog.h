@@ -60,7 +60,7 @@ namespace Ui
     class OptionsDialog;
 }
 
-class OptionsDialog final : public QDialog, public GUIApplicationComponent
+class OptionsDialog final : public GUIApplicationComponent<QDialog>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(OptionsDialog)
@@ -174,6 +174,7 @@ private:
     int getEncryptionSetting() const;
     qreal getMaxRatio() const;
     int getMaxSeedingMinutes() const;
+    int getMaxInactiveSeedingMinutes() const;
     // Proxy options
     bool isProxyEnabled() const;
     QString getProxyIp() const;

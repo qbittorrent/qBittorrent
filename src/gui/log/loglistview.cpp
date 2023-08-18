@@ -29,7 +29,7 @@
 
 #include "loglistview.h"
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 #include <QApplication>
 #include <QClipboard>
 #include <QFontMetrics>

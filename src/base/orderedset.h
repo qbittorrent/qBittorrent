@@ -29,9 +29,9 @@
 
 #pragma once
 
+#include <concepts>
 #include <functional>
 #include <set>
-#include <type_traits>
 
 #include "algorithm.h"
 
@@ -51,13 +51,6 @@ public:
 
     // The following are custom functions that are in line with Qt API interface, such as `QSet`
 
-#if __cplusplus < 202002L
-    bool contains(const key_type &value) const
-    {
-        return (BaseType::find(value) != BaseType::cend());
-    }
-#endif
-
     int count() const
     {
         return static_cast<int>(BaseType::size());
@@ -65,7 +58,7 @@ public:
 
     ThisType &intersect(const ThisType &other)
     {
-        Algorithm::removeIf(*this, [&other](const value_type &value) -> bool
+        std::erase_if(*this, [&other](const value_type &value) -> bool
         {
             return !other.contains(value);
         });
@@ -77,8 +70,8 @@ public:
         return BaseType::empty();
     }
 
-    template <typename std::enable_if_t<std::is_same_v<value_type, QString>, int> = 0>
     QString join(const QString &separator) const
+        requires std::same_as<value_type, QString>
     {
         auto iter = BaseType::cbegin();
         if (iter == BaseType::cend())

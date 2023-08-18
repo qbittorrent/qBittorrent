@@ -1,6 +1,7 @@
 add_library(qbt_base STATIC
     # headers
     3rdparty/expected.hpp
+    addtorrentmanager.h
     algorithm.h
     applicationcomponent.h
     asyncfilestorage.h
@@ -19,9 +20,7 @@ add_library(qbt_base STATIC
     bittorrent/infohash.h
     bittorrent/loadtorrentparams.h
     bittorrent/ltqbitarray.h
-    bittorrent/ltqhash.h
     bittorrent/lttypecast.h
-    bittorrent/magneturi.h
     bittorrent/nativesessionextension.h
     bittorrent/nativetorrentextension.h
     bittorrent/peeraddress.h
@@ -39,10 +38,12 @@ add_library(qbt_base STATIC
     bittorrent/torrentcontenthandler.h
     bittorrent/torrentcontentlayout.h
     bittorrent/torrentcreatorthread.h
+    bittorrent/torrentdescriptor.h
     bittorrent/torrentimpl.h
     bittorrent/torrentinfo.h
     bittorrent/tracker.h
     bittorrent/trackerentry.h
+    concepts/stringable.h
     digest32.h
     exceptions.h
     global.h
@@ -57,7 +58,6 @@ add_library(qbt_base STATIC
     iconprovider.h
     indexrange.h
     interfaces/iapplication.h
-    interfaces/istringable.h
     logger.h
     net/dnsupdater.h
     net/downloadhandlerimpl.h
@@ -109,6 +109,7 @@ add_library(qbt_base STATIC
     version.h
 
     # sources
+    addtorrentmanager.cpp
     applicationcomponent.cpp
     asyncfilestorage.cpp
     bittorrent/abstractfilestorage.cpp
@@ -122,7 +123,6 @@ add_library(qbt_base STATIC
     bittorrent/filterparserthread.cpp
     bittorrent/infohash.cpp
     bittorrent/ltqbitarray.cpp
-    bittorrent/magneturi.cpp
     bittorrent/nativesessionextension.cpp
     bittorrent/nativetorrentextension.cpp
     bittorrent/peeraddress.cpp
@@ -137,6 +137,7 @@ add_library(qbt_base STATIC
     bittorrent/torrent.cpp
     bittorrent/torrentcontenthandler.cpp
     bittorrent/torrentcreatorthread.cpp
+    bittorrent/torrentdescriptor.cpp
     bittorrent/torrentimpl.cpp
     bittorrent/torrentinfo.cpp
     bittorrent/tracker.cpp
@@ -192,6 +193,7 @@ add_library(qbt_base STATIC
     utils/random.cpp
     utils/string.cpp
     utils/thread.cpp
+    utils/version.cpp
 )
 
 target_link_libraries(qbt_base

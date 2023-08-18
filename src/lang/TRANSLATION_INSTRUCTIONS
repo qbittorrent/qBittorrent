@@ -1,6 +1,6 @@
 For future maintainers on how to update translations from Transifex.
 
-Project page: https://www.transifex.com/projects/p/qbittorrent/
+Project page: https://explore.transifex.com/sledgehammer999/qbittorrent/
 
 Most of the options are setup in the .tx/config file. You will need to have the Transifex client app in your path.
 The examples use the tx app on Windows. Other OSs should be similar.

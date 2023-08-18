@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christian Kandeler, Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -32,15 +32,11 @@
 #include <QHash>
 
 #include "base/bittorrent/addtorrentparams.h"
+#include "base/bittorrent/torrentdescriptor.h"
 #include "base/path.h"
 #include "base/utils/thread.h"
 
 class QThread;
-
-namespace BitTorrent
-{
-    class MagnetUri;
-}
 
 /*
  * Watches the configured directories for new .torrent files in order
@@ -72,8 +68,7 @@ signals:
     void watchedFolderRemoved(const Path &path);
 
 private slots:
-    void onMagnetFound(const BitTorrent::MagnetUri &magnetURI, const BitTorrent::AddTorrentParams &addTorrentParams);
-    void onTorrentFound(const BitTorrent::TorrentInfo &torrentInfo, const BitTorrent::AddTorrentParams &addTorrentParams);
+    void onTorrentFound(const BitTorrent::TorrentDescriptor &torrentDescr, const BitTorrent::AddTorrentParams &addTorrentParams);
 
 private:
     explicit TorrentFilesWatcher(QObject *parent = nullptr);

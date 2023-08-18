@@ -71,7 +71,7 @@ namespace Ui
     class MainWindow;
 }
 
-class MainWindow final : public QMainWindow, public GUIApplicationComponent
+class MainWindow final : public GUIApplicationComponent<QMainWindow>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(MainWindow)
@@ -122,7 +122,6 @@ private slots:
     void reloadSessionStats();
     void reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torrents);
     void loadPreferences();
-    void askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torrent *torrent);
     void optionsSaved();
     void toggleAlternativeSpeeds();
 
@@ -164,7 +163,7 @@ private slots:
     void on_actionExit_triggered();
     void on_actionLock_triggered();
     // Check for unpaused downloading or seeding torrents and prevent system suspend/sleep according to preferences
-    void updatePowerManagementState();
+    void updatePowerManagementState() const;
 
     void toolbarMenuRequested();
     void toolbarIconsOnly();
@@ -202,6 +201,7 @@ private:
     QFileSystemWatcher *m_executableWatcher = nullptr;
     // GUI related
     bool m_posInitialized = false;
+    bool m_neverShown = true;
     QPointer<QTabWidget> m_tabs;
     QPointer<StatusBar> m_statusBar;
     QPointer<OptionsDialog> m_options;

@@ -37,8 +37,8 @@
 
 #ifdef Q_OS_WIN
 #include <memory>
-#include <Windows.h>
-#include <Shellapi.h>
+#include <windows.h>
+#include <shellapi.h>
 #elif defined(Q_OS_UNIX)
 #include <sys/resource.h>
 #endif
@@ -50,6 +50,7 @@
 #include <QProcess>
 
 #ifndef DISABLE_GUI
+#include <QAbstractButton>
 #include <QMenu>
 #include <QMessageBox>
 #include <QPixmapCache>
@@ -63,6 +64,7 @@
 #endif // Q_OS_MACOS
 #endif
 
+#include "base/addtorrentmanager.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
@@ -81,7 +83,6 @@
 #include "base/search/searchpluginmanager.h"
 #include "base/settingsstorage.h"
 #include "base/torrentfileswatcher.h"
-#include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
@@ -91,7 +92,7 @@
 #include "upgrade.h"
 
 #ifndef DISABLE_GUI
-#include "gui/addnewtorrentdialog.h"
+#include "gui/guiaddtorrentmanager.h"
 #include "gui/desktopintegration.h"
 #include "gui/mainwindow.h"
 #include "gui/shutdownconfirmdialog.h"
@@ -248,9 +249,6 @@ Application::Application(int &argc, char **argv)
     setOrganizationDomain(u"qbittorrent.org"_s);
 #if !defined(DISABLE_GUI)
     setDesktopFileName(u"org.qbittorrent.qBittorrent"_s);
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-    setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
-#endif
     setQuitOnLastWindowClosed(false);
     QPixmapCache::setCacheLimit(PIXMAP_CACHE_SIZE);
 #endif
@@ -467,8 +465,7 @@ void Application::processMessage(const QString &message)
 #ifndef DISABLE_GUI
     if (message.isEmpty())
     {
-        // TODO: use [[likely]] in C++20
-        if (Q_LIKELY(BitTorrent::Session::instance()->isRestored()))
+        if (BitTorrent::Session::instance()->isRestored()) [[likely]]
         {
             m_window->activate(); // show UI
         }
@@ -686,6 +683,21 @@ void Application::torrentFinished(const BitTorrent::Torrent *torrent)
         LogMsg(tr("Torrent: %1, sending mail notification").arg(torrent->name()));
         sendNotificationEmail(torrent);
     }
+
+#ifndef DISABLE_GUI
+    if (Preferences::instance()->isRecursiveDownloadEnabled())
+    {
+        // Check whether it contains .torrent files
+        for (const Path &torrentRelpath : asConst(torrent->filePaths()))
+        {
+            if (torrentRelpath.hasExtension(u".torrent"_s))
+            {
+                askRecursiveTorrentDownloadConfirmation(torrent);
+                break;
+            }
+        }
+    }
+#endif
 }
 
 void Application::allTorrentsFinished()
@@ -748,22 +760,18 @@ void Application::processParams(const QBtCommandLineParameters &params)
     // be shown and skipTorrentDialog is undefined. The other is when
     // skipTorrentDialog is false, meaning that the application setting
     // should be overridden.
-    const bool showDialog = !params.skipDialog.value_or(!AddNewTorrentDialog::isEnabled());
-    if (showDialog)
-    {
-        for (const QString &torrentSource : params.torrentSources)
-            AddNewTorrentDialog::show(torrentSource, params.addTorrentParams, m_window);
-    }
-    else
+    AddTorrentOption addTorrentOption = AddTorrentOption::Default;
+    if (params.skipDialog.has_value())
+        addTorrentOption = params.skipDialog.value() ? AddTorrentOption::SkipDialog : AddTorrentOption::ShowDialog;
+    for (const QString &torrentSource : params.torrentSources)
+        m_addTorrentManager->addTorrent(torrentSource, params.addTorrentParams, addTorrentOption);
+#else
+    for (const QString &torrentSource : params.torrentSources)
+        m_addTorrentManager->addTorrent(torrentSource, params.addTorrentParams);
 #endif
-    {
-        for (const QString &torrentSource : params.torrentSources)
-            BitTorrent::Session::instance()->addTorrent(torrentSource, params.addTorrentParams);
-    }
 }
 
 int Application::exec()
-try
 {
 #if !defined(DISABLE_WEBUI) && defined(DISABLE_GUI)
     const QString loadingStr = tr("WebUI will be started shortly after internal preparations. Please wait...");
@@ -827,11 +835,13 @@ try
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
+        m_addTorrentManager = new AddTorrentManagerImpl(this, BitTorrent::Session::instance(), this);
+
         Net::GeoIPManager::initInstance();
         TorrentFilesWatcher::initInstance();
 
         new RSS::Session; // create RSS::Session singleton
-        new RSS::AutoDownloader; // create RSS::AutoDownloader singleton
+        new RSS::AutoDownloader(this); // create RSS::AutoDownloader singleton
 
 #ifndef DISABLE_GUI
         const auto *btSession = BitTorrent::Session::instance();
@@ -839,30 +849,25 @@ try
                 , [this](const BitTorrent::Torrent *torrent, const QString &msg)
         {
             m_desktopIntegration->showNotification(tr("I/O Error", "i.e: Input/Output Error")
-                                                   , tr("An I/O error occurred for torrent '%1'.\n Reason: %2"
-                                                        , "e.g: An error occurred for torrent 'xxx.avi'.\n Reason: disk is full.").arg(torrent->name(), msg));
-        });
-        connect(btSession, &BitTorrent::Session::loadTorrentFailed, this
-                , [this](const QString &error)
-        {
-            m_desktopIntegration->showNotification(tr("Error"), tr("Failed to add torrent: %1").arg(error));
-        });
-        connect(btSession, &BitTorrent::Session::torrentAdded, this
-                , [this](const BitTorrent::Torrent *torrent)
-        {
-            if (isTorrentAddedNotificationsEnabled())
-                m_desktopIntegration->showNotification(tr("Torrent added"), tr("'%1' was added.", "e.g: xxx.avi was added.").arg(torrent->name()));
+                    , tr("An I/O error occurred for torrent '%1'.\n Reason: %2"
+                            , "e.g: An error occurred for torrent 'xxx.avi'.\n Reason: disk is full.").arg(torrent->name(), msg));
         });
         connect(btSession, &BitTorrent::Session::torrentFinished, this
                 , [this](const BitTorrent::Torrent *torrent)
         {
             m_desktopIntegration->showNotification(tr("Download completed"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
         });
-        connect(btSession, &BitTorrent::Session::downloadFromUrlFailed, this
-                , [this](const QString &url, const QString &reason)
+        connect(m_addTorrentManager, &AddTorrentManager::torrentAdded, this
+                , [this]([[maybe_unused]] const QString &source, const BitTorrent::Torrent *torrent)
         {
-            m_desktopIntegration->showNotification(tr("URL download error")
-                                                   , tr("Couldn't download file at URL '%1', reason: %2.").arg(url, reason));
+            if (isTorrentAddedNotificationsEnabled())
+                m_desktopIntegration->showNotification(tr("Torrent added"), tr("'%1' was added.", "e.g: xxx.avi was added.").arg(torrent->name()));
+        });
+        connect(m_addTorrentManager, &AddTorrentManager::addTorrentFailed, this
+                , [this](const QString &source, const QString &reason)
+        {
+            m_desktopIntegration->showNotification(tr("Add torrent failed")
+                    , tr("Couldn't add torrent '%1', reason: %2.").arg(source, reason));
         });
 
         disconnect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);
@@ -932,21 +937,6 @@ try
 
     return BaseApplication::exec();
 }
-catch (const RuntimeError &err)
-{
-#ifdef DISABLE_GUI
-    fprintf(stderr, "%s", qPrintable(err.message()));
-#else
-    QMessageBox msgBox;
-    msgBox.setIcon(QMessageBox::Critical);
-    msgBox.setText(QCoreApplication::translate("Application", "Application failed to start."));
-    msgBox.setInformativeText(err.message());
-    msgBox.show(); // Need to be shown or to moveToCenter does not work
-    msgBox.move(Utils::Gui::screenCenter(&msgBox));
-    msgBox.exec();
-#endif
-    return EXIT_FAILURE;
-}
 
 bool Application::isRunning()
 {
@@ -1003,6 +993,57 @@ void Application::createStartupProgressDialog()
     });
 }
 
+void Application::askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torrent *torrent)
+{
+    const auto torrentID = torrent->id();
+
+    QMessageBox *confirmBox = new QMessageBox(QMessageBox::Question, tr("Recursive download confirmation")
+            , tr("The torrent '%1' contains .torrent files, do you want to proceed with their downloads?").arg(torrent->name())
+            , (QMessageBox::Yes | QMessageBox::No | QMessageBox::NoToAll), mainWindow());
+    confirmBox->setAttribute(Qt::WA_DeleteOnClose);
+
+    const QAbstractButton *yesButton = confirmBox->button(QMessageBox::Yes);
+    QAbstractButton *neverButton = confirmBox->button(QMessageBox::NoToAll);
+    neverButton->setText(tr("Never"));
+
+    connect(confirmBox, &QMessageBox::buttonClicked, this
+            , [this, torrentID, yesButton, neverButton](const QAbstractButton *button)
+    {
+        if (button == yesButton)
+        {
+            recursiveTorrentDownload(torrentID);
+        }
+        else if (button == neverButton)
+        {
+            Preferences::instance()->setRecursiveDownloadEnabled(false);
+        }
+    });
+    confirmBox->open();
+}
+
+void Application::recursiveTorrentDownload(const BitTorrent::TorrentID &torrentID)
+{
+    const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->getTorrent(torrentID);
+    if (!torrent)
+        return;
+
+    for (const Path &torrentRelpath : asConst(torrent->filePaths()))
+    {
+        if (torrentRelpath.hasExtension(u".torrent"_s))
+        {
+            const Path torrentFullpath = torrent->savePath() / torrentRelpath;
+
+            LogMsg(tr("Recursive download .torrent file within torrent. Source torrent: \"%1\". File: \"%2\"")
+                    .arg(torrent->name(), torrentFullpath.toString()));
+
+            BitTorrent::AddTorrentParams params;
+            // Passing the save path along to the sub torrent file
+            params.savePath = torrent->savePath();
+            addTorrentManager()->addTorrent(torrentFullpath.data(), params, AddTorrentOption::SkipDialog);
+        }
+    }
+}
+
 #ifdef Q_OS_MACOS
 bool Application::event(QEvent *ev)
 {
@@ -1037,11 +1078,15 @@ void Application::initializeTranslation()
     // Load translation
     const QString localeStr = pref->getLocale();
 
-    if (m_qtTranslator.load((u"qtbase_" + localeStr), QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
-        m_qtTranslator.load((u"qt_" + localeStr), QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
-            qDebug("Qt %s locale recognized, using translation.", qUtf8Printable(localeStr));
+    if (m_qtTranslator.load((u"qtbase_" + localeStr), QLibraryInfo::path(QLibraryInfo::TranslationsPath))
+        || m_qtTranslator.load((u"qt_" + localeStr), QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
+    {
+        qDebug("Qt %s locale recognized, using translation.", qUtf8Printable(localeStr));
+    }
     else
+    {
         qDebug("Qt %s locale unrecognized, using default (en).", qUtf8Printable(localeStr));
+    }
 
     installTranslator(&m_qtTranslator);
 
@@ -1065,10 +1110,8 @@ void Application::initializeTranslation()
 }
 
 #if (!defined(DISABLE_GUI) && defined(Q_OS_WIN))
-void Application::shutdownCleanup(QSessionManager &manager)
+void Application::shutdownCleanup([[maybe_unused]] QSessionManager &manager)
 {
-    Q_UNUSED(manager);
-
     // This is only needed for a special case on Windows XP.
     // (but is called for every Windows version)
     // If a process takes too much time to exit during OS
@@ -1278,6 +1321,7 @@ void Application::cleanup()
     delete RSS::Session::instance();
 
     TorrentFilesWatcher::freeInstance();
+    delete m_addTorrentManager;
     BitTorrent::Session::freeInstance();
     Net::GeoIPManager::freeInstance();
     Net::DownloadManager::freeInstance();
@@ -1311,4 +1355,9 @@ void Application::cleanup()
         qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
         Utils::Misc::shutdownComputer(m_shutdownAct);
     }
+}
+
+AddTorrentManagerImpl *Application::addTorrentManager() const
+{
+    return m_addTorrentManager;
 }

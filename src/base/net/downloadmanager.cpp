@@ -62,11 +62,10 @@ public:
     {
         const QDateTime now = QDateTime::currentDateTime();
         QList<QNetworkCookie> cookies = Preferences::instance()->getNetworkCookies();
-        for (const QNetworkCookie &cookie : asConst(Preferences::instance()->getNetworkCookies()))
+        cookies.removeIf([&now](const QNetworkCookie &cookie)
         {
-            if (cookie.isSessionCookie() || (cookie.expirationDate() <= now))
-                cookies.removeAll(cookie);
-        }
+            return cookie.isSessionCookie() || (cookie.expirationDate() <= now);
+        });
 
         setAllCookies(cookies);
     }
@@ -75,11 +74,10 @@ public:
     {
         const QDateTime now = QDateTime::currentDateTime();
         QList<QNetworkCookie> cookies = allCookies();
-        for (const QNetworkCookie &cookie : asConst(allCookies()))
+        cookies.removeIf([&now](const QNetworkCookie &cookie)
         {
-            if (cookie.isSessionCookie() || (cookie.expirationDate() <= now))
-                cookies.removeAll(cookie);
-        }
+            return cookie.isSessionCookie() || (cookie.expirationDate() <= now);
+        });
 
         Preferences::instance()->setNetworkCookies(cookies);
     }
@@ -91,11 +89,10 @@ public:
     {
         const QDateTime now = QDateTime::currentDateTime();
         QList<QNetworkCookie> cookies = QNetworkCookieJar::cookiesForUrl(url);
-        for (const QNetworkCookie &cookie : asConst(QNetworkCookieJar::cookiesForUrl(url)))
+        cookies.removeIf([&now](const QNetworkCookie &cookie)
         {
-            if (!cookie.isSessionCookie() && (cookie.expirationDate() <= now))
-                cookies.removeAll(cookie);
-        }
+            return !cookie.isSessionCookie() && (cookie.expirationDate() <= now);
+        });
 
         return cookies;
     }
@@ -104,11 +101,10 @@ public:
     {
         const QDateTime now = QDateTime::currentDateTime();
         QList<QNetworkCookie> cookies = cookieList;
-        for (const QNetworkCookie &cookie : cookieList)
+        cookies.removeIf([&now](const QNetworkCookie &cookie)
         {
-            if (!cookie.isSessionCookie() && (cookie.expirationDate() <= now))
-                cookies.removeAll(cookie);
-        }
+            return !cookie.isSessionCookie() && (cookie.expirationDate() <= now);
+        });
 
         return QNetworkCookieJar::setCookiesFromUrl(cookies, url);
     }
@@ -376,17 +372,10 @@ Net::ServiceID Net::ServiceID::fromURL(const QUrl &url)
     return {url.host(), url.port(80)};
 }
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 std::size_t Net::qHash(const ServiceID &serviceID, const std::size_t seed)
 {
     return qHashMulti(seed, serviceID.hostName, serviceID.port);
 }
-#else
-uint Net::qHash(const ServiceID &serviceID, const uint seed)
-{
-    return ::qHash(serviceID.hostName, seed) ^ ::qHash(serviceID.port);
-}
-#endif
 
 bool Net::operator==(const ServiceID &lhs, const ServiceID &rhs)
 {

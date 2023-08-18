@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -29,16 +29,17 @@
 
 #include "mainwindow.h"
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 
 #include <algorithm>
 #include <chrono>
 
 #if defined(Q_OS_WIN)
-#include <Windows.h>
-#include <versionhelpers.h>  // must follow after Windows.h
+#include <windows.h>
+#include <versionhelpers.h>  // must follow after windows.h
 #endif
 
+#include <QAction>
 #include <QActionGroup>
 #include <QClipboard>
 #include <QCloseEvent>
@@ -49,6 +50,7 @@
 #include <QFileSystemWatcher>
 #include <QKeyEvent>
 #include <QLabel>
+#include <QMenu>
 #include <QMessageBox>
 #include <QMetaObject>
 #include <QMimeData>
@@ -57,7 +59,6 @@
 #include <QShortcut>
 #include <QSplitter>
 #include <QStatusBar>
-#include <QtGlobal>
 #include <QTimer>
 
 #include "base/bittorrent/session.h"
@@ -74,13 +75,13 @@
 #include "base/utils/password.h"
 #include "base/version.h"
 #include "aboutdialog.h"
-#include "addnewtorrentdialog.h"
 #include "autoexpandabledialog.h"
 #include "cookiesdialog.h"
 #include "desktopintegration.h"
 #include "downloadfromurldialog.h"
 #include "executionlogwidget.h"
 #include "hidabletabwidget.h"
+#include "interfaces/iguiapplication.h"
 #include "lineedit.h"
 #include "optionsdialog.h"
 #include "powermanagement/powermanagement.h"
@@ -183,7 +184,6 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
 
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::speedLimitModeChanged, this, &MainWindow::updateAltSpeedsBtn);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::recursiveTorrentDownloadPossible, this, &MainWindow::askRecursiveTorrentDownloadConfirmation);
 
     qDebug("create tabWidget");
     m_tabs = new HidableTabWidget(this);
@@ -321,8 +321,10 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     // Initialise system sleep inhibition timer
     m_pwr = new PowerManagement(this);
     m_preventTimer = new QTimer(this);
+    m_preventTimer->setSingleShot(true);
     connect(m_preventTimer, &QTimer::timeout, this, &MainWindow::updatePowerManagementState);
-    m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
+    connect(pref, &Preferences::changed, this, &MainWindow::updatePowerManagementState);
+    updatePowerManagementState();
 
     // Configure BT session according to options
     loadPreferences();
@@ -454,8 +456,6 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
         }
     }
 #endif
-
-    m_propertiesWidget->readSettings();
 
     const bool isFiltersSidebarVisible = pref->isFiltersSidebarVisible();
     m_ui->actionShowFiltersSidebar->setChecked(isFiltersSidebarVisible);
@@ -672,7 +672,7 @@ void MainWindow::displayRSSTab(bool enable)
         // RSS tab
         if (!m_rssWidget)
         {
-            m_rssWidget = new RSSWidget(m_tabs);
+            m_rssWidget = new RSSWidget(app(), m_tabs);
             connect(m_rssWidget.data(), &RSSWidget::unreadCountUpdated, this, &MainWindow::handleRSSUnreadCountUpdated);
 #ifdef Q_OS_MACOS
             m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
@@ -743,9 +743,8 @@ void MainWindow::on_actionDocumentation_triggered() const
     QDesktopServices::openUrl(QUrl(u"https://doc.qbittorrent.org"_s));
 }
 
-void MainWindow::tabChanged(int newTab)
+void MainWindow::tabChanged([[maybe_unused]] const int newTab)
 {
-    Q_UNUSED(newTab);
     // We cannot rely on the index newTab
     // because the tab order is undetermined now
     if (m_tabs->currentWidget() == m_splitter)
@@ -872,7 +871,7 @@ void MainWindow::createKeyboardShortcuts()
     m_ui->actionIncreaseQueuePos->setShortcut(Qt::CTRL | Qt::Key_Plus);
     m_ui->actionTopQueuePos->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_Plus);
 #ifdef Q_OS_MACOS
-    m_ui->actionMinimize->setShortcut(Qt::CTRL + Qt::Key_M);
+    m_ui->actionMinimize->setShortcut(Qt::CTRL | Qt::Key_M);
     addAction(m_ui->actionMinimize);
 #endif
 }
@@ -917,37 +916,6 @@ void MainWindow::displayExecutionLogTab()
 }
 
 // End of keyboard shortcuts slots
-
-void MainWindow::askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torrent *torrent)
-{
-    if (!Preferences::instance()->isRecursiveDownloadEnabled())
-        return;
-
-    const auto torrentID = torrent->id();
-
-    QMessageBox *confirmBox = new QMessageBox(QMessageBox::Question, tr("Recursive download confirmation")
-        , tr("The torrent '%1' contains .torrent files, do you want to proceed with their downloads?").arg(torrent->name())
-        , (QMessageBox::Yes | QMessageBox::No | QMessageBox::NoToAll), this);
-    confirmBox->setAttribute(Qt::WA_DeleteOnClose);
-
-    const QAbstractButton *yesButton = confirmBox->button(QMessageBox::Yes);
-    QAbstractButton *neverButton = confirmBox->button(QMessageBox::NoToAll);
-    neverButton->setText(tr("Never"));
-
-    connect(confirmBox, &QMessageBox::buttonClicked, this
-        , [torrentID, yesButton, neverButton](const QAbstractButton *button)
-    {
-        if (button == yesButton)
-        {
-            BitTorrent::Session::instance()->recursiveTorrentDownload(torrentID);
-        }
-        else if (button == neverButton)
-        {
-            Preferences::instance()->setRecursiveDownloadEnabled(false);
-        }
-    });
-    confirmBox->open();
-}
 
 void MainWindow::on_actionSetGlobalSpeedLimits_triggered()
 {
@@ -1092,6 +1060,12 @@ void MainWindow::showEvent(QShowEvent *e)
     {
         // preparations before showing the window
 
+        if (m_neverShown)
+        {
+            m_propertiesWidget->readSettings();
+            m_neverShown = false;
+        }
+
         if (currentTabWidget() == m_transferListWidget)
             m_propertiesWidget->loadDynamicData();
 
@@ -1117,7 +1091,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
         if (mimeData->hasText())
         {
-            const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
             const QStringList lines = mimeData->text().split(u'\n', Qt::SkipEmptyParts);
 
             for (QString line : lines)
@@ -1127,10 +1100,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
                 if (!isTorrentLink(line))
                     continue;
 
-                if (useTorrentAdditionDialog)
-                    AddNewTorrentDialog::show(line, this);
-                else
-                    BitTorrent::Session::instance()->addTorrent(line);
+                app()->addTorrentManager()->addTorrent(line);
             }
 
             return;
@@ -1313,14 +1283,8 @@ void MainWindow::dropEvent(QDropEvent *event)
     }
 
     // Download torrents
-    const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     for (const QString &file : asConst(torrentFiles))
-    {
-        if (useTorrentAdditionDialog)
-            AddNewTorrentDialog::show(file, this);
-        else
-            BitTorrent::Session::instance()->addTorrent(file);
-    }
+        app()->addTorrentManager()->addTorrent(file);
     if (!torrentFiles.isEmpty()) return;
 
     // Create torrent
@@ -1357,22 +1321,14 @@ void MainWindow::on_actionOpen_triggered()
     Preferences *const pref = Preferences::instance();
     // Open File Open Dialog
     // Note: it is possible to select more than one file
-    const QStringList pathsList =
-        QFileDialog::getOpenFileNames(this, tr("Open Torrent Files"), pref->getMainLastDir().data(),
-                                      tr("Torrent Files") + u" (*" + TORRENT_FILE_EXTENSION + u')');
+    const QStringList pathsList = QFileDialog::getOpenFileNames(this, tr("Open Torrent Files")
+            , pref->getMainLastDir().data(),  tr("Torrent Files") + u" (*" + TORRENT_FILE_EXTENSION + u')');
 
     if (pathsList.isEmpty())
         return;
 
-    const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
-
     for (const QString &file : pathsList)
-    {
-        if (useTorrentAdditionDialog)
-            AddNewTorrentDialog::show(file, this);
-        else
-            BitTorrent::Session::instance()->addTorrent(file);
-    }
+        app()->addTorrentManager()->addTorrent(file);
 
     // Save last dir to remember it
     const Path topDir {pathsList.at(0)};
@@ -1458,8 +1414,6 @@ void MainWindow::loadPreferences()
     }
 
     showStatusBar(pref->isStatusbarDisplayed());
-
-    updatePowerManagementState();
 
     m_transferListWidget->setAlternatingRowColors(pref->useAlternatingRowColors());
     m_propertiesWidget->getFilesList()->setAlternatingRowColors(pref->useAlternatingRowColors());
@@ -1581,14 +1535,8 @@ void MainWindow::reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torren
 
 void MainWindow::downloadFromURLList(const QStringList &urlList)
 {
-    const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
     for (const QString &url : urlList)
-    {
-        if (useTorrentAdditionDialog)
-            AddNewTorrentDialog::show(url, this);
-        else
-            BitTorrent::Session::instance()->addTorrent(url);
-    }
+        app()->addTorrentManager()->addTorrent(url);
 }
 
 /*****************************************************
@@ -1931,10 +1879,11 @@ void MainWindow::on_actionAutoShutdown_toggled(bool enabled)
     Preferences::instance()->setShutdownWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::updatePowerManagementState()
+void MainWindow::updatePowerManagementState() const
 {
-    const bool preventFromSuspendWhenDownloading = Preferences::instance()->preventFromSuspendWhenDownloading();
-    const bool preventFromSuspendWhenSeeding = Preferences::instance()->preventFromSuspendWhenSeeding();
+    const auto *pref = Preferences::instance();
+    const bool preventFromSuspendWhenDownloading = pref->preventFromSuspendWhenDownloading();
+    const bool preventFromSuspendWhenSeeding = pref->preventFromSuspendWhenSeeding();
 
     const QVector<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
     const bool inhibitSuspend = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [&](const BitTorrent::Torrent *torrent)
@@ -1948,6 +1897,8 @@ void MainWindow::updatePowerManagementState()
         return torrent->isMoving();
     });
     m_pwr->setActivityState(inhibitSuspend);
+
+    m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
 }
 
 void MainWindow::applyTransferListFilter()

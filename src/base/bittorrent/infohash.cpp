@@ -111,21 +111,17 @@ BitTorrent::TorrentID BitTorrent::TorrentID::fromSHA256Hash(const SHA256Hash &ha
     return BaseType::UnderlyingType(static_cast<typename SHA256Hash::UnderlyingType>(hash).data());
 }
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 std::size_t BitTorrent::qHash(const BitTorrent::TorrentID &key, const std::size_t seed)
-#else
-uint BitTorrent::qHash(const BitTorrent::TorrentID &key, const uint seed)
-#endif
 {
     return ::qHash(static_cast<TorrentID::BaseType>(key), seed);
+}
+
+std::size_t BitTorrent::qHash(const InfoHash &key, const std::size_t seed)
+{
+    return qHashMulti(seed, key.v1(), key.v2());
 }
 
 bool BitTorrent::operator==(const BitTorrent::InfoHash &left, const BitTorrent::InfoHash &right)
 {
     return (static_cast<InfoHash::WrappedType>(left) == static_cast<InfoHash::WrappedType>(right));
-}
-
-bool BitTorrent::operator!=(const BitTorrent::InfoHash &left, const BitTorrent::InfoHash &right)
-{
-    return !(left == right);
 }

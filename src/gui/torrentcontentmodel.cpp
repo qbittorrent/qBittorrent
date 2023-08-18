@@ -38,11 +38,8 @@
 #include <QScopeGuard>
 
 #if defined(Q_OS_WIN)
-#include <Windows.h>
-#include <Shellapi.h>
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-#include <QtWin>
-#endif
+#include <windows.h>
+#include <shellapi.h>
 #else
 #include <QMimeDatabase>
 #include <QMimeType>
@@ -133,11 +130,7 @@ namespace
             if (FAILED(hr))
                 return {};
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
             const auto iconPixmap = QPixmap::fromImage(QImage::fromHICON(sfi.hIcon));
-#else
-            const QPixmap iconPixmap = QtWin::fromHICON(sfi.hIcon);
-#endif
             ::DestroyIcon(sfi.hIcon);
             return iconPixmap;
         }
@@ -219,7 +212,7 @@ void TorrentContentModel::updateFilesProgress()
     const QVector<qreal> &filesProgress = m_contentHandler->filesProgress();
     Q_ASSERT(m_filesIndex.size() == filesProgress.size());
     // XXX: Why is this necessary?
-    if (Q_UNLIKELY(m_filesIndex.size() != filesProgress.size()))
+    if (m_filesIndex.size() != filesProgress.size()) [[unlikely]]
         return;
 
     for (int i = 0; i < filesProgress.size(); ++i)
@@ -255,7 +248,7 @@ void TorrentContentModel::updateFilesAvailability()
 
         Q_ASSERT(m_filesIndex.size() == availableFileFractions.size());
         // XXX: Why is this necessary?
-        if (Q_UNLIKELY(m_filesIndex.size() != availableFileFractions.size()))
+        if (m_filesIndex.size() != availableFileFractions.size()) [[unlikely]]
             return;
 
         for (int i = 0; i < m_filesIndex.size(); ++i)
@@ -300,9 +293,8 @@ QVector<BitTorrent::DownloadPriority> TorrentContentModel::getFilePriorities() c
     return prio;
 }
 
-int TorrentContentModel::columnCount(const QModelIndex &parent) const
+int TorrentContentModel::columnCount([[maybe_unused]] const QModelIndex &parent) const
 {
-    Q_UNUSED(parent);
     return TorrentContentModelItem::NB_COL;
 }
 

@@ -31,6 +31,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include <QObject>
 #include <QTest>
 
 #include "base/algorithm.h"
@@ -47,14 +48,14 @@ public:
 private slots:
     void testHasMappedType() const
     {
-        QVERIFY(static_cast<bool>(Algorithm::HasMappedType<std::map<bool, bool>>::value));
-        QVERIFY(static_cast<bool>(Algorithm::HasMappedType<std::unordered_map<bool, bool>>::value));
-        QVERIFY(static_cast<bool>(Algorithm::HasMappedType<QHash<bool, bool>>::value));
-        QVERIFY(static_cast<bool>(Algorithm::HasMappedType<QMap<bool, bool>>::value));
+        static_assert(Algorithm::HasMappedType<std::map<bool, bool>>);
+        static_assert(Algorithm::HasMappedType<std::unordered_map<bool, bool>>);
+        static_assert(Algorithm::HasMappedType<QHash<bool, bool>>);
+        static_assert(Algorithm::HasMappedType<QMap<bool, bool>>);
 
-        QVERIFY(!static_cast<bool>(Algorithm::HasMappedType<std::set<bool>>::value));
-        QVERIFY(!static_cast<bool>(Algorithm::HasMappedType<std::unordered_set<bool>>::value));
-        QVERIFY(!static_cast<bool>(Algorithm::HasMappedType<QSet<bool>>::value));
+        static_assert(!Algorithm::HasMappedType<std::set<bool>>);
+        static_assert(!Algorithm::HasMappedType<std::unordered_set<bool>>);
+        static_assert(!Algorithm::HasMappedType<QSet<bool>>);
     }
 
     void testMappedTypeRemoveIf() const
@@ -68,9 +69,8 @@ private slots:
                 {3, 'b'},
                 {4, 'd'}
             };
-            Algorithm::removeIf(data, [](const int key, const char value)
+            Algorithm::removeIf(data, []([[maybe_unused]] const int key, const char value)
             {
-                Q_UNUSED(key);
                 return (value == 'b');
             });
             QCOMPARE(data.size(), 3);
@@ -82,43 +82,19 @@ private slots:
         }
         {
             QHash<int, char> data;
-            Algorithm::removeIf(data, [](const int key, const char value)
+            Algorithm::removeIf(data, []([[maybe_unused]] const int key, const char value)
             {
-                Q_UNUSED(key);
                 return (value == 'b');
             });
             QVERIFY(data.empty());
         }
     }
 
-    void testNonMappedTypeRemoveIf() const
+    void testSorted() const
     {
-        {
-            QSet<char> data =
-            {
-                'a',
-                'b',
-                'c',
-                'b',
-                'd'
-            };
-            Algorithm::removeIf(data, [](const char value)
-            {
-                return (value == 'b');
-            });
-            QCOMPARE(data.size(), 3);
-            QVERIFY(data.contains('a'));
-            QVERIFY(data.contains('c'));
-            QVERIFY(data.contains('d'));
-        }
-        {
-            std::set<char> data;
-            Algorithm::removeIf(data, [](const char value)
-            {
-                return (value == 'b');
-            });
-            QVERIFY(data.empty());
-        }
+        const QStringList list = {u"c"_s, u"b"_s, u"a"_s};
+        const QStringList sortedList = {u"a"_s, u"b"_s, u"c"_s};
+        QCOMPARE(Algorithm::sorted(list), sortedList);
     }
 };
 

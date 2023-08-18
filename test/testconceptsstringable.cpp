@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,14 +26,48 @@
  * exception statement from your version.
  */
 
-#include "guiapplicationcomponent.h"
+#include <QObject>
+#include <QString>
+#include <QTest>
 
-GUIApplicationComponent::GUIApplicationComponent(IGUIApplication *app)
-    : ApplicationComponent(app)
-{
-}
+#include "base/concepts/stringable.h"
 
-IGUIApplication *GUIApplicationComponent::app() const
+class TestConceptsStringable final : public QObject
 {
-    return static_cast<IGUIApplication *>(ApplicationComponent::app());
-}
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TestConceptsStringable)
+
+public:
+    TestConceptsStringable() = default;
+
+private slots:
+    void testStringable() const
+    {
+        struct A
+        {
+        };
+        static_assert(!Stringable<A>);
+
+        struct B
+        {
+            B(QString) {}
+        };
+        static_assert(!Stringable<B>);
+
+        struct C
+        {
+            QString toString() const { return {}; }
+        };
+        static_assert(!Stringable<C>);
+
+        struct D
+        {
+            D(QString) {}
+            QString toString() const { return {}; }
+        };
+        static_assert(Stringable<D>);
+    }
+};
+
+QTEST_APPLESS_MAIN(TestConceptsStringable)
+#include "testconceptsstringable.moc"

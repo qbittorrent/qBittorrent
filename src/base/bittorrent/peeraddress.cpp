@@ -77,14 +77,7 @@ bool BitTorrent::operator==(const BitTorrent::PeerAddress &left, const BitTorren
     return (left.ip == right.ip) && (left.port == right.port);
 }
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 std::size_t BitTorrent::qHash(const BitTorrent::PeerAddress &addr, const std::size_t seed)
 {
     return qHashMulti(seed, addr.ip, addr.port);
 }
-#else
-uint BitTorrent::qHash(const BitTorrent::PeerAddress &addr, const uint seed)
-{
-    return (::qHash(addr.ip, seed) ^ ::qHash(addr.port));
-}
-#endif

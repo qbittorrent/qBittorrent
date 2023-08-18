@@ -148,7 +148,7 @@ void Server::removeConnection(Connection *connection)
 
 void Server::dropTimedOutConnection()
 {
-    Algorithm::removeIf(m_connections, [](Connection *connection)
+    m_connections.removeIf([](Connection *connection)
     {
         if (!connection->hasExpired(KEEP_ALIVE_DURATION))
             return false;

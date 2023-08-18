@@ -217,15 +217,15 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     connect(editHotkey, &QShortcut::activated, this, &TransferListWidget::renameSelectedTorrent);
     const auto *deleteHotkey = new QShortcut(QKeySequence::Delete, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(deleteHotkey, &QShortcut::activated, this, &TransferListWidget::softDeleteSelectedTorrents);
-    const auto *permDeleteHotkey = new QShortcut(Qt::SHIFT + Qt::Key_Delete, this, nullptr, nullptr, Qt::WidgetShortcut);
+    const auto *permDeleteHotkey = new QShortcut((Qt::SHIFT | Qt::Key_Delete), this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(permDeleteHotkey, &QShortcut::activated, this, &TransferListWidget::permDeleteSelectedTorrents);
     const auto *doubleClickHotkeyReturn = new QShortcut(Qt::Key_Return, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(doubleClickHotkeyReturn, &QShortcut::activated, this, &TransferListWidget::torrentDoubleClicked);
     const auto *doubleClickHotkeyEnter = new QShortcut(Qt::Key_Enter, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(doubleClickHotkeyEnter, &QShortcut::activated, this, &TransferListWidget::torrentDoubleClicked);
-    const auto *recheckHotkey = new QShortcut(Qt::CTRL + Qt::Key_R, this, nullptr, nullptr, Qt::WidgetShortcut);
+    const auto *recheckHotkey = new QShortcut((Qt::CTRL | Qt::Key_R), this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(recheckHotkey, &QShortcut::activated, this, &TransferListWidget::recheckSelectedTorrents);
-    const auto *forceStartHotkey = new QShortcut(Qt::CTRL + Qt::Key_M, this, nullptr, nullptr, Qt::WidgetShortcut);
+    const auto *forceStartHotkey = new QShortcut((Qt::CTRL | Qt::Key_M), this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(forceStartHotkey, &QShortcut::activated, this, &TransferListWidget::forceStartSelectedTorrents);
 }
 
@@ -253,6 +253,16 @@ QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) const
     return index;
 }
 
+QModelIndexList TransferListWidget::mapToSource(const QModelIndexList &indexes) const
+{
+    QModelIndexList result;
+    result.reserve(indexes.size());
+    for (const QModelIndex &index : indexes)
+        result.append(mapToSource(index));
+
+    return result;
+}
+
 QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) const
 {
     Q_ASSERT(index.isValid());
@@ -263,11 +273,13 @@ QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) const
 void TransferListWidget::torrentDoubleClicked()
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid()) return;
+    if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid())
+        return;
 
     const QModelIndex index = m_listModel->index(mapToSource(selectedIndexes.first()).row());
     BitTorrent::Torrent *const torrent = m_listModel->torrentHandle(index);
-    if (!torrent) return;
+    if (!torrent)
+        return;
 
     int action;
     if (torrent->isFinished())
@@ -806,7 +818,8 @@ void TransferListWidget::exportTorrent()
         bool hasError = false;
         for (const BitTorrent::Torrent *torrent : torrents)
         {
-            const Path filePath = savePath / Path(torrent->name() + u".torrent");
+            const QString validName = Utils::Fs::toValidFileName(torrent->name(), u"_"_s);
+            const Path filePath = savePath / Path(validName + u".torrent");
             if (filePath.exists())
             {
                 LogMsg(errorMsg.arg(torrent->name(), filePath.toString(), tr("A file with the same name already exists")) , Log::WARNING);
@@ -871,9 +884,13 @@ QStringList TransferListWidget::askTagsForSelection(const QString &dialogTitle)
 
 void TransferListWidget::applyToSelectedTorrents(const std::function<void (BitTorrent::Torrent *const)> &fn)
 {
-    for (const QModelIndex &index : asConst(selectionModel()->selectedRows()))
+    // Changing the data may affect the layout of the sort/filter model, which in turn may invalidate
+    // the indexes previously obtained from selection model before we process them all.
+    // Therefore, we must map all the selected indexes to source before start processing them.
+    const QModelIndexList sourceRows = mapToSource(selectionModel()->selectedRows());
+    for (const QModelIndex &index : sourceRows)
     {
-        BitTorrent::Torrent *const torrent = m_listModel->torrentHandle(mapToSource(index));
+        BitTorrent::Torrent *const torrent = m_listModel->torrentHandle(index);
         Q_ASSERT(torrent);
         fn(torrent);
     }
@@ -882,11 +899,13 @@ void TransferListWidget::applyToSelectedTorrents(const std::function<void (BitTo
 void TransferListWidget::renameSelectedTorrent()
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid()) return;
+    if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid())
+        return;
 
     const QModelIndex mi = m_listModel->index(mapToSource(selectedIndexes.first()).row(), TransferListModel::TR_NAME);
     BitTorrent::Torrent *const torrent = m_listModel->torrentHandle(mi);
-    if (!torrent) return;
+    if (!torrent)
+        return;
 
     // Ask for a new Name
     bool ok = false;
@@ -901,8 +920,7 @@ void TransferListWidget::renameSelectedTorrent()
 
 void TransferListWidget::setSelectionCategory(const QString &category)
 {
-    for (const QModelIndex &index : asConst(selectionModel()->selectedRows()))
-        m_listModel->setData(m_listModel->index(mapToSource(index).row(), TransferListModel::TR_CATEGORY), category, Qt::DisplayRole);
+    applyToSelectedTorrents([&category](BitTorrent::Torrent *torrent) { torrent->setCategory(category); });
 }
 
 void TransferListWidget::addSelectionTag(const QString &tag)
@@ -923,7 +941,8 @@ void TransferListWidget::clearSelectionTags()
 void TransferListWidget::displayListMenu()
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    if (selectedIndexes.isEmpty()) return;
+    if (selectedIndexes.isEmpty())
+        return;
 
     auto *listMenu = new QMenu(this);
     listMenu->setAttribute(Qt::WA_DeleteOnClose);

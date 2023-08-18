@@ -35,7 +35,7 @@
 
 #include <windows.h>
 #include <powrprof.h>
-#include <Shlobj.h>
+#include <shlobj.h>
 #else
 #include <sys/types.h>
 #include <unistd.h>
@@ -111,7 +111,7 @@ namespace
     }
 }
 
-void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
+void Utils::Misc::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &action)
 {
 #if defined(Q_OS_WIN)
     HANDLE hToken;            // handle to process token
@@ -247,9 +247,6 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
                                 QDBusConnection::systemBus());
         halIface.call(u"Shutdown"_s);
     }
-
-#else
-    Q_UNUSED(action);
 #endif
 }
 
@@ -585,12 +582,10 @@ QString Utils::Misc::libtorrentVersionString()
 
 QString Utils::Misc::opensslVersionString()
 {
-#if (OPENSSL_VERSION_NUMBER >= 0x1010000f)
-    static const auto version {QString::fromLatin1(OpenSSL_version(OPENSSL_VERSION))};
-#else
-    static const auto version {QString::fromLatin1(SSLeay_version(SSLEAY_VERSION))};
-#endif
-    return version.section(u' ', 1, 1);
+    // static initialization for usage in signal handler
+    static const auto version {QString::fromLatin1(::OpenSSL_version(OPENSSL_VERSION))
+        .section(u' ', 1, 1)};
+    return version;
 }
 
 QString Utils::Misc::zlibVersionString()

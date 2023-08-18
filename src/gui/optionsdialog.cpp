@@ -124,8 +124,7 @@ namespace
 
 // Constructor
 OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
-    : QDialog(parent)
-    , GUIApplicationComponent(app)
+    : GUIApplicationComponent(app, parent)
     , m_ui {new Ui::OptionsDialog}
     , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
     , m_storeHSplitterSize {SETTINGS_KEY(u"HorizontalSplitterSizes"_s)}
@@ -498,8 +497,8 @@ void OptionsDialog::loadDownloadsTabOptions()
     const auto *pref = Preferences::instance();
     const auto *session = BitTorrent::Session::instance();
 
-    m_ui->checkAdditionDialog->setChecked(AddNewTorrentDialog::isEnabled());
-    m_ui->checkAdditionDialogFront->setChecked(AddNewTorrentDialog::isTopLevel());
+    m_ui->checkAdditionDialog->setChecked(pref->isAddNewTorrentDialogEnabled());
+    m_ui->checkAdditionDialogFront->setChecked(pref->isAddNewTorrentDialogTopLevel());
 
     m_ui->contentLayoutComboBox->setCurrentIndex(static_cast<int>(session->torrentContentLayout()));
     m_ui->checkAddToQueueTop->setChecked(session->isAddTorrentToQueueTop());
@@ -519,7 +518,13 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->stopConditionComboBox->setEnabled(!m_ui->checkStartPaused->isChecked());
 
     m_ui->checkMergeTrackers->setChecked(session->isMergeTrackersEnabled());
-    m_ui->checkConfirmMergeTrackers->setChecked(pref->confirmMergeTrackers());
+    m_ui->checkConfirmMergeTrackers->setEnabled(m_ui->checkAdditionDialog->isChecked());
+    m_ui->checkConfirmMergeTrackers->setChecked(m_ui->checkConfirmMergeTrackers->isEnabled() ? pref->confirmMergeTrackers() : false);
+    connect(m_ui->checkAdditionDialog, &QGroupBox::toggled, this, [this, pref]
+    {
+        m_ui->checkConfirmMergeTrackers->setEnabled(m_ui->checkAdditionDialog->isChecked());
+        m_ui->checkConfirmMergeTrackers->setChecked(m_ui->checkConfirmMergeTrackers->isEnabled() ? pref->confirmMergeTrackers() : false);
+    });
 
     const TorrentFileGuard::AutoDeleteMode autoDeleteMode = TorrentFileGuard::autoDeleteMode();
     m_ui->deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
@@ -694,8 +699,8 @@ void OptionsDialog::saveDownloadsTabOptions() const
     auto *pref = Preferences::instance();
     auto *session = BitTorrent::Session::instance();
 
-    AddNewTorrentDialog::setEnabled(useAdditionDialog());
-    AddNewTorrentDialog::setTopLevel(m_ui->checkAdditionDialogFront->isChecked());
+    pref->setAddNewTorrentDialogEnabled(useAdditionDialog());
+    pref->setAddNewTorrentDialogTopLevel(m_ui->checkAdditionDialogFront->isChecked());
 
     session->setTorrentContentLayout(static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex()));
 
@@ -706,7 +711,8 @@ void OptionsDialog::saveDownloadsTabOptions() const
                              : !m_ui->deleteCancelledTorrentBox->isChecked() ? TorrentFileGuard::IfAdded
                              : TorrentFileGuard::Always);
     session->setMergeTrackersEnabled(m_ui->checkMergeTrackers->isChecked());
-    pref->setConfirmMergeTrackers(m_ui->checkConfirmMergeTrackers->isChecked());
+    if (m_ui->checkConfirmMergeTrackers->isEnabled())
+        pref->setConfirmMergeTrackers(m_ui->checkConfirmMergeTrackers->isChecked());
 
     session->setPreallocationEnabled(preAllocateAllFiles());
     session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());
@@ -1056,7 +1062,20 @@ void OptionsDialog::loadBittorrentTabOptions()
         m_ui->checkMaxSeedingMinutes->setChecked(false);
         m_ui->spinMaxSeedingMinutes->setEnabled(false);
     }
-    m_ui->comboRatioLimitAct->setEnabled((session->globalMaxSeedingMinutes() >= 0) || (session->globalMaxRatio() >= 0.));
+    if (session->globalMaxInactiveSeedingMinutes() >= 0)
+    {
+        // Enable
+        m_ui->checkMaxInactiveSeedingMinutes->setChecked(true);
+        m_ui->spinMaxInactiveSeedingMinutes->setEnabled(true);
+        m_ui->spinMaxInactiveSeedingMinutes->setValue(session->globalMaxInactiveSeedingMinutes());
+    }
+    else
+    {
+        // Disable
+        m_ui->checkMaxInactiveSeedingMinutes->setChecked(false);
+        m_ui->spinMaxInactiveSeedingMinutes->setEnabled(false);
+    }
+    m_ui->comboRatioLimitAct->setEnabled((session->globalMaxSeedingMinutes() >= 0) || (session->globalMaxRatio() >= 0.) || (session->globalMaxInactiveSeedingMinutes() >= 0));
 
     const QHash<MaxRatioAction, int> actIndex =
     {
@@ -1096,6 +1115,10 @@ void OptionsDialog::loadBittorrentTabOptions()
     connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
     connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->spinMaxSeedingMinutes, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMaxInactiveSeedingMinutes, &QAbstractButton::toggled, m_ui->spinMaxInactiveSeedingMinutes, &QWidget::setEnabled);
+    connect(m_ui->checkMaxInactiveSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
+    connect(m_ui->checkMaxInactiveSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinMaxInactiveSeedingMinutes, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkEnableAddTrackers, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textTrackers, &QPlainTextEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -1124,6 +1147,7 @@ void OptionsDialog::saveBittorrentTabOptions() const
 
     session->setGlobalMaxRatio(getMaxRatio());
     session->setGlobalMaxSeedingMinutes(getMaxSeedingMinutes());
+    session->setGlobalMaxInactiveSeedingMinutes(getMaxInactiveSeedingMinutes());
     const QVector<MaxRatioAction> actIndex =
     {
         Pause,
@@ -1663,6 +1687,14 @@ int OptionsDialog::getMaxSeedingMinutes() const
     return -1;
 }
 
+// Return Inactive Seeding Minutes
+int OptionsDialog::getMaxInactiveSeedingMinutes() const
+{
+    return m_ui->checkMaxInactiveSeedingMinutes->isChecked()
+        ? m_ui->spinMaxInactiveSeedingMinutes->value()
+        : -1;
+}
+
 // Return max connections number
 int OptionsDialog::getMaxConnections() const
 {
@@ -1757,7 +1789,7 @@ void OptionsDialog::enableApplyButton()
 void OptionsDialog::toggleComboRatioLimitAct()
 {
     // Verify if the share action button must be enabled
-    m_ui->comboRatioLimitAct->setEnabled(m_ui->checkMaxRatio->isChecked() || m_ui->checkMaxSeedingMinutes->isChecked());
+    m_ui->comboRatioLimitAct->setEnabled(m_ui->checkMaxRatio->isChecked() || m_ui->checkMaxSeedingMinutes->isChecked() || m_ui->checkMaxInactiveSeedingMinutes->isChecked());
 }
 
 void OptionsDialog::adjustProxyOptions()

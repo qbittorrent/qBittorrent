@@ -31,7 +31,6 @@
 
 #include <algorithm>
 #include <memory>
-#include <type_traits>
 
 #include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
@@ -51,6 +50,7 @@
 #include <QStringList>
 #include <QUrl>
 
+#include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -62,7 +62,6 @@
 #include "extensiondata.h"
 #include "loadtorrentparams.h"
 #include "ltqbitarray.h"
-#include "ltqhash.h"
 #include "lttypecast.h"
 #include "peeraddress.h"
 #include "peerinfo.h"
@@ -251,6 +250,7 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
     , m_tags(params.tags)
     , m_ratioLimit(params.ratioLimit)
     , m_seedingTimeLimit(params.seedingTimeLimit)
+    , m_inactiveSeedingTimeLimit(params.inactiveSeedingTimeLimit)
     , m_operatingMode(params.operatingMode)
     , m_contentLayout(params.contentLayout)
     , m_hasFinishedStatus(params.hasFinishedStatus)
@@ -551,8 +551,7 @@ QVector<TrackerEntry> TorrentImpl::trackers() const
 
 void TorrentImpl::addTrackers(QVector<TrackerEntry> trackers)
 {
-    // TODO: use std::erase_if() in C++20
-    trackers.erase(std::remove_if(trackers.begin(), trackers.end(), [](const TrackerEntry &entry) { return entry.url.isEmpty(); }), trackers.end());
+    trackers.removeIf([](const TrackerEntry &entry) { return entry.url.isEmpty(); });
 
     const auto newTrackers = QSet<TrackerEntry>(trackers.cbegin(), trackers.cend())
             - QSet<TrackerEntry>(m_trackerEntries.cbegin(), m_trackerEntries.cend());
@@ -596,8 +595,7 @@ void TorrentImpl::removeTrackers(const QStringList &trackers)
 
 void TorrentImpl::replaceTrackers(QVector<TrackerEntry> trackers)
 {
-    // TODO: use std::erase_if() in C++20
-    trackers.erase(std::remove_if(trackers.begin(), trackers.end(), [](const TrackerEntry &entry) { return entry.url.isEmpty(); }), trackers.end());
+    trackers.removeIf([](const TrackerEntry &entry) { return entry.url.isEmpty(); });
     std::sort(trackers.begin(), trackers.end()
         , [](const TrackerEntry &lhs, const TrackerEntry &rhs) { return lhs.tier < rhs.tier; });
 
@@ -860,6 +858,11 @@ qreal TorrentImpl::ratioLimit() const
 int TorrentImpl::seedingTimeLimit() const
 {
     return m_seedingTimeLimit;
+}
+
+int TorrentImpl::inactiveSeedingTimeLimit() const
+{
+    return m_inactiveSeedingTimeLimit;
 }
 
 Path TorrentImpl::filePath(const int index) const
@@ -1165,7 +1168,8 @@ qlonglong TorrentImpl::eta() const
     {
         const qreal maxRatioValue = maxRatio();
         const int maxSeedingTimeValue = maxSeedingTime();
-        if ((maxRatioValue < 0) && (maxSeedingTimeValue < 0)) return MAX_ETA;
+        const int maxInactiveSeedingTimeValue = maxInactiveSeedingTime();
+        if ((maxRatioValue < 0) && (maxSeedingTimeValue < 0) && (maxInactiveSeedingTimeValue < 0)) return MAX_ETA;
 
         qlonglong ratioEta = MAX_ETA;
 
@@ -1188,7 +1192,15 @@ qlonglong TorrentImpl::eta() const
                 seedingTimeEta = 0;
         }
 
-        return std::min(ratioEta, seedingTimeEta);
+        qlonglong inactiveSeedingTimeEta = MAX_ETA;
+
+        if (maxInactiveSeedingTimeValue >= 0)
+        {
+            inactiveSeedingTimeEta = (maxInactiveSeedingTimeValue * 60) - timeSinceActivity();
+            inactiveSeedingTimeEta = std::max<qlonglong>(inactiveSeedingTimeEta, 0);
+        }
+
+        return std::min({ratioEta, seedingTimeEta, inactiveSeedingTimeEta});
     }
 
     if (!speedAverage.download) return MAX_ETA;
@@ -1203,7 +1215,7 @@ QVector<qreal> TorrentImpl::filesProgress() const
 
     const int count = m_filesProgress.size();
     Q_ASSERT(count == filesCount());
-    if (Q_UNLIKELY(count != filesCount()))
+    if (count != filesCount()) [[unlikely]]
         return {};
 
     if (m_completedFiles.count(true) == count)
@@ -1383,6 +1395,14 @@ int TorrentImpl::maxSeedingTime() const
         return m_session->globalMaxSeedingMinutes();
 
     return m_seedingTimeLimit;
+}
+
+int TorrentImpl::maxInactiveSeedingTime() const
+{
+    if (m_inactiveSeedingTimeLimit == USE_GLOBAL_INACTIVE_SEEDING_TIME)
+        return m_session->globalMaxInactiveSeedingMinutes();
+
+    return m_inactiveSeedingTimeLimit;
 }
 
 qreal TorrentImpl::realRatio() const
@@ -1579,7 +1599,8 @@ void TorrentImpl::applyFirstLastPiecePriority(const bool enabled)
 
 void TorrentImpl::fileSearchFinished(const Path &savePath, const PathList &fileNames)
 {
-    endReceivedMetadataHandling(savePath, fileNames);
+    if (m_maintenanceJob == MaintenanceJob::HandleMetadata)
+        endReceivedMetadataHandling(savePath, fileNames);
 }
 
 TrackerEntry TorrentImpl::updateTrackerEntry(const lt::announce_entry &announceEntry, const QMap<TrackerEntry::Endpoint, int> &updateInfo)
@@ -1591,8 +1612,7 @@ TrackerEntry TorrentImpl::updateTrackerEntry(const lt::announce_entry &announceE
     });
 
     Q_ASSERT(it != m_trackerEntries.end());
-    // TODO: use [[unlikely]] in C++20
-    if (Q_UNLIKELY(it == m_trackerEntries.end()))
+    if (it == m_trackerEntries.end()) [[unlikely]]
         return {};
 
 #ifdef QBT_USES_LIBTORRENT2
@@ -1612,7 +1632,13 @@ std::shared_ptr<const libtorrent::torrent_info> TorrentImpl::nativeTorrentInfo()
 
 void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathList &fileNames)
 {
+    Q_ASSERT(m_maintenanceJob == MaintenanceJob::HandleMetadata);
+    if (m_maintenanceJob != MaintenanceJob::HandleMetadata) [[unlikely]]
+        return;
+
     Q_ASSERT(m_filePaths.isEmpty());
+    if (!m_filePaths.isEmpty()) [[unlikely]]
+        m_filePaths.clear();
 
     lt::add_torrent_params &p = m_ltAddTorrentParams;
 
@@ -1621,7 +1647,7 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
     m_filePriorities.reserve(filesCount());
     const auto nativeIndexes = m_torrentInfo.nativeIndexes();
     p.file_priorities = resized(p.file_priorities, metadata->files().num_files()
-                                , LT::toNative(p.file_priorities.empty() ? DownloadPriority::Normal : DownloadPriority::Ignored));
+            , LT::toNative(p.file_priorities.empty() ? DownloadPriority::Normal : DownloadPriority::Ignored));
 
     m_completedFiles.fill(static_cast<bool>(p.flags & lt::torrent_flags::seed_mode), filesCount());
     m_filesProgress.resize(filesCount());
@@ -1671,6 +1697,7 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
 }
 
 void TorrentImpl::reload()
+try
 {
     m_completedFiles.fill(false);
     m_filesProgress.fill(0);
@@ -1712,6 +1739,11 @@ void TorrentImpl::reload()
     m_nativeStatus.queue_position = queuePos;
 
     updateState();
+}
+catch (const lt::system_error &err)
+{
+    throw RuntimeError(tr("Failed to reload torrent. Torrent: %1. Reason: %2")
+            .arg(id().toString(), QString::fromLocal8Bit(err.what())));
 }
 
 void TorrentImpl::pause()
@@ -1791,7 +1823,7 @@ void TorrentImpl::moveStorage(const Path &newPath, const MoveStorageContext cont
 void TorrentImpl::renameFile(const int index, const Path &path)
 {
     Q_ASSERT((index >= 0) && (index < filesCount()));
-    if (Q_UNLIKELY((index < 0) || (index >= filesCount())))
+    if ((index < 0) || (index >= filesCount())) [[unlikely]]
         return;
 
     const Path wantedPath = wantedActualPath(index, path);
@@ -1834,10 +1866,8 @@ void TorrentImpl::handleMoveStorageJobFinished(const Path &path, const MoveStora
     }
 }
 
-void TorrentImpl::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)
+void TorrentImpl::handleTorrentCheckedAlert([[maybe_unused]] const lt::torrent_checked_alert *p)
 {
-    Q_UNUSED(p);
-
     if (!hasMetadata())
     {
         // The torrent is checked due to metadata received, but we should not process
@@ -1879,10 +1909,8 @@ void TorrentImpl::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)
     });
 }
 
-void TorrentImpl::handleTorrentFinishedAlert(const lt::torrent_finished_alert *p)
+void TorrentImpl::handleTorrentFinishedAlert([[maybe_unused]] const lt::torrent_finished_alert *p)
 {
-    Q_UNUSED(p);
-
     m_hasMissingFiles = false;
     if (m_hasFinishedStatus)
         return;
@@ -1911,14 +1939,12 @@ void TorrentImpl::handleTorrentFinishedAlert(const lt::torrent_finished_alert *p
     });
 }
 
-void TorrentImpl::handleTorrentPausedAlert(const lt::torrent_paused_alert *p)
+void TorrentImpl::handleTorrentPausedAlert([[maybe_unused]] const lt::torrent_paused_alert *p)
 {
-    Q_UNUSED(p);
 }
 
-void TorrentImpl::handleTorrentResumedAlert(const lt::torrent_resumed_alert *p)
+void TorrentImpl::handleTorrentResumedAlert([[maybe_unused]] const lt::torrent_resumed_alert *p)
 {
-    Q_UNUSED(p);
 }
 
 void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
@@ -2014,6 +2040,7 @@ void TorrentImpl::prepareResumeData(const lt::add_torrent_params &params)
     resumeData.contentLayout = m_contentLayout;
     resumeData.ratioLimit = m_ratioLimit;
     resumeData.seedingTimeLimit = m_seedingTimeLimit;
+    resumeData.inactiveSeedingTimeLimit = m_inactiveSeedingTimeLimit;
     resumeData.firstLastPiecePriority = m_hasFirstLastPiecePriority;
     resumeData.hasFinishedStatus = m_hasFinishedStatus;
     resumeData.stopped = m_isStopped;
@@ -2132,9 +2159,8 @@ void TorrentImpl::handleFilePrioAlert(const lt::file_prio_alert *)
 }
 #endif
 
-void TorrentImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
+void TorrentImpl::handleMetadataReceivedAlert([[maybe_unused]] const lt::metadata_received_alert *p)
 {
-    Q_UNUSED(p);
     qDebug("Metadata received for torrent %s.", qUtf8Printable(name()));
 
 #ifdef QBT_USES_LIBTORRENT2
@@ -2253,7 +2279,7 @@ void TorrentImpl::doRenameFile(int index, const Path &path)
 
     Q_ASSERT(index >= 0);
     Q_ASSERT(index < nativeIndexes.size());
-    if (Q_UNLIKELY((index < 0) || (index >= nativeIndexes.size())))
+    if ((index < 0) || (index >= nativeIndexes.size())) [[unlikely]]
         return;
 
     ++m_renameCount;
@@ -2341,11 +2367,11 @@ void TorrentImpl::updateStatus(const lt::torrent_status &nativeStatus)
 void TorrentImpl::updateProgress()
 {
     Q_ASSERT(hasMetadata());
-    if (Q_UNLIKELY(!hasMetadata()))
+    if (!hasMetadata()) [[unlikely]]
         return;
 
     Q_ASSERT(!m_filesProgress.isEmpty());
-    if (Q_UNLIKELY(m_filesProgress.isEmpty()))
+    if (m_filesProgress.isEmpty()) [[unlikely]]
         m_filesProgress.resize(filesCount());
 
     const QBitArray oldPieces = std::exchange(m_pieces, LT::toQBitArray(m_nativeStatus.pieces));
@@ -2401,6 +2427,21 @@ void TorrentImpl::setSeedingTimeLimit(int limit)
     if (m_seedingTimeLimit != limit)
     {
         m_seedingTimeLimit = limit;
+        m_session->handleTorrentNeedSaveResumeData(this);
+        m_session->handleTorrentShareLimitChanged(this);
+    }
+}
+
+void TorrentImpl::setInactiveSeedingTimeLimit(int limit)
+{
+    if (limit < USE_GLOBAL_INACTIVE_SEEDING_TIME)
+        limit = NO_INACTIVE_SEEDING_TIME_LIMIT;
+    else if (limit > MAX_INACTIVE_SEEDING_TIME)
+        limit = MAX_SEEDING_TIME;
+
+    if (m_inactiveSeedingTimeLimit != limit)
+    {
+        m_inactiveSeedingTimeLimit = limit;
         m_session->handleTorrentNeedSaveResumeData(this);
         m_session->handleTorrentShareLimitChanged(this);
     }

@@ -30,7 +30,6 @@
 
 #include <libtorrent/sha1_hash.hpp>
 
-#include <QtGlobal>
 #include <QByteArray>
 #include <QHash>
 #include <QSharedData>
@@ -145,28 +144,14 @@ bool operator==(const Digest32<N> &left, const Digest32<N> &right)
 }
 
 template <int N>
-bool operator!=(const Digest32<N> &left, const Digest32<N> &right)
-{
-    return !(left == right);
-}
-
-template <int N>
 bool operator<(const Digest32<N> &left, const Digest32<N> &right)
 {
     return static_cast<typename Digest32<N>::UnderlyingType>(left)
             < static_cast<typename Digest32<N>::UnderlyingType>(right);
 }
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 template <int N>
 std::size_t qHash(const Digest32<N> &key, const std::size_t seed = 0)
 {
     return ::qHash(static_cast<typename Digest32<N>::UnderlyingType>(key), seed);
 }
-#else
-template <int N>
-uint qHash(const Digest32<N> &key, const uint seed = 0)
-{
-    return ::qHash(std::hash<typename Digest32<N>::UnderlyingType> {}(key), seed);
-}
-#endif

@@ -168,8 +168,7 @@ namespace
 }
 
 AdvancedSettings::AdvancedSettings(IGUIApplication *app, QWidget *parent)
-    : QTableWidget(parent)
-    , GUIApplicationComponent(app)
+    : GUIApplicationComponent(app, parent)
 {
     // column
     setColumnCount(COL_COUNT);
@@ -306,7 +305,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setReannounceWhenAddressChangedEnabled(m_checkBoxReannounceWhenAddressChanged.isChecked());
     // Misc GUI properties
     app()->mainWindow()->setDownloadTrackerFavicon(m_checkBoxTrackerFavicon.isChecked());
-    AddNewTorrentDialog::setSavePathHistoryLength(m_spinBoxSavePathHistoryLength.value());
+    pref->setAddNewTorrentDialogSavePathHistoryLength(m_spinBoxSavePathHistoryLength.value());
     pref->setSpeedWidgetEnabled(m_checkBoxSpeedWidgetEnabled.isChecked());
 #ifndef Q_OS_MACOS
     pref->setIconsInMenusEnabled(m_checkBoxIconsInMenusEnabled.isChecked());
@@ -786,8 +785,8 @@ void AdvancedSettings::loadAdvancedSettings()
     m_checkBoxTrackerFavicon.setChecked(app()->mainWindow()->isDownloadTrackerFavicon());
     addRow(DOWNLOAD_TRACKER_FAVICON, tr("Download tracker's favicon"), &m_checkBoxTrackerFavicon);
     // Save path history length
-    m_spinBoxSavePathHistoryLength.setRange(AddNewTorrentDialog::minPathHistoryLength, AddNewTorrentDialog::maxPathHistoryLength);
-    m_spinBoxSavePathHistoryLength.setValue(AddNewTorrentDialog::savePathHistoryLength());
+    m_spinBoxSavePathHistoryLength.setRange(0, 99);
+    m_spinBoxSavePathHistoryLength.setValue(pref->addNewTorrentDialogSavePathHistoryLength());
     addRow(SAVE_PATH_HISTORY_LENGTH, tr("Save path history length"), &m_spinBoxSavePathHistoryLength);
     // Enable speed graphs
     m_checkBoxSpeedWidgetEnabled.setChecked(pref->isSpeedWidgetEnabled());

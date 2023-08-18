@@ -43,19 +43,19 @@
 namespace
 {
     // table of supposed nice steps for grid marks to get nice looking quarters of scale
-    const double roundingTable[] = {1.2, 1.6, 2, 2.4, 2.8, 3.2, 4, 6, 8};
+    const qreal roundingTable[] = {1.2, 1.6, 2, 2.4, 2.8, 3.2, 4, 6, 8};
 
     struct SplitValue
     {
-        double arg;
-        Utils::Misc::SizeUnit unit;
-        qint64 sizeInBytes() const
+        qreal arg = 0;
+        Utils::Misc::SizeUnit unit {};
+        qlonglong sizeInBytes() const
         {
             return Utils::Misc::sizeInBytes(arg, unit);
         }
     };
 
-    SplitValue getRoundedYScale(double value)
+    SplitValue getRoundedYScale(qreal value)
     {
         using Utils::Misc::SizeUnit;
 
@@ -71,13 +71,13 @@ namespace
 
         if (value > 100)
         {
-            const double roundedValue {std::ceil(value / 40) * 40};
+            const qreal roundedValue {std::ceil(value / 40) * 40};
             return {roundedValue, calculatedUnit};
         }
 
         if (value > 10)
         {
-            const double roundedValue {std::ceil(value / 4) * 4};
+            const qreal roundedValue {std::ceil(value / 4) * 4};
             return {roundedValue, calculatedUnit};
         }
 
@@ -89,7 +89,7 @@ namespace
         return {10.0, calculatedUnit};
     }
 
-    QString formatLabel(const double argValue, const Utils::Misc::SizeUnit unit)
+    QString formatLabel(const qreal argValue, const Utils::Misc::SizeUnit unit)
     {
         // check is there need for digits after decimal separator
         const int precision = (argValue < 10) ? friendlyUnitPrecision(unit) : 0;
@@ -351,8 +351,8 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
 
     // last point will be drawn at x=0, so we don't need it in the calculation of xTickSize
     const milliseconds lastDuration {queue.empty() ? 0ms : queue.back().duration};
-    const double xTickSize = static_cast<double>(rect.width()) / (m_currentMaxDuration - lastDuration).count();
-    const double yMultiplier = (niceScale.arg == 0) ? 0 : (static_cast<double>(rect.height()) / niceScale.sizeInBytes());
+    const qreal xTickSize = static_cast<qreal>(rect.width()) / (m_currentMaxDuration - lastDuration).count();
+    const qreal yMultiplier = (niceScale.arg == 0) ? 0 : (static_cast<qreal>(rect.height()) / niceScale.sizeInBytes());
 
     for (int id = UP; id < NB_GRAPHS; ++id)
     {
@@ -381,7 +381,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     // draw legend
     QPoint legendTopLeft(rect.left() + 4, fullRect.top() + 4);
 
-    double legendHeight = 0;
+    qreal legendHeight = 0;
     int legendWidth = 0;
     for (const auto &property : asConst(m_properties))
     {
@@ -404,8 +404,8 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
         if (!property.enable)
             continue;
 
-        int nameSize = fontMetrics.horizontalAdvance(property.name);
-        double indent = 1.5 * (i++) * fontMetrics.height();
+        const int nameSize = fontMetrics.horizontalAdvance(property.name);
+        const qreal indent = 1.5 * (i++) * fontMetrics.height();
 
         painter.setPen(property.pen);
         painter.drawLine(legendTopLeft + QPointF(0, indent + fontMetrics.height()),
