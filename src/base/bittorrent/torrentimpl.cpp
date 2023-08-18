@@ -1866,10 +1866,8 @@ void TorrentImpl::handleMoveStorageJobFinished(const Path &path, const MoveStora
     }
 }
 
-void TorrentImpl::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)
+void TorrentImpl::handleTorrentCheckedAlert([[maybe_unused]] const lt::torrent_checked_alert *p)
 {
-    Q_UNUSED(p);
-
     if (!hasMetadata())
     {
         // The torrent is checked due to metadata received, but we should not process
@@ -1911,10 +1909,8 @@ void TorrentImpl::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)
     });
 }
 
-void TorrentImpl::handleTorrentFinishedAlert(const lt::torrent_finished_alert *p)
+void TorrentImpl::handleTorrentFinishedAlert([[maybe_unused]] const lt::torrent_finished_alert *p)
 {
-    Q_UNUSED(p);
-
     m_hasMissingFiles = false;
     if (m_hasFinishedStatus)
         return;
@@ -1943,14 +1939,12 @@ void TorrentImpl::handleTorrentFinishedAlert(const lt::torrent_finished_alert *p
     });
 }
 
-void TorrentImpl::handleTorrentPausedAlert(const lt::torrent_paused_alert *p)
+void TorrentImpl::handleTorrentPausedAlert([[maybe_unused]] const lt::torrent_paused_alert *p)
 {
-    Q_UNUSED(p);
 }
 
-void TorrentImpl::handleTorrentResumedAlert(const lt::torrent_resumed_alert *p)
+void TorrentImpl::handleTorrentResumedAlert([[maybe_unused]] const lt::torrent_resumed_alert *p)
 {
-    Q_UNUSED(p);
 }
 
 void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
@@ -2165,9 +2159,8 @@ void TorrentImpl::handleFilePrioAlert(const lt::file_prio_alert *)
 }
 #endif
 
-void TorrentImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
+void TorrentImpl::handleMetadataReceivedAlert([[maybe_unused]] const lt::metadata_received_alert *p)
 {
-    Q_UNUSED(p);
     qDebug("Metadata received for torrent %s.", qUtf8Printable(name()));
 
 #ifdef QBT_USES_LIBTORRENT2

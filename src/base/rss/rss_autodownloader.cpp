@@ -612,8 +612,7 @@ void AutoDownloader::setProcessingEnabled(const bool enabled)
     }
 }
 
-void AutoDownloader::timerEvent(QTimerEvent *event)
+void AutoDownloader::timerEvent([[maybe_unused]] QTimerEvent *event)
 {
-    Q_UNUSED(event);
     store();
 }

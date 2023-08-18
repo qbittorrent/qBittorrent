@@ -743,9 +743,8 @@ void MainWindow::on_actionDocumentation_triggered() const
     QDesktopServices::openUrl(QUrl(u"https://doc.qbittorrent.org"_s));
 }
 
-void MainWindow::tabChanged(int newTab)
+void MainWindow::tabChanged([[maybe_unused]] const int newTab)
 {
-    Q_UNUSED(newTab);
     // We cannot rely on the index newTab
     // because the tab order is undetermined now
     if (m_tabs->currentWidget() == m_splitter)

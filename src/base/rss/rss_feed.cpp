@@ -560,8 +560,7 @@ void Feed::cleanup()
     Utils::Fs::removeFile(m_iconPath);
 }
 
-void Feed::timerEvent(QTimerEvent *event)
+void Feed::timerEvent([[maybe_unused]] QTimerEvent *event)
 {
-    Q_UNUSED(event);
     store();
 }

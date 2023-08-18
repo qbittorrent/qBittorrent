@@ -1110,10 +1110,8 @@ void Application::initializeTranslation()
 }
 
 #if (!defined(DISABLE_GUI) && defined(Q_OS_WIN))
-void Application::shutdownCleanup(QSessionManager &manager)
+void Application::shutdownCleanup([[maybe_unused]] QSessionManager &manager)
 {
-    Q_UNUSED(manager);
-
     // This is only needed for a special case on Windows XP.
     // (but is called for every Windows version)
     // If a process takes too much time to exit during OS

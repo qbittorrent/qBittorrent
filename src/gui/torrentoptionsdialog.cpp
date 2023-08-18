@@ -543,10 +543,8 @@ int TorrentOptionsDialog::getInactiveSeedingTime() const
     return m_ui->spinInactiveTimeLimit->value();
 }
 
-void TorrentOptionsDialog::handleCategoryChanged(const int index)
+void TorrentOptionsDialog::handleCategoryChanged([[maybe_unused]] const int index)
 {
-    Q_UNUSED(index);
-
     if (m_ui->checkAutoTMM->checkState() == Qt::Checked)
     {
         if (!m_allSameCategory && (m_ui->comboCategory->currentIndex() == 0))

@@ -502,17 +502,15 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
     m_ui->labelSizeData->setText(sizeString);
 }
 
-void AddNewTorrentDialog::onSavePathChanged(const Path &newPath)
+void AddNewTorrentDialog::onSavePathChanged([[maybe_unused]] const Path &newPath)
 {
-    Q_UNUSED(newPath);
     // Remember index
     m_savePathIndex = m_ui->savePath->currentIndex();
     updateDiskSpaceLabel();
 }
 
-void AddNewTorrentDialog::onDownloadPathChanged(const Path &newPath)
+void AddNewTorrentDialog::onDownloadPathChanged([[maybe_unused]] const Path &newPath)
 {
-    Q_UNUSED(newPath);
     // Remember index
     const int currentPathIndex = m_ui->downloadPath->currentIndex();
     if (currentPathIndex >= 0)
@@ -525,10 +523,8 @@ void AddNewTorrentDialog::onUseDownloadPathChanged(const bool checked)
     m_ui->downloadPath->setCurrentIndex(checked ? m_downloadPathIndex : -1);
 }
 
-void AddNewTorrentDialog::categoryChanged(int index)
+void AddNewTorrentDialog::categoryChanged([[maybe_unused]] const int index)
 {
-    Q_UNUSED(index);
-
     if (m_ui->comboTTM->currentIndex() == 1)
     {
         const auto *btSession = BitTorrent::Session::instance();

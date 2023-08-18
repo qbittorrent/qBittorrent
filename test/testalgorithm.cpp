@@ -69,9 +69,8 @@ private slots:
                 {3, 'b'},
                 {4, 'd'}
             };
-            Algorithm::removeIf(data, [](const int key, const char value)
+            Algorithm::removeIf(data, []([[maybe_unused]] const int key, const char value)
             {
-                Q_UNUSED(key);
                 return (value == 'b');
             });
             QCOMPARE(data.size(), 3);
@@ -83,9 +82,8 @@ private slots:
         }
         {
             QHash<int, char> data;
-            Algorithm::removeIf(data, [](const int key, const char value)
+            Algorithm::removeIf(data, []([[maybe_unused]] const int key, const char value)
             {
-                Q_UNUSED(key);
                 return (value == 'b');
             });
             QVERIFY(data.empty());

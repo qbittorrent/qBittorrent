@@ -146,10 +146,9 @@ QValidator::State Private::FileSystemPathValidator::lastValidationState() const
     return m_lastValidationState;
 }
 
-QValidator::State Private::FileSystemPathValidator::validate(QString &input, int &pos) const
+QValidator::State Private::FileSystemPathValidator::validate(QString &input, [[maybe_unused]] int &pos) const
 {
-    // ignore cursor position and validate the full path anyway
-    Q_UNUSED(pos);
+    // we ignore cursor position and validate the full path anyway
 
     m_lastTestResult = testPath(Path(input));
     m_lastValidationState = (m_lastTestResult == TestResult::OK)

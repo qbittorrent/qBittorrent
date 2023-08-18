@@ -73,9 +73,8 @@ QModelIndex CookiesModel::index(int row, int column, const QModelIndex &parent) 
     return createIndex(row, column, &m_cookies[row]);
 }
 
-QModelIndex CookiesModel::parent(const QModelIndex &index) const
+QModelIndex CookiesModel::parent([[maybe_unused]] const QModelIndex &index) const
 {
-    Q_UNUSED(index);
     return {};
 }
 
@@ -86,9 +85,8 @@ int CookiesModel::rowCount(const QModelIndex &parent) const
     return m_cookies.size();
 }
 
-int CookiesModel::columnCount(const QModelIndex &parent) const
+int CookiesModel::columnCount([[maybe_unused]] const QModelIndex &parent) const
 {
-    Q_UNUSED(parent);
     return NB_COLUMNS;
 }
 
