@@ -428,7 +428,6 @@ void TrackerListWidget::loadTrackers()
         int seedsMax = -1;
         int leechesMax = -1;
         int downloadedMax = -1;
-        QString message;
 
         int index = 0;
         for (const auto &endpoint : entry.stats)
@@ -442,17 +441,6 @@ void TrackerListWidget::loadTrackers()
                 seedsMax = std::max(seedsMax, protocolStats.numSeeds);
                 leechesMax = std::max(leechesMax, protocolStats.numLeeches);
                 downloadedMax = std::max(downloadedMax, protocolStats.numDownloaded);
-
-                if ((entry.status == BitTorrent::TrackerEntry::Status::Working) && message.isEmpty())
-                {
-                    if (protocolStats.status == BitTorrent::TrackerEntry::Status::Working)
-                        message = protocolStats.message;
-                }
-                else if ((entry.status == BitTorrent::TrackerEntry::Status::NotWorking) && message.isEmpty())
-                {
-                    if (protocolStats.status == BitTorrent::TrackerEntry::Status::NotWorking)
-                        message = protocolStats.message;
-                }
 
                 QTreeWidgetItem *child = (index < item->childCount()) ? item->child(index) : new QTreeWidgetItem(item);
                 child->setText(COL_URL, protocolStats.name);
@@ -478,9 +466,9 @@ void TrackerListWidget::loadTrackers()
         item->setText(COL_SEEDS, prettyCount(seedsMax));
         item->setText(COL_LEECHES, prettyCount(leechesMax));
         item->setText(COL_TIMES_DOWNLOADED, prettyCount(downloadedMax));
-        item->setData(COL_MSG, Qt::UserRole, message);
+        item->setData(COL_MSG, Qt::UserRole, entry.message);
         if (!item->isExpanded())
-            item->setText(COL_MSG, message);
+            item->setText(COL_MSG, entry.message);
         setAlignment(item);
     }
 

@@ -63,6 +63,7 @@ namespace BitTorrent
         QString url {};
         int tier = 0;
         Status status = NotContacted;
+        QString message {};
 
         QHash<Endpoint, QHash<int, EndpointStats>> stats {};
     };

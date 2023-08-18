@@ -487,7 +487,6 @@ void TorrentsController::trackersAction()
         int numSeeds = -1;
         int numLeeches = -1;
         int numDownloaded = -1;
-        QString message;
         for (const auto &endpoint : tracker.stats)
         {
             for (const auto &protocolStat : endpoint)
@@ -496,16 +495,6 @@ void TorrentsController::trackersAction()
                 numSeeds = std::max(numSeeds, protocolStat.numSeeds);
                 numLeeches = std::max(numLeeches, protocolStat.numLeeches);
                 numDownloaded = std::max(numDownloaded, protocolStat.numDownloaded);
-                if ((tracker.status == BitTorrent::TrackerEntry::Status::Working) && message.isEmpty())
-                {
-                    if (protocolStat.status == BitTorrent::TrackerEntry::Status::Working)
-                        message = protocolStat.message;
-                }
-                else if ((tracker.status == BitTorrent::TrackerEntry::Status::NotWorking) && message.isEmpty())
-                {
-                    if (protocolStat.status == BitTorrent::TrackerEntry::Status::NotWorking)
-                        message = protocolStat.message;
-                }
             }
         }
 
@@ -514,7 +503,7 @@ void TorrentsController::trackersAction()
             {KEY_TRACKER_URL, tracker.url},
             {KEY_TRACKER_TIER, tracker.tier},
             {KEY_TRACKER_STATUS, static_cast<int>(tracker.status)},
-            {KEY_TRACKER_MSG, message},
+            {KEY_TRACKER_MSG, tracker.message},
             {KEY_TRACKER_PEERS_COUNT, numPeers},
             {KEY_TRACKER_SEEDS_COUNT, numSeeds},
             {KEY_TRACKER_LEECHES_COUNT, numLeeches},
