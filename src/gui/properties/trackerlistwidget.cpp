@@ -140,10 +140,18 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     connect(this, &QAbstractItemView::doubleClicked, this, &TrackerListWidget::editSelectedTracker);
     connect(this, &QTreeWidget::itemExpanded, this, [](QTreeWidgetItem *item)
     {
+        item->setText(COL_PEERS, QString());
+        item->setText(COL_SEEDS, QString());
+        item->setText(COL_LEECHES, QString());
+        item->setText(COL_TIMES_DOWNLOADED, QString());
         item->setText(COL_MSG, QString());
     });
     connect(this, &QTreeWidget::itemCollapsed, this, [](QTreeWidgetItem *item)
     {
+        item->setText(COL_PEERS, item->data(COL_PEERS, Qt::UserRole).toString());
+        item->setText(COL_SEEDS, item->data(COL_SEEDS, Qt::UserRole).toString());
+        item->setText(COL_LEECHES, item->data(COL_LEECHES, Qt::UserRole).toString());
+        item->setText(COL_TIMES_DOWNLOADED, item->data(COL_TIMES_DOWNLOADED, Qt::UserRole).toString());
         item->setText(COL_MSG, item->data(COL_MSG, Qt::UserRole).toString());
     });
 }
@@ -462,13 +470,20 @@ void TrackerListWidget::loadTrackers()
 
         item->setText(COL_TIER, QString::number(entry.tier));
         item->setText(COL_STATUS, toString(entry.status));
-        item->setText(COL_PEERS, prettyCount(peersMax));
-        item->setText(COL_SEEDS, prettyCount(seedsMax));
-        item->setText(COL_LEECHES, prettyCount(leechesMax));
-        item->setText(COL_TIMES_DOWNLOADED, prettyCount(downloadedMax));
+
+        item->setData(COL_PEERS, Qt::UserRole, prettyCount(peersMax));
+        item->setData(COL_SEEDS, Qt::UserRole, prettyCount(seedsMax));
+        item->setData(COL_LEECHES, Qt::UserRole, prettyCount(leechesMax));
+        item->setData(COL_TIMES_DOWNLOADED, Qt::UserRole, prettyCount(downloadedMax));
         item->setData(COL_MSG, Qt::UserRole, entry.message);
         if (!item->isExpanded())
-            item->setText(COL_MSG, entry.message);
+        {
+            item->setText(COL_PEERS, item->data(COL_PEERS, Qt::UserRole).toString());
+            item->setText(COL_SEEDS, item->data(COL_SEEDS, Qt::UserRole).toString());
+            item->setText(COL_LEECHES, item->data(COL_LEECHES, Qt::UserRole).toString());
+            item->setText(COL_TIMES_DOWNLOADED, item->data(COL_TIMES_DOWNLOADED, Qt::UserRole).toString());
+            item->setText(COL_MSG, item->data(COL_MSG, Qt::UserRole).toString());
+        }
         setAlignment(item);
     }
 
