@@ -429,6 +429,11 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
     }
 
     TMMChanged(m_ui->comboTTM->currentIndex());
+
+#if defined(Q_OS_MACOS)
+    // Always show this dialog on top
+    setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint);
+#endif
 }
 
 AddNewTorrentDialog::~AddNewTorrentDialog()
