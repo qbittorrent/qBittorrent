@@ -587,7 +587,11 @@ void TransferListWidget::openSelectedTorrentsFolder() const
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
     {
         const Path contentPath = torrent->contentPath();
-        paths.insert(contentPath);
+        if(contentPath.isEmpty()){
+            paths.insert(torrent->savePath());
+        }else{
+            paths.insert(contentPath);
+        }
     }
     MacUtils::openFiles(PathList(paths.cbegin(), paths.cend()));
 #else
