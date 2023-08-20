@@ -70,6 +70,7 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     setAllColumnsShowFocus(true);
     setItemsExpandable(false);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setSortingEnabled(true);
     header()->setFirstSectionMovable(true);
     header()->setStretchLastSection(false); // Must be set after loadSettings() in order to work
     header()->setTextElideMode(Qt::ElideRight);
