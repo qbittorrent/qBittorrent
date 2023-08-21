@@ -746,7 +746,7 @@ namespace BitTorrent
 
         // This field holds amounts of peers reported by trackers in their responses to announces
         // (torrent.tracker_name.tracker_local_endpoint.num_peers)
-        QHash<lt::torrent_handle, QHash<std::string, QMap<TrackerEntry::Endpoint, int>>> m_updatedTrackerEntries;
+        QHash<lt::torrent_handle, QHash<std::string, QHash<TrackerEntry::Endpoint, int>>> m_updatedTrackerEntries;
 
         // I/O errored torrents
         QSet<TorrentID> m_recentErroredTorrents;

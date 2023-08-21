@@ -80,15 +80,25 @@ namespace
 
 #ifdef QBT_USES_LIBTORRENT2
     void updateTrackerEntry(TrackerEntry &trackerEntry, const lt::announce_entry &nativeEntry
-            , const lt::info_hash_t &hashes, const QMap<TrackerEntry::Endpoint, int> &updateInfo)
+            , const lt::info_hash_t &hashes, const QHash<TrackerEntry::Endpoint, int> &updateInfo)
 #else
     void updateTrackerEntry(TrackerEntry &trackerEntry, const lt::announce_entry &nativeEntry
-            , const QMap<TrackerEntry::Endpoint, int> &updateInfo)
+            , const QHash<TrackerEntry::Endpoint, int> &updateInfo)
 #endif
     {
         Q_ASSERT(trackerEntry.url == QString::fromStdString(nativeEntry.url));
 
         trackerEntry.tier = nativeEntry.tier;
+
+        // remove outdated endpoints
+        trackerEntry.stats.removeIf([&nativeEntry](const decltype(trackerEntry.stats)::iterator &iter)
+        {
+            return std::none_of(nativeEntry.endpoints.cbegin(), nativeEntry.endpoints.cend()
+                    , [&endpoint = iter.key()](const auto &existingEndpoint)
+            {
+                return (endpoint == existingEndpoint.local_endpoint);
+            });
+        });
 
         int numUpdating = 0;
         int numWorking = 0;
@@ -99,13 +109,17 @@ namespace
         const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size()) * ((hashes.has_v1() && hashes.has_v2()) ? 2 : 1);
         for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
         {
+            const auto endpointName = QString::fromStdString((std::stringstream() << endpoint.local_endpoint).str());
+
             for (const auto protocolVersion : {lt::protocol_version::V1, lt::protocol_version::V2})
             {
                 if (hashes.has(protocolVersion))
                 {
                     const lt::announce_infohash &infoHash = endpoint.info_hashes[protocolVersion];
 
-                    TrackerEntry::EndpointStats trackerEndpoint;
+                    TrackerEntry::EndpointStats &trackerEndpoint = trackerEntry.stats[endpoint.local_endpoint][(protocolVersion == lt::protocol_version::V1) ? 1 : 2];
+
+                    trackerEndpoint.name = endpointName;
                     trackerEndpoint.numPeers = updateInfo.value(endpoint.local_endpoint, trackerEndpoint.numPeers);
                     trackerEndpoint.numSeeds = infoHash.scrape_complete;
                     trackerEndpoint.numLeeches = infoHash.scrape_incomplete;
@@ -131,20 +145,18 @@ namespace
                         trackerEndpoint.status = TrackerEntry::NotContacted;
                     }
 
-                    const QString trackerMessage = QString::fromStdString(infoHash.message);
-                    const QString errorMessage = QString::fromLocal8Bit(infoHash.last_error.message().c_str());
-                    trackerEndpoint.message = (!trackerMessage.isEmpty() ? trackerMessage : errorMessage);
-
-                    trackerEntry.stats[endpoint.local_endpoint][(protocolVersion == lt::protocol_version::V1) ? 1 : 2] = trackerEndpoint;
-                    trackerEntry.numPeers = std::max(trackerEntry.numPeers, trackerEndpoint.numPeers);
-                    trackerEntry.numSeeds = std::max(trackerEntry.numSeeds, trackerEndpoint.numSeeds);
-                    trackerEntry.numLeeches = std::max(trackerEntry.numLeeches, trackerEndpoint.numLeeches);
-                    trackerEntry.numDownloaded = std::max(trackerEntry.numDownloaded, trackerEndpoint.numDownloaded);
-
-                    if (firstTrackerMessage.isEmpty())
-                        firstTrackerMessage = trackerMessage;
-                    if (firstErrorMessage.isEmpty())
-                        firstErrorMessage = errorMessage;
+                    if (!infoHash.message.empty())
+                    {
+                        trackerEndpoint.message = QString::fromStdString(infoHash.message);
+                        if (firstTrackerMessage.isEmpty())
+                            firstTrackerMessage = trackerEndpoint.message;
+                    }
+                    else if (infoHash.last_error)
+                    {
+                        trackerEndpoint.message = QString::fromLocal8Bit(infoHash.last_error.message());
+                        if (firstErrorMessage.isEmpty())
+                            firstErrorMessage = trackerEndpoint.message;
+                    }
                 }
             }
         }
@@ -152,7 +164,9 @@ namespace
         const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size());
         for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
         {
-            TrackerEntry::EndpointStats trackerEndpoint;
+            TrackerEntry::EndpointStats &trackerEndpoint = trackerEntry.stats[endpoint.local_endpoint][1];
+
+            trackerEndpoint.name = QString::fromStdString((std::stringstream() << endpoint.local_endpoint).str());
             trackerEndpoint.numPeers = updateInfo.value(endpoint.local_endpoint, trackerEndpoint.numPeers);
             trackerEndpoint.numSeeds = endpoint.scrape_complete;
             trackerEndpoint.numLeeches = endpoint.scrape_incomplete;
@@ -178,20 +192,18 @@ namespace
                 trackerEndpoint.status = TrackerEntry::NotContacted;
             }
 
-            const QString trackerMessage = QString::fromStdString(endpoint.message);
-            const QString errorMessage = QString::fromLocal8Bit(endpoint.last_error.message().c_str());
-            trackerEndpoint.message = (!trackerMessage.isEmpty() ? trackerMessage : errorMessage);
-
-            trackerEntry.stats[endpoint.local_endpoint][1] = trackerEndpoint;
-            trackerEntry.numPeers = std::max(trackerEntry.numPeers, trackerEndpoint.numPeers);
-            trackerEntry.numSeeds = std::max(trackerEntry.numSeeds, trackerEndpoint.numSeeds);
-            trackerEntry.numLeeches = std::max(trackerEntry.numLeeches, trackerEndpoint.numLeeches);
-            trackerEntry.numDownloaded = std::max(trackerEntry.numDownloaded, trackerEndpoint.numDownloaded);
-
-            if (firstTrackerMessage.isEmpty())
-                firstTrackerMessage = trackerMessage;
-            if (firstErrorMessage.isEmpty())
-                firstErrorMessage = errorMessage;
+            if (!endpoint.message.empty())
+            {
+                trackerEndpoint.message = QString::fromStdString(endpoint.message);
+                if (firstTrackerMessage.isEmpty())
+                    firstTrackerMessage = trackerEndpoint.message;
+            }
+            else if (endpoint.last_error)
+            {
+                trackerEndpoint.message = QString::fromLocal8Bit(endpoint.last_error.message());
+                if (firstErrorMessage.isEmpty())
+                    firstErrorMessage = trackerEndpoint.message;
+            }
         }
 #endif
 
@@ -1603,7 +1615,7 @@ void TorrentImpl::fileSearchFinished(const Path &savePath, const PathList &fileN
         endReceivedMetadataHandling(savePath, fileNames);
 }
 
-TrackerEntry TorrentImpl::updateTrackerEntry(const lt::announce_entry &announceEntry, const QMap<TrackerEntry::Endpoint, int> &updateInfo)
+TrackerEntry TorrentImpl::updateTrackerEntry(const lt::announce_entry &announceEntry, const QHash<TrackerEntry::Endpoint, int> &updateInfo)
 {
     const auto it = std::find_if(m_trackerEntries.begin(), m_trackerEntries.end()
             , [&announceEntry](const TrackerEntry &trackerEntry)
