@@ -264,7 +264,7 @@ namespace BitTorrent
         void saveResumeData(lt::resume_data_flags_t flags = {});
         void handleMoveStorageJobFinished(const Path &path, MoveStorageContext context, bool hasOutstandingJob);
         void fileSearchFinished(const Path &savePath, const PathList &fileNames);
-        TrackerEntry updateTrackerEntry(const lt::announce_entry &announceEntry, const QHash<TrackerEntry::Endpoint, int> &updateInfo);
+        TrackerEntry updateTrackerEntry(const lt::announce_entry &announceEntry, const QHash<TrackerEntry::Endpoint, QMap<int, int> > &updateInfo);
 
     private:
         using EventTrigger = std::function<void ()>;

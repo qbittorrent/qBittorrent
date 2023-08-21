@@ -5920,12 +5920,17 @@ void SessionImpl::handleTrackerAlert(const lt::tracker_alert *a)
     if (!torrent)
         return;
 
-    QHash<TrackerEntry::Endpoint, int> &updateInfo = m_updatedTrackerEntries[torrent->nativeHandle()][std::string(a->tracker_url())];
+    QMap<int, int> &updateInfo = m_updatedTrackerEntries[torrent->nativeHandle()][std::string(a->tracker_url())][a->local_endpoint];
 
     if (a->type() == lt::tracker_reply_alert::alert_type)
     {
         const int numPeers = static_cast<const lt::tracker_reply_alert *>(a)->num_peers;
-        updateInfo.insert(a->local_endpoint, numPeers);
+#ifdef QBT_USES_LIBTORRENT2
+        const int protocolVersionNum = (static_cast<const lt::tracker_reply_alert *>(a)->version == lt::protocol_version::V1) ? 1 : 2;
+#else
+        const int protocolVersionNum = 1;
+#endif
+        updateInfo.insert(protocolVersionNum, numPeers);
     }
 }
 
@@ -6004,7 +6009,7 @@ void SessionImpl::processTrackerStatuses()
                         if (updatedTrackersIter == updatedTrackers.end())
                             continue;
 
-                        const QHash<TrackerEntry::Endpoint, int> &updateInfo = updatedTrackersIter.value();
+                        const auto &updateInfo = updatedTrackersIter.value();
                         TrackerEntry trackerEntry = torrent->updateTrackerEntry(announceEntry, updateInfo);
                         const QString url = trackerEntry.url;
                         updatedTrackerEntries.emplace(url, std::move(trackerEntry));
