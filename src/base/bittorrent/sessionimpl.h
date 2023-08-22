@@ -572,6 +572,8 @@ namespace BitTorrent
         void saveStatistics() const;
         void loadStatistics();
 
+        void updateTrackerEntries(lt::torrent_handle torrentHandle, QHash<std::string, QHash<TrackerEntry::Endpoint, QMap<int, int>>> updatedTrackers);
+
         // BitTorrent
         lt::session *m_nativeSession = nullptr;
         NativeSessionExtension *m_nativeSessionExtension = nullptr;

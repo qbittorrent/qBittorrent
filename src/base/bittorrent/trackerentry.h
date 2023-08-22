@@ -31,6 +31,7 @@
 #include <libtorrent/socket.hpp>
 
 #include <QtContainerFwd>
+#include <QDateTime>
 #include <QHash>
 #include <QString>
 #include <QStringView>
@@ -53,19 +54,23 @@ namespace BitTorrent
 
         struct EndpointStats
         {
+            QString name {};
+
             Status status = NotContacted;
+            QString message {};
+
             int numPeers = -1;
             int numSeeds = -1;
             int numLeeches = -1;
             int numDownloaded = -1;
-            QString message {};
-            QString name {};
+
+            QDateTime nextAnnounceTime;
+            QDateTime minAnnounceTime;
         };
 
         QString url {};
         int tier = 0;
         Status status = NotContacted;
-        QString message {};
 
         QHash<Endpoint, QHash<int, EndpointStats>> stats {};
     };

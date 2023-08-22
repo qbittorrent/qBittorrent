@@ -5985,39 +5985,7 @@ void SessionImpl::processTrackerStatuses()
 
     for (auto it = m_updatedTrackerEntries.cbegin(); it != m_updatedTrackerEntries.cend(); ++it)
     {
-        invokeAsync([this, torrentHandle = it.key(), updatedTrackers = it.value()]() mutable
-        {
-            try
-            {
-                std::vector<lt::announce_entry> nativeTrackers = torrentHandle.trackers();
-                invoke([this, torrentHandle, nativeTrackers = std::move(nativeTrackers)
-                        , updatedTrackers = std::move(updatedTrackers)]
-                {
-                    TorrentImpl *torrent = m_torrents.value(torrentHandle.info_hash());
-                    if (!torrent)
-                        return;
-
-                    QHash<QString, TrackerEntry> updatedTrackerEntries;
-                    updatedTrackerEntries.reserve(updatedTrackers.size());
-                    for (const lt::announce_entry &announceEntry : nativeTrackers)
-                    {
-                        const auto updatedTrackersIter = updatedTrackers.find(announceEntry.url);
-                        if (updatedTrackersIter == updatedTrackers.end())
-                            continue;
-
-                        const auto &updateInfo = updatedTrackersIter.value();
-                        TrackerEntry trackerEntry = torrent->updateTrackerEntry(announceEntry, updateInfo);
-                        const QString url = trackerEntry.url;
-                        updatedTrackerEntries.emplace(url, std::move(trackerEntry));
-                    }
-
-                    emit trackerEntriesUpdated(torrent, updatedTrackerEntries);
-                });
-            }
-            catch (const std::exception &)
-            {
-            }
-        });
+        updateTrackerEntries(it.key(), it.value());
     }
 
     m_updatedTrackerEntries.clear();
@@ -6045,4 +6013,41 @@ void SessionImpl::loadStatistics()
 
     m_previouslyDownloaded = value[u"AlltimeDL"_s].toLongLong();
     m_previouslyUploaded = value[u"AlltimeUL"_s].toLongLong();
+}
+
+void SessionImpl::updateTrackerEntries(lt::torrent_handle torrentHandle, QHash<std::string, QHash<TrackerEntry::Endpoint, QMap<int, int>>> updatedTrackers)
+{
+    invokeAsync([this, torrentHandle = std::move(torrentHandle), updatedTrackers = std::move(updatedTrackers)]() mutable
+    {
+        try
+        {
+            std::vector<lt::announce_entry> nativeTrackers = torrentHandle.trackers();
+            invoke([this, torrentHandle, nativeTrackers = std::move(nativeTrackers)
+                    , updatedTrackers = std::move(updatedTrackers)]
+            {
+                TorrentImpl *torrent = m_torrents.value(torrentHandle.info_hash());
+                if (!torrent)
+                    return;
+
+                QHash<QString, TrackerEntry> updatedTrackerEntries;
+                updatedTrackerEntries.reserve(updatedTrackers.size());
+                for (const lt::announce_entry &announceEntry : nativeTrackers)
+                {
+                    const auto updatedTrackersIter = updatedTrackers.find(announceEntry.url);
+                    if (updatedTrackersIter == updatedTrackers.end())
+                        continue;
+
+                    const auto &updateInfo = updatedTrackersIter.value();
+                    TrackerEntry trackerEntry = torrent->updateTrackerEntry(announceEntry, updateInfo);
+                    const QString url = trackerEntry.url;
+                    updatedTrackerEntries.emplace(url, std::move(trackerEntry));
+                }
+
+                emit trackerEntriesUpdated(torrent, updatedTrackerEntries);
+            });
+        }
+        catch (const std::exception &)
+        {
+        }
+    });
 }
