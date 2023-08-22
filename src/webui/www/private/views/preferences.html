@@ -1890,7 +1890,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 const table = new Element('table.dynamicTable.unselectable');
                 tableDiv.append(table);
                 table.createTHead().insertRow().class = 'dynamicTableHeader';
-                let tableBody = table.createTBody();
+                table.createTBody();
 
                 tabContent.append(headerDiv);
                 tabContent.append(tableDiv);
