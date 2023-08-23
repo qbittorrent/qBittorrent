@@ -118,6 +118,7 @@ jobs:
             -B build `
             -G "Ninja" `
             -DCMAKE_BUILD_TYPE=RelWithDebInfo `
+            -DCMAKE_CXX_STANDARD=20 `
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON `
             -DCMAKE_INSTALL_PREFIX="${{ env.libtorrent_path }}/install" `
             -DCMAKE_TOOLCHAIN_FILE="${{ env.vcpkg_path }}/scripts/buildsystems/vcpkg.cmake" `
