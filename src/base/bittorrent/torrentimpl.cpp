@@ -117,6 +117,12 @@ namespace
                     continue;
 
                 const lt::announce_infohash &infoHash = endpoint.info_hashes[protocolVersion];
+                if (infoHash.last_error == lt::errors::announce_skipped)
+                {
+                    // skip unreachable endpoints from being processed
+                    trackerEntry.stats.remove(endpoint.local_endpoint);
+                    break;
+                }
 
                 const int protocolVersionNum = (protocolVersion == lt::protocol_version::V1) ? 1 : 2;
                 const QMap<int, int> &endpointUpdateInfo = updateInfo[endpoint.local_endpoint];
@@ -166,6 +172,13 @@ namespace
         const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size());
         for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
         {
+            if (endpoint.last_error == lt::errors::announce_skipped)
+            {
+                // skip unreachable endpoints from being processed
+                trackerEntry.stats.remove(endpoint.local_endpoint);
+                continue;
+            }
+
             const int protocolVersionNum = 1;
             const QMap<int, int> &endpointUpdateInfo = updateInfo[endpoint.local_endpoint];
             TrackerEntry::EndpointStats &trackerEndpoint = trackerEntry.stats[endpoint.local_endpoint][protocolVersionNum];
