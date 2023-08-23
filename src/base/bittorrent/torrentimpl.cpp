@@ -54,9 +54,9 @@
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
+#include "base/types.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
-#include "base/utils/string.h"
 #include "common.h"
 #include "downloadpriority.h"
 #include "extensiondata.h"
@@ -80,10 +80,10 @@ namespace
 
 #ifdef QBT_USES_LIBTORRENT2
     void updateTrackerEntry(TrackerEntry &trackerEntry, const lt::announce_entry &nativeEntry
-            , const lt::info_hash_t &hashes, const QHash<TrackerEntry::Endpoint, int> &updateInfo)
+            , const lt::info_hash_t &hashes, const QHash<TrackerEntry::Endpoint, QMap<int, int>> &updateInfo)
 #else
     void updateTrackerEntry(TrackerEntry &trackerEntry, const lt::announce_entry &nativeEntry
-            , const QHash<TrackerEntry::Endpoint, int> &updateInfo)
+            , const QHash<TrackerEntry::Endpoint, QMap<int, int>> &updateInfo)
 #endif
     {
         Q_ASSERT(trackerEntry.url == QString::fromStdString(nativeEntry.url));
@@ -113,50 +113,52 @@ namespace
 
             for (const auto protocolVersion : {lt::protocol_version::V1, lt::protocol_version::V2})
             {
-                if (hashes.has(protocolVersion))
+                if (!hashes.has(protocolVersion))
+                    continue;
+
+                const lt::announce_infohash &infoHash = endpoint.info_hashes[protocolVersion];
+
+                const int protocolVersionNum = (protocolVersion == lt::protocol_version::V1) ? 1 : 2;
+                const QMap<int, int> &endpointUpdateInfo = updateInfo[endpoint.local_endpoint];
+                TrackerEntry::EndpointStats &trackerEndpoint = trackerEntry.stats[endpoint.local_endpoint][protocolVersionNum];
+
+                trackerEndpoint.name = endpointName;
+                trackerEndpoint.numPeers = endpointUpdateInfo.value(protocolVersionNum, trackerEndpoint.numPeers);
+                trackerEndpoint.numSeeds = infoHash.scrape_complete;
+                trackerEndpoint.numLeeches = infoHash.scrape_incomplete;
+                trackerEndpoint.numDownloaded = infoHash.scrape_downloaded;
+
+                if (infoHash.updating)
                 {
-                    const lt::announce_infohash &infoHash = endpoint.info_hashes[protocolVersion];
+                    trackerEndpoint.status = TrackerEntry::Updating;
+                    ++numUpdating;
+                }
+                else if (infoHash.fails > 0)
+                {
+                    trackerEndpoint.status = TrackerEntry::NotWorking;
+                    ++numNotWorking;
+                }
+                else if (nativeEntry.verified)
+                {
+                    trackerEndpoint.status = TrackerEntry::Working;
+                    ++numWorking;
+                }
+                else
+                {
+                    trackerEndpoint.status = TrackerEntry::NotContacted;
+                }
 
-                    TrackerEntry::EndpointStats &trackerEndpoint = trackerEntry.stats[endpoint.local_endpoint][(protocolVersion == lt::protocol_version::V1) ? 1 : 2];
-
-                    trackerEndpoint.name = endpointName;
-                    trackerEndpoint.numPeers = updateInfo.value(endpoint.local_endpoint, trackerEndpoint.numPeers);
-                    trackerEndpoint.numSeeds = infoHash.scrape_complete;
-                    trackerEndpoint.numLeeches = infoHash.scrape_incomplete;
-                    trackerEndpoint.numDownloaded = infoHash.scrape_downloaded;
-
-                    if (infoHash.updating)
-                    {
-                        trackerEndpoint.status = TrackerEntry::Updating;
-                        ++numUpdating;
-                    }
-                    else if (infoHash.fails > 0)
-                    {
-                        trackerEndpoint.status = TrackerEntry::NotWorking;
-                        ++numNotWorking;
-                    }
-                    else if (nativeEntry.verified)
-                    {
-                        trackerEndpoint.status = TrackerEntry::Working;
-                        ++numWorking;
-                    }
-                    else
-                    {
-                        trackerEndpoint.status = TrackerEntry::NotContacted;
-                    }
-
-                    if (!infoHash.message.empty())
-                    {
-                        trackerEndpoint.message = QString::fromStdString(infoHash.message);
-                        if (firstTrackerMessage.isEmpty())
-                            firstTrackerMessage = trackerEndpoint.message;
-                    }
-                    else if (infoHash.last_error)
-                    {
-                        trackerEndpoint.message = QString::fromLocal8Bit(infoHash.last_error.message());
-                        if (firstErrorMessage.isEmpty())
-                            firstErrorMessage = trackerEndpoint.message;
-                    }
+                if (!infoHash.message.empty())
+                {
+                    trackerEndpoint.message = QString::fromStdString(infoHash.message);
+                    if (firstTrackerMessage.isEmpty())
+                        firstTrackerMessage = trackerEndpoint.message;
+                }
+                else if (infoHash.last_error)
+                {
+                    trackerEndpoint.message = QString::fromLocal8Bit(infoHash.last_error.message());
+                    if (firstErrorMessage.isEmpty())
+                        firstErrorMessage = trackerEndpoint.message;
                 }
             }
         }
@@ -164,10 +166,12 @@ namespace
         const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size());
         for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
         {
-            TrackerEntry::EndpointStats &trackerEndpoint = trackerEntry.stats[endpoint.local_endpoint][1];
+            const int protocolVersionNum = 1;
+            const QMap<int, int> &endpointUpdateInfo = updateInfo[endpoint.local_endpoint];
+            TrackerEntry::EndpointStats &trackerEndpoint = trackerEntry.stats[endpoint.local_endpoint][protocolVersionNum];
 
             trackerEndpoint.name = QString::fromStdString((std::stringstream() << endpoint.local_endpoint).str());
-            trackerEndpoint.numPeers = updateInfo.value(endpoint.local_endpoint, trackerEndpoint.numPeers);
+            trackerEndpoint.numPeers = endpointUpdateInfo.value(protocolVersionNum, trackerEndpoint.numPeers);
             trackerEndpoint.numSeeds = endpoint.scrape_complete;
             trackerEndpoint.numLeeches = endpoint.scrape_incomplete;
             trackerEndpoint.numDownloaded = endpoint.scrape_downloaded;
@@ -1615,7 +1619,7 @@ void TorrentImpl::fileSearchFinished(const Path &savePath, const PathList &fileN
         endReceivedMetadataHandling(savePath, fileNames);
 }
 
-TrackerEntry TorrentImpl::updateTrackerEntry(const lt::announce_entry &announceEntry, const QHash<TrackerEntry::Endpoint, int> &updateInfo)
+TrackerEntry TorrentImpl::updateTrackerEntry(const lt::announce_entry &announceEntry, const QHash<TrackerEntry::Endpoint, QMap<int, int>> &updateInfo)
 {
     const auto it = std::find_if(m_trackerEntries.begin(), m_trackerEntries.end()
             , [&announceEntry](const TrackerEntry &trackerEntry)

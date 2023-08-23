@@ -40,13 +40,13 @@
 #include <QDateTime>
 #include <QElapsedTimer>
 #include <QHash>
+#include <QMap>
 #include <QPointer>
 #include <QSet>
 #include <QVector>
 
 #include "base/path.h"
 #include "base/settingvalue.h"
-#include "base/types.h"
 #include "base/utils/thread.h"
 #include "addtorrentparams.h"
 #include "cachestatus.h"
@@ -745,8 +745,8 @@ namespace BitTorrent
         QSet<QString> m_tags;
 
         // This field holds amounts of peers reported by trackers in their responses to announces
-        // (torrent.tracker_name.tracker_local_endpoint.num_peers)
-        QHash<lt::torrent_handle, QHash<std::string, QHash<TrackerEntry::Endpoint, int>>> m_updatedTrackerEntries;
+        // (torrent.tracker_name.tracker_local_endpoint.protocol_version.num_peers)
+        QHash<lt::torrent_handle, QHash<std::string, QHash<TrackerEntry::Endpoint, QMap<int, int>>>> m_updatedTrackerEntries;
 
         // I/O errored torrents
         QSet<TorrentID> m_recentErroredTorrents;
