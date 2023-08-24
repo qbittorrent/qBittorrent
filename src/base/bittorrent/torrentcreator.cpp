@@ -26,7 +26,7 @@
  * exception statement from your version.
  */
 
-#include "torrentcreatorthread.h"
+#include "torrentcreator.h"
 
 #include <fstream>
 
@@ -74,35 +74,34 @@ namespace
 
 using namespace BitTorrent;
 
-TorrentCreatorThread::TorrentCreatorThread(QObject *parent)
-    : QThread(parent)
+TorrentCreator::TorrentCreator(const TorrentCreatorParams &params, QObject *parent)
+    : QObject(parent)
+    , m_params {params}
 {
 }
 
-TorrentCreatorThread::~TorrentCreatorThread()
-{
-    requestInterruption();
-    wait();
-}
-
-void TorrentCreatorThread::create(const TorrentCreatorParams &params)
-{
-    m_params = params;
-    start();
-}
-
-void TorrentCreatorThread::sendProgressSignal(int currentPieceIdx, int totalPieces)
+void TorrentCreator::sendProgressSignal(int currentPieceIdx, int totalPieces)
 {
     emit updateProgress(static_cast<int>((currentPieceIdx * 100.) / totalPieces));
 }
 
-void TorrentCreatorThread::checkInterruptionRequested() const
+void TorrentCreator::checkInterruptionRequested() const
 {
     if (isInterruptionRequested())
         throw RuntimeError(tr("Operation aborted"));
 }
 
-void TorrentCreatorThread::run()
+void TorrentCreator::requestInterruption()
+{
+    m_interruptionRequested.storeRelaxed(1);
+}
+
+bool TorrentCreator::isInterruptionRequested() const
+{
+    return m_interruptionRequested.loadRelaxed() != 0;
+}
+
+void TorrentCreator::run()
 {
     emit updateProgress(0);
 
@@ -225,9 +224,9 @@ void TorrentCreatorThread::run()
 }
 
 #ifdef QBT_USES_LIBTORRENT2
-int TorrentCreatorThread::calculateTotalPieces(const Path &inputPath, const int pieceSize, const TorrentFormat torrentFormat)
+int TorrentCreator::calculateTotalPieces(const Path &inputPath, const int pieceSize, const TorrentFormat torrentFormat)
 #else
-int TorrentCreatorThread::calculateTotalPieces(const Path &inputPath, const int pieceSize, const bool isAlignmentOptimized, const int paddedFileSizeLimit)
+int TorrentCreator::calculateTotalPieces(const Path &inputPath, const int pieceSize, const bool isAlignmentOptimized, const int paddedFileSizeLimit)
 #endif
 {
     if (inputPath.isEmpty())
