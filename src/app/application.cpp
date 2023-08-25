@@ -1274,7 +1274,7 @@ void Application::adjustThreadPriority() const
 void Application::cleanup()
 {
     // cleanup() can be called multiple times during shutdown. We only need it once.
-    if (!m_isCleanupRun.testAndSetAcquire(0, 1))
+    if (m_isCleanupRun.exchange(true, std::memory_order_acquire))
         return;
 
     LogMsg(tr("qBittorrent termination initiated"));

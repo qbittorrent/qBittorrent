@@ -28,7 +28,8 @@
 
 #pragma once
 
-#include <QAtomicInt>
+#include <atomic>
+
 #include <QObject>
 #include <QRunnable>
 #include <QStringList>
@@ -96,6 +97,6 @@ namespace BitTorrent
         void checkInterruptionRequested() const;
 
         TorrentCreatorParams m_params;
-        QAtomicInt m_interruptionRequested;
+        std::atomic_bool m_interruptionRequested;
     };
 }
