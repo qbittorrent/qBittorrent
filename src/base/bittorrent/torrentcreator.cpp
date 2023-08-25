@@ -1,5 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024  Radu Carpa <radu.carpa@cern.ch>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -28,7 +30,7 @@
 
 #include "torrentcreator.h"
 
-#include <fstream>
+#include <functional>
 
 #include <libtorrent/create_torrent.hpp>
 #include <libtorrent/file_storage.hpp>
@@ -41,7 +43,6 @@
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/utils/compare.h"
-#include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/version.h"
 #include "lttypecast.h"
@@ -82,7 +83,7 @@ TorrentCreator::TorrentCreator(const TorrentCreatorParams &params, QObject *pare
 
 void TorrentCreator::sendProgressSignal(int currentPieceIdx, int totalPieces)
 {
-    emit updateProgress(static_cast<int>((currentPieceIdx * 100.) / totalPieces));
+    emit progressUpdated(static_cast<int>((currentPieceIdx * 100.) / totalPieces));
 }
 
 void TorrentCreator::checkInterruptionRequested() const
@@ -103,25 +104,26 @@ bool TorrentCreator::isInterruptionRequested() const
 
 void TorrentCreator::run()
 {
-    emit updateProgress(0);
+    emit started();
+    emit progressUpdated(0);
 
     try
     {
-        const Path parentPath = m_params.inputPath.parentPath();
+        const Path parentPath = m_params.sourcePath.parentPath();
         const Utils::Compare::NaturalLessThan<Qt::CaseInsensitive> naturalLessThan {};
 
         // Adding files to the torrent
         lt::file_storage fs;
-        if (QFileInfo(m_params.inputPath.data()).isFile())
+        if (QFileInfo(m_params.sourcePath.data()).isFile())
         {
-            lt::add_files(fs, m_params.inputPath.toString().toStdString(), fileFilter);
+            lt::add_files(fs, m_params.sourcePath.toString().toStdString(), fileFilter);
         }
         else
         {
             // need to sort the file names by natural sort order
-            QStringList dirs = {m_params.inputPath.data()};
+            QStringList dirs = {m_params.sourcePath.data()};
 
-            QDirIterator dirIter {m_params.inputPath.data(), (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories};
+            QDirIterator dirIter {m_params.sourcePath.data(), (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories};
             while (dirIter.hasNext())
             {
                 const QString filePath = dirIter.next();
@@ -205,13 +207,29 @@ void TorrentCreator::run()
 
         checkInterruptionRequested();
 
-        // create the torrent
-        const nonstd::expected<void, QString> result = Utils::IO::saveToFile(m_params.savePath, entry);
+        const auto result = std::invoke([torrentFilePath = m_params.torrentFilePath, entry]() -> nonstd::expected<Path, QString>
+        {
+            if (!torrentFilePath.isValid())
+                return Utils::IO::saveToTempFile(entry);
+
+            const nonstd::expected<void, QString> result = Utils::IO::saveToFile(torrentFilePath, entry);
+            if (!result)
+                return nonstd::make_unexpected(result.error());
+
+            return torrentFilePath;
+        });
         if (!result)
             throw RuntimeError(result.error());
 
-        emit updateProgress(100);
-        emit creationSuccess(m_params.savePath, parentPath);
+        const BitTorrent::TorrentCreatorResult creatorResult
+        {
+            .torrentFilePath = result.value(),
+            .savePath = parentPath,
+            .pieceSize = newTorrent.piece_length()
+        };
+
+        emit progressUpdated(100);
+        emit creationSuccess(creatorResult);
     }
     catch (const RuntimeError &err)
     {
@@ -221,6 +239,11 @@ void TorrentCreator::run()
     {
         emit creationFailure(tr("Create new torrent file failed. Reason: %1.").arg(QString::fromLocal8Bit(err.what())));
     }
+}
+
+const TorrentCreatorParams &TorrentCreator::params() const
+{
+    return m_params;
 }
 
 #ifdef QBT_USES_LIBTORRENT2

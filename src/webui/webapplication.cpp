@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014, 2022-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024  Radu Carpa <radu.carpa@cern.ch>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -46,6 +47,7 @@
 #include <QUrl>
 
 #include "base/algorithm.h"
+#include "base/bittorrent/torrentcreationmanager.h"
 #include "base/http/httperror.h"
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -62,6 +64,7 @@
 #include "api/rsscontroller.h"
 #include "api/searchcontroller.h"
 #include "api/synccontroller.h"
+#include "api/torrentcreatorcontroller.h"
 #include "api/torrentscontroller.h"
 #include "api/transfercontroller.h"
 #include "freediskspacechecker.h"
@@ -112,9 +115,8 @@ namespace
         if (contentType.startsWith(u"image/"))
             return u"private, max-age=604800"_s;  // 1 week
 
-        if ((contentType == Http::CONTENT_TYPE_CSS)
-            || (contentType == Http::CONTENT_TYPE_JS))
-            {
+        if ((contentType == Http::CONTENT_TYPE_CSS) || (contentType == Http::CONTENT_TYPE_JS))
+        {
             // short interval in case of program update
             return u"private, max-age=43200"_s;  // 12 hrs
         }
@@ -162,6 +164,7 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
     , m_workerThread {new QThread}
     , m_freeDiskSpaceChecker {new FreeDiskSpaceChecker}
     , m_freeDiskSpaceCheckingTimer {new QTimer(this)}
+    , m_torrentCreationManager {new BitTorrent::TorrentCreationManager(app, this)}
 {
     declarePublicAPI(u"auth/login"_s);
 
@@ -724,16 +727,18 @@ void WebApplication::sessionStart()
     m_currentSession = new WebSession(generateSid(), app());
     m_sessions[m_currentSession->id()] = m_currentSession;
 
-    m_currentSession->registerAPIController<AppController>(u"app"_s);
-    m_currentSession->registerAPIController<LogController>(u"log"_s);
-    m_currentSession->registerAPIController<RSSController>(u"rss"_s);
-    m_currentSession->registerAPIController<SearchController>(u"search"_s);
-    m_currentSession->registerAPIController<TorrentsController>(u"torrents"_s);
-    m_currentSession->registerAPIController<TransferController>(u"transfer"_s);
+    m_currentSession->registerAPIController(u"app"_s, new AppController(app(), this));
+    m_currentSession->registerAPIController(u"log"_s, new LogController(app(), this));
+    m_currentSession->registerAPIController(u"torrentcreator"_s, new TorrentCreatorController(m_torrentCreationManager, app(), this));
+    m_currentSession->registerAPIController(u"rss"_s, new RSSController(app(), this));
+    m_currentSession->registerAPIController(u"search"_s, new SearchController(app(), this));
+    m_currentSession->registerAPIController(u"torrents"_s, new TorrentsController(app(), this));
+    m_currentSession->registerAPIController(u"transfer"_s, new TransferController(app(), this));
 
-    auto *syncController = m_currentSession->registerAPIController<SyncController>(u"sync"_s);
+    auto *syncController = new SyncController(app(), this);
     syncController->updateFreeDiskSpace(m_freeDiskSpaceChecker->lastResult());
     connect(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, syncController, &SyncController::updateFreeDiskSpace);
+    m_currentSession->registerAPIController(u"sync"_s, syncController);
 
     QNetworkCookie cookie {m_sessionCookieName.toLatin1(), m_currentSession->id().toUtf8()};
     cookie.setHttpOnly(true);
@@ -906,6 +911,12 @@ bool WebSession::hasExpired(const qint64 seconds) const
 void WebSession::updateTimestamp()
 {
     m_timer.start();
+}
+
+void WebSession::registerAPIController(const QString &scope, APIController *controller)
+{
+    Q_ASSERT(controller);
+    m_apiControllers[scope] = controller;
 }
 
 APIController *WebSession::getAPIController(const QString &scope) const
