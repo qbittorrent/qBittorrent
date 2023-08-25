@@ -58,7 +58,7 @@ private slots:
     void onAddFileButtonClicked();
     void onAddFolderButtonClicked();
     void handleCreationFailure(const QString &msg);
-    void handleCreationSuccess(const Path &path, const Path &branchPath);
+    void handleCreationSuccess(const BitTorrent::TorrentCreatorResult &result);
 
 private:
     void dropEvent(QDropEvent *event) override;
