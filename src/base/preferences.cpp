@@ -29,6 +29,7 @@
 
 #include "preferences.h"
 
+#include <algorithm>
 #include <chrono>
 
 #ifdef Q_OS_MACOS
@@ -2122,7 +2123,7 @@ int Preferences::addNewTorrentDialogSavePathHistoryLength() const
 
 void Preferences::setAddNewTorrentDialogSavePathHistoryLength(const int value)
 {
-    const int clampedValue = qBound(0, value, 99);
+    const int clampedValue = std::clamp(value, 0, 99);
     const int oldValue = addNewTorrentDialogSavePathHistoryLength();
     if (clampedValue == oldValue)
         return;

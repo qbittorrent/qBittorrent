@@ -266,11 +266,7 @@ namespace
     {
         return [lower, upper](const T value) -> T
         {
-            if (value < lower)
-                return lower;
-            if (value > upper)
-                return upper;
-            return value;
+            return std::clamp(value, lower, upper);
         };
     }
 
