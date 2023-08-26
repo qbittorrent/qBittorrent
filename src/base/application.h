@@ -87,4 +87,6 @@ public:
 #endif
 
     virtual AddTorrentManager *addTorrentManager() const = 0;
+
+    static Application *instance();
 };

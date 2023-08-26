@@ -223,6 +223,13 @@ namespace
     }
 }
 
+ApplicationImpl *ApplicationImpl::m_instance = nullptr;
+
+Application *Application::instance()
+{
+    return ApplicationImpl::m_instance;
+}
+
 ApplicationImpl::ApplicationImpl(int &argc, char **argv)
     : BaseQtApplication(argc, argv)
     , m_commandLineArgs(parseCommandLine(ApplicationImpl::arguments()))
@@ -242,6 +249,9 @@ ApplicationImpl::ApplicationImpl(int &argc, char **argv)
     , m_storeNotificationTorrentAdded(NOTIFICATIONS_SETTINGS_KEY(u"TorrentAdded"_s))
 #endif
 {
+    Q_ASSERT(!m_instance); // only one instance is allowed
+    m_instance = this;
+
     qRegisterMetaType<Log::Msg>("Log::Msg");
     qRegisterMetaType<Log::Peer>("Log::Peer");
 

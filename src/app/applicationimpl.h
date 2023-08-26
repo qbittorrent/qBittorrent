@@ -177,6 +177,10 @@ private:
     void recursiveTorrentDownload(const BitTorrent::TorrentID &torrentID);
 #endif
 
+    friend Application *Application::instance();
+
+    static ApplicationImpl *m_instance;
+
     ApplicationInstanceManager *m_instanceManager = nullptr;
     std::atomic_bool m_isCleanupRun;
     bool m_isProcessingParamsAllowed = false;

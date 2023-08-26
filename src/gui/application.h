@@ -52,4 +52,6 @@ public:
 
     virtual bool isTorrentAddedNotificationsEnabled() const = 0;
     virtual void setTorrentAddedNotificationsEnabled(bool value) = 0;
+
+    static GUIApplication *instance() { return static_cast<GUIApplication *>(Application::instance()); }
 };
