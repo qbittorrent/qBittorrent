@@ -142,7 +142,7 @@ namespace
     }
 }
 
-WebApplication::WebApplication(IApplication *app, QObject *parent)
+WebApplication::WebApplication(Application *app, QObject *parent)
     : ApplicationComponent(app, parent)
     , m_cacheID {QString::number(Utils::Random::rand(), 36)}
     , m_authController {new AuthController(this, app, this)}
@@ -837,7 +837,7 @@ QHostAddress WebApplication::resolveClientAddress() const
 
 // WebSession
 
-WebSession::WebSession(const QString &sid, IApplication *app)
+WebSession::WebSession(const QString &sid, Application *app)
     : ApplicationComponent(app)
     , m_sid {sid}
 {

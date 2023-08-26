@@ -28,12 +28,12 @@
 
 #include "applicationcomponent.h"
 
-ApplicationComponentBase::ApplicationComponentBase(IApplication *app)
+ApplicationComponentBase::ApplicationComponentBase(Application *app)
     : m_app {app}
 {
 }
 
-IApplication *ApplicationComponentBase::app() const
+Application *ApplicationComponentBase::app() const
 {
     return m_app;
 }

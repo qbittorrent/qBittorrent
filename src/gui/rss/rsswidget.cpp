@@ -46,16 +46,16 @@
 #include "base/rss/rss_feed.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
+#include "gui/application.h"
 #include "gui/autoexpandabledialog.h"
-#include "gui/interfaces/iguiapplication.h"
 #include "gui/uithememanager.h"
 #include "articlelistwidget.h"
 #include "automatedrssdownloader.h"
 #include "feedlistwidget.h"
 #include "ui_rsswidget.h"
 
-RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
-    : GUIApplicationComponent(app, parent)
+RSSWidget::RSSWidget(GUIApplication *app, QWidget *parent)
+    : GUApplicationComponent(app, parent)
     , m_ui {new Ui::RSSWidget}
 {
     m_ui->setupUi(this);

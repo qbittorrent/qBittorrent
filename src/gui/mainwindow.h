@@ -71,13 +71,13 @@ namespace Ui
     class MainWindow;
 }
 
-class MainWindow final : public GUIApplicationComponent<QMainWindow>
+class MainWindow final : public GUApplicationComponent<QMainWindow>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(MainWindow)
 
 public:
-    explicit MainWindow(IGUIApplication *app, WindowState initialState = WindowState::Normal);
+    explicit MainWindow(GUIApplication *app, WindowState initialState = WindowState::Normal);
     ~MainWindow() override;
 
     QWidget *currentTabWidget() const;

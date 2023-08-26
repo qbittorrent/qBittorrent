@@ -30,37 +30,37 @@
 
 #include "base/applicationcomponent.h"
 
-class IGUIApplication;
+class GUIApplication;
 
 template <typename Base>
-class GUIApplicationComponent : public Base, public ApplicationComponentBase
+class GUApplicationComponent : public Base, public ApplicationComponentBase
 {
 public:
     template <typename... Args>
-    explicit GUIApplicationComponent(IGUIApplication *app, Args&&... args)
+    explicit GUApplicationComponent(GUIApplication *app, Args&&... args)
         : Base(std::forward<Args>(args)...)
-        , ApplicationComponentBase(reinterpret_cast<IApplication *>(app))
+        , ApplicationComponentBase(reinterpret_cast<Application *>(app))
     {
     }
 
-    IGUIApplication *app() const
+    GUIApplication *app() const
     {
-        return reinterpret_cast<IGUIApplication *>(ApplicationComponentBase::app());
+        return reinterpret_cast<GUIApplication *>(ApplicationComponentBase::app());
     }
 };
 
 template <IsApplicationComponent Base>
-class GUIApplicationComponent<Base> : public Base
+class GUApplicationComponent<Base> : public Base
 {
 public:
     template <typename... Args>
-    explicit GUIApplicationComponent(IGUIApplication *app, Args&&... args)
-        : Base(reinterpret_cast<IApplication *>(app), std::forward<Args>(args)...)
+    explicit GUApplicationComponent(GUIApplication *app, Args&&... args)
+        : Base(reinterpret_cast<Application *>(app), std::forward<Args>(args)...)
     {
     }
 
-    IGUIApplication *app() const
+    GUIApplication *app() const
     {
-        return reinterpret_cast<IGUIApplication *>(ApplicationComponentBase::app());
+        return reinterpret_cast<GUIApplication *>(ApplicationComponentBase::app());
     }
 };

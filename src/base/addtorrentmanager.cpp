@@ -36,7 +36,7 @@
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 
-AddTorrentManager::AddTorrentManager(IApplication *app, BitTorrent::Session *btSession, QObject *parent)
+AddTorrentManager::AddTorrentManager(Application *app, BitTorrent::Session *btSession, QObject *parent)
     : ApplicationComponent(app, parent)
     , m_btSession {btSession}
 {

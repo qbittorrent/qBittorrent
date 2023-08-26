@@ -59,8 +59,8 @@
 #include "base/utils/random.h"
 #include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
+#include "application.h"
 #include "banlistoptionsdialog.h"
-#include "interfaces/iguiapplication.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
 #include "ui_optionsdialog.h"
@@ -109,8 +109,8 @@ namespace
 }
 
 // Constructor
-OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
-    : GUIApplicationComponent(app, parent)
+OptionsDialog::OptionsDialog(GUIApplication *app, QWidget *parent)
+    : GUApplicationComponent(app, parent)
     , m_ui {new Ui::OptionsDialog}
     , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
     , m_storeHSplitterSize {SETTINGS_KEY(u"HorizontalSplitterSizes"_s)}

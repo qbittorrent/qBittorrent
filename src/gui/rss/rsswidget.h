@@ -45,13 +45,13 @@ namespace Ui
     class RSSWidget;
 }
 
-class RSSWidget final : public GUIApplicationComponent<QWidget>
+class RSSWidget final : public GUApplicationComponent<QWidget>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(RSSWidget)
 
 public:
-    explicit RSSWidget(IGUIApplication *app, QWidget *parent = nullptr);
+    explicit RSSWidget(GUIApplication *app, QWidget *parent = nullptr);
     ~RSSWidget() override;
 
 public slots:

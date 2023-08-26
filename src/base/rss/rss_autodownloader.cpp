@@ -42,11 +42,11 @@
 #include <QVector>
 
 #include "base/addtorrentmanager.h"
+#include "base/application.h"
 #include "base/asyncfilestorage.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrentdescriptor.h"
 #include "base/global.h"
-#include "base/interfaces/iapplication.h"
 #include "base/logger.h"
 #include "base/profile.h"
 #include "base/utils/fs.h"
@@ -102,7 +102,7 @@ QString computeSmartFilterRegex(const QStringList &filters)
     return u"(?:_|\\b)(?:%1)(?:_|\\b)"_s.arg(filters.join(u")|(?:"));
 }
 
-AutoDownloader::AutoDownloader(IApplication *app)
+AutoDownloader::AutoDownloader(Application *app)
     : ApplicationComponent(app)
     , m_storeProcessingEnabled {u"RSS/AutoDownloader/EnableProcessing"_s, false}
     , m_storeSmartEpisodeFilter {u"RSS/AutoDownloader/SmartEpisodeFilter"_s}

@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2022  Mike Tzou (Chocobo1)
- * Copyright (C) 2015, 2019  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2019, 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -42,15 +42,15 @@
 #include <QApplication>
 #endif
 
+#include "base/application.h"
 #include "base/bittorrent/addtorrentparams.h"
-#include "base/interfaces/iapplication.h"
 #include "base/path.h"
 #include "base/settingvalue.h"
 #include "base/types.h"
 #include "cmdoptions.h"
 
 #ifndef DISABLE_GUI
-#include "gui/interfaces/iguiapplication.h"
+#include "gui/application.h"
 #endif
 
 class ApplicationInstanceManager;
@@ -74,30 +74,30 @@ class DesktopIntegration;
 class MainWindow;
 
 using AddTorrentManagerImpl = GUIAddTorrentManager;
-using BaseApplication = QApplication;
-using BaseIApplication = IGUIApplication;
+using BaseQtApplication = QApplication;
+using BaseApplication = GUIApplication;
 
 #ifdef Q_OS_WIN
 class QSessionManager;
 #endif
 #else // DISABLE_GUI
 using AddTorrentManagerImpl = AddTorrentManager;
-using BaseApplication = QCoreApplication;
-using BaseIApplication = IApplication;
+using BaseQtApplication = QCoreApplication;
+using BaseApplication = Application;
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
 class WebUI;
 #endif
 
-class Application final : public BaseApplication, public BaseIApplication
+class ApplicationImpl final : public BaseQtApplication, public BaseApplication
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(Application)
+    Q_DISABLE_COPY_MOVE(ApplicationImpl)
 
 public:
-    Application(int &argc, char **argv);
-    ~Application() override;
+    ApplicationImpl(int &argc, char **argv);
+    ~ApplicationImpl() override;
 
     int exec();
 

@@ -79,7 +79,7 @@
 
 class QThread;
 
-class Application;
+class ApplicationImpl;
 class AsyncFileStorage;
 
 namespace RSS
@@ -93,7 +93,7 @@ namespace RSS
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(Session)
 
-        friend class ::Application;
+        friend class ::ApplicationImpl;
 
         Session();
         ~Session() override;

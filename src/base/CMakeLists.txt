@@ -42,6 +42,7 @@ add_library(qbt_base STATIC
     bittorrent/tracker.h
     bittorrent/trackerentry.h
     concepts/stringable.h
+    application.h
     digest32.h
     exceptions.h
     global.h
@@ -55,7 +56,6 @@ add_library(qbt_base STATIC
     http/types.h
     iconprovider.h
     indexrange.h
-    interfaces/iapplication.h
     logger.h
     net/dnsupdater.h
     net/downloadhandlerimpl.h

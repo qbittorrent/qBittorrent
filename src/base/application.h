@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2022  Mike Tzou (Chocobo1)
- * Copyright (C) 2015, 2019  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2019, 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -57,10 +57,10 @@ inline namespace ApplicationSettingsEnums
 }
 #endif
 
-class IApplication
+class Application
 {
 public:
-    virtual ~IApplication() = default;
+    virtual ~Application() = default;
 
     // FileLogger properties
     virtual bool isFileLoggerEnabled() const = 0;

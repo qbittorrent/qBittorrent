@@ -44,9 +44,9 @@
 #include <QTimer>
 #include <QTranslator>
 
+#include "base/application.h"
 #include "base/bittorrent/session.h"
 #include "base/global.h"
-#include "base/interfaces/iapplication.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/path.h"

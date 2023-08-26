@@ -38,13 +38,13 @@
 
 #include "guiapplicationcomponent.h"
 
-class AdvancedSettings final : public GUIApplicationComponent<QTableWidget>
+class AdvancedSettings final : public GUApplicationComponent<QTableWidget>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(AdvancedSettings)
 
 public:
-    explicit AdvancedSettings(IGUIApplication *app, QWidget *parent = nullptr);
+    explicit AdvancedSettings(GUIApplication *app, QWidget *parent = nullptr);
 
 public slots:
     void saveAdvancedSettings() const;

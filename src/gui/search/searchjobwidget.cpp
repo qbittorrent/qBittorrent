@@ -44,14 +44,14 @@
 #include "base/search/searchhandler.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/utils/misc.h"
-#include "gui/interfaces/iguiapplication.h"
+#include "gui/application.h"
 #include "gui/lineedit.h"
 #include "gui/uithememanager.h"
 #include "searchsortmodel.h"
 #include "ui_searchjobwidget.h"
 
-SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, IGUIApplication *app, QWidget *parent)
-    : GUIApplicationComponent(app, parent)
+SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, GUIApplication *app, QWidget *parent)
+    : GUApplicationComponent(app, parent)
     , m_ui {new Ui::SearchJobWidget}
     , m_searchHandler {searchHandler}
     , m_nameFilteringMode {u"Search/FilteringMode"_s}

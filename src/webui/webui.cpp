@@ -38,7 +38,7 @@
 #include "base/utils/net.h"
 #include "webapplication.h"
 
-WebUI::WebUI(IApplication *app)
+WebUI::WebUI(Application *app)
     : ApplicationComponent(app)
 {
     configure();

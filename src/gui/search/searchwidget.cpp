@@ -52,8 +52,8 @@
 #include "base/search/searchhandler.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/utils/foreignapps.h"
+#include "gui/application.h"
 #include "gui/desktopintegration.h"
-#include "gui/interfaces/iguiapplication.h"
 #include "gui/mainwindow.h"
 #include "gui/uithememanager.h"
 #include "pluginselectdialog.h"
@@ -84,8 +84,8 @@ namespace
     }
 }
 
-SearchWidget::SearchWidget(IGUIApplication *app, MainWindow *mainWindow)
-    : GUIApplicationComponent(app, mainWindow)
+SearchWidget::SearchWidget(GUIApplication *app, MainWindow *mainWindow)
+    : GUApplicationComponent(app, mainWindow)
     , m_ui {new Ui::SearchWidget()}
     , m_mainWindow {mainWindow}
 {

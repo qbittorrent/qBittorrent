@@ -58,7 +58,7 @@ namespace Ui
     class OptionsDialog;
 }
 
-class OptionsDialog final : public GUIApplicationComponent<QDialog>
+class OptionsDialog final : public GUApplicationComponent<QDialog>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(OptionsDialog)
@@ -78,7 +78,7 @@ class OptionsDialog final : public GUIApplicationComponent<QDialog>
     };
 
 public:
-    explicit OptionsDialog(IGUIApplication *app, QWidget *parent = nullptr);
+    explicit OptionsDialog(GUIApplication *app, QWidget *parent = nullptr);
     ~OptionsDialog() override;
 
 public slots:

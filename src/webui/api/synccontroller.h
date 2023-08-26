@@ -52,7 +52,7 @@ class SyncController : public APIController
 public:
     using APIController::APIController;
 
-    explicit SyncController(IApplication *app, QObject *parent = nullptr);
+    explicit SyncController(Application *app, QObject *parent = nullptr);
 
 private slots:
     void maindataAction();

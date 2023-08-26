@@ -33,7 +33,7 @@
 
 #include <QtClassHelperMacros>
 
-class IApplication;
+class Application;
 
 class ApplicationComponentBase
 {
@@ -42,13 +42,13 @@ class ApplicationComponentBase
 public:
     virtual ~ApplicationComponentBase() = default;
 
-    IApplication *app() const;
+    Application *app() const;
 
 protected:
-    explicit ApplicationComponentBase(IApplication *app);
+    explicit ApplicationComponentBase(Application *app);
 
 private:
-    IApplication *m_app = nullptr;
+    Application *m_app = nullptr;
 };
 
 template <typename T>
@@ -60,7 +60,7 @@ class ApplicationComponent : public Base, public ApplicationComponentBase
 {
 public:
     template <typename... Args>
-    explicit ApplicationComponent(IApplication *app, Args&&... args)
+    explicit ApplicationComponent(Application *app, Args&&... args)
         : Base(std::forward<Args>(args)...)
         , ApplicationComponentBase(app)
     {

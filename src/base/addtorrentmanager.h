@@ -55,7 +55,7 @@ class AddTorrentManager : public ApplicationComponent<QObject>
     Q_DISABLE_COPY_MOVE(AddTorrentManager)
 
 public:
-    AddTorrentManager(IApplication *app, BitTorrent::Session *btSession, QObject *parent = nullptr);
+    AddTorrentManager(Application *app, BitTorrent::Session *btSession, QObject *parent = nullptr);
 
     BitTorrent::Session *btSession() const;
     bool addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params = {});

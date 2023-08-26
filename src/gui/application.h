@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2022  Mike Tzou (Chocobo1)
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -30,17 +30,17 @@
 
 #pragma once
 
-#include "base/interfaces/iapplication.h"
+#include "base/application.h"
 #include "gui/guiaddtorrentmanager.h"
 #include "gui/windowstate.h"
 
 class DesktopIntegration;
 class MainWindow;
 
-class IGUIApplication : public IApplication
+class GUIApplication : public Application
 {
 public:
-    ~IGUIApplication() override = default;
+    ~GUIApplication() override = default;
 
     GUIAddTorrentManager *addTorrentManager() const override = 0;
 

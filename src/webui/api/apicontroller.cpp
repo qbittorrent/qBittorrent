@@ -37,7 +37,7 @@
 
 #include "apierror.h"
 
-APIController::APIController(IApplication *app, QObject *parent)
+APIController::APIController(Application *app, QObject *parent)
     : ApplicationComponent(app, parent)
 {
 }

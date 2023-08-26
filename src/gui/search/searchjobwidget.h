@@ -54,7 +54,7 @@ namespace Ui
     class SearchJobWidget;
 }
 
-class SearchJobWidget final : public GUIApplicationComponent<QWidget>
+class SearchJobWidget final : public GUApplicationComponent<QWidget>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(SearchJobWidget)
@@ -76,7 +76,7 @@ public:
         NoResults
     };
 
-    SearchJobWidget(SearchHandler *searchHandler, IGUIApplication *app, QWidget *parent = nullptr);
+    SearchJobWidget(SearchHandler *searchHandler, GUIApplication *app, QWidget *parent = nullptr);
     ~SearchJobWidget() override;
 
     Status status() const;

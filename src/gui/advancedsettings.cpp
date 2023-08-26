@@ -39,10 +39,9 @@
 #include "base/global.h"
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
-#include "gui/addnewtorrentdialog.h"
+#include "gui/application.h"
 #include "gui/desktopintegration.h"
 #include "gui/mainwindow.h"
-#include "interfaces/iguiapplication.h"
 
 namespace
 {
@@ -167,8 +166,8 @@ namespace
     };
 }
 
-AdvancedSettings::AdvancedSettings(IGUIApplication *app, QWidget *parent)
-    : GUIApplicationComponent(app, parent)
+AdvancedSettings::AdvancedSettings(GUIApplication *app, QWidget *parent)
+    : GUApplicationComponent(app, parent)
 {
     // column
     setColumnCount(COL_COUNT);

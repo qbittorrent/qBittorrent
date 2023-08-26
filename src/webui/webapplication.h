@@ -61,7 +61,7 @@ class WebApplication;
 class WebSession final : public ApplicationComponent<QObject>, public ISession
 {
 public:
-    explicit WebSession(const QString &sid, IApplication *app);
+    explicit WebSession(const QString &sid, Application *app);
 
     QString id() const override;
 
@@ -91,7 +91,7 @@ class WebApplication final : public ApplicationComponent<QObject>
     Q_DISABLE_COPY_MOVE(WebApplication)
 
 public:
-    explicit WebApplication(IApplication *app, QObject *parent = nullptr);
+    explicit WebApplication(Application *app, QObject *parent = nullptr);
     ~WebApplication() override;
 
     Http::Response processRequest(const Http::Request &request, const Http::Environment &env) override;

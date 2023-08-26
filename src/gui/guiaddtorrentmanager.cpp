@@ -35,13 +35,13 @@
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/torrentfileguard.h"
+#include "application.h"
 #include "addnewtorrentdialog.h"
-#include "interfaces/iguiapplication.h"
 #include "mainwindow.h"
 #include "raisedmessagebox.h"
 
-GUIAddTorrentManager::GUIAddTorrentManager(IGUIApplication *app, BitTorrent::Session *session, QObject *parent)
-    : GUIApplicationComponent(app, session, parent)
+GUIAddTorrentManager::GUIAddTorrentManager(GUIApplication *app, BitTorrent::Session *session, QObject *parent)
+    : GUApplicationComponent(app, session, parent)
 {
     connect(btSession(), &BitTorrent::Session::metadataDownloaded, this, &GUIAddTorrentManager::onMetadataDownloaded);
 }

@@ -48,13 +48,13 @@ namespace Ui
     class SearchWidget;
 }
 
-class SearchWidget : public GUIApplicationComponent<QWidget>
+class SearchWidget : public GUApplicationComponent<QWidget>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(SearchWidget)
 
 public:
-    explicit SearchWidget(IGUIApplication *app, MainWindow *mainWindow);
+    explicit SearchWidget(GUIApplication *app, MainWindow *mainWindow);
     ~SearchWidget() override;
 
     void giveFocusToSearchInput();

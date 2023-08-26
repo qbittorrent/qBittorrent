@@ -45,7 +45,7 @@ class APIController : public ApplicationComponent<QObject>
     Q_DISABLE_COPY_MOVE(APIController)
 
 public:
-    explicit APIController(IApplication *app, QObject *parent = nullptr);
+    explicit APIController(Application *app, QObject *parent = nullptr);
 
     QVariant run(const QString &action, const StringMap &params, const DataMap &data = {});
 

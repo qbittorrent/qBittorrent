@@ -51,7 +51,7 @@ class WebUI final : public ApplicationComponent<QObject>
     Q_DISABLE_COPY_MOVE(WebUI)
 
 public:
-    explicit WebUI(IApplication *app);
+    explicit WebUI(Application *app);
 
     bool isErrored() const;
 

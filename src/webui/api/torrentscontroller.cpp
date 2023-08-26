@@ -38,6 +38,7 @@
 #include <QRegularExpression>
 #include <QUrl>
 
+#include "base/application.h"
 #include "base/bittorrent/categoryoptions.h"
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/infohash.h"
@@ -47,7 +48,6 @@
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/torrentdescriptor.h"
 #include "base/bittorrent/trackerentry.h"
-#include "base/interfaces/iapplication.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"

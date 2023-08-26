@@ -72,7 +72,7 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/version.h"
-#include "application.h"
+#include "applicationimpl.h"
 #include "cmdoptions.h"
 #include "signalhandler.h"
 #include "upgrade.h"
@@ -107,11 +107,11 @@ int main(int argc, char *argv[])
     bool isOneArg = (argc == 2);
 
     // `app` must be declared out of try block to allow display message box in case of exception
-    std::unique_ptr<Application> app;
+    std::unique_ptr<ApplicationImpl> app;
     try
     {
         // Create Application
-        app = std::make_unique<Application>(argc, argv);
+        app = std::make_unique<ApplicationImpl>(argc, argv);
 
 #ifdef Q_OS_WIN
         // QCoreApplication::applicationDirPath() needs an Application object instantiated first
@@ -119,17 +119,16 @@ int main(int argc, char *argv[])
         const char *envName = "_NT_SYMBOL_PATH";
         const QString envValue = qEnvironmentVariable(envName);
         if (envValue.isEmpty())
-            qputenv(envName, Application::applicationDirPath().toLocal8Bit());
+            qputenv(envName, QCoreApplication::applicationDirPath().toLocal8Bit());
         else
-            qputenv(envName, u"%1;%2"_s.arg(envValue, Application::applicationDirPath()).toLocal8Bit());
+            qputenv(envName, u"%1;%2"_s.arg(envValue, QCoreApplication::applicationDirPath()).toLocal8Bit());
 #endif
 
         const QBtCommandLineParameters params = app->commandLineArgs();
         if (!params.unknownParameter.isEmpty())
         {
-            throw CommandLineParameterError(QCoreApplication::translate("Main", "%1 is an unknown command line parameter.",
-                                                        "--random-parameter is an unknown command line parameter.")
-                                                        .arg(params.unknownParameter));
+            throw CommandLineParameterError(QCoreApplication::translate("Main", "%1 is an unknown command line parameter."
+                    , "--random-parameter is an unknown command line parameter.").arg(params.unknownParameter));
         }
 #if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
         if (params.showVersion)
@@ -229,7 +228,7 @@ int main(int argc, char *argv[])
             app.reset(); // Destroy current application
             if (daemon(1, 0) == 0)
             {
-                app = std::make_unique<Application>(argc, argv);
+                app = std::make_unique<ApplicationImpl>(argc, argv);
                 if (app->isRunning())
                 {
                     // Another instance had time to start.

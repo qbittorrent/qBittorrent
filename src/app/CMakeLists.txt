@@ -34,7 +34,7 @@ add_executable(qbt_app)
 
 target_sources(qbt_app PRIVATE
     # headers
-    application.h
+    applicationimpl.h
     applicationinstancemanager.h
     cmdoptions.h
     filelogger.h
@@ -43,7 +43,7 @@ target_sources(qbt_app PRIVATE
     upgrade.h
 
     # sources
-    application.cpp
+    applicationimpl.cpp
     applicationinstancemanager.cpp
     cmdoptions.cpp
     filelogger.cpp

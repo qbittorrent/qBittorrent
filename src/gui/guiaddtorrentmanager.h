@@ -54,13 +54,13 @@ enum class AddTorrentOption
     SkipDialog,
 };
 
-class GUIAddTorrentManager : public GUIApplicationComponent<AddTorrentManager>
+class GUIAddTorrentManager : public GUApplicationComponent<AddTorrentManager>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(GUIAddTorrentManager)
 
 public:
-    GUIAddTorrentManager(IGUIApplication *app, BitTorrent::Session *session, QObject *parent = nullptr);
+    GUIAddTorrentManager(GUIApplication *app, BitTorrent::Session *session, QObject *parent = nullptr);
 
     bool addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params = {}, AddTorrentOption option = AddTorrentOption::Default);
 

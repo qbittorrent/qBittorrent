@@ -388,7 +388,7 @@ namespace
     }
 }
 
-SyncController::SyncController(IApplication *app, QObject *parent)
+SyncController::SyncController(Application *app, QObject *parent)
     : APIController(app, parent)
 {
     invokeChecker();

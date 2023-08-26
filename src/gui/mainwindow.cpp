@@ -75,13 +75,13 @@
 #include "base/utils/password.h"
 #include "base/version.h"
 #include "aboutdialog.h"
+#include "application.h"
 #include "autoexpandabledialog.h"
 #include "cookiesdialog.h"
 #include "desktopintegration.h"
 #include "downloadfromurldialog.h"
 #include "executionlogwidget.h"
 #include "hidabletabwidget.h"
-#include "interfaces/iguiapplication.h"
 #include "lineedit.h"
 #include "optionsdialog.h"
 #include "powermanagement/powermanagement.h"
@@ -126,8 +126,8 @@ namespace
     }
 }
 
-MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
-    : GUIApplicationComponent(app)
+MainWindow::MainWindow(GUIApplication *app, WindowState initialState)
+    : GUApplicationComponent(app)
     , m_ui(new Ui::MainWindow)
     , m_storeExecutionLogEnabled(EXECUTIONLOG_SETTINGS_KEY(u"Enabled"_s))
     , m_storeDownloadTrackerFavicon(SETTINGS_KEY(u"DownloadTrackerFavicon"_s))

@@ -44,7 +44,7 @@
 class QThread;
 class QTimer;
 
-class Application;
+class ApplicationImpl;
 class AsyncFileStorage;
 struct ProcessingJob;
 
@@ -67,9 +67,9 @@ namespace RSS
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(AutoDownloader)
 
-        friend class ::Application;
+        friend class ::ApplicationImpl;
 
-        explicit AutoDownloader(IApplication *app);
+        explicit AutoDownloader(Application *app);
         ~AutoDownloader() override;
 
     public:
