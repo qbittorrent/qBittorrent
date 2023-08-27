@@ -431,8 +431,9 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
     TMMChanged(m_ui->comboTTM->currentIndex());
 
 #if defined(Q_OS_MACOS)
-    // Always show this dialog on top
-    setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
+    //By not setting a parent to the "addnewtorrentdialog",
+    //all those dialogs will be displayed on top and will not overlap with the main window.
+    setParent(nullptr);
 #endif
 }
 
