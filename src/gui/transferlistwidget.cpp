@@ -100,13 +100,15 @@ namespace
 
     void openDestinationFolder(const BitTorrent::Torrent *const torrent)
     {
+        const Path contentPath = torrent->contentPath();
+        const Path openedPath = (!contentPath.isEmpty() ? contentPath : torrent->savePath());
 #ifdef Q_OS_MACOS
-        MacUtils::openFiles({torrent->contentPath()});
+        MacUtils::openFiles({openedPath});
 #else
         if (torrent->filesCount() == 1)
-            Utils::Gui::openFolderSelect(torrent->contentPath());
+            Utils::Gui::openFolderSelect(openedPath);
         else
-            Utils::Gui::openPath(torrent->contentPath());
+            Utils::Gui::openPath(openedPath);
 #endif
     }
 
@@ -587,21 +589,22 @@ void TransferListWidget::openSelectedTorrentsFolder() const
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
     {
         const Path contentPath = torrent->contentPath();
-        paths.insert(contentPath);
+        paths.insert(!contentPath.isEmpty() ? contentPath : torrent->savePath());
     }
     MacUtils::openFiles(PathList(paths.cbegin(), paths.cend()));
 #else
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
     {
         const Path contentPath = torrent->contentPath();
-        if (!paths.contains(contentPath))
+        const Path openedPath = (!contentPath.isEmpty() ? contentPath : torrent->savePath());
+        if (!paths.contains(openedPath))
         {
             if (torrent->filesCount() == 1)
-                Utils::Gui::openFolderSelect(contentPath);
+                Utils::Gui::openFolderSelect(openedPath);
             else
-                Utils::Gui::openPath(contentPath);
+                Utils::Gui::openPath(openedPath);
         }
-        paths.insert(contentPath);
+        paths.insert(openedPath);
     }
 #endif // Q_OS_MACOS
 }
