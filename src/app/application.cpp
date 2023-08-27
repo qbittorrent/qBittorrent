@@ -427,12 +427,12 @@ void Application::setFileLoggerDeleteOld(const bool value)
 int Application::fileLoggerMaxSize() const
 {
     const int val = m_storeFileLoggerMaxSize.get(DEFAULT_FILELOG_SIZE);
-    return std::min(std::max(val, MIN_FILELOG_SIZE), MAX_FILELOG_SIZE);
+    return std::clamp(val, MIN_FILELOG_SIZE, MAX_FILELOG_SIZE);
 }
 
 void Application::setFileLoggerMaxSize(const int bytes)
 {
-    const int clampedValue = std::min(std::max(bytes, MIN_FILELOG_SIZE), MAX_FILELOG_SIZE);
+    const int clampedValue = std::clamp(bytes, MIN_FILELOG_SIZE, MAX_FILELOG_SIZE);
     if (m_fileLogger)
         m_fileLogger->setMaxSize(clampedValue);
     m_storeFileLoggerMaxSize = clampedValue;
@@ -441,12 +441,12 @@ void Application::setFileLoggerMaxSize(const int bytes)
 int Application::fileLoggerAge() const
 {
     const int val = m_storeFileLoggerAge.get(1);
-    return std::min(std::max(val, 1), 365);
+    return std::clamp(val, 1, 365);
 }
 
 void Application::setFileLoggerAge(const int value)
 {
-    m_storeFileLoggerAge = std::min(std::max(value, 1), 365);
+    m_storeFileLoggerAge = std::clamp(value, 1, 365);
 }
 
 int Application::fileLoggerAgeType() const
