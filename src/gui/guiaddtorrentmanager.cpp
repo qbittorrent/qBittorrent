@@ -181,7 +181,16 @@ bool GUIAddTorrentManager::processTorrent(const QString &source, const BitTorren
     if (!hasMetadata)
         btSession()->downloadMetadata(torrentDescr);
 
+#ifndef Q_OS_MACOS
     auto *dlg = new AddNewTorrentDialog(torrentDescr, params, app()->mainWindow());
+#else
+    //By not setting a parent to the "addnewtorrentdialog",
+    //all those dialogs will be displayed on top and will not overlap with the main window.
+    auto *dlg = new AddNewTorrentDialog(torrentDescr, params, nullptr);
+    //required Qt::Window to avoid only show two dialog on top, see #12852.
+    dlg->setWindowFlags(Qt::Window);
+#endif
+
     dlg->setAttribute(Qt::WA_DeleteOnClose);
     m_dialogs[infoHash] = dlg;
     connect(dlg, &QDialog::finished, this, [this, source, infoHash, dlg](int result)
