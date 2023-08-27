@@ -93,12 +93,12 @@ void TorrentCreator::checkInterruptionRequested() const
 
 void TorrentCreator::requestInterruption()
 {
-    m_interruptionRequested.storeRelaxed(1);
+    m_interruptionRequested.store(true, std::memory_order_relaxed);
 }
 
 bool TorrentCreator::isInterruptionRequested() const
 {
-    return m_interruptionRequested.loadRelaxed() != 0;
+    return m_interruptionRequested.load(std::memory_order_relaxed);
 }
 
 void TorrentCreator::run()

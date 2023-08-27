@@ -30,8 +30,9 @@
 
 #pragma once
 
+#include <atomic>
+
 #include <QtSystemDetection>
-#include <QAtomicInt>
 #include <QCoreApplication>
 #include <QPointer>
 #include <QStringList>
@@ -177,7 +178,7 @@ private:
 #endif
 
     ApplicationInstanceManager *m_instanceManager = nullptr;
-    QAtomicInt m_isCleanupRun;
+    std::atomic_bool m_isCleanupRun;
     bool m_isProcessingParamsAllowed = false;
     ShutdownDialogAction m_shutdownAct = ShutdownDialogAction::Exit;
     QBtCommandLineParameters m_commandLineArgs;
