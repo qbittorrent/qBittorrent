@@ -33,6 +33,8 @@
 #include <QDateTime>
 #include <QVector>
 
+#include "application.h"
+
 namespace
 {
     template <typename T>
@@ -45,29 +47,11 @@ namespace
     }
 }
 
-Logger *Logger::m_instance = nullptr;
-
-Logger::Logger()
-    : m_messages(MAX_LOG_MESSAGES)
-    , m_peers(MAX_LOG_MESSAGES)
+Logger::Logger(QObject *parent)
+    : QObject(parent)
+    , m_messages {MAX_LOG_MESSAGES}
+    , m_peers {MAX_LOG_MESSAGES}
 {
-}
-
-Logger *Logger::instance()
-{
-    return m_instance;
-}
-
-void Logger::initInstance()
-{
-    if (!m_instance)
-        m_instance = new Logger;
-}
-
-void Logger::freeInstance()
-{
-    delete m_instance;
-    m_instance = nullptr;
 }
 
 void Logger::addMessage(const QString &message, const Log::MsgType &type)
@@ -124,5 +108,5 @@ QVector<Log::Peer> Logger::getPeers(const int lastKnownId) const
 
 void LogMsg(const QString &message, const Log::MsgType &type)
 {
-    Logger::instance()->addMessage(message, type);
+    qBt->logger()->addMessage(message, type);
 }

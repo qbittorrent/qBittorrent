@@ -65,7 +65,7 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
     connect(m_ui->previewList, &QAbstractItemView::doubleClicked, this, &PreviewSelectDialog::previewButtonClicked);
 
-    const Preferences *pref = Preferences::instance();
+    const Preferences *pref = qBt->preferences();
     // Preview list
     auto *previewListModel = new QStandardItemModel(0, NB_COLUMNS, this);
     previewListModel->setHeaderData(NAME, Qt::Horizontal, tr("Name"));

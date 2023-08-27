@@ -50,6 +50,7 @@
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/preferences.h"
+#include "gui/application.h"
 #include "gui/autoexpandabledialog.h"
 #include "gui/uithememanager.h"
 #include "propertieswidget.h"
@@ -296,7 +297,7 @@ void TrackerListWidget::loadStickyItems(const BitTorrent::Torrent *torrent)
     const QString working {tr("Working")};
     const QString disabled {tr("Disabled")};
     const QString torrentDisabled {tr("Disabled for this torrent")};
-    const auto *session = BitTorrent::Session::instance();
+    const auto *session = qBt->btSession();
 
     // load DHT information
     if (!session->isDHTEnabled())
@@ -634,25 +635,25 @@ void TrackerListWidget::showTrackerListMenu()
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
     // Add actions
-    menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_s), tr("Add trackers...")
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"list-add"_s), tr("Add trackers...")
         , this, &TrackerListWidget::openAddTrackersDialog);
 
     if (!getSelectedTrackerItems().isEmpty())
     {
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s),tr("Edit tracker URL...")
+        menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-rename"_s),tr("Edit tracker URL...")
             , this, &TrackerListWidget::editSelectedTracker);
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove tracker")
+        menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove tracker")
             , this, &TrackerListWidget::deleteSelectedTrackers);
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("Copy tracker URL")
+        menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-copy"_s), tr("Copy tracker URL")
             , this, &TrackerListWidget::copyTrackerUrl);
     }
 
     if (!torrent->isPaused())
     {
-        menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"view-refresh"_s), tr("Force reannounce to selected trackers")
+        menu->addAction(qBt->uiThemeManager()->getIcon(u"reannounce"_s, u"view-refresh"_s), tr("Force reannounce to selected trackers")
             , this, &TrackerListWidget::reannounceSelected);
         menu->addSeparator();
-        menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"view-refresh"_s), tr("Force reannounce to all trackers")
+        menu->addAction(qBt->uiThemeManager()->getIcon(u"reannounce"_s, u"view-refresh"_s), tr("Force reannounce to all trackers")
             , this, [this]()
         {
             BitTorrent::Torrent *h = m_properties->getCurrentTorrent();
@@ -666,12 +667,12 @@ void TrackerListWidget::showTrackerListMenu()
 
 void TrackerListWidget::loadSettings()
 {
-    header()->restoreState(Preferences::instance()->getPropTrackerListState());
+    header()->restoreState(qBt->preferences()->getPropTrackerListState());
 }
 
 void TrackerListWidget::saveSettings() const
 {
-    Preferences::instance()->setPropTrackerListState(header()->saveState());
+    qBt->preferences()->setPropTrackerListState(header()->saveState());
 }
 
 QStringList TrackerListWidget::headerLabels()

@@ -37,12 +37,13 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/preferences.h"
+#include "gui/application.h"
 #include "propertieswidget.h"
 #include "speedplotview.h"
 
 ComboBoxMenuButton::ComboBoxMenuButton(QWidget *parent, QMenu *menu)
     : QComboBox(parent)
-    , m_menu(menu)
+    , m_menu {menu}
 {
 }
 
@@ -109,7 +110,7 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     m_hlayout->addWidget(m_graphsButton);
 
     m_plot = new SpeedPlotView(this);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated, this, &SpeedWidget::update);
+    connect(qBt->btSession(), &BitTorrent::Session::statsUpdated, this, &SpeedWidget::update);
 
     m_layout->addLayout(m_hlayout);
     m_layout->addWidget(m_plot);
@@ -128,7 +129,7 @@ SpeedWidget::~SpeedWidget()
 
 void SpeedWidget::update()
 {
-    const BitTorrent::SessionStatus &btStatus = BitTorrent::Session::instance()->status();
+    const BitTorrent::SessionStatus &btStatus = qBt->btSession()->status();
 
     SpeedPlotView::SampleData sampleData;
     sampleData[SpeedPlotView::UP] = btStatus.uploadRate;
@@ -158,7 +159,7 @@ void SpeedWidget::onGraphChange(int id)
 
 void SpeedWidget::loadSettings()
 {
-    Preferences *preferences = Preferences::instance();
+    Preferences *preferences = qBt->preferences();
 
     int periodIndex = preferences->getSpeedWidgetPeriod();
     m_periodCombobox->setCurrentIndex(periodIndex);
@@ -176,7 +177,7 @@ void SpeedWidget::loadSettings()
 
 void SpeedWidget::saveSettings() const
 {
-    Preferences *preferences = Preferences::instance();
+    Preferences *preferences = qBt->preferences();
 
     preferences->setSpeedWidgetPeriod(m_periodCombobox->currentIndex());
 

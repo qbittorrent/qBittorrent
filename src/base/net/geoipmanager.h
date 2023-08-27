@@ -46,9 +46,8 @@ namespace Net
         Q_DISABLE_COPY_MOVE(GeoIPManager)
 
     public:
-        static void initInstance();
-        static void freeInstance();
-        static GeoIPManager *instance();
+        explicit GeoIPManager(QObject *parent = nullptr);
+        ~GeoIPManager() override;
 
         QString lookup(const QHostAddress &hostAddr) const;
 
@@ -59,16 +58,11 @@ namespace Net
         void downloadFinished(const DownloadResult &result);
 
     private:
-        GeoIPManager();
-        ~GeoIPManager() override;
-
         void loadDatabase();
         void manageDatabaseUpdate();
         void downloadDatabaseFile();
 
         bool m_enabled = false;
         GeoIPDatabase *m_geoIPDatabase = nullptr;
-
-        static GeoIPManager *m_instance;
     };
 }

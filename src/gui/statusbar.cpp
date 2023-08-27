@@ -39,6 +39,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/utils/misc.h"
+#include "application.h"
 #include "speedlimitdialog.h"
 #include "uithememanager.h"
 #include "utils.h"
@@ -52,7 +53,7 @@ StatusBar::StatusBar(QWidget *parent)
     setStyleSheet(u"QStatusBar::item { border-width: 0; }"_s);
 #endif
 
-    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    BitTorrent::Session *const session = qBt->btSession();
     connect(session, &BitTorrent::Session::speedLimitModeChanged, this, &StatusBar::updateAltSpeedsBtn);
     QWidget *container = new QWidget(this);
     auto *layout = new QHBoxLayout(container);
@@ -63,13 +64,13 @@ StatusBar::StatusBar(QWidget *parent)
     m_connecStatusLblIcon->setFlat(true);
     m_connecStatusLblIcon->setFocusPolicy(Qt::NoFocus);
     m_connecStatusLblIcon->setCursor(Qt::PointingHandCursor);
-    m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(u"firewalled"_s));
+    m_connecStatusLblIcon->setIcon(qBt->uiThemeManager()->getIcon(u"firewalled"_s));
     m_connecStatusLblIcon->setToolTip(u"<b>%1</b><br><i>%2</i>"_s.arg(tr("Connection status:")
         , tr("No direct connections. This may indicate network configuration problems.")));
     connect(m_connecStatusLblIcon, &QAbstractButton::clicked, this, &StatusBar::connectionButtonClicked);
 
     m_dlSpeedLbl = new QPushButton(this);
-    m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"downloading_small"_s));
+    m_dlSpeedLbl->setIcon(qBt->uiThemeManager()->getIcon(u"downloading"_s, u"downloading_small"_s));
     connect(m_dlSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capSpeed);
     m_dlSpeedLbl->setFlat(true);
     m_dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
@@ -78,7 +79,7 @@ StatusBar::StatusBar(QWidget *parent)
     m_dlSpeedLbl->setMinimumWidth(200);
 
     m_upSpeedLbl = new QPushButton(this);
-    m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"upload"_s, u"seeding"_s));
+    m_upSpeedLbl->setIcon(qBt->uiThemeManager()->getIcon(u"upload"_s, u"seeding"_s));
     connect(m_upSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capSpeed);
     m_upSpeedLbl->setFlat(true);
     m_upSpeedLbl->setFocusPolicy(Qt::NoFocus);
@@ -170,11 +171,11 @@ void StatusBar::showRestartRequired()
 
 void StatusBar::updateConnectionStatus()
 {
-    const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
+    const BitTorrent::SessionStatus &sessionStatus = qBt->btSession()->status();
 
-    if (!BitTorrent::Session::instance()->isListening())
+    if (!qBt->btSession()->isListening())
     {
-        m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(u"disconnected"_s));
+        m_connecStatusLblIcon->setIcon(qBt->uiThemeManager()->getIcon(u"disconnected"_s));
         const QString tooltip = u"<b>%1</b><br>%2"_s.arg(tr("Connection Status:"), tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
         m_connecStatusLblIcon->setToolTip(tooltip);
     }
@@ -183,13 +184,13 @@ void StatusBar::updateConnectionStatus()
         if (sessionStatus.hasIncomingConnections)
         {
             // Connection OK
-            m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(u"connected"_s));
+            m_connecStatusLblIcon->setIcon(qBt->uiThemeManager()->getIcon(u"connected"_s));
             const QString tooltip = u"<b>%1</b><br>%2"_s.arg(tr("Connection Status:"), tr("Online"));
             m_connecStatusLblIcon->setToolTip(tooltip);
         }
         else
         {
-            m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(u"firewalled"_s));
+            m_connecStatusLblIcon->setIcon(qBt->uiThemeManager()->getIcon(u"firewalled"_s));
             const QString tooltip = u"<b>%1</b><br><i>%2</i>"_s.arg(tr("Connection Status:"), tr("No direct connections. This may indicate network configuration problems."));
             m_connecStatusLblIcon->setToolTip(tooltip);
         }
@@ -198,11 +199,11 @@ void StatusBar::updateConnectionStatus()
 
 void StatusBar::updateDHTNodesNumber()
 {
-    if (BitTorrent::Session::instance()->isDHTEnabled())
+    if (qBt->btSession()->isDHTEnabled())
     {
         m_DHTLbl->setVisible(true);
         m_DHTLbl->setText(tr("DHT: %1 nodes")
-                          .arg(BitTorrent::Session::instance()->status().dhtNodes));
+                          .arg(qBt->btSession()->status().dhtNodes));
     }
     else
     {
@@ -212,17 +213,17 @@ void StatusBar::updateDHTNodesNumber()
 
 void StatusBar::updateSpeedLabels()
 {
-    const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
+    const BitTorrent::SessionStatus &sessionStatus = qBt->btSession()->status();
 
     QString dlSpeedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate, true);
-    const int dlSpeedLimit = BitTorrent::Session::instance()->downloadSpeedLimit();
+    const int dlSpeedLimit = qBt->btSession()->downloadSpeedLimit();
     if (dlSpeedLimit > 0)
         dlSpeedLbl += u" [" + Utils::Misc::friendlyUnit(dlSpeedLimit, true) + u']';
     dlSpeedLbl += u" (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload) + u')';
     m_dlSpeedLbl->setText(dlSpeedLbl);
 
     QString upSpeedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate, true);
-    const int upSpeedLimit = BitTorrent::Session::instance()->uploadSpeedLimit();
+    const int upSpeedLimit = qBt->btSession()->uploadSpeedLimit();
     if (upSpeedLimit > 0)
         upSpeedLbl += u" [" + Utils::Misc::friendlyUnit(upSpeedLimit, true) + u']';
     upSpeedLbl += u" (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload) + u')';
@@ -240,13 +241,13 @@ void StatusBar::updateAltSpeedsBtn(bool alternative)
 {
     if (alternative)
     {
-        m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(u"slow"_s));
+        m_altSpeedsBtn->setIcon(qBt->uiThemeManager()->getIcon(u"slow"_s));
         m_altSpeedsBtn->setToolTip(tr("Click to switch to regular speed limits"));
         m_altSpeedsBtn->setDown(true);
     }
     else
     {
-        m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(u"slow_off"_s));
+        m_altSpeedsBtn->setIcon(qBt->uiThemeManager()->getIcon(u"slow_off"_s));
         m_altSpeedsBtn->setToolTip(tr("Click to switch to alternative speed limits"));
         m_altSpeedsBtn->setDown(false);
     }

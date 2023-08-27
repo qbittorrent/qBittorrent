@@ -1938,7 +1938,7 @@ void TorrentImpl::handleTorrentFinishedAlert([[maybe_unused]] const lt::torrent_
 
         m_session->handleTorrentNeedSaveResumeData(this);
 
-        const bool recheckTorrentsOnCompletion = Preferences::instance()->recheckTorrentsOnCompletion();
+        const bool recheckTorrentsOnCompletion = qBt->preferences()->recheckTorrentsOnCompletion();
         if (recheckTorrentsOnCompletion && m_unchecked)
         {
             forceRecheck();

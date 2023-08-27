@@ -51,6 +51,7 @@
 #include <QVector>
 #include <QWaitCondition>
 
+#include "base/application.h"
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
@@ -238,17 +239,17 @@ namespace
         resumeData.stopCondition = Utils::String::toEnum(
                     query.value(DB_COLUMN_STOP_CONDITION.name).toString(), Torrent::StopCondition::None);
 
-        resumeData.savePath = Profile::instance()->fromPortablePath(
+        resumeData.savePath = qBt->profile()->fromPortablePath(
                     Path(query.value(DB_COLUMN_TARGET_SAVE_PATH.name).toString()));
         resumeData.useAutoTMM = resumeData.savePath.isEmpty();
         if (!resumeData.useAutoTMM)
         {
-            resumeData.downloadPath = Profile::instance()->fromPortablePath(
+            resumeData.downloadPath = qBt->profile()->fromPortablePath(
                         Path(query.value(DB_COLUMN_DOWNLOAD_PATH.name).toString()));
         }
 
         const QByteArray bencodedResumeData = query.value(DB_COLUMN_RESUMEDATA.name).toByteArray();
-        const auto *pref = Preferences::instance();
+        const auto *pref = qBt->preferences();
         const int bdecodeDepthLimit = pref->getBdecodeDepthLimit();
         const int bdecodeTokenLimit = pref->getBdecodeTokenLimit();
 
@@ -268,7 +269,7 @@ namespace
             p.ti = std::make_shared<lt::torrent_info>(torentInfoRoot, ec);
         }
 
-        p.save_path = Profile::instance()->fromPortablePath(Path(fromLTString(p.save_path)))
+        p.save_path = qBt->profile()->fromPortablePath(Path(fromLTString(p.save_path)))
                 .toString().toStdString();
 
         if (p.flags & lt::torrent_flags::stop_when_ready)
@@ -761,7 +762,7 @@ namespace
     {
         // We need to adjust native libtorrent resume data
         lt::add_torrent_params p = m_resumeData.ltAddTorrentParams;
-        p.save_path = Profile::instance()->toPortablePath(Path(p.save_path))
+        p.save_path = qBt->profile()->toPortablePath(Path(p.save_path))
                 .toString().toStdString();
         if (m_resumeData.stopped)
         {
@@ -861,8 +862,8 @@ namespace
 
             if (!m_resumeData.useAutoTMM)
             {
-                query.bindValue(DB_COLUMN_TARGET_SAVE_PATH.placeholder, Profile::instance()->toPortablePath(m_resumeData.savePath).data());
-                query.bindValue(DB_COLUMN_DOWNLOAD_PATH.placeholder, Profile::instance()->toPortablePath(m_resumeData.downloadPath).data());
+                query.bindValue(DB_COLUMN_TARGET_SAVE_PATH.placeholder, qBt->profile()->toPortablePath(m_resumeData.savePath).data());
+                query.bindValue(DB_COLUMN_DOWNLOAD_PATH.placeholder, qBt->profile()->toPortablePath(m_resumeData.downloadPath).data());
             }
 
             query.bindValue(DB_COLUMN_RESUMEDATA.placeholder, bencodedResumeData);

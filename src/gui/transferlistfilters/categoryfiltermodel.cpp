@@ -33,6 +33,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
+#include "gui/application.h"
 #include "gui/uithememanager.h"
 
 class CategoryModelItem
@@ -171,7 +172,7 @@ CategoryFilterModel::CategoryFilterModel(QObject *parent)
     , m_rootItem(new CategoryModelItem)
 {
     using namespace BitTorrent;
-    const auto *session = Session::instance();
+    const auto *session = qBt->btSession();
 
     connect(session, &Session::categoryAdded, this, &CategoryFilterModel::categoryAdded);
     connect(session, &Session::categoryRemoved, this, &CategoryFilterModel::categoryRemoved);
@@ -208,7 +209,7 @@ QVariant CategoryFilterModel::data(const QModelIndex &index, int role) const
 
     if ((index.column() == 0) && (role == Qt::DecorationRole))
     {
-        return UIThemeManager::instance()->getIcon(u"view-categories"_s, u"inode-directory"_s);
+        return qBt->uiThemeManager()->getIcon(u"view-categories"_s, u"inode-directory"_s);
     }
 
     if ((index.column() == 0) && (role == Qt::DisplayRole))
@@ -388,7 +389,7 @@ void CategoryFilterModel::populate()
 {
     m_rootItem->clear();
 
-    const auto *session = BitTorrent::Session::instance();
+    const auto *session = qBt->btSession();
     const auto torrents = session->torrents();
     m_isSubcategoriesEnabled = session->isSubcategoriesEnabled();
 

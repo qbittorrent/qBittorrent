@@ -95,24 +95,19 @@ namespace
 
 using namespace RSS;
 
-QPointer<AutoDownloader> AutoDownloader::m_instance = nullptr;
-
 QString computeSmartFilterRegex(const QStringList &filters)
 {
     return u"(?:_|\\b)(?:%1)(?:_|\\b)"_s.arg(filters.join(u")|(?:"));
 }
 
-AutoDownloader::AutoDownloader(Application *app)
-    : ApplicationComponent(app)
+AutoDownloader::AutoDownloader(Application *app, QObject *parent)
+    : ApplicationComponent(app, parent)
     , m_storeProcessingEnabled {u"RSS/AutoDownloader/EnableProcessing"_s, false}
     , m_storeSmartEpisodeFilter {u"RSS/AutoDownloader/SmartEpisodeFilter"_s}
     , m_storeDownloadRepacks {u"RSS/AutoDownloader/DownloadRepacks"_s}
     , m_processingTimer {new QTimer(this)}
     , m_ioThread {new QThread}
 {
-    Q_ASSERT(!m_instance); // only one instance is allowed
-    m_instance = this;
-
     m_fileStorage = new AsyncFileStorage(specialFolderLocation(SpecialFolder::Config) / Path(CONF_FOLDER_NAME));
 
     m_fileStorage->moveToThread(m_ioThread.get());
@@ -139,20 +134,19 @@ AutoDownloader::AutoDownloader(Application *app)
 
     load();
 
-    connect(Session::instance(), &Session::feedURLChanged, this, &AutoDownloader::handleFeedURLChanged);
+    connect(app->rssSession(), &Session::feedURLChanged, this, &AutoDownloader::handleFeedURLChanged);
 
     m_processingTimer->setSingleShot(true);
     connect(m_processingTimer, &QTimer::timeout, this, &AutoDownloader::process);
 
-    const auto *btSession = BitTorrent::Session::instance();
-    if (btSession->isRestored())
+    if (app->btSession()->isRestored())
     {
         if (isProcessingEnabled())
             startProcessing();
     }
     else
     {
-        connect(btSession, &BitTorrent::Session::restored, this, [this]()
+        connect(app->btSession(), &BitTorrent::Session::restored, this, [this]()
         {
             if (isProcessingEnabled())
                 startProcessing();
@@ -163,11 +157,6 @@ AutoDownloader::AutoDownloader(Application *app)
 AutoDownloader::~AutoDownloader()
 {
     store();
-}
-
-AutoDownloader *AutoDownloader::instance()
-{
-    return m_instance;
 }
 
 bool AutoDownloader::hasRule(const QString &ruleName) const
@@ -367,7 +356,7 @@ void AutoDownloader::handleTorrentAdded(const QString &source)
     if (!job)
         return;
 
-    if (Feed *feed = Session::instance()->feedByURL(job->feedURL))
+    if (Feed *feed = app()->rssSession()->feedByURL(job->feedURL))
     {
         if (Article *article = feed->articleByGUID(job->articleData.value(Article::KeyId).toString()))
             article->markAsRead();
@@ -479,7 +468,7 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
 
         if (BitTorrent::TorrentDescriptor::parse(torrentURL))
         {
-            if (Feed *feed = Session::instance()->feedByURL(job->feedURL))
+            if (Feed *feed = app()->rssSession()->feedByURL(job->feedURL))
             {
                 if (Article *article = feed->articleByGUID(job->articleData.value(Article::KeyId).toString()))
                     article->markAsRead();
@@ -532,7 +521,7 @@ void AutoDownloader::loadRules(const QByteArray &data)
 
 void AutoDownloader::loadRulesLegacy()
 {
-    const std::unique_ptr<QSettings> settings = Profile::instance()->applicationSettings(u"qBittorrent-rss"_s);
+    const std::unique_ptr<QSettings> settings = app()->profile()->applicationSettings(u"qBittorrent-rss"_s);
     const QVariantHash rules = settings->value(u"download_rules"_s).toHash();
     for (const QVariant &ruleVar : rules)
     {
@@ -574,7 +563,7 @@ void AutoDownloader::resetProcessingQueue()
     if (!isProcessingEnabled())
         return;
 
-    for (Article *article : asConst(Session::instance()->rootFolder()->articles()))
+    for (Article *article : asConst(app()->rssSession()->rootFolder()->articles()))
     {
         if (!article->isRead() && !article->torrentUrl().isEmpty())
             addJobForArticle(article);
@@ -585,7 +574,7 @@ void AutoDownloader::startProcessing()
 {
     resetProcessingQueue();
 
-    const RSS::Folder *rootFolder = Session::instance()->rootFolder();
+    const RSS::Folder *rootFolder = app()->rssSession()->rootFolder();
     for (const Article *article : asConst(rootFolder->articles()))
         handleNewArticle(article);
 
@@ -599,13 +588,13 @@ void AutoDownloader::setProcessingEnabled(const bool enabled)
         m_storeProcessingEnabled = enabled;
         if (enabled)
         {
-            if (BitTorrent::Session::instance()->isRestored())
+            if (app()->btSession()->isRestored())
                 startProcessing();
         }
         else
         {
             m_processingQueue.clear();
-            disconnect(Session::instance()->rootFolder(), &Folder::newArticle, this, &AutoDownloader::handleNewArticle);
+            disconnect(app()->rssSession()->rootFolder(), &Folder::newArticle, this, &AutoDownloader::handleNewArticle);
         }
 
         emit processingStateChanged(enabled);

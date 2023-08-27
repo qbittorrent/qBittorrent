@@ -57,17 +57,13 @@ const QString FEEDS_FILE_NAME = u"feeds.json"_s;
 
 using namespace RSS;
 
-QPointer<Session> Session::m_instance = nullptr;
-
-Session::Session()
-    : m_storeProcessingEnabled(u"RSS/Session/EnableProcessing"_s)
-    , m_storeRefreshInterval(u"RSS/Session/RefreshInterval"_s, 30)
-    , m_storeMaxArticlesPerFeed(u"RSS/Session/MaxArticlesPerFeed"_s, 50)
-    , m_workingThread(new QThread)
+Session::Session(QObject *parent)
+    : QObject(parent)
+    , m_storeProcessingEnabled {u"RSS/Session/EnableProcessing"_s}
+    , m_storeRefreshInterval {u"RSS/Session/RefreshInterval"_s, 30}
+    , m_storeMaxArticlesPerFeed {u"RSS/Session/MaxArticlesPerFeed"_s, 50}
+    , m_workingThread {new QThread}
 {
-    Q_ASSERT(!m_instance); // only one instance is allowed
-    m_instance = this;
-
     m_confFileStorage = new AsyncFileStorage(specialFolderLocation(SpecialFolder::Config) / Path(CONF_FOLDER_NAME));
     m_confFileStorage->moveToThread(m_workingThread.get());
     connect(m_workingThread.get(), &QThread::finished, m_confFileStorage, &AsyncFileStorage::deleteLater);
@@ -101,7 +97,7 @@ Session::Session()
     // Remove legacy/corrupted settings
     // (at least on Windows, QSettings is case-insensitive and it can get
     // confused when asked about settings that differ only in their case)
-    auto *settingsStorage = SettingsStorage::instance();
+    auto *settingsStorage = qBt->settings();
     settingsStorage->removeValue(u"Rss/streamList"_s);
     settingsStorage->removeValue(u"Rss/streamAlias"_s);
     settingsStorage->removeValue(u"Rss/open_folders"_s);
@@ -128,11 +124,6 @@ Session::~Session()
     delete m_itemsByPath[u""_s]; // deleting root folder
 
     qDebug() << "RSS Session deleted.";
-}
-
-Session *Session::instance()
-{
-    return m_instance;
 }
 
 nonstd::expected<void, QString> Session::addFolder(const QString &path)
@@ -371,8 +362,8 @@ bool Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
 
 void Session::loadLegacy()
 {
-    const auto legacyFeedPaths = SettingsStorage::instance()->loadValue<QStringList>(u"Rss/streamList"_s);
-    const auto feedAliases = SettingsStorage::instance()->loadValue<QStringList>(u"Rss/streamAlias"_s);
+    const auto legacyFeedPaths = qBt->settings()->loadValue<QStringList>(u"Rss/streamList"_s);
+    const auto feedAliases = qBt->settings()->loadValue<QStringList>(u"Rss/streamAlias"_s);
     if (legacyFeedPaths.size() != feedAliases.size())
     {
         LogMsg(tr("Corrupted RSS list, not loading it."), Log::WARNING);

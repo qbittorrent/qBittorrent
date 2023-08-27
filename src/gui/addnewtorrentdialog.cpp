@@ -57,6 +57,7 @@
 #include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
+#include "application.h"
 #include "lineedit.h"
 #include "torrenttagsdialog.h"
 #include "uithememanager.h"
@@ -72,7 +73,7 @@ namespace
     // just a shortcut
     inline SettingsStorage *settings()
     {
-        return SettingsStorage::instance();
+        return qBt->settings();
     }
 
     // savePath is a folder, not an absolute file path
@@ -292,7 +293,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
     m_ui->savePath->setDialogCaption(tr("Choose save path"));
     m_ui->savePath->setMaxVisibleItems(20);
 
-    const auto *session = BitTorrent::Session::instance();
+    const auto *session = qBt->btSession();
 
     m_ui->downloadPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->downloadPath->setDialogCaption(tr("Choose save path"));
@@ -403,9 +404,9 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
     else
         m_ui->categoryComboBox->setFocus();
 
-    connect(Preferences::instance(), &Preferences::changed, []
+    connect(qBt->preferences(), &Preferences::changed, []
     {
-        const int length = Preferences::instance()->addNewTorrentDialogSavePathHistoryLength();
+        const int length = qBt->preferences()->addNewTorrentDialogSavePathHistoryLength();
         settings()->storeValue(KEY_SAVEPATHHISTORY
                 , QStringList(settings()->loadValue<QStringList>(KEY_SAVEPATHHISTORY).mid(0, length)));
     });
@@ -471,7 +472,7 @@ void AddNewTorrentDialog::saveState()
 void AddNewTorrentDialog::showEvent(QShowEvent *event)
 {
     QDialog::showEvent(event);
-    if (!Preferences::instance()->isAddNewTorrentDialogTopLevel())
+    if (!qBt->preferences()->isAddNewTorrentDialogTopLevel())
         return;
 
     activateWindow();
@@ -527,7 +528,7 @@ void AddNewTorrentDialog::categoryChanged([[maybe_unused]] const int index)
 {
     if (m_ui->comboTTM->currentIndex() == 1)
     {
-        const auto *btSession = BitTorrent::Session::instance();
+        const auto *btSession = qBt->btSession();
         const QString categoryName = m_ui->categoryComboBox->currentText();
 
         const Path savePath = btSession->categorySavePath(categoryName);
@@ -585,7 +586,7 @@ bool AddNewTorrentDialog::hasMetadata() const
 
 void AddNewTorrentDialog::populateSavePaths()
 {
-    const auto *btSession = BitTorrent::Session::instance();
+    const auto *btSession = qBt->btSession();
 
     m_ui->savePath->blockSignals(true);
     m_ui->savePath->clear();
@@ -681,7 +682,7 @@ void AddNewTorrentDialog::accept()
     m_torrentParams.useAutoTMM = useAutoTMM;
     if (!useAutoTMM)
     {
-        const int savePathHistoryLength = Preferences::instance()->addNewTorrentDialogSavePathHistoryLength();
+        const int savePathHistoryLength = qBt->preferences()->addNewTorrentDialogSavePathHistoryLength();
         const Path savePath = m_ui->savePath->selectedPath();
         m_torrentParams.savePath = savePath;
         updatePathHistory(KEY_SAVEPATHHISTORY, savePath, savePathHistoryLength);
@@ -715,7 +716,7 @@ void AddNewTorrentDialog::reject()
     if (!hasMetadata())
     {
         setMetadataProgressIndicator(false);
-        BitTorrent::Session::instance()->cancelDownloadMetadata(m_torrentDescr.infoHash().toTorrentID());
+        qBt->btSession()->cancelDownloadMetadata(m_torrentDescr.infoHash().toTorrentID());
     }
 
     QDialog::reject();
@@ -777,7 +778,7 @@ void AddNewTorrentDialog::setupTreeview()
     const auto contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex());
     m_contentAdaptor->applyContentLayout(contentLayout);
 
-    if (BitTorrent::Session::instance()->isExcludedFileNamesEnabled())
+    if (qBt->btSession()->isExcludedFileNamesEnabled())
     {
         // Check file name blacklist for torrents that are manually added
         QVector<BitTorrent::DownloadPriority> priorities = m_contentAdaptor->filePriorities();
@@ -786,7 +787,7 @@ void AddNewTorrentDialog::setupTreeview()
             if (priorities[i] == BitTorrent::DownloadPriority::Ignored)
                 continue;
 
-            if (BitTorrent::Session::instance()->isFilenameExcluded(torrentInfo.filePath(i).filename()))
+            if (qBt->btSession()->isFilenameExcluded(torrentInfo.filePath(i).filename()))
                 priorities[i] = BitTorrent::DownloadPriority::Ignored;
         }
 
@@ -809,7 +810,7 @@ void AddNewTorrentDialog::TMMChanged(int index)
     }
     else
     {
-        const auto *session = BitTorrent::Session::instance();
+        const auto *session = qBt->btSession();
 
         m_ui->groupBoxSavePath->setEnabled(false);
 

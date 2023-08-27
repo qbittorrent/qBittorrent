@@ -53,13 +53,9 @@ class SettingsStorage final : public QObject
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(SettingsStorage)
 
-    SettingsStorage();
-    ~SettingsStorage();
-
 public:
-    static void initInstance();
-    static void freeInstance();
-    static SettingsStorage *instance();
+    explicit SettingsStorage(QObject *parent = nullptr);
+    ~SettingsStorage() override;
 
     template <typename T>
     T loadValue(const QString &key, const T &defaultValue = {}) const
@@ -118,8 +114,6 @@ private:
     void storeValueImpl(const QString &key, const QVariant &value);
     void readNativeSettings();
     bool writeNativeSettings() const;
-
-    static SettingsStorage *m_instance;
 
     const QString m_nativeSettingsName;
     bool m_dirty = false;

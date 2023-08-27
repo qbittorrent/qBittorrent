@@ -44,6 +44,7 @@
 #include <QVariant>
 
 #include "base/algorithm.h"
+#include "base/application.h"
 #include "base/bittorrent/torrentcontentlayout.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
@@ -118,34 +119,14 @@ private:
     QHash<Path, QHash<Path, int>> m_failedTorrents;
 };
 
-TorrentFilesWatcher *TorrentFilesWatcher::m_instance = nullptr;
-
-void TorrentFilesWatcher::initInstance()
-{
-    if (!m_instance)
-        m_instance = new TorrentFilesWatcher;
-}
-
-void TorrentFilesWatcher::freeInstance()
-{
-    delete m_instance;
-    m_instance = nullptr;
-}
-
-TorrentFilesWatcher *TorrentFilesWatcher::instance()
-{
-    return m_instance;
-}
-
 TorrentFilesWatcher::TorrentFilesWatcher(QObject *parent)
     : QObject(parent)
     , m_ioThread {new QThread}
 {
-    const auto *btSession = BitTorrent::Session::instance();
-    if (btSession->isRestored())
+    if (qBt->btSession()->isRestored())
         initWorker();
     else
-        connect(btSession, &BitTorrent::Session::restored, this, &TorrentFilesWatcher::initWorker);
+        connect(qBt->btSession(), &BitTorrent::Session::restored, this, &TorrentFilesWatcher::initWorker);
 
     load();
 }
@@ -223,7 +204,7 @@ void TorrentFilesWatcher::load()
 
 void TorrentFilesWatcher::loadLegacy()
 {
-    const auto dirs = SettingsStorage::instance()->loadValue<QVariantHash>(u"Preferences/Downloads/ScanDirsV2"_s);
+    const auto dirs = qBt->settings()->loadValue<QVariantHash>(u"Preferences/Downloads/ScanDirsV2"_s);
 
     for (auto it = dirs.cbegin(); it != dirs.cend(); ++it)
     {
@@ -255,7 +236,7 @@ void TorrentFilesWatcher::loadLegacy()
     }
 
     store();
-    SettingsStorage::instance()->removeValue(u"Preferences/Downloads/ScanDirsV2"_s);
+    qBt->settings()->removeValue(u"Preferences/Downloads/ScanDirsV2"_s);
 }
 
 void TorrentFilesWatcher::store() const
@@ -331,7 +312,7 @@ void TorrentFilesWatcher::removeWatchedFolder(const Path &path)
 void TorrentFilesWatcher::onTorrentFound(const BitTorrent::TorrentDescriptor &torrentDescr
         , const BitTorrent::AddTorrentParams &addTorrentParams)
 {
-    BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams);
+    qBt->btSession()->addTorrent(torrentDescr, addTorrentParams);
 }
 
 TorrentFilesWatcher::Worker::Worker()
@@ -404,7 +385,7 @@ void TorrentFilesWatcher::Worker::processFolder(const Path &path, const Path &wa
         if (path != watchedFolderPath)
         {
             const Path subdirPath = watchedFolderPath.relativePathOf(path);
-            const bool useAutoTMM = addTorrentParams.useAutoTMM.value_or(!BitTorrent::Session::instance()->isAutoTMMDisabledByDefault());
+            const bool useAutoTMM = addTorrentParams.useAutoTMM.value_or(!qBt->btSession()->isAutoTMMDisabledByDefault());
             if (useAutoTMM)
             {
                 addTorrentParams.category = addTorrentParams.category.isEmpty()
@@ -494,7 +475,7 @@ void TorrentFilesWatcher::Worker::processFailedTorrents()
                 if (torrentPath != watchedFolderPath)
                 {
                     const Path subdirPath = watchedFolderPath.relativePathOf(torrentPath);
-                    const bool useAutoTMM = addTorrentParams.useAutoTMM.value_or(!BitTorrent::Session::instance()->isAutoTMMDisabledByDefault());
+                    const bool useAutoTMM = addTorrentParams.useAutoTMM.value_or(!qBt->btSession()->isAutoTMMDisabledByDefault());
                     if (useAutoTMM)
                     {
                         addTorrentParams.category = addTorrentParams.category.isEmpty()

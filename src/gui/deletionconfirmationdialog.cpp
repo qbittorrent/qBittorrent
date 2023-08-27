@@ -32,6 +32,7 @@
 
 #include "base/global.h"
 #include "base/preferences.h"
+#include "application.h"
 #include "uithememanager.h"
 #include "utils.h"
 
@@ -48,12 +49,12 @@ DeletionConfirmationDialog::DeletionConfirmationDialog(QWidget *parent, const in
 
     // Icons
     const QSize iconSize = Utils::Gui::largeIconSize();
-    m_ui->labelWarning->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s).pixmap(iconSize));
+    m_ui->labelWarning->setPixmap(qBt->uiThemeManager()->getIcon(u"dialog-warning"_s).pixmap(iconSize));
     m_ui->labelWarning->setFixedWidth(iconSize.width());
-    m_ui->rememberBtn->setIcon(UIThemeManager::instance()->getIcon(u"object-locked"_s));
+    m_ui->rememberBtn->setIcon(qBt->uiThemeManager()->getIcon(u"object-locked"_s));
     m_ui->rememberBtn->setIconSize(Utils::Gui::mediumIconSize());
 
-    m_ui->checkPermDelete->setChecked(defaultDeleteFiles || Preferences::instance()->deleteTorrentFilesAsDefault());
+    m_ui->checkPermDelete->setChecked(defaultDeleteFiles || qBt->preferences()->deleteTorrentFilesAsDefault());
     connect(m_ui->checkPermDelete, &QCheckBox::clicked, this, &DeletionConfirmationDialog::updateRememberButtonState);
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Remove"));
     m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setFocus();
@@ -74,11 +75,11 @@ bool DeletionConfirmationDialog::isDeleteFileSelected() const
 
 void DeletionConfirmationDialog::updateRememberButtonState()
 {
-    m_ui->rememberBtn->setEnabled(m_ui->checkPermDelete->isChecked() != Preferences::instance()->deleteTorrentFilesAsDefault());
+    m_ui->rememberBtn->setEnabled(m_ui->checkPermDelete->isChecked() != qBt->preferences()->deleteTorrentFilesAsDefault());
 }
 
 void DeletionConfirmationDialog::on_rememberBtn_clicked()
 {
-    Preferences::instance()->setDeleteTorrentFilesAsDefault(m_ui->checkPermDelete->isChecked());
+    qBt->preferences()->setDeleteTorrentFilesAsDefault(m_ui->checkPermDelete->isChecked());
     m_ui->rememberBtn->setEnabled(false);
 }

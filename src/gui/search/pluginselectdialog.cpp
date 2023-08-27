@@ -42,6 +42,7 @@
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
+#include "gui/application.h"
 #include "gui/autoexpandabledialog.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
@@ -73,7 +74,7 @@ PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidg
     m_ui->pluginsTree->header()->setFirstSectionMovable(true);
     m_ui->pluginsTree->header()->setSortIndicator(0, Qt::AscendingOrder);
 
-    m_ui->actionUninstall->setIcon(UIThemeManager::instance()->getIcon(u"list-remove"_s));
+    m_ui->actionUninstall->setIcon(qBt->uiThemeManager()->getIcon(u"list-remove"_s));
 
     connect(m_ui->actionEnable, &QAction::toggled, this, &PluginSelectDialog::enableSelection);
     connect(m_ui->pluginsTree, &QTreeWidget::customContextMenuRequested, this, &PluginSelectDialog::displayContextMenu);
@@ -311,9 +312,9 @@ void PluginSelectDialog::addNewPlugin(const QString &pluginName)
     {
         // Icon is missing, we must download it
         using namespace Net;
-        DownloadManager::instance()->download(
+        qBt->downloadManager()->download(
                 DownloadRequest(plugin->url + u"/favicon.ico").saveToFile(true)
-                , Preferences::instance()->useProxyForGeneralPurposes(), this, &PluginSelectDialog::iconDownloadFinished);
+                , qBt->preferences()->useProxyForGeneralPurposes(), this, &PluginSelectDialog::iconDownloadFinished);
     }
     item->setText(PLUGIN_VERSION, plugin->version.toString());
 }

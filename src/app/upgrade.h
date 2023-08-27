@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,12 +28,14 @@
 
 #pragma once
 
+class SettingsStorage;
+
 enum class DefaultPreferencesMode
 {
     Legacy,
     Current
 };
 
-void handleChangedDefaults(DefaultPreferencesMode mode);
-bool upgrade();
-void setCurrentMigrationVersion();
+void handleChangedDefaults(SettingsStorage *settingsStorage, DefaultPreferencesMode mode);
+bool upgrade(SettingsStorage *settingsStorage);
+void setCurrentMigrationVersion(SettingsStorage *settingsStorage);

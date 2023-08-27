@@ -33,6 +33,7 @@
 #include <QPalette>
 
 #include "base/global.h"
+#include "application.h"
 #include "log/logfiltermodel.h"
 #include "log/loglistview.h"
 #include "log/logmodel.h"
@@ -69,8 +70,8 @@ ExecutionLogWidget::ExecutionLogWidget(const Log::MsgTypes types, QWidget *paren
     m_ui->tabBan->layout()->addWidget(peerView);
 
 #ifndef Q_OS_MACOS
-    m_ui->tabConsole->setTabIcon(0, UIThemeManager::instance()->getIcon(u"help-contents"_s, u"view-calendar-journal"_s));
-    m_ui->tabConsole->setTabIcon(1, UIThemeManager::instance()->getIcon(u"ip-blocked"_s, u"view-filter"_s));
+    m_ui->tabConsole->setTabIcon(0, qBt->uiThemeManager()->getIcon(u"help-contents"_s, u"view-calendar-journal"_s));
+    m_ui->tabConsole->setTabIcon(1, qBt->uiThemeManager()->getIcon(u"ip-blocked"_s, u"view-filter"_s));
 #endif
 }
 
@@ -92,11 +93,11 @@ void ExecutionLogWidget::displayContextMenu(const LogListView *view, const BaseL
     // only show copy action if any of the row is selected
     if (view->currentIndex().isValid())
     {
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("Copy")
+        menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-copy"_s), tr("Copy")
             , view, &LogListView::copySelection);
     }
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s), tr("Clear")
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-clear"_s), tr("Clear")
         , model, &BaseLogModel::reset);
 
     menu->popup(QCursor::pos());

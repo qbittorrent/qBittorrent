@@ -51,6 +51,7 @@
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
+#include "gui/application.h"
 #include "gui/autoexpandabledialog.h"
 #include "gui/lineedit.h"
 #include "gui/uithememanager.h"
@@ -88,8 +89,8 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     connect(m_ui->selectNoneButton, &QPushButton::clicked, m_ui->filesList, &TorrentContentWidget::checkNone);
     connect(m_ui->listWebSeeds, &QWidget::customContextMenuRequested, this, &PropertiesWidget::displayWebSeedListMenu);
     connect(m_ui->stackedProperties, &QStackedWidget::currentChanged, this, &PropertiesWidget::loadDynamicData);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentSavePathChanged, this, &PropertiesWidget::updateSavePath);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentMetadataReceived, this, &PropertiesWidget::updateTorrentInfos);
+    connect(qBt->btSession(), &BitTorrent::Session::torrentSavePathChanged, this, &PropertiesWidget::updateSavePath);
+    connect(qBt->btSession(), &BitTorrent::Session::torrentMetadataReceived, this, &PropertiesWidget::updateTorrentInfos);
     connect(m_ui->filesList, &TorrentContentWidget::stateChanged, this, &PropertiesWidget::saveSettings);
 
     // set bar height relative to screen dpi
@@ -111,9 +112,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
 
     // Tracker list
     m_trackerList = new TrackerListWidget(this);
-    m_ui->trackerUpButton->setIcon(UIThemeManager::instance()->getIcon(u"go-up"_s));
+    m_ui->trackerUpButton->setIcon(qBt->uiThemeManager()->getIcon(u"go-up"_s));
     m_ui->trackerUpButton->setIconSize(Utils::Gui::smallIconSize());
-    m_ui->trackerDownButton->setIcon(UIThemeManager::instance()->getIcon(u"go-down"_s));
+    m_ui->trackerDownButton->setIcon(qBt->uiThemeManager()->getIcon(u"go-down"_s));
     m_ui->trackerDownButton->setIconSize(Utils::Gui::smallIconSize());
     connect(m_ui->trackerUpButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::moveSelectionUp);
     connect(m_ui->trackerDownButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::moveSelectionDown);
@@ -137,7 +138,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     connect(m_ui->listWebSeeds, &QListWidget::doubleClicked, this, &PropertiesWidget::editWebSeed);
 
     configure();
-    connect(Preferences::instance(), &Preferences::changed, this, &PropertiesWidget::configure);
+    connect(qBt->preferences(), &Preferences::changed, this, &PropertiesWidget::configure);
 }
 
 PropertiesWidget::~PropertiesWidget()
@@ -311,7 +312,7 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
 
 void PropertiesWidget::readSettings()
 {
-    const Preferences *const pref = Preferences::instance();
+    const Preferences *const pref = qBt->preferences();
     // Restore splitter sizes
     QStringList sizesStr = pref->getPropSplitterSizes().split(u',');
     if (sizesStr.size() == 2)
@@ -331,7 +332,7 @@ void PropertiesWidget::readSettings()
 
 void PropertiesWidget::saveSettings()
 {
-    Preferences *const pref = Preferences::instance();
+    Preferences *const pref = qBt->preferences();
     pref->setPropVisible(m_state == VISIBLE);
     // Splitter sizes
     auto *hSplitter = static_cast<QSplitter *>(parentWidget());
@@ -512,16 +513,16 @@ void PropertiesWidget::displayWebSeedListMenu()
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_s), tr("New Web seed"), this, &PropertiesWidget::askWebSeed);
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"list-add"_s), tr("New Web seed"), this, &PropertiesWidget::askWebSeed);
 
     if (!rows.isEmpty())
     {
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove Web seed")
+        menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove Web seed")
             , this, &PropertiesWidget::deleteSelectedUrlSeeds);
         menu->addSeparator();
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("Copy Web seed URL")
+        menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-copy"_s), tr("Copy Web seed URL")
             , this, &PropertiesWidget::copySelectedWebSeedsToClipboard);
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Edit Web seed URL")
+        menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-rename"_s), tr("Edit Web seed URL")
             , this, &PropertiesWidget::editWebSeed);
     }
 
@@ -531,7 +532,7 @@ void PropertiesWidget::displayWebSeedListMenu()
 void PropertiesWidget::configure()
 {
     // Speed widget
-    if (Preferences::instance()->isSpeedWidgetEnabled())
+    if (qBt->preferences()->isSpeedWidgetEnabled())
     {
         if (!qobject_cast<SpeedWidget *>(m_speedWidget))
         {

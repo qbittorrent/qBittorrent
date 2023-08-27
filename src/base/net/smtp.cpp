@@ -44,6 +44,7 @@
 #include <QTcpSocket>
 #endif
 
+#include "base/application.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -136,7 +137,7 @@ Smtp::~Smtp()
 
 void Smtp::sendMail(const QString &from, const QString &to, const QString &subject, const QString &body)
 {
-    const Preferences *const pref = Preferences::instance();
+    const Preferences *const pref = qBt->preferences();
     m_message = "Date: " + getCurrentDateTime().toLatin1() + "\r\n"
                 + encodeMimeHeader(u"From"_s, u"qBittorrent <%1>"_s.arg(from))
                 + encodeMimeHeader(u"Subject"_s, subject)

@@ -110,8 +110,8 @@ SearchWidget::SearchWidget(GUIApplication *app, MainWindow *mainWindow)
 
 #ifndef Q_OS_MACOS
     // Icons
-    m_ui->searchButton->setIcon(UIThemeManager::instance()->getIcon(u"edit-find"_s));
-    m_ui->pluginsButton->setIcon(UIThemeManager::instance()->getIcon(u"plugins"_s, u"preferences-system-network"_s));
+    m_ui->searchButton->setIcon(app->uiThemeManager()->getIcon(u"edit-find"_s));
+    m_ui->pluginsButton->setIcon(app->uiThemeManager()->getIcon(u"plugins"_s, u"preferences-system-network"_s));
 #else
     // On macOS the icons overlap the text otherwise
     QSize iconSize = m_ui->tabWidget->iconSize();
@@ -121,7 +121,7 @@ SearchWidget::SearchWidget(GUIApplication *app, MainWindow *mainWindow)
     connect(m_ui->tabWidget, &QTabWidget::tabCloseRequested, this, &SearchWidget::closeTab);
     connect(m_ui->tabWidget, &QTabWidget::currentChanged, this, &SearchWidget::tabChanged);
 
-    const auto *searchManager = SearchPluginManager::instance();
+    const auto *searchManager = app->searchPluginManager();
     const auto onPluginChanged = [this]()
     {
         fillPluginComboBox();
@@ -185,7 +185,7 @@ void SearchWidget::fillCatCombobox()
 
     using QStrPair = std::pair<QString, QString>;
     QVector<QStrPair> tmpList;
-    for (const QString &cat : asConst(SearchPluginManager::instance()->getPluginCategories(selectedPlugin())))
+    for (const QString &cat : asConst(app()->searchPluginManager()->getPluginCategories(selectedPlugin())))
         tmpList << std::make_pair(SearchPluginManager::categoryFullName(cat), cat);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
 
@@ -208,8 +208,8 @@ void SearchWidget::fillPluginComboBox()
 
     using QStrPair = std::pair<QString, QString>;
     QVector<QStrPair> tmpList;
-    for (const QString &name : asConst(SearchPluginManager::instance()->enabledPlugins()))
-        tmpList << std::make_pair(SearchPluginManager::instance()->pluginFullName(name), name);
+    for (const QString &name : asConst(app()->searchPluginManager()->enabledPlugins()))
+        tmpList << std::make_pair(app()->searchPluginManager()->pluginFullName(name), name);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );
 
     for (const QStrPair &p : asConst(tmpList))
@@ -231,7 +231,7 @@ QString SearchWidget::selectedPlugin() const
 
 void SearchWidget::selectActivePage()
 {
-    if (SearchPluginManager::instance()->allPlugins().isEmpty())
+    if (app()->searchPluginManager()->allPlugins().isEmpty())
     {
         m_ui->stackedPages->setCurrentWidget(m_ui->emptyPage);
         m_ui->lineEditSearchPattern->setEnabled(false);
@@ -284,7 +284,7 @@ void SearchWidget::toggleFocusBetweenLineEdits()
 
 void SearchWidget::on_pluginsButton_clicked()
 {
-    auto *dlg = new PluginSelectDialog(SearchPluginManager::instance(), this);
+    auto *dlg = new PluginSelectDialog(app()->searchPluginManager(), this);
     dlg->setAttribute(Qt::WA_DeleteOnClose);
     dlg->show();
 }
@@ -334,16 +334,16 @@ void SearchWidget::on_searchButton_clicked()
 
     QStringList plugins;
     if (plugin == u"all")
-        plugins = SearchPluginManager::instance()->allPlugins();
+        plugins = app()->searchPluginManager()->allPlugins();
     else if ((plugin == u"enabled") || (plugin == u"multi"))
-        plugins = SearchPluginManager::instance()->enabledPlugins();
+        plugins = app()->searchPluginManager()->enabledPlugins();
     else
         plugins << plugin;
 
     qDebug("Search with category: %s", qUtf8Printable(selectedCategory()));
 
     // Launch search
-    auto *searchHandler = SearchPluginManager::instance()->startSearch(pattern, selectedCategory(), plugins);
+    auto *searchHandler = app()->searchPluginManager()->startSearch(pattern, selectedCategory(), plugins);
 
     // Tab Addition
     auto *newTab = new SearchJobWidget(searchHandler, app(), this);
@@ -365,7 +365,7 @@ void SearchWidget::tabStatusChanged(QWidget *tab)
 {
     const int tabIndex = m_ui->tabWidget->indexOf(tab);
     m_ui->tabWidget->setTabToolTip(tabIndex, tab->statusTip());
-    m_ui->tabWidget->setTabIcon(tabIndex, UIThemeManager::instance()->getIcon(
+    m_ui->tabWidget->setTabIcon(tabIndex, app()->uiThemeManager()->getIcon(
                                  statusIconName(static_cast<SearchJobWidget *>(tab)->status())));
 
     if ((tab == m_activeSearchTab) && (m_activeSearchTab->status() != SearchJobWidget::Status::Ongoing))

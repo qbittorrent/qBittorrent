@@ -45,6 +45,7 @@
 #include <QSysInfo>
 #endif
 
+#include "base/application.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
@@ -78,9 +79,9 @@ void ProgramUpdater::checkForUpdates() const
     const auto RSS_URL = u"https://www.fosshub.com/feed/5b8793a7f9ee5a5c3e97a3b2.xml"_s;
     // Don't change this User-Agent. In case our updater goes haywire,
     // the filehost can identify it and contact us.
-    Net::DownloadManager::instance()->download(
+    qBt->downloadManager()->download(
             Net::DownloadRequest(RSS_URL).userAgent(QStringLiteral("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)"))
-            , Preferences::instance()->useProxyForGeneralPurposes(), this, &ProgramUpdater::rssDownloadFinished);
+            , qBt->preferences()->useProxyForGeneralPurposes(), this, &ProgramUpdater::rssDownloadFinished);
 }
 
 QString ProgramUpdater::getNewVersion() const

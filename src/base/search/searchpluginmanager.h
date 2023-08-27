@@ -64,11 +64,8 @@ class SearchPluginManager final : public QObject
     Q_DISABLE_COPY_MOVE(SearchPluginManager)
 
 public:
-    SearchPluginManager();
+    SearchPluginManager(QObject *parent = nullptr);
     ~SearchPluginManager() override;
-
-    static SearchPluginManager *instance();
-    static void freeInstance();
 
     QStringList allPlugins() const;
     QStringList enabledPlugins() const;
@@ -115,8 +112,6 @@ private:
     void pluginDownloadFinished(const Net::DownloadResult &result);
 
     static Path pluginPath(const QString &name);
-
-    static QPointer<SearchPluginManager> m_instance;
 
     const QString m_updateUrl;
 

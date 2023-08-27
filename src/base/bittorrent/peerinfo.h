@@ -89,7 +89,6 @@ namespace BitTorrent
         qreal relevance() const;
         QString flags() const;
         QString flagsDescription() const;
-        QString country() const;
         int downloadingPieceIndex() const;
 
     private:
@@ -101,7 +100,6 @@ namespace BitTorrent
         QString m_flags;
         QString m_flagsDescription;
 
-        mutable QString m_country;
         mutable QString m_I2PAddress;
     };
 }

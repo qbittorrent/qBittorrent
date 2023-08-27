@@ -41,6 +41,7 @@
 #include <QThread>
 
 #include "base/algorithm.h"
+#include "base/application.h"
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
@@ -134,7 +135,7 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::load(cons
     const QString idString = id.toString();
     const Path fastresumePath = path() / Path(idString + u".fastresume");
     const Path torrentFilePath = path() / Path(idString + u".torrent");
-    const qint64 torrentSizeLimit = Preferences::instance()->getTorrentFileSizeLimit();
+    const qint64 torrentSizeLimit = qBt->preferences()->getTorrentFileSizeLimit();
 
     const auto resumeDataReadResult = Utils::IO::readFile(fastresumePath, torrentSizeLimit);
     if (!resumeDataReadResult)
@@ -202,7 +203,7 @@ void BitTorrent::BencodeResumeDataStorage::loadQueue(const Path &queueFilename)
 
 BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorrentResumeData(const QByteArray &data, const QByteArray &metadata) const
 {
-    const auto *pref = Preferences::instance();
+    const auto *pref = qBt->preferences();
 
     lt::error_code ec;
     const lt::bdecode_node resumeDataRoot = lt::bdecode(data, ec
@@ -221,12 +222,12 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
     torrentParams.seedingTimeLimit = resumeDataRoot.dict_find_int_value("qBt-seedingTimeLimit", Torrent::USE_GLOBAL_SEEDING_TIME);
     torrentParams.inactiveSeedingTimeLimit = resumeDataRoot.dict_find_int_value("qBt-inactiveSeedingTimeLimit", Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME);
 
-    torrentParams.savePath = Profile::instance()->fromPortablePath(
+    torrentParams.savePath = qBt->profile()->fromPortablePath(
                 Path(fromLTString(resumeDataRoot.dict_find_string_value("qBt-savePath"))));
     torrentParams.useAutoTMM = torrentParams.savePath.isEmpty();
     if (!torrentParams.useAutoTMM)
     {
-        torrentParams.downloadPath = Profile::instance()->fromPortablePath(
+        torrentParams.downloadPath = qBt->profile()->fromPortablePath(
                     Path(fromLTString(resumeDataRoot.dict_find_string_value("qBt-downloadPath"))));
     }
 
@@ -274,7 +275,7 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
 
     if (!metadata.isEmpty())
     {
-        const auto *pref = Preferences::instance();
+        const auto *pref = qBt->preferences();
         const lt::bdecode_node torentInfoRoot = lt::bdecode(metadata, ec
                 , nullptr, pref->getBdecodeDepthLimit(), pref->getBdecodeTokenLimit());
         if (ec)
@@ -290,7 +291,7 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
         p.ti = torrentInfo;
     }
 
-    p.save_path = Profile::instance()->fromPortablePath(
+    p.save_path = qBt->profile()->fromPortablePath(
                 Path(fromLTString(p.save_path))).toString().toStdString();
 
     torrentParams.stopped = (p.flags & lt::torrent_flags::paused) && !(p.flags & lt::torrent_flags::auto_managed);
@@ -343,7 +344,7 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
 {
     // We need to adjust native libtorrent resume data
     lt::add_torrent_params p = resumeData.ltAddTorrentParams;
-    p.save_path = Profile::instance()->toPortablePath(Path(p.save_path))
+    p.save_path = qBt->profile()->toPortablePath(Path(p.save_path))
             .toString().toStdString();
     if (resumeData.stopped)
     {
@@ -401,8 +402,8 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
 
     if (!resumeData.useAutoTMM)
     {
-        data["qBt-savePath"] = Profile::instance()->toPortablePath(resumeData.savePath).data().toStdString();
-        data["qBt-downloadPath"] = Profile::instance()->toPortablePath(resumeData.downloadPath).data().toStdString();
+        data["qBt-savePath"] = qBt->profile()->toPortablePath(resumeData.savePath).data().toStdString();
+        data["qBt-downloadPath"] = qBt->profile()->toPortablePath(resumeData.downloadPath).data().toStdString();
     }
 
     const Path resumeFilepath = m_resumeDataDir / Path(u"%1.fastresume"_s.arg(id.toString()));

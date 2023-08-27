@@ -34,6 +34,7 @@
 #include <QColor>
 
 #include "base/global.h"
+#include "gui/application.h"
 #include "gui/uithememanager.h"
 
 namespace
@@ -42,32 +43,32 @@ namespace
 
     QColor getTimestampColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.TimeStamp"_s);
+        return qBt->uiThemeManager()->getColor(u"Log.TimeStamp"_s);
     }
 
     QColor getLogNormalColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.Normal"_s);
+        return qBt->uiThemeManager()->getColor(u"Log.Normal"_s);
     }
 
     QColor getLogInfoColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.Info"_s);
+        return qBt->uiThemeManager()->getColor(u"Log.Info"_s);
     }
 
     QColor getLogWarningColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.Warning"_s);
+        return qBt->uiThemeManager()->getColor(u"Log.Warning"_s);
     }
 
     QColor getLogCriticalColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.Critical"_s);
+        return qBt->uiThemeManager()->getColor(u"Log.Critical"_s);
     }
 
     QColor getPeerBannedColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.BannedPeer"_s);
+        return qBt->uiThemeManager()->getColor(u"Log.BannedPeer"_s);
     }
 }
 
@@ -177,9 +178,9 @@ LogMessageModel::LogMessageModel(QObject *parent)
         {Log::CRITICAL, getLogCriticalColor()}
     }
 {
-    for (const Log::Msg &msg : asConst(Logger::instance()->getMessages()))
+    for (const Log::Msg &msg : asConst(qBt->logger()->getMessages()))
         handleNewMessage(msg);
-    connect(Logger::instance(), &Logger::newLogMessage, this, &LogMessageModel::handleNewMessage);
+    connect(qBt->logger(), &Logger::newLogMessage, this, &LogMessageModel::handleNewMessage);
 }
 
 void LogMessageModel::handleNewMessage(const Log::Msg &message)
@@ -195,9 +196,9 @@ LogPeerModel::LogPeerModel(QObject *parent)
     : BaseLogModel(parent)
     , m_bannedPeerForeground(getPeerBannedColor())
 {
-    for (const Log::Peer &peer : asConst(Logger::instance()->getPeers()))
+    for (const Log::Peer &peer : asConst(qBt->logger()->getPeers()))
         handleNewMessage(peer);
-    connect(Logger::instance(), &Logger::newLogPeer, this, &LogPeerModel::handleNewMessage);
+    connect(qBt->logger(), &Logger::newLogPeer, this, &LogPeerModel::handleNewMessage);
 }
 
 void LogPeerModel::handleNewMessage(const Log::Peer &peer)

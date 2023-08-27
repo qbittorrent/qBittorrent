@@ -80,12 +80,9 @@
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
 #include "base/profile.h"
-#include "base/torrentfilter.h"
 #include "base/unicodestrings.h"
-#include "base/utils/bytearray.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
-#include "base/utils/misc.h"
 #include "base/utils/net.h"
 #include "base/utils/random.h"
 #include "base/version.h"
@@ -100,7 +97,6 @@
 #include "loadtorrentparams.h"
 #include "lttypecast.h"
 #include "nativesessionextension.h"
-#include "portforwarderimpl.h"
 #include "resumedatastorage.h"
 #include "torrentdescriptor.h"
 #include "torrentimpl.h"
@@ -329,25 +325,6 @@ struct BitTorrent::SessionImpl::ResumeSessionContext final : public QObject
 
 const int addTorrentParamsId = qRegisterMetaType<AddTorrentParams>();
 
-Session *SessionImpl::m_instance = nullptr;
-
-void Session::initInstance()
-{
-    if (!SessionImpl::m_instance)
-        SessionImpl::m_instance = new SessionImpl;
-}
-
-void Session::freeInstance()
-{
-    delete SessionImpl::m_instance;
-    SessionImpl::m_instance = nullptr;
-}
-
-Session *Session::instance()
-{
-    return SessionImpl::m_instance;
-}
-
 bool Session::isValidCategoryName(const QString &name)
 {
     const QRegularExpression re {uR"(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)"_s};
@@ -546,7 +523,7 @@ SessionImpl::SessionImpl(QObject *parent)
     if (isExcludedFileNamesEnabled())
         populateExcludedFileNamesRegExpList();
 
-    connect(Net::ProxyConfigurationManager::instance()
+    connect(qBt->proxyConfigurationManager()
         , &Net::ProxyConfigurationManager::proxyConfigurationChanged
         , this, &SessionImpl::configureDeferred);
 
@@ -560,8 +537,7 @@ SessionImpl::SessionImpl(QObject *parent)
     initMetrics();
     loadStatistics();
 
-    // initialize PortForwarder instance
-    new PortForwarderImpl(this);
+    m_portForwarderImpl = new PortForwarderImpl(this);
 
     // start embedded tracker
     enableTracker(isTrackerEnabled());
@@ -592,7 +568,7 @@ SessionImpl::~SessionImpl()
 
     // We must delete PortForwarderImpl before
     // we delete lt::session
-    delete Net::PortForwarder::instance();
+    delete m_portForwarderImpl;
 
     // We must stop "async worker" only after deletion
     // of all the components that could potentially use it
@@ -1681,9 +1657,9 @@ lt::settings_pack SessionImpl::loadLTSettings() const
 
     // proxy
     settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::none);
-    const auto *proxyManager = Net::ProxyConfigurationManager::instance();
+    const auto *proxyManager = qBt->proxyConfigurationManager();
     const Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
-    if ((proxyConfig.type != Net::ProxyType::None) && Preferences::instance()->useProxyForBT())
+    if ((proxyConfig.type != Net::ProxyType::None) && qBt->preferences()->useProxyForBT())
     {
         switch (proxyConfig.type)
         {
@@ -1732,7 +1708,7 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::max_out_request_queue, requestQueueSize());
 
 #ifdef QBT_USES_LIBTORRENT2
-    settingsPack.set_int(lt::settings_pack::metadata_token_limit, Preferences::instance()->getBdecodeTokenLimit());
+    settingsPack.set_int(lt::settings_pack::metadata_token_limit, qBt->preferences()->getBdecodeTokenLimit());
 #endif
 
     settingsPack.set_int(lt::settings_pack::aio_threads, asyncIOThreads());
@@ -2062,7 +2038,6 @@ void SessionImpl::configurePeerClasses()
 void SessionImpl::enableTracker(const bool enable)
 {
     const QString profile = u"embeddedTracker"_s;
-    auto *portForwarder = Net::PortForwarder::instance();
 
     if (enable)
     {
@@ -2071,17 +2046,17 @@ void SessionImpl::enableTracker(const bool enable)
 
         m_tracker->start();
 
-        const auto *pref = Preferences::instance();
+        const auto *pref = qBt->preferences();
         if (pref->isTrackerPortForwardingEnabled())
-            portForwarder->setPorts(profile, {static_cast<quint16>(pref->getTrackerPort())});
+            m_portForwarderImpl->setPorts(profile, {static_cast<quint16>(pref->getTrackerPort())});
         else
-            portForwarder->removePorts(profile);
+            m_portForwarderImpl->removePorts(profile);
     }
     else
     {
         delete m_tracker;
 
-        portForwarder->removePorts(profile);
+        m_portForwarderImpl->removePorts(profile);
     }
 }
 
@@ -2894,6 +2869,11 @@ void SessionImpl::removeMappedPorts(const QSet<quint16> &ports)
             return true;
         });
     });
+}
+
+PortForwarderImpl *SessionImpl::portForwarderImpl() const
+{
+    return m_portForwarderImpl;
 }
 
 void SessionImpl::invokeAsync(std::function<void ()> func)
@@ -5657,14 +5637,14 @@ void SessionImpl::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
 
     const QString ip {toString(p->endpoint.address())};
     if (!ip.isEmpty())
-        Logger::instance()->addPeer(ip, true, reason);
+        qBt->logger()->addPeer(ip, true, reason);
 }
 
 void SessionImpl::handlePeerBanAlert(const lt::peer_ban_alert *p)
 {
     const QString ip {toString(p->endpoint.address())};
     if (!ip.isEmpty())
-        Logger::instance()->addPeer(ip, false);
+        qBt->logger()->addPeer(ip, false);
 }
 
 void SessionImpl::handleUrlSeedAlert(const lt::url_seed_alert *p)
@@ -6031,7 +6011,7 @@ void SessionImpl::saveStatistics() const
     const QVariantHash stats {
         {u"AlltimeDL"_s, m_status.allTimeDownload},
         {u"AlltimeUL"_s, m_status.allTimeUpload}};
-    std::unique_ptr<QSettings> settings = Profile::instance()->applicationSettings(u"qBittorrent-data"_s);
+    std::unique_ptr<QSettings> settings = qBt->profile()->applicationSettings(u"qBittorrent-data"_s);
     settings->setValue(u"Stats/AllStats"_s, stats);
 
     m_statisticsLastUpdateTimer.start();
@@ -6040,7 +6020,7 @@ void SessionImpl::saveStatistics() const
 
 void SessionImpl::loadStatistics()
 {
-    const std::unique_ptr<QSettings> settings = Profile::instance()->applicationSettings(u"qBittorrent-data"_s);
+    const std::unique_ptr<QSettings> settings = qBt->profile()->applicationSettings(u"qBittorrent-data"_s);
     const QVariantHash value = settings->value(u"Stats/AllStats"_s).toHash();
 
     m_previouslyDownloaded = value[u"AlltimeDL"_s].toLongLong();

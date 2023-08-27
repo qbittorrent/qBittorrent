@@ -32,6 +32,7 @@
 #include <QJsonObject>
 #include <QVector>
 
+#include "base/application.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/utils/string.h"
@@ -71,16 +72,18 @@ void LogController::mainAction()
     if (!ok)
         lastKnownId = -1;
 
-    Logger *const logger = Logger::instance();
+    Logger *const logger = app()->logger();
     QJsonArray msgList;
 
     for (const Log::Msg &msg : asConst(logger->getMessages(lastKnownId)))
     {
         if (!(((msg.type == Log::NORMAL) && isNormal)
-              || ((msg.type == Log::INFO) && isInfo)
-              || ((msg.type == Log::WARNING) && isWarning)
-              || ((msg.type == Log::CRITICAL) && isCritical)))
+                || ((msg.type == Log::INFO) && isInfo)
+                || ((msg.type == Log::WARNING) && isWarning)
+                || ((msg.type == Log::CRITICAL) && isCritical)))
+        {
             continue;
+        }
 
         msgList.append(QJsonObject
         {
@@ -111,7 +114,7 @@ void LogController::peersAction()
     if (!ok)
         lastKnownId = -1;
 
-    Logger *const logger = Logger::instance();
+    Logger *const logger = app()->logger();
     QJsonArray peerList;
 
     for (const Log::Peer &peer : asConst(logger->getPeers(lastKnownId)))

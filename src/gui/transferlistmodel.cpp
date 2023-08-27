@@ -43,6 +43,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
+#include "application.h"
 #include "uithememanager.h"
 
 namespace
@@ -80,7 +81,7 @@ namespace
         QHash<BitTorrent::TorrentState, QColor> colors;
         for (const TorrentStateColorDescriptor &colorDescriptor : colorDescriptors)
         {
-            const QColor themeColor = UIThemeManager::instance()->getColor(colorDescriptor.id);
+            const QColor themeColor = qBt->uiThemeManager()->getColor(colorDescriptor.id);
             colors.insert(colorDescriptor.state, themeColor);
         }
         return colors;
@@ -113,33 +114,33 @@ TransferListModel::TransferListModel(QObject *parent)
           {BitTorrent::TorrentState::Error, tr("Errored", "Torrent status, the torrent has an error")}
     }
     , m_stateThemeColors {torrentStateColorsFromUITheme()}
-    , m_checkingIcon {UIThemeManager::instance()->getIcon(u"force-recheck"_s, u"checking"_s)}
-    , m_completedIcon {UIThemeManager::instance()->getIcon(u"checked-completed"_s, u"completed"_s)}
-    , m_downloadingIcon {UIThemeManager::instance()->getIcon(u"downloading"_s)}
-    , m_errorIcon {UIThemeManager::instance()->getIcon(u"error"_s)}
-    , m_pausedIcon {UIThemeManager::instance()->getIcon(u"stopped"_s, u"media-playback-pause"_s)}
-    , m_queuedIcon {UIThemeManager::instance()->getIcon(u"queued"_s)}
-    , m_stalledDLIcon {UIThemeManager::instance()->getIcon(u"stalledDL"_s)}
-    , m_stalledUPIcon {UIThemeManager::instance()->getIcon(u"stalledUP"_s)}
-    , m_uploadingIcon {UIThemeManager::instance()->getIcon(u"upload"_s, u"uploading"_s)}
+    , m_checkingIcon {qBt->uiThemeManager()->getIcon(u"force-recheck"_s, u"checking"_s)}
+    , m_completedIcon {qBt->uiThemeManager()->getIcon(u"checked-completed"_s, u"completed"_s)}
+    , m_downloadingIcon {qBt->uiThemeManager()->getIcon(u"downloading"_s)}
+    , m_errorIcon {qBt->uiThemeManager()->getIcon(u"error"_s)}
+    , m_pausedIcon {qBt->uiThemeManager()->getIcon(u"stopped"_s, u"media-playback-pause"_s)}
+    , m_queuedIcon {qBt->uiThemeManager()->getIcon(u"queued"_s)}
+    , m_stalledDLIcon {qBt->uiThemeManager()->getIcon(u"stalledDL"_s)}
+    , m_stalledUPIcon {qBt->uiThemeManager()->getIcon(u"stalledUP"_s)}
+    , m_uploadingIcon {qBt->uiThemeManager()->getIcon(u"upload"_s, u"uploading"_s)}
 {
     configure();
-    connect(Preferences::instance(), &Preferences::changed, this, &TransferListModel::configure);
+    connect(qBt->preferences(), &Preferences::changed, this, &TransferListModel::configure);
 
     // Load the torrents
     using namespace BitTorrent;
-    addTorrents(Session::instance()->torrents());
+    addTorrents(qBt->btSession()->torrents());
 
     // Listen for torrent changes
-    connect(Session::instance(), &Session::torrentsLoaded, this, &TransferListModel::addTorrents);
-    connect(Session::instance(), &Session::torrentAboutToBeRemoved, this, &TransferListModel::handleTorrentAboutToBeRemoved);
-    connect(Session::instance(), &Session::torrentsUpdated, this, &TransferListModel::handleTorrentsUpdated);
+    connect(qBt->btSession(), &Session::torrentsLoaded, this, &TransferListModel::addTorrents);
+    connect(qBt->btSession(), &Session::torrentAboutToBeRemoved, this, &TransferListModel::handleTorrentAboutToBeRemoved);
+    connect(qBt->btSession(), &Session::torrentsUpdated, this, &TransferListModel::handleTorrentsUpdated);
 
-    connect(Session::instance(), &Session::torrentFinished, this, &TransferListModel::handleTorrentStatusUpdated);
-    connect(Session::instance(), &Session::torrentMetadataReceived, this, &TransferListModel::handleTorrentStatusUpdated);
-    connect(Session::instance(), &Session::torrentResumed, this, &TransferListModel::handleTorrentStatusUpdated);
-    connect(Session::instance(), &Session::torrentPaused, this, &TransferListModel::handleTorrentStatusUpdated);
-    connect(Session::instance(), &Session::torrentFinishedChecking, this, &TransferListModel::handleTorrentStatusUpdated);
+    connect(qBt->btSession(), &Session::torrentFinished, this, &TransferListModel::handleTorrentStatusUpdated);
+    connect(qBt->btSession(), &Session::torrentMetadataReceived, this, &TransferListModel::handleTorrentStatusUpdated);
+    connect(qBt->btSession(), &Session::torrentResumed, this, &TransferListModel::handleTorrentStatusUpdated);
+    connect(qBt->btSession(), &Session::torrentPaused, this, &TransferListModel::handleTorrentStatusUpdated);
+    connect(qBt->btSession(), &Session::torrentFinishedChecking, this, &TransferListModel::handleTorrentStatusUpdated);
 }
 
 int TransferListModel::rowCount(const QModelIndex &) const
@@ -666,7 +667,7 @@ void TransferListModel::handleTorrentsUpdated(const QVector<BitTorrent::Torrent 
 
 void TransferListModel::configure()
 {
-    const Preferences *pref = Preferences::instance();
+    const Preferences *pref = qBt->preferences();
 
     HideZeroValuesMode hideZeroValuesMode = HideZeroValuesMode::Never;
     if (pref->getHideZeroValues())

@@ -32,6 +32,7 @@
 
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
+#include "application.h"
 #include "cookiesmodel.h"
 #include "ui_cookiesdialog.h"
 #include "uithememanager.h"
@@ -42,7 +43,7 @@
 CookiesDialog::CookiesDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::CookiesDialog)
-    , m_cookiesModel(new CookiesModel(Net::DownloadManager::instance()->allCookies(), this))
+    , m_cookiesModel(new CookiesModel(qBt->downloadManager()->allCookies(), this))
     , m_storeDialogSize(SETTINGS_KEY(u"Size"_s))
     , m_storeViewState("GUI/Qt6/" SETTINGS_KEY(u"ViewState"_s))
 {
@@ -51,13 +52,13 @@ CookiesDialog::CookiesDialog(QWidget *parent)
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
-    setWindowIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_s));
+    setWindowIcon(qBt->uiThemeManager()->getIcon(u"browser-cookies"_s));
 
-    m_ui->buttonAdd->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
+    m_ui->buttonAdd->setIcon(qBt->uiThemeManager()->getIcon(u"list-add"_s));
     m_ui->buttonAdd->setIconSize(Utils::Gui::mediumIconSize());
     connect(m_ui->buttonAdd, &QToolButton::clicked, this, &CookiesDialog::onButtonAddClicked);
 
-    m_ui->buttonDelete->setIcon(UIThemeManager::instance()->getIcon(u"list-remove"_s));
+    m_ui->buttonDelete->setIcon(qBt->uiThemeManager()->getIcon(u"list-remove"_s));
     m_ui->buttonDelete->setIconSize(Utils::Gui::mediumIconSize());
     connect(m_ui->buttonDelete, &QToolButton::clicked, this, &CookiesDialog::onButtonDeleteClicked);
 
@@ -82,7 +83,7 @@ CookiesDialog::~CookiesDialog()
 
 void CookiesDialog::accept()
 {
-    Net::DownloadManager::instance()->setAllCookies(m_cookiesModel->cookies());
+    qBt->downloadManager()->setAllCookies(m_cookiesModel->cookies());
     QDialog::accept();
 }
 

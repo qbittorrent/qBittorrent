@@ -98,7 +98,7 @@ Feed::Feed(const QUuid &uid, const QString &url, const QString &path, Session *s
     else
         connect(m_session, &Session::processingStateChanged, this, &Feed::handleSessionProcessingEnabledChanged);
 
-    Net::DownloadManager::instance()->registerSequentialService(Net::ServiceID::fromURL(m_url));
+    qBt->downloadManager()->registerSequentialService(Net::ServiceID::fromURL(m_url));
 
     load();
 }
@@ -149,7 +149,7 @@ void Feed::refresh()
 
     // NOTE: Should we allow manually refreshing for disabled session?
 
-    m_downloadHandler = Net::DownloadManager::instance()->download(m_url, Preferences::instance()->useProxyForRSS());
+    m_downloadHandler = qBt->downloadManager()->download(m_url, qBt->preferences()->useProxyForRSS());
     connect(m_downloadHandler, &Net::DownloadHandler::finished, this, &Feed::handleDownloadFinished);
 
     if (!m_iconPath.exists())
@@ -377,9 +377,9 @@ void Feed::downloadIcon()
     // XXX: This works for most sites but it is not perfect
     const QUrl url(m_url);
     const auto iconUrl = u"%1://%2/favicon.ico"_s.arg(url.scheme(), url.host());
-    Net::DownloadManager::instance()->download(
+    qBt->downloadManager()->download(
             Net::DownloadRequest(iconUrl).saveToFile(true).destFileName(m_iconPath)
-            , Preferences::instance()->useProxyForRSS(), this, &Feed::handleIconDownloadFinished);
+            , qBt->preferences()->useProxyForRSS(), this, &Feed::handleIconDownloadFinished);
 }
 
 int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)

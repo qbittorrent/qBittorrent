@@ -40,6 +40,7 @@
 #include <QString>
 #include <QStringList>
 
+#include "base/application.h"
 #include "base/global.h"
 #include "base/path.h"
 #include "base/preferences.h"
@@ -173,7 +174,7 @@ using namespace RSS;
 
 QString computeEpisodeName(const QString &article)
 {
-    const QRegularExpression episodeRegex = AutoDownloader::instance()->smartEpisodeRegex();
+        const QRegularExpression episodeRegex = qBt->rssAutoDownloader()->smartEpisodeRegex();
     const QRegularExpressionMatch match = episodeRegex.match(article);
 
     // See if we can extract an season/episode number or date from the title
@@ -370,7 +371,7 @@ bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString &articleTitle) co
     const bool previouslyMatched = m_dataPtr->previouslyMatchedEpisodes.contains(episodeStr);
     if (previouslyMatched)
     {
-        if (!AutoDownloader::instance()->downloadRepacks())
+        if (!qBt->rssAutoDownloader()->downloadRepacks())
             return false;
 
         // Now see if we've downloaded this particular repack/proper combination

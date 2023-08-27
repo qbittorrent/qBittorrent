@@ -30,6 +30,7 @@
 
 #include <QString>
 
+#include "base/application.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -64,7 +65,7 @@ void AuthController::loginAction()
                        , tr("Your IP address has been banned after too many failed authentication attempts."));
     }
 
-    const Preferences *pref = Preferences::instance();
+    const Preferences *pref = app()->preferences();
 
     const QString username {pref->getWebUiUsername()};
     const QByteArray secret {pref->getWebUIPassword()};
@@ -81,7 +82,7 @@ void AuthController::loginAction()
     }
     else
     {
-        if (Preferences::instance()->getWebUIMaxAuthFailCount() > 0)
+        if (app()->preferences()->getWebUIMaxAuthFailCount() > 0)
             increaseFailedAttempts();
         setResult(u"Fails."_s);
         LogMsg(tr("WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3")
@@ -118,15 +119,15 @@ int AuthController::failedAttemptsCount() const
 
 void AuthController::increaseFailedAttempts()
 {
-    Q_ASSERT(Preferences::instance()->getWebUIMaxAuthFailCount() > 0);
+    Q_ASSERT(app()->preferences()->getWebUIMaxAuthFailCount() > 0);
 
     FailedLogin &failedLogin = m_clientFailedLogins[m_sessionManager->clientId()];
     ++failedLogin.failedAttemptsCount;
 
-    if (failedLogin.failedAttemptsCount >= Preferences::instance()->getWebUIMaxAuthFailCount())
+    if (failedLogin.failedAttemptsCount >= app()->preferences()->getWebUIMaxAuthFailCount())
     {
         // Max number of failed attempts reached
         // Start ban period
-        failedLogin.banTimer.setRemainingTime(Preferences::instance()->getWebUIBanDuration());
+        failedLogin.banTimer.setRemainingTime(app()->preferences()->getWebUIBanDuration());
     }
 }

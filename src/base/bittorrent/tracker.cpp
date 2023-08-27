@@ -35,6 +35,7 @@
 
 #include <QHostAddress>
 
+#include "base/application.h"
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/http/httperror.h"
@@ -194,7 +195,7 @@ Tracker::Tracker(QObject *parent)
 
 bool Tracker::start()
 {
-    const int port = Preferences::instance()->getTrackerPort();
+    const int port = qBt->preferences()->getTrackerPort();
 
     if (m_server->isListening())
     {

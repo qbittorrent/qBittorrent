@@ -28,11 +28,10 @@
 
 #include "freediskspacechecker.h"
 
-#include "base/bittorrent/session.h"
 #include "base/utils/fs.h"
 
-void FreeDiskSpaceChecker::check()
+void FreeDiskSpaceChecker::check(const Path &path)
 {
-    const qint64 freeDiskSpace = Utils::Fs::freeDiskSpaceOnPath(BitTorrent::Session::instance()->savePath());
+    const qint64 freeDiskSpace = Utils::Fs::freeDiskSpaceOnPath(path);
     emit checked(freeDiskSpace);
 }

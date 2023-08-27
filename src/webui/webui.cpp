@@ -28,6 +28,7 @@
 
 #include "webui.h"
 
+#include "base/application.h"
 #include "base/http/server.h"
 #include "base/logger.h"
 #include "base/net/dnsupdater.h"
@@ -42,7 +43,7 @@ WebUI::WebUI(Application *app)
     : ApplicationComponent(app)
 {
     configure();
-    connect(Preferences::instance(), &Preferences::changed, this, &WebUI::configure);
+    connect(app->preferences(), &Preferences::changed, this, &WebUI::configure);
 }
 
 void WebUI::configure()
@@ -50,13 +51,13 @@ void WebUI::configure()
     m_isErrored = false; // clear previous error state
 
     const QString portForwardingProfile = u"webui"_s;
-    const Preferences *pref = Preferences::instance();
+    const Preferences *pref = app()->preferences();
     const quint16 port = pref->getWebUiPort();
 
     if (pref->isWebUiEnabled())
     {
         // Port forwarding
-        auto *portForwarder = Net::PortForwarder::instance();
+        auto *portForwarder = app()->portForwarder();
         if (pref->useUPnPForWebUIPort())
         {
             portForwarder->setPorts(portForwardingProfile, {port});
@@ -137,7 +138,7 @@ void WebUI::configure()
     }
     else
     {
-        Net::PortForwarder::instance()->removePorts(portForwardingProfile);
+        app()->portForwarder()->removePorts(portForwardingProfile);
 
         delete m_httpServer;
         delete m_webapp;

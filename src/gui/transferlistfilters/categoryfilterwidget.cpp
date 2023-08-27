@@ -32,6 +32,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
+#include "gui/application.h"
 #include "gui/torrentcategorydialog.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
@@ -73,7 +74,7 @@ CategoryFilterWidget::CategoryFilterWidget(QWidget *parent)
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
     m_defaultIndentation = indentation();
-    if (!BitTorrent::Session::instance()->isSubcategoriesEnabled())
+    if (!qBt->btSession()->isSubcategoriesEnabled())
         setIndentation(0);
     setContextMenuPolicy(Qt::CustomContextMenu);
     sortByColumn(0, Qt::AscendingOrder);
@@ -107,32 +108,32 @@ void CategoryFilterWidget::showMenu()
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_s), tr("Add category...")
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"list-add"_s), tr("Add category...")
         , this, &CategoryFilterWidget::addCategory);
 
     const auto selectedRows = selectionModel()->selectedRows();
     if (!selectedRows.empty() && !CategoryFilterModel::isSpecialItem(selectedRows.first()))
     {
-        if (BitTorrent::Session::instance()->isSubcategoriesEnabled())
+        if (qBt->btSession()->isSubcategoriesEnabled())
         {
-            menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_s), tr("Add subcategory...")
+            menu->addAction(qBt->uiThemeManager()->getIcon(u"list-add"_s), tr("Add subcategory...")
                 , this, &CategoryFilterWidget::addSubcategory);
         }
 
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s, u"document-edit"_s), tr("Edit category...")
+        menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-rename"_s, u"document-edit"_s), tr("Edit category...")
             , this, &CategoryFilterWidget::editCategory);
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove category")
+        menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove category")
             , this, &CategoryFilterWidget::removeCategory);
     }
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove unused categories")
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove unused categories")
         , this, &CategoryFilterWidget::removeUnusedCategories);
     menu->addSeparator();
-    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Resume torrents")
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Resume torrents")
         , this, &CategoryFilterWidget::actionResumeTorrentsTriggered);
-    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("Pause torrents")
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("Pause torrents")
         , this, &CategoryFilterWidget::actionPauseTorrentsTriggered);
-    menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_s), tr("Remove torrents")
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"list-remove"_s), tr("Remove torrents")
         , this, &CategoryFilterWidget::actionDeleteTorrentsTriggered);
 
     menu->popup(QCursor::pos());
@@ -140,7 +141,7 @@ void CategoryFilterWidget::showMenu()
 
 void CategoryFilterWidget::callUpdateGeometry()
 {
-    if (!BitTorrent::Session::instance()->isSubcategoriesEnabled())
+    if (!qBt->btSession()->isSubcategoriesEnabled())
         setIndentation(0);
     else
         setIndentation(m_defaultIndentation);
@@ -204,7 +205,7 @@ void CategoryFilterWidget::removeCategory()
     const auto selectedRows = selectionModel()->selectedRows();
     if (!selectedRows.empty() && !CategoryFilterModel::isSpecialItem(selectedRows.first()))
     {
-        BitTorrent::Session::instance()->removeCategory(
+        qBt->btSession()->removeCategory(
                     static_cast<CategoryFilterProxyModel *>(model())->categoryName(selectedRows.first()));
         updateGeometry();
     }
@@ -212,7 +213,7 @@ void CategoryFilterWidget::removeCategory()
 
 void CategoryFilterWidget::removeUnusedCategories()
 {
-    auto *session = BitTorrent::Session::instance();
+    auto *session = qBt->btSession();
     for (const QString &category : asConst(session->categories()))
     {
         if (model()->data(static_cast<CategoryFilterProxyModel *>(model())->index(category), Qt::UserRole) == 0)

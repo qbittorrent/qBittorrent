@@ -49,6 +49,7 @@
 #include "base/torrentfilter.h"
 #include "base/utils/compare.h"
 #include "base/utils/fs.h"
+#include "application.h"
 #include "transferlistfilters/categoryfilterwidget.h"
 #include "transferlistfilters/statusfilterwidget.h"
 #include "transferlistfilters/tagfilterwidget.h"
@@ -90,7 +91,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
 {
     setBackgroundRole(QPalette::Base);
 
-    Preferences *const pref = Preferences::instance();
+    Preferences *const pref = qBt->preferences();
 
     // Construct lists
     auto *mainWidget = new QWidget;
@@ -205,7 +206,7 @@ void TransferListFiltersWidget::trackerEntriesUpdated(const BitTorrent::Torrent 
 void TransferListFiltersWidget::onCategoryFilterStateChanged(bool enabled)
 {
     toggleCategoryFilter(enabled);
-    Preferences::instance()->setCategoryFilterState(enabled);
+    qBt->preferences()->setCategoryFilterState(enabled);
 }
 
 void TransferListFiltersWidget::toggleCategoryFilter(bool enabled)
@@ -217,7 +218,7 @@ void TransferListFiltersWidget::toggleCategoryFilter(bool enabled)
 void TransferListFiltersWidget::onTagFilterStateChanged(bool enabled)
 {
     toggleTagFilter(enabled);
-    Preferences::instance()->setTagFilterState(enabled);
+    qBt->preferences()->setTagFilterState(enabled);
 }
 
 void TransferListFiltersWidget::toggleTagFilter(bool enabled)

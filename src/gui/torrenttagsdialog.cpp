@@ -35,6 +35,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
+#include "application.h"
 #include "autoexpandabledialog.h"
 #include "flowlayout.h"
 
@@ -53,7 +54,7 @@ TorrentTagsDialog::TorrentTagsDialog(const TagSet &initialTags, QWidget *parent)
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
     auto *tagsLayout = new FlowLayout(m_ui->scrollArea);
-    for (const QString &tag : asConst(initialTags.united(BitTorrent::Session::instance()->tags())))
+    for (const QString &tag : asConst(initialTags.united(qBt->btSession()->tags())))
     {
         auto *tagWidget = new QCheckBox(tag);
         if (initialTags.contains(tag))
@@ -105,7 +106,7 @@ void TorrentTagsDialog::addNewTag()
         {
             QMessageBox::warning(this, tr("Invalid tag name"), tr("Tag name '%1' is invalid.").arg(tag));
         }
-        else if (BitTorrent::Session::instance()->tags().contains(tag))
+        else if (qBt->btSession()->tags().contains(tag))
         {
             QMessageBox::warning(this, tr("Tag exists"), tr("Tag name already exists."));
         }

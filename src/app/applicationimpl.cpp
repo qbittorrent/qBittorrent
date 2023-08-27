@@ -66,7 +66,7 @@
 
 #include "base/addtorrentmanager.h"
 #include "base/bittorrent/infohash.h"
-#include "base/bittorrent/session.h"
+#include "base/bittorrent/sessionimpl.h"
 #include "base/bittorrent/torrent.h"
 #include "base/exceptions.h"
 #include "base/global.h"
@@ -263,7 +263,7 @@ ApplicationImpl::ApplicationImpl(int &argc, char **argv)
     QPixmapCache::setCacheLimit(PIXMAP_CACHE_SIZE);
 #endif
 
-    Logger::initInstance();
+    m_logger = new Logger;
 
     const auto portableProfilePath = Path(QCoreApplication::applicationDirPath()) / DEFAULT_PORTABLE_MODE_PROFILE_DIR;
     const bool portableModeEnabled = m_commandLineArgs.profileDir.isEmpty() && portableProfilePath.exists();
@@ -271,24 +271,24 @@ ApplicationImpl::ApplicationImpl(int &argc, char **argv)
     const Path profileDir = portableModeEnabled
         ? portableProfilePath
         : m_commandLineArgs.profileDir;
-    Profile::initInstance(profileDir, m_commandLineArgs.configurationName,
-                        (m_commandLineArgs.relativeFastresumePaths || portableModeEnabled));
+    m_profile = new Profile(profileDir, m_commandLineArgs.configurationName
+            , (m_commandLineArgs.relativeFastresumePaths || portableModeEnabled));
 
-    m_instanceManager = new ApplicationInstanceManager(Profile::instance()->location(SpecialFolder::Config), this);
+    m_instanceManager = new ApplicationInstanceManager(m_profile->location(SpecialFolder::Config), this);
 
-    SettingsStorage::initInstance();
-    Preferences::initInstance();
+    m_settings = new SettingsStorage;
+    m_preferences = new Preferences;
 
-    const bool firstTimeUser = !Preferences::instance()->getAcceptedLegal();
+    const bool firstTimeUser = !m_preferences->getAcceptedLegal();
     if (!firstTimeUser)
     {
-        if (!upgrade())
+        if (!upgrade(m_settings))
             throw RuntimeError(u"Failed migration of old settings"_s); // Not translatable. Translation isn't configured yet.
-        handleChangedDefaults(DefaultPreferencesMode::Legacy);
+        handleChangedDefaults(m_settings, DefaultPreferencesMode::Legacy);
     }
     else
     {
-        handleChangedDefaults(DefaultPreferencesMode::Current);
+        handleChangedDefaults(m_settings, DefaultPreferencesMode::Current);
     }
 
     initializeTranslation();
@@ -308,14 +308,18 @@ ApplicationImpl::ApplicationImpl(int &argc, char **argv)
     }
     else
     {
-        LogMsg(tr("Using config directory: %1").arg(Profile::instance()->location(SpecialFolder::Config).toString()));
+        LogMsg(tr("Using config directory: %1").arg(m_profile->location(SpecialFolder::Config).toString()));
     }
 
     if (isFileLoggerEnabled())
-        m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
+    {
+        m_fileLogger = new FileLogger(m_logger, fileLoggerPath(), isFileLoggerBackup()
+                , fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge()
+                , static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
+    }
 
     if (m_commandLineArgs.webUiPort > 0) // it will be -1 when user did not set any value
-        Preferences::instance()->setWebUiPort(m_commandLineArgs.webUiPort);
+        m_preferences->setWebUiPort(m_commandLineArgs.webUiPort);
 
     if (m_commandLineArgs.torrentingPort > 0) // it will be -1 when user did not set any value
     {
@@ -340,6 +344,11 @@ DesktopIntegration *ApplicationImpl::desktopIntegration()
 MainWindow *ApplicationImpl::mainWindow()
 {
     return m_window;
+}
+
+UIThemeManager *ApplicationImpl::uiThemeManager() const
+{
+    return m_uiThemeManager;
 }
 
 WindowState ApplicationImpl::startUpWindowState() const
@@ -392,9 +401,15 @@ bool ApplicationImpl::isFileLoggerEnabled() const
 void ApplicationImpl::setFileLoggerEnabled(const bool value)
 {
     if (value && !m_fileLogger)
-        m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
+    {
+        m_fileLogger = new FileLogger(m_logger, fileLoggerPath(), isFileLoggerBackup()
+                , fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge()
+                , static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
+    }
     else if (!value)
+    {
         delete m_fileLogger;
+    }
     m_storeFileLoggerEnabled = value;
 }
 
@@ -475,7 +490,7 @@ void ApplicationImpl::processMessage(const QString &message)
 #ifndef DISABLE_GUI
     if (message.isEmpty())
     {
-        if (BitTorrent::Session::instance()->isRestored()) [[likely]]
+        if (m_btSession->isRestored()) [[likely]]
         {
             m_window->activate(); // show UI
         }
@@ -592,9 +607,9 @@ void ApplicationImpl::runExternalProgram(const QString &programTemplate, const B
     QProcess proc;
     proc.setProgram(QString::fromWCharArray(args[0]));
     proc.setArguments(argList);
-    proc.setCreateProcessArgumentsModifier([](QProcess::CreateProcessArguments *args)
+    proc.setCreateProcessArgumentsModifier([isAutoRunConsoleEnabled = m_preferences->isAutoRunConsoleEnabled()](QProcess::CreateProcessArguments *args)
     {
-        if (Preferences::instance()->isAutoRunConsoleEnabled())
+        if (isAutoRunConsoleEnabled)
         {
             args->flags |= CREATE_NEW_CONSOLE;
             args->flags &= ~(CREATE_NO_WINDOW | DETACHED_PROCESS);
@@ -662,7 +677,7 @@ void ApplicationImpl::sendNotificationEmail(const BitTorrent::Torrent *torrent)
         + tr("Thank you for using qBittorrent.") + u'\n';
 
     // Send the notification email
-    const Preferences *pref = Preferences::instance();
+    const Preferences *pref = m_preferences;
     auto *smtp = new Net::Smtp(this);
     smtp->sendMail(pref->getMailNotificationSender(),
                      pref->getMailNotificationEmail(),
@@ -672,7 +687,7 @@ void ApplicationImpl::sendNotificationEmail(const BitTorrent::Torrent *torrent)
 
 void ApplicationImpl::torrentAdded(const BitTorrent::Torrent *torrent) const
 {
-    const Preferences *pref = Preferences::instance();
+    const Preferences *pref = m_preferences;
 
     // AutoRun program
     if (pref->isAutoRunOnTorrentAddedEnabled())
@@ -681,7 +696,7 @@ void ApplicationImpl::torrentAdded(const BitTorrent::Torrent *torrent) const
 
 void ApplicationImpl::torrentFinished(const BitTorrent::Torrent *torrent)
 {
-    const Preferences *pref = Preferences::instance();
+    const Preferences *pref = m_preferences;
 
     // AutoRun program
     if (pref->isAutoRunOnTorrentFinishedEnabled())
@@ -695,7 +710,7 @@ void ApplicationImpl::torrentFinished(const BitTorrent::Torrent *torrent)
     }
 
 #ifndef DISABLE_GUI
-    if (Preferences::instance()->isRecursiveDownloadEnabled())
+    if (m_preferences->isRecursiveDownloadEnabled())
     {
         // Check whether it contains .torrent files
         for (const Path &torrentRelpath : asConst(torrent->filePaths()))
@@ -712,7 +727,7 @@ void ApplicationImpl::torrentFinished(const BitTorrent::Torrent *torrent)
 
 void ApplicationImpl::allTorrentsFinished()
 {
-    Preferences *const pref = Preferences::instance();
+    Preferences *const pref = m_preferences;
     bool isExit = pref->shutdownqBTWhenDownloadsComplete();
     bool isShutdown = pref->shutdownWhenDownloadsComplete();
     bool isSuspend = pref->suspendWhenDownloadsComplete();
@@ -797,20 +812,22 @@ int ApplicationImpl::exec()
     adjustThreadPriority();
 #endif
 
-    Net::ProxyConfigurationManager::initInstance();
-    Net::DownloadManager::initInstance();
-    IconProvider::initInstance();
+    m_proxyConfigurationManager = new Net::ProxyConfigurationManager;
+    m_downloadManager = new Net::DownloadManager;
+    m_searchPluginManager = new SearchPluginManager;
+    m_iconProvider = new IconProvider;
 
-    BitTorrent::Session::initInstance();
+    m_btSession = new BitTorrent::SessionImpl;
+    m_portForwarder = m_btSession->portForwarderImpl();
 #ifndef DISABLE_GUI
-    UIThemeManager::initInstance();
+    m_uiThemeManager = new UIThemeManager;
 
     m_desktopIntegration = new DesktopIntegration;
     m_desktopIntegration->setToolTip(tr("Loading torrents..."));
 #ifndef Q_OS_MACOS
     auto *desktopIntegrationMenu = new QMenu;
     auto *actionExit = new QAction(tr("E&xit"), desktopIntegrationMenu);
-    actionExit->setIcon(UIThemeManager::instance()->getIcon(u"application-exit"_s));
+    actionExit->setIcon(m_uiThemeManager->getIcon(u"application-exit"_s));
     actionExit->setMenuRole(QAction::QuitRole);
     actionExit->setShortcut(Qt::CTRL | Qt::Key_Q);
     connect(actionExit, &QAction::triggered, this, []
@@ -839,30 +856,29 @@ int ApplicationImpl::exec()
         connect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &ApplicationImpl::createStartupProgressDialog);
     }
 #endif
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::restored, this, [this]()
+    connect(m_btSession, &BitTorrent::Session::restored, this, [this]()
     {
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAdded, this, &ApplicationImpl::torrentAdded);
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &ApplicationImpl::torrentFinished);
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &ApplicationImpl::allTorrentsFinished, Qt::QueuedConnection);
+        connect(m_btSession, &BitTorrent::Session::torrentAdded, this, &ApplicationImpl::torrentAdded);
+        connect(m_btSession, &BitTorrent::Session::torrentFinished, this, &ApplicationImpl::torrentFinished);
+        connect(m_btSession, &BitTorrent::Session::allTorrentsFinished, this, &ApplicationImpl::allTorrentsFinished, Qt::QueuedConnection);
 
-        m_addTorrentManager = new AddTorrentManagerImpl(this, BitTorrent::Session::instance(), this);
+        m_addTorrentManager = new AddTorrentManagerImpl(this);
 
-        Net::GeoIPManager::initInstance();
-        TorrentFilesWatcher::initInstance();
+        m_geoIPManager = new Net::GeoIPManager;
+        m_torrentFilesWatcher = new TorrentFilesWatcher;
 
-        new RSS::Session; // create RSS::Session singleton
-        new RSS::AutoDownloader(this); // create RSS::AutoDownloader singleton
+        m_rssSession = new RSS::Session;
+        m_rssAutoDownloader = new RSS::AutoDownloader(this);
 
 #ifndef DISABLE_GUI
-        const auto *btSession = BitTorrent::Session::instance();
-        connect(btSession, &BitTorrent::Session::fullDiskError, this
+        connect(m_btSession, &BitTorrent::Session::fullDiskError, this
                 , [this](const BitTorrent::Torrent *torrent, const QString &msg)
         {
             m_desktopIntegration->showNotification(tr("I/O Error", "i.e: Input/Output Error")
                     , tr("An I/O error occurred for torrent '%1'.\n Reason: %2"
                             , "e.g: An error occurred for torrent 'xxx.avi'.\n Reason: disk is full.").arg(torrent->name(), msg));
         });
-        connect(btSession, &BitTorrent::Session::torrentFinished, this
+        connect(m_btSession, &BitTorrent::Session::torrentFinished, this
                 , [this](const BitTorrent::Torrent *torrent)
         {
             m_desktopIntegration->showNotification(tr("Download completed"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
@@ -892,7 +908,7 @@ int ApplicationImpl::exec()
         m_window = new MainWindow(this, windowState);
         delete m_startupProgressDialog;
 #ifdef Q_OS_WIN
-        auto *pref = Preferences::instance();
+        auto *pref = m_preferences;
         if (!pref->neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet()))
         {
             if (QMessageBox::question(m_window, tr("Torrent file association")
@@ -917,7 +933,7 @@ int ApplicationImpl::exec()
             QCoreApplication::exit(EXIT_FAILURE);
         connect(m_webui, &WebUI::fatalError, this, []() { QCoreApplication::exit(EXIT_FAILURE); });
 
-        const Preferences *pref = Preferences::instance();
+        const Preferences *pref = m_preferences;
 
         const auto scheme = pref->isWebUiHttpsEnabled() ? u"https"_s : u"http"_s;
         const auto url = u"%1://localhost:%2\n"_s.arg(scheme, QString::number(pref->getWebUiPort()));
@@ -973,7 +989,7 @@ void ApplicationImpl::createStartupProgressDialog()
         QApplication::exit();
     });
 
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::startupProgressUpdated, m_startupProgressDialog, &QProgressDialog::setValue);
+    connect(m_btSession, &BitTorrent::Session::startupProgressUpdated, m_startupProgressDialog, &QProgressDialog::setValue);
 
     connect(m_desktopIntegration, &DesktopIntegration::activationRequested, m_startupProgressDialog, [this]()
     {
@@ -1025,7 +1041,7 @@ void ApplicationImpl::askRecursiveTorrentDownloadConfirmation(const BitTorrent::
         }
         else if (button == neverButton)
         {
-            Preferences::instance()->setRecursiveDownloadEnabled(false);
+            m_preferences->setRecursiveDownloadEnabled(false);
         }
     });
     confirmBox->open();
@@ -1033,7 +1049,7 @@ void ApplicationImpl::askRecursiveTorrentDownloadConfirmation(const BitTorrent::
 
 void ApplicationImpl::recursiveTorrentDownload(const BitTorrent::TorrentID &torrentID)
 {
-    const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->getTorrent(torrentID);
+    const BitTorrent::Torrent *torrent = m_btSession->getTorrent(torrentID);
     if (!torrent)
         return;
 
@@ -1084,7 +1100,7 @@ bool ApplicationImpl::event(QEvent *ev)
 
 void ApplicationImpl::initializeTranslation()
 {
-    Preferences *const pref = Preferences::instance();
+    Preferences *const pref = m_preferences;
     // Load translation
     const QString localeStr = pref->getLocale();
 
@@ -1327,23 +1343,24 @@ void ApplicationImpl::cleanup()
     delete m_webui;
 #endif
 
-    delete RSS::AutoDownloader::instance();
-    delete RSS::Session::instance();
+    delete m_rssAutoDownloader;
+    delete m_rssSession;
 
-    TorrentFilesWatcher::freeInstance();
+    delete m_torrentFilesWatcher;
     delete m_addTorrentManager;
-    BitTorrent::Session::freeInstance();
-    Net::GeoIPManager::freeInstance();
-    Net::DownloadManager::freeInstance();
-    Net::ProxyConfigurationManager::freeInstance();
-    Preferences::freeInstance();
-    SettingsStorage::freeInstance();
-    IconProvider::freeInstance();
-    SearchPluginManager::freeInstance();
+    m_portForwarder = nullptr;
+    delete m_btSession;
+    delete m_geoIPManager;
+    delete m_downloadManager;
+    delete m_proxyConfigurationManager;
+    delete m_preferences;
+    delete m_settings;
+    delete m_iconProvider;
+    delete m_searchPluginManager;
     Utils::Fs::removeDirRecursively(Utils::Fs::tempPath());
 
     LogMsg(tr("qBittorrent is now ready to exit"));
-    Logger::freeInstance();
+    delete m_logger;
     delete m_fileLogger;
 
 #ifndef DISABLE_GUI
@@ -1354,11 +1371,11 @@ void ApplicationImpl::cleanup()
 #endif // Q_OS_WIN
         delete m_window;
         delete m_desktopIntegration;
-        UIThemeManager::freeInstance();
+        delete m_uiThemeManager;
     }
 #endif // DISABLE_GUI
 
-    Profile::freeInstance();
+    delete m_profile;
 
     if (m_shutdownAct != ShutdownDialogAction::Exit)
     {
@@ -1370,4 +1387,74 @@ void ApplicationImpl::cleanup()
 AddTorrentManagerImpl *ApplicationImpl::addTorrentManager() const
 {
     return m_addTorrentManager;
+}
+
+BitTorrent::Session *ApplicationImpl::btSession() const
+{
+    return m_btSession;
+}
+
+Net::DownloadManager *ApplicationImpl::downloadManager() const
+{
+    return m_downloadManager;
+}
+
+Net::GeoIPManager *ApplicationImpl::geoIPManager() const
+{
+    return m_geoIPManager;
+}
+
+IconProvider *ApplicationImpl::iconProvider() const
+{
+    return m_iconProvider;
+}
+
+Logger *ApplicationImpl::logger() const
+{
+    return m_logger;
+}
+
+Net::PortForwarder *ApplicationImpl::portForwarder() const
+{
+    return m_portForwarder;
+}
+
+Preferences *ApplicationImpl::preferences() const
+{
+    return m_preferences;
+}
+
+Profile *ApplicationImpl::profile() const
+{
+    return m_profile;
+}
+
+Net::ProxyConfigurationManager *ApplicationImpl::proxyConfigurationManager() const
+{
+    return m_proxyConfigurationManager;
+}
+
+RSS::AutoDownloader *ApplicationImpl::rssAutoDownloader() const
+{
+    return m_rssAutoDownloader;
+}
+
+RSS::Session *ApplicationImpl::rssSession() const
+{
+    return m_rssSession;
+}
+
+SearchPluginManager *ApplicationImpl::searchPluginManager() const
+{
+    return m_searchPluginManager;
+}
+
+SettingsStorage *ApplicationImpl::settings() const
+{
+    return m_settings;
+}
+
+TorrentFilesWatcher *ApplicationImpl::torrentFilesWatcher() const
+{
+    return m_torrentFilesWatcher;
 }

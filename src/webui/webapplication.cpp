@@ -42,6 +42,7 @@
 #include <QUrl>
 
 #include "base/algorithm.h"
+#include "base/application.h"
 #include "base/http/httperror.h"
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -150,9 +151,9 @@ WebApplication::WebApplication(Application *app, QObject *parent)
     declarePublicAPI(u"auth/login"_s);
 
     configure();
-    connect(Preferences::instance(), &Preferences::changed, this, &WebApplication::configure);
+    connect(app->preferences(), &Preferences::changed, this, &WebApplication::configure);
 
-    m_sessionCookieName = Preferences::instance()->getWebAPISessionCookieName();
+    m_sessionCookieName = app->preferences()->getWebAPISessionCookieName();
     if (!isValidCookieName(m_sessionCookieName))
     {
         if (!m_sessionCookieName.isEmpty())
@@ -354,7 +355,7 @@ void WebApplication::doProcessRequest()
 
 void WebApplication::configure()
 {
-    const auto *pref = Preferences::instance();
+    const auto *pref = app()->preferences();
 
     const bool isAltUIUsed = pref->isAltWebUiEnabled();
     const Path rootFolder = (!isAltUIUsed ? Path(WWW_FOLDER) : pref->getWebUiRootFolder());

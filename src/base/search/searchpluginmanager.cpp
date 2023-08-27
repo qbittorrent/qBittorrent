@@ -85,17 +85,13 @@ namespace
     }
 }
 
-QPointer<SearchPluginManager> SearchPluginManager::m_instance = nullptr;
-
-SearchPluginManager::SearchPluginManager()
-    : m_updateUrl(u"https://searchplugins.qbittorrent.org/nova3/engines/"_s)
+SearchPluginManager::SearchPluginManager(QObject *parent)
+    : QObject(parent)
+    , m_updateUrl {u"https://searchplugins.qbittorrent.org/nova3/engines/"_s}
 {
-    Q_ASSERT(!m_instance); // only one instance is allowed
-    m_instance = this;
-
-    connect(Net::ProxyConfigurationManager::instance(), &Net::ProxyConfigurationManager::proxyConfigurationChanged
+    connect(qBt->proxyConfigurationManager(), &Net::ProxyConfigurationManager::proxyConfigurationChanged
             , this, &SearchPluginManager::applyProxySettings);
-    connect(Preferences::instance(), &Preferences::changed
+    connect(qBt->preferences(), &Preferences::changed
             , this, &SearchPluginManager::applyProxySettings);
     applyProxySettings();
 
@@ -106,18 +102,6 @@ SearchPluginManager::SearchPluginManager()
 SearchPluginManager::~SearchPluginManager()
 {
     qDeleteAll(m_plugins);
-}
-
-SearchPluginManager *SearchPluginManager::instance()
-{
-    if (!m_instance)
-        m_instance = new SearchPluginManager;
-    return m_instance;
-}
-
-void SearchPluginManager::freeInstance()
-{
-    delete m_instance;
 }
 
 QStringList SearchPluginManager::allPlugins() const
@@ -189,7 +173,7 @@ void SearchPluginManager::enablePlugin(const QString &name, const bool enabled)
     {
         plugin->enabled = enabled;
         // Save to Hard disk
-        Preferences *const pref = Preferences::instance();
+        Preferences *const pref = qBt->preferences();
         QStringList disabledPlugins = pref->getSearchEngDisabled();
         if (enabled)
             disabledPlugins.removeAll(name);
@@ -215,8 +199,8 @@ void SearchPluginManager::installPlugin(const QString &source)
     if (Net::DownloadManager::hasSupportedScheme(source))
     {
         using namespace Net;
-        DownloadManager::instance()->download(DownloadRequest(source).saveToFile(true)
-                , Preferences::instance()->useProxyForGeneralPurposes()
+        qBt->downloadManager()->download(DownloadRequest(source).saveToFile(true)
+                , qBt->preferences()->useProxyForGeneralPurposes()
                 , this, &SearchPluginManager::pluginDownloadFinished);
     }
     else
@@ -332,8 +316,8 @@ void SearchPluginManager::checkForUpdates()
 {
     // Download version file from update server
     using namespace Net;
-    DownloadManager::instance()->download({m_updateUrl + u"versions.txt"}
-            , Preferences::instance()->useProxyForGeneralPurposes()
+    qBt->downloadManager()->download({m_updateUrl + u"versions.txt"}
+            , qBt->preferences()->useProxyForGeneralPurposes()
             , this, &SearchPluginManager::versionInfoDownloadFinished);
 }
 
@@ -391,12 +375,12 @@ Path SearchPluginManager::engineLocation()
 
 void SearchPluginManager::applyProxySettings()
 {
-    const auto *proxyManager = Net::ProxyConfigurationManager::instance();
+    const auto *proxyManager = qBt->proxyConfigurationManager();
     const Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
 
     // Define environment variables for urllib in search engine plugins
     QString proxyStrHTTP, proxyStrSOCK;
-    if ((proxyConfig.type != Net::ProxyType::None) && Preferences::instance()->useProxyForGeneralPurposes())
+    if ((proxyConfig.type != Net::ProxyType::None) && qBt->preferences()->useProxyForGeneralPurposes())
     {
         switch (proxyConfig.type)
         {
@@ -555,7 +539,7 @@ void SearchPluginManager::update()
                     plugin->supportedCategories << cat;
             }
 
-            const QStringList disabledEngines = Preferences::instance()->getSearchEngDisabled();
+            const QStringList disabledEngines = qBt->preferences()->getSearchEngDisabled();
             plugin->enabled = !disabledEngines.contains(pluginName);
 
             updateIconPath(plugin.get());

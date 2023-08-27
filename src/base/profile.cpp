@@ -29,11 +29,10 @@
 
 #include "profile.h"
 
-#include "base/path.h"
-#include "base/utils/fs.h"
+#include "application.h"
+#include "path.h"
+#include "utils/fs.h"
 #include "profile_p.h"
-
-Profile *Profile::m_instance = nullptr;
 
 Profile::Profile(const Path &rootProfilePath, const QString &configurationName, const bool convertPathsToProfileRelative)
 {
@@ -52,24 +51,7 @@ Profile::Profile(const Path &rootProfilePath, const QString &configurationName, 
         m_pathConverterImpl = std::make_unique<Private::NoConvertConverter>();
 }
 
-void Profile::initInstance(const Path &rootProfilePath, const QString &configurationName,
-    const bool convertPathsToProfileRelative)
-{
-    if (m_instance)
-        return;
-    m_instance = new Profile(rootProfilePath, configurationName, convertPathsToProfileRelative);
-}
-
-void Profile::freeInstance()
-{
-    delete m_instance;
-    m_instance = nullptr;
-}
-
-const Profile *Profile::instance()
-{
-    return m_instance;
-}
+Profile::~Profile() = default;
 
 Path Profile::location(const SpecialFolder folder) const
 {
@@ -132,5 +114,5 @@ Path Profile::fromPortablePath(const Path &portablePath) const
 
 Path specialFolderLocation(const SpecialFolder folder)
 {
-    return Profile::instance()->location(folder);
+    return qBt->profile()->location(folder);
 }

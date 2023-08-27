@@ -41,6 +41,7 @@
 #include "base/preferences.h"
 #include "base/utils/compare.h"
 #include "base/utils/fs.h"
+#include "gui/application.h"
 #include "gui/transferlistwidget.h"
 #include "gui/uithememanager.h"
 
@@ -89,23 +90,23 @@ TrackersFilterWidget::TrackersFilterWidget(QWidget *parent, TransferListWidget *
 {
     auto *allTrackers = new QListWidgetItem(this);
     allTrackers->setData(Qt::DisplayRole, tr("All (0)", "this is for the tracker filter"));
-    allTrackers->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s));
+    allTrackers->setData(Qt::DecorationRole, qBt->uiThemeManager()->getIcon(u"trackers"_s, u"network-server"_s));
     auto *noTracker = new QListWidgetItem(this);
     noTracker->setData(Qt::DisplayRole, tr("Trackerless (0)"));
-    noTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackerless"_s, u"network-server"_s));
+    noTracker->setData(Qt::DecorationRole, qBt->uiThemeManager()->getIcon(u"trackerless"_s, u"network-server"_s));
     auto *errorTracker = new QListWidgetItem(this);
     errorTracker->setData(Qt::DisplayRole, tr("Error (0)"));
-    errorTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
+    errorTracker->setData(Qt::DecorationRole, qBt->uiThemeManager()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
     auto *warningTracker = new QListWidgetItem(this);
     warningTracker->setData(Qt::DisplayRole, tr("Warning (0)"));
-    warningTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-warning"_s, u"dialog-warning"_s));
+    warningTracker->setData(Qt::DecorationRole, qBt->uiThemeManager()->getIcon(u"tracker-warning"_s, u"dialog-warning"_s));
 
     m_trackers[NULL_HOST] = {{}, noTracker};
 
-    handleTorrentsLoaded(BitTorrent::Session::instance()->torrents());
+    handleTorrentsLoaded(qBt->btSession()->torrents());
 
     setCurrentRow(0, QItemSelectionModel::SelectCurrent);
-    toggleFilter(Preferences::instance()->getTrackerFilterState());
+    toggleFilter(qBt->preferences()->getTrackerFilterState());
 }
 
 TrackersFilterWidget::~TrackersFilterWidget()
@@ -192,7 +193,7 @@ void TrackersFilterWidget::addItems(const QString &trackerURL, const QVector<Bit
     else
     {
         trackerItem = new QListWidgetItem();
-        trackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s));
+        trackerItem->setData(Qt::DecorationRole, qBt->uiThemeManager()->getIcon(u"trackers"_s, u"network-server"_s));
 
         const TrackerData trackerData {{}, trackerItem};
         trackersIt = m_trackers.insert(host, trackerData);
@@ -380,8 +381,8 @@ void TrackersFilterWidget::downloadFavicon(const QString &trackerHost, const QSt
     QSet<QString> &downloadingFaviconNode = m_downloadingFavicons[faviconURL];
     if (downloadingFaviconNode.isEmpty())
     {
-        Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(faviconURL).saveToFile(true), Preferences::instance()->useProxyForGeneralPurposes()
+        qBt->downloadManager()->download(
+                Net::DownloadRequest(faviconURL).saveToFile(true), qBt->preferences()->useProxyForGeneralPurposes()
                 , this, &TrackersFilterWidget::handleFavicoDownloadFinished);
     }
 
@@ -456,11 +457,11 @@ void TrackersFilterWidget::showMenu()
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Resume torrents")
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Resume torrents")
         , transferList(), &TransferListWidget::startVisibleTorrents);
-    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("Pause torrents")
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("Pause torrents")
         , transferList(), &TransferListWidget::pauseVisibleTorrents);
-    menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_s), tr("Remove torrents")
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"list-remove"_s), tr("Remove torrents")
         , transferList(), &TransferListWidget::deleteVisibleTorrents);
 
     menu->popup(QCursor::pos());

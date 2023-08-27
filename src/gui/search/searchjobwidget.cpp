@@ -355,7 +355,7 @@ void SearchJobWidget::fillFilterComboBoxes()
 
 void SearchJobWidget::filterSearchResults(const QString &name)
 {
-    const QString pattern = (Preferences::instance()->getRegexAsFilteringPatternForSearchJob()
+    const QString pattern = (app()->preferences()->getRegexAsFilteringPatternForSearchJob()
                     ? name : Utils::String::wildcardToRegexPattern(name));
     m_proxyModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
     updateResultsCount();
@@ -363,7 +363,7 @@ void SearchJobWidget::filterSearchResults(const QString &name)
 
 void SearchJobWidget::showFilterContextMenu()
 {
-    const Preferences *pref = Preferences::instance();
+    const Preferences *pref = app()->preferences();
 
     QMenu *menu = m_lineEditSearchResultsFilter->createStandardContextMenu();
     menu->setAttribute(Qt::WA_DeleteOnClose);
@@ -383,22 +383,22 @@ void SearchJobWidget::contextMenuEvent(QContextMenuEvent *event)
     auto *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"download"_s)
+    menu->addAction(app()->uiThemeManager()->getIcon(u"download"_s)
         , tr("Open download window"), this, [this]() { downloadTorrents(AddTorrentOption::ShowDialog); });
-    menu->addAction(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s)
+    menu->addAction(app()->uiThemeManager()->getIcon(u"downloading"_s, u"download"_s)
         , tr("Download"), this, [this]() { downloadTorrents(AddTorrentOption::SkipDialog); });
     menu->addSeparator();
-    menu->addAction(UIThemeManager::instance()->getIcon(u"application-url"_s), tr("Open description page")
+    menu->addAction(app()->uiThemeManager()->getIcon(u"application-url"_s), tr("Open description page")
         , this, &SearchJobWidget::openTorrentPages);
 
     QMenu *copySubMenu = menu->addMenu(
-        UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("Copy"));
+        app()->uiThemeManager()->getIcon(u"edit-copy"_s), tr("Copy"));
 
-    copySubMenu->addAction(UIThemeManager::instance()->getIcon(u"name"_s, u"edit-copy"_s), tr("Name")
+    copySubMenu->addAction(app()->uiThemeManager()->getIcon(u"name"_s, u"edit-copy"_s), tr("Name")
         , this, &SearchJobWidget::copyTorrentNames);
-    copySubMenu->addAction(UIThemeManager::instance()->getIcon(u"insert-link"_s, u"edit-copy"_s), tr("Download link")
+    copySubMenu->addAction(app()->uiThemeManager()->getIcon(u"insert-link"_s, u"edit-copy"_s), tr("Download link")
         , this, &SearchJobWidget::copyTorrentDownloadLinks);
-    copySubMenu->addAction(UIThemeManager::instance()->getIcon(u"application-url"_s, u"edit-copy"_s), tr("Description page URL")
+    copySubMenu->addAction(app()->uiThemeManager()->getIcon(u"application-url"_s, u"edit-copy"_s), tr("Description page URL")
         , this, &SearchJobWidget::copyTorrentURLs);
 
     menu->popup(event->globalPos());
@@ -430,12 +430,12 @@ SearchJobWidget::NameFilteringMode SearchJobWidget::filteringMode() const
 
 void SearchJobWidget::loadSettings()
 {
-    header()->restoreState(Preferences::instance()->getSearchTabHeaderState());
+    header()->restoreState(app()->preferences()->getSearchTabHeaderState());
 }
 
 void SearchJobWidget::saveSettings() const
 {
-    Preferences::instance()->setSearchTabHeaderState(header()->saveState());
+    app()->preferences()->setSearchTabHeaderState(header()->saveState());
 }
 
 int SearchJobWidget::visibleColumnsCount() const

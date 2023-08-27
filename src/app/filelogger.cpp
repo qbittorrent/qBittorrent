@@ -44,9 +44,9 @@ namespace
     const std::chrono::seconds FLUSH_INTERVAL {2};
 }
 
-FileLogger::FileLogger(const Path &path, const bool backup
-                       , const int maxSize, const bool deleteOld, const int age
-                       , const FileLogAgeType ageType)
+FileLogger::FileLogger(Logger *logger, const Path &path
+        , const bool backup, const int maxSize, const bool deleteOld
+        , const int age, const FileLogAgeType ageType)
     : m_backup(backup)
     , m_maxSize(maxSize)
 {
@@ -58,7 +58,6 @@ FileLogger::FileLogger(const Path &path, const bool backup
     if (deleteOld)
         this->deleteOld(age, ageType);
 
-    const Logger *const logger = Logger::instance();
     for (const Log::Msg &msg : asConst(logger->getMessages()))
         addLogMessage(msg);
 

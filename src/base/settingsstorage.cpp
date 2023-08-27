@@ -35,6 +35,7 @@
 #include <QFile>
 #include <QHash>
 
+#include "application.h"
 #include "global.h"
 #include "logger.h"
 #include "path.h"
@@ -43,10 +44,9 @@
 
 using namespace std::chrono_literals;
 
-SettingsStorage *SettingsStorage::m_instance = nullptr;
-
-SettingsStorage::SettingsStorage()
-    : m_nativeSettingsName {u"qBittorrent"_s}
+SettingsStorage::SettingsStorage(QObject *parent)
+    : QObject(parent)
+    , m_nativeSettingsName {u"qBittorrent"_s}
 {
     readNativeSettings();
 
@@ -58,23 +58,6 @@ SettingsStorage::SettingsStorage()
 SettingsStorage::~SettingsStorage()
 {
     save();
-}
-
-void SettingsStorage::initInstance()
-{
-    if (!m_instance)
-        m_instance = new SettingsStorage;
-}
-
-void SettingsStorage::freeInstance()
-{
-    delete m_instance;
-    m_instance = nullptr;
-}
-
-SettingsStorage *SettingsStorage::instance()
-{
-    return m_instance;
 }
 
 bool SettingsStorage::save()
@@ -119,7 +102,7 @@ void SettingsStorage::readNativeSettings()
     // If serialization operation was not successful we return empty string.
     const auto deserialize = [](QVariantHash &data, const QString &nativeSettingsName) -> Path
     {
-        std::unique_ptr<QSettings> nativeSettings = Profile::instance()->applicationSettings(nativeSettingsName);
+        std::unique_ptr<QSettings> nativeSettings = qBt->profile()->applicationSettings(nativeSettingsName);
         if (nativeSettings->allKeys().isEmpty())
             return {};
 
@@ -163,7 +146,7 @@ void SettingsStorage::readNativeSettings()
 
 bool SettingsStorage::writeNativeSettings() const
 {
-    std::unique_ptr<QSettings> nativeSettings = Profile::instance()->applicationSettings(m_nativeSettingsName + u"_new");
+    std::unique_ptr<QSettings> nativeSettings = qBt->profile()->applicationSettings(m_nativeSettingsName + u"_new");
 
     // QSettings deletes the file before writing it out. This can result in problems
     // if the disk is full or a power outage occurs. Those events might occur

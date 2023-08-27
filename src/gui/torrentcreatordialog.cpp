@@ -40,6 +40,7 @@
 #include "base/global.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
+#include "gui/application.h"
 #include "ui_torrentcreatordialog.h"
 #include "utils.h"
 
@@ -290,7 +291,7 @@ void TorrentCreatorDialog::handleCreationSuccess(const Path &path, const Path &b
         }
         params.useAutoTMM = false;  // otherwise if it is on by default, it will overwrite `savePath` to the default save path
 
-        BitTorrent::Session::instance()->addTorrent(loadResult.value(), params);
+        qBt->btSession()->addTorrent(loadResult.value(), params);
     }
 }
 

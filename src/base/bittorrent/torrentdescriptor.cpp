@@ -40,6 +40,7 @@
 #include <QString>
 #include <QUrl>
 
+#include "base/application.h"
 #include "base/global.h"
 #include "base/preferences.h"
 #include "base/utils/io.h"
@@ -76,7 +77,7 @@ namespace
 
     lt::load_torrent_limits loadTorrentLimits()
     {
-        const auto *pref = Preferences::instance();
+        const auto *pref = qBt->preferences();
 
         lt::load_torrent_limits limits;
         limits.max_buffer_size = static_cast<int>(pref->getTorrentFileSizeLimit());

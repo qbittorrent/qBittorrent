@@ -33,6 +33,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/utils/compare.h"
+#include "application.h"
 #include "flowlayout.h"
 #include "fspathedit.h"
 #include "torrenttagsdialog.h"
@@ -159,7 +160,7 @@ void AddTorrentParamsWidget::populate()
 
     m_ui->categoryComboBox->disconnect(this);
     m_ui->categoryComboBox->clear();
-    QStringList categories = BitTorrent::Session::instance()->categories();
+    QStringList categories = qBt->btSession()->categories();
     std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
     if (!m_addTorrentParams.category.isEmpty())
         m_ui->categoryComboBox->addItem(m_addTorrentParams.category);
@@ -173,7 +174,7 @@ void AddTorrentParamsWidget::populate()
     {
         m_addTorrentParams.category = m_ui->categoryComboBox->currentText();
 
-        const auto *btSession = BitTorrent::Session::instance();
+        const auto *btSession = qBt->btSession();
         const bool useAutoTMM = m_addTorrentParams.useAutoTMM.value_or(!btSession->isAutoTMMDisabledByDefault());
         if (useAutoTMM)
         {
@@ -266,7 +267,7 @@ void AddTorrentParamsWidget::populate()
 
 void AddTorrentParamsWidget::loadCustomSavePathOptions()
 {
-    [[maybe_unused]] const auto *btSession = BitTorrent::Session::instance();
+    [[maybe_unused]] const auto *btSession = qBt->btSession();
     Q_ASSERT(!m_addTorrentParams.useAutoTMM.value_or(!btSession->isAutoTMMDisabledByDefault()));
 
     m_ui->savePathEdit->setSelectedPath(m_addTorrentParams.savePath);
@@ -313,7 +314,7 @@ void AddTorrentParamsWidget::loadCustomDownloadPath()
 
 void AddTorrentParamsWidget::loadCategorySavePathOptions()
 {
-    const auto *btSession = BitTorrent::Session::instance();
+    const auto *btSession = qBt->btSession();
     Q_ASSERT(m_addTorrentParams.useAutoTMM.value_or(!btSession->isAutoTMMDisabledByDefault()));
 
     const auto downloadPathOption = btSession->categoryOptions(m_addTorrentParams.category).downloadPath;
@@ -323,7 +324,7 @@ void AddTorrentParamsWidget::loadCategorySavePathOptions()
 
 void AddTorrentParamsWidget::populateDefaultPaths()
 {
-    const auto *btSession = BitTorrent::Session::instance();
+    const auto *btSession = qBt->btSession();
 
     const Path defaultSavePath = btSession->suggestedSavePath(
             m_ui->categoryComboBox->currentText(), toOptionalBool(m_ui->comboTTM->currentData()));
@@ -334,7 +335,7 @@ void AddTorrentParamsWidget::populateDefaultPaths()
 
 void AddTorrentParamsWidget::populateDefaultDownloadPath()
 {
-    const auto *btSession = BitTorrent::Session::instance();
+    const auto *btSession = qBt->btSession();
 
     const std::optional<bool> useDownloadPath = toOptionalBool(m_ui->useDownloadPathComboBox->currentData());
     if (useDownloadPath.value_or(btSession->isDownloadPathEnabled()))
@@ -363,7 +364,7 @@ void AddTorrentParamsWidget::populateSavePathOptions()
         m_ui->useDownloadPathComboBox->blockSignals(true);
         m_ui->downloadPathEdit->setSelectedPath(Path());
 
-        const auto *btSession = BitTorrent::Session::instance();
+        const auto *btSession = qBt->btSession();
         const bool useAutoTMM = !btSession->isAutoTMMDisabledByDefault();
 
         if (useAutoTMM)

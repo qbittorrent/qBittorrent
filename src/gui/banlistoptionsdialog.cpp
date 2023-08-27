@@ -35,6 +35,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/utils/net.h"
+#include "application.h"
 #include "ui_banlistoptionsdialog.h"
 #include "utils.h"
 
@@ -44,7 +45,7 @@ BanListOptionsDialog::BanListOptionsDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::BanListOptionsDialog)
     , m_storeDialogSize(SETTINGS_KEY(u"Size"_s))
-    , m_model(new QStringListModel(BitTorrent::Session::instance()->bannedIPs(), this))
+    , m_model(new QStringListModel(qBt->btSession()->bannedIPs(), this))
 {
     m_ui->setupUi(this);
 
@@ -80,7 +81,7 @@ void BanListOptionsDialog::on_buttonBox_accepted()
             QModelIndex index = m_sortFilter->index(i, 0);
             IPList << index.data().toString();
         }
-        BitTorrent::Session::instance()->setBannedIPs(IPList);
+        qBt->btSession()->setBannedIPs(IPList);
         QDialog::accept();
     }
     else

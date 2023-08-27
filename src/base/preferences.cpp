@@ -53,6 +53,7 @@
 #endif
 
 #include "algorithm.h"
+#include "application.h"
 #include "global.h"
 #include "path.h"
 #include "profile.h"
@@ -64,13 +65,13 @@ namespace
     template <typename T>
     T value(const QString &key, const T &defaultValue = {})
     {
-        return SettingsStorage::instance()->loadValue(key, defaultValue);
+        return qBt->settings()->loadValue(key, defaultValue);
     }
 
     template <typename T>
     void setValue(const QString &key, const T &value)
     {
-        SettingsStorage::instance()->storeValue(key, value);
+        qBt->settings()->storeValue(key, value);
     }
 
 #ifdef Q_OS_WIN
@@ -81,27 +82,6 @@ namespace
                 : profileName + u'@' + Utils::Fs::toValidFileName(profilePath.data(), {});
     }
 #endif
-}
-
-Preferences *Preferences::m_instance = nullptr;
-
-Preferences::Preferences() = default;
-
-Preferences *Preferences::instance()
-{
-    return m_instance;
-}
-
-void Preferences::initInstance()
-{
-    if (!m_instance)
-        m_instance = new Preferences;
-}
-
-void Preferences::freeInstance()
-{
-    delete m_instance;
-    m_instance = nullptr;
 }
 
 // General options
@@ -413,8 +393,8 @@ void Preferences::setPreventFromSuspendWhenSeeding(const bool b)
 #ifdef Q_OS_WIN
 bool Preferences::WinStartup() const
 {
-    const QString profileName = Profile::instance()->profileName();
-    const Path profilePath = Profile::instance()->rootPath();
+    const QString profileName = qBt->profile()->profileName();
+    const Path profilePath = qBt->profile()->rootPath();
     const QString profileID = makeProfileID(profilePath, profileName);
     const QSettings settings {u"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"_s, QSettings::NativeFormat};
 
@@ -423,13 +403,13 @@ bool Preferences::WinStartup() const
 
 void Preferences::setWinStartup(const bool b)
 {
-    const QString profileName = Profile::instance()->profileName();
-    const Path profilePath = Profile::instance()->rootPath();
+    const QString profileName = qBt->profile()->profileName();
+    const Path profilePath = qBt->profile()->rootPath();
     const QString profileID = makeProfileID(profilePath, profileName);
     QSettings settings {u"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"_s, QSettings::NativeFormat};
     if (b)
     {
-        const QString configuration = Profile::instance()->configurationName();
+        const QString configuration = qBt->profile()->configurationName();
 
         const auto cmd = uR"("%1" "--profile=%2" "--configuration=%3")"_s
                 .arg(Path(qApp->applicationFilePath()).toString(), profilePath.toString(), configuration);
@@ -2133,6 +2113,6 @@ void Preferences::setAddNewTorrentDialogSavePathHistoryLength(const int value)
 
 void Preferences::apply()
 {
-    if (SettingsStorage::instance()->save())
+    if (qBt->settings()->save())
         emit changed();
 }

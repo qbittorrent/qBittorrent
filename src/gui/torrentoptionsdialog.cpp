@@ -42,6 +42,7 @@
 #include "base/global.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
+#include "application.h"
 #include "ui_torrentoptionsdialog.h"
 #include "utils.h"
 
@@ -77,7 +78,7 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     m_ui->downloadPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->downloadPath->setDialogCaption(tr("Choose save path"));
 
-    const auto *session = BitTorrent::Session::instance();
+    const auto *session = qBt->btSession();
     bool allSameUpLimit = true;
     bool allSameDownLimit = true;
     bool allSameRatio = true;
@@ -427,7 +428,7 @@ void TorrentOptionsDialog::accept()
         return;
     }
 
-    auto *session = BitTorrent::Session::instance();
+    auto *session = qBt->btSession();
     for (const BitTorrent::TorrentID &id : asConst(m_torrentIDs))
     {
         BitTorrent::Torrent *torrent = session->getTorrent(id);
@@ -553,9 +554,9 @@ void TorrentOptionsDialog::handleCategoryChanged([[maybe_unused]] const int inde
         }
         else
         {
-            const Path savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->comboCategory->currentText());
+            const Path savePath = qBt->btSession()->categorySavePath(m_ui->comboCategory->currentText());
             m_ui->savePath->setSelectedPath(savePath);
-            const Path downloadPath = BitTorrent::Session::instance()->categoryDownloadPath(m_ui->comboCategory->currentText());
+            const Path downloadPath = qBt->btSession()->categoryDownloadPath(m_ui->comboCategory->currentText());
             m_ui->downloadPath->setSelectedPath(downloadPath);
             m_ui->checkUseDownloadPath->setChecked(!downloadPath.isEmpty());
         }
@@ -594,9 +595,9 @@ void TorrentOptionsDialog::handleTMMChanged()
             }
             else
             {
-                const Path savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->comboCategory->currentText());
+                const Path savePath = qBt->btSession()->categorySavePath(m_ui->comboCategory->currentText());
                 m_ui->savePath->setSelectedPath(savePath);
-                const Path downloadPath = BitTorrent::Session::instance()->categoryDownloadPath(m_ui->comboCategory->currentText());
+                const Path downloadPath = qBt->btSession()->categoryDownloadPath(m_ui->comboCategory->currentText());
                 m_ui->downloadPath->setSelectedPath(downloadPath);
                 m_ui->checkUseDownloadPath->setChecked(!downloadPath.isEmpty());
             }
@@ -615,7 +616,7 @@ void TorrentOptionsDialog::handleUseDownloadPathChanged()
     const bool isChecked = m_ui->checkUseDownloadPath->checkState() == Qt::Checked;
     m_ui->downloadPath->setEnabled(isChecked);
     if (isChecked && m_ui->downloadPath->selectedPath().isEmpty())
-        m_ui->downloadPath->setSelectedPath(BitTorrent::Session::instance()->downloadPath());
+        m_ui->downloadPath->setSelectedPath(qBt->btSession()->downloadPath());
 }
 
 void TorrentOptionsDialog::handleRatioTypeChanged()

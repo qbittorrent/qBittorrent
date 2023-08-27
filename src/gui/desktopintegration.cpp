@@ -39,6 +39,7 @@
 #endif
 
 #include "base/preferences.h"
+#include "application.h"
 #include "uithememanager.h"
 
 #ifdef Q_OS_MACOS
@@ -80,7 +81,7 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     desktopIntegrationInstance = this;
     MacUtils::overrideDockClickHandler(handleDockClicked);
 #else
-    if (Preferences::instance()->systemTrayEnabled())
+    if (qBt->preferences()->systemTrayEnabled())
         createTrayIcon();
 
 #ifdef QBT_USES_DBUS
@@ -92,7 +93,7 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
 #endif
 #endif
 
-    connect(Preferences::instance(), &Preferences::changed, this, &DesktopIntegration::onPreferencesChanged);
+    connect(qBt->preferences(), &Preferences::changed, this, &DesktopIntegration::onPreferencesChanged);
 }
 
 DesktopIntegration::~DesktopIntegration()
@@ -233,7 +234,7 @@ void DesktopIntegration::showNotification(const QString &title, const QString &m
 void DesktopIntegration::onPreferencesChanged()
 {
 #ifndef Q_OS_MACOS
-    if (Preferences::instance()->systemTrayEnabled())
+    if (qBt->preferences()->systemTrayEnabled())
     {
         if (m_systrayIcon)
         {
@@ -282,18 +283,18 @@ void DesktopIntegration::createTrayIcon()
 
 QIcon DesktopIntegration::getSystrayIcon() const
 {
-    const TrayIcon::Style style = Preferences::instance()->trayIconStyle();
+    const TrayIcon::Style style = qBt->preferences()->trayIconStyle();
     switch (style)
     {
     default:
     case TrayIcon::Style::Normal:
-        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray"_s);
+        return qBt->uiThemeManager()->getIcon(u"qbittorrent-tray"_s);
 
     case TrayIcon::Style::MonoDark:
-        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray-dark"_s);
+        return qBt->uiThemeManager()->getIcon(u"qbittorrent-tray-dark"_s);
 
     case TrayIcon::Style::MonoLight:
-        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray-light"_s);
+        return qBt->uiThemeManager()->getIcon(u"qbittorrent-tray-light"_s);
     }
 }
 #endif // Q_OS_MACOS

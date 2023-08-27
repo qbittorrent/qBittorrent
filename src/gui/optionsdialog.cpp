@@ -57,7 +57,6 @@
 #include "base/utils/net.h"
 #include "base/utils/password.h"
 #include "base/utils/random.h"
-#include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
 #include "application.h"
 #include "banlistoptionsdialog.h"
@@ -78,11 +77,10 @@
 
 namespace
 {
-    QStringList translatedWeekdayNames()
+    QStringList translatedWeekdayNames(const QLocale &locale)
     {
         // return translated strings from Monday to Sunday in user selected locale
 
-        const QLocale locale {Preferences::instance()->getLocale()};
         const QDate date {2018, 11, 5};  // Monday
         QStringList ret;
         for (int i = 0; i < 7; ++i)
@@ -127,18 +125,18 @@ OptionsDialog::OptionsDialog(GUIApplication *app, QWidget *parent)
     m_ui->hsplitter->setCollapsible(1, false);
 
     // Main icons
-    m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-desktop"_s));
-    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-bittorrent"_s, u"preferences-system-network"_s));
-    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-connect"_s, u"network-wired"_s));
-    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon(u"download"_s, u"folder-download"_s));
-    m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_s, u"chronometer"_s));
-    m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon(u"application-rss"_s, u"application-rss+xml"_s));
+    m_ui->tabSelection->item(TAB_UI)->setIcon(app->uiThemeManager()->getIcon(u"preferences-desktop"_s));
+    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(app->uiThemeManager()->getIcon(u"preferences-bittorrent"_s, u"preferences-system-network"_s));
+    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(app->uiThemeManager()->getIcon(u"network-connect"_s, u"network-wired"_s));
+    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(app->uiThemeManager()->getIcon(u"download"_s, u"folder-download"_s));
+    m_ui->tabSelection->item(TAB_SPEED)->setIcon(app->uiThemeManager()->getIcon(u"speedometer"_s, u"chronometer"_s));
+    m_ui->tabSelection->item(TAB_RSS)->setIcon(app->uiThemeManager()->getIcon(u"application-rss"_s, u"application-rss+xml"_s));
 #ifdef DISABLE_WEBUI
     m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
 #else
-    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-webui"_s, u"network-server"_s));
+    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(app->uiThemeManager()->getIcon(u"preferences-webui"_s, u"network-server"_s));
 #endif
-    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-advanced"_s, u"preferences-other"_s));
+    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(app->uiThemeManager()->getIcon(u"preferences-advanced"_s, u"preferences-other"_s));
 
     // set uniform size for all icons
     int maxHeight = -1;
@@ -202,14 +200,14 @@ OptionsDialog::~OptionsDialog()
 
 void OptionsDialog::loadBehaviorTabOptions()
 {
-    const auto *pref = Preferences::instance();
-    const auto *session = BitTorrent::Session::instance();
+    const auto *pref = app()->preferences();
+    const auto *session = app()->btSession();
 
     initializeLanguageCombo();
     setLocale(pref->getLocale());
 
-    m_ui->checkUseCustomTheme->setChecked(Preferences::instance()->useCustomUITheme());
-    m_ui->customThemeFilePath->setSelectedPath(Preferences::instance()->customUIThemePath());
+    m_ui->checkUseCustomTheme->setChecked(app()->preferences()->useCustomUITheme());
+    m_ui->customThemeFilePath->setSelectedPath(app()->preferences()->customUIThemePath());
     m_ui->customThemeFilePath->setMode(FileSystemPathEdit::Mode::FileOpen);
     m_ui->customThemeFilePath->setDialogCaption(tr("Select qBittorrent UI Theme file"));
     m_ui->customThemeFilePath->setFileNameFilter(tr("qBittorrent UI Theme file (*.qbtheme config.json)"));
@@ -392,8 +390,8 @@ void OptionsDialog::loadBehaviorTabOptions()
 
 void OptionsDialog::saveBehaviorTabOptions() const
 {
-    auto *pref = Preferences::instance();
-    auto *session = BitTorrent::Session::instance();
+    auto *pref = app()->preferences();
+    auto *session = app()->btSession();
 
     // Load the translation
     const QString locale = getLocale();
@@ -480,8 +478,8 @@ void OptionsDialog::saveBehaviorTabOptions() const
 
 void OptionsDialog::loadDownloadsTabOptions()
 {
-    const auto *pref = Preferences::instance();
-    const auto *session = BitTorrent::Session::instance();
+    const auto *pref = app()->preferences();
+    const auto *session = app()->btSession();
 
     m_ui->checkAdditionDialog->setChecked(pref->isAddNewTorrentDialogEnabled());
     m_ui->checkAdditionDialogFront->setChecked(pref->isAddNewTorrentDialogTopLevel());
@@ -569,7 +567,7 @@ void OptionsDialog::loadDownloadsTabOptions()
     if (!isExportDirFinEmpty)
         m_ui->textExportDirFin->setSelectedPath(session->finishedTorrentExportDirectory());
 
-    auto *watchedFoldersModel = new WatchedFoldersModel(TorrentFilesWatcher::instance(), this);
+    auto *watchedFoldersModel = new WatchedFoldersModel(app()->torrentFilesWatcher(), this);
     connect(watchedFoldersModel, &QAbstractListModel::dataChanged, this, &ThisType::enableApplyButton);
     m_ui->scanFoldersView->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     m_ui->scanFoldersView->setModel(watchedFoldersModel);
@@ -682,8 +680,8 @@ void OptionsDialog::loadDownloadsTabOptions()
 
 void OptionsDialog::saveDownloadsTabOptions() const
 {
-    auto *pref = Preferences::instance();
-    auto *session = BitTorrent::Session::instance();
+    auto *pref = app()->preferences();
+    auto *session = app()->btSession();
 
     pref->setAddNewTorrentDialogEnabled(useAdditionDialog());
     pref->setAddNewTorrentDialogTopLevel(m_ui->checkAdditionDialogFront->isChecked());
@@ -744,11 +742,11 @@ void OptionsDialog::saveDownloadsTabOptions() const
 
 void OptionsDialog::loadConnectionTabOptions()
 {
-    const auto *session = BitTorrent::Session::instance();
+    const auto *session = app()->btSession();
 
     m_ui->comboProtocol->setCurrentIndex(static_cast<int>(session->btProtocol()));
     m_ui->spinPort->setValue(session->port());
-    m_ui->checkUPnP->setChecked(Net::PortForwarder::instance()->isEnabled());
+    m_ui->checkUPnP->setChecked(app()->portForwarder()->isEnabled());
 
     int intValue = session->maxConnections();
     if (intValue > 0)
@@ -816,7 +814,7 @@ void OptionsDialog::loadConnectionTabOptions()
     m_ui->groupI2P->hide();
 #endif
 
-    const auto *proxyConfigManager = Net::ProxyConfigurationManager::instance();
+    const auto *proxyConfigManager = app()->proxyConfigurationManager();
     const Net::ProxyConfiguration proxyConf = proxyConfigManager->proxyConfiguration();
 
     m_ui->comboProxyType->addItem(tr("(None)"), QVariant::fromValue(Net::ProxyType::None));
@@ -834,9 +832,9 @@ void OptionsDialog::loadConnectionTabOptions()
     m_ui->checkProxyHostnameLookup->setChecked(proxyConf.hostnameLookupEnabled);
 
     m_ui->checkProxyPeerConnections->setChecked(session->isProxyPeerConnectionsEnabled());
-    m_ui->checkProxyBitTorrent->setChecked(Preferences::instance()->useProxyForBT());
-    m_ui->checkProxyRSS->setChecked(Preferences::instance()->useProxyForRSS());
-    m_ui->checkProxyMisc->setChecked(Preferences::instance()->useProxyForGeneralPurposes());
+    m_ui->checkProxyBitTorrent->setChecked(app()->preferences()->useProxyForBT());
+    m_ui->checkProxyRSS->setChecked(app()->preferences()->useProxyForRSS());
+    m_ui->checkProxyMisc->setChecked(app()->preferences()->useProxyForGeneralPurposes());
 
     m_ui->checkIPFilter->setChecked(session->isIPFilteringEnabled());
     m_ui->textFilterPath->setDialogCaption(tr("Choose an IP filter file"));
@@ -844,7 +842,7 @@ void OptionsDialog::loadConnectionTabOptions()
     m_ui->textFilterPath->setFileNameFilter(tr("All supported filters") + u" (*.dat *.p2p *.p2b);;.dat (*.dat);;.p2p (*.p2p);;.p2b (*.p2b)");
     m_ui->textFilterPath->setSelectedPath(session->IPFilterFile());
 
-    m_ui->IpFilterRefreshBtn->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
+    m_ui->IpFilterRefreshBtn->setIcon(app()->uiThemeManager()->getIcon(u"view-refresh"_s));
     m_ui->IpFilterRefreshBtn->setEnabled(m_ui->checkIPFilter->isChecked());
     m_ui->checkIpFilterTrackers->setChecked(session->isTrackerFilteringEnabled());
 
@@ -897,11 +895,11 @@ void OptionsDialog::loadConnectionTabOptions()
 
 void OptionsDialog::saveConnectionTabOptions() const
 {
-    auto *session = BitTorrent::Session::instance();
+    auto *session = app()->btSession();
 
     session->setBTProtocol(static_cast<BitTorrent::BTProtocol>(m_ui->comboProtocol->currentIndex()));
     session->setPort(getPort());
-    Net::PortForwarder::instance()->setEnabled(isUPnPEnabled());
+    app()->portForwarder()->setEnabled(isUPnPEnabled());
 
     session->setMaxConnections(getMaxConnections());
     session->setMaxConnectionsPerTorrent(getMaxConnectionsPerTorrent());
@@ -915,7 +913,7 @@ void OptionsDialog::saveConnectionTabOptions() const
     session->setI2PMixedMode(m_ui->checkI2PMixed->isChecked());
 #endif
 
-    auto *proxyConfigManager = Net::ProxyConfigurationManager::instance();
+    auto *proxyConfigManager = app()->proxyConfigurationManager();
     Net::ProxyConfiguration proxyConf;
     proxyConf.type = getProxyType();
     proxyConf.ip = getProxyIp();
@@ -926,9 +924,9 @@ void OptionsDialog::saveConnectionTabOptions() const
     proxyConf.hostnameLookupEnabled = m_ui->checkProxyHostnameLookup->isChecked();
     proxyConfigManager->setProxyConfiguration(proxyConf);
 
-    Preferences::instance()->setUseProxyForBT(m_ui->checkProxyBitTorrent->isChecked());
-    Preferences::instance()->setUseProxyForRSS(m_ui->checkProxyRSS->isChecked());
-    Preferences::instance()->setUseProxyForGeneralPurposes(m_ui->checkProxyMisc->isChecked());
+    app()->preferences()->setUseProxyForBT(m_ui->checkProxyBitTorrent->isChecked());
+    app()->preferences()->setUseProxyForRSS(m_ui->checkProxyRSS->isChecked());
+    app()->preferences()->setUseProxyForGeneralPurposes(m_ui->checkProxyMisc->isChecked());
 
     session->setProxyPeerConnectionsEnabled(m_ui->checkProxyPeerConnections->isChecked());
 
@@ -940,18 +938,18 @@ void OptionsDialog::saveConnectionTabOptions() const
 
 void OptionsDialog::loadSpeedTabOptions()
 {
-    const auto *pref = Preferences::instance();
-    const auto *session = BitTorrent::Session::instance();
+    const auto *pref = app()->preferences();
+    const auto *session = app()->btSession();
 
-    m_ui->labelGlobalRate->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"slow_off"_s, Utils::Gui::mediumIconSize(this).height()));
+    m_ui->labelGlobalRate->setPixmap(app()->uiThemeManager()->getScaledPixmap(u"slow_off"_s, Utils::Gui::mediumIconSize(this).height()));
     m_ui->spinUploadLimit->setValue(session->globalUploadSpeedLimit() / 1024);
     m_ui->spinDownloadLimit->setValue(session->globalDownloadSpeedLimit() / 1024);
 
-    m_ui->labelAltRate->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"slow"_s, Utils::Gui::mediumIconSize(this).height()));
+    m_ui->labelAltRate->setPixmap(app()->uiThemeManager()->getScaledPixmap(u"slow"_s, Utils::Gui::mediumIconSize(this).height()));
     m_ui->spinUploadLimitAlt->setValue(session->altGlobalUploadSpeedLimit() / 1024);
     m_ui->spinDownloadLimitAlt->setValue(session->altGlobalDownloadSpeedLimit() / 1024);
 
-    m_ui->comboBoxScheduleDays->addItems(translatedWeekdayNames());
+    m_ui->comboBoxScheduleDays->addItems(translatedWeekdayNames(QLocale(app()->preferences()->getLocale())));
 
     m_ui->groupBoxSchedule->setChecked(session->isBandwidthSchedulerEnabled());
     m_ui->timeEditScheduleFrom->setTime(pref->getSchedulerStartTime());
@@ -980,8 +978,8 @@ void OptionsDialog::loadSpeedTabOptions()
 
 void OptionsDialog::saveSpeedTabOptions() const
 {
-    auto *pref = Preferences::instance();
-    auto *session = BitTorrent::Session::instance();
+    auto *pref = app()->preferences();
+    auto *session = app()->btSession();
 
     session->setGlobalUploadSpeedLimit(m_ui->spinUploadLimit->value() * 1024);
     session->setGlobalDownloadSpeedLimit(m_ui->spinDownloadLimit->value() * 1024);
@@ -1001,7 +999,7 @@ void OptionsDialog::saveSpeedTabOptions() const
 
 void OptionsDialog::loadBittorrentTabOptions()
 {
-    const auto *session = BitTorrent::Session::instance();
+    const auto *session = app()->btSession();
 
     m_ui->checkDHT->setChecked(session->isDHTEnabled());
     m_ui->checkPeX->setChecked(session->isPeXEnabled());
@@ -1118,7 +1116,7 @@ void OptionsDialog::loadBittorrentTabOptions()
 
 void OptionsDialog::saveBittorrentTabOptions() const
 {
-    auto *session = BitTorrent::Session::instance();
+    auto *session = app()->btSession();
 
     session->setDHTEnabled(isDHTEnabled());
     session->setPeXEnabled(m_ui->checkPeX->isChecked());
@@ -1155,8 +1153,8 @@ void OptionsDialog::saveBittorrentTabOptions() const
 
 void OptionsDialog::loadRSSTabOptions()
 {
-    const auto *rssSession = RSS::Session::instance();
-    const auto *autoDownloader = RSS::AutoDownloader::instance();
+    const auto *rssSession = app()->rssSession();
+    const auto *autoDownloader = app()->rssAutoDownloader();
 
     m_ui->checkRSSEnable->setChecked(rssSession->isProcessingEnabled());
     m_ui->spinRSSRefreshInterval->setValue(rssSession->refreshInterval());
@@ -1181,8 +1179,8 @@ void OptionsDialog::loadRSSTabOptions()
 
 void OptionsDialog::saveRSSTabOptions() const
 {
-    auto *rssSession = RSS::Session::instance();
-    auto *autoDownloader = RSS::AutoDownloader::instance();
+    auto *rssSession = app()->rssSession();
+    auto *autoDownloader = app()->rssAutoDownloader();
 
     rssSession->setProcessingEnabled(m_ui->checkRSSEnable->isChecked());
     rssSession->setRefreshInterval(m_ui->spinRSSRefreshInterval->value());
@@ -1195,7 +1193,7 @@ void OptionsDialog::saveRSSTabOptions() const
 #ifndef DISABLE_WEBUI
 void OptionsDialog::loadWebUITabOptions()
 {
-    const auto *pref = Preferences::instance();
+    const auto *pref = app()->preferences();
 
     m_ui->textWebUIHttpsCert->setMode(FileSystemPathEdit::Mode::FileOpen);
     m_ui->textWebUIHttpsCert->setFileNameFilter(tr("Certificate") + u" (*.cer *.crt *.pem)");
@@ -1288,7 +1286,7 @@ void OptionsDialog::loadWebUITabOptions()
 
 void OptionsDialog::saveWebUITabOptions() const
 {
-    auto *pref = Preferences::instance();
+    auto *pref = app()->preferences();
 
     pref->setWebUiEnabled(isWebUiEnabled());
     pref->setWebUiAddress(m_ui->textWebUiAddress->text());
@@ -1372,7 +1370,7 @@ void OptionsDialog::showEvent(QShowEvent *e)
 
 void OptionsDialog::saveOptions() const
 {
-    auto *pref = Preferences::instance();
+    auto *pref = app()->preferences();
 
     saveBehaviorTabOptions();
     saveDownloadsTabOptions();
@@ -1750,7 +1748,7 @@ Path OptionsDialog::getFinishedTorrentExportDir() const
 
 void OptionsDialog::on_addWatchedFolderButton_clicked()
 {
-    Preferences *const pref = Preferences::instance();
+    Preferences *const pref = app()->preferences();
     const Path dir {QFileDialog::getExistingDirectory(
                 this, tr("Select folder to monitor"), pref->getScanDirsLastPath().parentPath().toString())};
     if (dir.isEmpty())
@@ -1840,7 +1838,7 @@ void OptionsDialog::webUIHttpsCertChanged(const Path &path)
     const bool isCertValid = Utils::Net::isSSLCertificatesValid(readResult.value_or(QByteArray()));
 
     m_ui->textWebUIHttpsCert->setSelectedPath(path);
-    m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
+    m_ui->lblSslCertStatus->setPixmap(app()->uiThemeManager()->getScaledPixmap(
         (isCertValid ? u"security-high"_s : u"security-low"_s), 24));
 }
 
@@ -1850,7 +1848,7 @@ void OptionsDialog::webUIHttpsKeyChanged(const Path &path)
     const bool isKeyValid = Utils::Net::isSSLKeyValid(readResult.value_or(QByteArray()));
 
     m_ui->textWebUIHttpsKey->setSelectedPath(path);
-    m_ui->lblSslKeyStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
+    m_ui->lblSslKeyStatus->setPixmap(app()->uiThemeManager()->getScaledPixmap(
         (isKeyValid ? u"security-high"_s : u"security-low"_s), 24));
 }
 
@@ -1913,7 +1911,7 @@ void OptionsDialog::on_IpFilterRefreshBtn_clicked()
     if (m_refreshingIpFilter) return;
     m_refreshingIpFilter = true;
     // Updating program preferences
-    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    BitTorrent::Session *const session = app()->btSession();
     session->setIPFilteringEnabled(true);
     session->setIPFilterFile({}); // forcing Session reload filter file
     session->setIPFilterFile(getFilter());
@@ -1929,7 +1927,7 @@ void OptionsDialog::handleIPFilterParsed(bool error, int ruleCount)
     else
         QMessageBox::information(this, tr("Successfully refreshed"), tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
     m_refreshingIpFilter = false;
-    disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::IPFilterParsed, this, &OptionsDialog::handleIPFilterParsed);
+    disconnect(app()->btSession(), &BitTorrent::Session::IPFilterParsed, this, &OptionsDialog::handleIPFilterParsed);
 }
 
 bool OptionsDialog::schedTimesOk()

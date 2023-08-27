@@ -55,9 +55,7 @@ public:
         bool recursive = false;
     };
 
-    static void initInstance();
-    static void freeInstance();
-    static TorrentFilesWatcher *instance();
+    explicit TorrentFilesWatcher(QObject *parent = nullptr);
 
     QHash<Path, WatchedFolderOptions> folders() const;
     void setWatchedFolder(const Path &path, const WatchedFolderOptions &options);
@@ -71,16 +69,12 @@ private slots:
     void onTorrentFound(const BitTorrent::TorrentDescriptor &torrentDescr, const BitTorrent::AddTorrentParams &addTorrentParams);
 
 private:
-    explicit TorrentFilesWatcher(QObject *parent = nullptr);
-
     void initWorker();
     void load();
     void loadLegacy();
     void store() const;
 
     void doSetWatchedFolder(const Path &path, const WatchedFolderOptions &options);
-
-    static TorrentFilesWatcher *m_instance;
 
     QHash<Path, WatchedFolderOptions> m_watchedFolders;
 

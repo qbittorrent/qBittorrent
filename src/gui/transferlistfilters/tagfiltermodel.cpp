@@ -34,6 +34,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
+#include "gui/application.h"
 #include "gui/uithememanager.h"
 
 namespace
@@ -92,7 +93,7 @@ TagFilterModel::TagFilterModel(QObject *parent)
     : QAbstractListModel(parent)
 {
     using Session = BitTorrent::Session;
-    const auto *session = Session::instance();
+    const auto *session = qBt->btSession();
 
     connect(session, &Session::tagAdded, this, &TagFilterModel::tagAdded);
     connect(session, &Session::tagRemoved, this, &TagFilterModel::tagRemoved);
@@ -123,7 +124,7 @@ QVariant TagFilterModel::data(const QModelIndex &index, int role) const
     switch (role)
     {
     case Qt::DecorationRole:
-        return UIThemeManager::instance()->getIcon(u"tags"_s, u"inode-directory"_s);
+        return qBt->uiThemeManager()->getIcon(u"tags"_s, u"inode-directory"_s);
     case Qt::DisplayRole:
         return u"%1 (%2)"_s.arg(tagDisplayName(item.tag())).arg(item.torrentsCount());
     case Qt::UserRole:
@@ -268,7 +269,7 @@ void TagFilterModel::populate()
 {
     using Torrent = BitTorrent::Torrent;
 
-    const auto *session = BitTorrent::Session::instance();
+    const auto *session = qBt->btSession();
     const auto torrents = session->torrents();
 
     // All torrents

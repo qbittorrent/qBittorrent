@@ -38,6 +38,7 @@
 #include "base/logger.h"
 #include "base/path.h"
 #include "base/preferences.h"
+#include "application.h"
 #include "uithemecommon.h"
 
 namespace
@@ -50,29 +51,16 @@ namespace
     }
 }
 
-UIThemeManager *UIThemeManager::m_instance = nullptr;
-
-void UIThemeManager::freeInstance()
-{
-    delete m_instance;
-    m_instance = nullptr;
-}
-
-void UIThemeManager::initInstance()
-{
-    if (!m_instance)
-        m_instance = new UIThemeManager;
-}
-
-UIThemeManager::UIThemeManager()
-    : m_useCustomTheme {Preferences::instance()->useCustomUITheme()}
+UIThemeManager::UIThemeManager(QObject *parent)
+    : QObject(parent)
+    , m_useCustomTheme {qBt->preferences()->useCustomUITheme()}
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    , m_useSystemIcons {Preferences::instance()->useSystemIcons()}
+    , m_useSystemIcons {qBt->preferences()->useSystemIcons()}
 #endif
 {
     if (m_useCustomTheme)
     {
-        const Path themePath = Preferences::instance()->customUIThemePath();
+        const Path themePath = qBt->preferences()->customUIThemePath();
 
         if (themePath.hasExtension(u".qbtheme"_s))
         {
@@ -95,11 +83,6 @@ UIThemeManager::UIThemeManager()
         applyPalette();
         applyStyleSheet();
     }
-}
-
-UIThemeManager *UIThemeManager::instance()
-{
-    return m_instance;
 }
 
 void UIThemeManager::applyStyleSheet() const

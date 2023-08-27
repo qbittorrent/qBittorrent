@@ -84,7 +84,7 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 using namespace std::chrono_literals;
 
 void displayVersion();
-bool userAgreesWithLegalNotice();
+bool userAgreesWithLegalNotice(Preferences *pref);
 void displayBadArgMessage(const QString &message);
 void displayErrorMessage(const QString &message);
 
@@ -153,26 +153,26 @@ int main(int argc, char *argv[])
                                  .arg(u"-h (or --help)"_s));
         }
 
-        const bool firstTimeUser = !Preferences::instance()->getAcceptedLegal();
+        const bool firstTimeUser = !app->preferences()->getAcceptedLegal();
         if (firstTimeUser)
         {
 #ifndef DISABLE_GUI
-            if (!userAgreesWithLegalNotice())
+            if (!userAgreesWithLegalNotice(app->preferences()))
                 return EXIT_SUCCESS;
 #elif defined(Q_OS_WIN)
             if (_isatty(_fileno(stdin))
                 && _isatty(_fileno(stdout))
-                && !userAgreesWithLegalNotice())
+                && !userAgreesWithLegalNotice(app->preferences()))
                 return EXIT_SUCCESS;
 #else
             if (!params.shouldDaemonize
                 && isatty(fileno(stdin))
                 && isatty(fileno(stdout))
-                && !userAgreesWithLegalNotice())
+                && !userAgreesWithLegalNotice(app->preferences()))
                 return EXIT_SUCCESS;
 #endif
 
-            setCurrentMigrationVersion();
+            setCurrentMigrationVersion(app->settings());
         }
 
         // Check if qBittorrent is already running for this user
@@ -218,7 +218,7 @@ int main(int argc, char *argv[])
         // On OS X the standard is to not show icons in the menus
         app->setAttribute(Qt::AA_DontShowIconsInMenus);
 #else
-        if (!Preferences::instance()->iconsInMenusEnabled())
+        if (!app->preferences()->iconsInMenusEnabled())
             app->setAttribute(Qt::AA_DontShowIconsInMenus);
 #endif
 
@@ -242,7 +242,7 @@ int main(int argc, char *argv[])
             }
         }
 #elif !defined(DISABLE_GUI)
-        if (!(params.noSplash || Preferences::instance()->isSplashScreenDisabled()))
+        if (!(params.noSplash || app->preferences()->isSplashScreenDisabled()))
             showSplashScreen();
 #endif
 
@@ -324,9 +324,8 @@ void displayErrorMessage(const QString &message)
 #endif
 }
 
-bool userAgreesWithLegalNotice()
+bool userAgreesWithLegalNotice(Preferences *pref)
 {
-    Preferences *const pref = Preferences::instance();
     Q_ASSERT(!pref->getAcceptedLegal());
 
 #ifdef DISABLE_GUI

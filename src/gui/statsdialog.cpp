@@ -37,6 +37,7 @@
 #include "base/global.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
+#include "application.h"
 #include "ui_statsdialog.h"
 #include "utils.h"
 
@@ -52,8 +53,7 @@ StatsDialog::StatsDialog(QWidget *parent)
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &StatsDialog::close);
 
     update();
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated
-            , this, &StatsDialog::update);
+    connect(qBt->btSession(), &BitTorrent::Session::statsUpdated, this, &StatsDialog::update);
 
 #ifdef QBT_USES_LIBTORRENT2
     m_ui->labelCacheHitsText->hide();
@@ -72,8 +72,8 @@ StatsDialog::~StatsDialog()
 
 void StatsDialog::update()
 {
-    const BitTorrent::SessionStatus &ss = BitTorrent::Session::instance()->status();
-    const BitTorrent::CacheStatus &cs = BitTorrent::Session::instance()->cacheStatus();
+    const BitTorrent::SessionStatus &ss = qBt->btSession()->status();
+    const BitTorrent::CacheStatus &cs = qBt->btSession()->cacheStatus();
 
     // All-time DL/UL
     const qint64 atd = ss.allTimeDownload;

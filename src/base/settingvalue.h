@@ -30,6 +30,7 @@
 
 #include <QString>
 
+#include "application.h"
 #include "settingsstorage.h"
 
 // This is a thin/handy wrapper over `SettingsStorage`. Use it when store/load value
@@ -45,7 +46,7 @@ public:
 
     T get(const T &defaultValue = {}) const
     {
-        return SettingsStorage::instance()->loadValue(m_keyName, defaultValue);
+        return qBt->settings()->loadValue(m_keyName, defaultValue);
     }
 
     operator T() const
@@ -55,7 +56,7 @@ public:
 
     SettingValue<T> &operator=(const T &value)
     {
-        SettingsStorage::instance()->storeValue(m_keyName, value);
+        qBt->settings()->storeValue(m_keyName, value);
         return *this;
     }
 

@@ -63,13 +63,9 @@ namespace Net
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(ProxyConfigurationManager)
 
+    public:
         explicit ProxyConfigurationManager(QObject *parent = nullptr);
         ~ProxyConfigurationManager() = default;
-
-    public:
-        static void initInstance();
-        static void freeInstance();
-        static ProxyConfigurationManager *instance();
 
         ProxyConfiguration proxyConfiguration() const;
         void setProxyConfiguration(const ProxyConfiguration &config);

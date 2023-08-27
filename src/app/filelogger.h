@@ -34,6 +34,8 @@
 
 #include "base/path.h"
 
+class Logger;
+
 namespace Log
 {
     struct Msg;
@@ -52,7 +54,7 @@ public:
         YEARS
     };
 
-    FileLogger(const Path &path, bool backup, int maxSize, bool deleteOld, int age, FileLogAgeType ageType);
+    FileLogger(Logger *logger, const Path &path, bool backup, int maxSize, bool deleteOld, int age, FileLogAgeType ageType);
     ~FileLogger();
 
     void changePath(const Path &newPath);

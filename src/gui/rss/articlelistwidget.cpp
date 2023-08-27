@@ -33,6 +33,7 @@
 #include "base/global.h"
 #include "base/rss/rss_article.h"
 #include "base/rss/rss_item.h"
+#include "gui/application.h"
 #include "gui/uithememanager.h"
 
 ArticleListWidget::ArticleListWidget(QWidget *parent)
@@ -102,9 +103,9 @@ void ArticleListWidget::handleArticleRead(RSS::Article *rssArticle)
     auto *item = mapRSSArticle(rssArticle);
     if (!item) return;
 
-    const QBrush foregroundBrush {UIThemeManager::instance()->getColor(u"RSS.ReadArticle"_s)};
+    const QBrush foregroundBrush {qBt->uiThemeManager()->getColor(u"RSS.ReadArticle"_s)};
     item->setData(Qt::ForegroundRole, foregroundBrush);
-    item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"loading"_s, u"sphere"_s));
+    item->setData(Qt::DecorationRole, qBt->uiThemeManager()->getIcon(u"loading"_s, u"sphere"_s));
 
     checkInvariant();
 }
@@ -129,15 +130,15 @@ QListWidgetItem *ArticleListWidget::createItem(RSS::Article *article) const
     item->setData(Qt::UserRole, QVariant::fromValue(article));
     if (article->isRead())
     {
-        const QBrush foregroundBrush {UIThemeManager::instance()->getColor(u"RSS.ReadArticle"_s)};
+        const QBrush foregroundBrush {qBt->uiThemeManager()->getColor(u"RSS.ReadArticle"_s)};
         item->setData(Qt::ForegroundRole, foregroundBrush);
-        item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"loading"_s, u"sphere"_s));
+        item->setData(Qt::DecorationRole, qBt->uiThemeManager()->getIcon(u"loading"_s, u"sphere"_s));
     }
     else
     {
-        const QBrush foregroundBrush {UIThemeManager::instance()->getColor(u"RSS.UnreadArticle"_s)};
+        const QBrush foregroundBrush {qBt->uiThemeManager()->getColor(u"RSS.UnreadArticle"_s)};
         item->setData(Qt::ForegroundRole, foregroundBrush);
-        item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"loading"_s, u"sphere"_s));
+        item->setData(Qt::DecorationRole, qBt->uiThemeManager()->getIcon(u"loading"_s, u"sphere"_s));
     }
 
     return item;

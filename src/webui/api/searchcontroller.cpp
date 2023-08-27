@@ -36,6 +36,7 @@
 #include <QList>
 #include <QSharedPointer>
 
+#include "base/application.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/search/searchhandler.h"
@@ -93,9 +94,9 @@ void SearchController::startAction()
     {
         const QString pluginsLower = plugins[0].toLower();
         if (pluginsLower == u"all")
-            pluginsToUse = SearchPluginManager::instance()->allPlugins();
+            pluginsToUse = app()->searchPluginManager()->allPlugins();
         else if ((pluginsLower == u"enabled") || (pluginsLower == u"multi"))
-            pluginsToUse = SearchPluginManager::instance()->enabledPlugins();
+            pluginsToUse = app()->searchPluginManager()->enabledPlugins();
         else
             pluginsToUse << plugins;
     }
@@ -108,7 +109,7 @@ void SearchController::startAction()
         throw APIError(APIErrorType::Conflict, tr("Unable to create more than %1 concurrent searches.").arg(MAX_CONCURRENT_SEARCHES));
 
     const auto id = generateSearchId();
-    const std::shared_ptr<SearchHandler> searchHandler {SearchPluginManager::instance()->startSearch(pattern, category, pluginsToUse)};
+    const std::shared_ptr<SearchHandler> searchHandler {app()->searchPluginManager()->startSearch(pattern, category, pluginsToUse)};
     QObject::connect(searchHandler.get(), &SearchHandler::searchFinished, this, [id, this]() { m_activeSearches.remove(id); });
     QObject::connect(searchHandler.get(), &SearchHandler::searchFailed, this, [id, this]() { m_activeSearches.remove(id); });
 
@@ -214,7 +215,7 @@ void SearchController::deleteAction()
 
 void SearchController::pluginsAction()
 {
-    const QStringList allPlugins = SearchPluginManager::instance()->allPlugins();
+    const QStringList allPlugins = app()->searchPluginManager()->allPlugins();
     setResult(getPluginsInfo(allPlugins));
 }
 
@@ -224,7 +225,7 @@ void SearchController::installPluginAction()
 
     const QStringList sources = params()[u"sources"_s].split(u'|');
     for (const QString &source : sources)
-        SearchPluginManager::instance()->installPlugin(source);
+        app()->searchPluginManager()->installPlugin(source);
 }
 
 void SearchController::uninstallPluginAction()
@@ -233,7 +234,7 @@ void SearchController::uninstallPluginAction()
 
     const QStringList names = params()[u"names"_s].split(u'|');
     for (const QString &name : names)
-        SearchPluginManager::instance()->uninstallPlugin(name.trimmed());
+        app()->searchPluginManager()->uninstallPlugin(name.trimmed());
 }
 
 void SearchController::enablePluginAction()
@@ -244,12 +245,12 @@ void SearchController::enablePluginAction()
     const bool enable = Utils::String::parseBool(params()[u"enable"_s].trimmed()).value_or(false);
 
     for (const QString &name : names)
-        SearchPluginManager::instance()->enablePlugin(name.trimmed(), enable);
+        app()->searchPluginManager()->enablePlugin(name.trimmed(), enable);
 }
 
 void SearchController::updatePluginsAction()
 {
-    SearchPluginManager *const pluginManager = SearchPluginManager::instance();
+    SearchPluginManager *const pluginManager = app()->searchPluginManager();
 
     connect(pluginManager, &SearchPluginManager::checkForUpdatesFinished, this, &SearchController::checkForUpdatesFinished);
     connect(pluginManager, &SearchPluginManager::checkForUpdatesFailed, this, &SearchController::checkForUpdatesFailed);
@@ -266,7 +267,7 @@ void SearchController::checkForUpdatesFinished(const QHash<QString, PluginVersio
 
     LogMsg(tr("Updating %1 plugins").arg(updateInfo.size()), Log::INFO);
 
-    SearchPluginManager *const pluginManager = SearchPluginManager::instance();
+    SearchPluginManager *const pluginManager = app()->searchPluginManager();
     for (const QString &pluginName : asConst(updateInfo.keys()))
     {
         LogMsg(tr("Updating plugin %1").arg(pluginName), Log::INFO);
@@ -348,7 +349,7 @@ QJsonArray SearchController::getPluginsInfo(const QStringList &plugins) const
 
     for (const QString &plugin : plugins)
     {
-        const PluginInfo *const pluginInfo = SearchPluginManager::instance()->pluginInfo(plugin);
+        const PluginInfo *const pluginInfo = app()->searchPluginManager()->pluginInfo(plugin);
 
         pluginsArray << QJsonObject
         {

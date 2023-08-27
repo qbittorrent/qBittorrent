@@ -33,12 +33,13 @@
 #include <QKeyEvent>
 
 #include "base/global.h"
+#include "application.h"
 #include "uithememanager.h"
 
 LineEdit::LineEdit(QWidget *parent)
     : QLineEdit(parent)
 {
-    auto *action = new QAction(UIThemeManager::instance()->getIcon(u"edit-find"_s), QString());
+    auto *action = new QAction(qBt->uiThemeManager()->getIcon(u"edit-find"_s), QString());
     addAction(action, QLineEdit::LeadingPosition);
 
     setClearButtonEnabled(true);

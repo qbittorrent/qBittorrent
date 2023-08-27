@@ -50,6 +50,7 @@
 #include "base/utils/io.h"
 #include "base/utils/string.h"
 #include "gui/addtorrentparamswidget.h"
+#include "gui/application.h"
 #include "gui/autoexpandabledialog.h"
 #include "gui/torrentcategorydialog.h"
 #include "gui/uithememanager.h"
@@ -86,9 +87,9 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     connect(m_ui->renameRuleBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onRenameRuleBtnClicked);
 
     // Icons
-    m_ui->renameRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_s));
-    m_ui->removeRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s));
-    m_ui->addRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
+    m_ui->renameRuleBtn->setIcon(qBt->uiThemeManager()->getIcon(u"edit-rename"_s));
+    m_ui->removeRuleBtn->setIcon(qBt->uiThemeManager()->getIcon(u"edit-clear"_s, u"list-remove"_s));
+    m_ui->addRuleBtn->setIcon(qBt->uiThemeManager()->getIcon(u"list-add"_s));
 
     // Ui Settings
     m_ui->ruleList->setSortingEnabled(true);
@@ -117,10 +118,10 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
 
     loadSettings();
 
-    connect(RSS::AutoDownloader::instance(), &RSS::AutoDownloader::ruleAdded, this, &AutomatedRssDownloader::handleRuleAdded);
-    connect(RSS::AutoDownloader::instance(), &RSS::AutoDownloader::ruleRenamed, this, &AutomatedRssDownloader::handleRuleRenamed);
-    connect(RSS::AutoDownloader::instance(), &RSS::AutoDownloader::ruleChanged, this, &AutomatedRssDownloader::handleRuleChanged);
-    connect(RSS::AutoDownloader::instance(), &RSS::AutoDownloader::ruleAboutToBeRemoved, this, &AutomatedRssDownloader::handleRuleAboutToBeRemoved);
+    connect(qBt->rssAutoDownloader(), &RSS::AutoDownloader::ruleAdded, this, &AutomatedRssDownloader::handleRuleAdded);
+    connect(qBt->rssAutoDownloader(), &RSS::AutoDownloader::ruleRenamed, this, &AutomatedRssDownloader::handleRuleRenamed);
+    connect(qBt->rssAutoDownloader(), &RSS::AutoDownloader::ruleChanged, this, &AutomatedRssDownloader::handleRuleChanged);
+    connect(qBt->rssAutoDownloader(), &RSS::AutoDownloader::ruleAboutToBeRemoved, this, &AutomatedRssDownloader::handleRuleAboutToBeRemoved);
 
     // Update matching articles when necessary
     connect(m_ui->lineContains, &QLineEdit::textEdited, this, &AutomatedRssDownloader::handleRuleDefinitionChanged);
@@ -151,16 +152,16 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     loadFeedList();
 
     m_ui->ruleList->blockSignals(true);
-    for (const RSS::AutoDownloadRule &rule : asConst(RSS::AutoDownloader::instance()->rules()))
+    for (const RSS::AutoDownloadRule &rule : asConst(qBt->rssAutoDownloader()->rules()))
         createRuleItem(rule);
     m_ui->ruleList->blockSignals(false);
 
     updateRuleDefinitionBox();
 
-    if (RSS::AutoDownloader::instance()->isProcessingEnabled())
+    if (qBt->rssAutoDownloader()->isProcessingEnabled())
         m_ui->labelWarn->hide();
 
-    connect(RSS::AutoDownloader::instance(), &RSS::AutoDownloader::processingStateChanged
+    connect(qBt->rssAutoDownloader(), &RSS::AutoDownloader::processingStateChanged
             , this, &AutomatedRssDownloader::handleProcessingStateChanged);
 }
 
@@ -205,7 +206,7 @@ void AutomatedRssDownloader::loadFeedList()
 {
     const QSignalBlocker feedListSignalBlocker(m_ui->listFeeds);
 
-    for (const auto *feed : asConst(RSS::Session::instance()->feeds()))
+    for (const auto *feed : asConst(qBt->rssSession()->feeds()))
     {
         QListWidgetItem *item = new QListWidgetItem(feed->name(), m_ui->listFeeds);
         item->setData(Qt::UserRole, feed->url());
@@ -239,7 +240,7 @@ void AutomatedRssDownloader::updateFeedList()
 
         for (const QListWidgetItem *ruleItem : asConst(selection))
         {
-            const auto rule = RSS::AutoDownloader::instance()->ruleByName(ruleItem->text());
+            const auto rule = qBt->rssAutoDownloader()->ruleByName(ruleItem->text());
             if (rule.feedURLs().contains(feedURL))
                 anyEnabled = true;
             else
@@ -280,7 +281,7 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
     // Update rule definition box
     if (m_currentRuleItem)
     {
-        m_currentRule = RSS::AutoDownloader::instance()->ruleByName(m_currentRuleItem->text());
+        m_currentRule = qBt->rssAutoDownloader()->ruleByName(m_currentRuleItem->text());
 
         m_ui->prioritySpinBox->setValue(m_currentRule.priority());
 
@@ -362,7 +363,7 @@ void AutomatedRssDownloader::saveEditedRule()
     if (!m_currentRuleItem || !m_ui->ruleScrollArea->isEnabled()) return;
 
     updateEditedRule();
-    RSS::AutoDownloader::instance()->setRule(m_currentRule);
+    qBt->rssAutoDownloader()->setRule(m_currentRule);
 }
 
 void AutomatedRssDownloader::onAddRuleBtnClicked()
@@ -375,14 +376,14 @@ void AutomatedRssDownloader::onAddRuleBtnClicked()
     if (ruleName.isEmpty()) return;
 
     // Check if this rule name already exists
-    if (RSS::AutoDownloader::instance()->hasRule(ruleName))
+    if (qBt->rssAutoDownloader()->hasRule(ruleName))
     {
         QMessageBox::warning(this, tr("Rule name conflict")
                              , tr("A rule with this name already exists, please choose another name."));
         return;
     }
 
-    RSS::AutoDownloader::instance()->setRule(RSS::AutoDownloadRule(ruleName));
+    qBt->rssAutoDownloader()->setRule(RSS::AutoDownloadRule(ruleName));
 }
 
 void AutomatedRssDownloader::onRemoveRuleBtnClicked()
@@ -399,7 +400,7 @@ void AutomatedRssDownloader::onRemoveRuleBtnClicked()
         return;
 
     for (const QListWidgetItem *item : selection)
-        RSS::AutoDownloader::instance()->removeRule(item->text());
+        qBt->rssAutoDownloader()->removeRule(item->text());
 }
 
 void AutomatedRssDownloader::onRenameRuleBtnClicked()
@@ -409,7 +410,7 @@ void AutomatedRssDownloader::onRenameRuleBtnClicked()
 
 void AutomatedRssDownloader::onExportBtnClicked()
 {
-    if (RSS::AutoDownloader::instance()->rules().isEmpty())
+    if (qBt->rssAutoDownloader()->rules().isEmpty())
     {
         QMessageBox::warning(this, tr("Invalid action")
                              , tr("The list is empty, there is nothing to export."));
@@ -441,7 +442,7 @@ void AutomatedRssDownloader::onExportBtnClicked()
             path += EXT_LEGACY;
     }
 
-    const QByteArray rules = RSS::AutoDownloader::instance()->exportRules(format);
+    const QByteArray rules = qBt->rssAutoDownloader()->exportRules(format);
     const nonstd::expected<void, QString> result = Utils::IO::saveToFile(path, rules);
     if (!result)
     {
@@ -478,7 +479,7 @@ void AutomatedRssDownloader::onImportBtnClicked()
 
     try
     {
-        RSS::AutoDownloader::instance()->importRules(readResult.value(), format);
+        qBt->rssAutoDownloader()->importRules(readResult.value(), format);
     }
     catch (const RSS::ParsingError &error)
     {
@@ -492,7 +493,7 @@ void AutomatedRssDownloader::displayRulesListMenu()
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_s), tr("Add new rule...")
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"list-add"_s), tr("Add new rule...")
                     , this, &AutomatedRssDownloader::onAddRuleBtnClicked);
 
     const QList<QListWidgetItem *> selection = m_ui->ruleList->selectedItems();
@@ -501,20 +502,20 @@ void AutomatedRssDownloader::displayRulesListMenu()
     {
         if (selection.count() == 1)
         {
-            menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Delete rule")
+            menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Delete rule")
                             , this, &AutomatedRssDownloader::onRemoveRuleBtnClicked);
             menu->addSeparator();
-            menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Rename rule...")
+            menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-rename"_s), tr("Rename rule...")
                 , this, &AutomatedRssDownloader::renameSelectedRule);
         }
         else
         {
-            menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Delete selected rules")
+            menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Delete selected rules")
                             , this, &AutomatedRssDownloader::onRemoveRuleBtnClicked);
         }
 
         menu->addSeparator();
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s), tr("Clear downloaded episodes...")
+        menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-clear"_s), tr("Clear downloaded episodes...")
             , this, &AutomatedRssDownloader::clearSelectedRuleDownloadedEpisodeList);
     }
 
@@ -535,7 +536,7 @@ void AutomatedRssDownloader::renameSelectedRule()
         newName = newName.trimmed();
         if (newName.isEmpty()) return;
 
-        if (RSS::AutoDownloader::instance()->hasRule(newName))
+        if (qBt->rssAutoDownloader()->hasRule(newName))
         {
             QMessageBox::warning(this, tr("Rule name conflict")
                                  , tr("A rule with this name already exists, please choose another name."));
@@ -543,7 +544,7 @@ void AutomatedRssDownloader::renameSelectedRule()
         else
         {
             // Rename the rule
-            RSS::AutoDownloader::instance()->renameRule(item->text(), newName);
+            qBt->rssAutoDownloader()->renameRule(item->text(), newName);
             return;
         }
     }
@@ -576,7 +577,7 @@ void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feedIte
     {
         RSS::AutoDownloadRule rule = (ruleItem == m_currentRuleItem
                                        ? m_currentRule
-                                       : RSS::AutoDownloader::instance()->ruleByName(ruleItem->text()));
+                                       : qBt->rssAutoDownloader()->ruleByName(ruleItem->text()));
         QStringList affectedFeeds = rule.feedURLs();
         if ((feedItem->checkState() == Qt::Checked) && !affectedFeeds.contains(feedURL))
             affectedFeeds << feedURL;
@@ -585,7 +586,7 @@ void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feedIte
 
         rule.setFeedURLs(affectedFeeds);
         if (ruleItem != m_currentRuleItem)
-            RSS::AutoDownloader::instance()->setRule(rule);
+            qBt->rssAutoDownloader()->setRule(rule);
         else
             m_currentRule = rule;
     }
@@ -601,10 +602,10 @@ void AutomatedRssDownloader::updateMatchingArticles()
     {
         RSS::AutoDownloadRule rule = (ruleItem == m_currentRuleItem
                                        ? m_currentRule
-                                       : RSS::AutoDownloader::instance()->ruleByName(ruleItem->text()));
+                                       : qBt->rssAutoDownloader()->ruleByName(ruleItem->text()));
         for (const QString &feedURL : asConst(rule.feedURLs()))
         {
-            auto *feed = RSS::Session::instance()->feedByURL(feedURL);
+            auto *feed = qBt->rssSession()->feedByURL(feedURL);
             if (!feed) continue; // feed doesn't exist
 
             QStringList matchingArticles;
@@ -644,7 +645,7 @@ void AutomatedRssDownloader::addFeedArticlesToTree(RSS::Feed *feed, const QStrin
         QFont f = treeFeedItem->font(0);
         f.setBold(true);
         treeFeedItem->setFont(0, f);
-        treeFeedItem->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"directory"_s));
+        treeFeedItem->setData(0, Qt::DecorationRole, qBt->uiThemeManager()->getIcon(u"directory"_s));
         treeFeedItem->setData(0, Qt::UserRole, feed->url());
         m_ui->matchingArticlesTree->addTopLevelItem(treeFeedItem);
     }
@@ -739,7 +740,7 @@ void AutomatedRssDownloader::updateMustLineValidity()
     else
     {
         m_ui->lineContains->setStyleSheet(u"QLineEdit { color: #ff0000; }"_s);
-        m_ui->labelMustStat->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s, u"task-attention"_s).pixmap(16, 16));
+        m_ui->labelMustStat->setPixmap(qBt->uiThemeManager()->getIcon(u"dialog-warning"_s, u"task-attention"_s).pixmap(16, 16));
         m_ui->labelMustStat->setToolTip(error);
     }
 }
@@ -786,7 +787,7 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
     else
     {
         m_ui->lineNotContains->setStyleSheet(u"QLineEdit { color: #ff0000; }"_s);
-        m_ui->labelMustNotStat->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s, u"task-attention"_s).pixmap(16, 16));
+        m_ui->labelMustNotStat->setPixmap(qBt->uiThemeManager()->getIcon(u"dialog-warning"_s, u"task-attention"_s).pixmap(16, 16));
         m_ui->labelMustNotStat->setToolTip(error);
     }
 }
@@ -804,7 +805,7 @@ void AutomatedRssDownloader::updateEpisodeFilterValidity()
     else
     {
         m_ui->lineEFilter->setStyleSheet(u"QLineEdit { color: #ff0000; }"_s);
-        m_ui->labelEpFilterStat->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s, u"task-attention"_s).pixmap(16, 16));
+        m_ui->labelEpFilterStat->setPixmap(qBt->uiThemeManager()->getIcon(u"dialog-warning"_s, u"task-attention"_s).pixmap(16, 16));
     }
 }
 
@@ -832,7 +833,7 @@ void AutomatedRssDownloader::handleRuleChanged(const QString &ruleName)
 {
     auto *item = m_itemsByRuleName.value(ruleName);
     if (item && (item != m_currentRuleItem))
-        item->setCheckState(RSS::AutoDownloader::instance()->ruleByName(ruleName).isEnabled() ? Qt::Checked : Qt::Unchecked);
+        item->setCheckState(qBt->rssAutoDownloader()->ruleByName(ruleName).isEnabled() ? Qt::Checked : Qt::Unchecked);
 }
 
 void AutomatedRssDownloader::handleRuleAboutToBeRemoved(const QString &ruleName)

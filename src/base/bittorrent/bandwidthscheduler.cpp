@@ -35,6 +35,7 @@
 #include <QDate>
 #include <QTime>
 
+#include "base/application.h"
 #include "base/preferences.h"
 
 using namespace std::chrono_literals;
@@ -57,7 +58,7 @@ void BandwidthScheduler::start()
 
 bool BandwidthScheduler::isTimeForAlternative() const
 {
-    const Preferences *const pref = Preferences::instance();
+    const Preferences *const pref = qBt->preferences();
 
     QTime start = pref->getSchedulerStartTime();
     QTime end = pref->getSchedulerEndTime();

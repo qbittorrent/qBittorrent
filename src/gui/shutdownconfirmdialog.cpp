@@ -37,6 +37,7 @@
 #include <QStyle>
 
 #include "base/preferences.h"
+#include "application.h"
 #include "ui_shutdownconfirmdialog.h"
 #include "utils.h"
 
@@ -104,7 +105,7 @@ void ShutdownConfirmDialog::updateSeconds()
 
 void ShutdownConfirmDialog::accept()
 {
-    Preferences::instance()->setDontConfirmAutoExit(m_ui->neverShowAgainCheckbox->isChecked());
+    qBt->preferences()->setDontConfirmAutoExit(m_ui->neverShowAgainCheckbox->isChecked());
     QDialog::accept();
 }
 

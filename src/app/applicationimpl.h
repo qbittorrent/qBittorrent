@@ -58,6 +58,7 @@ class FileLogger;
 
 namespace BitTorrent
 {
+    class SessionImpl;
     class Torrent;
 }
 
@@ -129,9 +130,26 @@ public:
     void setProcessMemoryPriority(MemoryPriority priority) override;
 #endif
 
+    AddTorrentManagerImpl *addTorrentManager() const override;
+    BitTorrent::Session *btSession() const override;
+    Net::DownloadManager *downloadManager() const override;
+    Net::GeoIPManager *geoIPManager() const override;
+    IconProvider *iconProvider() const override;
+    Logger *logger() const override;
+    Net::PortForwarder *portForwarder() const override;
+    Preferences *preferences() const override;
+    Profile *profile() const override;
+    Net::ProxyConfigurationManager *proxyConfigurationManager() const override;
+    RSS::AutoDownloader *rssAutoDownloader() const override;
+    RSS::Session *rssSession() const override;
+    SearchPluginManager *searchPluginManager() const override;
+    SettingsStorage *settings() const override;
+    TorrentFilesWatcher *torrentFilesWatcher() const override;
+
 #ifndef DISABLE_GUI
     DesktopIntegration *desktopIntegration() override;
     MainWindow *mainWindow() override;
+    UIThemeManager *uiThemeManager() const override;
 
     WindowState startUpWindowState() const override;
     void setStartUpWindowState(WindowState windowState) override;
@@ -152,8 +170,6 @@ private slots:
 #endif
 
 private:
-    AddTorrentManagerImpl *addTorrentManager() const override;
-
     void initializeTranslation();
     void processParams(const QBtCommandLineParameters &params);
     void runExternalProgram(const QString &programTemplate, const BitTorrent::Torrent *torrent) const;
@@ -209,6 +225,20 @@ private:
 #endif
 
     AddTorrentManagerImpl *m_addTorrentManager = nullptr;
+    BitTorrent::SessionImpl *m_btSession = nullptr;
+    Net::DownloadManager *m_downloadManager = nullptr;
+    Net::GeoIPManager *m_geoIPManager = nullptr;
+    IconProvider *m_iconProvider = nullptr;
+    Logger *m_logger = nullptr;
+    Net::PortForwarder *m_portForwarder = nullptr;
+    Preferences *m_preferences = nullptr;
+    Profile *m_profile = nullptr;
+    Net::ProxyConfigurationManager *m_proxyConfigurationManager = nullptr;
+    RSS::AutoDownloader *m_rssAutoDownloader = nullptr;
+    RSS::Session *m_rssSession = nullptr;
+    SearchPluginManager *m_searchPluginManager = nullptr;
+    SettingsStorage *m_settings = nullptr;
+    TorrentFilesWatcher *m_torrentFilesWatcher = nullptr;
 
 #ifndef DISABLE_GUI
     SettingValue<WindowState> m_startUpWindowState;
@@ -216,6 +246,8 @@ private:
 
     DesktopIntegration *m_desktopIntegration = nullptr;
     MainWindow *m_window = nullptr;
+    UIThemeManager *m_uiThemeManager = nullptr;
+
     QProgressDialog *m_startupProgressDialog = nullptr;
 #endif
 

@@ -36,23 +36,6 @@ IconProvider::IconProvider(QObject *parent)
 {
 }
 
-void IconProvider::initInstance()
-{
-    if (!m_instance)
-        m_instance = new IconProvider;
-}
-
-void IconProvider::freeInstance()
-{
-    delete m_instance;
-    m_instance = nullptr;
-}
-
-IconProvider *IconProvider::instance()
-{
-    return m_instance;
-}
-
 Path IconProvider::getIconPath(const QString &iconId) const
 {
     // there are a few icons not available in svg
@@ -63,5 +46,3 @@ Path IconProvider::getIconPath(const QString &iconId) const
     const Path pathPng {u":/icons/" + iconId + u".png"};
     return pathPng;
 }
-
-IconProvider *IconProvider::m_instance = nullptr;

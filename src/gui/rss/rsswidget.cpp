@@ -61,22 +61,22 @@ RSSWidget::RSSWidget(GUIApplication *app, QWidget *parent)
     m_ui->setupUi(this);
 
     // Icons
-    m_ui->actionCopyFeedURL->setIcon(UIThemeManager::instance()->getIcon(u"edit-copy"_s));
-    m_ui->actionDelete->setIcon(UIThemeManager::instance()->getIcon(u"edit-clear"_s));
-    m_ui->actionDownloadTorrent->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
-    m_ui->actionEditFeedURL->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_s));
-    m_ui->actionMarkItemsRead->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_s, u"mail-mark-read"_s));
-    m_ui->actionNewFolder->setIcon(UIThemeManager::instance()->getIcon(u"folder-new"_s));
-    m_ui->actionNewSubscription->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
-    m_ui->actionOpenNewsURL->setIcon(UIThemeManager::instance()->getIcon(u"application-url"_s));
-    m_ui->actionRename->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_s));
-    m_ui->actionUpdate->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
-    m_ui->actionUpdateAllFeeds->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
+    m_ui->actionCopyFeedURL->setIcon(app->uiThemeManager()->getIcon(u"edit-copy"_s));
+    m_ui->actionDelete->setIcon(app->uiThemeManager()->getIcon(u"edit-clear"_s));
+    m_ui->actionDownloadTorrent->setIcon(app->uiThemeManager()->getIcon(u"downloading"_s, u"download"_s));
+    m_ui->actionEditFeedURL->setIcon(app->uiThemeManager()->getIcon(u"edit-rename"_s));
+    m_ui->actionMarkItemsRead->setIcon(app->uiThemeManager()->getIcon(u"task-complete"_s, u"mail-mark-read"_s));
+    m_ui->actionNewFolder->setIcon(app->uiThemeManager()->getIcon(u"folder-new"_s));
+    m_ui->actionNewSubscription->setIcon(app->uiThemeManager()->getIcon(u"list-add"_s));
+    m_ui->actionOpenNewsURL->setIcon(app->uiThemeManager()->getIcon(u"application-url"_s));
+    m_ui->actionRename->setIcon(app->uiThemeManager()->getIcon(u"edit-rename"_s));
+    m_ui->actionUpdate->setIcon(app->uiThemeManager()->getIcon(u"view-refresh"_s));
+    m_ui->actionUpdateAllFeeds->setIcon(app->uiThemeManager()->getIcon(u"view-refresh"_s));
 #ifndef Q_OS_MACOS
-    m_ui->newFeedButton->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
-    m_ui->markReadButton->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_s, u"mail-mark-read"_s));
-    m_ui->updateAllButton->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
-    m_ui->rssDownloaderBtn->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
+    m_ui->newFeedButton->setIcon(app->uiThemeManager()->getIcon(u"list-add"_s));
+    m_ui->markReadButton->setIcon(app->uiThemeManager()->getIcon(u"task-complete"_s, u"mail-mark-read"_s));
+    m_ui->updateAllButton->setIcon(app->uiThemeManager()->getIcon(u"view-refresh"_s));
+    m_ui->rssDownloaderBtn->setIcon(app->uiThemeManager()->getIcon(u"downloading"_s, u"download"_s));
 #endif
 
     m_articleListWidget = new ArticleListWidget(m_ui->splitterMain);
@@ -120,11 +120,11 @@ RSSWidget::RSSWidget(GUIApplication *app, QWidget *parent)
     connect(m_ui->splitterMain, &QSplitter::splitterMoved, this, &RSSWidget::saveSlidersPosition);
     connect(m_ui->splitterSide, &QSplitter::splitterMoved, this, &RSSWidget::saveSlidersPosition);
 
-    if (RSS::Session::instance()->isProcessingEnabled())
+    if (app->rssSession()->isProcessingEnabled())
         m_ui->labelWarn->hide();
-    connect(RSS::Session::instance(), &RSS::Session::processingStateChanged
+    connect(app->rssSession(), &RSS::Session::processingStateChanged
             , this, &RSSWidget::handleSessionProcessingStateChanged);
-    connect(RSS::Session::instance()->rootFolder(), &RSS::Folder::unreadCountChanged
+    connect(app->rssSession()->rootFolder(), &RSS::Folder::unreadCountChanged
             , this, &RSSWidget::handleUnreadCountChanged);
 }
 
@@ -247,11 +247,11 @@ void RSSWidget::askNewFolder()
     }
     // Consider the case where the user clicked on Unread item
     RSS::Folder *rssDestFolder = ((!destItem || (destItem == m_feedListWidget->stickyUnreadItem()))
-                                  ? RSS::Session::instance()->rootFolder()
+                                  ? app()->rssSession()->rootFolder()
                                   : qobject_cast<RSS::Folder *>(m_feedListWidget->getRSSItem(destItem)));
 
     const QString newFolderPath = RSS::Item::joinPath(rssDestFolder->path(), newName);
-    const nonstd::expected<void, QString> result = RSS::Session::instance()->addFolder(newFolderPath);
+    const nonstd::expected<void, QString> result = app()->rssSession()->addFolder(newFolderPath);
     if (!result)
         QMessageBox::warning(this, u"qBittorrent"_s, result.error(), QMessageBox::Ok);
 
@@ -259,7 +259,7 @@ void RSSWidget::askNewFolder()
     if (destItem && (destItem != m_feedListWidget->stickyUnreadItem()))
         destItem->setExpanded(true);
     // As new RSS items are added synchronously, we can do the following here.
-    m_feedListWidget->setCurrentItem(m_feedListWidget->mapRSSItem(RSS::Session::instance()->itemByPath(newFolderPath)));
+    m_feedListWidget->setCurrentItem(m_feedListWidget->mapRSSItem(app()->rssSession()->itemByPath(newFolderPath)));
 }
 
 // add a stream by a button
@@ -288,12 +288,12 @@ void RSSWidget::on_newFeedButton_clicked()
     }
     // Consider the case where the user clicked on Unread item
     RSS::Folder *rssDestFolder = ((!destItem || (destItem == m_feedListWidget->stickyUnreadItem()))
-                                  ? RSS::Session::instance()->rootFolder()
+                                  ? app()->rssSession()->rootFolder()
                                   : qobject_cast<RSS::Folder *>(m_feedListWidget->getRSSItem(destItem)));
 
     // NOTE: We still add feed using legacy way (with URL as feed name)
     const QString newFeedPath = RSS::Item::joinPath(rssDestFolder->path(), newURL);
-    const nonstd::expected<void, QString> result = RSS::Session::instance()->addFeed(newURL, newFeedPath);
+    const nonstd::expected<void, QString> result = app()->rssSession()->addFeed(newURL, newFeedPath);
     if (!result)
         QMessageBox::warning(this, u"qBittorrent"_s, result.error(), QMessageBox::Ok);
 
@@ -301,7 +301,7 @@ void RSSWidget::on_newFeedButton_clicked()
     if (destItem && (destItem != m_feedListWidget->stickyUnreadItem()))
         destItem->setExpanded(true);
     // As new RSS items are added synchronously, we can do the following here.
-    m_feedListWidget->setCurrentItem(m_feedListWidget->mapRSSItem(RSS::Session::instance()->itemByPath(newFeedPath)));
+    m_feedListWidget->setCurrentItem(m_feedListWidget->mapRSSItem(app()->rssSession()->itemByPath(newFeedPath)));
 }
 
 void RSSWidget::deleteSelectedItems()
@@ -320,12 +320,12 @@ void RSSWidget::deleteSelectedItems()
 
     for (QTreeWidgetItem *item : selectedItems)
         if (item != m_feedListWidget->stickyUnreadItem())
-            RSS::Session::instance()->removeItem(m_feedListWidget->itemPath(item));
+            app()->rssSession()->removeItem(m_feedListWidget->itemPath(item));
 }
 
 void RSSWidget::loadFoldersOpenState()
 {
-    const QStringList openedFolders = Preferences::instance()->getRssOpenFolders();
+    const QStringList openedFolders = app()->preferences()->getRssOpenFolders();
     for (const QString &varPath : openedFolders)
     {
         QTreeWidgetItem *parent = nullptr;
@@ -351,12 +351,12 @@ void RSSWidget::saveFoldersOpenState()
     QStringList openedFolders;
     for (QTreeWidgetItem *item : asConst(m_feedListWidget->getAllOpenedFolders()))
         openedFolders << m_feedListWidget->itemPath(item);
-    Preferences::instance()->setRssOpenFolders(openedFolders);
+    app()->preferences()->setRssOpenFolders(openedFolders);
 }
 
 void RSSWidget::refreshAllFeeds()
 {
-    RSS::Session::instance()->refresh();
+    app()->rssSession()->refresh();
 }
 
 void RSSWidget::downloadSelectedTorrents()
@@ -409,7 +409,7 @@ void RSSWidget::renameSelectedRSSItem()
         // Check if name is already taken
         if (!ok) return;
 
-        const nonstd::expected<void, QString> result = RSS::Session::instance()->moveItem(rssItem, RSS::Item::joinPath(parentPath, newName));
+        const nonstd::expected<void, QString> result = app()->rssSession()->moveItem(rssItem, RSS::Item::joinPath(parentPath, newName));
         if (!result)
         {
             QMessageBox::warning(nullptr, tr("Rename failed"), result.error());
@@ -436,7 +436,7 @@ void RSSWidget::editSelectedRSSFeedURL()
     if (!ok || newURL.isEmpty())
         return;
 
-    const nonstd::expected<void, QString> result = RSS::Session::instance()->setFeedURL(rssFeed, newURL);
+    const nonstd::expected<void, QString> result = app()->rssSession()->setFeedURL(rssFeed, newURL);
     if (!result)
         QMessageBox::warning(this, u"qBittorrent"_s, result.error(), QMessageBox::Ok);
 }
@@ -551,14 +551,14 @@ void RSSWidget::handleCurrentArticleItemChanged(QListWidgetItem *currentItem, QL
 void RSSWidget::saveSlidersPosition()
 {
     // Remember sliders positions
-    Preferences *const pref = Preferences::instance();
+    Preferences *const pref = app()->preferences();
     pref->setRssSideSplitterState(m_ui->splitterSide->saveState());
     pref->setRssMainSplitterState(m_ui->splitterMain->saveState());
 }
 
 void RSSWidget::restoreSlidersPosition()
 {
-    const Preferences *const pref = Preferences::instance();
+    const Preferences *const pref = app()->preferences();
     const QByteArray stateSide = pref->getRssSideSplitterState();
     if (!stateSide.isEmpty())
         m_ui->splitterSide->restoreState(stateSide);
@@ -569,7 +569,7 @@ void RSSWidget::restoreSlidersPosition()
 
 void RSSWidget::updateRefreshInterval(int val) const
 {
-    RSS::Session::instance()->setRefreshInterval(val);
+    app()->rssSession()->setRefreshInterval(val);
 }
 
 void RSSWidget::on_rssDownloaderBtn_clicked()
@@ -586,5 +586,5 @@ void RSSWidget::handleSessionProcessingStateChanged(bool enabled)
 
 void RSSWidget::handleUnreadCountChanged()
 {
-    emit unreadCountUpdated(RSS::Session::instance()->rootFolder()->unreadCount());
+    emit unreadCountUpdated(app()->rssSession()->rootFolder()->unreadCount());
 }

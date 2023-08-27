@@ -51,6 +51,7 @@
 #include "addtorrentparams.h"
 #include "cachestatus.h"
 #include "categoryoptions.h"
+#include "portforwarderimpl.h"
 #include "session.h"
 #include "sessionstatus.h"
 #include "torrentinfo.h"
@@ -132,6 +133,9 @@ namespace BitTorrent
         Q_DISABLE_COPY_MOVE(SessionImpl)
 
     public:
+        explicit SessionImpl(QObject *parent = nullptr);
+        ~SessionImpl() override;
+
         Path savePath() const override;
         void setSavePath(const Path &path) override;
         Path downloadPath() const override;
@@ -454,6 +458,8 @@ namespace BitTorrent
         void addMappedPorts(const QSet<quint16> &ports);
         void removeMappedPorts(const QSet<quint16> &ports);
 
+        PortForwarderImpl *portForwarderImpl() const;
+
         template <typename Func>
         void invoke(Func &&func)
         {
@@ -489,9 +495,6 @@ namespace BitTorrent
             Path pathToRemove;
             DeleteOption deleteOption {};
         };
-
-        explicit SessionImpl(QObject *parent = nullptr);
-        ~SessionImpl();
 
         bool hasPerTorrentRatioLimit() const;
         bool hasPerTorrentSeedingTimeLimit() const;
@@ -773,9 +776,6 @@ namespace BitTorrent
         QTimer *m_wakeupCheckTimer = nullptr;
         QDateTime m_wakeupCheckTimestamp;
 
-        friend void Session::initInstance();
-        friend void Session::freeInstance();
-        friend Session *Session::instance();
-        static Session *m_instance;
+        PortForwarderImpl *m_portForwarderImpl;
     };
 }

@@ -33,6 +33,7 @@
 #include <QStyle>
 
 #include "base/bittorrent/session.h"
+#include "application.h"
 #include "ui_speedlimitdialog.h"
 #include "uithememanager.h"
 #include "utils.h"
@@ -60,16 +61,16 @@ SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
     m_ui->labelGlobalSpeedIcon->setPixmap(
-            UIThemeManager::instance()->getScaledPixmap(u"slow_off"_s, Utils::Gui::mediumIconSize(this).height()));
+            qBt->uiThemeManager()->getScaledPixmap(u"slow_off"_s, Utils::Gui::mediumIconSize(this).height()));
     m_ui->labelAltGlobalSpeedIcon->setPixmap(
-            UIThemeManager::instance()->getScaledPixmap(u"slow"_s, Utils::Gui::mediumIconSize(this).height()));
+            qBt->uiThemeManager()->getScaledPixmap(u"slow"_s, Utils::Gui::mediumIconSize(this).height()));
 
     const auto initSlider = [](QSlider *slider, const int value, const int maximum)
     {
         slider->setMaximum(maximum);
         slider->setValue(value);
     };
-    const auto *session = BitTorrent::Session::instance();
+    const auto *session = qBt->btSession();
     const int uploadVal = std::max(0, (session->globalUploadSpeedLimit() / 1024));
     const int downloadVal = std::max(0, (session->globalDownloadSpeedLimit() / 1024));
     const int maxUpload = std::max(10000, (session->globalUploadSpeedLimit() / 1024));
@@ -123,7 +124,7 @@ SpeedLimitDialog::~SpeedLimitDialog()
 
 void SpeedLimitDialog::accept()
 {
-    auto *session = BitTorrent::Session::instance();
+    auto *session = qBt->btSession();
     const int uploadLimit = (m_ui->spinUploadLimit->value() * 1024);
     if (m_initialValues.uploadSpeedLimit != m_ui->spinUploadLimit->value())
         session->setGlobalUploadSpeedLimit(uploadLimit);

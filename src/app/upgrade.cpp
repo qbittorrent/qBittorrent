@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2019  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
@@ -48,11 +49,10 @@ namespace
     const int MIGRATION_VERSION = 6;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_s;
 
-    void exportWebUIHttpsFiles()
+    void exportWebUIHttpsFiles(SettingsStorage *settingsStorage)
     {
-        const auto migrate = [](const QString &oldKey, const QString &newKey, const Path &savePath)
+        const auto migrate = [settingsStorage](const QString &oldKey, const QString &newKey, const Path &savePath)
         {
-            SettingsStorage *settingsStorage {SettingsStorage::instance()};
             const auto oldData {settingsStorage->loadValue<QByteArray>(oldKey)};
             const auto newData {settingsStorage->loadValue<QString>(newKey)};
             const QString errorMsgFormat {QCoreApplication::translate("Upgrade", "Migrate preferences failed: WebUI https, file: \"%1\", error: \"%2\"")};
@@ -83,12 +83,11 @@ namespace
             , (configPath / Path(u"WebUIPrivateKey.pem"_s)));
     }
 
-    void upgradeTorrentContentLayout()
+    void upgradeTorrentContentLayout(SettingsStorage *settingsStorage)
     {
         const QString oldKey = u"BitTorrent/Session/CreateTorrentSubfolder"_s;
         const QString newKey = u"BitTorrent/Session/TorrentContentLayout"_s;
 
-        SettingsStorage *settingsStorage {SettingsStorage::instance()};
         const auto oldData {settingsStorage->loadValue<QVariant>(oldKey)};
         const auto newData {settingsStorage->loadValue<QString>(newKey)};
 
@@ -103,11 +102,10 @@ namespace
         settingsStorage->removeValue(oldKey);
     }
 
-    void upgradeListenPortSettings()
+    void upgradeListenPortSettings(SettingsStorage *settingsStorage)
     {
         const auto oldKey = u"BitTorrent/Session/UseRandomPort"_s;
         const auto newKey = u"Preferences/Connection/PortRangeMin"_s;
-        auto *settingsStorage = SettingsStorage::instance();
 
         if (settingsStorage->hasKey(oldKey))
         {
@@ -118,9 +116,8 @@ namespace
         }
     }
 
-    void upgradeSchedulerDaysSettings()
+    void upgradeSchedulerDaysSettings(SettingsStorage *settingsStorage)
     {
-        auto *settingsStorage = SettingsStorage::instance();
         const auto key = u"Preferences/Scheduler/days"_s;
         const auto value = settingsStorage->loadValue<QString>(key);
 
@@ -170,9 +167,8 @@ namespace
         }
     }
 
-    void upgradeDNSServiceSettings()
+    void upgradeDNSServiceSettings(SettingsStorage *settingsStorage)
     {
-        auto *settingsStorage = SettingsStorage::instance();
         const auto key = u"Preferences/DynDNS/Service"_s;
         const auto value = settingsStorage->loadValue<QString>(key);
 
@@ -201,9 +197,8 @@ namespace
         }
     }
 
-    void upgradeTrayIconStyleSettings()
+    void upgradeTrayIconStyleSettings(SettingsStorage *settingsStorage)
     {
-        auto *settingsStorage = SettingsStorage::instance();
         const auto key = u"Preferences/Advanced/TrayIconStyle"_s;
         const auto value = settingsStorage->loadValue<QString>(key);
 
@@ -232,7 +227,7 @@ namespace
         }
     }
 
-    void migrateSettingKeys()
+    void migrateSettingKeys(SettingsStorage *settingsStorage)
     {
         struct KeyMapping
         {
@@ -318,7 +313,6 @@ namespace
             {u"State/BannedIPs"_s, u"Preferences/IPFilter/BannedIPs"_s}
         };
 
-        auto *settingsStorage = SettingsStorage::instance();
         for (const KeyMapping &mapping : mappings)
         {
             if (settingsStorage->hasKey(mapping.oldKey))
@@ -330,9 +324,8 @@ namespace
         }
     }
 
-    void migrateProxySettingsEnum()
+    void migrateProxySettingsEnum(SettingsStorage *settingsStorage)
     {
-        auto *settingsStorage = SettingsStorage::instance();
         const auto key = u"Network/Proxy/Type"_s;
         const auto value = settingsStorage->loadValue<QString>(key);
 
@@ -370,9 +363,8 @@ namespace
         }
     }
 
-    void migrateProxySettings()
+    void migrateProxySettings(SettingsStorage *settingsStorage)
     {
-        auto *settingsStorage = SettingsStorage::instance();
         const auto proxyType = settingsStorage->loadValue<QString>(u"Network/Proxy/Type"_s, u"None"_s);
         const auto onlyForTorrents = settingsStorage->loadValue<bool>(u"Network/Proxy/OnlyForTorrents"_s)
                 || (proxyType == u"SOCKS4");
@@ -400,9 +392,8 @@ namespace
     }
 
 #ifdef Q_OS_WIN
-    void migrateMemoryPrioritySettings()
+    void migrateMemoryPrioritySettings(SettingsStorage *settingsStorage)
     {
-        auto *settingsStorage = SettingsStorage::instance();
         const QString oldKey = u"BitTorrent/OSMemoryPriority"_s;
         const QString newKey = u"Application/ProcessMemoryPriority"_s;
 
@@ -414,9 +405,8 @@ namespace
     }
 #endif
 
-    void migrateStartupWindowState()
+    void migrateStartupWindowState(SettingsStorage *settingsStorage)
     {
-        auto *settingsStorage = SettingsStorage::instance();
         if (settingsStorage->hasKey(u"Preferences/General/StartMinimized"_s))
         {
             const auto startMinimized = settingsStorage->loadValue<bool>(u"Preferences/General/StartMinimized"_s);
@@ -426,9 +416,8 @@ namespace
         }
     }
 
-    void migrateChineseLocale()
+    void migrateChineseLocale(SettingsStorage *settingsStorage)
     {
-        auto *settingsStorage = SettingsStorage::instance();
         const auto key = u"Preferences/General/Locale"_s;
         if (settingsStorage->hasKey(key))
         {
@@ -439,7 +428,7 @@ namespace
     }
 }
 
-bool upgrade()
+bool upgrade(SettingsStorage *settingsStorage)
 {
     CachedSettingValue<int> version {MIGRATION_VERSION_KEY, 0};
 
@@ -447,33 +436,33 @@ bool upgrade()
     {
         if (version < 1)
         {
-            exportWebUIHttpsFiles();
-            upgradeTorrentContentLayout();
-            upgradeListenPortSettings();
-            upgradeSchedulerDaysSettings();
-            upgradeDNSServiceSettings();
-            upgradeTrayIconStyleSettings();
+            exportWebUIHttpsFiles(settingsStorage);
+            upgradeTorrentContentLayout(settingsStorage);
+            upgradeListenPortSettings(settingsStorage);
+            upgradeSchedulerDaysSettings(settingsStorage);
+            upgradeDNSServiceSettings(settingsStorage);
+            upgradeTrayIconStyleSettings(settingsStorage);
         }
 
         if (version < 2)
-            migrateSettingKeys();
+            migrateSettingKeys(settingsStorage);
 
         if (version < 3)
-            migrateProxySettingsEnum();
+            migrateProxySettingsEnum(settingsStorage);
 
 #ifdef Q_OS_WIN
         if (version < 4)
-            migrateMemoryPrioritySettings();
+            migrateMemoryPrioritySettings(settingsStorage);
 #endif
 
         if (version < 5)
         {
-            migrateStartupWindowState();
-            migrateChineseLocale();
+            migrateStartupWindowState(settingsStorage);
+            migrateChineseLocale(settingsStorage);
         }
 
         if (version < 6)
-            migrateProxySettings();
+            migrateProxySettings(settingsStorage);
 
         version = MIGRATION_VERSION;
     }
@@ -481,12 +470,12 @@ bool upgrade()
     return true;
 }
 
-void setCurrentMigrationVersion()
+void setCurrentMigrationVersion(SettingsStorage *settingsStorage)
 {
-    SettingsStorage::instance()->storeValue(MIGRATION_VERSION_KEY, MIGRATION_VERSION);
+    settingsStorage->storeValue(MIGRATION_VERSION_KEY, MIGRATION_VERSION);
 }
 
-void handleChangedDefaults(const DefaultPreferencesMode mode)
+void handleChangedDefaults(SettingsStorage *settingsStorage, const DefaultPreferencesMode mode)
 {
     struct DefaultValue
     {
@@ -500,7 +489,6 @@ void handleChangedDefaults(const DefaultPreferencesMode mode)
         {u"BitTorrent/Session/QueueingSystemEnabled"_s, true, false}
     };
 
-    auto *settingsStorage = SettingsStorage::instance();
     for (const DefaultValue &value : changedDefaults)
     {
         if (!settingsStorage->hasKey(value.name))

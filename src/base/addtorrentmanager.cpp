@@ -29,6 +29,7 @@
 
 #include "addtorrentmanager.h"
 
+#include "base/application.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrentdescriptor.h"
@@ -36,18 +37,12 @@
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 
-AddTorrentManager::AddTorrentManager(Application *app, BitTorrent::Session *btSession, QObject *parent)
+AddTorrentManager::AddTorrentManager(Application *app, QObject *parent)
     : ApplicationComponent(app, parent)
-    , m_btSession {btSession}
 {
-    Q_ASSERT(btSession);
-    connect(btSession, &BitTorrent::Session::torrentAdded, this, &AddTorrentManager::onSessionTorrentAdded);
-    connect(btSession, &BitTorrent::Session::addTorrentFailed, this, &AddTorrentManager::onSessionAddTorrentFailed);
-}
-
-BitTorrent::Session *AddTorrentManager::btSession() const
-{
-    return m_btSession;
+    Q_ASSERT(app->btSession());
+    connect(app->btSession(), &BitTorrent::Session::torrentAdded, this, &AddTorrentManager::onSessionTorrentAdded);
+    connect(app->btSession(), &BitTorrent::Session::addTorrentFailed, this, &AddTorrentManager::onSessionAddTorrentFailed);
 }
 
 bool AddTorrentManager::addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params)
@@ -60,9 +55,9 @@ bool AddTorrentManager::addTorrent(const QString &source, const BitTorrent::AddT
     if (Net::DownloadManager::hasSupportedScheme(source))
     {
         LogMsg(tr("Downloading torrent... Source: \"%1\"").arg(source));
-        const auto *pref = Preferences::instance();
+        const auto *pref = app()->preferences();
         // Launch downloader
-        Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(pref->getTorrentFileSizeLimit())
+        app()->downloadManager()->download(Net::DownloadRequest(source).limit(pref->getTorrentFileSizeLimit())
                 , pref->useProxyForGeneralPurposes(), this, &AddTorrentManager::onDownloadFinished);
         m_downloadedTorrents[source] = params;
         return true;
@@ -98,7 +93,7 @@ bool AddTorrentManager::addTorrent(const QString &source, const BitTorrent::AddT
 bool AddTorrentManager::addTorrentToSession(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr
         , const BitTorrent::AddTorrentParams &addTorrentParams)
 {
-    const bool result = btSession()->addTorrent(torrentDescr, addTorrentParams);
+    const bool result = app()->btSession()->addTorrent(torrentDescr, addTorrentParams);
     if (result)
        m_sourcesByInfoHash[torrentDescr.infoHash()] = source;
 
@@ -181,7 +176,7 @@ bool AddTorrentManager::processTorrent(const QString &source, const BitTorrent::
 {
     const BitTorrent::InfoHash infoHash = torrentDescr.infoHash();
 
-    if (BitTorrent::Torrent *torrent = btSession()->findTorrent(infoHash))
+    if (BitTorrent::Torrent *torrent = app()->btSession()->findTorrent(infoHash))
     {
         // a duplicate torrent is being added
 
@@ -192,7 +187,7 @@ bool AddTorrentManager::processTorrent(const QString &source, const BitTorrent::
             torrent->setMetadata(*torrentDescr.info());
         }
 
-        if (!btSession()->isMergeTrackersEnabled())
+        if (!app()->btSession()->isMergeTrackersEnabled())
         {
             handleDuplicateTorrent(source, torrent, tr("Merging of trackers is disabled"));
             return false;

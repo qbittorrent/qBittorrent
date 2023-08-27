@@ -61,7 +61,7 @@ public:
         : QNetworkCookieJar(parent)
     {
         const QDateTime now = QDateTime::currentDateTime();
-        QList<QNetworkCookie> cookies = Preferences::instance()->getNetworkCookies();
+        QList<QNetworkCookie> cookies = qBt->preferences()->getNetworkCookies();
         cookies.removeIf([&now](const QNetworkCookie &cookie)
         {
             return cookie.isSessionCookie() || (cookie.expirationDate() <= now);
@@ -79,7 +79,7 @@ public:
             return cookie.isSessionCookie() || (cookie.expirationDate() <= now);
         });
 
-        Preferences::instance()->setNetworkCookies(cookies);
+        qBt->preferences()->setNetworkCookies(cookies);
     }
 
     using QNetworkCookieJar::allCookies;
@@ -110,8 +110,6 @@ public:
     }
 };
 
-Net::DownloadManager *Net::DownloadManager::m_instance = nullptr;
-
 Net::DownloadManager::DownloadManager(QObject *parent)
     : QObject(parent)
     , m_networkCookieJar {new NetworkCookieJar(this)}
@@ -130,27 +128,10 @@ Net::DownloadManager::DownloadManager(QObject *parent)
         reply->ignoreSslErrors();
     });
 
-    connect(ProxyConfigurationManager::instance(), &ProxyConfigurationManager::proxyConfigurationChanged
+    connect(qBt->proxyConfigurationManager(), &ProxyConfigurationManager::proxyConfigurationChanged
             , this, &DownloadManager::applyProxySettings);
-    connect(Preferences::instance(), &Preferences::changed, this, &DownloadManager::applyProxySettings);
+    connect(qBt->preferences(), &Preferences::changed, this, &DownloadManager::applyProxySettings);
     applyProxySettings();
-}
-
-void Net::DownloadManager::initInstance()
-{
-    if (!m_instance)
-        m_instance = new DownloadManager;
-}
-
-void Net::DownloadManager::freeInstance()
-{
-    delete m_instance;
-    m_instance = nullptr;
-}
-
-Net::DownloadManager *Net::DownloadManager::instance()
-{
-    return m_instance;
 }
 
 Net::DownloadHandler *Net::DownloadManager::download(const DownloadRequest &downloadRequest, const bool useProxy)
@@ -222,7 +203,7 @@ bool Net::DownloadManager::hasSupportedScheme(const QString &url)
 
 void Net::DownloadManager::applyProxySettings()
 {
-    const auto *proxyManager = ProxyConfigurationManager::instance();
+    const auto *proxyManager = qBt->proxyConfigurationManager();
     const ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
 
     m_proxy = QNetworkProxy(QNetworkProxy::NoProxy);

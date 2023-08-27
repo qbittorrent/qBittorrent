@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -40,18 +40,12 @@ namespace Net
         Q_DISABLE_COPY_MOVE(PortForwarder)
 
     public:
-        explicit PortForwarder(QObject *parent = nullptr);
-        ~PortForwarder() override;
-
-        static PortForwarder *instance();
+        using QObject::QObject;
 
         virtual bool isEnabled() const = 0;
         virtual void setEnabled(bool enabled) = 0;
 
         virtual void setPorts(const QString &profile, QSet<quint16> ports) = 0;
         virtual void removePorts(const QString &profile) = 0;
-
-    private:
-        static PortForwarder *m_instance;
     };
 }

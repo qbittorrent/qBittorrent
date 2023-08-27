@@ -31,7 +31,6 @@
 #include <QBitArray>
 
 #include "base/bittorrent/ltqbitarray.h"
-#include "base/net/geoipmanager.h"
 #include "base/unicodestrings.h"
 #include "base/utils/bytearray.h"
 #include "peeraddress.h"
@@ -58,13 +57,6 @@ bool PeerInfo::fromPeX() const
 bool PeerInfo::fromLSD() const
 {
     return static_cast<bool>(m_nativeInfo.source & lt::peer_info::lsd);
-}
-
-QString PeerInfo::country() const
-{
-    if (m_country.isEmpty())
-        m_country = Net::GeoIPManager::instance()->lookup(address().ip);
-    return m_country;
 }
 
 bool PeerInfo::isInteresting() const

@@ -40,10 +40,10 @@
 #include "mainwindow.h"
 #include "raisedmessagebox.h"
 
-GUIAddTorrentManager::GUIAddTorrentManager(GUIApplication *app, BitTorrent::Session *session, QObject *parent)
-    : GUApplicationComponent(app, session, parent)
+GUIAddTorrentManager::GUIAddTorrentManager(GUIApplication *app, QObject *parent)
+    : GUApplicationComponent(app, parent)
 {
-    connect(btSession(), &BitTorrent::Session::metadataDownloaded, this, &GUIAddTorrentManager::onMetadataDownloaded);
+    connect(app->btSession(), &BitTorrent::Session::metadataDownloaded, this, &GUIAddTorrentManager::onMetadataDownloaded);
 }
 
 bool GUIAddTorrentManager::addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params, const AddTorrentOption option)
@@ -53,7 +53,7 @@ bool GUIAddTorrentManager::addTorrent(const QString &source, const BitTorrent::A
     if (source.isEmpty())
         return false;
 
-    const auto *pref = Preferences::instance();
+    const auto *pref = app()->preferences();
 
     if ((option == AddTorrentOption::SkipDialog)
             || ((option == AddTorrentOption::Default) && !pref->isAddNewTorrentDialogEnabled()))
@@ -65,7 +65,7 @@ bool GUIAddTorrentManager::addTorrent(const QString &source, const BitTorrent::A
     {
         LogMsg(tr("Downloading torrent... Source: \"%1\"").arg(source));
         // Launch downloader
-        Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(pref->getTorrentFileSizeLimit())
+        app()->downloadManager()->download(Net::DownloadRequest(source).limit(pref->getTorrentFileSizeLimit())
                 , pref->useProxyForGeneralPurposes(), this, &GUIAddTorrentManager::onDownloadFinished);
         m_downloadedTorrents[source] = params;
 
@@ -145,7 +145,7 @@ bool GUIAddTorrentManager::processTorrent(const QString &source, const BitTorren
     const BitTorrent::InfoHash infoHash = torrentDescr.infoHash();
 
     // Prevent showing the dialog if download is already present
-    if (BitTorrent::Torrent *torrent = btSession()->findTorrent(infoHash))
+    if (BitTorrent::Torrent *torrent = app()->btSession()->findTorrent(infoHash))
     {
         if (hasMetadata)
         {
@@ -159,8 +159,8 @@ bool GUIAddTorrentManager::processTorrent(const QString &source, const BitTorren
         }
         else
         {
-            bool mergeTrackers = btSession()->isMergeTrackersEnabled();
-            if (Preferences::instance()->confirmMergeTrackers())
+            bool mergeTrackers = app()->btSession()->isMergeTrackersEnabled();
+            if (app()->preferences()->confirmMergeTrackers())
             {
                 const QMessageBox::StandardButton btn = RaisedMessageBox::question(app()->mainWindow(), tr("Torrent is already present")
                         , tr("Torrent '%1' is already in the transfer list. Do you want to merge trackers from new source?").arg(torrent->name())
@@ -179,7 +179,7 @@ bool GUIAddTorrentManager::processTorrent(const QString &source, const BitTorren
     }
 
     if (!hasMetadata)
-        btSession()->downloadMetadata(torrentDescr);
+        app()->btSession()->downloadMetadata(torrentDescr);
 
 #ifndef Q_OS_MACOS
     auto *dlg = new AddNewTorrentDialog(torrentDescr, params, app()->mainWindow());

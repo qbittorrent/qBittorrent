@@ -55,9 +55,8 @@ class AddTorrentManager : public ApplicationComponent<QObject>
     Q_DISABLE_COPY_MOVE(AddTorrentManager)
 
 public:
-    AddTorrentManager(Application *app, BitTorrent::Session *btSession, QObject *parent = nullptr);
+    explicit AddTorrentManager(Application *app, QObject *parent = nullptr);
 
-    BitTorrent::Session *btSession() const;
     bool addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params = {});
 
 signals:
@@ -79,7 +78,6 @@ private:
     bool processTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr
             , const BitTorrent::AddTorrentParams &addTorrentParams);
 
-    BitTorrent::Session *m_btSession = nullptr;
     QHash<QString, BitTorrent::AddTorrentParams> m_downloadedTorrents;
     QHash<BitTorrent::InfoHash, QString> m_sourcesByInfoHash;
     QHash<QString, std::shared_ptr<TorrentFileGuard>> m_guardedTorrentFiles;

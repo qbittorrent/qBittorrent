@@ -31,6 +31,7 @@
 #include <QJsonObject>
 #include <QVector>
 
+#include "base/application.h"
 #include "base/bittorrent/peeraddress.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
@@ -61,7 +62,7 @@ const QString KEY_TRANSFER_CONNECTION_STATUS = u"connection_status"_s;
 //   - "connection_status": Connection status
 void TransferController::infoAction()
 {
-    const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
+    const BitTorrent::SessionStatus &sessionStatus = app()->btSession()->status();
 
     QJsonObject dict;
 
@@ -69,10 +70,10 @@ void TransferController::infoAction()
     dict[KEY_TRANSFER_DLDATA] = static_cast<qint64>(sessionStatus.totalPayloadDownload);
     dict[KEY_TRANSFER_UPSPEED] = static_cast<qint64>(sessionStatus.payloadUploadRate);
     dict[KEY_TRANSFER_UPDATA] = static_cast<qint64>(sessionStatus.totalPayloadUpload);
-    dict[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadSpeedLimit();
-    dict[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
+    dict[KEY_TRANSFER_DLRATELIMIT] = app()->btSession()->downloadSpeedLimit();
+    dict[KEY_TRANSFER_UPRATELIMIT] = app()->btSession()->uploadSpeedLimit();
     dict[KEY_TRANSFER_DHT_NODES] = static_cast<qint64>(sessionStatus.dhtNodes);
-    if (!BitTorrent::Session::instance()->isListening())
+    if (!app()->btSession()->isListening())
         dict[KEY_TRANSFER_CONNECTION_STATUS] = u"disconnected"_s;
     else
         dict[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.hasIncomingConnections ? u"connected"_s : u"firewalled"_s;
@@ -82,12 +83,12 @@ void TransferController::infoAction()
 
 void TransferController::uploadLimitAction()
 {
-    setResult(QString::number(BitTorrent::Session::instance()->uploadSpeedLimit()));
+    setResult(QString::number(app()->btSession()->uploadSpeedLimit()));
 }
 
 void TransferController::downloadLimitAction()
 {
-    setResult(QString::number(BitTorrent::Session::instance()->downloadSpeedLimit()));
+    setResult(QString::number(app()->btSession()->downloadSpeedLimit()));
 }
 
 void TransferController::setUploadLimitAction()
@@ -96,7 +97,7 @@ void TransferController::setUploadLimitAction()
     qlonglong limit = params()[u"limit"_s].toLongLong();
     if (limit == 0) limit = -1;
 
-    BitTorrent::Session::instance()->setUploadSpeedLimit(limit);
+    app()->btSession()->setUploadSpeedLimit(limit);
 }
 
 void TransferController::setDownloadLimitAction()
@@ -105,18 +106,18 @@ void TransferController::setDownloadLimitAction()
     qlonglong limit = params()[u"limit"_s].toLongLong();
     if (limit == 0) limit = -1;
 
-    BitTorrent::Session::instance()->setDownloadSpeedLimit(limit);
+    app()->btSession()->setDownloadSpeedLimit(limit);
 }
 
 void TransferController::toggleSpeedLimitsModeAction()
 {
-    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    BitTorrent::Session *const session = app()->btSession();
     session->setAltGlobalSpeedLimitEnabled(!session->isAltGlobalSpeedLimitEnabled());
 }
 
 void TransferController::speedLimitsModeAction()
 {
-    setResult(QString::number(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled()));
+    setResult(QString::number(app()->btSession()->isAltGlobalSpeedLimitEnabled()));
 }
 
 void TransferController::setSpeedLimitsModeAction()
@@ -128,7 +129,7 @@ void TransferController::setSpeedLimitsModeAction()
         throw APIError(APIErrorType::BadParams, tr("'mode': invalid argument"));
 
     // Any non-zero values are considered as alternative mode
-    BitTorrent::Session::instance()->setAltGlobalSpeedLimitEnabled(mode != 0);
+    app()->btSession()->setAltGlobalSpeedLimitEnabled(mode != 0);
 }
 
 void TransferController::banPeersAction()
@@ -140,6 +141,6 @@ void TransferController::banPeersAction()
     {
         const BitTorrent::PeerAddress addr = BitTorrent::PeerAddress::parse(peer.trimmed());
         if (!addr.ip.isNull())
-            BitTorrent::Session::instance()->banIP(addr.ip.toString());
+            app()->btSession()->banIP(addr.ip.toString());
     }
 }

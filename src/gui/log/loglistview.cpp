@@ -39,6 +39,7 @@
 #include <QStyledItemDelegate>
 
 #include "base/global.h"
+#include "gui/application.h"
 #include "logmodel.h"
 
 #ifdef Q_OS_WIN
@@ -67,7 +68,7 @@ namespace
         explicit LogItemDelegate(QObject *parent = nullptr)
             : QStyledItemDelegate(parent)
 #ifdef Q_OS_WIN
-            , m_useCustomUITheme(Preferences::instance()->useCustomUITheme())
+            , m_useCustomUITheme(qBt->preferences()->useCustomUITheme())
 #endif
         {
         }

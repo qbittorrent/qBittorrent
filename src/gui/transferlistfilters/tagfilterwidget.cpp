@@ -33,6 +33,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
+#include "gui/application.h"
 #include "gui/autoexpandabledialog.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
@@ -105,24 +106,24 @@ void TagFilterWidget::showMenu()
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_s), tr("Add tag...")
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"list-add"_s), tr("Add tag...")
         , this, &TagFilterWidget::addTag);
 
     const auto selectedRows = selectionModel()->selectedRows();
     if (!selectedRows.empty() && !TagFilterModel::isSpecialItem(selectedRows.first()))
     {
-        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove tag")
+        menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove tag")
             , this, &TagFilterWidget::removeTag);
     }
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove unused tags")
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove unused tags")
         , this, &TagFilterWidget::removeUnusedTags);
     menu->addSeparator();
-    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Resume torrents")
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Resume torrents")
         , this, &TagFilterWidget::actionResumeTorrentsTriggered);
-    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("Pause torrents")
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("Pause torrents")
         , this, &TagFilterWidget::actionPauseTorrentsTriggered);
-    menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_s), tr("Remove torrents")
+    menu->addAction(qBt->uiThemeManager()->getIcon(u"list-remove"_s), tr("Remove torrents")
         , this, &TagFilterWidget::actionDeleteTorrentsTriggered);
 
     menu->popup(QCursor::pos());
@@ -187,10 +188,10 @@ void TagFilterWidget::addTag()
     const QString tag = askTagName();
     if (tag.isEmpty()) return;
 
-    if (BitTorrent::Session::instance()->tags().contains(tag))
+    if (qBt->btSession()->tags().contains(tag))
         QMessageBox::warning(this, tr("Tag exists"), tr("Tag name already exists."));
     else
-        BitTorrent::Session::instance()->addTag(tag);
+        qBt->btSession()->addTag(tag);
 }
 
 void TagFilterWidget::removeTag()
@@ -198,7 +199,7 @@ void TagFilterWidget::removeTag()
     const auto selectedRows = selectionModel()->selectedRows();
     if (!selectedRows.empty() && !TagFilterModel::isSpecialItem(selectedRows.first()))
     {
-        BitTorrent::Session::instance()->removeTag(
+        qBt->btSession()->removeTag(
             static_cast<TagFilterProxyModel *>(model())->tag(selectedRows.first()));
         updateGeometry();
     }
@@ -206,7 +207,7 @@ void TagFilterWidget::removeTag()
 
 void TagFilterWidget::removeUnusedTags()
 {
-    auto *session = BitTorrent::Session::instance();
+    auto *session = qBt->btSession();
     for (const QString &tag : asConst(session->tags()))
         if (model()->data(static_cast<TagFilterProxyModel *>(model())->index(tag), Qt::UserRole) == 0)
             session->removeTag(tag);

@@ -42,6 +42,33 @@ class QString;
 class Path;
 struct QBtCommandLineParameters;
 
+namespace BitTorrent
+{
+    class Session;
+}
+
+namespace Net
+{
+    class DownloadManager;
+    class GeoIPManager;
+    class PortForwarder;
+    class ProxyConfigurationManager;
+}
+
+namespace RSS
+{
+    class AutoDownloader;
+    class Session;
+}
+
+class IconProvider;
+class Logger;
+class Preferences;
+class Profile;
+class SearchPluginManager;
+class SettingsStorage;
+class TorrentFilesWatcher;
+
 #ifdef Q_OS_WIN
 inline namespace ApplicationSettingsEnums
 {
@@ -89,6 +116,20 @@ public:
 #endif
 
     virtual AddTorrentManager *addTorrentManager() const = 0;
+    virtual BitTorrent::Session *btSession() const = 0;
+    virtual Net::DownloadManager *downloadManager() const = 0;
+    virtual Net::GeoIPManager *geoIPManager() const = 0;
+    virtual IconProvider *iconProvider() const = 0;
+    virtual Logger *logger() const = 0;
+    virtual Net::PortForwarder *portForwarder() const = 0;
+    virtual Preferences *preferences() const = 0;
+    virtual Profile *profile() const = 0;
+    virtual Net::ProxyConfigurationManager *proxyConfigurationManager() const = 0;
+    virtual RSS::AutoDownloader *rssAutoDownloader() const = 0;
+    virtual RSS::Session *rssSession() const = 0;
+    virtual SearchPluginManager *searchPluginManager() const = 0;
+    virtual SettingsStorage *settings() const = 0;
+    virtual TorrentFilesWatcher *torrentFilesWatcher() const = 0;
 
     static Application *instance();
 };

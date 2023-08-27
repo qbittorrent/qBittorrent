@@ -93,13 +93,9 @@ namespace RSS
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(Session)
 
-        friend class ::ApplicationImpl;
-
-        Session();
-        ~Session() override;
-
     public:
-        static Session *instance();
+        explicit Session(QObject *parent = nullptr);
+        ~Session() override;
 
         bool isProcessingEnabled() const;
         void setProcessingEnabled(bool enabled);

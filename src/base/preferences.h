@@ -91,12 +91,8 @@ class Preferences final : public QObject
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(Preferences)
 
-    Preferences();
-
 public:
-    static void initInstance();
-    static void freeInstance();
-    static Preferences *instance();
+    using QObject::QObject;
 
     // General options
     QString getLocale() const;
@@ -442,7 +438,4 @@ public slots:
 
 signals:
     void changed();
-
-private:
-    static Preferences *m_instance;
 };

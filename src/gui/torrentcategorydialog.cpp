@@ -33,6 +33,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/utils/fs.h"
+#include "application.h"
 #include "ui_torrentcategorydialog.h"
 
 TorrentCategoryDialog::TorrentCategoryDialog(QWidget *parent)
@@ -87,7 +88,7 @@ QString TorrentCategoryDialog::createCategory(QWidget *parent, const QString &pa
                              "Category name cannot start/end with '/'.\n"
                              "Category name cannot contain '//' sequence."));
         }
-        else if (Session::instance()->categories().contains(newCategoryName))
+        else if (qBt->btSession()->categories().contains(newCategoryName))
         {
             QMessageBox::critical(
                         parent, tr("Category creation error")
@@ -96,7 +97,7 @@ QString TorrentCategoryDialog::createCategory(QWidget *parent, const QString &pa
         }
         else
         {
-            Session::instance()->addCategory(newCategoryName, dialog.categoryOptions());
+            qBt->btSession()->addCategory(newCategoryName, dialog.categoryOptions());
             return newCategoryName;
         }
     }
@@ -108,16 +109,16 @@ void TorrentCategoryDialog::editCategory(QWidget *parent, const QString &categor
 {
     using BitTorrent::Session;
 
-    Q_ASSERT(Session::instance()->categories().contains(categoryName));
+    Q_ASSERT(qBt->btSession()->categories().contains(categoryName));
 
     auto *dialog = new TorrentCategoryDialog(parent);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->setCategoryNameEditable(false);
     dialog->setCategoryName(categoryName);
-    dialog->setCategoryOptions(Session::instance()->categoryOptions(categoryName));
+    dialog->setCategoryOptions(qBt->btSession()->categoryOptions(categoryName));
     connect(dialog, &TorrentCategoryDialog::accepted, parent, [dialog, categoryName]()
     {
-        Session::instance()->editCategory(categoryName, dialog->categoryOptions());
+        qBt->btSession()->editCategory(categoryName, dialog->categoryOptions());
     });
     dialog->open();
 }
@@ -170,11 +171,11 @@ void TorrentCategoryDialog::setCategoryOptions(const BitTorrent::CategoryOptions
 void TorrentCategoryDialog::categoryNameChanged(const QString &categoryName)
 {
     const Path categoryPath = Utils::Fs::toValidPath(categoryName);
-    const auto *btSession = BitTorrent::Session::instance();
+    const auto *btSession = qBt->btSession();
     m_ui->comboSavePath->setPlaceholder(btSession->savePath() / categoryPath);
 
     const int index = m_ui->comboUseDownloadPath->currentIndex();
-    const bool useDownloadPath = (index == 1) || ((index == 0) && BitTorrent::Session::instance()->isDownloadPathEnabled());
+    const bool useDownloadPath = (index == 1) || ((index == 0) && btSession->isDownloadPathEnabled());
     if (useDownloadPath)
         m_ui->comboDownloadPath->setPlaceholder(btSession->downloadPath() / categoryPath);
 
@@ -191,7 +192,7 @@ void TorrentCategoryDialog::useDownloadPathChanged(const int index)
     m_ui->comboDownloadPath->setSelectedPath((index == 1) ? m_lastEnteredDownloadPath : Path());
 
     const QString categoryName = m_ui->textCategoryName->text();
-    const Path categoryPath = BitTorrent::Session::instance()->downloadPath() / Utils::Fs::toValidPath(categoryName);
-    const bool useDownloadPath = (index == 1) || ((index == 0) && BitTorrent::Session::instance()->isDownloadPathEnabled());
+    const Path categoryPath = qBt->btSession()->downloadPath() / Utils::Fs::toValidPath(categoryName);
+    const bool useDownloadPath = (index == 1) || ((index == 0) && qBt->btSession()->isDownloadPathEnabled());
     m_ui->comboDownloadPath->setPlaceholder(useDownloadPath ? categoryPath : Path());
 }

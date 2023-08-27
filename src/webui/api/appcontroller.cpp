@@ -102,8 +102,8 @@ void AppController::shutdownAction()
 
 void AppController::preferencesAction()
 {
-    const auto *pref = Preferences::instance();
-    const auto *session = BitTorrent::Session::instance();
+    const auto *pref = app()->preferences();
+    const auto *session = app()->btSession();
 
     QJsonObject data;
 
@@ -145,7 +145,7 @@ void AppController::preferencesAction()
 
     // TODO: The following code is deprecated. Delete it once replaced by updated API method.
     // === BEGIN DEPRECATED CODE === //
-    TorrentFilesWatcher *fsWatcher = TorrentFilesWatcher::instance();
+    TorrentFilesWatcher *fsWatcher = app()->torrentFilesWatcher();
     const QHash<Path, TorrentFilesWatcher::WatchedFolderOptions> watchedFolders = fsWatcher->folders();
     QJsonObject nativeDirs;
     for (auto i = watchedFolders.cbegin(); i != watchedFolders.cend(); ++i)
@@ -186,7 +186,7 @@ void AppController::preferencesAction()
     // Listening Port
     data[u"listen_port"_s] = session->port();
     data[u"random_port"_s] = (session->port() == 0);  // deprecated
-    data[u"upnp"_s] = Net::PortForwarder::instance()->isEnabled();
+    data[u"upnp"_s] = app()->portForwarder()->isEnabled();
     // Connections Limits
     data[u"max_connec"_s] = session->maxConnections();
     data[u"max_connec_per_torrent"_s] = session->maxConnectionsPerTorrent();
@@ -194,7 +194,7 @@ void AppController::preferencesAction()
     data[u"max_uploads_per_torrent"_s] = session->maxUploadsPerTorrent();
 
     // Proxy Server
-    const auto *proxyManager = Net::ProxyConfigurationManager::instance();
+    const auto *proxyManager = app()->proxyConfigurationManager();
     Net::ProxyConfiguration proxyConf = proxyManager->proxyConfiguration();
     data[u"proxy_type"_s] = Utils::String::fromEnum(proxyConf.type);
     data[u"proxy_ip"_s] = proxyConf.ip;
@@ -307,12 +307,12 @@ void AppController::preferencesAction()
     data[u"dyndns_domain"_s] = pref->getDynDomainName();
 
     // RSS settings
-    data[u"rss_refresh_interval"_s] = RSS::Session::instance()->refreshInterval();
-    data[u"rss_max_articles_per_feed"_s] = RSS::Session::instance()->maxArticlesPerFeed();
-    data[u"rss_processing_enabled"_s] = RSS::Session::instance()->isProcessingEnabled();
-    data[u"rss_auto_downloading_enabled"_s] = RSS::AutoDownloader::instance()->isProcessingEnabled();
-    data[u"rss_download_repack_proper_episodes"_s] = RSS::AutoDownloader::instance()->downloadRepacks();
-    data[u"rss_smart_episode_filters"_s] = RSS::AutoDownloader::instance()->smartEpisodeFilters().join(u'\n');
+    data[u"rss_refresh_interval"_s] = app()->rssSession()->refreshInterval();
+    data[u"rss_max_articles_per_feed"_s] = app()->rssSession()->maxArticlesPerFeed();
+    data[u"rss_processing_enabled"_s] = app()->rssSession()->isProcessingEnabled();
+    data[u"rss_auto_downloading_enabled"_s] = app()->rssAutoDownloader()->isProcessingEnabled();
+    data[u"rss_download_repack_proper_episodes"_s] = app()->rssAutoDownloader()->downloadRepacks();
+    data[u"rss_smart_episode_filters"_s] = app()->rssAutoDownloader()->smartEpisodeFilters().join(u'\n');
 
     // Advanced settings
     // qBitorrent preferences
@@ -428,8 +428,8 @@ void AppController::setPreferencesAction()
 {
     requireParams({u"json"_s});
 
-    auto *pref = Preferences::instance();
-    auto *session = BitTorrent::Session::instance();
+    auto *pref = app()->preferences();
+    auto *session = app()->btSession();
     const QVariantHash m = QJsonDocument::fromJson(params()[u"json"_s].toUtf8()).toVariant().toHash();
 
     QVariantHash::ConstIterator it;
@@ -527,7 +527,7 @@ void AppController::setPreferencesAction()
     if (hasKey(u"scan_dirs"_s))
     {
         PathList scanDirs;
-        TorrentFilesWatcher *fsWatcher = TorrentFilesWatcher::instance();
+        TorrentFilesWatcher *fsWatcher = app()->torrentFilesWatcher();
         const PathList oldScanDirs = fsWatcher->folders().keys();
         const QVariantHash nativeDirs = it.value().toHash();
         for (auto i = nativeDirs.cbegin(); i != nativeDirs.cend(); ++i)
@@ -617,7 +617,7 @@ void AppController::setPreferencesAction()
         session->setPort(it.value().toInt());
     }
     if (hasKey(u"upnp"_s))
-        Net::PortForwarder::instance()->setEnabled(it.value().toBool());
+        app()->portForwarder()->setEnabled(it.value().toBool());
     // Connections Limits
     if (hasKey(u"max_connec"_s))
         session->setMaxConnections(it.value().toInt());
@@ -629,7 +629,7 @@ void AppController::setPreferencesAction()
         session->setMaxUploadsPerTorrent(it.value().toInt());
 
     // Proxy Server
-    auto *proxyManager = Net::ProxyConfigurationManager::instance();
+    auto *proxyManager = app()->proxyConfigurationManager();
     Net::ProxyConfiguration proxyConf = proxyManager->proxyConfiguration();
     if (hasKey(u"proxy_type"_s))
         proxyConf.type = Utils::String::toEnum(it.value().toString(), Net::ProxyType::None);
@@ -827,17 +827,17 @@ void AppController::setPreferencesAction()
         pref->setDynDomainName(it.value().toString());
 
     if (hasKey(u"rss_refresh_interval"_s))
-        RSS::Session::instance()->setRefreshInterval(it.value().toInt());
+        app()->rssSession()->setRefreshInterval(it.value().toInt());
     if (hasKey(u"rss_max_articles_per_feed"_s))
-        RSS::Session::instance()->setMaxArticlesPerFeed(it.value().toInt());
+        app()->rssSession()->setMaxArticlesPerFeed(it.value().toInt());
     if (hasKey(u"rss_processing_enabled"_s))
-        RSS::Session::instance()->setProcessingEnabled(it.value().toBool());
+        app()->rssSession()->setProcessingEnabled(it.value().toBool());
     if (hasKey(u"rss_auto_downloading_enabled"_s))
-        RSS::AutoDownloader::instance()->setProcessingEnabled(it.value().toBool());
+        app()->rssAutoDownloader()->setProcessingEnabled(it.value().toBool());
     if (hasKey(u"rss_download_repack_proper_episodes"_s))
-        RSS::AutoDownloader::instance()->setDownloadRepacks(it.value().toBool());
+        app()->rssAutoDownloader()->setDownloadRepacks(it.value().toBool());
     if (hasKey(u"rss_smart_episode_filters"_s))
-        RSS::AutoDownloader::instance()->setSmartEpisodeFilters(it.value().toString().split(u'\n'));
+        app()->rssAutoDownloader()->setSmartEpisodeFilters(it.value().toString().split(u'\n'));
 
     // Advanced settings
     // qBittorrent preferences
@@ -1025,7 +1025,7 @@ void AppController::setPreferencesAction()
 
 void AppController::defaultSavePathAction()
 {
-    setResult(BitTorrent::Session::instance()->savePath().toString());
+    setResult(app()->btSession()->savePath().toString());
 }
 
 void AppController::networkInterfaceListAction()

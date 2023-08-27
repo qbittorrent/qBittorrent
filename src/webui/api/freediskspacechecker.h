@@ -30,6 +30,8 @@
 
 #include <QObject>
 
+#include "base/pathfwd.h"
+
 class FreeDiskSpaceChecker final : public QObject
 {
     Q_OBJECT
@@ -39,7 +41,7 @@ public:
     using QObject::QObject;
 
 public slots:
-    void check();
+    void check(const Path &path);
 
 signals:
     void checked(qint64 freeSpaceSize);

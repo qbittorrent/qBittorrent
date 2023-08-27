@@ -67,11 +67,6 @@ namespace RSS
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(AutoDownloader)
 
-        friend class ::ApplicationImpl;
-
-        explicit AutoDownloader(Application *app);
-        ~AutoDownloader() override;
-
     public:
         enum class RulesFileFormat
         {
@@ -79,7 +74,8 @@ namespace RSS
             JSON
         };
 
-        static AutoDownloader *instance();
+        explicit AutoDownloader(Application *app, QObject *parent = nullptr);
+        ~AutoDownloader() override;
 
         bool isProcessingEnabled() const;
         void setProcessingEnabled(bool enabled);

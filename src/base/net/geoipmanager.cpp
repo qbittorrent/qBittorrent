@@ -33,6 +33,7 @@
 #include <QHostAddress>
 #include <QLocale>
 
+#include "base/application.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -51,34 +52,16 @@ using namespace Net;
 
 // GeoIPManager
 
-GeoIPManager *GeoIPManager::m_instance = nullptr;
-
-GeoIPManager::GeoIPManager()
+GeoIPManager::GeoIPManager(QObject *parent)
+    : QObject(parent)
 {
     configure();
-    connect(Preferences::instance(), &Preferences::changed, this, &GeoIPManager::configure);
+    connect(qBt->preferences(), &Preferences::changed, this, &GeoIPManager::configure);
 }
 
 GeoIPManager::~GeoIPManager()
 {
     delete m_geoIPDatabase;
-}
-
-void GeoIPManager::initInstance()
-{
-    if (!m_instance)
-        m_instance = new GeoIPManager;
-}
-
-void GeoIPManager::freeInstance()
-{
-    delete m_instance;
-    m_instance = nullptr;
-}
-
-GeoIPManager *GeoIPManager::instance()
-{
-    return m_instance;
 }
 
 void GeoIPManager::loadDatabase()
@@ -129,8 +112,8 @@ void GeoIPManager::downloadDatabaseFile()
 {
     const QDateTime curDatetime = QDateTime::currentDateTimeUtc();
     const QString curUrl = DATABASE_URL.arg(QLocale::c().toString(curDatetime, u"yyyy-MM"));
-    DownloadManager::instance()->download(
-            {curUrl}, Preferences::instance()->useProxyForGeneralPurposes()
+    qBt->downloadManager()->download(
+            {curUrl}, qBt->preferences()->useProxyForGeneralPurposes()
             , this, &GeoIPManager::downloadFinished);
 }
 
@@ -408,7 +391,7 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
 
 void GeoIPManager::configure()
 {
-    const bool enabled = Preferences::instance()->resolvePeerCountries();
+    const bool enabled = qBt->preferences()->resolvePeerCountries();
     if (m_enabled != enabled)
     {
         m_enabled = enabled;

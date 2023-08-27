@@ -141,10 +141,6 @@ namespace BitTorrent
         Q_DISABLE_COPY_MOVE(Session)
 
     public:
-        static void initInstance();
-        static void freeInstance();
-        static Session *instance();
-
         using QObject::QObject;
 
         virtual Path savePath() const = 0;

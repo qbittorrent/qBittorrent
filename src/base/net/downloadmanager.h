@@ -128,9 +128,7 @@ namespace Net
         Q_DISABLE_COPY_MOVE(DownloadManager)
 
     public:
-        static void initInstance();
-        static void freeInstance();
-        static DownloadManager *instance();
+        explicit DownloadManager(QObject *parent = nullptr);
 
         DownloadHandler *download(const DownloadRequest &downloadRequest, bool useProxy);
 
@@ -150,13 +148,10 @@ namespace Net
     private:
         class NetworkCookieJar;
 
-        explicit DownloadManager(QObject *parent = nullptr);
-
         void applyProxySettings();
         void handleDownloadFinished(DownloadHandlerImpl *finishedHandler);
         void processRequest(DownloadHandlerImpl *downloadHandler);
 
-        static DownloadManager *m_instance;
         NetworkCookieJar *m_networkCookieJar = nullptr;
         QNetworkAccessManager *m_networkManager = nullptr;
         QNetworkProxy m_proxy;

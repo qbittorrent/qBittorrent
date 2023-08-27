@@ -60,7 +60,7 @@ class GUIAddTorrentManager : public GUApplicationComponent<AddTorrentManager>
     Q_DISABLE_COPY_MOVE(GUIAddTorrentManager)
 
 public:
-    GUIAddTorrentManager(GUIApplication *app, BitTorrent::Session *session, QObject *parent = nullptr);
+    GUIAddTorrentManager(GUIApplication *app, QObject *parent = nullptr);
 
     bool addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params = {}, AddTorrentOption option = AddTorrentOption::Default);
 

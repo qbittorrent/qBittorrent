@@ -41,6 +41,7 @@
 
 class DesktopIntegration;
 class MainWindow;
+class UIThemeManager;
 
 class GUIApplication : public Application
 {
@@ -51,6 +52,7 @@ public:
 
     virtual DesktopIntegration *desktopIntegration() = 0;
     virtual MainWindow *mainWindow() = 0;
+    virtual UIThemeManager *uiThemeManager() const = 0;
 
     virtual WindowState startUpWindowState() const = 0;
     virtual void setStartUpWindowState(WindowState windowState) = 0;

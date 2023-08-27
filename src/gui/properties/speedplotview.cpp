@@ -39,6 +39,7 @@
 #include "base/global.h"
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
+#include "gui/application.h"
 
 namespace
 {
@@ -118,7 +119,7 @@ bool SpeedPlotView::Averager::push(const SampleData &sampleData)
         m_accumulator[id] += sampleData[id];
 
     // system may go to sleep, that can cause very big elapsed interval
-    const milliseconds updateInterval {static_cast<int64_t>(BitTorrent::Session::instance()->refreshInterval() * 1.25)};
+    const milliseconds updateInterval {static_cast<int64_t>(qBt->btSession()->refreshInterval() * 1.25)};
     const milliseconds maxElapsed {std::max(updateInterval, m_resolution)};
     const milliseconds elapsed {std::min(milliseconds {m_lastSampleTime.elapsed()}, maxElapsed)};
     if (elapsed < m_resolution)

@@ -32,6 +32,7 @@
 #include <QRegularExpression>
 #include <QUrlQuery>
 
+#include "base/application.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
@@ -48,7 +49,7 @@ DNSUpdater::DNSUpdater(QObject *parent)
     updateCredentials();
 
     // Load saved settings from previous session
-    const Preferences *const pref = Preferences::instance();
+    const Preferences *const pref = qBt->preferences();
     m_lastIPCheckTime = pref->getDNSLastUpd();
     m_lastIP = QHostAddress(pref->getDNSLastIP());
 
@@ -68,7 +69,7 @@ DNSUpdater::DNSUpdater(QObject *parent)
 DNSUpdater::~DNSUpdater()
 {
     // Save lastupdate time and last ip
-    Preferences *const pref = Preferences::instance();
+    Preferences *const pref = qBt->preferences();
     pref->setDNSLastUpd(m_lastIPCheckTime);
     pref->setDNSLastIP(m_lastIP.toString());
 }
@@ -77,9 +78,9 @@ void DNSUpdater::checkPublicIP()
 {
     Q_ASSERT(m_state == OK);
 
-    DownloadManager::instance()->download(
+    qBt->downloadManager()->download(
             DownloadRequest(u"http://checkip.dyndns.org"_s).userAgent(QStringLiteral("qBittorrent/" QBT_VERSION_2))
-            , Preferences::instance()->useProxyForGeneralPurposes(), this, &DNSUpdater::ipRequestFinished);
+            , qBt->preferences()->useProxyForGeneralPurposes(), this, &DNSUpdater::ipRequestFinished);
 
     m_lastIPCheckTime = QDateTime::currentDateTime();
 }
@@ -125,9 +126,9 @@ void DNSUpdater::updateDNSService()
     qDebug() << Q_FUNC_INFO;
 
     m_lastIPCheckTime = QDateTime::currentDateTime();
-    DownloadManager::instance()->download(
+    qBt->downloadManager()->download(
             DownloadRequest(getUpdateUrl()).userAgent(QStringLiteral("qBittorrent/" QBT_VERSION_2))
-            , Preferences::instance()->useProxyForGeneralPurposes(), this, &DNSUpdater::ipUpdateFinished);
+            , qBt->preferences()->useProxyForGeneralPurposes(), this, &DNSUpdater::ipUpdateFinished);
 }
 
 QString DNSUpdater::getUpdateUrl() const
@@ -239,7 +240,7 @@ void DNSUpdater::processIPUpdateReply(const QString &reply)
 void DNSUpdater::updateCredentials()
 {
     if (m_state == FATAL) return;
-    Preferences *const pref = Preferences::instance();
+    Preferences *const pref = qBt->preferences();
     bool change = false;
     // Get DNS service information
     if (m_service != pref->getDynDNSService())

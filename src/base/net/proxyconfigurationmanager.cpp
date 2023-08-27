@@ -43,8 +43,6 @@ bool Net::operator==(const ProxyConfiguration &left, const ProxyConfiguration &r
 
 using namespace Net;
 
-ProxyConfigurationManager *ProxyConfigurationManager::m_instance = nullptr;
-
 ProxyConfigurationManager::ProxyConfigurationManager(QObject *parent)
     : QObject(parent)
     , m_storeProxyType {SETTINGS_KEY(u"Type"_s)}
@@ -64,23 +62,6 @@ ProxyConfigurationManager::ProxyConfigurationManager(QObject *parent)
     m_config.username = m_storeProxyUsername;
     m_config.password = m_storeProxyPassword;
     m_config.hostnameLookupEnabled = m_storeProxyHostnameLookupEnabled.get(true);
-}
-
-void ProxyConfigurationManager::initInstance()
-{
-    if (!m_instance)
-        m_instance = new ProxyConfigurationManager;
-}
-
-void ProxyConfigurationManager::freeInstance()
-{
-    delete m_instance;
-    m_instance = nullptr;
-}
-
-ProxyConfigurationManager *ProxyConfigurationManager::instance()
-{
-    return m_instance;
 }
 
 ProxyConfiguration ProxyConfigurationManager::proxyConfiguration() const

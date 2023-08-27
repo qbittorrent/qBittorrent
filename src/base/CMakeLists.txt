@@ -152,7 +152,6 @@ add_library(qbt_base STATIC
     net/downloadmanager.cpp
     net/geoipdatabase.cpp
     net/geoipmanager.cpp
-    net/portforwarder.cpp
     net/proxyconfigurationmanager.cpp
     net/reverseresolution.cpp
     net/smtp.cpp

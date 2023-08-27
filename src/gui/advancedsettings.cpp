@@ -188,8 +188,8 @@ AdvancedSettings::AdvancedSettings(GUIApplication *app, QWidget *parent)
 
 void AdvancedSettings::saveAdvancedSettings() const
 {
-    Preferences *const pref = Preferences::instance();
-    BitTorrent::Session *const session = BitTorrent::Session::instance();
+    Preferences *const pref = app()->preferences();
+    BitTorrent::Session *const session = app()->btSession();
 
     session->setResumeDataStorageType(m_comboBoxResumeDataStorage.currentData().value<BitTorrent::ResumeDataStorageType>());
 #ifdef QBT_USES_LIBTORRENT2
@@ -406,7 +406,7 @@ void AdvancedSettings::updateInterfaceAddressCombo()
         }
     }
 
-    const QString currentAddress = BitTorrent::Session::instance()->networkInterfaceAddress();
+    const QString currentAddress = app()->btSession()->networkInterfaceAddress();
     const int index = m_comboBoxInterfaceAddress.findData(currentAddress);
     if (index > -1)
     {
@@ -422,8 +422,8 @@ void AdvancedSettings::updateInterfaceAddressCombo()
 
 void AdvancedSettings::loadAdvancedSettings()
 {
-    const Preferences *const pref = Preferences::instance();
-    const BitTorrent::Session *const session = BitTorrent::Session::instance();
+    const Preferences *const pref = app()->preferences();
+    const BitTorrent::Session *const session = app()->btSession();
 
     // add section headers
     auto *labelQbtLink = new QLabel(

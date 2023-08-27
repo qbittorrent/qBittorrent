@@ -36,6 +36,7 @@
 #include <QThreadPool>
 
 #include "base/algorithm.h"
+#include "base/application.h"
 #include "base/bittorrent/cachestatus.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/peeraddress.h"
@@ -128,10 +129,9 @@ namespace
     void processList(QVariantList prevData, const QVariantList &data, QVariantList &syncData, QVariantList &removedItems);
     QJsonObject generateSyncData(int acceptedResponseId, const QVariantMap &data, QVariantMap &lastAcceptedData, QVariantMap &lastData);
 
-    QVariantMap getTransferInfo()
+    QVariantMap getTransferInfo(BitTorrent::Session *session)
     {
         QVariantMap map;
-        const auto *session = BitTorrent::Session::instance();
 
         const BitTorrent::SessionStatus &sessionStatus = session->status();
         const BitTorrent::CacheStatus &cacheStatus = session->cacheStatus();
@@ -464,7 +464,7 @@ void SyncController::maindataAction()
     {
         makeMaindataSnapshot();
 
-        const auto *btSession = BitTorrent::Session::instance();
+        const auto *btSession = app()->btSession();
         connect(btSession, &BitTorrent::Session::categoryAdded, this, &SyncController::onCategoryAdded);
         connect(btSession, &BitTorrent::Session::categoryRemoved, this, &SyncController::onCategoryRemoved);
         connect(btSession, &BitTorrent::Session::categoryOptionsChanged, this, &SyncController::onCategoryOptionsChanged);
@@ -513,7 +513,7 @@ void SyncController::makeMaindataSnapshot()
     m_maindataAcceptedID = 0;
     m_maindataSnapshot = {};
 
-    const auto *session = BitTorrent::Session::instance();
+    const auto *session = app()->btSession();
 
     for (const BitTorrent::Torrent *torrent : asConst(session->torrents()))
     {
@@ -551,7 +551,7 @@ void SyncController::makeMaindataSnapshot()
         m_maindataSnapshot.trackers[trackersIter.key()] = torrentIDs;
     }
 
-    m_maindataSnapshot.serverState = getTransferInfo();
+    m_maindataSnapshot.serverState = getTransferInfo(app()->btSession());
     m_maindataSnapshot.serverState[KEY_TRANSFER_FREESPACEONDISK] = getFreeDiskSpace();
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
@@ -582,7 +582,7 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
     for (const QString &tracker : asConst(m_removedTrackers))
         m_maindataSyncBuf.trackers.remove(tracker);
 
-    const auto *session = BitTorrent::Session::instance();
+    const auto *session = app()->btSession();
 
     for (const QString &categoryName : asConst(m_updatedCategories))
     {
@@ -660,7 +660,7 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
     }
     m_removedTrackers.clear();
 
-    QVariantMap serverState = getTransferInfo();
+    QVariantMap serverState = getTransferInfo(app()->btSession());
     serverState[KEY_TRANSFER_FREESPACEONDISK] = getFreeDiskSpace();
     serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
     serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
@@ -724,7 +724,7 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
 void SyncController::torrentPeersAction()
 {
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
-    const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->getTorrent(id);
+    const BitTorrent::Torrent *torrent = app()->btSession()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
@@ -733,7 +733,7 @@ void SyncController::torrentPeersAction()
 
     const QVector<BitTorrent::PeerInfo> peersList = torrent->peers();
 
-    bool resolvePeerCountries = Preferences::instance()->resolvePeerCountries();
+    bool resolvePeerCountries = app()->preferences()->resolvePeerCountries();
 
     data[KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS] = resolvePeerCountries;
 
@@ -770,8 +770,9 @@ void SyncController::torrentPeersAction()
 
         if (resolvePeerCountries)
         {
-            peer[KEY_PEER_COUNTRY_CODE] = pi.country().toLower();
-            peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(pi.country());
+            const QString peerCountry = app()->geoIPManager()->lookup(pi.address().ip);
+            peer[KEY_PEER_COUNTRY_CODE] = peerCountry.toLower();
+            peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(peerCountry);
         }
 
         peers[pi.address().toString()] = peer;
@@ -804,9 +805,9 @@ void SyncController::invokeChecker()
     });
     connect(freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, freeDiskSpaceChecker, &QObject::deleteLater);
     m_isFreeDiskSpaceCheckerRunning = true;
-    QThreadPool::globalInstance()->start([freeDiskSpaceChecker]
+    QThreadPool::globalInstance()->start([freeDiskSpaceChecker, path = app()->btSession()->savePath()]
     {
-        freeDiskSpaceChecker->check();
+        freeDiskSpaceChecker->check(path);
     });
 }
 
@@ -831,7 +832,7 @@ void SyncController::onCategoryOptionsChanged(const QString &categoryName)
 
 void SyncController::onSubcategoriesSupportChanged()
 {
-    const QStringList categoriesList = BitTorrent::Session::instance()->categories();
+    const QStringList categoriesList = app()->btSession()->categories();
     for (const auto &categoryName : categoriesList)
     {
         if (!m_maindataSnapshot.categories.contains(categoryName))

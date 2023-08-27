@@ -56,6 +56,7 @@
 #include "base/global.h"
 #include "base/path.h"
 #include "base/utils/fs.h"
+#include "application.h"
 #include "torrentcontentmodelfile.h"
 #include "torrentcontentmodelfolder.h"
 #include "torrentcontentmodelitem.h"
@@ -71,7 +72,7 @@ namespace
     {
     public:
         UnifiedFileIconProvider()
-            : m_textPlainIcon {UIThemeManager::instance()->getIcon(u"help-about"_s, u"text-plain"_s)}
+            : m_textPlainIcon {qBt->uiThemeManager()->getIcon(u"help-about"_s, u"text-plain"_s)}
         {
         }
 

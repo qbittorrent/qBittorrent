@@ -30,6 +30,7 @@
 #include "basefilterwidget.h"
 
 #include "base/bittorrent/session.h"
+#include "gui/application.h"
 #include "gui/utils.h"
 
 constexpr int ALL_ROW = 0;
@@ -55,9 +56,9 @@ BaseFilterWidget::BaseFilterWidget(QWidget *parent, TransferListWidget *transfer
     connect(this, &BaseFilterWidget::customContextMenuRequested, this, &BaseFilterWidget::showMenu);
     connect(this, &BaseFilterWidget::currentRowChanged, this, &BaseFilterWidget::applyFilter);
 
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsLoaded
+    connect(qBt->btSession(), &BitTorrent::Session::torrentsLoaded
             , this, &BaseFilterWidget::handleTorrentsLoaded);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAboutToBeRemoved
+    connect(qBt->btSession(), &BitTorrent::Session::torrentAboutToBeRemoved
             , this, &BaseFilterWidget::torrentAboutToBeDeleted);
 }
 

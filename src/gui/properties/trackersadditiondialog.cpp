@@ -39,6 +39,7 @@
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
+#include "gui/application.h"
 #include "gui/uithememanager.h"
 #include "ui_trackersadditiondialog.h"
 
@@ -57,7 +58,7 @@ TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::Torr
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
-    m_ui->downloadButton->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
+    m_ui->downloadButton->setIcon(qBt->uiThemeManager()->getIcon(u"downloading"_s, u"download"_s));
     connect(m_ui->downloadButton, &QAbstractButton::clicked, this, &TrackersAdditionDialog::onDownloadButtonClicked);
 
     connect(this, &QDialog::accepted, this, &TrackersAdditionDialog::onAccepted);
@@ -91,7 +92,7 @@ void TrackersAdditionDialog::onDownloadButtonClicked()
     m_ui->downloadButton->setEnabled(false);
     setCursor(Qt::WaitCursor);
 
-    Net::DownloadManager::instance()->download(url, Preferences::instance()->useProxyForGeneralPurposes()
+    qBt->downloadManager()->download(url, qBt->preferences()->useProxyForGeneralPurposes()
             , this, &TrackersAdditionDialog::onTorrentListDownloadFinished);
 }
 
