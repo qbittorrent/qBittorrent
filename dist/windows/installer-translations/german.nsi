@@ -2,8 +2,8 @@
 
 ;LangString inst_qbt_req ${LANG_ENGLISH} "qBittorrent (required)"
 LangString inst_qbt_req ${LANG_GERMAN} "qBittorrent (erforderlich)"
-;LangString inst_dekstop ${LANG_ENGLISH} "Create Desktop Shortcut"
-LangString inst_dekstop ${LANG_GERMAN} "Verknüpfung auf dem Desktop erstellen"
+;LangString inst_desktop ${LANG_ENGLISH} "Create Desktop Shortcut"
+LangString inst_desktop ${LANG_GERMAN} "Verknüpfung auf dem Desktop erstellen"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_startmenu ${LANG_GERMAN} "Eintrag im Startmenü erstellen"
 ;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"

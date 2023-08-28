@@ -2,8 +2,8 @@
 
 ;LangString inst_qbt_req ${LANG_ENGLISH} "qBittorrent (required)"
 LangString inst_qbt_req ${LANG_SWEDISH} "qBittorrent (krävs)"
-;LangString inst_dekstop ${LANG_ENGLISH} "Create Desktop Shortcut"
-LangString inst_dekstop ${LANG_SWEDISH} "Skapa skrivbordsgenväg"
+;LangString inst_desktop ${LANG_ENGLISH} "Create Desktop Shortcut"
+LangString inst_desktop ${LANG_SWEDISH} "Skapa skrivbordsgenväg"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_startmenu ${LANG_SWEDISH} "Skapa startmenygenväg"
 ;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"

@@ -2,8 +2,8 @@
 
 ;LangString inst_qbt_req ${LANG_ENGLISH} "qBittorrent (required)"
 LangString inst_qbt_req ${LANG_TURKISH} "qBittorrent (zorunlu)"
-;LangString inst_dekstop ${LANG_ENGLISH} "Create Desktop Shortcut"
-LangString inst_dekstop ${LANG_TURKISH} "Masaüstü Kısayolu oluştur"
+;LangString inst_desktop ${LANG_ENGLISH} "Create Desktop Shortcut"
+LangString inst_desktop ${LANG_TURKISH} "Masaüstü Kısayolu oluştur"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_startmenu ${LANG_TURKISH} "Başlangıç Menüsü Kısayolu oluştur"
 ;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"
