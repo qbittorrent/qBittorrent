@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="is" version="2.1">
+<TS version="2.1" language="is">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -12,7 +12,7 @@
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Flokkur:</translation>
     </message>
     <message>
         <source>Start torrent</source>
@@ -20,11 +20,11 @@
     </message>
     <message>
         <source>Skip hash check</source>
-        <translation type="unfinished" />
+        <translation>Sleppa athugun prófsummu</translation>
     </message>
     <message>
         <source>Torrent Management Mode:</source>
-        <translation type="unfinished" />
+        <translation>Stjórnunarhamur torrents:</translation>
     </message>
     <message>
         <source>Content layout:</source>
@@ -36,11 +36,11 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Búa til undirmöppu</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Ekki búa til undirmöppu</translation>
     </message>
     <message>
         <source>Manual</source>
@@ -48,11 +48,11 @@
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished" />
+        <translation>Sjálfvirkt</translation>
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>Lýsigögn móttekin</translation>
     </message>
     <message>
         <source>Files checked</source>
@@ -64,14 +64,14 @@
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>Ekkert</translation>
     </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished">Allt</translation>
+        <translation>Allt</translation>
     </message>
     <message>
         <source>Uncategorized</source>
@@ -82,11 +82,11 @@
     <name>CategoryFilterWidget</name>
     <message>
         <source>Add category...</source>
-        <translation type="unfinished" />
+        <translation>Bæta við flokk…</translation>
     </message>
     <message>
         <source>Remove category</source>
-        <translation type="unfinished" />
+        <translation>Fjarlægja flokk</translation>
     </message>
     <message>
         <source>Remove unused categories</source>
@@ -102,11 +102,11 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Nýr flokkur</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>Breyta flokk…</translation>
     </message>
     <message>
         <source>Remove torrents</source>
@@ -169,7 +169,7 @@
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished">Óþekkt</translation>
+        <translation>Óþekkt</translation>
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -204,32 +204,12 @@
         <translation>Skrá inn</translation>
     </message>
     <message>
-        <source>Original authors</source>
-        <translation type="vanished">Upprunalegir höfundar</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Virkja</translation>
     </message>
     <message>
         <source>Add</source>
         <translation>Bæta</translation>
-    </message>
-    <message>
-        <source>Set location</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Limit upload rate</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Limit download rate</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Rename torrent</source>
-        <translation type="unfinished" />
     </message>
     <message>
         <source>Upload Torrents</source>
@@ -253,9 +233,20 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Other...</source>
-        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation type="vanished">Annað...</translation>
+        <source>Set location</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Limit upload rate</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Limit download rate</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Rename torrent</source>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Monday</source>
@@ -313,10 +304,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent hefur verið lokað.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation type="unfinished" />
     </message>
@@ -326,7 +313,7 @@
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>Gat ekki búið til flokk</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
@@ -334,7 +321,7 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished" />
+        <translation>Breyta</translation>
     </message>
     <message>
         <source>Free space: %1</source>
@@ -386,7 +373,7 @@
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>Allt í lagi</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
@@ -394,7 +381,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Upprunalegur höfundur</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
@@ -432,22 +419,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Lágmarks Forgangur</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Hámarks forgang</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Minnka Forgang</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Auka Forgang</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation type="unfinished" />
     </message>
@@ -478,10 +449,6 @@
     <message>
         <source>Pause</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="vanished">Eyða</translation>
     </message>
     <message>
         <source>Pause All</source>
@@ -530,7 +497,7 @@
     </message>
     <message>
         <source>Search Engine</source>
-        <translation type="unfinished" />
+        <translation>Leitarvél</translation>
     </message>
     <message>
         <source>Filter torrent list...</source>
@@ -538,7 +505,7 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Leita</translation>
     </message>
     <message>
         <source>Transfers</source>
@@ -630,7 +597,7 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Hætta við</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -649,7 +616,7 @@
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation type="unfinished" />
+        <translation>Valkostir</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -657,15 +624,15 @@
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished">Tenging</translation>
+        <translation>Tenging</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished">Hraði</translation>
+        <translation>Hraði</translation>
     </message>
     <message>
         <source>BitTorrent</source>
-        <translation type="unfinished" />
+        <translation>BitTorrent</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -673,7 +640,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Tungumál</translation>
+        <translation>Tungumál</translation>
     </message>
     <message>
         <source>User Interface Language:</source>
@@ -733,7 +700,7 @@
     </message>
     <message>
         <source>Copy .torrent files to:</source>
-        <translation type="unfinished" />
+        <translation>Afrita .torrent skrá til:</translation>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
@@ -749,7 +716,7 @@
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished" />
+        <translation>Bæta við torrentum sjálfkrafa úr:</translation>
     </message>
     <message>
         <source>SMTP server:</source>
@@ -761,15 +728,15 @@
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished" />
+        <translation>Auðkenning</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished">Notandanafn:</translation>
+        <translation>Notandanafn:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Lykilorð:</translation>
+        <translation>Lykilorð:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -825,7 +792,7 @@
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished" />
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -860,10 +827,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>KiB/s</source>
-        <translation>KiB/s</translation>
-    </message>
-    <message>
         <source>Download:</source>
         <translation type="unfinished" />
     </message>
@@ -874,28 +837,28 @@
     <message>
         <source>From:</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished" />
+        <translation>Frá:</translation>
     </message>
     <message>
         <source>To:</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished" />
+        <translation>Til:</translation>
     </message>
     <message>
         <source>When:</source>
-        <translation type="unfinished" />
+        <translation>Hvenær:</translation>
     </message>
     <message>
         <source>Every day</source>
-        <translation type="unfinished">Daglega</translation>
+        <translation>Daglega</translation>
     </message>
     <message>
         <source>Weekdays</source>
-        <translation type="unfinished" />
+        <translation>Virka daga</translation>
     </message>
     <message>
         <source>Weekends</source>
-        <translation type="unfinished" />
+        <translation>Helgar</translation>
     </message>
     <message>
         <source>Rate Limits Settings</source>
@@ -959,7 +922,7 @@
     </message>
     <message>
         <source>then</source>
-        <translation type="unfinished" />
+        <translation>þá</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -987,7 +950,7 @@
     </message>
     <message>
         <source>%N: Torrent name</source>
-        <translation type="unfinished" />
+        <translation>%N: Torrent nafn</translation>
     </message>
     <message>
         <source>%L: Category</source>
@@ -1031,7 +994,11 @@
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>mínútur</translation>
+    </message>
+    <message>
+        <source>KiB/s</source>
+        <translation>KiB/s</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
@@ -1059,7 +1026,7 @@
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished" />
+        <translation>Sjálfvirkt</translation>
     </message>
     <message>
         <source>Use alternative Web UI</source>
@@ -1075,7 +1042,7 @@
     </message>
     <message>
         <source>Do not start the download automatically</source>
-        <translation type="unfinished" />
+        <translation>Ekki byrja að hlaða niður sjálfvirkt</translation>
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
@@ -1083,7 +1050,7 @@
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation type="unfinished" />
+        <translation>Þegar flokki torrents er breytt:</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
@@ -1115,7 +1082,7 @@
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation type="unfinished" />
+        <translation>Þegar vistunarslóð flokks breytist:</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -1299,7 +1266,7 @@
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>KiB</translation>
     </message>
     <message>
         <source>Round-robin</source>
@@ -1311,7 +1278,7 @@
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>MiB</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
@@ -1463,7 +1430,7 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Búa til undirmöppu</translation>
     </message>
     <message>
         <source>Original</source>
@@ -1471,7 +1438,7 @@
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Ekki búa til undirmöppu</translation>
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
@@ -1483,7 +1450,7 @@
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished" />
+        <translation>Handahófskennd</translation>
     </message>
     <message>
         <source>%K: Torrent ID</source>
@@ -1659,7 +1626,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>Lýsigögn móttekin</translation>
     </message>
     <message>
         <source>Torrent stop condition:</source>
@@ -1667,7 +1634,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>Ekkert</translation>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
@@ -1687,7 +1654,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Ekkert)</translation>
     </message>
     <message>
         <source>Use proxy only for torrents</source>
@@ -1796,11 +1763,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation>Blandað</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>Ekki sækja</translation>
     </message>
 </context>
 <context>
@@ -1959,15 +1926,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>Niðurhals takmörk:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>Upphlöðun takmörk:</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>Forgangur</translation>
     </message>
     <message>
         <source>Filter files...</source>
@@ -1975,7 +1942,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Endurnefna</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
@@ -1995,7 +1962,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Framför:</translation>
     </message>
 </context>
 <context>
@@ -2018,7 +1985,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation>Annað...</translation>
     </message>
     <message>
         <source>Type folder here</source>
@@ -2216,23 +2183,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nafn</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Stærð</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Framför</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Niðurhal forgangur</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -2287,7 +2238,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Category</source>
-        <translation type="unfinished" />
+        <translation>Flokkur</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2406,11 +2357,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished" />
+        <translation>Uppfæri...</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished" />
+        <translation>Virkar</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -2430,7 +2381,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished" />
+        <translation>Virkar ekki</translation>
     </message>
     <message>
         <source>Copy tracker URL</source>
@@ -2454,7 +2405,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished" />
+        <translation>Eftir</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -2466,19 +2417,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation type="unfinished" />
+        <translation>Niðurhal forgangur</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nafn</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Framför</translation>
     </message>
     <message>
         <source>Total Size</source>
-        <translation type="unfinished" />
+        <translation>Heildar stærð</translation>
     </message>
     <message>
         <source>Times Downloaded</source>
@@ -2513,7 +2464,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished" />
+        <translation>Lokið</translation>
     </message>
     <message>
         <source>Moving</source>
@@ -2533,7 +2484,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Errored</source>
-        <translation type="unfinished" />
+        <translation>Villur</translation>
     </message>
     <message>
         <source>[F] Downloading</source>
@@ -2545,7 +2496,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Checking</source>
-        <translation type="unfinished" />
+        <translation>Athuga</translation>
     </message>
     <message>
         <source>Missing Files</source>
@@ -2557,7 +2508,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Downloading</source>
-        <translation type="unfinished" />
+        <translation>Sæki</translation>
     </message>
     <message>
         <source>Checking resume data</source>
@@ -2625,11 +2576,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Eyða</translation>
-    </message>
-    <message>
         <source>Limit share ratio...</source>
         <translation type="unfinished" />
     </message>
@@ -2666,42 +2612,30 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Afrita nafn</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished" />
+        <translation>Sjálfvirkur stjórnunarhamur</translation>
     </message>
     <message>
         <source>Category</source>
-        <translation type="unfinished" />
+        <translation>Flokkur</translation>
     </message>
     <message>
         <source>New...</source>
         <comment>New category...</comment>
-        <translation type="unfinished" />
+        <translation>Nýtt...</translation>
     </message>
     <message>
         <source>Reset</source>
         <comment>Reset category</comment>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="vanished">Forgangur</translation>
+        <translation>Endurstilla</translation>
     </message>
     <message>
         <source>Force recheck</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Afrita magnet slóð</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2717,7 +2651,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Nýr flokkur</translation>
     </message>
     <message>
         <source>Location</source>
@@ -2765,11 +2699,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nafn</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Afrita</translation>
     </message>
     <message>
         <source>Queue</source>
@@ -2824,7 +2758,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>mínútur</translation>
     </message>
 </context>
 <context>
@@ -2832,10 +2766,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </context>
 <context>
     <name>confirmDeletionDlg</name>
-    <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation type="vanished">Einnig eyða skrám af harðadiski</translation>
-    </message>
     <message>
         <source>Also permanently delete the files</source>
         <translation type="unfinished" />
@@ -2943,7 +2873,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>PluginSourceDlg</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Hætta við</translation>
     </message>
     <message>
         <source>Plugin path:</source>
@@ -2974,7 +2904,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>Stærð:</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -2982,7 +2912,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Leita</translation>
     </message>
     <message>
         <source>Search plugins...</source>
@@ -2990,7 +2920,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>All categories</source>
-        <translation type="unfinished" />
+        <translation>Allir flokkar</translation>
     </message>
     <message>
         <source>Search in:</source>
@@ -3026,7 +2956,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>til</translation>
     </message>
     <message>
         <source>Results</source>
@@ -3061,7 +2991,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished" />
+        <translation>Loka</translation>
     </message>
     <message>
         <source>Installed search plugins:</source>
@@ -3069,7 +2999,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Virkt</translation>
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
@@ -3077,7 +3007,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Check for updates</source>
-        <translation type="unfinished" />
+        <translation>Athuga með uppfærslur</translation>
     </message>
     <message>
         <source>Search plugins</source>
@@ -3088,11 +3018,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>SearchResultsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nafn</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>Stærð</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -3100,7 +3030,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished" />
+        <translation>Leitarvél</translation>
     </message>
     <message>
         <source>Seeders</source>
@@ -3111,34 +3041,34 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>SearchPluginsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nafn</translation>
     </message>
     <message>
         <source>Url</source>
-        <translation type="unfinished" />
+        <translation>Vefslóð</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Virkt</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished" />
+        <translation>Útgáfa</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Já</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Nei</translation>
     </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Hætta við</translation>
     </message>
     <message>
         <source>Add Peers</source>
@@ -3200,7 +3130,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>TagFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Allt</translation>
     </message>
     <message>
         <source>Untagged</source>
@@ -3215,7 +3145,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished" />
+        <translation>Um</translation>
     </message>
     <message>
         <source>Forum:</source>
@@ -3223,23 +3153,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation>Tölvupóstur</translation>
     </message>
     <message>
         <source>Current maintainer</source>
-        <translation type="unfinished" />
+        <translation>Núverandi umsjónarmaður</translation>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation type="unfinished" />
+        <translation>Heimasíða:</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation>Grikkland</translation>
     </message>
     <message>
         <source>Special Thanks</source>
-        <translation type="unfinished" />
+        <translation>Sérstakar þakkir</translation>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
@@ -3247,31 +3177,31 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished" />
+        <translation>Nafn:</translation>
     </message>
     <message>
         <source>About qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Um qBittorrent</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished" />
+        <translation>Leyfi</translation>
     </message>
     <message>
         <source>Translators</source>
-        <translation type="unfinished" />
+        <translation>Þýðendur</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent var búið til með eftirfarandi forritasöfnum:</translation>
     </message>
     <message>
         <source>Nationality:</source>
-        <translation type="unfinished" />
+        <translation>Þjóðerni:</translation>
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>Hugbúnaður notaður</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
@@ -3279,11 +3209,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Höfundar</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished" />
+        <translation>Frakkland</translation>
     </message>
     <message>
         <source>qBittorrent Mascot</source>
@@ -3313,15 +3243,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Afrita</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Niðurhal</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nafn</translation>
     </message>
     <message>
         <source>Description page URL</source>
@@ -3344,14 +3274,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Nýtt nafn:</translation>
     </message>
 </context>
 <context>
     <name>RSSWidget</name>
     <message>
         <source>Date: </source>
-        <translation type="unfinished" />
+        <translation>Dagsetning:</translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
@@ -3367,11 +3297,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Update all</source>
-        <translation type="unfinished" />
+        <translation>Uppfæra allt</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished" />
+        <translation>Eyða</translation>
     </message>
     <message>
         <source>RSS Downloader...</source>
@@ -3395,11 +3325,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Open news URL</source>
-        <translation type="unfinished" />
+        <translation>Opna frétta vefslóð</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Endurnefna</translation>
     </message>
     <message>
         <source>Feed URL:</source>
@@ -3407,7 +3337,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New folder...</source>
-        <translation type="unfinished" />
+        <translation>Ný mappa...</translation>
     </message>
     <message>
         <source>New subscription</source>
@@ -3415,11 +3345,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Update</source>
-        <translation type="unfinished" />
+        <translation>Uppfæra</translation>
     </message>
     <message>
         <source>Folder name:</source>
-        <translation type="unfinished" />
+        <translation>Möppu nafn:</translation>
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
@@ -3443,7 +3373,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download torrent</source>
-        <translation type="unfinished" />
+        <translation>Sækja torrent</translation>
     </message>
 </context>
 <context>
@@ -3478,7 +3408,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished" />
+        <translation>Vista í:</translation>
     </message>
     <message>
         <source>Use Regular Expressions</source>
@@ -3526,7 +3456,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Example: </source>
-        <translation type="unfinished" />
+        <translation>Dæmi:</translation>
     </message>
     <message>
         <source>Add new rule...</source>
@@ -3538,7 +3468,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Must Contain:</source>
-        <translation type="unfinished" />
+        <translation>Verður að innihalda:</translation>
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
@@ -3550,7 +3480,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Must Not Contain:</source>
-        <translation type="unfinished" />
+        <translation>Má ekki innihalda:</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
@@ -3582,7 +3512,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished" />
+        <translation>Alltaf</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3614,7 +3544,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished" />
+        <translation>Aldrei</translation>
     </message>
     <message>
         <source>Apply Rule to Feeds:</source>
@@ -3622,7 +3552,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source> days</source>
-        <translation type="unfinished" />
+        <translation>dagar</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
@@ -3679,7 +3609,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Búa til undirmöppu</translation>
     </message>
     <message>
         <source>Original</source>
@@ -3687,7 +3617,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Ekki búa til undirmöppu</translation>
     </message>
 </context>
 <context>
@@ -3698,7 +3628,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>Allt (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
@@ -3721,7 +3651,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished" />
+        <translation>Ólesið</translation>
     </message>
 </context>
 <context>
