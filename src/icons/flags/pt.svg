@@ -23,25 +23,25 @@
   <g transform="translate(0 26.7) scale(1.06667)">
     <path fill="#fff" stroke="#000" stroke-width=".7" d="M180.6 211a58.7 58.7 0 0 0 17.5 41.7 59 59 0 0 0 41.8 17.6 59.4 59.4 0 0 0 42-17.4 59 59 0 0 0 17.4-41.8v-79.2l-118.7-.2V211z"/>
     <path fill="red" stroke="#000" stroke-width=".5" d="M182.8 211.1a56.4 56.4 0 0 0 16.8 40 57 57 0 0 0 40.2 16.8 56.9 56.9 0 0 0 40.2-16.6 56.4 56.4 0 0 0 16.7-40v-77H183v76.8m91-53.7v48.9l-.1 5.1a33.2 33.2 0 0 1-10 24 34 34 0 0 1-24 10c-9.4 0-17.7-4-23.9-10.2a34 34 0 0 1-10-24v-54l68 .2z"/>
-    <g id="e">
-      <g id="d" fill="#ff0" stroke="#000" stroke-width=".5">
+    <g id="pt-e">
+      <g id="pt-d" fill="#ff0" stroke="#000" stroke-width=".5">
         <path stroke="none" d="M190.2 154.4c.1-5.5 4-6.8 4-6.8.1 0 4.3 1.4 4.3 6.9h-8.3"/>
         <path d="m186.8 147.7-.7 6.3h4.2c0-5.2 4-6 4-6 .1 0 4 1.1 4.1 6h4.2l-.8-6.4h-15zm-1 6.4h17c.3 0 .6.3.6.7 0 .5-.3.8-.6.8h-17c-.3 0-.6-.3-.6-.8 0-.4.3-.7.7-.7z"/>
         <path d="M192 154c0-3.3 2.3-4.2 2.3-4.2s2.3 1 2.3 4.2H192m-5.8-9h16.3c.3 0 .6.4.6.8 0 .3-.3.6-.6.6h-16.3c-.3 0-.6-.3-.6-.7 0-.3.3-.6.6-.6zm.4 1.5H202c.3 0 .6.3.6.7 0 .4-.3.7-.6.7h-15.5c-.4 0-.6-.3-.6-.7 0-.4.2-.7.6-.7zm5-10.6h1.2v.8h.9v-.8h1.3v.9h.9v-1h1.2v2c0 .4-.2.6-.5.6h-4.4c-.3 0-.6-.2-.6-.5v-2zm4.6 2.7.3 6.4h-4.3l.3-6.5h3.7"/>
-        <path id="a" d="M191 141.6v3.4h-4v-3.4h4z"/>
-        <use xlink:href="#a" width="100%" height="100%" x="10.6"/>
-        <path id="b" d="M186.3 139h1.2v1h.9v-1h1.2v1h.9v-1h1.2v2c0 .4-.2.6-.5.6h-4.3a.6.6 0 0 1-.6-.6v-2z"/>
-        <use xlink:href="#b" width="100%" height="100%" x="10.6"/>
+        <path id="pt-a" d="M191 141.6v3.4h-4v-3.4h4z"/>
+        <use xlink:href="#pt-a" width="100%" height="100%" x="10.6"/>
+        <path id="pt-b" d="M186.3 139h1.2v1h.9v-1h1.2v1h.9v-1h1.2v2c0 .4-.2.6-.5.6h-4.3a.6.6 0 0 1-.6-.6v-2z"/>
+        <use xlink:href="#pt-b" width="100%" height="100%" x="10.6"/>
         <path fill="#000" stroke="none" d="M193.9 140.6c0-.6.9-.6.9 0v1.6h-.9v-1.6"/>
-        <path id="c" fill="#000" stroke="none" d="M188.6 142.8c0-.6.8-.6.8 0v1.2h-.8v-1.2"/>
-        <use xlink:href="#c" width="100%" height="100%" x="10.6"/>
+        <path id="pt-c" fill="#000" stroke="none" d="M188.6 142.8c0-.6.8-.6.8 0v1.2h-.8v-1.2"/>
+        <use xlink:href="#pt-c" width="100%" height="100%" x="10.6"/>
       </g>
-      <use xlink:href="#d" width="100%" height="100%" y="46.3"/>
-      <use xlink:href="#d" width="100%" height="100%" transform="rotate(-45.2 312.8 180)"/>
+      <use xlink:href="#pt-d" width="100%" height="100%" y="46.3"/>
+      <use xlink:href="#pt-d" width="100%" height="100%" transform="rotate(-45.2 312.8 180)"/>
     </g>
-    <use xlink:href="#d" width="100%" height="100%" x="45.7"/>
-    <use xlink:href="#e" width="100%" height="100%" transform="matrix(-1 0 0 1 479.8 0)"/>
-    <g id="f" fill="#fff">
+    <use xlink:href="#pt-d" width="100%" height="100%" x="45.7"/>
+    <use xlink:href="#pt-e" width="100%" height="100%" transform="matrix(-1 0 0 1 479.8 0)"/>
+    <g id="pt-f" fill="#fff">
       <path fill="#039" d="M232.6 202.4a8.3 8.3 0 0 0 2.2 5.7 7.2 7.2 0 0 0 5.3 2.4c2.1 0 4-1 5.3-2.4a8.3 8.3 0 0 0 2.2-5.7v-10.8h-15v10.8"/>
       <circle cx="236.1" cy="195.7" r="1.5"/>
       <circle cx="244.4" cy="195.7" r="1.5"/>
@@ -49,9 +49,9 @@
       <circle cx="236.1" cy="203.9" r="1.5"/>
       <circle cx="244.4" cy="203.9" r="1.5"/>
     </g>
-    <use xlink:href="#f" width="100%" height="100%" y="-26"/>
-    <use xlink:href="#f" width="100%" height="100%" x="-20.8"/>
-    <use xlink:href="#f" width="100%" height="100%" x="20.8"/>
-    <use xlink:href="#f" width="100%" height="100%" y="25.8"/>
+    <use xlink:href="#pt-f" width="100%" height="100%" y="-26"/>
+    <use xlink:href="#pt-f" width="100%" height="100%" x="-20.8"/>
+    <use xlink:href="#pt-f" width="100%" height="100%" x="20.8"/>
+    <use xlink:href="#pt-f" width="100%" height="100%" y="25.8"/>
   </g>
 </svg>
