@@ -18,3 +18,9 @@ You'll need to be careful when you copy the output to file as some headers will 
 Careful not to overwrite the existing leading headers or trim off the trailing headers.
 
 Remember to commit Markdown files (\*.md) and the generated man pages (\*.1 files) after editing!
+
+### Translation
+
+To translate the man pages into a new language, create a new subdirectory here
+with the translated files and add it to the `manPageLanguages` list in
+[`dist/unix/CMakeLists.txt`](../dist/unix/CMakeLists.txt).
