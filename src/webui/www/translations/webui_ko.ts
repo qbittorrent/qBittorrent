@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ko">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ko">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>하위폴더 만들기</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>하위폴더 만들지 않기</translation>
     </message>
     <message>
@@ -84,15 +86,15 @@
     <name>CategoryFilterWidget</name>
     <message>
         <source>Add category...</source>
-        <translation>범주 추가하기…</translation>
+        <translation>범주 추가…</translation>
     </message>
     <message>
         <source>Remove category</source>
-        <translation>범주 제거하기</translation>
+        <translation>범주 제거</translation>
     </message>
     <message>
         <source>Remove unused categories</source>
-        <translation>사용하지 않는 범주 제거하기</translation>
+        <translation>미사용 범주 제거</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -108,7 +110,7 @@
     </message>
     <message>
         <source>Edit category...</source>
-        <translation>범주 편집하기…</translation>
+        <translation>범주 편집…</translation>
     </message>
     <message>
         <source>Remove torrents</source>
@@ -116,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation>하위 범주 추가하기…</translation>
+        <translation>하위 범주 추가…</translation>
     </message>
 </context>
 <context>
@@ -327,7 +329,7 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation>편집하기</translation>
+        <translation>편집</translation>
     </message>
     <message>
         <source>Free space: %1</source>
@@ -398,7 +400,7 @@
     <name>MainWindow</name>
     <message>
         <source>Edit</source>
-        <translation>편집하기</translation>
+        <translation>편집</translation>
     </message>
     <message>
         <source>Tools</source>
@@ -599,7 +601,7 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation>취소하기</translation>
+        <translation>취소</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -991,8 +993,8 @@
         <translation>%T: 현재 트래커</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>팁: 텍스트가 공백때문에 잘리지 않게 하려면 변수를 따옴표로 감싸세요 (예, &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>팁: 텍스트가 공백때문에 잘리지 않게 하려면 변수를 따옴표로 감싸세요 (예, "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1164,7 +1166,7 @@
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation>배포 시간 제한:</translation>
+        <translation type="vanished">배포 시간 제한:</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1352,7 +1354,7 @@
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
-        <translation>자동 내려받기 규칙 편집하기…</translation>
+        <translation>자동 내려받기 규칙 편집…</translation>
     </message>
     <message>
         <source>Download REPACK/PROPER episodes</source>
@@ -1415,7 +1417,7 @@
         <translation>원본</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>하위폴더 만들지 않기</translation>
     </message>
     <message>
@@ -1551,12 +1553,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>HTTP 호스트 헤더 필터링에 대한 허용 목록입니다.
 DNS 재결합 공격을 방어하기 위해
 웹 UI 서버가 사용하는 도메인 이름을 넣어야 합니다.
 
-&apos;;&apos;를 사용해서 항목을 구분하며 와일드카드 &apos;*&apos;를 사용할 수 있습니다.</translation>
+';'를 사용해서 항목을 구분하며 와일드카드 '*'를 사용할 수 있습니다.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1567,8 +1569,8 @@ DNS 재결합 공격을 방어하기 위해
         <translation>HTTPS 인증서는 비워둘 수 없습니다</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation>전달된 클라이언트 주소(X-Forwarded-헤더의 경우)를 사용하려면 역방향 프록시 IP(또는 서브넷, 예: 0.0.0.0/24)를 지정합니다. 여러 항목을 분할하려면 &apos;;&apos;를 사용하십시오.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation>전달된 클라이언트 주소(X-Forwarded-헤더의 경우)를 사용하려면 역방향 프록시 IP(또는 서브넷, 예: 0.0.0.0/24)를 지정합니다. 여러 항목을 분할하려면 ';'를 사용하십시오.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1592,7 +1594,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Use proxy for hostname lookup</source>
-        <translation>호스트 이름 조회에 프록시 사용하기</translation>
+        <translation type="vanished">호스트 이름 조회에 프록시 사용하기</translation>
     </message>
     <message>
         <source>Metadata received</source>
@@ -1729,6 +1731,34 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
         <translation>UPnP 임대 기간 [0: 영구 임대]:</translation>
+    </message>
+    <message>
+        <source>Bdecode token limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When inactive seeding time reaches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>.torrent file size limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Perform hostname lookup via proxy</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2056,7 +2086,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Match all occurences</source>
-        <translation>모든 경우 일치</translation>
+        <translation type="vanished">모든 경우 일치</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2093,6 +2123,10 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <source>Case sensitive</source>
         <translation>대/소문자 구분</translation>
+    </message>
+    <message>
+        <source>Match all occurrences</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2519,7 +2553,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>트래커 URL 편집하기…</translation>
+        <translation>트래커 URL 편집…</translation>
     </message>
     <message>
         <source>Tracker editing</source>
@@ -2813,7 +2847,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Edit Category</source>
-        <translation>범주 편집하기</translation>
+        <translation>범주 편집</translation>
     </message>
     <message>
         <source>Save path</source>
@@ -2825,7 +2859,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Add Tags</source>
-        <translation>태그 추가하기</translation>
+        <translation>태그 추가</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2908,7 +2942,15 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>minutes</source>
-        <translation>분</translation>
+        <translation type="vanished">분</translation>
+    </message>
+    <message>
+        <source>total minutes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>inactive minutes</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3023,7 +3065,7 @@ DNS 재결합 공격을 방어하기 위해
     <name>PluginSourceDlg</name>
     <message>
         <source>Cancel</source>
-        <translation>취소하기</translation>
+        <translation>취소</translation>
     </message>
     <message>
         <source>Plugin path:</source>
@@ -3117,11 +3159,11 @@ DNS 재결합 공격을 방어하기 위해
         <translation>표시</translation>
     </message>
     <message>
-        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
-        <translation>일부를 설치하려면 창의 오른쪽 하단에 있는 &quot;플러그인 검색...&quot; 버튼을 클릭하십시오.</translation>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation>일부를 설치하려면 창의 오른쪽 하단에 있는 "플러그인 검색..." 버튼을 클릭하십시오.</translation>
     </message>
     <message>
-        <source>There aren&apos;t any search plugins installed.</source>
+        <source>There aren't any search plugins installed.</source>
         <translation>설치된 검색 플러그인이 없습니다.</translation>
     </message>
 </context>
@@ -3152,7 +3194,7 @@ DNS 재결합 공격을 방어하기 위해
         <translation>활성화됨</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>경고: 검색 엔진으로 토렌트를 내려받기할 때는 해당 국가의 저작권법을 준수해야 합니다.</translation>
     </message>
     <message>
@@ -3218,7 +3260,7 @@ DNS 재결합 공격을 방어하기 위해
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation>취소하기</translation>
+        <translation>취소</translation>
     </message>
     <message>
         <source>Add Peers</source>
@@ -3245,7 +3287,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Add tag...</source>
-        <translation>태그 추가하기…</translation>
+        <translation>태그 추가…</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -3261,7 +3303,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Remove unused tags</source>
-        <translation>사용하지 않는 태그 제거하기</translation>
+        <translation>미사용 태그 제거</translation>
     </message>
     <message>
         <source>Invalid tag name</source>
@@ -3269,7 +3311,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Remove tag</source>
-        <translation>태그 제거하기</translation>
+        <translation>태그 제거</translation>
     </message>
     <message>
         <source>Remove torrents</source>
@@ -3771,7 +3813,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>원본</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>하위폴더 만들지 않기</translation>
     </message>
 </context>
