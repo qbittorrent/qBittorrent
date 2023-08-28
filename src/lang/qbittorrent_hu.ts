@@ -86,8 +86,8 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="69"/>
-        <source>Copyright %1 2006-2022 The qBittorrent project</source>
-        <translation>Szerzői joggal védve %1 2006-2022 A qBittorrent projekt</translation>
+        <source>Copyright %1 2006-2023 The qBittorrent project</source>
+        <translation>Szerzői joggal védve %1 2006-2023 A qBittorrent projekt</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>

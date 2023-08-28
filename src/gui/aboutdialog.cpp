@@ -66,7 +66,7 @@ AboutDialog::AboutDialog(QWidget *parent)
         u"</p>"_qs
         .arg(tr("An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.")
                 .replace(u"C++"_qs, u"C\u2060+\u2060+"_qs) // make C++ non-breaking
-            , tr("Copyright %1 2006-2022 The qBittorrent project").arg(C_COPYRIGHT)
+            , tr("Copyright %1 2006-2023 The qBittorrent project").arg(C_COPYRIGHT)
             , tr("Home Page:")
             , tr("Forum:")
             , tr("Bug Tracker:"));
