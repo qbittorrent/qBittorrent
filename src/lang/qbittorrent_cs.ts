@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -390,8 +388,8 @@
         <location filename="../gui/addnewtorrentdialog.cpp" line="532"/>
         <source>Failed to load the torrent: %1.
 Error: %2</source>
-        <comment>Don&apos;t remove the &apos;
-&apos; characters. They insert a newline.</comment>
+        <comment>Don't remove the '
+' characters. They insert a newline.</comment>
         <translation>Nepodařilo se načíst torrent: %1.
 Error: %2</translation>
     </message>
@@ -973,12 +971,12 @@ Chyba: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="477"/>
         <source>Bdecode depth limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Bdecode omezení hloubky</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="483"/>
         <source>Bdecode token limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Bdecode omezení tokenu</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="554"/>
@@ -1065,7 +1063,7 @@ Chyba: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="648"/>
         <source>.torrent file size limit</source>
-        <translation type="unfinished"></translation>
+        <translation>omezení velikosti .torrent souboru</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="677"/>
@@ -1393,9 +1391,9 @@ Chyba: %2</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="842"/>
-        <source>An I/O error occurred for torrent &apos;%1&apos;.
+        <source>An I/O error occurred for torrent '%1'.
  Reason: %2</source>
-        <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
+        <comment>e.g: An error occurred for torrent 'xxx.avi'.
  Reason: disk is full.</comment>
         <translation>Nastala I/O chyba torrentu %1.
 Důvod: %2</translation>
@@ -2240,7 +2238,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2248"/>
         <source>Torrent reached the inactive seeding time limit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent dosáhl časového omezení doby neaktivního seedování.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2288"/>
@@ -2261,17 +2259,17 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2752"/>
         <source>Detected an attempt to add a duplicate torrent. Merging of trackers is disabled. Torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozpoznán pokus o přidání duplicitního torrentu. Sloučení trackerů je vypnuto. Torrent: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2759"/>
         <source>Detected an attempt to add a duplicate torrent. Trackers cannot be merged because it is a private torrent. Torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozpoznán pokus o přidání duplicitního torrentu. Ke sloučení trackerů nedošlo, protože jde o soukromý torrent. Torrent: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2780"/>
         <source>Detected an attempt to add a duplicate torrent. Trackers are merged from new source. Torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozpoznán pokus o přidání duplicitního torrentu. Trackery jsou sloučeny z nového zdroje. Torrent: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2979"/>
@@ -2659,13 +2657,13 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <location filename="../app/cmdoptions.cpp" line="156"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
-        <comment>e.g. Parameter &apos;--webui-port&apos; must follow syntax &apos;--webui-port=value&apos;</comment>
+        <comment>e.g. Parameter '--webui-port' must follow syntax '--webui-port=value'</comment>
         <translation>Parametr  &apos;%1&apos; musí dodržovat syntaxi &apos;%1=%2&apos;</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="207"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
-        <comment>e.g. Parameter &apos;--webui-port&apos; must follow syntax &apos;--webui-port=&lt;value&gt;&apos;</comment>
+        <comment>e.g. Parameter '--webui-port' must follow syntax '--webui-port=&lt;value&gt;'</comment>
         <translation>Parametr  &apos;%1&apos; musí dodržovat syntaxi &apos;%1=%2&apos;</translation>
     </message>
     <message>
@@ -2676,7 +2674,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <location filename="../app/cmdoptions.cpp" line="279"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
-        <comment>e.g. Parameter &apos;--add-paused&apos; must follow syntax &apos;--add-paused=&lt;true|false&gt;&apos;</comment>
+        <comment>e.g. Parameter '--add-paused' must follow syntax '--add-paused=&lt;true|false&gt;'</comment>
         <translation>Parametr  &apos;%1&apos; musí dodržovat syntaxi &apos;%1=%2&apos;</translation>
     </message>
     <message>
@@ -2990,7 +2988,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <location filename="../gui/deletionconfirmationdialog.cpp" line="45"/>
         <source>Are you sure you want to remove &apos;%1&apos; from the transfer list?</source>
-        <comment>Are you sure you want to remove &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
+        <comment>Are you sure you want to remove 'ubuntu-linux-iso' from the transfer list?</comment>
         <translation>Opravdu chcete odebrat &apos;%1&apos; ze seznamu přenosů?</translation>
     </message>
     <message>
@@ -3241,7 +3239,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <location filename="../base/http/connection.cpp" line="110"/>
         <source>Bad Http request method, closing socket. IP: %1. Method: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Špatná metoda HTTP požadavku, zavírání socketu. IP: %1. Metoda: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/http/connection.cpp" line="123"/>
@@ -5754,12 +5752,12 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="956"/>
         <source>When duplicate torrent is being added</source>
-        <translation type="unfinished"></translation>
+        <translation>Když je přidáván duplicitní torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="962"/>
         <source>Merge trackers to existing torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Sloučit trackery do stávajícího torrentu</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1353"/>
@@ -5905,12 +5903,12 @@ Zakázat šifrování: Připojí se pouze k peerům bez šifrování protokolu</
     <message>
         <location filename="../gui/optionsdialog.ui" line="2936"/>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished"></translation>
+        <translation>Když celkový čas seedování dosáhne</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2959"/>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished"></translation>
+        <translation>Když čas neaktivního seedování dosáhne</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3022"/>
@@ -5949,10 +5947,6 @@ Zakázat šifrování: Připojí se pouze k peerům bez šifrování protokolu</
         <location filename="../gui/optionsdialog.ui" line="2894"/>
         <source>Seeding Limits</source>
         <translation>Limity sdílení</translation>
-    </message>
-    <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Když je dosažena doba odesílání</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2996"/>
@@ -6494,7 +6488,7 @@ Ručně: Různé vlastnosti torrentu (např. cesta uložení) musí být přiřa
     <message>
         <location filename="../gui/optionsdialog.ui" line="972"/>
         <source>Ask for merging trackers when torrent is being added manually</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeptat se na sloučení trackerů při manuálním přidávání torrentu</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1271"/>
@@ -6522,9 +6516,9 @@ Use newlines to separate multiple entries. Can use wildcards as outlined below.
 [...]: sets of characters can be represented in square brackets.
 
 Examples
-*.exe: filter &apos;.exe&apos; file extension.
+*.exe: filter '.exe' file extension.
 readme.txt: filter exact file name.
-?.txt: filter &apos;a.txt&apos;, &apos;b.txt&apos; but not &apos;aa.txt&apos;.
+?.txt: filter 'a.txt', 'b.txt' but not 'aa.txt'.
 readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not &apos;readme10.txt&apos;.</source>
         <translation>Blacklist filtruje názvy souborů, které s torrentem(torrenty) nebudou staženy.
 Priorita souborů odpovídajících jakémukoli z filtrů v tomto seznamu bude automaticky nastavena na &quot;Nestahovat&quot;.
@@ -7449,7 +7443,7 @@ readme[0-9].txt: filtruje &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, ale 
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="135"/>
         <source>Relevance</source>
-        <comment>i.e: How relevant this peer is to us. How many pieces it has that we don&apos;t.</comment>
+        <comment>i.e: How relevant this peer is to us. How many pieces it has that we don't.</comment>
         <translation>Důležitost</translation>
     </message>
     <message>
@@ -8932,7 +8926,7 @@ Tyto pluginy byly vypnuty.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="79"/>
-        <source>There aren&apos;t any search plugins installed.
+        <source>There aren't any search plugins installed.
 Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
         <translation>Žádné vyhledávací pluginy nejsou nainstalovány.
 Klikněte na tlačítko &quot;Vyhledávácí pluginy...&quot; dole vpravo v okně, abyste nějaké nainstalovali.</translation>
@@ -9784,8 +9778,8 @@ Klikněte na tlačítko &quot;Vyhledávácí pluginy...&quot; dole vpravo v okn�
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="86"/>
-        <source>Category name cannot contain &apos;\&apos;.
-Category name cannot start/end with &apos;/&apos;.
+        <source>Category name cannot contain '\'.
+Category name cannot start/end with '/'.
 Category name cannot contain &apos;//&apos; sequence.</source>
         <translation>Název kategorie nemůže obsahovat znak &apos;\&apos;.
 Název kategorie nemůže začínat/končit znakem &apos;/&apos;.
@@ -10402,10 +10396,6 @@ Prosím zvolte jiný název kategorie a zkuste to znovu.</translation>
         <translation>Nastavit limit sdílení na</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">minuty</translation>
-    </message>
-    <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="194"/>
         <source>ratio</source>
         <translation>ratio</translation>
@@ -10413,12 +10403,12 @@ Prosím zvolte jiný název kategorie a zkuste to znovu.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="214"/>
         <source>total minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>minut celkem</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="244"/>
         <source>inactive minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>minut neaktivity</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="268"/>
@@ -10978,13 +10968,13 @@ Prosím zvolte jiný název kategorie a zkuste to znovu.</translation>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="99"/>
         <source>[F] Downloading metadata</source>
-        <comment>Used when forced to load a magnet link. You probably shouldn&apos;t translate the F.</comment>
+        <comment>Used when forced to load a magnet link. You probably shouldn't translate the F.</comment>
         <translation>[F] Stahuji metadata</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="100"/>
         <source>[F] Downloading</source>
-        <comment>Used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
+        <comment>Used when the torrent is forced started. You probably shouldn't translate the F.</comment>
         <translation>[F] Stahuji</translation>
     </message>
     <message>
@@ -10997,7 +10987,7 @@ Prosím zvolte jiný název kategorie a zkuste to znovu.</translation>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="103"/>
         <source>[F] Seeding</source>
-        <comment>Used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
+        <comment>Used when the torrent is forced started. You probably shouldn't translate the F.</comment>
         <translation>[F] Sdílím</translation>
     </message>
     <message>
@@ -11742,7 +11732,7 @@ Prosím zvolte jiný název kategorie a zkuste to znovu.</translation>
     <message>
         <location filename="../base/utils/io.cpp" line="101"/>
         <source>File read error. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba čtení souboru. Soubor: &quot;%1&quot;. Chyba: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/utils/io.cpp" line="116"/>
