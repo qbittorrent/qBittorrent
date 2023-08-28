@@ -1,3 +1,14 @@
+Tue Aug 29 2023 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.5.5
+    - BUGFIX: Fix transfer list tab hotkey (thalieht)
+    - BUGFIX: Don't forget to enable the Apply button in the Options dialog (glassez)
+    - BUGFIX: Immediately update torrent status on moving files (glassez)
+    - BUGFIX: Improve performance when scrolling the file list of large torrents (gdim47)
+    - BUGFIX: Don't operate on random torrents when multiple are selected and a sort/filter is applied (glassez)
+    - RSS: Fix overwriting feeds.json with an incomplete load of it (Omar Abdul Azeez)
+    - WINDOWS: Software update check logic is disabled for < Win10 (sledgehammer999)
+    - WINDOWS: NSIS: Update Turkish and French translations (Burak Yavuz, MarcDrieu)
+    - WINDOWS: NSIS: Add Romanian translation (rusu-afanasie)
+
 Sun Jun 18 2023 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.5.4
     - BUGFIX: Allow to disable confirmation of Pause/Resume All (glassez)
     - BUGFIX: Sync flag icons with upstream (Priit Uring)
