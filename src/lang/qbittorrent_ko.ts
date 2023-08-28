@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ko">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ko">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -173,7 +171,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="200"/>
         <source>Set as default category</source>
-        <translation>기본 범주로 설정하기</translation>
+        <translation>기본 범주로 설정</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="175"/>
@@ -365,8 +363,8 @@
         <location filename="../gui/addnewtorrentdialog.cpp" line="436"/>
         <source>Failed to load the torrent: %1.
 Error: %2</source>
-        <comment>Don&apos;t remove the &apos;
-&apos; characters. They insert a newline.</comment>
+        <comment>Don't remove the '
+' characters. They insert a newline.</comment>
         <translation>토렌트 읽기 실패: %1
 오류: %2</translation>
     </message>
@@ -783,7 +781,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="535"/>
         <source>Coalesce reads &amp; writes</source>
-        <translation>읽기 및 쓰기 병합</translation>
+        <translation>읽기 및 쓰기 통합하기</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="540"/>
@@ -1179,7 +1177,7 @@ Error: %2</source>
     <message>
         <location filename="../app/application.cpp" line="456"/>
         <source>Failed to run external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
-        <translation type="unfinished"></translation>
+        <translation>외부 프로그램을 실행하지 못했습니다. 토렌트: &quot;%1&quot;. 명령: `%2`</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="553"/>
@@ -1210,9 +1208,9 @@ Error: %2</source>
     </message>
     <message>
         <location filename="../app/application.cpp" line="795"/>
-        <source>An I/O error occurred for torrent &apos;%1&apos;.
+        <source>An I/O error occurred for torrent '%1'.
  Reason: %2</source>
-        <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
+        <comment>e.g: An error occurred for torrent 'xxx.avi'.
  Reason: disk is full.</comment>
         <translation>토렌트 &apos;%1&apos;에 대한 I/O 오류가 발생했습니다.
 원인: %2</translation>
@@ -2271,7 +2269,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5279"/>
         <source>Removed torrent but failed to delete its content and/or partfile. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>토렌트를 제거했지만 해당 콘텐츠 및/또는 파트파일을 삭제하지 못했습니다. 토렌트: &quot;%1&quot;. 오류: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5365"/>
@@ -2399,7 +2397,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="739"/>
         <source>Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.</source>
-        <translation type="unfinished"></translation>
+        <translation>예기치 않은 데이터가 감지되었습니다. 토렌트: %1. 데이터: total_wanted=%2 total_wanted_done=%3.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1089"/>
@@ -2483,27 +2481,27 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="112"/>
         <source>Add category...</source>
-        <translation>범주 추가하기…</translation>
+        <translation>범주 추가…</translation>
     </message>
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="120"/>
         <source>Add subcategory...</source>
-        <translation>하위 범주 추가하기…</translation>
+        <translation>하위 범주 추가…</translation>
     </message>
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="124"/>
         <source>Edit category...</source>
-        <translation>범주 편집하기…</translation>
+        <translation>범주 편집…</translation>
     </message>
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="126"/>
         <source>Remove category</source>
-        <translation>범주 제거하기</translation>
+        <translation>범주 제거</translation>
     </message>
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="130"/>
         <source>Remove unused categories</source>
-        <translation>사용하지 않는 범주 제거하기</translation>
+        <translation>미사용 범주 제거</translation>
     </message>
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="133"/>
@@ -2577,7 +2575,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/deletionconfirmationdialog.cpp" line="45"/>
         <source>Are you sure you want to remove &apos;%1&apos; from the transfer list?</source>
-        <comment>Are you sure you want to remove &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
+        <comment>Are you sure you want to remove 'ubuntu-linux-iso' from the transfer list?</comment>
         <translation>전송 목록에서 &apos;%1&apos;을(를) 제거하시겠습니까?</translation>
     </message>
     <message>
@@ -5371,7 +5369,7 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2992"/>
         <source>Edit auto downloading rules...</source>
-        <translation>자동 내려받기 규칙 편집하기…</translation>
+        <translation>자동 내려받기 규칙 편집…</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3002"/>
@@ -5625,7 +5623,7 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <location filename="../gui/optionsdialog.ui" line="1168"/>
         <source>Use Subcategories</source>
-        <translation>하위 범주 사용하기</translation>
+        <translation>하위 범주 사용</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1187"/>
@@ -5824,7 +5822,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1178"/>
         <source>Use Category paths in Manual Mode</source>
-        <translation>수동 모드에서 범주 경로 사용하기</translation>
+        <translation>수동 모드에서 범주 경로 사용</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1175"/>
@@ -5839,12 +5837,12 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="238"/>
         <source>Shows a confirmation dialog upon pausing/resuming all the torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>모든 토렌트를 일시정지/이어받기할 때 확인 대화상자를 표시합니다</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="241"/>
         <source>Confirm &quot;Pause/Resume all&quot; actions</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;모두 일시정지/이어받기&apos; 작업 확인하기</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="867"/>
@@ -5895,9 +5893,9 @@ Use newlines to separate multiple entries. Can use wildcards as outlined below.
 [...]: sets of characters can be represented in square brackets.
 
 Examples
-*.exe: filter &apos;.exe&apos; file extension.
+*.exe: filter '.exe' file extension.
 readme.txt: filter exact file name.
-?.txt: filter &apos;a.txt&apos;, &apos;b.txt&apos; but not &apos;aa.txt&apos;.
+?.txt: filter 'a.txt', 'b.txt' but not 'aa.txt'.
 readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not &apos;readme10.txt&apos;.</source>
         <translation>블랙리스트에서 필터링된 파일 이름은 토렌트에서 내려받지 않습니다.
 이 목록의 필터와 일치하는 파일의 우선순위는 자동으로 &quot;내려받지 않음&quot;으로 설정됩니다.
@@ -6830,7 +6828,7 @@ readme[0-9].txt: &apos;readme1.txt&apos;, &apos;readme2.txt&apos;를 필터링�
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="118"/>
         <source>Relevance</source>
-        <comment>i.e: How relevant this peer is to us. How many pieces it has that we don&apos;t.</comment>
+        <comment>i.e: How relevant this peer is to us. How many pieces it has that we don't.</comment>
         <translation>관련성</translation>
     </message>
     <message>
@@ -7643,7 +7641,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="758"/>
         <source>Edit Web seed URL</source>
-        <translation>웹 배포 URL 편집하기</translation>
+        <translation>웹 배포 URL 편집</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="97"/>
@@ -7680,7 +7678,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="868"/>
         <source>Web seed editing</source>
-        <translation>웹 배포 편집하기</translation>
+        <translation>웹 배포 편집</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="869"/>
@@ -7720,13 +7718,13 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="155"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
-        <comment>e.g. Parameter &apos;--webui-port&apos; must follow syntax &apos;--webui-port=value&apos;</comment>
+        <comment>e.g. Parameter '--webui-port' must follow syntax '--webui-port=value'</comment>
         <translation>매개변수 &apos;%1&apos;은(는) &apos;%1=%2&apos; 구문을 따라야 합니다</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="205"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
-        <comment>e.g. Parameter &apos;--webui-port&apos; must follow syntax &apos;--webui-port=&lt;value&gt;&apos;</comment>
+        <comment>e.g. Parameter '--webui-port' must follow syntax '--webui-port=&lt;value&gt;'</comment>
         <translation>매개변수 &apos;%1&apos;은(는) &apos;%1=%2&apos; 구문을 따라야 합니다</translation>
     </message>
     <message>
@@ -7737,7 +7735,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="276"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
-        <comment>e.g. Parameter &apos;--add-paused&apos; must follow syntax &apos;--add-paused=&lt;true|false&gt;&apos;</comment>
+        <comment>e.g. Parameter '--add-paused' must follow syntax '--add-paused=&lt;true|false&gt;'</comment>
         <translation>매개변수 &apos;%1&apos;은(는) &apos;%1=%2&apos; 구문을 따라야 합니다</translation>
     </message>
     <message>
@@ -7941,7 +7939,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../app/main.cpp" line="336"/>
         <source>Cancel</source>
-        <translation>취소하기</translation>
+        <translation>취소</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="337"/>
@@ -8670,7 +8668,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="79"/>
-        <source>There aren&apos;t any search plugins installed.
+        <source>There aren't any search plugins installed.
 Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
         <translation>검색 플러그인이 설치되어 있지 않습니다.
 창 오른쪽 아래 &quot;플러그인 검색…&quot; 버튼을 클릭하여 설치하십시오.</translation>
@@ -9395,17 +9393,17 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="110"/>
         <source>Add tag...</source>
-        <translation>태그 추가하기…</translation>
+        <translation>태그 추가…</translation>
     </message>
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="116"/>
         <source>Remove tag</source>
-        <translation>태그 제거하기</translation>
+        <translation>태그 제거</translation>
     </message>
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="120"/>
         <source>Remove unused tags</source>
-        <translation>사용하지 않는 태그 제거하기</translation>
+        <translation>미사용 태그 제거</translation>
     </message>
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="123"/>
@@ -9522,8 +9520,8 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="84"/>
-        <source>Category name cannot contain &apos;\&apos;.
-Category name cannot start/end with &apos;/&apos;.
+        <source>Category name cannot contain '\'.
+Category name cannot start/end with '/'.
 Category name cannot contain &apos;//&apos; sequence.</source>
         <translation>범주 이름은 &apos;\&apos;를 포함할 수 없습니다.
 범주 이름은 &apos;/&apos;로 시작하거나 끝날 수 없습니다.
@@ -9877,22 +9875,22 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="306"/>
         <source>Couldn&apos;t load Watched Folders configuration from %1. Error: %2</source>
-        <translation>%1에서 주시 중인 폴더 구성을 불러올 수 없습니다. 오류: %2</translation>
+        <translation>%1에서 감시 폴더 구성을 불러올 수 없습니다. 오류: %2</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="315"/>
         <source>Couldn&apos;t parse Watched Folders configuration from %1. Error: %2</source>
-        <translation>%1에서 주시 중인 폴더 구성을 분석할 수 없습니다. 오류: %2</translation>
+        <translation>%1에서 감시 폴더 구성을 분석할 수 없습니다. 오류: %2</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="322"/>
         <source>Couldn&apos;t load Watched Folders configuration from %1. Invalid data format.</source>
-        <translation>%1에서 주시 중인 폴더 구성을 불러올 수 없습니다. 잘못된 데이터 형식입니다.</translation>
+        <translation>%1에서 감시 폴더 구성을 불러올 수 없습니다. 잘못된 데이터 형식입니다.</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="395"/>
         <source>Couldn&apos;t store Watched Folders configuration to %1. Error: %2</source>
-        <translation>주시 중인 폴더 구성을 %1에 저장할 수 없습니다. 오류: %2</translation>
+        <translation>감시 폴더 구성을 %1에 저장할 수 없습니다. 오류: %2</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="414"/>
@@ -10213,7 +10211,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/trackerentriesdialog.ui" line="14"/>
         <source>Edit trackers</source>
-        <translation>트래커 편집하기</translation>
+        <translation>트래커 편집</translation>
     </message>
     <message>
         <location filename="../gui/trackerentriesdialog.ui" line="20"/>
@@ -10350,7 +10348,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="492"/>
         <source>Tracker editing</source>
-        <translation>트래커 편집하기</translation>
+        <translation>트래커 편집</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="492"/>
@@ -10560,13 +10558,13 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="144"/>
         <source>[F] Downloading metadata</source>
-        <comment>Used when forced to load a magnet link. You probably shouldn&apos;t translate the F.</comment>
+        <comment>Used when forced to load a magnet link. You probably shouldn't translate the F.</comment>
         <translation>[F] 메타데이터 내려받는 중</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="145"/>
         <source>[F] Downloading</source>
-        <comment>Used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
+        <comment>Used when the torrent is forced started. You probably shouldn't translate the F.</comment>
         <translation>[F] 내려받는 중</translation>
     </message>
     <message>
@@ -10579,7 +10577,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="148"/>
         <source>[F] Seeding</source>
-        <comment>Used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
+        <comment>Used when the torrent is forced started. You probably shouldn't translate the F.</comment>
         <translation>[F] 배포 중</translation>
     </message>
     <message>
@@ -10928,7 +10926,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="746"/>
         <source>Add Tags</source>
-        <translation>태그 추가하기</translation>
+        <translation>태그 추가</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="791"/>
@@ -10953,7 +10951,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="840"/>
         <source>Remove All Tags</source>
-        <translation>모든 태그 제거하기</translation>
+        <translation>모든 태그 제거</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="840"/>

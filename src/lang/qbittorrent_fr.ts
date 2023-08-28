@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fr">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -44,7 +42,7 @@
         <location filename="../gui/aboutdialog.ui" line="127"/>
         <location filename="../gui/aboutdialog.ui" line="190"/>
         <source>Name:</source>
-        <translation>Nom&#x202f;:</translation>
+        <translation>Nom :</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="157"/>
@@ -118,13 +116,13 @@
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="42"/>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="68"/>
         <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation>L&apos;ancien chemin est invalide : « %1 ».</translation>
+        <translation>Ancien chemin non valide : &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="44"/>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="70"/>
         <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation>Le nouveau chemin est invalide : &apos;%1&apos;.</translation>
+        <translation>Nouveau chemin non valide : &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="46"/>
@@ -135,7 +133,7 @@
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="56"/>
         <source>The file already exists: &apos;%1&apos;.</source>
-        <translation>Le fichier existe déjà : &apos;%1&apos;.</translation>
+        <translation>Ce fichier existe déjà : &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="60"/>
@@ -145,7 +143,7 @@
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="84"/>
         <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation>Le dossier existe déjà : &apos;%1&apos;.</translation>
+        <translation>Ce dossier existe déjà : &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="88"/>
@@ -365,8 +363,8 @@
         <location filename="../gui/addnewtorrentdialog.cpp" line="436"/>
         <source>Failed to load the torrent: %1.
 Error: %2</source>
-        <comment>Don&apos;t remove the &apos;
-&apos; characters. They insert a newline.</comment>
+        <comment>Don't remove the '
+' characters. They insert a newline.</comment>
         <translation>Erreur lors du chargement du torrent « %1 ».
 Erreur : %2</translation>
     </message>
@@ -1210,9 +1208,9 @@ Erreur : %2</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="795"/>
-        <source>An I/O error occurred for torrent &apos;%1&apos;.
+        <source>An I/O error occurred for torrent '%1'.
  Reason: %2</source>
-        <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
+        <comment>e.g: An error occurred for torrent 'xxx.avi'.
  Reason: disk is full.</comment>
         <translation>Une erreur d&apos;E/S est survenue pour le torrent « %1 ».
 Raison : %2</translation>
@@ -1413,7 +1411,7 @@ Voulez-vous faire de qBittorrent l&apos;application par défaut pour ceux-ci ?</
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="128"/>
         <source>Episode Filter:</source>
-        <translation>Filtre d&apos;épisode&#x202f;:</translation>
+        <translation>Filtre d&apos;épisode :</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="186"/>
@@ -1451,7 +1449,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="303"/>
         <source>Add Paused:</source>
-        <translation>Ajouter en pause&#x202f;:</translation>
+        <translation>Ajouter en pause :</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="311"/>
@@ -1517,7 +1515,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="98"/>
         <source>Example: </source>
-        <translation>Exemple&#x202f;:</translation>
+        <translation>Exemple :</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="99"/>
@@ -1528,7 +1526,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="100"/>
         <source>Episode filter rules: </source>
-        <translation>Règles de filtrage d&apos;épisodes&#x202f;:</translation>
+        <translation>Règles de filtrage d&apos;épisodes :</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="100"/>
@@ -1543,17 +1541,17 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="103"/>
         <source>Three range types for episodes are supported: </source>
-        <translation>Trois types d&apos;intervalles d&apos;épisodes sont pris en charge&#x202f;:</translation>
+        <translation>Trois types d&apos;intervalles d&apos;épisodes sont pris en charge :</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="104"/>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation>Nombre simple&#x202f;: &lt;b&gt;1×25;&lt;/b&gt; correspond à l&apos;épisode 25 de la saison 1</translation>
+        <translation>Nombre simple : &lt;b&gt;1×25;&lt;/b&gt; correspond à l&apos;épisode 25 de la saison 1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="105"/>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation>Intervalle standard&#x202f;: &lt;b&gt;1×25-40;&lt;/b&gt; correspond aux épisodes 25 à 40 de la saison 1</translation>
+        <translation>Intervalle standard : &lt;b&gt;1×25-40;&lt;/b&gt; correspond aux épisodes 25 à 40 de la saison 1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="101"/>
@@ -1573,17 +1571,17 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="106"/>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
-        <translation>Intervalle infini&#x202f;: &lt;b&gt;1x25-;&lt;/b&gt; correspond aux épisodes 25 et suivants de la saison 1,  et tous les épisodes des saisons postérieures</translation>
+        <translation>Intervalle infini : &lt;b&gt;1x25-;&lt;/b&gt; correspond aux épisodes 25 et suivants de la saison 1,  et tous les épisodes des saisons postérieures</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="294"/>
         <source>Last Match: %1 days ago</source>
-        <translation>Dernière correspondance&#x202f;: il y a %1 jours</translation>
+        <translation>Dernière correspondance : il y a %1 jours</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="296"/>
         <source>Last Match: Unknown</source>
-        <translation>Dernière correspondance&#x202f;: inconnu</translation>
+        <translation>Dernière correspondance : inconnu</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="388"/>
@@ -2235,7 +2233,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="4956"/>
         <source>Successfully parsed the IP filter file. Number of rules applied: %1</source>
-        <translation>Analyse réussie du fichier de filtre IP. Nombre de règles appliquées&#xa0;: %1</translation>
+        <translation>Analyse réussie du fichier de filtre IP. Nombre de règles appliquées : %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="4966"/>
@@ -2577,7 +2575,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <message>
         <location filename="../gui/deletionconfirmationdialog.cpp" line="45"/>
         <source>Are you sure you want to remove &apos;%1&apos; from the transfer list?</source>
-        <comment>Are you sure you want to remove &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
+        <comment>Are you sure you want to remove 'ubuntu-linux-iso' from the transfer list?</comment>
         <translation>Voulez-vous vraiment retirer &apos;%1&apos; de la liste des transferts ?</translation>
     </message>
     <message>
@@ -3119,7 +3117,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <message>
         <location filename="../gui/mainwindow.ui" line="359"/>
         <source>Do&amp;nate!</source>
-        <translation>Faire un do&amp;n&#x202f;!</translation>
+        <translation>Faire un do&amp;n !</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="402"/>
@@ -3407,7 +3405,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <message>
         <location filename="../gui/mainwindow.cpp" line="609"/>
         <source>Are you sure you want to clear the password?</source>
-        <translation>Êtes vous sûr de vouloir effacer le mot de passe&#x202f;?</translation>
+        <translation>Êtes vous sûr de vouloir effacer le mot de passe ?</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="668"/>
@@ -3496,7 +3494,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>Python est nécessaire afin d&apos;utiliser le moteur de recherche mais il ne semble pas être installé.
-Voulez-vous l&apos;installer maintenant&#x202f;?</translation>
+Voulez-vous l&apos;installer maintenant ?</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1687"/>
@@ -3548,7 +3546,7 @@ Voulez-vous installer une version plus récente maintenant ?</translation>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: %2.</source>
         <translation>Votre version de Python (%1) est obsolète. Veuillez la mettre à niveau à la dernière version pour que les moteurs de recherche fonctionnent.
-Configuration minimale requise&#xa0;:&#xa0;%2.</translation>
+Configuration minimale requise : %2.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1926"/>
@@ -3593,7 +3591,7 @@ Veuillez l’installer manuellement.</translation>
     <message>
         <location filename="../gui/mainwindow.cpp" line="896"/>
         <source>The torrent &apos;%1&apos; contains .torrent files, do you want to proceed with their downloads?</source>
-        <translation>Le torrent «&#x202f;%1&#x202f;» contient des fichiers .torrent, voulez-vous poursuivre avec leurs téléchargements?</translation>
+        <translation>Le torrent « %1 » contient des fichiers .torrent, voulez-vous poursuivre avec leurs téléchargements?</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="978"/>
@@ -3616,7 +3614,7 @@ Veuillez l’installer manuellement.</translation>
         <location filename="../gui/mainwindow.cpp" line="1529"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[R&#xa0;: %1, E&#xa0;: %2] qBittorrent %3</translation>
+        <translation>[R : %1, E : %2] qBittorrent %3</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1576"/>
@@ -3649,17 +3647,17 @@ Veuillez l’installer manuellement.</translation>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="195"/>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
-        <translation>Erreur de DNS dynamique&#x202f;: Le service est temporairement indisponible, un nouvel essai sera fait dans 30 minutes.</translation>
+        <translation>Erreur de DNS dynamique : Le service est temporairement indisponible, un nouvel essai sera fait dans 30 minutes.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="206"/>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
-        <translation>Erreur de DNS dynamique&#x202f;: Le nom d&apos;hôte fourni n&apos;existe pas pour le compte spécifié.</translation>
+        <translation>Erreur de DNS dynamique : Le nom d&apos;hôte fourni n&apos;existe pas pour le compte spécifié.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="213"/>
         <source>Dynamic DNS error: Invalid username/password.</source>
-        <translation>Erreur de DNS dynamique&#x202f;: Nom d&apos;utilisateur ou mot de passe invalide.</translation>
+        <translation>Erreur de DNS dynamique : Nom d&apos;utilisateur ou mot de passe invalide.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="220"/>
@@ -3674,22 +3672,22 @@ Veuillez l’installer manuellement.</translation>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="236"/>
         <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
-        <translation>Erreur de DNS dynamique&#x202f;: Votre nom d&apos;utilisateur a été bloqué pour faute d&apos;abus.</translation>
+        <translation>Erreur de DNS dynamique : Votre nom d&apos;utilisateur a été bloqué pour faute d&apos;abus.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="258"/>
         <source>Dynamic DNS error: supplied domain name is invalid.</source>
-        <translation>Erreur de DNS dynamique&#x202f;: Le nom de domaine fourni est invalide.</translation>
+        <translation>Erreur de DNS dynamique : Le nom de domaine fourni est invalide.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="271"/>
         <source>Dynamic DNS error: supplied username is too short.</source>
-        <translation>Erreur de DNS dynamique&#x202f;: Le nom d&apos;utilisateur fourni est trop court.</translation>
+        <translation>Erreur de DNS dynamique : Le nom d&apos;utilisateur fourni est trop court.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="284"/>
         <source>Dynamic DNS error: supplied password is too short.</source>
-        <translation>Erreur de DNS dynamique&#x202f;: Le mot de passe fourni est trop court.</translation>
+        <translation>Erreur de DNS dynamique : Le mot de passe fourni est trop court.</translation>
     </message>
 </context>
 <context>
@@ -3722,13 +3720,13 @@ Veuillez l’installer manuellement.</translation>
         <location filename="../base/net/geoipmanager.cpp" line="96"/>
         <location filename="../base/net/geoipmanager.cpp" line="449"/>
         <source>IP geolocation database loaded. Type: %1. Build time: %2.</source>
-        <translation>Base de données de géolocalisation IP chargée. Type&#x202f;: %1. Date de création&#x202f;: %2.</translation>
+        <translation>Base de données de géolocalisation IP chargée. Type : %1. Date de création : %2.</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="102"/>
         <location filename="../base/net/geoipmanager.cpp" line="475"/>
         <source>Couldn&apos;t load IP geolocation database. Reason: %1</source>
-        <translation>Impossible de charger la base de données de géolocalisation des IPs. Raison&#x202f;: %1</translation>
+        <translation>Impossible de charger la base de données de géolocalisation des IPs. Raison : %1</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="152"/>
@@ -4753,7 +4751,7 @@ Veuillez l’installer manuellement.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="429"/>
         <source>Couldn&apos;t download IP geolocation database file. Reason: %1</source>
-        <translation>Impossible de télécharger la base de données de géolocalisation des IPs. Raison&#x202f;: %1</translation>
+        <translation>Impossible de télécharger la base de données de géolocalisation des IPs. Raison : %1</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="437"/>
@@ -5294,7 +5292,7 @@ Désactiver le chiffrement : Se connecter uniquement aux pairs sans protocole de
     <message>
         <location filename="../gui/optionsdialog.ui" line="2840"/>
         <source>A&amp;utomatically add these trackers to new downloads:</source>
-        <translation>Ajo&amp;uter automatiquement ces trackers aux nouveaux téléchargements&#x202f;:</translation>
+        <translation>Ajo&amp;uter automatiquement ces trackers aux nouveaux téléchargements :</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2906"/>
@@ -5894,16 +5892,16 @@ Use newlines to separate multiple entries. Can use wildcards as outlined below.
 [...]: sets of characters can be represented in square brackets.
 
 Examples
-*.exe: filter &apos;.exe&apos; file extension.
+*.exe: filter '.exe' file extension.
 readme.txt: filter exact file name.
-?.txt: filter &apos;a.txt&apos;, &apos;b.txt&apos; but not &apos;aa.txt&apos;.
+?.txt: filter 'a.txt', 'b.txt' but not 'aa.txt'.
 readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not &apos;readme10.txt&apos;.</source>
         <translation>Mettre sur la liste noire les noms de fichiers filtrés pour empêcher qu&apos;ils soient téléchargés à partir des torrents.
 Les fichiers correspondant à l&apos;un des filtres de cette liste verront leur priorité automatiquement définie à « Ne pas télécharger ».
 
 Utilisez des retours de ligne pour séparer plusieurs entrées. Sont permis les caractères génériques comme indiqué ci-dessous.
 * : correspond à zéro ou plus de n&apos;importe quel caractère.
-?&#xa0;: correspond à n&apos;importe quel caractère unique.
+? : correspond à n&apos;importe quel caractère unique.
 […] : les ensembles de caractères peuvent être représentés entre crochets.
 
 Exemples
@@ -6120,7 +6118,7 @@ readme[0-9].txt : filtre &apos;readme1.txt&apos; et &apos;readme2.txt&apos;, mai
     <message>
         <location filename="../gui/optionsdialog.ui" line="1938"/>
         <source>Info: The password is saved unencrypted</source>
-        <translation>Info&#x202f;: le mot de passe est enregistré en texte clair</translation>
+        <translation>Info : le mot de passe est enregistré en texte clair</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1959"/>
@@ -6451,7 +6449,7 @@ readme[0-9].txt : filtre &apos;readme1.txt&apos; et &apos;readme2.txt&apos;, mai
     <message>
         <location filename="../gui/optionsdialog.cpp" line="574"/>
         <source>Supported parameters (case sensitive):</source>
-        <translation>Paramètres supportés (sensible à la casse)&#x202f;:</translation>
+        <translation>Paramètres supportés (sensible à la casse) :</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="268"/>
@@ -6486,17 +6484,17 @@ readme[0-9].txt : filtre &apos;readme1.txt&apos; et &apos;readme2.txt&apos;, mai
     <message>
         <location filename="../gui/optionsdialog.cpp" line="575"/>
         <source>%N: Torrent name</source>
-        <translation>%N&#x202f;: Nom du torrent</translation>
+        <translation>%N : Nom du torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="576"/>
         <source>%L: Category</source>
-        <translation>%L&#x202f;: Catégorie</translation>
+        <translation>%L : Catégorie</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="578"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation>%F&#x202f;: Répertoire du contenu (le même que le répertoire racine pour les torrents composés de plusieurs fichiers)</translation>
+        <translation>%F : Répertoire du contenu (le même que le répertoire racine pour les torrents composés de plusieurs fichiers)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="579"/>
@@ -6511,17 +6509,17 @@ readme[0-9].txt : filtre &apos;readme1.txt&apos; et &apos;readme2.txt&apos;, mai
     <message>
         <location filename="../gui/optionsdialog.cpp" line="581"/>
         <source>%C: Number of files</source>
-        <translation>%C&#x202f;: Nombre de fichiers</translation>
+        <translation>%C : Nombre de fichiers</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="582"/>
         <source>%Z: Torrent size (bytes)</source>
-        <translation>%Z&#x202f;: Taille du torrent (en octets)</translation>
+        <translation>%Z : Taille du torrent (en octets)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="583"/>
         <source>%T: Current tracker</source>
-        <translation>%T&#x202f;: Tracker actuel</translation>
+        <translation>%T : Tracker actuel</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="587"/>
@@ -6829,7 +6827,7 @@ readme[0-9].txt : filtre &apos;readme1.txt&apos; et &apos;readme2.txt&apos;, mai
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="118"/>
         <source>Relevance</source>
-        <comment>i.e: How relevant this peer is to us. How many pieces it has that we don&apos;t.</comment>
+        <comment>i.e: How relevant this peer is to us. How many pieces it has that we don't.</comment>
         <translation>Pertinence</translation>
     </message>
     <message>
@@ -7371,7 +7369,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="81"/>
         <source>Progress:</source>
-        <translation>Progression&#x202f;:</translation>
+        <translation>Progression :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="157"/>
@@ -7382,12 +7380,12 @@ Those plugins were disabled.</source>
         <location filename="../gui/properties/propertieswidget.ui" line="549"/>
         <source>Time Active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation>Actif pendant&#x202f;:</translation>
+        <translation>Actif pendant :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="578"/>
         <source>ETA:</source>
-        <translation>Temps restant&#x202f;:</translation>
+        <translation>Temps restant :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="507"/>
@@ -7397,32 +7395,32 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="436"/>
         <source>Seeds:</source>
-        <translation>Sources&#x202f;:</translation>
+        <translation>Sources :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="452"/>
         <source>Download Speed:</source>
-        <translation>Vitesse de téléchargement&#x202f;:</translation>
+        <translation>Vitesse de téléchargement :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="188"/>
         <source>Upload Speed:</source>
-        <translation>Vitesse d&apos;émission&#x202f;:</translation>
+        <translation>Vitesse d&apos;émission :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="217"/>
         <source>Peers:</source>
-        <translation>Pairs&#x202f;:</translation>
+        <translation>Pairs :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="275"/>
         <source>Download Limit:</source>
-        <translation>Limite de téléchargement&#x202f;:</translation>
+        <translation>Limite de téléchargement :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="349"/>
         <source>Upload Limit:</source>
-        <translation>Limite d&apos;envoi&#x202f;:</translation>
+        <translation>Limite d&apos;envoi :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="594"/>
@@ -7467,52 +7465,52 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="291"/>
         <source>Share Ratio:</source>
-        <translation>Ratio de partage&#x202f;:</translation>
+        <translation>Ratio de partage :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="407"/>
         <source>Reannounce In:</source>
-        <translation>Annoncer dans&#x202f;:</translation>
+        <translation>Annoncer dans :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="365"/>
         <source>Last Seen Complete:</source>
-        <translation>Dernière fois vu complet&#x202f;:</translation>
+        <translation>Dernière fois vu complet :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="625"/>
         <source>Total Size:</source>
-        <translation>Taille totale&#x202f;:</translation>
+        <translation>Taille totale :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="654"/>
         <source>Pieces:</source>
-        <translation>Morceaux&#x202f;:</translation>
+        <translation>Morceaux :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="683"/>
         <source>Created By:</source>
-        <translation>Créé par&#x202f;:</translation>
+        <translation>Créé par :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="712"/>
         <source>Added On:</source>
-        <translation>Ajouté le&#x202f;:</translation>
+        <translation>Ajouté le :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="741"/>
         <source>Completed On:</source>
-        <translation>Terminé le&#x202f;:</translation>
+        <translation>Terminé le :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="770"/>
         <source>Created On:</source>
-        <translation>Créé le&#x202f;:</translation>
+        <translation>Créé le :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="847"/>
         <source>Save Path:</source>
-        <translation>Chemin de sauvegarde&#x202f;:</translation>
+        <translation>Chemin de sauvegarde :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="493"/>
@@ -7667,7 +7665,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="815"/>
         <source>New URL seed:</source>
-        <translation>Nouvelle source URL&#x202f;:</translation>
+        <translation>Nouvelle source URL :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="822"/>
@@ -7718,13 +7716,13 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="155"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
-        <comment>e.g. Parameter &apos;--webui-port&apos; must follow syntax &apos;--webui-port=value&apos;</comment>
+        <comment>e.g. Parameter '--webui-port' must follow syntax '--webui-port=value'</comment>
         <translation>Le paramètre &apos;%1&apos; doit suivre la syntaxe &apos;%1=%2&apos;</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="205"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
-        <comment>e.g. Parameter &apos;--webui-port&apos; must follow syntax &apos;--webui-port=&lt;value&gt;&apos;</comment>
+        <comment>e.g. Parameter '--webui-port' must follow syntax '--webui-port=&lt;value&gt;'</comment>
         <translation>Le paramètre &apos;%1&apos; doit suivre la syntaxe &apos;%1=%2&apos;</translation>
     </message>
     <message>
@@ -7735,7 +7733,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="276"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
-        <comment>e.g. Parameter &apos;--add-paused&apos; must follow syntax &apos;--add-paused=&lt;true|false&gt;&apos;</comment>
+        <comment>e.g. Parameter '--add-paused' must follow syntax '--add-paused=&lt;true|false&gt;'</comment>
         <translation>Le paramètre &apos;%1&apos; doit suivre la syntaxe &apos;%1=%2&apos;</translation>
     </message>
     <message>
@@ -8194,7 +8192,7 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="108"/>
         <source>Torrents: (double-click to download)</source>
-        <translation>Torrents&#x202f;: (double-clic pour télécharger)</translation>
+        <translation>Torrents : (double-clic pour télécharger)</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="137"/>
@@ -8399,7 +8397,7 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="72"/>
         <source>Seeds:</source>
-        <translation>Sources&#x202f;:</translation>
+        <translation>Sources :</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="89"/>
@@ -8668,7 +8666,7 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="79"/>
-        <source>There aren&apos;t any search plugins installed.
+        <source>There aren't any search plugins installed.
 Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
         <translation>Il n&apos;y a aucun greffon de recherche installé.
 Cliquez sur le bouton « Recherche de greffons… » en bas à droite de la fenêtre pour en installer.</translation>
@@ -8969,7 +8967,7 @@ Cliquez sur le bouton « Recherche de greffons… » en bas à droite de la fen�
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="67"/>
         <source>Period:</source>
-        <translation>Période&#x202f;:</translation>
+        <translation>Période :</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="70"/>
@@ -9461,7 +9459,7 @@ Cliquez sur le bouton « Recherche de greffons… » en bas à droite de la fen�
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="35"/>
         <source>Name:</source>
-        <translation>Nom&#x202f;:</translation>
+        <translation>Nom :</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="64"/>
@@ -9520,8 +9518,8 @@ Cliquez sur le bouton « Recherche de greffons… » en bas à droite de la fen�
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="84"/>
-        <source>Category name cannot contain &apos;\&apos;.
-Category name cannot start/end with &apos;/&apos;.
+        <source>Category name cannot contain '\'.
+Category name cannot start/end with '/'.
 Category name cannot contain &apos;//&apos; sequence.</source>
         <translation>Le nom de catégorie ne peut contenir de &apos;\&apos;.
 Le nom de catégorie ne peut commencer/finir par &apos;/&apos;.
@@ -9875,12 +9873,12 @@ Veuillez en choisir un autre.</translation>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="306"/>
         <source>Couldn&apos;t load Watched Folders configuration from %1. Error: %2</source>
-        <translation>Impossible de charger la configuration des dossiers surveillés à partir de %1. Erreur&#xa0;: %2</translation>
+        <translation>Impossible de charger la configuration des dossiers surveillés à partir de %1. Erreur : %2</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="315"/>
         <source>Couldn&apos;t parse Watched Folders configuration from %1. Error: %2</source>
-        <translation>Impossible d&apos;analyser la configuration des dossiers surveillés à partir de %1. Erreur&#xa0;: %2</translation>
+        <translation>Impossible d&apos;analyser la configuration des dossiers surveillés à partir de %1. Erreur : %2</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="322"/>
@@ -9890,7 +9888,7 @@ Veuillez en choisir un autre.</translation>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="395"/>
         <source>Couldn&apos;t store Watched Folders configuration to %1. Error: %2</source>
-        <translation>Impossible de stocker la configuration des dossiers surveillés dans %1. Erreur&#xa0;: %2</translation>
+        <translation>Impossible de stocker la configuration des dossiers surveillés dans %1. Erreur : %2</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="414"/>
@@ -10558,13 +10556,13 @@ Veuillez en choisir un autre.</translation>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="144"/>
         <source>[F] Downloading metadata</source>
-        <comment>Used when forced to load a magnet link. You probably shouldn&apos;t translate the F.</comment>
+        <comment>Used when forced to load a magnet link. You probably shouldn't translate the F.</comment>
         <translation>[F] En téléchargement des métadonnées</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="145"/>
         <source>[F] Downloading</source>
-        <comment>Used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
+        <comment>Used when the torrent is forced started. You probably shouldn't translate the F.</comment>
         <translation>[F] En téléchargement</translation>
     </message>
     <message>
@@ -10577,7 +10575,7 @@ Veuillez en choisir un autre.</translation>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="148"/>
         <source>[F] Seeding</source>
-        <comment>Used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
+        <comment>Used when the torrent is forced started. You probably shouldn't translate the F.</comment>
         <translation>[F] En partage</translation>
     </message>
     <message>
@@ -11443,37 +11441,37 @@ Veuillez en choisir un autre.</translation>
         <location filename="../base/utils/misc.cpp" line="78"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
-        <translation>Kio</translation>
+        <translation>Ko</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="79"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
-        <translation>Mio</translation>
+        <translation>Mo</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="80"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
-        <translation>Gio</translation>
+        <translation>Go</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="81"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
-        <translation>Tio</translation>
+        <translation>To</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="82"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
-        <translation>Pio</translation>
+        <translation>Po</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="83"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
-        <translation>Eio</translation>
+        <translation>Eo</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="261"/>
@@ -11497,7 +11495,7 @@ Veuillez en choisir un autre.</translation>
         <location filename="../base/utils/misc.cpp" line="390"/>
         <source>%1y %2d</source>
         <comment>e.g: 2years 10days</comment>
-        <translation>%1 a %2 j</translation>
+        <translation>%1a %2j</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="269"/>
@@ -11508,7 +11506,7 @@ Veuillez en choisir un autre.</translation>
     <message>
         <location filename="../base/utils/misc.cpp" line="148"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation>qBittorrent va maintenant éteindre l&apos;ordinateur car tous les téléchargements sont terminés.</translation>
+        <translation>qBittorrent va éteindre l&apos;ordinateur car tous les téléchargements sont terminés.</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="368"/>
