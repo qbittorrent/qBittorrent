@@ -43,7 +43,6 @@
 #endif
 
 #include "base/application.h"
-#include "base/bittorrent/addtorrentparams.h"
 #include "base/path.h"
 #include "base/settingvalue.h"
 #include "base/types.h"
@@ -134,7 +133,6 @@ public:
     BitTorrent::Session *btSession() const override;
     Net::DownloadManager *downloadManager() const override;
     Net::GeoIPManager *geoIPManager() const override;
-    IconProvider *iconProvider() const override;
     Logger *logger() const override;
     Net::PortForwarder *portForwarder() const override;
     Preferences *preferences() const override;
@@ -228,7 +226,6 @@ private:
     BitTorrent::SessionImpl *m_btSession = nullptr;
     Net::DownloadManager *m_downloadManager = nullptr;
     Net::GeoIPManager *m_geoIPManager = nullptr;
-    IconProvider *m_iconProvider = nullptr;
     Logger *m_logger = nullptr;
     Net::PortForwarder *m_portForwarder = nullptr;
     Preferences *m_preferences = nullptr;

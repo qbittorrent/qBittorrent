@@ -65,12 +65,12 @@
 #endif
 
 #include "base/addtorrentmanager.h"
+#include "base/bittorrent/addtorrentparams.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/sessionimpl.h"
 #include "base/bittorrent/torrent.h"
 #include "base/exceptions.h"
 #include "base/global.h"
-#include "base/iconprovider.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/geoipmanager.h"
@@ -815,7 +815,6 @@ int ApplicationImpl::exec()
     m_proxyConfigurationManager = new Net::ProxyConfigurationManager;
     m_downloadManager = new Net::DownloadManager;
     m_searchPluginManager = new SearchPluginManager;
-    m_iconProvider = new IconProvider;
 
     m_btSession = new BitTorrent::SessionImpl;
     m_portForwarder = m_btSession->portForwarderImpl();
@@ -1355,7 +1354,6 @@ void ApplicationImpl::cleanup()
     delete m_proxyConfigurationManager;
     delete m_preferences;
     delete m_settings;
-    delete m_iconProvider;
     delete m_searchPluginManager;
     Utils::Fs::removeDirRecursively(Utils::Fs::tempPath());
 
@@ -1402,11 +1400,6 @@ Net::DownloadManager *ApplicationImpl::downloadManager() const
 Net::GeoIPManager *ApplicationImpl::geoIPManager() const
 {
     return m_geoIPManager;
-}
-
-IconProvider *ApplicationImpl::iconProvider() const
-{
-    return m_iconProvider;
 }
 
 Logger *ApplicationImpl::logger() const

@@ -54,7 +54,6 @@ add_library(qbt_base STATIC
     http/responsegenerator.h
     http/server.h
     http/types.h
-    iconprovider.h
     indexrange.h
     logger.h
     net/dnsupdater.h
@@ -145,7 +144,6 @@ add_library(qbt_base STATIC
     http/responsebuilder.cpp
     http/responsegenerator.cpp
     http/server.cpp
-    iconprovider.cpp
     logger.cpp
     net/dnsupdater.cpp
     net/downloadhandlerimpl.cpp

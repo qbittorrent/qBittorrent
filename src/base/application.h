@@ -61,7 +61,6 @@ namespace RSS
     class Session;
 }
 
-class IconProvider;
 class Logger;
 class Preferences;
 class Profile;
@@ -119,7 +118,6 @@ public:
     virtual BitTorrent::Session *btSession() const = 0;
     virtual Net::DownloadManager *downloadManager() const = 0;
     virtual Net::GeoIPManager *geoIPManager() const = 0;
-    virtual IconProvider *iconProvider() const = 0;
     virtual Logger *logger() const = 0;
     virtual Net::PortForwarder *portForwarder() const = 0;
     virtual Preferences *preferences() const = 0;
