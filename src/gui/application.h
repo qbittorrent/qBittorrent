@@ -34,6 +34,11 @@
 #include "gui/guiaddtorrentmanager.h"
 #include "gui/windowstate.h"
 
+#ifdef qBt
+#undef qBt
+#endif
+#define qBt (GUIApplication::instance())
+
 class DesktopIntegration;
 class MainWindow;
 

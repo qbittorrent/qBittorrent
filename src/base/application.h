@@ -35,6 +35,8 @@
 
 #include "base/addtorrentmanager.h"
 
+#define qBt (Application::instance())
+
 class QString;
 
 class Path;
