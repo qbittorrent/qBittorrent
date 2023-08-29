@@ -216,12 +216,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                         <label class="noWrap">QBT_TR(Add Tags:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
                     </td>
                     <td class="fullWidth">
-                        <input type="text" id="ruleAddTags" class="fullWidth" autocapitalize="none" autocorrect="off" >
+                        <input type="text" id="ruleAddTags" class="fullWidth" autocapitalize="none" autocorrect="off" />
                     </td>
                 </tr>
             </table>
-
-
 
             <div class="formRow">
                 <input disabled type="checkbox" id="savetoDifferentDir" />
@@ -722,7 +720,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 $('ignoreDaysValue').disabled = false;
                 $('addPausedCombobox').disabled = false;
                 $('contentLayoutCombobox').disabled = false;
-
 
                 // load rule settings
                 $('useRegEx').checked = rulesList[ruleName].useRegex;
