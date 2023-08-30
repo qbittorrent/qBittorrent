@@ -47,6 +47,8 @@ public:
     ~AboutDialog() override;
 
 private:
+    void copyVersionsToClipboard() const;
+
     Ui::AboutDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;
 };
