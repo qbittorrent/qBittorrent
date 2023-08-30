@@ -277,7 +277,7 @@ ApplicationImpl::ApplicationImpl(int &argc, char **argv)
     m_instanceManager = new ApplicationInstanceManager(m_profile->location(SpecialFolder::Config), this);
 
     m_settings = new SettingsStorage;
-    m_preferences = new Preferences;
+    m_preferences = new Preferences(m_settings);
 
     const bool firstTimeUser = !m_preferences->getAcceptedLegal();
     if (!firstTimeUser)
@@ -678,11 +678,13 @@ void ApplicationImpl::sendNotificationEmail(const BitTorrent::Torrent *torrent)
 
     // Send the notification email
     const Preferences *pref = m_preferences;
-    auto *smtp = new Net::Smtp(this);
-    smtp->sendMail(pref->getMailNotificationSender(),
-                     pref->getMailNotificationEmail(),
-                     tr("Torrent \"%1\" has finished downloading").arg(torrent->name()),
-                     content);
+    auto *smtp = new Net::Smtp(pref->getMailNotificationSMTP(), pref->getMailNotificationSMTPAuth()
+            , pref->getMailNotificationSMTPUsername(), pref->getMailNotificationSMTPPassword()
+            , pref->getMailNotificationSMTPSSL(), this);
+    smtp->sendMail(pref->getMailNotificationSender()
+            , pref->getMailNotificationEmail()
+            , tr("Torrent \"%1\" has finished downloading").arg(torrent->name())
+            , content);
 }
 
 void ApplicationImpl::torrentAdded(const BitTorrent::Torrent *torrent) const
@@ -816,7 +818,7 @@ int ApplicationImpl::exec()
     m_downloadManager = new Net::DownloadManager;
     m_searchPluginManager = new SearchPluginManager;
 
-    m_btSession = new BitTorrent::SessionImpl;
+    m_btSession = new BitTorrent::SessionImpl(this);
     m_portForwarder = m_btSession->portForwarderImpl();
 #ifndef DISABLE_GUI
     m_uiThemeManager = new UIThemeManager;

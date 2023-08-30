@@ -45,6 +45,7 @@
 #include <QSet>
 #include <QVector>
 
+#include "base/applicationcomponent.h"
 #include "base/path.h"
 #include "base/settingvalue.h"
 #include "base/utils/thread.h"
@@ -127,13 +128,13 @@ namespace BitTorrent
         } disk;
     };
 
-    class SessionImpl final : public Session
+    class SessionImpl final : public ApplicationComponent<Session>
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(SessionImpl)
 
     public:
-        explicit SessionImpl(QObject *parent = nullptr);
+        explicit SessionImpl(Application *app, QObject *parent = nullptr);
         ~SessionImpl() override;
 
         Path savePath() const override;

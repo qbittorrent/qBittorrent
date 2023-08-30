@@ -48,10 +48,12 @@
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/path.h"
 #include "base/preferences.h"
+#include "base/profile.h"
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfileswatcher.h"
+#include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
@@ -104,6 +106,15 @@ namespace
     // type casts and that is why we declare required member pointer here instead.
     void (QComboBox::*qComboBoxCurrentIndexChanged)(int) = &QComboBox::currentIndexChanged;
     void (QSpinBox::*qSpinBoxValueChanged)(int) = &QSpinBox::valueChanged;
+
+#ifdef Q_OS_WIN
+    QString makeProfileID(const Path &profilePath, const QString &profileName)
+    {
+        return profilePath.isEmpty()
+                ? profileName
+                : profileName + u'@' + Utils::Fs::toValidFileName(profilePath.data(), {});
+    }
+#endif
 }
 
 // Constructor
@@ -280,7 +291,7 @@ void OptionsDialog::loadBehaviorTabOptions()
 #endif
 
 #ifdef Q_OS_WIN
-    m_ui->checkStartup->setChecked(pref->WinStartup());
+    m_ui->checkStartup->setChecked(getWinStartup());
     m_ui->checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
     m_ui->checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
 #endif
@@ -428,7 +439,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
     pref->setConfirmPauseAndResumeAll(m_ui->checkConfirmPauseAndResumeAll->isChecked());
 
 #ifdef Q_OS_WIN
-    pref->setWinStartup(WinStartup());
+    setWinStartup(m_ui->checkStartup->isChecked());
 
     Preferences::setTorrentFileAssoc(m_ui->checkAssociateTorrents->isChecked());
     Preferences::setMagnetLinkAssoc(m_ui->checkAssociateMagnetLinks->isChecked());
@@ -1638,13 +1649,6 @@ bool OptionsDialog::isSplashScreenDisabled() const
     return !m_ui->checkShowSplash->isChecked();
 }
 
-#ifdef Q_OS_WIN
-bool OptionsDialog::WinStartup() const
-{
-    return m_ui->checkStartup->isChecked();
-}
-#endif
-
 bool OptionsDialog::preAllocateAllFiles() const
 {
     return m_ui->checkPreallocateAll->isChecked();
@@ -1955,3 +1959,35 @@ void OptionsDialog::on_IPSubnetWhitelistButton_clicked()
     connect(dialog, &QDialog::accepted, this, &OptionsDialog::enableApplyButton);
     dialog->open();
 }
+
+#ifdef Q_OS_WIN
+bool OptionsDialog::getWinStartup() const
+{
+    const QString profileName = app()->profile()->profileName();
+    const Path profilePath = app()->profile()->rootPath();
+    const QString profileID = makeProfileID(profilePath, profileName);
+    const QSettings settings {u"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"_s, QSettings::NativeFormat};
+
+    return settings.contains(profileID);
+}
+
+void OptionsDialog::setWinStartup(const bool b) const
+{
+    const QString profileName = app()->profile()->profileName();
+    const Path profilePath = app()->profile()->rootPath();
+    const QString profileID = makeProfileID(profilePath, profileName);
+    QSettings settings {u"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"_s, QSettings::NativeFormat};
+    if (b)
+    {
+        const QString configuration = app()->profile()->configurationName();
+
+        const auto cmd = uR"("%1" "--profile=%2" "--configuration=%3")"_s
+                             .arg(Path(qApp->applicationFilePath()).toString(), profilePath.toString(), configuration);
+        settings.setValue(profileID, cmd);
+    }
+    else
+    {
+        settings.remove(profileID);
+    }
+}
+#endif

@@ -37,8 +37,8 @@
 
 const int TORRENTIDLIST_TYPEID = qRegisterMetaType<QVector<BitTorrent::TorrentID>>();
 
-BitTorrent::ResumeDataStorage::ResumeDataStorage(const Path &path, QObject *parent)
-    : QObject(parent)
+BitTorrent::ResumeDataStorage::ResumeDataStorage(Application *app, const Path &path, QObject *parent)
+    : ApplicationComponent(app, parent)
     , m_path {path}
 {
 }

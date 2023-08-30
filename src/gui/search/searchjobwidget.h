@@ -32,8 +32,8 @@
 #include <QWidget>
 
 #include "base/settingvalue.h"
+#include "gui/applicationcomponent.h"
 #include "gui/guiaddtorrentmanager.h"
-#include "gui/guiapplicationcomponent.h"
 
 #define ENGINE_URL_COLUMN 4
 #define URL_COLUMN 5

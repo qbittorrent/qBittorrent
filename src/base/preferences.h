@@ -40,6 +40,8 @@ class QDateTime;
 class QNetworkCookie;
 class QTime;
 
+class SettingsStorage;
+
 namespace Scheduler
 {
     Q_NAMESPACE
@@ -92,7 +94,7 @@ class Preferences final : public QObject
     Q_DISABLE_COPY_MOVE(Preferences)
 
 public:
-    using QObject::QObject;
+    explicit Preferences(SettingsStorage *settings, QObject *parent = nullptr);
 
     // General options
     QString getLocale() const;
@@ -123,10 +125,6 @@ public:
     void setPreventFromSuspendWhenDownloading(bool b);
     bool preventFromSuspendWhenSeeding() const;
     void setPreventFromSuspendWhenSeeding(bool b);
-#ifdef Q_OS_WIN
-    bool WinStartup() const;
-    void setWinStartup(bool b);
-#endif
 
     // Downloads
     Path getScanDirsLastPath() const;
@@ -438,4 +436,12 @@ public slots:
 
 signals:
     void changed();
+
+private:
+    template <typename T>
+    T value(const QString &key, const T &defaultValue = {}) const;
+    template <typename T>
+    void setValue(const QString &key, const T &value);
+
+    SettingsStorage *m_settings = nullptr;
 };

@@ -118,14 +118,6 @@ namespace Private
         const Path m_downloadLocation;
     };
 
-    class PathConverter
-    {
-    public:
-        virtual Path toPortablePath(const Path &path) const = 0;
-        virtual Path fromPortablePath(const Path &portablePath) const = 0;
-        virtual ~PathConverter() = default;
-    };
-
     class NoConvertConverter final : public PathConverter
     {
     public:

@@ -44,10 +44,8 @@
 #include <QTcpSocket>
 #endif
 
-#include "base/application.h"
 #include "base/global.h"
 #include "base/logger.h"
-#include "base/preferences.h"
 #include "base/utils/string.h"
 
 namespace
@@ -102,8 +100,14 @@ namespace
 
 using namespace Net;
 
-Smtp::Smtp(QObject *parent)
+Smtp::Smtp(const QString &serverAddress, bool isAuthEnabled, const QString &username
+        , const QString &password, bool useSSL, QObject *parent)
     : QObject(parent)
+    , m_serverAddress {serverAddress}
+    , m_isAuthEnabled {isAuthEnabled}
+    , m_username {username}
+    , m_password {password}
+    , m_useSSL {useSSL}
 {
     static bool needToRegisterMetaType = true;
 
@@ -137,7 +141,6 @@ Smtp::~Smtp()
 
 void Smtp::sendMail(const QString &from, const QString &to, const QString &subject, const QString &body)
 {
-    const Preferences *const pref = qBt->preferences();
     m_message = "Date: " + getCurrentDateTime().toLatin1() + "\r\n"
                 + encodeMimeHeader(u"From"_s, u"qBittorrent <%1>"_s.arg(from))
                 + encodeMimeHeader(u"Subject"_s, subject)
@@ -154,29 +157,21 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
         m_message += b.mid(i, 78);
     m_from = from;
     m_rcpt = to;
-    // Authentication
-    if (pref->getMailNotificationSMTPAuth())
-    {
-        m_username = pref->getMailNotificationSMTPUsername();
-        m_password = pref->getMailNotificationSMTPPassword();
-    }
 
     // Connect to SMTP server
-    const QStringList serverEndpoint = pref->getMailNotificationSMTP().split(u':');
+    const QStringList serverEndpoint = m_serverAddress.split(u':');
     const QString &serverAddress = serverEndpoint[0];
     const std::optional<int> serverPort = Utils::String::parseInt(serverEndpoint.value(1));
 
 #ifndef QT_NO_OPENSSL
-    if (pref->getMailNotificationSMTPSSL())
+    if (m_useSSL)
     {
         m_socket->connectToHostEncrypted(serverAddress, serverPort.value_or(DEFAULT_PORT_SSL));
-        m_useSsl = true;
     }
     else
     {
 #endif
-    m_socket->connectToHost(serverAddress, serverPort.value_or(DEFAULT_PORT));
-    m_useSsl = false;
+        m_socket->connectToHost(serverAddress, serverPort.value_or(DEFAULT_PORT));
 #ifndef QT_NO_OPENSSL
     }
 #endif
@@ -425,7 +420,7 @@ void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const
 
     if (m_state != EhloDone) return;
 
-    if (m_extensions.contains(u"STARTTLS"_s) && m_useSsl)
+    if (m_extensions.contains(u"STARTTLS"_s) && m_useSSL)
     {
         qDebug() << "STARTTLS";
         startTLS();

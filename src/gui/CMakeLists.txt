@@ -43,6 +43,7 @@ add_library(qbt_gui STATIC
     addtorrentparamswidget.h
     advancedsettings.h
     application.h
+    applicationcomponent.h
     autoexpandabledialog.h
     banlistoptionsdialog.h
     color.h
@@ -56,7 +57,6 @@ add_library(qbt_gui STATIC
     fspathedit.h
     fspathedit_p.h
     guiaddtorrentmanager.h
-    guiapplicationcomponent.h
     hidabletabwidget.h
     ipsubnetwhitelistoptionsdialog.h
     lineedit.h

@@ -174,7 +174,7 @@ using namespace RSS;
 
 QString computeEpisodeName(const QString &article)
 {
-        const QRegularExpression episodeRegex = qBt->rssAutoDownloader()->smartEpisodeRegex();
+    const QRegularExpression episodeRegex = qBt->rssAutoDownloader()->smartEpisodeRegex();
     const QRegularExpressionMatch match = episodeRegex.match(article);
 
     // See if we can extract an season/episode number or date from the title

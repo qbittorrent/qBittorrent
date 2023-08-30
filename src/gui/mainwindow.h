@@ -35,7 +35,7 @@
 #include "base/bittorrent/torrent.h"
 #include "base/logger.h"
 #include "base/settingvalue.h"
-#include "guiapplicationcomponent.h"
+#include "applicationcomponent.h"
 #include "windowstate.h"
 
 class QCloseEvent;

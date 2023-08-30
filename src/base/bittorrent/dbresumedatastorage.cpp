@@ -58,7 +58,6 @@
 #include "base/path.h"
 #include "base/preferences.h"
 #include "base/profile.h"
-#include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "infohash.h"
 #include "loadtorrentparams.h"
@@ -86,12 +85,13 @@ namespace
     class StoreJob final : public Job
     {
     public:
-        StoreJob(const TorrentID &torrentID, const LoadTorrentParams &resumeData);
+        StoreJob(const TorrentID &torrentID, const LoadTorrentParams &resumeData, std::shared_ptr<PathConverter> pathConverter);
         void perform(QSqlDatabase db) override;
 
     private:
         const TorrentID m_torrentID;
         const LoadTorrentParams m_resumeData;
+        std::shared_ptr<PathConverter> m_pathConverter;
     };
 
     class RemoveJob final : public Job
@@ -215,7 +215,8 @@ namespace
         return u"%1 %2"_s.arg(quoted(column.name), QString::fromLatin1(definition));
     }
 
-    LoadTorrentParams parseQueryResultRow(const QSqlQuery &query)
+    LoadTorrentParams parseQueryResultRow(const QSqlQuery &query
+            , std::shared_ptr<PathConverter> pathConverter, const int bdecodeDepthLimit, const int bdecodeTokenLimit)
     {
         LoadTorrentParams resumeData;
         resumeData.name = query.value(DB_COLUMN_NAME.name).toString();
@@ -239,19 +240,16 @@ namespace
         resumeData.stopCondition = Utils::String::toEnum(
                     query.value(DB_COLUMN_STOP_CONDITION.name).toString(), Torrent::StopCondition::None);
 
-        resumeData.savePath = qBt->profile()->fromPortablePath(
-                    Path(query.value(DB_COLUMN_TARGET_SAVE_PATH.name).toString()));
+        resumeData.savePath = pathConverter->fromPortablePath(
+                Path(query.value(DB_COLUMN_TARGET_SAVE_PATH.name).toString()));
         resumeData.useAutoTMM = resumeData.savePath.isEmpty();
         if (!resumeData.useAutoTMM)
         {
-            resumeData.downloadPath = qBt->profile()->fromPortablePath(
-                        Path(query.value(DB_COLUMN_DOWNLOAD_PATH.name).toString()));
+            resumeData.downloadPath = pathConverter->fromPortablePath(
+                    Path(query.value(DB_COLUMN_DOWNLOAD_PATH.name).toString()));
         }
 
         const QByteArray bencodedResumeData = query.value(DB_COLUMN_RESUMEDATA.name).toByteArray();
-        const auto *pref = qBt->preferences();
-        const int bdecodeDepthLimit = pref->getBdecodeDepthLimit();
-        const int bdecodeTokenLimit = pref->getBdecodeTokenLimit();
 
         lt::error_code ec;
         const lt::bdecode_node resumeDataRoot = lt::bdecode(bencodedResumeData, ec
@@ -269,8 +267,7 @@ namespace
             p.ti = std::make_shared<lt::torrent_info>(torentInfoRoot, ec);
         }
 
-        p.save_path = qBt->profile()->fromPortablePath(Path(fromLTString(p.save_path)))
-                .toString().toStdString();
+        p.save_path = pathConverter->fromPortablePath(Path(fromLTString(p.save_path))).toString().toStdString();
 
         if (p.flags & lt::torrent_flags::stop_when_ready)
         {
@@ -289,7 +286,7 @@ namespace BitTorrent
         Q_DISABLE_COPY_MOVE(Worker)
 
     public:
-        Worker(const Path &dbPath, QReadWriteLock &dbLock);
+        Worker(const Path &dbPath, QReadWriteLock &dbLock, std::shared_ptr<PathConverter> pathConverter);
 
         void run() override;
         void requestInterruption();
@@ -303,6 +300,7 @@ namespace BitTorrent
 
         const QString m_connectionName = u"ResumeDataStorageWorker"_s;
         const Path m_path;
+        std::shared_ptr<PathConverter> m_pathConverter;
         QReadWriteLock &m_dbLock;
 
         std::queue<std::unique_ptr<Job>> m_jobs;
@@ -311,9 +309,8 @@ namespace BitTorrent
     };
 }
 
-BitTorrent::DBResumeDataStorage::DBResumeDataStorage(const Path &dbPath, QObject *parent)
-    : ResumeDataStorage(dbPath, parent)
-    , m_ioThread {new QThread}
+BitTorrent::DBResumeDataStorage::DBResumeDataStorage(Application *app, const Path &dbPath, QObject *parent)
+    : ResumeDataStorage(app, dbPath, parent)
 {
     const bool needCreateDB = !dbPath.exists();
 
@@ -333,7 +330,7 @@ BitTorrent::DBResumeDataStorage::DBResumeDataStorage(const Path &dbPath, QObject
             updateDB(dbVersion);
     }
 
-    m_asyncWorker = new Worker(dbPath, m_dbLock);
+    m_asyncWorker = new Worker(dbPath, m_dbLock, app->profile()->pathConverter());
     m_asyncWorker->start();
 }
 
@@ -341,6 +338,7 @@ BitTorrent::DBResumeDataStorage::~DBResumeDataStorage()
 {
     m_asyncWorker->requestInterruption();
     m_asyncWorker->wait();
+    delete m_asyncWorker;
     QSqlDatabase::removeDatabase(DB_CONNECTION_NAME);
 }
 
@@ -388,7 +386,8 @@ BitTorrent::LoadResumeDataResult BitTorrent::DBResumeDataStorage::load(const Tor
             .arg(id.toString(), err.message()));
     }
 
-    return parseQueryResultRow(query);
+    const auto *pref = app()->preferences();
+    return parseQueryResultRow(query, app()->profile()->pathConverter(), pref->getBdecodeDepthLimit(), pref->getBdecodeTokenLimit());
 }
 
 void BitTorrent::DBResumeDataStorage::store(const TorrentID &id, const LoadTorrentParams &resumeData) const
@@ -440,7 +439,8 @@ void BitTorrent::DBResumeDataStorage::doLoadAll() const
         while (query.next())
         {
             const auto torrentID = TorrentID::fromString(query.value(DB_COLUMN_TORRENT_ID.name).toString());
-            onResumeDataLoaded(torrentID, parseQueryResultRow(query));
+            const auto *pref = app()->preferences();
+            onResumeDataLoaded(torrentID, parseQueryResultRow(query, app()->profile()->pathConverter(), pref->getBdecodeDepthLimit(), pref->getBdecodeTokenLimit()));
         }
     }
 
@@ -654,8 +654,9 @@ void BitTorrent::DBResumeDataStorage::enableWALMode() const
         throw RuntimeError(tr("WAL mode is probably unsupported due to filesystem limitations."));
 }
 
-BitTorrent::DBResumeDataStorage::Worker::Worker(const Path &dbPath, QReadWriteLock &dbLock)
+BitTorrent::DBResumeDataStorage::Worker::Worker(const Path &dbPath, QReadWriteLock &dbLock, std::shared_ptr<PathConverter> pathConverter)
     : m_path {dbPath}
+    , m_pathConverter {std::move(pathConverter)}
     , m_dbLock {dbLock}
 {
 }
@@ -726,7 +727,7 @@ void DBResumeDataStorage::Worker::requestInterruption()
 
 void BitTorrent::DBResumeDataStorage::Worker::store(const TorrentID &id, const LoadTorrentParams &resumeData)
 {
-    addJob(std::make_unique<StoreJob>(id, resumeData));
+    addJob(std::make_unique<StoreJob>(id, resumeData, m_pathConverter));
 }
 
 void BitTorrent::DBResumeDataStorage::Worker::remove(const TorrentID &id)
@@ -752,9 +753,10 @@ namespace
 {
     using namespace BitTorrent;
 
-    StoreJob::StoreJob(const TorrentID &torrentID, const LoadTorrentParams &resumeData)
+    StoreJob::StoreJob(const TorrentID &torrentID, const LoadTorrentParams &resumeData, std::shared_ptr<PathConverter> pathConverter)
         : m_torrentID {torrentID}
         , m_resumeData {resumeData}
+        , m_pathConverter {std::move(pathConverter)}
     {
     }
 
@@ -762,8 +764,7 @@ namespace
     {
         // We need to adjust native libtorrent resume data
         lt::add_torrent_params p = m_resumeData.ltAddTorrentParams;
-        p.save_path = qBt->profile()->toPortablePath(Path(p.save_path))
-                .toString().toStdString();
+        p.save_path = m_pathConverter->toPortablePath(Path(p.save_path)).toString().toStdString();
         if (m_resumeData.stopped)
         {
             p.flags |= lt::torrent_flags::paused;
@@ -862,8 +863,8 @@ namespace
 
             if (!m_resumeData.useAutoTMM)
             {
-                query.bindValue(DB_COLUMN_TARGET_SAVE_PATH.placeholder, qBt->profile()->toPortablePath(m_resumeData.savePath).data());
-                query.bindValue(DB_COLUMN_DOWNLOAD_PATH.placeholder, qBt->profile()->toPortablePath(m_resumeData.downloadPath).data());
+                query.bindValue(DB_COLUMN_TARGET_SAVE_PATH.placeholder, m_pathConverter->toPortablePath(m_resumeData.savePath).data());
+                query.bindValue(DB_COLUMN_DOWNLOAD_PATH.placeholder, m_pathConverter->toPortablePath(m_resumeData.downloadPath).data());
             }
 
             query.bindValue(DB_COLUMN_RESUMEDATA.placeholder, bencodedResumeData);

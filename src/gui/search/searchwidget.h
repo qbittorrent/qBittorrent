@@ -34,7 +34,7 @@
 #include <QPointer>
 #include <QWidget>
 
-#include "gui/guiapplicationcomponent.h"
+#include "gui/applicationcomponent.h"
 
 class QEvent;
 class QObject;

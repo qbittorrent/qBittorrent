@@ -40,7 +40,6 @@ class QString;
 namespace Private
 {
     class Profile;
-    class PathConverter;
 }
 
 enum class SpecialFolder
@@ -49,6 +48,14 @@ enum class SpecialFolder
     Config,
     Data,
     Downloads
+};
+
+class PathConverter
+{
+public:
+    virtual Path toPortablePath(const Path &path) const = 0;
+    virtual Path fromPortablePath(const Path &portablePath) const = 0;
+    virtual ~PathConverter() = default;
 };
 
 class Profile
@@ -67,14 +74,13 @@ public:
     /// or the value, supplied via parameters
     QString profileName() const;
 
-    Path toPortablePath(const Path &absolutePath) const;
-    Path fromPortablePath(const Path &portablePath) const;
+    std::shared_ptr<PathConverter> pathConverter() const;
 
 private:
     void ensureDirectoryExists(SpecialFolder folder) const;
 
     std::unique_ptr<Private::Profile> m_profileImpl;
-    std::unique_ptr<Private::PathConverter> m_pathConverterImpl;
+    std::shared_ptr<PathConverter> m_pathConverter;
 };
 
 Path specialFolderLocation(SpecialFolder folder);

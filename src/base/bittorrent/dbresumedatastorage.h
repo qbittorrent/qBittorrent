@@ -34,6 +34,7 @@
 #include "base/utils/thread.h"
 #include "resumedatastorage.h"
 
+class QSqlQuery;
 class QThread;
 
 namespace BitTorrent
@@ -44,7 +45,7 @@ namespace BitTorrent
         Q_DISABLE_COPY_MOVE(DBResumeDataStorage)
 
     public:
-        explicit DBResumeDataStorage(const Path &dbPath, QObject *parent = nullptr);
+        DBResumeDataStorage(Application *app, const Path &dbPath, QObject *parent = nullptr);
         ~DBResumeDataStorage() override;
 
         QVector<TorrentID> registeredTorrents() const override;
@@ -60,8 +61,6 @@ namespace BitTorrent
         void createDB() const;
         void updateDB(int fromVersion) const;
         void enableWALMode() const;
-
-        Utils::Thread::UniquePtr m_ioThread;
 
         class Worker;
         Worker *m_asyncWorker = nullptr;

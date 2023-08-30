@@ -34,6 +34,7 @@
 #include <QObject>
 
 #include "base/3rdparty/expected.hpp"
+#include "base/applicationcomponent.h"
 #include "base/path.h"
 #include "infohash.h"
 #include "loadtorrentparams.h"
@@ -48,13 +49,13 @@ namespace BitTorrent
         LoadResumeDataResult result;
     };
 
-    class ResumeDataStorage : public QObject
+    class ResumeDataStorage : public ApplicationComponent<QObject>
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(ResumeDataStorage)
 
     public:
-        explicit ResumeDataStorage(const Path &path, QObject *parent = nullptr);
+        ResumeDataStorage(Application *app, const Path &path, QObject *parent = nullptr);
 
         Path path() const;
 

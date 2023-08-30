@@ -32,7 +32,7 @@
 
 #include "base/pathfwd.h"
 #include "base/settingvalue.h"
-#include "guiapplicationcomponent.h"
+#include "applicationcomponent.h"
 
 class QListWidgetItem;
 
@@ -140,13 +140,15 @@ private:
     void saveWebUITabOptions() const;
 #endif // DISABLE_WEBUI
 
+#ifdef Q_OS_WIN
+    bool getWinStartup() const;
+    void setWinStartup(bool b) const;
+#endif
+
     // General options
     void initializeLanguageCombo();
     QString getLocale() const;
     bool isSplashScreenDisabled() const;
-#ifdef Q_OS_WIN
-    bool WinStartup() const;
-#endif
     // Downloads
     bool preAllocateAllFiles() const;
     bool useAdditionDialog() const;

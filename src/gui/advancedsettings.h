@@ -36,7 +36,7 @@
 #include <QSpinBox>
 #include <QTableWidget>
 
-#include "guiapplicationcomponent.h"
+#include "applicationcomponent.h"
 
 class AdvancedSettings final : public GUApplicationComponent<QTableWidget>
 {

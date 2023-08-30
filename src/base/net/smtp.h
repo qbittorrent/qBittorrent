@@ -53,8 +53,9 @@ namespace Net
         Q_DISABLE_COPY_MOVE(Smtp)
 
     public:
-        Smtp(QObject *parent = nullptr);
-        ~Smtp();
+        Smtp(const QString &serverAddress, bool isAuthEnabled, const QString &username
+                , const QString &password, bool useSSL, QObject *parent = nullptr);
+        ~Smtp() override;
 
         void sendMail(const QString &from, const QString &to, const QString &subject, const QString &body);
 
@@ -101,6 +102,12 @@ namespace Net
         void logError(const QString &msg);
         QString getCurrentDateTime() const;
 
+        QString m_serverAddress;
+        bool m_isAuthEnabled = false;
+        QString m_username;
+        QString m_password;
+        bool m_useSSL = false;
+
         QByteArray m_message;
 #ifndef QT_NO_OPENSSL
         QSslSocket *m_socket = nullptr;
@@ -113,9 +120,8 @@ namespace Net
         int m_state = Init;
         QHash<QString, QString> m_extensions;
         QByteArray m_buffer;
-        bool m_useSsl = false;
+
         AuthType m_authType = AuthPlain;
-        QString m_username;
-        QString m_password;
+
     };
 }

@@ -31,7 +31,7 @@
 
 #include "base/addtorrentmanager.h"
 #include "base/bittorrent/infohash.h"
-#include "guiapplicationcomponent.h"
+#include "applicationcomponent.h"
 
 #include <QHash>
 

@@ -353,8 +353,8 @@ QStringList Session::expandCategory(const QString &category)
 #define BITTORRENT_KEY(name) u"BitTorrent/" name
 #define BITTORRENT_SESSION_KEY(name) BITTORRENT_KEY(u"Session/") name
 
-SessionImpl::SessionImpl(QObject *parent)
-    : Session(parent)
+SessionImpl::SessionImpl(Application *app, QObject *parent)
+    : ApplicationComponent(app, parent)
     , m_isDHTEnabled(BITTORRENT_SESSION_KEY(u"DHTEnabled"_s), true)
     , m_isLSDEnabled(BITTORRENT_SESSION_KEY(u"LSDEnabled"_s), true)
     , m_isPeXEnabled(BITTORRENT_SESSION_KEY(u"PeXEnabled"_s), true)
@@ -523,7 +523,7 @@ SessionImpl::SessionImpl(QObject *parent)
     if (isExcludedFileNamesEnabled())
         populateExcludedFileNamesRegExpList();
 
-    connect(qBt->proxyConfigurationManager()
+    connect(app->proxyConfigurationManager()
         , &Net::ProxyConfigurationManager::proxyConfigurationChanged
         , this, &SessionImpl::configureDeferred);
 
@@ -1119,21 +1119,21 @@ void SessionImpl::prepareStartup()
 
     if (context->currentStorageType == ResumeDataStorageType::SQLite)
     {
-        m_resumeDataStorage = new DBResumeDataStorage(dbPath, this);
+        m_resumeDataStorage = new DBResumeDataStorage(app(), dbPath, this);
 
         if (!dbStorageExists)
         {
             const Path dataPath = specialFolderLocation(SpecialFolder::Data) / Path(u"BT_backup"_s);
-            context->startupStorage = new BencodeResumeDataStorage(dataPath, this);
+            context->startupStorage = new BencodeResumeDataStorage(app(), dataPath, this);
         }
     }
     else
     {
         const Path dataPath = specialFolderLocation(SpecialFolder::Data) / Path(u"BT_backup"_s);
-        m_resumeDataStorage = new BencodeResumeDataStorage(dataPath, this);
+        m_resumeDataStorage = new BencodeResumeDataStorage(app(), dataPath, this);
 
         if (dbStorageExists)
-            context->startupStorage = new DBResumeDataStorage(dbPath, this);
+            context->startupStorage = new DBResumeDataStorage(app(), dbPath, this);
     }
 
     if (!context->startupStorage)
@@ -1657,9 +1657,9 @@ lt::settings_pack SessionImpl::loadLTSettings() const
 
     // proxy
     settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::none);
-    const auto *proxyManager = qBt->proxyConfigurationManager();
+    const auto *proxyManager = app()->proxyConfigurationManager();
     const Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
-    if ((proxyConfig.type != Net::ProxyType::None) && qBt->preferences()->useProxyForBT())
+    if ((proxyConfig.type != Net::ProxyType::None) && app()->preferences()->useProxyForBT())
     {
         switch (proxyConfig.type)
         {
@@ -1708,7 +1708,7 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::max_out_request_queue, requestQueueSize());
 
 #ifdef QBT_USES_LIBTORRENT2
-    settingsPack.set_int(lt::settings_pack::metadata_token_limit, qBt->preferences()->getBdecodeTokenLimit());
+    settingsPack.set_int(lt::settings_pack::metadata_token_limit, app()->preferences()->getBdecodeTokenLimit());
 #endif
 
     settingsPack.set_int(lt::settings_pack::aio_threads, asyncIOThreads());
@@ -2044,9 +2044,9 @@ void SessionImpl::enableTracker(const bool enable)
         if (!m_tracker)
             m_tracker = new Tracker(this);
 
-        m_tracker->start();
+        const auto *pref = app()->preferences();
+        m_tracker->start(pref->getTrackerPort());
 
-        const auto *pref = qBt->preferences();
         if (pref->isTrackerPortForwardingEnabled())
             m_portForwarderImpl->setPorts(profile, {static_cast<quint16>(pref->getTrackerPort())});
         else
@@ -5637,14 +5637,14 @@ void SessionImpl::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
 
     const QString ip {toString(p->endpoint.address())};
     if (!ip.isEmpty())
-        qBt->logger()->addPeer(ip, true, reason);
+        app()->logger()->addPeer(ip, true, reason);
 }
 
 void SessionImpl::handlePeerBanAlert(const lt::peer_ban_alert *p)
 {
     const QString ip {toString(p->endpoint.address())};
     if (!ip.isEmpty())
-        qBt->logger()->addPeer(ip, false);
+        app()->logger()->addPeer(ip, false);
 }
 
 void SessionImpl::handleUrlSeedAlert(const lt::url_seed_alert *p)
@@ -6011,7 +6011,7 @@ void SessionImpl::saveStatistics() const
     const QVariantHash stats {
         {u"AlltimeDL"_s, m_status.allTimeDownload},
         {u"AlltimeUL"_s, m_status.allTimeUpload}};
-    std::unique_ptr<QSettings> settings = qBt->profile()->applicationSettings(u"qBittorrent-data"_s);
+    std::unique_ptr<QSettings> settings = app()->profile()->applicationSettings(u"qBittorrent-data"_s);
     settings->setValue(u"Stats/AllStats"_s, stats);
 
     m_statisticsLastUpdateTimer.start();
@@ -6020,7 +6020,7 @@ void SessionImpl::saveStatistics() const
 
 void SessionImpl::loadStatistics()
 {
-    const std::unique_ptr<QSettings> settings = qBt->profile()->applicationSettings(u"qBittorrent-data"_s);
+    const std::unique_ptr<QSettings> settings = app()->profile()->applicationSettings(u"qBittorrent-data"_s);
     const QVariantHash value = settings->value(u"Stats/AllStats"_s).toHash();
 
     m_previouslyDownloaded = value[u"AlltimeDL"_s].toLongLong();

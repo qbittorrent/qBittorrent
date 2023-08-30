@@ -46,9 +46,9 @@ Profile::Profile(const Path &rootProfilePath, const QString &configurationName, 
     ensureDirectoryExists(SpecialFolder::Data);
 
     if (convertPathsToProfileRelative)
-        m_pathConverterImpl = std::make_unique<Private::Converter>(m_profileImpl->basePath());
+        m_pathConverter = std::make_shared<Private::Converter>(m_profileImpl->basePath());
     else
-        m_pathConverterImpl = std::make_unique<Private::NoConvertConverter>();
+        m_pathConverter = std::make_shared<Private::NoConvertConverter>();
 }
 
 Profile::~Profile() = default;
@@ -90,6 +90,11 @@ QString Profile::profileName() const
     return m_profileImpl->profileName();
 }
 
+std::shared_ptr<PathConverter> Profile::pathConverter() const
+{
+    return m_pathConverter;
+}
+
 std::unique_ptr<QSettings> Profile::applicationSettings(const QString &name) const
 {
     return m_profileImpl->applicationSettings(name);
@@ -100,16 +105,6 @@ void Profile::ensureDirectoryExists(const SpecialFolder folder) const
     const Path locationPath = location(folder);
     if (!locationPath.isEmpty() && !Utils::Fs::mkpath(locationPath))
         qFatal("Could not create required directory '%s'", qUtf8Printable(locationPath.toString()));
-}
-
-Path Profile::toPortablePath(const Path &absolutePath) const
-{
-    return m_pathConverterImpl->toPortablePath(absolutePath);
-}
-
-Path Profile::fromPortablePath(const Path &portablePath) const
-{
-    return m_pathConverterImpl->fromPortablePath(portablePath);
 }
 
 Path specialFolderLocation(const SpecialFolder folder)

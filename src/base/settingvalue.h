@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2016, 2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -39,14 +39,21 @@ template <typename T>
 class SettingValue
 {
 public:
-    explicit SettingValue(const QString &keyName)
+    SettingValue(SettingsStorage *settings, const QString &keyName)
         : m_keyName {keyName}
+        , m_settings {settings}
+    {
+        Q_ASSERT(m_settings);
+    }
+
+    explicit SettingValue(const QString &keyName)
+        : SettingValue(qBt->settings(), keyName)
     {
     }
 
     T get(const T &defaultValue = {}) const
     {
-        return qBt->settings()->loadValue(m_keyName, defaultValue);
+        return m_settings->loadValue(m_keyName, defaultValue);
     }
 
     operator T() const
@@ -56,30 +63,44 @@ public:
 
     SettingValue<T> &operator=(const T &value)
     {
-        qBt->settings()->storeValue(m_keyName, value);
+        m_settings->storeValue(m_keyName, value);
         return *this;
     }
 
 private:
     const QString m_keyName;
+    SettingsStorage *m_settings = nullptr;
 };
 
 template <typename T>
 class CachedSettingValue
 {
 public:
+    CachedSettingValue(SettingsStorage *settings, const QString &keyName, const T &defaultValue = {})
+        : m_settingValue {settings, keyName}
+        , m_cache {m_settingValue.get(defaultValue)}
+    {
+    }
+
     explicit CachedSettingValue(const QString &keyName, const T &defaultValue = {})
-        : m_setting {keyName}
-        , m_cache {m_setting.get(defaultValue)}
+        : m_settingValue {keyName}
+        , m_cache {m_settingValue.get(defaultValue)}
     {
     }
 
     // The signature of the ProxyFunc should be equivalent to the following:
     // T proxyFunc(const T &a);
     template <typename ProxyFunc>
+    explicit CachedSettingValue(SettingsStorage *settings, const QString &keyName, const T &defaultValue, ProxyFunc &&proxyFunc)
+        : m_settingValue {settings, keyName}
+        , m_cache {proxyFunc(m_settingValue.get(defaultValue))}
+    {
+    }
+
+    template <typename ProxyFunc>
     explicit CachedSettingValue(const QString &keyName, const T &defaultValue, ProxyFunc &&proxyFunc)
-        : m_setting {keyName}
-        , m_cache {proxyFunc(m_setting.get(defaultValue))}
+        : m_settingValue {keyName}
+        , m_cache {proxyFunc(m_settingValue.get(defaultValue))}
     {
     }
 
@@ -98,12 +119,12 @@ public:
         if (m_cache == value)
             return *this;
 
-        m_setting = value;
+        m_settingValue = value;
         m_cache = value;
         return *this;
     }
 
 private:
-    SettingValue<T> m_setting;
+    SettingValue<T> m_settingValue;
     T m_cache;
 };

@@ -35,14 +35,12 @@
 
 #include <QHostAddress>
 
-#include "base/application.h"
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/http/httperror.h"
 #include "base/http/server.h"
 #include "base/http/types.h"
 #include "base/logger.h"
-#include "base/preferences.h"
 
 namespace
 {
@@ -193,10 +191,8 @@ Tracker::Tracker(QObject *parent)
 {
 }
 
-bool Tracker::start()
+bool Tracker::start(const int port)
 {
-    const int port = qBt->preferences()->getTrackerPort();
-
     if (m_server->isListening())
     {
         if (const int oldPort = m_server->serverPort()
