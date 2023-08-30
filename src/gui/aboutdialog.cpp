@@ -28,6 +28,8 @@
 
 #include "aboutdialog.h"
 
+#include <QClipboard>
+
 #include "base/global.h"
 #include "base/path.h"
 #include "base/unicodestrings.h"
@@ -101,6 +103,8 @@ AboutDialog::AboutDialog(QWidget *parent)
     m_ui->labelOpensslVer->setText(Utils::Misc::opensslVersionString());
     m_ui->labelZlibVer->setText(Utils::Misc::zlibVersionString());
 
+    connect(m_ui->btnCopyToClipboard, &QAbstractButton::clicked, this, &AboutDialog::copyVersionsToClipboard);
+
     const QString DBIPText = u"<html><head/><body><p>"
                              u"%1 (<a href=\"https://db-ip.com/\">https://db-ip.com/</a>)"
                              u"</p></body></html>"_s
@@ -116,4 +120,15 @@ AboutDialog::~AboutDialog()
 {
     m_storeDialogSize = size();
     delete m_ui;
+}
+
+void AboutDialog::copyVersionsToClipboard() const
+{
+    const QString versions = u"%1 %2\n%3 %4\n%5 %6\n%7 %8\n%9 %10\n"_s
+        .arg(m_ui->labelQt->text(), m_ui->labelQtVer->text()
+            , m_ui->labelLibt->text(), m_ui->labelLibtVer->text()
+            , m_ui->labelBoost->text(), m_ui->labelBoostVer->text()
+            , m_ui->labelOpenssl->text(), m_ui->labelOpensslVer->text()
+            , m_ui->labelZlib->text(), m_ui->labelZlibVer->text());
+    qApp->clipboard()->setText(versions);
 }

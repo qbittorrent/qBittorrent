@@ -281,11 +281,11 @@
        </property>
        <item>
         <widget class="QTextBrowser" name="textBrowserTranslation">
-         <property name="openExternalLinks">
-          <bool>true</bool>
-         </property>
          <property name="lineWrapMode">
           <enum>QTextEdit::NoWrap</enum>
+         </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -323,11 +323,35 @@
       </attribute>
       <layout class="QVBoxLayout" name="SoftwareUsedTabLayout">
        <item>
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>qBittorrent was built with the following libraries:</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>qBittorrent was built with the following libraries:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnCopyToClipboard">
+           <property name="text">
+            <string>Copy to clipboard</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <widget class="Line" name="line_2">
@@ -359,7 +383,7 @@
           </spacer>
          </item>
          <item row="0" column="1">
-          <widget class="QLabel" name="label_8">
+          <widget class="QLabel" name="labelQt">
            <property name="text">
             <string notr="true">Qt:</string>
            </property>
@@ -372,7 +396,7 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLabel" name="label_9">
+          <widget class="QLabel" name="labelLibt">
            <property name="text">
             <string notr="true">Libtorrent:</string>
            </property>
@@ -385,7 +409,7 @@
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLabel" name="label_10">
+          <widget class="QLabel" name="labelBoost">
            <property name="text">
             <string notr="true">Boost:</string>
            </property>
@@ -425,7 +449,7 @@
           </spacer>
          </item>
          <item row="3" column="1">
-          <widget class="QLabel" name="label_11">
+          <widget class="QLabel" name="labelOpenssl">
            <property name="text">
             <string notr="true">OpenSSL:</string>
            </property>
@@ -445,7 +469,7 @@
           </widget>
          </item>
          <item row="4" column="1">
-          <widget class="QLabel" name="label_12">
+          <widget class="QLabel" name="labelZlib">
            <property name="text">
             <string notr="true">zlib:</string>
            </property>
