@@ -1,0 +1,29 @@
+qbittorrent (2.4.3-1) unstable; urgency=low
+
+  qBittorrent version 2.3.0 (not packaged for Debian) introduced an
+  incompatible change with the torrent save path system.
+  Users upgrading from version 2.2.x (2.2.11-1 is the latest available point
+  release in Debian) should make a backup of the following directory in case
+  they want to switch back to a version older than 2.3.0:
+
+    ~/.local/share/data/qBittorrent/BT_backup/
+  
+ -- Cristian Greco <cristian@regolo.cc>  Thu, 30 Sep 2010 16:13:40 +0200
+
+qbittorrent (2.1.0-1) unstable; urgency=low
+
+  Starting from this new release qBittorrent will comply with the XDG Base
+  Directory Specification by storing its .torrent files in ~/.local instead of
+  the ~/.qbittorrent directory used so far.
+  In case you wish to switch back to an earlier version you will need to move
+  your torrents back to the old folder with the following commands:
+    $ mkdir ~/.qbittorrent/
+    $ cp -a ~/.local/share/data/qBittorrent/BT_backup/ ~/.qbittorrent/
+
+  This new release comes with a new binary package. qBittorrent-nox version of
+  qBittorrent that does not require X and can be controlled via a WebUI, thus is
+  more suitable for headless servers. The default account username and password
+  are mentioned in qbittorrent-nox(1) manpage.
+
+ -- Cristian Greco <cristian@regolo.cc>  Wed, 20 Jan 2010 00:39:06 +0100
+

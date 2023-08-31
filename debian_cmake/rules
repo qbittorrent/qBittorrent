@@ -1,0 +1,35 @@
+#!/usr/bin/make -f
+
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+
+%:
+	dh $@ --without autoreconf -Scmake+ninja
+
+override_dh_auto_configure:
+	dh_auto_configure --builddirectory build-nox -- \
+	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+	-DGUI=OFF -DQT6=ON -DSYSTEMD=ON
+
+	dh_auto_configure --builddirectory build-gui -- \
+	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+	-DQT6=ON
+
+override_dh_auto_build:
+	dh_auto_build --builddirectory build-nox
+	dh_auto_build --builddirectory build-gui
+
+override_dh_auto_install:
+	dh_auto_install --builddirectory build-nox --destdir debian/qbittorrent-nox
+	dh_auto_install --builddirectory build-gui --destdir debian/qbittorrent
+
+override_dh_installsystemduser:
+	dh_installsystemduser -pqbittorrent-nox --no-enable
+
+override_dh_auto_clean:
+	dh_auto_clean --builddirectory build-nox
+	dh_auto_clean --builddirectory build-gui
+
+override_dh_clean:
+	dh_clean src/webui/www/translations/webui_*.qm \
+	src/lang/qbittorrent_*.qm src/base/version.h

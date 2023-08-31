@@ -1,0 +1,65 @@
+Source: qbittorrent
+Section: net
+Priority: optional
+Maintainer: sledgehammer999 <hammered999@gmail.com>
+Homepage: http://www.qbittorrent.org/
+Standards-Version: 4.6.1
+Build-Depends: debhelper-compat (= 13),
+               cmake (>= 3.16.0),
+               libtorrent-rasterbar-dev (> 2.0.9),
+               libboost-dev (>= 1.40.0),
+               qt6-base-dev (>= 6.4.0),
+               qt6-svg-dev (>= 6.4.0),
+               qt6-tools-dev (>= 6.4.0),
+               zlib1g-dev (>= 1.2.11),
+               libxkbcommon-dev,
+               systemd,
+               ninja-build
+
+Package: qbittorrent
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends},
+         python3 (>= 3.7.0), libqt6svg6, libqt6sql6-sqlite
+Suggests: qbittorrent-dbg
+Description: bittorrent client based on libtorrent-rasterbar with a Qt GUI
+ BitTorrent client written in C++ and based on libtorrent-rasterbar with a Qt
+ user interface. qBittorrent is a feature rich but lightweight client that is
+ very similar to uTorrent. Its main features are:
+ .
+  * Polished uTorrent-like user interface
+  * Well integrated and extensible search engine
+  * Remote control through a Web user interface
+  * Vuze-compatible protocol encryption
+  * uTorrent-compatible Peer eXchange (PeX)
+  * DHT (trackerless) support
+  * UPnP / NAT-PMP port forwarding
+  * IPv6 compliant
+  * RSS support with advanced download filters
+  * Advanced control over torrent content and trackers
+  * IP Filtering (eMule / Peer Guardian filters)
+  * Torrents queueing and prioritizing
+  * Good localization (~25 languages supported)
+  * Unicode support
+
+Package: qbittorrent-nox
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt6sql6-sqlite
+Suggests: qbittorrent-dbg
+Description: bittorrent client based on libtorrent-rasterbar (without X support)
+ BitTorrent client written in C++ and based on libtorrent-rasterbar.
+ qBittorrent-nox is a version of qBittorrent (Qt application) that does not
+ require X and can be controlled via a WebUI, thus is more suitable for headless
+ servers. It is a feature rich but lightweight client that is very similar to
+ rTorrent. Its main features are:
+ .
+  * Remote control through a Web user interface
+  * Vuze-compatible protocol encryption
+  * uTorrent-compatible Peer eXchange (PeX)
+  * DHT (trackerless) support
+  * UPnP / NAT-PMP port forwarding
+  * IPv6 compliant
+  * Advanced control over torrent content and trackers
+  * IP Filtering (eMule / Peer Guardian filters)
+  * Torrents queueing and prioritizing
+  * Good localization (~25 languages supported)
+  * Unicode support

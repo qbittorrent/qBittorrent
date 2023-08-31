@@ -1,0 +1,339 @@
+Format-Specification: http://wiki.debian.org/Proposals/CopyrightFormat
+Upstream-Author: Christophe Dumez <chris@qbittorrent.org>
+Packaged-By: Cristian Greco <cristian.debian@gmail.com>
+Packaged-Date: Fri, 04 Jul 2008 23:12:54 +0200
+Original-Source-Location: http://www.qbittorrent.org/
+
+
+Files: src/*.cpp, src/*.h, src/*.ui
+Copyright: Copyright © 2006,2007,2008 Christophe Dumez
+           Contributor: Arnaud Demaizière <arnaud@qbittorrent.org>
+           Contributor: Ishan Arora <ishan@qbittorrent.org>
+           Contributor: Grigis Gaëtan <cipher16@gmail.com>
+License: GPL-2+ | other
+
+    This package is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This package is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this package; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+
+    In addition, as a special exception, the copyright holders give permission
+    to link this program with the OpenSSL project's "OpenSSL" library (or with
+    modified versions of it that use the same license as the "OpenSSL"
+    library), and distribute the linked executables. You must obey the GNU
+    General Public License in all respects for all of the code used other than
+    "OpenSSL".  If you modify file(s), you may extend this exception to your
+    version of the file(s), but you are not obligated to do so. If you do not
+    wish to do so, delete this exception statement from your version.
+
+
+Files: src/qtsingleapp/*
+Copyright: Copyright © 2009 Nokia Corporation and/or its subsidiary(-ies)
+License: other
+
+    Commercial Usage  
+    Licensees holding valid Qt Commercial licenses may use this file in
+    accordance with the Qt Solutions Commercial License Agreement provided
+    with the Software or, alternatively, in accordance with the terms
+    contained in a written agreement between you and Nokia.
+    
+    GNU Lesser General Public License Usage
+    Alternatively, this file may be used under the terms of the GNU Lesser
+    General Public License version 2.1 as published by the Free Software
+    Foundation and appearing in the file LICENSE.LGPL included in the
+    packaging of this file.  Please review the following information to
+    ensure the GNU Lesser General Public License version 2.1 requirements
+    will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+    
+    In addition, as a special exception, Nokia gives you certain
+    additional rights. These rights are described in the Nokia Qt LGPL
+    Exception version 1.1, included in the file LGPL_EXCEPTION.txt in this
+    package.
+    
+    GNU General Public License Usage 
+    Alternatively, this file may be used under the terms of the GNU
+    General Public License version 3.0 as published by the Free Software
+    Foundation and appearing in the file LICENSE.GPL included in the
+    packaging of this file.  Please review the following information to
+    ensure the GNU General Public License version 3.0 requirements will be
+    met: http://www.gnu.org/copyleft/gpl.html.
+    
+    Please note Third Party Software included with Qt Solutions may impose
+    additional restrictions and it is the user's responsibility to ensure
+    that they have met the licensing requirements of the GPL, LGPL, or Qt
+    Solutions Commercial license and the relevant license of the Third
+    Party Software they are using.
+    
+    If you are unsure which license is appropriate for your use, please
+    contact Nokia at qt-info@nokia.com.
+
+
+Files: src/lineedit/*
+Copyright: Copyright (c) 2007 Trolltech ASA <info@trolltech.com>
+License: other
+
+    Use, modification and distribution is allowed without limitation,
+    warranty, liability or support of any kind.
+
+
+Files: debian/*
+Copyright: Copyright © 2008 Cristian Greco
+License: GPL-2+
+
+Files: src/Icons/*.png
+Copyright: Gnome Icon Theme
+License: GPL-2
+
+Files: src/Icons/skin/*.png
+       src/menuicons/YYxYY/*.png
+Copyright: Mateusz Tobola <tobejodok@qbittorrent.org>
+License: GPL-2
+
+Files: src/lang/*.ts
+Copyright:
+  - Arabic: SDERAWI (abz8868@msn.com) and sn51234 (nesseyan@gmail.com)
+  - Armenian: Hrant Ohanyan (hrantohanyan@mail.am)
+  - Basque: Xabier Aramendi (azpidatziak@gmail.com)
+  - Belarusian: Mihas Varantsou (meequz@gmail.com)
+  - Brazilian: Nick Marinho (nickmarinho@gmail.com)
+  - Bulgarian: Tsvetan & Boiko Bankov (emerge_life@users.sourceforge.net)
+  - Catalan: Francisco Luque Contreras (frannoe@ya.com)
+  - Chinese (Simplified): Guo Yue (guoyue0418@hotmail.com)
+  - Chinese (Traditional): Yi-Shun Wang (dnextstep@gmail.com)
+  - Croatian: Olivier Delakroa (oliver.untwist@gmail.com)
+  - Czech: Jirka Vilim (web@tets.cz)
+  - Danish: Mathias Nielsen (comoneo@gmail.com)
+  - Dutch: Pieter Heyvaert (pieter_heyvaert@hotmail.com)
+  - English: Christophe Dumez (chris@qbittorrent.org)
+  - Finnish: Niklas Laxström (nikerabbit@users.sourceforge.net)
+    and Pekka Niemi (pekka.niemi@iki.fi)
+  - French: Christophe Dumez (chris@qbittorrent.org)
+  - Galician: Marcos Lans (marcoslansgarza@gmail.com)
+  - Georgian: Beqa Arabuli (arabulibeqa@yahoo.com)
+  - German: Niels Hoffmann (zentralmaschine@users.sourceforge.net)
+  - Greek: Tsvetan Bankov (emerge_life@users.sourceforge.net)
+    and Stephanos Antaris (santaris@csd.auth.gr)
+  - Hebrew: David Deutsch (d.deffo@gmail.com)
+  - Hungarian: Majoros Péter (majoros.j.p@t-online.hu)
+  - Italian: bovirus (bovirus@live.it) and Matteo Sechi (bu17714@gmail.com)
+  - Japanese: Masato Hashimoto (cabezon.hashimoto@gmail.com)
+  - Korean: Jin Woo Sin (jin828sin@users.sourceforge.net)
+  - Lithuanian: Naglis Jonaitis (njonaitis@gmail.com)
+  - Norwegian: Tomaso
+  - Polish: Jarek Smieja (ajep9691@wp.pl)
+  - Portuguese: Nick Marinho (nickmarinho@gmail.com)
+  - Romanian: Obada Denis (obadadenis@users.sourceforge.net)
+  - Russian: Nick Khazov (m2k3d0n at users.sourceforge.net)
+  - Slovak:  helix84
+  - Spanish: Francisco Luque Contreras (frannoe@ya.com)
+  - Swedish: Daniel Nylander (po@danielnylander.se)
+  - Turkish: Hasan Yilmaz (iletisim@hedefturkce.com)
+  - Ukrainian: Oleh Prypin (blaxpirit@gmail.com)
+License: GPL-2
+
+    This package is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This package is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this package; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+
+On Debian systems, the complete text of the GNU General
+Public License can be found in `/usr/share/common-licenses/GPL-2'.
+
+
+Files: src/Icons/skin/qbittorrent_mono*
+Copyright: Daniel Eguren <deguren@gmail.com>
+License: LGPL-2.1+
+
+Files: src/ico.cpp, src/ico.h
+Copyright: Copyright © 2000 Malte Starostik <malte@kde.org>
+License: LGPL-2.1+
+
+Files: src/oxygen/*.png
+Copyright: Oxygen Icon Theme (KDE) - www.oxygen-icons.org
+License: LGPL-2.1+
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2.1 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+On Debian systems, the complete text of the GNU Lesser General
+Public License can be found in `/usr/share/common-licenses/LGPL-2.1'.
+
+
+Files: src/stacktrace.h
+Copyright: Copyright © 2008 Timo Bingmann
+License: other
+
+               DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+                       Version 2, December 2004
+
+    Copyright (C) 2004 Sam Hocevar
+     14 rue de Plaisance, 75014 Paris, France
+    Everyone is permitted to copy and distribute verbatim or modified
+    copies of this license document, and changing it is allowed as long
+    as the name is changed.
+
+               DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+      TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+     0. You just DO WHAT THE FUCK YOU WANT TO. 
+
+
+Files: src/Icons/flags/*.png
+Copyright: Mark James <http://www.famfamfam.com>
+License: other
+
+    Available for free use for any purpose with no requirement for attribution.
+
+
+File: src/searchengine/nova/engines/btdigg.py
+Copyright: BTDigg team (research@btdigg.org)
+License: GPL-3+
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+On Debian systems, the complete text of the GNU General Public License
+version 3 can be found in `/usr/share/common-licenses/GPL-3'.
+
+
+File: src/update_qrc_files.py,
+      src/searchengine/nova/engines/isohunt.py
+      src/searchengine/nova/engines/btjunkie.py
+      src/searchengine/nova/engines/vertor.py
+      src/searchengine/nova/engines/torrentdownloads.py
+      src/searchengine/nova/helpers.py
+      src/searchengine/nova/nova2dl.py
+      src/searchengine/nova/novaprinter.py
+Copyright: Christophe Dumez <chris@qbittorrent.org>
+License: BSD-3
+
+Files: src/searchengine/nova/nova2.py
+       src/searchengine/nova/engines/mininova.py
+       src/searchengine/nova/engines/piratebay.py
+Copyright: Fabien Devaux <fab@gnux.info>
+License: BSD-3
+
+Files: src/searchengine/nova/engines/torrentreactor.py
+Copyright: Gekko Dam Beer (gekko04@users.sourceforge.net)
+License: BSD-3
+
+Files: src/searchengine/socks.py
+Copyright: Copyright 2006 Dan-Haim
+License: BSD-3
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted under the terms of the BSD License.
+
+    1. Redistributions of source code must retain the above copyright
+       notice, this list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright
+       notice, this list of conditions and the following disclaimer in the
+       documentation and/or other materials provided with the distribution.
+    3. Neither the name of the University nor the names of its contributors
+       may be used to endorse or promote products derived from this software
+       without specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+    FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+    OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+    HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+    OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+    SUCH DAMAGE.
+
+
+Files: src/Icons/skin/tabs.gif
+Copyright: Greg Houston <gregory.houston@gmail.com>
+License: MIT
+
+Files: src/webui/css/mootabs1.2.css
+Copyright: Copyright © 2008 Christophe Dumez <chris@qbittorrent.org>
+           Original code from http://www.silverscripting.com/mootabs/
+License: MIT
+
+Files: src/webui/scripts/download.js
+Copyright: Copyright © 2008 Ishan Arora <ishan@qbittorrent.org>
+License: MIT
+
+Files: src/webui/scripts/client.js
+       src/webui/scripts/dynamicTable.js
+Copyright: Copyright © 2008 Ishan Arora <ishan@qbittorrent.org>
+           Copyright © 2008 Christophe Dumez <chris@qbittorrent.org>
+License: MIT
+
+Files: src/webui/scripts/mocha.js
+       src/webui/scripts/mocha-init.js
+       src/webui/css/mocha.css
+Copyright: Copyright © 2007-2008 Greg Houston, <http://greghoustondesign.com/>
+License: MIT-style
+
+Files: src/webui/scripts/mootabs1.2.js
+Copyright: Copyright © 2008 Christophe Dumez <chris@qbittorrent.org>
+           Original code from http://www.silverscripting.com/mootabs/
+License: MIT
+
+File: src/webui/scripts/mootools-1.2-core-yc.js
+      src/webui/scripts/mootools-1.2-more.js
+Copyright: Copyright © 2006-2008 Valerio Proietti, <http://mootools.net>
+License: MIT
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to
+    deal in the Software without restriction, including without limitation the
+    rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+    sell copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+    DEALINGS IN THE SOFTWARE.

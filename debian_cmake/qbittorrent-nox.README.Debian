@@ -1,0 +1,12 @@
+qbittorrent-nox for Debian
+--------------------------
+
+  qBittorrent-nox is a version of qBittorrent that does not require X and can
+  be controlled via a WebUI, thus is more suitable for headless servers.
+
+  The Web User Interface is accessible as a default on http://localhost:8080.
+  Access is secured and the default account user name is "admin" with
+  "adminadmin" as a password. Please refer to qbittorrent-nox(1) manpage for
+  more information.
+
+ -- Cristian Greco <cristian@regolo.cc>  Wed, 20 Jan 2010 00:50:45 +0100

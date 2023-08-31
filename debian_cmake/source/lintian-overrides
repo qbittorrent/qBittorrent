@@ -1,0 +1,7 @@
+# False positive. File is not minified.
+source-is-missing src/webui/www/public/scripts/excanvas-compressed.js
+source-is-missing src/webui/www/public/scripts/mocha-init.js line length is 445 characters (>256)
+
+# Full source provided in debian/missing-sources
+source-is-missing src/webui/www/public/scripts/mootools-1.2-core-yc.js
+source-is-missing debian/missing-sources/mootools-1.2-core-yc.js
