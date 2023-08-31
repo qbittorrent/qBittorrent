@@ -28,6 +28,8 @@
 
 #include "io.h"
 
+#include <limits>
+
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
 
@@ -89,11 +91,20 @@ nonstd::expected<QByteArray, Utils::IO::ReadError> Utils::IO::readFile(const Pat
         return nonstd::make_unexpected(ReadError {ReadError::ExceedSize, message});
     }
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 5, 0))
-    QByteArray ret {fileSize, Qt::Uninitialized};
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    using ByteArraySizeType = qsizetype;
 #else
-    QByteArray ret {static_cast<int>(fileSize), Qt::Uninitialized};
+    using ByteArraySizeType = int;
 #endif
+    if ((fileSize < std::numeric_limits<ByteArraySizeType>::min())
+        || (fileSize > std::numeric_limits<ByteArraySizeType>::max()))
+    {
+        const QString message = QCoreApplication::translate("Utils::IO", "File size exceeds data size limit. File: \"%1\". File size: %2. Array limit: %3")
+            .arg(file.fileName(), QString::number(fileSize), QString::number(std::numeric_limits<ByteArraySizeType>::max()));
+        return nonstd::make_unexpected(ReadError {ReadError::ExceedSize, message});
+    }
+
+    QByteArray ret {static_cast<ByteArraySizeType>(fileSize), Qt::Uninitialized};
     const qint64 actualSize = file.read(ret.data(), fileSize);
 
     if (actualSize < 0)
