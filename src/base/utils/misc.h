@@ -74,7 +74,7 @@ namespace Utils::Misc
 
     // return the best user friendly storage unit (B, KiB, MiB, GiB, TiB)
     // value must be given in bytes
-    QString friendlyUnit(qint64 bytes, bool isSpeed = false);
+    QString friendlyUnit(qint64 bytes, bool isSpeed = false, int precision = -1);
     int friendlyUnitPrecision(SizeUnit unit);
     qint64 sizeInBytes(qreal size, SizeUnit unit);
 
