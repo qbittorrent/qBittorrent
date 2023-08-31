@@ -103,6 +103,7 @@ namespace
         int numUpdating = 0;
         int numWorking = 0;
         int numNotWorking = 0;
+        int numTrackerError = 0;
         QString firstTrackerMessage;
         QString firstErrorMessage;
 #ifdef QBT_USES_LIBTORRENT2
@@ -135,8 +136,16 @@ namespace
                 }
                 else if (infoHash.fails > 0)
                 {
-                    trackerEndpoint.status = TrackerEntry::NotWorking;
-                    ++numNotWorking;
+                    if (infoHash.last_error == lt::errors::tracker_failure)
+                    {
+                        trackerEndpoint.status = TrackerEntry::TrackerError;
+                        ++numTrackerError;
+                    }
+                    else
+                    {
+                        trackerEndpoint.status = TrackerEntry::NotWorking;
+                        ++numNotWorking;
+                    }
                 }
                 else if (nativeEntry.verified)
                 {
@@ -183,8 +192,16 @@ namespace
             }
             else if (endpoint.fails > 0)
             {
-                trackerEndpoint.status = TrackerEntry::NotWorking;
-                ++numNotWorking;
+                if (endpoint.last_error == lt::errors::tracker_failure)
+                {
+                    trackerEndpoint.status = TrackerEntry::TrackerError;
+                    ++numTrackerError;
+                }
+                else
+                {
+                    trackerEndpoint.status = TrackerEntry::NotWorking;
+                    ++numNotWorking;
+                }
             }
             else if (nativeEntry.verified)
             {
@@ -222,10 +239,15 @@ namespace
                 trackerEntry.status = TrackerEntry::Working;
                 trackerEntry.message = firstTrackerMessage;
             }
+            else if (numTrackerError > 0)
+            {
+                trackerEntry.status = TrackerEntry::TrackerError;
+                trackerEntry.message = firstTrackerMessage;
+            }
             else if (numNotWorking == numEndpoints)
             {
                 trackerEntry.status = TrackerEntry::NotWorking;
-                trackerEntry.message = (!firstTrackerMessage.isEmpty() ? firstTrackerMessage : firstErrorMessage);
+                trackerEntry.message = firstErrorMessage;
             }
         }
     }

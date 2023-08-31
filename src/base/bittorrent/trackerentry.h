@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -46,7 +46,8 @@ namespace BitTorrent
             NotContacted = 1,
             Working = 2,
             Updating = 3,
-            NotWorking = 4
+            NotWorking = 4,
+            TrackerError = 5
         };
 
         struct EndpointStats

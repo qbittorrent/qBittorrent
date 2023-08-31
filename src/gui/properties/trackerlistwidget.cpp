@@ -405,6 +405,8 @@ void TrackerListWidget::loadTrackers()
             return tr("Updating...");
         case BitTorrent::TrackerEntry::Status::NotWorking:
             return tr("Not working");
+        case BitTorrent::TrackerEntry::Status::TrackerError:
+            return tr("Tracker error");
         case BitTorrent::TrackerEntry::Status::NotContacted:
             return tr("Not contacted yet");
         }
