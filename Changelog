@@ -1,3 +1,60 @@
+Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.0
+    - FEATURE: Add (experimental) I2P support (glassez) cdded6cef7710fb25093ea142edea3d3b7479447
+    - FEATURE: Provide UI Theme editor (glassez) 77aa85fbd3af12b319f8f0b8372f4ba186d10c80
+    - FEATURE: Various UI theming improvements (glassez)
+    - FEATURE: Implement torrent tags editing dialog (glassez) d40be79c6933fd911644b0b0c833893ea480dc90
+    - FEATURE: Implement "Add torrent params" editing widget (glassez) 0cc29f18510b084b131fd0b02963a7aff909de01
+    - FEATURE: Revamp "Watched folder options" and "Automated RSS downloader" dialog (glassez) 93a1e58554fe9beff657b1302cc358722e8b0a1b 905f1416572913cf0bb0d143b7da381cd544fad8
+    - FEATURE: Allow to use another icons in dark mode (glassez) 72ac92ec682b96924bdec606bc4383430f3f7067
+    - FEATURE: Allow to add new torrents to queue top (glassez) 5d4766edbe88c768e8fa9a91ca3dadbf9a59aedf
+    - FEATURE: Allow to filter torrent list by save path (Tom) 0bb0829a9a22e4b468af6bcbc119df5d1d1571ec
+    - FEATURE: Expose 'socket send/receive buffer size' options (Chocobo1) 77411760a093bffafa3ae2c4f139990cd4ff55e6
+    - FEATURE: Expose 'max torrent file size' setting (Chocobo1) 66dfe8545dff47830fdc5c118c7e11d2cad21975
+    - FEATURE: Expose 'bdecode limits' settings (Chocobo1) 5a660fc8a979aa6b97c9059df4216da8b9a80a57
+    - FEATURE: Add options to adjust behavior of merging trackers to existing torrent (glassez) 4ef9a6444ae9067bb40fd2f5442564416e047689
+    - FEATURE: Add option to stop seeding when torrent has been inactive (Christopher) 35e18498d9bde2292f4c0be793f0870385e54770
+    - FEATURE: Allow to use proxy per subsystem (glassez) 6ac14d0c571995b3a3b750b9afdd6ff4c34797e9
+    - FEATURE: Allow to globally disable the use of proxy (glassez) 7ec80263e14a340395bf60f7da78c2cadd134b31
+    - FEATURE: Expand the scope of "Proxy hostname lookup" option (glassez) 96da685e5d72061cab7caf4d68a9e2c8dea86de7
+    - FEATURE: Add shortcut for "Ban peer permanently" function (Luka Čelebić) 917190d936c0287d8d5e5c3956e7f936c8c90bb6
+    - FEATURE: Add option to auto hide zero status filters (glassez) 0dcb65bb7cc2f4f65405712d6159d429abb5a3a5
+    - FEATURE: Allow to disable confirmation of Pause/Resume All (glassez) cf415dd7fed4b34abe7cd6aa4e68089cfdc724e6
+    - FEATURE: Add alternative shortcut CTRL+E for CTRL+F (Luka Čelebić) 379b0dbe40a75e9d7f5ec4f638dbadbb78cef206
+    - FEATURE: Show filtered port numbers in logs (Hanabishi) d75fd3fcde8d4cc1c7ddb1ebeaf56791ddd5e3c8
+    - BUGFIX: Ensure ongoing storage moving job will be completed when shutting down (Chocobo1) 5f2d80786132eaf0569fa75e4937aafc57b3f302
+    - BUGFIX: Refactored many areas to call non UI blocking code (glassez)
+    - BUGFIX: Various improvements to the SQLite backend (glassez)
+    - BUGFIX: Improve startup window state handling (glassez) 32e437120823120e233ea589c3901cfc9b528f82
+    - BUGFIX: Reduce default file pool size (glassez) 8bcac1bed28f93c0712e915f43294b1e5fd03659
+    - BUGFIX: Use tray icon from system theme only if option is set (glassez) 77bd09bb8b3191e98cff7502284c657cf33e73f0
+    - BUGFIX: Inhibit system sleep while torrents are moving (Sentox6) bd31eddb941424b09a4323bb5bbce586524ee1f6
+    - BUGFIX: Use hostname instead of domain name in tracker filter list (tearfur) 2e87e6e0df3d78144096ddd37d8199cb590b3249
+    - BUGFIX: Visually validate input path in torrent creator dialog (Chocobo1) c3fc96dfe6233ea44d423d7af28f7b09060270f7
+    - BUGFIX: Disable symlink resolving in Torrent creator (Ignat Loskutov) f4deb1050f56148d2a3ac25fdeb65418d9665693
+    - BUGFIX: Change default value for `file pool size` and `stop tracker timeout` settings (stalkerok) 488464731d1271f2ecd435beb3c956e7a1958bc5
+    - BUGFIX: Log when duplicate torrents are being added (glassez) f99a98306df2f8e60ca5b61d84a093edc9dbc83a
+    - BUGFIX: Inhibit suspend instead of screen idle (axet) 483ccb39bf056bcd6b7878cb152f0791fde1434b
+    - BUGFIX: Ensure file name is valid when exporting torrents (Chocobo1) 80bb19701cf7df358949e1c717b0774e754acb10
+    - WEBUI: Add log viewer (brvphoenix) 0d376e7fd6b9bfbdd3d8c420a20c82740a940d32
+    - WEBUI: WebAPI: Allow to specify session cookie name (glassez) 771c58d0008e471fab48767ceb2b3436188ba505
+    - WEBUI: Improve sync API performance (glassez) d06f78dbbdc2d26e46825ba926bbcd496c0b65d0
+    - WEBUI: Add filelog settings (brvphoenix) e37661d53a0249548238a89d41736260998348f6
+    - WEBUI: Add multi-file renaming (loligans) 466314675ccbc4a7dc56d18ac77ec65b529e4605
+    - WEBUI: Add "Add to top of queue" option (thalieht) f630d848589d901a0a577faf322aad0431817bec
+    - WEBUI: Implement subcategories (Bartu Özen) b55d4b17335df3fe39d47d2f27acbaf143e371ef
+    - WEBUI: Set "SameSite=None" if CSRF Protection is disabled (七海千秋) 1e400df324949c4397f8e91a9025826608701dca
+    - WEBUI: Show only hosts in tracker filter list (ttys3) b1492bcd7d339ed1e758402d86005ccd4f11610b
+    - WEBUI: Set Connection status and Speed limits tooltips (Raymond Ha) 3ef87260839b29bcec2485d8420811154ca59b49
+    - WEBUI: set Cross Origin Opener Policy to `same-origin` (Chocobo1) f6b58f36e2c0a0f2f55c21da660d814e13d761ed
+    - WEBUI: Fix response for HTTP HEAD method (Chocobo1) e8f5a3b44ec1eeafb49d0adb59165c06ec365634
+    - WEBUI: Preserve the network interfaces when connection is down (Fabricio Silva) f08556be30ee8a8bf436664049de8183c52cadae
+    - RSS: Add "Rename rule" button to RSS Downloader (BallsOfSpaghetti) c3936cd4b6e7be34c1a13e4aff63dcd906d762c5
+    - RSS: Allow to edit RSS feed URL (glassez) b8cd6147757d94b638d8ea7d2c122372866c8e1e
+    - RSS: Allow to assign priority to RSS download rule (glassez) a5e8af50702fde21999345eeb1150fccc802433f
+    - SEARCH: Use python isolate mode (Chocobo1) 4ef8f39f23d6405598777eaee4759fd0cb54feac
+    - SEARCH: Bump python version minimum requirement to 3.7.0 (Chocobo1) b406d669b344d2332d3d47d3d43c652894a30510
+    - OTHER: Numerous code improvements and refactorings (glassez, Chocobo1)
+
 Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.5.0
     - FEATURE: Add `Auto resize columns` functionality (Chocobo1)
     - FEATURE: Allow to use Category paths in `Manual` mode (glassez)
