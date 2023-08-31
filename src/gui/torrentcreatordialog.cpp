@@ -82,7 +82,11 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
     m_ui->setupUi(this);
 
     m_ui->comboPieceSize->addItem(tr("Auto"), 0);
-    for (int i = 4; i <= 15; ++i)
+#ifdef QBT_USES_LIBTORRENT2
+    for (int i = 4; i <= 18; ++i)
+#else
+    for (int i = 4; i <= 17; ++i)
+#endif
     {
         const int size = 1024 << i;
         const QString displaySize = Utils::Misc::friendlyUnit(size, false, 0);
