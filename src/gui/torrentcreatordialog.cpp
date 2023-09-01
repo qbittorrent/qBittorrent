@@ -271,11 +271,11 @@ void TorrentCreatorDialog::handleCreationSuccess(const Path &path, const Path &b
 
     if (m_ui->checkStartSeeding->isChecked())
     {
-        // Create save path temp data
         const auto loadResult = BitTorrent::TorrentDescriptor::loadFromFile(path);
         if (!loadResult)
         {
-            QMessageBox::critical(this, tr("Torrent creation failed"), tr("Reason: Created torrent is invalid. It won't be added to download list."));
+            const QString message = tr("Add torrent to transfer list failed.") + u'\n' + tr("Reason: \"%1\"").arg(loadResult.error());
+            QMessageBox::critical(this, tr("Add torrent failed"), message);
             return;
         }
 
