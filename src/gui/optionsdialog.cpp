@@ -760,6 +760,9 @@ void OptionsDialog::loadConnectionTabOptions()
 
     m_ui->comboProtocol->setCurrentIndex(static_cast<int>(session->btProtocol()));
     m_ui->spinPort->setValue(session->port());
+    m_ui->spinSSLPort->setEnabled(session->isSSLEnabled());
+    m_ui->spinSSLPort->setValue(session->sslPort());
+    m_ui->groupSSL->setChecked(session->isSSLEnabled());
     m_ui->checkUPnP->setChecked(Net::PortForwarder::instance()->isEnabled());
 
     int intValue = session->maxConnections();
@@ -862,6 +865,8 @@ void OptionsDialog::loadConnectionTabOptions()
 
     connect(m_ui->comboProtocol, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinSSLPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->groupSSL, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkMaxConnections, &QAbstractButton::toggled, m_ui->spinMaxConnec, &QWidget::setEnabled);
@@ -913,6 +918,8 @@ void OptionsDialog::saveConnectionTabOptions() const
 
     session->setBTProtocol(static_cast<BitTorrent::BTProtocol>(m_ui->comboProtocol->currentIndex()));
     session->setPort(getPort());
+    session->setSSLEnabled(m_ui->groupSSL->isChecked());
+    session->setSSLPort(m_ui->spinSSLPort->value());
     Net::PortForwarder::instance()->setEnabled(isUPnPEnabled());
 
     session->setMaxConnections(getMaxConnections());
@@ -1421,6 +1428,14 @@ void OptionsDialog::on_randomButton_clicked()
 {
     // Range [1024: 65535]
     m_ui->spinPort->setValue(Utils::Random::rand(1024, 65535));
+}
+
+void OptionsDialog::on_randomSSLButton_clicked()
+{
+    int sslPort = 0;
+    while ((sslPort == getPort()) || (sslPort <= 0))
+        sslPort = Utils::Random::rand(1024, 65535);
+    m_ui->spinSSLPort->setValue(sslPort);
 }
 
 int OptionsDialog::getEncryptionSetting() const

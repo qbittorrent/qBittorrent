@@ -257,6 +257,12 @@ namespace BitTorrent
         virtual void setSaveResumeDataInterval(int value) = 0;
         virtual int port() const = 0;
         virtual void setPort(int port) = 0;
+        virtual bool isSSLEnabled() const = 0;
+        virtual void setSSLEnabled(bool enabled) = 0;
+        virtual int sslPort() const = 0;
+        virtual void setSSLPort(int port) = 0;
+        virtual Path sslCertificatesDirectory() const = 0;
+        virtual void setSSLCertificatesDirectory(const Path &path) = 0;
         virtual QString networkInterface() const = 0;
         virtual void setNetworkInterface(const QString &iface) = 0;
         virtual QString networkInterfaceName() const = 0;

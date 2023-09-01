@@ -185,6 +185,8 @@ void AppController::preferencesAction()
     // Connection
     // Listening Port
     data[u"listen_port"_s] = session->port();
+    data[u"ssl_enabled"_s] = session->isSSLEnabled();
+    data[u"ssl_listen_port"_s] = session->sslPort();
     data[u"random_port"_s] = (session->port() == 0);  // deprecated
     data[u"upnp"_s] = Net::PortForwarder::instance()->isEnabled();
     // Connections Limits
@@ -632,6 +634,11 @@ void AppController::setPreferencesAction()
     {
         session->setPort(it.value().toInt());
     }
+    // SSL Torrents
+    if (hasKey(u"ssl_enabled"_s))
+        session->setSSLEnabled(it.value().toBool());
+    if (hasKey(u"ssl_listen_port"_s))
+        session->setSSLPort(it.value().toInt());
     if (hasKey(u"upnp"_s))
         Net::PortForwarder::instance()->setEnabled(it.value().toBool());
     // Connections Limits

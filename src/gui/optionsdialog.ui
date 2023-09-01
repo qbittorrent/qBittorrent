@@ -1772,6 +1772,58 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QGroupBox" name="groupSSL">
+                 <property name="title">
+                  <string>SSL Torrents</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_21">
+                  <item>
+                   <widget class="QLabel" name="lblSSLPort">
+                    <property name="text">
+                     <string>Port used for incoming SSL connections:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSpinBox" name="spinSSLPort">
+                    <property name="specialValueText">
+                     <string>Any</string>
+                    </property>
+                    <property name="maximum">
+                     <number>65535</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="randomSSLButton">
+                    <property name="text">
+                     <string>Random</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_25">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -3968,6 +4020,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>domainNameTxt</tabstop>
   <tabstop>DNSUsernameTxt</tabstop>
   <tabstop>DNSPasswordTxt</tabstop>
+  <tabstop>randomSSLButton</tabstop>
+  <tabstop>spinSSLPort</tabstop>
  </tabstops>
  <resources/>
  <connections/>

@@ -313,6 +313,17 @@
             <input type="checkbox" id="upnp_checkbox" />
             <label for="upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
+        <fieldset class="settings">
+            <legend>
+                <input type="checkbox" id="sslEnabledCheckbox" onclick="qBittorrent.Preferences.updateSslSettings();" />
+                <label for="sslEnabledCheckbox">QBT_TR(Enable SSL torrents)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
+            <div class="formRow">
+                <label for="sslPortValue">QBT_TR(Port used for incoming SSL connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <input type="text" id="sslPortValue" style="width: 4em;" title="QBT_TR(Set to 0 to let your system pick an unused port)QBT_TR[CONTEXT=OptionsDialog]" />
+                <button type="button" id="sslRandomPortButton" style="margin-left: 1em;" onclick="qBittorrent.Preferences.generateRandomSSLPort();">QBT_TR(Random)QBT_TR[CONTEXT=OptionsDialog]</button>
+            </div>
+        </fieldset>
     </fieldset>
 
     <fieldset class="settings">
@@ -1534,6 +1545,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateAutoRun: updateAutoRun,
                 updateAutoRunOnTorrentAdded: updateAutoRunOnTorrentAdded,
                 generateRandomPort: generateRandomPort,
+                generateRandomSSLPort: generateRandomSSLPort,
+                updateSslSettings: updateSslSettings,
                 updateMaxConnecEnabled: updateMaxConnecEnabled,
                 updateMaxConnecPerTorrentEnabled: updateMaxConnecPerTorrentEnabled,
                 updateMaxUploadsEnabled: updateMaxUploadsEnabled,
@@ -1868,6 +1881,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             $('port_value').setProperty('value', port);
         };
 
+        const generateRandomSSLPort = function() {
+            const min = 1024;
+            const max = 65535;
+            const port = Math.floor(Math.random() * (max - min + 1) + min);
+            $('sslPortValue').setProperty('value', port);
+        };
+
+        const updateSslSettings = function() {
+            const isSSLEnabled = $('sslEnabledCheckbox').getProperty('checked');
+            $('sslRandomPortButton').setProperty('disabled', !isSSLEnabled);
+            $('sslPortValue').setProperty('disabled', !isSSLEnabled);
+        };
+
         const time_padding = function(val) {
             let ret = val.toString();
             if (ret.length == 1)
@@ -2071,6 +2097,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         // Listening Port
                         $('port_value').setProperty('value', pref.listen_port.toInt());
                         $('upnp_checkbox').setProperty('checked', pref.upnp);
+                        $('sslEnabledCheckbox').setProperty('checked', pref.ssl_enabled);
+                        $('sslPortValue').setProperty('value', pref.ssl_listen_port.toInt()).setProperty('disabled', !pref.ssl_enabled);
+                        $('sslRandomPortButton').setProperty('disabled', !pref.ssl_enabled);
 
                         // Connections Limits
                         const max_connec = pref.max_connec.toInt();
@@ -2425,6 +2454,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 return;
             }
             settings.set('listen_port', listen_port);
+            const sslEnabled = $('sslEnabledCheckbox').getProperty('checked');
+            if (sslEnabled) {
+                const sslListenPort = $('sslPortValue').getProperty('value').toInt();
+                if (isNaN(sslListenPort) || (sslListenPort < 0) || (sslListenPort > 65535)) {
+                    alert("QBT_TR(The port used for incoming connections must be between 0 and 65535.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+                settings.set('ssl_listen_port', sslListenPort);
+            }
+            settings.set('ssl_enabled', sslEnabled);
             settings.set('upnp', $('upnp_checkbox').getProperty('checked'));
 
             // Connections Limits

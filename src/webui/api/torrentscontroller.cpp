@@ -1205,6 +1205,27 @@ void TorrentsController::setAutoManagementAction()
     });
 }
 
+void TorrentsController::setSSLCertificateAction()
+{
+    requireParams({u"hash"_s});
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    for (const auto &file: {u"certificate"_s, u"privateKey"_s, u"dhParams"_s})
+    {
+        if (!data().contains(file))
+            throw APIError(APIErrorType::BadData);
+    }
+
+    const QByteArray certificate = data()[u"certificate"_s];
+    const QByteArray privateKey = data()[u"privateKey"_s];
+    const QByteArray dhParams = data()[u"dhParams"_s];
+
+    torrent->setSSLCertificate(certificate, privateKey, dhParams);
+}
+
 void TorrentsController::recheckAction()
 {
     requireParams({u"hashes"_s});

@@ -101,6 +101,7 @@ private slots:
     void on_banListButton_clicked();
     void on_IPSubnetWhitelistButton_clicked();
     void on_randomButton_clicked();
+    void on_randomSSLButton_clicked();
     void on_addWatchedFolderButton_clicked();
     void on_editWatchedFolderButton_clicked();
     void on_removeWatchedFolderButton_clicked();
