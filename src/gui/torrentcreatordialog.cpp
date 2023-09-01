@@ -263,8 +263,12 @@ void TorrentCreatorDialog::handleCreationFailure(const QString &msg)
 
 void TorrentCreatorDialog::handleCreationSuccess(const Path &path, const Path &branchPath)
 {
-    // Remove busy cursor
     setCursor(QCursor(Qt::ArrowCursor));
+    setInteractionEnabled(true);
+
+    QMessageBox::information(this, tr("Torrent creator")
+        , u"%1\n%2"_s.arg(tr("Torrent created:"), path.toString()));
+
     if (m_ui->checkStartSeeding->isChecked())
     {
         // Create save path temp data
@@ -288,9 +292,6 @@ void TorrentCreatorDialog::handleCreationSuccess(const Path &path, const Path &b
 
         BitTorrent::Session::instance()->addTorrent(loadResult.value(), params);
     }
-    QMessageBox::information(this, tr("Torrent creator")
-        , u"%1\n%2"_s.arg(tr("Torrent created:"), path.toString()));
-    setInteractionEnabled(true);
 }
 
 void TorrentCreatorDialog::updateProgressBar(int progress)
