@@ -104,6 +104,7 @@ namespace
         int numWorking = 0;
         int numNotWorking = 0;
         int numTrackerError = 0;
+        int numUnreachable = 0;
         QString firstTrackerMessage;
         QString firstErrorMessage;
 #ifdef QBT_USES_LIBTORRENT2
@@ -140,6 +141,11 @@ namespace
                     {
                         trackerEndpoint.status = TrackerEntry::TrackerError;
                         ++numTrackerError;
+                    }
+                    else if (infoHash.last_error == lt::errors::announce_skipped)
+                    {
+                        trackerEndpoint.status = TrackerEntry::Unreachable;
+                        ++numUnreachable;
                     }
                     else
                     {
@@ -197,6 +203,11 @@ namespace
                     trackerEndpoint.status = TrackerEntry::TrackerError;
                     ++numTrackerError;
                 }
+                else if (endpoint.last_error == lt::errors::announce_skipped)
+                {
+                    trackerEndpoint.status = TrackerEntry::Unreachable;
+                    ++numUnreachable;
+                }
                 else
                 {
                     trackerEndpoint.status = TrackerEntry::NotWorking;
@@ -244,7 +255,11 @@ namespace
                 trackerEntry.status = TrackerEntry::TrackerError;
                 trackerEntry.message = firstTrackerMessage;
             }
-            else if (numNotWorking == numEndpoints)
+            else if (numUnreachable == numEndpoints)
+            {
+                trackerEntry.status = TrackerEntry::Unreachable;
+            }
+            else if ((numUnreachable + numNotWorking) == numEndpoints)
             {
                 trackerEntry.status = TrackerEntry::NotWorking;
                 trackerEntry.message = firstErrorMessage;

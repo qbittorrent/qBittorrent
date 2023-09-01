@@ -351,7 +351,8 @@ void TrackersFilterWidget::handleTrackerEntriesUpdated(const BitTorrent::Torrent
             }
         }
         else if ((trackerEntry.status == BitTorrent::TrackerEntry::NotWorking)
-                || (trackerEntry.status == BitTorrent::TrackerEntry::TrackerError))
+                || (trackerEntry.status == BitTorrent::TrackerEntry::TrackerError)
+                || (trackerEntry.status == BitTorrent::TrackerEntry::Unreachable))
         {
             if (errorHashesIt == m_errors.end())
                 errorHashesIt = m_errors.insert(id, {});

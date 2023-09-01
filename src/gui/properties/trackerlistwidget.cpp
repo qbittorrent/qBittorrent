@@ -407,6 +407,8 @@ void TrackerListWidget::loadTrackers()
             return tr("Not working");
         case BitTorrent::TrackerEntry::Status::TrackerError:
             return tr("Tracker error");
+        case BitTorrent::TrackerEntry::Status::Unreachable:
+            return tr("Unreachable");
         case BitTorrent::TrackerEntry::Status::NotContacted:
             return tr("Not contacted yet");
         }

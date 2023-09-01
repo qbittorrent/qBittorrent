@@ -498,12 +498,14 @@ void TorrentsController::trackersAction()
             }
         }
 
+        const bool isNotWorking = (tracker.status == BitTorrent::TrackerEntry::Status::NotWorking)
+                || (tracker.status == BitTorrent::TrackerEntry::Status::TrackerError)
+                || (tracker.status == BitTorrent::TrackerEntry::Status::Unreachable);
         trackerList << QJsonObject
         {
             {KEY_TRACKER_URL, tracker.url},
             {KEY_TRACKER_TIER, tracker.tier},
-            {KEY_TRACKER_STATUS, static_cast<int>((tracker.status == BitTorrent::TrackerEntry::Status::TrackerError
-                    ? BitTorrent::TrackerEntry::Status::NotWorking : tracker.status))},
+            {KEY_TRACKER_STATUS, static_cast<int>((isNotWorking ? BitTorrent::TrackerEntry::Status::NotWorking : tracker.status))},
             {KEY_TRACKER_MSG, tracker.message},
             {KEY_TRACKER_PEERS_COUNT, numPeers},
             {KEY_TRACKER_SEEDS_COUNT, numSeeds},
