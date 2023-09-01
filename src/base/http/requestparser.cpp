@@ -31,6 +31,7 @@
 #include "requestparser.h"
 
 #include <algorithm>
+#include <utility>
 
 #include <QByteArrayView>
 #include <QDebug>
@@ -45,7 +46,7 @@
 
 using namespace Http;
 using namespace Utils::ByteArray;
-using QStringPair = QPair<QString, QString>;
+using QStringPair = std::pair<QString, QString>;
 
 namespace
 {
