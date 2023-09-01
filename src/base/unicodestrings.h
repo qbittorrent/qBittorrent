@@ -37,7 +37,6 @@
 inline const QString C_COPYRIGHT = u"©"_s;
 inline const QString C_INEQUALITY = u"≠"_s;
 inline const QString C_INFINITY = u"∞"_s;
-inline const QString C_NON_BREAKING_SPACE = u" "_s;
 inline const QString C_THIN_SPACE = u" "_s;
 inline const QString C_UTP = u"μTP"_s;
 

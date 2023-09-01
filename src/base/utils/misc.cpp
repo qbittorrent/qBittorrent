@@ -267,8 +267,7 @@ QString Utils::Misc::friendlyUnit(const qint64 bytes, const bool isSpeed, const 
 
     const int digitPrecision = (precision >= 0) ? precision : friendlyUnitPrecision(result->unit);
     return Utils::String::fromDouble(result->value, digitPrecision)
-           + C_NON_BREAKING_SPACE
-           + unitString(result->unit, isSpeed);
+           + QChar::Nbsp + unitString(result->unit, isSpeed);
 }
 
 int Utils::Misc::friendlyUnitPrecision(const SizeUnit unit)
