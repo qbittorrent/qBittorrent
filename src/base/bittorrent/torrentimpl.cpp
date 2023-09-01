@@ -50,6 +50,7 @@
 #include <QtSystemDetection>
 #include <QByteArray>
 #include <QDebug>
+#include <QFile>
 #include <QPointer>
 #include <QSet>
 #include <QStringList>
@@ -2446,6 +2447,29 @@ void TorrentImpl::setMetadata(const TorrentInfo &torrentInfo)
         }
         catch (const std::exception &) {}
     });
+}
+
+void TorrentImpl::setSSLCertificate(const QByteArray &certificate, const QByteArray &privateKey, const QByteArray &dhParams)
+{
+    const Path baseDir = m_session->sslCertificatesDirectory();
+    const auto [certPath, keyPath, dhPath] = m_session->sslCertificatesPathsForTorrent(id());
+
+    if (!baseDir.exists())
+    {
+        Utils::Fs::mkpath(baseDir);
+        QFile(baseDir.data()).setPermissions(QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner | QFile::ReadUser | QFile::WriteUser | QFile::ExeUser);
+    }
+
+    for (const auto &[path, content] : {std::pair {certPath, certificate}, {keyPath, privateKey}, {dhPath, dhParams}})
+    {
+        const nonstd::expected<void, QString> result = Utils::IO::saveToFile(path, content);
+        if (!result)
+            LogMsg(tr("Cannot save SSL certificates. Torrent: \"%1\". Reason: \"%2\"").arg(name(), result.error()), Log::WARNING);
+    }
+
+    QFile(keyPath.data()).setPermissions(QFile::ReadOwner | QFile::WriteOwner | QFile::ReadUser | QFile::WriteUser);
+
+    m_nativeHandle.set_ssl_certificate(certPath.toStdFsPath().string(), keyPath.toStdFsPath().string(), dhPath.toStdFsPath().string());
 }
 
 Torrent::StopCondition TorrentImpl::stopCondition() const

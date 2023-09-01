@@ -303,6 +303,7 @@ namespace BitTorrent
         virtual bool connectPeer(const PeerAddress &peerAddress) = 0;
         virtual void clearPeers() = 0;
         virtual void setMetadata(const TorrentInfo &torrentInfo) = 0;
+        virtual void setSSLCertificate(const QByteArray &certificate, const QByteArray &privateKey, const QByteArray &dhParams) = 0;
 
         virtual StopCondition stopCondition() const = 0;
         virtual void setStopCondition(StopCondition stopCondition) = 0;

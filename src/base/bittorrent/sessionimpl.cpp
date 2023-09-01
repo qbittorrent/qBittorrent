@@ -479,6 +479,10 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_isPerformanceWarningEnabled(BITTORRENT_SESSION_KEY(u"PerformanceWarning"_s), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY(u"SaveResumeDataInterval"_s), 60)
     , m_port(BITTORRENT_SESSION_KEY(u"Port"_s), -1)
+    , m_sslEnabled(BITTORRENT_SESSION_KEY(u"SSL/Enabled"_s), false)
+    , m_sslPort(BITTORRENT_SESSION_KEY(u"SSL/Port"_s), -1)
+    , m_sslCertificatesDirectory(BITTORRENT_SESSION_KEY(u"SSL/CertificatesDir"_s)
+        , specialFolderLocation(SpecialFolder::Config) / Path(u"SSLTorrentsCertificates"_s))
     , m_networkInterface(BITTORRENT_SESSION_KEY(u"Interface"_s))
     , m_networkInterfaceName(BITTORRENT_SESSION_KEY(u"InterfaceName"_s))
     , m_networkInterfaceAddress(BITTORRENT_SESSION_KEY(u"InterfaceAddress"_s))
@@ -529,6 +533,8 @@ SessionImpl::SessionImpl(QObject *parent)
 
     if (port() < 0)
         m_port = Utils::Random::rand(1024, 65535);
+    while ((sslPort() < 0) || (port() == sslPort()))
+        m_sslPort = Utils::Random::rand(1024, 65535);
 
     m_recentErroredTorrentsTimer->setSingleShot(true);
     m_recentErroredTorrentsTimer->setInterval(1s);
@@ -2022,7 +2028,9 @@ void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack
 
     QStringList endpoints;
     QStringList outgoingInterfaces;
-    const QString portString = u':' + QString::number(port());
+    QStringList portStrings = {u':' + QString::number(port())};
+    if (m_sslEnabled)
+        portStrings.append(u':' + QString::number(sslPort()) + u's');
 
     for (const QString &ip : asConst(getListeningIPs()))
     {
@@ -2034,7 +2042,8 @@ void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack
                           ? Utils::Net::canonicalIPv6Addr(addr).toString()
                           : addr.toString();
 
-            endpoints << ((isIPv6 ? (u'[' + ip + u']') : ip) + portString);
+            for (const QString &portString : asConst(portStrings))
+                endpoints << ((isIPv6 ? (u'[' + ip + u']') : ip) + portString);
 
             if ((ip != u"0.0.0.0") && (ip != u"::"))
                 outgoingInterfaces << ip;
@@ -2049,7 +2058,8 @@ void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack
             const QString guid = convertIfaceNameToGuid(ip);
             if (!guid.isEmpty())
             {
-                endpoints << (guid + portString);
+                for (const QString &portString : asConst(portStrings))
+                    endpoints << (guid + portString);
                 outgoingInterfaces << guid;
             }
             else
@@ -2057,11 +2067,13 @@ void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack
                 LogMsg(tr("Could not find GUID of network interface. Interface: \"%1\"").arg(ip), Log::WARNING);
                 // Since we can't get the GUID, we'll pass the interface name instead.
                 // Otherwise an empty string will be passed to outgoing_interface which will cause IP leak.
-                endpoints << (ip + portString);
+                for (const QString &portString : asConst(portStrings))
+                    endpoints << (ip + portString);
                 outgoingInterfaces << ip;
             }
 #else
-            endpoints << (ip + portString);
+            for (const QString &portString : asConst(portStrings))
+                endpoints << (ip + portString);
             outgoingInterfaces << ip;
 #endif
         }
@@ -2408,6 +2420,10 @@ bool SessionImpl::deleteTorrent(const TorrentID &id, const DeleteOption deleteOp
 
     if (const InfoHash infoHash = torrent->infoHash(); infoHash.isHybrid())
         m_hybridTorrentsByAltID.remove(TorrentID::fromSHA1Hash(infoHash.v1()));
+
+    const auto [certPath, keyPath, dhPath] = sslCertificatesPathsForTorrent(id);
+    for (const Path &path : {certPath, keyPath, dhPath})
+        Utils::Fs::removeFile(path);
 
     // Remove it from session
     if (deleteOption == DeleteTorrent)
@@ -3523,6 +3539,60 @@ void SessionImpl::setPort(const int port)
         if (isReannounceWhenAddressChangedEnabled())
             reannounceToAllTrackers();
     }
+}
+
+bool SessionImpl::isSSLEnabled() const
+{
+    return m_sslEnabled;
+}
+
+void SessionImpl::setSSLEnabled(const bool enabled)
+{
+    if (m_sslEnabled != enabled)
+    {
+        m_sslEnabled = enabled;
+        configureListeningInterface();
+
+        if (isReannounceWhenAddressChangedEnabled())
+            reannounceToAllTrackers();
+    }
+}
+
+int SessionImpl::sslPort() const
+{
+    return m_sslPort;
+}
+
+void SessionImpl::setSSLPort(const int port)
+{
+    if (port != m_sslPort)
+    {
+        m_sslPort = port;
+        configureListeningInterface();
+
+        if (isReannounceWhenAddressChangedEnabled())
+            reannounceToAllTrackers();
+    }
+}
+
+Path SessionImpl::sslCertificatesDirectory() const
+{
+    return m_sslCertificatesDirectory;
+}
+
+void SessionImpl::setSSLCertificatesDirectory(const Path &path)
+{
+    if (path != m_sslCertificatesDirectory)
+        m_sslCertificatesDirectory = path;
+}
+
+std::tuple<Path, Path, Path> SessionImpl::sslCertificatesPathsForTorrent(const TorrentID &torrentId) const
+{
+    const Path basePath = sslCertificatesDirectory() / Path(torrentId.toString());
+    const Path certPath = basePath + u".crt.pem"_s;
+    const Path keyPath = basePath + u".key.pem"_s;
+    const Path dhPath = basePath + u".dh.pem"_s;
+    return {certPath, keyPath, dhPath};
 }
 
 QString SessionImpl::networkInterface() const
@@ -5449,6 +5519,9 @@ void SessionImpl::handleAlert(const lt::alert *a)
         case lt::torrent_delete_failed_alert::alert_type:
             handleTorrentDeleteFailedAlert(static_cast<const lt::torrent_delete_failed_alert *>(a));
             break;
+        case lt::torrent_need_cert_alert::alert_type:
+            handleTorrentNeedCertAlert(static_cast<const lt::torrent_need_cert_alert*>(a));
+            break;
         case lt::portmap_error_alert::alert_type:
             handlePortmapWarningAlert(static_cast<const lt::portmap_error_alert *>(a));
             break;
@@ -5650,6 +5723,40 @@ void SessionImpl::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed
     }
 
     m_removingTorrents.erase(removingTorrentDataIter);
+}
+
+void SessionImpl::handleTorrentNeedCertAlert(const lt::torrent_need_cert_alert *p)
+{
+    const TorrentID torrentID {p->handle.info_hash()};
+
+    TorrentImpl *const torrent = m_torrents.value(torrentID);
+    if (!torrent) [[unlikely]]
+        return;
+
+    if (const Path baseDir = sslCertificatesDirectory(); baseDir.exists())
+    {
+        auto [certPath, keyPath, dhPath] = sslCertificatesPathsForTorrent(torrentID);
+
+        if (!certPath.exists() || !keyPath.exists())
+        {
+            certPath = baseDir / Path(u"default.crt.pem"_s);
+            keyPath = baseDir / Path(u"default.key.pem"_s);
+        }
+        if (!dhPath.exists())
+        {
+            dhPath = baseDir / Path(u"default.dh.pem"_s);
+        }
+
+        if (certPath.exists() && keyPath.exists() && dhPath.exists())
+        {
+            torrent->nativeHandle().set_ssl_certificate(certPath.toString().toStdString()
+                , keyPath.toString().toStdString()
+                , dhPath.toString().toStdString());
+            return;
+        }
+    }
+
+    LogMsg(tr("Unable to set SSL certificates for torrent. Torrent: \"%1\"").arg(torrent->name()), Log::WARNING);
 }
 
 void SessionImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)

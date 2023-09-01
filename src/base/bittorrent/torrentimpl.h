@@ -240,6 +240,7 @@ namespace BitTorrent
         bool connectPeer(const PeerAddress &peerAddress) override;
         void clearPeers() override;
         void setMetadata(const TorrentInfo &torrentInfo) override;
+        void setSSLCertificate(const QByteArray &certificate, const QByteArray &privateKey, const QByteArray &dhParams) override;
 
         StopCondition stopCondition() const override;
         void setStopCondition(StopCondition stopCondition) override;

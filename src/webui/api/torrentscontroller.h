@@ -84,6 +84,7 @@ private slots:
     void setAutoManagementAction();
     void setSuperSeedingAction();
     void setForceStartAction();
+    void setSSLCertificateAction();
     void toggleSequentialDownloadAction();
     void toggleFirstLastPiecePrioAction();
     void renameFileAction();
