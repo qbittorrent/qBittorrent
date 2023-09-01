@@ -321,6 +321,7 @@ void TorrentCreatorDialog::setInteractionEnabled(const bool enabled) const
     m_ui->trackersList->setEnabled(enabled);
     m_ui->URLSeedsList->setEnabled(enabled);
     m_ui->txtComment->setEnabled(enabled);
+    m_ui->lineEditSource->setEnabled(enabled);
     m_ui->comboPieceSize->setEnabled(enabled);
     m_ui->buttonCalcTotalPieces->setEnabled(enabled);
     m_ui->checkPrivate->setEnabled(enabled);
