@@ -137,7 +137,7 @@ QString TorrentContentModelItem::displayData(const int column) const
             const QString value = (avail >= 1)
                                   ? u"100"_s
                                   : Utils::String::fromDouble((avail * 100), 1);
-            return (value + C_THIN_SPACE + u'%');
+            return (value + u'%');
         }
     default:
         Q_ASSERT(false);
