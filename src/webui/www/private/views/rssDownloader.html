@@ -211,7 +211,16 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                         </select>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <label class="noWrap">QBT_TR(Add Tags:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                    </td>
+                    <td class="fullWidth">
+                        <input type="text" id="ruleAddTags" class="fullWidth" autocapitalize="none" autocorrect="off" />
+                    </td>
+                </tr>
             </table>
+
             <div class="formRow">
                 <input disabled type="checkbox" id="savetoDifferentDir" />
                 <label for="savetoDifferentDir">QBT_TR(Save to a Different Directory)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
@@ -583,6 +592,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 .getValues();
 
             rulesList[rule].torrentParams.category = $('assignCategoryCombobox').value;
+            rulesList[rule].torrentParams.tags = $('ruleAddTags').value.split(',');
             rulesList[rule].torrentParams.save_path = $('savetoDifferentDir').checked ? $('saveToText').value : '';
 
             switch ($('addPausedCombobox').value) {
@@ -666,6 +676,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 $('episodeFilterText').disabled = true;
                 $('useSmartFilter').disabled = true;
                 $('assignCategoryCombobox').disabled = true;
+                $('ruleAddTags').disabled = true;
                 $('savetoDifferentDir').disabled = true;
                 $('saveToText').disabled = true;
                 $('ignoreDaysValue').disabled = true;
@@ -679,6 +690,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 $('episodeFilterText').value = '';
                 $('useSmartFilter').checked = false;
                 $('assignCategoryCombobox').value = 'default';
+                $('ruleAddTags').value = '';
                 $('savetoDifferentDir').checked = false;
                 $('saveToText').value = '';
                 $('ignoreDaysValue').value = 0;
@@ -701,6 +713,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 $('episodeFilterText').disabled = false;
                 $('useSmartFilter').disabled = false;
                 $('assignCategoryCombobox').disabled = false;
+                $('ruleAddTags').disabled = false;
                 $('savetoDifferentDir').disabled = false;
                 $('savetoDifferentDir').checked = rulesList[ruleName].torrentParams.save_path ? false : true;
                 $('saveToText').disabled = rulesList[ruleName].torrentParams.save_path ? false : true;
@@ -716,6 +729,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 $('useSmartFilter').checked = rulesList[ruleName].smartFilter;
 
                 $('assignCategoryCombobox').value = rulesList[ruleName].torrentParams.category ? rulesList[ruleName].torrentParams.category : 'default';
+                $('ruleAddTags').value = rulesList[ruleName].torrentParams.tags.join(',');
                 $('savetoDifferentDir').checked = rulesList[ruleName].torrentParams.save_path !== '';
                 $('saveToText').value = rulesList[ruleName].torrentParams.save_path;
                 $('ignoreDaysValue').value = rulesList[ruleName].ignoreDays;
