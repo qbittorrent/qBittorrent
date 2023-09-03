@@ -39,6 +39,7 @@
 #include "base/bittorrent/torrentdescriptor.h"
 #include "base/global.h"
 #include "base/utils/fs.h"
+#include "base/utils/misc.h"
 #include "ui_torrentcreatordialog.h"
 #include "utils.h"
 
@@ -79,6 +80,18 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
     , m_storeSource(SETTINGS_KEY(u"Source"_s))
 {
     m_ui->setupUi(this);
+
+    m_ui->comboPieceSize->addItem(tr("Auto"), 0);
+#ifdef QBT_USES_LIBTORRENT2
+    for (int i = 4; i <= 18; ++i)
+#else
+    for (int i = 4; i <= 17; ++i)
+#endif
+    {
+        const int size = 1024 << i;
+        const QString displaySize = Utils::Misc::friendlyUnit(size, false, 0);
+        m_ui->comboPieceSize->addItem(displaySize, size);
+    }
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Create Torrent"));
     m_ui->textInputPath->setMode(FileSystemPathEdit::Mode::ReadOnly);
@@ -133,8 +146,7 @@ void TorrentCreatorDialog::onAddFileButtonClicked()
 
 int TorrentCreatorDialog::getPieceSize() const
 {
-    const int pieceSizes[] = {0, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768};  // base unit in KiB
-    return pieceSizes[m_ui->comboPieceSize->currentIndex()] * 1024;
+    return m_ui->comboPieceSize->currentData().toInt();
 }
 
 #ifdef QBT_USES_LIBTORRENT2
@@ -251,15 +263,19 @@ void TorrentCreatorDialog::handleCreationFailure(const QString &msg)
 
 void TorrentCreatorDialog::handleCreationSuccess(const Path &path, const Path &branchPath)
 {
-    // Remove busy cursor
     setCursor(QCursor(Qt::ArrowCursor));
+    setInteractionEnabled(true);
+
+    QMessageBox::information(this, tr("Torrent creator")
+        , u"%1\n%2"_s.arg(tr("Torrent created:"), path.toString()));
+
     if (m_ui->checkStartSeeding->isChecked())
     {
-        // Create save path temp data
         const auto loadResult = BitTorrent::TorrentDescriptor::loadFromFile(path);
         if (!loadResult)
         {
-            QMessageBox::critical(this, tr("Torrent creation failed"), tr("Reason: Created torrent is invalid. It won't be added to download list."));
+            const QString message = tr("Add torrent to transfer list failed.") + u'\n' + tr("Reason: \"%1\"").arg(loadResult.error());
+            QMessageBox::critical(this, tr("Add torrent failed"), message);
             return;
         }
 
@@ -276,9 +292,6 @@ void TorrentCreatorDialog::handleCreationSuccess(const Path &path, const Path &b
 
         BitTorrent::Session::instance()->addTorrent(loadResult.value(), params);
     }
-    QMessageBox::information(this, tr("Torrent creator")
-        , u"%1\n%2"_s.arg(tr("Torrent created:"), path.toString()));
-    setInteractionEnabled(true);
 }
 
 void TorrentCreatorDialog::updateProgressBar(int progress)
@@ -308,6 +321,7 @@ void TorrentCreatorDialog::setInteractionEnabled(const bool enabled) const
     m_ui->trackersList->setEnabled(enabled);
     m_ui->URLSeedsList->setEnabled(enabled);
     m_ui->txtComment->setEnabled(enabled);
+    m_ui->lineEditSource->setEnabled(enabled);
     m_ui->comboPieceSize->setEnabled(enabled);
     m_ui->buttonCalcTotalPieces->setEnabled(enabled);
     m_ui->checkPrivate->setEnabled(enabled);

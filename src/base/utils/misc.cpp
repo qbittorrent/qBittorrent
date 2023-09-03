@@ -259,12 +259,14 @@ QString Utils::Misc::unitString(const SizeUnit unit, const bool isSpeed)
     return ret;
 }
 
-QString Utils::Misc::friendlyUnit(const qint64 bytes, const bool isSpeed)
+QString Utils::Misc::friendlyUnit(const qint64 bytes, const bool isSpeed, const int precision)
 {
     const std::optional<SplitToFriendlyUnitResult> result = splitToFriendlyUnit(bytes);
     if (!result)
         return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
-    return Utils::String::fromDouble(result->value, friendlyUnitPrecision(result->unit))
+
+    const int digitPrecision = (precision >= 0) ? precision : friendlyUnitPrecision(result->unit);
+    return Utils::String::fromDouble(result->value, digitPrecision)
            + C_NON_BREAKING_SPACE
            + unitString(result->unit, isSpeed);
 }
