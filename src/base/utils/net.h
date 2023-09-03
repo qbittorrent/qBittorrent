@@ -29,6 +29,7 @@
 #pragma once
 
 #include <optional>
+#include <utility>
 
 #include <QtContainerFwd>
 #include <QHostAddress>
@@ -40,7 +41,7 @@ class QString;
 namespace Utils::Net
 {
     // alias for `QHostAddress::parseSubnet()` return type
-    using Subnet = QPair<QHostAddress, int>;
+    using Subnet = std::pair<QHostAddress, int>;
 
     bool isValidIP(const QString &ip);
     std::optional<Subnet> parseSubnet(const QString &subnetStr);

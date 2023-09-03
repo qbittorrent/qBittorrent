@@ -30,7 +30,6 @@
 
 #include <QList>
 #include <QNetworkInterface>
-#include <QPair>
 #include <QSslCertificate>
 #include <QSslKey>
 #include <QString>
