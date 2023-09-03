@@ -345,6 +345,11 @@ bool Utils::Fs::isDir(const Path &path)
     return QFileInfo(path.data()).isDir();
 }
 
+Path Utils::Fs::toAbsolutePath(const Path &path)
+{
+    return Path(QFileInfo(path.data()).absoluteFilePath());
+}
+
 Path Utils::Fs::toCanonicalPath(const Path &path)
 {
     return Path(QFileInfo(path.data()).canonicalFilePath());
