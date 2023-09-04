@@ -1676,6 +1676,12 @@ TrackerEntry TorrentImpl::updateTrackerEntry(const lt::announce_entry &announceE
     return *it;
 }
 
+void TorrentImpl::resetTrackerEntries()
+{
+    for (auto &trackerEntry : m_trackerEntries)
+        trackerEntry = {trackerEntry.url, trackerEntry.tier};
+}
+
 std::shared_ptr<const libtorrent::torrent_info> TorrentImpl::nativeTorrentInfo() const
 {
     if (m_nativeStatus.torrent_file.expired())

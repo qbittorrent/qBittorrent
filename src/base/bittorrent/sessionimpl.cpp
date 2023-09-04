@@ -4841,6 +4841,15 @@ void SessionImpl::handleTorrentMetadataReceived(TorrentImpl *const torrent)
 
 void SessionImpl::handleTorrentPaused(TorrentImpl *const torrent)
 {
+    torrent->resetTrackerEntries();
+
+    const auto &trackerEntries = torrent->trackers();
+    QHash<QString, TrackerEntry> updatedTrackerEntries;
+    updatedTrackerEntries.reserve(trackerEntries.size());
+    for (const auto &trackerEntry : trackerEntries)
+        updatedTrackerEntries.emplace(trackerEntry.url, trackerEntry);
+    emit trackerEntriesUpdated(torrent, updatedTrackerEntries);
+
     LogMsg(tr("Torrent paused. Torrent: \"%1\"").arg(torrent->name()));
     emit torrentPaused(torrent);
 }
@@ -6026,7 +6035,7 @@ void SessionImpl::updateTrackerEntries(lt::torrent_handle torrentHandle, QHash<s
                     , updatedTrackers = std::move(updatedTrackers)]
             {
                 TorrentImpl *torrent = m_torrents.value(torrentHandle.info_hash());
-                if (!torrent)
+                if (!torrent || torrent->isPaused())
                     return;
 
                 QHash<QString, TrackerEntry> updatedTrackerEntries;
