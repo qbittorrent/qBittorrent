@@ -48,7 +48,7 @@ namespace RSS::Private
     public:
         using QObject::QObject;
 
-        void load(const Path &dataFileName, const QString &url);
+        void load(const Path &dataFileName, const QString &url, int64_t fileMaxSize);
         void store(const Path &dataFileName, const QVector<QVariantHash> &articlesData);
 
     signals:

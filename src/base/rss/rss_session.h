@@ -108,8 +108,8 @@ namespace RSS
         AsyncFileStorage *confFileStorage() const;
         AsyncFileStorage *dataFileStorage() const;
 
-        int maxArticlesPerFeed() const;
-        void setMaxArticlesPerFeed(int n);
+        int32_t maxArticlesPerFeed() const;
+        void setMaxArticlesPerFeed(const int32_t n);
 
         int refreshInterval() const;
         void setRefreshInterval(int refreshInterval);
@@ -161,7 +161,7 @@ namespace RSS
 
         CachedSettingValue<bool> m_storeProcessingEnabled;
         CachedSettingValue<int> m_storeRefreshInterval;
-        CachedSettingValue<int> m_storeMaxArticlesPerFeed;
+        CachedSettingValue<int32_t> m_storeMaxArticlesPerFeed;
         Utils::Thread::UniquePtr m_workingThread;
         AsyncFileStorage *m_confFileStorage = nullptr;
         AsyncFileStorage *m_dataFileStorage = nullptr;

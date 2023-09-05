@@ -560,12 +560,12 @@ QUuid Session::generateUID() const
     return uid;
 }
 
-int Session::maxArticlesPerFeed() const
+int32_t Session::maxArticlesPerFeed() const
 {
     return m_storeMaxArticlesPerFeed;
 }
 
-void Session::setMaxArticlesPerFeed(const int n)
+void Session::setMaxArticlesPerFeed(const int32_t n)
 {
     if (m_storeMaxArticlesPerFeed != n)
     {

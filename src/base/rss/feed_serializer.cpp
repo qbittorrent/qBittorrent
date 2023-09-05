@@ -43,9 +43,8 @@
 
 const int ARTICLEDATALIST_TYPEID = qRegisterMetaType<QVector<QVariantHash>>();
 
-void RSS::Private::FeedSerializer::load(const Path &dataFileName, const QString &url)
+void RSS::Private::FeedSerializer::load(const Path &dataFileName, const QString &url, const int64_t fileMaxSize)
 {
-    const int fileMaxSize = 10 * 1024 * 1024;
     const auto readResult = Utils::IO::readFile(dataFileName, fileMaxSize);
     if (!readResult)
     {

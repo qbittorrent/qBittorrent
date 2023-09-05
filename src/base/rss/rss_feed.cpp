@@ -280,9 +280,10 @@ void Feed::load()
 {
     QMetaObject::invokeMethod(m_serializer
             , [serializer = m_serializer, url = m_url
-                , path = (m_session->dataFileStorage()->storageDir() / m_dataFileName)]
+            , path = (m_session->dataFileStorage()->storageDir() / m_dataFileName)
+            , fileMaxSize = (10 * 1024 * 1024) + 5 * 1024 * m_session->maxArticlesPerFeed()]
     {
-        serializer->load(path, url);
+        serializer->load(path, url, fileMaxSize);
     });
 }
 
