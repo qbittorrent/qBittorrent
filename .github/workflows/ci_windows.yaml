@@ -25,7 +25,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup devcmd
         uses: ilammy/msvc-dev-cmd@v1
@@ -37,7 +37,7 @@ jobs:
       # use the preinstalled vcpkg from image
       # https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md#package-management
       - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v10
+        uses: lukka/run-vcpkg@v11
         with:
           vcpkgDirectory: C:/vcpkg
           doNotUpdateVcpkg: true  # the preinstalled vcpkg is updated regularly
