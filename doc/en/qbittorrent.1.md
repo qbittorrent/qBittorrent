@@ -1,5 +1,5 @@
 % QBITTORRENT(1) Bittorrent client written in C++ / Qt
-% Christophe Dumez <chris@qbittorrent.org>
+%
 % January 16th 2010
 
 # NAME
@@ -34,3 +34,7 @@ FAST extension (mainline) and PeX support (utorrent compatible).
 
 # BUGS
 If you find a bug, please report it at https://bugs.qbittorrent.org
+
+
+# AUTHORS
+Christophe Dumez <chris@qbittorrent.org>.
