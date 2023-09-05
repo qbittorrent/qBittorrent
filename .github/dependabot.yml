@@ -1,0 +1,15 @@
+version: 2
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    commit-message:
+      prefix: "GHA CI"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+    labels:
+      - "CI"
+    schedule:
+      interval: "monthly"
