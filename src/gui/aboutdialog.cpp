@@ -76,22 +76,19 @@ AboutDialog::AboutDialog(QWidget *parent)
     m_ui->labelMascot->setPixmap(Utils::Gui::scaledPixmap(Path(u":/icons/mascot.png"_s)));
 
     // Thanks
-    if (const auto readResult = Utils::IO::readFile(Path(u":/thanks.html"_s), -1, QIODevice::Text)
-        ; readResult)
+    if (const auto readResult = Utils::IO::readFile(Path(u":/thanks.html"_s), -1, QIODevice::Text))
     {
         m_ui->textBrowserThanks->setHtml(QString::fromUtf8(readResult.value()));
     }
 
     // Translation
-    if (const auto readResult = Utils::IO::readFile(Path(u":/translators.html"_s), -1, QIODevice::Text)
-        ; readResult)
+    if (const auto readResult = Utils::IO::readFile(Path(u":/translators.html"_s), -1, QIODevice::Text))
     {
         m_ui->textBrowserTranslation->setHtml(QString::fromUtf8(readResult.value()));
     }
 
     // License
-    if (const auto readResult = Utils::IO::readFile(Path(u":/gpl.html"_s), -1, QIODevice::Text)
-        ; readResult)
+    if (const auto readResult = Utils::IO::readFile(Path(u":/gpl.html"_s), -1, QIODevice::Text))
     {
         m_ui->textBrowserLicense->setHtml(QString::fromUtf8(readResult.value()));
     }
