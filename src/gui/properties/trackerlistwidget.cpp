@@ -34,6 +34,7 @@
 #include <QColor>
 #include <QDebug>
 #include <QHeaderView>
+#include <QLocale>
 #include <QMenu>
 #include <QMessageBox>
 #include <QPointer>
@@ -50,6 +51,7 @@
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/preferences.h"
+#include "base/utils/misc.h"
 #include "gui/autoexpandabledialog.h"
 #include "gui/uithememanager.h"
 #include "propertieswidget.h"
@@ -128,6 +130,8 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     headerItem()->setTextAlignment(COL_SEEDS, alignment);
     headerItem()->setTextAlignment(COL_LEECHES, alignment);
     headerItem()->setTextAlignment(COL_TIMES_DOWNLOADED, alignment);
+    headerItem()->setTextAlignment(COL_NEXT_ANNOUNCE, alignment);
+    headerItem()->setTextAlignment(COL_MIN_ANNOUNCE, alignment);
 
     // Set hotkeys
     const auto *editHotkey = new QShortcut(Qt::Key_F2, this, nullptr, nullptr, Qt::WidgetShortcut);
@@ -145,6 +149,8 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
         item->setText(COL_LEECHES, QString());
         item->setText(COL_TIMES_DOWNLOADED, QString());
         item->setText(COL_MSG, QString());
+        item->setText(COL_NEXT_ANNOUNCE, QString());
+        item->setText(COL_MIN_ANNOUNCE, QString());
     });
     connect(this, &QTreeWidget::itemCollapsed, this, [](QTreeWidgetItem *item)
     {
@@ -153,6 +159,12 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
         item->setText(COL_LEECHES, item->data(COL_LEECHES, Qt::UserRole).toString());
         item->setText(COL_TIMES_DOWNLOADED, item->data(COL_TIMES_DOWNLOADED, Qt::UserRole).toString());
         item->setText(COL_MSG, item->data(COL_MSG, Qt::UserRole).toString());
+
+        const auto now = QDateTime::currentDateTime();
+        const auto secsToNextAnnounce = now.secsTo(item->data(COL_NEXT_ANNOUNCE, Qt::UserRole).toDateTime());
+        item->setText(COL_NEXT_ANNOUNCE, Utils::Misc::userFriendlyDuration(secsToNextAnnounce, -1, Utils::Misc::TimeResolution::Seconds));
+        const auto secsToMinAnnounce = now.secsTo(item->data(COL_MIN_ANNOUNCE, Qt::UserRole).toDateTime());
+        item->setText(COL_MIN_ANNOUNCE, Utils::Misc::userFriendlyDuration(secsToMinAnnounce, -1, Utils::Misc::TimeResolution::Seconds));
     });
 }
 
@@ -386,8 +398,11 @@ void TrackerListWidget::loadTrackers()
 
     const auto setAlignment = [](QTreeWidgetItem *item)
     {
-        for (const TrackerListColumn col : {COL_TIER, COL_PROTOCOL, COL_PEERS, COL_SEEDS, COL_LEECHES, COL_TIMES_DOWNLOADED})
+        for (const TrackerListColumn col : {COL_TIER, COL_PROTOCOL, COL_PEERS, COL_SEEDS
+                , COL_LEECHES, COL_TIMES_DOWNLOADED, COL_NEXT_ANNOUNCE, COL_MIN_ANNOUNCE})
+        {
             item->setTextAlignment(col, (Qt::AlignRight | Qt::AlignVCenter));
+        }
     };
 
     const auto prettyCount = [](const int val)
@@ -405,6 +420,10 @@ void TrackerListWidget::loadTrackers()
             return tr("Updating...");
         case BitTorrent::TrackerEntry::Status::NotWorking:
             return tr("Not working");
+        case BitTorrent::TrackerEntry::Status::TrackerError:
+            return tr("Tracker error");
+        case BitTorrent::TrackerEntry::Status::Unreachable:
+            return tr("Unreachable");
         case BitTorrent::TrackerEntry::Status::NotContacted:
             return tr("Not contacted yet");
         }
@@ -432,10 +451,15 @@ void TrackerListWidget::loadTrackers()
             oldTrackerURLs.removeOne(trackerURL);
         }
 
+        const auto now = QDateTime::currentDateTime();
+
         int peersMax = -1;
         int seedsMax = -1;
         int leechesMax = -1;
         int downloadedMax = -1;
+        QDateTime nextAnnounceTime;
+        QDateTime minAnnounceTime;
+        QString message;
 
         int index = 0;
         for (const auto &endpoint : entry.stats)
@@ -450,6 +474,26 @@ void TrackerListWidget::loadTrackers()
                 leechesMax = std::max(leechesMax, protocolStats.numLeeches);
                 downloadedMax = std::max(downloadedMax, protocolStats.numDownloaded);
 
+                if (protocolStats.status == entry.status)
+                {
+                    if (!nextAnnounceTime.isValid() || (nextAnnounceTime > protocolStats.nextAnnounceTime))
+                    {
+                        nextAnnounceTime = protocolStats.nextAnnounceTime;
+                        minAnnounceTime = protocolStats.minAnnounceTime;
+                        if ((protocolStats.status != BitTorrent::TrackerEntry::Status::Working)
+                                || !protocolStats.message.isEmpty())
+                        {
+                            message = protocolStats.message;
+                        }
+                    }
+
+                    if (protocolStats.status == BitTorrent::TrackerEntry::Status::Working)
+                    {
+                        if (message.isEmpty())
+                            message = protocolStats.message;
+                    }
+                }
+
                 QTreeWidgetItem *child = (index < item->childCount()) ? item->child(index) : new QTreeWidgetItem(item);
                 child->setText(COL_URL, protocolStats.name);
                 child->setText(COL_PROTOCOL, tr("v%1").arg(protocolVersion));
@@ -460,6 +504,8 @@ void TrackerListWidget::loadTrackers()
                 child->setText(COL_TIMES_DOWNLOADED, prettyCount(protocolStats.numDownloaded));
                 child->setText(COL_MSG, protocolStats.message);
                 child->setToolTip(COL_MSG, protocolStats.message);
+                child->setText(COL_NEXT_ANNOUNCE, Utils::Misc::userFriendlyDuration(now.secsTo(protocolStats.nextAnnounceTime), -1, Utils::Misc::TimeResolution::Seconds));
+                child->setText(COL_MIN_ANNOUNCE, Utils::Misc::userFriendlyDuration(now.secsTo(protocolStats.minAnnounceTime), -1, Utils::Misc::TimeResolution::Seconds));
                 setAlignment(child);
                 ++index;
             }
@@ -475,7 +521,9 @@ void TrackerListWidget::loadTrackers()
         item->setData(COL_SEEDS, Qt::UserRole, prettyCount(seedsMax));
         item->setData(COL_LEECHES, Qt::UserRole, prettyCount(leechesMax));
         item->setData(COL_TIMES_DOWNLOADED, Qt::UserRole, prettyCount(downloadedMax));
-        item->setData(COL_MSG, Qt::UserRole, entry.message);
+        item->setData(COL_MSG, Qt::UserRole, message);
+        item->setData(COL_NEXT_ANNOUNCE, Qt::UserRole, nextAnnounceTime);
+        item->setData(COL_MIN_ANNOUNCE, Qt::UserRole, minAnnounceTime);
         if (!item->isExpanded())
         {
             item->setText(COL_PEERS, item->data(COL_PEERS, Qt::UserRole).toString());
@@ -483,6 +531,10 @@ void TrackerListWidget::loadTrackers()
             item->setText(COL_LEECHES, item->data(COL_LEECHES, Qt::UserRole).toString());
             item->setText(COL_TIMES_DOWNLOADED, item->data(COL_TIMES_DOWNLOADED, Qt::UserRole).toString());
             item->setText(COL_MSG, item->data(COL_MSG, Qt::UserRole).toString());
+            const auto secsToNextAnnounce = now.secsTo(item->data(COL_NEXT_ANNOUNCE, Qt::UserRole).toDateTime());
+            item->setText(COL_NEXT_ANNOUNCE, Utils::Misc::userFriendlyDuration(secsToNextAnnounce, -1, Utils::Misc::TimeResolution::Seconds));
+            const auto secsToMinAnnounce = now.secsTo(item->data(COL_MIN_ANNOUNCE, Qt::UserRole).toDateTime());
+            item->setText(COL_MIN_ANNOUNCE, Utils::Misc::userFriendlyDuration(secsToMinAnnounce, -1, Utils::Misc::TimeResolution::Seconds));
         }
         setAlignment(item);
     }
@@ -687,6 +739,8 @@ QStringList TrackerListWidget::headerLabels()
         , tr("Leeches")
         , tr("Times Downloaded")
         , tr("Message")
+        , tr("Next announce")
+        , tr("Min announce")
     };
 }
 

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,6 +31,7 @@
 #include <libtorrent/socket.hpp>
 
 #include <QtContainerFwd>
+#include <QDateTime>
 #include <QHash>
 #include <QString>
 #include <QStringView>
@@ -46,24 +47,30 @@ namespace BitTorrent
             NotContacted = 1,
             Working = 2,
             Updating = 3,
-            NotWorking = 4
+            NotWorking = 4,
+            TrackerError = 5,
+            Unreachable = 6
         };
 
         struct EndpointStats
         {
+            QString name {};
+
             Status status = NotContacted;
+            QString message {};
+
             int numPeers = -1;
             int numSeeds = -1;
             int numLeeches = -1;
             int numDownloaded = -1;
-            QString message {};
-            QString name {};
+
+            QDateTime nextAnnounceTime;
+            QDateTime minAnnounceTime;
         };
 
         QString url {};
         int tier = 0;
         Status status = NotContacted;
-        QString message {};
 
         QHash<Endpoint, QHash<int, EndpointStats>> stats {};
     };

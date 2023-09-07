@@ -78,6 +78,15 @@ namespace
         return entry;
     }
 
+    QDateTime fromLTTimePoint32(const lt::time_point32 &timePoint)
+    {
+        const auto ltNow = lt::clock_type::now();
+        const auto qNow = QDateTime::currentDateTime();
+        const auto secsSinceNow = lt::duration_cast<lt::seconds>(timePoint - ltNow + lt::milliseconds(500)).count();
+
+        return qNow.addSecs(secsSinceNow);
+    }
+
 #ifdef QBT_USES_LIBTORRENT2
     void updateTrackerEntry(TrackerEntry &trackerEntry, const lt::announce_entry &nativeEntry
             , const lt::info_hash_t &hashes, const QHash<TrackerEntry::Endpoint, QMap<int, int>> &updateInfo)
@@ -103,8 +112,8 @@ namespace
         int numUpdating = 0;
         int numWorking = 0;
         int numNotWorking = 0;
-        QString firstTrackerMessage;
-        QString firstErrorMessage;
+        int numTrackerError = 0;
+        int numUnreachable = 0;
 #ifdef QBT_USES_LIBTORRENT2
         const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size()) * ((hashes.has_v1() && hashes.has_v2()) ? 2 : 1);
         for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
@@ -127,6 +136,8 @@ namespace
                 trackerEndpoint.numSeeds = infoHash.scrape_complete;
                 trackerEndpoint.numLeeches = infoHash.scrape_incomplete;
                 trackerEndpoint.numDownloaded = infoHash.scrape_downloaded;
+                trackerEndpoint.nextAnnounceTime = fromLTTimePoint32(infoHash.next_announce);
+                trackerEndpoint.minAnnounceTime = fromLTTimePoint32(infoHash.min_announce);
 
                 if (infoHash.updating)
                 {
@@ -135,8 +146,21 @@ namespace
                 }
                 else if (infoHash.fails > 0)
                 {
-                    trackerEndpoint.status = TrackerEntry::NotWorking;
-                    ++numNotWorking;
+                    if (infoHash.last_error == lt::errors::tracker_failure)
+                    {
+                        trackerEndpoint.status = TrackerEntry::TrackerError;
+                        ++numTrackerError;
+                    }
+                    else if (infoHash.last_error == lt::errors::announce_skipped)
+                    {
+                        trackerEndpoint.status = TrackerEntry::Unreachable;
+                        ++numUnreachable;
+                    }
+                    else
+                    {
+                        trackerEndpoint.status = TrackerEntry::NotWorking;
+                        ++numNotWorking;
+                    }
                 }
                 else if (nativeEntry.verified)
                 {
@@ -151,14 +175,10 @@ namespace
                 if (!infoHash.message.empty())
                 {
                     trackerEndpoint.message = QString::fromStdString(infoHash.message);
-                    if (firstTrackerMessage.isEmpty())
-                        firstTrackerMessage = trackerEndpoint.message;
                 }
                 else if (infoHash.last_error)
                 {
                     trackerEndpoint.message = QString::fromLocal8Bit(infoHash.last_error.message());
-                    if (firstErrorMessage.isEmpty())
-                        firstErrorMessage = trackerEndpoint.message;
                 }
             }
         }
@@ -175,6 +195,8 @@ namespace
             trackerEndpoint.numSeeds = endpoint.scrape_complete;
             trackerEndpoint.numLeeches = endpoint.scrape_incomplete;
             trackerEndpoint.numDownloaded = endpoint.scrape_downloaded;
+            trackerEndpoint.nextAnnounceTime = fromLTTimePoint32(endpoint.next_announce);
+            trackerEndpoint.minAnnounceTime = fromLTTimePoint32(endpoint.min_announce);
 
             if (endpoint.updating)
             {
@@ -183,8 +205,21 @@ namespace
             }
             else if (endpoint.fails > 0)
             {
-                trackerEndpoint.status = TrackerEntry::NotWorking;
-                ++numNotWorking;
+                if (endpoint.last_error == lt::errors::tracker_failure)
+                {
+                    trackerEndpoint.status = TrackerEntry::TrackerError;
+                    ++numTrackerError;
+                }
+                else if (endpoint.last_error == lt::errors::announce_skipped)
+                {
+                    trackerEndpoint.status = TrackerEntry::Unreachable;
+                    ++numUnreachable;
+                }
+                else
+                {
+                    trackerEndpoint.status = TrackerEntry::NotWorking;
+                    ++numNotWorking;
+                }
             }
             else if (nativeEntry.verified)
             {
@@ -199,14 +234,10 @@ namespace
             if (!endpoint.message.empty())
             {
                 trackerEndpoint.message = QString::fromStdString(endpoint.message);
-                if (firstTrackerMessage.isEmpty())
-                    firstTrackerMessage = trackerEndpoint.message;
             }
             else if (endpoint.last_error)
             {
                 trackerEndpoint.message = QString::fromLocal8Bit(endpoint.last_error.message());
-                if (firstErrorMessage.isEmpty())
-                    firstErrorMessage = trackerEndpoint.message;
             }
         }
 #endif
@@ -220,12 +251,18 @@ namespace
             else if (numWorking > 0)
             {
                 trackerEntry.status = TrackerEntry::Working;
-                trackerEntry.message = firstTrackerMessage;
             }
-            else if (numNotWorking == numEndpoints)
+            else if (numTrackerError > 0)
+            {
+                trackerEntry.status = TrackerEntry::TrackerError;
+            }
+            else if (numUnreachable == numEndpoints)
+            {
+                trackerEntry.status = TrackerEntry::Unreachable;
+            }
+            else if ((numUnreachable + numNotWorking) == numEndpoints)
             {
                 trackerEntry.status = TrackerEntry::NotWorking;
-                trackerEntry.message = (!firstTrackerMessage.isEmpty() ? firstTrackerMessage : firstErrorMessage);
             }
         }
     }
@@ -1637,6 +1674,12 @@ TrackerEntry TorrentImpl::updateTrackerEntry(const lt::announce_entry &announceE
     ::updateTrackerEntry(*it, announceEntry, updateInfo);
 #endif
     return *it;
+}
+
+void TorrentImpl::resetTrackerEntries()
+{
+    for (auto &trackerEntry : m_trackerEntries)
+        trackerEntry = {trackerEntry.url, trackerEntry.tier};
 }
 
 std::shared_ptr<const libtorrent::torrent_info> TorrentImpl::nativeTorrentInfo() const

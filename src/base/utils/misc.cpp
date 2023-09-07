@@ -352,7 +352,7 @@ bool Utils::Misc::isPreviewable(const Path &filePath)
     return multimediaExtensions.contains(filePath.extension().toUpper());
 }
 
-QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglong maxCap)
+QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglong maxCap, const TimeResolution resolution)
 {
     if (seconds < 0)
         return C_INFINITY;
@@ -363,29 +363,34 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
         return u"0"_s;
 
     if (seconds < 60)
-        return QCoreApplication::translate("misc", "< 1m", "< 1 minute");
+    {
+        if (resolution == TimeResolution::Minutes)
+            return QCoreApplication::translate("misc", "< 1m", "< 1 minute");
+
+        return QCoreApplication::translate("misc", "%1s", "e.g: 10 seconds").arg(QString::number(seconds));
+    }
 
     qlonglong minutes = (seconds / 60);
     if (minutes < 60)
-        return QCoreApplication::translate("misc", "%1m", "e.g: 10minutes").arg(QString::number(minutes));
+        return QCoreApplication::translate("misc", "%1m", "e.g: 10 minutes").arg(QString::number(minutes));
 
     qlonglong hours = (minutes / 60);
     if (hours < 24)
     {
         minutes -= (hours * 60);
-        return QCoreApplication::translate("misc", "%1h %2m", "e.g: 3hours 5minutes").arg(QString::number(hours), QString::number(minutes));
+        return QCoreApplication::translate("misc", "%1h %2m", "e.g: 3 hours 5 minutes").arg(QString::number(hours), QString::number(minutes));
     }
 
     qlonglong days = (hours / 24);
     if (days < 365)
     {
         hours -= (days * 24);
-        return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days), QString::number(hours));
+        return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2 days 10 hours").arg(QString::number(days), QString::number(hours));
     }
 
     qlonglong years = (days / 365);
     days -= (years * 365);
-    return QCoreApplication::translate("misc", "%1y %2d", "e.g: 2years 10days").arg(QString::number(years), QString::number(days));
+    return QCoreApplication::translate("misc", "%1y %2d", "e.g: 2 years 10 days").arg(QString::number(years), QString::number(days));
 }
 
 QString Utils::Misc::getUserIDString()

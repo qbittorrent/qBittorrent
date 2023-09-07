@@ -335,7 +335,15 @@ void TrackersFilterWidget::handleTrackerEntriesUpdated(const BitTorrent::Torrent
                 errored.remove(trackerEntry.url);
             }
 
-            if (trackerEntry.message.isEmpty())
+            const bool hasNoWarningMessages = std::all_of(trackerEntry.stats.cbegin(), trackerEntry.stats.cend(), [](const auto &endpoint)
+            {
+                return std::all_of(endpoint.cbegin(), endpoint.cend()
+                        , [](const BitTorrent::TrackerEntry::EndpointStats &protocolStats)
+                {
+                    return protocolStats.message.isEmpty() || (protocolStats.status != BitTorrent::TrackerEntry::Working);
+                });
+            });
+            if (hasNoWarningMessages)
             {
                 if (warningHashesIt != m_warnings.end())
                 {
@@ -350,7 +358,9 @@ void TrackersFilterWidget::handleTrackerEntriesUpdated(const BitTorrent::Torrent
                 warningHashesIt.value().insert(trackerEntry.url);
             }
         }
-        else if (trackerEntry.status == BitTorrent::TrackerEntry::NotWorking)
+        else if ((trackerEntry.status == BitTorrent::TrackerEntry::NotWorking)
+                || (trackerEntry.status == BitTorrent::TrackerEntry::TrackerError)
+                || (trackerEntry.status == BitTorrent::TrackerEntry::Unreachable))
         {
             if (errorHashesIt == m_errors.end())
                 errorHashesIt = m_errors.insert(id, {});

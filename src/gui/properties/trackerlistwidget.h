@@ -55,6 +55,8 @@ public:
         COL_LEECHES,
         COL_TIMES_DOWNLOADED,
         COL_MSG,
+        COL_NEXT_ANNOUNCE,
+        COL_MIN_ANNOUNCE,
 
         COL_COUNT
     };

@@ -60,6 +60,12 @@ namespace Utils::Misc
         // YobiByte,   // 1024^8
     };
 
+enum class TimeResolution
+    {
+        Seconds,
+        Minutes
+    };
+
     QString parseHtmlLinks(const QString &rawText);
 
     void shutdownComputer(const ShutdownDialogAction &action);
@@ -82,7 +88,7 @@ namespace Utils::Misc
 
     // Take a number of seconds and return a user-friendly
     // time duration like "1d 2h 10m".
-    QString userFriendlyDuration(qlonglong seconds, qlonglong maxCap = -1);
+    QString userFriendlyDuration(qlonglong seconds, qlonglong maxCap = -1, TimeResolution resolution = TimeResolution::Minutes);
     QString getUserIDString();
 
     QString languageToLocalizedString(const QString &localeStr);
