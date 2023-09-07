@@ -334,7 +334,7 @@ void TrackersFilterWidget::handleTrackerEntriesUpdated(const BitTorrent::Torrent
 
     for (const BitTorrent::TrackerEntry &trackerEntry : updatedTrackerEntries)
     {
-        if (trackerEntry.status == BitTorrent::TrackerEntry::Working)
+        if (trackerEntry.status == BitTorrent::TrackerEntryStatus::Working)
         {
             if (errorHashesIt != m_errors.end())
             {
@@ -342,13 +342,10 @@ void TrackersFilterWidget::handleTrackerEntriesUpdated(const BitTorrent::Torrent
                 errored.remove(trackerEntry.url);
             }
 
-            const bool hasNoWarningMessages = std::all_of(trackerEntry.stats.cbegin(), trackerEntry.stats.cend(), [](const auto &endpoint)
+            const bool hasNoWarningMessages = std::all_of(trackerEntry.endpointEntries.cbegin(), trackerEntry.endpointEntries.cend()
+                    , [](const BitTorrent::TrackerEndpointEntry &endpointEntry)
             {
-                return std::all_of(endpoint.cbegin(), endpoint.cend()
-                        , [](const BitTorrent::TrackerEntry::EndpointStats &protocolStats)
-                {
-                    return protocolStats.message.isEmpty() || (protocolStats.status != BitTorrent::TrackerEntry::Working);
-                });
+                return endpointEntry.message.isEmpty() || (endpointEntry.status != BitTorrent::TrackerEntryStatus::Working);
             });
             if (hasNoWarningMessages)
             {
@@ -365,9 +362,9 @@ void TrackersFilterWidget::handleTrackerEntriesUpdated(const BitTorrent::Torrent
                 warningHashesIt.value().insert(trackerEntry.url);
             }
         }
-        else if ((trackerEntry.status == BitTorrent::TrackerEntry::NotWorking)
-                || (trackerEntry.status == BitTorrent::TrackerEntry::TrackerError)
-                || (trackerEntry.status == BitTorrent::TrackerEntry::Unreachable))
+        else if ((trackerEntry.status == BitTorrent::TrackerEntryStatus::NotWorking)
+                || (trackerEntry.status == BitTorrent::TrackerEntryStatus::TrackerError)
+                || (trackerEntry.status == BitTorrent::TrackerEntryStatus::Unreachable))
         {
             if (errorHashesIt == m_errors.end())
                 errorHashesIt = m_errors.insert(id, {});

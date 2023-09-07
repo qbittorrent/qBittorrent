@@ -310,7 +310,7 @@ void CategoryFilterModel::categoryAdded(const QString &categoryName)
             parent = findItem(expanded[expanded.count() - 2]);
     }
 
-    int row = parent->childCount();
+    const int row = parent->childCount();
     beginInsertRows(index(parent), row, row);
     new CategoryModelItem(
             parent, m_isSubcategoriesEnabled ? shortName(categoryName) : categoryName);
@@ -322,7 +322,7 @@ void CategoryFilterModel::categoryRemoved(const QString &categoryName)
     auto *item = findItem(categoryName);
     if (item)
     {
-        QModelIndex i = index(item);
+        const QModelIndex i = index(item);
         beginRemoveRows(i.parent(), i.row(), i.row());
         delete item;
         endRemoveRows();

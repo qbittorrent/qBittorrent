@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,41 +26,23 @@
  * exception statement from your version.
  */
 
-#include "trackerentry.h"
+#pragma once
 
-#include <QList>
+#include <QSortFilterProxyModel>
 
-QList<BitTorrent::TrackerEntry> BitTorrent::parseTrackerEntries(const QStringView str)
+class TrackerListModel;
+
+class TrackerListSortModel final : public QSortFilterProxyModel
 {
-    const QList<QStringView> trackers = str.split(u'\n');  // keep the empty parts to track tracker tier
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TrackerListSortModel)
 
-    QList<BitTorrent::TrackerEntry> entries;
-    entries.reserve(trackers.size());
+public:
+    explicit TrackerListSortModel(TrackerListModel *model, QObject *parent = nullptr);
 
-    int trackerTier = 0;
-    for (QStringView tracker : trackers)
-    {
-        tracker = tracker.trimmed();
+    void setSourceModel(TrackerListModel *model);
 
-        if (tracker.isEmpty())
-        {
-            if (trackerTier < std::numeric_limits<decltype(trackerTier)>::max())  // prevent overflow
-                ++trackerTier;
-            continue;
-        }
-
-        entries.append({tracker.toString(), trackerTier});
-    }
-
-    return entries;
-}
-
-bool BitTorrent::operator==(const TrackerEntry &left, const TrackerEntry &right)
-{
-    return (left.url == right.url);
-}
-
-std::size_t BitTorrent::qHash(const TrackerEntry &key, const std::size_t seed)
-{
-    return ::qHash(key.url, seed);
-}
+private:
+    using QSortFilterProxyModel::setSourceModel;
+    bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
+};

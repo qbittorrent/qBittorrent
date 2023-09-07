@@ -482,6 +482,8 @@ void SyncController::maindataAction()
         connect(btSession, &BitTorrent::Session::torrentTagAdded, this, &SyncController::onTorrentTagAdded);
         connect(btSession, &BitTorrent::Session::torrentTagRemoved, this, &SyncController::onTorrentTagRemoved);
         connect(btSession, &BitTorrent::Session::torrentsUpdated, this, &SyncController::onTorrentsUpdated);
+        connect(btSession, &BitTorrent::Session::trackersAdded, this, &SyncController::onTorrentTrackersChanged);
+        connect(btSession, &BitTorrent::Session::trackersRemoved, this, &SyncController::onTorrentTrackersChanged);
         connect(btSession, &BitTorrent::Session::trackersChanged, this, &SyncController::onTorrentTrackersChanged);
     }
 

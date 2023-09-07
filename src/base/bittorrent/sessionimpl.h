@@ -574,7 +574,7 @@ namespace BitTorrent
         void saveStatistics() const;
         void loadStatistics();
 
-        void updateTrackerEntries(lt::torrent_handle torrentHandle, QHash<std::string, QHash<TrackerEntry::Endpoint, QMap<int, int>>> updatedTrackers);
+        void updateTrackerEntries(lt::torrent_handle torrentHandle, QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>> updatedTrackers);
 
         // BitTorrent
         lt::session *m_nativeSession = nullptr;
@@ -751,7 +751,7 @@ namespace BitTorrent
 
         // This field holds amounts of peers reported by trackers in their responses to announces
         // (torrent.tracker_name.tracker_local_endpoint.protocol_version.num_peers)
-        QHash<lt::torrent_handle, QHash<std::string, QHash<TrackerEntry::Endpoint, QMap<int, int>>>> m_updatedTrackerEntries;
+        QHash<lt::torrent_handle, QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>>> m_updatedTrackerEntries;
 
         // I/O errored torrents
         QSet<TorrentID> m_recentErroredTorrents;

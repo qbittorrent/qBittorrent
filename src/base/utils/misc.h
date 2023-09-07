@@ -60,7 +60,7 @@ namespace Utils::Misc
         // YobiByte,   // 1024^8
     };
 
-enum class TimeResolution
+    enum class TimeResolution
     {
         Seconds,
         Minutes

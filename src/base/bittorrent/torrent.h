@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -49,6 +49,7 @@ namespace BitTorrent
     enum class DownloadPriority;
     class InfoHash;
     class PeerInfo;
+    class Session;
     class TorrentID;
     class TorrentInfo;
     struct PeerAddress;
@@ -130,6 +131,8 @@ namespace BitTorrent
         static const int MAX_INACTIVE_SEEDING_TIME;
 
         using TorrentContentHandler::TorrentContentHandler;
+
+        virtual Session *session() const = 0;
 
         virtual InfoHash infoHash() const = 0;
         virtual QString name() const = 0;

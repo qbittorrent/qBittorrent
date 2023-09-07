@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,41 +26,31 @@
  * exception statement from your version.
  */
 
-#include "trackerentry.h"
+#include "trackerlistsortmodel.h"
 
-#include <QList>
+#include "trackerlistmodel.h"
 
-QList<BitTorrent::TrackerEntry> BitTorrent::parseTrackerEntries(const QStringView str)
+TrackerListSortModel::TrackerListSortModel(TrackerListModel *model, QObject *parent)
+    : QSortFilterProxyModel(parent)
 {
-    const QList<QStringView> trackers = str.split(u'\n');  // keep the empty parts to track tracker tier
+    QSortFilterProxyModel::setSourceModel(model);
+    setDynamicSortFilter(true);
+    setSortCaseSensitivity(Qt::CaseInsensitive);
+    setSortRole(TrackerListModel::SortRole);
+}
 
-    QList<BitTorrent::TrackerEntry> entries;
-    entries.reserve(trackers.size());
+void TrackerListSortModel::setSourceModel(TrackerListModel *model)
+{
+    QSortFilterProxyModel::setSourceModel(model);
+}
 
-    int trackerTier = 0;
-    for (QStringView tracker : trackers)
+bool TrackerListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
+{
+    if (!left.parent().isValid() && !right.parent().isValid())
     {
-        tracker = tracker.trimmed();
-
-        if (tracker.isEmpty())
-        {
-            if (trackerTier < std::numeric_limits<decltype(trackerTier)>::max())  // prevent overflow
-                ++trackerTier;
-            continue;
-        }
-
-        entries.append({tracker.toString(), trackerTier});
+        if ((left.row() < TrackerListModel::STICKY_ROW_COUNT) || (right.row() < TrackerListModel::STICKY_ROW_COUNT))
+            return ((left.row() < right.row()) && (sortOrder() == Qt::AscendingOrder));
     }
 
-    return entries;
-}
-
-bool BitTorrent::operator==(const TrackerEntry &left, const TrackerEntry &right)
-{
-    return (left.url == right.url);
-}
-
-std::size_t BitTorrent::qHash(const TrackerEntry &key, const std::size_t seed)
-{
-    return ::qHash(key.url, seed);
+    return QSortFilterProxyModel::lessThan(left, right);
 }

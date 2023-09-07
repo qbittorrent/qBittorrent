@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -28,75 +29,46 @@
 
 #pragma once
 
-#include <QTreeWidget>
 #include <QtContainerFwd>
+#include <QTreeView>
 
-class PropertiesWidget;
+class TrackerListModel;
 
 namespace BitTorrent
 {
     class Torrent;
 }
 
-class TrackerListWidget : public QTreeWidget
+class TrackerListWidget : public QTreeView
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(TrackerListWidget)
 
 public:
-    enum TrackerListColumn
-    {
-        COL_URL,
-        COL_TIER,
-        COL_PROTOCOL,
-        COL_STATUS,
-        COL_PEERS,
-        COL_SEEDS,
-        COL_LEECHES,
-        COL_TIMES_DOWNLOADED,
-        COL_MSG,
-        COL_NEXT_ANNOUNCE,
-        COL_MIN_ANNOUNCE,
+    explicit TrackerListWidget(QWidget *parent = nullptr);
+    ~TrackerListWidget() override;
 
-        COL_COUNT
-    };
-
-    explicit TrackerListWidget(PropertiesWidget *properties);
-    ~TrackerListWidget();
+    void setTorrent(BitTorrent::Torrent *torrent);
+    BitTorrent::Torrent *torrent() const;
 
 public slots:
-    void setRowColor(int row, const QColor &color);
-
-    void moveSelectionUp();
-    void moveSelectionDown();
-
-    void clear();
-    void loadStickyItems(const BitTorrent::Torrent *torrent);
-    void loadTrackers();
+    void decreaseSelectedTrackerTiers();
+    void increaseSelectedTrackerTiers();
     void copyTrackerUrl();
     void reannounceSelected();
     void deleteSelectedTrackers();
     void editSelectedTracker();
     void showTrackerListMenu();
+
+private:
+    void setModel(QAbstractItemModel *model) override;
+    void wheelEvent(QWheelEvent *event) override;
     void loadSettings();
     void saveSettings() const;
-
-protected:
-    QVector<QTreeWidgetItem *> getSelectedTrackerItems() const;
-
-private slots:
+    QModelIndexList getSelectedTrackerRows() const;
+    int visibleColumnsCount() const;
     void openAddTrackersDialog();
     void displayColumnHeaderMenu();
 
-private:
-    int visibleColumnsCount() const;
-    void wheelEvent(QWheelEvent *event) override;
-
-    static QStringList headerLabels();
-
-    PropertiesWidget *m_properties = nullptr;
-    QHash<QString, QTreeWidgetItem *> m_trackerItems;
-    QTreeWidgetItem *m_DHTItem = nullptr;
-    QTreeWidgetItem *m_PEXItem = nullptr;
-    QTreeWidgetItem *m_LSDItem = nullptr;
+    TrackerListModel *m_model;
 };
