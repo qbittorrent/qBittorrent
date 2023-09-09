@@ -194,6 +194,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_AVAILABILITY: return tr("Availability", "The number of distributed copies of the torrent");
             case TR_INFOHASH_V1: return tr("Info Hash v1", "i.e: torrent info hash v1");
             case TR_INFOHASH_V2: return tr("Info Hash v2", "i.e: torrent info hash v2");
+            case TR_REANNOUNCE: return tr("Reannounce In", "Indicates the time until next trackers reannounce");
             default: return {};
             }
         }
@@ -221,6 +222,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_QUEUE_POSITION:
             case TR_LAST_ACTIVITY:
             case TR_AVAILABILITY:
+            case TR_REANNOUNCE:
                 return QVariant(Qt::AlignRight | Qt::AlignVCenter);
             default:
                 return QAbstractListModel::headerData(section, orientation, role);
@@ -341,6 +343,13 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return hash.isValid() ? hash.toString() : tr("N/A");
     };
 
+    const auto reannounceString = [hideValues](const qint64 time) -> QString
+    {
+        if (hideValues && (time == 0))
+            return {};
+        return Utils::Misc::userFriendlyDuration(time);
+    };
+
     switch (column)
     {
     case TR_NAME:
@@ -411,6 +420,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return hashString(torrent->infoHash().v1());
     case TR_INFOHASH_V2:
         return hashString(torrent->infoHash().v2());
+    case TR_REANNOUNCE:
+        return reannounceString(torrent->nextAnnounce());
     }
 
     return {};
@@ -488,6 +499,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return QVariant::fromValue(torrent->infoHash().v1());
     case TR_INFOHASH_V2:
         return QVariant::fromValue(torrent->infoHash().v2());
+    case TR_REANNOUNCE:
+        return torrent->nextAnnounce();
     }
 
     return {};
@@ -552,6 +565,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         case TR_QUEUE_POSITION:
         case TR_LAST_ACTIVITY:
         case TR_AVAILABILITY:
+        case TR_REANNOUNCE:
             return QVariant(Qt::AlignRight | Qt::AlignVCenter);
         }
         break;

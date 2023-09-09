@@ -180,6 +180,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
         setColumnHidden(TransferListModel::TR_SEEN_COMPLETE_DATE, true);
         setColumnHidden(TransferListModel::TR_LAST_ACTIVITY, true);
         setColumnHidden(TransferListModel::TR_TOTAL_SIZE, true);
+        setColumnHidden(TransferListModel::TR_REANNOUNCE, true);
     }
 
     //Ensure that at least one column is visible at all times

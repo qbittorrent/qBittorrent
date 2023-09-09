@@ -159,6 +159,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_SEEDING_TIME, torrent.finishedTime()},
         {KEY_TORRENT_LAST_ACTIVITY_TIME, getLastActivityTime()},
         {KEY_TORRENT_AVAILABILITY, torrent.distributedCopies()},
+        {KEY_TORRENT_REANNOUNCE, torrent.nextAnnounce()},
 
         {KEY_TORRENT_TOTAL_SIZE, torrent.totalSize()}
     };

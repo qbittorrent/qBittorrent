@@ -84,6 +84,7 @@ public:
         TR_DOWNLOAD_PATH,
         TR_INFOHASH_V1,
         TR_INFOHASH_V2,
+        TR_REANNOUNCE,
 
         NB_COLUMNS
     };

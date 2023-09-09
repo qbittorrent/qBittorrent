@@ -945,6 +945,7 @@ window.qBittorrent.DynamicTable = (function() {
             this.newColumn('seen_complete', '', 'QBT_TR(Last Seen Complete)QBT_TR[CONTEXT=TransferListModel]', 100, false);
             this.newColumn('last_activity', '', 'QBT_TR(Last Activity)QBT_TR[CONTEXT=TransferListModel]', 100, false);
             this.newColumn('availability', '', 'QBT_TR(Availability)QBT_TR[CONTEXT=TransferListModel]', 100, false);
+            this.newColumn('reannounce', '', 'QBT_TR(Reannounce In)QBT_TR[CONTEXT=TransferListModel]', 100, false);
 
             this.columns['state_icon'].onclick = '';
             this.columns['state_icon'].dataProperties[0] = 'state';
@@ -1308,6 +1309,13 @@ window.qBittorrent.DynamicTable = (function() {
                 const value = window.qBittorrent.Misc.toFixedPointString(this.getRowValue(row), 3);
                 td.set('text', value);
                 td.set('title', value);
+            };
+
+            // reannounce
+            this.columns['reannounce'].updateTd = function(td, row) {
+                const time = window.qBittorrent.Misc.friendlyDuration(this.getRowValue(row));
+                td.set('text', time);
+                td.set('title', time);
             };
         },
 
