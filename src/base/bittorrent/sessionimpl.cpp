@@ -117,6 +117,7 @@ namespace
 {
     const char PEER_ID[] = "qB";
     const auto USER_AGENT = QStringLiteral("qBittorrent/" QBT_VERSION_2);
+    const QString DEFAULT_DHT_BOOTSTRAP_NODES = u"dht.libtorrent.org:25401, dht.transmissionbt.com:6881, router.bittorrent.com:6881, router.utorrent.com:6881, dht.aelitis.com:6881"_s;
 
     void torrentQueuePositionUp(const lt::torrent_handle &handle)
     {
@@ -378,6 +379,7 @@ QStringList Session::expandCategory(const QString &category)
 
 SessionImpl::SessionImpl(QObject *parent)
     : Session(parent)
+    , m_DHTBootstrapNodes(BITTORRENT_SESSION_KEY(u"DHTBootstrapNodes"_s), DEFAULT_DHT_BOOTSTRAP_NODES)
     , m_isDHTEnabled(BITTORRENT_SESSION_KEY(u"DHTEnabled"_s), true)
     , m_isLSDEnabled(BITTORRENT_SESSION_KEY(u"LSDEnabled"_s), true)
     , m_isPeXEnabled(BITTORRENT_SESSION_KEY(u"PeXEnabled"_s), true)
@@ -601,6 +603,21 @@ SessionImpl::~SessionImpl()
 
     qDebug("Deleting libtorrent session...");
     delete m_nativeSession;
+}
+
+QString SessionImpl::getDHTBootstrapNodes() const
+{
+    const QString nodes = m_DHTBootstrapNodes;
+    return !nodes.isEmpty() ? nodes : DEFAULT_DHT_BOOTSTRAP_NODES;
+}
+
+void SessionImpl::setDHTBootstrapNodes(const QString &nodes)
+{
+    if (nodes == m_DHTBootstrapNodes)
+        return;
+
+    m_DHTBootstrapNodes = nodes;
+    configureDeferred();
 }
 
 bool SessionImpl::isDHTEnabled() const
@@ -1885,9 +1902,8 @@ lt::settings_pack SessionImpl::loadLTSettings() const
 
     settingsPack.set_bool(lt::settings_pack::apply_ip_filter_to_trackers, isTrackerFilteringEnabled());
 
+    settingsPack.set_str(lt::settings_pack::dht_bootstrap_nodes, getDHTBootstrapNodes().toStdString());
     settingsPack.set_bool(lt::settings_pack::enable_dht, isDHTEnabled());
-    if (isDHTEnabled())
-        settingsPack.set_str(lt::settings_pack::dht_bootstrap_nodes, "dht.libtorrent.org:25401,router.bittorrent.com:6881,router.utorrent.com:6881,dht.transmissionbt.com:6881,dht.aelitis.com:6881");
     settingsPack.set_bool(lt::settings_pack::enable_lsd, isLSDEnabled());
 
     switch (chokingAlgorithm())

@@ -156,6 +156,7 @@ namespace
         PEER_TURNOVER_CUTOFF,
         PEER_TURNOVER_INTERVAL,
         REQUEST_QUEUE_SIZE,
+        DHT_BOOTSTRAP_NODES,
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
         I2P_INBOUND_QUANTITY,
         I2P_OUTBOUND_QUANTITY,
@@ -333,6 +334,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setPeerTurnoverInterval(m_spinBoxPeerTurnoverInterval.value());
     // Maximum outstanding requests to a single peer
     session->setRequestQueueSize(m_spinBoxRequestQueueSize.value());
+    // DHT bootstrap nodes
+    session->setDHTBootstrapNodes(m_lineEditDHTBootstrapNodes.text());
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
     // I2P session options
     session->setI2PInboundQuantity(m_spinBoxI2PInboundQuantity.value());
@@ -865,7 +868,13 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxRequestQueueSize.setValue(session->requestQueueSize());
     addRow(REQUEST_QUEUE_SIZE, (tr("Maximum outstanding requests to a single peer") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#max_out_request_queue", u"(?)"))
             , &m_spinBoxRequestQueueSize);
+    // DHT bootstrap nodes
+    m_lineEditDHTBootstrapNodes.setPlaceholderText(tr("Resets to default if empty"));
+    m_lineEditDHTBootstrapNodes.setText(session->getDHTBootstrapNodes());
+    addRow(DHT_BOOTSTRAP_NODES, (tr("DHT bootstrap nodes") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#dht_bootstrap_nodes", u"(?)"))
+        , &m_lineEditDHTBootstrapNodes);
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
+    // I2P session options
     m_spinBoxI2PInboundQuantity.setMinimum(1);
     m_spinBoxI2PInboundQuantity.setMaximum(16);
     m_spinBoxI2PInboundQuantity.setValue(session->I2PInboundQuantity());
