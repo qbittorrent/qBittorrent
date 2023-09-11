@@ -102,7 +102,7 @@
 #include "utils.h"
 
 #ifdef Q_OS_MACOS
-#include "macutilities.h"
+#include "macosdockbadge/badger.h"
 #endif
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 #include "programupdater.h"
@@ -132,6 +132,9 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     , m_storeExecutionLogEnabled(EXECUTIONLOG_SETTINGS_KEY(u"Enabled"_s))
     , m_storeDownloadTrackerFavicon(SETTINGS_KEY(u"DownloadTrackerFavicon"_s))
     , m_storeExecutionLogTypes(EXECUTIONLOG_SETTINGS_KEY(u"Types"_s), Log::MsgType::ALL)
+#ifdef Q_OS_MACOS
+    , m_badger(std::make_unique<MacUtils::Badger>())
+#endif // Q_OS_MACOS
 {
     m_ui->setupUi(this);
 
@@ -1481,15 +1484,7 @@ void MainWindow::reloadSessionStats()
 
     // update global information
 #ifdef Q_OS_MACOS
-    if (status.payloadDownloadRate > 0)
-    {
-        MacUtils::setBadgeLabelText(tr("%1/s", "s is a shorthand for seconds")
-            .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate)));
-    }
-    else if (!MacUtils::badgeLabelText().isEmpty())
-    {
-        MacUtils::setBadgeLabelText({});
-    }
+    m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
 #else
     const auto toolTip = u"%1\n%2"_s.arg(
         tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))

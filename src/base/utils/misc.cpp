@@ -94,7 +94,7 @@ namespace
         Utils::Misc::SizeUnit unit;
     };
 
-    std::optional<SplitToFriendlyUnitResult> splitToFriendlyUnit(const qint64 bytes)
+    std::optional<SplitToFriendlyUnitResult> splitToFriendlyUnit(const qint64 bytes, const int unitThreshold = 1024)
     {
         if (bytes < 0)
             return std::nullopt;
@@ -102,7 +102,7 @@ namespace
         int i = 0;
         auto value = static_cast<qreal>(bytes);
 
-        while ((value >= 1024) && (i < static_cast<int>(Utils::Misc::SizeUnit::ExbiByte)))
+        while ((value >= unitThreshold) && (i < static_cast<int>(Utils::Misc::SizeUnit::ExbiByte)))
         {
             value /= 1024;
             ++i;
@@ -268,6 +268,24 @@ QString Utils::Misc::friendlyUnit(const qint64 bytes, const bool isSpeed, const 
     const int digitPrecision = (precision >= 0) ? precision : friendlyUnitPrecision(result->unit);
     return Utils::String::fromDouble(result->value, digitPrecision)
            + QChar::Nbsp + unitString(result->unit, isSpeed);
+}
+
+QString Utils::Misc::friendlyUnitCompact(const qint64 bytes)
+{
+    // avoid 1000-1023 values, use next larger unit instead
+    const std::optional<SplitToFriendlyUnitResult> result = splitToFriendlyUnit(bytes, 1000);
+    if (!result)
+        return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
+
+    int precision = 0;          // >= 100
+    if (result->value < 10)
+        precision = 2;          // 0 - 9.99
+    if (result->value < 100)
+        precision = 1;          // 10 - 99.9
+
+    return Utils::String::fromDouble(result->value, precision)
+           // use only one character for unit representation
+           + QChar::Nbsp + unitString(result->unit, false)[0];
 }
 
 int Utils::Misc::friendlyUnitPrecision(const SizeUnit unit)
