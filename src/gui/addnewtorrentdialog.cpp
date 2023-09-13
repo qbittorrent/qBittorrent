@@ -330,7 +330,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     m_ui->stopConditionComboBox->setItemData(1, QVariant::fromValue(BitTorrent::Torrent::StopCondition::MetadataReceived));
     m_ui->stopConditionComboBox->setItemData(2, QVariant::fromValue(BitTorrent::Torrent::StopCondition::FilesChecked));
     m_ui->stopConditionComboBox->setCurrentIndex(m_ui->stopConditionComboBox->findData(
-                                                     QVariant::fromValue(m_torrentParams.stopCondition.value_or(session->torrentStopCondition()))));
+            QVariant::fromValue(m_torrentParams.stopCondition.value_or(session->torrentStopCondition()))));
     m_ui->stopConditionLabel->setEnabled(m_ui->startTorrentCheckBox->isChecked());
     m_ui->stopConditionComboBox->setEnabled(m_ui->startTorrentCheckBox->isChecked());
     connect(m_ui->startTorrentCheckBox, &QCheckBox::toggled, this, [this](const bool checked)
@@ -351,7 +351,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     m_ui->checkBoxRememberLastSavePath->setChecked(m_storeRememberLastSavePath);
 
     m_ui->contentLayoutComboBox->setCurrentIndex(
-                static_cast<int>(m_torrentParams.contentLayout.value_or(session->torrentContentLayout())));
+            static_cast<int>(m_torrentParams.contentLayout.value_or(session->torrentContentLayout())));
     connect(m_ui->contentLayoutComboBox, &QComboBox::currentIndexChanged, this, &AddNewTorrentDialog::contentLayoutChanged);
 
     m_ui->sequentialCheckBox->setChecked(m_torrentParams.sequential);
@@ -927,6 +927,9 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &metadata
     // Good to go
     m_torrentInfo = metadata;
     setMetadataProgressIndicator(true, tr("Parsing metadata..."));
+    const auto stopCondition = m_ui->stopConditionComboBox->currentData().value<BitTorrent::Torrent::StopCondition>();
+    if (stopCondition == BitTorrent::Torrent::StopCondition::MetadataReceived)
+        m_ui->startTorrentCheckBox->setChecked(false);
 
     // Update UI
     setupTreeview();
