@@ -1420,6 +1420,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <input type="text" id="requestQueueSize" style="width: 15em;" />
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <label for="dhtBootstrapNodes">QBT_TR(DHT bootstrap nodes:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#dht_bootstrap_nodes" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="dhtBootstrapNodes" placeholder="QBT_TR(Resets to default if empty)QBT_TR[CONTEXT=OptionsDialog]" style="width: 15em;" />
+                </td>
+            </tr>
         </table>
     </fieldset>
 </div>
@@ -2241,6 +2249,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         $('peerTurnoverCutoff').setProperty('value', pref.peer_turnover_cutoff);
                         $('peerTurnoverInterval').setProperty('value', pref.peer_turnover_interval);
                         $('requestQueueSize').setProperty('value', pref.request_queue_size);
+                        $('dhtBootstrapNodes').setProperty('value', pref.dht_bootstrap_nodes);
                     }
                 }
             }).send();
@@ -2673,6 +2682,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings.set('peer_turnover_cutoff', $('peerTurnoverCutoff').getProperty('value'));
             settings.set('peer_turnover_interval', $('peerTurnoverInterval').getProperty('value'));
             settings.set('request_queue_size', $('requestQueueSize').getProperty('value'));
+            settings.set('dht_bootstrap_nodes', $('dhtBootstrapNodes').getProperty('value'));
 
             // Send it to qBT
             const json_str = JSON.encode(settings);
