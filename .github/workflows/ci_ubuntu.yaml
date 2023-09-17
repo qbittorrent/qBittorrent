@@ -24,6 +24,7 @@ jobs:
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
+      harden_flags: "-D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS"
 
     steps:
       - name: Checkout repository
@@ -66,6 +67,7 @@ jobs:
             --recurse-submodules \
             https://github.com/arvidn/libtorrent.git
           cd libtorrent
+          CXXFLAGS="$CXXFLAGS ${{ env.harden_flags }}" \
           cmake \
             -B build \
             -G "Ninja" \
@@ -87,7 +89,7 @@ jobs:
 
       - name: Build qBittorrent
         run: |
-          CXXFLAGS="$CXXFLAGS -Werror" \
+          CXXFLAGS="$CXXFLAGS ${{ env.harden_flags }} -Werror" \
           LDFLAGS="$LDFLAGS -gz" \
           cmake \
             -B build \

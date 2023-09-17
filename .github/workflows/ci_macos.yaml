@@ -87,7 +87,7 @@ jobs:
 
       - name: Build qBittorrent
         run: |
-          CXXFLAGS="$CXXFLAGS -Wno-gnu-zero-variadic-macro-arguments -Werror -Wno-error=deprecated-declarations" \
+          CXXFLAGS="$CXXFLAGS -Werror -Wno-error=deprecated-declarations" \
           LDFLAGS="$LDFLAGS -gz" \
           cmake \
             -B build \
