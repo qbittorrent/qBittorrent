@@ -1005,6 +1005,7 @@ window.qBittorrent.DynamicTable = (function() {
                         state = "force-recheck";
                         img_path = "images/force-recheck.svg";
                         break;
+                    case "error":
                     case "unknown":
                     case "missingFiles":
                         state = "error";
