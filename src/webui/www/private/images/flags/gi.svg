@@ -2,14 +2,14 @@
   <path fill="#da000c" d="M0 0h640v480H0z"/>
   <path fill="#fff" d="M0 0h640v321.6H0z"/>
   <g stroke="#000" transform="translate(-160) scale(1.875)">
-    <g id="a" fill="#da000c" stroke-linecap="square">
+    <g id="gi-a" fill="#da000c" stroke-linecap="square">
       <path fill="#000" stroke="none" d="M196.6 116.3h64v44h-64z"/>
       <path d="M229.8 153.9h-39l-8.7 5.7v6h47.7m-16.3-37c5.6 0 10.2 4.7 10.2 10.5v14.7h7.3v-56h-40.3v56h12.6v-14.7c0-5.6 4.5-10.5 10.2-10.5z"/>
       <path fill="#000" stroke="none" d="M204.5 60h18.6v34h-18.6z"/>
       <path d="M223 88.7h-16.2v-5.8h-11.9v5.8h-8v-5.8H182v10.4h41m-36.2 0h35v4.5h-35zm14-45.7V83h6v-9.7c0-3.6 2.5-6.6 6.1-6.8h.4a6.8 6.8 0 0 1 6.8 6.8V83h5.7V47.6zm-2.3-4.8v4.8h29.3v-4.8zm-3.7-9.1v9.1h35v-9.1h-5.3v4.7h-6.6v-4.7h-10v4.7h-6.5v-4.7zM182 159.6h48m31-2.8h-32.4l-9.8 4.7v7H261"/>
       <path stroke-linecap="butt" d="M218.8 161.5H262"/>
     </g>
-    <use xlink:href="#a" width="100%" height="100%" transform="matrix(-1 0 0 1 512 0)"/>
+    <use xlink:href="#gi-a" width="100%" height="100%" transform="matrix(-1 0 0 1 512 0)"/>
     <g fill="#f8d80e">
       <g stroke-linecap="round">
         <path stroke-width=".8" d="M273.3 150c-2.7 1-5 2.4-7.5 3.8a72.4 72.4 0 0 0-8.9 6c-1 .7-2 1.4-2.7 2.4-1 .8-2 2-1.8 3.5 0 .6.8-.8 1.4-.9a4.4 4.4 0 0 1 3.1-.4c1.3-1.4 3-2.3 4.4-3.4a77.4 77.4 0 0 1 13-7.6l-1-3.4z"/>
