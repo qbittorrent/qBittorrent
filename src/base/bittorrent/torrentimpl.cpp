@@ -180,6 +180,10 @@ namespace
                 {
                     trackerEndpoint.message = QString::fromLocal8Bit(infoHash.last_error.message());
                 }
+                else
+                {
+                    trackerEndpoint.message.clear();
+                }
             }
         }
 #else
@@ -238,6 +242,10 @@ namespace
             else if (endpoint.last_error)
             {
                 trackerEndpoint.message = QString::fromLocal8Bit(endpoint.last_error.message());
+            }
+            else
+            {
+                trackerEndpoint.message.clear();
             }
         }
 #endif
