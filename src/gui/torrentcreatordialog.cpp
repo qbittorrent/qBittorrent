@@ -113,6 +113,8 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
 #else
     m_ui->widgetTorrentFormat->hide();
 #endif
+
+    m_ui->progressBar->setFormat(Utils::Misc::percentageValueFormat().arg(u"%p"_s));
 }
 
 TorrentCreatorDialog::~TorrentCreatorDialog()

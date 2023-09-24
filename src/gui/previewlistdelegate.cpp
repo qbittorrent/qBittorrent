@@ -33,6 +33,7 @@
 #include <QPainter>
 
 #include "base/utils/string.h"
+#include "base/utils/misc.h"
 #include "previewselectdialog.h"
 
 PreviewListDelegate::PreviewListDelegate(QObject *parent)
@@ -48,12 +49,9 @@ void PreviewListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
     {
     case PreviewSelectDialog::PROGRESS:
         {
-            const qreal progress = (index.data().toReal() * 100);
-            const QString text = (progress >= 100)
-                ? u"100%"_s
-                : (Utils::String::fromDouble(progress, 1) + u'%');
-
-            m_progressBarPainter.paint(painter, option, text, static_cast<int>(progress));
+            const qreal progress = index.data().toReal();
+            const QString text = Utils::Misc::formatValueAsPercent(progress, 1, u""_s, u"100"_s);
+            m_progressBarPainter.paint(painter, option, text, static_cast<int>(progress * 100));
         }
         break;
 

@@ -109,6 +109,26 @@ namespace
         }
         return {{value, static_cast<Utils::Misc::SizeUnit>(i)}};
     }
+
+
+    struct TrStringWithComment
+    {
+        const char *source = nullptr;
+        const char *comment = nullptr;
+
+        QString tr() const
+        {
+            return QCoreApplication::translate("misc", source, comment);
+        }
+    };
+
+    constexpr TrStringWithComment separatedPercentagePrefixFormat =
+        QT_TRANSLATE_NOOP3("misc", "", "Prefix for value in percents with separator. Usually none or \"% \"");
+    constexpr TrStringWithComment separatedPercentageSuffixFormat =
+        QT_TRANSLATE_NOOP3("misc", " %", "Suffix for value in percents with separator. Usually \" %\" or none.");
+    constexpr TrStringWithComment percentageFormat =
+        QT_TRANSLATE_NOOP3("misc", "%1%", "Value with percent sign, usually \"%1%\", where %1 - substitution for number, % - percent sign. "
+            "It may be \"%1 %\" or \"% %1\" or etc for different locales." );
 }
 
 void Utils::Misc::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &action)
@@ -257,6 +277,33 @@ QString Utils::Misc::unitString(const SizeUnit unit, const bool isSpeed)
     if (isSpeed)
         ret += QCoreApplication::translate("misc", "/s", "per second");
     return ret;
+}
+
+QString Utils::Misc::separatedPercentagePrefix()
+{
+    return separatedPercentagePrefixFormat.tr();
+}
+
+QString Utils::Misc::separatedPercentageSuffix()
+{
+    return separatedPercentageSuffixFormat.tr();
+}
+
+QString Utils::Misc::percentageValueFormat()
+{
+    return percentageFormat.tr();
+}
+
+QString Utils::Misc::formatValueAsPercent(double value, int precision, const QString& lessOr0, const QString& moreOr1)
+{
+    QString strValue;
+    if(value >= 1.0 && !moreOr1.isEmpty())
+        strValue = moreOr1;
+    else if(value <= 0.0 && !lessOr0.isEmpty())
+        strValue = lessOr0;
+    else
+        strValue = Utils::String::fromDouble(value * 100.0, precision);
+    return percentageValueFormat().arg(strValue);
 }
 
 QString Utils::Misc::friendlyUnit(const qint64 bytes, const bool isSpeed, const int precision)

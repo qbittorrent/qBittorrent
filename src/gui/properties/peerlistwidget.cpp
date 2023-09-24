@@ -504,9 +504,9 @@ void PeerListWidget::updatePeer(const int row, const BitTorrent::Torrent *torren
 
     setModelData(m_listModel, row, PeerListColumns::CONNECTION, peer.connectionType(), peer.connectionType());
     setModelData(m_listModel, row, PeerListColumns::FLAGS, peer.flags(), peer.flags(), {}, peer.flagsDescription());
-    setModelData(m_listModel, row, PeerListColumns::PROGRESS, (Utils::String::fromDouble(peer.progress() * 100, 1) + u'%')
+    setModelData(m_listModel, row, PeerListColumns::PROGRESS, Utils::Misc::formatValueAsPercent(peer.progress(), 1)
             , peer.progress(), intDataTextAlignment);
-    setModelData(m_listModel, row, PeerListColumns::RELEVANCE, (Utils::String::fromDouble(peer.relevance() * 100, 1) + u'%')
+    setModelData(m_listModel, row, PeerListColumns::RELEVANCE, Utils::Misc::formatValueAsPercent(peer.relevance(), 1)
             , peer.relevance(), intDataTextAlignment);
 
     const PathList filePaths = torrent->info().filesForPiece(peer.downloadingPieceIndex());

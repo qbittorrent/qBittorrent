@@ -39,6 +39,7 @@
 #include "base/global.h"
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
+#include "base/utils/misc.h"
 #include "gui/addnewtorrentdialog.h"
 #include "gui/desktopintegration.h"
 #include "gui/mainwindow.h"
@@ -603,7 +604,8 @@ void AdvancedSettings::loadAdvancedSettings()
             , &m_spinBoxSendBufferLowWatermark);
     m_spinBoxSendBufferWatermarkFactor.setMinimum(1);
     m_spinBoxSendBufferWatermarkFactor.setMaximum(std::numeric_limits<int>::max());
-    m_spinBoxSendBufferWatermarkFactor.setSuffix(u" %"_s);
+    m_spinBoxSendBufferWatermarkFactor.setPrefix(Utils::Misc::separatedPercentagePrefix());
+    m_spinBoxSendBufferWatermarkFactor.setSuffix(Utils::Misc::separatedPercentageSuffix());
     m_spinBoxSendBufferWatermarkFactor.setValue(session->sendBufferWatermarkFactor());
     addRow(SEND_BUF_WATERMARK_FACTOR, (tr("Send buffer watermark factor") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#send_buffer_watermark_factor", u"(?)"))
             , &m_spinBoxSendBufferWatermarkFactor);
@@ -847,12 +849,14 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxPeerTurnover.setMinimum(0);
     m_spinBoxPeerTurnover.setMaximum(100);
     m_spinBoxPeerTurnover.setValue(session->peerTurnover());
-    m_spinBoxPeerTurnover.setSuffix(u" %"_s);
+    m_spinBoxPeerTurnover.setPrefix(Utils::Misc::separatedPercentagePrefix());
+    m_spinBoxPeerTurnover.setSuffix(Utils::Misc::separatedPercentageSuffix());
     addRow(PEER_TURNOVER, (tr("Peer turnover disconnect percentage") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#peer_turnover", u"(?)"))
             , &m_spinBoxPeerTurnover);
     m_spinBoxPeerTurnoverCutoff.setMinimum(0);
     m_spinBoxPeerTurnoverCutoff.setMaximum(100);
-    m_spinBoxPeerTurnoverCutoff.setSuffix(u" %"_s);
+    m_spinBoxPeerTurnoverCutoff.setPrefix(Utils::Misc::separatedPercentagePrefix());
+    m_spinBoxPeerTurnoverCutoff.setSuffix(Utils::Misc::separatedPercentageSuffix());
     m_spinBoxPeerTurnoverCutoff.setValue(session->peerTurnoverCutoff());
     addRow(PEER_TURNOVER_CUTOFF, (tr("Peer turnover threshold percentage") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#peer_turnover", u"(?)"))
             , &m_spinBoxPeerTurnoverCutoff);

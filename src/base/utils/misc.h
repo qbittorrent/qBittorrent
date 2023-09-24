@@ -78,6 +78,16 @@ enum class TimeResolution
 
     QString unitString(SizeUnit unit, bool isSpeed = false);
 
+    QString separatedPercentagePrefix();
+    QString separatedPercentageSuffix();
+    QString percentageValueFormat();
+
+    // value is fraction (not multiplied by 100)
+    // precision is number of decimal places
+    // lessOr0 (if defined) will be substituted instead of value if value <= 0
+    // moreOr1 (if defined) will be substituted instead of value if value >= 1 (100%)
+    QString formatValueAsPercent(double value, int precision, const QString& lessOr0 = QString(), const QString& moreOr1 = QString());
+
     // return the best user friendly storage unit (B, KiB, MiB, GiB, TiB)
     // value must be given in bytes
     QString friendlyUnit(qint64 bytes, bool isSpeed = false, int precision = -1);

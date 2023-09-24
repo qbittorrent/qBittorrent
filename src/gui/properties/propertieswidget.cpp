@@ -451,8 +451,7 @@ void PropertiesWidget::loadDynamicData()
                 }
 
                 // Progress
-                qreal progress = m_torrent->progress() * 100.;
-                m_ui->labelProgressVal->setText(Utils::String::fromDouble(progress, 1) + u'%');
+                m_ui->labelProgressVal->setText(Utils::Misc::formatValueAsPercent(m_torrent->progress(), 1));
 
                 m_torrent->fetchDownloadingPieces([this, torrent = TorrentPtr(m_torrent)](const QBitArray &downloadingPieces)
                 {

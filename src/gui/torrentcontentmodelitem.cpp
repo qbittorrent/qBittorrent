@@ -121,9 +121,7 @@ QString TorrentContentModelItem::displayData(const int column) const
             return tr("Normal", "Normal (priority)");
         }
     case COL_PROGRESS:
-        return (m_progress >= 1)
-               ? u"100%"_s
-               : (Utils::String::fromDouble((m_progress * 100), 1) + u'%');
+        return Utils::Misc::formatValueAsPercent(m_progress, 1, u""_s, u"100"_s);
     case COL_SIZE:
         return Utils::Misc::friendlyUnit(m_size);
     case COL_REMAINING:
@@ -133,11 +131,7 @@ QString TorrentContentModelItem::displayData(const int column) const
             const qreal avail = availability();
             if (avail < 0)
                 return tr("N/A");
-
-            const QString value = (avail >= 1)
-                                  ? u"100"_s
-                                  : Utils::String::fromDouble((avail * 100), 1);
-            return (value + u'%');
+            return Utils::Misc::formatValueAsPercent(avail, 1, u""_s, u"100"_s);
         }
     default:
         Q_ASSERT(false);
