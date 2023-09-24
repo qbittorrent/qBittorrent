@@ -233,7 +233,6 @@ private:
     // Power Management
     PowerManagement *m_pwr = nullptr;
     QTimer *m_preventTimer = nullptr;
-    bool m_hasPython = false;
     QMenu *m_toolbarMenu = nullptr;
 
     SettingValue<bool> m_storeExecutionLogEnabled;
