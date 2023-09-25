@@ -159,7 +159,7 @@ void TorrentFilesWatcher::initWorker()
     connect(m_asyncWorker, &TorrentFilesWatcher::Worker::torrentFound, this, &TorrentFilesWatcher::onTorrentFound);
 
     m_asyncWorker->moveToThread(m_ioThread.get());
-    connect(m_ioThread.get(), &QThread::finished, this, [this] { delete m_asyncWorker; });
+    connect(m_ioThread.get(), &QObject::destroyed, this, [this] { delete m_asyncWorker; });
     m_ioThread->start();
 
     for (auto it = m_watchedFolders.cbegin(); it != m_watchedFolders.cend(); ++it)
