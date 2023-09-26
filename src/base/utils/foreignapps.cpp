@@ -259,35 +259,42 @@ PythonInfo Utils::ForeignApps::pythonInfo()
 {
     static PythonInfo pyInfo;
 
-    if (const QString preferredPythonPath = Preferences::instance()->getPythonExecutablePath().toString();
-        !preferredPythonPath.isEmpty() && (preferredPythonPath != pyInfo.executableName))
+    const QString preferredPythonPath = Preferences::instance()->getPythonExecutablePath().toString();
+    if (pyInfo.isValid() && (preferredPythonPath == pyInfo.executableName))
+        return pyInfo;
+
+    if (!preferredPythonPath.isEmpty())
     {
         if (testPythonInstallation(preferredPythonPath, pyInfo))
             return pyInfo;
         LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find Python executable. Path: \"%1\".")
             .arg(preferredPythonPath), Log::WARNING);
     }
-    else if (!pyInfo.isValid())
+    else
     {
         // auto detect only when there are no preferred python path
 
-        if (testPythonInstallation(u"python3"_s, pyInfo))
-            return pyInfo;
-        LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find `python3` executable in PATH environment variable. PATH: \"%1\"")
-            .arg(qEnvironmentVariable("PATH")), Log::INFO);
+        if (!pyInfo.isValid())
+        {
+            if (testPythonInstallation(u"python3"_s, pyInfo))
+                return pyInfo;
+            LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find `python3` executable in PATH environment variable. PATH: \"%1\"")
+                .arg(qEnvironmentVariable("PATH")), Log::INFO);
 
-        if (testPythonInstallation(u"python"_s, pyInfo))
-            return pyInfo;
-        LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find `python` executable in PATH environment variable. PATH: \"%1\"")
-            .arg(qEnvironmentVariable("PATH")), Log::INFO);
+            if (testPythonInstallation(u"python"_s, pyInfo))
+                return pyInfo;
+            LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find `python` executable in PATH environment variable. PATH: \"%1\"")
+                .arg(qEnvironmentVariable("PATH")), Log::INFO);
 
 #if defined(Q_OS_WIN)
-        if (testPythonInstallation(findPythonPath(), pyInfo))
-            return pyInfo;
-        LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find `python` executable in Windows Registry."), Log::INFO);
+            if (testPythonInstallation(findPythonPath(), pyInfo))
+                return pyInfo;
+            LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find `python` executable in Windows Registry."), Log::INFO);
 #endif
 
-        LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find Python executable"), Log::WARNING);
+            LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find Python executable"), Log::WARNING);
+
+        }
     }
 
     return pyInfo;
