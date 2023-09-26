@@ -208,7 +208,7 @@ bool RequestParser::parseRequestLine(const QString &line)
     const int sepPos = url.indexOf('?');
     const QByteArrayView pathComponent = ((sepPos == -1) ? url : QByteArrayView(url).mid(0, sepPos));
 
-    m_request.path = QString::fromUtf8(QByteArray::fromPercentEncoding(pathComponent.toByteArray()));
+    m_request.path = QString::fromUtf8(QByteArray::fromPercentEncoding(asQByteArray(pathComponent)));
 
     if (sepPos >= 0)
     {
@@ -223,10 +223,11 @@ bool RequestParser::parseRequestLine(const QString &line)
 
             const QByteArrayView nameComponent = param.mid(0, eqCharPos);
             const QByteArrayView valueComponent = param.mid(eqCharPos + 1);
-            const QString paramName = QString::fromUtf8(QByteArray::fromPercentEncoding(nameComponent.toByteArray()).replace('+', ' '));
+            const QString paramName = QString::fromUtf8(
+                QByteArray::fromPercentEncoding(asQByteArray(nameComponent)).replace('+', ' '));
             const QByteArray paramValue = valueComponent.isNull()
                 ? QByteArray("")
-                : QByteArray::fromPercentEncoding(valueComponent.toByteArray()).replace('+', ' ');
+                : QByteArray::fromPercentEncoding(asQByteArray(valueComponent)).replace('+', ' ');
 
             m_request.query[paramName] = paramValue;
         }

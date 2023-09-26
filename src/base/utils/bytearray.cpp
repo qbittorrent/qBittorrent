@@ -60,6 +60,13 @@ QList<QByteArrayView> Utils::ByteArray::splitToViews(const QByteArrayView in, co
     return ret;
 }
 
+QByteArray Utils::ByteArray::asQByteArray(const QByteArrayView view)
+{
+    // `QByteArrayView::toByteArray()` will deep copy the data
+    // So we provide our own fast path for appropriate situations/code
+    return QByteArray::fromRawData(view.constData(), view.size());
+}
+
 QByteArray Utils::ByteArray::toBase32(const QByteArray &in)
 {
     const char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";

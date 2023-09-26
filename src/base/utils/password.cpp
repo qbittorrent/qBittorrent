@@ -103,8 +103,8 @@ bool Utils::Password::PBKDF2::verify(const QByteArray &secret, const QByteArray 
     if (list.size() != 2)
         return false;
 
-    const QByteArray salt = QByteArray::fromBase64(list[0].toByteArray());
-    const QByteArray key = QByteArray::fromBase64(list[1].toByteArray());
+    const QByteArray salt = QByteArray::fromBase64(Utils::ByteArray::asQByteArray(list[0]));
+    const QByteArray key = QByteArray::fromBase64(Utils::ByteArray::asQByteArray(list[1]));
 
     std::array<unsigned char, 64> outBuf {};
     const int hmacResult = PKCS5_PBKDF2_HMAC(password.constData(), password.size()
