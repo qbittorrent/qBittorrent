@@ -9,7 +9,7 @@ qBittorrent - A BitTorrent client in C++ / Qt
       * By Arvid Norberg, https://www.libtorrent.org/
       * Be careful: another library (the one used by rTorrent) uses a similar name
 
-  - OpenSSL >= 1.1.1
+  - OpenSSL >= 3.0.2
 
   - Qt 6.5.0 - 6.x
 
