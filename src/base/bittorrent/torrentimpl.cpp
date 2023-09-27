@@ -657,6 +657,9 @@ void TorrentImpl::removeTrackers(const QStringList &trackers)
 void TorrentImpl::replaceTrackers(QVector<TrackerEntry> trackers)
 {
     trackers.removeIf([](const TrackerEntry &entry) { return entry.url.isEmpty(); });
+    // Filter out duplicate trackers
+    const auto uniqueTrackers = QSet<TrackerEntry>(trackers.cbegin(), trackers.cend());
+    trackers = QVector<TrackerEntry>(uniqueTrackers.cbegin(), uniqueTrackers.cend());
     std::sort(trackers.begin(), trackers.end()
         , [](const TrackerEntry &lhs, const TrackerEntry &rhs) { return lhs.tier < rhs.tier; });
 
