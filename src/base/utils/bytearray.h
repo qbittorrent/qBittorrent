@@ -39,6 +39,7 @@ namespace Utils::ByteArray
 {
     // Mimic QStringView(in).split(sep, behavior)
     QList<QByteArrayView> splitToViews(QByteArrayView in, QByteArrayView sep, Qt::SplitBehavior behavior = Qt::KeepEmptyParts);
+    QByteArray asQByteArray(QByteArrayView view);
 
     QByteArray toBase32(const QByteArray &in);
 }
