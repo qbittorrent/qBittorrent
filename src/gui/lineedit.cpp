@@ -38,7 +38,7 @@
 LineEdit::LineEdit(QWidget *parent)
     : QLineEdit(parent)
 {
-    auto *action = new QAction(UIThemeManager::instance()->getIcon(u"edit-find"_s), QString());
+    auto *action = new QAction(UIThemeManager::instance()->getIcon(u"edit-find"_s), QString(), this);
     addAction(action, QLineEdit::LeadingPosition);
 
     setClearButtonEnabled(true);
