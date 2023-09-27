@@ -212,7 +212,7 @@ bool RequestParser::parseRequestLine(const QString &line)
 
     if (sepPos >= 0)
     {
-        const QByteArrayView query = url.mid(sepPos + 1);
+        const QByteArrayView query = QByteArrayView(url).mid(sepPos + 1);
 
         // [rfc3986] 2.4 When to Encode or Decode
         // URL components should be separated before percent-decoding
