@@ -251,12 +251,9 @@ bool RequestParser::parsePostMessage(const QByteArrayView data)
         // [URL Standard] 5.1 application/x-www-form-urlencoded parsing
         const QByteArray processedData = data.toByteArray().replace('+', ' ');
 
-        QListIterator<QStringPair> i(QUrlQuery(QString::fromUtf8(processedData)).queryItems(QUrl::FullyDecoded));
-        while (i.hasNext())
-        {
-            const QStringPair pair = i.next();
+        const QList<QStringPair> pairs = QUrlQuery(QString::fromUtf8(processedData)).queryItems(QUrl::FullyDecoded);
+        for (const QStringPair &pair : pairs)
             m_request.posts[pair.first] = pair.second;
-        }
 
         return true;
     }
