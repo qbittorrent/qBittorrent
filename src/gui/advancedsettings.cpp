@@ -99,6 +99,7 @@ namespace
         TRACKER_STATUS,
         TRACKER_PORT,
         TRACKER_PORT_FORWARDING,
+        PYTHON_EXECUTABLE_PATH,
         // libtorrent section
         LIBTORRENT_HEADER,
         BDECODE_DEPTH_LIMIT,
@@ -316,7 +317,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     pref->setTrackerPort(m_spinBoxTrackerPort.value());
     pref->setTrackerPortForwardingEnabled(m_checkBoxTrackerPortForwarding.isChecked());
     session->setTrackerEnabled(m_checkBoxTrackerStatus.isChecked());
-
+    // Python executable path
+    pref->setPythonExecutablePath(Path(m_pythonExecutablePath.text().trimmed()));
     // Choking algorithm
     session->setChokingAlgorithm(m_comboBoxChokingAlgorithm.currentData().value<BitTorrent::ChokingAlgorithm>());
     // Seed choking algorithm
@@ -810,6 +812,10 @@ void AdvancedSettings::loadAdvancedSettings()
     // Tracker port forwarding
     m_checkBoxTrackerPortForwarding.setChecked(pref->isTrackerPortForwardingEnabled());
     addRow(TRACKER_PORT_FORWARDING, tr("Enable port forwarding for embedded tracker"), &m_checkBoxTrackerPortForwarding);
+    // Python executable path
+    m_pythonExecutablePath.setPlaceholderText(tr("(Auto detect if empty)"));
+    m_pythonExecutablePath.setText(pref->getPythonExecutablePath().toString());
+    addRow(PYTHON_EXECUTABLE_PATH, tr("Python executable path (may require restart)"), &m_pythonExecutablePath);
     // Choking algorithm
     m_comboBoxChokingAlgorithm.addItem(tr("Fixed slots"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::FixedSlots));
     m_comboBoxChokingAlgorithm.addItem(tr("Upload rate based"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::RateBased));

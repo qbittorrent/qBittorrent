@@ -1487,6 +1487,19 @@ void Preferences::setTrackerPortForwardingEnabled(const bool enabled)
     setValue(u"Preferences/Advanced/trackerPortForwarding"_s, enabled);
 }
 
+Path Preferences::getPythonExecutablePath() const
+{
+    return value(u"Preferences/Search/pythonExecutablePath"_s, Path());
+}
+
+void Preferences::setPythonExecutablePath(const Path &path)
+{
+    if (path == getPythonExecutablePath())
+        return;
+
+    setValue(u"Preferences/Search/pythonExecutablePath"_s, path);
+}
+
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 bool Preferences::isUpdateCheckEnabled() const
 {

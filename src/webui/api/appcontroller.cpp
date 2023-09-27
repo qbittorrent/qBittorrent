@@ -404,6 +404,8 @@ void AppController::preferencesAction()
     data[u"enable_embedded_tracker"_s] = session->isTrackerEnabled();
     data[u"embedded_tracker_port"_s] = pref->getTrackerPort();
     data[u"embedded_tracker_port_forwarding"_s] = pref->isTrackerPortForwardingEnabled();
+    // Python executable path
+    data[u"python_executable_path"_s] = pref->getPythonExecutablePath().toString();
     // Choking algorithm
     data[u"upload_slots_behavior"_s] = static_cast<int>(session->chokingAlgorithm());
     // Seed choking algorithm
@@ -990,6 +992,9 @@ void AppController::setPreferencesAction()
         pref->setTrackerPortForwardingEnabled(it.value().toBool());
     if (hasKey(u"enable_embedded_tracker"_s))
         session->setTrackerEnabled(it.value().toBool());
+    // Python executable path
+    if (hasKey(u"python_executable_path"_s))
+        pref->setPythonExecutablePath(Path(it.value().toString()));
     // Choking algorithm
     if (hasKey(u"upload_slots_behavior"_s))
         session->setChokingAlgorithm(static_cast<BitTorrent::ChokingAlgorithm>(it.value().toInt()));
