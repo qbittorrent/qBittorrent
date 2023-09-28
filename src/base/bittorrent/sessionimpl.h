@@ -546,11 +546,13 @@ namespace BitTorrent
         void handleListenSucceededAlert(const lt::listen_succeeded_alert *p);
         void handleListenFailedAlert(const lt::listen_failed_alert *p);
         void handleExternalIPAlert(const lt::external_ip_alert *p);
+        void handleSessionErrorAlert(const lt::session_error_alert *p) const;
         void handleSessionStatsAlert(const lt::session_stats_alert *p);
         void handleAlertsDroppedAlert(const lt::alerts_dropped_alert *p) const;
         void handleStorageMovedAlert(const lt::storage_moved_alert *p);
         void handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p);
         void handleSocks5Alert(const lt::socks5_alert *p) const;
+        void handleI2PAlert(const lt::i2p_alert *p) const;
         void handleTrackerAlert(const lt::tracker_alert *a);
 #ifdef QBT_USES_LIBTORRENT2
         void handleTorrentConflictAlert(const lt::torrent_conflict_alert *a);
