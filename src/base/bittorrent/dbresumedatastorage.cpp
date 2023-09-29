@@ -288,7 +288,7 @@ namespace BitTorrent
         Q_DISABLE_COPY_MOVE(Worker)
 
     public:
-        Worker(const Path &dbPath, QReadWriteLock &dbLock);
+        Worker(const Path &dbPath, QReadWriteLock &dbLock, QObject *parent = nullptr);
 
         void run() override;
         void requestInterruption();
@@ -332,7 +332,7 @@ BitTorrent::DBResumeDataStorage::DBResumeDataStorage(const Path &dbPath, QObject
             updateDB(dbVersion);
     }
 
-    m_asyncWorker = new Worker(dbPath, m_dbLock);
+    m_asyncWorker = new Worker(dbPath, m_dbLock, this);
     m_asyncWorker->start();
 }
 
@@ -653,8 +653,9 @@ void BitTorrent::DBResumeDataStorage::enableWALMode() const
         throw RuntimeError(tr("WAL mode is probably unsupported due to filesystem limitations."));
 }
 
-BitTorrent::DBResumeDataStorage::Worker::Worker(const Path &dbPath, QReadWriteLock &dbLock)
-    : m_path {dbPath}
+BitTorrent::DBResumeDataStorage::Worker::Worker(const Path &dbPath, QReadWriteLock &dbLock, QObject *parent)
+    : QThread(parent)
+    , m_path {dbPath}
     , m_dbLock {dbLock}
 {
 }
