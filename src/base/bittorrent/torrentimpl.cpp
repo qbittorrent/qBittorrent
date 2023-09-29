@@ -600,6 +600,9 @@ void TorrentImpl::replaceTrackers(QVector<TrackerEntry> trackers)
 {
     // TODO: use std::erase_if() in C++20
     trackers.erase(std::remove_if(trackers.begin(), trackers.end(), [](const TrackerEntry &entry) { return entry.url.isEmpty(); }), trackers.end());
+    // Filter out duplicate trackers
+    const auto uniqueTrackers = QSet<TrackerEntry>(trackers.cbegin(), trackers.cend());
+    trackers = QVector<TrackerEntry>(uniqueTrackers.cbegin(), uniqueTrackers.cend());
     std::sort(trackers.begin(), trackers.end()
         , [](const TrackerEntry &lhs, const TrackerEntry &rhs) { return lhs.tier < rhs.tier; });
 
