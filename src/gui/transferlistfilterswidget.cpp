@@ -191,11 +191,6 @@ void TransferListFiltersWidget::refreshTrackers(const BitTorrent::Torrent *torre
     m_trackersFilterWidget->refreshTrackers(torrent);
 }
 
-void TransferListFiltersWidget::changeTrackerless(const BitTorrent::Torrent *torrent, const bool trackerless)
-{
-    m_trackersFilterWidget->changeTrackerless(torrent, trackerless);
-}
-
 void TransferListFiltersWidget::trackerEntriesUpdated(const BitTorrent::Torrent *torrent
         , const QHash<QString, BitTorrent::TrackerEntry> &updatedTrackerEntries)
 {

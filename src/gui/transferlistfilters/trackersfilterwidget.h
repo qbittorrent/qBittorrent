@@ -55,7 +55,6 @@ public:
     void addTrackers(const BitTorrent::Torrent *torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
     void removeTrackers(const BitTorrent::Torrent *torrent, const QStringList &trackers);
     void refreshTrackers(const BitTorrent::Torrent *torrent);
-    void changeTrackerless(const BitTorrent::Torrent *torrent, bool trackerless);
     void handleTrackerEntriesUpdated(const BitTorrent::Torrent *torrent
             , const QHash<QString, BitTorrent::TrackerEntry> &updatedTrackerEntries);
     void setDownloadTrackerFavicon(bool value);

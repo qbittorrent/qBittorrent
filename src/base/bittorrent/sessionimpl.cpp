@@ -4815,8 +4815,6 @@ void SessionImpl::handleTorrentTrackersAdded(TorrentImpl *const torrent, const Q
     for (const TrackerEntry &newTracker : newTrackers)
         LogMsg(tr("Added tracker to torrent. Torrent: \"%1\". Tracker: \"%2\"").arg(torrent->name(), newTracker.url));
     emit trackersAdded(torrent, newTrackers);
-    if (torrent->trackers().size() == newTrackers.size())
-        emit trackerlessStateChanged(torrent, false);
     emit trackersChanged(torrent);
 }
 
@@ -4825,8 +4823,6 @@ void SessionImpl::handleTorrentTrackersRemoved(TorrentImpl *const torrent, const
     for (const QString &deletedTracker : deletedTrackers)
         LogMsg(tr("Removed tracker from torrent. Torrent: \"%1\". Tracker: \"%2\"").arg(torrent->name(), deletedTracker));
     emit trackersRemoved(torrent, deletedTrackers);
-    if (torrent->trackers().isEmpty())
-        emit trackerlessStateChanged(torrent, true);
     emit trackersChanged(torrent);
 }
 
