@@ -5369,10 +5369,13 @@ void SessionImpl::handleAlert(const lt::alert *a)
             dispatchTorrentAlert(static_cast<const lt::torrent_alert *>(a));
             break;
         case lt::state_update_alert::alert_type:
-            handleStateUpdateAlert(static_cast<const lt::state_update_alert*>(a));
+            handleStateUpdateAlert(static_cast<const lt::state_update_alert *>(a));
+            break;
+        case lt::session_error_alert::alert_type:
+            handleSessionErrorAlert(static_cast<const lt::session_error_alert *>(a));
             break;
         case lt::session_stats_alert::alert_type:
-            handleSessionStatsAlert(static_cast<const lt::session_stats_alert*>(a));
+            handleSessionStatsAlert(static_cast<const lt::session_stats_alert *>(a));
             break;
         case lt::tracker_announce_alert::alert_type:
         case lt::tracker_error_alert::alert_type:
@@ -5381,55 +5384,58 @@ void SessionImpl::handleAlert(const lt::alert *a)
             handleTrackerAlert(static_cast<const lt::tracker_alert *>(a));
             break;
         case lt::file_error_alert::alert_type:
-            handleFileErrorAlert(static_cast<const lt::file_error_alert*>(a));
+            handleFileErrorAlert(static_cast<const lt::file_error_alert *>(a));
             break;
         case lt::add_torrent_alert::alert_type:
             // handled separately
             break;
         case lt::torrent_removed_alert::alert_type:
-            handleTorrentRemovedAlert(static_cast<const lt::torrent_removed_alert*>(a));
+            handleTorrentRemovedAlert(static_cast<const lt::torrent_removed_alert *>(a));
             break;
         case lt::torrent_deleted_alert::alert_type:
-            handleTorrentDeletedAlert(static_cast<const lt::torrent_deleted_alert*>(a));
+            handleTorrentDeletedAlert(static_cast<const lt::torrent_deleted_alert *>(a));
             break;
         case lt::torrent_delete_failed_alert::alert_type:
-            handleTorrentDeleteFailedAlert(static_cast<const lt::torrent_delete_failed_alert*>(a));
+            handleTorrentDeleteFailedAlert(static_cast<const lt::torrent_delete_failed_alert *>(a));
             break;
         case lt::portmap_error_alert::alert_type:
-            handlePortmapWarningAlert(static_cast<const lt::portmap_error_alert*>(a));
+            handlePortmapWarningAlert(static_cast<const lt::portmap_error_alert *>(a));
             break;
         case lt::portmap_alert::alert_type:
-            handlePortmapAlert(static_cast<const lt::portmap_alert*>(a));
+            handlePortmapAlert(static_cast<const lt::portmap_alert *>(a));
             break;
         case lt::peer_blocked_alert::alert_type:
-            handlePeerBlockedAlert(static_cast<const lt::peer_blocked_alert*>(a));
+            handlePeerBlockedAlert(static_cast<const lt::peer_blocked_alert *>(a));
             break;
         case lt::peer_ban_alert::alert_type:
-            handlePeerBanAlert(static_cast<const lt::peer_ban_alert*>(a));
+            handlePeerBanAlert(static_cast<const lt::peer_ban_alert *>(a));
             break;
         case lt::url_seed_alert::alert_type:
-            handleUrlSeedAlert(static_cast<const lt::url_seed_alert*>(a));
+            handleUrlSeedAlert(static_cast<const lt::url_seed_alert *>(a));
             break;
         case lt::listen_succeeded_alert::alert_type:
-            handleListenSucceededAlert(static_cast<const lt::listen_succeeded_alert*>(a));
+            handleListenSucceededAlert(static_cast<const lt::listen_succeeded_alert *>(a));
             break;
         case lt::listen_failed_alert::alert_type:
-            handleListenFailedAlert(static_cast<const lt::listen_failed_alert*>(a));
+            handleListenFailedAlert(static_cast<const lt::listen_failed_alert *>(a));
             break;
         case lt::external_ip_alert::alert_type:
-            handleExternalIPAlert(static_cast<const lt::external_ip_alert*>(a));
+            handleExternalIPAlert(static_cast<const lt::external_ip_alert *>(a));
             break;
         case lt::alerts_dropped_alert::alert_type:
             handleAlertsDroppedAlert(static_cast<const lt::alerts_dropped_alert *>(a));
             break;
         case lt::storage_moved_alert::alert_type:
-            handleStorageMovedAlert(static_cast<const lt::storage_moved_alert*>(a));
+            handleStorageMovedAlert(static_cast<const lt::storage_moved_alert *>(a));
             break;
         case lt::storage_moved_failed_alert::alert_type:
-            handleStorageMovedFailedAlert(static_cast<const lt::storage_moved_failed_alert*>(a));
+            handleStorageMovedFailedAlert(static_cast<const lt::storage_moved_failed_alert *>(a));
             break;
         case lt::socks5_alert::alert_type:
             handleSocks5Alert(static_cast<const lt::socks5_alert *>(a));
+            break;
+        case lt::i2p_alert::alert_type:
+            handleI2PAlert(static_cast<const lt::i2p_alert *>(a));
             break;
 #ifdef QBT_USES_LIBTORRENT2
         case lt::torrent_conflict_alert::alert_type:
@@ -5737,6 +5743,12 @@ void SessionImpl::handleExternalIPAlert(const lt::external_ip_alert *p)
     }
 }
 
+void SessionImpl::handleSessionErrorAlert(const lt::session_error_alert *p) const
+{
+    LogMsg(tr("BitTorrent session encountered a serious error. Reason: \"%1\"")
+        .arg(QString::fromStdString(p->message())), Log::CRITICAL);
+}
+
 void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *p)
 {
     if (m_refreshEnqueued)
@@ -5928,6 +5940,15 @@ void SessionImpl::handleSocks5Alert(const lt::socks5_alert *p) const
         LogMsg(tr("SOCKS5 proxy error. Address: %1. Message: \"%2\".")
                 .arg(endpoint, QString::fromLocal8Bit(p->error.message().c_str()))
                 , Log::WARNING);
+    }
+}
+
+void SessionImpl::handleI2PAlert(const lt::i2p_alert *p) const
+{
+    if (p->error)
+    {
+        LogMsg(tr("I2P error. Message: \"%1\".")
+            .arg(QString::fromStdString(p->message())), Log::WARNING);
     }
 }
 
