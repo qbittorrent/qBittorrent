@@ -158,12 +158,14 @@ void StatusBar::showRestartRequired()
 {
     // Restart required notification
     const QString restartText = tr("qBittorrent needs to be restarted!");
-    QLabel *restartIconLbl = new QLabel(this);
-    restartIconLbl->setPixmap(style()->standardPixmap(QStyle::SP_MessageBoxWarning));
+
+    const QPixmap pixmap = style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(Utils::Gui::smallIconSize());
+    auto *restartIconLbl = new QLabel(this);
+    restartIconLbl->setPixmap(pixmap);
     restartIconLbl->setToolTip(restartText);
     insertWidget(0, restartIconLbl);
 
-    QLabel *restartLbl = new QLabel(this);
+    auto *restartLbl = new QLabel(this);
     restartLbl->setText(restartText);
     insertWidget(1, restartLbl);
 }
