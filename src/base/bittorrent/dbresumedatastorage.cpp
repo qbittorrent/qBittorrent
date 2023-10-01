@@ -611,10 +611,15 @@ void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
 
         if (fromVersion <= 4)
         {
-            const auto alterTableTorrentsQuery = u"ALTER TABLE %1 ADD %2"_s
-                    .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT, "INTEGER NOT NULL DEFAULT -2"));
-            if (!query.exec(alterTableTorrentsQuery))
-                throw RuntimeError(query.lastError().text());
+            const auto testQuery = u"SELECT COUNT(%1) FROM %2;"_s
+                    .arg(quoted(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT.name), quoted(DB_TABLE_TORRENTS));
+            if (!query.exec(testQuery))
+            {
+                const auto alterTableTorrentsQuery = u"ALTER TABLE %1 ADD %2"_s
+                        .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT, "INTEGER NOT NULL DEFAULT -2"));
+                if (!query.exec(alterTableTorrentsQuery))
+                    throw RuntimeError(query.lastError().text());
+            }
         }
 
         const QString updateMetaVersionQuery = makeUpdateStatement(DB_TABLE_META, {DB_COLUMN_NAME, DB_COLUMN_VALUE});
