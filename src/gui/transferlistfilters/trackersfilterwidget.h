@@ -85,6 +85,7 @@ private:
 
     QHash<QString, TrackerData> m_trackers;   // <tracker host, tracker data>
     QHash<BitTorrent::TorrentID, QSet<QString>> m_errors;  // <torrent ID, tracker hosts>
+    QHash<BitTorrent::TorrentID, QSet<QString>> m_trackerErrors;  // <torrent ID, tracker hosts>
     QHash<BitTorrent::TorrentID, QSet<QString>> m_warnings;  // <torrent ID, tracker hosts>
     PathList m_iconPaths;
     int m_totalTorrents = 0;
