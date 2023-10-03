@@ -94,6 +94,7 @@ enum class TimeResolution
     QString languageToLocalizedString(const QString &localeStr);
 
 #ifdef Q_OS_WIN
+    bool applyMarkOfTheWeb(const Path &file, const QString &url = {});
     Path windowsSystemPath();
 
     template <typename T>

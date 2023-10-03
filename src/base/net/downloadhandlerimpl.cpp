@@ -29,6 +29,7 @@
 
 #include "downloadhandlerimpl.h"
 
+#include <QtSystemDetection>
 #include <QTemporaryFile>
 #include <QUrl>
 
@@ -146,17 +147,33 @@ void Net::DownloadHandlerImpl::processFinishedDownload()
         {
             const nonstd::expected<Path, QString> result = saveToTempFile(m_result.data);
             if (result)
+            {
                 m_result.filePath = result.value();
+
+#ifdef Q_OS_WIN
+                Utils::Misc::applyMarkOfTheWeb(m_result.filePath, m_result.url);
+#endif
+            }
             else
+            {
                 setError(tr("I/O Error: %1").arg(result.error()));
+            }
         }
         else
         {
             const nonstd::expected<void, QString> result = Utils::IO::saveToFile(destinationPath, m_result.data);
             if (result)
+            {
                 m_result.filePath = destinationPath;
+
+#ifdef Q_OS_WIN
+                Utils::Misc::applyMarkOfTheWeb(m_result.filePath, m_result.url);
+#endif
+            }
             else
+            {
                 setError(tr("I/O Error: %1").arg(result.error()));
+            }
         }
     }
 
