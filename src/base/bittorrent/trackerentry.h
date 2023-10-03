@@ -28,8 +28,6 @@
 
 #pragma once
 
-#include <libtorrent/socket.hpp>
-
 #include <QtContainerFwd>
 #include <QDateTime>
 #include <QHash>
@@ -38,44 +36,52 @@
 
 namespace BitTorrent
 {
-    struct TrackerEntry
+    enum class TrackerEntryStatus
     {
-        using Endpoint = lt::tcp::endpoint;
+        NotContacted = 1,
+        Working = 2,
+        Updating = 3,
+        NotWorking = 4,
+        TrackerError = 5,
+        Unreachable = 6
+    };
+    struct TrackerEndpointEntry
+    {
+        QString name {};
+        int btVersion = 1;
 
-        enum Status
-        {
-            NotContacted = 1,
-            Working = 2,
-            Updating = 3,
-            NotWorking = 4,
-            TrackerError = 5,
-            Unreachable = 6
-        };
+        TrackerEntryStatus status = TrackerEntryStatus::NotContacted;
+        QString message {};
 
-        struct EndpointStats
-        {
-            QString name {};
+        int numPeers = -1;
+        int numSeeds = -1;
+        int numLeeches = -1;
+        int numDownloaded = -1;
 
-            Status status = NotContacted;
-            QString message {};
-
-            int numPeers = -1;
-            int numSeeds = -1;
-            int numLeeches = -1;
-            int numDownloaded = -1;
-
-            QDateTime nextAnnounceTime;
-            QDateTime minAnnounceTime;
-        };
-
-        QString url {};
-        int tier = 0;
-        Status status = NotContacted;
-
-        QHash<Endpoint, QHash<int, EndpointStats>> stats {};
+        QDateTime nextAnnounceTime {};
+        QDateTime minAnnounceTime {};
     };
 
-    QVector<TrackerEntry> parseTrackerEntries(QStringView str);
+    struct TrackerEntry
+    {
+        QString url {};
+        int tier = 0;
+
+        TrackerEntryStatus status = TrackerEntryStatus::NotContacted;
+        QString message {};
+
+        int numPeers = -1;
+        int numSeeds = -1;
+        int numLeeches = -1;
+        int numDownloaded = -1;
+
+        QDateTime nextAnnounceTime {};
+        QDateTime minAnnounceTime {};
+
+        QHash<std::pair<QString, int>, TrackerEndpointEntry> endpointEntries {};
+    };
+
+    QList<TrackerEntry> parseTrackerEntries(QStringView str);
 
     bool operator==(const TrackerEntry &left, const TrackerEntry &right);
     std::size_t qHash(const TrackerEntry &key, std::size_t seed = 0);

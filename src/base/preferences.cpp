@@ -1754,14 +1754,14 @@ void Preferences::setPropVisible(const bool visible)
     setValue(u"TorrentProperties/Visible"_s, visible);
 }
 
-QByteArray Preferences::getPropTrackerListState() const
+QByteArray Preferences::getTrackerListState() const
 {
     return value<QByteArray>(u"GUI/Qt6/TorrentProperties/TrackerListState"_s);
 }
 
-void Preferences::setPropTrackerListState(const QByteArray &state)
+void Preferences::setTrackerListState(const QByteArray &state)
 {
-    if (state == getPropTrackerListState())
+    if (state == getTrackerListState())
         return;
 
     setValue(u"GUI/Qt6/TorrentProperties/TrackerListState"_s, state);

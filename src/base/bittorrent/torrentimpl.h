@@ -99,6 +99,8 @@ namespace BitTorrent
 
         bool isValid() const;
 
+        Session *session() const override;
+
         InfoHash infoHash() const override;
         QString name() const override;
         QDateTime creationDate() const override;
@@ -264,7 +266,7 @@ namespace BitTorrent
         void saveResumeData(lt::resume_data_flags_t flags = {});
         void handleMoveStorageJobFinished(const Path &path, MoveStorageContext context, bool hasOutstandingJob);
         void fileSearchFinished(const Path &savePath, const PathList &fileNames);
-        TrackerEntry updateTrackerEntry(const lt::announce_entry &announceEntry, const QHash<TrackerEntry::Endpoint, QMap<int, int>> &updateInfo);
+        TrackerEntry updateTrackerEntry(const lt::announce_entry &announceEntry, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo);
         void resetTrackerEntries();
 
     private:

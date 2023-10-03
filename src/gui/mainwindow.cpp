@@ -87,13 +87,13 @@
 #include "powermanagement/powermanagement.h"
 #include "properties/peerlistwidget.h"
 #include "properties/propertieswidget.h"
-#include "properties/trackerlistwidget.h"
 #include "rss/rsswidget.h"
 #include "search/searchwidget.h"
 #include "speedlimitdialog.h"
 #include "statsdialog.h"
 #include "statusbar.h"
 #include "torrentcreatordialog.h"
+#include "trackerlist/trackerlistwidget.h"
 #include "transferlistfilterswidget.h"
 #include "transferlistmodel.h"
 #include "transferlistwidget.h"
@@ -245,7 +245,6 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     connect(m_columnFilterEdit, &LineEdit::textChanged, this, &MainWindow::applyTransferListFilter);
     connect(hSplitter, &QSplitter::splitterMoved, this, &MainWindow::saveSettings);
     connect(m_splitter, &QSplitter::splitterMoved, this, &MainWindow::saveSplitterSettings);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersChanged, m_propertiesWidget, &PropertiesWidget::loadTrackers);
 
 #ifdef Q_OS_MACOS
     // Increase top spacing to avoid tab overlapping

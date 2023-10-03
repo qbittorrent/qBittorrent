@@ -17,7 +17,6 @@ qt_wrap_ui(UI_HEADERS
     previewselectdialog.ui
     properties/peersadditiondialog.ui
     properties/propertieswidget.ui
-    properties/trackersadditiondialog.ui
     rss/automatedrssdownloader.ui
     rss/rsswidget.ui
     search/pluginselectdialog.ui
@@ -32,6 +31,7 @@ qt_wrap_ui(UI_HEADERS
     torrentoptionsdialog.ui
     torrenttagsdialog.ui
     trackerentriesdialog.ui
+    trackersadditiondialog.ui
     uithemedialog.ui
     watchedfolderoptionsdialog.ui
 )
@@ -79,8 +79,6 @@ add_library(qbt_gui STATIC
     properties/proptabbar.h
     properties/speedplotview.h
     properties/speedwidget.h
-    properties/trackerlistwidget.h
-    properties/trackersadditiondialog.h
     raisedmessagebox.h
     rss/articlelistwidget.h
     rss/automatedrssdownloader.h
@@ -108,6 +106,11 @@ add_library(qbt_gui STATIC
     torrentoptionsdialog.h
     torrenttagsdialog.h
     trackerentriesdialog.h
+    trackerlist/trackerlistitemdelegate.h
+    trackerlist/trackerlistmodel.h
+    trackerlist/trackerlistsortmodel.h
+    trackerlist/trackerlistwidget.h
+    trackersadditiondialog.h
     transferlistdelegate.h
     transferlistfilters/basefilterwidget.h
     transferlistfilters/categoryfiltermodel.h
@@ -172,8 +175,6 @@ add_library(qbt_gui STATIC
     properties/proptabbar.cpp
     properties/speedplotview.cpp
     properties/speedwidget.cpp
-    properties/trackerlistwidget.cpp
-    properties/trackersadditiondialog.cpp
     raisedmessagebox.cpp
     rss/articlelistwidget.cpp
     rss/automatedrssdownloader.cpp
@@ -201,6 +202,11 @@ add_library(qbt_gui STATIC
     torrentoptionsdialog.cpp
     torrenttagsdialog.cpp
     trackerentriesdialog.cpp
+    trackerlist/trackerlistitemdelegate.cpp
+    trackerlist/trackerlistmodel.cpp
+    trackerlist/trackerlistsortmodel.cpp
+    trackerlist/trackerlistwidget.cpp
+    trackersadditiondialog.cpp
     transferlistdelegate.cpp
     transferlistfilters/basefilterwidget.cpp
     transferlistfilters/categoryfiltermodel.cpp

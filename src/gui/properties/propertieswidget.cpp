@@ -53,6 +53,7 @@
 #include "base/utils/string.h"
 #include "gui/autoexpandabledialog.h"
 #include "gui/lineedit.h"
+#include "gui/trackerlist/trackerlistwidget.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
 #include "downloadedpiecesbar.h"
@@ -60,7 +61,6 @@
 #include "pieceavailabilitybar.h"
 #include "proptabbar.h"
 #include "speedwidget.h"
-#include "trackerlistwidget.h"
 #include "ui_propertieswidget.h"
 
 PropertiesWidget::PropertiesWidget(QWidget *parent)
@@ -115,8 +115,8 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     m_ui->trackerUpButton->setIconSize(Utils::Gui::smallIconSize());
     m_ui->trackerDownButton->setIcon(UIThemeManager::instance()->getIcon(u"go-down"_s));
     m_ui->trackerDownButton->setIconSize(Utils::Gui::smallIconSize());
-    connect(m_ui->trackerUpButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::moveSelectionUp);
-    connect(m_ui->trackerDownButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::moveSelectionDown);
+    connect(m_ui->trackerUpButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::decreaseSelectedTrackerTiers);
+    connect(m_ui->trackerDownButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::increaseSelectedTrackerTiers);
     m_ui->hBoxLayoutTrackers->insertWidget(0, m_trackerList);
     // Peers list
     m_peerList = new PeerListWidget(this);
@@ -230,7 +230,6 @@ void PropertiesWidget::clear()
     m_ui->labelLastSeenCompleteVal->clear();
     m_ui->labelCreatedByVal->clear();
     m_ui->labelAddedOnVal->clear();
-    m_trackerList->clear();
     m_downloadedPieces->clear();
     m_piecesAvailability->clear();
     m_peerList->clear();
@@ -263,12 +262,6 @@ void PropertiesWidget::updateSavePath(BitTorrent::Torrent *const torrent)
         m_ui->labelSavePathVal->setText(m_torrent->savePath().toString());
 }
 
-void PropertiesWidget::loadTrackers(BitTorrent::Torrent *const torrent)
-{
-    if (torrent == m_torrent)
-        m_trackerList->loadTrackers();
-}
-
 void PropertiesWidget::updateTorrentInfos(BitTorrent::Torrent *const torrent)
 {
     if (torrent == m_torrent)
@@ -281,6 +274,7 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
     m_torrent = torrent;
     m_downloadedPieces->setTorrent(m_torrent);
     m_piecesAvailability->setTorrent(m_torrent);
+    m_trackerList->setTorrent(m_torrent);
     m_ui->filesList->setContentHandler(m_torrent);
     if (!m_torrent)
         return;
@@ -465,10 +459,6 @@ void PropertiesWidget::loadDynamicData()
                 showPiecesAvailability(false);
             }
         }
-        break;
-    case PropTabBar::TrackersTab:
-        // Trackers
-        m_trackerList->loadTrackers();
         break;
     case PropTabBar::PeersTab:
         // Load peers

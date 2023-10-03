@@ -370,8 +370,8 @@ public:
     void setPropCurTab(int tab);
     bool getPropVisible() const;
     void setPropVisible(bool visible);
-    QByteArray getPropTrackerListState() const;
-    void setPropTrackerListState(const QByteArray &state);
+    QByteArray getTrackerListState() const;
+    void setTrackerListState(const QByteArray &state);
     QStringList getRssOpenFolders() const;
     void setRssOpenFolders(const QStringList &folders);
     QByteArray getRssSideSplitterState() const;

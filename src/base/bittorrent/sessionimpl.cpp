@@ -4815,7 +4815,6 @@ void SessionImpl::handleTorrentTrackersAdded(TorrentImpl *const torrent, const Q
     for (const TrackerEntry &newTracker : newTrackers)
         LogMsg(tr("Added tracker to torrent. Torrent: \"%1\". Tracker: \"%2\"").arg(torrent->name(), newTracker.url));
     emit trackersAdded(torrent, newTrackers);
-    emit trackersChanged(torrent);
 }
 
 void SessionImpl::handleTorrentTrackersRemoved(TorrentImpl *const torrent, const QStringList &deletedTrackers)
@@ -4823,7 +4822,6 @@ void SessionImpl::handleTorrentTrackersRemoved(TorrentImpl *const torrent, const
     for (const QString &deletedTracker : deletedTrackers)
         LogMsg(tr("Removed tracker from torrent. Torrent: \"%1\". Tracker: \"%2\"").arg(torrent->name(), deletedTracker));
     emit trackersRemoved(torrent, deletedTrackers);
-    emit trackersChanged(torrent);
 }
 
 void SessionImpl::handleTorrentTrackersChanged(TorrentImpl *const torrent)
@@ -6057,7 +6055,7 @@ void SessionImpl::loadStatistics()
     m_previouslyUploaded = value[u"AlltimeUL"_s].toLongLong();
 }
 
-void SessionImpl::updateTrackerEntries(lt::torrent_handle torrentHandle, QHash<std::string, QHash<TrackerEntry::Endpoint, QMap<int, int>>> updatedTrackers)
+void SessionImpl::updateTrackerEntries(lt::torrent_handle torrentHandle, QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>> updatedTrackers)
 {
     invokeAsync([this, torrentHandle = std::move(torrentHandle), updatedTrackers = std::move(updatedTrackers)]() mutable
     {

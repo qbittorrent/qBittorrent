@@ -82,7 +82,6 @@ public slots:
     void readSettings();
     void saveSettings();
     void reloadPreferences();
-    void loadTrackers(BitTorrent::Torrent *torrent);
 
 protected slots:
     void updateTorrentInfos(BitTorrent::Torrent *torrent);
