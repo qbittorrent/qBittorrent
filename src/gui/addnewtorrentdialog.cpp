@@ -489,15 +489,14 @@ void AddNewTorrentDialog::saveState()
 
 void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorrentParams &inParams, QWidget *parent)
 {
-#ifndef Q_OS_MACOS
-    auto *dlg = new AddNewTorrentDialog(inParams, parent);
-#else
+    Q_UNUSED(parent);
+
     // By not setting a parent to the "AddNewTorrentDialog", all those dialogs
     // will be displayed on top and will not overlap with the main window.
     auto *dlg = new AddNewTorrentDialog(inParams, nullptr);
     // Qt::Window is required to avoid showing only two dialog on top (see #12852).
+    // Also improves the general convenience of adding multiple torrents.
     dlg->setWindowFlags(Qt::Window);
-#endif
     dlg->setAttribute(Qt::WA_DeleteOnClose);
 
     if (Net::DownloadManager::hasSupportedScheme(source))
