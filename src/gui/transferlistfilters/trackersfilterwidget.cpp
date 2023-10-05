@@ -50,8 +50,8 @@ namespace
     {
         ALL_ROW,
         TRACKERLESS_ROW,
-        ERROR_ROW,
         TRACKERERROR_ROW,
+        OTHERERROR_ROW,
         WARNING_ROW,
 
         NUM_ROWS
@@ -93,10 +93,10 @@ namespace
             return TrackersFilterWidget::tr("All (%1)", "this is for the tracker filter");
         case TRACKERLESS_ROW:
             return TrackersFilterWidget::tr("Trackerless (%1)");
-        case ERROR_ROW:
-            return TrackersFilterWidget::tr("Error (%1)");
         case TRACKERERROR_ROW:
             return TrackersFilterWidget::tr("Tracker error (%1)");
+        case OTHERERROR_ROW:
+            return TrackersFilterWidget::tr("Other error (%1)");
         case WARNING_ROW:
             return TrackersFilterWidget::tr("Warning (%1)");
         default:
@@ -122,22 +122,22 @@ TrackersFilterWidget::TrackersFilterWidget(QWidget *parent, TransferListWidget *
     , m_downloadTrackerFavicon(downloadFavicon)
 {
     auto *allTrackersItem = new QListWidgetItem(this);
-        allTrackersItem->setData(Qt::DisplayRole, formatItemText(ALL_ROW, 0));
+    allTrackersItem->setData(Qt::DisplayRole, formatItemText(ALL_ROW, 0));
     allTrackersItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s));
-    auto *noTrackerItem = new QListWidgetItem(this);
-    noTrackerItem->setData(Qt::DisplayRole, formatItemText(TRACKERLESS_ROW, 0));
-    noTrackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackerless"_s, u"network-server"_s));
-    auto *errorItem = new QListWidgetItem(this);
-    errorItem->setData(Qt::DisplayRole, formatItemText(ERROR_ROW, 0));
-    errorItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
+    auto *trackerlessItem = new QListWidgetItem(this);
+    trackerlessItem->setData(Qt::DisplayRole, formatItemText(TRACKERLESS_ROW, 0));
+    trackerlessItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackerless"_s, u"network-server"_s));
     auto *trackerErrorItem = new QListWidgetItem(this);
     trackerErrorItem->setData(Qt::DisplayRole, formatItemText(TRACKERERROR_ROW, 0));
     trackerErrorItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
+    auto *otherErrorItem = new QListWidgetItem(this);
+    otherErrorItem->setData(Qt::DisplayRole, formatItemText(OTHERERROR_ROW, 0));
+    otherErrorItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
     auto *warningItem = new QListWidgetItem(this);
     warningItem->setData(Qt::DisplayRole, formatItemText(WARNING_ROW, 0));
     warningItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-warning"_s, u"dialog-warning"_s));
 
-    m_trackers[NULL_HOST] = {{}, noTrackerItem};
+    m_trackers[NULL_HOST] = {{}, trackerlessItem};
 
     handleTorrentsLoaded(BitTorrent::Session::instance()->torrents());
 
@@ -212,11 +212,11 @@ void TrackersFilterWidget::refreshTrackers(const BitTorrent::Torrent *torrent)
             addItems(trackerEntry.url, {torrentID});
     }
 
-    item(ERROR_ROW)->setText(formatItemText(ERROR_ROW, m_errors.size()));
+    item(OTHERERROR_ROW)->setText(formatItemText(OTHERERROR_ROW, m_errors.size()));
     item(TRACKERERROR_ROW)->setText(formatItemText(TRACKERERROR_ROW, m_trackerErrors.size()));
     item(WARNING_ROW)->setText(formatItemText(WARNING_ROW, m_warnings.size()));
 
-    if (const int row = currentRow(); (row == ERROR_ROW)
+    if (const int row = currentRow(); (row == OTHERERROR_ROW)
         || (row == TRACKERERROR_ROW) || (row == WARNING_ROW))
     {
         applyFilter(row);
@@ -297,9 +297,9 @@ void TrackersFilterWidget::removeItem(const QString &trackerURL, const BitTorren
             if (errored.isEmpty())
             {
                 m_errors.erase(errorHashesIt);
-                item(ERROR_ROW)->setText(formatItemText(ERROR_ROW, m_errors.size()));
-                if (currentRow() == ERROR_ROW)
-                    applyFilter(ERROR_ROW);
+                item(OTHERERROR_ROW)->setText(formatItemText(OTHERERROR_ROW, m_errors.size()));
+                if (currentRow() == OTHERERROR_ROW)
+                    applyFilter(OTHERERROR_ROW);
             }
         }
 
@@ -442,11 +442,11 @@ void TrackersFilterWidget::handleTrackerEntriesUpdated(const BitTorrent::Torrent
     if ((warningHashesIt != m_warnings.end()) && warningHashesIt->isEmpty())
         m_warnings.erase(warningHashesIt);
 
-    item(ERROR_ROW)->setText(formatItemText(ERROR_ROW, m_errors.size()));
+    item(OTHERERROR_ROW)->setText(formatItemText(OTHERERROR_ROW, m_errors.size()));
     item(TRACKERERROR_ROW)->setText(formatItemText(TRACKERERROR_ROW, m_trackerErrors.size()));
     item(WARNING_ROW)->setText(formatItemText(WARNING_ROW, m_warnings.size()));
 
-    if (const int row = currentRow(); (row == ERROR_ROW)
+    if (const int row = currentRow(); (row == OTHERERROR_ROW)
         || (row == TRACKERERROR_ROW) || (row == WARNING_ROW))
     {
         applyFilter(row);
@@ -620,7 +620,7 @@ QSet<BitTorrent::TorrentID> TrackersFilterWidget::getTorrentIDs(const int row) c
     {
     case TRACKERLESS_ROW:
         return m_trackers.value(NULL_HOST).torrents;
-    case ERROR_ROW:
+    case OTHERERROR_ROW:
         return {m_errors.keyBegin(), m_errors.keyEnd()};
     case TRACKERERROR_ROW:
         return {m_trackerErrors.keyBegin(), m_trackerErrors.keyEnd()};
