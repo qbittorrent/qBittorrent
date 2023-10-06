@@ -76,6 +76,7 @@ private:
     int rowFromTracker(const QString &tracker) const;
     QSet<BitTorrent::TorrentID> getTorrentIDs(int row) const;
     void downloadFavicon(const QString &trackerHost, const QString &faviconURL);
+    void removeTracker();
 
     struct TrackerData
     {

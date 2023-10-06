@@ -54,7 +54,7 @@ namespace
         OTHERERROR_ROW,
         WARNING_ROW,
 
-        NUM_ROWS
+        NUM_SPECIAL_ROWS
     };
 
     const QString NULL_HOST = u""_s;
@@ -262,10 +262,10 @@ void TrackersFilterWidget::addItems(const QString &trackerURL, const QVector<Bit
         return;
     }
 
-    Q_ASSERT(count() >= NUM_ROWS);
+    Q_ASSERT(count() >= NUM_SPECIAL_ROWS);
     const Utils::Compare::NaturalLessThan<Qt::CaseSensitive> naturalLessThan {};
     int insPos = count();
-    for (int i = NUM_ROWS; i < count(); ++i)
+    for (int i = NUM_SPECIAL_ROWS; i < count(); ++i)
     {
         if (naturalLessThan(host, item(i)->text()))
         {
@@ -469,6 +469,33 @@ void TrackersFilterWidget::downloadFavicon(const QString &trackerHost, const QSt
     downloadingFaviconNode.insert(trackerHost);
 }
 
+void TrackersFilterWidget::removeTracker()
+{
+    const int row = currentRow();
+    if (row < NUM_SPECIAL_ROWS)
+        return;
+
+    const QString &tracker = trackerFromRow(row);
+    for (const BitTorrent::TorrentID &torrentID : asConst(m_trackers.value(tracker).torrents))
+    {
+        auto *torrent = BitTorrent::Session::instance()->getTorrent(torrentID);
+        Q_ASSERT(torrent);
+        if (!torrent) [[unlikely]]
+            continue;
+
+        QStringList trackersToRemove;
+        for (const BitTorrent::TrackerEntry &trackerEntry : asConst(torrent->trackers()))
+        {
+            if ((trackerEntry.url == tracker) || (QUrl(trackerEntry.url).host() == tracker))
+                trackersToRemove.append(trackerEntry.url);
+        }
+
+        torrent->removeTrackers({trackersToRemove});
+    }
+
+    updateGeometry();
+}
+
 void TrackersFilterWidget::handleFavicoDownloadFinished(const Net::DownloadResult &result)
 {
     const QSet<QString> trackerHosts = m_downloadingFavicons.take(result.url);
@@ -536,6 +563,12 @@ void TrackersFilterWidget::showMenu()
 {
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
+
+    if (currentRow() >= NUM_SPECIAL_ROWS)
+    {
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove tracker")
+            , this, &TrackersFilterWidget::removeTracker);
+    }
 
     menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Resume torrents")
         , transferList(), &TransferListWidget::startVisibleTorrents);
@@ -606,7 +639,7 @@ QString TrackersFilterWidget::trackerFromRow(int row) const
 int TrackersFilterWidget::rowFromTracker(const QString &tracker) const
 {
     Q_ASSERT(!tracker.isEmpty());
-    for (int i = NUM_ROWS; i < count(); ++i)
+    for (int i = NUM_SPECIAL_ROWS; i < count(); ++i)
     {
         if (tracker == trackerFromRow(i))
             return i;
