@@ -622,6 +622,8 @@ QString Utils::Misc::zlibVersionString()
 #ifdef Q_OS_WIN
 bool Utils::Misc::applyMarkOfTheWeb(const Path &file, const QString &url)
 {
+    Q_ASSERT(url.isEmpty() || url.startsWith(u"http:") || url.startsWith(u"https:"));
+
     const QString zoneIDStream = file.toString() + u":Zone.Identifier";
     HANDLE handle = ::CreateFileW(zoneIDStream.toStdWString().c_str(), GENERIC_WRITE
         , (FILE_SHARE_DELETE | FILE_SHARE_READ | FILE_SHARE_WRITE)
@@ -631,8 +633,9 @@ bool Utils::Misc::applyMarkOfTheWeb(const Path &file, const QString &url)
 
     // 5.6.1 Zone.Identifier Stream Name
     // https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fscc/6e3f7352-d11c-4d76-8c39-2516a9df36e8
+    const QString hostURL = !url.isEmpty() ? url : u"about:internet"_s;
     const QByteArray zoneID = QByteArrayLiteral("[ZoneTransfer]\r\nZoneId=3\r\n")
-        + (!url.isEmpty() ? u"HostUrl=%1\r\n"_s.arg(url).toUtf8() : QByteArray());
+        + u"HostUrl=%1\r\n"_s.arg(hostURL).toUtf8();
 
     DWORD written = 0;
     const BOOL writeResult = ::WriteFile(handle, zoneID.constData(), zoneID.size(), &written, nullptr);
