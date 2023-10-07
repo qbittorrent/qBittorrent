@@ -43,6 +43,7 @@
 #include <libtorrent/info_hash.hpp>
 #endif
 
+#include <QtSystemDetection>
 #include <QByteArray>
 #include <QDebug>
 #include <QPointer>
@@ -66,6 +67,10 @@
 #include "peeraddress.h"
 #include "peerinfo.h"
 #include "sessionimpl.h"
+
+#ifdef Q_OS_WIN
+#include "base/utils/misc.h"
+#endif
 
 using namespace BitTorrent;
 
@@ -2193,10 +2198,20 @@ void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
 
     m_completedFiles.setBit(fileIndex);
 
+    const Path actualPath = actualFilePath(fileIndex);
+
+#ifdef Q_OS_WIN
+    // only apply Mark-of-the-Web to new download files
+    if (isDownloading())
+    {
+        const Path fullpath = actualStorageLocation() / actualPath;
+        Utils::Misc::applyMarkOfTheWeb(fullpath);
+    }
+#endif
+
     if (m_session->isAppendExtensionEnabled())
     {
         const Path path = filePath(fileIndex);
-        const Path actualPath = actualFilePath(fileIndex);
         if (actualPath != path)
         {
             qDebug("Renaming %s to %s", qUtf8Printable(actualPath.toString()), qUtf8Printable(path.toString()));
@@ -2331,7 +2346,7 @@ void TorrentImpl::adjustStorageLocation()
         moveStorage(targetPath, MoveStorageContext::AdjustCurrentLocation);
 }
 
-void TorrentImpl::doRenameFile(int index, const Path &path)
+void TorrentImpl::doRenameFile(const int index, const Path &path)
 {
     const QVector<lt::file_index_t> nativeIndexes = m_torrentInfo.nativeIndexes();
 
