@@ -29,9 +29,11 @@
 
 #include "trackersfilterwidget.h"
 
+#include <QCheckBox>
 #include <QIcon>
 #include <QListWidgetItem>
 #include <QMenu>
+#include <QMessageBox>
 #include <QUrl>
 
 #include "base/algorithm.h"
@@ -469,13 +471,8 @@ void TrackersFilterWidget::downloadFavicon(const QString &trackerHost, const QSt
     downloadingFaviconNode.insert(trackerHost);
 }
 
-void TrackersFilterWidget::removeTracker()
+void TrackersFilterWidget::removeTracker(const QString &tracker)
 {
-    const int row = currentRow();
-    if (row < NUM_SPECIAL_ROWS)
-        return;
-
-    const QString &tracker = trackerFromRow(row);
     for (const BitTorrent::TorrentID &torrentID : asConst(m_trackers.value(tracker).torrents))
     {
         auto *torrent = BitTorrent::Session::instance()->getTorrent(torrentID);
@@ -567,7 +564,8 @@ void TrackersFilterWidget::showMenu()
     if (currentRow() >= NUM_SPECIAL_ROWS)
     {
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove tracker")
-            , this, &TrackersFilterWidget::removeTracker);
+            , this, &TrackersFilterWidget::onRemoveTrackerTriggered);
+        menu->addSeparator();
     }
 
     menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Resume torrents")
@@ -624,6 +622,34 @@ void TrackersFilterWidget::torrentAboutToBeDeleted(BitTorrent::Torrent *const to
         removeItem(NULL_HOST, torrentID);
 
     item(ALL_ROW)->setText(formatItemText(ALL_ROW, --m_totalTorrents));
+}
+
+void TrackersFilterWidget::onRemoveTrackerTriggered()
+{
+    const int row = currentRow();
+    if (row < NUM_SPECIAL_ROWS)
+        return;
+
+    const QString &tracker = trackerFromRow(row);
+    if (!Preferences::instance()->confirmRemoveTrackerFromAllTorrents())
+    {
+        removeTracker(tracker);
+        return;
+    }
+
+    auto *confirmBox = new QMessageBox(QMessageBox::Question, tr("Removal confirmation")
+        , tr("Are you sure you want to remove tracker \"%1\" from all torrents?").arg(tracker)
+        , (QMessageBox::Yes | QMessageBox::No), this);
+    confirmBox->setCheckBox(new QCheckBox(tr("Don't ask me again.")));
+    confirmBox->setAttribute(Qt::WA_DeleteOnClose);
+    connect(confirmBox, &QDialog::accepted, this, [this, confirmBox, tracker]
+    {
+        removeTracker(tracker);
+
+        if (confirmBox->checkBox()->isChecked())
+            Preferences::instance()->setConfirmRemoveTrackerFromAllTorrents(false);
+    });
+    confirmBox->open();
 }
 
 QString TrackersFilterWidget::trackerFromRow(int row) const
