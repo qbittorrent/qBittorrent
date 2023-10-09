@@ -53,7 +53,7 @@ Images Authors:
 
 * file: src/icons/qbittorrent-tray-dark.svg src/icons/qbittorrent-tray-light.svg
   copyright: Daniel Eguren <deguren@gmail.com>
-  modified by: Nowshed H. Imran <nowshed.imran@gmail.com> (@now-im)
+  modified by: now-im <now-im.d8gcu@simplelogin.com> (@now-im)
   license: LGPL
 
 * folder: src/icons/
@@ -63,7 +63,7 @@ Images Authors:
          media-seek-forward.svg, network-connect.svg, object-locked.svg, queued.svg, ratio.svg, reannounce.svg, slow_off.svg, slow.svg,
          speedometer.svg, system-log-out.svg, tags.svg, task-complete.svg, task-reject.svg, tracker-error.svg, tracker-warning.svg,
          trackerless.svg, trackers.svg, view-categories.svg
-  copyright: Nowshed H. Imran <nowshed.imran@gmail.com> (@now-im) modified from La-Capitaine icon theme (https://github.com/keeferrourke/la-capitaine-icon-theme)
+  copyright: now-im <now-im.d8gcu@simplelogin.com> (@now-im) modified from La-Capitaine icon theme (https://github.com/keeferrourke/la-capitaine-icon-theme)
   license: GPLv3+
 
 * folder: src/icons/
@@ -76,18 +76,18 @@ Images Authors:
          name.svg, network-server.svg, office-chart-line.svg, plugins.svg, preferences-desktop.svg, preferences-other.svg,
          preferences-system-network.svg, security-high.svg, security-low.svg, set-location.svg, torrent-creator.svg, user-group-delete.svg,
          user-group-new.svg, view-preview.svg, view-refresh.svg, view-statistics.svg, wallet-open.svg, webui.svg
-  copyright: Nowshed H. Imran <nowshed.imran@gmail.com> (@now-im) modified from Ionicons icon theme (https://github.com/ionic-team/ionicons)
+  copyright: now-im <now-im.d8gcu@simplelogin.com> (@now-im) modified from Ionicons icon theme (https://github.com/ionic-team/ionicons)
   license: MIT
 
 * folder: src/icons/
   files: force-recheck.svg
-  copyright: Nowshed H. Imran <nowshed.imran@gmail.com> (@now-im) modified from Font-Awesome icon theme (https://github.com/FortAwesome/Font-Awesome)
+  copyright: now-im <now-im.d8gcu@simplelogin.com> (@now-im) modified from Font-Awesome icon theme (https://github.com/FortAwesome/Font-Awesome)
   license: CC BY 4.0 License
 
 * folder: src/icons/
   files: downloading.svg, edit-clear.svg, error.svg, filter-active.svg, filter-inactive.svg, filter-stalled.svg, kt-set-max-download-speed.svg,
          kt-set-max-upload-speed.svg, list-add.svg, preferences-web-browser-cookies.svg, stalledDL.svg, stalledUP.svg
-  copyright: Nowshed H. Imran <nowshed.imran@gmail.com> (@now-im)
+  copyright: now-im <now-im.d8gcu@simplelogin.com> (@now-im)
   license: BSD 2-Clause License
 
 Translations authors:
