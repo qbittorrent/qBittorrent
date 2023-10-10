@@ -94,7 +94,7 @@ namespace
         // check is there need for digits after decimal separator
         const int precision = (argValue < 10) ? friendlyUnitPrecision(unit) : 0;
         return QLocale::system().toString(argValue, 'f', precision)
-               + QChar::Nbsp + unitString(unit, true);
+               + QChar::Nbsp + speedUnitString(unit);
     }
 }
 

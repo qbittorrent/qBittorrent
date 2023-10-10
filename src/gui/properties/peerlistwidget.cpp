@@ -487,11 +487,11 @@ void PeerListWidget::updatePeer(const int row, const BitTorrent::Torrent *torren
     setModelData(m_listModel, row, PeerListColumns::PEERID_CLIENT, peerIdClient, peerIdClient);
 
     const QString downSpeed = (hideZeroValues && (peer.payloadDownSpeed() <= 0))
-            ? QString() : Utils::Misc::friendlyUnit(peer.payloadDownSpeed(), true);
+            ? QString() : Utils::Misc::friendlySpeedUnit(peer.payloadDownSpeed());
     setModelData(m_listModel, row, PeerListColumns::DOWN_SPEED, downSpeed, peer.payloadDownSpeed(), intDataTextAlignment);
 
     const QString upSpeed = (hideZeroValues && (peer.payloadUpSpeed() <= 0))
-            ? QString() : Utils::Misc::friendlyUnit(peer.payloadUpSpeed(), true);
+            ? QString() : Utils::Misc::friendlySpeedUnit(peer.payloadUpSpeed());
     setModelData(m_listModel, row, PeerListColumns::UP_SPEED, upSpeed, peer.payloadUpSpeed(), intDataTextAlignment);
 
     const QString totalDown = (hideZeroValues && (peer.totalDownload() <= 0))

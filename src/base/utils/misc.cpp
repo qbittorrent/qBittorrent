@@ -75,16 +75,82 @@ namespace
     const struct { const char *source; const char *comment; } units[] =
     {
         QT_TRANSLATE_NOOP3("misc", "B", "bytes"),
+        QT_TRANSLATE_NOOP3("misc", "KB", "kilobytes (1000 bytes)"),
         QT_TRANSLATE_NOOP3("misc", "KiB", "kibibytes (1024 bytes)"),
+        QT_TRANSLATE_NOOP3("misc", "MB", "megabytes (1000 kilobytes)"),
         QT_TRANSLATE_NOOP3("misc", "MiB", "mebibytes (1024 kibibytes)"),
+        QT_TRANSLATE_NOOP3("misc", "GB", "gigabytes (1000 megabytes)"),
         QT_TRANSLATE_NOOP3("misc", "GiB", "gibibytes (1024 mibibytes)"),
+        QT_TRANSLATE_NOOP3("misc", "TB", "terabytes (1000 gigabytes)"),
         QT_TRANSLATE_NOOP3("misc", "TiB", "tebibytes (1024 gibibytes)"),
+        QT_TRANSLATE_NOOP3("misc", "PB", "petabytes (1000 terabytes)"),
         QT_TRANSLATE_NOOP3("misc", "PiB", "pebibytes (1024 tebibytes)"),
+        QT_TRANSLATE_NOOP3("misc", "EB", "exabytes (1000 petabytes)"),
         QT_TRANSLATE_NOOP3("misc", "EiB", "exbibytes (1024 pebibytes)")
     };
 
+    int unitOrd(const Utils::Misc::SizeUnit unit)
+    {
+        using namespace Utils::Misc;
+
+        switch (unit)
+        {
+        case SizeUnit::Byte:
+            return 0;
+        case SizeUnit::KiloByte:
+        case SizeUnit::KibiByte:
+            return 1;
+        case SizeUnit::MegaByte:
+        case SizeUnit::MebiByte:
+            return 2;
+        case SizeUnit::GigaByte:
+        case SizeUnit::GibiByte:
+            return 3;
+        case SizeUnit::TeraByte:
+        case SizeUnit::TebiByte:
+            return 4;
+        case SizeUnit::PetaByte:
+        case SizeUnit::PebiByte:
+            return 5;
+        case SizeUnit::ExaByte:
+        case SizeUnit::ExbiByte:
+            return 6;
+        default:
+            Q_ASSERT_X(false, Q_FUNC_INFO, "Unknown SizeUnit value.");
+            return -1;
+        }
+    }
+
+    Utils::Misc::SizeUnit nthUnit(const int n, const Utils::Misc::SizeUnitType sizeUnitType)
+    {
+        using namespace Utils::Misc;
+
+        Q_ASSERT((n >= 0) && (n <= 6));
+        if ((n < 0) || (n > 6)) [[unlikely]]
+            return static_cast<SizeUnit>(-1);
+
+        switch (n)
+        {
+        default:
+        case 0:
+            return SizeUnit::Byte;
+        case 1:
+            return (sizeUnitType == SizeUnitType::SI) ? SizeUnit::KiloByte : SizeUnit::KibiByte;
+        case 2:
+            return (sizeUnitType == SizeUnitType::SI) ? SizeUnit::MegaByte : SizeUnit::MebiByte;
+        case 3:
+            return (sizeUnitType == SizeUnitType::SI) ? SizeUnit::GigaByte : SizeUnit::GibiByte;
+        case 4:
+            return (sizeUnitType == SizeUnitType::SI) ? SizeUnit::TeraByte : SizeUnit::TebiByte;
+        case 5:
+            return (sizeUnitType == SizeUnitType::SI) ? SizeUnit::PetaByte : SizeUnit::PebiByte;
+        case 6:
+            return (sizeUnitType == SizeUnitType::SI) ? SizeUnit::ExaByte : SizeUnit::ExbiByte;
+        }
+    }
+
     // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB, ...)
-    // use Binary prefix standards from IEC 60027-2
+    // use SI (decimal) or IEC (binary) prefixes
     // see http://en.wikipedia.org/wiki/Kilobyte
     // value must be given in bytes
     // to send numbers instead of strings with suffixes
@@ -94,20 +160,22 @@ namespace
         Utils::Misc::SizeUnit unit;
     };
 
-    std::optional<SplitToFriendlyUnitResult> splitToFriendlyUnit(const qint64 bytes)
+    std::optional<SplitToFriendlyUnitResult> splitToFriendlyUnit(const qint64 bytes, const Utils::Misc::SizeUnitType sizeUnitType)
     {
         if (bytes < 0)
             return std::nullopt;
 
+        const int baseSize = (sizeUnitType == Utils::Misc::SizeUnitType::SI) ? 1000 : 1024;
+
         int i = 0;
         auto value = static_cast<qreal>(bytes);
-
-        while ((value >= 1024) && (i < static_cast<int>(Utils::Misc::SizeUnit::ExbiByte)))
+        while ((value >= baseSize) && (i < unitOrd(Utils::Misc::SizeUnit::ExbiByte)))
         {
-            value /= 1024;
+            value /= baseSize;
             ++i;
         }
-        return {{value, static_cast<Utils::Misc::SizeUnit>(i)}};
+
+        return {{value, nthUnit(i, sizeUnitType)}};
     }
 }
 
@@ -242,32 +310,42 @@ void Utils::Misc::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &
             return;
         }
         // HAL (older systems)
-        QDBusInterface halIface(u"org.freedesktop.Hal"_s, u"/org/freedesktop/Hal/devices/computer"_s,
-                                u"org.freedesktop.Hal.Device.SystemPowerManagement"_s,
-                                QDBusConnection::systemBus());
+        QDBusInterface halIface(u"org.freedesktop.Hal"_s, u"/org/freedesktop/Hal/devices/computer"_s
+            , u"org.freedesktop.Hal.Device.SystemPowerManagement"_s, QDBusConnection::systemBus());
         halIface.call(u"Shutdown"_s);
     }
 #endif
 }
 
-QString Utils::Misc::unitString(const SizeUnit unit, const bool isSpeed)
+QString Utils::Misc::unitString(const SizeUnit unit)
 {
     const auto &unitString = units[static_cast<int>(unit)];
-    QString ret = QCoreApplication::translate("misc", unitString.source, unitString.comment);
-    if (isSpeed)
-        ret += QCoreApplication::translate("misc", "/s", "per second");
-    return ret;
+    return QCoreApplication::translate("misc", unitString.source, unitString.comment);
 }
 
-QString Utils::Misc::friendlyUnit(const qint64 bytes, const bool isSpeed, const int precision)
+QString Utils::Misc::speedUnitString(const SizeUnit unit)
 {
-    const std::optional<SplitToFriendlyUnitResult> result = splitToFriendlyUnit(bytes);
+    return unitString(unit) + QCoreApplication::translate("misc", "/s", "per second");
+}
+
+QString Utils::Misc::friendlyUnit(const qint64 bytes, const SizeUnitType sizeUnitType, const int precision)
+{
+    const std::optional<SplitToFriendlyUnitResult> result = splitToFriendlyUnit(bytes, sizeUnitType);
     if (!result)
         return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
 
     const int digitPrecision = (precision >= 0) ? precision : friendlyUnitPrecision(result->unit);
-    return Utils::String::fromDouble(result->value, digitPrecision)
-           + QChar::Nbsp + unitString(result->unit, isSpeed);
+    return Utils::String::fromDouble(result->value, digitPrecision) + QChar::Nbsp + unitString(result->unit);
+}
+
+QString Utils::Misc::friendlySpeedUnit(const qint64 bytes, const SizeUnitType sizeUnitType, const int precision)
+{
+    const std::optional<SplitToFriendlyUnitResult> result = splitToFriendlyUnit(bytes, sizeUnitType);
+    if (!result)
+        return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
+
+    const int digitPrecision = (precision >= 0) ? precision : friendlyUnitPrecision(result->unit);
+    return Utils::String::fromDouble(result->value, digitPrecision) + QChar::Nbsp + speedUnitString(result->unit);
 }
 
 int Utils::Misc::friendlyUnitPrecision(const SizeUnit unit)

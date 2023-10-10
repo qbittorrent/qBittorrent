@@ -253,7 +253,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     const auto unitString = [hideValues](const qint64 value, const bool isSpeedUnit = false) -> QString
     {
         return (hideValues && (value == 0))
-                ? QString {} : Utils::Misc::friendlyUnit(value, isSpeedUnit);
+            ? QString {} : (isSpeedUnit
+                ? Utils::Misc::friendlySpeedUnit(value) : Utils::Misc::friendlyUnit(value));
     };
 
     const auto limitString = [hideValues](const qint64 value) -> QString
@@ -262,7 +263,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
             return {};
 
         return (value > 0)
-                ? Utils::Misc::friendlyUnit(value, true)
+                ? Utils::Misc::friendlySpeedUnit(value)
                 : C_INFINITY;
     };
 

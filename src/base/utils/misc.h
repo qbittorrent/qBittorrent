@@ -44,20 +44,34 @@ enum class ShutdownDialogAction;
 
 namespace Utils::Misc
 {
-    // use binary prefix standards from IEC 60027-2
-    // see http://en.wikipedia.org/wiki/Kilobyte
+    // Use SI (decimal) and IEC (binary) prefixes
+    // See http://en.wikipedia.org/wiki/Kilobyte
     enum class SizeUnit
     {
-        Byte,       // 1024^0,
-        KibiByte,   // 1024^1,
-        MebiByte,   // 1024^2,
-        GibiByte,   // 1024^3,
-        TebiByte,   // 1024^4,
-        PebiByte,   // 1024^5,
-        ExbiByte    // 1024^6,
+        Byte,       // 1000^0 or 1024^0
+        KiloByte,   // 1000^1
+        KibiByte,   // 1024^1
+        MegaByte,   // 1000^2
+        MebiByte,   // 1024^2
+        GigaByte,   // 1000^3
+        GibiByte,   // 1024^3
+        TeraByte,   // 1000^4
+        TebiByte,   // 1024^4
+        PetaByte,   // 1000^5
+        PebiByte,   // 1024^5
+        ExaByte,    // 1000^6
+        ExbiByte    // 1024^6
         // int64 is used for sizes and thus the next units can not be handled
-        // ZebiByte,   // 1024^7,
+        // ZettaByte,  // 1000^7
+        // ZebiByte,   // 1024^7
+        // YottaByte,  // 1000^8
         // YobiByte,   // 1024^8
+    };
+
+    enum class SizeUnitType
+    {
+        SI,
+        IEC
     };
 
     enum class TimeResolution
@@ -76,11 +90,13 @@ namespace Utils::Misc
     QString opensslVersionString();
     QString zlibVersionString();
 
-    QString unitString(SizeUnit unit, bool isSpeed = false);
+    QString unitString(SizeUnit unit);
+    QString speedUnitString(SizeUnit unit);
 
     // return the best user friendly storage unit (B, KiB, MiB, GiB, TiB)
     // value must be given in bytes
-    QString friendlyUnit(qint64 bytes, bool isSpeed = false, int precision = -1);
+    QString friendlyUnit(qint64 bytes, SizeUnitType sizeUnitType = SizeUnitType::IEC, int precision = -1);
+    QString friendlySpeedUnit(qint64 bytes, SizeUnitType sizeUnitType = SizeUnitType::IEC, int precision = -1);
     int friendlyUnitPrecision(SizeUnit unit);
     qint64 sizeInBytes(qreal size, SizeUnit unit);
 

@@ -89,7 +89,7 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
 #endif
     {
         const int size = 1024 << i;
-        const QString displaySize = Utils::Misc::friendlyUnit(size, false, 0);
+        const QString displaySize = Utils::Misc::friendlySpeedUnit(size, Utils::Misc::SizeUnitType::IEC, 0);
         m_ui->comboPieceSize->addItem(displaySize, size);
     }
 

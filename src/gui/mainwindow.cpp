@@ -1492,16 +1492,16 @@ void MainWindow::reloadSessionStats()
     }
 #else
     const auto toolTip = u"%1\n%2"_s.arg(
-        tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
-        , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
+        tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlySpeedUnit(status.payloadDownloadRate))
+        , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlySpeedUnit(status.payloadUploadRate)));
     app()->desktopIntegration()->setToolTip(toolTip); // tray icon
 #endif  // Q_OS_MACOS
 
     if (m_displaySpeedInTitle)
     {
         setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version")
-            .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true)
-                , Utils::Misc::friendlyUnit(status.payloadUploadRate, true)
+            .arg(Utils::Misc::friendlySpeedUnit(status.payloadDownloadRate)
+                , Utils::Misc::friendlySpeedUnit(status.payloadUploadRate)
                 , QStringLiteral(QBT_VERSION)));
     }
 }
