@@ -148,7 +148,7 @@ RequestExecutionLevel user
 !define MUI_LANGDLL_ALLLANGUAGES
 
 ;--------------------------------
-;Remember the unistaller/installer language
+;Remember the uninstaller/installer language
 !define MUI_LANGDLL_REGISTRY_ROOT "HKLM"
 !define MUI_LANGDLL_REGISTRY_KEY "Software\qbittorrent"
 !define MUI_LANGDLL_REGISTRY_VALUENAME "Installer Language"
