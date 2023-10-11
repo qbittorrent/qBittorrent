@@ -73,4 +73,4 @@ body:
         See **[Where does qBittorrent save its settings?](https://github.com/qbittorrent/qBittorrent/wiki/Frequently-Asked-Questions#Where_does_qBittorrent_save_its_settings)**
         #### Note: It's the user's responsibility to redact any sensitive information
     validations:
-      required: false
+      required: true
