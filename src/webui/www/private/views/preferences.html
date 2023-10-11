@@ -350,6 +350,33 @@
     </fieldset>
 
     <fieldset class="settings">
+        <legend>
+            <input type="checkbox" id="i2pEnabledCheckbox" onclick="qBittorrent.Preferences.updateI2PSettingsEnabled();" />
+            <label for="i2pEnabledCheckbox">QBT_TR(I2P (Experimental) (requires libtorrent &gt;= 2.0))QBT_TR[CONTEXT=OptionsDialog]</label>
+        </legend>
+        <table>
+            <tr>
+                <td>
+                    <label for="i2pAddress">QBT_TR(Host:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="i2pAddress" />
+                </td>
+                <td>
+                    <label for="i2pPort">QBT_TR(Port:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="number" id="i2pPort" min="0" max="65535" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 5em;" />
+                </td>
+            </tr>
+        </table>
+        <div class="formRow">
+            <input type="checkbox" id="i2pMixedMode" title="QBT_TR(If &quot;mixed mode&quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.)QBT_TR[CONTEXT=OptionsDialog]" />
+            <label for="i2pMixedMode">QBT_TR(Mixed mode)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+    </fieldset>
+
+    <fieldset class="settings">
         <legend>QBT_TR(Proxy Server)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <table>
             <tr>
@@ -1436,6 +1463,38 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <input type="text" id="dhtBootstrapNodes" placeholder="QBT_TR(Resets to default if empty)QBT_TR[CONTEXT=OptionsDialog]" style="width: 15em;" />
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <label for="i2pInboundQuantity">QBT_TR(I2P inbound quantity (requires libtorrent &gt;= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#i2p_inbound_quantity" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input id="i2pInboundQuantity" type="number" min="1" max="16" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 15em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="i2pOutboundQuantity">QBT_TR(I2P outbound quantity (requires libtorrent &gt;= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#i2p_outbound_quantity" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input id="i2pOutboundQuantity" type="number" min="1" max="16" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 15em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="i2pInboundLength">QBT_TR(I2P inbound length (requires libtorrent &gt;= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#i2p_inbound_length" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input id="i2pInboundLength" type="number" min="0" max="7" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 15em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="i2pOutboundLength">QBT_TR(I2P outbound length (requires libtorrent &gt;= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#i2p_outbound_length" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input id="i2pOutboundLength" type="number" min="0" max="7" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 15em;" />
+                </td>
+            </tr>
         </table>
     </fieldset>
 </div>
@@ -1471,6 +1530,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateMaxConnecPerTorrentEnabled: updateMaxConnecPerTorrentEnabled,
                 updateMaxUploadsEnabled: updateMaxUploadsEnabled,
                 updateMaxUploadsPerTorrentEnabled: updateMaxUploadsPerTorrentEnabled,
+                updateI2PSettingsEnabled: updateI2PSettingsEnabled,
                 updatePeerProxySettings: updatePeerProxySettings,
                 updatePeerProxyAuthSettings: updatePeerProxyAuthSettings,
                 updateFilterSettings: updateFilterSettings,
@@ -1658,6 +1718,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const updateMaxUploadsPerTorrentEnabled = function() {
             const isMaxUploadsPerTorrentEnabled = $('max_uploads_per_torrent_checkbox').getProperty('checked');
             $('max_uploads_per_torrent_value').setProperty('disabled', !isMaxUploadsPerTorrentEnabled);
+        };
+
+        const updateI2PSettingsEnabled = function() {
+            const isI2PEnabled = $('i2pEnabledCheckbox').getProperty('checked');
+            $('i2pAddress').setProperty('disabled', !isI2PEnabled);
+            $('i2pPort').setProperty('disabled', !isI2PEnabled);
+            $('i2pMixedMode').setProperty('disabled', !isI2PEnabled);
         };
 
         const updatePeerProxySettings = function() {
@@ -2039,6 +2106,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         }
                         updateMaxUploadsPerTorrentEnabled();
 
+                        // I2P
+                        $('i2pEnabledCheckbox').setProperty('checked', pref.i2p_enabled);
+                        $('i2pAddress').setProperty('value', pref.i2p_address);
+                        $('i2pPort').setProperty('value', pref.i2p_port);
+                        $('i2pMixedMode').setProperty('checked', pref.i2p_mixed_mode);
+                        updateI2PSettingsEnabled();
+
                         // Proxy Server
                         $('peer_proxy_type_select').setProperty('value', pref.proxy_type);
                         $('peer_proxy_host_text').setProperty('value', pref.proxy_ip);
@@ -2259,6 +2333,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         $('peerTurnoverInterval').setProperty('value', pref.peer_turnover_interval);
                         $('requestQueueSize').setProperty('value', pref.request_queue_size);
                         $('dhtBootstrapNodes').setProperty('value', pref.dht_bootstrap_nodes);
+                        $('i2pInboundQuantity').setProperty('value', pref.i2p_inbound_quantity);
+                        $('i2pOutboundQuantity').setProperty('value', pref.i2p_outbound_quantity);
+                        $('i2pInboundLength').setProperty('value', pref.i2p_inbound_length);
+                        $('i2pOutboundLength').setProperty('value', pref.i2p_outbound_length);
                     }
                 }
             }).send();
@@ -2377,6 +2455,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 }
             }
             settings.set('max_uploads_per_torrent', max_uploads_per_torrent);
+
+            // I2P
+            settings.set('i2p_enabled', $('i2pEnabledCheckbox').getProperty('checked'));
+            settings.set('i2p_address', $('i2pAddress').getProperty('value'));
+            settings.set('i2p_port', $('i2pPort').getProperty('value').toInt());
+            settings.set('i2p_mixed_mode', $('i2pMixedMode').getProperty('checked'));
 
             // Proxy Server
             settings.set('proxy_type', $('peer_proxy_type_select').getProperty('value'));
@@ -2693,6 +2777,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings.set('peer_turnover_interval', $('peerTurnoverInterval').getProperty('value'));
             settings.set('request_queue_size', $('requestQueueSize').getProperty('value'));
             settings.set('dht_bootstrap_nodes', $('dhtBootstrapNodes').getProperty('value'));
+            settings.set('i2p_inbound_quantity', $('i2pInboundQuantity').getProperty('value'));
+            settings.set('i2p_outbound_quantity', $('i2pOutboundQuantity').getProperty('value'));
+            settings.set('i2p_inbound_length', $('i2pInboundLength').getProperty('value'));
+            settings.set('i2p_outbound_length', $('i2pOutboundLength').getProperty('value'));
 
             // Send it to qBT
             const json_str = JSON.encode(settings);

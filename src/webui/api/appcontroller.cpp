@@ -193,6 +193,16 @@ void AppController::preferencesAction()
     data[u"max_uploads"_s] = session->maxUploads();
     data[u"max_uploads_per_torrent"_s] = session->maxUploadsPerTorrent();
 
+    // I2P
+    data[u"i2p_enabled"_s] = session->isI2PEnabled();
+    data[u"i2p_address"_s] = session->I2PAddress();
+    data[u"i2p_port"_s] = session->I2PPort();
+    data[u"i2p_mixed_mode"_s] = session->I2PMixedMode();
+    data[u"i2p_inbound_quantity"_s] = session->I2PInboundQuantity();
+    data[u"i2p_outbound_quantity"_s] = session->I2POutboundQuantity();
+    data[u"i2p_inbound_length"_s] = session->I2PInboundLength();
+    data[u"i2p_outbound_length"_s] = session->I2POutboundLength();
+
     // Proxy Server
     const auto *proxyManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf = proxyManager->proxyConfiguration();
@@ -631,6 +641,24 @@ void AppController::setPreferencesAction()
         session->setMaxUploads(it.value().toInt());
     if (hasKey(u"max_uploads_per_torrent"_s))
         session->setMaxUploadsPerTorrent(it.value().toInt());
+
+    // I2P
+    if (hasKey(u"i2p_enabled"_s))
+        session->setI2PEnabled(it.value().toBool());
+    if (hasKey(u"i2p_address"_s))
+        session->setI2PAddress(it.value().toString());
+    if (hasKey(u"i2p_port"_s))
+        session->setI2PPort(it.value().toInt());
+    if (hasKey(u"i2p_mixed_mode"_s))
+        session->setI2PMixedMode(it.value().toBool());
+    if (hasKey(u"i2p_inbound_quantity"_s))
+        session->setI2PInboundQuantity(it.value().toInt());
+    if (hasKey(u"i2p_outbound_quantity"_s))
+        session->setI2POutboundQuantity(it.value().toInt());
+    if (hasKey(u"i2p_inbound_length"_s))
+        session->setI2PInboundLength(it.value().toInt());
+    if (hasKey(u"i2p_outbound_length"_s))
+        session->setI2POutboundLength(it.value().toInt());
 
     // Proxy Server
     auto *proxyManager = Net::ProxyConfigurationManager::instance();
