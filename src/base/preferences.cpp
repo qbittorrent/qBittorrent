@@ -1580,6 +1580,19 @@ void Preferences::setConfirmMergeTrackers(const bool enabled)
     setValue(u"GUI/ConfirmActions/MergeTrackers"_s, enabled);
 }
 
+bool Preferences::confirmRemoveTrackerFromAllTorrents() const
+{
+    return value(u"GUI/ConfirmActions/RemoveTrackerFromAllTorrents"_s, true);
+}
+
+void Preferences::setConfirmRemoveTrackerFromAllTorrents(const bool enabled)
+{
+    if (enabled == confirmRemoveTrackerFromAllTorrents())
+        return;
+
+    setValue(u"GUI/ConfirmActions/RemoveTrackerFromAllTorrents"_s, enabled);
+}
+
 #ifndef Q_OS_MACOS
 TrayIcon::Style Preferences::trayIconStyle() const
 {

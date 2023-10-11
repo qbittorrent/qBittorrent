@@ -70,12 +70,15 @@ private:
     void handleTorrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents) override;
     void torrentAboutToBeDeleted(BitTorrent::Torrent *torrent) override;
 
+    void onRemoveTrackerTriggered();
+
     void addItems(const QString &trackerURL, const QVector<BitTorrent::TorrentID> &torrents);
     void removeItem(const QString &trackerURL, const BitTorrent::TorrentID &id);
     QString trackerFromRow(int row) const;
     int rowFromTracker(const QString &tracker) const;
     QSet<BitTorrent::TorrentID> getTorrentIDs(int row) const;
     void downloadFavicon(const QString &trackerHost, const QString &faviconURL);
+    void removeTracker(const QString &tracker);
 
     struct TrackerData
     {

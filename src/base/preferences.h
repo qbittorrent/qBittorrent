@@ -321,6 +321,8 @@ public:
     void setConfirmPauseAndResumeAll(bool enabled);
     bool confirmMergeTrackers() const;
     void setConfirmMergeTrackers(bool enabled);
+    bool confirmRemoveTrackerFromAllTorrents() const;
+    void setConfirmRemoveTrackerFromAllTorrents(bool enabled);
 #ifndef Q_OS_MACOS
     bool systemTrayEnabled() const;
     void setSystemTrayEnabled(bool enabled);

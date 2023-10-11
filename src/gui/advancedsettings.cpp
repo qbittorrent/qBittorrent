@@ -88,6 +88,7 @@ namespace
         NOTIFICATION_TIMEOUT,
 #endif
         CONFIRM_REMOVE_ALL_TAGS,
+        CONFIRM_REMOVE_TRACKER_FROM_ALL_TORRENTS,
         REANNOUNCE_WHEN_ADDRESS_CHANGED,
         DOWNLOAD_TRACKER_FAVICON,
         SAVE_PATH_HISTORY_LENGTH,
@@ -100,6 +101,7 @@ namespace
         TRACKER_PORT,
         TRACKER_PORT_FORWARDING,
         PYTHON_EXECUTABLE_PATH,
+
         // libtorrent section
         LIBTORRENT_HEADER,
         BDECODE_DEPTH_LIMIT,
@@ -327,6 +329,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     pref->setConfirmTorrentRecheck(m_checkBoxConfirmTorrentRecheck.isChecked());
 
     pref->setConfirmRemoveAllTags(m_checkBoxConfirmRemoveAllTags.isChecked());
+    pref->setConfirmRemoveTrackerFromAllTorrents(m_checkBoxConfirmRemoveTrackerFromAllTorrents.isChecked());
 
     session->setAnnounceToAllTrackers(m_checkBoxAnnounceAllTrackers.isChecked());
     session->setAnnounceToAllTiers(m_checkBoxAnnounceAllTiers.isChecked());
@@ -837,6 +840,10 @@ void AdvancedSettings::loadAdvancedSettings()
     // Remove all tags confirmation
     m_checkBoxConfirmRemoveAllTags.setChecked(pref->confirmRemoveAllTags());
     addRow(CONFIRM_REMOVE_ALL_TAGS, tr("Confirm removal of all tags"), &m_checkBoxConfirmRemoveAllTags);
+
+    // Remove tracker from all torrents confirmation
+    m_checkBoxConfirmRemoveTrackerFromAllTorrents.setChecked(pref->confirmRemoveTrackerFromAllTorrents());
+    addRow(CONFIRM_REMOVE_TRACKER_FROM_ALL_TORRENTS, tr("Confirm removal of tracker from all torrents"), &m_checkBoxConfirmRemoveTrackerFromAllTorrents);
 
     // Announce to all trackers in a tier
     m_checkBoxAnnounceAllTrackers.setChecked(session->announceToAllTrackers());
