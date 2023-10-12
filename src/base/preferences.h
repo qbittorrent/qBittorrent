@@ -290,15 +290,15 @@ public:
 #ifdef Q_OS_WIN
     bool neverCheckFileAssoc() const;
     void setNeverCheckFileAssoc(bool check = true);
-    static bool isTorrentFileAssocSet();
+    static bool isTorrentFileAssocSet() const;
     static void setTorrentFileAssoc(bool set);
-    static bool isMagnetLinkAssocSet();
+    static bool isMagnetLinkAssocSet() const;
     static void setMagnetLinkAssoc(bool set);
 #endif
 #ifdef Q_OS_MACOS
-    static bool isTorrentFileAssocSet();
+    static bool isTorrentFileAssocSet() const;
     static void setTorrentFileAssoc();
-    static bool isMagnetLinkAssocSet();
+    static bool isMagnetLinkAssocSet() const;
     static void setMagnetLinkAssoc();
 #endif
     int getTrackerPort() const;

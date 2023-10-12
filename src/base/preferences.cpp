@@ -1318,16 +1318,10 @@ void Preferences::setNeverCheckFileAssoc(const bool check)
     setValue(u"Preferences/Win32/NeverCheckFileAssocation"_s, check);
 }
 
-bool Preferences::isTorrentFileAssocSet()
+bool Preferences::isTorrentFileAssocSet() const
 {
     const QSettings settings(u"HKEY_CURRENT_USER\\Software\\Classes"_s, QSettings::NativeFormat);
-    if (settings.value(u".torrent/Default"_s).toString() != u"qBittorrent")
-    {
-        qDebug(".torrent != qBittorrent");
-        return false;
-    }
-
-    return true;
+    return settings.value(u".torrent/Default"_s).toString() == u"qBittorrent";
 }
 
 void Preferences::setTorrentFileAssoc(const bool set)
@@ -1337,25 +1331,33 @@ void Preferences::setTorrentFileAssoc(const bool set)
     // .Torrent association
     if (set)
     {
+        if (isTorrentFileAssocSet())
+            return;
+
         const QString oldProgId = settings.value(u".torrent/Default"_s).toString();
         if (!oldProgId.isEmpty() && (oldProgId != u"qBittorrent"))
             settings.setValue((u".torrent/OpenWithProgids/" + oldProgId), QString());
+
         settings.setValue(u".torrent/Default"_s, u"qBittorrent"_s);
+        settings.setValue(u".torrent/Content Type"_s, u"application/x-bittorrent"_s);
     }
-    else if (isTorrentFileAssocSet())
+    else
     {
+        if (!isTorrentFileAssocSet())
+            return;
+
         settings.setValue(u".torrent/Default"_s, QString());
     }
 
-    SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
+    ::SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, nullptr, nullptr);
 }
 
-bool Preferences::isMagnetLinkAssocSet()
+bool Preferences::isMagnetLinkAssocSet() const
 {
     const QSettings settings(u"HKEY_CURRENT_USER\\Software\\Classes"_s, QSettings::NativeFormat);
 
     // Check magnet link assoc
-    const QString shellCommand = settings.value(u"magnet/shell/open/command/Default"_s, QString()).toString();
+    const QString shellCommand = settings.value(u"magnet/shell/open/command/Default"_s).toString();
 
     const QRegularExpressionMatch exeRegMatch = QRegularExpression(u"\"([^\"]+)\".*"_s).match(shellCommand);
     if (!exeRegMatch.hasMatch())
@@ -1375,23 +1377,31 @@ void Preferences::setMagnetLinkAssoc(const bool set)
     // Magnet association
     if (set)
     {
+        if (isMagnetLinkAssocSet())
+            return;
+
         const QString applicationFilePath = Path(qApp->applicationFilePath()).toString();
         const QString commandStr = u'"' + applicationFilePath + u"\" \"%1\"";
         const QString iconStr = u'"' + applicationFilePath + u"\",1";
 
         settings.setValue(u"magnet/Default"_s, u"URL:Magnet link"_s);
         settings.setValue(u"magnet/Content Type"_s, u"application/x-magnet"_s);
-        settings.setValue(u"magnet/URL Protocol"_s, QString());
         settings.setValue(u"magnet/DefaultIcon/Default"_s, iconStr);
         settings.setValue(u"magnet/shell/Default"_s, u"open"_s);
         settings.setValue(u"magnet/shell/open/command/Default"_s, commandStr);
+        settings.setValue(u"magnet/URL Protocol"_s, QString());
     }
-    else if (isMagnetLinkAssocSet())
+    else
     {
-        settings.remove(u"magnet"_s);
+        if (!isMagnetLinkAssocSet())
+            return;
+
+        // only wipe values that are specific to qbt
+        settings.setValue(u"magnet/DefaultIcon/Default"_s, QString());
+        settings.setValue(u"magnet/shell/open/command/Default"_s, QString());
     }
 
-    SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
+    ::SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, nullptr, nullptr);
 }
 #endif // Q_OS_WIN
 
@@ -1402,7 +1412,7 @@ namespace
     const CFStringRef magnetUrlScheme = CFSTR("magnet");
 }
 
-bool Preferences::isTorrentFileAssocSet()
+bool Preferences::isTorrentFileAssocSet() const
 {
     bool isSet = false;
     const CFStringRef torrentId = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, torrentExtension, NULL);
@@ -1436,7 +1446,7 @@ void Preferences::setTorrentFileAssoc()
     }
 }
 
-bool Preferences::isMagnetLinkAssocSet()
+bool Preferences::isMagnetLinkAssocSet() const
 {
     bool isSet = false;
     const CFStringRef defaultHandlerId = LSCopyDefaultHandlerForURLScheme(magnetUrlScheme);
