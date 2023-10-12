@@ -883,14 +883,14 @@ int Application::exec()
         delete m_startupProgressDialog;
 #ifdef Q_OS_WIN
         auto *pref = Preferences::instance();
-        if (!pref->neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet()))
+        if (!pref->neverCheckFileAssoc() && (!Utils::Misc::isTorrentFileAssocSet() || !Utils::Misc::isMagnetLinkAssocSet()))
         {
             if (QMessageBox::question(m_window, tr("Torrent file association")
                                       , tr("qBittorrent is not the default application for opening torrent files or Magnet links.\nDo you want to make qBittorrent the default application for these?")
                                       , QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
             {
-                pref->setTorrentFileAssoc(true);
-                pref->setMagnetLinkAssoc(true);
+                Utils::Misc::setTorrentFileAssoc(true);
+                Utils::Misc::setMagnetLinkAssoc(true);
             }
             else
             {

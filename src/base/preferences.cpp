@@ -32,13 +32,6 @@
 #include <algorithm>
 #include <chrono>
 
-#ifdef Q_OS_MACOS
-#include <CoreServices/CoreServices.h>
-#endif
-#ifdef Q_OS_WIN
-#include <shlobj.h>
-#endif
-
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDir>
@@ -47,10 +40,6 @@
 #include <QNetworkCookie>
 #include <QSettings>
 #include <QTime>
-
-#ifdef Q_OS_WIN
-#include <QRegularExpression>
-#endif
 
 #include "algorithm.h"
 #include "global.h"
@@ -1317,159 +1306,7 @@ void Preferences::setNeverCheckFileAssoc(const bool check)
 
     setValue(u"Preferences/Win32/NeverCheckFileAssocation"_s, check);
 }
-
-bool Preferences::isTorrentFileAssocSet() const
-{
-    const QSettings settings(u"HKEY_CURRENT_USER\\Software\\Classes"_s, QSettings::NativeFormat);
-    return settings.value(u".torrent/Default"_s).toString() == u"qBittorrent";
-}
-
-void Preferences::setTorrentFileAssoc(const bool set)
-{
-    QSettings settings(u"HKEY_CURRENT_USER\\Software\\Classes"_s, QSettings::NativeFormat);
-
-    // .Torrent association
-    if (set)
-    {
-        if (isTorrentFileAssocSet())
-            return;
-
-        const QString oldProgId = settings.value(u".torrent/Default"_s).toString();
-        if (!oldProgId.isEmpty() && (oldProgId != u"qBittorrent"))
-            settings.setValue((u".torrent/OpenWithProgids/" + oldProgId), QString());
-
-        settings.setValue(u".torrent/Default"_s, u"qBittorrent"_s);
-        settings.setValue(u".torrent/Content Type"_s, u"application/x-bittorrent"_s);
-    }
-    else
-    {
-        if (!isTorrentFileAssocSet())
-            return;
-
-        settings.setValue(u".torrent/Default"_s, QString());
-    }
-
-    ::SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, nullptr, nullptr);
-}
-
-bool Preferences::isMagnetLinkAssocSet() const
-{
-    const QSettings settings(u"HKEY_CURRENT_USER\\Software\\Classes"_s, QSettings::NativeFormat);
-
-    // Check magnet link assoc
-    const QString shellCommand = settings.value(u"magnet/shell/open/command/Default"_s).toString();
-
-    const QRegularExpressionMatch exeRegMatch = QRegularExpression(u"\"([^\"]+)\".*"_s).match(shellCommand);
-    if (!exeRegMatch.hasMatch())
-        return false;
-
-    const Path assocExe {exeRegMatch.captured(1)};
-    if (assocExe != Path(qApp->applicationFilePath()))
-        return false;
-
-    return true;
-}
-
-void Preferences::setMagnetLinkAssoc(const bool set)
-{
-    QSettings settings(u"HKEY_CURRENT_USER\\Software\\Classes"_s, QSettings::NativeFormat);
-
-    // Magnet association
-    if (set)
-    {
-        if (isMagnetLinkAssocSet())
-            return;
-
-        const QString applicationFilePath = Path(qApp->applicationFilePath()).toString();
-        const QString commandStr = u'"' + applicationFilePath + u"\" \"%1\"";
-        const QString iconStr = u'"' + applicationFilePath + u"\",1";
-
-        settings.setValue(u"magnet/Default"_s, u"URL:Magnet link"_s);
-        settings.setValue(u"magnet/Content Type"_s, u"application/x-magnet"_s);
-        settings.setValue(u"magnet/DefaultIcon/Default"_s, iconStr);
-        settings.setValue(u"magnet/shell/Default"_s, u"open"_s);
-        settings.setValue(u"magnet/shell/open/command/Default"_s, commandStr);
-        settings.setValue(u"magnet/URL Protocol"_s, QString());
-    }
-    else
-    {
-        if (!isMagnetLinkAssocSet())
-            return;
-
-        // only wipe values that are specific to qbt
-        settings.setValue(u"magnet/DefaultIcon/Default"_s, QString());
-        settings.setValue(u"magnet/shell/open/command/Default"_s, QString());
-    }
-
-    ::SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, nullptr, nullptr);
-}
 #endif // Q_OS_WIN
-
-#ifdef Q_OS_MACOS
-namespace
-{
-    const CFStringRef torrentExtension = CFSTR("torrent");
-    const CFStringRef magnetUrlScheme = CFSTR("magnet");
-}
-
-bool Preferences::isTorrentFileAssocSet() const
-{
-    bool isSet = false;
-    const CFStringRef torrentId = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, torrentExtension, NULL);
-    if (torrentId != NULL)
-    {
-        const CFStringRef defaultHandlerId = LSCopyDefaultRoleHandlerForContentType(torrentId, kLSRolesViewer);
-        if (defaultHandlerId != NULL)
-        {
-            const CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
-            if (myBundleId != NULL)
-                isSet = CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
-            CFRelease(defaultHandlerId);
-        }
-        CFRelease(torrentId);
-    }
-    return isSet;
-}
-
-void Preferences::setTorrentFileAssoc()
-{
-    if (isTorrentFileAssocSet())
-        return;
-
-    const CFStringRef torrentId = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, torrentExtension, NULL);
-    if (torrentId != NULL)
-    {
-        const CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
-        if (myBundleId != NULL)
-            LSSetDefaultRoleHandlerForContentType(torrentId, kLSRolesViewer, myBundleId);
-        CFRelease(torrentId);
-    }
-}
-
-bool Preferences::isMagnetLinkAssocSet() const
-{
-    bool isSet = false;
-    const CFStringRef defaultHandlerId = LSCopyDefaultHandlerForURLScheme(magnetUrlScheme);
-    if (defaultHandlerId != NULL)
-    {
-        const CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
-        if (myBundleId != NULL)
-            isSet = CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
-        CFRelease(defaultHandlerId);
-    }
-    return isSet;
-}
-
-void Preferences::setMagnetLinkAssoc()
-{
-    if (isMagnetLinkAssocSet())
-        return;
-
-    const CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
-    if (myBundleId != NULL)
-        LSSetDefaultHandlerForURLScheme(magnetUrlScheme, myBundleId);
-}
-#endif // Q_OS_MACOS
 
 int Preferences::getTrackerPort() const
 {
