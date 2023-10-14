@@ -435,6 +435,7 @@ namespace BitTorrent
         virtual const SessionStatus &status() const = 0;
         virtual const CacheStatus &cacheStatus() const = 0;
         virtual bool isListening() const = 0;
+        virtual bool isPaused() const = 0;
 
         virtual MaxRatioAction maxRatioAction() const = 0;
         virtual void setMaxRatioAction(MaxRatioAction act) = 0;

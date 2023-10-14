@@ -404,6 +404,7 @@ namespace BitTorrent
         const SessionStatus &status() const override;
         const CacheStatus &cacheStatus() const override;
         bool isListening() const override;
+        bool isPaused() const override;
 
         MaxRatioAction maxRatioAction() const override;
         void setMaxRatioAction(MaxRatioAction act) override;
@@ -512,7 +513,7 @@ namespace BitTorrent
         QStringList getListeningIPs() const;
         void configureListeningInterface();
         void enableTracker(bool enable);
-        void enableBandwidthScheduler();
+        void initializeBandwidthScheduler();
         void populateAdditionalTrackers();
         void enableIPFilter();
         void disableIPFilter();

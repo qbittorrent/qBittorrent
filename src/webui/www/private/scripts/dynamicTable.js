@@ -53,7 +53,8 @@ window.qBittorrent.DynamicTable = (function() {
             RssArticleTable: RssArticleTable,
             RssDownloaderRulesTable: RssDownloaderRulesTable,
             RssDownloaderFeedSelectionTable: RssDownloaderFeedSelectionTable,
-            RssDownloaderArticlesTable: RssDownloaderArticlesTable
+            RssDownloaderArticlesTable: RssDownloaderArticlesTable,
+            ScheduleTable: ScheduleTable
         };
     };
 
@@ -3065,6 +3066,176 @@ window.qBittorrent.DynamicTable = (function() {
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};
+        }
+    });
+
+    const ScheduleTable = new Class({
+        Extends: DynamicTable,
+        setupHeaderMenu: function() {},
+        getSortedColumn: function() {},
+        setSortedColumn: function() {},
+        loadColumnsOrder: function() {},
+        saveColumnsOrder: function() {},
+        setupHeaderEvents: function() {
+            this.currentHeaderAction = '';
+            this.canResize = false;
+
+            const mouseMoveFn = function(e) {
+                const brect = e.target.getBoundingClientRect();
+                const mouseXRelative = e.event.clientX - brect.left;
+                if (this.currentHeaderAction === '') {
+                    if (brect.width - mouseXRelative < 10) {
+                        this.resizeTh = e.target;
+                        this.canResize = true;
+                        e.target.getParent("tr").style.cursor = 'col-resize';
+                    }
+                    else if ((mouseXRelative < 10) && e.target.getPrevious('[class=""]')) {
+                        this.resizeTh = e.target.getPrevious('[class=""]');
+                        this.canResize = true;
+                        e.target.getParent("tr").style.cursor = 'col-resize';
+                    }
+                    else {
+                        this.canResize = false;
+                        e.target.getParent("tr").style.cursor = '';
+                    }
+                }
+                this.lastHoverTh = e.target;
+                this.lastClientX = e.event.clientX;
+            }.bind(this);
+
+            const onBeforeStart = function(el) {
+                this.clickedTh = el;
+                this.currentHeaderAction = 'start';
+                this.dragMovement = false;
+                this.dragStartX = this.lastClientX;
+            }.bind(this);
+
+            const onStart = function(el, event) {
+                if (this.canResize) {
+                    this.currentHeaderAction = 'resize';
+                    this.startWidth = this.resizeTh.getStyle('width').toFloat();
+                }
+            }.bind(this);
+
+            const onDrag = function(el, event) {
+                if (this.currentHeaderAction === 'resize') {
+                    let width = this.startWidth + (event.page.x - this.dragStartX);
+                    if (width < 16)
+                        width = 16;
+                    this.columns[this.resizeTh.columnName].width = width;
+                    this.updateColumn(this.resizeTh.columnName);
+                }
+            }.bind(this);
+
+            const onComplete = function(el, event) {
+                if (this.currentHeaderAction === 'resize')
+                    LocalPreferences.set('column_' + this.resizeTh.columnName + '_width_scheduleTableDiv', this.columns[this.resizeTh.columnName].width);
+                this.currentHeaderAction = '';
+            }.bind(this);
+
+            const onCancel = function(el) {
+                this.currentHeaderAction = '';
+            }.bind(this);
+
+            const ths = this.fixedTableHeader.getElements('th');
+
+            for (let i = 0; i < ths.length; ++i) {
+                const th = ths[i];
+                th.addEvent('mousemove', mouseMoveFn);
+                th.addEvent('touchend', onCancel);
+                th.makeResizable({
+                    modifiers: {
+                        x: '',
+                        y: ''
+                    },
+                    onBeforeStart: onBeforeStart,
+                    onStart: onStart,
+                    onDrag: onDrag,
+                    onComplete: onComplete,
+                    onCancel: onCancel
+                });
+            }
+        },
+        newColumn: function(name, style, caption, defaultWidth, defaultVisible) {
+            const column = {};
+            column['name'] = name;
+            column['title'] = name;
+            column['caption'] = caption;
+            column['style'] = style;
+            column['width'] = LocalPreferences.get('column_' + name + '_width_scheduleTableDiv', defaultWidth);
+
+            column['dataProperties'] = [name];
+            column['getRowValue'] = function(row, pos) {
+                if (pos === undefined)
+                    pos = 0;
+                return row['full_data'][this.dataProperties[pos]];
+            };
+            column['compareRows'] = function(row1, row2) { return 0; };
+            column['updateTd'] = function(td, row) {
+                const value = this.getRowValue(row);
+                td.set('text', value);
+                td.set('title', value);
+            };
+            column['onResize'] = null;
+            this.columns.push(column);
+            this.columns[name] = column;
+
+            this.hiddenTableHeader.appendChild(new Element('th'));
+            this.fixedTableHeader.appendChild(new Element('th'));
+        },
+        initColumns: function() {
+            this.newColumn('start', '', 'QBT_TR(From)QBT_TR[CONTEXT=OptionsDialog]', 75, true);
+            this.newColumn('end', '', 'QBT_TR(To)QBT_TR[CONTEXT=OptionsDialog]', 75, true);
+            this.newColumn('pause', '', 'QBT_TR(Pause?)QBT_TR[CONTEXT=OptionsDialog]', 75, true);
+            this.newColumn('dl', '', 'QBT_TR(Download)QBT_TR[CONTEXT=OptionsDialog]', 75, true);
+            this.newColumn('ul', '', 'QBT_TR(Upload)QBT_TR[CONTEXT=OptionsDialog]', 75, true);
+
+            this.columns['start'].updateTd = (td, row) => {
+                let split = row.data.start.split(':');
+                let time = new Date(0, 0, 0, split[0], split[1]);
+                td.set('text', time.toLocaleTimeString(this.locale, { hour: '2-digit', minute: '2-digit' }));
+                td.set('title', td.text);
+            };
+
+            this.columns['end'].updateTd = (td, row) => {
+                let split = row.data.end.split(':');
+                let time = new Date(0, 0, 0, split[0], split[1]);
+                td.set('text', time.toLocaleTimeString(this.locale, { hour: '2-digit', minute: '2-digit' }));
+                td.set('title', td.text);
+            };
+
+            this.columns['pause'].updateTd = (td, row) => {
+                td.set('text', row.data.pause ? 'QBT_TR(Yes)QBT_TR[CONTEXT=OptionsDialog]' : 'QBT_TR(No)QBT_TR[CONTEXT=OptionsDialog]');
+                td.set('title', td.text);
+            };
+
+            this.columns['dl'].updateTd = (td, row) => {
+                const speedText = row.data.dl == 0 ? '&infin;'
+                    : window.qBittorrent.Misc.friendlyUnit(row.data.dl * 1024, true);
+                td.set('html', row.data.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]' : speedText);
+                td.set('title', td.text);
+            };
+
+            this.columns['ul'].updateTd = (td, row) => {
+                const speedText = row.data.ul == 0 ? '&infin;'
+                    : window.qBittorrent.Misc.friendlyUnit(row.data.ul * 1024, true);
+                td.set('html', row.data.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]' : speedText);
+                td.set('title', td.text);
+            };
+        },
+        reloadHeaders: function() {
+            const setWidth = (name) => this.columns[name]['width'] = LocalPreferences.get('column_' + name + '_width_scheduleTableDiv', 75);
+            ['start', 'end', 'pause', 'dl', 'ul'].forEach(setWidth);
+            this.updateTableHeaders();
+            this.setupHeaderEvents();
+        },
+        deselectAll: function() {
+            const len = this.selectedRows.length;
+            this.selectedRows.empty();
+            this.setRowClass();
+
+            if (len > 0)
+                this.onSelectedRowChanged();
         }
     });
 

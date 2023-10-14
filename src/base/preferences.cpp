@@ -587,43 +587,36 @@ void Preferences::setActionOnDblClOnTorrentFn(const int act)
     setValue(u"Preferences/Downloads/DblClOnTorFn"_s, act);
 }
 
-QTime Preferences::getSchedulerStartTime() const
+QTime Preferences::getLegacySchedulerStartTime() const
 {
-    return value(u"Preferences/Scheduler/start_time"_s, QTime(8, 0));
+    return value<QTime>(u"Preferences/Scheduler/start_time"_s);
 }
 
-void Preferences::setSchedulerStartTime(const QTime &time)
+QTime Preferences::getLegacySchedulerEndTime() const
 {
-    if (time == getSchedulerStartTime())
-        return;
-
-    setValue(u"Preferences/Scheduler/start_time"_s, time);
+    return value<QTime>(u"Preferences/Scheduler/end_time"_s);
 }
 
-QTime Preferences::getSchedulerEndTime() const
+Scheduler::Days Preferences::getLegacySchedulerDays() const
 {
-    return value(u"Preferences/Scheduler/end_time"_s, QTime(20, 0));
+    return static_cast<Scheduler::Days>(value(u"Preferences/Scheduler/days"_s, -1));
 }
 
-void Preferences::setSchedulerEndTime(const QTime &time)
+void Preferences::removeLegacySchedulerTimes()
 {
-    if (time == getSchedulerEndTime())
-        return;
-
-    setValue(u"Preferences/Scheduler/end_time"_s, time);
+    SettingsStorage::instance()->removeValue(u"Preferences/Scheduler/start_time"_s);
+    SettingsStorage::instance()->removeValue(u"Preferences/Scheduler/end_time"_s);
+    SettingsStorage::instance()->removeValue(u"Preferences/Scheduler/days"_s);
 }
 
-Scheduler::Days Preferences::getSchedulerDays() const
+int Preferences::getGlobalAltDownloadLimit() const
 {
-    return value(u"Preferences/Scheduler/days"_s, Scheduler::Days::EveryDay);
+    return value<int>(u"Preferences/Connection/GlobalDLLimitAlt"_s, 0);
 }
 
-void Preferences::setSchedulerDays(const Scheduler::Days days)
+int Preferences::getGlobalAltUploadLimit() const
 {
-    if (days == getSchedulerDays())
-        return;
-
-    setValue(u"Preferences/Scheduler/days"_s, days);
+    return value<int>(u"Preferences/Connection/GlobalUPLimitAlt"_s, 0);
 }
 
 // Search

@@ -94,6 +94,7 @@ namespace
     const QString KEY_TRANSFER_UPDATA = u"up_info_data"_s;
     const QString KEY_TRANSFER_UPRATELIMIT = u"up_rate_limit"_s;
     const QString KEY_TRANSFER_UPSPEED = u"up_info_speed"_s;
+    const QString KEY_TRANSFER_PAUSED = u"is_transfer_paused"_s;
 
     // Statistics keys
     const QString KEY_TRANSFER_ALLTIME_DL = u"alltime_dl"_s;
@@ -141,6 +142,7 @@ namespace
         map[KEY_TRANSFER_UPDATA] = sessionStatus.totalPayloadUpload;
         map[KEY_TRANSFER_DLRATELIMIT] = session->downloadSpeedLimit();
         map[KEY_TRANSFER_UPRATELIMIT] = session->uploadSpeedLimit();
+        map[KEY_TRANSFER_PAUSED] = session->isPaused();
 
         const qint64 atd = sessionStatus.allTimeDownload;
         const qint64 atu = sessionStatus.allTimeUpload;

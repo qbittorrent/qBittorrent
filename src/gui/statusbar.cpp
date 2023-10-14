@@ -214,18 +214,23 @@ void StatusBar::updateDHTNodesNumber()
 
 void StatusBar::updateSpeedLabels()
 {
-    const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
+    const auto &session = BitTorrent::Session::instance();
+    const BitTorrent::SessionStatus &sessionStatus = session->status();
 
     QString dlSpeedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate, true);
-    const int dlSpeedLimit = BitTorrent::Session::instance()->downloadSpeedLimit();
-    if (dlSpeedLimit > 0)
+    const int dlSpeedLimit = session->downloadSpeedLimit();
+    if (session->isPaused())
+        dlSpeedLbl += u" [" + tr("Paused") + u']';
+    else if (dlSpeedLimit > 0)
         dlSpeedLbl += u" [" + Utils::Misc::friendlyUnit(dlSpeedLimit, true) + u']';
     dlSpeedLbl += u" (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload) + u')';
     m_dlSpeedLbl->setText(dlSpeedLbl);
 
     QString upSpeedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate, true);
-    const int upSpeedLimit = BitTorrent::Session::instance()->uploadSpeedLimit();
-    if (upSpeedLimit > 0)
+    const int upSpeedLimit = session->uploadSpeedLimit();
+    if (session->isPaused())
+        upSpeedLbl += u" [" + tr("Paused") + u']';
+    else if (upSpeedLimit > 0)
         upSpeedLbl += u" [" + Utils::Misc::friendlyUnit(upSpeedLimit, true) + u']';
     upSpeedLbl += u" (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload) + u')';
     m_upSpeedLbl->setText(upSpeedLbl);

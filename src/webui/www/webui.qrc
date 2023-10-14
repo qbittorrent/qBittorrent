@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/www">
         <file>private/addpeers.html</file>
+        <file>private/addscheduleentry.html</file>
         <file>private/addtrackers.html</file>
         <file>private/confirmdeletion.html</file>
         <file>private/confirmfeeddeletion.html</file>

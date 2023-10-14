@@ -31,23 +31,54 @@
 
 #include <QObject>
 #include <QTimer>
+#include <QThread>
+
+#include "base/asyncfilestorage.h"
+#include "base/global.h"
+#include "scheduleday.h"
+
+class Application;
 
 class BandwidthScheduler : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(BandwidthScheduler)
 
+    friend class ::Application;
+
+    const QString SCHEDULE_FILE_NAME = u"schedule.json"_s;
+    const QStringList DAY_KEYS {u"mon"_s, u"tue"_s, u"wed"_s, u"thu"_s, u"fri"_s, u"sat"_s, u"sun"_s};
+
 public:
     explicit BandwidthScheduler(QObject *parent = nullptr);
+    ~BandwidthScheduler() override;
+
+    static BandwidthScheduler *instance();
+
+    ScheduleDay* scheduleDay(int day, bool onDisk = false) const;
+    ScheduleDay* today(bool onDisk = false) const;
+    void commitSchedule(bool saveToDisk);
+    void revertSchedule();
     void start();
+    void stop();
+
+    QByteArray getJson(bool onDisk) const;
 
 signals:
-    void bandwidthLimitRequested(bool alternative);
+    void limitChangeRequested();
+    void scheduleUpdated(int day);
 
 private:
-    bool isTimeForAlternative() const;
-    void onTimeout();
+    static QPointer<BandwidthScheduler> m_instance;
 
+    bool loadScheduleFromDisk();
+    void saveScheduleToDisk() const;
+    void backupSchedule(const QString &errorMessage, bool preserveOriginal) const;
+    bool importLegacyScheduler();
+
+    QThread *m_ioThread;
+    AsyncFileStorage *m_fileStorage;
+    QVector<ScheduleDay*> m_scheduleOnDisk = QVector<ScheduleDay*>(7);
+    QVector<ScheduleDay*> m_schedule = QVector<ScheduleDay*>(7);
     QTimer m_timer;
-    bool m_lastAlternative = false;
 };

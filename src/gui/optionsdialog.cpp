@@ -31,16 +31,27 @@
 #include <cstdlib>
 #include <limits>
 
+#include <QAction>
 #include <QApplication>
+#include <QClipboard>
+#include <QCloseEvent>
 #include <QDebug>
 #include <QDesktopServices>
 #include <QDialogButtonBox>
 #include <QEvent>
 #include <QFileDialog>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QMenu>
 #include <QMessageBox>
+#include <QMimeData>
 #include <QSystemTrayIcon>
 #include <QTranslator>
+#include <qnamespace.h>
 
+#include "app/application.h"
+#include "base/logger.h"
+#include "base/bittorrent/scheduler/bandwidthscheduler.h"
 #include "base/bittorrent/session.h"
 #include "base/exceptions.h"
 #include "base/global.h"
@@ -52,17 +63,20 @@
 #include "base/rss/rss_session.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfileswatcher.h"
+#include "base/unicodestrings.h"
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
 #include "base/utils/password.h"
 #include "base/utils/random.h"
+#include "gui/scheduleentryitemdelegate.h"
 #include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
 #include "banlistoptionsdialog.h"
 #include "interfaces/iguiapplication.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
+#include "scheduleentrydialog.h"
 #include "ui_optionsdialog.h"
 #include "uithemedialog.h"
 #include "uithememanager.h"
@@ -940,7 +954,6 @@ void OptionsDialog::saveConnectionTabOptions() const
 
 void OptionsDialog::loadSpeedTabOptions()
 {
-    const auto *pref = Preferences::instance();
     const auto *session = BitTorrent::Session::instance();
 
     m_ui->labelGlobalRate->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"slow_off"_s, Utils::Gui::mediumIconSize(this).height()));
@@ -951,12 +964,12 @@ void OptionsDialog::loadSpeedTabOptions()
     m_ui->spinUploadLimitAlt->setValue(session->altGlobalUploadSpeedLimit() / 1024);
     m_ui->spinDownloadLimitAlt->setValue(session->altGlobalDownloadSpeedLimit() / 1024);
 
-    m_ui->comboBoxScheduleDays->addItems(translatedWeekdayNames());
+    BandwidthScheduler::instance()->revertSchedule();
+    initializeSchedulerTables();
 
-    m_ui->groupBoxSchedule->setChecked(session->isBandwidthSchedulerEnabled());
-    m_ui->timeEditScheduleFrom->setTime(pref->getSchedulerStartTime());
-    m_ui->timeEditScheduleTo->setTime(pref->getSchedulerEndTime());
-    m_ui->comboBoxScheduleDays->setCurrentIndex(static_cast<int>(pref->getSchedulerDays()));
+    bool schedulerEnabled = session->isBandwidthSchedulerEnabled();
+    m_ui->checkScheduleEnable->setChecked(schedulerEnabled);
+    m_ui->tabSchedule->setEnabled(schedulerEnabled);
 
     m_ui->checkLimituTPConnections->setChecked(session->isUTPRateLimited());
     m_ui->checkLimitTransportOverhead->setChecked(session->includeOverheadInLimits());
@@ -968,10 +981,8 @@ void OptionsDialog::loadSpeedTabOptions()
     connect(m_ui->spinUploadLimitAlt, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinDownloadLimitAlt, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
-    connect(m_ui->groupBoxSchedule, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->timeEditScheduleFrom, &QDateTimeEdit::timeChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->timeEditScheduleTo, &QDateTimeEdit::timeChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->comboBoxScheduleDays, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkScheduleEnable, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkScheduleEnable, &QAbstractButton::toggled, m_ui->tabSchedule, &QWidget::setEnabled);
 
     connect(m_ui->checkLimituTPConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimitTransportOverhead, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -980,7 +991,6 @@ void OptionsDialog::loadSpeedTabOptions()
 
 void OptionsDialog::saveSpeedTabOptions() const
 {
-    auto *pref = Preferences::instance();
     auto *session = BitTorrent::Session::instance();
 
     session->setGlobalUploadSpeedLimit(m_ui->spinUploadLimit->value() * 1024);
@@ -989,10 +999,8 @@ void OptionsDialog::saveSpeedTabOptions() const
     session->setAltGlobalUploadSpeedLimit(m_ui->spinUploadLimitAlt->value() * 1024);
     session->setAltGlobalDownloadSpeedLimit(m_ui->spinDownloadLimitAlt->value() * 1024);
 
-    session->setBandwidthSchedulerEnabled(m_ui->groupBoxSchedule->isChecked());
-    pref->setSchedulerStartTime(m_ui->timeEditScheduleFrom->time());
-    pref->setSchedulerEndTime(m_ui->timeEditScheduleTo->time());
-    pref->setSchedulerDays(static_cast<Scheduler::Days>(m_ui->comboBoxScheduleDays->currentIndex()));
+    session->setBandwidthSchedulerEnabled(m_ui->checkScheduleEnable->isChecked());
+    BandwidthScheduler::instance()->commitSchedule(true);
 
     session->setUTPRateLimited(m_ui->checkLimituTPConnections->isChecked());
     session->setIncludeOverheadInLimits(m_ui->checkLimitTransportOverhead->isChecked());
@@ -1343,6 +1351,218 @@ void OptionsDialog::initializeLanguageCombo()
     }
 }
 
+void OptionsDialog::initializeSchedulerTables()
+{
+    auto *scheduler = BandwidthScheduler::instance();
+    int today = QDate::currentDate().dayOfWeek() - 1;
+
+    const QLocale locale{Preferences::instance()->getLocale()};
+    int firstDay = locale.firstDayOfWeek() - 1;
+
+    for (int i = 0; i < 7; ++i)
+    {
+        int day = (firstDay + i) % 7;
+
+        auto *scheduleTable = new QTableWidget(0, Gui::ScheduleColumn::COL_COUNT, this);
+        scheduleTable->setHorizontalHeaderLabels(
+        {
+            tr("From", "i.e.: Beginning of time range"),
+            tr("To", "i.e.: End of time range"),
+            tr("Pause?", "i.e.: Pause the torrent session"),
+            tr("Download", "i.e.: Download speed limit"),
+            tr("Upload", "i.e.: Upload speed limit")
+        });
+
+        scheduleTable->setAlternatingRowColors(true);
+        scheduleTable->setSelectionMode(QAbstractItemView::ExtendedSelection);
+        scheduleTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+        scheduleTable->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::SelectedClicked);
+        scheduleTable->setContextMenuPolicy(Qt::CustomContextMenu);
+
+        ScheduleDay *scheduleDay = scheduler->scheduleDay(day);
+        auto *itemDelegate = new ScheduleEntryItemDelegate(*scheduleDay, scheduleTable);
+        connect(itemDelegate, &QAbstractItemDelegate::commitData, this, &OptionsDialog::enableApplyButton);
+        scheduleTable->setItemDelegate(itemDelegate);
+
+        m_scheduleDayTables[day] = scheduleTable;
+        populateScheduleDayTable(scheduleTable, scheduleDay);
+
+        connect(scheduleTable, &QTableWidget::customContextMenuRequested, scheduleTable,
+            [this, day]() { showScheduleDayContextMenu(day); });
+
+        m_ui->tabSchedule->addTab(scheduleTable, translatedWeekdayNames().at(day));
+
+        if (day == today)
+        {
+            m_ui->tabSchedule->setCurrentIndex(i);
+            scheduleTable->selectRow(scheduleDay->getNowIndex());
+        }
+    }
+
+    const auto &tables = asConst(m_scheduleDayTables);
+    connect(scheduler, &BandwidthScheduler::scheduleUpdated, this, [tables](int day)
+    {
+        auto *scheduleDay = BandwidthScheduler::instance()->scheduleDay(day);
+        OptionsDialog::populateScheduleDayTable(tables[day], scheduleDay);
+    });
+}
+
+void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const ScheduleDay *scheduleDay)
+{
+    auto scheduleEntries = scheduleDay->entries();
+    int rowCount = scheduleEntries.count();
+    scheduleTable->setRowCount(rowCount);
+
+    const QLocale locale{Preferences::instance()->getLocale()};
+
+    for (int i = 0; i < rowCount; ++i)
+    {
+        ScheduleEntry scheduleEntry = scheduleEntries[i];
+
+        QString dlText = (scheduleEntry.downloadSpeed == 0) ? C_INFINITY
+                       : Utils::Misc::friendlyUnit(scheduleEntry.downloadSpeed * 1024, true);
+        QString ulText = (scheduleEntry.uploadSpeed == 0) ? C_INFINITY
+                       : Utils::Misc::friendlyUnit(scheduleEntry.uploadSpeed * 1024, true);
+
+        auto *start = new QTableWidgetItem(locale.toString(scheduleEntry.startTime, QLocale::ShortFormat));
+        auto *end = new QTableWidgetItem(locale.toString(scheduleEntry.endTime, QLocale::ShortFormat));
+        auto *pause = new QTableWidgetItem(scheduleEntry.pause ? tr("Yes") : tr("No"));
+        auto *dl = new QTableWidgetItem(scheduleEntry.pause ? tr("Paused") : dlText);
+        auto *ul = new QTableWidgetItem(scheduleEntry.pause ? tr("Paused") : ulText);
+
+        start->setData(Qt::UserRole, scheduleEntry.startTime);
+        end->setData(Qt::UserRole, scheduleEntry.endTime);
+        pause->setData(Qt::UserRole, scheduleEntry.pause);
+        dl->setData(Qt::UserRole, scheduleEntry.downloadSpeed);
+        ul->setData(Qt::UserRole, scheduleEntry.uploadSpeed);
+
+        scheduleTable->setItem(i, Gui::ScheduleColumn::FROM, start);
+        scheduleTable->setItem(i, Gui::ScheduleColumn::TO, end);
+        scheduleTable->setItem(i, Gui::ScheduleColumn::PAUSE, pause);
+        scheduleTable->setItem(i, Gui::ScheduleColumn::DOWNLOAD, dl);
+        scheduleTable->setItem(i, Gui::ScheduleColumn::UPLOAD, ul);
+    }
+
+    scheduleTable->resizeColumnsToContents();
+
+    for (int i = 0; i < 5; ++i) {
+        int width = scheduleTable->columnWidth(i);
+        scheduleTable->setColumnWidth(i, width * 1.5);
+    }
+}
+
+void OptionsDialog::openScheduleEntryDialog(ScheduleDay *scheduleDay)
+{
+    auto *dialog = new ScheduleEntryDialog(this, scheduleDay);
+    connect(dialog, &QDialog::accepted, dialog, [=, this]()
+    {
+        scheduleDay->addEntry({
+            dialog->timeFrom(),
+            dialog->timeTo(),
+            dialog->downloadSpeed(),
+            dialog->uploadSpeed(),
+            dialog->pause()
+        });
+        enableApplyButton();
+    });
+
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->open();
+}
+
+void OptionsDialog::removeSelectedScheduleEntries(const int day)
+{
+    QItemSelectionModel *selectionModel = m_scheduleDayTables[day]->selectionModel();
+    const QModelIndexList selection = selectionModel->selectedRows();
+
+    if (selection.count() > 0)
+    {
+        QVector<int> indexes(selection.length());
+        std::transform(selection.cbegin(), selection.cend(), indexes.begin()
+            , [](const QModelIndex &i) { return i.row(); });
+
+        BandwidthScheduler::instance()->scheduleDay(day)->removeEntries(indexes);
+        selectionModel->clearSelection();
+        enableApplyButton();
+    }
+}
+
+void OptionsDialog::showScheduleDayContextMenu(int day)
+{
+    auto *scheduler = BandwidthScheduler::instance();
+    ScheduleDay *scheduleDay = scheduler->scheduleDay(day);
+    QTableWidget *scheduleTable = m_scheduleDayTables[day];
+
+    auto *menu = new QMenu(scheduleTable);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+    auto *theme = UIThemeManager::instance();
+
+    QAction *actionAddEntry = menu->addAction(theme->getIcon(u"list-add"_s), tr("Add entry"));
+    QAction *actionRemoveEntry = menu->addAction(theme->getIcon(u"list-remove"_s), tr("Remove entry"));
+    menu->addSeparator();
+    QAction *actionCopy = menu->addAction(theme->getIcon(u"edit-copy"_s), tr("Copy"));
+    QAction *actionPaste = menu->addAction(theme->getIcon(u"edit-copy"_s), tr("Paste"));
+    QAction *actionCopyToOtherDays = menu->addAction(theme->getIcon(u"edit-copy"_s), tr("Copy selected to other days"));
+    menu->addSeparator();
+    QAction *actionClear = menu->addAction(theme->getIcon(u"edit-clear"_s), tr("Clear all"));
+
+    const QList<ScheduleEntry> allEntries = scheduleDay->entries();
+    const QList<QModelIndex> selectedRows = scheduleTable->selectionModel()->selectedRows();
+
+    actionRemoveEntry->setDisabled(selectedRows.empty());
+    actionCopy->setDisabled(selectedRows.empty());
+    actionPaste->setEnabled(QApplication::clipboard()->mimeData()->hasFormat(u"application/json"_s));
+    actionCopyToOtherDays->setDisabled(selectedRows.empty());
+    actionClear->setDisabled(allEntries.empty());
+
+    connect(actionAddEntry, &QAction::triggered, scheduleDay,
+        [this, scheduleDay]() { openScheduleEntryDialog(scheduleDay); });
+
+    connect(actionRemoveEntry, &QAction::triggered, scheduleDay,
+        [this, day]() { removeSelectedScheduleEntries(day); });
+
+    connect(actionCopy, &QAction::triggered, this, [allEntries, selectedRows]()
+    {
+        QJsonArray jsonArray{};
+        for (QModelIndex index : asConst(selectedRows))
+            jsonArray.append(allEntries.at(index.row()).toJsonObject());
+
+        auto *mimeData = new QMimeData;
+        mimeData->setData(u"application/json"_s, QJsonDocument(jsonArray).toJson());
+        QApplication::clipboard()->setMimeData(mimeData);
+    });
+
+    connect(actionPaste, &QAction::triggered, scheduleDay, [this, scheduleDay]()
+    {
+        const QByteArray clipboard = QApplication::clipboard()->mimeData()->data(u"application/json"_s);
+        const QJsonArray jsonArray = QJsonDocument::fromJson(clipboard).array();
+
+        for (const QJsonValue &jValue : asConst(jsonArray))
+            scheduleDay->addEntry(ScheduleEntry::fromJsonObject(jValue.toObject()));
+
+        enableApplyButton();
+    });
+
+    connect(actionCopyToOtherDays, &QAction::triggered, scheduleDay, [=, this]()
+    {
+        for (QModelIndex index : asConst(selectedRows))
+        {
+            ScheduleEntry entry = allEntries[index.row()];
+            for (int i = 0; i < 7; ++i)
+            {
+                if (i == day) continue;
+                scheduler->scheduleDay(i)->addEntry(entry);
+            }
+        }
+        enableApplyButton();
+    });
+
+    connect(actionClear, &QAction::triggered, scheduleDay, &ScheduleDay::clearEntries);
+    connect(actionClear, &QAction::triggered, this, &OptionsDialog::enableApplyButton);
+
+    menu->popup(QCursor::pos());
+}
+
 void OptionsDialog::changePage(QListWidgetItem *current, QListWidgetItem *previous)
 {
     if (!current)
@@ -1512,11 +1732,6 @@ void OptionsDialog::on_buttonBox_accepted()
 {
     if (m_applyButton->isEnabled())
     {
-        if (!schedTimesOk())
-        {
-            m_ui->tabSelection->setCurrentRow(TAB_SPEED);
-            return;
-        }
 #ifndef DISABLE_WEBUI
         if (!webUIAuthenticationOk())
         {
@@ -1539,11 +1754,6 @@ void OptionsDialog::on_buttonBox_accepted()
 
 void OptionsDialog::applySettings()
 {
-    if (!schedTimesOk())
-    {
-        m_ui->tabSelection->setCurrentRow(TAB_SPEED);
-        return;
-    }
 #ifndef DISABLE_WEBUI
     if (!webUIAuthenticationOk())
     {
@@ -1930,16 +2140,6 @@ void OptionsDialog::handleIPFilterParsed(bool error, int ruleCount)
         QMessageBox::information(this, tr("Successfully refreshed"), tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
     m_refreshingIpFilter = false;
     disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::IPFilterParsed, this, &OptionsDialog::handleIPFilterParsed);
-}
-
-bool OptionsDialog::schedTimesOk()
-{
-    if (m_ui->timeEditScheduleFrom->time() == m_ui->timeEditScheduleTo->time())
-    {
-        QMessageBox::warning(this, tr("Time Error"), tr("The start time and the end time can't be the same."));
-        return false;
-    }
-    return true;
 }
 
 void OptionsDialog::on_banListButton_clicked()

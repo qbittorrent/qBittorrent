@@ -34,6 +34,7 @@
 #include <chrono>
 
 #include <QCoreApplication>
+#include <QDateTime>
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -44,6 +45,7 @@
 #include <QTimer>
 #include <QTranslator>
 
+#include "base/bittorrent/scheduler/bandwidthscheduler.h"
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/interfaces/iapplication.h"
@@ -237,13 +239,11 @@ void AppController::preferencesAction()
     data[u"limit_lan_peers"_s] = !session->ignoreLimitsOnLAN();
     // Scheduling
     data[u"scheduler_enabled"_s] = session->isBandwidthSchedulerEnabled();
-    const QTime start_time = pref->getSchedulerStartTime();
-    data[u"schedule_from_hour"_s] = start_time.hour();
-    data[u"schedule_from_min"_s] = start_time.minute();
-    const QTime end_time = pref->getSchedulerEndTime();
-    data[u"schedule_to_hour"_s] = end_time.hour();
-    data[u"schedule_to_min"_s] = end_time.minute();
-    data[u"scheduler_days"_s] = static_cast<int>(pref->getSchedulerDays());
+    BandwidthScheduler::instance()->revertSchedule();
+    data[u"scheduler_json"_s] = QString::fromLatin1(BandwidthScheduler::instance()->getJson(false));
+    const QLocale locale{pref->getLocale()};
+    data[u"locale_first_day"_s] = locale.firstDayOfWeek() - 1;
+    data[u"current_day_of_week"_s] = QDate::currentDate().dayOfWeek() - 1;
 
     // Bittorrent
     // Privacy
@@ -276,6 +276,10 @@ void AppController::preferencesAction()
     data[u"add_trackers"_s] = session->additionalTrackers();
 
     // Web UI
+    // Language
+    data[u"locale"_s] = locale.name();
+    data[u"performance_warning"_s] = session->isPerformanceWarningEnabled();
+
     // HTTP Server
     data[u"web_ui_domain_list"_s] = pref->getServerDomains();
     data[u"web_ui_address"_s] = pref->getWebUiAddress();
@@ -716,15 +720,11 @@ void AppController::setPreferencesAction()
         session->setIncludeOverheadInLimits(it.value().toBool());
     if (hasKey(u"limit_lan_peers"_s))
         session->setIgnoreLimitsOnLAN(!it.value().toBool());
+
     // Scheduling
     if (hasKey(u"scheduler_enabled"_s))
         session->setBandwidthSchedulerEnabled(it.value().toBool());
-    if (m.contains(u"schedule_from_hour"_s) && m.contains(u"schedule_from_min"_s))
-        pref->setSchedulerStartTime(QTime(m[u"schedule_from_hour"_s].toInt(), m[u"schedule_from_min"_s].toInt()));
-    if (m.contains(u"schedule_to_hour"_s) && m.contains(u"schedule_to_min"_s))
-        pref->setSchedulerEndTime(QTime(m[u"schedule_to_hour"_s].toInt(), m[u"schedule_to_min"_s].toInt()));
-    if (hasKey(u"scheduler_days"_s))
-        pref->setSchedulerDays(static_cast<Scheduler::Days>(it.value().toInt()));
+    BandwidthScheduler::instance()->commitSchedule(true);
 
     // Bittorrent
     // Privacy

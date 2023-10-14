@@ -56,6 +56,7 @@
 #include "api/authcontroller.h"
 #include "api/logcontroller.h"
 #include "api/rsscontroller.h"
+#include "api/schedulecontroller.h"
 #include "api/searchcontroller.h"
 #include "api/synccontroller.h"
 #include "api/torrentscontroller.h"
@@ -682,6 +683,7 @@ void WebApplication::sessionStart()
     m_currentSession->registerAPIController<AppController>(u"app"_s);
     m_currentSession->registerAPIController<LogController>(u"log"_s);
     m_currentSession->registerAPIController<RSSController>(u"rss"_s);
+    m_currentSession->registerAPIController<ScheduleController>(u"schedule"_s);
     m_currentSession->registerAPIController<SearchController>(u"search"_s);
     m_currentSession->registerAPIController<SyncController>(u"sync"_s);
     m_currentSession->registerAPIController<TorrentsController>(u"torrents"_s);

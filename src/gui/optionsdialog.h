@@ -35,8 +35,10 @@
 #include "guiapplicationcomponent.h"
 
 class QListWidgetItem;
+class QTableWidget;
 
 class AdvancedSettings;
+class ScheduleDay;
 
 // actions on double-click on torrents
 enum DoubleClickAction
@@ -156,6 +158,12 @@ private:
     // Connection options
     int getPort() const;
     bool isUPnPEnabled() const;
+    // Speed options
+    void initializeSchedulerTables();
+    static void populateScheduleDayTable(QTableWidget *scheduleTable, const ScheduleDay *scheduleDay);
+    void openScheduleEntryDialog(ScheduleDay *scheduleDay);
+    void removeSelectedScheduleEntries(int day);
+    void showScheduleDayContextMenu(int day);
     // Bittorrent options
     int getMaxConnections() const;
     int getMaxConnectionsPerTorrent() const;
@@ -191,8 +199,6 @@ private:
     bool isAlternativeWebUIPathValid();
 #endif
 
-    bool schedTimesOk();
-
     Ui::OptionsDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;
     SettingValue<QStringList> m_storeHSplitterSize;
@@ -201,6 +207,8 @@ private:
     QPushButton *m_applyButton = nullptr;
 
     AdvancedSettings *m_advancedSettings = nullptr;
+
+    QVector<QTableWidget*> m_scheduleDayTables = QVector<QTableWidget*>(7);
 
     bool m_refreshingIpFilter = false;
 };

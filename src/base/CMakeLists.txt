@@ -7,7 +7,6 @@ add_library(qbt_base STATIC
     asyncfilestorage.h
     bittorrent/abstractfilestorage.h
     bittorrent/addtorrentparams.h
-    bittorrent/bandwidthscheduler.h
     bittorrent/bencoderesumedatastorage.h
     bittorrent/cachestatus.h
     bittorrent/categoryoptions.h
@@ -28,6 +27,9 @@ add_library(qbt_base STATIC
     bittorrent/peerinfo.h
     bittorrent/portforwarderimpl.h
     bittorrent/resumedatastorage.h
+    bittorrent/scheduler/bandwidthscheduler.h
+    bittorrent/scheduler/scheduleday.h
+    bittorrent/scheduler/scheduleentry.h
     bittorrent/session.h
     bittorrent/sessionimpl.h
     bittorrent/sessionstatus.h
@@ -112,7 +114,6 @@ add_library(qbt_base STATIC
     asyncfilestorage.cpp
     bittorrent/abstractfilestorage.cpp
     bittorrent/addtorrentparams.cpp
-    bittorrent/bandwidthscheduler.cpp
     bittorrent/bencoderesumedatastorage.cpp
     bittorrent/categoryoptions.cpp
     bittorrent/customstorage.cpp
@@ -127,6 +128,9 @@ add_library(qbt_base STATIC
     bittorrent/peeraddress.cpp
     bittorrent/peerinfo.cpp
     bittorrent/portforwarderimpl.cpp
+    bittorrent/scheduler/bandwidthscheduler.cpp
+    bittorrent/scheduler/scheduleday.cpp
+    bittorrent/scheduler/scheduleentry.cpp
     bittorrent/resumedatastorage.cpp
     bittorrent/sessionimpl.cpp
     bittorrent/speedmonitor.cpp

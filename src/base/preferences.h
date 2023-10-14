@@ -156,13 +156,13 @@ public:
     int getActionOnDblClOnTorrentFn() const;
     void setActionOnDblClOnTorrentFn(int act);
 
-    // Connection options
-    QTime getSchedulerStartTime() const;
-    void setSchedulerStartTime(const QTime &time);
-    QTime getSchedulerEndTime() const;
-    void setSchedulerEndTime(const QTime &time);
-    Scheduler::Days getSchedulerDays() const;
-    void setSchedulerDays(Scheduler::Days days);
+    // Speed options
+    QTime getLegacySchedulerStartTime() const;
+    QTime getLegacySchedulerEndTime() const;
+    Scheduler::Days getLegacySchedulerDays() const;
+    void removeLegacySchedulerTimes();
+    int getGlobalAltDownloadLimit() const;
+    int getGlobalAltUploadLimit() const;
 
     // Search
     bool isSearchEnabled() const;

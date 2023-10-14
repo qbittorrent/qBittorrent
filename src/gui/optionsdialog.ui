@@ -1084,8 +1084,7 @@
                    <item>
                     <widget class="QComboBox" name="comboSavingMode">
                      <property name="toolTip">
-                      <string>Automatic: Various torrent properties (e.g. save path) will be decided by the associated category
-Manual: Various torrent properties (e.g. save path) must be assigned manually</string>
+                      <string>Automatic: Various torrent properties (e.g. save path) will be decided by the associated category Manual: Various torrent properties (e.g. save path) must be assigned manually</string>
                      </property>
                      <item>
                       <property name="text">
@@ -2208,23 +2207,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <string>Global Rate Limits</string>
               </property>
               <layout class="QGridLayout" name="rateLimitBoxLayout">
-               <item row="0" column="2">
-                <widget class="QSpinBox" name="spinUploadLimit">
-                 <property name="specialValueText">
-                  <string>∞</string>
-                 </property>
-                 <property name="suffix">
-                  <string> KiB/s</string>
-                 </property>
-                 <property name="maximum">
-                  <number>2000000</number>
-                 </property>
-                 <property name="value">
-                  <number>100</number>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="2">
+               <item row="2" column="2">
                 <widget class="QSpinBox" name="spinDownloadLimit">
                  <property name="specialValueText">
                   <string>∞</string>
@@ -2240,10 +2223,37 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                 </widget>
                </item>
-               <item row="0" column="0" rowspan="2">
-                <widget class="QLabel" name="labelGlobalRate"/>
+               <item row="1" column="1">
+                <widget class="QLabel" name="label_10">
+                 <property name="text">
+                  <string>Upload:</string>
+                 </property>
+                </widget>
                </item>
-               <item row="0" column="3">
+               <item row="1" column="2">
+                <widget class="QSpinBox" name="spinUploadLimit">
+                 <property name="specialValueText">
+                  <string>∞</string>
+                 </property>
+                 <property name="suffix">
+                  <string> KiB/s</string>
+                 </property>
+                 <property name="maximum">
+                  <number>2000000</number>
+                 </property>
+                 <property name="value">
+                  <number>100</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="label_11">
+                 <property name="text">
+                  <string>Download:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="3">
                 <spacer name="horizontalSpacer">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -2256,19 +2266,8 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                 </spacer>
                </item>
-               <item row="0" column="1">
-                <widget class="QLabel" name="label_10">
-                 <property name="text">
-                  <string>Upload:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QLabel" name="label_11">
-                 <property name="text">
-                  <string>Download:</string>
-                 </property>
-                </widget>
+               <item row="1" column="0" rowspan="2">
+                <widget class="QLabel" name="labelGlobalRate"/>
                </item>
               </layout>
              </widget>
@@ -2297,123 +2296,6 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                </item>
                <item row="0" column="0" rowspan="2">
                 <widget class="QLabel" name="labelAltRate"/>
-               </item>
-               <item row="2" column="0" colspan="4">
-                <widget class="QGroupBox" name="groupBoxSchedule">
-                 <property name="title">
-                  <string>Schedule &amp;the use of alternative rate limits</string>
-                 </property>
-                 <property name="checkable">
-                  <bool>true</bool>
-                 </property>
-                 <property name="checked">
-                  <bool>false</bool>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_7">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_6">
-                    <property name="toolTip">
-                     <string>Start time</string>
-                    </property>
-                    <property name="text">
-                     <string comment="From start time">From:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="3">
-                   <widget class="QTimeEdit" name="timeEditScheduleTo">
-                    <property name="wrapping">
-                     <bool>true</bool>
-                    </property>
-                    <property name="displayFormat">
-                     <string notr="true">hh:mm</string>
-                    </property>
-                    <property name="time">
-                     <time>
-                      <hour>20</hour>
-                      <minute>0</minute>
-                      <second>0</second>
-                     </time>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="2">
-                   <widget class="QLabel" name="label_17">
-                    <property name="toolTip">
-                     <string>End time</string>
-                    </property>
-                    <property name="text">
-                     <string comment="To end time">To:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QTimeEdit" name="timeEditScheduleFrom">
-                    <property name="wrapping">
-                     <bool>true</bool>
-                    </property>
-                    <property name="displayFormat">
-                     <string notr="true">hh:mm</string>
-                    </property>
-                    <property name="calendarPopup">
-                     <bool>false</bool>
-                    </property>
-                    <property name="time">
-                     <time>
-                      <hour>8</hour>
-                      <minute>0</minute>
-                      <second>0</second>
-                     </time>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_18">
-                    <property name="text">
-                     <string>When:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1" colspan="3">
-                   <widget class="QComboBox" name="comboBoxScheduleDays">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <item>
-                     <property name="text">
-                      <string>Every day</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Weekdays</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Weekends</string>
-                     </property>
-                    </item>
-                   </widget>
-                  </item>
-                  <item row="0" column="4">
-                   <spacer name="horizontalSpacer_8">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                 </layout>
-                </widget>
                </item>
                <item row="0" column="2">
                 <widget class="QSpinBox" name="spinUploadLimitAlt">
@@ -2460,6 +2342,16 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                </item>
               </layout>
              </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkScheduleEnable">
+              <property name="text">
+               <string>Enable scheduler</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTabWidget" name="tabSchedule"/>
             </item>
             <item>
              <widget class="QGroupBox" name="rateLimitsGroupBox">
@@ -3602,8 +3494,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                           <string>Whitelist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
-
-Use ';' to split multiple entries. Can use wildcard '*'.</string>
+ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                          </property>
                         </widget>
                        </item>
@@ -3896,12 +3787,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>scrollArea_9</tabstop>
   <tabstop>spinUploadLimit</tabstop>
   <tabstop>spinDownloadLimit</tabstop>
-  <tabstop>groupBoxSchedule</tabstop>
-  <tabstop>timeEditScheduleTo</tabstop>
-  <tabstop>timeEditScheduleFrom</tabstop>
-  <tabstop>comboBoxScheduleDays</tabstop>
   <tabstop>spinUploadLimitAlt</tabstop>
   <tabstop>spinDownloadLimitAlt</tabstop>
+  <tabstop>checkScheduleEnable</tabstop>
+  <tabstop>tabSchedule</tabstop>
   <tabstop>checkLimitLocalPeerRate</tabstop>
   <tabstop>checkLimitTransportOverhead</tabstop>
   <tabstop>scrollArea_4</tabstop>
