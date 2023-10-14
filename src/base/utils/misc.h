@@ -103,17 +103,5 @@ namespace Utils::Misc
         const std::wstring path = (windowsSystemPath() / Path(source)).toString().toStdWString();
         return reinterpret_cast<T>(::GetProcAddress(::LoadLibraryW(path.c_str()), funcName));
     }
-
-    bool isTorrentFileAssocSet();
-    void setTorrentFileAssoc(bool set);
-    bool isMagnetLinkAssocSet();
-    void setMagnetLinkAssoc(bool set);
 #endif // Q_OS_WIN
-
-#ifdef Q_OS_MACOS
-    bool isTorrentFileAssocSet();
-    void setTorrentFileAssoc();
-    bool isMagnetLinkAssocSet();
-    void setMagnetLinkAssoc();
-#endif // Q_OS_MACOS
 }
