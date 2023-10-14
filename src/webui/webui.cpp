@@ -52,8 +52,9 @@ void WebUI::configure()
     const QString portForwardingProfile = u"webui"_s;
     const Preferences *pref = Preferences::instance();
     const quint16 port = pref->getWebUiPort();
+    m_isEnabled = pref->isWebUiEnabled();
 
-    if (pref->isWebUiEnabled())
+    if (m_isEnabled)
     {
         // Port forwarding
         auto *portForwarder = Net::PortForwarder::instance();
@@ -145,7 +146,30 @@ void WebUI::configure()
     }
 }
 
+bool WebUI::isEnabled() const
+{
+    return m_isEnabled;
+}
+
 bool WebUI::isErrored() const
 {
     return m_isErrored;
+}
+
+bool WebUI::isHttps() const
+{
+    if (!m_httpServer) return false;
+    return m_httpServer->isHttps();
+}
+
+QHostAddress WebUI::hostAddress() const
+{
+    if (!m_httpServer) return {};
+    return m_httpServer->serverAddress();
+}
+
+quint16 WebUI::port() const
+{
+    if (!m_httpServer) return 0;
+    return m_httpServer->serverPort();
 }

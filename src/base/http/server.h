@@ -50,6 +50,7 @@ namespace Http
 
         bool setupHttps(const QByteArray &certificates, const QByteArray &privateKey);
         void disableHttps();
+        bool isHttps() const;
 
     private slots:
         void dropTimedOutConnection();

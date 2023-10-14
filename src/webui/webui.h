@@ -28,6 +28,7 @@
 
 #pragma once
 
+#include <QHostAddress>
 #include <QObject>
 #include <QPointer>
 
@@ -53,7 +54,11 @@ class WebUI final : public ApplicationComponent<QObject>
 public:
     explicit WebUI(IApplication *app);
 
+    bool isEnabled() const;
     bool isErrored() const;
+    bool isHttps() const;
+    QHostAddress hostAddress() const;
+    quint16 port() const;
 
 signals:
     void fatalError();
@@ -62,6 +67,7 @@ private slots:
     void configure();
 
 private:
+    bool m_isEnabled = false;
     bool m_isErrored = false;
     QPointer<Http::Server> m_httpServer;
     QPointer<Net::DNSUpdater> m_dnsUpdater;

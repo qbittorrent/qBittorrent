@@ -181,3 +181,8 @@ void Server::disableHttps()
     m_certificates.clear();
     m_key.clear();
 }
+
+bool Server::isHttps() const
+{
+    return m_https;
+}
