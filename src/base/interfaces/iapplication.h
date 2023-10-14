@@ -33,11 +33,9 @@
 #include <QtSystemDetection>
 #include <QMetaObject>
 
-#include "base/addtorrentmanager.h"
+#include "base/pathfwd.h"
 
-class QString;
-
-class Path;
+class AddTorrentManager;
 struct QBtCommandLineParameters;
 
 #ifdef Q_OS_WIN

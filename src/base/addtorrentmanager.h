@@ -38,16 +38,20 @@
 #include "base/bittorrent/addtorrentparams.h"
 #include "base/torrentfileguard.h"
 
+namespace BitTorrent
+{
+    class InfoHash;
+    class Session;
+    class Torrent;
+    class TorrentDescriptor;
+}
+
 namespace Net
 {
     struct DownloadResult;
 }
 
-namespace BitTorrent
-{
-    class Session;
-    class TorrentDescriptor;
-}
+class QString;
 
 class AddTorrentManager : public ApplicationComponent<QObject>
 {
