@@ -82,8 +82,10 @@ bool GUIAddTorrentManager::addTorrent(const QString &source, const BitTorrent::A
         return false;
     }
 
+    LogMsg(u"Torrent source: %1"_s.arg(source));
     const Path decodedPath {source.startsWith(u"file://", Qt::CaseInsensitive)
             ? QUrl::fromEncoded(source.toLocal8Bit()).toLocalFile() : source};
+    LogMsg(u"Torrent decoded path: %1"_s.arg(decodedPath.toString()));
     auto torrentFileGuard = std::make_shared<TorrentFileGuard>(decodedPath);
     if (const auto loadResult = BitTorrent::TorrentDescriptor::loadFromFile(decodedPath))
     {

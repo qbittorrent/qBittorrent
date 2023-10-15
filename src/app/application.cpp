@@ -223,6 +223,29 @@ namespace
     }
 }
 
+static inline bool isArgvModified(int argc, char **argv)
+{
+#ifdef Q_OS_WIN
+    if (__argc != argc || !__argv /* wmain() */)
+    {
+        LogMsg(u"(__argc != argc || !__argv /* wmain() */)"_s);
+        return true;
+    }
+    if (__argv == argv)
+        return false;
+    for (int a = 0; a < argc; ++a) {
+        LogMsg(u"argv[%1]: %2"_s.arg(QString::number(a), QString::fromLocal8Bit(argv[a])));
+        LogMsg(u"__argv[%1]: %2"_s.arg(QString::number(a), QString::fromLocal8Bit(__argv[a])));
+        if (argv[a] != __argv[a] && strcmp(argv[a], __argv[a]))
+        {
+                LogMsg(u"(argv[%1] != __argv[%1] && strcmp(argv[%1], __argv[%1]))"_s.arg(QString::number(a)));
+            return true;
+        }
+    }
+#endif
+    return false;
+}
+
 Application::Application(int &argc, char **argv)
     : BaseApplication(argc, argv)
     , m_commandLineArgs(parseCommandLine(Application::arguments()))
@@ -254,6 +277,11 @@ Application::Application(int &argc, char **argv)
 #endif
 
     Logger::initInstance();
+
+    LogMsg(u"App arguments: %1"_s.arg(Application::arguments().join(u" "_s)));
+    LogMsg(u"Command line args: %1"_s.arg(serializeParams(m_commandLineArgs)));
+    LogMsg(u"argc: %1"_s.arg(argc));
+    LogMsg(u"isArgvModified: %1"_s.arg(isArgvModified(argc, argv) ? u"true"_s : u"false"_s));
 
     const auto portableProfilePath = Path(QCoreApplication::applicationDirPath()) / DEFAULT_PORTABLE_MODE_PROFILE_DIR;
     const bool portableModeEnabled = m_commandLineArgs.profileDir.isEmpty() && portableProfilePath.exists();
