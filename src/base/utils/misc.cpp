@@ -651,4 +651,4 @@ Path Utils::Misc::windowsSystemPath()
     }();
     return path;
 }
-#endif
+#endif // Q_OS_WIN
