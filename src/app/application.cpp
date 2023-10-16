@@ -907,20 +907,28 @@ int Application::exec()
             QCoreApplication::exit(EXIT_FAILURE);
         connect(m_webui, &WebUI::fatalError, this, []() { QCoreApplication::exit(EXIT_FAILURE); });
 
-        const Preferences *pref = Preferences::instance();
+        printf("%s", qUtf8Printable(u"\n******** %1 ********\n"_s.arg(tr("Information"))));
 
-        const auto scheme = pref->isWebUiHttpsEnabled() ? u"https"_s : u"http"_s;
-        const auto url = u"%1://localhost:%2\n"_s.arg(scheme, QString::number(pref->getWebUiPort()));
-        const QString mesg = u"\n******** %1 ********\n"_s.arg(tr("Information"))
-                + tr("To control qBittorrent, access the WebUI at: %1").arg(url);
-        printf("%s\n", qUtf8Printable(mesg));
-
-        if (pref->getWebUIPassword() == QByteArrayLiteral("ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ=="))
+        if (m_webui->isEnabled())
         {
-            const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + u'\n'
-                    + tr("The Web UI administrator password has not been changed from the default: %1").arg(u"adminadmin"_s) + u'\n'
-                    + tr("This is a security risk, please change your password in program preferences.") + u'\n';
-            printf("%s", qUtf8Printable(warning));
+            const QHostAddress address = m_webui->hostAddress();
+            const QString url = u"%1://%2:%3"_s.arg((m_webui->isHttps() ? u"https"_s : u"http"_s)
+                    , (address.isEqual(QHostAddress::Any, QHostAddress::ConvertUnspecifiedAddress) ? u"localhost"_s : address.toString())
+                    , QString::number(m_webui->port()));
+            printf("%s\n", qUtf8Printable(tr("To control qBittorrent, access the WebUI at: %1").arg(url)));
+
+            const Preferences *pref = Preferences::instance();
+            if (pref->getWebUIPassword() == QByteArrayLiteral("ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ=="))
+            {
+                const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + u'\n'
+                        + tr("The Web UI administrator password has not been changed from the default: %1").arg(u"adminadmin"_s) + u'\n'
+                        + tr("This is a security risk, please change your password in program preferences.") + u'\n';
+                printf("%s", qUtf8Printable(warning));
+            }
+        }
+        else
+        {
+            printf("%s\n", qUtf8Printable(tr("The WebUI is disabled! To enable the WebUI, edit the config file manually.")));
         }
 #endif // DISABLE_GUI
 #endif // DISABLE_WEBUI
