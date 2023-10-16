@@ -98,6 +98,10 @@
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
 #include "gui/windowstate.h"
+
+#ifdef Q_OS_WIN
+#include "base/utils/os.h"
+#endif  // Q_OS_WIN
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
@@ -877,14 +881,14 @@ int Application::exec()
         delete m_startupProgressDialog;
 #ifdef Q_OS_WIN
         auto *pref = Preferences::instance();
-        if (!pref->neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet()))
+        if (!pref->neverCheckFileAssoc() && (!Utils::OS::isTorrentFileAssocSet() || !Utils::OS::isMagnetLinkAssocSet()))
         {
             if (QMessageBox::question(m_window, tr("Torrent file association")
                                       , tr("qBittorrent is not the default application for opening torrent files or Magnet links.\nDo you want to make qBittorrent the default application for these?")
                                       , QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
             {
-                pref->setTorrentFileAssoc(true);
-                pref->setMagnetLinkAssoc(true);
+                Utils::OS::setTorrentFileAssoc(true);
+                Utils::OS::setMagnetLinkAssoc(true);
             }
             else
             {
