@@ -61,7 +61,7 @@ repos:
       exclude_types:
         - ts
 
-  - repo: https://github.com/codespell-project/codespell
+  - repo: https://github.com/codespell-project/codespell.git
     rev: v2.2.6
     hooks:
     - id: codespell
@@ -82,7 +82,7 @@ repos:
       exclude_types:
         - ts
 
-  - repo: https://github.com/crate-ci/typos
+  - repo: https://github.com/crate-ci/typos.git
     rev: v1.16.18
     hooks:
     - id: typos
