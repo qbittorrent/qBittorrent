@@ -61,6 +61,13 @@ class TorrentCreatorDialog;
 class TransferListFiltersWidget;
 class TransferListWidget;
 
+#ifdef Q_OS_MACOS
+namespace MacUtils
+{
+    class Badger;
+}
+#endif
+
 namespace Net
 {
     struct DownloadResult;
@@ -244,5 +251,8 @@ private:
     void handleUpdateCheckFinished(ProgramUpdater *updater, bool invokedByUser);
 
     QTimer *m_programUpdateTimer = nullptr;
+#endif
+#ifdef Q_OS_MACOS
+    std::unique_ptr<MacUtils::Badger> m_badger;
 #endif
 };
