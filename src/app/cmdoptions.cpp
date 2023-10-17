@@ -373,7 +373,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
 
         if ((arg.startsWith(u"--") && !arg.endsWith(u".torrent"))
             || (arg.startsWith(u'-') && (arg.size() == 2)))
-            {
+        {
             // Parse known parameters
             if (arg == SHOW_HELP_OPTION)
             {
