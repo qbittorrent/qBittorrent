@@ -16,6 +16,7 @@ Makefile*
 *.o
 *.pdb
 *.exe
+*.dll
 
 # Generated MOC, resource and UI files
 moc_*.cpp
