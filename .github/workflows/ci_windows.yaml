@@ -88,7 +88,7 @@ jobs:
             -DBOOST_ROOT="${{ env.boost_path }}" `
             -DBUILD_SHARED_LIBS=OFF `
             -Ddeprecated-functions=OFF `
-            -Dstatic_runtime=ON `
+            -Dstatic_runtime=OFF `
             -DVCPKG_TARGET_TRIPLET=x64-windows-static-release
           cmake --build build
           cmake --install build
@@ -104,7 +104,7 @@ jobs:
             -DCMAKE_TOOLCHAIN_FILE="${{ env.RUNVCPKG_VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake" `
             -DBOOST_ROOT="${{ env.boost_path }}" `
             -DLibtorrentRasterbar_DIR="${{ env.libtorrent_path }}/lib/cmake/LibtorrentRasterbar" `
-            -DMSVC_RUNTIME_DYNAMIC=OFF `
+            -DMSVC_RUNTIME_DYNAMIC=ON `
             -DTESTING=ON `
             -DVCPKG_TARGET_TRIPLET=x64-windows-static-release `
             -DVERBOSE_CONFIGURE=ON `
