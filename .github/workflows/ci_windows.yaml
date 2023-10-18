@@ -116,30 +116,31 @@ jobs:
       - name: Prepare build artifacts
         run: |
           mkdir upload
-          copy build/qbittorrent.exe upload
-          copy build/qbittorrent.pdb upload
-          copy dist/windows/qt.conf upload
+          mkdir upload/qBittorrent
+          copy build/qbittorrent.exe upload/qBittorrent
+          copy build/qbittorrent.pdb upload/qBittorrent
+          copy dist/windows/qt.conf upload/qBittorrent
           # runtimes
-          copy "${{ env.Qt6_DIR }}/bin/Qt6Core.dll" upload
-          copy "${{ env.Qt6_DIR }}/bin/Qt6Gui.dll" upload
-          copy "${{ env.Qt6_DIR }}/bin/Qt6Network.dll" upload
-          copy "${{ env.Qt6_DIR }}/bin/Qt6Sql.dll" upload
-          copy "${{ env.Qt6_DIR }}/bin/Qt6Svg.dll" upload
-          copy "${{ env.Qt6_DIR }}/bin/Qt6Widgets.dll" upload
-          copy "${{ env.Qt6_DIR }}/bin/Qt6Xml.dll" upload
-          mkdir upload/plugins/iconengines
-          copy "${{ env.Qt6_DIR }}/plugins/iconengines/qsvgicon.dll" upload/plugins/iconengines
-          mkdir upload/plugins/imageformats
-          copy "${{ env.Qt6_DIR }}/plugins/imageformats/qico.dll" upload/plugins/imageformats
-          copy "${{ env.Qt6_DIR }}/plugins/imageformats/qsvg.dll" upload/plugins/imageformats
-          mkdir upload/plugins/platforms
-          copy "${{ env.Qt6_DIR }}/plugins/platforms/qwindows.dll" upload/plugins/platforms
-          mkdir upload/plugins/sqldrivers
-          copy "${{ env.Qt6_DIR }}/plugins/sqldrivers/qsqlite.dll" upload/plugins/sqldrivers
-          mkdir upload/plugins/styles
-          copy "${{ env.Qt6_DIR }}/plugins/styles/qwindowsvistastyle.dll" upload/plugins/styles
-          mkdir upload/plugins/tls
-          copy "${{ env.Qt6_DIR }}/plugins/tls/qschannelbackend.dll" upload/plugins/tls
+          copy "${{ env.Qt6_DIR }}/bin/Qt6Core.dll" upload/qBittorrent
+          copy "${{ env.Qt6_DIR }}/bin/Qt6Gui.dll" upload/qBittorrent
+          copy "${{ env.Qt6_DIR }}/bin/Qt6Network.dll" upload/qBittorrent
+          copy "${{ env.Qt6_DIR }}/bin/Qt6Sql.dll" upload/qBittorrent
+          copy "${{ env.Qt6_DIR }}/bin/Qt6Svg.dll" upload/qBittorrent
+          copy "${{ env.Qt6_DIR }}/bin/Qt6Widgets.dll" upload/qBittorrent
+          copy "${{ env.Qt6_DIR }}/bin/Qt6Xml.dll" upload/qBittorrent
+          mkdir upload/qBittorrent/plugins/iconengines
+          copy "${{ env.Qt6_DIR }}/plugins/iconengines/qsvgicon.dll" upload/qBittorrent/plugins/iconengines
+          mkdir upload/qBittorrent/plugins/imageformats
+          copy "${{ env.Qt6_DIR }}/plugins/imageformats/qico.dll" upload/qBittorrent/plugins/imageformats
+          copy "${{ env.Qt6_DIR }}/plugins/imageformats/qsvg.dll" upload/qBittorrent/plugins/imageformats
+          mkdir upload/qBittorrent/plugins/platforms
+          copy "${{ env.Qt6_DIR }}/plugins/platforms/qwindows.dll" upload/qBittorrent/plugins/platforms
+          mkdir upload/qBittorrent/plugins/sqldrivers
+          copy "${{ env.Qt6_DIR }}/plugins/sqldrivers/qsqlite.dll" upload/qBittorrent/plugins/sqldrivers
+          mkdir upload/qBittorrent/plugins/styles
+          copy "${{ env.Qt6_DIR }}/plugins/styles/qwindowsvistastyle.dll" upload/qBittorrent/plugins/styles
+          mkdir upload/qBittorrent/plugins/tls
+          copy "${{ env.Qt6_DIR }}/plugins/tls/qschannelbackend.dll" upload/qBittorrent/plugins/tls
           # cmake additionals
           mkdir upload/cmake
           copy build/compile_commands.json upload/cmake
@@ -152,3 +153,14 @@ jobs:
         with:
           name: qBittorrent-CI_Windows-x64_libtorrent-${{ matrix.libt_version }}
           path: upload
+
+      - name: Create installer
+        run: |
+          7z x -o"dist/windows/" "dist/windows/NSISPlugins.zip"
+          makensis /DQBT_DIST_DIR="../../upload/qBittorrent" dist/windows/qbittorrent.nsi
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v3
+        with:
+          name: qBittorrent-CI_Windows-x64_libtorrent-${{ matrix.libt_version }}-setup
+          path: dist/windows/qbittorrent_*_setup.exe
