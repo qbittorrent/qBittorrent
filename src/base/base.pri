@@ -99,6 +99,7 @@ HEADERS += \
     $$PWD/utils/io.h \
     $$PWD/utils/misc.h \
     $$PWD/utils/net.h \
+    $$PWD/utils/os.h \
     $$PWD/utils/password.h \
     $$PWD/utils/random.h \
     $$PWD/utils/string.h \
@@ -184,6 +185,7 @@ SOURCES += \
     $$PWD/utils/io.cpp \
     $$PWD/utils/misc.cpp \
     $$PWD/utils/net.cpp \
+    $$PWD/utils/os.cpp \
     $$PWD/utils/password.cpp \
     $$PWD/utils/random.cpp \
     $$PWD/utils/string.cpp \
