@@ -16,6 +16,7 @@ Makefile*
 *.o
 *.pdb
 *.exe
+*.dll
 
 # Generated MOC, resource and UI files
 moc_*.cpp
@@ -23,8 +24,7 @@ moc_*.h
 qrc_*.cpp
 ui_*.h
 *.moc
-src/lang/qbittorrent_*.qm
-src/webui/www/translations/webui_*.qm
+*.qm
 .DS_Store
 .qmake.stash
 src/qbittorrent.app
