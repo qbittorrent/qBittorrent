@@ -178,8 +178,7 @@ a.propButton img {
 }
 
 .scrollableMenu {
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden auto;
 }
 
 /* context menu specific */
