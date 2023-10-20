@@ -35,6 +35,7 @@ repos:
         (?x)^(
           src/webui/www/private/css/lib/.* |
           src/webui/www/private/scripts/lib/.* |
+          dist/windows/license.txt |
           test/testdata/crlf.txt
         )$
 
