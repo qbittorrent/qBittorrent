@@ -56,12 +56,13 @@ public:
 
     bool isEnabled() const;
     bool isErrored() const;
+    QString errorMessage() const;
     bool isHttps() const;
     QHostAddress hostAddress() const;
     quint16 port() const;
 
 signals:
-    void fatalError();
+    void error(const QString &message);
 
 private slots:
     void configure();
@@ -69,6 +70,7 @@ private slots:
 private:
     bool m_isEnabled = false;
     bool m_isErrored = false;
+    QString m_errorMsg;
     QPointer<Http::Server> m_httpServer;
     QPointer<Net::DNSUpdater> m_dnsUpdater;
     QPointer<WebApplication> m_webapp;

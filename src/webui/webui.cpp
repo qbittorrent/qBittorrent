@@ -48,6 +48,7 @@ WebUI::WebUI(IApplication *app)
 void WebUI::configure()
 {
     m_isErrored = false; // clear previous error state
+    m_errorMsg.clear();
 
     const QString portForwardingProfile = u"webui"_s;
     const Preferences *pref = Preferences::instance();
@@ -113,13 +114,13 @@ void WebUI::configure()
             }
             else
             {
-                const QString errorMsg = tr("Web UI: Unable to bind to IP: %1, port: %2. Reason: %3")
+                m_errorMsg = tr("Web UI: Unable to bind to IP: %1, port: %2. Reason: %3")
                     .arg(serverAddressString).arg(port).arg(m_httpServer->errorString());
-                LogMsg(errorMsg, Log::CRITICAL);
-                qCritical() << errorMsg;
+                LogMsg(m_errorMsg, Log::CRITICAL);
+                qCritical() << m_errorMsg;
 
                 m_isErrored = true;
-                emit fatalError();
+                emit error(m_errorMsg);
             }
         }
 
@@ -154,6 +155,11 @@ bool WebUI::isEnabled() const
 bool WebUI::isErrored() const
 {
     return m_isErrored;
+}
+
+QString WebUI::errorMessage() const
+{
+    return m_errorMsg;
 }
 
 bool WebUI::isHttps() const
