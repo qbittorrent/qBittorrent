@@ -7368,7 +7368,7 @@ Questa modalità verrà applicato &lt;strong&gt;non solo&lt;/strong&gt; ai file 
     <message>
         <location filename="../gui/optionsdialog.cpp" line="613"/>
         <source>%J: Info hash v2 (or &apos;-&apos; if unavailable)</source>
-        <translation>%I: Info hash v2 (o &apos;-&apos; se non disponibile)</translation>
+        <translation>%J: Info hash v2 (o &apos;-&apos; se non disponibile)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="614"/>

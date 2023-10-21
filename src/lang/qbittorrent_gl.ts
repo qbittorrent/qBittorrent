@@ -7205,7 +7205,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="613"/>
         <source>%J: Info hash v2 (or &apos;-&apos; if unavailable)</source>
-        <translation>%I: Info hash v2 (ou &apos;-&apos; se non está dispoñíbel)</translation>
+        <translation>%J: Info hash v2 (ou &apos;-&apos; se non está dispoñíbel)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="614"/>

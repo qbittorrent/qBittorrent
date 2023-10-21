@@ -1452,7 +1452,7 @@
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation>%J: Info hash v1</translation>
+        <translation>%I: Info hash v1</translation>
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
