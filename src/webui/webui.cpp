@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,6 +28,7 @@
 
 #include "webui.h"
 
+#include "base/global.h"
 #include "base/http/server.h"
 #include "base/logger.h"
 #include "base/net/dnsupdater.h"
@@ -36,10 +37,12 @@
 #include "base/preferences.h"
 #include "base/utils/io.h"
 #include "base/utils/net.h"
+#include "base/utils/password.h"
 #include "webapplication.h"
 
-WebUI::WebUI(IApplication *app)
+WebUI::WebUI(IApplication *app, const QByteArray &tempPasswordHash)
     : ApplicationComponent(app)
+    , m_passwordHash {tempPasswordHash}
 {
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &WebUI::configure);
@@ -50,13 +53,23 @@ void WebUI::configure()
     m_isErrored = false; // clear previous error state
     m_errorMsg.clear();
 
-    const QString portForwardingProfile = u"webui"_s;
     const Preferences *pref = Preferences::instance();
-    const quint16 port = pref->getWebUIPort();
     m_isEnabled = pref->isWebUIEnabled();
+    const QString username = pref->getWebUIUsername();
+    if (const QByteArray passwordHash = pref->getWebUIPassword(); !passwordHash.isEmpty())
+        m_passwordHash = passwordHash;
 
-    if (m_isEnabled)
+    if (m_isEnabled && (username.isEmpty() || m_passwordHash.isEmpty()))
     {
+        setError(tr("Credentials are not set"));
+    }
+
+    const QString portForwardingProfile = u"webui"_s;
+
+    if (m_isEnabled && !m_isErrored)
+    {
+        const quint16 port = pref->getWebUIPort();
+
         // Port forwarding
         auto *portForwarder = Net::PortForwarder::instance();
         if (pref->useUPnPForWebUIPort())
@@ -83,6 +96,9 @@ void WebUI::configure()
             if ((m_httpServer->serverAddress() != serverAddress) || (m_httpServer->serverPort() != port))
                 m_httpServer->close();
         }
+
+        m_webapp->setUsername(username);
+        m_webapp->setPasswordHash(m_passwordHash);
 
         if (pref->isWebUIHttpsEnabled())
         {
@@ -114,13 +130,8 @@ void WebUI::configure()
             }
             else
             {
-                m_errorMsg = tr("WebUI: Unable to bind to IP: %1, port: %2. Reason: %3")
-                    .arg(serverAddressString).arg(port).arg(m_httpServer->errorString());
-                LogMsg(m_errorMsg, Log::CRITICAL);
-                qCritical() << m_errorMsg;
-
-                m_isErrored = true;
-                emit error(m_errorMsg);
+                setError(tr("Unable to bind to IP: %1, port: %2. Reason: %3")
+                        .arg(serverAddressString).arg(port).arg(m_httpServer->errorString()));
             }
         }
 
@@ -145,6 +156,18 @@ void WebUI::configure()
         delete m_webapp;
         delete m_dnsUpdater;
     }
+}
+
+void WebUI::setError(const QString &message)
+{
+    m_isErrored = true;
+    m_errorMsg = message;
+
+    const QString logMessage = u"WebUI: " + m_errorMsg;
+    LogMsg(logMessage, Log::CRITICAL);
+    qCritical() << logMessage;
+
+    emit error(m_errorMsg);
 }
 
 bool WebUI::isEnabled() const

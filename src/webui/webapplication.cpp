@@ -290,6 +290,16 @@ const Http::Environment &WebApplication::env() const
     return m_env;
 }
 
+void WebApplication::setUsername(const QString &username)
+{
+    m_authController->setUsername(username);
+}
+
+void WebApplication::setPasswordHash(const QByteArray &passwordHash)
+{
+    m_authController->setPasswordHash(passwordHash);
+}
+
 void WebApplication::doProcessRequest()
 {
     const QRegularExpressionMatch match = m_apiPathPattern.match(request().path);

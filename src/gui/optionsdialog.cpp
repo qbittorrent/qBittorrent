@@ -71,6 +71,7 @@
 #include "utils.h"
 #include "watchedfolderoptionsdialog.h"
 #include "watchedfoldersmodel.h"
+#include "webui/webui.h"
 
 #ifndef DISABLE_WEBUI
 #include "base/net/dnsupdater.h"
@@ -81,6 +82,9 @@
 #endif // defined Q_OS_MACOS || defined Q_OS_WIN
 
 #define SETTINGS_KEY(name) u"OptionsDialog/" name
+
+const int WEBUI_MIN_USERNAME_LENGTH = 3;
+const int WEBUI_MIN_PASSWORD_LENGTH = 6;
 
 namespace
 {
@@ -107,6 +111,16 @@ namespace
             return (event->type() == QEvent::Wheel);
         }
     };
+
+    bool isValidWebUIUsername(const QString &username)
+    {
+        return (username.length() >= WEBUI_MIN_USERNAME_LENGTH);
+    }
+
+    bool isValidWebUIPassword(const QString &password)
+    {
+        return (password.length() >= WEBUI_MIN_PASSWORD_LENGTH);
+    }
 
     // Shortcuts for frequently used signals that have more than one overload. They would require
     // type casts and that is why we declare required member pointer here instead.
@@ -176,7 +190,11 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
 
     // setup apply button
     m_applyButton->setEnabled(false);
-    connect(m_applyButton, &QPushButton::clicked, this, &OptionsDialog::applySettings);
+    connect(m_applyButton, &QPushButton::clicked, this, [this]
+    {
+        if (applySettings())
+            m_applyButton->setEnabled(false);
+    });
 
     // disable mouse wheel event on widgets to avoid misselection
     auto *wheelEventEater = new WheelEventEater(this);
@@ -1218,6 +1236,11 @@ void OptionsDialog::loadWebUITabOptions()
     m_ui->textWebUIRootFolder->setMode(FileSystemPathEdit::Mode::DirectoryOpen);
     m_ui->textWebUIRootFolder->setDialogCaption(tr("Choose Alternative UI files location"));
 
+    if (app()->webUI()->isErrored())
+        m_ui->labelWebUIError->setText(tr("WebUI configuration failed. Reason: %1").arg(app()->webUI()->errorMessage()));
+    else
+        m_ui->labelWebUIError->hide();
+
     m_ui->checkWebUI->setChecked(pref->isWebUIEnabled());
     m_ui->textWebUIAddress->setText(pref->getWebUIAddress());
     m_ui->spinWebUIPort->setValue(pref->getWebUIPort());
@@ -1302,7 +1325,9 @@ void OptionsDialog::saveWebUITabOptions() const
 {
     auto *pref = Preferences::instance();
 
-    pref->setWebUIEnabled(isWebUIEnabled());
+    const bool webUIEnabled = isWebUIEnabled();
+
+    pref->setWebUIEnabled(webUIEnabled);
     pref->setWebUIAddress(m_ui->textWebUIAddress->text());
     pref->setWebUIPort(m_ui->spinWebUIPort->value());
     pref->setUPnPForWebUIPort(m_ui->checkWebUIUPnP->isChecked());
@@ -1313,9 +1338,10 @@ void OptionsDialog::saveWebUITabOptions() const
     pref->setWebUIBanDuration(std::chrono::seconds {m_ui->spinBanDuration->value()});
     pref->setWebUISessionTimeout(m_ui->spinSessionTimeout->value());
     // Authentication
-    pref->setWebUIUsername(webUIUsername());
-    if (!webUIPassword().isEmpty())
-        pref->setWebUIPassword(Utils::Password::PBKDF2::generate(webUIPassword()));
+    if (const QString username = webUIUsername(); isValidWebUIUsername(username))
+        pref->setWebUIUsername(username);
+    if (const QString password = webUIPassword(); isValidWebUIPassword(password))
+        pref->setWebUIPassword(Utils::Password::PBKDF2::generate(password));
     pref->setWebUILocalAuthEnabled(!m_ui->checkBypassLocalAuth->isChecked());
     pref->setWebUIAuthSubnetWhitelistEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
     // Alternative UI
@@ -1524,53 +1550,37 @@ void OptionsDialog::on_buttonBox_accepted()
 {
     if (m_applyButton->isEnabled())
     {
-        if (!schedTimesOk())
-        {
-            m_ui->tabSelection->setCurrentRow(TAB_SPEED);
+        if (!applySettings())
             return;
-        }
-#ifndef DISABLE_WEBUI
-        if (!webUIAuthenticationOk())
-        {
-            m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
-            return;
-        }
-        if (!isAlternativeWebUIPathValid())
-        {
-            m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
-            return;
-        }
-#endif
 
         m_applyButton->setEnabled(false);
-        saveOptions();
     }
 
     accept();
 }
 
-void OptionsDialog::applySettings()
+bool OptionsDialog::applySettings()
 {
     if (!schedTimesOk())
     {
         m_ui->tabSelection->setCurrentRow(TAB_SPEED);
-        return;
+        return false;
     }
 #ifndef DISABLE_WEBUI
-    if (!webUIAuthenticationOk())
+    if (isWebUIEnabled() && !webUIAuthenticationOk())
     {
         m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
-        return;
+        return false;
     }
     if (!isAlternativeWebUIPathValid())
     {
         m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
-        return;
+        return false;
     }
 #endif
 
-    m_applyButton->setEnabled(false);
     saveOptions();
+    return true;
 }
 
 void OptionsDialog::on_buttonBox_rejected()
@@ -1883,12 +1893,14 @@ QString OptionsDialog::webUIPassword() const
 
 bool OptionsDialog::webUIAuthenticationOk()
 {
-    if (webUIUsername().length() < 3)
+    if (!isValidWebUIUsername(webUIUsername()))
     {
         QMessageBox::warning(this, tr("Length Error"), tr("The WebUI username must be at least 3 characters long."));
         return false;
     }
-    if (!webUIPassword().isEmpty() && (webUIPassword().length() < 6))
+
+    const bool dontChangePassword = webUIPassword().isEmpty() && !Preferences::instance()->getWebUIPassword().isEmpty();
+    if (!isValidWebUIPassword(webUIPassword()) && !dontChangePassword)
     {
         QMessageBox::warning(this, tr("Length Error"), tr("The WebUI password must be at least 6 characters long."));
         return false;

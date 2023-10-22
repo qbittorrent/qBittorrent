@@ -89,7 +89,6 @@ private slots:
     void adjustProxyOptions();
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
-    void applySettings();
     void enableApplyButton();
     void toggleComboRatioLimitAct();
     void changePage(QListWidgetItem *, QListWidgetItem *);
@@ -116,6 +115,7 @@ private:
     void showEvent(QShowEvent *e) override;
 
     // Methods
+    bool applySettings();
     void saveOptions() const;
 
     void loadBehaviorTabOptions();

@@ -768,9 +768,7 @@ void Preferences::setWebUIUsername(const QString &username)
 
 QByteArray Preferences::getWebUIPassword() const
 {
-    // default: adminadmin
-    const auto defaultValue = QByteArrayLiteral("ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==");
-    return value(u"Preferences/WebUI/Password_PBKDF2"_s, defaultValue);
+    return value<QByteArray>(u"Preferences/WebUI/Password_PBKDF2"_s);
 }
 
 void Preferences::setWebUIPassword(const QByteArray &password)
