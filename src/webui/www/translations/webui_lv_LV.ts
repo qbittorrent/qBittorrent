@@ -1741,7 +1741,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
+        <source>.torrent file size limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1749,15 +1749,15 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <translation type="unfinished" />
     </message>
     <message>
-        <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>When total seeding time reaches</source>
+        <source>(None)</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2941,11 +2941,11 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <translation type="vanished">minūtes</translation>
     </message>
     <message>
-        <source>total minutes</source>
+        <source>inactive minutes</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>inactive minutes</source>
+        <source>total minutes</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3811,6 +3811,10 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     <message>
         <source>Don't create subfolder</source>
         <translation>Neizveidot apakšmapi</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

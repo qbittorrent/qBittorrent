@@ -1741,7 +1741,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
+        <source>.torrent file size limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1749,15 +1749,15 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>When total seeding time reaches</source>
+        <source>(None)</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2945,11 +2945,11 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
         <translation type="vanished">minuty</translation>
     </message>
     <message>
-        <source>total minutes</source>
+        <source>inactive minutes</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>inactive minutes</source>
+        <source>total minutes</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3815,6 +3815,10 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <source>Don't create subfolder</source>
         <translation>Nevytvářet podsložku</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

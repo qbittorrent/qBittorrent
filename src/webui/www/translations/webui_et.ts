@@ -1302,7 +1302,7 @@
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation>Leia partnerite riigid:</translation>
     </message>
     <message>
         <source>ban for:</source>
@@ -1737,7 +1737,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
+        <source>.torrent file size limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1745,15 +1745,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>When total seeding time reaches</source>
+        <source>(None)</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2937,11 +2937,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="vanished">minutit</translation>
     </message>
     <message>
-        <source>total minutes</source>
+        <source>inactive minutes</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>inactive minutes</source>
+        <source>total minutes</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3808,6 +3808,10 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
         <source>Don't create subfolder</source>
         <translation>Ära loo alamkausta</translation>
     </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
@@ -3971,7 +3975,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished" />
+        <translation>Info</translation>
     </message>
     <message>
         <source>Choose a log level...</source>

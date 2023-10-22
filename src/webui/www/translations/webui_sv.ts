@@ -1741,7 +1741,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
+        <source>.torrent file size limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1749,15 +1749,15 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation type="unfinished" />
     </message>
     <message>
-        <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>When total seeding time reaches</source>
+        <source>(None)</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2945,11 +2945,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation type="vanished">minuter</translation>
     </message>
     <message>
-        <source>total minutes</source>
+        <source>inactive minutes</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>inactive minutes</source>
+        <source>total minutes</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3720,7 +3720,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation>Bekräftelse på borttagning av regel</translation>
+        <translation>Bekräftelse på regelborttagning</translation>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
@@ -3815,6 +3815,10 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <source>Don't create subfolder</source>
         <translation>Skapa inte undermapp</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

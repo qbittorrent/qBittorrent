@@ -32,7 +32,7 @@
     </message>
     <message>
         <source>Original</source>
-        <translation>Исходное</translation>
+        <translation>Исходный</translation>
     </message>
     <message>
         <source>Create subfolder</source>
@@ -297,7 +297,7 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>Загрузить торренты по их адресам или магнет-ссылкам</translation>
+        <translation>Загрузить торренты по их адресам или магнит-ссылкам</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
@@ -357,7 +357,7 @@
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation>Назначить обработчиком магнет-ссылок…</translation>
+        <translation>Назначить обработчиком магнит-ссылок…</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
@@ -381,7 +381,7 @@
     </message>
     <message>
         <source>OK</source>
-        <translation>ОК</translation>
+        <translation>Хорошо</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
@@ -432,7 +432,7 @@
     </message>
     <message>
         <source>Status Bar</source>
-        <translation>Панель статуса</translation>
+        <translation>Панель состояния</translation>
     </message>
     <message>
         <source>Speed in Title Bar</source>
@@ -1290,7 +1290,7 @@
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation>Период сохранения данных возобновления:</translation>
+        <translation>Период записи данных возобновления:</translation>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
@@ -1362,7 +1362,7 @@
     </message>
     <message>
         <source>Feeds refresh interval:</source>
-        <translation>Интервал обновления лент:</translation>
+        <translation>Период обновления лент:</translation>
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
@@ -1378,7 +1378,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation>Интервал отключения текучести пиров:</translation>
+        <translation>Период отключения текучести пиров:</translation>
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
@@ -1386,7 +1386,7 @@
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation>Не соединять к пирам по общеизвестным портам:</translation>
+        <translation>Не соединять пиров по общеизвестным портам:</translation>
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
@@ -1414,7 +1414,7 @@
     </message>
     <message>
         <source>Original</source>
-        <translation>Исходное</translation>
+        <translation>Исходный</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
@@ -1434,7 +1434,7 @@
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation>%K: ID торрента</translation>
+        <translation>%K: ИД торрента</translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
@@ -1462,11 +1462,11 @@
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation>Укажите «0», чтобы ваша система сама подобрала неиспользуемый порт</translation>
+        <translation>Укажите «0» для подбора системой неиспользуемого порта</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation>Снижать серверную подделку запроса (SSRF):</translation>
+        <translation>Упреждать серверную подделку запроса (SSRF):</translation>
     </message>
     <message>
         <source>Disk queue size:</source>
@@ -1482,7 +1482,7 @@
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation>Максимум активных проверок торрентов:</translation>
+        <translation>Предел активных проверок торрентов:</translation>
     </message>
     <message>
         <source>Memory mapped files</source>
@@ -1490,7 +1490,7 @@
     </message>
     <message>
         <source>Default</source>
-        <translation>Стандартный</translation>
+        <translation>Стандартно</translation>
     </message>
     <message>
         <source>POSIX-compliant</source>
@@ -1530,7 +1530,7 @@
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation>Интервал обновления:</translation>
+        <translation>Период обновления:</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1538,7 +1538,7 @@
     </message>
     <message>
         <source>Excluded file names</source>
-        <translation>Исключаемые имена файлов</translation>
+        <translation>Исключать имена файлов</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
@@ -1614,7 +1614,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation>База данных SQLite (пробная)</translation>
+        <translation>База данных SQLite (экспериментально)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
@@ -1630,7 +1630,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>days</source>
-        <translation>дней</translation>
+        <translation>дн.</translation>
     </message>
     <message>
         <source>Log file</source>
@@ -1650,7 +1650,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>years</source>
-        <translation>года/лет</translation>
+        <translation>г./лет</translation>
     </message>
     <message>
         <source>Save path:</source>
@@ -1658,7 +1658,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>months</source>
-        <translation>месяцев</translation>
+        <translation>мес.</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1674,7 +1674,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Интервал очистки кэша диска (требует libtorrent &amp;lt; 2.0):</translation>
+        <translation>Период очистки кэша диска (требует libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
@@ -1694,7 +1694,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation>Максимум исходящих портов [0: отключено]:</translation>
+        <translation>Максимум исходящих портов [0: откл.]:</translation>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
@@ -1718,11 +1718,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation>Тайм-аут остановки трекера [0: отключено]:</translation>
+        <translation>Тайм-аут остановки трекера [0: откл.]:</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation>Минимум исходящих портов [0: отключено]:</translation>
+        <translation>Минимум исходящих портов [0: откл.]:</translation>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1741,7 +1741,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
+        <source>.torrent file size limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1749,15 +1749,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>When total seeding time reaches</source>
+        <source>(None)</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1906,7 +1906,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Time Active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation>Активен:</translation>
+        <translation>Время работы:</translation>
     </message>
     <message>
         <source>ETA:</source>
@@ -2017,12 +2017,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
-        <translation>%1 (%2 всего)</translation>
+        <translation>%1 (всего %2)</translation>
     </message>
     <message>
         <source>%1 (%2 avg.)</source>
         <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
-        <translation>%1 (%2 сред.)</translation>
+        <translation>%1 (сред. %2)</translation>
     </message>
     <message>
         <source>Download limit:</source>
@@ -2368,7 +2368,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation>Статус</translation>
+        <translation>Состояние</translation>
     </message>
     <message>
         <source>Seeds</source>
@@ -2455,12 +2455,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation>Осталось</translation>
+        <translation>Осталось байт</translation>
     </message>
     <message>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation>Время активности</translation>
+        <translation>Время работы</translation>
     </message>
     <message>
         <source>Save path</source>
@@ -2505,7 +2505,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Status</source>
-        <translation>Статус</translation>
+        <translation>Состояние</translation>
     </message>
     <message>
         <source>Peers</source>
@@ -2569,7 +2569,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remaining</source>
-        <translation>Осталось</translation>
+        <translation>Осталось байт</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -2609,7 +2609,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Original</source>
-        <translation>Исходное</translation>
+        <translation>Исходный</translation>
     </message>
 </context>
 <context>
@@ -2672,7 +2672,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Missing Files</source>
-        <translation>Отсутствуют файлы</translation>
+        <translation>Потеря файлов</translation>
     </message>
     <message>
         <source>Queued for checking</source>
@@ -2703,7 +2703,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>TransferListFiltersWidget</name>
     <message>
         <source>Status</source>
-        <translation>Статус</translation>
+        <translation>Состояние</translation>
     </message>
     <message>
         <source>Categories</source>
@@ -2867,7 +2867,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation>Магнет-ссылку</translation>
+        <translation>Магнит-ссылку</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2945,11 +2945,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="vanished">минут</translation>
     </message>
     <message>
-        <source>total minutes</source>
+        <source>inactive minutes</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>inactive minutes</source>
+        <source>total minutes</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3081,7 +3081,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Ok</source>
-        <translation>ОК</translation>
+        <translation>Хорошо</translation>
     </message>
 </context>
 <context>
@@ -3272,7 +3272,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Ok</source>
-        <translation>ОК</translation>
+        <translation>Хорошо</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -3333,7 +3333,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation>Баг-трекер:</translation>
+        <translation>Трекер ошибок:</translation>
     </message>
     <message>
         <source>About</source>
@@ -3353,7 +3353,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation>Сайт:</translation>
+        <translation>Домашняя страница:</translation>
     </message>
     <message>
         <source>Greece</source>
@@ -3365,7 +3365,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Передовой клиент сети БитТоррент, написанный на языке C++ с использованием фреймворка Qt и библиотеки libtorrent-rasterbar.</translation>
+        <translation>Передовой клиент сети БитТоррент, созданный с использованием языка C++ и библиотек Qt и libtorrent-rasterbar.</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -3385,7 +3385,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>Текущая версия qBittorrent собрана с использованием следующих библиотек:</translation>
+        <translation>Эта сборка qBittorrent использует следующие библиотеки:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -3393,7 +3393,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Software Used</source>
-        <translation>Используемое ПО</translation>
+        <translation>Встроенное ПО</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
@@ -3724,7 +3724,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
-        <translation>Последнее совпадение: %1 дней назад</translation>
+        <translation>Последнее совпадение: %1 дн. назад</translation>
     </message>
     <message>
         <source>Episode Filter:</source>
@@ -3748,7 +3748,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source> days</source>
-        <translation> дней</translation>
+        <translation> дн.</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
@@ -3810,11 +3810,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Original</source>
-        <translation>Исходное</translation>
+        <translation>Исходный</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
         <translation>Не создавать подпапку</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3919,7 +3923,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Status</source>
-        <translation>Статус</translation>
+        <translation>Состояние</translation>
     </message>
     <message>
         <source>Timestamp</source>

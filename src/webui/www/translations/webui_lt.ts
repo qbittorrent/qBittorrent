@@ -1735,7 +1735,7 @@ pakaitos simbolį "*".</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
+        <source>.torrent file size limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1743,15 +1743,15 @@ pakaitos simbolį "*".</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>When total seeding time reaches</source>
+        <source>(None)</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2935,11 +2935,11 @@ pakaitos simbolį "*".</translation>
         <translation type="vanished">minučių</translation>
     </message>
     <message>
-        <source>total minutes</source>
+        <source>inactive minutes</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>inactive minutes</source>
+        <source>total minutes</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3805,6 +3805,10 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     <message>
         <source>Don't create subfolder</source>
         <translation>Nesukurti poaplankio</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

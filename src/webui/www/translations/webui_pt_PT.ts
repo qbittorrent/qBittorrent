@@ -1741,7 +1741,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
+        <source>.torrent file size limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1749,15 +1749,15 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
         <translation type="unfinished" />
     </message>
     <message>
-        <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>When total seeding time reaches</source>
+        <source>(None)</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2945,11 +2945,11 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
         <translation type="vanished">minutos</translation>
     </message>
     <message>
-        <source>total minutes</source>
+        <source>inactive minutes</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>inactive minutes</source>
+        <source>total minutes</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3815,6 +3815,10 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
     <message>
         <source>Don't create subfolder</source>
         <translation>Não criar subpasta</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

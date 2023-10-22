@@ -1741,7 +1741,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
+        <source>.torrent file size limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1749,15 +1749,15 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
         <translation type="unfinished" />
     </message>
     <message>
-        <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>When total seeding time reaches</source>
+        <source>(None)</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2945,11 +2945,11 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
         <translation type="vanished">phút</translation>
     </message>
     <message>
-        <source>total minutes</source>
+        <source>inactive minutes</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>inactive minutes</source>
+        <source>total minutes</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3815,6 +3815,10 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     <message>
         <source>Don't create subfolder</source>
         <translation>Không tạo thư mục con</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

@@ -3795,6 +3795,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>

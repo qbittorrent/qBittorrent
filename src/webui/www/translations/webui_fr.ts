@@ -1740,7 +1740,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
+        <source>.torrent file size limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1748,15 +1748,15 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation type="unfinished" />
     </message>
     <message>
-        <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>When total seeding time reaches</source>
+        <source>(None)</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2944,11 +2944,11 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation type="vanished">minutes</translation>
     </message>
     <message>
-        <source>total minutes</source>
+        <source>inactive minutes</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>inactive minutes</source>
+        <source>total minutes</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3814,6 +3814,10 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <message>
         <source>Don't create subfolder</source>
         <translation>Ne pas créer un sous-dossier</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
