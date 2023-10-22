@@ -676,12 +676,11 @@ void MainWindow::displayRSSTab(bool enable)
         {
             m_rssWidget = new RSSWidget(app(), m_tabs);
             connect(m_rssWidget.data(), &RSSWidget::unreadCountUpdated, this, &MainWindow::handleRSSUnreadCountUpdated);
-#ifdef Q_OS_MACOS
-            m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
-#else
-            const int indexTab = m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
-            m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon(u"application-rss"_s));
+            m_tabs->addTab(m_rssWidget,
+#ifndef Q_OS_MACOS
+                UIThemeManager::instance()->getIcon(u"application-rss"_s),
 #endif
+                tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
         }
     }
     else
@@ -1782,12 +1781,11 @@ void MainWindow::on_actionExecutionLogs_triggered(bool checked)
     {
         Q_ASSERT(!m_executionLog);
         m_executionLog = new ExecutionLogWidget(executionLogMsgTypes(), m_tabs);
-#ifdef Q_OS_MACOS
-        m_tabs->addTab(m_executionLog, tr("Execution Log"));
-#else
-        const int indexTab = m_tabs->addTab(m_executionLog, tr("Execution Log"));
-        m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon(u"help-contents"_s));
+        m_tabs->addTab(m_executionLog,
+#ifndef Q_OS_MACOS
+            UIThemeManager::instance()->getIcon(u"help-contents"_s),
 #endif
+            tr("Execution Log"));
     }
     else
     {
