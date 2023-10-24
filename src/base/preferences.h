@@ -287,11 +287,6 @@ public:
 #endif
     bool isRecursiveDownloadEnabled() const;
     void setRecursiveDownloadEnabled(bool enable);
-#ifdef Q_OS_WIN
-    bool neverCheckFileAssoc() const;
-    void setNeverCheckFileAssoc(bool check = true);
-#endif
-
     int getTrackerPort() const;
     void setTrackerPort(int port);
     bool isTrackerPortForwardingEnabled() const;
