@@ -62,6 +62,7 @@ QPointer<Session> Session::m_instance = nullptr;
 Session::Session()
     : m_storeProcessingEnabled(u"RSS/Session/EnableProcessing"_s)
     , m_storeRefreshInterval(u"RSS/Session/RefreshInterval"_s, 30)
+    , m_storeFetchDelay(u"RSS/Session/FetchDelay"_s, 2)
     , m_storeMaxArticlesPerFeed(u"RSS/Session/MaxArticlesPerFeed"_s, 50)
     , m_workingThread(new QThread)
 {
@@ -116,6 +117,7 @@ Session::Session()
     settingsStorage->removeValue(u"RSS/hosts_cookies"_s);
     settingsStorage->removeValue(u"Rss/Session/EnableProcessing"_s);
     settingsStorage->removeValue(u"Rss/Session/RefreshInterval"_s);
+    settingsStorage->removeValue(u"RSS/Session/FetchDelay"_s);
     settingsStorage->removeValue(u"Rss/Session/MaxArticlesPerFeed"_s);
     settingsStorage->removeValue(u"Rss/AutoDownloader/EnableProcessing"_s);
 }
@@ -523,6 +525,17 @@ void Session::setRefreshInterval(const int refreshInterval)
         m_storeRefreshInterval = refreshInterval;
         m_refreshTimer.start(std::chrono::minutes(m_storeRefreshInterval));
     }
+}
+
+int Session::fetchDelay() const
+{
+    return m_storeFetchDelay;
+}
+
+void Session::setFetchDelay(const int fetchDelay)
+{
+    if (m_storeFetchDelay == fetchDelay) { return; }
+    m_storeFetchDelay = fetchDelay;
 }
 
 QThread *Session::workingThread() const

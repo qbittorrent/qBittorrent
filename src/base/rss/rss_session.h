@@ -114,6 +114,9 @@ namespace RSS
         int refreshInterval() const;
         void setRefreshInterval(int refreshInterval);
 
+        int fetchDelay() const;
+        void setFetchDelay(int fetchDelay);
+
         nonstd::expected<void, QString> addFolder(const QString &path);
         nonstd::expected<void, QString> addFeed(const QString &url, const QString &path);
         nonstd::expected<void, QString> setFeedURL(const QString &path, const QString &url);
@@ -161,6 +164,7 @@ namespace RSS
 
         CachedSettingValue<bool> m_storeProcessingEnabled;
         CachedSettingValue<int> m_storeRefreshInterval;
+        CachedSettingValue<int> m_storeFetchDelay;
         CachedSettingValue<int> m_storeMaxArticlesPerFeed;
         Utils::Thread::UniquePtr m_workingThread;
         AsyncFileStorage *m_confFileStorage = nullptr;
