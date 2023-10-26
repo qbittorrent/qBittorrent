@@ -451,7 +451,7 @@ QString Utils::Misc::languageToLocalizedString(const QString &localeStr)
     case QLocale::Byelorussian: return C_LOCALE_BYELORUSSIAN;
     case QLocale::Catalan: return C_LOCALE_CATALAN;
     case QLocale::Chinese:
-        switch (locale.country())
+        switch (locale.territory())
         {
         case QLocale::China: return C_LOCALE_CHINESE_SIMPLIFIED;
         case QLocale::HongKong: return C_LOCALE_CHINESE_TRADITIONAL_HK;
@@ -462,7 +462,7 @@ QString Utils::Misc::languageToLocalizedString(const QString &localeStr)
     case QLocale::Danish: return C_LOCALE_DANISH;
     case QLocale::Dutch: return C_LOCALE_DUTCH;
     case QLocale::English:
-        switch (locale.country())
+        switch (locale.territory())
         {
         case QLocale::Australia: return C_LOCALE_ENGLISH_AUSTRALIA;
         case QLocale::UnitedKingdom: return C_LOCALE_ENGLISH_UNITEDKINGDOM;
@@ -492,7 +492,7 @@ QString Utils::Misc::languageToLocalizedString(const QString &localeStr)
     case QLocale::Persian: return C_LOCALE_PERSIAN;
     case QLocale::Polish: return C_LOCALE_POLISH;
     case QLocale::Portuguese:
-        if (locale.country() == QLocale::Brazil)
+        if (locale.territory() == QLocale::Brazil)
             return C_LOCALE_PORTUGUESE_BRAZIL;
         return C_LOCALE_PORTUGUESE;
     case QLocale::Romanian: return C_LOCALE_ROMANIAN;
