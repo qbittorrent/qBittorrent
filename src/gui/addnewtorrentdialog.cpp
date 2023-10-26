@@ -272,6 +272,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
     , m_torrentParams {inParams}
     , m_filterLine {new LineEdit(this)}
     , m_storeDialogSize {SETTINGS_KEY(u"DialogSize"_s)}
+    , m_storeDialogPosition {SETTINGS_KEY(u"DialogPosition"_s)}
     , m_storeDefaultCategory {SETTINGS_KEY(u"DefaultCategory"_s)}
     , m_storeRememberLastSavePath {SETTINGS_KEY(u"RememberLastSavePath"_s)}
     , m_storeTreeHeaderState {u"GUI/Qt6/" SETTINGS_KEY(u"TreeHeaderState"_s)}
@@ -457,12 +458,16 @@ void AddNewTorrentDialog::loadState()
     if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
         resize(dialogSize);
 
-    m_ui->splitter->restoreState(m_storeSplitterState);;
+    if (const QPoint dialogPosition = m_storeDialogPosition; !dialogPosition.isNull())
+        move(dialogPosition);
+
+    m_ui->splitter->restoreState(m_storeSplitterState);
 }
 
 void AddNewTorrentDialog::saveState()
 {
     m_storeDialogSize = size();
+    m_storeDialogPosition = pos();
     m_storeSplitterState = m_ui->splitter->saveState();
     if (hasMetadata())
         m_storeTreeHeaderState = m_ui->contentTreeView->header()->saveState();

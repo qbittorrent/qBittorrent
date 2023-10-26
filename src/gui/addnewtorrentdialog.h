@@ -94,6 +94,7 @@ private:
     LineEdit *m_filterLine = nullptr;
 
     SettingValue<QSize> m_storeDialogSize;
+    SettingValue<QPoint> m_storeDialogPosition;
     SettingValue<QString> m_storeDefaultCategory;
     SettingValue<bool> m_storeRememberLastSavePath;
     SettingValue<QByteArray> m_storeTreeHeaderState;
