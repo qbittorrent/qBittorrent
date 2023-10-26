@@ -2403,6 +2403,11 @@ bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
         return false;
 
     const lt::torrent_handle nativeHandle = downloadedMetadataIter.value();
+    m_downloadedMetadata.erase(downloadedMetadataIter);
+
+    if (!nativeHandle.is_valid())
+        return true;
+
 #ifdef QBT_USES_LIBTORRENT2
     const InfoHash infoHash {nativeHandle.info_hashes()};
     if (infoHash.isHybrid())
@@ -2413,7 +2418,7 @@ bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
         m_downloadedMetadata.remove((altID == downloadedMetadataIter.key()) ? id : altID);
     }
 #endif
-    m_downloadedMetadata.erase(downloadedMetadataIter);
+
     m_nativeSession->remove_torrent(nativeHandle, lt::session::delete_files);
     return true;
 }
