@@ -153,7 +153,7 @@ namespace Net
         explicit DownloadManager(QObject *parent = nullptr);
 
         void applyProxySettings();
-        void handleDownloadFinished(DownloadHandlerImpl *finishedHandler);
+        void handleDownloadFinished(const ServiceID &id);
         void processRequest(DownloadHandlerImpl *downloadHandler);
 
         static DownloadManager *m_instance;

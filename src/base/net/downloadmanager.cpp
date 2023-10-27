@@ -40,11 +40,13 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSslError>
+#include <QTimer>
 #include <QUrl>
 
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
+#include "base/rss/rss_session.h"
 #include "downloadhandlerimpl.h"
 #include "proxyconfigurationmanager.h"
 
@@ -259,9 +261,8 @@ void Net::DownloadManager::applyProxySettings()
         m_proxy.setCapabilities(m_proxy.capabilities() & ~QNetworkProxy::HostNameLookupCapability);
 }
 
-void Net::DownloadManager::handleDownloadFinished(DownloadHandlerImpl *finishedHandler)
+void Net::DownloadManager::handleDownloadFinished(const ServiceID &id)
 {
-    const ServiceID id = ServiceID::fromURL(finishedHandler->url());
     const auto waitingJobsIter = m_waitingJobs.find(id);
     if ((waitingJobsIter == m_waitingJobs.end()) || waitingJobsIter.value().isEmpty())
     {
@@ -302,7 +303,10 @@ void Net::DownloadManager::processRequest(DownloadHandlerImpl *downloadHandler)
     QNetworkReply *reply = m_networkManager->get(request);
     connect(reply, &QNetworkReply::finished, this, [this, downloadHandler]
     {
-        handleDownloadFinished(downloadHandler);
+        const ServiceID id = ServiceID::fromURL(downloadHandler->url());
+        QTimer::singleShot(RSS::Session::instance()->fetchDelay()*1000 , this, [this, id](){
+            handleDownloadFinished(id);
+        });
     });
     downloadHandler->assignNetworkReply(reply);
 }
