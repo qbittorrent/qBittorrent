@@ -95,7 +95,6 @@ namespace Utils::Misc
     QString languageToLocalizedString(const QString &localeStr);
 
 #ifdef Q_OS_WIN
-    bool applyMarkOfTheWeb(const Path &file, const QString &url = {});
     Path windowsSystemPath();
 
     template <typename T>
@@ -105,4 +104,8 @@ namespace Utils::Misc
         return reinterpret_cast<T>(::GetProcAddress(::LoadLibraryW(path.c_str()), funcName));
     }
 #endif // Q_OS_WIN
+
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+    bool applyMarkOfTheWeb(const Path &file, const QString &url = {});
+#endif // Q_OS_MACOS || Q_OS_WIN
 }

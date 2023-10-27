@@ -68,9 +68,9 @@
 #include "peerinfo.h"
 #include "sessionimpl.h"
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
 #include "base/utils/misc.h"
-#endif
+#endif // Q_OS_MACOS || Q_OS_WIN
 
 using namespace BitTorrent;
 
@@ -2200,14 +2200,14 @@ void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
 
     const Path actualPath = actualFilePath(fileIndex);
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
     // only apply Mark-of-the-Web to new download files
     if (isDownloading())
     {
         const Path fullpath = actualStorageLocation() / actualPath;
         Utils::Misc::applyMarkOfTheWeb(fullpath);
     }
-#endif
+#endif // Q_OS_MACOS || Q_OS_WIN
 
     if (m_session->isAppendExtensionEnabled())
     {

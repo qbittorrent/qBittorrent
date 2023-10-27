@@ -43,6 +43,7 @@
 
 #ifdef Q_OS_MACOS
 #include <Carbon/Carbon.h>
+#include <CoreFoundation/CoreFoundation.h>
 #include <CoreServices/CoreServices.h>
 #endif
 
@@ -52,6 +53,7 @@
 #include <openssl/opensslv.h>
 #include <zlib.h>
 
+#include <QtAssert>
 #include <QCoreApplication>
 #include <QDebug>
 #include <QLocale>
@@ -620,10 +622,50 @@ QString Utils::Misc::zlibVersionString()
 }
 
 #ifdef Q_OS_WIN
+Path Utils::Misc::windowsSystemPath()
+{
+    static const Path path = []() -> Path
+    {
+        WCHAR systemPath[MAX_PATH] = {0};
+        GetSystemDirectoryW(systemPath, sizeof(systemPath) / sizeof(WCHAR));
+        return Path(QString::fromWCharArray(systemPath));
+    }();
+    return path;
+}
+#endif // Q_OS_WIN
+
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
 bool Utils::Misc::applyMarkOfTheWeb(const Path &file, const QString &url)
 {
     Q_ASSERT(url.isEmpty() || url.startsWith(u"http:") || url.startsWith(u"https:"));
 
+#ifdef Q_OS_MACOS
+    // References:
+    // https://searchfox.org/mozilla-central/rev/ffdc4971dc18e1141cb2a90c2b0b776365650270/xpcom/io/CocoaFileUtils.mm#230
+    // https://github.com/transmission/transmission/blob/f62f7427edb1fd5c430e0ef6956bbaa4f03ae597/macosx/Torrent.mm#L1945-L1955
+
+    CFMutableDictionaryRef properties = ::CFDictionaryCreateMutable(kCFAllocatorDefault, 0
+        , &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+    if (properties == NULL)
+        return false;
+
+    ::CFDictionarySetValue(properties, kLSQuarantineTypeKey, kLSQuarantineTypeOtherDownload);
+    if (!url.isEmpty())
+        ::CFDictionarySetValue(properties, kLSQuarantineDataURLKey, url.toCFString());
+
+    const CFStringRef fileString = file.toString().toCFString();
+    const CFURLRef fileURL = ::CFURLCreateWithFileSystemPath(kCFAllocatorDefault
+        , fileString, kCFURLPOSIXPathStyle, false);
+
+    const Boolean success = ::CFURLSetResourcePropertyForKey(fileURL, kCFURLQuarantinePropertiesKey
+        , properties, NULL);
+
+    ::CFRelease(fileURL);
+    ::CFRelease(fileString);
+    ::CFRelease(properties);
+
+    return success;
+#elif defined(Q_OS_WIN)
     const QString zoneIDStream = file.toString() + u":Zone.Identifier";
     HANDLE handle = ::CreateFileW(zoneIDStream.toStdWString().c_str(), GENERIC_WRITE
         , (FILE_SHARE_DELETE | FILE_SHARE_READ | FILE_SHARE_WRITE)
@@ -642,16 +684,6 @@ bool Utils::Misc::applyMarkOfTheWeb(const Path &file, const QString &url)
     ::CloseHandle(handle);
 
     return writeResult && (written == zoneID.size());
+#endif
 }
-
-Path Utils::Misc::windowsSystemPath()
-{
-    static const Path path = []() -> Path
-    {
-        WCHAR systemPath[MAX_PATH] = {0};
-        GetSystemDirectoryW(systemPath, sizeof(systemPath) / sizeof(WCHAR));
-        return Path(QString::fromWCharArray(systemPath));
-    }();
-    return path;
-}
-#endif // Q_OS_WIN
+#endif // Q_OS_MACOS || Q_OS_WIN
