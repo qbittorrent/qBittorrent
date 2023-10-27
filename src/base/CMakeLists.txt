@@ -205,9 +205,9 @@ target_link_libraries(qbt_base
 )
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    find_library(IOKit_LIBRARY IOKit)
-    find_library(Carbon_LIBRARY Carbon)
     find_library(AppKit_LIBRARY AppKit)
+    find_library(Carbon_LIBRARY Carbon)
+    find_library(IOKit_LIBRARY IOKit)
 
     target_link_libraries(qbt_base PRIVATE
         ${AppKit_LIBRARY}

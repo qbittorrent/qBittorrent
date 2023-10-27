@@ -150,9 +150,9 @@ void Net::DownloadHandlerImpl::processFinishedDownload()
             {
                 m_result.filePath = result.value();
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
                 Utils::Misc::applyMarkOfTheWeb(m_result.filePath, m_result.url);
-#endif
+#endif // Q_OS_MACOS || Q_OS_WIN
             }
             else
             {
@@ -166,9 +166,9 @@ void Net::DownloadHandlerImpl::processFinishedDownload()
             {
                 m_result.filePath = destinationPath;
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
                 Utils::Misc::applyMarkOfTheWeb(m_result.filePath, m_result.url);
-#endif
+#endif // Q_OS_MACOS || Q_OS_WIN
             }
             else
             {
