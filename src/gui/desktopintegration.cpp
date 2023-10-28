@@ -286,17 +286,25 @@ void DesktopIntegration::createTrayIcon()
 QIcon DesktopIntegration::getSystrayIcon() const
 {
     const TrayIcon::Style style = Preferences::instance()->trayIconStyle();
+    QIcon icon;
     switch (style)
     {
     default:
     case TrayIcon::Style::Normal:
-        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray"_s);
-
+        icon = UIThemeManager::instance()->getIcon(u"qbittorrent-tray"_s);
+        break;
     case TrayIcon::Style::MonoDark:
-        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray-dark"_s);
-
+        icon = UIThemeManager::instance()->getIcon(u"qbittorrent-tray-dark"_s);
+        break;
     case TrayIcon::Style::MonoLight:
-        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray-light"_s);
+        icon = UIThemeManager::instance()->getIcon(u"qbittorrent-tray-light"_s);
+        break;
     }
+#if ((QT_VERSION < QT_VERSION_CHECK(6, 0, 0)) && defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    // Workaround for invisible tray icon in KDE, https://bugreports.qt.io/browse/QTBUG-53550
+    return {icon.pixmap(32)};
+#else
+    return icon;
+#endif
 }
 #endif // Q_OS_MACOS
