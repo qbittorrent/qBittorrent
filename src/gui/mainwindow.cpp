@@ -1914,9 +1914,7 @@ void MainWindow::installPython()
     setCursor(QCursor(Qt::WaitCursor));
     // Download python
 #ifdef QBT_APP_64BIT
-    const auto installerURL = ::IsWindows8OrGreater()
-        ? u"https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe"_s
-        : u"https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe"_s;
+    const auto installerURL = u"https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe"_s;
 #else
     const auto installerURL = ::IsWindows8OrGreater()
         ? u"https://www.python.org/ftp/python/3.10.11/python-3.10.11.exe"_s
