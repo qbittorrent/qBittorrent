@@ -30,20 +30,10 @@
 #include "programupdater.h"
 
 #include <QtSystemDetection>
-
-#if defined(Q_OS_WIN)
-#include <windows.h>
-#include <versionhelpers.h>  // must follow after windows.h
-#endif
-
 #include <QDebug>
 #include <QDesktopServices>
 #include <QRegularExpression>
 #include <QXmlStreamReader>
-
-#if defined(Q_OS_WIN)
-#include <QSysInfo>
-#endif
 
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
@@ -110,9 +100,7 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 #ifdef Q_OS_MACOS
     const QString OS_TYPE = u"Mac OS X"_s;
 #elif defined(Q_OS_WIN)
-    const QString OS_TYPE = (::IsWindows7OrGreater() && QSysInfo::currentCpuArchitecture().endsWith(u"64"))
-        ? u"Windows x64"_s
-        : u"Windows"_s;
+    const QString OS_TYPE = u"Windows x64"_s;
 #endif
 
     bool inItem = false;
