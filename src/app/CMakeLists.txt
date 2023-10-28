@@ -140,10 +140,6 @@ if (STACKTRACE)
                 /DEBUG
                 /PDBALTPATH:$<TARGET_PDB_FILE_NAME:qbt_app>
             )
-
-            if (CMAKE_SIZEOF_VOID_P EQUAL 4)
-                target_compile_options(qbt_app PRIVATE /Oy-)
-            endif()
         else()
             target_link_options(qbt_app PUBLIC LINKER:--export-dynamic)
 
