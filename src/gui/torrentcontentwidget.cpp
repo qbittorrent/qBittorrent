@@ -89,10 +89,6 @@ TorrentContentWidget::TorrentContentWidget(QWidget *parent)
 
     const auto *renameFileHotkey = new QShortcut(Qt::Key_F2, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(renameFileHotkey, &QShortcut::activated, this, &TorrentContentWidget::renameSelectedFile);
-    const auto *openFileHotkeyReturn = new QShortcut(Qt::Key_Return, this, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(openFileHotkeyReturn, &QShortcut::activated, this, &TorrentContentWidget::openSelectedFile);
-    const auto *openFileHotkeyEnter = new QShortcut(Qt::Key_Enter, this, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(openFileHotkeyEnter, &QShortcut::activated, this, &TorrentContentWidget::openSelectedFile);
 
     connect(model(), &QAbstractItemModel::modelReset, this, &TorrentContentWidget::expandRecursively);
 }
@@ -116,6 +112,32 @@ void TorrentContentWidget::refresh()
     setUpdatesEnabled(false);
     m_model->refresh();
     setUpdatesEnabled(true);
+}
+
+bool TorrentContentWidget::openByEnterKey() const
+{
+    return m_openFileHotkeyEnter;
+}
+
+void TorrentContentWidget::setOpenByEnterKey(const bool value)
+{
+    if (value == openByEnterKey())
+        return;
+
+    if (value)
+    {
+        m_openFileHotkeyReturn = new QShortcut(Qt::Key_Return, this, nullptr, nullptr, Qt::WidgetShortcut);
+        connect(m_openFileHotkeyReturn, &QShortcut::activated, this, &TorrentContentWidget::openSelectedFile);
+        m_openFileHotkeyEnter = new QShortcut(Qt::Key_Enter, this, nullptr, nullptr, Qt::WidgetShortcut);
+        connect(m_openFileHotkeyEnter, &QShortcut::activated, this, &TorrentContentWidget::openSelectedFile);
+    }
+    else
+    {
+        delete m_openFileHotkeyEnter;
+        m_openFileHotkeyEnter = nullptr;
+        delete m_openFileHotkeyReturn;
+        m_openFileHotkeyReturn = nullptr;
+    }
 }
 
 TorrentContentWidget::DoubleClickAction TorrentContentWidget::doubleClickAction() const

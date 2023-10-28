@@ -34,6 +34,8 @@
 #include "base/bittorrent/downloadpriority.h"
 #include "base/pathfwd.h"
 
+class QShortcut;
+
 namespace BitTorrent
 {
     class Torrent;
@@ -78,6 +80,9 @@ public:
     BitTorrent::TorrentContentHandler *contentHandler() const;
     void refresh();
 
+    bool openByEnterKey() const;
+    void setOpenByEnterKey(bool value);
+
     DoubleClickAction doubleClickAction() const;
     void setDoubleClickAction(DoubleClickAction action);
 
@@ -118,4 +123,6 @@ private:
     TorrentContentFilterModel *m_filterModel;
     DoubleClickAction m_doubleClickAction = DoubleClickAction::Rename;
     ColumnsVisibilityMode m_columnsVisibilityMode = ColumnsVisibilityMode::Editable;
+    QShortcut *m_openFileHotkeyEnter = nullptr;
+    QShortcut *m_openFileHotkeyReturn = nullptr;
 };
