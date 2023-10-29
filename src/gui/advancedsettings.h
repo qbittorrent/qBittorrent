@@ -101,13 +101,17 @@ private:
 #endif
 
     // OS dependent settings
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
     QComboBox m_comboBoxOSMemoryPriority;
 #endif
 
 #ifndef Q_OS_MACOS
     QCheckBox m_checkBoxIconsInMenusEnabled;
 #endif
+
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+    QCheckBox m_checkBoxMarkOfTheWeb;
+#endif // Q_OS_MACOS || Q_OS_WIN
 
 #ifdef QBT_USES_DBUS
     QSpinBox m_spinBoxNotificationTimeout;

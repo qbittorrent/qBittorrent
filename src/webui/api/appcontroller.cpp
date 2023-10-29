@@ -414,6 +414,8 @@ void AppController::preferencesAction()
     data[u"enable_embedded_tracker"_s] = session->isTrackerEnabled();
     data[u"embedded_tracker_port"_s] = pref->getTrackerPort();
     data[u"embedded_tracker_port_forwarding"_s] = pref->isTrackerPortForwardingEnabled();
+    // Mark-of-the-Web
+    data[u"mark_of_the_web"_s] = pref->isMarkOfTheWebEnabled();
     // Python executable path
     data[u"python_executable_path"_s] = pref->getPythonExecutablePath().toString();
     // Choking algorithm
@@ -1020,6 +1022,9 @@ void AppController::setPreferencesAction()
         pref->setTrackerPortForwardingEnabled(it.value().toBool());
     if (hasKey(u"enable_embedded_tracker"_s))
         session->setTrackerEnabled(it.value().toBool());
+    // Mark-of-the-Web
+    if (hasKey(u"mark_of_the_web"_s))
+        pref->setMarkOfTheWebEnabled(it.value().toBool());
     // Python executable path
     if (hasKey(u"python_executable_path"_s))
         pref->setPythonExecutablePath(Path(it.value().toString()));

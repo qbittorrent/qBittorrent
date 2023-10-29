@@ -100,6 +100,9 @@ namespace
         TRACKER_STATUS,
         TRACKER_PORT,
         TRACKER_PORT_FORWARDING,
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+        ENABLE_MARK_OF_THE_WEB,
+#endif // Q_OS_MACOS || Q_OS_WIN
         PYTHON_EXECUTABLE_PATH,
 
         // libtorrent section
@@ -319,6 +322,10 @@ void AdvancedSettings::saveAdvancedSettings() const
     pref->setTrackerPort(m_spinBoxTrackerPort.value());
     pref->setTrackerPortForwardingEnabled(m_checkBoxTrackerPortForwarding.isChecked());
     session->setTrackerEnabled(m_checkBoxTrackerStatus.isChecked());
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+    // Mark-of-the-Web
+    pref->setMarkOfTheWebEnabled(m_checkBoxMarkOfTheWeb.isChecked());
+#endif // Q_OS_MACOS || Q_OS_WIN
     // Python executable path
     pref->setPythonExecutablePath(Path(m_pythonExecutablePath.text().trimmed()));
     // Choking algorithm
@@ -815,6 +822,16 @@ void AdvancedSettings::loadAdvancedSettings()
     // Tracker port forwarding
     m_checkBoxTrackerPortForwarding.setChecked(pref->isTrackerPortForwardingEnabled());
     addRow(TRACKER_PORT_FORWARDING, tr("Enable port forwarding for embedded tracker"), &m_checkBoxTrackerPortForwarding);
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+    // Mark-of-the-Web
+#ifdef Q_OS_MACOS
+    const QString motwLabel = tr("Enable quarantine for downloaded files");
+#elif defined(Q_OS_WIN)
+    const QString motwLabel = tr("Enable Mark-of-the-Web (MOTW) for downloaded files");
+#endif
+    m_checkBoxMarkOfTheWeb.setChecked(pref->isMarkOfTheWebEnabled());
+    addRow(ENABLE_MARK_OF_THE_WEB, motwLabel, &m_checkBoxMarkOfTheWeb);
+#endif // Q_OS_MACOS || Q_OS_WIN
     // Python executable path
     m_pythonExecutablePath.setPlaceholderText(tr("(Auto detect if empty)"));
     m_pythonExecutablePath.setText(pref->getPythonExecutablePath().toString());
