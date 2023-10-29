@@ -63,7 +63,7 @@ namespace
         // qBittorrent section
         QBITTORRENT_HEADER,
         RESUME_DATA_STORAGE,
-#ifdef QBT_USES_LIBTORRENT2
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
         MEMORY_WORKING_SET_LIMIT,
 #endif
 #if defined(Q_OS_WIN)
@@ -197,7 +197,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     BitTorrent::Session *const session = BitTorrent::Session::instance();
 
     session->setResumeDataStorageType(m_comboBoxResumeDataStorage.currentData().value<BitTorrent::ResumeDataStorageType>());
-#ifdef QBT_USES_LIBTORRENT2
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
     // Physical memory (RAM) usage limit
     app()->setMemoryWorkingSetLimit(m_spinBoxMemoryWorkingSetLimit.value());
 #endif
@@ -456,7 +456,7 @@ void AdvancedSettings::loadAdvancedSettings()
     m_comboBoxResumeDataStorage.setCurrentIndex(m_comboBoxResumeDataStorage.findData(QVariant::fromValue(session->resumeDataStorageType())));
     addRow(RESUME_DATA_STORAGE, tr("Resume data storage type (requires restart)"), &m_comboBoxResumeDataStorage);
 
-#ifdef QBT_USES_LIBTORRENT2
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
     // Physical memory (RAM) usage limit
     m_spinBoxMemoryWorkingSetLimit.setMinimum(1);
     m_spinBoxMemoryWorkingSetLimit.setMaximum(std::numeric_limits<int>::max());
