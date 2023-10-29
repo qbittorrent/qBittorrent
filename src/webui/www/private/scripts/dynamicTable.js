@@ -111,7 +111,8 @@ window.qBittorrent.DynamicTable = (function() {
 
                     let n = 2;
 
-                    while (panel.clientWidth != panel.offsetWidth && n > 0) { // is panel vertical scrollbar visible ?
+                    // is panel vertical scrollbar visible or does panel content not fit?
+                    while (((panel.clientWidth != panel.offsetWidth) || (panel.clientHeight != panel.scrollHeight)) && (n > 0)) {
                         --n;
                         h -= 0.5;
                         $(this.dynamicTableDivId).style.height = h + 'px';
