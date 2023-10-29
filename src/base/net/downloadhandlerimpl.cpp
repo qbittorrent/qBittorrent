@@ -42,6 +42,10 @@
 #include "base/utils/gzip.h"
 #endif
 
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+#include "base/utils/os.h"
+#endif // Q_OS_MACOS || Q_OS_WIN
+
 const int MAX_REDIRECTIONS = 20;  // the common value for web browsers
 
 namespace
@@ -151,7 +155,7 @@ void Net::DownloadHandlerImpl::processFinishedDownload()
                 m_result.filePath = result.value();
 
 #if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
-                Utils::Misc::applyMarkOfTheWeb(m_result.filePath, m_result.url);
+                Utils::OS::applyMarkOfTheWeb(m_result.filePath, m_result.url);
 #endif // Q_OS_MACOS || Q_OS_WIN
             }
             else
@@ -167,7 +171,7 @@ void Net::DownloadHandlerImpl::processFinishedDownload()
                 m_result.filePath = destinationPath;
 
 #if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
-                Utils::Misc::applyMarkOfTheWeb(m_result.filePath, m_result.url);
+                Utils::OS::applyMarkOfTheWeb(m_result.filePath, m_result.url);
 #endif // Q_OS_MACOS || Q_OS_WIN
             }
             else

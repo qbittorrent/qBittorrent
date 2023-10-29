@@ -85,6 +85,7 @@
 #include "base/torrentfileswatcher.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
+#include "base/utils/os.h"
 #include "base/utils/string.h"
 #include "base/version.h"
 #include "applicationinstancemanager.h"
@@ -99,10 +100,6 @@
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
 #include "gui/windowstate.h"
-
-#ifdef Q_OS_WIN
-#include "base/utils/os.h"
-#endif  // Q_OS_WIN
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
@@ -1207,12 +1204,12 @@ void Application::setProcessMemoryPriority(const MemoryPriority priority)
 void Application::applyMemoryPriority() const
 {
     using SETPROCESSINFORMATION = BOOL (WINAPI *)(HANDLE, PROCESS_INFORMATION_CLASS, LPVOID, DWORD);
-    const auto setProcessInformation = Utils::Misc::loadWinAPI<SETPROCESSINFORMATION>(u"Kernel32.dll"_s, "SetProcessInformation");
+    const auto setProcessInformation = Utils::OS::loadWinAPI<SETPROCESSINFORMATION>(u"Kernel32.dll"_s, "SetProcessInformation");
     if (!setProcessInformation)  // only available on Windows >= 8
         return;
 
     using SETTHREADINFORMATION = BOOL (WINAPI *)(HANDLE, THREAD_INFORMATION_CLASS, LPVOID, DWORD);
-    const auto setThreadInformation = Utils::Misc::loadWinAPI<SETTHREADINFORMATION>(u"Kernel32.dll"_s, "SetThreadInformation");
+    const auto setThreadInformation = Utils::OS::loadWinAPI<SETTHREADINFORMATION>(u"Kernel32.dll"_s, "SetThreadInformation");
     if (!setThreadInformation)  // only available on Windows >= 8
         return;
 
@@ -1352,7 +1349,7 @@ void Application::cleanup()
     if (m_shutdownAct != ShutdownDialogAction::Exit)
     {
         qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
-        Utils::Misc::shutdownComputer(m_shutdownAct);
+        Utils::OS::shutdownComputer(m_shutdownAct);
     }
 }
 
