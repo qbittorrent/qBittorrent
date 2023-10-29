@@ -30,23 +30,6 @@
 
 #include <optional>
 
-#ifdef Q_OS_WIN
-#include <memory>
-
-#include <windows.h>
-#include <powrprof.h>
-#include <shlobj.h>
-#else
-#include <sys/types.h>
-#include <unistd.h>
-#endif
-
-#ifdef Q_OS_MACOS
-#include <Carbon/Carbon.h>
-#include <CoreFoundation/CoreFoundation.h>
-#include <CoreServices/CoreServices.h>
-#endif
-
 #include <boost/version.hpp>
 #include <libtorrent/version.hpp>
 #include <openssl/crypto.h>
@@ -60,16 +43,11 @@
 #include <QMimeDatabase>
 #include <QRegularExpression>
 #include <QSet>
+#include <QString>
 #include <QSysInfo>
-#include <QVector>
 
-#ifdef QBT_USES_DBUS
-#include <QDBusInterface>
-#endif
-
-#include "base/types.h"
+#include "base/path.h"
 #include "base/unicodestrings.h"
-#include "base/utils/fs.h"
 #include "base/utils/string.h"
 
 namespace
@@ -111,145 +89,6 @@ namespace
         }
         return {{value, static_cast<Utils::Misc::SizeUnit>(i)}};
     }
-}
-
-void Utils::Misc::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &action)
-{
-#if defined(Q_OS_WIN)
-    HANDLE hToken;            // handle to process token
-    TOKEN_PRIVILEGES tkp;     // pointer to token structure
-    if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
-        return;
-    // Get the LUID for shutdown privilege.
-    LookupPrivilegeValue(NULL, SE_SHUTDOWN_NAME,
-                         &tkp.Privileges[0].Luid);
-
-    tkp.PrivilegeCount = 1; // one privilege to set
-    tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-
-    // Get shutdown privilege for this process.
-
-    AdjustTokenPrivileges(hToken, FALSE, &tkp, 0,
-                          (PTOKEN_PRIVILEGES) NULL, 0);
-
-    // Cannot test the return value of AdjustTokenPrivileges.
-
-    if (GetLastError() != ERROR_SUCCESS)
-        return;
-
-    if (action == ShutdownDialogAction::Suspend)
-    {
-        ::SetSuspendState(FALSE, FALSE, FALSE);
-    }
-    else if (action == ShutdownDialogAction::Hibernate)
-    {
-        ::SetSuspendState(TRUE, FALSE, FALSE);
-    }
-    else
-    {
-        const QString msg = QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.");
-        auto msgWchar = std::make_unique<wchar_t[]>(msg.length() + 1);
-        msg.toWCharArray(msgWchar.get());
-        ::InitiateSystemShutdownW(nullptr, msgWchar.get(), 10, TRUE, FALSE);
-    }
-
-    // Disable shutdown privilege.
-    tkp.Privileges[0].Attributes = 0;
-    AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) NULL, 0);
-
-#elif defined(Q_OS_MACOS)
-    AEEventID EventToSend;
-    if (action != ShutdownDialogAction::Shutdown)
-        EventToSend = kAESleep;
-    else
-        EventToSend = kAEShutDown;
-    AEAddressDesc targetDesc;
-    const ProcessSerialNumber kPSNOfSystemProcess = {0, kSystemProcess};
-    AppleEvent eventReply = {typeNull, NULL};
-    AppleEvent appleEventToSend = {typeNull, NULL};
-
-    OSStatus error = AECreateDesc(typeProcessSerialNumber, &kPSNOfSystemProcess,
-                                  sizeof(kPSNOfSystemProcess), &targetDesc);
-
-    if (error != noErr)
-        return;
-
-    error = AECreateAppleEvent(kCoreEventClass, EventToSend, &targetDesc,
-                               kAutoGenerateReturnID, kAnyTransactionID, &appleEventToSend);
-
-    AEDisposeDesc(&targetDesc);
-    if (error != noErr)
-        return;
-
-    error = AESend(&appleEventToSend, &eventReply, kAENoReply,
-                   kAENormalPriority, kAEDefaultTimeout, NULL, NULL);
-
-    AEDisposeDesc(&appleEventToSend);
-    if (error != noErr)
-        return;
-
-    AEDisposeDesc(&eventReply);
-
-#elif defined(QBT_USES_DBUS)
-    // Use dbus to power off / suspend the system
-    if (action != ShutdownDialogAction::Shutdown)
-    {
-        // Some recent systems use systemd's logind
-        QDBusInterface login1Iface(u"org.freedesktop.login1"_s, u"/org/freedesktop/login1"_s,
-                                   u"org.freedesktop.login1.Manager"_s, QDBusConnection::systemBus());
-        if (login1Iface.isValid())
-        {
-            if (action == ShutdownDialogAction::Suspend)
-                login1Iface.call(u"Suspend"_s, false);
-            else
-                login1Iface.call(u"Hibernate"_s, false);
-            return;
-        }
-        // Else, other recent systems use UPower
-        QDBusInterface upowerIface(u"org.freedesktop.UPower"_s, u"/org/freedesktop/UPower"_s,
-                                   u"org.freedesktop.UPower"_s, QDBusConnection::systemBus());
-        if (upowerIface.isValid())
-        {
-            if (action == ShutdownDialogAction::Suspend)
-                upowerIface.call(u"Suspend"_s);
-            else
-                upowerIface.call(u"Hibernate"_s);
-            return;
-        }
-        // HAL (older systems)
-        QDBusInterface halIface(u"org.freedesktop.Hal"_s, u"/org/freedesktop/Hal/devices/computer"_s,
-                                u"org.freedesktop.Hal.Device.SystemPowerManagement"_s,
-                                QDBusConnection::systemBus());
-        if (action == ShutdownDialogAction::Suspend)
-            halIface.call(u"Suspend"_s, 5);
-        else
-            halIface.call(u"Hibernate"_s);
-    }
-    else
-    {
-        // Some recent systems use systemd's logind
-        QDBusInterface login1Iface(u"org.freedesktop.login1"_s, u"/org/freedesktop/login1"_s,
-                                   u"org.freedesktop.login1.Manager"_s, QDBusConnection::systemBus());
-        if (login1Iface.isValid())
-        {
-            login1Iface.call(u"PowerOff"_s, false);
-            return;
-        }
-        // Else, other recent systems use ConsoleKit
-        QDBusInterface consolekitIface(u"org.freedesktop.ConsoleKit"_s, u"/org/freedesktop/ConsoleKit/Manager"_s,
-                                       u"org.freedesktop.ConsoleKit.Manager"_s, QDBusConnection::systemBus());
-        if (consolekitIface.isValid())
-        {
-            consolekitIface.call(u"Stop"_s);
-            return;
-        }
-        // HAL (older systems)
-        QDBusInterface halIface(u"org.freedesktop.Hal"_s, u"/org/freedesktop/Hal/devices/computer"_s,
-                                u"org.freedesktop.Hal.Device.SystemPowerManagement"_s,
-                                QDBusConnection::systemBus());
-        halIface.call(u"Shutdown"_s);
-    }
-#endif
 }
 
 QString Utils::Misc::unitString(const SizeUnit unit, const bool isSpeed)
@@ -411,21 +250,6 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
     qlonglong years = (days / 365);
     days -= (years * 365);
     return QCoreApplication::translate("misc", "%1y %2d", "e.g: 2 years 10 days").arg(QString::number(years), QString::number(days));
-}
-
-QString Utils::Misc::getUserIDString()
-{
-    QString uid = u"0"_s;
-#ifdef Q_OS_WIN
-    const int UNLEN = 256;
-    WCHAR buffer[UNLEN + 1] = {0};
-    DWORD buffer_len = sizeof(buffer) / sizeof(*buffer);
-    if (::GetUserNameW(buffer, &buffer_len))
-        uid = QString::fromWCharArray(buffer);
-#else
-    uid = QString::number(getuid());
-#endif
-    return uid;
 }
 
 QString Utils::Misc::languageToLocalizedString(const QString &localeStr)
@@ -620,70 +444,3 @@ QString Utils::Misc::zlibVersionString()
     static const auto version {QString::fromLatin1(zlibVersion())};
     return version;
 }
-
-#ifdef Q_OS_WIN
-Path Utils::Misc::windowsSystemPath()
-{
-    static const Path path = []() -> Path
-    {
-        WCHAR systemPath[MAX_PATH] = {0};
-        GetSystemDirectoryW(systemPath, sizeof(systemPath) / sizeof(WCHAR));
-        return Path(QString::fromWCharArray(systemPath));
-    }();
-    return path;
-}
-#endif // Q_OS_WIN
-
-#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
-bool Utils::Misc::applyMarkOfTheWeb(const Path &file, const QString &url)
-{
-    Q_ASSERT(url.isEmpty() || url.startsWith(u"http:") || url.startsWith(u"https:"));
-
-#ifdef Q_OS_MACOS
-    // References:
-    // https://searchfox.org/mozilla-central/rev/ffdc4971dc18e1141cb2a90c2b0b776365650270/xpcom/io/CocoaFileUtils.mm#230
-    // https://github.com/transmission/transmission/blob/f62f7427edb1fd5c430e0ef6956bbaa4f03ae597/macosx/Torrent.mm#L1945-L1955
-
-    CFMutableDictionaryRef properties = ::CFDictionaryCreateMutable(kCFAllocatorDefault, 0
-        , &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-    if (properties == NULL)
-        return false;
-
-    ::CFDictionarySetValue(properties, kLSQuarantineTypeKey, kLSQuarantineTypeOtherDownload);
-    if (!url.isEmpty())
-        ::CFDictionarySetValue(properties, kLSQuarantineDataURLKey, url.toCFString());
-
-    const CFStringRef fileString = file.toString().toCFString();
-    const CFURLRef fileURL = ::CFURLCreateWithFileSystemPath(kCFAllocatorDefault
-        , fileString, kCFURLPOSIXPathStyle, false);
-
-    const Boolean success = ::CFURLSetResourcePropertyForKey(fileURL, kCFURLQuarantinePropertiesKey
-        , properties, NULL);
-
-    ::CFRelease(fileURL);
-    ::CFRelease(fileString);
-    ::CFRelease(properties);
-
-    return success;
-#elif defined(Q_OS_WIN)
-    const QString zoneIDStream = file.toString() + u":Zone.Identifier";
-    HANDLE handle = ::CreateFileW(zoneIDStream.toStdWString().c_str(), GENERIC_WRITE
-        , (FILE_SHARE_DELETE | FILE_SHARE_READ | FILE_SHARE_WRITE)
-        , nullptr, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
-    if (handle == INVALID_HANDLE_VALUE)
-        return false;
-
-    // 5.6.1 Zone.Identifier Stream Name
-    // https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fscc/6e3f7352-d11c-4d76-8c39-2516a9df36e8
-    const QString hostURL = !url.isEmpty() ? url : u"about:internet"_s;
-    const QByteArray zoneID = QByteArrayLiteral("[ZoneTransfer]\r\nZoneId=3\r\n")
-        + u"HostUrl=%1\r\n"_s.arg(hostURL).toUtf8();
-
-    DWORD written = 0;
-    const BOOL writeResult = ::WriteFile(handle, zoneID.constData(), zoneID.size(), &written, nullptr);
-    ::CloseHandle(handle);
-
-    return writeResult && (written == zoneID.size());
-#endif
-}
-#endif // Q_OS_MACOS || Q_OS_WIN

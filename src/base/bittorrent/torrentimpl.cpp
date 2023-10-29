@@ -73,7 +73,7 @@
 #include "sessionimpl.h"
 
 #if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
-#include "base/utils/misc.h"
+#include "base/utils/os.h"
 #endif // Q_OS_MACOS || Q_OS_WIN
 
 using namespace BitTorrent;
@@ -2248,7 +2248,7 @@ void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
     if (isDownloading())
     {
         const Path fullpath = actualStorageLocation() / actualPath;
-        Utils::Misc::applyMarkOfTheWeb(fullpath);
+        Utils::OS::applyMarkOfTheWeb(fullpath);
     }
 #endif // Q_OS_MACOS || Q_OS_WIN
 
