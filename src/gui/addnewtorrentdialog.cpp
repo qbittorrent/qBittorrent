@@ -549,7 +549,7 @@ void AddNewTorrentDialog::contentLayoutChanged()
 
     const auto contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex());
     m_contentAdaptor->applyContentLayout(contentLayout);
-    m_ui->contentTreeView->setContentHandler(m_contentAdaptor); // to cause reloading
+    m_ui->contentTreeView->setContentHandler(m_contentAdaptor.get()); // to cause reloading
 }
 
 void AddNewTorrentDialog::saveTorrentFile()
@@ -775,7 +775,7 @@ void AddNewTorrentDialog::setupTreeview()
     if (m_torrentParams.filePaths.isEmpty())
         m_torrentParams.filePaths = torrentInfo.filePaths();
 
-    m_contentAdaptor = new TorrentContentAdaptor(torrentInfo, m_torrentParams.filePaths, m_torrentParams.filePriorities);
+    m_contentAdaptor = std::make_unique<TorrentContentAdaptor>(torrentInfo, m_torrentParams.filePaths, m_torrentParams.filePriorities);
 
     const auto contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex());
     m_contentAdaptor->applyContentLayout(contentLayout);
@@ -796,7 +796,7 @@ void AddNewTorrentDialog::setupTreeview()
         m_contentAdaptor->prioritizeFiles(priorities);
     }
 
-    m_ui->contentTreeView->setContentHandler(m_contentAdaptor);
+    m_ui->contentTreeView->setContentHandler(m_contentAdaptor.get());
 
     m_filterLine->blockSignals(false);
 
