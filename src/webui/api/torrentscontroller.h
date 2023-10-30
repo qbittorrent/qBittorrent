@@ -39,6 +39,7 @@ public:
     using APIController::APIController;
 
 private slots:
+    void countAction();
     void infoAction();
     void propertiesAction();
     void trackersAction();
