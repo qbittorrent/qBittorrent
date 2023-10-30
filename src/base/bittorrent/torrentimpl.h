@@ -299,11 +299,12 @@ namespace BitTorrent
 
         void setAutoManaged(bool enable);
 
-        Path wantedActualPath(int index, const Path &path) const;
+        Path makeActualPath(int index, const Path &path) const;
+        Path makeUserPath(const Path &path) const;
         void adjustStorageLocation();
         void doRenameFile(int index, const Path &path);
         void moveStorage(const Path &newPath, MoveStorageContext context);
-        void manageIncompleteFiles();
+        void manageActualFilePaths();
         void applyFirstLastPiecePriority(bool enabled);
 
         void prepareResumeData(const lt::add_torrent_params &params);
