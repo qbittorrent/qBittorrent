@@ -489,12 +489,14 @@ window.addEvent('load', function() {
             sortedCategories.push(category.name);
         });
         sortedCategories.sort(function(category1, category2) {
-            for (let i = 0; i < Math.min(category1.length, category2.length); i++) {
+            for (let i = 0; i < Math.min(category1.length, category2.length); ++i) {
                 if (category1[i] === "/" && category2[i] !== "/") {
                     return -1;
-                } else if (category1[i] !== "/" && category2[i] === "/") {
+                }
+                else if (category1[i] !== "/" && category2[i] === "/") {
                     return 1;
-                } else if (category1[i] !== category2[i]) {
+                }
+                else if (category1[i] !== category2[i]) {
                     return category1[i].localeCompare(category2[i]);
                 }
             }
