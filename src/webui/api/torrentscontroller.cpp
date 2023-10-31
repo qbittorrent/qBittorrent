@@ -987,18 +987,24 @@ void TorrentsController::setDownloadLimitAction()
 
 void TorrentsController::setShareLimitsAction()
 {
-    requireParams({u"hashes"_s, u"ratioLimit"_s, u"seedingTimeLimit"_s, u"inactiveSeedingTimeLimit"_s});
+    requireParams({u"hashes"_s, u"ratioLimit"_s, u"seedingTimeLimit"_s});
 
     const qreal ratioLimit = params()[u"ratioLimit"_s].toDouble();
     const qlonglong seedingTimeLimit = params()[u"seedingTimeLimit"_s].toLongLong();
-    const qlonglong inactiveSeedingTimeLimit = params()[u"inactiveSeedingTimeLimit"_s].toLongLong();
+    const std::optional<qlonglong> inactiveSeedingTimeLimit = [this]() -> std::optional<qlonglong>
+    {
+        const std::optional<QString> limit = getOptionalString(params(), u"inactiveSeedingTimeLimit"_s);
+        if (limit.has_value()) return limit->toLongLong();
+        return {};
+    }();
     const QStringList hashes = params()[u"hashes"_s].split(u'|');
 
     applyToTorrents(hashes, [ratioLimit, seedingTimeLimit, inactiveSeedingTimeLimit](BitTorrent::Torrent *const torrent)
     {
         torrent->setRatioLimit(ratioLimit);
         torrent->setSeedingTimeLimit(seedingTimeLimit);
-        torrent->setInactiveSeedingTimeLimit(inactiveSeedingTimeLimit);
+        if (inactiveSeedingTimeLimit.has_value())
+            torrent->setInactiveSeedingTimeLimit(inactiveSeedingTimeLimit.value());
     });
 }
 
