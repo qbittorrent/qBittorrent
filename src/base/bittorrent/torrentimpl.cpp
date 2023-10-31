@@ -2150,7 +2150,7 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     const int fileIndex = m_indexMap.value(p->index, -1);
     Q_ASSERT(fileIndex >= 0);
 
-    const auto newActualFilePath = Path(QString::fromUtf8(p->new_name()));
+    const Path newActualFilePath {QString::fromUtf8(p->new_name())};
 
     const Path oldFilePath = m_filePaths.at(fileIndex);
     const Path newFilePath = makeUserPath(newActualFilePath);
@@ -2161,23 +2161,34 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     if (oldFilePath.data() == newFilePath.data())
     {
         // Remove empty ".unwanted" folders
-        const auto oldActualFilePath = Path(QString::fromUtf8(p->old_name()));
+#ifdef QBT_USES_LIBTORRENT2
+        const Path oldActualFilePath {QString::fromUtf8(p->old_name())};
+#else
+        const Path oldActualFilePath;
+#endif
         const Path oldActualParentPath = oldActualFilePath.parentPath();
         const Path newActualParentPath = newActualFilePath.parentPath();
-        if (oldActualParentPath.filename() == UNWANTED_FOLDER_NAME)
+        if (newActualParentPath.filename() == UNWANTED_FOLDER_NAME)
+        {
+            Q_ASSERT(oldActualParentPath.filename() != UNWANTED_FOLDER_NAME);
+
+#ifdef Q_OS_WIN
+            const std::wstring winPath = (actualStorageLocation() / newActualParentPath).toString().toStdWString();
+            const DWORD dwAttrs = ::GetFileAttributesW(winPath.c_str());
+            ::SetFileAttributesW(winPath.c_str(), (dwAttrs | FILE_ATTRIBUTE_HIDDEN));
+#endif
+        }
+#ifdef QBT_USES_LIBTORRENT2
+        else if (oldActualParentPath.filename() == UNWANTED_FOLDER_NAME)
         {
             Q_ASSERT(newActualParentPath.filename() != UNWANTED_FOLDER_NAME);
 
             Utils::Fs::rmdir(actualStorageLocation() / oldActualParentPath);
         }
-#ifdef Q_OS_WIN
-        else if (newActualParentPath.filename() == UNWANTED_FOLDER_NAME)
+#else
+        else
         {
-            Q_ASSERT(oldActualParentPath.filename() != UNWANTED_FOLDER_NAME);
-
-            const std::wstring winPath = (actualStorageLocation() / newActualParentPath).toString().toStdWString();
-            const DWORD dwAttrs = ::GetFileAttributesW(winPath.c_str());
-            ::SetFileAttributesW(winPath.c_str(), (dwAttrs | FILE_ATTRIBUTE_HIDDEN));
+            Utils::Fs::rmdir(actualStorageLocation() / newActualParentPath / Path(UNWANTED_FOLDER_NAME));
         }
 #endif
     }
