@@ -32,6 +32,10 @@
 #include <algorithm>
 #include <memory>
 
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
+
 #include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/create_torrent.hpp>
@@ -2159,12 +2163,23 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
         // Remove empty ".unwanted" folders
         const auto oldActualFilePath = Path(QString::fromUtf8(p->old_name()));
         const Path oldActualParentPath = oldActualFilePath.parentPath();
+        const Path newActualParentPath = newActualFilePath.parentPath();
         if (oldActualParentPath.filename() == UNWANTED_FOLDER_NAME)
         {
-            Q_ASSERT(newActualFilePath.parentPath().filename() != UNWANTED_FOLDER_NAME);
+            Q_ASSERT(newActualParentPath.filename() != UNWANTED_FOLDER_NAME);
 
             Utils::Fs::rmdir(actualStorageLocation() / oldActualParentPath);
         }
+#ifdef Q_OS_WIN
+        else if (newActualParentPath.filename() == UNWANTED_FOLDER_NAME)
+        {
+            Q_ASSERT(oldActualParentPath.filename() != UNWANTED_FOLDER_NAME);
+
+            const std::wstring winPath = (actualStorageLocation() / newActualParentPath).toString().toStdWString();
+            const DWORD dwAttrs = ::GetFileAttributesW(winPath.c_str());
+            ::SetFileAttributesW(winPath.c_str(), (dwAttrs | FILE_ATTRIBUTE_HIDDEN));
+        }
+#endif
     }
     else
     {
