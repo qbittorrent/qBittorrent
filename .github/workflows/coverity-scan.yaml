@@ -24,7 +24,7 @@ jobs:
             libboost-dev libssl-dev zlib1g-dev
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: "6.5.2"
           archives: icu qtbase qtsvg qttools
