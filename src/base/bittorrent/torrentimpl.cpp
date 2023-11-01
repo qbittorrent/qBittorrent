@@ -1866,6 +1866,7 @@ void TorrentImpl::moveStorage(const Path &newPath, const MoveStorageContext cont
 {
     if (!hasMetadata())
     {
+        m_savePath = newPath;
         m_session->handleTorrentSavePathChanged(this);
         return;
     }
