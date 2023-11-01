@@ -167,7 +167,7 @@
                 window.parent.closeWindows();
         });
 
-        if (Browser.platform === 'ios') {
+        if ((Browser.platform === 'ios') || ((Browser.platform === 'mac') && (navigator.maxTouchPoints > 1))) {
             $('fileselect').accept = ".torrent";
         }
     </script>
