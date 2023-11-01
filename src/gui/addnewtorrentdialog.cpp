@@ -30,6 +30,7 @@
 #include "addnewtorrentdialog.h"
 
 #include <algorithm>
+#include <functional>
 
 #include <QAction>
 #include <QDateTime>
@@ -141,10 +142,11 @@ class AddNewTorrentDialog::TorrentContentAdaptor final
 {
 public:
     TorrentContentAdaptor(BitTorrent::TorrentInfo &torrentInfo, PathList &filePaths
-                          , QVector<BitTorrent::DownloadPriority> &filePriorities)
+            , QVector<BitTorrent::DownloadPriority> &filePriorities, std::function<void ()> onFilePrioritiesChanged)
         : m_torrentInfo {torrentInfo}
         , m_filePaths {filePaths}
         , m_filePriorities {filePriorities}
+        , m_onFilePrioritiesChanged {std::move(onFilePrioritiesChanged)}
     {
         Q_ASSERT(filePaths.isEmpty() || (filePaths.size() == torrentInfo.filesCount()));
 
@@ -255,6 +257,8 @@ public:
     {
         Q_ASSERT(priorities.size() == filesCount());
         m_filePriorities = priorities;
+        if (m_onFilePrioritiesChanged)
+            m_onFilePrioritiesChanged();
     }
 
     Path actualStorageLocation() const override
@@ -275,6 +279,7 @@ private:
     BitTorrent::TorrentInfo &m_torrentInfo;
     PathList &m_filePaths;
     QVector<BitTorrent::DownloadPriority> &m_filePriorities;
+    std::function<void ()> m_onFilePrioritiesChanged;
     Path m_originalRootFolder;
     BitTorrent::TorrentContentLayout m_currentContentLayout;
 };
@@ -992,7 +997,8 @@ void AddNewTorrentDialog::setupTreeview()
     if (m_torrentParams.filePaths.isEmpty())
         m_torrentParams.filePaths = m_torrentInfo.filePaths();
 
-    m_contentAdaptor = std::make_unique<TorrentContentAdaptor>(m_torrentInfo, m_torrentParams.filePaths, m_torrentParams.filePriorities);
+    m_contentAdaptor = std::make_unique<TorrentContentAdaptor>(m_torrentInfo, m_torrentParams.filePaths
+            , m_torrentParams.filePriorities, [this] { updateDiskSpaceLabel(); });
 
     const auto contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex());
     m_contentAdaptor->applyContentLayout(contentLayout);
