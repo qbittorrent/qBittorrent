@@ -28,21 +28,16 @@
 
 #pragma once
 
-#include <QElapsedTimer>
-#include <QVariantMap>
 #include <QSet>
+#include <QVariantMap>
 
 #include "base/bittorrent/infohash.h"
 #include "apicontroller.h"
-
-class QThread;
 
 namespace BitTorrent
 {
     class Torrent;
 }
-
-class FreeDiskSpaceChecker;
 
 class SyncController : public APIController
 {
@@ -54,14 +49,14 @@ public:
 
     explicit SyncController(IApplication *app, QObject *parent = nullptr);
 
+public slots:
+    void updateFreeDiskSpace(qint64 freeDiskSpace);
+
 private slots:
     void maindataAction();
     void torrentPeersAction();
 
 private:
-    qint64 getFreeDiskSpace();
-    void invokeChecker();
-
     void makeMaindataSnapshot();
     QJsonObject generateMaindataSyncData(int id, bool fullUpdate);
 
@@ -85,8 +80,6 @@ private:
     void onTorrentTrackersChanged(BitTorrent::Torrent *torrent);
 
     qint64 m_freeDiskSpace = 0;
-    QElapsedTimer m_freeDiskSpaceElapsedTimer;
-    bool m_isFreeDiskSpaceCheckerRunning = false;
 
     QVariantMap m_lastPeersResponse;
     QVariantMap m_lastAcceptedPeersResponse;
