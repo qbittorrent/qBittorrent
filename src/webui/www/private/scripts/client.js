@@ -490,20 +490,18 @@ window.addEvent('load', function() {
         Object.each(category_list, function(category) {
             sortedCategories.push(category.name);
         });
-        sortedCategories.sort(function(category1, category2) {
-            for (let i = 0; i < Math.min(category1.length, category2.length); ++i) {
-                if (category1[i] === "/" && category2[i] !== "/") {
-                    return -1;
-                }
-                else if (category1[i] !== "/" && category2[i] === "/") {
-                    return 1;
-                }
-                else if (category1[i] !== category2[i]) {
-                    return category1[i].localeCompare(category2[i]);
-                }
+        sortedCategories.sort((leftCategory, rightCategory) => {
+            const leftSegments = leftCategory.split('/');
+            const rightSegments = rightCategory.split('/');
+
+            for (let i = 0, iMax = Math.min(leftSegments.length, rightSegments.length); i < iMax; ++i) {
+                const compareResult = window.qBittorrent.Misc.naturalSortCollator.compare(
+                    leftSegments[i], rightSegments[i]);
+                if (compareResult !== 0)
+                    return compareResult;
             }
 
-            return category1.length - category2.length;
+            return leftSegments.length - rightSegments.length;
         });
 
         for (let i = 0; i < sortedCategories.length; ++i) {
