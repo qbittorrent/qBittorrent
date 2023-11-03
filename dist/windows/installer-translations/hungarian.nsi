@@ -19,7 +19,7 @@ LangString inst_pathlimit ${LANG_HUNGARIAN} "A Windows elérési útvonalak hoss
 ;LangString inst_firewallinfo ${LANG_ENGLISH} "Adding Windows Firewall rule"
 LangString inst_firewallinfo ${LANG_HUNGARIAN} "Windows Tűzfal szabály hozzáadása folyamatban"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
-LangString inst_warning ${LANG_HUNGARIAN} "A qBittorrent fut. Kérem zárjba be az alkalmazást a telepítés előtt."
+LangString inst_warning ${LANG_HUNGARIAN} "A qBittorrent fut. Kérem zárja be az alkalmazást a telepítés előtt."
 ;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
 LangString inst_uninstall_question ${LANG_HUNGARIAN} "A jelenlegi verzió el lesz távolítva. A felhasználói beállítások és a torrentek megmaradnak."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
