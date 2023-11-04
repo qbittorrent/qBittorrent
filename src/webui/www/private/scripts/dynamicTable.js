@@ -1003,9 +1003,12 @@ window.qBittorrent.DynamicTable = (function() {
                     case "checkingUP":
                     case "queuedForChecking":
                     case "checkingResumeData":
-                    case "moving":
                         state = "force-recheck";
                         img_path = "images/force-recheck.svg";
+                        break;
+                    case "moving":
+                        state = "moving";
+                        img_path = "images/set-location.svg";
                         break;
                     case "error":
                     case "unknown":
