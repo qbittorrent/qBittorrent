@@ -137,6 +137,7 @@ private:
     QIcon m_completedIcon;
     QIcon m_downloadingIcon;
     QIcon m_errorIcon;
+    QIcon m_movingIcon;
     QIcon m_pausedIcon;
     QIcon m_queuedIcon;
     QIcon m_stalledDLIcon;

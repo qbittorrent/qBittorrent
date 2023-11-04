@@ -117,6 +117,7 @@ TransferListModel::TransferListModel(QObject *parent)
     , m_completedIcon {UIThemeManager::instance()->getIcon(u"checked-completed"_s, u"completed"_s)}
     , m_downloadingIcon {UIThemeManager::instance()->getIcon(u"downloading"_s)}
     , m_errorIcon {UIThemeManager::instance()->getIcon(u"error"_s)}
+    , m_movingIcon {UIThemeManager::instance()->getIcon(u"set-location"_s)}
     , m_pausedIcon {UIThemeManager::instance()->getIcon(u"stopped"_s, u"media-playback-pause"_s)}
     , m_queuedIcon {UIThemeManager::instance()->getIcon(u"queued"_s)}
     , m_stalledDLIcon {UIThemeManager::instance()->getIcon(u"stalledDL"_s)}
@@ -710,8 +711,9 @@ QIcon TransferListModel::getIconByState(const BitTorrent::TorrentState state) co
     case BitTorrent::TorrentState::CheckingDownloading:
     case BitTorrent::TorrentState::CheckingUploading:
     case BitTorrent::TorrentState::CheckingResumeData:
-    case BitTorrent::TorrentState::Moving:
         return m_checkingIcon;
+    case BitTorrent::TorrentState::Moving:
+        return m_movingIcon;
     case BitTorrent::TorrentState::Unknown:
     case BitTorrent::TorrentState::MissingFiles:
     case BitTorrent::TorrentState::Error:
