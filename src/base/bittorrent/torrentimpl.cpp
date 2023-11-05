@@ -32,6 +32,10 @@
 #include <algorithm>
 #include <memory>
 
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
+
 #include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/create_torrent.hpp>
@@ -330,7 +334,7 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
 
             const auto fileIter = m_ltAddTorrentParams.renamed_files.find(nativeIndex);
             const Path filePath = ((fileIter != m_ltAddTorrentParams.renamed_files.end())
-                        ? Path(fileIter->second).removedExtension(QB_EXT) : m_torrentInfo.filePath(i));
+                    ? makeUserPath(Path(fileIter->second)) : m_torrentInfo.filePath(i));
             m_filePaths.append(filePath);
 
             const auto priority = LT::fromNative(filePriorities[LT::toUnderlyingType(nativeIndex)]);
@@ -356,28 +360,6 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
 
     if (hasMetadata())
         applyFirstLastPiecePriority(m_hasFirstLastPiecePriority);
-
-    // TODO: Remove the following upgrade code in v4.4
-    // == BEGIN UPGRADE CODE ==
-    const Path spath = actualStorageLocation();
-    for (int i = 0; i < filesCount(); ++i)
-    {
-        const Path filepath = filePath(i);
-        // Move "unwanted" files back to their original folder
-        const Path parentRelPath = filepath.parentPath();
-        if (parentRelPath.filename() == u".unwanted")
-        {
-            const QString oldName = filepath.filename();
-            const Path newRelPath = parentRelPath.parentPath();
-            renameFile(i, (newRelPath / Path(oldName)));
-
-            // Remove .unwanted directory if empty
-            const Path newPath = spath / newRelPath;
-            qDebug() << "Attempting to remove \".unwanted\" folder at " << (newPath / Path(u".unwanted"_s)).toString();
-            Utils::Fs::rmdir(newPath / Path(u".unwanted"_s));
-        }
-    }
-    // == END UPGRADE CODE ==
 }
 
 TorrentImpl::~TorrentImpl() = default;
@@ -581,15 +563,39 @@ void TorrentImpl::setAutoManaged(const bool enable)
         m_nativeHandle.unset_flags(lt::torrent_flags::auto_managed);
 }
 
-Path TorrentImpl::wantedActualPath(int index, const Path &path) const
+Path TorrentImpl::makeActualPath(int index, const Path &path) const
 {
+    Path actualPath = path;
+
     if (m_session->isAppendExtensionEnabled()
             && (fileSize(index) > 0) && !m_completedFiles.at(index))
     {
-        return path + QB_EXT;
+        actualPath += QB_EXT;
     }
 
-    return path;
+    if (m_filePriorities[index] == DownloadPriority::Ignored)
+    {
+        const Path parentPath = actualPath.parentPath();
+        const QString fileName = actualPath.filename();
+        actualPath = parentPath / Path(UNWANTED_FOLDER_NAME) / Path(fileName);
+    }
+
+    return actualPath;
+}
+
+Path TorrentImpl::makeUserPath(const Path &path) const
+{
+    Path userPath = path.removedExtension(QB_EXT);
+
+    const Path parentRelPath = userPath.parentPath();
+    if (parentRelPath.filename() == UNWANTED_FOLDER_NAME)
+    {
+        const QString fileName = userPath.filename();
+        const Path relPath = parentRelPath.parentPath();
+        userPath = relPath / Path(fileName);
+    }
+
+    return userPath;
 }
 
 QVector<TrackerEntry> TorrentImpl::trackers() const
@@ -1890,8 +1896,8 @@ void TorrentImpl::renameFile(const int index, const Path &path)
     if ((index < 0) || (index >= filesCount())) [[unlikely]]
         return;
 
-    const Path wantedPath = wantedActualPath(index, path);
-    doRenameFile(index, wantedPath);
+    const Path targetActualPath = makeActualPath(index, path);
+    doRenameFile(index, targetActualPath);
 }
 
 void TorrentImpl::handleStateUpdate(const lt::torrent_status &nativeStatus)
@@ -1954,7 +1960,7 @@ void TorrentImpl::handleTorrentCheckedAlert([[maybe_unused]] const lt::torrent_c
                 m_hasFinishedStatus = true;
 
             adjustStorageLocation();
-            manageIncompleteFiles();
+            manageActualFilePaths();
 
             if (!isPaused())
             {
@@ -1982,7 +1988,7 @@ void TorrentImpl::handleTorrentFinishedAlert([[maybe_unused]] const lt::torrent_
     m_statusUpdatedTriggers.enqueue([this]()
     {
         adjustStorageLocation();
-        manageIncompleteFiles();
+        manageActualFilePaths();
 
         m_session->handleTorrentNeedSaveResumeData(this);
 
@@ -2145,19 +2151,55 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     const int fileIndex = m_indexMap.value(p->index, -1);
     Q_ASSERT(fileIndex >= 0);
 
-    // Remove empty leftover folders
-    // For example renaming "a/b/c" to "d/b/c", then folders "a/b" and "a" will
-    // be removed if they are empty
-    const Path oldFilePath = m_filePaths.at(fileIndex);
-    const Path newFilePath = Path(QString::fromUtf8(p->new_name())).removedExtension(QB_EXT);
+    const Path newActualFilePath {QString::fromUtf8(p->new_name())};
 
-    // Check if ".!qB" extension was just added or removed
+    const Path oldFilePath = m_filePaths.at(fileIndex);
+    const Path newFilePath = makeUserPath(newActualFilePath);
+
+    // Check if ".!qB" extension or ".unwanted" folder was just added or removed
     // We should compare path in a case sensitive manner even on case insensitive
     // platforms since it can be renamed by only changing case of some character(s)
-    if (oldFilePath.data() != newFilePath.data())
+    if (oldFilePath.data() == newFilePath.data())
+    {
+        // Remove empty ".unwanted" folders
+#ifdef QBT_USES_LIBTORRENT2
+        const Path oldActualFilePath {QString::fromUtf8(p->old_name())};
+#else
+        const Path oldActualFilePath;
+#endif
+        const Path oldActualParentPath = oldActualFilePath.parentPath();
+        const Path newActualParentPath = newActualFilePath.parentPath();
+        if (newActualParentPath.filename() == UNWANTED_FOLDER_NAME)
+        {
+            Q_ASSERT(oldActualParentPath.filename() != UNWANTED_FOLDER_NAME);
+
+#ifdef Q_OS_WIN
+            const std::wstring winPath = (actualStorageLocation() / newActualParentPath).toString().toStdWString();
+            const DWORD dwAttrs = ::GetFileAttributesW(winPath.c_str());
+            ::SetFileAttributesW(winPath.c_str(), (dwAttrs | FILE_ATTRIBUTE_HIDDEN));
+#endif
+        }
+#ifdef QBT_USES_LIBTORRENT2
+        else if (oldActualParentPath.filename() == UNWANTED_FOLDER_NAME)
+        {
+            Q_ASSERT(newActualParentPath.filename() != UNWANTED_FOLDER_NAME);
+
+            Utils::Fs::rmdir(actualStorageLocation() / oldActualParentPath);
+        }
+#else
+        else
+        {
+            Utils::Fs::rmdir(actualStorageLocation() / newActualParentPath / Path(UNWANTED_FOLDER_NAME));
+        }
+#endif
+    }
+    else
     {
         m_filePaths[fileIndex] = newFilePath;
 
+        // Remove empty leftover folders
+        // For example renaming "a/b/c" to "d/b/c", then folders "a/b" and "a" will
+        // be removed if they are empty
         Path oldParentPath = oldFilePath.parentPath();
         const Path commonBasePath = Path::commonPath(oldParentPath, newFilePath.parentPath());
         while (oldParentPath != commonBasePath)
@@ -2264,7 +2306,7 @@ void TorrentImpl::handleAppendExtensionToggled()
 {
     if (!hasMetadata()) return;
 
-    manageIncompleteFiles();
+    manageActualFilePaths();
 }
 
 void TorrentImpl::handleAlert(const lt::alert *a)
@@ -2318,7 +2360,7 @@ void TorrentImpl::handleAlert(const lt::alert *a)
     }
 }
 
-void TorrentImpl::manageIncompleteFiles()
+void TorrentImpl::manageActualFilePaths()
 {
     const std::shared_ptr<const lt::torrent_info> nativeInfo = nativeTorrentInfo();
     const lt::file_storage &nativeFiles = nativeInfo->files();
@@ -2329,11 +2371,11 @@ void TorrentImpl::manageIncompleteFiles()
 
         const auto nativeIndex = m_torrentInfo.nativeIndexes().at(i);
         const Path actualPath {nativeFiles.file_path(nativeIndex)};
-        const Path wantedPath = wantedActualPath(i, path);
-        if (actualPath != wantedPath)
+        const Path targetActualPath = makeActualPath(i, path);
+        if (actualPath != targetActualPath)
         {
-            qDebug() << "Renaming" << actualPath.toString() << "to" << wantedPath.toString();
-            doRenameFile(i, wantedPath);
+            qDebug() << "Renaming" << actualPath.toString() << "to" << targetActualPath.toString();
+            doRenameFile(i, targetActualPath);
         }
     }
 }
@@ -2815,7 +2857,8 @@ void TorrentImpl::fetchAvailableFileFractions(std::function<void (QVector<qreal>
 
 void TorrentImpl::prioritizeFiles(const QVector<DownloadPriority> &priorities)
 {
-    if (!hasMetadata()) return;
+    if (!hasMetadata())
+        return;
 
     Q_ASSERT(priorities.size() == filesCount());
 
@@ -2846,6 +2889,7 @@ void TorrentImpl::prioritizeFiles(const QVector<DownloadPriority> &priorities)
     // Restore first/last piece first option if necessary
     if (m_hasFirstLastPiecePriority)
         applyFirstLastPiecePriority(true);
+    manageActualFilePaths();
 }
 
 QVector<qreal> TorrentImpl::availableFileFractions() const
