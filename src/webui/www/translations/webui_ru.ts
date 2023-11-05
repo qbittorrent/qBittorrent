@@ -492,7 +492,7 @@
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
-        <translation>Вы действительно хотите выйти из qBittorrent?</translation>
+        <translation>Уверены, что хотите выйти из qBittorrent?</translation>
     </message>
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
@@ -1438,7 +1438,7 @@
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>Повторить анонс на все трекеры по смене IP/порта:</translation>
+        <translation>Повторить анонс на все трекеры при смене IP/порта:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1686,7 +1686,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation>Размер буфера отправки сокета [0: стандарт системы]:</translation>
+        <translation>Размер буфера отправки сокета [0: системный]:</translation>
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
@@ -1698,7 +1698,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation>Размер буфера получения сокета [0: стандарт системы]:</translation>
+        <translation>Размер буфера получения сокета [0: системный]:</translation>
     </message>
     <message>
         <source>Use Subcategories</source>
@@ -1733,11 +1733,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Срок аренды UPnP [0: постоянный]:</translation>
     </message>
     <message>
-        <source>Bdecode token limit:</source>
+        <source>When inactive seeding time reaches</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When inactive seeding time reaches</source>
+        <source>When total seeding time reaches</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1745,19 +1745,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>(None)</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Perform hostname lookup via proxy</source>
+        <source>Bdecode depth limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When total seeding time reaches</source>
+        <source>Bdecode token limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Perform hostname lookup via proxy</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2485,7 +2485,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Last Activity</source>
         <comment>Time passed since a chunk was downloaded/uploaded</comment>
-        <translation>Послед. активность</translation>
+        <translation>Активность</translation>
     </message>
     <message>
         <source>Total Size</source>
@@ -2945,11 +2945,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="vanished">минут</translation>
     </message>
     <message>
-        <source>inactive minutes</source>
+        <source>total minutes</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>total minutes</source>
+        <source>inactive minutes</source>
         <translation type="unfinished" />
     </message>
 </context>

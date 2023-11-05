@@ -579,7 +579,7 @@ Viga: %2</translation>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="62"/>
         <source>Note: the current defaults are displayed for reference.</source>
-        <translation type="unfinished"></translation>
+        <translation>Teave: praegused tavasätted kuvatakse näidisena.</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="74"/>
@@ -2513,7 +2513,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5237"/>
         <source>Failed to load Categories. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei saanud laadida kategooriaid. %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5252"/>
@@ -5634,7 +5634,7 @@ Palun installige see iseseisvalt.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="216"/>
         <source>Customize UI Theme...</source>
-        <translation type="unfinished"></translation>
+        <translation>Muuda UI Theme...</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="226"/>
@@ -5779,7 +5779,7 @@ Palun installige see iseseisvalt.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="956"/>
         <source>When duplicate torrent is being added</source>
-        <translation type="unfinished"></translation>
+        <translation>Kui lisatakse juba olemasolev torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="962"/>
@@ -11456,7 +11456,7 @@ Palun vali teine nimi ja proovi uuesti.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="980"/>
         <source>Force rec&amp;heck</source>
-        <translation type="unfinished"></translation>
+        <translation>Sunni üle&amp;kontrolli</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="982"/>

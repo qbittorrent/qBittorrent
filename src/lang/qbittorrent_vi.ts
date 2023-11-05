@@ -59,7 +59,7 @@
     <message>
         <location filename="../gui/aboutdialog.ui" line="244"/>
         <source>Special Thanks</source>
-        <translation>Cảm ơn đặc biệt đến</translation>
+        <translation>Cảm Tạ</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="270"/>

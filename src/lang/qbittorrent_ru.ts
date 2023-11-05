@@ -444,7 +444,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="324"/>
         <source>No stop condition is set.</source>
-        <translation>Условие остановки не задано.</translation>
+        <translation>Без условия остановки.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="325"/>
@@ -944,7 +944,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="780"/>
         <source>Notification timeout [0: infinite, -1: system default]</source>
-        <translation>Тайм-аут уведомлений [0: бесконечно, -1: стандарт системы]</translation>
+        <translation>Тайм-аут уведомлений [0: бесконечно, -1: системный]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="867"/>
@@ -1055,12 +1055,12 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="620"/>
         <source>Socket send buffer size [0: system default]</source>
-        <translation>Размер буфера отправки сокета [0: стандарт системы]</translation>
+        <translation>Размер буфера отправки сокета [0: системный]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="628"/>
         <source>Socket receive buffer size [0: system default]</source>
-        <translation>Размер буфера получения сокета [0: стандарт системы]</translation>
+        <translation>Размер буфера получения сокета [0: системный]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="634"/>
@@ -1135,7 +1135,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="784"/>
         <source>Reannounce to all trackers when IP or port changed</source>
-        <translation>Повторить анонс на все трекеры по смене IP/порта</translation>
+        <translation>Повторить анонс на все трекеры при смене IP/порта</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="798"/>
@@ -3858,7 +3858,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1186"/>
         <source>Are you sure you want to quit qBittorrent?</source>
-        <translation>Вы действительно хотите выйти из qBittorrent?</translation>
+        <translation>Уверены, что хотите выйти из qBittorrent?</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1188"/>
@@ -7482,7 +7482,7 @@ readme[0-9].txt: фильтровать «readme1.txt», «readme2.txt», но �
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="214"/>
         <source>Column visibility</source>
-        <translation>Отображение колонок</translation>
+        <translation>Отображение столбцов</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="240"/>
@@ -11234,7 +11234,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="192"/>
         <source>Last Activity</source>
         <comment>Time passed since a chunk was downloaded/uploaded</comment>
-        <translation>Послед. активность</translation>
+        <translation>Активность</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="193"/>

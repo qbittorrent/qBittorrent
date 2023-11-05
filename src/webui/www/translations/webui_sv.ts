@@ -1733,11 +1733,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>UPnP-anslutningstid [0: permanent anslutning]:</translation>
     </message>
     <message>
-        <source>Bdecode token limit:</source>
+        <source>When inactive seeding time reaches</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When inactive seeding time reaches</source>
+        <source>When total seeding time reaches</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1745,19 +1745,19 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>(None)</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Perform hostname lookup via proxy</source>
+        <source>Bdecode depth limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When total seeding time reaches</source>
+        <source>Bdecode token limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Perform hostname lookup via proxy</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2945,11 +2945,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation type="vanished">minuter</translation>
     </message>
     <message>
-        <source>inactive minutes</source>
+        <source>total minutes</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>total minutes</source>
+        <source>inactive minutes</source>
         <translation type="unfinished" />
     </message>
 </context>
