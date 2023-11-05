@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="hr">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="hr">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Stvori podmapu</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Ne stvaraj podmapu</translation>
     </message>
     <message>
@@ -183,7 +185,7 @@
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Vremensko ograničenje &apos;seedinga&apos; mora biti između 0 i 525600 minuta.</translation>
+        <translation>Vremensko ograničenje 'seedinga' mora biti između 0 i 525600 minuta.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -991,8 +993,8 @@
         <translation>%T: Trenutni tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Savjet: Enkapsulirajte parametar s navodnicima kako biste izbjegli odsijecanje teksta na razmaku (npr. &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Savjet: Enkapsulirajte parametar s navodnicima kako biste izbjegli odsijecanje teksta na razmaku (npr. "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1164,7 +1166,7 @@
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation>Kada se dosegne vrijeme dijeljenja</translation>
+        <translation type="vanished">Kada se dosegne vrijeme dijeljenja</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1415,7 +1417,7 @@
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nemoj stvarati podmapu</translation>
     </message>
     <message>
@@ -1551,12 +1553,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Popis dopuštenih za filtriranje vrijednosti zaglavlja HTTP hosta.
 U svrhu obrane od napada ponovnog povezivanja DNS-a,
 trebali biste unijeti nazive domena koje koristi WebUI poslužitelj.
 
-Koristite &apos;;&apos; za razdvajanje više unosa. Može koristiti zamjenski znak &apos;*&apos;.</translation>
+Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1567,8 +1569,8 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Može koristiti zamjenski zn
         <translation>HTTPS certifikat ne smije biti prazan</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation>Navedite obrnute proxy IP adrese (ili podmreže, npr. 0.0.0.0/24) kako biste koristili prosljeđenu adresu klijenta (X-Prosljeđeno-Za zaglavlje). Koristite &apos;;&apos; za razdvajanje više unosa.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation>Navedite obrnute proxy IP adrese (ili podmreže, npr. 0.0.0.0/24) kako biste koristili prosljeđenu adresu klijenta (X-Prosljeđeno-Za zaglavlje). Koristite ';' za razdvajanje više unosa.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1592,7 +1594,7 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Može koristiti zamjenski zn
     </message>
     <message>
         <source>Use proxy for hostname lookup</source>
-        <translation>Koristite proxy za traženje naziva hosta</translation>
+        <translation type="vanished">Koristite proxy za traženje naziva hosta</translation>
     </message>
     <message>
         <source>Metadata received</source>
@@ -1729,6 +1731,78 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Može koristiti zamjenski zn
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
         <translation>Trajanje zakupa UPnP-a [0: trajni zakup]:</translation>
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Bdecode token limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Python executable path (may require restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resets to default if empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Perform hostname lookup via proxy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>DHT bootstrap nodes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When inactive seeding time reaches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>.torrent file size limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2056,7 +2130,7 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Može koristiti zamjenski zn
     </message>
     <message>
         <source>Match all occurences</source>
-        <translation>Spari sve pojave</translation>
+        <translation type="vanished">Spari sve pojave</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2093,6 +2167,10 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Može koristiti zamjenski zn
     <message>
         <source>Case sensitive</source>
         <translation>Osjetljivo na velika i mala slova</translation>
+    </message>
+    <message>
+        <source>Match all occurrences</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2461,6 +2539,10 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Može koristiti zamjenski zn
     <message>
         <source>Availability</source>
         <translation>Dostupnost</translation>
+    </message>
+    <message>
+        <source>Reannounce In</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2908,7 +2990,15 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Može koristiti zamjenski zn
     </message>
     <message>
         <source>minutes</source>
-        <translation>minuta</translation>
+        <translation type="vanished">minuta</translation>
+    </message>
+    <message>
+        <source>total minutes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>inactive minutes</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3117,11 +3207,11 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Može koristiti zamjenski zn
         <translation>pokazivanje</translation>
     </message>
     <message>
-        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
-        <translation>Pritisnite gumb &quot;Traži dodatke...&quot; u donjem desnom kutu prozora da biste instalirali neke.</translation>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation>Pritisnite gumb "Traži dodatke..." u donjem desnom kutu prozora da biste instalirali neke.</translation>
     </message>
     <message>
-        <source>There aren&apos;t any search plugins installed.</source>
+        <source>There aren't any search plugins installed.</source>
         <translation>Nema instaliranih dodataka za pretraživanje.</translation>
     </message>
 </context>
@@ -3152,7 +3242,7 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Može koristiti zamjenski zn
         <translation>Omogućeno</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Upozorenje: Budite u skladu sa zakonima o autorskim pravima vaše zemlje kada preuzimate torrente s bilo koje od ovih tražilica.</translation>
     </message>
     <message>
@@ -3770,8 +3860,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nemoj stvarati podmapu</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

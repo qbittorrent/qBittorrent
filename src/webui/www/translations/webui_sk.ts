@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="sk">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="sk">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Vytvoriť podpriečinok</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nevytvárať podpriečinok</translation>
     </message>
     <message>
@@ -595,7 +597,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Cancel</source>
@@ -619,7 +621,7 @@
     </message>
     <message>
         <source>Log</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -991,8 +993,8 @@
         <translation>%T: Aktuálny tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Tip: Ohraničiť parameter úvodzovkami, aby nedošlo k odstrihnutiu textu za medzerou (napr. &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Tip: Ohraničiť parameter úvodzovkami, aby nedošlo k odstrihnutiu textu za medzerou (napr. "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1164,7 +1166,7 @@
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation>Ak je dosiahnutý limit seedovania</translation>
+        <translation type="vanished">Ak je dosiahnutý limit seedovania</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1415,7 +1417,7 @@
         <translation>Originál</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nevytvárajte podpriečinok</translation>
     </message>
     <message>
@@ -1468,7 +1470,7 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Log performance warnings</source>
@@ -1476,11 +1478,11 @@
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Memory mapped files</source>
@@ -1504,7 +1506,7 @@
     </message>
     <message>
         <source>Disk IO read mode:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Disable OS cache</source>
@@ -1512,15 +1514,15 @@
     </message>
     <message>
         <source>Disk IO write mode:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enable OS cache</source>
@@ -1532,7 +1534,7 @@
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Excluded file names</source>
@@ -1540,35 +1542,35 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Run external program on torrent finished</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Whitelist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Zoznam povolených pre filtrovanie hodnôt HTTP hlaviček hostiteľa.
 Pre obranu proti DNS rebinding útokom,
 mali vložiť doménové názvy použité pre WebUI server.
 
-Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť masku &apos;*&apos;.</translation>
+Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
         <translation>HTTPS certifikát by nemal byť prázdny</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation type="unfinished"/>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1584,15 +1586,11 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Metadata received</source>
@@ -1660,7 +1658,7 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Use proxy for general purposes</source>
@@ -1672,31 +1670,31 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Use Subcategories</source>
@@ -1704,7 +1702,7 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1712,23 +1710,95 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Bdecode token limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Python executable path (may require restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resets to default if empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Perform hostname lookup via proxy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>DHT bootstrap nodes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When inactive seeding time reaches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>.torrent file size limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1811,7 +1881,7 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2048,15 +2118,11 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Match all occurences</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2064,7 +2130,7 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     </message>
     <message>
         <source>Replacement Input</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Replace</source>
@@ -2072,7 +2138,7 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     </message>
     <message>
         <source>Extension</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Replace All</source>
@@ -2092,7 +2158,11 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match all occurrences</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2462,6 +2532,10 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
         <source>Availability</source>
         <translation>Dostupnosť</translation>
     </message>
+    <message>
+        <source>Reannounce In</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerListWidget</name>
@@ -2571,7 +2645,7 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     </message>
     <message>
         <source>Renamed</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Original</source>
@@ -2685,7 +2759,7 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2865,7 +2939,7 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Export .torrent</source>
@@ -2908,7 +2982,15 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     </message>
     <message>
         <source>minutes</source>
-        <translation>minút</translation>
+        <translation type="vanished">minút</translation>
+    </message>
+    <message>
+        <source>total minutes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>inactive minutes</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3114,15 +3196,15 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
-        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
         <translation>Žiadne vyhľadávacie pluginy nie sú nainštalované.
-Kliknite na tlačidlo &quot;Vyhľadať pluginy...&quot; vpravo dole v okne, aby ste nejaké nainštalovali.</translation>
+Kliknite na tlačidlo "Vyhľadať pluginy..." vpravo dole v okne, aby ste nejaké nainštalovali.</translation>
     </message>
     <message>
-        <source>There aren&apos;t any search plugins installed.</source>
+        <source>There aren't any search plugins installed.</source>
         <translation>Nie sú nainštalované žiadne pluginy.</translation>
     </message>
 </context>
@@ -3153,7 +3235,7 @@ Kliknite na tlačidlo &quot;Vyhľadať pluginy...&quot; vpravo dole v okne, aby 
         <translation>Zapnuté</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Varovanie: Uistite sa, že dodržiavate zákony Vašej krajiny o ochrane duševného vlastníctva keď sťahujete torrenty z ktoréhokoľvek z týchto vyhľadávačov.</translation>
     </message>
     <message>
@@ -3429,7 +3511,7 @@ Kliknite na tlačidlo &quot;Vyhľadať pluginy...&quot; vpravo dole v okne, aby 
     </message>
     <message>
         <source>Renaming)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3772,8 +3854,12 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
         <translation>Pôvodný</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nevytvárať podzložku</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3818,7 +3904,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Blocked</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Unknown</source>
@@ -3830,7 +3916,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Copy</source>
@@ -3842,7 +3928,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Log Type</source>
@@ -3866,7 +3952,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Filter logs</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Blocked IPs</source>
@@ -3882,11 +3968,11 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Timestamp</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Clear All</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Message</source>
@@ -3894,7 +3980,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Reason</source>
@@ -3902,7 +3988,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>item</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>IP</source>
@@ -3910,7 +3996,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Banned</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Normal Messages</source>
@@ -3918,7 +4004,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Critical</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Critical Messages</source>
@@ -3930,7 +4016,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>items</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Results</source>
@@ -3938,11 +4024,11 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

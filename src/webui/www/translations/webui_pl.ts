@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pl">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="pl">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Utwórz podfolder</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nie twórz podfolderu</translation>
     </message>
     <message>
@@ -991,8 +993,8 @@
         <translation>%T: Bieżący tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Wskazówka: otocz parametr cudzysłowem, aby uniknąć odcięcia tekstu (np. &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Wskazówka: otocz parametr cudzysłowem, aby uniknąć odcięcia tekstu (np. "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1164,7 +1166,7 @@
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation>Gdy czas seedowania osiągnie</translation>
+        <translation type="vanished">Gdy czas seedowania osiągnie</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1415,7 +1417,7 @@
         <translation>Pierwotny</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nie twórz podfolderu</translation>
     </message>
     <message>
@@ -1551,12 +1553,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Biała lista filtrowania wartości nagłówka hosta HTTP.
 Aby uchronić się przed atakiem ponownego wiązania DNS,
 należy wpisać nazwy domen używane przez serwer interfejsu WWW.
 
-Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika &apos;*&apos;.</translation>
+Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1567,8 +1569,8 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
         <translation>Certyfikat HTTPS nie powinien być pusty</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation>Określ adresy IP zwrotnego serwera proxy (lub podsieci, np. 0.0.0.0/24), aby używać przekazywanego adresu klienta (nagłówek X-Forwarded-For). Użyj &apos;;&apos; do dzielenia wielu wpisów.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation>Określ adresy IP zwrotnego serwera proxy (lub podsieci, np. 0.0.0.0/24), aby używać przekazywanego adresu klienta (nagłówek X-Forwarded-For). Użyj ';' do dzielenia wielu wpisów.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1592,7 +1594,7 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
     </message>
     <message>
         <source>Use proxy for hostname lookup</source>
-        <translation>Użyj proxy do wyszukiwania nazwy hosta</translation>
+        <translation type="vanished">Użyj proxy do wyszukiwania nazwy hosta</translation>
     </message>
     <message>
         <source>Metadata received</source>
@@ -1729,6 +1731,78 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
         <translation>Okres dzierżawy UPnP [0: dzierżawa stała]:</translation>
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Bdecode token limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Python executable path (may require restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resets to default if empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Perform hostname lookup via proxy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>DHT bootstrap nodes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When inactive seeding time reaches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>.torrent file size limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2056,7 +2130,7 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
     </message>
     <message>
         <source>Match all occurences</source>
-        <translation>Dopasuj wszystkie wystąpienia</translation>
+        <translation type="vanished">Dopasuj wszystkie wystąpienia</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2093,6 +2167,10 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
     <message>
         <source>Case sensitive</source>
         <translation>Rozróżnianie wielkości liter</translation>
+    </message>
+    <message>
+        <source>Match all occurrences</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2461,6 +2539,10 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
     <message>
         <source>Availability</source>
         <translation>Dostępność</translation>
+    </message>
+    <message>
+        <source>Reannounce In</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2908,7 +2990,15 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
     </message>
     <message>
         <source>minutes</source>
-        <translation>minuty</translation>
+        <translation type="vanished">minuty</translation>
+    </message>
+    <message>
+        <source>total minutes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>inactive minutes</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3117,11 +3207,11 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
         <translation>pokazywanie</translation>
     </message>
     <message>
-        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
-        <translation>Kliknij przycisk &quot;Wtyczki wyszukiwania...&quot; w prawym dolnym rogu okna, aby je zainstalować.</translation>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation>Kliknij przycisk "Wtyczki wyszukiwania..." w prawym dolnym rogu okna, aby je zainstalować.</translation>
     </message>
     <message>
-        <source>There aren&apos;t any search plugins installed.</source>
+        <source>There aren't any search plugins installed.</source>
         <translation>Nie ma zainstalowanych żadnych wtyczek wyszukiwania.</translation>
     </message>
 </context>
@@ -3152,7 +3242,7 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
         <translation>Włączone</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Ostrzeżenie: upewnij się, że przestrzegasz praw autorskich swojego kraju podczas pobierania torrentów z każdej z tych wyszukiwarek.</translation>
     </message>
     <message>
@@ -3771,8 +3861,12 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
         <translation>Pierwotny</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nie twórz podfolderu</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
