@@ -27,8 +27,8 @@ Required by:
 .mochaOverlay {
     left: 0;
     position: absolute; /* This is also set in theme.js in order to make theme transitions smoother */
-    top: 0;
     background-color: var(--color-background-default);
+    top: 0;
     border-radius: 5px;
     height: auto!important; /* #19844 also fixes out of block issue */
 }
@@ -45,8 +45,8 @@ Required by:
 */
 
 .mochaTitlebar {
-    border-radius: 5px;
     background-color: var(--color-background-default);
+    border-radius: 5px;
     overflow: hidden;
     width: 100%;
 }
@@ -74,8 +74,8 @@ div.mochaToolbarWrapper.bottom {
 
 .mochaToolbar {
     border-top: 1px solid var(--color-border-default);
-    padding-top: 4px;
     height: auto !important;
+    padding-top: 4px;
     width: 100%; /* For IE */
 }
 

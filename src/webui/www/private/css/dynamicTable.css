@@ -53,8 +53,8 @@ tr.dynamicTableHeader {
 }
 
 .dynamicTable td {
-    padding: 0 4px;
     border-bottom: 1px solid transparent;
+    padding: 0 4px;
     white-space: nowrap;
 }
 

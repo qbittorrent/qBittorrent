@@ -124,8 +124,8 @@ pre {
 
 hr {
     background-color: var(--color-background-default);
-    color: var(--color-text-default);
     border: 0px;
+    color: var(--color-text-default);
     height: 1px;
 }
 
@@ -265,8 +265,8 @@ a.propButton img {
 .contextMenu li img {
     height: 16px;
     margin-bottom: -4px;
-    width: 16px;
     margin-right: 0.5em; /*#19844 return missed padding */
+    width: 16px;
 }
 
 .contextMenu li input[type="checkbox"] {
@@ -369,12 +369,12 @@ a.propButton img {
     background-image: url("../images/edit-find.svg");
     background-position: left;
     background-repeat: no-repeat;
-    background-size: 1.5em;
     background-color: var(--color-background-default);
+    background-size: 1.5em;
     border: 1px solid var(--color-border-default);
     border-radius: 3px;
-    padding: 4px 4px 4px 25px;
     min-width: 160px;
+    padding: 4px 4px 4px 25px;
 }
 
 #torrentFilesFilterToolbar {
@@ -466,8 +466,8 @@ ul.filterList {
 
 ul.filterList a {
     color: var(--color-text-default);
-    padding: 4px 6px;
     display: block;
+    padding: 4px 6px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

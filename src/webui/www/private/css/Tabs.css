@@ -36,8 +36,8 @@ Required by:
 
 .tab-menu li a {
     background-color: var(--color-background-default);
-    color: var(--color-text-default);
     border-radius: 5px 5px 0 0;
+    color: var(--color-text-default);
     display: block;
     font-weight: normal;
     margin-left: 8px;
@@ -48,6 +48,5 @@ Required by:
 .tab-menu li.selected a {
     background-color: var(--color-background-blue);
     color: var(--color-text-white);
-
     font-weight: bold;
 }
