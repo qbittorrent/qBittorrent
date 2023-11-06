@@ -273,6 +273,7 @@ window.addEvent('load', function() {
         $("stalled_uploading_filter").removeClass("selectedFilter");
         $("stalled_downloading_filter").removeClass("selectedFilter");
         $("checking_filter").removeClass("selectedFilter");
+        $("moving_filter").removeClass("selectedFilter");
         $("errored_filter").removeClass("selectedFilter");
         $(f + "_filter").addClass("selectedFilter");
         selected_filter = f;
@@ -446,6 +447,7 @@ window.addEvent('load', function() {
         updateFilter('stalled_uploading', 'QBT_TR(Stalled Uploading (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
         updateFilter('stalled_downloading', 'QBT_TR(Stalled Downloading (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
         updateFilter('checking', 'QBT_TR(Checking (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
+        updateFilter('moving', 'QBT_TR(Moving (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
         updateFilter('errored', 'QBT_TR(Errored (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
     };
 
