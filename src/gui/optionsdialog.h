@@ -185,9 +185,9 @@ private:
     int getMaxActiveTorrents() const;
     // WebUI
 #ifndef DISABLE_WEBUI
-    bool isWebUiEnabled() const;
-    QString webUiUsername() const;
-    QString webUiPassword() const;
+    bool isWebUIEnabled() const;
+    QString webUIUsername() const;
+    QString webUIPassword() const;
     bool webUIAuthenticationOk();
     bool isAlternativeWebUIPathValid();
 #endif

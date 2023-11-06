@@ -66,7 +66,7 @@ void AuthController::loginAction()
 
     const Preferences *pref = Preferences::instance();
 
-    const QString username {pref->getWebUiUsername()};
+    const QString username {pref->getWebUIUsername()};
     const QByteArray secret {pref->getWebUIPassword()};
     const bool usernameEqual = Utils::Password::slowEquals(usernameFromWeb.toUtf8(), username.toUtf8());
     const bool passwordEqual = Utils::Password::PBKDF2::verify(secret, passwordFromWeb);

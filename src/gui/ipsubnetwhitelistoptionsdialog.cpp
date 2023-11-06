@@ -50,7 +50,7 @@ IPSubnetWhitelistOptionsDialog::IPSubnetWhitelistOptionsDialog(QWidget *parent)
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
     QStringList authSubnetWhitelistStringList;
-    for (const Utils::Net::Subnet &subnet : asConst(Preferences::instance()->getWebUiAuthSubnetWhitelist()))
+    for (const Utils::Net::Subnet &subnet : asConst(Preferences::instance()->getWebUIAuthSubnetWhitelist()))
         authSubnetWhitelistStringList << Utils::Net::subnetToString(subnet);
     m_model = new QStringListModel(authSubnetWhitelistStringList, this);
 
@@ -81,7 +81,7 @@ void IPSubnetWhitelistOptionsDialog::on_buttonBox_accepted()
         // Operate on the m_sortFilter to grab the strings in sorted order
         for (int i = 0; i < m_sortFilter->rowCount(); ++i)
             subnets.append(m_sortFilter->index(i, 0).data().toString());
-        Preferences::instance()->setWebUiAuthSubnetWhitelist(subnets);
+        Preferences::instance()->setWebUIAuthSubnetWhitelist(subnets);
         QDialog::accept();
     }
     else

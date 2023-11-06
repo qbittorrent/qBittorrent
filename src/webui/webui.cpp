@@ -52,8 +52,8 @@ void WebUI::configure()
 
     const QString portForwardingProfile = u"webui"_s;
     const Preferences *pref = Preferences::instance();
-    const quint16 port = pref->getWebUiPort();
-    m_isEnabled = pref->isWebUiEnabled();
+    const quint16 port = pref->getWebUIPort();
+    m_isEnabled = pref->isWebUIEnabled();
 
     if (m_isEnabled)
     {
@@ -69,7 +69,7 @@ void WebUI::configure()
         }
 
         // http server
-        const QString serverAddressString = pref->getWebUiAddress();
+        const QString serverAddressString = pref->getWebUIAddress();
         const auto serverAddress = ((serverAddressString == u"*") || serverAddressString.isEmpty())
             ? QHostAddress::Any : QHostAddress(serverAddressString);
 
@@ -84,7 +84,7 @@ void WebUI::configure()
                 m_httpServer->close();
         }
 
-        if (pref->isWebUiHttpsEnabled())
+        if (pref->isWebUIHttpsEnabled())
         {
             const auto readData = [](const Path &path) -> QByteArray
             {
@@ -96,9 +96,9 @@ void WebUI::configure()
 
             const bool success = m_httpServer->setupHttps(cert, key);
             if (success)
-                LogMsg(tr("Web UI: HTTPS setup successful"));
+                LogMsg(tr("WebUI: HTTPS setup successful"));
             else
-                LogMsg(tr("Web UI: HTTPS setup failed, fallback to HTTP"), Log::CRITICAL);
+                LogMsg(tr("WebUI: HTTPS setup failed, fallback to HTTP"), Log::CRITICAL);
         }
         else
         {
@@ -110,11 +110,11 @@ void WebUI::configure()
             const bool success = m_httpServer->listen(serverAddress, port);
             if (success)
             {
-                LogMsg(tr("Web UI: Now listening on IP: %1, port: %2").arg(serverAddressString).arg(port));
+                LogMsg(tr("WebUI: Now listening on IP: %1, port: %2").arg(serverAddressString).arg(port));
             }
             else
             {
-                m_errorMsg = tr("Web UI: Unable to bind to IP: %1, port: %2. Reason: %3")
+                m_errorMsg = tr("WebUI: Unable to bind to IP: %1, port: %2. Reason: %3")
                     .arg(serverAddressString).arg(port).arg(m_httpServer->errorString());
                 LogMsg(m_errorMsg, Log::CRITICAL);
                 qCritical() << m_errorMsg;

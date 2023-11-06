@@ -305,8 +305,8 @@ Application::Application(int &argc, char **argv)
     if (isFileLoggerEnabled())
         m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
 
-    if (m_commandLineArgs.webUiPort > 0) // it will be -1 when user did not set any value
-        Preferences::instance()->setWebUiPort(m_commandLineArgs.webUiPort);
+    if (m_commandLineArgs.webUIPort > 0) // it will be -1 when user did not set any value
+        Preferences::instance()->setWebUIPort(m_commandLineArgs.webUIPort);
 
     if (m_commandLineArgs.torrentingPort > 0) // it will be -1 when user did not set any value
     {
@@ -908,8 +908,8 @@ int Application::exec()
             const Preferences *pref = Preferences::instance();
             if (pref->getWebUIPassword() == QByteArrayLiteral("ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ=="))
             {
-                const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + u'\n'
-                        + tr("The Web UI administrator password has not been changed from the default: %1").arg(u"adminadmin"_s) + u'\n'
+                const QString warning = tr("The WebUI administrator username is: %1").arg(pref->getWebUIUsername()) + u'\n'
+                        + tr("The WebUI administrator password has not been changed from the default: %1").arg(u"adminadmin"_s) + u'\n'
                         + tr("This is a security risk, please change your password in program preferences.") + u'\n';
                 printf("%s", qUtf8Printable(warning));
             }
