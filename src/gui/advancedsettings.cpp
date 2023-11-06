@@ -480,7 +480,7 @@ void AdvancedSettings::loadAdvancedSettings()
     m_comboBoxOSMemoryPriority.addItem(tr("Low"), QVariant::fromValue(MemoryPriority::Low));
     m_comboBoxOSMemoryPriority.addItem(tr("Very low"), QVariant::fromValue(MemoryPriority::VeryLow));
     m_comboBoxOSMemoryPriority.setCurrentIndex(m_comboBoxOSMemoryPriority.findData(QVariant::fromValue(app()->processMemoryPriority())));
-    addRow(OS_MEMORY_PRIORITY, (tr("Process memory priority (Windows >= 8 only)")
+    addRow(OS_MEMORY_PRIORITY, (tr("Process memory priority")
         + u' ' + makeLink(u"https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-memory_priority_information", u"(?)"))
         , &m_comboBoxOSMemoryPriority);
 #endif
