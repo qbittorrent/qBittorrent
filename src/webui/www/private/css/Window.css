@@ -19,7 +19,6 @@ Required by:
 ---------------------------------------------------------------- */
 
 .mocha {
-    /*background-color: #e5e5e5;#19844*/
     background-color: var(--color-background-default);
     display: none;
     overflow: hidden;
@@ -46,15 +45,13 @@ Required by:
 */
 
 .mochaTitlebar {
-    /*background: url("../images/spacer.gif?from=fafafa&to=e5e5e5");#19844*/
-    background-color: var(--color-background-default);
     border-radius: 5px;
+    background-color: var(--color-background-default);
     overflow: hidden;
     width: 100%;
 }
 
 .mochaTitlebar h3 {
-    /*color: #888;#19844*/
     font-size: 12px;
     font-weight: bold;
     line-height: 15px;
@@ -62,15 +59,8 @@ Required by:
     padding: 5px 10px 4px 12px;
 }
 
-.mocha.isFocused .mochaTitlebar h3 {
-    /*color: #181818;#19844*/
-}
-
 .mochaToolbarWrapper {
-    /*background: #f1f1f1;#19844*/
-    /*border-top: 1px solid #d9d9d9;#19844*/
     background-color: var(--color-background-popup);
-    /*height: 29px;#19844*/
     height: auto !important;
     overflow: hidden;
     position: relative;
@@ -79,12 +69,10 @@ Required by:
 
 div.mochaToolbarWrapper.bottom {
     border: 0;
-    /*border-bottom: 1px solid #d9d9d9;#19844*/
     border-bottom: 1px solid var(--color-border-default);
 }
 
 .mochaToolbar {
-    /*border-top: 1px solid #fff;#19844*/
     border-top: 1px solid var(--color-border-default);
     padding-top: 4px;
     height: auto !important;
@@ -92,15 +80,12 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mochaContentBorder {
-    /*border-bottom: 1px solid #dadada;#19844*/
-    /*border-top: 1px solid #dadada;#19844*/
     border-bottom: 1px solid var(--color-border-default);
     border-top: 1px solid var(--color-border-default);
 }
 
 /* Has a fixed height and scrollbars if required. */
 .mochaContentWrapper {
-    /*background: #fff;#19844*/
     background-color: var(--color-background-popup);
     font-size: 12px;
     overflow: auto;
@@ -130,14 +115,12 @@ div.mochaToolbarWrapper.bottom {
 
 /* Bottom right resize handle */
 .mocha .cornerSE {
-    /*background: #fefefe;#19844*/ /* This is the color of the visible resize handle */
     background-color: var(--color-background-default);
     height: 20px;
     width: 20px;
 }
 
 .mochaCanvasHeader {
-    /*background: transparent;#19844*/
     left: 0;
     overflow: hidden;
     position: absolute;
@@ -147,7 +130,6 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mochaControls {
-    /*background: transparent;#19844*/
     height: 14px;
     position: absolute;
     right: 8px;
@@ -157,7 +139,6 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mochaCanvasControls {
-    /*background: transparent;#19844*/
     position: absolute;
     right: 8px;
     top: 8px;
@@ -175,9 +156,7 @@ div.mochaToolbarWrapper.bottom {
 .mochaMinimizeButton,
 .mochaMaximizeButton,
 .mochaCloseButton {
-    /*background-color: #fff;#19844*/
     background-color: var(--color-background-default);
-    /*color: #666;#19844*/
     color: var(--color-text-default);
     cursor: pointer;
     float: right;

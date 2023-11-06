@@ -18,10 +18,7 @@ Required by:
 /* Toolbar Tabs */
 
 .toolbarTabs {
-    /*background: url("../images/tabs.gif") repeat-x;#19844*/
-    /*background-position: left -70px;#19844*/
     overflow: visible;
-    /*padding: 0 5px 2px 2px;#19844*/
 }
 
 .tab-menu {
@@ -33,46 +30,22 @@ Required by:
 }
 
 .tab-menu li {
-    /*background: url("../images/tabs.gif") repeat-x;#19844*/
-    /*background-position: left -35px;#19844*/
     cursor: pointer;
     float: left;
-    /*margin: 0 0 5px;#19844*/
-}
-
-.tab-menu li.selected {
-    /*background: url("../images/tabs.gif") repeat-x;#19844*/
-    /*background-position: left 0;#19844*/
 }
 
 .tab-menu li a {
-    /*background: url("../images/tabs.gif") repeat-x;#19844*/
-    /*background-position: right -35px;#19844*/
-    /*color: #181818;#19844*/
     background-color: var(--color-background-default);
     color: var(--color-text-default);
     border-radius: 5px 5px 0 0;
     display: block;
     font-weight: normal;
     margin-left: 8px;
-    /*padding: 6px 15px 5px 9px;#19844 replace GIF backgrounds with CSS*/
-    padding: 5px 16px;/*#19844*/
+    padding: 5px 16px;
     text-align: center;
 }
 
 .tab-menu li.selected a {
-    /*background: url("../images/tabs.gif") repeat-x;#19844*/
-    /*background-position: right 0;#19844*/
-    /*border: 1px #909090 solid;#19844 CSS tab, native border bottom color*/
-    /*border-radius: 5px 5px 0 0;/*#19844 CSS tab*/
-    /*color: #181818;#19844*/
-
-    /* @TODO
-    border-top: 1px var(--color-border-default) solid;
-    border-left: 1px var(--color-border-default) solid;
-    border-right: 1px var(--color-border-default) solid;
-    */
-
     background-color: var(--color-background-blue);
     color: var(--color-text-white);
 

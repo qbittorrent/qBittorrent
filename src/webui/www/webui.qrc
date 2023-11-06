@@ -23,10 +23,6 @@
         <file>private/images/application-rss.svg</file>
         <file>private/images/application-url.svg</file>
         <file>private/images/arrow-right.gif</file>
-        <file>private/images/bg-dropdown.gif</file>
-        <file>private/images/bg-handle-horizontal.gif</file>
-        <file>private/images/bg-header.gif</file>
-        <file>private/images/bg-panel-header.gif</file>
         <file>private/images/checked-completed.svg</file>
         <file>private/images/collapse.svg</file>
         <file>private/images/configure.svg</file>
@@ -352,7 +348,6 @@
         <file>private/images/stalledUP.svg</file>
         <file>private/images/stopped.svg</file>
         <file>private/images/system-log-out.svg</file>
-        <file>private/images/tabs.gif</file>
         <file>private/images/tags.svg</file>
         <file>private/images/task-complete.svg</file>
         <file>private/images/task-reject.svg</file>

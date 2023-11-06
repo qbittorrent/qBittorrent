@@ -15,7 +15,6 @@ a img,
 /* Structure */
 
 body {
-    /*color: #555;#19844*/
     color: var(--color-text-default);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -37,7 +36,6 @@ body {
 h2,
 h3,
 h4 {
-    /*color: #333;#19844*/
     font-size: 12px;
     font-weight: bold;
     margin: 0;
@@ -45,14 +43,12 @@ h4 {
 }
 
 h2 {
-    /*color: #555;#19844*/
     color: var(--color-text-default);
     font-size: 14px;
     font-weight: bold;
 }
 
 #mochaPage h3 {
-    /*border-bottom: 1px solid #bbb;#19844*/
     border-bottom: 1px solid var(--color-border-default);
     display: block;
     font-size: 12px;
@@ -62,7 +58,6 @@ h2 {
 
 #error_div,
 #rename_error {
-    /*color: #f00;#19844*/
     color: var(--color-text-red);
     float: left;
     font-size: 14px;
@@ -74,7 +69,6 @@ h4 {
 }
 
 a {
-    /*color: #e60;#19844*/
     color: var(--color-text-orange);
     cursor: pointer;
     text-decoration: none;
@@ -114,9 +108,6 @@ fieldset {
 /* Code */
 
 pre {
-    /*background-color: #f6f6f6;#19844*/
-    /*border: 1px solid #d1d7dc;#19844*/
-    /*color: #006600;#19844*/
     background-color: var(--color-background-default);
     border: 1px solid var(--color-border-default);
     color: var(--color-text-green);
@@ -132,8 +123,6 @@ pre {
 /* Dividers */
 
 hr {
-    /*background-color: #ddd;#19844*/
-    /*color: #ccc;#19844*/
     background-color: var(--color-background-default);
     color: var(--color-text-default);
     border: 0px;
@@ -164,26 +153,21 @@ hr {
 
 #Filters ul img {
     height: 16px;
-    /*padding: 2px 4px;#19844*/
     padding: 0 4px;
     vertical-align: middle;
     width: 16px;
 }
 
 .selectedFilter {
-    /*background-color: #415a8d;#19844*/
-    /*color: #ffffff;#19844*/
     background-color: var(--color-background-blue)!important; /* important prevents hover effect on click, @TODO CSS optimization */
     color: var(--color-text-white)!important;
 }
 
 .selectedFilter a {
-    /*color: #ffffff;#19844*/
     color: var(--color-text-white)!important; /* @TODO original re-definition below */
 }
 
 #properties {
-    /*background-color: #e5e5e5;#19844*/
     background-color: var(--color-background-default);
 }
 
@@ -206,8 +190,6 @@ a.propButton img {
 /* context menu specific */
 
 .contextMenu {
-    /*background: #eee;#19844*/
-    /*border: 1px solid #999;*/
     background-color: var(--color-background-default);
     border: 1px solid var(--color-border-default);
     display: none;
@@ -216,7 +198,6 @@ a.propButton img {
 }
 
 .contextMenu .separator {
-    /*border-top: 1px solid #999;#19844*/
     border-top: 1px solid var(--color-border-default);
 }
 
@@ -226,7 +207,6 @@ a.propButton img {
 }
 
 .contextMenu li a {
-    /*color: #000;#19844*/
     color: var(--color-text-default);
     display: block;
     font-family: tahoma, arial, sans-serif;
@@ -237,24 +217,19 @@ a.propButton img {
 }
 
 .contextMenu li a:hover {
-    /*background-color: #ddd;#19844*/
     background-color: var(--color-background-blue);
     color: var(--color-text-white);
 }
 
 .contextMenu li a.disabled {
-    /*color: #ccc;#19844*/
     font-style: italic;
 }
 
 .contextMenu li a.disabled:hover {
-    /*background-color: #eee;#19844*/
     color: var(--color-text-disabled);
 }
 
 .contextMenu li ul {
-    /*background: #eee;#19844*/
-    /*border: 1px solid #999;#19844*/
     background: var(--color-background-default);
     border: 1px solid var(--color-border-default);
     left: -999em;
@@ -360,7 +335,6 @@ a.propButton img {
 /* Mocha Customization */
 
 #mochaToolbar {
-    /*height: 29px;#19844*/
     height: auto !important;
     margin-top: 5px;
     overflow-y: hidden;
@@ -387,8 +361,6 @@ a.propButton img {
 }
 
 #torrentsFilterToolbar {
-    /*float: right;#19844*/
-    /*margin-right: 30px;#19844*/
     display: inline-block;
     vertical-align: top;
 }
@@ -402,8 +374,6 @@ a.propButton img {
     border: 1px solid var(--color-border-default);
     border-radius: 3px;
     padding: 4px 4px 4px 25px;
-    /*padding-left: 2em;#19844*/
-    /*width: 160px;#19844*/
     min-width: 160px;
 }
 
@@ -443,7 +413,6 @@ label.partial {
 }
 
 fieldset.settings {
-    /*border: solid 1px black;#19844*/
     border: 1px solid var(--color-border-default);
     border-radius: 8px;
     padding: 4px 4px 4px 10px;
@@ -496,7 +465,6 @@ ul.filterList {
 }
 
 ul.filterList a {
-    /*color: inherit;#19844*/
     color: var(--color-text-default);
     padding: 4px 6px;
     display: block;
@@ -506,12 +474,7 @@ ul.filterList a {
 }
 
 ul.filterList li:hover {
-    /*background-color: #e60;#19844*/
     background-color: var(--color-background-default);
-}
-
-ul.filterList li:hover a {
-    /*color: white;#19844*/
 }
 
 td.generalLabel {
@@ -576,7 +539,6 @@ td.generalLabel {
 }
 
 .select-watched-folder-editable {
-    /*background-color: white;#19844*/
     border: solid grey 1px;
     height: 20px;
     position: relative;
@@ -667,12 +629,10 @@ td.statusBarSeparator {
 }
 
 .red {
-    /*color: red;#19844*/
     color: var(--color-text-red);
 }
 
 .green {
-    /*color: green;#19844*/
     color: var(--color-text-green);
 }
 
@@ -680,18 +640,7 @@ td.statusBarSeparator {
     cursor: pointer;
 }
 
-#torrentFilesTableDiv .dynamicTable tr.nonAlt {
-    /*background-color: #fff;#19844*/
-}
-
-#torrentFilesTableDiv .dynamicTable tr.nonAlt.selected {
-    /*background-color: #354158;#19844*/
-    /*color: #fff;#19844*/
-}
-
 #torrentFilesTableDiv .dynamicTable tr.nonAlt:hover {
-    /*background-color: #ee6600;#19844*/
-    /*color: #fff;#19844*/
     background-color: var(--color-background-blue);
     color: var(--color-text-white);
 }

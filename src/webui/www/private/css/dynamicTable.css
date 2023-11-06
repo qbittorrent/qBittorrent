@@ -5,31 +5,21 @@
 
 **************************************************************/
 
-.dynamicTable tbody tr {
-    /*background-color: #fff;#19844*/
-}
-
 .dynamicTable tbody tr:nth-child(even),
 .dynamicTable tbody tr.alt {
-    /*background-color: #eee;#19844*/
     background-color: var(--color-background-default);
 }
 
 #transferList .dynamicTable td {
-    /*padding: 0 2px;#19844*/
     padding: 2px;
 }
 
 .dynamicTable tbody tr.selected {
-    /*background-color: #354158;#19844*/
-    /*color: #fff;#19844*/
     background-color: var(--color-background-blue);
     color: var(--color-text-white);
 }
 
 .dynamicTable tbody tr:hover {
-    /*background-color: #ee6600;#19844*/
-    /*color: #fff;#19844*/
     background-color: var(--color-background-blue);
     color: var(--color-text-white);
 }
@@ -56,8 +46,6 @@ tr.dynamicTableHeader {
 }
 
 .dynamicTable th {
-    /*background-color: #eee;#19844*/
-    /*border-right: 1px solid #ccc;#19844*/
     border-right: 1px solid var(--color-border-default);
     box-sizing: border-box;
     padding: 4px;
@@ -68,10 +56,6 @@ tr.dynamicTableHeader {
     padding: 0 4px;
     border-bottom: 1px solid transparent;
     white-space: nowrap;
-}
-
-.dynamicTable thead tr {
-    /*background-color: #eee;#19844*/
 }
 
 .dynamicTable th,
