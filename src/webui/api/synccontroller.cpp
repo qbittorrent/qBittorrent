@@ -33,7 +33,6 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QMetaObject>
-#include <QThreadPool>
 
 #include "base/algorithm.h"
 #include "base/bittorrent/cachestatus.h"
@@ -50,13 +49,10 @@
 #include "base/preferences.h"
 #include "base/utils/string.h"
 #include "apierror.h"
-#include "freediskspacechecker.h"
 #include "serialize/serialize_torrent.h"
 
 namespace
 {
-    const int FREEDISKSPACE_CHECK_TIMEOUT = 30000;
-
     // Sync main data keys
     const QString KEY_SYNC_MAINDATA_QUEUEING = u"queueing"_s;
     const QString KEY_SYNC_MAINDATA_REFRESH_INTERVAL = u"refresh_interval"_s;
@@ -391,8 +387,11 @@ namespace
 SyncController::SyncController(IApplication *app, QObject *parent)
     : APIController(app, parent)
 {
-    invokeChecker();
-    m_freeDiskSpaceElapsedTimer.start();
+}
+
+void SyncController::updateFreeDiskSpace(const qint64 freeDiskSpace)
+{
+    m_freeDiskSpace = freeDiskSpace;
 }
 
 // The function returns the changed data from the server to synchronize with the web client.
@@ -552,7 +551,7 @@ void SyncController::makeMaindataSnapshot()
     }
 
     m_maindataSnapshot.serverState = getTransferInfo();
-    m_maindataSnapshot.serverState[KEY_TRANSFER_FREESPACEONDISK] = getFreeDiskSpace();
+    m_maindataSnapshot.serverState[KEY_TRANSFER_FREESPACEONDISK] = m_freeDiskSpace;
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = session->refreshInterval();
@@ -661,7 +660,7 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
     m_removedTrackers.clear();
 
     QVariantMap serverState = getTransferInfo();
-    serverState[KEY_TRANSFER_FREESPACEONDISK] = getFreeDiskSpace();
+    serverState[KEY_TRANSFER_FREESPACEONDISK] = m_freeDiskSpace;
     serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
     serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
     serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = session->refreshInterval();
@@ -780,34 +779,6 @@ void SyncController::torrentPeersAction()
 
     const int acceptedResponseId = params()[u"rid"_s].toInt();
     setResult(generateSyncData(acceptedResponseId, data, m_lastAcceptedPeersResponse, m_lastPeersResponse));
-}
-
-qint64 SyncController::getFreeDiskSpace()
-{
-    if (m_freeDiskSpaceElapsedTimer.hasExpired(FREEDISKSPACE_CHECK_TIMEOUT))
-        invokeChecker();
-
-    return m_freeDiskSpace;
-}
-
-void SyncController::invokeChecker()
-{
-    if (m_isFreeDiskSpaceCheckerRunning)
-        return;
-
-    auto *freeDiskSpaceChecker = new FreeDiskSpaceChecker;
-    connect(freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, this, [this](const qint64 freeSpaceSize)
-    {
-        m_freeDiskSpace = freeSpaceSize;
-        m_isFreeDiskSpaceCheckerRunning = false;
-        m_freeDiskSpaceElapsedTimer.restart();
-    });
-    connect(freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, freeDiskSpaceChecker, &QObject::deleteLater);
-    m_isFreeDiskSpaceCheckerRunning = true;
-    QThreadPool::globalInstance()->start([freeDiskSpaceChecker]
-    {
-        freeDiskSpaceChecker->check();
-    });
 }
 
 void SyncController::onCategoryAdded(const QString &categoryName)
