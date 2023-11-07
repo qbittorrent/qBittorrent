@@ -371,8 +371,8 @@ a.propButton img {
     background-position: left;
     background-repeat: no-repeat;
     background-size: 1.5em;
-    border-radius: 3px;
     border: 1px solid var(--color-border-default);
+    border-radius: 3px;
     min-width: 160px;
     padding: 4px 4px 4px 25px;
 }
