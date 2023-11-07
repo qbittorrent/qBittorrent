@@ -366,13 +366,13 @@ a.propButton img {
 }
 
 #torrentsFilterInput {
+    background-color: var(--color-background-default);
     background-image: url("../images/edit-find.svg");
     background-position: left;
     background-repeat: no-repeat;
-    background-color: var(--color-background-default);
     background-size: 1.5em;
-    border: 1px solid var(--color-border-default);
     border-radius: 3px;
+    border: 1px solid var(--color-border-default);
     min-width: 160px;
     padding: 4px 4px 4px 25px;
 }
@@ -467,8 +467,8 @@ ul.filterList {
 ul.filterList a {
     color: var(--color-text-default);
     display: block;
-    padding: 4px 6px;
     overflow: hidden;
+    padding: 4px 6px;
     text-overflow: ellipsis;
     white-space: nowrap;
 }

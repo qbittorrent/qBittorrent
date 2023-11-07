@@ -25,12 +25,12 @@ Required by:
 }
 
 .mochaOverlay {
-    left: 0;
-    position: absolute; /* This is also set in theme.js in order to make theme transitions smoother */
     background-color: var(--color-background-default);
-    top: 0;
     border-radius: 5px;
     height: auto!important; /* #19844 also fixes out of block issue */
+    left: 0;
+    position: absolute; /* This is also set in theme.js in order to make theme transitions smoother */
+    top: 0;
 }
 
 /*
