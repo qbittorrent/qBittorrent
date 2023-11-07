@@ -86,6 +86,7 @@ public slots:
     void copySelectedNames() const;
     void copySelectedInfohashes(CopyInfohashPolicy policy) const;
     void copySelectedIDs() const;
+    void copySelectedComments() const;
     void openSelectedTorrentsFolder() const;
     void recheckSelectedTorrents();
     void reannounceSelectedTorrents();

@@ -89,6 +89,7 @@ let copyNameFN = function() {};
 let copyInfohashFN = function(policy) {};
 let copyMagnetLinkFN = function() {};
 let copyIdFN = function() {};
+let copyCommentFN = function() {};
 let setQueuePositionFN = function() {};
 let exportTorrentFN = function() {};
 
@@ -1003,6 +1004,21 @@ const initializeWindows = function() {
 
     copyIdFN = function() {
         return torrentsTable.selectedRowsIds().join("\n");
+    };
+
+    copyCommentFN = function() {
+        const selectedRows = torrentsTable.selectedRowsIds();
+        const comments = [];
+        if (selectedRows.length > 0) {
+            const rows = torrentsTable.getFilteredAndSortedRows();
+            for (let i = 0; i < selectedRows.length; ++i) {
+                const hash = selectedRows[i];
+                const comment = rows[hash].full_data.comment;
+                if (comment && (comment !== ""))
+                    comments.push(comment);
+            }
+        }
+        return comments.join("\n---------\n");
     };
 
     exportTorrentFN = async function() {

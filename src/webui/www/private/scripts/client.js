@@ -1528,6 +1528,8 @@ function setupCopyEventHandler() {
                     return copyMagnetLinkFN();
                 case "copyID":
                     return copyIdFN();
+                case "copyComment":
+                    return copyCommentFN();
                 default:
                     return "";
             }
