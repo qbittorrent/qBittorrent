@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014, 2017, 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014, 2017, 2022-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -49,13 +49,17 @@
 #include "base/http/types.h"
 #include "base/path.h"
 #include "base/utils/net.h"
+#include "base/utils/thread.h"
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
 
 inline const Utils::Version<3, 2> API_VERSION {2, 10, 1};
 
+class QTimer;
+
 class APIController;
 class AuthController;
+class FreeDiskSpaceChecker;
 class WebApplication;
 
 class WebSession final : public ApplicationComponent<QObject>, public ISession
@@ -69,10 +73,12 @@ public:
     void updateTimestamp();
 
     template <typename T>
-    void registerAPIController(const QString &scope)
+    T *registerAPIController(const QString &scope)
     {
         static_assert(std::is_base_of_v<APIController, T>, "Class should be derived from APIController.");
-        m_apiControllers[scope] = new T(app(), this);
+        auto *controller = new T(app(), this);
+        m_apiControllers[scope] = controller;
+        return controller;
     }
 
     APIController *getAPIController(const QString &scope) const;
@@ -96,15 +102,15 @@ public:
 
     Http::Response processRequest(const Http::Request &request, const Http::Environment &env) override;
 
+    const Http::Request &request() const;
+    const Http::Environment &env() const;
+
+private:
     QString clientId() const override;
     WebSession *session() override;
     void sessionStart() override;
     void sessionEnd() override;
 
-    const Http::Request &request() const;
-    const Http::Environment &env() const;
-
-private:
     void doProcessRequest();
     void configure();
 
@@ -240,4 +246,8 @@ private:
     QHostAddress m_clientAddress;
 
     QVector<Http::Header> m_prebuiltHeaders;
+
+    Utils::Thread::UniquePtr m_workerThread;
+    FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
+    QTimer *m_freeDiskSpaceCheckingTimer = nullptr;
 };

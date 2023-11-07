@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2018  Thomas Piccirello <thomas.piccirello@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -38,9 +39,14 @@ class FreeDiskSpaceChecker final : public QObject
 public:
     using QObject::QObject;
 
+    qint64 lastResult() const;
+
 public slots:
     void check();
 
 signals:
     void checked(qint64 freeSpaceSize);
+
+private:
+    qint64 m_lastResult = 0;
 };
