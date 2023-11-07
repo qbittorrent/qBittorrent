@@ -21,7 +21,6 @@
 
 /* Light corrections */
 @media (prefers-color-scheme: light) {
-
     :root {
         color-scheme: light;
     }
@@ -29,7 +28,6 @@
 
 /* Dark corrections */
 @media (prefers-color-scheme: dark) {
-
     :root {
         color-scheme: dark;
     }
