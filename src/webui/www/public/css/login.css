@@ -32,7 +32,7 @@ body {
 }
 
 #error_msg {
-    color: #f00;
+    color: var(--color-text-red);
 }
 
 #login {

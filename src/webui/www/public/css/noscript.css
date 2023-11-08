@@ -3,6 +3,6 @@
 }
 
 #noscript {
-    color: #f00;
+    color: var(--color-text-red);
     text-align: center;
 }

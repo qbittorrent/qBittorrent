@@ -1,0 +1,24 @@
+/* Adaptive color palette #19844 */
+
+/* Default rules */
+* {
+    --color-text-red: hsl(0deg 100% 65%);
+}
+
+:root {
+    color-scheme: light dark;
+}
+
+/* Light corrections */
+@media (prefers-color-scheme: light) {
+    :root {
+        color-scheme: light;
+    }
+}
+
+/* Dark corrections */
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+    }
+}
