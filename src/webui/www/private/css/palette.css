@@ -1,0 +1,41 @@
+/* Adaptive color palette #19844 */
+
+/* Default rules */
+* {
+    --color-text-blue: hsl(210deg 100% 55%);
+    --color-text-orange: hsl(26deg 100% 45%);
+    --color-text-red: hsl(0deg 100% 65%);
+    --color-text-green: hsl(110deg 94% 27%);
+    --color-text-white: hsl(0deg 0% 100%);
+    --color-text-disabled: hsl(0deg 0% 60%);
+    --color-text-default: hsl(0deg 0% 33%);
+    --color-background-blue: hsl(210deg 42% 48%);
+    --color-background-popup: hsl(0deg 0% 100%);
+    --color-background-default: hsl(0deg 0% 94%);
+    --color-border-default: hsl(0deg 0% 85%);
+}
+
+:root {
+    color-scheme: light dark;
+}
+
+/* Light corrections */
+@media (prefers-color-scheme: light) {
+    :root {
+        color-scheme: light;
+    }
+}
+
+/* Dark corrections */
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+    }
+
+    * {
+        --color-text-default: hsl(0deg 0% 90%);
+        --color-background-popup: hsl(0deg 0% 20%);
+        --color-background-default: hsl(0deg 0% 30%);
+        --color-border-default: hsl(0deg 0% 33%);
+    }
+}
