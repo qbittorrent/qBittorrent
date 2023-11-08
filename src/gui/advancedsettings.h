@@ -102,6 +102,7 @@ private:
 
 #ifndef Q_OS_MACOS
     QCheckBox m_checkBoxIconsInMenusEnabled;
+    QCheckBox m_checkBoxAttachedAddNewTorrentDialog;
 #endif
 
 #ifdef QBT_USES_DBUS
