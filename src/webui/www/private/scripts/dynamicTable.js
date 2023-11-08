@@ -1378,6 +1378,10 @@ window.qBittorrent.DynamicTable = (function() {
                     if (state !== 'checkingUP' && state !== 'checkingDL' && state !== 'checkingResumeData')
                         return false;
                     break;
+                case 'moving':
+                    if (state !== 'moving')
+                        return false;
+                    break;
                 case 'errored':
                     if (state != 'error' && state != "unknown" && state != "missingFiles")
                         return false;

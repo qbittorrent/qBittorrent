@@ -8,7 +8,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTORCC_OPTIONS --compress 9 --threshold 5)
+set(CMAKE_AUTORCC_OPTIONS --compress-algo best --threshold 5)
 
 add_library(qbt_common_cfg INTERFACE)
 

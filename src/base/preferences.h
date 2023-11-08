@@ -291,6 +291,8 @@ public:
     void setTrackerPort(int port);
     bool isTrackerPortForwardingEnabled() const;
     void setTrackerPortForwardingEnabled(bool enabled);
+    bool isMarkOfTheWebEnabled() const;
+    void setMarkOfTheWebEnabled(bool enabled);
     Path getPythonExecutablePath() const;
     void setPythonExecutablePath(const Path &path);
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)

@@ -1319,6 +1319,19 @@ void Preferences::setTrackerPortForwardingEnabled(const bool enabled)
     setValue(u"Preferences/Advanced/trackerPortForwarding"_s, enabled);
 }
 
+bool Preferences::isMarkOfTheWebEnabled() const
+{
+    return value(u"Preferences/Advanced/markOfTheWeb"_s, true);
+}
+
+void Preferences::setMarkOfTheWebEnabled(const bool enabled)
+{
+    if (enabled == isMarkOfTheWebEnabled())
+        return;
+
+    setValue(u"Preferences/Advanced/markOfTheWeb"_s, enabled);
+}
+
 Path Preferences::getPythonExecutablePath() const
 {
     return value(u"Preferences/Search/pythonExecutablePath"_s, Path());

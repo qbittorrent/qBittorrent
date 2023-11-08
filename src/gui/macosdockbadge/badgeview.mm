@@ -28,6 +28,9 @@
  */
 
 #import "badgeview.h"
+
+#include <QString>
+
 #include "base/utils/misc.h"
 
 static const CGFloat kBetweenPadding = 2.0;

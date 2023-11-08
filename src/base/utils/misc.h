@@ -28,20 +28,13 @@
 
 #pragma once
 
-#include <QtSystemDetection>
+#include <QtTypes>
 
-#ifdef Q_OS_WIN
-#include <windows.h>
-#endif
+#include "base/pathfwd.h"
 
-#include <QString>
-
-#include "base/path.h"
-
-enum class ShutdownDialogAction;
+class QString;
 
 /*  Miscellaneous functions that can be useful */
-
 namespace Utils::Misc
 {
     // use binary prefix standards from IEC 60027-2
@@ -68,8 +61,6 @@ namespace Utils::Misc
 
     QString parseHtmlLinks(const QString &rawText);
 
-    void shutdownComputer(const ShutdownDialogAction &action);
-
     QString osName();
     QString boostVersionString();
     QString libtorrentVersionString();
@@ -90,22 +81,6 @@ namespace Utils::Misc
     // Take a number of seconds and return a user-friendly
     // time duration like "1d 2h 10m".
     QString userFriendlyDuration(qlonglong seconds, qlonglong maxCap = -1, TimeResolution resolution = TimeResolution::Minutes);
-    QString getUserIDString();
 
     QString languageToLocalizedString(const QString &localeStr);
-
-#ifdef Q_OS_WIN
-    Path windowsSystemPath();
-
-    template <typename T>
-    T loadWinAPI(const QString &source, const char *funcName)
-    {
-        const std::wstring path = (windowsSystemPath() / Path(source)).toString().toStdWString();
-        return reinterpret_cast<T>(::GetProcAddress(::LoadLibraryW(path.c_str()), funcName));
-    }
-#endif // Q_OS_WIN
-
-#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
-    bool applyMarkOfTheWeb(const Path &file, const QString &url = {});
-#endif // Q_OS_MACOS || Q_OS_WIN
 }

@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_TW">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_TW">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>建立子資料夾</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>不要建立子資料夾</translation>
     </message>
     <message>
@@ -674,7 +676,7 @@
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation>自動新增這些追蹤者到新的下載中：</translation>
+        <translation>自動新增這些 Tracker 到新的下載中：</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -826,7 +828,7 @@
     </message>
     <message>
         <source>Apply to trackers</source>
-        <translation>套用到追蹤者</translation>
+        <translation>套用到 Tracker</translation>
     </message>
     <message>
         <source>Global Rate Limits</source>
@@ -988,11 +990,11 @@
     </message>
     <message>
         <source>%T: Current tracker</source>
-        <translation>%T：目前的追蹤者</translation>
+        <translation>%T：目前的 Tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>提示：把參數以引號包起來以避免被空格切斷 (例如：&quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>提示：把參數以引號包起來以避免被空格切斷 (例如："%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1164,7 +1166,7 @@
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation>當做種時間達到</translation>
+        <translation type="vanished">當做種時間達到</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1184,7 +1186,7 @@
     </message>
     <message>
         <source>Embedded tracker port:</source>
-        <translation>嵌入追蹤者埠：</translation>
+        <translation>內嵌的 Tracker 埠號：</translation>
     </message>
     <message>
         <source>Fastest upload</source>
@@ -1224,7 +1226,7 @@
     </message>
     <message>
         <source>Enable embedded tracker:</source>
-        <translation>啟用嵌入追蹤者：</translation>
+        <translation>啟用內嵌 Tracker ：</translation>
     </message>
     <message>
         <source>Remove torrent</source>
@@ -1396,7 +1398,7 @@
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
-        <translation>驗證 HTTPS 追蹤器憑證：</translation>
+        <translation>驗證 HTTPS  Tracker 憑證：</translation>
     </message>
     <message>
         <source>Peer connection protocol:</source>
@@ -1415,7 +1417,7 @@
         <translation>原始</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>不要建立子資料夾</translation>
     </message>
     <message>
@@ -1436,7 +1438,7 @@
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>當 IP 或連接埠變更時通知所有追蹤者：</translation>
+        <translation>當 IP 或連接埠變更時通知所有 Tracker：</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1456,7 +1458,7 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation>向追蹤器回報的 IP 位置（需要重新啟動）：</translation>
+        <translation>向 Tracker 回報的 IP 位置（需要重新啟動）：</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
@@ -1551,7 +1553,7 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>HTTP 主機標頭值的過濾白名單。
 為了防禦 DNS 重新繫結攻擊，
 您應該把 Web UI 伺服器使用的網域名稱放到白名單內。
@@ -1567,8 +1569,8 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>HTTPS 憑證不應為空</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation>指定反向代理 IP（或子網路，例如 0.0.0.0/24）以使用轉發的客戶端位置（X-Forwarded-For 標頭）。使用 &apos;;&apos; 來分隔多個項目。</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation>指定反向代理 IP（或子網路，例如 0.0.0.0/24）以使用轉發的客戶端位置（X-Forwarded-For 標頭）。使用 ';' 來分隔多個項目。</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1584,7 +1586,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
-        <translation>為嵌入的追蹤者啟用通訊埠轉發：</translation>
+        <translation>為內嵌的 Tracker 啟用通訊埠轉發：</translation>
     </message>
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
@@ -1592,7 +1594,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Use proxy for hostname lookup</source>
-        <translation>為主機名稱查詢使用代理伺服器</translation>
+        <translation type="vanished">為主機名稱查詢使用代理伺服器</translation>
     </message>
     <message>
         <source>Metadata received</source>
@@ -1716,7 +1718,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation>停止追蹤器逾時 [0：停用]：</translation>
+        <translation>停止 Tracker 逾時 [0：停用]：</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
@@ -1729,6 +1731,78 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
         <translation>UPnP 租約期限 [0：永久租約]：</translation>
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Bdecode token limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Python executable path (may require restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resets to default if empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Perform hostname lookup via proxy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>DHT bootstrap nodes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When inactive seeding time reaches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>.torrent file size limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1848,7 +1922,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Trackers</source>
-        <translation>追蹤者</translation>
+        <translation>Trackers</translation>
     </message>
     <message>
         <source>Peers</source>
@@ -2056,7 +2130,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Match all occurences</source>
-        <translation>符合所有出現的</translation>
+        <translation type="vanished">符合所有出現的</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2093,6 +2167,10 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <source>Case sensitive</source>
         <translation>區分大小寫</translation>
+    </message>
+    <message>
+        <source>Match all occurrences</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2386,7 +2464,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Tracker</source>
-        <translation>追蹤者</translation>
+        <translation>Tracker</translation>
     </message>
     <message>
         <source>Down Limit</source>
@@ -2462,6 +2540,10 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <source>Availability</source>
         <translation>可得性</translation>
     </message>
+    <message>
+        <source>Reannounce In</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerListWidget</name>
@@ -2483,7 +2565,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation>追蹤者 URL：</translation>
+        <translation>Tracker URL：</translation>
     </message>
     <message>
         <source>Updating...</source>
@@ -2515,15 +2597,15 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Copy tracker URL</source>
-        <translation>複製追蹤者 URL</translation>
+        <translation>複製 Tracker URL</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>編輯追蹤者 URL…</translation>
+        <translation>編輯 Tracker URL…</translation>
     </message>
     <message>
         <source>Tracker editing</source>
-        <translation>編輯追蹤者</translation>
+        <translation>編輯 Tracker</translation>
     </message>
     <message>
         <source>Leeches</source>
@@ -2531,7 +2613,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation>移除追蹤者</translation>
+        <translation>移除 Tracker</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -2567,7 +2649,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Add trackers...</source>
-        <translation>新增追蹤者...</translation>
+        <translation>新增 Tracker…</translation>
     </message>
     <message>
         <source>Renamed</source>
@@ -2582,11 +2664,11 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <name>TrackersAdditionDialog</name>
     <message>
         <source>List of trackers to add (one per line):</source>
-        <translation>要增加的追蹤者清單 (每行一個)：</translation>
+        <translation>要增加的 Tracker 清單 (每行一個)：</translation>
     </message>
     <message>
         <source>Add trackers</source>
-        <translation>新增追蹤者</translation>
+        <translation>新增 Tracker</translation>
     </message>
 </context>
 <context>
@@ -2630,7 +2712,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Downloading metadata</source>
-        <translation>正在下載中介資料</translation>
+        <translation>正在下載詮釋資料</translation>
     </message>
     <message>
         <source>Checking</source>
@@ -2662,7 +2744,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation>[F] 正在下載詮釋資</translation>
+        <translation>[F] 正在下載詮釋資料</translation>
     </message>
 </context>
 <context>
@@ -2681,7 +2763,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Trackers</source>
-        <translation>追蹤器</translation>
+        <translation>Trackers</translation>
     </message>
     <message>
         <source>Collapse/expand</source>
@@ -2908,7 +2990,15 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>minutes</source>
-        <translation>分鐘</translation>
+        <translation type="vanished">分鐘</translation>
+    </message>
+    <message>
+        <source>total minutes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>inactive minutes</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3117,11 +3207,11 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>正在顯示</translation>
     </message>
     <message>
-        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
         <translation>點選視窗右下角的「搜尋附加元件…」按鈕來安裝一些吧。</translation>
     </message>
     <message>
-        <source>There aren&apos;t any search plugins installed.</source>
+        <source>There aren't any search plugins installed.</source>
         <translation>沒有安裝任何搜尋附加元件。</translation>
     </message>
 </context>
@@ -3152,7 +3242,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>已啟用</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>警告：請確保您從這些搜尋引擎中下載 torrent 時遵守您所在國家的版權法規。</translation>
     </message>
     <message>
@@ -3771,8 +3861,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>原始</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>不要建立子資料夾</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3787,7 +3881,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Trackerless (%1)</source>
-        <translation>缺少追蹤者 (%1)</translation>
+        <translation>缺少 Tracker (%1)</translation>
     </message>
     <message>
         <source>Pause torrents</source>
