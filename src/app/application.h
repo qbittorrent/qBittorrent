@@ -101,7 +101,7 @@ public:
 
     int exec();
 
-    bool isRunning();
+    bool hasAnotherInstance() const;
     bool callMainInstance();
     const QBtCommandLineParameters &commandLineArgs() const;
 
