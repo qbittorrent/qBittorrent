@@ -1182,7 +1182,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
             if (!isVisible())
                 show();
             QMessageBox confirmBox(QMessageBox::Question, tr("Exiting qBittorrent"),
-                                   // Split it because the last sentence is used in the Web UI
+                                   // Split it because the last sentence is used in the WebUI
                                    tr("Some files are currently transferring.") + u'\n' + tr("Are you sure you want to quit qBittorrent?"),
                                    QMessageBox::NoButton, this);
             QPushButton *noBtn = confirmBox.addButton(tr("&No"), QMessageBox::NoRole);

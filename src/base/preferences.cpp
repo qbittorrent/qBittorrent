@@ -628,7 +628,7 @@ void Preferences::setSearchEnabled(const bool enabled)
     setValue(u"Preferences/Search/SearchEnabled"_s, enabled);
 }
 
-bool Preferences::isWebUiEnabled() const
+bool Preferences::isWebUIEnabled() const
 {
 #ifdef DISABLE_GUI
     const bool defaultValue = true;
@@ -638,41 +638,41 @@ bool Preferences::isWebUiEnabled() const
     return value(u"Preferences/WebUI/Enabled"_s, defaultValue);
 }
 
-void Preferences::setWebUiEnabled(const bool enabled)
+void Preferences::setWebUIEnabled(const bool enabled)
 {
-    if (enabled == isWebUiEnabled())
+    if (enabled == isWebUIEnabled())
         return;
 
     setValue(u"Preferences/WebUI/Enabled"_s, enabled);
 }
 
-bool Preferences::isWebUiLocalAuthEnabled() const
+bool Preferences::isWebUILocalAuthEnabled() const
 {
     return value(u"Preferences/WebUI/LocalHostAuth"_s, true);
 }
 
-void Preferences::setWebUiLocalAuthEnabled(const bool enabled)
+void Preferences::setWebUILocalAuthEnabled(const bool enabled)
 {
-    if (enabled == isWebUiLocalAuthEnabled())
+    if (enabled == isWebUILocalAuthEnabled())
         return;
 
     setValue(u"Preferences/WebUI/LocalHostAuth"_s, enabled);
 }
 
-bool Preferences::isWebUiAuthSubnetWhitelistEnabled() const
+bool Preferences::isWebUIAuthSubnetWhitelistEnabled() const
 {
     return value(u"Preferences/WebUI/AuthSubnetWhitelistEnabled"_s, false);
 }
 
-void Preferences::setWebUiAuthSubnetWhitelistEnabled(const bool enabled)
+void Preferences::setWebUIAuthSubnetWhitelistEnabled(const bool enabled)
 {
-    if (enabled == isWebUiAuthSubnetWhitelistEnabled())
+    if (enabled == isWebUIAuthSubnetWhitelistEnabled())
         return;
 
     setValue(u"Preferences/WebUI/AuthSubnetWhitelistEnabled"_s, enabled);
 }
 
-QVector<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
+QVector<Utils::Net::Subnet> Preferences::getWebUIAuthSubnetWhitelist() const
 {
     const auto subnets = value<QStringList>(u"Preferences/WebUI/AuthSubnetWhitelist"_s);
 
@@ -689,7 +689,7 @@ QVector<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
     return ret;
 }
 
-void Preferences::setWebUiAuthSubnetWhitelist(QStringList subnets)
+void Preferences::setWebUIAuthSubnetWhitelist(QStringList subnets)
 {
     Algorithm::removeIf(subnets, [](const QString &subnet)
     {
@@ -712,27 +712,27 @@ void Preferences::setServerDomains(const QString &str)
     setValue(u"Preferences/WebUI/ServerDomains"_s, str);
 }
 
-QString Preferences::getWebUiAddress() const
+QString Preferences::getWebUIAddress() const
 {
     return value<QString>(u"Preferences/WebUI/Address"_s, u"*"_s).trimmed();
 }
 
-void Preferences::setWebUiAddress(const QString &addr)
+void Preferences::setWebUIAddress(const QString &addr)
 {
-    if (addr == getWebUiAddress())
+    if (addr == getWebUIAddress())
         return;
 
     setValue(u"Preferences/WebUI/Address"_s, addr.trimmed());
 }
 
-quint16 Preferences::getWebUiPort() const
+quint16 Preferences::getWebUIPort() const
 {
     return value<quint16>(u"Preferences/WebUI/Port"_s, 8080);
 }
 
-void Preferences::setWebUiPort(const quint16 port)
+void Preferences::setWebUIPort(const quint16 port)
 {
-    if (port == getWebUiPort())
+    if (port == getWebUIPort())
         return;
 
     // cast to `int` type so it will show human readable unit in configuration file
@@ -752,14 +752,14 @@ void Preferences::setUPnPForWebUIPort(const bool enabled)
     setValue(u"Preferences/WebUI/UseUPnP"_s, enabled);
 }
 
-QString Preferences::getWebUiUsername() const
+QString Preferences::getWebUIUsername() const
 {
     return value<QString>(u"Preferences/WebUI/Username"_s, u"admin"_s);
 }
 
-void Preferences::setWebUiUsername(const QString &username)
+void Preferences::setWebUIUsername(const QString &username)
 {
-    if (username == getWebUiUsername())
+    if (username == getWebUIUsername())
         return;
 
     setValue(u"Preferences/WebUI/Username"_s, username);
@@ -767,9 +767,7 @@ void Preferences::setWebUiUsername(const QString &username)
 
 QByteArray Preferences::getWebUIPassword() const
 {
-    // default: adminadmin
-    const auto defaultValue = QByteArrayLiteral("ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==");
-    return value(u"Preferences/WebUI/Password_PBKDF2"_s, defaultValue);
+    return value<QByteArray>(u"Preferences/WebUI/Password_PBKDF2"_s);
 }
 
 void Preferences::setWebUIPassword(const QByteArray &password)
@@ -832,40 +830,40 @@ void Preferences::setWebAPISessionCookieName(const QString &cookieName)
     setValue(u"WebAPI/SessionCookieName"_s, cookieName);
 }
 
-bool Preferences::isWebUiClickjackingProtectionEnabled() const
+bool Preferences::isWebUIClickjackingProtectionEnabled() const
 {
     return value(u"Preferences/WebUI/ClickjackingProtection"_s, true);
 }
 
-void Preferences::setWebUiClickjackingProtectionEnabled(const bool enabled)
+void Preferences::setWebUIClickjackingProtectionEnabled(const bool enabled)
 {
-    if (enabled == isWebUiClickjackingProtectionEnabled())
+    if (enabled == isWebUIClickjackingProtectionEnabled())
         return;
 
     setValue(u"Preferences/WebUI/ClickjackingProtection"_s, enabled);
 }
 
-bool Preferences::isWebUiCSRFProtectionEnabled() const
+bool Preferences::isWebUICSRFProtectionEnabled() const
 {
     return value(u"Preferences/WebUI/CSRFProtection"_s, true);
 }
 
-void Preferences::setWebUiCSRFProtectionEnabled(const bool enabled)
+void Preferences::setWebUICSRFProtectionEnabled(const bool enabled)
 {
-    if (enabled == isWebUiCSRFProtectionEnabled())
+    if (enabled == isWebUICSRFProtectionEnabled())
         return;
 
     setValue(u"Preferences/WebUI/CSRFProtection"_s, enabled);
 }
 
-bool Preferences::isWebUiSecureCookieEnabled() const
+bool Preferences::isWebUISecureCookieEnabled() const
 {
     return value(u"Preferences/WebUI/SecureCookie"_s, true);
 }
 
-void Preferences::setWebUiSecureCookieEnabled(const bool enabled)
+void Preferences::setWebUISecureCookieEnabled(const bool enabled)
 {
-    if (enabled == isWebUiSecureCookieEnabled())
+    if (enabled == isWebUISecureCookieEnabled())
         return;
 
     setValue(u"Preferences/WebUI/SecureCookie"_s, enabled);
@@ -884,14 +882,14 @@ void Preferences::setWebUIHostHeaderValidationEnabled(const bool enabled)
     setValue(u"Preferences/WebUI/HostHeaderValidation"_s, enabled);
 }
 
-bool Preferences::isWebUiHttpsEnabled() const
+bool Preferences::isWebUIHttpsEnabled() const
 {
     return value(u"Preferences/WebUI/HTTPS/Enabled"_s, false);
 }
 
-void Preferences::setWebUiHttpsEnabled(const bool enabled)
+void Preferences::setWebUIHttpsEnabled(const bool enabled)
 {
-    if (enabled == isWebUiHttpsEnabled())
+    if (enabled == isWebUIHttpsEnabled())
         return;
 
     setValue(u"Preferences/WebUI/HTTPS/Enabled"_s, enabled);
@@ -923,27 +921,27 @@ void Preferences::setWebUIHttpsKeyPath(const Path &path)
     setValue(u"Preferences/WebUI/HTTPS/KeyPath"_s, path);
 }
 
-bool Preferences::isAltWebUiEnabled() const
+bool Preferences::isAltWebUIEnabled() const
 {
     return value(u"Preferences/WebUI/AlternativeUIEnabled"_s, false);
 }
 
-void Preferences::setAltWebUiEnabled(const bool enabled)
+void Preferences::setAltWebUIEnabled(const bool enabled)
 {
-    if (enabled == isAltWebUiEnabled())
+    if (enabled == isAltWebUIEnabled())
         return;
 
     setValue(u"Preferences/WebUI/AlternativeUIEnabled"_s, enabled);
 }
 
-Path Preferences::getWebUiRootFolder() const
+Path Preferences::getWebUIRootFolder() const
 {
     return value<Path>(u"Preferences/WebUI/RootFolder"_s);
 }
 
-void Preferences::setWebUiRootFolder(const Path &path)
+void Preferences::setWebUIRootFolder(const Path &path)
 {
-    if (path == getWebUiRootFolder())
+    if (path == getWebUIRootFolder())
         return;
 
     setValue(u"Preferences/WebUI/RootFolder"_s, path);

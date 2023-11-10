@@ -105,6 +105,9 @@ public:
     const Http::Request &request() const;
     const Http::Environment &env() const;
 
+    void setUsername(const QString &username);
+    void setPasswordHash(const QByteArray &passwordHash);
+
 private:
     void doProcessRequest();
     void configure();

@@ -149,6 +149,10 @@ private slots:
 #endif
 
 private:
+#ifndef DISABLE_WEBUI
+    WebUI *webUI() const override;
+#endif
+
     void initializeTranslation();
     void processParams(const QBtCommandLineParameters &params);
     void runExternalProgram(const QString &programTemplate, const BitTorrent::Torrent *torrent) const;
