@@ -92,7 +92,7 @@ void AppController::buildInfoAction()
 void AppController::shutdownAction()
 {
     // Special handling for shutdown, we
-    // need to reply to the Web UI before
+    // need to reply to the WebUI before
     // actually shutting down.
     QTimer::singleShot(100ms, Qt::CoarseTimer, qApp, []
     {
@@ -275,33 +275,33 @@ void AppController::preferencesAction()
     data[u"add_trackers_enabled"_s] = session->isAddTrackersEnabled();
     data[u"add_trackers"_s] = session->additionalTrackers();
 
-    // Web UI
+    // WebUI
     // HTTP Server
     data[u"web_ui_domain_list"_s] = pref->getServerDomains();
-    data[u"web_ui_address"_s] = pref->getWebUiAddress();
-    data[u"web_ui_port"_s] = pref->getWebUiPort();
+    data[u"web_ui_address"_s] = pref->getWebUIAddress();
+    data[u"web_ui_port"_s] = pref->getWebUIPort();
     data[u"web_ui_upnp"_s] = pref->useUPnPForWebUIPort();
-    data[u"use_https"_s] = pref->isWebUiHttpsEnabled();
+    data[u"use_https"_s] = pref->isWebUIHttpsEnabled();
     data[u"web_ui_https_cert_path"_s] = pref->getWebUIHttpsCertificatePath().toString();
     data[u"web_ui_https_key_path"_s] = pref->getWebUIHttpsKeyPath().toString();
     // Authentication
-    data[u"web_ui_username"_s] = pref->getWebUiUsername();
-    data[u"bypass_local_auth"_s] = !pref->isWebUiLocalAuthEnabled();
-    data[u"bypass_auth_subnet_whitelist_enabled"_s] = pref->isWebUiAuthSubnetWhitelistEnabled();
+    data[u"web_ui_username"_s] = pref->getWebUIUsername();
+    data[u"bypass_local_auth"_s] = !pref->isWebUILocalAuthEnabled();
+    data[u"bypass_auth_subnet_whitelist_enabled"_s] = pref->isWebUIAuthSubnetWhitelistEnabled();
     QStringList authSubnetWhitelistStringList;
-    for (const Utils::Net::Subnet &subnet : asConst(pref->getWebUiAuthSubnetWhitelist()))
+    for (const Utils::Net::Subnet &subnet : asConst(pref->getWebUIAuthSubnetWhitelist()))
         authSubnetWhitelistStringList << Utils::Net::subnetToString(subnet);
     data[u"bypass_auth_subnet_whitelist"_s] = authSubnetWhitelistStringList.join(u'\n');
     data[u"web_ui_max_auth_fail_count"_s] = pref->getWebUIMaxAuthFailCount();
     data[u"web_ui_ban_duration"_s] = static_cast<int>(pref->getWebUIBanDuration().count());
     data[u"web_ui_session_timeout"_s] = pref->getWebUISessionTimeout();
-    // Use alternative Web UI
-    data[u"alternative_webui_enabled"_s] = pref->isAltWebUiEnabled();
-    data[u"alternative_webui_path"_s] = pref->getWebUiRootFolder().toString();
+    // Use alternative WebUI
+    data[u"alternative_webui_enabled"_s] = pref->isAltWebUIEnabled();
+    data[u"alternative_webui_path"_s] = pref->getWebUIRootFolder().toString();
     // Security
-    data[u"web_ui_clickjacking_protection_enabled"_s] = pref->isWebUiClickjackingProtectionEnabled();
-    data[u"web_ui_csrf_protection_enabled"_s] = pref->isWebUiCSRFProtectionEnabled();
-    data[u"web_ui_secure_cookie_enabled"_s] = pref->isWebUiSecureCookieEnabled();
+    data[u"web_ui_clickjacking_protection_enabled"_s] = pref->isWebUIClickjackingProtectionEnabled();
+    data[u"web_ui_csrf_protection_enabled"_s] = pref->isWebUICSRFProtectionEnabled();
+    data[u"web_ui_secure_cookie_enabled"_s] = pref->isWebUISecureCookieEnabled();
     data[u"web_ui_host_header_validation_enabled"_s] = pref->isWebUIHostHeaderValidationEnabled();
     // Custom HTTP headers
     data[u"web_ui_use_custom_http_headers_enabled"_s] = pref->isWebUICustomHTTPHeadersEnabled();
@@ -788,35 +788,35 @@ void AppController::setPreferencesAction()
     if (hasKey(u"add_trackers"_s))
         session->setAdditionalTrackers(it.value().toString());
 
-    // Web UI
+    // WebUI
     // HTTP Server
     if (hasKey(u"web_ui_domain_list"_s))
         pref->setServerDomains(it.value().toString());
     if (hasKey(u"web_ui_address"_s))
-        pref->setWebUiAddress(it.value().toString());
+        pref->setWebUIAddress(it.value().toString());
     if (hasKey(u"web_ui_port"_s))
-        pref->setWebUiPort(it.value().value<quint16>());
+        pref->setWebUIPort(it.value().value<quint16>());
     if (hasKey(u"web_ui_upnp"_s))
         pref->setUPnPForWebUIPort(it.value().toBool());
     if (hasKey(u"use_https"_s))
-        pref->setWebUiHttpsEnabled(it.value().toBool());
+        pref->setWebUIHttpsEnabled(it.value().toBool());
     if (hasKey(u"web_ui_https_cert_path"_s))
         pref->setWebUIHttpsCertificatePath(Path(it.value().toString()));
     if (hasKey(u"web_ui_https_key_path"_s))
         pref->setWebUIHttpsKeyPath(Path(it.value().toString()));
     // Authentication
     if (hasKey(u"web_ui_username"_s))
-        pref->setWebUiUsername(it.value().toString());
+        pref->setWebUIUsername(it.value().toString());
     if (hasKey(u"web_ui_password"_s))
         pref->setWebUIPassword(Utils::Password::PBKDF2::generate(it.value().toByteArray()));
     if (hasKey(u"bypass_local_auth"_s))
-        pref->setWebUiLocalAuthEnabled(!it.value().toBool());
+        pref->setWebUILocalAuthEnabled(!it.value().toBool());
     if (hasKey(u"bypass_auth_subnet_whitelist_enabled"_s))
-        pref->setWebUiAuthSubnetWhitelistEnabled(it.value().toBool());
+        pref->setWebUIAuthSubnetWhitelistEnabled(it.value().toBool());
     if (hasKey(u"bypass_auth_subnet_whitelist"_s))
     {
         // recognize new lines and commas as delimiters
-        pref->setWebUiAuthSubnetWhitelist(it.value().toString().split(QRegularExpression(u"\n|,"_s), Qt::SkipEmptyParts));
+        pref->setWebUIAuthSubnetWhitelist(it.value().toString().split(QRegularExpression(u"\n|,"_s), Qt::SkipEmptyParts));
     }
     if (hasKey(u"web_ui_max_auth_fail_count"_s))
         pref->setWebUIMaxAuthFailCount(it.value().toInt());
@@ -824,18 +824,18 @@ void AppController::setPreferencesAction()
         pref->setWebUIBanDuration(std::chrono::seconds {it.value().toInt()});
     if (hasKey(u"web_ui_session_timeout"_s))
         pref->setWebUISessionTimeout(it.value().toInt());
-    // Use alternative Web UI
+    // Use alternative WebUI
     if (hasKey(u"alternative_webui_enabled"_s))
-        pref->setAltWebUiEnabled(it.value().toBool());
+        pref->setAltWebUIEnabled(it.value().toBool());
     if (hasKey(u"alternative_webui_path"_s))
-        pref->setWebUiRootFolder(Path(it.value().toString()));
+        pref->setWebUIRootFolder(Path(it.value().toString()));
     // Security
     if (hasKey(u"web_ui_clickjacking_protection_enabled"_s))
-        pref->setWebUiClickjackingProtectionEnabled(it.value().toBool());
+        pref->setWebUIClickjackingProtectionEnabled(it.value().toBool());
     if (hasKey(u"web_ui_csrf_protection_enabled"_s))
-        pref->setWebUiCSRFProtectionEnabled(it.value().toBool());
+        pref->setWebUICSRFProtectionEnabled(it.value().toBool());
     if (hasKey(u"web_ui_secure_cookie_enabled"_s))
-        pref->setWebUiSecureCookieEnabled(it.value().toBool());
+        pref->setWebUISecureCookieEnabled(it.value().toBool());
     if (hasKey(u"web_ui_host_header_validation_enabled"_s))
         pref->setWebUIHostHeaderValidationEnabled(it.value().toBool());
     // Custom HTTP headers

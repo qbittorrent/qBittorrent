@@ -43,6 +43,16 @@ AuthController::AuthController(ISessionManager *sessionManager, IApplication *ap
 {
 }
 
+void AuthController::setUsername(const QString &username)
+{
+    m_username = username;
+}
+
+void AuthController::setPasswordHash(const QByteArray &passwordHash)
+{
+    m_passwordHash = passwordHash;
+}
+
 void AuthController::loginAction()
 {
     if (m_sessionManager->session())
@@ -51,9 +61,9 @@ void AuthController::loginAction()
         return;
     }
 
-    const QString clientAddr {m_sessionManager->clientId()};
-    const QString usernameFromWeb {params()[u"username"_s]};
-    const QString passwordFromWeb {params()[u"password"_s]};
+    const QString clientAddr = m_sessionManager->clientId();
+    const QString usernameFromWeb = params()[u"username"_s];
+    const QString passwordFromWeb = params()[u"password"_s];
 
     if (isBanned())
     {
@@ -61,15 +71,11 @@ void AuthController::loginAction()
                 .arg(clientAddr, usernameFromWeb)
             , Log::WARNING);
         throw APIError(APIErrorType::AccessDenied
-                       , tr("Your IP address has been banned after too many failed authentication attempts."));
+            , tr("Your IP address has been banned after too many failed authentication attempts."));
     }
 
-    const Preferences *pref = Preferences::instance();
-
-    const QString username {pref->getWebUiUsername()};
-    const QByteArray secret {pref->getWebUIPassword()};
-    const bool usernameEqual = Utils::Password::slowEquals(usernameFromWeb.toUtf8(), username.toUtf8());
-    const bool passwordEqual = Utils::Password::PBKDF2::verify(secret, passwordFromWeb);
+    const bool usernameEqual = Utils::Password::slowEquals(usernameFromWeb.toUtf8(), m_username.toUtf8());
+    const bool passwordEqual = Utils::Password::PBKDF2::verify(m_passwordHash, passwordFromWeb);
 
     if (usernameEqual && passwordEqual)
     {

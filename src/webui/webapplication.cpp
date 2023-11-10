@@ -290,6 +290,16 @@ const Http::Environment &WebApplication::env() const
     return m_env;
 }
 
+void WebApplication::setUsername(const QString &username)
+{
+    m_authController->setUsername(username);
+}
+
+void WebApplication::setPasswordHash(const QByteArray &passwordHash)
+{
+    m_authController->setPasswordHash(passwordHash);
+}
+
 void WebApplication::doProcessRequest()
 {
     const QRegularExpressionMatch match = m_apiPathPattern.match(request().path);
@@ -378,17 +388,17 @@ void WebApplication::configure()
 {
     const auto *pref = Preferences::instance();
 
-    const bool isAltUIUsed = pref->isAltWebUiEnabled();
-    const Path rootFolder = (!isAltUIUsed ? Path(WWW_FOLDER) : pref->getWebUiRootFolder());
+    const bool isAltUIUsed = pref->isAltWebUIEnabled();
+    const Path rootFolder = (!isAltUIUsed ? Path(WWW_FOLDER) : pref->getWebUIRootFolder());
     if ((isAltUIUsed != m_isAltUIUsed) || (rootFolder != m_rootFolder))
     {
         m_isAltUIUsed = isAltUIUsed;
         m_rootFolder = rootFolder;
         m_translatedFiles.clear();
         if (!m_isAltUIUsed)
-            LogMsg(tr("Using built-in Web UI."));
+            LogMsg(tr("Using built-in WebUI."));
         else
-            LogMsg(tr("Using custom Web UI. Location: \"%1\".").arg(m_rootFolder.toString()));
+            LogMsg(tr("Using custom WebUI. Location: \"%1\".").arg(m_rootFolder.toString()));
     }
 
     const QString newLocale = pref->getLocale();
@@ -400,27 +410,27 @@ void WebApplication::configure()
         m_translationFileLoaded = m_translator.load((m_rootFolder / Path(u"translations/webui_"_s) + newLocale).data());
         if (m_translationFileLoaded)
         {
-            LogMsg(tr("Web UI translation for selected locale (%1) has been successfully loaded.")
+            LogMsg(tr("WebUI translation for selected locale (%1) has been successfully loaded.")
                    .arg(newLocale));
         }
         else
         {
-            LogMsg(tr("Couldn't load Web UI translation for selected locale (%1).").arg(newLocale), Log::WARNING);
+            LogMsg(tr("Couldn't load WebUI translation for selected locale (%1).").arg(newLocale), Log::WARNING);
         }
     }
 
-    m_isLocalAuthEnabled = pref->isWebUiLocalAuthEnabled();
-    m_isAuthSubnetWhitelistEnabled = pref->isWebUiAuthSubnetWhitelistEnabled();
-    m_authSubnetWhitelist = pref->getWebUiAuthSubnetWhitelist();
+    m_isLocalAuthEnabled = pref->isWebUILocalAuthEnabled();
+    m_isAuthSubnetWhitelistEnabled = pref->isWebUIAuthSubnetWhitelistEnabled();
+    m_authSubnetWhitelist = pref->getWebUIAuthSubnetWhitelist();
     m_sessionTimeout = pref->getWebUISessionTimeout();
 
     m_domainList = pref->getServerDomains().split(u';', Qt::SkipEmptyParts);
     std::for_each(m_domainList.begin(), m_domainList.end(), [](QString &entry) { entry = entry.trimmed(); });
 
-    m_isCSRFProtectionEnabled = pref->isWebUiCSRFProtectionEnabled();
-    m_isSecureCookieEnabled = pref->isWebUiSecureCookieEnabled();
+    m_isCSRFProtectionEnabled = pref->isWebUICSRFProtectionEnabled();
+    m_isSecureCookieEnabled = pref->isWebUISecureCookieEnabled();
     m_isHostHeaderValidationEnabled = pref->isWebUIHostHeaderValidationEnabled();
-    m_isHttpsEnabled = pref->isWebUiHttpsEnabled();
+    m_isHttpsEnabled = pref->isWebUIHttpsEnabled();
 
     m_prebuiltHeaders.clear();
     m_prebuiltHeaders.push_back({Http::HEADER_X_XSS_PROTECTION, u"1; mode=block"_s});
@@ -432,7 +442,7 @@ void WebApplication::configure()
         m_prebuiltHeaders.push_back({Http::HEADER_REFERRER_POLICY, u"same-origin"_s});
     }
 
-    const bool isClickjackingProtectionEnabled = pref->isWebUiClickjackingProtectionEnabled();
+    const bool isClickjackingProtectionEnabled = pref->isWebUIClickjackingProtectionEnabled();
     if (isClickjackingProtectionEnabled)
         m_prebuiltHeaders.push_back({Http::HEADER_X_FRAME_OPTIONS, u"SAMEORIGIN"_s});
 

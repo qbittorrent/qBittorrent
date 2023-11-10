@@ -153,6 +153,9 @@ private slots:
 
 private:
     AddTorrentManagerImpl *addTorrentManager() const override;
+#ifndef DISABLE_WEBUI
+    WebUI *webUI() const override;
+#endif
 
     void initializeTranslation();
     void processParams(const QBtCommandLineParameters &params);

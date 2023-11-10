@@ -98,12 +98,14 @@
 #include "gui/mainwindow.h"
 #include "gui/shutdownconfirmdialog.h"
 #include "gui/uithememanager.h"
-#include "gui/utils.h"
 #include "gui/windowstate.h"
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
 #include "webui/webui.h"
+#ifdef DISABLE_GUI
+#include "base/utils/password.h"
+#endif
 #endif
 
 namespace
@@ -305,8 +307,8 @@ Application::Application(int &argc, char **argv)
     if (isFileLoggerEnabled())
         m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
 
-    if (m_commandLineArgs.webUiPort > 0) // it will be -1 when user did not set any value
-        Preferences::instance()->setWebUiPort(m_commandLineArgs.webUiPort);
+    if (m_commandLineArgs.webUIPort > 0) // it will be -1 when user did not set any value
+        Preferences::instance()->setWebUIPort(m_commandLineArgs.webUIPort);
 
     if (m_commandLineArgs.torrentingPort > 0) // it will be -1 when user did not set any value
     {
@@ -885,9 +887,18 @@ int Application::exec()
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
+#ifndef DISABLE_GUI
         m_webui = new WebUI(this);
-#ifdef DISABLE_GUI
-        connect(m_webui, &WebUI::error, this, [](const QString &message) { fprintf(stderr, "%s\n", qUtf8Printable(message)); });
+#else
+        const auto *pref = Preferences::instance();
+
+        const QString tempPassword = pref->getWebUIPassword().isEmpty()
+                ? Utils::Password::generate() : QString();
+        m_webui = new WebUI(this, (!tempPassword.isEmpty() ? Utils::Password::PBKDF2::generate(tempPassword) : QByteArray()));
+        connect(m_webui, &WebUI::error, this, [](const QString &message)
+        {
+            fprintf(stderr, "WebUI configuration failed. Reason: %s\n", qUtf8Printable(message));
+        });
 
         printf("%s", qUtf8Printable(u"\n******** %1 ********\n"_s.arg(tr("Information"))));
 
@@ -905,12 +916,11 @@ int Application::exec()
                     , QString::number(m_webui->port()));
             printf("%s\n", qUtf8Printable(tr("To control qBittorrent, access the WebUI at: %1").arg(url)));
 
-            const Preferences *pref = Preferences::instance();
-            if (pref->getWebUIPassword() == QByteArrayLiteral("ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ=="))
+            if (!tempPassword.isEmpty())
             {
-                const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + u'\n'
-                        + tr("The Web UI administrator password has not been changed from the default: %1").arg(u"adminadmin"_s) + u'\n'
-                        + tr("This is a security risk, please change your password in program preferences.") + u'\n';
+                const QString warning = tr("The WebUI administrator username is: %1").arg(pref->getWebUIUsername()) + u'\n'
+                        + tr("The WebUI administrator password was not set. A temporary password is provided for this session: %1").arg(tempPassword) + u'\n'
+                        + tr("You should set your own password in program preferences.") + u'\n';
                 printf("%s", qUtf8Printable(warning));
             }
         }
@@ -1357,3 +1367,10 @@ AddTorrentManagerImpl *Application::addTorrentManager() const
 {
     return m_addTorrentManager;
 }
+
+#ifndef DISABLE_WEBUI
+WebUI *Application::webUI() const
+{
+    return m_webui;
+}
+#endif

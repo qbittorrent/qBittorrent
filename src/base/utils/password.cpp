@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2018  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
@@ -36,6 +37,7 @@
 #include <QString>
 #include <QVector>
 
+#include "base/global.h"
 #include "bytearray.h"
 #include "random.h"
 
@@ -65,6 +67,21 @@ bool Utils::Password::slowEquals(const QByteArray &a, const QByteArray &b)
     return (diff == 0);
 }
 
+QString Utils::Password::generate()
+{
+    const QString alphanum = u"23456789ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz"_s;
+    const int passwordLength = 9;
+    QString pass;
+    pass.reserve(passwordLength);
+    while (pass.length() < passwordLength)
+    {
+        const auto num = Utils::Random::rand(0, (alphanum.size() - 1));
+        pass.append(alphanum[num]);
+    }
+
+    return pass;
+}
+
 QByteArray Utils::Password::PBKDF2::generate(const QString &password)
 {
     return generate(password.toUtf8());
@@ -72,9 +89,8 @@ QByteArray Utils::Password::PBKDF2::generate(const QString &password)
 
 QByteArray Utils::Password::PBKDF2::generate(const QByteArray &password)
 {
-    const std::array<uint32_t, 4> salt
-    {{Random::rand(), Random::rand()
-        , Random::rand(), Random::rand()}};
+    const std::array<uint32_t, 4> salt {
+        {Random::rand(), Random::rand(), Random::rand(), Random::rand()}};
 
     std::array<unsigned char, 64> outBuf {};
     const int hmacResult = PKCS5_PBKDF2_HMAC(password.constData(), password.size()

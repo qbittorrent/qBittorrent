@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -52,7 +52,7 @@ class WebUI final : public ApplicationComponent<QObject>
     Q_DISABLE_COPY_MOVE(WebUI)
 
 public:
-    explicit WebUI(IApplication *app);
+    explicit WebUI(IApplication *app, const QByteArray &tempPasswordHash = {});
 
     bool isEnabled() const;
     bool isErrored() const;
@@ -68,10 +68,14 @@ private slots:
     void configure();
 
 private:
+    void setError(const QString &message);
+
     bool m_isEnabled = false;
     bool m_isErrored = false;
     QString m_errorMsg;
     QPointer<Http::Server> m_httpServer;
     QPointer<Net::DNSUpdater> m_dnsUpdater;
     QPointer<WebApplication> m_webapp;
+
+    QByteArray m_passwordHash;
 };

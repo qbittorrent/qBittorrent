@@ -3266,8 +3266,8 @@ Disable encryption: Only connect to peers without protocol encryption</string>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabWebuiPage">
-       <layout class="QVBoxLayout" name="tabWebuiPageLayout">
+      <widget class="QWidget" name="tabWebUIPage">
+       <layout class="QVBoxLayout" name="tabWebUIPageLayout">
         <property name="leftMargin">
          <number>0</number>
         </property>
@@ -3296,7 +3296,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
             <item>
-             <widget class="QGroupBox" name="checkWebUi">
+             <widget class="QGroupBox" name="checkWebUI">
               <property name="title">
                <string>Web User Interface (Remote control)</string>
               </property>
@@ -3308,16 +3308,28 @@ Disable encryption: Only connect to peers without protocol encryption</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_2">
                <item>
+                <widget class="QLabel" name="labelWebUIError">
+                 <property name="font">
+                  <font>
+                   <italic>true</italic>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_2">
                  <item>
-                  <widget class="QLabel" name="lblWebUiAddress">
+                  <widget class="QLabel" name="lblWebUIAddress">
                    <property name="text">
                     <string>IP address:</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="textWebUiAddress">
+                  <widget class="QLineEdit" name="textWebUIAddress">
                    <property name="toolTip">
                     <string>IP address that the Web UI will bind to.
 Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv4 address,
@@ -3326,14 +3338,14 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="lblWebUiPort">
+                  <widget class="QLabel" name="lblWebUIPort">
                    <property name="text">
                     <string>Port:</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="spinWebUiPort">
+                  <widget class="QSpinBox" name="spinWebUIPort">
                    <property name="minimum">
                     <number>1</number>
                    </property>
@@ -3358,7 +3370,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                 </widget>
                </item>
                <item>
-                <widget class="QGroupBox" name="checkWebUiHttps">
+                <widget class="QGroupBox" name="checkWebUIHttps">
                  <property name="title">
                   <string>&amp;Use HTTPS instead of HTTP</string>
                  </property>
@@ -3370,14 +3382,14 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                  </property>
                  <layout class="QGridLayout" name="gridLayout_11">
                   <item row="1" column="1">
-                   <widget class="QLabel" name="lblWebUiKey">
+                   <widget class="QLabel" name="lblWebUIKey">
                     <property name="text">
                      <string>Key:</string>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QLabel" name="lblWebUiCrt">
+                   <widget class="QLabel" name="lblWebUICrt">
                     <property name="text">
                      <string>Certificate:</string>
                     </property>
@@ -3409,7 +3421,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                 </widget>
                </item>
                <item>
-                <widget class="QGroupBox" name="groupWebUiAuth">
+                <widget class="QGroupBox" name="groupWebUIAuth">
                  <property name="title">
                   <string>Authentication</string>
                  </property>
@@ -3417,24 +3429,24 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                   <item>
                    <layout class="QGridLayout" name="gridLayout_8">
                     <item row="0" column="0">
-                     <widget class="QLabel" name="lblWebUiUsername">
+                     <widget class="QLabel" name="lblWebUIUsername">
                       <property name="text">
                        <string>Username:</string>
                       </property>
                      </widget>
                     </item>
                     <item row="0" column="1">
-                     <widget class="QLineEdit" name="textWebUiUsername"/>
+                     <widget class="QLineEdit" name="textWebUIUsername"/>
                     </item>
                     <item row="1" column="0">
-                     <widget class="QLabel" name="lblWebUiPassword">
+                     <widget class="QLabel" name="lblWebUIPassword">
                       <property name="text">
                        <string>Password:</string>
                       </property>
                      </widget>
                     </item>
                     <item row="1" column="1">
-                     <widget class="QLineEdit" name="textWebUiPassword">
+                     <widget class="QLineEdit" name="textWebUIPassword">
                       <property name="echoMode">
                        <enum>QLineEdit::Password</enum>
                       </property>
@@ -3862,13 +3874,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>stopConditionComboBox</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>
-  <tabstop>textWebUiUsername</tabstop>
-  <tabstop>checkWebUi</tabstop>
+  <tabstop>textWebUIUsername</tabstop>
+  <tabstop>checkWebUI</tabstop>
   <tabstop>textSavePath</tabstop>
   <tabstop>scrollArea_7</tabstop>
   <tabstop>scrollArea_2</tabstop>
-  <tabstop>spinWebUiPort</tabstop>
-  <tabstop>textWebUiPassword</tabstop>
+  <tabstop>spinWebUIPort</tabstop>
+  <tabstop>textWebUIPassword</tabstop>
   <tabstop>buttonBox</tabstop>
   <tabstop>tabSelection</tabstop>
   <tabstop>scrollArea</tabstop>
@@ -3958,7 +3970,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>spinMaxActiveUploads</tabstop>
   <tabstop>spinMaxActiveTorrents</tabstop>
   <tabstop>checkWebUIUPnP</tabstop>
-  <tabstop>checkWebUiHttps</tabstop>
+  <tabstop>checkWebUIHttps</tabstop>
   <tabstop>checkBypassLocalAuth</tabstop>
   <tabstop>checkBypassAuthSubnetWhitelist</tabstop>
   <tabstop>IPSubnetWhitelistButton</tabstop>

@@ -71,6 +71,7 @@
 #include "utils.h"
 #include "watchedfolderoptionsdialog.h"
 #include "watchedfoldersmodel.h"
+#include "webui/webui.h"
 
 #ifndef DISABLE_WEBUI
 #include "base/net/dnsupdater.h"
@@ -81,6 +82,9 @@
 #endif // defined Q_OS_MACOS || defined Q_OS_WIN
 
 #define SETTINGS_KEY(name) u"OptionsDialog/" name
+
+const int WEBUI_MIN_USERNAME_LENGTH = 3;
+const int WEBUI_MIN_PASSWORD_LENGTH = 6;
 
 namespace
 {
@@ -107,6 +111,16 @@ namespace
             return (event->type() == QEvent::Wheel);
         }
     };
+
+    bool isValidWebUIUsername(const QString &username)
+    {
+        return (username.length() >= WEBUI_MIN_USERNAME_LENGTH);
+    }
+
+    bool isValidWebUIPassword(const QString &password)
+    {
+        return (password.length() >= WEBUI_MIN_PASSWORD_LENGTH);
+    }
 
     // Shortcuts for frequently used signals that have more than one overload. They would require
     // type casts and that is why we declare required member pointer here instead.
@@ -176,7 +190,11 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
 
     // setup apply button
     m_applyButton->setEnabled(false);
-    connect(m_applyButton, &QPushButton::clicked, this, &OptionsDialog::applySettings);
+    connect(m_applyButton, &QPushButton::clicked, this, [this]
+    {
+        if (applySettings())
+            m_applyButton->setEnabled(false);
+    });
 
     // disable mouse wheel event on widgets to avoid misselection
     auto *wheelEventEater = new WheelEventEater(this);
@@ -1218,28 +1236,33 @@ void OptionsDialog::loadWebUITabOptions()
     m_ui->textWebUIRootFolder->setMode(FileSystemPathEdit::Mode::DirectoryOpen);
     m_ui->textWebUIRootFolder->setDialogCaption(tr("Choose Alternative UI files location"));
 
-    m_ui->checkWebUi->setChecked(pref->isWebUiEnabled());
-    m_ui->textWebUiAddress->setText(pref->getWebUiAddress());
-    m_ui->spinWebUiPort->setValue(pref->getWebUiPort());
+    if (app()->webUI()->isErrored())
+        m_ui->labelWebUIError->setText(tr("WebUI configuration failed. Reason: %1").arg(app()->webUI()->errorMessage()));
+    else
+        m_ui->labelWebUIError->hide();
+
+    m_ui->checkWebUI->setChecked(pref->isWebUIEnabled());
+    m_ui->textWebUIAddress->setText(pref->getWebUIAddress());
+    m_ui->spinWebUIPort->setValue(pref->getWebUIPort());
     m_ui->checkWebUIUPnP->setChecked(pref->useUPnPForWebUIPort());
-    m_ui->checkWebUiHttps->setChecked(pref->isWebUiHttpsEnabled());
+    m_ui->checkWebUIHttps->setChecked(pref->isWebUIHttpsEnabled());
     webUIHttpsCertChanged(pref->getWebUIHttpsCertificatePath());
     webUIHttpsKeyChanged(pref->getWebUIHttpsKeyPath());
-    m_ui->textWebUiUsername->setText(pref->getWebUiUsername());
-    m_ui->checkBypassLocalAuth->setChecked(!pref->isWebUiLocalAuthEnabled());
-    m_ui->checkBypassAuthSubnetWhitelist->setChecked(pref->isWebUiAuthSubnetWhitelistEnabled());
+    m_ui->textWebUIUsername->setText(pref->getWebUIUsername());
+    m_ui->checkBypassLocalAuth->setChecked(!pref->isWebUILocalAuthEnabled());
+    m_ui->checkBypassAuthSubnetWhitelist->setChecked(pref->isWebUIAuthSubnetWhitelistEnabled());
     m_ui->IPSubnetWhitelistButton->setEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
     m_ui->spinBanCounter->setValue(pref->getWebUIMaxAuthFailCount());
     m_ui->spinBanDuration->setValue(pref->getWebUIBanDuration().count());
     m_ui->spinSessionTimeout->setValue(pref->getWebUISessionTimeout());
     // Alternative UI
-    m_ui->groupAltWebUI->setChecked(pref->isAltWebUiEnabled());
-    m_ui->textWebUIRootFolder->setSelectedPath(pref->getWebUiRootFolder());
+    m_ui->groupAltWebUI->setChecked(pref->isAltWebUIEnabled());
+    m_ui->textWebUIRootFolder->setSelectedPath(pref->getWebUIRootFolder());
     // Security
-    m_ui->checkClickjacking->setChecked(pref->isWebUiClickjackingProtectionEnabled());
-    m_ui->checkCSRFProtection->setChecked(pref->isWebUiCSRFProtectionEnabled());
-    m_ui->checkSecureCookie->setEnabled(pref->isWebUiHttpsEnabled());
-    m_ui->checkSecureCookie->setChecked(pref->isWebUiSecureCookieEnabled());
+    m_ui->checkClickjacking->setChecked(pref->isWebUIClickjackingProtectionEnabled());
+    m_ui->checkCSRFProtection->setChecked(pref->isWebUICSRFProtectionEnabled());
+    m_ui->checkSecureCookie->setEnabled(pref->isWebUIHttpsEnabled());
+    m_ui->checkSecureCookie->setChecked(pref->isWebUISecureCookieEnabled());
     m_ui->groupHostHeaderValidation->setChecked(pref->isWebUIHostHeaderValidationEnabled());
     m_ui->textServerDomains->setText(pref->getServerDomains());
     // Custom HTTP headers
@@ -1255,18 +1278,18 @@ void OptionsDialog::loadWebUITabOptions()
     m_ui->DNSUsernameTxt->setText(pref->getDynDNSUsername());
     m_ui->DNSPasswordTxt->setText(pref->getDynDNSPassword());
 
-    connect(m_ui->checkWebUi, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->textWebUiAddress, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->spinWebUiPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkWebUI, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->textWebUIAddress, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinWebUIPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUIUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkWebUiHttps, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkWebUIHttps, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::webUIHttpsCertChanged);
     connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::webUIHttpsKeyChanged);
 
-    connect(m_ui->textWebUiUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->textWebUiPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->textWebUIUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->textWebUIPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkBypassLocalAuth, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBypassAuthSubnetWhitelist, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -1280,7 +1303,7 @@ void OptionsDialog::loadWebUITabOptions()
 
     connect(m_ui->checkClickjacking, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkCSRFProtection, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkWebUiHttps, &QGroupBox::toggled, m_ui->checkSecureCookie, &QWidget::setEnabled);
+    connect(m_ui->checkWebUIHttps, &QGroupBox::toggled, m_ui->checkSecureCookie, &QWidget::setEnabled);
     connect(m_ui->checkSecureCookie, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->groupHostHeaderValidation, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textServerDomains, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -1302,29 +1325,32 @@ void OptionsDialog::saveWebUITabOptions() const
 {
     auto *pref = Preferences::instance();
 
-    pref->setWebUiEnabled(isWebUiEnabled());
-    pref->setWebUiAddress(m_ui->textWebUiAddress->text());
-    pref->setWebUiPort(m_ui->spinWebUiPort->value());
+    const bool webUIEnabled = isWebUIEnabled();
+
+    pref->setWebUIEnabled(webUIEnabled);
+    pref->setWebUIAddress(m_ui->textWebUIAddress->text());
+    pref->setWebUIPort(m_ui->spinWebUIPort->value());
     pref->setUPnPForWebUIPort(m_ui->checkWebUIUPnP->isChecked());
-    pref->setWebUiHttpsEnabled(m_ui->checkWebUiHttps->isChecked());
+    pref->setWebUIHttpsEnabled(m_ui->checkWebUIHttps->isChecked());
     pref->setWebUIHttpsCertificatePath(m_ui->textWebUIHttpsCert->selectedPath());
     pref->setWebUIHttpsKeyPath(m_ui->textWebUIHttpsKey->selectedPath());
     pref->setWebUIMaxAuthFailCount(m_ui->spinBanCounter->value());
     pref->setWebUIBanDuration(std::chrono::seconds {m_ui->spinBanDuration->value()});
     pref->setWebUISessionTimeout(m_ui->spinSessionTimeout->value());
     // Authentication
-    pref->setWebUiUsername(webUiUsername());
-    if (!webUiPassword().isEmpty())
-        pref->setWebUIPassword(Utils::Password::PBKDF2::generate(webUiPassword()));
-    pref->setWebUiLocalAuthEnabled(!m_ui->checkBypassLocalAuth->isChecked());
-    pref->setWebUiAuthSubnetWhitelistEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
+    if (const QString username = webUIUsername(); isValidWebUIUsername(username))
+        pref->setWebUIUsername(username);
+    if (const QString password = webUIPassword(); isValidWebUIPassword(password))
+        pref->setWebUIPassword(Utils::Password::PBKDF2::generate(password));
+    pref->setWebUILocalAuthEnabled(!m_ui->checkBypassLocalAuth->isChecked());
+    pref->setWebUIAuthSubnetWhitelistEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
     // Alternative UI
-    pref->setAltWebUiEnabled(m_ui->groupAltWebUI->isChecked());
-    pref->setWebUiRootFolder(m_ui->textWebUIRootFolder->selectedPath());
+    pref->setAltWebUIEnabled(m_ui->groupAltWebUI->isChecked());
+    pref->setWebUIRootFolder(m_ui->textWebUIRootFolder->selectedPath());
     // Security
-    pref->setWebUiClickjackingProtectionEnabled(m_ui->checkClickjacking->isChecked());
-    pref->setWebUiCSRFProtectionEnabled(m_ui->checkCSRFProtection->isChecked());
-    pref->setWebUiSecureCookieEnabled(m_ui->checkSecureCookie->isChecked());
+    pref->setWebUIClickjackingProtectionEnabled(m_ui->checkClickjacking->isChecked());
+    pref->setWebUICSRFProtectionEnabled(m_ui->checkCSRFProtection->isChecked());
+    pref->setWebUISecureCookieEnabled(m_ui->checkSecureCookie->isChecked());
     pref->setWebUIHostHeaderValidationEnabled(m_ui->groupHostHeaderValidation->isChecked());
     pref->setServerDomains(m_ui->textServerDomains->text());
     // Custom HTTP headers
@@ -1524,53 +1550,37 @@ void OptionsDialog::on_buttonBox_accepted()
 {
     if (m_applyButton->isEnabled())
     {
-        if (!schedTimesOk())
-        {
-            m_ui->tabSelection->setCurrentRow(TAB_SPEED);
+        if (!applySettings())
             return;
-        }
-#ifndef DISABLE_WEBUI
-        if (!webUIAuthenticationOk())
-        {
-            m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
-            return;
-        }
-        if (!isAlternativeWebUIPathValid())
-        {
-            m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
-            return;
-        }
-#endif
 
         m_applyButton->setEnabled(false);
-        saveOptions();
     }
 
     accept();
 }
 
-void OptionsDialog::applySettings()
+bool OptionsDialog::applySettings()
 {
     if (!schedTimesOk())
     {
         m_ui->tabSelection->setCurrentRow(TAB_SPEED);
-        return;
+        return false;
     }
 #ifndef DISABLE_WEBUI
-    if (!webUIAuthenticationOk())
+    if (isWebUIEnabled() && !webUIAuthenticationOk())
     {
         m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
-        return;
+        return false;
     }
     if (!isAlternativeWebUIPathValid())
     {
         m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
-        return;
+        return false;
     }
 #endif
 
-    m_applyButton->setEnabled(false);
     saveOptions();
+    return true;
 }
 
 void OptionsDialog::on_buttonBox_rejected()
@@ -1866,31 +1876,33 @@ void OptionsDialog::webUIHttpsKeyChanged(const Path &path)
         (isKeyValid ? u"security-high"_s : u"security-low"_s), 24));
 }
 
-bool OptionsDialog::isWebUiEnabled() const
+bool OptionsDialog::isWebUIEnabled() const
 {
-    return m_ui->checkWebUi->isChecked();
+    return m_ui->checkWebUI->isChecked();
 }
 
-QString OptionsDialog::webUiUsername() const
+QString OptionsDialog::webUIUsername() const
 {
-    return m_ui->textWebUiUsername->text();
+    return m_ui->textWebUIUsername->text();
 }
 
-QString OptionsDialog::webUiPassword() const
+QString OptionsDialog::webUIPassword() const
 {
-    return m_ui->textWebUiPassword->text();
+    return m_ui->textWebUIPassword->text();
 }
 
 bool OptionsDialog::webUIAuthenticationOk()
 {
-    if (webUiUsername().length() < 3)
+    if (!isValidWebUIUsername(webUIUsername()))
     {
-        QMessageBox::warning(this, tr("Length Error"), tr("The Web UI username must be at least 3 characters long."));
+        QMessageBox::warning(this, tr("Length Error"), tr("The WebUI username must be at least 3 characters long."));
         return false;
     }
-    if (!webUiPassword().isEmpty() && (webUiPassword().length() < 6))
+
+    const bool dontChangePassword = webUIPassword().isEmpty() && !Preferences::instance()->getWebUIPassword().isEmpty();
+    if (!isValidWebUIPassword(webUIPassword()) && !dontChangePassword)
     {
-        QMessageBox::warning(this, tr("Length Error"), tr("The Web UI password must be at least 6 characters long."));
+        QMessageBox::warning(this, tr("Length Error"), tr("The WebUI password must be at least 6 characters long."));
         return false;
     }
     return true;
@@ -1900,7 +1912,7 @@ bool OptionsDialog::isAlternativeWebUIPathValid()
 {
     if (m_ui->groupAltWebUI->isChecked() && m_ui->textWebUIRootFolder->selectedPath().isEmpty())
     {
-        QMessageBox::warning(this, tr("Location Error"), tr("The alternative Web UI files location cannot be blank."));
+        QMessageBox::warning(this, tr("Location Error"), tr("The alternative WebUI files location cannot be blank."));
         return false;
     }
     return true;
