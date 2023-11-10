@@ -11,7 +11,7 @@
 }
 
 #transferList .dynamicTable td {
-    padding: 2px;
+    padding: 4px;
 }
 
 .dynamicTable tbody tr.selected {
@@ -53,8 +53,7 @@ tr.dynamicTableHeader {
 }
 
 .dynamicTable td {
-    border-bottom: 1px solid transparent;
-    padding: 2px 4px;
+    padding: 2px;
     white-space: nowrap;
 }
 
