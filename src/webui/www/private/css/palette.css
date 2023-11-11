@@ -12,6 +12,7 @@
     --color-background-blue: hsl(210deg 42% 48%);
     --color-background-popup: hsl(0deg 0% 100%);
     --color-background-default: hsl(0deg 0% 94%);
+    --color-border-blue: hsl(210deg 100% 55%);
     --color-border-default: hsl(0deg 0% 85%);
 }
 
@@ -33,9 +34,10 @@
     }
 
     * {
+        --color-text-blue: hsl(210.3, 88.1%, 73.5%);
         --color-text-default: hsl(0deg 0% 90%);
         --color-background-popup: hsl(0deg 0% 20%);
-        --color-background-default: hsl(0deg 0% 30%);
+        --color-background-default: hsl(0deg 0% 25%);
         --color-border-default: hsl(0deg 0% 33%);
     }
 }

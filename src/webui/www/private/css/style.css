@@ -8,6 +8,19 @@ a img,
     border: none;
 }
 
+/* Forms */
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="button"],
+button,
+select {
+    border-radius: 3px;
+    border: 1px solid var(--color-border-default);
+    padding: 4px;
+}
+
 /*table { border-collapse: collapse; border-spacing: 0; }*/
 
 :focus {

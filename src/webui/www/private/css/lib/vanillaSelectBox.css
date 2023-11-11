@@ -1,7 +1,8 @@
+@import url("../palette.css");
+
 .hidden-search {
 	display: none !important;
 }
-
 
 li[data-parent].closed{
 	display:none !important;
@@ -12,18 +13,15 @@ li[data-parent].open:not(.hidden-search){
 }
 
 .vsb-menu{
-  cursor:pointer;
-  z-index:1000;
+	cursor:pointer;
+	z-index:1000;
 	display:block;
 	visibility: hidden;
-  position:absolute;/*Don't change*/
-  border:1px solid #B2B2B2;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid rgba(0,0,0,.15);
-  box-shadow: 0 6px 12px rgba(0,0,0,.175);
-  border-radius:4px;
-  font-size : 11px;
+	position:absolute;/*Don't change*/
+	background-clip: padding-box;
+	font-size : 11px;
+	background-color: var(--color-background-default);
+	border: 1px solid var(--color-border-default);
 }
 
 .vsb-js-search-zone{
@@ -31,12 +29,9 @@ li[data-parent].open:not(.hidden-search){
     z-index:1001;
 	width: 80%;
 	min-height:1.8em;
-	padding: 2px;
-	background-color: #fff;
-}
+	padding: 2px;}
 
 .vsb-js-search-zone input{
-	border: 1px solid grey;
 	margin-left: 2px;
 	width: 96%;
 	border-radius: 4px;
@@ -46,24 +41,16 @@ li[data-parent].open:not(.hidden-search){
 .vsb-main{
 	position: relative;/*Don't change*/
 	display: inline-block;
-	vertical-align: middle;
+	vertical-align: top;
 	text-align:left;
-}
-
-.vsb-menu li:hover {
-	background: linear-gradient(#f5f5f5, #e8e8e8);
 }
 
 .vsb-menu ul{
 	user-select:none;
 	list-style:none;
 	white-space: nowrap;
-	margin:0px;
-	margin-top:4px;
-	padding-left:10px;
-	padding-right:10px;
-	padding-bottom:3px;
-	color: #333;
+	margin:0;
+	padding:0;
 	cursor:pointer;
 	overflow-y:auto;
 }
@@ -87,15 +74,11 @@ li.short{
 
 .vsb-main button{
 	min-width: 120px;
-	border-radius: 0;
+	border: 1px solid var(--color-border-default);
+	border-radius: 4px;
 	width: 100%;
 	text-align: left;
 	z-index: 1;
-	color: #333;
-	background: white !important;
-	border: 1px solid #999 !important;
-	line-height:20px;
-	font-size:14px;
 	padding:6px 12px;
 }
 
@@ -109,24 +92,22 @@ li.short{
 	user-select:none;
 }
 
-.vsb-main li:hover {
-	background: linear-gradient(#f5f5f5, #e8e8e8);
-}
-
 .vsb-main ul{
 	white-space: nowrap;
 }
 
 .vsb-menu li {
-	font-size: 14px;
-	background-color: #fff;
-	min-height:1.4em;
-	padding: 0.2em 2em 0.2em 1em;
+	font-size: 12px;
+	padding: 4px 26px;
+}
+
+.vsb-menu li:hover {
+	background-color: var(--color-background-blue);
+	color: var(--color-text-white);
 }
 
 .vsb-menu li.grouped-option b {
 	display: inline-block;
-	font-size: 15px;
 	margin-left:10px;
 	transform: translate(-18px);
 }
@@ -138,8 +119,6 @@ li.short{
 	height: 8px;
 	width:  8px;
 	transform: translate(-38px) rotate(45deg);
-	border-bottom:  3px solid black;
-	border-right:  3px solid black;
 	border-radius:2px;
 }
 
@@ -149,8 +128,6 @@ li.short{
 	height: 8px;
 	width:  8px;
 	transform: translate(-38px) rotate(-45deg);
-	border-bottom:  3px solid black;
-	border-right:  3px solid black;
 	border-radius:2px;
 }
 
@@ -167,22 +144,18 @@ li.short{
 	border-radius : 3px;
 	padding: 1px 3px 2px 3px;
 	margin-top:0px;
-	color:black;
 }
 
 .vsb-menu li.grouped-option.checked i::after {
 	content: "";
 	display: inline-block;
 	font-size: inherit;
-	color: #333;
 	float:left;
 	margin-left:0px;
 	display: inline-block;
 	transform: rotate(45deg);
 	height: 8px;
 	width:  5px;
-	border-bottom: 3px solid black;
-	border-right:  3px solid black;
 }
 
 .vsb-menu :not(.multi) li.active {
@@ -197,20 +170,12 @@ li.short{
 	transform: rotate(45deg);
 	height: 10px;
 	width:  5px;
-	border-bottom:  3px solid black;
-	border-right:  3px solid black;
 	border-radius:2px;
-}
-
-.vsb-menu .multi li {
-	font-size: 14px;
-	background-color: #fff;
-	min-height:1.4em;
-	padding: 0.2em 2em 0.2em 26px;
+	border-bottom: 3px solid var(--color-border-blue);
+	border-right:  3px solid var(--color-border-blue);
 }
 
 .vsb-menu .multi li.grouped-option {
-	font-size: 15px;
 	padding-left: 5px;
 }
 
@@ -222,6 +187,7 @@ li.short{
 }
 
 .vsb-menu .multi li:not(.grouped-option)::before{
+	background: var(--color-background-popup);
 	content: "";
 	display: inline-block;
 	font-size: inherit;
@@ -233,14 +199,12 @@ li.short{
 	border-radius : 3px;
 	padding : 7px;
 	margin-top:0px;
-	color:black;
 }
 
 .vsb-menu .multi li:not(.grouped-option).active::after {
 	content: "";
 	display: inline-block;
 	font-size: inherit;
-	color: #333;
 	float:left;
 	margin-left:-18px;
 	display: inline-block;
@@ -248,8 +212,8 @@ li.short{
 	margin-top:1px;
 	height: 8px;
 	width:  5px;
-	border-bottom: 3px solid black;
-	border-right:  3px solid black;
+	border-bottom: 3px solid var(--color-border-blue);
+	border-right:  3px solid var(--color-border-blue);
 }
 
 .caret {
@@ -268,4 +232,3 @@ li.short{
 li[data-parent]{
 	padding-left: 50px !important;
 }
-

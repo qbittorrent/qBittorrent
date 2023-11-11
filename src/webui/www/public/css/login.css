@@ -8,6 +8,18 @@ body {
     text-align: left;
 }
 
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="button"],
+input[type="submit"],
+button,
+select {
+    border-radius: 3px;
+    border: 1px solid var(--color-border-default);
+    padding: 4px;
+}
+
 .col {
     display: inline-block;
     vertical-align: middle;

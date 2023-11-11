@@ -3,6 +3,7 @@
 /* Default rules */
 * {
     --color-text-red: hsl(0deg 100% 65%);
+    --color-border-default: hsl(0deg 0% 85%);
 }
 
 :root {
