@@ -265,7 +265,7 @@ a.propButton img {
 .contextMenu li img {
     height: 16px;
     margin-bottom: -4px;
-    margin-right: 0.5em; /*#19844 return missed padding */
+    margin-right: 0.5em; /* return missed padding */
     width: 16px;
 }
 
