@@ -159,16 +159,12 @@ hr {
 }
 
 .selectedFilter {
-    background-color: var(
-        --color-background-blue
-    ) !important; /* important prevents hover effect on click, @TODO CSS optimization */
+    background-color: var(--color-background-blue) !important;
     color: var(--color-text-white) !important;
 }
 
 .selectedFilter a {
-    color: var(
-        --color-text-white
-    ) !important; /* @TODO original re-definition below */
+    color: var(--color-text-white) !important;
 }
 
 #properties {
