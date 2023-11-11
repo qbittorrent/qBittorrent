@@ -309,7 +309,6 @@ li.divider {
 
 .columnHandle {
     background: url("../images/handle-icon.gif") center center no-repeat;
-    /*border: 1px solid #909090;*/
     border: 1px solid var(--color-border-default);
     border-bottom: 0;
     border-top: 0;
