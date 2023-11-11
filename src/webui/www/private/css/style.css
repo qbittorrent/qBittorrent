@@ -16,8 +16,8 @@ input[type="password"],
 input[type="button"],
 button,
 select {
-    border-radius: 3px;
     border: 1px solid var(--color-border-default);
+    border-radius: 3px;
     padding: 4px;
 }
 

@@ -15,8 +15,8 @@ input[type="button"],
 input[type="submit"],
 button,
 select {
-    border-radius: 3px;
     border: 1px solid var(--color-border-default);
+    border-radius: 3px;
     padding: 4px;
 }
 
