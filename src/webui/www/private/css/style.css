@@ -22,6 +22,12 @@ select {
     padding: 4px;
 }
 
+input[type="button"],
+input[type="submit"],
+button {
+    cursor: pointer;
+}
+
 /*table { border-collapse: collapse; border-spacing: 0; }*/
 
 :focus {
