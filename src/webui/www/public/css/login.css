@@ -1,6 +1,4 @@
-:root {
-    color-scheme: light dark;
-}
+@import url("palette.css");
 
 body {
     font-family: Arial, Helvetica, sans-serif;
