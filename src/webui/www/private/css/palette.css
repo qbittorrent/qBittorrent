@@ -46,7 +46,7 @@
         --color-background-popup: hsl(0deg 0% 20%);
         --color-background-default: hsl(0deg 0% 25%);
         /* previous --color-background-hover: hsl(210deg 15% 35%); */
-        --color-background-hover: hsl(26deg 50% 50%);
+        --color-background-hover: hsl(26deg 50% 55%);
         --color-border-default: hsl(0deg 0% 33%);
     }
 }
