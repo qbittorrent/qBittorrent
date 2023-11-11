@@ -2,6 +2,7 @@
 
 /* Default rules */
 * {
+    --color-accent-blue: hsl(210deg 65% 55%);
     --color-text-blue: hsl(210deg 100% 55%);
     --color-text-orange: hsl(26deg 100% 45%);
     --color-text-red: hsl(0deg 100% 65%);
@@ -36,6 +37,7 @@
     }
 
     * {
+        --color-accent-blue: hsl(210deg 42% 48%);
         --color-text-blue: hsl(210deg 88.1% 73.5%);
         /* previous --color-text-orange: hsl(26deg 80% 60%); */
         --color-text-orange: hsl(26deg 65% 70%);

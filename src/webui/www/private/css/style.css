@@ -22,6 +22,11 @@ select {
     padding: 4px;
 }
 
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--color-accent-blue);
+}
+
 input[type="button"],
 input[type="submit"],
 button {
