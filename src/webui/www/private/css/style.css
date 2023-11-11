@@ -26,6 +26,7 @@ input[type="button"],
 input[type="submit"],
 button {
     cursor: pointer;
+    padding: 4px 16px;
 }
 
 /*table { border-collapse: collapse; border-spacing: 0; }*/
