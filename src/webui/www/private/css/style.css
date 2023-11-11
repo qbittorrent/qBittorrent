@@ -240,7 +240,7 @@ a.propButton img {
 }
 
 .contextMenu li a:hover {
-    background-color: var(--color-background-blue);
+    background-color: var(--color-background-hover);
     color: var(--color-text-white);
 }
 
@@ -497,7 +497,12 @@ ul.filterList a {
 }
 
 ul.filterList li:hover {
-    background-color: var(--color-background-default);
+    background-color: var(--color-background-hover);
+    color: var(--color-text-white);
+}
+
+ul.filterList li:hover a {
+    color: var(--color-text-white);
 }
 
 td.generalLabel {
@@ -655,6 +660,6 @@ td.statusBarSeparator {
 }
 
 #torrentFilesTableDiv .dynamicTable tr.nonAlt:hover {
-    background-color: var(--color-background-blue);
+    background-color: var(--color-background-hover);
     color: var(--color-text-white);
 }

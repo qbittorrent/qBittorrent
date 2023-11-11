@@ -47,6 +47,11 @@ Required by:
     text-align: center;
 }
 
+.tab-menu li:hover a {
+    background-color: var(--color-background-hover);
+    color: var(--color-text-white);
+}
+
 .tab-menu li.selected a {
     background-color: var(--color-background-blue);
     color: var(--color-text-white);

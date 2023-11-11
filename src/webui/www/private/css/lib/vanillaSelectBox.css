@@ -102,7 +102,7 @@ li.short{
 }
 
 .vsb-menu li:hover {
-	background-color: var(--color-background-blue);
+	background-color: var(--color-background-hover);
 	color: var(--color-text-white);
 }
 

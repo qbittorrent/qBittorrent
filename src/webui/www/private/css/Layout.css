@@ -116,7 +116,7 @@ body {
 }
 
 #desktopNavbar ul li a:hover {
-    background-color: var(--color-background-blue);
+    background-color: var(--color-background-hover);
     color: var(--color-text-white);
 }
 
@@ -167,7 +167,7 @@ body {
 }
 
 #desktopNavbar li ul li a:hover {
-    background-color: var(--color-background-blue);
+    background-color: var(--color-background-hover);
     color: var(--color-text-white);
 }
 
