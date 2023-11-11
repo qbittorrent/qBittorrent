@@ -1,5 +1,9 @@
 @import url("palette.css");
 
+*:focus {
+    outline: none;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -18,6 +22,14 @@ select {
     border: 1px solid var(--color-border-default);
     border-radius: 3px;
     padding: 4px;
+}
+
+input[type="button"],
+input[type="submit"],
+button {
+    cursor: pointer;
+    margin: 4px 0;
+    padding: 4px 16px;
 }
 
 .col {
