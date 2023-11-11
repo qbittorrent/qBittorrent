@@ -18,6 +18,7 @@ button,
 select {
     border: 1px solid var(--color-border-default);
     border-radius: 3px;
+    color: var(--color-text-default);
     padding: 4px;
 }
 
