@@ -593,7 +593,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
             rulesList[rule].torrentParams.category = $('assignCategoryCombobox').value;
             rulesList[rule].torrentParams.tags = $('ruleAddTags').value.split(',');
-            rulesList[rule].torrentParams.save_path = $('savetoDifferentDir').checked ? $('saveToText').value : '';
+            if ($('savetoDifferentDir').checked) {
+                rulesList[rule].torrentParams.save_path = $('saveToText').value;
+                rulesList[rule].torrentParams.use_auto_tmm = false;
+            }
 
             switch ($('addPausedCombobox').value) {
                 case 'default':
@@ -715,8 +718,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 $('assignCategoryCombobox').disabled = false;
                 $('ruleAddTags').disabled = false;
                 $('savetoDifferentDir').disabled = false;
-                $('savetoDifferentDir').checked = rulesList[ruleName].torrentParams.save_path ? false : true;
-                $('saveToText').disabled = rulesList[ruleName].torrentParams.save_path ? false : true;
                 $('ignoreDaysValue').disabled = false;
                 $('addPausedCombobox').disabled = false;
                 $('contentLayoutCombobox').disabled = false;
@@ -731,6 +732,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 $('assignCategoryCombobox').value = rulesList[ruleName].torrentParams.category ? rulesList[ruleName].torrentParams.category : 'default';
                 $('ruleAddTags').value = rulesList[ruleName].torrentParams.tags.join(',');
                 $('savetoDifferentDir').checked = rulesList[ruleName].torrentParams.save_path !== '';
+                $('saveToText').disabled = !$('savetoDifferentDir').checked;
                 $('saveToText').value = rulesList[ruleName].torrentParams.save_path;
                 $('ignoreDaysValue').value = rulesList[ruleName].ignoreDays;
 
