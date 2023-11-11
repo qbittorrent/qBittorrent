@@ -484,15 +484,6 @@ td.generalLabel {
     width: 1px;
 }
 
-#torrentFilesTableDiv {
-    line-height: 20px;
-}
-
-#torrentTrackersTableDiv,
-#webseedsTable {
-    line-height: 25px;
-}
-
 .filesTableCollapseIcon {
     cursor: pointer;
     height: 15px;

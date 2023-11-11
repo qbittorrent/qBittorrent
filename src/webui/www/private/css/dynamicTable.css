@@ -53,7 +53,7 @@ tr.dynamicTableHeader {
 }
 
 .dynamicTable td {
-    padding: 2px;
+    padding: 4px;
     white-space: nowrap;
 }
 
