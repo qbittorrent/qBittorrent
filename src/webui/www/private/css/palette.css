@@ -36,6 +36,7 @@
 
     * {
         --color-text-blue: hsl(210deg 88.1% 73.5%);
+        --color-text-orange: hsl(26deg 80% 60%);;
         --color-text-default: hsl(0deg 0% 90%);
         --color-background-blue: hsl(210deg 42% 48%);
         --color-background-popup: hsl(0deg 0% 20%);
