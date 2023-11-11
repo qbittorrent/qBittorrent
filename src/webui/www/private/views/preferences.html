@@ -86,6 +86,12 @@
             <label for="appendext_checkbox">QBT_TR(Append .!qB extension to incomplete files)QBT_TR[CONTEXT=OptionsDialog]</label>
         </span>
     </div>
+    <div class="formRow">
+        <span id="unwantedfoldertr">
+            <input type="checkbox" id="unwantedfolder_checkbox" />
+            <label for="unwantedfolder_checkbox">QBT_TR(Keep unselected files in ".unwanted" folder)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </span>
+    </div>
 
     <fieldset class="settings">
         <legend>QBT_TR(Saving Management)QBT_TR[CONTEXT=HttpServer]</legend>
@@ -1997,6 +2003,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                         $('preallocateall_checkbox').setProperty('checked', pref.preallocate_all);
                         $('appendext_checkbox').setProperty('checked', pref.incomplete_files_ext);
+                        $('unwantedfolder_checkbox').setProperty('checked', pref.use_unwanted_folder);
 
                         // Saving Management
                         $('default_tmm_combobox').setProperty('value', pref.auto_tmm_enabled);
@@ -2374,6 +2381,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             settings.set('preallocate_all', $('preallocateall_checkbox').getProperty('checked'));
             settings.set('incomplete_files_ext', $('appendext_checkbox').getProperty('checked'));
+            settings.set('use_unwanted_folder', $('unwantedfolder_checkbox').getProperty('checked'));
 
             // Saving Management
             settings.set('auto_tmm_enabled', $('default_tmm_combobox').getProperty('value'));

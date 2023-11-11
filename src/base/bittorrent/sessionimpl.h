@@ -194,6 +194,8 @@ namespace BitTorrent
         void setTrackerEnabled(bool enabled) override;
         bool isAppendExtensionEnabled() const override;
         void setAppendExtensionEnabled(bool enabled) override;
+        bool isUnwantedFolderEnabled() const override;
+        void setUnwantedFolderEnabled(bool enabled) override;
         int refreshInterval() const override;
         void setRefreshInterval(int value) override;
         bool isPreallocationEnabled() const override;
@@ -656,6 +658,7 @@ namespace BitTorrent
         CachedSettingValue<Torrent::StopCondition> m_torrentStopCondition;
         CachedSettingValue<TorrentContentLayout> m_torrentContentLayout;
         CachedSettingValue<bool> m_isAppendExtensionEnabled;
+        CachedSettingValue<bool> m_isUnwantedFolderEnabled;
         CachedSettingValue<int> m_refreshInterval;
         CachedSettingValue<bool> m_isPreallocationEnabled;
         CachedSettingValue<Path> m_torrentExportDirectory;

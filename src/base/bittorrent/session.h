@@ -225,6 +225,8 @@ namespace BitTorrent
         virtual void setTrackerEnabled(bool enabled) = 0;
         virtual bool isAppendExtensionEnabled() const = 0;
         virtual void setAppendExtensionEnabled(bool enabled) = 0;
+        virtual bool isUnwantedFolderEnabled() const = 0;
+        virtual void setUnwantedFolderEnabled(bool enabled) = 0;
         virtual int refreshInterval() const = 0;
         virtual void setRefreshInterval(int value) = 0;
         virtual bool isPreallocationEnabled() const = 0;
