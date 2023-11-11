@@ -88,10 +88,6 @@ body {
 
 /* Navbar */
 
-#Filters_pad {
-    padding: 0 1px !important;
-}
-
 #desktopNavbar {
     background-color: var(--color-background-default);
     margin: 0 0px;
