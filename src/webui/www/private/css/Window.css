@@ -27,7 +27,7 @@ Required by:
 .mochaOverlay {
     background-color: var(--color-background-default);
     border-radius: 5px;
-    height: auto!important; /* also fixes out of block issue */
+    height: auto !important; /* also fixes out of block issue */
     left: 0;
     position: absolute; /* This is also set in theme.js in order to make theme transitions smoother */
     top: 0;
