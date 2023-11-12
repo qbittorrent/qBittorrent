@@ -5,7 +5,7 @@ LangString inst_qbt_req ${LANG_HEBREW} "qBittorrent (נדרש)"
 ;LangString inst_desktop ${LANG_ENGLISH} "Create Desktop Shortcut"
 LangString inst_desktop ${LANG_HEBREW} "צור קיצור דרך בשולחן עבודה"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
-LangString inst_startmenu ${LANG_HEBREW} "צור קיצור דרך ב-Start Menu
+LangString inst_startmenu ${LANG_HEBREW} "צור קיצור דרך ב-Start Menu"
 ;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"
 LangString inst_startup ${LANG_HEBREW} "עם עליית Windows qBittorrent התחל את"
 ;LangString inst_torrent ${LANG_ENGLISH} "Open .torrent files with qBittorrent"
