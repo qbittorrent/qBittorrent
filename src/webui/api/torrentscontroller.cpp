@@ -236,7 +236,7 @@ namespace
 
 void TorrentsController::countAction()
 {
-    setResult(QString::number(BitTorrent::Session::instance()->torrents().count()));
+    setResult(QString::number(BitTorrent::Session::instance()->torrentsCount()));
 }
 
 // Returns all the torrents in JSON format.
