@@ -92,7 +92,7 @@ class TorrentFilesWatcher::Worker final : public QObject
     Q_DISABLE_COPY_MOVE(Worker)
 
 public:
-    Worker();
+    Worker(QFileSystemWatcher *watcher);
 
 public slots:
     void setWatchedFolder(const Path &path, const TorrentFilesWatcher::WatchedFolderOptions &options);
@@ -143,36 +143,16 @@ TorrentFilesWatcher *TorrentFilesWatcher::instance()
 TorrentFilesWatcher::TorrentFilesWatcher(QObject *parent)
     : QObject(parent)
     , m_ioThread {new QThread}
+    , m_asyncWorker {new TorrentFilesWatcher::Worker(new QFileSystemWatcher(this))}
 {
-    const auto *btSession = BitTorrent::Session::instance();
-    if (btSession->isRestored())
-        initWorker();
-    else
-        connect(btSession, &BitTorrent::Session::restored, this, &TorrentFilesWatcher::initWorker);
-
-    load();
-}
-
-void TorrentFilesWatcher::initWorker()
-{
-    Q_ASSERT(!m_asyncWorker);
-
-    m_asyncWorker = new TorrentFilesWatcher::Worker;
-
     connect(m_asyncWorker, &TorrentFilesWatcher::Worker::magnetFound, this, &TorrentFilesWatcher::onMagnetFound);
     connect(m_asyncWorker, &TorrentFilesWatcher::Worker::torrentFound, this, &TorrentFilesWatcher::onTorrentFound);
 
     m_asyncWorker->moveToThread(m_ioThread.get());
-    connect(m_ioThread.get(), &QObject::destroyed, this, [this] { delete m_asyncWorker; });
+    connect(m_ioThread.get(), &QThread::finished, m_asyncWorker, &QObject::deleteLater);
     m_ioThread->start();
 
-    for (auto it = m_watchedFolders.cbegin(); it != m_watchedFolders.cend(); ++it)
-    {
-        QMetaObject::invokeMethod(m_asyncWorker, [this, path = it.key(), options = it.value()]()
-        {
-            m_asyncWorker->setWatchedFolder(path, options);
-        });
-    }
+    load();
 }
 
 void TorrentFilesWatcher::load()
@@ -303,13 +283,10 @@ void TorrentFilesWatcher::doSetWatchedFolder(const Path &path, const WatchedFold
 
     m_watchedFolders[path] = options;
 
-    if (m_asyncWorker)
+    QMetaObject::invokeMethod(m_asyncWorker, [this, path, options]
     {
-        QMetaObject::invokeMethod(m_asyncWorker, [this, path, options]()
-        {
-            m_asyncWorker->setWatchedFolder(path, options);
-        });
-    }
+        m_asyncWorker->setWatchedFolder(path, options);
+    });
 
     emit watchedFolderSet(path, options);
 }
@@ -344,8 +321,8 @@ void TorrentFilesWatcher::onTorrentFound(const BitTorrent::TorrentInfo &torrentI
     BitTorrent::Session::instance()->addTorrent(torrentInfo, addTorrentParams);
 }
 
-TorrentFilesWatcher::Worker::Worker()
-    : m_watcher {new QFileSystemWatcher(this)}
+TorrentFilesWatcher::Worker::Worker(QFileSystemWatcher *watcher)
+    : m_watcher {watcher}
     , m_watchTimer {new QTimer(this)}
     , m_retryTorrentTimer {new QTimer(this)}
 {
