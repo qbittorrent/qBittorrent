@@ -73,7 +73,6 @@ private slots:
 private:
     explicit TorrentFilesWatcher(QObject *parent = nullptr);
 
-    void initWorker();
     void load();
     void loadLegacy();
     void store() const;
