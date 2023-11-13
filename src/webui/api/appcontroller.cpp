@@ -130,6 +130,7 @@ void AppController::preferencesAction()
     data[u"auto_delete_mode"_s] = static_cast<int>(TorrentFileGuard::autoDeleteMode());
     data[u"preallocate_all"_s] = session->isPreallocationEnabled();
     data[u"incomplete_files_ext"_s] = session->isAppendExtensionEnabled();
+    data[u"use_unwanted_folder"_s] = session->isUnwantedFolderEnabled();
     // Saving Management
     data[u"auto_tmm_enabled"_s] = !session->isAutoTMMDisabledByDefault();
     data[u"torrent_changed_tmm_enabled"_s] = !session->isDisableAutoTMMWhenCategoryChanged();
@@ -513,6 +514,8 @@ void AppController::setPreferencesAction()
         session->setPreallocationEnabled(it.value().toBool());
     if (hasKey(u"incomplete_files_ext"_s))
         session->setAppendExtensionEnabled(it.value().toBool());
+    if (hasKey(u"use_unwanted_folder"_s))
+        session->setUnwantedFolderEnabled(it.value().toBool());
 
     // Saving Management
     if (hasKey(u"auto_tmm_enabled"_s))

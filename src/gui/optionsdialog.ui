@@ -1095,6 +1095,13 @@
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="checkUnwantedFolder">
+              <property name="text">
+               <string>Keep unselected files in ".unwanted" folder</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QCheckBox" name="checkRecursiveDownload">
               <property name="toolTip">
                <string>When a torrent is downloaded, offer to add torrents from any .torrent files found inside it</string>
@@ -3906,6 +3913,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>checkUseDownloadPath</tabstop>
   <tabstop>textDownloadPath</tabstop>
   <tabstop>checkAppendqB</tabstop>
+  <tabstop>checkUnwantedFolder</tabstop>
   <tabstop>scanFoldersView</tabstop>
   <tabstop>addWatchedFolderButton</tabstop>
   <tabstop>editWatchedFolderButton</tabstop>

@@ -455,6 +455,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_torrentStopCondition(BITTORRENT_SESSION_KEY(u"TorrentStopCondition"_s), Torrent::StopCondition::None)
     , m_torrentContentLayout(BITTORRENT_SESSION_KEY(u"TorrentContentLayout"_s), TorrentContentLayout::Original)
     , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY(u"AddExtensionToIncompleteFiles"_s), false)
+    , m_isUnwantedFolderEnabled(BITTORRENT_SESSION_KEY(u"UseUnwantedFolder"_s), false)
     , m_refreshInterval(BITTORRENT_SESSION_KEY(u"RefreshInterval"_s), 1500)
     , m_isPreallocationEnabled(BITTORRENT_SESSION_KEY(u"Preallocation"_s), false)
     , m_torrentExportDirectory(BITTORRENT_SESSION_KEY(u"TorrentExportDirectory"_s))
@@ -692,6 +693,23 @@ void SessionImpl::setAppendExtensionEnabled(const bool enabled)
         // append or remove .!qB extension for incomplete files
         for (TorrentImpl *const torrent : asConst(m_torrents))
             torrent->handleAppendExtensionToggled();
+    }
+}
+
+bool SessionImpl::isUnwantedFolderEnabled() const
+{
+    return m_isUnwantedFolderEnabled;
+}
+
+void SessionImpl::setUnwantedFolderEnabled(const bool enabled)
+{
+    if (isUnwantedFolderEnabled() != enabled)
+    {
+        m_isUnwantedFolderEnabled = enabled;
+
+        // append or remove .!qB extension for incomplete files
+        for (TorrentImpl *const torrent : asConst(m_torrents))
+            torrent->handleUnwantedFolderToggled();
     }
 }
 

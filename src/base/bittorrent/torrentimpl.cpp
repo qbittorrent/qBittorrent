@@ -573,7 +573,8 @@ Path TorrentImpl::makeActualPath(int index, const Path &path) const
         actualPath += QB_EXT;
     }
 
-    if (m_filePriorities[index] == DownloadPriority::Ignored)
+    if (m_session->isUnwantedFolderEnabled()
+            && (m_filePriorities[index] == DownloadPriority::Ignored))
     {
         const Path parentPath = actualPath.parentPath();
         const QString fileName = actualPath.filename();
@@ -2304,7 +2305,16 @@ void TorrentImpl::handleCategoryOptionsChanged()
 
 void TorrentImpl::handleAppendExtensionToggled()
 {
-    if (!hasMetadata()) return;
+    if (!hasMetadata())
+        return;
+
+    manageActualFilePaths();
+}
+
+void TorrentImpl::handleUnwantedFolderToggled()
+{
+    if (!hasMetadata())
+        return;
 
     manageActualFilePaths();
 }
