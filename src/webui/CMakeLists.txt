@@ -4,7 +4,6 @@ add_library(qbt_webui STATIC
     api/apierror.h
     api/appcontroller.h
     api/authcontroller.h
-    api/freediskspacechecker.h
     api/isessionmanager.h
     api/logcontroller.h
     api/rsscontroller.h
@@ -13,6 +12,7 @@ add_library(qbt_webui STATIC
     api/torrentscontroller.h
     api/transfercontroller.h
     api/serialize/serialize_torrent.h
+    freediskspacechecker.h
     webapplication.h
     webui.h
 
@@ -21,7 +21,6 @@ add_library(qbt_webui STATIC
     api/apierror.cpp
     api/appcontroller.cpp
     api/authcontroller.cpp
-    api/freediskspacechecker.cpp
     api/logcontroller.cpp
     api/rsscontroller.cpp
     api/searchcontroller.cpp
@@ -29,6 +28,7 @@ add_library(qbt_webui STATIC
     api/torrentscontroller.cpp
     api/transfercontroller.cpp
     api/serialize/serialize_torrent.cpp
+    freediskspacechecker.cpp
     webapplication.cpp
     webui.cpp
 )

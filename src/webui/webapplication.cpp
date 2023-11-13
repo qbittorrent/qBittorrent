@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014, 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014, 2022-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,16 +29,20 @@
 #include "webapplication.h"
 
 #include <algorithm>
+#include <chrono>
 
 #include <QDateTime>
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
 #include <QJsonDocument>
+#include <QMetaObject>
 #include <QMimeDatabase>
 #include <QMimeType>
 #include <QNetworkCookie>
 #include <QRegularExpression>
+#include <QThread>
+#include <QTimer>
 #include <QUrl>
 
 #include "base/algorithm.h"
@@ -60,6 +64,7 @@
 #include "api/synccontroller.h"
 #include "api/torrentscontroller.h"
 #include "api/transfercontroller.h"
+#include "freediskspacechecker.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
 const QString DEFAULT_SESSION_COOKIE_NAME = u"SID"_s;
@@ -67,6 +72,10 @@ const QString DEFAULT_SESSION_COOKIE_NAME = u"SID"_s;
 const QString WWW_FOLDER = u":/www"_s;
 const QString PUBLIC_FOLDER = u"/public"_s;
 const QString PRIVATE_FOLDER = u"/private"_s;
+
+using namespace std::chrono_literals;
+
+const std::chrono::seconds FREEDISKSPACE_CHECK_TIMEOUT = 30s;
 
 namespace
 {
@@ -147,6 +156,9 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
     , ApplicationComponent(app)
     , m_cacheID {QString::number(Utils::Random::rand(), 36)}
     , m_authController {new AuthController(this, app, this)}
+    , m_workerThread {new QThread}
+    , m_freeDiskSpaceChecker {new FreeDiskSpaceChecker}
+    , m_freeDiskSpaceCheckingTimer {new QTimer(this)}
 {
     declarePublicAPI(u"auth/login"_s);
 
@@ -163,6 +175,16 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
         }
         m_sessionCookieName = DEFAULT_SESSION_COOKIE_NAME;
     }
+
+    m_freeDiskSpaceChecker->moveToThread(m_workerThread.get());
+    connect(m_workerThread.get(), &QThread::finished, m_freeDiskSpaceChecker, &QObject::deleteLater);
+    m_workerThread->start();
+
+    m_freeDiskSpaceCheckingTimer->setInterval(FREEDISKSPACE_CHECK_TIMEOUT);
+    m_freeDiskSpaceCheckingTimer->setSingleShot(true);
+    connect(m_freeDiskSpaceCheckingTimer, &QTimer::timeout, m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::check);
+    connect(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, m_freeDiskSpaceCheckingTimer, qOverload<>(&QTimer::start));
+    QMetaObject::invokeMethod(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::check);
 }
 
 WebApplication::~WebApplication()
@@ -269,6 +291,16 @@ const Http::Environment &WebApplication::env() const
     return m_env;
 }
 
+void WebApplication::setUsername(const QString &username)
+{
+    m_authController->setUsername(username);
+}
+
+void WebApplication::setPasswordHash(const QByteArray &passwordHash)
+{
+    m_authController->setPasswordHash(passwordHash);
+}
+
 void WebApplication::doProcessRequest()
 {
     const QRegularExpressionMatch match = m_apiPathPattern.match(request().path);
@@ -357,17 +389,17 @@ void WebApplication::configure()
 {
     const auto *pref = Preferences::instance();
 
-    const bool isAltUIUsed = pref->isAltWebUiEnabled();
-    const Path rootFolder = (!isAltUIUsed ? Path(WWW_FOLDER) : pref->getWebUiRootFolder());
+    const bool isAltUIUsed = pref->isAltWebUIEnabled();
+    const Path rootFolder = (!isAltUIUsed ? Path(WWW_FOLDER) : pref->getWebUIRootFolder());
     if ((isAltUIUsed != m_isAltUIUsed) || (rootFolder != m_rootFolder))
     {
         m_isAltUIUsed = isAltUIUsed;
         m_rootFolder = rootFolder;
         m_translatedFiles.clear();
         if (!m_isAltUIUsed)
-            LogMsg(tr("Using built-in Web UI."));
+            LogMsg(tr("Using built-in WebUI."));
         else
-            LogMsg(tr("Using custom Web UI. Location: \"%1\".").arg(m_rootFolder.toString()));
+            LogMsg(tr("Using custom WebUI. Location: \"%1\".").arg(m_rootFolder.toString()));
     }
 
     const QString newLocale = pref->getLocale();
@@ -379,27 +411,27 @@ void WebApplication::configure()
         m_translationFileLoaded = m_translator.load((m_rootFolder / Path(u"translations/webui_"_s) + newLocale).data());
         if (m_translationFileLoaded)
         {
-            LogMsg(tr("Web UI translation for selected locale (%1) has been successfully loaded.")
+            LogMsg(tr("WebUI translation for selected locale (%1) has been successfully loaded.")
                    .arg(newLocale));
         }
         else
         {
-            LogMsg(tr("Couldn't load Web UI translation for selected locale (%1).").arg(newLocale), Log::WARNING);
+            LogMsg(tr("Couldn't load WebUI translation for selected locale (%1).").arg(newLocale), Log::WARNING);
         }
     }
 
-    m_isLocalAuthEnabled = pref->isWebUiLocalAuthEnabled();
-    m_isAuthSubnetWhitelistEnabled = pref->isWebUiAuthSubnetWhitelistEnabled();
-    m_authSubnetWhitelist = pref->getWebUiAuthSubnetWhitelist();
+    m_isLocalAuthEnabled = pref->isWebUILocalAuthEnabled();
+    m_isAuthSubnetWhitelistEnabled = pref->isWebUIAuthSubnetWhitelistEnabled();
+    m_authSubnetWhitelist = pref->getWebUIAuthSubnetWhitelist();
     m_sessionTimeout = pref->getWebUISessionTimeout();
 
     m_domainList = pref->getServerDomains().split(u';', Qt::SkipEmptyParts);
     std::for_each(m_domainList.begin(), m_domainList.end(), [](QString &entry) { entry = entry.trimmed(); });
 
-    m_isCSRFProtectionEnabled = pref->isWebUiCSRFProtectionEnabled();
-    m_isSecureCookieEnabled = pref->isWebUiSecureCookieEnabled();
+    m_isCSRFProtectionEnabled = pref->isWebUICSRFProtectionEnabled();
+    m_isSecureCookieEnabled = pref->isWebUISecureCookieEnabled();
     m_isHostHeaderValidationEnabled = pref->isWebUIHostHeaderValidationEnabled();
-    m_isHttpsEnabled = pref->isWebUiHttpsEnabled();
+    m_isHttpsEnabled = pref->isWebUIHttpsEnabled();
 
     m_prebuiltHeaders.clear();
     m_prebuiltHeaders.push_back({Http::HEADER_X_XSS_PROTECTION, u"1; mode=block"_s});
@@ -411,7 +443,7 @@ void WebApplication::configure()
         m_prebuiltHeaders.push_back({Http::HEADER_REFERRER_POLICY, u"same-origin"_s});
     }
 
-    const bool isClickjackingProtectionEnabled = pref->isWebUiClickjackingProtectionEnabled();
+    const bool isClickjackingProtectionEnabled = pref->isWebUIClickjackingProtectionEnabled();
     if (isClickjackingProtectionEnabled)
         m_prebuiltHeaders.push_back({Http::HEADER_X_FRAME_OPTIONS, u"SAMEORIGIN"_s});
 
@@ -680,14 +712,18 @@ void WebApplication::sessionStart()
     });
 
     m_currentSession = new WebSession(generateSid(), app());
+    m_sessions[m_currentSession->id()] = m_currentSession;
+
     m_currentSession->registerAPIController<AppController>(u"app"_s);
     m_currentSession->registerAPIController<LogController>(u"log"_s);
     m_currentSession->registerAPIController<RSSController>(u"rss"_s);
     m_currentSession->registerAPIController<SearchController>(u"search"_s);
-    m_currentSession->registerAPIController<SyncController>(u"sync"_s);
     m_currentSession->registerAPIController<TorrentsController>(u"torrents"_s);
     m_currentSession->registerAPIController<TransferController>(u"transfer"_s);
-    m_sessions[m_currentSession->id()] = m_currentSession;
+
+    auto *syncController = m_currentSession->registerAPIController<SyncController>(u"sync"_s);
+    syncController->updateFreeDiskSpace(m_freeDiskSpaceChecker->lastResult());
+    connect(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, syncController, &SyncController::updateFreeDiskSpace);
 
     QNetworkCookie cookie {m_sessionCookieName.toLatin1(), m_currentSession->id().toUtf8()};
     cookie.setHttpOnly(true);

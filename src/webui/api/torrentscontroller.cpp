@@ -232,6 +232,11 @@ namespace
     }
 }
 
+void TorrentsController::countAction()
+{
+    setResult(QString::number(BitTorrent::Session::instance()->torrentsCount()));
+}
+
 // Returns all the torrents in JSON format.
 // The return value is a JSON-formatted list of dictionaries.
 // The dictionary keys are:

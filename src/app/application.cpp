@@ -96,7 +96,6 @@
 #include "gui/mainwindow.h"
 #include "gui/shutdownconfirmdialog.h"
 #include "gui/uithememanager.h"
-#include "gui/utils.h"
 #include "gui/windowstate.h"
 
 #ifdef Q_OS_WIN
@@ -106,6 +105,9 @@
 
 #ifndef DISABLE_WEBUI
 #include "webui/webui.h"
+#ifdef DISABLE_GUI
+#include "base/utils/password.h"
+#endif
 #endif
 
 namespace
@@ -310,8 +312,8 @@ Application::Application(int &argc, char **argv)
     if (isFileLoggerEnabled())
         m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
 
-    if (m_commandLineArgs.webUiPort > 0) // it will be -1 when user did not set any value
-        Preferences::instance()->setWebUiPort(m_commandLineArgs.webUiPort);
+    if (m_commandLineArgs.webUIPort > 0) // it will be -1 when user did not set any value
+        Preferences::instance()->setWebUIPort(m_commandLineArgs.webUIPort);
 
     if (m_commandLineArgs.torrentingPort > 0) // it will be -1 when user did not set any value
     {
@@ -375,7 +377,7 @@ void Application::setMemoryWorkingSetLimit(const int size)
         return;
 
     m_storeMemoryWorkingSetLimit = size;
-#ifdef QBT_USES_LIBTORRENT2
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
     applyMemoryWorkingSetLimit();
 #endif
 }
@@ -773,7 +775,7 @@ int Application::exec()
     printf("%s\n", qUtf8Printable(loadingStr));
 #endif
 
-#ifdef QBT_USES_LIBTORRENT2
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
     applyMemoryWorkingSetLimit();
 #endif
 
@@ -899,25 +901,28 @@ int Application::exec()
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
+#ifndef DISABLE_GUI
         m_webui = new WebUI(this);
-#ifdef DISABLE_GUI
+#else
+        const Preferences *pref = Preferences::instance();
+        const QString tempPassword = pref->getWebUIPassword().isEmpty()
+                ? Utils::Password::generate() : QString();
+        m_webui = new WebUI(this, (!tempPassword.isEmpty() ? Utils::Password::PBKDF2::generate(tempPassword) : QByteArray()));
         if (m_webui->isErrored())
             QCoreApplication::exit(EXIT_FAILURE);
         connect(m_webui, &WebUI::fatalError, this, []() { QCoreApplication::exit(EXIT_FAILURE); });
 
-        const Preferences *pref = Preferences::instance();
-
-        const auto scheme = pref->isWebUiHttpsEnabled() ? u"https"_s : u"http"_s;
-        const auto url = u"%1://localhost:%2\n"_s.arg(scheme, QString::number(pref->getWebUiPort()));
+        const auto scheme = pref->isWebUIHttpsEnabled() ? u"https"_s : u"http"_s;
+        const auto url = u"%1://localhost:%2\n"_s.arg(scheme, QString::number(pref->getWebUIPort()));
         const QString mesg = u"\n******** %1 ********\n"_s.arg(tr("Information"))
                 + tr("To control qBittorrent, access the WebUI at: %1").arg(url);
         printf("%s\n", qUtf8Printable(mesg));
 
-        if (pref->getWebUIPassword() == QByteArrayLiteral("ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ=="))
+        if (!tempPassword.isEmpty())
         {
-            const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + u'\n'
-                    + tr("The Web UI administrator password has not been changed from the default: %1").arg(u"adminadmin"_s) + u'\n'
-                    + tr("This is a security risk, please change your password in program preferences.") + u'\n';
+            const QString warning = tr("The WebUI administrator username is: %1").arg(pref->getWebUIUsername()) + u'\n'
+                    + tr("The WebUI administrator password was not set. A temporary password is provided for this session: %1").arg(tempPassword) + u'\n'
+                    + tr("You should set your own password in program preferences.") + u'\n';
             printf("%s", qUtf8Printable(warning));
         }
 #endif // DISABLE_GUI
@@ -1080,7 +1085,7 @@ void Application::shutdownCleanup(QSessionManager &manager)
 }
 #endif
 
-#ifdef QBT_USES_LIBTORRENT2
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
 void Application::applyMemoryWorkingSetLimit() const
 {
     const size_t MiB = 1024 * 1024;
@@ -1300,3 +1305,10 @@ void Application::cleanup()
         Utils::Misc::shutdownComputer(m_shutdownAct);
     }
 }
+
+#ifndef DISABLE_WEBUI
+WebUI *Application::webUI() const
+{
+    return m_webui;
+}
+#endif

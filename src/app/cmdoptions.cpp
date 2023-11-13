@@ -349,7 +349,7 @@ QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &en
 #elif !defined(Q_OS_WIN)
     , shouldDaemonize(DAEMON_OPTION.value(env))
 #endif
-    , webUiPort(WEBUI_PORT_OPTION.value(env, -1))
+    , webUIPort(WEBUI_PORT_OPTION.value(env, -1))
     , torrentingPort(TORRENTING_PORT_OPTION.value(env, -1))
     , skipDialog(SKIP_DIALOG_OPTION.value(env))
     , profileDir(PROFILE_OPTION.value(env))
@@ -373,7 +373,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
 
         if ((arg.startsWith(u"--") && !arg.endsWith(u".torrent"))
             || (arg.startsWith(u'-') && (arg.size() == 2)))
-            {
+        {
             // Parse known parameters
             if (arg == SHOW_HELP_OPTION)
             {
@@ -387,8 +387,8 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
 #endif
             else if (arg == WEBUI_PORT_OPTION)
             {
-                result.webUiPort = WEBUI_PORT_OPTION.value(arg);
-                if ((result.webUiPort < 1) || (result.webUiPort > 65535))
+                result.webUIPort = WEBUI_PORT_OPTION.value(arg);
+                if ((result.webUIPort < 1) || (result.webUIPort > 65535))
                     throw CommandLineParameterError(QCoreApplication::translate("CMD Options", "%1 must specify a valid port (1 to 65535).")
                                                     .arg(u"--webui-port"_s));
             }
@@ -509,7 +509,7 @@ QString makeUsage(const QString &prgName)
 #endif
         + SHOW_HELP_OPTION.usage() + wrapText(QCoreApplication::translate("CMD Options", "Display this help message and exit")) + u'\n'
         + WEBUI_PORT_OPTION.usage(QCoreApplication::translate("CMD Options", "port"))
-        + wrapText(QCoreApplication::translate("CMD Options", "Change the Web UI port"))
+        + wrapText(QCoreApplication::translate("CMD Options", "Change the WebUI port"))
         + u'\n'
         + TORRENTING_PORT_OPTION.usage(QCoreApplication::translate("CMD Options", "port"))
         + wrapText(QCoreApplication::translate("CMD Options", "Change the torrenting port"))

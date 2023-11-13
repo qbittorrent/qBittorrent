@@ -90,34 +90,35 @@ jobs:
             --recurse-submodules `
             https://github.com/arvidn/libtorrent.git
           cd libtorrent
+          $env:CXXFLAGS+=" /guard:cf"
+          $env:LDFLAGS+=" /guard:cf"
           cmake `
             -B build `
             -G "Ninja" `
             -DCMAKE_BUILD_TYPE=RelWithDebInfo `
-            -DCMAKE_CXX_FLAGS=/guard:cf `
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON `
             -DCMAKE_INSTALL_PREFIX="${{ env.libtorrent_path }}" `
             -DCMAKE_TOOLCHAIN_FILE="${{ env.RUNVCPKG_VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake" `
             -DBOOST_ROOT="${{ env.boost_path }}" `
             -DBUILD_SHARED_LIBS=OFF `
             -Ddeprecated-functions=OFF `
-            -Dstatic_runtime=ON `
+            -Dstatic_runtime=OFF `
             -DVCPKG_TARGET_TRIPLET=x64-windows-static-release
           cmake --build build
           cmake --install build
 
       - name: Build qBittorrent
         run: |
+          $env:CXXFLAGS+=" /WX"
           cmake `
             -B build `
             -G "Ninja" `
             -DCMAKE_BUILD_TYPE=RelWithDebInfo `
-            -DCMAKE_CXX_FLAGS="/WX" `
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON `
             -DCMAKE_TOOLCHAIN_FILE="${{ env.RUNVCPKG_VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake" `
             -DBOOST_ROOT="${{ env.boost_path }}" `
             -DLibtorrentRasterbar_DIR="${{ env.libtorrent_path }}/lib/cmake/LibtorrentRasterbar" `
-            -DMSVC_RUNTIME_DYNAMIC=OFF `
+            -DMSVC_RUNTIME_DYNAMIC=ON `
             -DQT6=ON `
             -DTESTING=ON `
             -DVCPKG_TARGET_TRIPLET=x64-windows-static-release `

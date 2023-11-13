@@ -53,7 +53,7 @@ struct QBtCommandLineParameters
 #elif !defined(Q_OS_WIN)
     bool shouldDaemonize = false;
 #endif
-    int webUiPort = -1;
+    int webUIPort = -1;
     int torrentingPort = -1;
     std::optional<bool> skipDialog;
     Path profileDir;
