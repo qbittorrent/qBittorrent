@@ -1165,10 +1165,6 @@
         <translation>Når forholdet når</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Når delingstiden når</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Tillat flere tilkoblinger fra samme IP-adresse:</translation>
     </message>
@@ -1593,10 +1589,6 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation>Velg for å slå opp vertsnavn via mellomtjener.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Slå opp vertsnavn via mellomtjener</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Metadata mottatt</translation>
     </message>
@@ -1733,31 +1725,59 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation>UPnP-adressens varighet [0: Fast adresse]:</translation>
     </message>
     <message>
+        <source>Bdecode token limit:</source>
+        <translation>Tokengrense for bdecode:</translation>
+    </message>
+    <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>Når inaktiv delingstid når</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Ingen)</translation>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Dybdegrense for bdecode:</translation>
     </message>
     <message>
-        <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <source>.torrent file size limit:</source>
+        <translation>Grense for .torrent-filens størrelse:</translation>
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation>Når total delingstid når</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation>Slå opp vertsnavn via mellomtjener</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2085,10 +2105,6 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation>Klarte ikke endre navn: Fil eller mappe finnes allerede</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Treff alle forekomster</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Veksle utvalg</translation>
     </message>
@@ -2126,7 +2142,7 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Treff alle forekomster</translation>
     </message>
 </context>
 <context>
@@ -2941,16 +2957,12 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation>forhold</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">minutter</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>totalt antall minutter</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>antall inaktive minutter</translation>
     </message>
 </context>
 <context>
@@ -3470,7 +3482,7 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Endrer navn)</translation>
+        <translation type="vanished">Endrer navn)</translation>
     </message>
 </context>
 <context>
@@ -3818,7 +3830,7 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Legg til etiketter:</translation>
     </message>
 </context>
 <context>

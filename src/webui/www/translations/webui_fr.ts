@@ -1165,10 +1165,6 @@
         <translation>Lorsque le ratio est atteint</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Lorsque la durée de partage est atteinte</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Permettre des connexions multiples depuis la même adresse IP :</translation>
     </message>
@@ -1592,10 +1588,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Si cochée, les recherches de nom d'hôte sont effectuées via le proxy.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Utiliser un proxy pour la recherche du nom d'hôte</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Métadonnées reçues</translation>
     </message>
@@ -1732,31 +1724,59 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Durée de l'allocation UPnP [0: allocation permanente]:</translation>
     </message>
     <message>
+        <source>Bdecode token limit:</source>
+        <translation>Limite de jeton pour Bdecode :</translation>
+    </message>
+    <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>Lorsque la durée de partage inactif atteint</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Aucun)</translation>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Limite de profondeur pour Bdecode :</translation>
     </message>
     <message>
-        <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <source>.torrent file size limit:</source>
+        <translation>Limite de la taille du fichier .torrent :</translation>
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation>Lorsque la durée totale de partage atteint</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation>Recherche du nom d'hôte via un proxy</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2084,10 +2104,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Échec du renommage : le fichier ou le dossier existe déjà</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Faire correspondre toutes les occurrences</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Basculer la sélection</translation>
     </message>
@@ -2125,7 +2141,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Correspondance de toutes les occurrences</translation>
     </message>
 </context>
 <context>
@@ -2940,16 +2956,12 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>ratio</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">minutes</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>minutes totales</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>minutes inactives</translation>
     </message>
 </context>
 <context>
@@ -3469,7 +3481,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Renommage)</translation>
+        <translation type="vanished">Renommage)</translation>
     </message>
 </context>
 <context>
@@ -3817,7 +3829,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Ajouter des Tags :</translation>
     </message>
 </context>
 <context>

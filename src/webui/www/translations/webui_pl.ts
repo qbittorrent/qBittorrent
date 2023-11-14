@@ -129,7 +129,7 @@
     </message>
     <message>
         <source>Only one link per line</source>
-        <translation>W jednym wierszu można podać tylko jeden odnośnik</translation>
+        <translation>Tylko jeden odnośnik w wierszu</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -561,11 +561,11 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation>Status połączenia: za zaporą</translation>
+        <translation>Stan połączenia: za zaporą</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation>Status połączenia: połączony</translation>
+        <translation>Stan połączenia: połączony</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
@@ -585,7 +585,7 @@
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation>Status połączenia: rozłączony</translation>
+        <translation>Stan połączenia: rozłączony</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -1165,10 +1165,6 @@
         <translation>Gdy współczynnik udziału osiągnie</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Gdy czas seedowania osiągnie</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Zezwalaj na wiele połączeń z tego samego adresu IP:</translation>
     </message>
@@ -1593,10 +1589,6 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <translation>Jeśli zaznaczono, wyszukiwanie nazw hostów odbywa się za pośrednictwem proxy.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Użyj proxy do wyszukiwania nazwy hosta</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Odebrane metadane</translation>
     </message>
@@ -1733,31 +1725,59 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <translation>Okres dzierżawy UPnP [0: dzierżawa stała]:</translation>
     </message>
     <message>
+        <source>Bdecode token limit:</source>
+        <translation>Limit tokena bdecode:</translation>
+    </message>
+    <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>Gdy nieaktywny czas seedowania osiągnie</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Żaden)</translation>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Limit głębi bdecode:</translation>
     </message>
     <message>
-        <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <source>.torrent file size limit:</source>
+        <translation>Limit rozmiaru pliku .torrent:</translation>
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation>Gdy całkowity czas seedowania osiągnie</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation>Wykonaj wyszukiwanie nazwy hosta przez serwer proxy</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2085,10 +2105,6 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <translation>Zmiana nazwy nie powiodła się: plik lub folder już istnieje</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Dopasuj wszystkie wystąpienia</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Przełącz wybór</translation>
     </message>
@@ -2126,7 +2142,7 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Dopasuj wszystkie wystąpienia</translation>
     </message>
 </context>
 <context>
@@ -2368,7 +2384,7 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     <message>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation>Status</translation>
+        <translation>Stan</translation>
     </message>
     <message>
         <source>Seeds</source>
@@ -2505,7 +2521,7 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Status</source>
-        <translation>Status</translation>
+        <translation>Stan</translation>
     </message>
     <message>
         <source>Peers</source>
@@ -2703,7 +2719,7 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     <name>TransferListFiltersWidget</name>
     <message>
         <source>Status</source>
-        <translation>Status</translation>
+        <translation>Stan</translation>
     </message>
     <message>
         <source>Categories</source>
@@ -2941,16 +2957,12 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <translation>udział</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">minuty</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>łączne minuty</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>nieaktywne minuty</translation>
     </message>
 </context>
 <context>
@@ -3470,7 +3482,7 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Zmiana nazwy)</translation>
+        <translation type="vanished">Zmiana nazwy)</translation>
     </message>
 </context>
 <context>
@@ -3818,7 +3830,7 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Dodaj znaczniki:</translation>
     </message>
 </context>
 <context>
@@ -3923,7 +3935,7 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
     </message>
     <message>
         <source>Status</source>
-        <translation>Status</translation>
+        <translation>Stan</translation>
     </message>
     <message>
         <source>Timestamp</source>

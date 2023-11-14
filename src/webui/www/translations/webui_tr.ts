@@ -1165,10 +1165,6 @@
         <translation>Oran şu değere ulaştığında</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Gönderim şu süreye ulaştığında</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Aynı IP adresinden çoklu bağlantılara izin ver:</translation>
     </message>
@@ -1593,10 +1589,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Eğer işaretlendiyse, anamakine adı aramaları proksi aracılığıyla yapılır.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Anamakine adı araması için proksi kullan</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Üstveriler alındı</translation>
     </message>
@@ -1733,31 +1725,59 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>UPnP kiralama süresi [0: kalıcı kiralama]:</translation>
     </message>
     <message>
+        <source>Bdecode token limit:</source>
+        <translation>Bdecode belirteç sınırı:</translation>
+    </message>
+    <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>Etkin olmayan gönderim şu süreye ulaştığında</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Yok)</translation>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode derinlik sınırı:</translation>
     </message>
     <message>
-        <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <source>.torrent file size limit:</source>
+        <translation>.torrent dosya boyutu sınırı:</translation>
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation>Toplam gönderim şu süreye ulaştığında</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation>Proksi aracılığıyla anamakine adı araması gerçekleştir</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2085,10 +2105,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Yeniden adlandırma başarısız oldu: dosya veya klasör zaten var</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Tüm oluşumları eşleştir</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Seçimi Değiştir</translation>
     </message>
@@ -2126,7 +2142,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Tüm oluşumları eşleştir</translation>
     </message>
 </context>
 <context>
@@ -2941,16 +2957,12 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>oran</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">dakika</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>toplam dakika</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>etkin olmayan dakika</translation>
     </message>
 </context>
 <context>
@@ -3470,7 +3482,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Yeniden adlandırma)</translation>
+        <translation type="vanished">Yeniden adlandırma)</translation>
     </message>
 </context>
 <context>
@@ -3818,7 +3830,7 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Etiketleri Ekle:</translation>
     </message>
 </context>
 <context>

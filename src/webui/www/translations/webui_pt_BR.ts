@@ -1165,10 +1165,6 @@
         <translation>Quando a proporção alcançar</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Quando o tempo do seeding alcançar</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Permitir múltiplas conexões do mesmo endereço de IP:</translation>
     </message>
@@ -1593,10 +1589,6 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation>Se marcado, as pesquisas de nome de host são feitas por meio do proxy.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Usar proxy para pesquisas de nome de host</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Metadados recebidos</translation>
     </message>
@@ -1733,31 +1725,59 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation>Duração da concessão do UPnP [0: concessão permanente]:</translation>
     </message>
     <message>
+        <source>Bdecode token limit:</source>
+        <translation>Bdecode token limit:</translation>
+    </message>
+    <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>Quando o tempo inativo de semeadura for atingido</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Nenhum)</translation>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode depth limit:</translation>
     </message>
     <message>
-        <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <source>.torrent file size limit:</source>
+        <translation>.torrent file size limit:</translation>
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation>Quando o tempo total de semeadura for atingido</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation>Realize a consulta de hostname via proxy</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2085,10 +2105,6 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation>Falha ao renomear: o arquivo ou pasta já existe</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Corresponder todas as ocorrências</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Mudar seleção</translation>
     </message>
@@ -2126,7 +2142,7 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Match all occurrences</translation>
     </message>
 </context>
 <context>
@@ -2941,16 +2957,12 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation>proporção</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">minutos</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>total de minutos</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>minutos inativos</translation>
     </message>
 </context>
 <context>
@@ -3470,7 +3482,7 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Renomeando)</translation>
+        <translation type="vanished">Renomeando)</translation>
     </message>
 </context>
 <context>
@@ -3818,7 +3830,7 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Adicionar tags:</translation>
     </message>
 </context>
 <context>

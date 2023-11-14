@@ -1165,10 +1165,6 @@
         <translation>Wanneer verhouding bereikt wordt van</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Wanneer een seed-tijd bereikt wordt van</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Meerdere verbindingen van hetzelfde IP-adres toestaan:</translation>
     </message>
@@ -1593,10 +1589,6 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>Indien aangevinkt, worden hostnamen opgezocht via de proxy.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Proxy gebruiken voor opzoeken van hostnamen</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Metadata ontvangen</translation>
     </message>
@@ -1733,11 +1725,19 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>UPnP-leaseduur [0: permanente lease]:</translation>
     </message>
     <message>
+        <source>Bdecode token limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>When inactive seeding time reaches</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When total seeding time reaches</source>
+        <source>(None)</source>
+        <translation>(Geen)</translation>
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1745,19 +1745,39 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Bdecode token limit:</source>
+        <source>When total seeding time reaches</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation>Opzoeken van hostnamen uitvoeren via proxy</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2083,10 +2103,6 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     <message>
         <source>Rename failed: file or folder already exists</source>
         <translation>Naam wijzigen mislukt: bestand of map bestaat al</translation>
-    </message>
-    <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Overeenkomen met alle resultaten</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2941,10 +2957,6 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>verhouding</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">minuten</translation>
-    </message>
-    <message>
         <source>total minutes</source>
         <translation type="unfinished" />
     </message>
@@ -3470,7 +3482,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Naam wijzigen)</translation>
+        <translation type="vanished">Naam wijzigen)</translation>
     </message>
 </context>
 <context>

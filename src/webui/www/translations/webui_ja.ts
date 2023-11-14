@@ -1165,10 +1165,6 @@
         <translation>達する共有比</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">達するシード時間</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>同一IPアドレスからの複数接続を許可</translation>
     </message>
@@ -1593,10 +1589,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation>チェックを入れると、ホスト名の名前解決はプロキシ経由で行われます。</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">ホスト名の名前解決にプロキシを使用する</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>メタデータを受信後</translation>
     </message>
@@ -1733,11 +1725,19 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When inactive seeding time reaches</source>
+        <source>Bdecode token limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When total seeding time reaches</source>
+        <source>When inactive seeding time reaches</source>
+        <translation>非稼働シード時間に達したとき</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(なし)</translation>
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1745,19 +1745,39 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <source>When total seeding time reaches</source>
+        <translation>合計シード時間に達したとき</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation>プロキシー経由でホスト名の名前解決を行う</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2083,10 +2103,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     <message>
         <source>Rename failed: file or folder already exists</source>
         <translation>名前の変更に失敗: ファイルまたはフォルダーがすでに存在します</translation>
-    </message>
-    <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">すべての適合にマッチさせる</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2941,16 +2957,12 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation>共有比</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">分</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>合計(分)</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>非稼働(分)</translation>
     </message>
 </context>
 <context>
@@ -3470,7 +3482,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>変更中)</translation>
+        <translation type="vanished">変更中)</translation>
     </message>
 </context>
 <context>

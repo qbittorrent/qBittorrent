@@ -1165,10 +1165,6 @@
         <translation>जब अनुपात तक पहुँचे</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">जब स्रोत काल समाप्त हो जाए</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation type="unfinished" />
     </message>
@@ -1725,11 +1721,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Bdecode token limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>When inactive seeding time reaches</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When total seeding time reaches</source>
+        <source>(None)</source>
+        <translation>(कोई नहीं)</translation>
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1737,19 +1741,39 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Bdecode token limit:</source>
+        <source>When total seeding time reaches</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2929,10 +2953,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>अनुपात</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">मिनट</translation>
-    </message>
-    <message>
         <source>total minutes</source>
         <translation type="unfinished" />
     </message>
@@ -3455,10 +3475,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>New name:</source>
         <translation>नया नाम:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

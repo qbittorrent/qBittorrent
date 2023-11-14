@@ -232,19 +232,19 @@
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="269"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="324"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="330"/>
         <source>None</source>
         <translation>بدون</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="274"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="325"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="331"/>
         <source>Metadata received</source>
         <translation>استلمت البيانات الوصفية</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="279"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="327"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="333"/>
         <source>Files checked</source>
         <translation>فُحصت الملفات</translation>
     </message>
@@ -359,40 +359,40 @@
         <translation>أحفظ كملف تورنت...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="772"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="795"/>
         <source>I/O Error</source>
         <translation>خطأ إدخال/إخراج</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="538"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1014"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="561"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1038"/>
         <source>Invalid torrent</source>
         <translation>ملف تورنت خاطئ</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="417"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="423"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
         <translation>غير متوفر</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="418"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="424"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
         <translation>غير متوفر</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="972"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="995"/>
         <source>Not available</source>
         <translation>غير متوفر</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="606"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="629"/>
         <source>Invalid magnet link</source>
         <translation>رابط مغناطيسي غير صالح</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="539"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="562"/>
         <source>Failed to load the torrent: %1.
 Error: %2</source>
         <comment>Don&apos;t remove the &apos;
@@ -401,155 +401,155 @@ Error: %2</source>
 خطأ: %2</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="606"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="629"/>
         <source>This magnet link was not recognized</source>
         <translation>لا يمكن التعرف على هذا الرابط المغناطيسي</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="655"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="678"/>
         <source>Magnet link</source>
         <translation>رابط مغناطيسي</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="661"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="684"/>
         <source>Retrieving metadata...</source>
         <translation>يجلب البيانات الوصفية...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="312"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="318"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="324"/>
         <source>Choose save path</source>
         <translation>اختر مسار الحفظ</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="566"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="573"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="588"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="623"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="630"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="645"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="589"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="596"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="611"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="646"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="653"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="668"/>
         <source>Torrent is already present</source>
         <translation>التورنت موجود مسبقا بالفعل</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="623"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="646"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Trackers haven&apos;t been merged because it is a private torrent.</source>
         <translation>التورنت&apos;%1&apos; موجود بالفعل في قائمة النقل. تم دمج المتتبعات لأنه تورنت خاص.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="588"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="611"/>
         <source>Torrent is already queued for processing.</source>
         <translation>التورنت موجود بالفعل في صف المعالجة.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="324"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="330"/>
         <source>No stop condition is set.</source>
         <translation>لم يتم وضع شرط للتوقف</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="325"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="331"/>
         <source>Torrent will stop after metadata is received.</source>
         <translation>سيتوقف التورنت بعد استقبال البيانات الوصفية</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="326"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="332"/>
         <source>Torrents that have metadata initially aren&apos;t affected.</source>
         <translation>التورنت الذي يحتوي على بيانات وصفية ابتدائية لن يتأثر</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="327"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="333"/>
         <source>Torrent will stop after files are initially checked.</source>
         <translation>سيتوقف التورنت بعد الملفات التي تم فحصحها</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="328"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="334"/>
         <source>This will also download metadata if it wasn&apos;t there initially.</source>
         <translation>سيؤدي هذا أيضًا إلى تنزيل البيانات الوصفية إذا لم تكن موجودة في البداية.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="594"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="595"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="662"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="663"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="617"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="618"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="685"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="686"/>
         <source>N/A</source>
         <translation>لا يوجد</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="645"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="668"/>
         <source>Magnet link is already queued for processing.</source>
         <translation>الرابط الممغنط موجود بالفعل في صف المعالجة.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="695"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="718"/>
         <source>%1 (Free space on disk: %2)</source>
         <translation>%1 (المساحة الخالية من القرص: %2)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="696"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="719"/>
         <source>Not available</source>
         <comment>This size is unavailable.</comment>
         <translation>غير متوفر</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="759"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="782"/>
         <source>Torrent file (*%1)</source>
         <translation>ملف تورنت (*%1)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="761"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="784"/>
         <source>Save as torrent file</source>
         <translation>أحفظ كملف تورنت</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="773"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="796"/>
         <source>Couldn&apos;t export torrent metadata file &apos;%1&apos;. Reason: %2.</source>
         <translation>تعذر تصدير ملف بيانات التعريف للتورنت &apos;%1&apos;. السبب: %2.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="949"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="972"/>
         <source>Cannot create v2 torrent until its data is fully downloaded.</source>
         <translation>لا يمكن إنشاء إصدار 2 للتورنت حتى يتم تنزيل بياناته بالكامل.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1036"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1060"/>
         <source>Cannot download &apos;%1&apos;: %2</source>
         <translation>لا يمكن تحميل &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="396"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="402"/>
         <source>Filter files...</source>
         <translation>تصفية الملفات...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="566"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="589"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Trackers cannot be merged because it is a private torrent.</source>
         <translation>التورنت &apos;%1&apos; موجود بالفعل في قائمة النقل. لا يمكن دمج المتتبعات لأنها تورنت خاص.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="574"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="631"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="597"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="654"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Do you want to merge trackers from new source?</source>
         <translation>التورنت &apos;%1&apos; موجود بالفعل في قائمة النقل. هل تريد دمج المتتبعات من مصدر الجديد؟</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="936"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="959"/>
         <source>Parsing metadata...</source>
         <translation>يحلّل البيانات الوصفية...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="943"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="966"/>
         <source>Metadata retrieval complete</source>
         <translation>اكتمل جلب البيانات الوصفية</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1014"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1038"/>
         <source>Failed to load from URL: %1.
 Error: %2</source>
         <translation>فشل التحميل من موقع : %1.
 خطأ: %2</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1035"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1059"/>
         <source>Download Error</source>
         <translation>خطأ في التنزيل</translation>
     </message>
@@ -710,597 +710,602 @@ Error: %2</source>
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="354"/>
-        <location filename="../gui/advancedsettings.cpp" line="456"/>
-        <location filename="../gui/advancedsettings.cpp" line="518"/>
-        <location filename="../gui/advancedsettings.cpp" line="647"/>
+        <location filename="../gui/advancedsettings.cpp" line="356"/>
+        <location filename="../gui/advancedsettings.cpp" line="458"/>
+        <location filename="../gui/advancedsettings.cpp" line="520"/>
+        <location filename="../gui/advancedsettings.cpp" line="649"/>
         <source> MiB</source>
         <translation>م.بايت</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="711"/>
+        <location filename="../gui/advancedsettings.cpp" line="713"/>
         <source>Recheck torrents on completion</source>
         <translation>إعادة تأكيد البيانات بعد اكتمال التنزيل</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="366"/>
-        <location filename="../gui/advancedsettings.cpp" line="716"/>
+        <location filename="../gui/advancedsettings.cpp" line="368"/>
+        <location filename="../gui/advancedsettings.cpp" line="718"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation> ملي ثانية</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="176"/>
+        <location filename="../gui/advancedsettings.cpp" line="177"/>
         <source>Setting</source>
         <translation>الخيار</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="176"/>
+        <location filename="../gui/advancedsettings.cpp" line="177"/>
         <source>Value</source>
         <comment>Value set for this setting</comment>
         <translation>القيمة</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="350"/>
+        <location filename="../gui/advancedsettings.cpp" line="352"/>
         <source> (disabled)</source>
         <translation>(مُعطّل)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="352"/>
+        <location filename="../gui/advancedsettings.cpp" line="354"/>
         <source> (auto)</source>
         <translation>(آلي)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="640"/>
+        <location filename="../gui/advancedsettings.cpp" line="642"/>
         <source> min</source>
         <comment> minutes</comment>
         <translation>دقيقة</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="388"/>
+        <location filename="../gui/advancedsettings.cpp" line="390"/>
         <source>All addresses</source>
         <translation>جميع العناوين</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="436"/>
+        <location filename="../gui/advancedsettings.cpp" line="438"/>
         <source>qBittorrent Section</source>
         <translation>قسم كيوبت‎تورنت</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="433"/>
-        <location filename="../gui/advancedsettings.cpp" line="441"/>
+        <location filename="../gui/advancedsettings.cpp" line="435"/>
+        <location filename="../gui/advancedsettings.cpp" line="443"/>
         <source>Open documentation</source>
         <translation>فتح التعليمات</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="389"/>
+        <location filename="../gui/advancedsettings.cpp" line="391"/>
         <source>All IPv4 addresses</source>
         <translation>جميع عناوين IPv4</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="390"/>
+        <location filename="../gui/advancedsettings.cpp" line="392"/>
         <source>All IPv6 addresses</source>
         <translation>جميع عناوين IPv6</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="444"/>
+        <location filename="../gui/advancedsettings.cpp" line="446"/>
         <source>libtorrent Section</source>
         <translation>قسم libtorrent</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="447"/>
+        <location filename="../gui/advancedsettings.cpp" line="449"/>
         <source>Fastresume files</source>
         <translation>ملفات Fastresume</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="448"/>
+        <location filename="../gui/advancedsettings.cpp" line="450"/>
         <source>SQLite database (experimental)</source>
         <translation>قاعدة بيانات SQLite (تجريبية)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="450"/>
+        <location filename="../gui/advancedsettings.cpp" line="452"/>
         <source>Resume data storage type (requires restart)</source>
         <translation>استئناف نوع تخزين البيانات (يتطلب إعادة التشغيل)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="463"/>
+        <location filename="../gui/advancedsettings.cpp" line="465"/>
         <source>Normal</source>
         <translation>عادي</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="464"/>
+        <location filename="../gui/advancedsettings.cpp" line="466"/>
         <source>Below normal</source>
         <translation>أقل من المعتاد</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="465"/>
+        <location filename="../gui/advancedsettings.cpp" line="467"/>
         <source>Medium</source>
         <translation>متوسط</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="466"/>
+        <location filename="../gui/advancedsettings.cpp" line="468"/>
         <source>Low</source>
         <translation>منخفض</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="467"/>
+        <location filename="../gui/advancedsettings.cpp" line="469"/>
         <source>Very low</source>
         <translation>منخفض جدًا</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="469"/>
+        <location filename="../gui/advancedsettings.cpp" line="471"/>
         <source>Process memory priority (Windows &gt;= 8 only)</source>
         <translation>أولوية ذاكرة العملية (ويندوز 8 أو أعلى فقط)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="459"/>
+        <location filename="../gui/advancedsettings.cpp" line="461"/>
         <source>Physical memory (RAM) usage limit</source>
         <translation>حد استخدام الذاكرة الفعلية (RAM).</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="489"/>
+        <location filename="../gui/advancedsettings.cpp" line="491"/>
         <source>Asynchronous I/O threads</source>
         <translation>مواضيع الإدخال/الإخراج غير متزامنة</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="497"/>
+        <location filename="../gui/advancedsettings.cpp" line="499"/>
         <source>Hashing threads</source>
         <translation>تجزئة المواضيع</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="505"/>
+        <location filename="../gui/advancedsettings.cpp" line="507"/>
         <source>File pool size</source>
         <translation>حجم تجمع الملفات</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="519"/>
+        <location filename="../gui/advancedsettings.cpp" line="521"/>
         <source>Outstanding memory when checking torrents</source>
         <translation>ذاكرة مميزة عند فحص التورنتات</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="535"/>
+        <location filename="../gui/advancedsettings.cpp" line="537"/>
         <source>Disk cache</source>
         <translation>ذاكرة التخزين المؤقت على القرص</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="541"/>
-        <location filename="../gui/advancedsettings.cpp" line="669"/>
-        <location filename="../gui/advancedsettings.cpp" line="762"/>
-        <location filename="../gui/advancedsettings.cpp" line="859"/>
+        <location filename="../gui/advancedsettings.cpp" line="543"/>
+        <location filename="../gui/advancedsettings.cpp" line="671"/>
+        <location filename="../gui/advancedsettings.cpp" line="764"/>
+        <location filename="../gui/advancedsettings.cpp" line="864"/>
         <source> s</source>
         <comment> seconds</comment>
         <translation> ث</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="542"/>
+        <location filename="../gui/advancedsettings.cpp" line="544"/>
         <source>Disk cache expiry interval</source>
         <translation>مدة بقاء الذاكرة المؤقتة للقرص</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="550"/>
+        <location filename="../gui/advancedsettings.cpp" line="552"/>
         <source>Disk queue size</source>
         <translation>حجم صف القرص</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="563"/>
-        <location filename="../gui/advancedsettings.cpp" line="569"/>
+        <location filename="../gui/advancedsettings.cpp" line="565"/>
+        <location filename="../gui/advancedsettings.cpp" line="571"/>
         <source>Enable OS cache</source>
         <translation>مكّن النظام من خاصية الـcache</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="579"/>
+        <location filename="../gui/advancedsettings.cpp" line="581"/>
         <source>Coalesce reads &amp; writes</source>
         <translation>اندماج القراءة والكتابة</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="584"/>
+        <location filename="../gui/advancedsettings.cpp" line="586"/>
         <source>Use piece extent affinity</source>
         <translation>استخدم مدى تقارب القطعة</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="587"/>
+        <location filename="../gui/advancedsettings.cpp" line="589"/>
         <source>Send upload piece suggestions</source>
         <translation>إرسال اقتراحات للقطع المُراد رفعها</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="641"/>
-        <location filename="../gui/advancedsettings.cpp" line="653"/>
-        <location filename="../gui/advancedsettings.cpp" line="661"/>
-        <location filename="../gui/advancedsettings.cpp" line="763"/>
+        <location filename="../gui/advancedsettings.cpp" line="643"/>
+        <location filename="../gui/advancedsettings.cpp" line="655"/>
+        <location filename="../gui/advancedsettings.cpp" line="663"/>
+        <location filename="../gui/advancedsettings.cpp" line="765"/>
         <source>0 (disabled)</source>
         <translation>0 (معطَّل)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="642"/>
+        <location filename="../gui/advancedsettings.cpp" line="644"/>
         <source>Save resume data interval [0: disabled]</source>
         <comment>How often the fastresume file is saved.</comment>
         <translation>حفظ الفاصل الزمني للاستئناف  [0: معطل]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="654"/>
+        <location filename="../gui/advancedsettings.cpp" line="656"/>
         <source>Outgoing ports (Min) [0: disabled]</source>
         <translation>المنافذ الصادرة (الحد الأدنى) [0: معطلة]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="662"/>
+        <location filename="../gui/advancedsettings.cpp" line="664"/>
         <source>Outgoing ports (Max) [0: disabled]</source>
         <translation>المنافذ الصادرة (الحد الأقصى) [0: معطلة]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="670"/>
+        <location filename="../gui/advancedsettings.cpp" line="672"/>
         <source>0 (permanent lease)</source>
         <translation>0 (إيجار دائم)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="671"/>
+        <location filename="../gui/advancedsettings.cpp" line="673"/>
         <source>UPnP lease duration [0: permanent lease]</source>
         <translation>مدة تأجير UPnP [0: عقد إيجار دائم]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="764"/>
+        <location filename="../gui/advancedsettings.cpp" line="766"/>
         <source>Stop tracker timeout [0: disabled]</source>
         <translation>إيقاف مهلة التتبع [0: معطل]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="780"/>
+        <location filename="../gui/advancedsettings.cpp" line="782"/>
         <source>Notification timeout [0: infinite, -1: system default]</source>
         <translation>مهلة الإشعار [0: لا نهائي، -1: النظام الافتراضي]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="867"/>
+        <location filename="../gui/advancedsettings.cpp" line="872"/>
         <source>Maximum outstanding requests to a single peer</source>
         <translation>الحد الأقصى للطلبات للقرين الواحد</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="549"/>
-        <location filename="../gui/advancedsettings.cpp" line="592"/>
-        <location filename="../gui/advancedsettings.cpp" line="598"/>
-        <location filename="../gui/advancedsettings.cpp" line="618"/>
-        <location filename="../gui/advancedsettings.cpp" line="626"/>
+        <location filename="../gui/advancedsettings.cpp" line="551"/>
+        <location filename="../gui/advancedsettings.cpp" line="594"/>
+        <location filename="../gui/advancedsettings.cpp" line="600"/>
+        <location filename="../gui/advancedsettings.cpp" line="620"/>
+        <location filename="../gui/advancedsettings.cpp" line="628"/>
         <source> KiB</source>
         <translation>ك.بايت</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="362"/>
+        <location filename="../gui/advancedsettings.cpp" line="364"/>
         <source> (infinite)</source>
         <translation>لا نهائي</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="364"/>
+        <location filename="../gui/advancedsettings.cpp" line="366"/>
         <source> (system default)</source>
         <translation>(الوضع الافتراضي للنظام)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="457"/>
+        <location filename="../gui/advancedsettings.cpp" line="459"/>
         <source>This option is less effective on Linux</source>
         <translation>هذا الخيار أقل فعالية على لينكس</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="477"/>
+        <location filename="../gui/advancedsettings.cpp" line="479"/>
         <source>Bdecode depth limit</source>
         <translation>حد عمق Bdecode</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="483"/>
+        <location filename="../gui/advancedsettings.cpp" line="485"/>
         <source>Bdecode token limit</source>
         <translation>حد رمز Bdecode</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="554"/>
+        <location filename="../gui/advancedsettings.cpp" line="556"/>
         <source>Default</source>
         <translation>الوضع الإفتراضي</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="555"/>
+        <location filename="../gui/advancedsettings.cpp" line="557"/>
         <source>Memory mapped files</source>
         <translation>ملفات الذاكرة المعينة</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="556"/>
+        <location filename="../gui/advancedsettings.cpp" line="558"/>
         <source>POSIX-compliant</source>
         <translation>متوافق مع POSIX</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="558"/>
+        <location filename="../gui/advancedsettings.cpp" line="560"/>
         <source>Disk IO type (requires restart)</source>
         <translation>نوع إدخال القرص Disk IO (يتطلب إعادة التشغيل)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="562"/>
-        <location filename="../gui/advancedsettings.cpp" line="568"/>
+        <location filename="../gui/advancedsettings.cpp" line="564"/>
+        <location filename="../gui/advancedsettings.cpp" line="570"/>
         <source>Disable OS cache</source>
         <translation>تعطيل ذاكرة التخزين المؤقت لنظام التشغيل</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="565"/>
+        <location filename="../gui/advancedsettings.cpp" line="567"/>
         <source>Disk IO read mode</source>
         <translation>وضع قراءة إدخال القرص Disk IO </translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="571"/>
+        <location filename="../gui/advancedsettings.cpp" line="573"/>
         <source>Write-through</source>
         <translation>الكتابة من خلال</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="574"/>
+        <location filename="../gui/advancedsettings.cpp" line="576"/>
         <source>Disk IO write mode</source>
         <translation>وضع الكتابة إدخال القرص Disk IO</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="594"/>
+        <location filename="../gui/advancedsettings.cpp" line="596"/>
         <source>Send buffer watermark</source>
         <translation>إرسال علامة مائية المخزن المؤقت</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="600"/>
+        <location filename="../gui/advancedsettings.cpp" line="602"/>
         <source>Send buffer low watermark</source>
         <translation>إرسال علامة مائية منخفضة المخزن المؤقت</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="606"/>
+        <location filename="../gui/advancedsettings.cpp" line="608"/>
         <source>Send buffer watermark factor</source>
         <translation>إرسال عامل العلامة المائية المخزن المؤقت</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="612"/>
+        <location filename="../gui/advancedsettings.cpp" line="614"/>
         <source>Outgoing connections per second</source>
         <translation>الاتصالات الصادرة في الثانية</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="619"/>
-        <location filename="../gui/advancedsettings.cpp" line="627"/>
+        <location filename="../gui/advancedsettings.cpp" line="621"/>
+        <location filename="../gui/advancedsettings.cpp" line="629"/>
         <source>0 (system default)</source>
         <translation>0 (افتراضي للنظام)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="620"/>
+        <location filename="../gui/advancedsettings.cpp" line="622"/>
         <source>Socket send buffer size [0: system default]</source>
         <translation>حجم المخزن المؤقت لإرسال المقبس [0: النظام الافتراضي]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="628"/>
+        <location filename="../gui/advancedsettings.cpp" line="630"/>
         <source>Socket receive buffer size [0: system default]</source>
         <translation>يتلقى المقبس حجم المخزن المؤقت [0: النظام الافتراضي]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="634"/>
+        <location filename="../gui/advancedsettings.cpp" line="636"/>
         <source>Socket backlog size</source>
         <translation>حجم تراكم مأخذ التوصيل</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="648"/>
+        <location filename="../gui/advancedsettings.cpp" line="650"/>
         <source>.torrent file size limit</source>
         <translation>الحد الأقصى لحجم ملف torrent.</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="677"/>
+        <location filename="../gui/advancedsettings.cpp" line="679"/>
         <source>Type of service (ToS) for connections to peers</source>
         <translation>نوع الخدمة (ToS) للاتصالات مع الأقران</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="680"/>
+        <location filename="../gui/advancedsettings.cpp" line="682"/>
         <source>Prefer TCP</source>
         <translation>أفضل TCP</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="681"/>
+        <location filename="../gui/advancedsettings.cpp" line="683"/>
         <source>Peer proportional (throttles TCP)</source>
         <translation>القرين المتناسب (سرّع TCP)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="688"/>
+        <location filename="../gui/advancedsettings.cpp" line="690"/>
         <source>Support internationalized domain name (IDN)</source>
         <translation>دعم اسم نطاق الإنترنت الدولي (IDN)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="693"/>
+        <location filename="../gui/advancedsettings.cpp" line="695"/>
         <source>Allow multiple connections from the same IP address</source>
         <translation>السماح باتصالات متعددة من نفس عنوان الآي بي</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="698"/>
+        <location filename="../gui/advancedsettings.cpp" line="700"/>
         <source>Validate HTTPS tracker certificates</source>
         <translation>تحقق من صحة شهادات متتبع HTTPS</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="703"/>
+        <location filename="../gui/advancedsettings.cpp" line="705"/>
         <source>Server-side request forgery (SSRF) mitigation</source>
         <translation>التخفيف من تزوير الطلب من جانب الخادم (SSRF)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="708"/>
+        <location filename="../gui/advancedsettings.cpp" line="710"/>
         <source>Disallow connection to peers on privileged ports</source>
         <translation>عدم السماح بالاتصال بالقرناء على المنافذ ذات الامتيازات</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="717"/>
+        <location filename="../gui/advancedsettings.cpp" line="719"/>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
         <translation>فهو يتحكم في الفاصل الزمني لتحديث الحالة الداخلية والذي سيؤثر بدوره على تحديثات واجهة المستخدم</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="718"/>
+        <location filename="../gui/advancedsettings.cpp" line="720"/>
         <source>Refresh interval</source>
         <translation>الفاصل الزمني للتحديث</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="724"/>
+        <location filename="../gui/advancedsettings.cpp" line="726"/>
         <source>Resolve peer host names</source>
         <translation>اظهار اسم الجهاز للقرين</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="751"/>
+        <location filename="../gui/advancedsettings.cpp" line="753"/>
         <source>IP address reported to trackers (requires restart)</source>
         <translation>تم الإبلاغ عن عنوان IP للمتتبعين (يتطلب إعادة التشغيل)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="784"/>
+        <location filename="../gui/advancedsettings.cpp" line="786"/>
         <source>Reannounce to all trackers when IP or port changed</source>
         <translation>إعادة الاتصال بجميع المتتبعات عند تغيير IP أو المنفذ</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="798"/>
+        <location filename="../gui/advancedsettings.cpp" line="800"/>
         <source>Enable icons in menus</source>
         <translation>تفعيل الرموز في القوائم</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="810"/>
+        <location filename="../gui/advancedsettings.cpp" line="803"/>
+        <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="815"/>
         <source>Enable port forwarding for embedded tracker</source>
         <translation>تفعيل إعادة توجيه المنفذ لتتبع المضمن</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="849"/>
+        <location filename="../gui/advancedsettings.cpp" line="854"/>
         <source>Peer turnover disconnect percentage</source>
         <translation>النسبة المئوية لفصل دوران الأقران</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="855"/>
+        <location filename="../gui/advancedsettings.cpp" line="860"/>
         <source>Peer turnover threshold percentage</source>
         <translation>النسبة المئوية لبداية دوران الأقران</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="861"/>
+        <location filename="../gui/advancedsettings.cpp" line="866"/>
         <source>Peer turnover disconnect interval</source>
         <translation>الفترة الزمنية لفصل دوران الأقران</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="873"/>
+        <location filename="../gui/advancedsettings.cpp" line="878"/>
         <source>I2P inbound quantity</source>
         <translation>I2P الكمية الواردة</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="878"/>
+        <location filename="../gui/advancedsettings.cpp" line="883"/>
         <source>I2P outbound quantity</source>
         <translation>الكمية الصادرة I2P</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="883"/>
+        <location filename="../gui/advancedsettings.cpp" line="888"/>
         <source>I2P inbound length</source>
         <translation>طول I2P الوارد</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="888"/>
+        <location filename="../gui/advancedsettings.cpp" line="893"/>
         <source>I2P outbound length</source>
         <translation>طول I2P الصادر</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="768"/>
+        <location filename="../gui/advancedsettings.cpp" line="770"/>
         <source>Display notifications</source>
         <translation>عرض الإشعارات</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="771"/>
+        <location filename="../gui/advancedsettings.cpp" line="773"/>
         <source>Display notifications for added torrents</source>
         <translation>عرض الإشعارات للتورنت المضافة.</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="787"/>
+        <location filename="../gui/advancedsettings.cpp" line="789"/>
         <source>Download tracker&apos;s favicon</source>
         <translation>تنزيل ايقونة التراكر</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="791"/>
+        <location filename="../gui/advancedsettings.cpp" line="793"/>
         <source>Save path history length</source>
         <translation>طول سجل مسار الحفظ</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="794"/>
+        <location filename="../gui/advancedsettings.cpp" line="796"/>
         <source>Enable speed graphs</source>
         <translation>تفعيل الرسم البياني لسرعة النقل</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="812"/>
+        <location filename="../gui/advancedsettings.cpp" line="817"/>
         <source>Fixed slots</source>
         <translation>فتحات ثابتة</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="813"/>
+        <location filename="../gui/advancedsettings.cpp" line="818"/>
         <source>Upload rate based</source>
         <translation>معدل الرفع على أساس</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="815"/>
+        <location filename="../gui/advancedsettings.cpp" line="820"/>
         <source>Upload slots behavior</source>
         <translation>سلوك فتحات الرفع</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="818"/>
+        <location filename="../gui/advancedsettings.cpp" line="823"/>
         <source>Round-robin</source>
         <translation>القرين الآلي الذي لا يبذر</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="819"/>
+        <location filename="../gui/advancedsettings.cpp" line="824"/>
         <source>Fastest upload</source>
         <translation>أسرع رفع</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="820"/>
+        <location filename="../gui/advancedsettings.cpp" line="825"/>
         <source>Anti-leech</source>
         <translation>مكافحة المُستهلكين</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="822"/>
+        <location filename="../gui/advancedsettings.cpp" line="827"/>
         <source>Upload choking algorithm</source>
         <translation>رفع خوارزمية الاختناق</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="827"/>
+        <location filename="../gui/advancedsettings.cpp" line="832"/>
         <source>Confirm torrent recheck</source>
         <translation>تأكيد إعادة التحقق من التورنت</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="831"/>
+        <location filename="../gui/advancedsettings.cpp" line="836"/>
         <source>Confirm removal of all tags</source>
         <translation>تأكيد إزالة جميع العلامات</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="835"/>
+        <location filename="../gui/advancedsettings.cpp" line="840"/>
         <source>Always announce to all trackers in a tier</source>
         <translation>أعلن دائمًا لجميع المتتبعات في المستوى</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="841"/>
+        <location filename="../gui/advancedsettings.cpp" line="846"/>
         <source>Always announce to all tiers</source>
         <translation>أعلن دائما لجميع المستويات</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="726"/>
+        <location filename="../gui/advancedsettings.cpp" line="728"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>أي واجهة</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="683"/>
+        <location filename="../gui/advancedsettings.cpp" line="685"/>
         <source>%1-TCP mixed mode algorithm</source>
         <comment>uTP-TCP mixed mode algorithm</comment>
         <translation>خوارزمية الوضع المختلط %1-TCP</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="721"/>
+        <location filename="../gui/advancedsettings.cpp" line="723"/>
         <source>Resolve peer countries</source>
         <translation>اظهار أعلام الدول للقرناء</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="745"/>
+        <location filename="../gui/advancedsettings.cpp" line="747"/>
         <source>Network interface</source>
         <translation>واجهة الشبكة</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="748"/>
+        <location filename="../gui/advancedsettings.cpp" line="750"/>
         <source>Optional IP address to bind to</source>
         <translation>عنوان آي بي اختياري للربط به</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="757"/>
+        <location filename="../gui/advancedsettings.cpp" line="759"/>
         <source>Max concurrent HTTP announces</source>
         <translation>يعلن أقصى HTTP متزامن</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="802"/>
+        <location filename="../gui/advancedsettings.cpp" line="807"/>
         <source>Enable embedded tracker</source>
         <translation>تمكين المتتبع الداخلي</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="807"/>
+        <location filename="../gui/advancedsettings.cpp" line="812"/>
         <source>Embedded tracker port</source>
         <translation>منفذ المتتبع الداخلي</translation>
     </message>
@@ -1308,96 +1313,96 @@ Error: %2</source>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="298"/>
+        <location filename="../app/application.cpp" line="300"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>تم تشغيل كيوبت‎تورنت %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="301"/>
+        <location filename="../app/application.cpp" line="303"/>
         <source>Running in portable mode. Auto detected profile folder at: %1</source>
         <translation>يعمل في الوضع المحمول. مجلد ملف التعريف المكتشف تلقائيًا في: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="303"/>
+        <location filename="../app/application.cpp" line="305"/>
         <source>Redundant command line flag detected: &quot;%1&quot;. Portable mode implies relative fastresume.</source>
         <translation>اكتشاف علامة سطر أوامر متكررة: &quot;%1&quot;. يشير الوضع المحمول إلى استئناف سريع نسبي.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="307"/>
+        <location filename="../app/application.cpp" line="309"/>
         <source>Using config directory: %1</source>
         <translation>استخدام دليل التكوين: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="654"/>
+        <location filename="../app/application.cpp" line="656"/>
         <source>Torrent name: %1</source>
         <translation>اسم التورنت: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="655"/>
+        <location filename="../app/application.cpp" line="657"/>
         <source>Torrent size: %1</source>
         <translation>حجم التورنت: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="656"/>
+        <location filename="../app/application.cpp" line="658"/>
         <source>Save path: %1</source>
         <translation>مسار الحفظ: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="657"/>
+        <location filename="../app/application.cpp" line="659"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>تم تنزيل التورنت في %1.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="659"/>
+        <location filename="../app/application.cpp" line="661"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>شكرا لاستخدامك كيوبت‎تورنت.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="690"/>
+        <location filename="../app/application.cpp" line="692"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>التورنت: %1، يرسل إشعار البريد الإلكتروني </translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="568"/>
+        <location filename="../app/application.cpp" line="570"/>
         <source>Running external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
         <translation>تشغيل برنامج خارجي تورنت: &quot;%1&quot;. الأمر: `%2`</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="569"/>
+        <location filename="../app/application.cpp" line="571"/>
         <source>Failed to run external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
         <translation>فشل في تشغيل برنامج خارجي. تورنت: &quot;%1&quot;. الأمر: `%2`</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="666"/>
+        <location filename="../app/application.cpp" line="668"/>
         <source>Torrent &quot;%1&quot; has finished downloading</source>
         <translation>انتهى تنزيل التورنت &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="772"/>
+        <location filename="../app/application.cpp" line="774"/>
         <source>WebUI will be started shortly after internal preparations. Please wait...</source>
         <translation>سيتم بدء تشغيل WebUI بعد وقت قصير من الاستعدادات الداخلية. انتظر من فضلك...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="794"/>
-        <location filename="../app/application.cpp" line="952"/>
+        <location filename="../app/application.cpp" line="796"/>
+        <location filename="../app/application.cpp" line="957"/>
         <source>Loading torrents...</source>
         <translation>جارِ تحميل التورنت...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="797"/>
+        <location filename="../app/application.cpp" line="799"/>
         <source>E&amp;xit</source>
         <translation>&amp;خروج</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="844"/>
+        <location filename="../app/application.cpp" line="846"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>خطأ إدخال/إخراج</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="845"/>
+        <location filename="../app/application.cpp" line="847"/>
         <source>An I/O error occurred for torrent &apos;%1&apos;.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
@@ -1406,120 +1411,128 @@ Error: %2</source>
 السبب: %2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="851"/>
+        <location filename="../app/application.cpp" line="853"/>
         <source>Error</source>
         <translation>خطأ</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="851"/>
+        <location filename="../app/application.cpp" line="853"/>
         <source>Failed to add torrent: %1</source>
         <translation>فشل في إضافة التورنت: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="857"/>
+        <location filename="../app/application.cpp" line="859"/>
         <source>Torrent added</source>
         <translation>تمت إضافة تورنت</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="857"/>
+        <location filename="../app/application.cpp" line="859"/>
         <source>&apos;%1&apos; was added.</source>
         <comment>e.g: xxx.avi was added.</comment>
         <translation>تم إضافة &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="862"/>
+        <location filename="../app/application.cpp" line="864"/>
         <source>Download completed</source>
         <translation>انتهى التحميل</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="862"/>
+        <location filename="../app/application.cpp" line="864"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>انتهى تنزيل &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="867"/>
+        <location filename="../app/application.cpp" line="869"/>
         <source>URL download error</source>
         <translation>خطأ في تحميل العنوان</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="868"/>
+        <location filename="../app/application.cpp" line="870"/>
         <source>Couldn&apos;t download file at URL &apos;%1&apos;, reason: %2.</source>
         <translation>تعذّر تنزيل الملف على الرابط &apos;%1&apos;، والسبب: %2.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="886"/>
+        <location filename="../app/application.cpp" line="888"/>
         <source>Torrent file association</source>
         <translation>ارتباط ملفات التورنت</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="887"/>
+        <location filename="../app/application.cpp" line="889"/>
         <source>qBittorrent is not the default application for opening torrent files or Magnet links.
 Do you want to make qBittorrent the default application for these?</source>
         <translation>qBittorrent ليس البرنامج الإفتراضي لفتح ملفات التورنت او الروابط المغناطيسية.
 هل تريد جعل qBittorrent البرنامج الإفتراضي لهم؟</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="912"/>
+        <location filename="../app/application.cpp" line="917"/>
         <source>Information</source>
         <translation>معلومات</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="913"/>
+        <location filename="../app/application.cpp" line="918"/>
         <source>To control qBittorrent, access the WebUI at: %1</source>
         <translation>للتحكم في كيوبت‎تورنت، افتح واجهة الوِب الرسومية على: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="918"/>
+        <location filename="../app/application.cpp" line="923"/>
+        <source>The WebUI administrator username is: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="924"/>
+        <source>The WebUI administrator password was not set. A temporary password is provided for this session: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="925"/>
+        <source>You should set your own password in program preferences.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>The Web UI administrator username is: %1</source>
-        <translation>اسم المستخدم المسؤول في واجهة الوِب الرسومية هو: %1</translation>
+        <translation type="vanished">اسم المستخدم المسؤول في واجهة الوِب الرسومية هو: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="919"/>
         <source>The Web UI administrator password has not been changed from the default: %1</source>
-        <translation>لم يتم تغيير كلمة مرور مسؤول واجهة الوِب الرسومية عن كلمة المرور الافتراضية: %1</translation>
+        <translation type="vanished">لم يتم تغيير كلمة مرور مسؤول واجهة الوِب الرسومية عن كلمة المرور الافتراضية: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="920"/>
         <source>This is a security risk, please change your password in program preferences.</source>
-        <translation>هذه مخاطرة أمنية ، يرجى تغيير كلمة المرور الخاصة بك في تفضيلات البرنامج.</translation>
+        <translation type="vanished">هذه مخاطرة أمنية ، يرجى تغيير كلمة المرور الخاصة بك في تفضيلات البرنامج.</translation>
     </message>
     <message>
-        <source>Application failed to start.</source>
-        <translation type="vanished">فشل التطبيق في البدء</translation>
-    </message>
-    <message>
-        <location filename="../app/application.cpp" line="952"/>
+        <location filename="../app/application.cpp" line="957"/>
         <source>Exit</source>
         <translation>خروج</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1087"/>
+        <location filename="../app/application.cpp" line="1092"/>
         <source>Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: &quot;%2&quot;</source>
         <translation>فشل في تعيين حد استخدام الذاكرة الفعلية (RAM). رمز الخطأ: %1. رسالة الخطأ: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1122"/>
+        <location filename="../app/application.cpp" line="1127"/>
         <source>Failed to set physical memory (RAM) usage hard limit. Requested size: %1. System hard limit: %2. Error code: %3. Error message: &quot;%4&quot;</source>
         <translation>فشل في تعيين الحد الأقصى لاستخدام الذاكرة الفعلية (RAM). الحجم المطلوب: %1. الحد الأقصى للنظام: %2. رمز الخطأ: %3. رسالة الخطأ: &quot;%4&quot;</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1225"/>
+        <location filename="../app/application.cpp" line="1230"/>
         <source>qBittorrent termination initiated</source>
         <translation>بدأ إنهاء qBittorrent</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1231"/>
+        <location filename="../app/application.cpp" line="1236"/>
         <source>qBittorrent is shutting down...</source>
         <translation>كيوبت‎تورنت قيد الإغلاق ...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1245"/>
+        <location filename="../app/application.cpp" line="1250"/>
         <source>Saving torrent progress...</source>
         <translation>حفظ تقدم التورنت...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1279"/>
+        <location filename="../app/application.cpp" line="1284"/>
         <source>qBittorrent is now ready to exit</source>
         <translation>qBittorrent جاهز الآن للخروج</translation>
     </message>
@@ -1535,22 +1548,22 @@ Do you want to make qBittorrent the default application for these?</source>
 <context>
     <name>AuthController</name>
     <message>
-        <location filename="../webui/api/authcontroller.cpp" line="60"/>
+        <location filename="../webui/api/authcontroller.cpp" line="70"/>
         <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
         <translation>فشل في الولوج إلى واجهة برمجة تطبيقات الويب. السبب: الآي بي محجوب ، الآي بي: %1 ، اسم المستخدم: %2</translation>
     </message>
     <message>
-        <location filename="../webui/api/authcontroller.cpp" line="64"/>
+        <location filename="../webui/api/authcontroller.cpp" line="74"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>تم حجب عنوان الآي بي الخاص بك بعد الكثير من محاولات المصادقة الفاشلة.</translation>
     </message>
     <message>
-        <location filename="../webui/api/authcontroller.cpp" line="80"/>
+        <location filename="../webui/api/authcontroller.cpp" line="86"/>
         <source>WebAPI login success. IP: %1</source>
         <translation>نجاح في الولوج إلى واجهة برمجة تطبيقات الويب: الآي بي: %1</translation>
     </message>
     <message>
-        <location filename="../webui/api/authcontroller.cpp" line="87"/>
+        <location filename="../webui/api/authcontroller.cpp" line="93"/>
         <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
         <translation>فشل في الولوج إلى واجهة برمجة تطبيقات الويب. السبب: بيانات تفويض غير صالحة ، عدد المحاولات: %1  ، الآي بي: %2 ، اسم المستخدم: %3</translation>
     </message>
@@ -2083,8 +2096,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1564"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1565"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1566"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3681"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4456"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3686"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4461"/>
         <source>ON</source>
         <translation>يعمل</translation>
     </message>
@@ -2096,8 +2109,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1564"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1565"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1566"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3681"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4456"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3686"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4461"/>
         <source>OFF</source>
         <translation>متوقف</translation>
     </message>
@@ -2170,19 +2183,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1565"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4456"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4461"/>
         <source>Anonymous mode: %1</source>
         <translation>الوضع المجهول: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1566"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3680"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3685"/>
         <source>Encryption support: %1</source>
         <translation>دعم التشفير: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1566"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3681"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3686"/>
         <source>FORCED</source>
         <translation>مُجبر</translation>
     </message>
@@ -2248,332 +2261,332 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2288"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5464"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5469"/>
         <source>Failed to load torrent. Reason: &quot;%1&quot;</source>
         <translation>فشل تحميل التورنت. السبب: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2618"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2623"/>
         <source>Downloading torrent, please wait... Source: &quot;%1&quot;</source>
         <translation>جارٍ تنزيل التورنت، برجاء الانتظار... المصدر: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2636"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2641"/>
         <source>Failed to load torrent. Source: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>فشل تحميل التورنت. المصدر: &quot;%1&quot;. السبب: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2752"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2757"/>
         <source>Detected an attempt to add a duplicate torrent. Merging of trackers is disabled. Torrent: %1</source>
         <translation>تم اكتشاف محاولة لإضافة تورنت مكرر. تم تعطيل دمج المتتبعات. تورنت: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2759"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2764"/>
         <source>Detected an attempt to add a duplicate torrent. Trackers cannot be merged because it is a private torrent. Torrent: %1</source>
         <translation>تم اكتشاف محاولة لإضافة تورنت مكرر. لا يمكن دمج المتتبعات لأنها تورنت خاص. تورنت: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2780"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2785"/>
         <source>Detected an attempt to add a duplicate torrent. Trackers are merged from new source. Torrent: %1</source>
         <translation>تم اكتشاف محاولة لإضافة تورنت مكرر. يتم دمج المتتبعات من مصدر جديد. تورنت: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2979"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2984"/>
         <source>UPnP/NAT-PMP support: ON</source>
         <translation>دعم UPnP/NAT-PMP: مشغّل</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2998"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3003"/>
         <source>UPnP/NAT-PMP support: OFF</source>
         <translation>دعم UPnP/NAT-PMP: متوقف</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3123"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3128"/>
         <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>فشل تصدير تورنت. تورنت: &quot;%1&quot;. الوجهة: &quot;%2&quot;. السبب: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3178"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3183"/>
         <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
         <translation>تم إحباط حفظ بيانات الاستئناف. عدد التورنت المعلقة: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3291"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3296"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>حالة شبكة النظام تغيّرت إلى %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3291"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3296"/>
         <source>ONLINE</source>
         <translation>متصل</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3291"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3296"/>
         <source>OFFLINE</source>
         <translation>غير متصل</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3305"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3310"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>تم تغيير تضبيط الشبكة لـ %1 ، يجري تحديث ربط الجلسة</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3323"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3328"/>
         <source>The configured network address is invalid. Address: &quot;%1&quot;</source>
         <translation>عنوان الشبكة الذي تم تضبيطه غير صالح. العنوان %1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3364"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3398"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3369"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3403"/>
         <source>Failed to find the configured network address to listen on. Address: &quot;%1&quot;</source>
         <translation>فشل العثور على عنوان الشبكة الذي تم تضبيطه للاستماع إليه. العنوان &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3377"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3382"/>
         <source>The configured network interface is invalid. Interface: &quot;%1&quot;</source>
         <translation>واجهة الشبكة التي تم تضبيطها غير صالحة. الواجهة: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3981"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3986"/>
         <source>Rejected invalid IP address while applying the list of banned IP addresses. IP: &quot;%1&quot;</source>
         <translation>تم رفض عنوان IP غير صالح أثناء تطبيق قائمة عناوين IP المحظورة. عنوان IP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4966"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4971"/>
         <source>Added tracker to torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>تمت إضافة تتبع إلى تورنت. تورنت: &quot;%1&quot;. المتعقب: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4976"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4981"/>
         <source>Removed tracker from torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>تمت إزالة المتتبع من التورنت. تورنت: &quot;%1&quot;. المتعقب: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4991"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4996"/>
         <source>Added URL seed to torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>تمت إضافة بذور URL إلى التورنت. تورنت: &quot;%1&quot;. عنوان URL: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4997"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5002"/>
         <source>Removed URL seed from torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>تمت إزالة بذور URL من التورنت. تورنت: &quot;%1&quot;. عنوان URL: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5010"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5015"/>
         <source>Torrent paused. Torrent: &quot;%1&quot;</source>
         <translation>توقف التورنت مؤقتًا. تورنت: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5016"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5021"/>
         <source>Torrent resumed. Torrent: &quot;%1&quot;</source>
         <translation>استئنف التورنت. تورنت: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5027"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5032"/>
         <source>Torrent download finished. Torrent: &quot;%1&quot;</source>
         <translation>انتهى تحميل التورنت. تورنت: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5104"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5109"/>
         <source>Torrent move canceled. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>تم إلغاء حركة التورنت. تورنت: &quot;%1&quot;. المصدر: &quot;%2&quot;. الوجهة: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5115"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5120"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: torrent is currently moving to the destination</source>
         <translation>فشل في إدراج نقل التورنت. تورنت: &quot;%1&quot;. المصدر: &quot;%2&quot;. الوجهة: &quot;%3&quot;. السبب: ينتقل التورنت حاليًا إلى الوجهة</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5124"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5129"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot; Destination: &quot;%3&quot;. Reason: both paths point to the same location</source>
         <translation>فشل في إدراج نقل التورنت. تورنت: &quot;%1&quot;. المصدر: &quot;%2&quot; الوجهة: &quot;%3&quot;. السبب: كلا المسارين يشيران إلى نفس الموقع</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5132"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5137"/>
         <source>Enqueued torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>تحرك سيل في الصف. تورنت: &quot;%1&quot;. المصدر: &quot;%2&quot;. الوجهة: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5149"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5154"/>
         <source>Start moving torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>ابدأ في تحريك التورنت. تورنت: &quot;%1&quot;. الوجهة: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5198"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5203"/>
         <source>Failed to save Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>فشل حفظ تضبيط الفئات. الملف: &quot;%1&quot;. خطأ: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5245"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5250"/>
         <source>Failed to parse Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>فشل في تحليل تضبيط الفئات. الملف: &quot;%1&quot;. خطأ: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5347"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5352"/>
         <source>Recursive download .torrent file within torrent. Source torrent: &quot;%1&quot;. File: &quot;%2&quot;</source>
         <translation>تنزيل متكرر لملف .torren. داخل التورنت. تورنت المصدر: &quot;%1&quot;. الملف: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5360"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5365"/>
         <source>Failed to load .torrent file within torrent. Source torrent: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>فشل في تحميل ملف torrent. داخل التورنت. تورنت المصدر: &quot;%1&quot;. الملف: &quot;%2&quot;. خطأ: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5404"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5409"/>
         <source>Successfully parsed the IP filter file. Number of rules applied: %1</source>
         <translation>تم تحليل ملف مرشح IP بنجاح. عدد القواعد المطبقة: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5414"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5419"/>
         <source>Failed to parse the IP filter file</source>
         <translation>فشل في تحليل ملف مرشح IP</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5696"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5701"/>
         <source>Restored torrent. Torrent: &quot;%1&quot;</source>
         <translation>استُعيدت التورنت. تورنت: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5700"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5705"/>
         <source>Added new torrent. Torrent: &quot;%1&quot;</source>
         <translation>تمت إضافة تورنت جديد. تورنت: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5706"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5711"/>
         <source>Torrent errored. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>خطأ في التورنت. تورنت: &quot;%1&quot;. خطأ: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5724"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5775"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5729"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5780"/>
         <source>Removed torrent. Torrent: &quot;%1&quot;</source>
         <translation>أُزيلت التورنت. تورنت: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5747"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5752"/>
         <source>Removed torrent and deleted its content. Torrent: &quot;%1&quot;</source>
         <translation>أُزيلت التورنت وحُذفت محتواه. تورنت: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5826"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5831"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>تنبيه خطأ في الملف. تورنت: &quot;%1&quot;. الملف: &quot;%2&quot;. السبب: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5837"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5842"/>
         <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
         <translation>فشل تعيين منفذ UPnP/NAT-PMP. الرسالة: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5843"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5848"/>
         <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
         <translation>نجح تعيين منفذ UPnP/NAT-PMP. الرسالة: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5852"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5857"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
         <translation>تصفية الآي بي</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5855"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5860"/>
         <source>filtered port (%1)</source>
         <comment>this peer was blocked. Reason: filtered port (8899).</comment>
         <translation>المنفذ المتصفي (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5861"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5866"/>
         <source>privileged port (%1)</source>
         <comment>this peer was blocked. Reason: privileged port (80).</comment>
         <translation>المنفذ المميز (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5934"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5939"/>
         <source>BitTorrent session encountered a serious error. Reason: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6126"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6131"/>
         <source>SOCKS5 proxy error. Address: %1. Message: &quot;%2&quot;.</source>
         <translation>خطأ وكيل SOCKS5. العنوان: %1. الرسالة: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6136"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6141"/>
         <source>I2P error. Message: &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5858"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5863"/>
         <source>%1 mixed mode restrictions</source>
         <comment>this peer was blocked. Reason: I2P mixed mode restrictions.</comment>
         <translation>%1 قيود الوضع المختلط</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5237"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5242"/>
         <source>Failed to load Categories. %1</source>
         <translation>فشل تحميل الفئات. %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5252"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5257"/>
         <source>Failed to load Categories configuration. File: &quot;%1&quot;. Error: &quot;Invalid data format&quot;</source>
         <translation>فشل تحميل تضبيط الفئات. الملف: &quot;%1&quot;. خطأ: &quot;تنسيق البيانات غير صالح&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5769"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5774"/>
         <source>Removed torrent but failed to delete its content and/or partfile. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>أُزيلت التورنت ولكن فشل في حذف محتواه و/أو ملفه الجزئي. تورنت: &quot;%1&quot;. خطأ: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5864"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5869"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: uTP is disabled.</comment>
         <translation>%1 مُعطّل</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5867"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5872"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: TCP is disabled.</comment>
         <translation>%1 مُعطّل</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5891"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5896"/>
         <source>URL seed DNS lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>فشل البحث عن DNS  لبذرة عنوان URL. تورنت: &quot;%1&quot;. URL: &quot;%2&quot;. خطأ: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5897"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5902"/>
         <source>Received error message from URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
         <translation>تم تلقي رسالة خطأ من بذرة URL. تورنت: &quot;%1&quot;. URL: &quot;%2&quot;. الرسالة: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5906"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5911"/>
         <source>Successfully listening on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;</source>
         <translation>تم الاستماع بنجاح على IP. عنوان IP: &quot;%1&quot;. المنفذ: &quot;%2/%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5913"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5918"/>
         <source>Failed to listen on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>فشل الاستماع على IP. عنوان IP: &quot;%1&quot;. المنفذ: &quot;%2/%3&quot;. السبب: &quot;%4&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5921"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5926"/>
         <source>Detected external IP. IP: &quot;%1&quot;</source>
         <translation>تم اكتشاف IP خارجي. IP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6036"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6041"/>
         <source>Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation>خطأ: قائمة انتظار التنبيهات الداخلية ممتلئة وتم إسقاط التنبيهات، وقد ترى انخفاضًا في الأداء. نوع التنبيه المسقط: &quot;%1&quot;. الرسالة: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6058"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6063"/>
         <source>Moved torrent successfully. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>تم النقل بالتورنت بنجاح تورنت: &quot;%1&quot;. الوجهة: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6081"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6086"/>
         <source>Failed to move torrent. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>فشل في التورنت. تورنت: &quot;%1&quot;. المصدر: &quot;%2&quot;. الوجهة: &quot;%3&quot;. السبب: &quot;%4&quot;</translation>
     </message>
@@ -2630,27 +2643,27 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>مُعطل</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2078"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2079"/>
         <source>Generate resume data failed. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>فشل إنشاء بيانات الاستئناف. تورنت: &quot;%1&quot;. السبب: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2089"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2090"/>
         <source>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>فشل في استعادة التورنت. ربما تم نقل الملفات أو لا يمكن الوصول إلى مساحة التخزين. تورنت: &quot;%1&quot;. السبب: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2584"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2585"/>
         <source>Missing metadata</source>
         <translation>البيانات الوصفية مفقودة</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2132"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2133"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
         <translation>فشل إعادة تسمية الملف. التورنت: &quot;%1&quot;، الملف: &quot;%2&quot;، السبب: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2194"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2195"/>
         <source>Performance alert: %1. More info: %2</source>
         <translation>تنبيه الأداء: %1. مزيد من المعلومات: %2</translation>
     </message>
@@ -2736,9 +2749,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>المنفذ</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="512"/>
         <source>Change the Web UI port</source>
-        <translation>تغيير منفذ واجهة الوِب الرسومية</translation>
+        <translation type="vanished">تغيير منفذ واجهة الوِب الرسومية</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="512"/>
+        <source>Change the WebUI port</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="515"/>
@@ -6037,12 +6054,12 @@ Disable encryption: Only connect to peers without protocol encryption</source>
         <translation>واجهة مستخدم الويب (التحكم عن بُعد)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3272"/>
+        <location filename="../gui/optionsdialog.ui" line="3284"/>
         <source>IP address:</source>
         <translation>عنوان الآي بي:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3279"/>
+        <location filename="../gui/optionsdialog.ui" line="3291"/>
         <source>IP address that the Web UI will bind to.
 Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv4 address,
 &quot;::&quot; for any IPv6 address, or &quot;*&quot; for both IPv4 and IPv6.</source>
@@ -6051,42 +6068,42 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
 &quot;::&quot; لأي عنوان IPv6 ، أو &quot;*&quot; لكلا IPv4 و IPv6.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3437"/>
+        <location filename="../gui/optionsdialog.ui" line="3449"/>
         <source>Ban client after consecutive failures:</source>
         <translation>حظر العميل بعد إخفاقات متتالية:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3457"/>
+        <location filename="../gui/optionsdialog.ui" line="3469"/>
         <source>Never</source>
         <translation>أبدًا</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3467"/>
+        <location filename="../gui/optionsdialog.ui" line="3479"/>
         <source>ban for:</source>
         <translation>حظر لـ:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3494"/>
+        <location filename="../gui/optionsdialog.ui" line="3506"/>
         <source>Session timeout:</source>
         <translation>مهلة الجلسة:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3501"/>
+        <location filename="../gui/optionsdialog.ui" line="3513"/>
         <source>Disabled</source>
         <translation>مُعطّل</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3577"/>
+        <location filename="../gui/optionsdialog.ui" line="3589"/>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>تفعيل علامة تأمين ملفات تعريف الارتباط (يتطلب HTTPS)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3595"/>
+        <location filename="../gui/optionsdialog.ui" line="3607"/>
         <source>Server domains:</source>
         <translation>نطاقات الخادم:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3602"/>
+        <location filename="../gui/optionsdialog.ui" line="3614"/>
         <source>Whitelist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
@@ -6099,32 +6116,32 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
 استعمال &apos;;&apos; لتقسيم عدة إدخالات. يمكن استخدام حرف البدل &apos;*&apos;.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3320"/>
+        <location filename="../gui/optionsdialog.ui" line="3332"/>
         <source>&amp;Use HTTPS instead of HTTP</source>
         <translation>استخدام HTTPS بدلًا من HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3408"/>
+        <location filename="../gui/optionsdialog.ui" line="3420"/>
         <source>Bypass authentication for clients on localhost</source>
         <translation>تجاوز المصادقة للعملاء على المضيف المحلي</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3415"/>
+        <location filename="../gui/optionsdialog.ui" line="3427"/>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
         <translation>تجاوز المصادقة للعملاء في شبكات الآي بي الفرعية المدرجة في القائمة البيضاء</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3428"/>
+        <location filename="../gui/optionsdialog.ui" line="3440"/>
         <source>IP subnet whitelist...</source>
         <translation>القائمة البيضاء للشبكة الفرعية للآي بي ...</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3661"/>
+        <location filename="../gui/optionsdialog.ui" line="3673"/>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
         <translation>حدد عناوين IP للوكيل العكسي (أو الشبكات الفرعية، على سبيل المثال 0.0.0.0/24) لاستخدام عنوان العميل المُعاد توجيهه (رأس X-Forwarded-For). يستخدم &apos;؛&apos; لتقسيم إدخالات متعددة.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3673"/>
+        <location filename="../gui/optionsdialog.ui" line="3685"/>
         <source>Upda&amp;te my dynamic domain name</source>
         <translation>تحديث اسم النطاق الديناميكي الخاص بي</translation>
     </message>
@@ -6150,7 +6167,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="532"/>
-        <location filename="../gui/optionsdialog.cpp" line="263"/>
+        <location filename="../gui/optionsdialog.cpp" line="281"/>
         <source>Normal</source>
         <translation>عادي</translation>
     </message>
@@ -6497,19 +6514,19 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="923"/>
-        <location filename="../gui/optionsdialog.cpp" line="499"/>
+        <location filename="../gui/optionsdialog.cpp" line="517"/>
         <source>None</source>
         <translation>بدون</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="928"/>
-        <location filename="../gui/optionsdialog.cpp" line="500"/>
+        <location filename="../gui/optionsdialog.cpp" line="518"/>
         <source>Metadata received</source>
         <translation>تم استلام البيانات الوصفية</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="933"/>
-        <location filename="../gui/optionsdialog.cpp" line="502"/>
+        <location filename="../gui/optionsdialog.cpp" line="520"/>
         <source>Files checked</source>
         <translation>تم فحص الملف</translation>
     </message>
@@ -6596,23 +6613,23 @@ readme.txt: تصفية اسم الملف الدقيق.
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1496"/>
-        <location filename="../gui/optionsdialog.ui" line="3371"/>
+        <location filename="../gui/optionsdialog.ui" line="3383"/>
         <source>Authentication</source>
         <translation>المصادقة</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1508"/>
         <location filename="../gui/optionsdialog.ui" line="2020"/>
-        <location filename="../gui/optionsdialog.ui" line="3379"/>
-        <location filename="../gui/optionsdialog.ui" line="3731"/>
+        <location filename="../gui/optionsdialog.ui" line="3391"/>
+        <location filename="../gui/optionsdialog.ui" line="3743"/>
         <source>Username:</source>
         <translation>اسم المستخدم:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1518"/>
         <location filename="../gui/optionsdialog.ui" line="2030"/>
-        <location filename="../gui/optionsdialog.ui" line="3389"/>
-        <location filename="../gui/optionsdialog.ui" line="3741"/>
+        <location filename="../gui/optionsdialog.ui" line="3401"/>
+        <location filename="../gui/optionsdialog.ui" line="3753"/>
         <source>Password:</source>
         <translation>كلمة المرور:</translation>
     </message>
@@ -6702,17 +6719,17 @@ readme.txt: تصفية اسم الملف الدقيق.
         <translation>النوع:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="828"/>
+        <location filename="../gui/optionsdialog.cpp" line="846"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="829"/>
+        <location filename="../gui/optionsdialog.cpp" line="847"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="830"/>
+        <location filename="../gui/optionsdialog.cpp" line="848"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
@@ -6725,7 +6742,7 @@ readme.txt: تصفية اسم الملف الدقيق.
     <message>
         <location filename="../gui/optionsdialog.ui" line="1867"/>
         <location filename="../gui/optionsdialog.ui" line="1946"/>
-        <location filename="../gui/optionsdialog.ui" line="3288"/>
+        <location filename="../gui/optionsdialog.ui" line="3300"/>
         <source>Port:</source>
         <translation>المنفذ:</translation>
     </message>
@@ -6949,8 +6966,8 @@ readme.txt: تصفية اسم الملف الدقيق.
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2865"/>
-        <location filename="../gui/optionsdialog.ui" line="3477"/>
-        <location filename="../gui/optionsdialog.ui" line="3504"/>
+        <location filename="../gui/optionsdialog.ui" line="3489"/>
+        <location filename="../gui/optionsdialog.ui" line="3516"/>
         <source> sec</source>
         <extracomment>seconds</extracomment>
         <translation>ث</translation>
@@ -6966,359 +6983,376 @@ readme.txt: تصفية اسم الملف الدقيق.
         <translation>ثم</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3310"/>
+        <location filename="../gui/optionsdialog.ui" line="3322"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>استخدام UPnP / NAT-PMP  لفتح المنافذ تلقائيًا</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3339"/>
+        <location filename="../gui/optionsdialog.ui" line="3351"/>
         <source>Certificate:</source>
         <translation>الشهادة:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3332"/>
+        <location filename="../gui/optionsdialog.ui" line="3344"/>
         <source>Key:</source>
         <translation>المفتاح:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3352"/>
+        <location filename="../gui/optionsdialog.ui" line="3364"/>
         <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;معلومات عن الشهادات&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3399"/>
+        <location filename="../gui/optionsdialog.ui" line="3411"/>
         <source>Change current password</source>
         <translation>تغيير كلمة المرور الحالية</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3532"/>
+        <location filename="../gui/optionsdialog.ui" line="3544"/>
         <source>Use alternative Web UI</source>
         <translation>استخدم واجهة وِب رسومية بديلة</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3544"/>
+        <location filename="../gui/optionsdialog.ui" line="3556"/>
         <source>Files location:</source>
         <translation>مكان الملفات:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3557"/>
+        <location filename="../gui/optionsdialog.ui" line="3569"/>
         <source>Security</source>
         <translation>الأمان</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3563"/>
+        <location filename="../gui/optionsdialog.ui" line="3575"/>
         <source>Enable clickjacking protection</source>
         <translation>تفعيل الحماية من الاختراق</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3570"/>
+        <location filename="../gui/optionsdialog.ui" line="3582"/>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
         <translation>تفعيل الحماية عبر الموقع لطلب التزوير (CSRF)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3584"/>
+        <location filename="../gui/optionsdialog.ui" line="3596"/>
         <source>Enable Host header validation</source>
         <translation>تفعيل التحقق من صحة رأس المضيف</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3621"/>
+        <location filename="../gui/optionsdialog.ui" line="3633"/>
         <source>Add custom HTTP headers</source>
         <translation>أضف رؤوس HTTP مخصصة</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3633"/>
+        <location filename="../gui/optionsdialog.ui" line="3645"/>
         <source>Header: value pairs, one per line</source>
         <translation>الرأس: أهمية مزدوجة، واحد لكل سطر</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3643"/>
+        <location filename="../gui/optionsdialog.ui" line="3655"/>
         <source>Enable reverse proxy support</source>
         <translation>تفعيل دعم البروكسي العكسي</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3654"/>
+        <location filename="../gui/optionsdialog.ui" line="3666"/>
         <source>Trusted proxies list:</source>
         <translation>قائمة البروكسي الموثوق بهم:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3685"/>
+        <location filename="../gui/optionsdialog.ui" line="3697"/>
         <source>Service:</source>
         <translation>الخدمة:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3708"/>
+        <location filename="../gui/optionsdialog.ui" line="3720"/>
         <source>Register</source>
         <translation>تسجيل</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3717"/>
+        <location filename="../gui/optionsdialog.ui" line="3729"/>
         <source>Domain name:</source>
         <translation>اسم النطاق:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="527"/>
+        <location filename="../gui/optionsdialog.cpp" line="545"/>
         <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
         <translation>من خلال تمكين هذه الخيارات ، يمكنك أن &lt;strong&gt;تفقد&lt;/strong&gt; ملفات .torrent الخاصة بك بشكل نهائي!</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="534"/>
+        <location filename="../gui/optionsdialog.cpp" line="552"/>
         <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
         <translation>إذا قمت بتفعيل الخيار الثاني (&quot;أيضًا عند إلغاء الإضافة&quot;) ، ملف torrent. &lt;strong&gt;سيتم حذفه&lt;/strong&gt; حتى لو ضغطت على &quot; &lt;strong&gt;إلغاء&lt;/strong&gt; &quot;في مربع حوار &quot;إضافة تورنت&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="219"/>
+        <location filename="../gui/optionsdialog.cpp" line="237"/>
         <source>Select qBittorrent UI Theme file</source>
         <translation>حدد ملف سمة واجهة مستخدم رسومية كيوبت‎تورنت</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1212"/>
+        <location filename="../gui/optionsdialog.cpp" line="1230"/>
         <source>Choose Alternative UI files location</source>
         <translation>اختر موقع ملفات واجهة المستخدم البديلة</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="606"/>
+        <location filename="../gui/optionsdialog.cpp" line="624"/>
         <source>Supported parameters (case sensitive):</source>
         <translation>المعلمات المدعومة (حساس لحالة الأحرف):</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="264"/>
+        <location filename="../gui/optionsdialog.cpp" line="282"/>
         <source>Minimized</source>
         <translation>مصغر</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="266"/>
+        <location filename="../gui/optionsdialog.cpp" line="284"/>
         <source>Hidden</source>
         <translation>مخفي</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="281"/>
+        <location filename="../gui/optionsdialog.cpp" line="299"/>
         <source>Disabled due to failed to detect system tray presence</source>
         <translation>مُعطل بسبب الفشل في اكتشاف وجود علبة النظام (system tray)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="499"/>
+        <location filename="../gui/optionsdialog.cpp" line="517"/>
         <source>No stop condition is set.</source>
         <translation>لم يتم وضع شرط للتوقف</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="500"/>
+        <location filename="../gui/optionsdialog.cpp" line="518"/>
         <source>Torrent will stop after metadata is received.</source>
         <translation>سيتوقف التورنت بعد استقبال البيانات الوصفية</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="501"/>
+        <location filename="../gui/optionsdialog.cpp" line="519"/>
         <source>Torrents that have metadata initially aren&apos;t affected.</source>
         <translation>التورنت الذي يحتوي على بيانات وصفية ابتدائية لن يتأثر</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="502"/>
+        <location filename="../gui/optionsdialog.cpp" line="520"/>
         <source>Torrent will stop after files are initially checked.</source>
         <translation>سيتوقف التورنت بعد الملفات التي تم فحصحها</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="503"/>
+        <location filename="../gui/optionsdialog.cpp" line="521"/>
         <source>This will also download metadata if it wasn&apos;t there initially.</source>
         <translation>سيؤدي هذا أيضًا إلى تنزيل البيانات الوصفية إذا لم تكن موجودة في البداية.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="607"/>
+        <location filename="../gui/optionsdialog.cpp" line="625"/>
         <source>%N: Torrent name</source>
         <translation>%N: اسم التورنت</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="608"/>
+        <location filename="../gui/optionsdialog.cpp" line="626"/>
         <source>%L: Category</source>
         <translation>%L: الفئة</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="610"/>
+        <location filename="../gui/optionsdialog.cpp" line="628"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation>%F: مسار المحتوى (نفس مسار الجذر لملفات التورنت المتعددة)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="611"/>
+        <location filename="../gui/optionsdialog.cpp" line="629"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
         <translation>%R: مسار الجذر (مسار الدليل الفرعي الأول للتورنت)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="612"/>
+        <location filename="../gui/optionsdialog.cpp" line="630"/>
         <source>%D: Save path</source>
         <translation>%D: مسار الحفظ</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="613"/>
+        <location filename="../gui/optionsdialog.cpp" line="631"/>
         <source>%C: Number of files</source>
         <translation>%C: عدد الملفات</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="614"/>
+        <location filename="../gui/optionsdialog.cpp" line="632"/>
         <source>%Z: Torrent size (bytes)</source>
         <translation>%Z: حجم التونت (بالبايتات)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="615"/>
+        <location filename="../gui/optionsdialog.cpp" line="633"/>
         <source>%T: Current tracker</source>
         <translation>%T: المتتبع الحالي</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="619"/>
+        <location filename="../gui/optionsdialog.cpp" line="637"/>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
         <translation>نصيحة: غلف المعلمات بعلامات اقتباس لتجنب قطع النص عند مسافة بيضاء (على سبيل المثال، &quot;%N&quot;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="827"/>
+        <location filename="../gui/optionsdialog.cpp" line="845"/>
         <source>(None)</source>
         <translation>(لا شيء)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1026"/>
+        <location filename="../gui/optionsdialog.cpp" line="1044"/>
         <source>A torrent will be considered slow if its download and upload rates stay below these values for &quot;Torrent inactivity timer&quot; seconds</source>
         <translation>سيتم اعتبار التورنت بطيئًا إذا ظلت معدلات التنزيل والتحميل أقل من هذه القيم لثواني &quot;مؤقت عدم نشاط التورنت&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1206"/>
+        <location filename="../gui/optionsdialog.cpp" line="1224"/>
         <source>Certificate</source>
         <translation>الشهادة</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1207"/>
+        <location filename="../gui/optionsdialog.cpp" line="1225"/>
         <source>Select certificate</source>
         <translation>حدد الشهادة</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1209"/>
+        <location filename="../gui/optionsdialog.cpp" line="1227"/>
         <source>Private key</source>
         <translation>المفتاح الخاص</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1210"/>
+        <location filename="../gui/optionsdialog.cpp" line="1228"/>
         <source>Select private key</source>
         <translation>حدد المفتاح الخاص</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1760"/>
+        <location filename="../gui/optionsdialog.cpp" line="1233"/>
+        <source>WebUI configuration failed. Reason: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.cpp" line="1770"/>
         <source>Select folder to monitor</source>
         <translation>حدد المجلد المراد مراقبته</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1782"/>
+        <location filename="../gui/optionsdialog.cpp" line="1792"/>
         <source>Adding entry failed</source>
         <translation>فشل إضافة الإدخال</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1896"/>
+        <location filename="../gui/optionsdialog.cpp" line="1891"/>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.cpp" line="1898"/>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.cpp" line="1908"/>
         <source>Location Error</source>
         <translation>خطأ في المكان</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1896"/>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>لا يمكن ترك موقع ملفات واجهة الوِب الرسومية البديلة فارغًا.</translation>
+        <translation type="vanished">لا يمكن ترك موقع ملفات واجهة الوِب الرسومية البديلة فارغًا.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="563"/>
-        <location filename="../gui/optionsdialog.cpp" line="571"/>
+        <location filename="../gui/optionsdialog.cpp" line="581"/>
+        <location filename="../gui/optionsdialog.cpp" line="589"/>
         <source>Choose export directory</source>
         <translation>اختر مكان التصدير</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="529"/>
+        <location filename="../gui/optionsdialog.cpp" line="547"/>
         <source>When these options are enabled, qBittorrent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
         <translation>عندما يتم تفعيل هذه الخيارات، سيقوم كيوبت‎تورنت &lt;strong&gt;بحذف&lt;/strong&gt; ملفات torrent. بعد إضافتها بنجاح (الخيار الأول) أو عدم إضافتها (الخيار الثاني) إلى قائمة انتظار التنزيل الخاصة به. سيتم تطبيق هذا&lt;strong&gt;ليس فقط&lt;/strong&gt; إلى الملفات التي تم فتحها عبر إجراء قائمة &quot;إضافة تورنت&quot; ولكن لتلك التي تم فتحها عبر &lt;strong&gt;اقتران نوع الملف&lt;/strong&gt; كذلك</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="220"/>
+        <location filename="../gui/optionsdialog.cpp" line="238"/>
         <source>qBittorrent UI Theme file (*.qbtheme config.json)</source>
         <translation>ملف سمة واجهة رسومية كيوبت‎تورنت (*.qbtheme config.json)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="609"/>
+        <location filename="../gui/optionsdialog.cpp" line="627"/>
         <source>%G: Tags (separated by comma)</source>
         <translation>%G: وسوم (مفصولة بفاصلة)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="616"/>
+        <location filename="../gui/optionsdialog.cpp" line="634"/>
         <source>%I: Info hash v1 (or &apos;-&apos; if unavailable)</source>
         <translation>%I: معلومات التحقق من البيانات (الهاش) الإصدار 1 (أو &apos;-&apos; إذا لم تكن متوفرة)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="617"/>
+        <location filename="../gui/optionsdialog.cpp" line="635"/>
         <source>%J: Info hash v2 (or &apos;-&apos; if unavailable)</source>
         <translation>%J: معلومات التحقق من البيانات (الهاش) الإصدار 2 (أو &apos;-&apos; إذا لم تكن متوفرة)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="618"/>
+        <location filename="../gui/optionsdialog.cpp" line="636"/>
         <source>%K: Torrent ID (either sha-1 info hash for v1 torrent or truncated sha-256 info hash for v2/hybrid torrent)</source>
         <translation>%K: معرف التورنت (إما تجزئة معلومات sha-1 للإصدار 1 للتورنت أو تجزئة معلومات sha-256 المقطوعة للإصدار 2 / التورنت المختلط)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="310"/>
-        <location filename="../gui/optionsdialog.cpp" line="551"/>
-        <location filename="../gui/optionsdialog.cpp" line="556"/>
+        <location filename="../gui/optionsdialog.cpp" line="328"/>
+        <location filename="../gui/optionsdialog.cpp" line="569"/>
+        <location filename="../gui/optionsdialog.cpp" line="574"/>
         <source>Choose a save directory</source>
         <translation>اختر مكان الحفظ</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="847"/>
+        <location filename="../gui/optionsdialog.cpp" line="865"/>
         <source>Choose an IP filter file</source>
         <translation>اختر ملف تصفية آي بي</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="849"/>
+        <location filename="../gui/optionsdialog.cpp" line="867"/>
         <source>All supported filters</source>
         <translation>جميع التصفيات المدعومة</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1933"/>
+        <location filename="../gui/optionsdialog.cpp" line="1908"/>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.cpp" line="1945"/>
         <source>Parsing error</source>
         <translation>خطأ تحليل</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1933"/>
+        <location filename="../gui/optionsdialog.cpp" line="1945"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>فشل تحليل عامل تصفية آي بي المقدم</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1935"/>
+        <location filename="../gui/optionsdialog.cpp" line="1947"/>
         <source>Successfully refreshed</source>
         <translation>تم التحديث بنجاح</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1935"/>
+        <location filename="../gui/optionsdialog.cpp" line="1947"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>تم تحليل عامل تصفية الآي بي المقدم بنجاح: تم تطبيق %1 قواعد.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="128"/>
+        <location filename="../gui/optionsdialog.cpp" line="142"/>
         <source>Preferences</source>
         <translation>التفضيلات</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1944"/>
+        <location filename="../gui/optionsdialog.cpp" line="1956"/>
         <source>Time Error</source>
         <translation>خطأ في الوقت</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1944"/>
+        <location filename="../gui/optionsdialog.cpp" line="1956"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>لا يمكن أن يكون وقت البدء مطابق لوقت الانتهاء.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1881"/>
-        <location filename="../gui/optionsdialog.cpp" line="1886"/>
+        <location filename="../gui/optionsdialog.cpp" line="1891"/>
+        <location filename="../gui/optionsdialog.cpp" line="1898"/>
         <source>Length Error</source>
         <translation>خطأ في الطول</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1881"/>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>اسم المستخدم في واجهة الوِب الرسومية يجب ان يحتوي على 3 احرف على الأقل.</translation>
+        <translation type="vanished">اسم المستخدم في واجهة الوِب الرسومية يجب ان يحتوي على 3 احرف على الأقل.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1886"/>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>كلمة السر في واجهة الوِب الرسومية يجب أن تحتوي على 6 أحرف على الأقل.</translation>
+        <translation type="vanished">كلمة السر في واجهة الوِب الرسومية يجب أن تحتوي على 6 أحرف على الأقل.</translation>
     </message>
 </context>
 <context>
@@ -7847,47 +7881,47 @@ Those plugins were disabled.</source>
 <context>
     <name>PreviewSelectDialog</name>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="63"/>
+        <location filename="../gui/previewselectdialog.cpp" line="64"/>
         <source>The following files from torrent &quot;%1&quot; support previewing, please select one of them:</source>
         <translation>الملفات التالية من التورنت &quot;%1&quot; تدعم المعاينة ، يرجى تحديد واحد منهم:</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="66"/>
+        <location filename="../gui/previewselectdialog.cpp" line="67"/>
         <source>Preview</source>
         <translation>الاستعراض</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="74"/>
+        <location filename="../gui/previewselectdialog.cpp" line="75"/>
         <source>Name</source>
         <translation>الاسم</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="75"/>
+        <location filename="../gui/previewselectdialog.cpp" line="76"/>
         <source>Size</source>
         <translation>الحجم</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="76"/>
+        <location filename="../gui/previewselectdialog.cpp" line="77"/>
         <source>Progress</source>
         <translation>التقدّم</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="134"/>
+        <location filename="../gui/previewselectdialog.cpp" line="138"/>
         <source>Preview impossible</source>
         <translation>لايمكن الاستعراض</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="135"/>
+        <location filename="../gui/previewselectdialog.cpp" line="139"/>
         <source>Sorry, we can&apos;t preview this file: &quot;%1&quot;.</source>
         <translation>عذرًا ، لا يمكننا معاينة هذا الملف: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="151"/>
+        <location filename="../gui/previewselectdialog.cpp" line="155"/>
         <source>Resize columns</source>
         <translation>تغيير حجم الأعمدة</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="159"/>
+        <location filename="../gui/previewselectdialog.cpp" line="163"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
         <translation>قم بتغيير حجم جميع الأعمدة غير المخفية إلى حجم محتوياتها</translation>
     </message>
@@ -8117,71 +8151,71 @@ Those plugins were disabled.</source>
         <translation>مسار الحفظ:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="424"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="425"/>
         <source>Never</source>
         <translation>أبدًا</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="434"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="435"/>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
         <translation>%1 x %2 (لديك %3)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="370"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="373"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="371"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="374"/>
         <source>%1 (%2 this session)</source>
         <translation>%1 (%2 هذه الجلسة)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="291"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="292"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="293"/>
         <source>N/A</source>
         <translation>غير متاح</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="383"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="384"/>
         <source>%1 (seeded for %2)</source>
         <comment>e.g. 4m39s (seeded for 3m10s)</comment>
         <translation>%1 (بذرت لـ %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="393"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="394"/>
         <source>%1 (%2 max)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
         <translation>%1 (%2 كحد أقصى)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="406"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="410"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="407"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="411"/>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
         <translation>%1 (من إجمالي %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="416"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="421"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="417"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="422"/>
         <source>%1 (%2 avg.)</source>
         <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
         <translation>%1 (بمعدّل %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="515"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="516"/>
         <source>New Web seed</source>
         <translation>رابط للقرين عبر الويب</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="519"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="520"/>
         <source>Remove Web seed</source>
         <translation>ازالة رابط القرين عبر الويب</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="522"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="523"/>
         <source>Copy Web seed URL</source>
         <translation>نسخ رابط القرين عبر الويب</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="524"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="525"/>
         <source>Edit Web seed URL</source>
         <translation>تعديل رابط القرين عبر الويب</translation>
     </message>
@@ -8191,39 +8225,39 @@ Those plugins were disabled.</source>
         <translation>تصفية الملفات...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="559"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="560"/>
         <source>Speed graphs are disabled</source>
         <translation>تم تعطيل الرسوم البيانية للسرعة</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="559"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="560"/>
         <source>You can enable it in Advanced Options</source>
         <translation>يمكنك تفعيله في الخيارات المتقدمة</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="572"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="573"/>
         <source>New URL seed</source>
         <comment>New HTTP source</comment>
         <translation>URL بذر جديد</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="573"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="574"/>
         <source>New URL seed:</source>
         <translation>URL بذر جديد:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="579"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="632"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="580"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="633"/>
         <source>This URL seed is already in the list.</source>
         <translation>URL البذر هذا موجود بالفعل في القائمة.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="624"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="625"/>
         <source>Web seed editing</source>
         <translation>تعديل القرين عبر الويب</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="625"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="626"/>
         <source>Web seed URL:</source>
         <translation>رابط القرين عبر الويب:</translation>
     </message>
@@ -9937,93 +9971,93 @@ Please choose a different name and try again.</source>
         <translation>خطأ في إعادة التسمية</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="219"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="241"/>
         <source>Renaming</source>
         <translation>إعادة التسمية</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="219"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="241"/>
         <source>New name:</source>
         <translation>الاسم الجديد:</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="302"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="324"/>
         <source>Column visibility</source>
         <translation>وضوح الصفوف</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="325"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="347"/>
         <source>Resize columns</source>
         <translation>تغيير حجم الأعمدة</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="335"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="357"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
         <translation>قم بتغيير حجم جميع الأعمدة غير المخفية إلى حجم محتوياتها</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="355"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="377"/>
         <source>Open</source>
         <translation>فتح</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="357"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="379"/>
         <source>Open containing folder</source>
         <translation>افتح محتوى الملف</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="360"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="382"/>
         <source>Rename...</source>
         <translation>إعادة التسمية...</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="364"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="386"/>
         <source>Priority</source>
         <translation>الأولوية</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="366"/>
-        <location filename="../gui/torrentcontentwidget.cpp" line="387"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="388"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="409"/>
         <source>Do not download</source>
         <translation>لا تنزّل</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="370"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="392"/>
         <source>Normal</source>
         <translation>عادي</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="374"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="396"/>
         <source>High</source>
         <translation>مرتفع</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="378"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="400"/>
         <source>Maximum</source>
         <translation>الحد الأقصى</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="383"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="405"/>
         <source>By shown file order</source>
         <translation>حسب ترتيب الملف الموضح</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="391"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="413"/>
         <source>Normal priority</source>
         <translation>الأولوية العادية</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="395"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="417"/>
         <source>High priority</source>
         <translation>ذا أهيمة عليا</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="399"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="421"/>
         <source>Maximum priority</source>
         <translation>الأولوية القصوى</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="404"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="426"/>
         <source>Priority by shown file order</source>
         <translation>الأولوية حسب ترتيب الملف المعروض</translation>
     </message>
@@ -10531,115 +10565,115 @@ Please choose a different name and try again.</source>
 <context>
     <name>TorrentsController</name>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="746"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="751"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.</source>
         <translation>خطأ: ملف التورنت &apos;%1&apos; غير صالح.</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="890"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="895"/>
         <source>Priority must be an integer</source>
         <translation>يجب أن تكون الأولوية عددًا صحيحًا</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="893"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="898"/>
         <source>Priority is not valid</source>
         <translation>الأولوية غير صالحة</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="899"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="904"/>
         <source>Torrent&apos;s metadata has not yet downloaded</source>
         <translation>البيانات الوصفية للتورنت لم تنزل بعد</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="908"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="913"/>
         <source>File IDs must be integers</source>
         <translation>يجب أن تكون معرفات الملفات أعدادًا صحيحة</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="910"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="915"/>
         <source>File ID is not valid</source>
         <translation>معرف الملف غير صالح</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1055"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1066"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1077"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1088"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1060"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1071"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1082"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1093"/>
         <source>Torrent queueing must be enabled</source>
         <translation>يجب تفعيل قائمة اصطفاف التورنت</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1102"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1125"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1107"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1130"/>
         <source>Save path cannot be empty</source>
         <translation>مسار الحفظ لا يمكن أن يكون فارغا</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1129"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1153"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1134"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1158"/>
         <source>Cannot create target directory</source>
         <translation>لا يمكن إنشاء الدليل الهدف</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1234"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1259"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1239"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1264"/>
         <source>Category cannot be empty</source>
         <translation>لا يمكن أن يكون الفئة فارغة</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1250"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1255"/>
         <source>Unable to create category</source>
         <translation>تعذّر إنشاء الفئة</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1272"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1277"/>
         <source>Unable to edit category</source>
         <translation>تعذّر تعديل الفئة</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1427"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1432"/>
         <source>Unable to export torrent file. Error: %1</source>
         <translation>غير قادر على تصدير ملف تورنت. الخطأ: %1</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1106"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1111"/>
         <source>Cannot make save path</source>
         <translation>تعذّر إنشاء مسار الحفظ</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="301"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="306"/>
         <source>&apos;sort&apos; parameter is invalid</source>
         <translation>معلمة &quot;sort&quot; غير صالح</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="559"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="564"/>
         <source>&quot;%1&quot; is not a valid file index.</source>
         <translation>&quot;%1&quot; ليس فهرس ملف صالح.</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="561"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="566"/>
         <source>Index %1 is out of bounds.</source>
         <translation>الفهرس %1 خارج الحدود.</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1133"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1157"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1138"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1162"/>
         <source>Cannot write to directory</source>
         <translation>تعذّر الكتابة إلى المجلد</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1110"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1115"/>
         <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
         <translation>تعيين وجهة واجهة الوِب الرسومية: ينقل &quot;%1&quot; من &quot;%2&quot; إلى &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1175"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1180"/>
         <source>Incorrect torrent name</source>
         <translation>اسم تورنت غير صحيح</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1224"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1237"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1229"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1242"/>
         <source>Incorrect category name</source>
         <translation>اسم الفئة غير صحيحة</translation>
     </message>
@@ -11065,214 +11099,214 @@ Please choose a different name and try again.</source>
         <translation>خطأ</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="164"/>
+        <location filename="../gui/transferlistmodel.cpp" line="165"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
         <translation>الاسم</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="165"/>
+        <location filename="../gui/transferlistmodel.cpp" line="166"/>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>الحجم</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="166"/>
+        <location filename="../gui/transferlistmodel.cpp" line="167"/>
         <source>Progress</source>
         <comment>% Done</comment>
         <translation>التقدّم</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="167"/>
+        <location filename="../gui/transferlistmodel.cpp" line="168"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
         <translation>الحالة</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="168"/>
+        <location filename="../gui/transferlistmodel.cpp" line="169"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
         <translation>البذور</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="169"/>
+        <location filename="../gui/transferlistmodel.cpp" line="170"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
         <translation>القرناء</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="170"/>
+        <location filename="../gui/transferlistmodel.cpp" line="171"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>سرعة التنزيل</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="171"/>
+        <location filename="../gui/transferlistmodel.cpp" line="172"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>سرعة الرفع</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="172"/>
+        <location filename="../gui/transferlistmodel.cpp" line="173"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
         <translation>النسبة</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="173"/>
+        <location filename="../gui/transferlistmodel.cpp" line="174"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation>الوقت المتبقي</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="174"/>
+        <location filename="../gui/transferlistmodel.cpp" line="175"/>
         <source>Category</source>
         <translation>الفئة</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="175"/>
+        <location filename="../gui/transferlistmodel.cpp" line="176"/>
         <source>Tags</source>
         <translation>الوسوم</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="176"/>
+        <location filename="../gui/transferlistmodel.cpp" line="177"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
         <translation>أُضيف في</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="177"/>
+        <location filename="../gui/transferlistmodel.cpp" line="178"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
         <translation>أكتمل في</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="178"/>
+        <location filename="../gui/transferlistmodel.cpp" line="179"/>
         <source>Tracker</source>
         <translation>المتتبع</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="179"/>
+        <location filename="../gui/transferlistmodel.cpp" line="180"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
         <translation>حدّ التنزيل</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="180"/>
+        <location filename="../gui/transferlistmodel.cpp" line="181"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
         <translation>حدّ الرفع</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="181"/>
+        <location filename="../gui/transferlistmodel.cpp" line="182"/>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
         <translation>تم تنزيله</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="182"/>
+        <location filename="../gui/transferlistmodel.cpp" line="183"/>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
         <translation>رُفعت</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="183"/>
+        <location filename="../gui/transferlistmodel.cpp" line="184"/>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
         <translation>تنزيل الجلسة</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="184"/>
+        <location filename="../gui/transferlistmodel.cpp" line="185"/>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
         <translation>رفع الجلسة</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="185"/>
+        <location filename="../gui/transferlistmodel.cpp" line="186"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>المتبقي</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="186"/>
+        <location filename="../gui/transferlistmodel.cpp" line="187"/>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
         <translation>فترة النشاط</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="187"/>
+        <location filename="../gui/transferlistmodel.cpp" line="188"/>
         <source>Save Path</source>
         <comment>Torrent save path</comment>
         <translation>حفظ المسار</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="188"/>
+        <location filename="../gui/transferlistmodel.cpp" line="189"/>
         <source>Incomplete Save Path</source>
         <comment>Torrent incomplete save path</comment>
         <translation>مسار الحفظ غير مكتمل</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="189"/>
+        <location filename="../gui/transferlistmodel.cpp" line="190"/>
         <source>Completed</source>
         <comment>Amount of data completed (e.g. in MB)</comment>
         <translation>تم تنزيل</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="190"/>
+        <location filename="../gui/transferlistmodel.cpp" line="191"/>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
         <translation>حد نسبة المشاركة</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="191"/>
+        <location filename="../gui/transferlistmodel.cpp" line="192"/>
         <source>Last Seen Complete</source>
         <comment>Indicates the time when the torrent was last seen complete/whole</comment>
         <translation>آخر إكمال شوهِد في</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="192"/>
+        <location filename="../gui/transferlistmodel.cpp" line="193"/>
         <source>Last Activity</source>
         <comment>Time passed since a chunk was downloaded/uploaded</comment>
         <translation>آخر نشاط</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="193"/>
+        <location filename="../gui/transferlistmodel.cpp" line="194"/>
         <source>Total Size</source>
         <comment>i.e. Size including unwanted data</comment>
         <translation>الحجم الكلي</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="194"/>
+        <location filename="../gui/transferlistmodel.cpp" line="195"/>
         <source>Availability</source>
         <comment>The number of distributed copies of the torrent</comment>
         <translation>التوافر</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="195"/>
+        <location filename="../gui/transferlistmodel.cpp" line="196"/>
         <source>Info Hash v1</source>
         <comment>i.e: torrent info hash v1</comment>
         <translation>تجزئة المعلومات v1</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="196"/>
+        <location filename="../gui/transferlistmodel.cpp" line="197"/>
         <source>Info Hash v2</source>
         <comment>i.e: torrent info hash v2</comment>
         <translation>تجزئة المعلومات v2</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="248"/>
-        <location filename="../gui/transferlistmodel.cpp" line="341"/>
+        <location filename="../gui/transferlistmodel.cpp" line="249"/>
+        <location filename="../gui/transferlistmodel.cpp" line="342"/>
         <source>N/A</source>
         <translation>لا يوجد</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="305"/>
+        <location filename="../gui/transferlistmodel.cpp" line="306"/>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>قبل %1</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="318"/>
+        <location filename="../gui/transferlistmodel.cpp" line="319"/>
         <source>%1 (seeded for %2)</source>
         <comment>e.g. 4m39s (seeded for 3m10s)</comment>
         <translation>%1 (بذرت لـ %2)</translation>
@@ -11831,72 +11865,88 @@ Please choose a different name and try again.</source>
 <context>
     <name>WebApplication</name>
     <message>
-        <location filename="../webui/webapplication.cpp" line="161"/>
+        <location filename="../webui/webapplication.cpp" line="173"/>
         <source>Unacceptable session cookie name is specified: &apos;%1&apos;. Default one is used.</source>
         <translation>تم تحديد اسم كعكات الجلسة غير المقبول: &apos;%1&apos;. يتم استخدام واحد افتراضي.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="201"/>
+        <location filename="../webui/webapplication.cpp" line="223"/>
         <source>Unacceptable file type, only regular file is allowed.</source>
         <translation>نوع ملف غير مقبول، الملفات الاعتيادية فقط هي المسموح بها.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="209"/>
+        <location filename="../webui/webapplication.cpp" line="231"/>
         <source>Symlinks inside alternative UI folder are forbidden.</source>
         <translation>الروابط الرمزية الموجودة داخل مجلد واجهة المستخدم البديلة ممنوعة.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="368"/>
         <source>Using built-in Web UI.</source>
-        <translation>استخدام واجهة الوِب الرسومية المدمجة.</translation>
+        <translation type="vanished">استخدام واجهة الوِب الرسومية المدمجة.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="370"/>
         <source>Using custom Web UI. Location: &quot;%1&quot;.</source>
-        <translation>استخدام واجهة وِب رسومية مخصصة. الوجهة: &quot;%1&quot;.</translation>
+        <translation type="vanished">استخدام واجهة وِب رسومية مخصصة. الوجهة: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="382"/>
         <source>Web UI translation for selected locale (%1) has been successfully loaded.</source>
-        <translation>نجح تحميل ترجمة واجهة الوِب الرسومية للإعدادات المحلية المحددة (%1).</translation>
+        <translation type="vanished">نجح تحميل ترجمة واجهة الوِب الرسومية للإعدادات المحلية المحددة (%1).</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="387"/>
         <source>Couldn&apos;t load Web UI translation for selected locale (%1).</source>
-        <translation>تعذر تحميل ترجمة واجهة الوِب الرسومية للإعدادات المحلية المحددة (%1).</translation>
+        <translation type="vanished">تعذر تحميل ترجمة واجهة الوِب الرسومية للإعدادات المحلية المحددة (%1).</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="438"/>
+        <location filename="../webui/webapplication.cpp" line="400"/>
+        <source>Using built-in WebUI.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/webapplication.cpp" line="402"/>
+        <source>Using custom WebUI. Location: &quot;%1&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/webapplication.cpp" line="414"/>
+        <source>WebUI translation for selected locale (%1) has been successfully loaded.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/webapplication.cpp" line="419"/>
+        <source>Couldn&apos;t load WebUI translation for selected locale (%1).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/webapplication.cpp" line="470"/>
         <source>Missing &apos;:&apos; separator in WebUI custom HTTP header: &quot;%1&quot;</source>
         <translation>فاصل &apos;:&apos; مفقودة في رأس HTTP المخصص لواجهة الوِب الرسومية: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="505"/>
+        <location filename="../webui/webapplication.cpp" line="537"/>
         <source>Web server error. %1</source>
         <translation>خطأ في خادم الويب. %1</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="525"/>
+        <location filename="../webui/webapplication.cpp" line="557"/>
         <source>Web server error. Unknown error.</source>
         <translation>خطأ في خادم الويب. خطأ غير معروف.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="747"/>
+        <location filename="../webui/webapplication.cpp" line="783"/>
         <source>WebUI: Origin header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>واجهة الوِب الرسومية: رأس الأصل وعدم تطابق أصل الهدف! آي بي المصدر: &apos;%1&apos;. رأس الأصل: &apos;%2&apos;. أصل الهدف: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="759"/>
+        <location filename="../webui/webapplication.cpp" line="795"/>
         <source>WebUI: Referer header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>واجهة الوِب الرسومية: رأس المُحيل وعدم تطابق أصل الهدف! آي بي المصدر: &apos;%1&apos;. رأس المُحيل: &apos;%2&apos;. أصل الهدف: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="778"/>
+        <location filename="../webui/webapplication.cpp" line="814"/>
         <source>WebUI: Invalid Host header, port mismatch. Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
         <translation>واجهة الوِب الرسومية: رأس مضيف غير صالح، عدم تطابق المنفذ. طلب الآي بي المصدر: &apos;%1&apos;. منفذ الخادم: &apos;%2&apos;. رأس المضيف المتلقى: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="799"/>
+        <location filename="../webui/webapplication.cpp" line="835"/>
         <source>WebUI: Invalid Host header. Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
         <translation>واجهة الوِب الرسومية: رأس مضيف غير صالح. طلب آي بي المصدر: &apos;%1&apos;. رأس المضيف المتلقى: &apos;%2&apos;</translation>
     </message>
@@ -11904,24 +11954,45 @@ Please choose a different name and try again.</source>
 <context>
     <name>WebUI</name>
     <message>
-        <location filename="../webui/webui.cpp" line="97"/>
         <source>Web UI: HTTPS setup successful</source>
-        <translation>واجهة الوِب الرسومية: تم ​​إعداد HTTPS بنجاح</translation>
+        <translation type="vanished">واجهة الوِب الرسومية: تم ​​إعداد HTTPS بنجاح</translation>
     </message>
     <message>
-        <location filename="../webui/webui.cpp" line="99"/>
         <source>Web UI: HTTPS setup failed, fallback to HTTP</source>
-        <translation>واجهة الوِب الرسومية: فشل إعداد HTTPS ، تم الرجوع إلى HTTP</translation>
+        <translation type="vanished">واجهة الوِب الرسومية: فشل إعداد HTTPS ، تم الرجوع إلى HTTP</translation>
     </message>
     <message>
-        <location filename="../webui/webui.cpp" line="111"/>
         <source>Web UI: Now listening on IP: %1, port: %2</source>
-        <translation>واجهة الوِب الرسومية: يتم الآن الاستماع على الآي بي: %1 ، المنفذ: %2</translation>
+        <translation type="vanished">واجهة الوِب الرسومية: يتم الآن الاستماع على الآي بي: %1 ، المنفذ: %2</translation>
     </message>
     <message>
-        <location filename="../webui/webui.cpp" line="115"/>
         <source>Web UI: Unable to bind to IP: %1, port: %2. Reason: %3</source>
-        <translation>واجهة الوِب الرسومية: غير قادر على الارتباط بالآي بي : %1، المنفذ: %2. السبب: %3</translation>
+        <translation type="vanished">واجهة الوِب الرسومية: غير قادر على الارتباط بالآي بي : %1، المنفذ: %2. السبب: %3</translation>
+    </message>
+    <message>
+        <location filename="../webui/webui.cpp" line="63"/>
+        <source>Credentials are not set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/webui.cpp" line="114"/>
+        <source>WebUI: HTTPS setup successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/webui.cpp" line="116"/>
+        <source>WebUI: HTTPS setup failed, fallback to HTTP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/webui.cpp" line="128"/>
+        <source>WebUI: Now listening on IP: %1, port: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/webui.cpp" line="132"/>
+        <source>Unable to bind to IP: %1, port: %2. Reason: %3</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

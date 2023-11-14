@@ -1165,10 +1165,6 @@
         <translation>Göstəricini aşdıqda</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Paylaşma vaxtını aşdıqda</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Eyni İP ünvanından çoxsaylı bağlantılara icazə vermək</translation>
     </message>
@@ -1593,10 +1589,6 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>Əgər işarələnərsə, host adı axtarışı proksi ilə icra olunur.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Host adı axtarışı ümün proksi istifadə et</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Meta məlumatları alındı</translation>
     </message>
@@ -1733,11 +1725,19 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>UPnP icarə müddəti [0: daimi icarə]:</translation>
     </message>
     <message>
-        <source>When inactive seeding time reaches</source>
+        <source>Bdecode token limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When total seeding time reaches</source>
+        <source>When inactive seeding time reaches</source>
+        <translation>Qeyri-aktiv göndərmə həddinə çatdıqda</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Heç nə)</translation>
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1745,19 +1745,39 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <source>When total seeding time reaches</source>
+        <translation>Ümumi göndərmə həddinə çatdıqda</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation>Proksi vasitəsilə host adı axtarışını icra etmək</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2083,10 +2103,6 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>Rename failed: file or folder already exists</source>
         <translation>Adını dəyişmək mümkün olmadı: fayl və ya qovluq artıq mövcuddur</translation>
-    </message>
-    <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Bütün hadisələri uyğunlaşdır</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2941,16 +2957,12 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>nisbət</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">dəqiqələr</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>ümumi dəqiqələr</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>qeyri-aktiv dəqiqlələr</translation>
     </message>
 </context>
 <context>
@@ -3470,7 +3482,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Adı dəyişdirilir)</translation>
+        <translation type="vanished">Adı dəyişdirilir)</translation>
     </message>
 </context>
 <context>

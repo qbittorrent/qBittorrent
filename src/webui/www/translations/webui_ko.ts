@@ -1165,10 +1165,6 @@
         <translation>비율에 도달했을 때</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">배포 시간 제한:</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>같은 IP 주소의 다중 접속 허용:</translation>
     </message>
@@ -1593,10 +1589,6 @@ DNS 재결합 공격을 방어하기 위해
         <translation>이 옵션을 선택하면, 프록시를 통해 호스트 이름 검색이 수행됩니다.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">호스트 이름 조회에 프록시 사용</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>수신된 메타데이터</translation>
     </message>
@@ -1733,11 +1725,19 @@ DNS 재결합 공격을 방어하기 위해
         <translation>UPnP 임대 기간 [0: 영구 임대]:</translation>
     </message>
     <message>
-        <source>When inactive seeding time reaches</source>
+        <source>Bdecode token limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When total seeding time reaches</source>
+        <source>When inactive seeding time reaches</source>
+        <translation>비활성 시딩 시간에 도달한 경우</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(없음)</translation>
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1745,19 +1745,39 @@ DNS 재결합 공격을 방어하기 위해
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <source>When total seeding time reaches</source>
+        <translation>총 시딩 시간에 도달한 경우</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation>프록시를 통한 호스트 이름 조회 수행</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2083,10 +2103,6 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <source>Rename failed: file or folder already exists</source>
         <translation>이름 바꾸기 실패: 파일 또는 폴더가 이미 존재합니다.</translation>
-    </message>
-    <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">모든 경우 일치</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2941,16 +2957,12 @@ DNS 재결합 공격을 방어하기 위해
         <translation>비율</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">분</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>총 시간(분)</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>활동하지 않는 시간(분)</translation>
     </message>
 </context>
 <context>
@@ -3470,7 +3482,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>이름 바꾸는 중)</translation>
+        <translation type="vanished">이름 바꾸는 중)</translation>
     </message>
 </context>
 <context>

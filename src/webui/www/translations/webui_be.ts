@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>Значок хуткасці спампоўвання</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
@@ -581,7 +581,7 @@
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>Значок хуткасці раздачы</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
@@ -609,11 +609,11 @@
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Сапраўды ўзнавіць усе торэнты?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Сапраўды прыпыніць усе торэнты?</translation>
     </message>
     <message>
         <source>Execution Log</source>
@@ -621,7 +621,7 @@
     </message>
     <message>
         <source>Log</source>
-        <translation type="unfinished" />
+        <translation>Журнал</translation>
     </message>
 </context>
 <context>
@@ -1163,10 +1163,6 @@
     <message>
         <source>When ratio reaches</source>
         <translation>Калі рэйтынг раздачы дасягне паказчыка</translation>
-    </message>
-    <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Калі скончыцца час раздачы</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1729,11 +1725,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When inactive seeding time reaches</source>
+        <source>Bdecode token limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When total seeding time reaches</source>
+        <source>When inactive seeding time reaches</source>
+        <translation>Калі неактыўны час раздачы дасягне</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Няма)</translation>
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1741,19 +1745,39 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <source>When total seeding time reaches</source>
+        <translation>Калі агульны час раздачы дасягне</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2375,17 +2399,17 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Хуткасць сцягв.</translation>
+        <translation>Спампоўванне</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Хуткасць разд.</translation>
+        <translation>Раздача</translation>
     </message>
     <message>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation>Стасунак</translation>
+        <translation>Рэйтынг</translation>
     </message>
     <message>
         <source>ETA</source>
@@ -2417,7 +2441,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation>Абмеж. сцягв.</translation>
+        <translation>Абмеж. спамп.</translation>
     </message>
     <message>
         <source>Up Limit</source>
@@ -2427,7 +2451,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation>Сцягнута</translation>
+        <translation>Спампавана</translation>
     </message>
     <message>
         <source>Uploaded</source>
@@ -2437,7 +2461,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Сцягнута за сеанс</translation>
+        <translation>Спампавана за сеанс</translation>
     </message>
     <message>
         <source>Session Upload</source>
@@ -2597,11 +2621,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Renamed</source>
-        <translation type="unfinished" />
+        <translation>Перайменаваны</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation>Арыгінал</translation>
+        <translation>Першапачатковы</translation>
     </message>
 </context>
 <context>
@@ -2612,7 +2636,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Add trackers</source>
-        <translation>Add trackers</translation>
+        <translation>Дадаць трэкеры</translation>
     </message>
 </context>
 <context>
@@ -2711,7 +2735,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished" />
+        <translation>Згарнуць/разгарнуць</translation>
     </message>
 </context>
 <context>
@@ -2903,7 +2927,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Rename Files...</source>
-        <translation type="unfinished" />
+        <translation>Перайменаваць файлы...</translation>
     </message>
     <message>
         <source>Renaming</source>
@@ -2933,16 +2957,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation>рэйтынг</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">хвіліны</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>хвілін агулам</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>хвілін неактыўных</translation>
     </message>
 </context>
 <context>
@@ -3061,11 +3081,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Plugin path:</source>
-        <translation>Пуць да плагінаў</translation>
+        <translation>Шлях плагіна:</translation>
     </message>
     <message>
         <source>URL or local directory</source>
-        <translation>URL ці лакальная папка</translation>
+        <translation>URL або лакальны каталог</translation>
     </message>
     <message>
         <source>Install plugin</source>
@@ -3460,10 +3480,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <source>New name:</source>
         <translation>Новая назва:</translation>
     </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>RSSWidget</name>
@@ -3802,7 +3818,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Original</source>
-        <translation>Арыгінал</translation>
+        <translation>Першапачатковы</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
@@ -3810,7 +3826,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Дадаць тэгі:</translation>
     </message>
 </context>
 <context>
@@ -3923,7 +3939,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Clear All</source>
-        <translation type="unfinished" />
+        <translation>Ачысціць усе</translation>
     </message>
     <message>
         <source>Message</source>
@@ -3935,7 +3951,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Reason</source>
-        <translation type="unfinished" />
+        <translation>Прычына</translation>
     </message>
     <message>
         <source>item</source>

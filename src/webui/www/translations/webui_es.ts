@@ -1165,10 +1165,6 @@
         <translation>Cuando la proporción alcance</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Cuando el tiempo de sembrado alcance</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Permitir múltiples conexiones desde la misma dirección IP:</translation>
     </message>
@@ -1593,10 +1589,6 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
         <translation>Si se verifica, las búsquedas del nombre de host se realizan a través del proxy.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Use proxy para la búsqueda del nombre de host</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Metadatos recibidos</translation>
     </message>
@@ -1733,11 +1725,19 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
         <translation>Duración de la cesión UPnP [0: cesión permanente]:</translation>
     </message>
     <message>
-        <source>When inactive seeding time reaches</source>
+        <source>Bdecode token limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When total seeding time reaches</source>
+        <source>When inactive seeding time reaches</source>
+        <translation>Cuando el tiempo de siembra inactiva alcanza</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Ninguno)</translation>
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1745,19 +1745,39 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <source>When total seeding time reaches</source>
+        <translation>Cuando el tiempo total de siembra alcance</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation>Realizar búsqueda de hots via proxy</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2083,10 +2103,6 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     <message>
         <source>Rename failed: file or folder already exists</source>
         <translation>Renombrado fallido: el archivo o carpeta ya existe</translation>
-    </message>
-    <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Coincidir con todas las ocurrencias</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2941,16 +2957,12 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
         <translation>ratio</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">minutos</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>minutos totales</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>minutos inactivos</translation>
     </message>
 </context>
 <context>
@@ -3470,7 +3482,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Renombrando)</translation>
+        <translation type="vanished">Renombrando)</translation>
     </message>
 </context>
 <context>

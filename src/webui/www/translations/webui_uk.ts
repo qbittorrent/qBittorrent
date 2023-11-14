@@ -1165,10 +1165,6 @@
         <translation>При досягненні коефіцієнта роздачі</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">По досягненню часу роздачі</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Дозволити декілька з'єднань з однієї IP-адреси:</translation>
     </message>
@@ -1593,10 +1589,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Якщо позначено, пошук імені хоста виконується через проксі.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Використовуйте проксі для пошуку імен хостів</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Метадані отримано</translation>
     </message>
@@ -1733,31 +1725,59 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Термін оренди UPnP [0: постійний]:</translation>
     </message>
     <message>
+        <source>Bdecode token limit:</source>
+        <translation>Ліміт токенів Bdecode:</translation>
+    </message>
+    <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>По досягненні часу бездіяльності роздачі</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Немає)</translation>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Обмеження глибини Bdecode:</translation>
     </message>
     <message>
-        <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <source>.torrent file size limit:</source>
+        <translation>Обмеження розміру файлу .torrent:</translation>
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation>По досягненні загального часу роздачі</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation>Виконайте пошук імені хоста через проксі</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2085,10 +2105,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Не вдалося перейменувати: файл чи тека з такою назвою вже є</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Відповідність усіх входжень</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Перемкнути вибір</translation>
     </message>
@@ -2126,7 +2142,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Зіставте всі випадки</translation>
     </message>
 </context>
 <context>
@@ -2941,16 +2957,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>коефіцієнт</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">хвилин</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>всього хвилин</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>хвилин неактивності</translation>
     </message>
 </context>
 <context>
@@ -3470,7 +3482,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Перейменування)</translation>
+        <translation type="vanished">Перейменування)</translation>
     </message>
 </context>
 <context>
@@ -3818,7 +3830,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Додати теги:</translation>
     </message>
 </context>
 <context>

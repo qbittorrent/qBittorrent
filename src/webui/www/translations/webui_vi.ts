@@ -1165,10 +1165,6 @@
         <translation>Khi tỷ lệ đạt đến</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Khi thời gian chia sẻ đạt đến</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Cho phép nhiều kết nối từ cùng một địa chỉ IP:</translation>
     </message>
@@ -1238,7 +1234,7 @@
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation>giây</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -1366,7 +1362,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation type="unfinished" />
+        <translation>Tỷ lệ ngắt kết nối luân chuyển ngang hàng:</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
@@ -1378,7 +1374,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation type="unfinished" />
+        <translation>Khoảng thời gian ngắt kết nối luân chuyển ngang hàng:</translation>
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
@@ -1518,7 +1514,7 @@
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation type="unfinished" />
+        <translation>Sử dụng mối quan hệ mức độ mảnh:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
@@ -1591,10 +1587,6 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
         <translation>Nếu được chọn, việc tra cứu tên máy chủ được thực hiện thông qua proxy.</translation>
-    </message>
-    <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Sử dụng proxy để tra cứu tên máy chủ</translation>
     </message>
     <message>
         <source>Metadata received</source>
@@ -1686,7 +1678,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation>Kích thước bộ đệm gửi Socket [0: mặc định hệ thống]:</translation>
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
@@ -1694,11 +1686,11 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Cổng đi (Tối đa) [0: bị vô hiệu hóa]:</translation>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation>Kích thước bộ đệm nhận socket [0: mặc định hệ thống]:</translation>
     </message>
     <message>
         <source>Use Subcategories</source>
@@ -1714,7 +1706,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished" />
+        <translation>Ghi qua (yêu cầu libtorrent &amp;gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
@@ -1733,31 +1725,59 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
         <translation>Thời hạn thuê UPnP [0: thuê vĩnh viễn]:</translation>
     </message>
     <message>
+        <source>Bdecode token limit:</source>
+        <translation>Giới hạn token Bdecode:</translation>
+    </message>
+    <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>Khi thời gian gieo hạt không hoạt động đạt đến</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Trống)</translation>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Giới hạn độ sâu Bdecode:</translation>
     </message>
     <message>
-        <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <source>.torrent file size limit:</source>
+        <translation>Giới hạn kích cỡ tệp .torrent:</translation>
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation>Khi tổng thời gian seeding đạt</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation>Thực hiện tra cứu tên máy chủ qua proxy</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2085,16 +2105,12 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
         <translation>Đổi tên không thành công: tệp hoặc thư mục đã tồn tại</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Phù hợp với tất cả các lần xuất hiện</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Chuyển Đổi Lựa Chọn</translation>
     </message>
     <message>
         <source>Replacement Input</source>
-        <translation type="unfinished" />
+        <translation>Đầu Vào Thay Thế</translation>
     </message>
     <message>
         <source>Replace</source>
@@ -2122,11 +2138,11 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished" />
+        <translation>Trường Hợp Nhạy Cảm</translation>
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Khớp tất cả các lần xuất hiện</translation>
     </message>
 </context>
 <context>
@@ -2941,16 +2957,12 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
         <translation>tỉ lệ</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">phút</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>tổng số phút</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>phút không hoạt động</translation>
     </message>
 </context>
 <context>
@@ -3132,7 +3144,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>trên</translation>
     </message>
     <message>
         <source>Everywhere</source>
@@ -3470,7 +3482,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Renaming)</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Đổi tên)</translation>
     </message>
 </context>
 <context>
@@ -3818,7 +3830,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Thêm Thẻ:</translation>
     </message>
 </context>
 <context>
@@ -3919,7 +3931,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>trên</translation>
     </message>
     <message>
         <source>Status</source>
@@ -3963,7 +3975,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Critical</source>
-        <translation type="unfinished" />
+        <translation>Quan trọng</translation>
     </message>
     <message>
         <source>Critical Messages</source>

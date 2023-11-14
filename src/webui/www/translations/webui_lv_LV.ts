@@ -1165,10 +1165,6 @@
         <translation>Kad reitings sasniedz</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Kad augšupielādes laiks sasniedz</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Atļaut vairākus savienojumus no vienas IP adreses</translation>
     </message>
@@ -1593,10 +1589,6 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <translation>Ja atzīmēts, arī datoru nosaukumu noteikšanai izmantos starpniekserveri.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Izmantot starpniekserveri datora nosaukumu noteikšanai</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Metadati ielādēti</translation>
     </message>
@@ -1733,11 +1725,19 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <translation>UPnP nomas ilgums [0: neierobežots]:</translation>
     </message>
     <message>
+        <source>Bdecode token limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>When inactive seeding time reaches</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When total seeding time reaches</source>
+        <source>(None)</source>
+        <translation>(Nevienu)</translation>
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1745,19 +1745,39 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <translation type="unfinished" />
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Bdecode token limit:</source>
+        <source>When total seeding time reaches</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
+        <translation>Izmantot starpniekserveri datoru nosaukumu noteikšanai</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2937,10 +2957,6 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <translation>reitings</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">minūtes</translation>
-    </message>
-    <message>
         <source>total minutes</source>
         <translation type="unfinished" />
     </message>
@@ -3466,7 +3482,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Pārdēvē</translation>
+        <translation type="vanished">Pārdēvē</translation>
     </message>
 </context>
 <context>
