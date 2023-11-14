@@ -1165,10 +1165,6 @@
         <translation>Oran şu değere ulaştığında</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Gönderim şu süreye ulaştığında</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Aynı IP adresinden çoklu bağlantılara izin ver:</translation>
     </message>
@@ -1593,10 +1589,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Eğer işaretlendiyse, anamakine adı aramaları proksi aracılığıyla yapılır.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Anamakine adı araması için proksi kullan</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Üstveriler alındı</translation>
     </message>
@@ -1734,74 +1726,82 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode derinlik sınırı:</translation>
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode belirteç sınırı:</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Toplam gönderim şu süreye ulaştığında</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Yok)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P gelen uzunluğu (libtorrent &amp;gt;= 2.0 gerektirir):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
-        <translation type="unfinished" />
+        <translation>Python çalıştırılabilir dosya yolu (yeniden başlatma gerektirebilir):</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation type="unfinished" />
+        <translation>Boşsa varsayılana sıfırlanır</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>Proksi aracılığıyla anamakine adı araması gerçekleştir</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation>Eğer &amp;quot;karışık kip&amp;quot; etkinleştirilirse, I2P torrent'lerinin izleyici dışında diğer kaynaklardan kişiler almasına ve herhangi bir isimsizleştirme sağlamadan normal IP'lere bağlanmasına izin verilir. Bu, eğer kullanıcı I2P'nin isimsizleştirilmesiyle ilgilenmiyorsa, ancak yine de I2P kişilerine bağlanabilmek istiyorsa yararlı olabilir.</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P gelen miktarı (libtorrent &amp;gt;= 2.0 gerektirir):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P giden uzunluğu (libtorrent &amp;gt;= 2.0 gerektirir):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P giden miktarı (libtorrent &amp;gt;= 2.0 gerektirir):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation>I2P (Deneysel) (libtorrent &amp;gt;= 2.0 gerektirir)</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
-        <translation type="unfinished" />
+        <translation>DHT önyükleme düğümleri:</translation>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Etkin olmayan gönderim şu süreye ulaştığında</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Karışık kip</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>.torrent dosya boyutu sınırı:</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation>(Boşsa otomatik algıla)</translation>
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2129,10 +2129,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Yeniden adlandırma başarısız oldu: dosya veya klasör zaten var</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Tüm oluşumları eşleştir</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Seçimi Değiştir</translation>
     </message>
@@ -2170,7 +2166,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Tüm oluşumları eşleştir</translation>
     </message>
 </context>
 <context>
@@ -2388,6 +2384,14 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <source>Checking (0)</source>
         <translation>Denetleniyor (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2542,7 +2546,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation type="unfinished" />
+        <translation>Yeniden Duyuru Süresi</translation>
     </message>
 </context>
 <context>
@@ -2965,6 +2969,10 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <source>Renaming</source>
         <translation>Yeniden adlandırma</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2989,16 +2997,12 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>oran</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">dakika</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>toplam dakika</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>etkin olmayan dakika</translation>
     </message>
 </context>
 <context>
@@ -3518,7 +3522,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Yeniden adlandırma)</translation>
+        <translation type="vanished">Yeniden adlandırma)</translation>
     </message>
 </context>
 <context>
@@ -3866,7 +3870,7 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Etiketleri Ekle:</translation>
     </message>
 </context>
 <context>

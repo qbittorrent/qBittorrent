@@ -1165,10 +1165,6 @@
         <translation>Göstəricini aşdıqda</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Paylaşma vaxtını aşdıqda</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Eyni İP ünvanından çoxsaylı bağlantılara icazə vermək</translation>
     </message>
@@ -1593,10 +1589,6 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>Əgər işarələnərsə, host adı axtarışı proksi ilə icra olunur.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Host adı axtarışı ümün proksi istifadə et</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Meta məlumatları alındı</translation>
     </message>
@@ -1742,11 +1734,11 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Ümumi göndərmə həddinə çatdıqda</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Heç nə)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1762,7 +1754,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>Proksi vasitəsilə host adı axtarışını icra etmək</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
@@ -1790,11 +1782,11 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Qeyri-aktiv göndərmə həddinə çatdıqda</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Qarışıq rejim</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
@@ -1802,6 +1794,14 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2129,10 +2129,6 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>Adını dəyişmək mümkün olmadı: fayl və ya qovluq artıq mövcuddur</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Bütün hadisələri uyğunlaşdır</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Seçim dəyişdirici</translation>
     </message>
@@ -2387,6 +2383,14 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>Checking (0)</source>
         <translation>Yoxlanılır (0)</translation>
+    </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2965,6 +2969,10 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <source>Renaming</source>
         <translation>Adı dəyişdirilir</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2989,16 +2997,12 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>nisbət</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">dəqiqələr</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>ümumi dəqiqələr</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>qeyri-aktiv dəqiqlələr</translation>
     </message>
 </context>
 <context>
@@ -3518,7 +3522,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Adı dəyişdirilir)</translation>
+        <translation type="vanished">Adı dəyişdirilir)</translation>
     </message>
 </context>
 <context>

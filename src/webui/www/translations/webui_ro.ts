@@ -1165,10 +1165,6 @@
         <translation>Când raportul ajunge la</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Când durata de transmitere atinge</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Permite conexiuni multiple de la aceeași adresă IP:</translation>
     </message>
@@ -1589,10 +1585,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Dacă e bifată, determinarea numelui gazdelor se face prin proxy.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Folosește proxy pentru determinarea numelui gazdei</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Metadate primite</translation>
     </message>
@@ -1742,7 +1734,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Niciunul)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1798,6 +1790,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2380,6 +2380,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Checking (0)</source>
         <translation>Se verifică (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2957,6 +2965,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Renaming</source>
         <translation>Se redenumește</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2979,10 +2991,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>ratio</source>
         <translation>raport</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="vanished">minute</translation>
     </message>
     <message>
         <source>total minutes</source>
@@ -3507,10 +3515,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>New name:</source>
         <translation>Denumire nouă:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

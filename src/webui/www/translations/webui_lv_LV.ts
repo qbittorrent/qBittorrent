@@ -1165,10 +1165,6 @@
         <translation>Kad reitings sasniedz</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Kad augšupielādes laiks sasniedz</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Atļaut vairākus savienojumus no vienas IP adreses</translation>
     </message>
@@ -1593,10 +1589,6 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <translation>Ja atzīmēts, arī datoru nosaukumu noteikšanai izmantos starpniekserveri.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Izmantot starpniekserveri datora nosaukumu noteikšanai</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Metadati ielādēti</translation>
     </message>
@@ -1746,7 +1738,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Nevienu)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1762,7 +1754,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>Izmantot starpniekserveri datoru nosaukumu noteikšanai</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
@@ -1802,6 +1794,14 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2384,6 +2384,14 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <source>Checking (0)</source>
         <translation>Pārbauda (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2961,6 +2969,10 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <source>Renaming</source>
         <translation>Pārdēvēšana</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2983,10 +2995,6 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     <message>
         <source>ratio</source>
         <translation>reitings</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="vanished">minūtes</translation>
     </message>
     <message>
         <source>total minutes</source>
@@ -3514,7 +3522,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Pārdēvē</translation>
+        <translation type="vanished">Pārdēvē</translation>
     </message>
 </context>
 <context>

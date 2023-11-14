@@ -1740,7 +1740,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(jokio)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1796,6 +1796,14 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2378,6 +2386,14 @@ pakaitos simbolį "*".</translation>
         <source>Checking (0)</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2955,6 +2971,10 @@ pakaitos simbolį "*".</translation>
         <source>Renaming</source>
         <translation>Pervadinimas</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2977,10 +2997,6 @@ pakaitos simbolį "*".</translation>
     <message>
         <source>ratio</source>
         <translation>santykis</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="vanished">minučių</translation>
     </message>
     <message>
         <source>total minutes</source>
@@ -3505,10 +3521,6 @@ pakaitos simbolį "*".</translation>
     <message>
         <source>New name:</source>
         <translation>Naujas pavadinimas:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

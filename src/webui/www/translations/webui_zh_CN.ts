@@ -1165,10 +1165,6 @@
         <translation>当分享率达到</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">当做种时间达到</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>允许来自同一 IP 地址的多个连接:</translation>
     </message>
@@ -1522,7 +1518,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation>最大并行 HTTP 发布：</translation>
+        <translation>最大并行 HTTP 汇报：</translation>
     </message>
     <message>
         <source>Enable OS cache</source>
@@ -1591,10 +1587,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
         <translation>勾选后将通过代理查找主机名</translation>
-    </message>
-    <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">使用代理进行主机名查询</translation>
     </message>
     <message>
         <source>Metadata received</source>
@@ -1734,74 +1726,82 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode 深度限制</translation>
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode 令牌限制</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>达到总做种时间时</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(无)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P 传入长度 （需要 libtorrent &amp;gt;= 2.0）：</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
-        <translation type="unfinished" />
+        <translation>Python 可执行文件路径（可能需要重启）：</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation type="unfinished" />
+        <translation>如果为空，则重置为默认值</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>通过代理查找主机名</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation>如启用 “混合模式”，则 I2P Torrent 也被允许从 Tracker 之外的来源获得 peers，并连接到正常的 IP 地址，这样的结果是不提供任何的匿名性。对于对 I2P 匿名性不感兴趣，但让仍希望能连接到 I2P peer 的用户来说，此模式会有用处。</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P 传入量 （需要 libtorrent &amp;gt;= 2.0）：</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P 传出长度 （需要 libtorrent &amp;gt;= 2.0）：</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P 传出量 （需要 libtorrent &amp;gt;= 2.0）：</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation>I2P （实验性）（需要 libtorrent &amp;gt;= 2.0）</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
-        <translation type="unfinished" />
+        <translation>DHT Bootstrap 节点：</translation>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>达到不活跃做种时间时</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>混合模式</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>.torrent 文件大小限制</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation>（假如为空，自动检测）</translation>
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2129,10 +2129,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>重命名失败：文件或文件夹已存在</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">匹配所有出现</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>切换所选</translation>
     </message>
@@ -2170,7 +2166,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>匹配所有出现</translation>
     </message>
 </context>
 <context>
@@ -2388,6 +2384,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Checking (0)</source>
         <translation>正在检查 (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2542,7 +2546,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation type="unfinished" />
+        <translation>下次重新汇报</translation>
     </message>
 </context>
 <context>
@@ -2965,6 +2969,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Renaming</source>
         <translation>重命名</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2989,16 +2997,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>比率</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">时间</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>总分钟</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>不活跃分钟</translation>
     </message>
 </context>
 <context>
@@ -3518,7 +3522,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>正在重命名）</translation>
+        <translation type="vanished">正在重命名）</translation>
     </message>
 </context>
 <context>
@@ -3866,7 +3870,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>添加标签：</translation>
     </message>
 </context>
 <context>

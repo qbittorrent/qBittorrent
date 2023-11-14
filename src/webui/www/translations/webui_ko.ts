@@ -1165,10 +1165,6 @@
         <translation>비율에 도달했을 때</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">배포 시간 제한:</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>같은 IP 주소의 다중 접속 허용:</translation>
     </message>
@@ -1593,10 +1589,6 @@ DNS 재결합 공격을 방어하기 위해
         <translation>이 옵션을 선택하면, 프록시를 통해 호스트 이름 검색이 수행됩니다.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">호스트 이름 조회에 프록시 사용</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>수신된 메타데이터</translation>
     </message>
@@ -1742,11 +1734,11 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>총 시딩 시간에 도달한 경우</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(없음)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1758,11 +1750,11 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation type="unfinished" />
+        <translation>비어 있는 경우 기본값으로 재설정</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>프록시를 통한 호스트 이름 조회 수행</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
@@ -1790,11 +1782,11 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>비활성 시딩 시간에 도달한 경우</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>혼합 모드</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
@@ -1802,6 +1794,14 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation>(비어있는 경우 자동 감지)</translation>
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2129,10 +2129,6 @@ DNS 재결합 공격을 방어하기 위해
         <translation>이름 바꾸기 실패: 파일 또는 폴더가 이미 존재합니다.</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">모든 경우 일치</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>선택 항목 전환</translation>
     </message>
@@ -2388,6 +2384,14 @@ DNS 재결합 공격을 방어하기 위해
         <source>Checking (0)</source>
         <translation>확인 중 (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2542,7 +2546,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation type="unfinished" />
+        <translation>재공지</translation>
     </message>
 </context>
 <context>
@@ -2965,6 +2969,10 @@ DNS 재결합 공격을 방어하기 위해
         <source>Renaming</source>
         <translation>이름 바꾸는 중</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2989,16 +2997,12 @@ DNS 재결합 공격을 방어하기 위해
         <translation>비율</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">분</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>총 시간(분)</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>활동하지 않는 시간(분)</translation>
     </message>
 </context>
 <context>
@@ -3518,7 +3522,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>이름 바꾸는 중)</translation>
+        <translation type="vanished">이름 바꾸는 중)</translation>
     </message>
 </context>
 <context>

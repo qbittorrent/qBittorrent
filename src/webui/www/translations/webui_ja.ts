@@ -1165,10 +1165,6 @@
         <translation>達する共有比</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">達するシード時間</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>同一IPアドレスからの複数接続を許可</translation>
     </message>
@@ -1593,10 +1589,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation>チェックを入れると、ホスト名の名前解決はプロキシ経由で行われます。</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">ホスト名の名前解決にプロキシを使用する</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>メタデータを受信後</translation>
     </message>
@@ -1742,11 +1734,11 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>合計シード時間に達したとき</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(なし)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1758,11 +1750,11 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation type="unfinished" />
+        <translation>空欄の場合はデフォルトにリセット</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>プロキシー経由でホスト名の名前解決を行う</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
@@ -1790,11 +1782,11 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>非稼働シード時間に達したとき</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>混合モード</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
@@ -1802,6 +1794,14 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation>(空欄の場合は自動検出)</translation>
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2129,10 +2129,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation>名前の変更に失敗: ファイルまたはフォルダーがすでに存在します</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">すべての適合にマッチさせる</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>選択を切り替え</translation>
     </message>
@@ -2388,6 +2384,14 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <source>Checking (0)</source>
         <translation>チェック中 (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2542,7 +2546,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation type="unfinished" />
+        <translation>次のアナウンスまで</translation>
     </message>
 </context>
 <context>
@@ -2965,6 +2969,10 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <source>Renaming</source>
         <translation>変更中</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2989,16 +2997,12 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation>共有比</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">分</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>合計(分)</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>非稼働(分)</translation>
     </message>
 </context>
 <context>
@@ -3518,7 +3522,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>変更中)</translation>
+        <translation type="vanished">変更中)</translation>
     </message>
 </context>
 <context>

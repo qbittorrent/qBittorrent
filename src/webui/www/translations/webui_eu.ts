@@ -1165,10 +1165,6 @@
         <translation>Erlazioa hona heltzerakoan</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Hedapen denbora honera heltzen denean</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Baimendu IP berdineko konexio ugari:</translation>
     </message>
@@ -1742,7 +1738,7 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Bat ere ez)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1798,6 +1794,14 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2380,6 +2384,14 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
         <source>Checking (0)</source>
         <translation>Egiaztatzen (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2957,6 +2969,10 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
         <source>Renaming</source>
         <translation>Berrizendapena</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2979,10 +2995,6 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     <message>
         <source>ratio</source>
         <translation>maila</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="vanished">minutu</translation>
     </message>
     <message>
         <source>total minutes</source>
@@ -3507,10 +3519,6 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     <message>
         <source>New name:</source>
         <translation>Izen berria:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

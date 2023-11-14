@@ -1165,10 +1165,6 @@
         <translation>När kvoten når</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">När distributionstiden når</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Tillåt flera anslutningar från samma IP-adress:</translation>
     </message>
@@ -1593,10 +1589,6 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>Om ifylld görs värdnamnsuppslag via proxy.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Använd proxy för värdnamnsuppslag</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Metadata mottagna</translation>
     </message>
@@ -1734,35 +1726,35 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode-djupgräns:</translation>
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode-tokengräns:</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>När totala distributionstiden når</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Ingen)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P inkommande längd (kräver libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
-        <translation type="unfinished" />
+        <translation>Körbar Python sökväg (kan kräva omstart):</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation type="unfinished" />
+        <translation>Återställ till standard om den är tom</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>Utför värdnamnsuppslagning via proxy</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
@@ -1770,38 +1762,46 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P inkommande kvantitet (kräver libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P utgående längd (kräver libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P utgående kvantitet (kräver libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation>I2P (experimentell) (kräver libtorrent &amp;gt;= 2.0)</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
-        <translation type="unfinished" />
+        <translation>DHT bootstrap noder:</translation>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>När inaktiva distributionstiden når</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Blandat läge</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>.torrent-filstorleksgräns:</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation>(Detektera automatiskt om den är tom)</translation>
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2129,10 +2129,6 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>Det gick inte att byta namn: fil eller mapp finns redan</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Matcha alla händelser</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Växla val</translation>
     </message>
@@ -2170,7 +2166,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Matcha alla händelser</translation>
     </message>
 </context>
 <context>
@@ -2388,6 +2384,14 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <source>Checking (0)</source>
         <translation>Kontrollerar (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2542,7 +2546,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation type="unfinished" />
+        <translation>Återannonsera om</translation>
     </message>
 </context>
 <context>
@@ -2965,6 +2969,10 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <source>Renaming</source>
         <translation>Byter namn</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2989,16 +2997,12 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>kvot</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">minuter</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>minuter totalt</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>minuter inaktiv</translation>
     </message>
 </context>
 <context>
@@ -3518,7 +3522,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Byter namn)</translation>
+        <translation type="vanished">Byter namn)</translation>
     </message>
 </context>
 <context>
@@ -3866,7 +3870,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Lägg till taggar:</translation>
     </message>
 </context>
 <context>
@@ -3991,7 +3995,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Reason</source>
-        <translation>Anledning</translation>
+        <translation>Orsak</translation>
     </message>
     <message>
         <source>item</source>

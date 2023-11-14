@@ -597,7 +597,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>Bočný panel s filtrami</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -621,7 +621,7 @@
     </message>
     <message>
         <source>Log</source>
-        <translation type="unfinished" />
+        <translation>Log</translation>
     </message>
 </context>
 <context>
@@ -1165,10 +1165,6 @@
         <translation>Keď je dosiahnuté ratio</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Ak je dosiahnutý limit seedovania</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Povoliť viacej spojení z rovnakej IP adresy:</translation>
     </message>
@@ -1458,7 +1454,7 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation>IP adresa nahlásená sledovačom (vyžaduje reštart):</translation>
+        <translation>IP adresa nahlásená trackerom (vyžaduje reštart):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
@@ -1470,7 +1466,7 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation>Veľkosť diskovej fronty</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
@@ -1478,11 +1474,11 @@
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation>Maximum nespracovaných požiadaviek na jedného peera</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation type="unfinished" />
+        <translation>Maximum súbežne kontrolovaných torrentov:</translation>
     </message>
     <message>
         <source>Memory mapped files</source>
@@ -1506,7 +1502,7 @@
     </message>
     <message>
         <source>Disk IO read mode:</source>
-        <translation type="unfinished" />
+        <translation>Režim IO čítania disku</translation>
     </message>
     <message>
         <source>Disable OS cache</source>
@@ -1514,15 +1510,15 @@
     </message>
     <message>
         <source>Disk IO write mode:</source>
-        <translation type="unfinished" />
+        <translation>Režim IO zapisovania disku</translation>
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation type="unfinished" />
+        <translation>Použite afinitu k dielikovému rozsahu</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation type="unfinished" />
+        <translation>Maximum súbežných HTTP oznámení</translation>
     </message>
     <message>
         <source>Enable OS cache</source>
@@ -1534,7 +1530,7 @@
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation>ms</translation>
     </message>
     <message>
         <source>Excluded file names</source>
@@ -1542,11 +1538,11 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
-        <translation type="unfinished" />
+        <translation>Podporovať domény obsahujúce špeciálne znaky (IDN)</translation>
     </message>
     <message>
         <source>Run external program on torrent finished</source>
-        <translation type="unfinished" />
+        <translation>Spustiť externý program po dokončení torrentu</translation>
     </message>
     <message>
         <source>Whitelist for filtering HTTP Host header values.
@@ -1562,7 +1558,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Run external program on torrent added</source>
-        <translation type="unfinished" />
+        <translation>Spustiť externý program po pridaní torrentu</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
@@ -1570,7 +1566,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation type="unfinished" />
+        <translation>Uveďte IP adresy (alebo podsiete, napr. 0.0.0.0/24) reverzného proxy pre preposlanie adresy klienta (hlavička X-Forwarded-For). Použite ';' pre rozdelenie viacerých položiek.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1586,11 +1582,11 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
-        <translation type="unfinished" />
+        <translation>Zapnúť presmerovanie portu na zabudovaný tracker</translation>
     </message>
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
-        <translation type="unfinished" />
+        <translation>Ak je zaškrnuté, vyhľadávanie názvu hostiteľa prebieha cez proxy</translation>
     </message>
     <message>
         <source>Metadata received</source>
@@ -1658,7 +1654,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
+        <translation>Zapamätať nastavenie hromadného premenovania</translation>
     </message>
     <message>
         <source>Use proxy for general purposes</source>
@@ -1670,31 +1666,31 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Interval vypršania diskovej cache (vyžaduje libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Limit využitia fyzickej pamäti (RAM) (použije sa, ak libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Vyrovnávajúca pamäť disku (libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation>Veľkosť send bufferu pre socket [0: predvolený systémom]:</translation>
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Zlúčenie čítacích &amp;amp; zapisovacích operácií (vyžaduje libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Odchádzajúce porty (Max) [0: vypnuté]</translation>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation>Veľkosť receive bufferu pre socket [0: predvolený systémom]:</translation>
     </message>
     <message>
         <source>Use Subcategories</source>
@@ -1702,7 +1698,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Disk IO typ (libtorrent &amp;gt;= 2.0; vyžaduje reštart):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1710,39 +1706,39 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished" />
+        <translation>Prepisovanie (vyžaduje libtorrent &amp;gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Časový limit pre zastavenie trackera [0: vypnuté]:</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Odchádzajúce porty (Min) [0: vypnuté]:</translation>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Hashovacie vlákna (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation>Doba UPnP prepožičania [0: trvalé prepožičanie]:</translation>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode obmedzenie hĺbky:</translation>
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode obmedzenie tokenu:</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Keď celkový čas seedovania dosiahne</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(žiadny)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1758,7 +1754,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>Zisťovať názov hostiteľa cez proxy</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
@@ -1786,18 +1782,26 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Keď čas neaktívneho seedovania dosiahne</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Zmiešaný režim</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>Obmedzenie veľkosti .torrent súboru:</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1881,7 +1885,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation type="unfinished" />
+        <translation>Peer ID klient</translation>
     </message>
 </context>
 <context>
@@ -2118,11 +2122,11 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation type="unfinished" />
+        <translation>Očíslovať súbory</translation>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
+        <translation>Premenovanie zlyhalo: súbor alebo adresár už existuje</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2130,7 +2134,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Replacement Input</source>
-        <translation type="unfinished" />
+        <translation>Vstup pre nahradenie</translation>
     </message>
     <message>
         <source>Replace</source>
@@ -2138,7 +2142,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Extension</source>
-        <translation type="unfinished" />
+        <translation>Prípona</translation>
     </message>
     <message>
         <source>Replace All</source>
@@ -2158,11 +2162,11 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished" />
+        <translation>Rozlišovať veľkosť písmen</translation>
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Všetky výskyty</translation>
     </message>
 </context>
 <context>
@@ -2379,6 +2383,14 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     <message>
         <source>Checking (0)</source>
         <translation>Kontrola (0)</translation>
+    </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2645,7 +2657,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Renamed</source>
-        <translation type="unfinished" />
+        <translation>Premenované</translation>
     </message>
     <message>
         <source>Original</source>
@@ -2759,7 +2771,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished" />
+        <translation>Zbaliť/rozbaliť</translation>
     </message>
 </context>
 <context>
@@ -2939,7 +2951,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>Torrent ID</translation>
     </message>
     <message>
         <source>Export .torrent</source>
@@ -2956,6 +2968,10 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     <message>
         <source>Renaming</source>
         <translation>Premenovanie</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2981,16 +2997,12 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
         <translation>ratio</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">minút</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>minút celkom</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>minút neaktivity</translation>
     </message>
 </context>
 <context>
@@ -3196,7 +3208,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>zobrazené</translation>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
@@ -3511,7 +3523,7 @@ Kliknite na tlačidlo "Vyhľadať pluginy..." vpravo dole v okne, aby ste nejak�
     </message>
     <message>
         <source>Renaming)</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Premenovanie)</translation>
     </message>
 </context>
 <context>
@@ -3859,7 +3871,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Pridať značky:</translation>
     </message>
 </context>
 <context>
@@ -3904,7 +3916,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Blocked</source>
-        <translation type="unfinished" />
+        <translation>Zablokované</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3916,7 +3928,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>zobrazené</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -3928,7 +3940,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished" />
+        <translation>ID</translation>
     </message>
     <message>
         <source>Log Type</source>
@@ -3952,7 +3964,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Filter logs</source>
-        <translation type="unfinished" />
+        <translation>Filtrovať logy</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
@@ -3968,11 +3980,11 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Timestamp</source>
-        <translation type="unfinished" />
+        <translation>Časová značka</translation>
     </message>
     <message>
         <source>Clear All</source>
-        <translation type="unfinished" />
+        <translation>Vyčistiť všetko</translation>
     </message>
     <message>
         <source>Message</source>
@@ -3980,7 +3992,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation type="unfinished" />
+        <translation>Úrovne logu:</translation>
     </message>
     <message>
         <source>Reason</source>
@@ -3988,7 +4000,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>item</source>
-        <translation type="unfinished" />
+        <translation>položka</translation>
     </message>
     <message>
         <source>IP</source>
@@ -3996,7 +4008,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Banned</source>
-        <translation type="unfinished" />
+        <translation>Zablokované</translation>
     </message>
     <message>
         <source>Normal Messages</source>
@@ -4004,7 +4016,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Critical</source>
-        <translation type="unfinished" />
+        <translation>Kritický</translation>
     </message>
     <message>
         <source>Critical Messages</source>
@@ -4016,7 +4028,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>items</source>
-        <translation type="unfinished" />
+        <translation>položky</translation>
     </message>
     <message>
         <source>Results</source>
@@ -4024,11 +4036,11 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished" />
+        <translation>Info</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation type="unfinished" />
+        <translation>Vyberte úrovne logu...</translation>
     </message>
 </context>
 </TS>

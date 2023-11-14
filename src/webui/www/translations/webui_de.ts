@@ -36,11 +36,11 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation>Erstelle Unterordner</translation>
+        <translation>Unterordner erstellen</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation>Erstelle keinen Unterordner</translation>
+        <translation>Keinen Unterordner erstellen</translation>
     </message>
     <message>
         <source>Manual</source>
@@ -64,7 +64,7 @@
     </message>
     <message>
         <source>None</source>
-        <translation>Kein</translation>
+        <translation>Keine</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1165,10 +1165,6 @@
         <translation>Wenn das Verhältnis erreicht ist</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Wenn die Seed-Zeit erreicht ist</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Erlaube Mehrfachverbindungen von der gleichen IP-Adresse:</translation>
     </message>
@@ -1595,10 +1591,6 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>Wenn diese Option aktiviert ist, erfolgt die Suche nach Hostnamen über den Proxy.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Proxy for die Suche nach Hostnamen verwenden</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Metadaten erhalten</translation>
     </message>
@@ -1736,74 +1728,82 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode-Tiefenbegrenzung:</translation>
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode-Token-Limit:</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Wenn die gesamte Seed-Zeit erreicht hat:</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Keiner)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P-Eingangslänge (erfordert libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
-        <translation type="unfinished" />
+        <translation>Pfad für die Python Ausführungsdatei (ev. Neustart erforderlich)</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation type="unfinished" />
+        <translation>Standardeinstellung wenn leer</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>Hostnamen-Suche über Proxy durchführen</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation>Wenn der &amp;quot;gemischte Modus&amp;quot; aktiviert ist, können I2P Torrents auch Peers aus anderen Quellen als dem Tracker erhalten und sich mit regulären IPs verbinden, ohne dass eine Anonymisierung erfolgt. Dies kann nützlich sein, wenn der Benutzer nicht an der Anonymisierung von I2P interessiert ist, aber trotzdem in der Lage sein möchte, sich mit I2P-Peers zu verbinden.</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P-Eingangsmenge (erfordert libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P-Ausgangslänge (erfordert libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P-Ausgangsmenge (erfordert libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation>I2P (experimentell, erfordert libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
-        <translation type="unfinished" />
+        <translation>DHT-Bootstrap-Knotenpunkte:</translation>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Wenn die inaktive Seed-Zeit erreicht hat:</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Gemischter Modus</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>.torrent Dateigrößenbegrenzung:</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation>(Automatische Erkennung wenn leer)</translation>
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2131,10 +2131,6 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>Fehler beim Umbenennen: Datei oder Verzeichnis existiert bereits</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Alle Vorkommen abgleichen</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Auswahl Umschalten</translation>
     </message>
@@ -2172,7 +2168,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Alle Vorkommen abgleichen</translation>
     </message>
 </context>
 <context>
@@ -2390,6 +2386,14 @@ Platzhalter '*' kann verwendet werden.</translation>
         <source>Checking (0)</source>
         <translation>Überprüfe (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2544,7 +2548,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation type="unfinished" />
+        <translation>Erneute Anmeldung in</translation>
     </message>
 </context>
 <context>
@@ -2967,6 +2971,10 @@ Platzhalter '*' kann verwendet werden.</translation>
         <source>Renaming</source>
         <translation>Umbenennen</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2991,16 +2999,12 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>Verhältnis</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">Minuten</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>gesamt Minuten</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>inaktive Minuten</translation>
     </message>
 </context>
 <context>
@@ -3520,7 +3524,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Umbenennen)</translation>
+        <translation type="vanished">Umbenennen)</translation>
     </message>
 </context>
 <context>
@@ -3868,7 +3872,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Schlagwörter hinzufügen:</translation>
     </message>
 </context>
 <context>

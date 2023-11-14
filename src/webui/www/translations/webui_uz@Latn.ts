@@ -1837,6 +1837,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>(Auto detect if empty)</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2415,6 +2423,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Checking (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2998,6 +3014,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Renaming</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -3543,10 +3563,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Renaming)</source>
         <translation type="unfinished" />
     </message>
 </context>

@@ -309,7 +309,7 @@
     </message>
     <message>
         <source>qBittorrent client is not reachable</source>
-        <translation>連接不到 qBittorrent 客戶端</translation>
+        <translation>無法連線到 qBittorrent 用戶端</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
@@ -696,11 +696,11 @@
     </message>
     <message>
         <source>Bypass authentication for clients on localhost</source>
-        <translation>在本機上跳過客戶端驗證</translation>
+        <translation>在本機上略過用戶端驗證</translation>
     </message>
     <message>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
-        <translation>在已在白名單中的 IP 子網跳過驗證</translation>
+        <translation>讓已在白名單中的 IP 子網路略過驗證</translation>
     </message>
     <message>
         <source>Update my dynamic domain name</source>
@@ -1165,10 +1165,6 @@
         <translation>當分享率達到</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">當做種時間達到</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>允許從同一個 IP 位置而來的多重連線：</translation>
     </message>
@@ -1310,7 +1306,7 @@
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation>連續失敗後封鎖客戶端：</translation>
+        <translation>連續失敗後封鎖用戶端：</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
@@ -1570,7 +1566,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>指定反向代理 IP（或子網路，例如 0.0.0.0/24）以使用轉發的客戶端位置（X-Forwarded-For 標頭）。使用 ';' 來分隔多個項目。</translation>
+        <translation>指定反向代理 IP（或子網路，例如 0.0.0.0/24）以使用轉送的用戶端位置（X-Forwarded-For 標頭）。使用 ';' 來分隔多個項目。</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1586,15 +1582,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
-        <translation>為內嵌的 Tracker 啟用通訊埠轉發：</translation>
+        <translation>為嵌入的追蹤器啟用通訊埠轉送：</translation>
     </message>
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
         <translation>若勾選，主機名稱查詢將會透過代理伺服器完成。</translation>
-    </message>
-    <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">為主機名稱查詢使用代理伺服器</translation>
     </message>
     <message>
         <source>Metadata received</source>
@@ -1734,74 +1726,82 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode 深度限制：</translation>
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode 權杖限制：</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>當總種子時間達到</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(無)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P 入站長度（需要 libtorrent &amp;gt;= 2.0）：</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
-        <translation type="unfinished" />
+        <translation>Python 可執行檔路徑（可能需要重新啟動）：</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation type="unfinished" />
+        <translation>若為空，則重設回預設值</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>透過代理伺服器執行主機名稱查詢</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation>若啟用「混合模式」，I2P torrent 也允許從追蹤者以外的來源取得 peer，並連線到一般 IP，不提供任何匿名化。若使用者對 I2P 的匿名化不感興趣，但仍希望可以連線至 I2P peer，這可能會很有用。</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P 入站數量（需要 libtorrent &amp;gt;= 2.0）：</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P 出站長度（需要 libtorrent &amp;gt;= 2.0）：</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P 出站數量（需要 libtorrent &amp;gt;= 2.0）：</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation>I2P（實驗性）（需要 libtorrent &amp;gt;= 2.0）</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
-        <translation type="unfinished" />
+        <translation>DHT 自舉節點：</translation>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>當不活躍種子時間達到</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>混合模式</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>.torrent 檔案大小限制：</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation>（若為空則自動偵測）</translation>
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1826,7 +1826,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
-        <translation>客戶端</translation>
+        <translation>用戶端</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -1885,7 +1885,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation>Peer ID 客戶端</translation>
+        <translation>Peer ID 用戶端</translation>
     </message>
 </context>
 <context>
@@ -2129,10 +2129,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>重新命名失敗：檔案或資料已存在</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">符合所有出現的</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>切換選取</translation>
     </message>
@@ -2170,7 +2166,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>符合所有出現的狀況</translation>
     </message>
 </context>
 <context>
@@ -2388,6 +2384,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Checking (0)</source>
         <translation>正在檢查 (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2542,7 +2546,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation type="unfinished" />
+        <translation>重新發佈於</translation>
     </message>
 </context>
 <context>
@@ -2965,6 +2969,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Renaming</source>
         <translation>重新命名</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2989,16 +2997,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>上傳╱下載比率</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">分鐘</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>總分鐘</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>不活躍分鐘</translation>
     </message>
 </context>
 <context>
@@ -3413,7 +3417,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>一個以 C++ 撰寫，基於 Qt 工具箱和 libtorrent-rasterbar 的進階 BitTorrent 客戶端。</translation>
+        <translation>一個以 C++ 撰寫，基於 Qt 工具箱和 libtorrent-rasterbar 的進階 BitTorrent 用戶端。</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -3518,7 +3522,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>重新命名)</translation>
+        <translation type="vanished">重新命名)</translation>
     </message>
 </context>
 <context>
@@ -3866,7 +3870,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>新增標籤：</translation>
     </message>
 </context>
 <context>

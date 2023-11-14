@@ -1165,10 +1165,6 @@
         <translation>Bila nisbah dicapai</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Bila masa penyemaian dicapai</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Benarkan sambungan berbilang daripada alamat IP yang sama:</translation>
     </message>
@@ -1742,7 +1738,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Tiada)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1798,6 +1794,14 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2380,6 +2384,14 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
         <source>Checking (0)</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2957,6 +2969,10 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
         <source>Renaming</source>
         <translation>Penamaan semula</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2979,10 +2995,6 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     <message>
         <source>ratio</source>
         <translation>nisbah</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="vanished">minit</translation>
     </message>
     <message>
         <source>total minutes</source>
@@ -3507,10 +3519,6 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     <message>
         <source>New name:</source>
         <translation>Nama baharu:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

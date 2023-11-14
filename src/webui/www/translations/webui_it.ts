@@ -1165,10 +1165,6 @@
         <translation>Quando raggiungi rapporto</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Quando raggiungi tempo seeding</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Consenti connessioni multiple dallo stesso indirizzo IP:</translation>
     </message>
@@ -1595,10 +1591,6 @@ Usa ';' per dividere più voci.</translation>
         <translation>Se selezionata, le ricerche del nome host vengono eseguite tramite il proxy.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Usa il proxy per la ricerca del nome host</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Ricevuti metadati</translation>
     </message>
@@ -1736,74 +1728,83 @@ Usa ';' per dividere più voci.</translation>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Profondità limite Bdecode:</translation>
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <translation>Limite token Bdecode:</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Quando viene raggiunto il tempo totale seeding</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Nessuno)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Lunghezza I2P in entrata (richiede libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
-        <translation type="unfinished" />
+        <translation>Percorso dell'eseguibile python (potrebbe richiedere il riavvio):</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation type="unfinished" />
+        <translation>Ripristina il predefinito se vuoto</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>Esegui ricerca nome host tramite proxy</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation>Se la &amp;quot;modalità mista&amp;quot; è abilitata, i torrent I2P possono ottenere peer anche da sorgenti diverse dal tracker e connettersi a IP regolari, senza fornire alcuna anonimizzazione. 
+Ciò può essere utile se l'utente non è interessato all'anonimizzazione di I2P, ma vuole comunque potersi connettere ai peer I2P.</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Quantità I2P in ingresso (richiede libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Lunghezza I2P in uscita (richiede libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Quantità I2P in uscita (richiede libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation>I2P (sperimentale) (richiede libtorrent &gt;= 2.0)</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
-        <translation type="unfinished" />
+        <translation>Nodi bootstrap DHT:</translation>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Quando viene raggiunto il tempo seeding non attivo</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Modo mixed</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>Dimensione limite del file .torrent:</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation>(Rilevamento automatico se vuoto)</translation>
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2131,10 +2132,6 @@ Usa ';' per dividere più voci.</translation>
         <translation>Rinomina fallita: il file o la cartella esiste già</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Verifica tutte le occorrenze</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Attiva/disattiva selezione</translation>
     </message>
@@ -2172,7 +2169,7 @@ Usa ';' per dividere più voci.</translation>
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Abbina tutte le occorrenze</translation>
     </message>
 </context>
 <context>
@@ -2390,6 +2387,14 @@ Usa ';' per dividere più voci.</translation>
         <source>Checking (0)</source>
         <translation>Verifica (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2544,7 +2549,7 @@ Usa ';' per dividere più voci.</translation>
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation type="unfinished" />
+        <translation>Riannuncia</translation>
     </message>
 </context>
 <context>
@@ -2967,6 +2972,10 @@ Usa ';' per dividere più voci.</translation>
         <source>Renaming</source>
         <translation>Rinomina</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2991,16 +3000,12 @@ Usa ';' per dividere più voci.</translation>
         <translation>rapporto</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">minuti</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>minuti totali</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>minuti di inattività</translation>
     </message>
 </context>
 <context>
@@ -3521,7 +3526,7 @@ Il database è concesso in licenza con la licenza internazionale Creative Common
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>rinomina)</translation>
+        <translation type="vanished">rinomina)</translation>
     </message>
 </context>
 <context>
@@ -3870,7 +3875,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Aggiungi tag:</translation>
     </message>
 </context>
 <context>

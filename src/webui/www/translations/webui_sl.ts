@@ -1165,10 +1165,6 @@
         <translation>Ko razmerje doseže</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Ko trajanje sejanja doseže</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation type="unfinished" />
     </message>
@@ -1742,7 +1738,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Brez)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1798,6 +1794,14 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2380,6 +2384,14 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <source>Checking (0)</source>
         <translation>Preverjanje (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2957,6 +2969,10 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <source>Renaming</source>
         <translation>Preimenovanje</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2979,10 +2995,6 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     <message>
         <source>ratio</source>
         <translation>razmerje</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="vanished">minut</translation>
     </message>
     <message>
         <source>total minutes</source>
@@ -3507,10 +3519,6 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     <message>
         <source>New name:</source>
         <translation>Novo ime:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

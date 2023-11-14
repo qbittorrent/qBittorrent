@@ -1165,10 +1165,6 @@
         <translation>عندما تصل النسبة</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">عندما يصل وقت البذر</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>السماح باتصالات متعددة من نفس عنوان الآي بي:</translation>
     </message>
@@ -1738,11 +1734,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>عندما يصل وقت البذر الكلي</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(لا شيء)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1758,7 +1754,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>إجراء بحث عن اسم المضيف عبر الوكيل</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
@@ -1786,11 +1782,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>عندما يصل وقت البذر غير النشط</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>وضع مختلط</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
@@ -1798,6 +1794,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2380,6 +2384,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Checking (0)</source>
         <translation>يفحص (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2957,6 +2969,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Renaming</source>
         <translation>إعادة التسمية</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2981,16 +2997,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>النسبة</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">دقائق</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>إجمالي الدقائق</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>دقائق غير نشطة</translation>
     </message>
 </context>
 <context>
@@ -3507,10 +3519,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>New name:</source>
         <translation>الاسم الجديد:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

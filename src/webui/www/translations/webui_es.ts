@@ -361,7 +361,7 @@
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation>Incapaz de agregar pares. Por favor asegúrese de que se está adhiriendo al formato IP:puerto.</translation>
+        <translation>No es posible agregar pares. Por favor asegúrese de respetar el formato IP:puerto.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
@@ -373,7 +373,7 @@
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation>Nombre está sin cambiar</translation>
+        <translation>No se ha cambiado el nombre</translation>
     </message>
     <message>
         <source>Failed to update name</source>
@@ -385,7 +385,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation>El puerto usado para conexiones entrantes debe estar comprendido entre 0 y 65535.</translation>
+        <translation>El puerto para conexiones entrantes debe estar comprendido entre 0 y 65535.</translation>
     </message>
     <message>
         <source>Original author</source>
@@ -393,7 +393,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation>¿Está seguro de que desea eliminar los torrents seleccionados de la lista de transferencia?</translation>
+        <translation>¿Está seguro de que desea eliminar los torrents seleccionados de la lista de transferencias?</translation>
     </message>
 </context>
 <context>
@@ -529,15 +529,15 @@
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation>Fondo de la Cola</translation>
+        <translation>Final de la Cola</translation>
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
-        <translation>Mover al fondo de la cola</translation>
+        <translation>Mover al final de la cola</translation>
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation>Tope de la Cola</translation>
+        <translation>Principio de la Cola</translation>
     </message>
     <message>
         <source>Move Down Queue</source>
@@ -549,7 +549,7 @@
     </message>
     <message>
         <source>Move to the top of the queue</source>
-        <translation>Mover al tope de la cola</translation>
+        <translation>Mover al principio de la cola</translation>
     </message>
     <message>
         <source>Your browser does not support this feature</source>
@@ -557,11 +557,11 @@
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation>Para usar esta funcionalidad, el IUWeb necesia ser accedido sobre HTTPS</translation>
+        <translation>Para usar esta funcionalidad, se debe acceder a la interfaz Web a través de HTTPS</translation>
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation>Estado de conexión: Bajo Cortafuego</translation>
+        <translation>Estado de la conexión: Bajo Cortafuegos</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
@@ -569,7 +569,7 @@
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation>Límites alternativos de velocidad: Desactivado</translation>
+        <translation>Límites de velocidad alternativos: Desactivados</translation>
     </message>
     <message>
         <source>Download speed icon</source>
@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation>Límites alternativos de velocidad: Activado</translation>
+        <translation>Límites de velocidad alternativos: Activados</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
@@ -585,7 +585,7 @@
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation>Estado de la conexión: Desconectada</translation>
+        <translation>Estado de la conexión: Desconectado</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -609,11 +609,11 @@
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation>¿Te gustaría reanudar todos los torrents?</translation>
+        <translation>¿Le gustaría reanudar todos los torrents?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation>¿Te gustaría pausar todos los torrents?</translation>
+        <translation>¿Le gustaría pausar todos los torrents?</translation>
     </message>
     <message>
         <source>Execution Log</source>
@@ -1130,23 +1130,23 @@
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation>Algoritmo modo mezclado μTP-TCP:</translation>
+        <translation>Algoritmo modo mixto μTP-TCP:</translation>
     </message>
     <message>
         <source>Upload rate based</source>
-        <translation>Basado tasa de subida</translation>
+        <translation>Según tasa de subida</translation>
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
-        <translation>%G: Tags (separado por coma)</translation>
+        <translation>%G: Etiquetas (separadas por comas)</translation>
     </message>
     <message>
         <source>Socket backlog size:</source>
-        <translation>Tamaño backlog de soquete:</translation>
+        <translation>Tamaño backlog de Socket:</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation>Habilitar super sembrado para torrent</translation>
+        <translation>Habilitar super semilla para torrent</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
@@ -1154,7 +1154,7 @@
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation>Memoria excepcional revisando torrents:</translation>
+        <translation>Memoria pendiente al revisar torrents:</translation>
     </message>
     <message>
         <source>Anti-leech</source>
@@ -1162,11 +1162,7 @@
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation>Cuando la proporción alcance</translation>
-    </message>
-    <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Cuando el tiempo de sembrado alcance</translation>
+        <translation>Cuando la tasa alcance</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1206,7 +1202,7 @@
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation>Enviar factor de marca de agua tampón:</translation>
+        <translation>Enviar factor de marca de agua del buffer:</translation>
     </message>
     <message>
         <source>libtorrent Section</source>
@@ -1593,10 +1589,6 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
         <translation>Si se verifica, las búsquedas del nombre de host se realizan a través del proxy.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Use proxy para la búsqueda del nombre de host</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Metadatos recibidos</translation>
     </message>
@@ -1742,11 +1734,11 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Cuando el tiempo total de siembra alcance</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Ninguno)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1762,7 +1754,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>Realizar búsqueda de hots via proxy</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
@@ -1790,11 +1782,11 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Cuando el tiempo de siembra inactiva alcanza</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Modo mixto</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
@@ -1802,6 +1794,14 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2129,10 +2129,6 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
         <translation>Renombrado fallido: el archivo o carpeta ya existe</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Coincidir con todas las ocurrencias</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Alternar Selección</translation>
     </message>
@@ -2387,6 +2383,14 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     <message>
         <source>Checking (0)</source>
         <translation>Comprobando (0)</translation>
+    </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2965,6 +2969,10 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
         <source>Renaming</source>
         <translation>Renombrando</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2989,16 +2997,12 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
         <translation>ratio</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">minutos</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>minutos totales</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>minutos inactivos</translation>
     </message>
 </context>
 <context>
@@ -3518,7 +3522,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Renombrando)</translation>
+        <translation type="vanished">Renombrando)</translation>
     </message>
 </context>
 <context>

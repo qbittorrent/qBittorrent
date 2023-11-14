@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>加至佇列頂部</translation>
     </message>
 </context>
 <context>
@@ -621,7 +621,7 @@
     </message>
     <message>
         <source>Log</source>
-        <translation type="unfinished" />
+        <translation>記錄檔</translation>
     </message>
 </context>
 <context>
@@ -1165,12 +1165,8 @@
         <translation>當分享率達到</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">當做種時間達到</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
-        <translation type="unfinished" />
+        <translation>容許來自相同IP位置的多重連接</translation>
     </message>
     <message>
         <source>File pool size:</source>
@@ -1398,7 +1394,7 @@
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
-        <translation type="unfinished" />
+        <translation>驗證 HTTPS 追蹤器憑證：</translation>
     </message>
     <message>
         <source>Peer connection protocol:</source>
@@ -1426,7 +1422,7 @@
     </message>
     <message>
         <source>Outgoing connections per second:</source>
-        <translation type="unfinished" />
+        <translation>每秒對外連線數：</translation>
     </message>
     <message>
         <source>Random</source>
@@ -1438,7 +1434,7 @@
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation type="unfinished" />
+        <translation>更改 IP 或連接埠時通知所有追蹤器：</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1458,7 +1454,7 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>向追蹤器回報的 IP 地址（需重新啟動）：</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
@@ -1466,11 +1462,11 @@
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation type="unfinished" />
+        <translation>伺服器端請求偽造 (SSRF) 緩解措施：</translation>
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation>儲存佇列大小</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
@@ -1706,7 +1702,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>加至佇列頂部</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
@@ -1742,7 +1738,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>（無）</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1798,6 +1794,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2380,6 +2384,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Checking (0)</source>
         <translation>正在檢查 (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2957,6 +2969,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Renaming</source>
         <translation>正在重新命名</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2979,10 +2995,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>ratio</source>
         <translation>上╱下載比率</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="vanished">分鐘</translation>
     </message>
     <message>
         <source>total minutes</source>
@@ -3507,10 +3519,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>New name:</source>
         <translation>新名稱：</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

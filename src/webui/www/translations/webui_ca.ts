@@ -1166,10 +1166,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Quan la ràtio assoleixi</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Quan el temps de sembra assoleixi</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Permet connexions múltiples des de la mateixa adreça IP:</translation>
     </message>
@@ -1594,10 +1590,6 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <translation>Si es marca, les cerques de nom d'amfitrió es fan a través de l'intermediari.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Usa l'intermediari per a les cerques de noms d'amfitrió.</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Metadades rebudes</translation>
     </message>
@@ -1743,11 +1735,11 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Quan s'arriba al temps total de sembra</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Cap)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1763,7 +1755,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>Realitzar cerca de nom de host via proxy</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
@@ -1791,11 +1783,11 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Quan s'arriba al temps de sembra inactiva</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Mode mixte</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
@@ -1803,6 +1795,14 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2130,10 +2130,6 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <translation>Ha fallat el canvi de nom: el fitxer o la carpeta ja existeix.</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Coincideix amb totes les ocurrències</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Commuta la selecció</translation>
     </message>
@@ -2388,6 +2384,14 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     <message>
         <source>Checking (0)</source>
         <translation>Comprovant (0)</translation>
+    </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2966,6 +2970,10 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <source>Renaming</source>
         <translation>Canvi de nom</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2990,16 +2998,12 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <translation>ràtio</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">minuts</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>minuts totals</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>minuts d'inacció</translation>
     </message>
 </context>
 <context>
@@ -3519,7 +3523,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Canvi de nom</translation>
+        <translation type="vanished">Canvi de nom</translation>
     </message>
 </context>
 <context>

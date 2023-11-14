@@ -1165,10 +1165,6 @@
         <translation>Quando o rácio atingir</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Quando o tempo a semear atingir</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Permitir várias ligações a partir do mesmo endereço de IP:</translation>
     </message>
@@ -1593,10 +1589,6 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
         <translation>Se marcado, as pesquisas de nome da máquina são feitas por meio do proxy.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Usar proxy para pesquisas de nome da máquina</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Metadados recebidos</translation>
     </message>
@@ -1746,7 +1738,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Nenhum(a))</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1758,11 +1750,11 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation type="unfinished" />
+        <translation>Repor o valor por defeito se estiver vazio</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>Realizar a consulta de hostname via proxy</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
@@ -1794,14 +1786,22 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Modo misto</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>Limite de tamanho do ficheiro .torrent</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation>(Deteção automática se estiver vazio)</translation>
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2129,10 +2129,6 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
         <translation>Falha ao renomear: o ficheiro ou pasta já existe</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Corresponder todas as ocorrências</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Mudar seleção</translation>
     </message>
@@ -2170,7 +2166,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Corresponder todas as ocorrências</translation>
     </message>
 </context>
 <context>
@@ -2387,6 +2383,14 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     <message>
         <source>Checking (0)</source>
         <translation>A verificar (0)</translation>
+    </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2965,6 +2969,10 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
         <source>Renaming</source>
         <translation>A renomear</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2989,16 +2997,12 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
         <translation>rácio</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">minutos</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>minutos totais</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>minutos inativos</translation>
     </message>
 </context>
 <context>
@@ -3243,7 +3247,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
-        <translation>Aviso: Certifique-se que cumpre as leis de direitos de autor do seu país ao fazer a transferência de torrents a partir de qualquer um destes motores de busca.</translation>
+        <translation>Aviso: Certifique-se que cumpre as leis de direitos de autor do seu país ao fazer a transferência de torrents a partir de qualquer um destes motores de pesquisa.</translation>
     </message>
     <message>
         <source>Check for updates</source>
@@ -3518,7 +3522,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>A renomear)</translation>
+        <translation type="vanished">A renomear)</translation>
     </message>
 </context>
 <context>
@@ -3866,7 +3870,7 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Adicionar etiquetas:</translation>
     </message>
 </context>
 <context>

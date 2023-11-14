@@ -1165,10 +1165,6 @@
         <translation>Amikor az arányt eléri</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Amikor a seedidőt eléri</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Több kapcsolat engedélyezése ugyanarról az IP-címről</translation>
     </message>
@@ -1593,10 +1589,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <translation>Ha be van jelölve, a kiszolgáló nevek proxyn keresztül lesznek feloldva.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Proxy használata kiszolgálónevek feloldásához</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Metaadat fogadva</translation>
     </message>
@@ -1734,74 +1726,82 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode mélység korlát:</translation>
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode token korlát:</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Amikor a teljes seed időt eléri</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Nincs)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P bejövő hossz (libtorrent &gt;= 2.0 szükséges):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
-        <translation type="unfinished" />
+        <translation>Python útvonala (újraindítást igényelhet):</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation type="unfinished" />
+        <translation>Alapértelmezettre visszaáll ha üres</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>Kiszolgálónév lekérdezése proxyn keresztül</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation>Ha a &amp;quot;kevert mód&amp;quot; engedélyezett, az I2P torrenteknek is megengedett, hogy partnereket szerezzenek a trackeren kívüli forrásokból is, és rendes IP-címekhez csatlakozzanak, anonimizálást nem biztosítva. Ez hasznos lehet, ha a felhasználó nem érdekelt az I2P anonimizálásában, de mégis szeretne I2P partnerekhez csatlakozni.</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P bejövő mennyiség (libtorrent &amp;gt;= 2.0 szükséges):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P kimenő hossz (libtorrent &amp;gt;= 2.0 szükséges):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P kimenő mennyiség (libtorrent &amp;gt;= 2.0 szükséges):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation>I2P (Kísérleti) (libtorrent &amp;gt;= 2.0 szükséges)</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
-        <translation type="unfinished" />
+        <translation>DHT bootstrap csomópontok:</translation>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Amikor az inaktív seed időt eléri</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Kevert mód</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>.torrent fájl méret korlát:</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation>(Auto felismerés ha üres)</translation>
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2129,10 +2129,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <translation>Átnevezés sikertelen: a fájl vagy mappa már létezik</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Minden előfordulás egyezzen</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Kijelölés kapcsolása</translation>
     </message>
@@ -2170,7 +2166,7 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Minden előfordulás egyezzen</translation>
     </message>
 </context>
 <context>
@@ -2388,6 +2384,14 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <source>Checking (0)</source>
         <translation>Ellenőrzés (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2542,7 +2546,7 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation type="unfinished" />
+        <translation>Újrajelentés</translation>
     </message>
 </context>
 <context>
@@ -2965,6 +2969,10 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <source>Renaming</source>
         <translation>Átnevezés</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2989,16 +2997,12 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <translation>arány</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">perc</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>összes perc</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>inaktív perc</translation>
     </message>
 </context>
 <context>
@@ -3518,7 +3522,7 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Átnevezés)</translation>
+        <translation type="vanished">Átnevezés)</translation>
     </message>
 </context>
 <context>
@@ -3866,7 +3870,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Címkék hozzáadása:</translation>
     </message>
 </context>
 <context>

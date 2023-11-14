@@ -1165,10 +1165,6 @@
         <translation>Wanneer verhouding bereikt wordt van</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Wanneer een seed-tijd bereikt wordt van</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Meerdere verbindingen van hetzelfde IP-adres toestaan:</translation>
     </message>
@@ -1593,10 +1589,6 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>Indien aangevinkt, worden hostnamen opgezocht via de proxy.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Proxy gebruiken voor opzoeken van hostnamen</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Metadata ontvangen</translation>
     </message>
@@ -1746,7 +1738,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Geen)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1762,7 +1754,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>Opzoeken van hostnamen uitvoeren via proxy</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
@@ -1794,7 +1786,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Gemengde modus</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
@@ -1802,6 +1794,14 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2129,10 +2129,6 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>Naam wijzigen mislukt: bestand of map bestaat al</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Overeenkomen met alle resultaten</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Selectie aan/uit</translation>
     </message>
@@ -2387,6 +2383,14 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     <message>
         <source>Checking (0)</source>
         <translation>Controleren (0)</translation>
+    </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2965,6 +2969,10 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <source>Renaming</source>
         <translation>Naam wijzigen</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2987,10 +2995,6 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     <message>
         <source>ratio</source>
         <translation>verhouding</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="vanished">minuten</translation>
     </message>
     <message>
         <source>total minutes</source>
@@ -3518,7 +3522,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Naam wijzigen)</translation>
+        <translation type="vanished">Naam wijzigen)</translation>
     </message>
 </context>
 <context>

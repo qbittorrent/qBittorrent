@@ -1738,7 +1738,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(None)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1794,6 +1794,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2376,6 +2384,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <source>Checking (0)</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2953,6 +2969,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <source>Renaming</source>
         <translation>Renaming</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2975,10 +2995,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>ratio</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="vanished">minutes</translation>
     </message>
     <message>
         <source>total minutes</source>
@@ -3503,10 +3519,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>New name:</source>
         <translation>New name:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

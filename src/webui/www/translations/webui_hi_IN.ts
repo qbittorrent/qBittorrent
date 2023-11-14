@@ -1165,10 +1165,6 @@
         <translation>जब अनुपात तक पहुँचे</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">जब स्रोत काल समाप्त हो जाए</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation type="unfinished" />
     </message>
@@ -1738,7 +1734,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(कोई नहीं)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1786,7 +1782,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>मिश्रित रीति</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
@@ -1794,6 +1790,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2376,6 +2380,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Checking (0)</source>
         <translation>जाँच रहे हैं (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2953,6 +2965,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Renaming</source>
         <translation>पुनः नामकरण</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2975,10 +2991,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>ratio</source>
         <translation>अनुपात</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="vanished">मिनट</translation>
     </message>
     <message>
         <source>total minutes</source>
@@ -3503,10 +3515,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>New name:</source>
         <translation>नया नाम:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

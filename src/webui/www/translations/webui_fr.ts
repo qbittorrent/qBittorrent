@@ -1165,10 +1165,6 @@
         <translation>Lorsque le ratio est atteint</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Lorsque la durée de partage est atteinte</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Permettre des connexions multiples depuis la même adresse IP :</translation>
     </message>
@@ -1592,10 +1588,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Si cochée, les recherches de nom d'hôte sont effectuées via le proxy.</translation>
     </message>
     <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation type="vanished">Utiliser un proxy pour la recherche du nom d'hôte</translation>
-    </message>
-    <message>
         <source>Metadata received</source>
         <translation>Métadonnées reçues</translation>
     </message>
@@ -1733,74 +1725,82 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Limite de profondeur pour Bdecode :</translation>
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <translation>Limite de jeton pour Bdecode :</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Lorsque la durée totale de partage atteint</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Aucun)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Taille de l'I2P entrant (requiert libtorrent &amp;gt;= 2.0) :</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
-        <translation type="unfinished" />
+        <translation>Chemin de l’exécutable Python (peut nécessiter un redémarrage) :</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation type="unfinished" />
+        <translation>Réinitialise aux valeurs par défaut si vide</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation>Recherche du nom d'hôte via un proxy</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation>Si &amp;quot;mode mixte&amp;quot; est activé, les torrents I2P sont autorisés a obtenir des pairs venant d'autres sources que le tracker et a se connecter à des IPs classiques sans fournir d'anonymisation. Cela peut être utile si l'utilisateur n'est pas intéressé par l'anonymisation de I2P mais veux tout de même être capable de se connecter à des pairs I2P.</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Quantité d'I2P entrant (requiert libtorrent &amp;gt;= 2.0) :</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Taille de l'I2P sortant (requiert libtorrent &amp;gt;= 2.0) :</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Quantité d'I2P sortant (requiert libtorrent &amp;gt;= 2.0) :</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation>I2P (Expérimental) (requiert libtorrent &amp;gt;= 2.0)</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
-        <translation type="unfinished" />
+        <translation>Nœuds d'amorçage DHT :</translation>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Lorsque la durée de partage inactif atteint</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Mode mixe</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>Limite de la taille du fichier .torrent :</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation>(Détection automatique si vide)</translation>
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2128,10 +2128,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Échec du renommage : le fichier ou le dossier existe déjà</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation type="vanished">Faire correspondre toutes les occurrences</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Basculer la sélection</translation>
     </message>
@@ -2169,7 +2165,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Correspondance de toutes les occurrences</translation>
     </message>
 </context>
 <context>
@@ -2387,6 +2383,14 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <source>Checking (0)</source>
         <translation>En vérification (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2541,7 +2545,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation type="unfinished" />
+        <translation>Réannonce dans</translation>
     </message>
 </context>
 <context>
@@ -2964,6 +2968,10 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <source>Renaming</source>
         <translation>Renommage</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2988,16 +2996,12 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>ratio</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation type="vanished">minutes</translation>
-    </message>
-    <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>minutes totales</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>minutes inactives</translation>
     </message>
 </context>
 <context>
@@ -3517,7 +3521,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Renommage)</translation>
+        <translation type="vanished">Renommage)</translation>
     </message>
 </context>
 <context>
@@ -3865,7 +3869,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Ajouter des Tags :</translation>
     </message>
 </context>
 <context>

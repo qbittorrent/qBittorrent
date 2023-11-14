@@ -1165,10 +1165,6 @@
         <translation>Når deleforhold når</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Når seedingtid når</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Tillad flere forbindelser fra den samme IP-adresse:</translation>
     </message>
@@ -1742,7 +1738,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Ingen)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1798,6 +1794,14 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2380,6 +2384,14 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <source>Checking (0)</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2957,6 +2969,10 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <source>Renaming</source>
         <translation>Omdøber</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2979,10 +2995,6 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     <message>
         <source>ratio</source>
         <translation>forhold</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="vanished">minutter</translation>
     </message>
     <message>
         <source>total minutes</source>
@@ -3507,10 +3519,6 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     <message>
         <source>New name:</source>
         <translation>Nyt navn:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

@@ -1166,10 +1166,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Cando a taxa alcance</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation type="vanished">Cando o tempo de sementeira alcance</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Permitir varias conexións desde o mesmo enderezo IP:</translation>
     </message>
@@ -1743,7 +1739,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Ningún)</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1799,6 +1795,14 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2381,6 +2385,14 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <source>Checking (0)</source>
         <translation>Comprobando (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2958,6 +2970,10 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <source>Renaming</source>
         <translation>Cambiar o nome</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2980,10 +2996,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     <message>
         <source>ratio</source>
         <translation>taxa</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="vanished">minutos</translation>
     </message>
     <message>
         <source>total minutes</source>
@@ -3508,10 +3520,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     <message>
         <source>New name:</source>
         <translation>Nome novo:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
