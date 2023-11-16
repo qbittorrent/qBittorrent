@@ -26,27 +26,9 @@
  * exception statement from your version.
  */
 
-#pragma once
-
-#include <optional>
-
-#include <QString>
-
-#include "base/path.h"
 #include "downloadpathoption.h"
 
-class QJsonObject;
-
-namespace BitTorrent
+bool BitTorrent::operator==(const DownloadPathOption &left, const DownloadPathOption &right)
 {
-    struct CategoryOptions
-    {
-        Path savePath;
-        std::optional<DownloadPathOption> downloadPath;
-
-        static CategoryOptions fromJSON(const QJsonObject &jsonObj);
-        QJsonObject toJSON() const;
-    };
-
-    bool operator==(const CategoryOptions &left, const CategoryOptions &right);
+    return ((left.enabled == right.enabled) && (left.path == right.path));
 }

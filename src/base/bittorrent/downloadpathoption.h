@@ -28,25 +28,15 @@
 
 #pragma once
 
-#include <optional>
-
-#include <QString>
-
 #include "base/path.h"
-#include "downloadpathoption.h"
-
-class QJsonObject;
 
 namespace BitTorrent
 {
-    struct CategoryOptions
+    struct DownloadPathOption
     {
-        Path savePath;
-        std::optional<DownloadPathOption> downloadPath;
-
-        static CategoryOptions fromJSON(const QJsonObject &jsonObj);
-        QJsonObject toJSON() const;
+        bool enabled = false;
+        Path path;
     };
 
-    bool operator==(const CategoryOptions &left, const CategoryOptions &right);
+    bool operator==(const DownloadPathOption &left, const DownloadPathOption &right);
 }

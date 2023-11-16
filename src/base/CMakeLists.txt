@@ -14,6 +14,7 @@ add_library(qbt_base STATIC
     bittorrent/common.h
     bittorrent/customstorage.h
     bittorrent/dbresumedatastorage.h
+    bittorrent/downloadpathoption.h
     bittorrent/downloadpriority.h
     bittorrent/extensiondata.h
     bittorrent/filesearcher.h
@@ -118,6 +119,7 @@ add_library(qbt_base STATIC
     bittorrent/categoryoptions.cpp
     bittorrent/customstorage.cpp
     bittorrent/dbresumedatastorage.cpp
+    bittorrent/downloadpathoption.cpp
     bittorrent/downloadpriority.cpp
     bittorrent/filesearcher.cpp
     bittorrent/filterparserthread.cpp
