@@ -68,6 +68,7 @@ jobs:
         with:
           version: "6.5.2"
           archives: qtbase qtsvg qttools
+          cache: true
 
       - name: Install libtorrent
         run: |
