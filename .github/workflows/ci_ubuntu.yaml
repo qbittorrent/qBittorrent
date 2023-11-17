@@ -48,6 +48,7 @@ jobs:
         with:
           version: ${{ matrix.qt_version }}
           archives: icu qtbase qtsvg qttools
+          cache: true
 
       - name: Install libtorrent
         run: |
