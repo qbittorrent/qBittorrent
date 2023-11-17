@@ -63,6 +63,7 @@ jobs:
           version: ${{ matrix.qt_version }}
           archives: qtbase qtdeclarative qtsvg qttools
           # Not sure why Qt made a hard dependency on qtdeclarative, try removing it when Qt > 6.4.0
+          cache: true
 
       - name: Install libtorrent
         run: |
