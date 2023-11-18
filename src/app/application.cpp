@@ -57,7 +57,6 @@
 #include <QProgressDialog>
 #ifdef Q_OS_WIN
 #include <QSessionManager>
-#include <QSharedMemory>
 #endif // Q_OS_WIN
 #ifdef Q_OS_MACOS
 #include <QFileOpenEvent>
@@ -92,7 +91,6 @@
 #include "upgrade.h"
 
 #ifndef DISABLE_GUI
-#include "gui/guiaddtorrentmanager.h"
 #include "gui/desktopintegration.h"
 #include "gui/mainwindow.h"
 #include "gui/shutdownconfirmdialog.h"
@@ -271,16 +269,17 @@ Application::Application(int &argc, char **argv)
     SettingsStorage::initInstance();
     Preferences::initInstance();
 
-    const bool firstTimeUser = !Preferences::instance()->getAcceptedLegal();
-    if (!firstTimeUser)
+    const bool firstTimeUser = SettingsStorage::instance()->isEmpty();
+    if (firstTimeUser)
+    {
+        setCurrentMigrationVersion();
+        handleChangedDefaults(DefaultPreferencesMode::Current);
+    }
+    else
     {
         if (!upgrade())
             throw RuntimeError(u"Failed migration of old settings"_s); // Not translatable. Translation isn't configured yet.
         handleChangedDefaults(DefaultPreferencesMode::Legacy);
-    }
-    else
-    {
-        handleChangedDefaults(DefaultPreferencesMode::Current);
     }
 
     initializeTranslation();

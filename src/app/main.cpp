@@ -55,7 +55,6 @@
 #include <QMessageBox>
 #include <QPainter>
 #include <QPen>
-#include <QPushButton>
 #include <QSplashScreen>
 #include <QTimer>
 
@@ -76,11 +75,12 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/profile.h"
+#include "base/settingvalue.h"
 #include "base/version.h"
 #include "application.h"
 #include "cmdoptions.h"
+#include "legalnotice.h"
 #include "signalhandler.h"
-#include "upgrade.h"
 
 #ifndef DISABLE_GUI
 #include "gui/utils.h"
@@ -89,7 +89,6 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 using namespace std::chrono_literals;
 
 void displayVersion();
-bool userAgreesWithLegalNotice();
 void displayBadArgMessage(const QString &message);
 void displayErrorMessage(const QString &message);
 
@@ -168,28 +167,6 @@ int main(int argc, char *argv[])
                                  .arg(u"-h (or --help)"_s));
         }
 
-        const bool firstTimeUser = !Preferences::instance()->getAcceptedLegal();
-        if (firstTimeUser)
-        {
-#ifndef DISABLE_GUI
-            if (!userAgreesWithLegalNotice())
-                return EXIT_SUCCESS;
-#elif defined(Q_OS_WIN)
-            if (_isatty(_fileno(stdin))
-                && _isatty(_fileno(stdout))
-                && !userAgreesWithLegalNotice())
-                return EXIT_SUCCESS;
-#else
-            if (!params.shouldDaemonize
-                && isatty(fileno(stdin))
-                && isatty(fileno(stdout))
-                && !userAgreesWithLegalNotice())
-                return EXIT_SUCCESS;
-#endif
-
-            setCurrentMigrationVersion();
-        }
-
         // Check if qBittorrent is already running
         if (app->hasAnotherInstance())
         {
@@ -197,7 +174,14 @@ int main(int argc, char *argv[])
             if (params.shouldDaemonize)
             {
                 throw CommandLineParameterError(QCoreApplication::translate("Main", "You cannot use %1: qBittorrent is already running.")
-                                     .arg(u"-d (or --daemon)"_s));
+                    .arg(u"-d (or --daemon)"_s));
+            }
+
+            // print friendly message if there are no other command line args
+            if (argc == 1)
+            {
+                const QString message = QCoreApplication::translate("Main", "Another qBittorrent instance is already running.");
+                printf("%s\n", qUtf8Printable(message));
             }
 #endif
 
@@ -205,6 +189,26 @@ int main(int argc, char *argv[])
             app->callMainInstance();
 
             return EXIT_SUCCESS;
+        }
+
+        CachedSettingValue<bool> legalNoticeShown {u"LegalNotice/Accepted"_s, false};
+        if (params.confirmLegalNotice)
+            legalNoticeShown = true;
+
+        if (!legalNoticeShown)
+        {
+#ifndef DISABLE_GUI
+            const bool isInteractive = true;
+#elif defined(Q_OS_WIN)
+            const bool isInteractive = (_isatty(_fileno(stdin)) != 0) && (_isatty(_fileno(stdout)) != 0);
+#else
+            // when run in daemon mode user can only dismiss the notice with command line option
+            const bool isInteractive = !params.shouldDaemonize
+                && ((isatty(fileno(stdin)) != 0) && (isatty(fileno(stdout)) != 0));
+#endif
+            showLegalNotice(isInteractive);
+            if (isInteractive)
+                legalNoticeShown = true;
         }
 
 #ifdef Q_OS_MACOS
@@ -294,13 +298,13 @@ void displayBadArgMessage(const QString &message)
 {
     const QString help = QCoreApplication::translate("Main", "Run application with -h option to read about command line parameters.");
 #if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
-    QMessageBox msgBox(QMessageBox::Critical, QCoreApplication::translate("Main", "Bad command line"),
+    QMessageBox msgBox(QMessageBox::Critical, QCoreApplication::translate("Main", "Bad command line options"),
                        (message + u'\n' + help), QMessageBox::Ok);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
     msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();
 #else
-    const QString errMsg = QCoreApplication::translate("Main", "Bad command line: ") + u'\n'
+    const QString errMsg = QCoreApplication::translate("Main", "Bad command line options:") + u'\n'
         + message + u'\n'
         + help + u'\n';
     fprintf(stderr, "%s", qUtf8Printable(errMsg));
@@ -329,45 +333,6 @@ void displayErrorMessage(const QString &message)
     const QString errMsg = QCoreApplication::translate("Main", "qBittorrent has encountered an unrecoverable error.") + u'\n' + message + u'\n';
     fprintf(stderr, "%s", qUtf8Printable(errMsg));
 #endif
-}
-
-bool userAgreesWithLegalNotice()
-{
-    Preferences *const pref = Preferences::instance();
-    Q_ASSERT(!pref->getAcceptedLegal());
-
-#ifdef DISABLE_GUI
-    const QString eula = u"\n*** %1 ***\n"_s.arg(QCoreApplication::translate("Main", "Legal Notice"))
-        + QCoreApplication::translate("Main", "qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.") + u"\n\n"
-        + QCoreApplication::translate("Main", "No further notices will be issued.") + u"\n\n"
-        + QCoreApplication::translate("Main", "Press %1 key to accept and continue...").arg(u"'y'"_s) + u'\n';
-    printf("%s", qUtf8Printable(eula));
-
-    const char ret = getchar(); // Read pressed key
-    if ((ret == 'y') || (ret == 'Y'))
-    {
-        // Save the answer
-        pref->setAcceptedLegal(true);
-        return true;
-    }
-#else
-    QMessageBox msgBox;
-    msgBox.setText(QCoreApplication::translate("Main", "qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
-    msgBox.setWindowTitle(QCoreApplication::translate("Main", "Legal notice"));
-    msgBox.addButton(QCoreApplication::translate("Main", "Cancel"), QMessageBox::RejectRole);
-    const QAbstractButton *agreeButton = msgBox.addButton(QCoreApplication::translate("Main", "I Agree"), QMessageBox::AcceptRole);
-    msgBox.show(); // Need to be shown or to moveToCenter does not work
-    msgBox.move(Utils::Gui::screenCenter(&msgBox));
-    msgBox.exec();
-    if (msgBox.clickedButton() == agreeButton)
-    {
-        // Save the answer
-        pref->setAcceptedLegal(true);
-        return true;
-    }
-#endif // DISABLE_GUI
-
-    return false;
 }
 
 #ifdef Q_OS_UNIX

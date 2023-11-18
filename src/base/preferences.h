@@ -340,8 +340,6 @@ public:
     void setDNSLastUpd(const QDateTime &date);
     QString getDNSLastIP() const;
     void setDNSLastIP(const QString &ip);
-    bool getAcceptedLegal() const;
-    void setAcceptedLegal(bool accepted);
     QByteArray getMainGeometry() const;
     void setMainGeometry(const QByteArray &geometry);
     bool isFiltersSidebarVisible() const;
