@@ -180,7 +180,7 @@ int main(int argc, char *argv[])
 #else
             if (params.shouldDaemonize)
             {
-                const QString errMsg = QCoreApplication::translate("Main", "You have not read and accepted the legal notice. Exiting now.");
+                const QString errMsg = QCoreApplication::translate("Main", "You have not yet read and accepted the legal notice. Exiting now.");
                 LogMsg(errMsg, Log::CRITICAL);
                 fprintf(stderr, "%s\n", qUtf8Printable(errMsg));
                 return EXIT_FAILURE;
@@ -351,14 +351,18 @@ bool userAgreesWithLegalNotice()
     Preferences *const pref = Preferences::instance();
     Q_ASSERT(!pref->getAcceptedLegal());
 
+    const QString eulaTitle = QCoreApplication::translate("Main", "Legal Notice");
+    const QString eulaBody = QCoreApplication::translate("Main", "qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.");
+    const QString eulaEnd = QCoreApplication::translate("Main", "No further notices will be issued.");
+
 #ifdef DISABLE_GUI
-    const QString eula = u"\n*** %1 ***\n"_s.arg(QCoreApplication::translate("Main", "Legal Notice"))
-        + QCoreApplication::translate("Main", "qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.") + u"\n\n"
-        + QCoreApplication::translate("Main", "No further notices will be issued.") + u"\n\n"
+    const QString eula = u"\n*** %1 ***\n"_s.arg(eulaTitle)
+        + eulaBody + u"\n\n"
+        + eulaEnd + u"\n\n"
         + QCoreApplication::translate("Main", "Press %1 key to accept and continue...").arg(u"'y'"_s) + u'\n';
     printf("%s", qUtf8Printable(eula));
 
-    const char ret = getchar(); // Read pressed key
+    const char ret = ::getchar(); // Read pressed key
     if ((ret == 'y') || (ret == 'Y'))
     {
         // Save the answer
@@ -367,8 +371,8 @@ bool userAgreesWithLegalNotice()
     }
 #else
     QMessageBox msgBox;
-    msgBox.setText(QCoreApplication::translate("Main", "qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
-    msgBox.setWindowTitle(QCoreApplication::translate("Main", "Legal notice"));
+    msgBox.setText(eulaBody + u"\n\n" + eulaEnd);
+    msgBox.setWindowTitle(eulaTitle);
     msgBox.addButton(QCoreApplication::translate("Main", "Cancel"), QMessageBox::RejectRole);
     const QAbstractButton *agreeButton = msgBox.addButton(QCoreApplication::translate("Main", "I Agree"), QMessageBox::AcceptRole);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
