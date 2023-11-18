@@ -22,6 +22,7 @@ jobs:
     env:
       boost_path: "${{ github.workspace }}/../boost"
       libtorrent_path: "${{ github.workspace }}/libtorrent"
+      vpkg_triplet_path: "${{ github.workspace }}/../triplets_overlay"
 
     steps:
       - name: Checkout repository
@@ -47,16 +48,32 @@ jobs:
           vcpkgDirectory: C:/vcpkg
           doNotUpdateVcpkg: true  # the preinstalled vcpkg is updated regularly
 
-      - name: Install dependencies from vcpkg
+      - name: Install dependencies with vcpkg
         run: |
+          # create our own triplet
+          New-Item `
+            -Force `
+            -ItemType File `
+            -Path "${{ env.vpkg_triplet_path }}/x64-windows-static-md-release.cmake"
+          Add-Content `
+            -Path "${{ env.vpkg_triplet_path }}/x64-windows-static-md-release.cmake" `
+            -Value @("set(VCPKG_TARGET_ARCHITECTURE x64)",
+              "set(VCPKG_LIBRARY_LINKAGE static)",
+              "set(VCPKG_CRT_LINKAGE dynamic)",
+              "set(VCPKG_BUILD_TYPE release)",
+              "set(VCPKG_C_FLAGS /guard:cf)",
+              "set(VCPKG_CXX_FLAGS /guard:cf)",
+              "set(VCPKG_LINKER_FLAGS /guard:cf)")
           # clear buildtrees after each package installation to reduce disk space requirements
           $packages = `
-            "openssl:x64-windows-static-release",
-            "zlib:x64-windows-static-release"
+            "openssl:x64-windows-static-md-release",
+            "zlib:x64-windows-static-md-release"
           ${{ env.RUNVCPKG_VCPKG_ROOT }}/vcpkg.exe upgrade `
-            --no-dry-run
+            --no-dry-run `
+            --overlay-triplets="${{ env.vpkg_triplet_path }}"
           ${{ env.RUNVCPKG_VCPKG_ROOT }}/vcpkg.exe install `
             --clean-after-build `
+            --overlay-triplets="${{ env.vpkg_triplet_path }}" `
             $packages
 
       - name: Install boost
@@ -96,7 +113,7 @@ jobs:
             -DBUILD_SHARED_LIBS=OFF `
             -Ddeprecated-functions=OFF `
             -Dstatic_runtime=OFF `
-            -DVCPKG_TARGET_TRIPLET=x64-windows-static-release
+            -DVCPKG_TARGET_TRIPLET=x64-windows-static-md-release
           cmake --build build
           cmake --install build
 
@@ -113,7 +130,7 @@ jobs:
             -DLibtorrentRasterbar_DIR="${{ env.libtorrent_path }}/lib/cmake/LibtorrentRasterbar" `
             -DMSVC_RUNTIME_DYNAMIC=ON `
             -DTESTING=ON `
-            -DVCPKG_TARGET_TRIPLET=x64-windows-static-release `
+            -DVCPKG_TARGET_TRIPLET=x64-windows-static-md-release `
             -DVERBOSE_CONFIGURE=ON `
             --graphviz=build/target_graph.dot
           cmake --build build --target qbt_update_translations
