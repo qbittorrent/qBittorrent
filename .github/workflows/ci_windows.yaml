@@ -32,7 +32,12 @@ jobs:
 
       - name: Install build tools
         run: |
-          choco install ninja
+          if ((Get-Command "ninja.exe" -ErrorAction SilentlyContinue) -eq $null)
+          {
+             choco install ninja
+          }
+          where.exe ninja
+          ninja --version
 
       # use the preinstalled vcpkg from image
       # https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md#package-management
