@@ -29,6 +29,8 @@
 
 #include "guiaddtorrentmanager.h"
 
+#include <QScreen>
+
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrentdescriptor.h"
 #include "base/logger.h"
@@ -39,6 +41,39 @@
 #include "interfaces/iguiapplication.h"
 #include "mainwindow.h"
 #include "raisedmessagebox.h"
+
+namespace
+{
+    void adjustDialogGeometry(QWidget *dialog, const QWidget *parentWindow)
+    {
+        // It is preferable to place the dialog in the center of the parent window.
+        // However, if it goes beyond the current screen, then move it so that it fits there
+        // (or, if the dialog is larger than the current screen, at least make sure that
+        // the upper/left coordinates of the dialog are inside it).
+
+        QRect dialogGeometry = dialog->geometry();
+
+        dialogGeometry.moveCenter(parentWindow->geometry().center());
+
+        const QRect screenGeometry = parentWindow->screen()->availableGeometry();
+
+        QPoint delta = screenGeometry.bottomRight() - dialogGeometry.bottomRight();
+        if (delta.x() > 0)
+            delta.setX(0);
+        if (delta.y() > 0)
+            delta.setY(0);
+        dialogGeometry.translate(delta);
+
+        delta = screenGeometry.topLeft() - dialogGeometry.topLeft();
+        if (delta.x() < 0)
+            delta.setX(0);
+        if (delta.y() < 0)
+            delta.setY(0);
+        dialogGeometry.translate(delta);
+
+        dialog->setGeometry(dialogGeometry);
+    }
+}
 
 GUIAddTorrentManager::GUIAddTorrentManager(IGUIApplication *app, BitTorrent::Session *session, QObject *parent)
     : GUIApplicationComponent(app, session, parent)
@@ -200,6 +235,8 @@ bool GUIAddTorrentManager::processTorrent(const QString &source, const BitTorren
 
         m_dialogs.remove(infoHash);
     });
+
+    adjustDialogGeometry(dlg, app()->mainWindow());
     dlg->show();
 
     return true;
