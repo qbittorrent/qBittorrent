@@ -46,6 +46,7 @@ jobs:
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
         with:
+          store_cache: ${{ startsWith(github.ref, 'refs/heads/') }}
           update_packager_index: false
 
       - name: Install boost
