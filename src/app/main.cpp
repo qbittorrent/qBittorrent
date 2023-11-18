@@ -73,6 +73,7 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #endif // DISABLE_GUI
 
 #include "base/global.h"
+#include "base/logger.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/version.h"
@@ -170,16 +171,27 @@ int main(int argc, char *argv[])
             if (!userAgreesWithLegalNotice())
                 return EXIT_SUCCESS;
 #elif defined(Q_OS_WIN)
-            if (_isatty(_fileno(stdin))
-                && _isatty(_fileno(stdout))
+            if ((_isatty(_fileno(stdin)) != 0)
+                && (_isatty(_fileno(stdout)) != 0)
                 && !userAgreesWithLegalNotice())
+            {
                 return EXIT_SUCCESS;
+            }
 #else
-            if (!params.shouldDaemonize
-                && isatty(fileno(stdin))
-                && isatty(fileno(stdout))
+            if (params.shouldDaemonize)
+            {
+                const QString errMsg = QCoreApplication::translate("Main", "You have not read and accepted the legal notice. Exiting now.");
+                LogMsg(errMsg, Log::CRITICAL);
+                fprintf(stderr, "%s\n", qUtf8Printable(errMsg));
+                return EXIT_FAILURE;
+            }
+
+            if ((isatty(fileno(stdin)) != 0)
+                && (isatty(fileno(stdout)) != 0)
                 && !userAgreesWithLegalNotice())
+            {
                 return EXIT_SUCCESS;
+            }
 #endif
 
             setCurrentMigrationVersion();
