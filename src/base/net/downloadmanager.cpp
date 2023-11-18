@@ -299,6 +299,8 @@ void Net::DownloadManager::processRequest(DownloadHandlerImpl *downloadHandler)
     // Qt doesn't support Magnet protocol so we need to handle redirections manually
     request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::ManualRedirectPolicy);
 
+    request.setTransferTimeout();
+
     QNetworkReply *reply = m_networkManager->get(request);
     connect(reply, &QNetworkReply::finished, this, [this, downloadHandler]
     {
