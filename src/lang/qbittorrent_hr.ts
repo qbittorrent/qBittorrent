@@ -1487,18 +1487,6 @@ Do you want to make qBittorrent the default application for these?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The Web UI administrator username is: %1</source>
-        <translation type="vanished">Korisničko ime administratora web sučelja je: %1</translation>
-    </message>
-    <message>
-        <source>The Web UI administrator password has not been changed from the default: %1</source>
-        <translation type="vanished">Lozinka administratora web sučelja nije promijenjena u odnosu na zadanu: %1</translation>
-    </message>
-    <message>
-        <source>This is a security risk, please change your password in program preferences.</source>
-        <translation type="vanished">Ovo je sigurnosni rizik, molimo promijenite lozinku u postavkama programa.</translation>
-    </message>
-    <message>
         <location filename="../app/application.cpp" line="957"/>
         <source>Exit</source>
         <translation>Izlaz</translation>
@@ -2743,10 +2731,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../app/cmdoptions.cpp" line="514"/>
         <source>port</source>
         <translation>port</translation>
-    </message>
-    <message>
-        <source>Change the Web UI port</source>
-        <translation type="vanished">Promijenite port web sučelja</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="512"/>
@@ -7232,10 +7216,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; ali ne 
         <translation>Pogreška lokacije</translation>
     </message>
     <message>
-        <source>The alternative Web UI files location cannot be blank.</source>
-        <translation type="vanished">Alternativna lokacija datoteka web sučelja ne može biti prazna.</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="581"/>
         <location filename="../gui/optionsdialog.cpp" line="589"/>
         <source>Choose export directory</source>
@@ -7334,14 +7314,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; ali ne 
         <location filename="../gui/optionsdialog.cpp" line="1898"/>
         <source>Length Error</source>
         <translation>Pogreška duljine</translation>
-    </message>
-    <message>
-        <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="vanished">Korisničko ime web sučelja mora imati najmanje 3 znaka.</translation>
-    </message>
-    <message>
-        <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="vanished">Korisničko ime web sučelja mora imati najmanje 6 znakova.</translation>
     </message>
 </context>
 <context>
@@ -11871,22 +11843,6 @@ Odaberite drugo ime i pokušajte ponovno.</translation>
         <translation>Zabranjene su simboličke veze unutar mape alternativnog korisničkog sučelja.</translation>
     </message>
     <message>
-        <source>Using built-in Web UI.</source>
-        <translation type="vanished">Korištenje ugrađenog web sučelja.</translation>
-    </message>
-    <message>
-        <source>Using custom Web UI. Location: &quot;%1&quot;.</source>
-        <translation type="vanished">Korištenje prilagođenog web sučelja. Lokacija: &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Web UI translation for selected locale (%1) has been successfully loaded.</source>
-        <translation type="vanished">Prijevod web sučelja za odabranu lokalizaciju (%1) uspješno je učitan.</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t load Web UI translation for selected locale (%1).</source>
-        <translation type="vanished">Nije moguće učitati prijevod web sučelja za odabrani jezik (%1).</translation>
-    </message>
-    <message>
         <location filename="../webui/webapplication.cpp" line="400"/>
         <source>Using built-in WebUI.</source>
         <translation type="unfinished"></translation>
@@ -11944,22 +11900,6 @@ Odaberite drugo ime i pokušajte ponovno.</translation>
 </context>
 <context>
     <name>WebUI</name>
-    <message>
-        <source>Web UI: HTTPS setup successful</source>
-        <translation type="vanished">Web sučelje: HTTPS postavljanje uspješno</translation>
-    </message>
-    <message>
-        <source>Web UI: HTTPS setup failed, fallback to HTTP</source>
-        <translation type="vanished">Web sučelje: postavljanje HTTPS-a nije uspjelo, povratak na HTTP</translation>
-    </message>
-    <message>
-        <source>Web UI: Now listening on IP: %1, port: %2</source>
-        <translation type="vanished">Web sučelje: Sada sluša IP: %1, port: %2</translation>
-    </message>
-    <message>
-        <source>Web UI: Unable to bind to IP: %1, port: %2. Reason: %3</source>
-        <translation type="vanished">Web sučelje: nije moguće vezati se na IP: %1, port: %2. Razlog: %3</translation>
-    </message>
     <message>
         <location filename="../webui/webui.cpp" line="63"/>
         <source>Credentials are not set</source>

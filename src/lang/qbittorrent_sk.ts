@@ -1145,7 +1145,7 @@ Chyba: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="803"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Pripnúť dialógové okno &quot;Pridať nový torrent&quot; k hlavnému oknu</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="815"/>
@@ -1477,29 +1477,17 @@ Chcete qBittorrent nastaviť ako predvolenú aplikáciu?</translation>
     <message>
         <location filename="../app/application.cpp" line="923"/>
         <source>The WebUI administrator username is: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Používateľské meno administrátora WebUI rozhrania: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="924"/>
         <source>The WebUI administrator password was not set. A temporary password is provided for this session: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Heslo administrátora WebUI nebolo nastavené. Dočasné heslo pre túto reláciu je: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="925"/>
         <source>You should set your own password in program preferences.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The Web UI administrator username is: %1</source>
-        <translation type="vanished">Používateľské meno správcu webového rozhrania je: %1</translation>
-    </message>
-    <message>
-        <source>The Web UI administrator password has not been changed from the default: %1</source>
-        <translation type="vanished">Predvolené heslo správcu webového používateľského rozhrania sa nezmenilo: %1</translation>
-    </message>
-    <message>
-        <source>This is a security risk, please change your password in program preferences.</source>
-        <translation type="vanished">Toto je bezpečnostné riziko, zmeňte si heslo v nastaveniach programu.</translation>
+        <translation>Mali by ste si nastaviť vlastné heslo vo voľbách programu.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="957"/>
@@ -2749,13 +2737,9 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
         <translation>port</translation>
     </message>
     <message>
-        <source>Change the Web UI port</source>
-        <translation type="vanished">Zmeniť port webového rozhrania</translation>
-    </message>
-    <message>
         <location filename="../app/cmdoptions.cpp" line="512"/>
         <source>Change the WebUI port</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmeniť WebUI port.</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="515"/>
@@ -3129,7 +3113,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     <message>
         <location filename="../app/filelogger.cpp" line="185"/>
         <source>An error occurred while trying to open the log file. Logging to file is disabled.</source>
-        <translation>Vyskytla sa chyba pri pokuse otvoriť súbor protokolu. Zaznamenávanie do súboru je vypnuté.</translation>
+        <translation>Vyskytla sa chyba pri pokuse otvoriť súbor logu. Zaznamenávanie do súboru je vypnuté.</translation>
     </message>
 </context>
 <context>
@@ -3597,7 +3581,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="103"/>
         <source>&amp;Log</source>
-        <translation>Protoko&amp;l</translation>
+        <translation>&amp;Log</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="234"/>
@@ -3750,7 +3734,7 @@ No further notices will be issued.</source>
         <location filename="../gui/mainwindow.cpp" line="1850"/>
         <location filename="../gui/mainwindow.cpp" line="1852"/>
         <source>Execution Log</source>
-        <translation>Protokol spustení</translation>
+        <translation>Log programu</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="637"/>
@@ -6203,12 +6187,12 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     <message>
         <location filename="../gui/optionsdialog.ui" line="661"/>
         <source>Backup the log file after:</source>
-        <translation>Zálohovať súbor protokolov po dosiahnutí:</translation>
+        <translation>Zálohovať súbor logov po dosiahnutí:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="701"/>
         <source>Delete backup logs older than:</source>
-        <translation>Vymazať zálohy súborov protokolov staršie ako:</translation>
+        <translation>Vymazať zálohy súborov logov staršie ako:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="816"/>
@@ -6305,7 +6289,7 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     <message>
         <location filename="../gui/optionsdialog.ui" line="624"/>
         <source>&amp;Log file</source>
-        <translation>Súbor protokol&amp;ov</translation>
+        <translation>Súbor l&amp;ogov</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="822"/>
@@ -6403,7 +6387,7 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
     <message>
         <location filename="../gui/optionsdialog.ui" line="658"/>
         <source>Creates an additional log file after the log file reaches the specified file size</source>
-        <translation>Vytvorí ďalší súbor protokolu potom, čo súbor protokolu dosiahne zadanú veľkosť súboru</translation>
+        <translation>Vytvorí ďalší súbor logu potom, čo súbor logu dosiahne zadanú veľkosť súboru</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="725"/>
@@ -7214,7 +7198,7 @@ readme[0-9].txt: filtruje &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, ale 
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1233"/>
         <source>WebUI configuration failed. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI konfigurácia zlyhala. Dôvod: %1</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1770"/>
@@ -7229,21 +7213,17 @@ readme[0-9].txt: filtruje &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, ale 
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1891"/>
         <source>The WebUI username must be at least 3 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Používateľské meno pre WebUI musí mať aspoň 3 znaky.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1898"/>
         <source>The WebUI password must be at least 6 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Heslo pre WebUI musí mať aspoň 6 znakov.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1908"/>
         <source>Location Error</source>
         <translation>Chyba umiestnenia</translation>
-    </message>
-    <message>
-        <source>The alternative Web UI files location cannot be blank.</source>
-        <translation type="vanished">Umiestnenie súborov Alternatívneho UI nemôže byť prázdne.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="581"/>
@@ -7301,7 +7281,7 @@ readme[0-9].txt: filtruje &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, ale 
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1908"/>
         <source>The alternative WebUI files location cannot be blank.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternatívne umiestnenie WebUI súborov nemôže byť prázdne.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1945"/>
@@ -7344,14 +7324,6 @@ readme[0-9].txt: filtruje &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, ale 
         <location filename="../gui/optionsdialog.cpp" line="1898"/>
         <source>Length Error</source>
         <translation>Chyba dĺžky</translation>
-    </message>
-    <message>
-        <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="vanished">Používateľské meno pre webové rozhranie musí mať dĺžku aspoň 3 znaky.</translation>
-    </message>
-    <message>
-        <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="vanished">Heslo pre webové rozhranie musí mať dĺžku aspoň 6 znakov.</translation>
     </message>
 </context>
 <context>
@@ -7542,7 +7514,7 @@ readme[0-9].txt: filtruje &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, ale 
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="310"/>
         <source>Some peers cannot be added. Check the Log for details.</source>
-        <translation>Niektorých peerov nebolo možné pridať. Pozrite prosím Protokol pre detaily.</translation>
+        <translation>Niektorých peerov nebolo možné pridať. Pozrite prosím Log pre detaily.</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="312"/>
@@ -11613,7 +11585,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="845"/>
         <source>Errors occurred when exporting .torrent files. Check execution log for details.</source>
-        <translation>Pri exportovaní .torrent súborov nastali chyby. Pre detaily skontrolujte protokol spustení.</translation>
+        <translation>Pri exportovaní .torrent súborov nastali chyby. Pre detaily skontrolujte log programu.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="962"/>
@@ -11694,7 +11666,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="252"/>
         <source>The UI Theme changes could not be fully applied. The details can be found in the Log.</source>
-        <translation>Zmeny motívu používateľského rozhrania nebolo možné plne použiť. Podrobnosti je možné nájsť v Protokole.</translation>
+        <translation>Zmeny motívu používateľského rozhrania nebolo možné plne použiť. Podrobnosti je možné nájsť v Logu.</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="336"/>
@@ -11770,7 +11742,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="80"/>
         <source>Python detected, executable name: &apos;%1&apos;, version: %2</source>
-        <translation>Python nájdený, názov: &apos;%1&apos;, verzia: %2</translation>
+        <translation>Python nájdený, názov binárky: &apos;%1&apos;, verzia: %2</translation>
     </message>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="270"/>
@@ -11880,45 +11852,29 @@ Please choose a different name and try again.</source>
         <translation>Symbolické linky sú v alternatívnom UI zakázané.</translation>
     </message>
     <message>
-        <source>Using built-in Web UI.</source>
-        <translation type="vanished">Používa sa vstavané Web UI.</translation>
-    </message>
-    <message>
-        <source>Using custom Web UI. Location: &quot;%1&quot;.</source>
-        <translation type="vanished">Používa sa vlastné Web UI. Umiestnenie: &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Web UI translation for selected locale (%1) has been successfully loaded.</source>
-        <translation type="vanished">Preklad Web UI do vybraného jazyka (%1) bol úspešne načítaný.</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t load Web UI translation for selected locale (%1).</source>
-        <translation type="vanished">Nepodarilo sa načítať preklad Web UI do vybraného jazyka (%1).</translation>
-    </message>
-    <message>
         <location filename="../webui/webapplication.cpp" line="400"/>
         <source>Using built-in WebUI.</source>
-        <translation type="unfinished"></translation>
+        <translation>Používa sa vstavané WebUI.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="402"/>
         <source>Using custom WebUI. Location: &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Používa sa vlastné WebUI. Umiestnenie: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="414"/>
         <source>WebUI translation for selected locale (%1) has been successfully loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI preklad pre vybrané locale (%1) bol úspešne načítaný.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="419"/>
         <source>Couldn&apos;t load WebUI translation for selected locale (%1).</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodarilo sa načítať WebUI preklad pre vybrané locale (%1).</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="470"/>
         <source>Missing &apos;:&apos; separator in WebUI custom HTTP header: &quot;%1&quot;</source>
-        <translation>Chýbajúce &apos;:&apos; oddeľovač vo vlastnej HTTP hlavičke WebUI: &quot;%1&quot;</translation>
+        <translation>Chýbajúci &apos;:&apos; oddeľovač vo vlastnej HTTP hlavičke WebUI: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="537"/>
@@ -11954,45 +11910,29 @@ Please choose a different name and try again.</source>
 <context>
     <name>WebUI</name>
     <message>
-        <source>Web UI: HTTPS setup successful</source>
-        <translation type="vanished">Web UI: HTTPS úspešne nastavené</translation>
-    </message>
-    <message>
-        <source>Web UI: HTTPS setup failed, fallback to HTTP</source>
-        <translation type="vanished">Web UI: Nastavenie HTTPS zlyhalo, prechádzam späť na HTTP</translation>
-    </message>
-    <message>
-        <source>Web UI: Now listening on IP: %1, port: %2</source>
-        <translation type="vanished">Web UI: načúva na IP: %1, port: %2</translation>
-    </message>
-    <message>
-        <source>Web UI: Unable to bind to IP: %1, port: %2. Reason: %3</source>
-        <translation type="vanished">Web UI: Nie je možné viazať na IP: %1, port: %2. Dôvod: %3</translation>
-    </message>
-    <message>
         <location filename="../webui/webui.cpp" line="63"/>
         <source>Credentials are not set</source>
-        <translation type="unfinished"></translation>
+        <translation>Prihlasovacie údaje nie sú nastavené</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="114"/>
         <source>WebUI: HTTPS setup successful</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI: HTTPS nastavenie úspešné</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="116"/>
         <source>WebUI: HTTPS setup failed, fallback to HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI: HTTPS nastavenie zlyhalo, použije sa HTTP</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="128"/>
         <source>WebUI: Now listening on IP: %1, port: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI: Načúva na IP: %1, port: %2</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="132"/>
         <source>Unable to bind to IP: %1, port: %2. Reason: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemožno viazať na IP: %1, port: %2. Dôvod: %3</translation>
     </message>
 </context>
 <context>

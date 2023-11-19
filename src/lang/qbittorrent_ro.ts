@@ -1490,18 +1490,6 @@ Doriți să faceți qBittorrent aplicația implicită pentru acestea?</translati
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The Web UI administrator username is: %1</source>
-        <translation type="vanished">Numele de administrator al interfeței web este: %1</translation>
-    </message>
-    <message>
-        <source>The Web UI administrator password has not been changed from the default: %1</source>
-        <translation type="vanished">Parola de administrator pentru interfața web nu a fost schimbată din cea implicită: %1</translation>
-    </message>
-    <message>
-        <source>This is a security risk, please change your password in program preferences.</source>
-        <translation type="vanished">Aceasta este un risk de securitate, vă rugăm să schimbați parola în preferințele programului.</translation>
-    </message>
-    <message>
         <location filename="../app/application.cpp" line="957"/>
         <source>Exit</source>
         <translation>Ieșire</translation>
@@ -2747,10 +2735,6 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
         <location filename="../app/cmdoptions.cpp" line="514"/>
         <source>port</source>
         <translation>port</translation>
-    </message>
-    <message>
-        <source>Change the Web UI port</source>
-        <translation type="vanished">Schimbați portul interfeței utilizatorului web</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="512"/>
@@ -7226,10 +7210,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <translation>Eroare locație</translation>
     </message>
     <message>
-        <source>The alternative Web UI files location cannot be blank.</source>
-        <translation type="vanished">Amplasarea fișierelor pentru interfața web alternativă nu poate fi goală.</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="581"/>
         <location filename="../gui/optionsdialog.cpp" line="589"/>
         <source>Choose export directory</source>
@@ -7328,14 +7308,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.cpp" line="1898"/>
         <source>Length Error</source>
         <translation>Eroare lungime</translation>
-    </message>
-    <message>
-        <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="vanished">Numele de utilizator al interfeței Web trebuie să conțină minim 3 caractere.</translation>
-    </message>
-    <message>
-        <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="vanished">Parola interfeței Web trebuie să fie de minim 6 caractere.</translation>
     </message>
 </context>
 <context>
@@ -11864,10 +11836,6 @@ Alegeți o denumire diferită și încercați iar.</translation>
         <translation>Legăturile simbolice înăuntrul dosarului de interfață alternativ sunt interzise.</translation>
     </message>
     <message>
-        <source>Using built-in Web UI.</source>
-        <translation type="vanished">Se folosește interfața web încorporată.</translation>
-    </message>
-    <message>
         <location filename="../webui/webapplication.cpp" line="400"/>
         <source>Using built-in WebUI.</source>
         <translation type="unfinished"></translation>
@@ -11925,10 +11893,6 @@ Alegeți o denumire diferită și încercați iar.</translation>
 </context>
 <context>
     <name>WebUI</name>
-    <message>
-        <source>Web UI: Now listening on IP: %1, port: %2</source>
-        <translation type="vanished">Interfața web: Ascultă acum pe adresa IP: %1, portul: %2</translation>
-    </message>
     <message>
         <location filename="../webui/webui.cpp" line="63"/>
         <source>Credentials are not set</source>

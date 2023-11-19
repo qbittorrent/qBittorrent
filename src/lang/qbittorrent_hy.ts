@@ -7299,10 +7299,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <source>Length Error</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="vanished">Web UI-ի օգտագործողի անունը պետք է պարունակի գոնե 3 նիշ։</translation>
-    </message>
 </context>
 <context>
     <name>PeerInfo</name>

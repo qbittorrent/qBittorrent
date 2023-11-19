@@ -1754,7 +1754,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>혼합 모드</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
@@ -3479,10 +3479,6 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <source>New name:</source>
         <translation>새 이름:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">이름 바꾸는 중)</translation>
     </message>
 </context>
 <context>

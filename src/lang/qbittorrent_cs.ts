@@ -1490,18 +1490,6 @@ Chcete qBittorrent nastavit jako výchozí program?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The Web UI administrator username is: %1</source>
-        <translation type="vanished">Uživatelské jméno administrátora Web UI je: &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The Web UI administrator password has not been changed from the default: %1</source>
-        <translation type="vanished">Heslo správce webového rozhraní uživatele je stále výchozí: %1</translation>
-    </message>
-    <message>
-        <source>This is a security risk, please change your password in program preferences.</source>
-        <translation type="vanished">Toto je bezpečnostní riziko, prosím změnte heslo v nastavení programu.</translation>
-    </message>
-    <message>
         <location filename="../app/application.cpp" line="957"/>
         <source>Exit</source>
         <translation>Ukončit</translation>
@@ -2747,10 +2735,6 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
         <location filename="../app/cmdoptions.cpp" line="514"/>
         <source>port</source>
         <translation>port</translation>
-    </message>
-    <message>
-        <source>Change the Web UI port</source>
-        <translation type="vanished">Změnit port Web UI</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="512"/>
@@ -7242,10 +7226,6 @@ readme[0-9].txt: filtruje &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, ale 
         <translation>Chyba umístění</translation>
     </message>
     <message>
-        <source>The alternative Web UI files location cannot be blank.</source>
-        <translation type="vanished">Umístění souborů Alternativního UI nemůže být prázdné.</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="581"/>
         <location filename="../gui/optionsdialog.cpp" line="589"/>
         <source>Choose export directory</source>
@@ -7344,14 +7324,6 @@ readme[0-9].txt: filtruje &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, ale 
         <location filename="../gui/optionsdialog.cpp" line="1898"/>
         <source>Length Error</source>
         <translation>Chyba délky</translation>
-    </message>
-    <message>
-        <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="vanished">Uživatelské jméno pro webové rozhraní musí být nejméně 3 znaky dlouhé.</translation>
-    </message>
-    <message>
-        <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="vanished">Heslo pro webové rozhraní musí být nejméně 6 znaků dlouhé.</translation>
     </message>
 </context>
 <context>
@@ -11880,22 +11852,6 @@ Prosím zvolte jiný název kategorie a zkuste to znovu.</translation>
         <translation>Symbolické linky jsou v alternativním UI zakázány.</translation>
     </message>
     <message>
-        <source>Using built-in Web UI.</source>
-        <translation type="vanished">Používá se vestavěné webové rozhraní.</translation>
-    </message>
-    <message>
-        <source>Using custom Web UI. Location: &quot;%1&quot;.</source>
-        <translation type="vanished">Používá se vlastní webové rozhraní. Umístění: &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Web UI translation for selected locale (%1) has been successfully loaded.</source>
-        <translation type="vanished">Překlad vybraného jazyka (%1) pro webové rozhraní byl úspěšně načten.</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t load Web UI translation for selected locale (%1).</source>
-        <translation type="vanished">Nelze načíst překlad webového rozhraní ve vybraném jazyce (%1).</translation>
-    </message>
-    <message>
         <location filename="../webui/webapplication.cpp" line="400"/>
         <source>Using built-in WebUI.</source>
         <translation type="unfinished"></translation>
@@ -11953,22 +11909,6 @@ Prosím zvolte jiný název kategorie a zkuste to znovu.</translation>
 </context>
 <context>
     <name>WebUI</name>
-    <message>
-        <source>Web UI: HTTPS setup successful</source>
-        <translation type="vanished">Web UI: HTTPS nastaveno úspěšně</translation>
-    </message>
-    <message>
-        <source>Web UI: HTTPS setup failed, fallback to HTTP</source>
-        <translation type="vanished">Web UI: Nastavení HTTPS selhalo, přecházím zpět na HTTP</translation>
-    </message>
-    <message>
-        <source>Web UI: Now listening on IP: %1, port: %2</source>
-        <translation type="vanished">Webové rozhraní naslouchá na IP: %1, portu: %2</translation>
-    </message>
-    <message>
-        <source>Web UI: Unable to bind to IP: %1, port: %2. Reason: %3</source>
-        <translation type="vanished">Webové rozhraní: Nelze vázat na IP: % 1, port: % 2. Důvod: % 3</translation>
-    </message>
     <message>
         <location filename="../webui/webui.cpp" line="63"/>
         <source>Credentials are not set</source>

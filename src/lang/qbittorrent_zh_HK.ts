@@ -1490,18 +1490,6 @@ Do you want to make qBittorrent the default application for these?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The Web UI administrator username is: %1</source>
-        <translation type="vanished">Web UI遠端控制管理員名稱是：%1</translation>
-    </message>
-    <message>
-        <source>The Web UI administrator password has not been changed from the default: %1</source>
-        <translation type="vanished">Web UI遠端控制管理員密碼尚未從預設值變更：%1</translation>
-    </message>
-    <message>
-        <source>This is a security risk, please change your password in program preferences.</source>
-        <translation type="vanished">此為安全性風險，請在程式的偏好設定中變更您的密碼。</translation>
-    </message>
-    <message>
         <location filename="../app/application.cpp" line="957"/>
         <source>Exit</source>
         <translation>關閉</translation>
@@ -2747,10 +2735,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../app/cmdoptions.cpp" line="514"/>
         <source>port</source>
         <translation>埠</translation>
-    </message>
-    <message>
-        <source>Change the Web UI port</source>
-        <translation type="vanished">更改Web UI遠端控制埠</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="512"/>
@@ -7242,10 +7226,6 @@ readme[0-9].txt：過濾「readme1.txt」、「readme2.txt」但不包含「read
         <translation>位置錯誤</translation>
     </message>
     <message>
-        <source>The alternative Web UI files location cannot be blank.</source>
-        <translation type="vanished">後備Web UI遠端控制的檔案位置不可空白。</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="581"/>
         <location filename="../gui/optionsdialog.cpp" line="589"/>
         <source>Choose export directory</source>
@@ -7344,14 +7324,6 @@ readme[0-9].txt：過濾「readme1.txt」、「readme2.txt」但不包含「read
         <location filename="../gui/optionsdialog.cpp" line="1898"/>
         <source>Length Error</source>
         <translation>長度錯誤</translation>
-    </message>
-    <message>
-        <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="vanished">Web UI遠端控制的用戶名最少含3個字元。</translation>
-    </message>
-    <message>
-        <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="vanished">Web UI遠端控制的密碼最少含6個字元。</translation>
     </message>
 </context>
 <context>
@@ -11879,22 +11851,6 @@ Please choose a different name and try again.</source>
         <translation>後備Web UI遠端控制資料夾中不准使用符號連結。</translation>
     </message>
     <message>
-        <source>Using built-in Web UI.</source>
-        <translation type="vanished">使用內置Web UI遠端控制。</translation>
-    </message>
-    <message>
-        <source>Using custom Web UI. Location: &quot;%1&quot;.</source>
-        <translation type="vanished">使用自訂Web UI遠端控制。位置：「%1」。</translation>
-    </message>
-    <message>
-        <source>Web UI translation for selected locale (%1) has been successfully loaded.</source>
-        <translation type="vanished">成功載入所選語言（%1）的Web UI遠端控制翻譯。</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t load Web UI translation for selected locale (%1).</source>
-        <translation type="vanished">無法載入所選語言（%1）的Web UI遠端控制翻譯。</translation>
-    </message>
-    <message>
         <location filename="../webui/webapplication.cpp" line="400"/>
         <source>Using built-in WebUI.</source>
         <translation type="unfinished"></translation>
@@ -11952,22 +11908,6 @@ Please choose a different name and try again.</source>
 </context>
 <context>
     <name>WebUI</name>
-    <message>
-        <source>Web UI: HTTPS setup successful</source>
-        <translation type="vanished">Web UI遠端控制：HTTPS設定成功</translation>
-    </message>
-    <message>
-        <source>Web UI: HTTPS setup failed, fallback to HTTP</source>
-        <translation type="vanished">Web UI遠端控制：HTTPS設定失敗，返回HTTP</translation>
-    </message>
-    <message>
-        <source>Web UI: Now listening on IP: %1, port: %2</source>
-        <translation type="vanished">Web UI遠端控制：正在監聽IP：%1，埠：%2</translation>
-    </message>
-    <message>
-        <source>Web UI: Unable to bind to IP: %1, port: %2. Reason: %3</source>
-        <translation type="vanished">Web UI遠端控制：無法扣連到IP：%1，埠：%2。理由：%3</translation>
-    </message>
     <message>
         <location filename="../webui/webui.cpp" line="63"/>
         <source>Credentials are not set</source>

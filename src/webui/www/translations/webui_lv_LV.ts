@@ -3480,10 +3480,6 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <source>New name:</source>
         <translation>Jaunais nosaukums:</translation>
     </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Pārdēvē</translation>
-    </message>
 </context>
 <context>
     <name>RSSWidget</name>

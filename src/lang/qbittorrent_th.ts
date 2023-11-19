@@ -1489,10 +1489,6 @@ Do you want to make qBittorrent the default application for these?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The Web UI administrator username is: %1</source>
-        <translation type="vanished">ชื่อผู้ใช้สำหรับผู้ดูแลระบบคือ: %1</translation>
-    </message>
-    <message>
         <location filename="../app/application.cpp" line="957"/>
         <source>Exit</source>
         <translation>ออก</translation>
@@ -11823,14 +11819,6 @@ Please choose a different name and try again.</source>
         <translation>ไม่อนุญาต Symlinks ภายในโฟลเดอร์ UI อื่น</translation>
     </message>
     <message>
-        <source>Using built-in Web UI.</source>
-        <translation type="vanished">ใช้ Web UI ในตัว</translation>
-    </message>
-    <message>
-        <source>Using custom Web UI. Location: &quot;%1&quot;.</source>
-        <translation type="vanished">การใช้ Web UI แบบกำหนดเอง. ตำแหน่ง: &quot;%1&quot;</translation>
-    </message>
-    <message>
         <location filename="../webui/webapplication.cpp" line="400"/>
         <source>Using built-in WebUI.</source>
         <translation type="unfinished"></translation>
@@ -11888,22 +11876,6 @@ Please choose a different name and try again.</source>
 </context>
 <context>
     <name>WebUI</name>
-    <message>
-        <source>Web UI: HTTPS setup successful</source>
-        <translation type="vanished">Web UI: HTTPS ติดตั้งสำเร็จ</translation>
-    </message>
-    <message>
-        <source>Web UI: HTTPS setup failed, fallback to HTTP</source>
-        <translation type="vanished">Web UI: HTTPS ติดตั้งล้มเลว, เลือกไป HTTP</translation>
-    </message>
-    <message>
-        <source>Web UI: Now listening on IP: %1, port: %2</source>
-        <translation type="vanished">Web UI: กำลังฟังบนไอพี: %1, พอร์ต: %2</translation>
-    </message>
-    <message>
-        <source>Web UI: Unable to bind to IP: %1, port: %2. Reason: %3</source>
-        <translation type="vanished">Web UI: ไม่สามารถติดต่อกับ IP: %1, พอร์ต: %2. เหตุผล: %3</translation>
-    </message>
     <message>
         <location filename="../webui/webui.cpp" line="63"/>
         <source>Credentials are not set</source>

@@ -1490,18 +1490,6 @@ Ali želite nastaviti qBittorrent kot privzeti program za te vrste?</translation
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The Web UI administrator username is: %1</source>
-        <translation type="vanished">Skrbniško uporabniško ime spletnega vmesnika je: %1</translation>
-    </message>
-    <message>
-        <source>The Web UI administrator password has not been changed from the default: %1</source>
-        <translation type="vanished">Skrbniško geslo spletnega vmesnika je nespremenjeno s privzete vrednosti: %1</translation>
-    </message>
-    <message>
-        <source>This is a security risk, please change your password in program preferences.</source>
-        <translation type="vanished">To je varnostno tveganje, zato spremenite geslo v možnostih programa.</translation>
-    </message>
-    <message>
         <location filename="../app/application.cpp" line="957"/>
         <source>Exit</source>
         <translation>Izhod</translation>
@@ -2748,10 +2736,6 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <location filename="../app/cmdoptions.cpp" line="514"/>
         <source>port</source>
         <translation>vrata</translation>
-    </message>
-    <message>
-        <source>Change the Web UI port</source>
-        <translation type="vanished">Spremeni vrata spletnega vmesnika</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="512"/>
@@ -7329,14 +7313,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <source>Length Error</source>
         <translation>Napaka v dolžini</translation>
     </message>
-    <message>
-        <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="vanished">Uporabniško ime za spletni vmesnik mora vsebovati vsaj 3 znake.</translation>
-    </message>
-    <message>
-        <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="vanished">Geslo za spletni vmesnik mora vsebovati vsaj 6 znakov.</translation>
-    </message>
 </context>
 <context>
     <name>PeerInfo</name>
@@ -11864,22 +11840,6 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <translation>Symlinki znotraj mape alternativnega vmesnika so prepovedani.</translation>
     </message>
     <message>
-        <source>Using built-in Web UI.</source>
-        <translation type="vanished">Uporabi vgrajen spletni vmesnik</translation>
-    </message>
-    <message>
-        <source>Using custom Web UI. Location: &quot;%1&quot;.</source>
-        <translation type="vanished">Uporabi vgrajen spletni vmesnik po meri. Lokacija: &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Web UI translation for selected locale (%1) has been successfully loaded.</source>
-        <translation type="vanished">Prevod spletnega vmesnika za izbran jezik (%1) je bil uspešno naložen.</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t load Web UI translation for selected locale (%1).</source>
-        <translation type="vanished">Prevoda spletnega vmesnika za izbran jezik ni bilo mogoče naložiti (%1).</translation>
-    </message>
-    <message>
         <location filename="../webui/webapplication.cpp" line="400"/>
         <source>Using built-in WebUI.</source>
         <translation type="unfinished"></translation>
@@ -11937,22 +11897,6 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
 </context>
 <context>
     <name>WebUI</name>
-    <message>
-        <source>Web UI: HTTPS setup successful</source>
-        <translation type="vanished">Web UI: HTTPS namestitev uspešna</translation>
-    </message>
-    <message>
-        <source>Web UI: HTTPS setup failed, fallback to HTTP</source>
-        <translation type="vanished">Web UI: HTTPS namestitev spodletela, povrnitev na HTTP</translation>
-    </message>
-    <message>
-        <source>Web UI: Now listening on IP: %1, port: %2</source>
-        <translation type="vanished">Web UI: Posluša na IP: %1, vrata %2</translation>
-    </message>
-    <message>
-        <source>Web UI: Unable to bind to IP: %1, port: %2. Reason: %3</source>
-        <translation type="vanished">Web UI: Povezava na IP %1, vrata %2 ni mogoča. Razlog: %3</translation>
-    </message>
     <message>
         <location filename="../webui/webui.cpp" line="63"/>
         <source>Credentials are not set</source>

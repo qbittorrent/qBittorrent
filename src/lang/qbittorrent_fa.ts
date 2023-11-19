@@ -1488,10 +1488,6 @@ Do you want to make qBittorrent the default application for these?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The Web UI administrator username is: %1</source>
-        <translation type="vanished">نام کاربری مدیر رابط کاربری وب: %1</translation>
-    </message>
-    <message>
         <location filename="../app/application.cpp" line="957"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
@@ -11815,14 +11811,6 @@ Please choose a different name and try again.</source>
         <location filename="../webui/webapplication.cpp" line="231"/>
         <source>Symlinks inside alternative UI folder are forbidden.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Using built-in Web UI.</source>
-        <translation type="vanished">در حال استفاده از Web UI داخلی برنامه.</translation>
-    </message>
-    <message>
-        <source>Using custom Web UI. Location: &quot;%1&quot;.</source>
-        <translation type="vanished">در حال استفاده از Web UI داخلی برنامه. محل: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="400"/>

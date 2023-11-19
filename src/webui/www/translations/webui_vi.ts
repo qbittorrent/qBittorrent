@@ -305,7 +305,7 @@
     </message>
     <message>
         <source>Save</source>
-        <translation>Lưu lại</translation>
+        <translation>Lưu</translation>
     </message>
     <message>
         <source>qBittorrent client is not reachable</source>
@@ -1754,31 +1754,31 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Chế độ hỗn hợp</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation>Nếu &amp;quot;chế độ hỗn hợp&amp;quot; được bật, Torrent I2P cũng được phép nhận các máy ngang hàng từ các nguồn khác ngoài máy theo dõi và kết nối với các IP thông thường mà không cung cấp bất kỳ ẩn danh nào. Điều này có thể hữu ích nếu người dùng không quan tâm đến việc ẩn danh I2P nhưng vẫn muốn có thể kết nối với các thiết bị ngang hàng I2P.</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Số lượng gửi đến I2P (yêu cầu libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation>I2P (Thử nghiệm) (yêu cầu libtorrent &amp;gt;= 2.0)</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Số lượng gửi đi I2P (yêu cầu libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Độ dài gửi đi I2P (yêu cầu libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Độ dài gửi đến I2P (yêu cầu libtorrent &gt;= 2.0):</translation>
     </message>
 </context>
 <context>
@@ -3479,10 +3479,6 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     <message>
         <source>New name:</source>
         <translation>Tên mới:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Đổi tên)</translation>
     </message>
 </context>
 <context>

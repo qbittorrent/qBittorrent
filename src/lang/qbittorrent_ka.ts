@@ -1487,10 +1487,6 @@ Do you want to make qBittorrent the default application for these?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The Web UI administrator username is: %1</source>
-        <translation type="vanished">ვებ ინტერფეისის ადმინისტრატორის სახელი არის: %1</translation>
-    </message>
-    <message>
         <location filename="../app/application.cpp" line="957"/>
         <source>Exit</source>
         <translation>გამოსვლა</translation>
@@ -7303,14 +7299,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.cpp" line="1898"/>
         <source>Length Error</source>
         <translation>სიგრძის შეცდომა</translation>
-    </message>
-    <message>
-        <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="vanished">ვებ ინტერფეისის სახელი უნდა იყოს მინიმუმ 3 სიმბოლო</translation>
-    </message>
-    <message>
-        <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="vanished">ვებ ინტერფეისის პაროლი უნდა იყოს მინიმუმ 6 სიმბოლო.</translation>
     </message>
 </context>
 <context>

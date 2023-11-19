@@ -1754,7 +1754,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Qarışıq rejim</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
@@ -3479,10 +3479,6 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>New name:</source>
         <translation>Yeni ad:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Adı dəyişdirilir)</translation>
     </message>
 </context>
 <context>

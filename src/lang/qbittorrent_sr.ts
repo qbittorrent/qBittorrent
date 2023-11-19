@@ -1490,18 +1490,6 @@ Do you want to make qBittorrent the default application for these?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The Web UI administrator username is: %1</source>
-        <translation type="vanished">Администраторско корисничко име веб интерфејса је: %1</translation>
-    </message>
-    <message>
-        <source>The Web UI administrator password has not been changed from the default: %1</source>
-        <translation type="vanished">Администраторска шифра веб интерфејса је и даље подразумевана: %1</translation>
-    </message>
-    <message>
-        <source>This is a security risk, please change your password in program preferences.</source>
-        <translation type="vanished">Ово је безбедоносни ризик, молимо промените шифру у подешавањима програма.</translation>
-    </message>
-    <message>
         <location filename="../app/application.cpp" line="957"/>
         <source>Exit</source>
         <translation>Излаз</translation>
@@ -2747,10 +2735,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../app/cmdoptions.cpp" line="514"/>
         <source>port</source>
         <translation>порт</translation>
-    </message>
-    <message>
-        <source>Change the Web UI port</source>
-        <translation type="vanished">Промени порт за веб интерфејс</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="512"/>
@@ -7235,10 +7219,6 @@ readme[0-9].txt: филтрирај &quot;readme1.txt&quot;, &quot;readme2.txt&q
         <translation>Грешка локације</translation>
     </message>
     <message>
-        <source>The alternative Web UI files location cannot be blank.</source>
-        <translation type="vanished">Локација фајлова алтернативног веб интерфејса не може бити празна.</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="581"/>
         <location filename="../gui/optionsdialog.cpp" line="589"/>
         <source>Choose export directory</source>
@@ -7337,14 +7317,6 @@ readme[0-9].txt: филтрирај &quot;readme1.txt&quot;, &quot;readme2.txt&q
         <location filename="../gui/optionsdialog.cpp" line="1898"/>
         <source>Length Error</source>
         <translation>Грешка у дужини</translation>
-    </message>
-    <message>
-        <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="vanished">Веб UI име корисника мора имати најмање 3 карактера.</translation>
-    </message>
-    <message>
-        <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="vanished">Веб UI шифра корисника мора имати најмање 6 карактера.</translation>
     </message>
 </context>
 <context>
@@ -11869,22 +11841,6 @@ Please choose a different name and try again.</source>
         <location filename="../webui/webapplication.cpp" line="231"/>
         <source>Symlinks inside alternative UI folder are forbidden.</source>
         <translation>Симболичке везе унутар фасцикле алтернативног КИ нису дозвољене.</translation>
-    </message>
-    <message>
-        <source>Using built-in Web UI.</source>
-        <translation type="vanished">Користи се уграђени Веб UI.</translation>
-    </message>
-    <message>
-        <source>Using custom Web UI. Location: &quot;%1&quot;.</source>
-        <translation type="vanished">Користи се сопствени Web UI. Локација: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Web UI translation for selected locale (%1) has been successfully loaded.</source>
-        <translation type="vanished">Превод Web UI за изабрани језик (%1) успешно учитан.</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t load Web UI translation for selected locale (%1).</source>
-        <translation type="vanished">Превод Web UI за изабрани језик (%1) није успешно учитан.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="400"/>
