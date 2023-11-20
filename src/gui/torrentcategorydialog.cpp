@@ -169,14 +169,13 @@ void TorrentCategoryDialog::setCategoryOptions(const BitTorrent::CategoryOptions
 
 void TorrentCategoryDialog::categoryNameChanged(const QString &categoryName)
 {
-    const Path categoryPath = Utils::Fs::toValidPath(categoryName);
     const auto *btSession = BitTorrent::Session::instance();
-    m_ui->comboSavePath->setPlaceholder(btSession->savePath() / categoryPath);
+    m_ui->comboSavePath->setPlaceholder(btSession->categorySavePath(categoryName, categoryOptions()));
 
     const int index = m_ui->comboUseDownloadPath->currentIndex();
-    const bool useDownloadPath = (index == 1) || ((index == 0) && BitTorrent::Session::instance()->isDownloadPathEnabled());
+    const bool useDownloadPath = (index == 1) || ((index == 0) && btSession->isDownloadPathEnabled());
     if (useDownloadPath)
-        m_ui->comboDownloadPath->setPlaceholder(btSession->downloadPath() / categoryPath);
+        m_ui->comboDownloadPath->setPlaceholder(btSession->categoryDownloadPath(categoryName, categoryOptions()));
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(!categoryName.isEmpty());
 }
@@ -190,8 +189,9 @@ void TorrentCategoryDialog::useDownloadPathChanged(const int index)
     m_ui->comboDownloadPath->setEnabled(index == 1);
     m_ui->comboDownloadPath->setSelectedPath((index == 1) ? m_lastEnteredDownloadPath : Path());
 
+    const auto *btSession = BitTorrent::Session::instance();
     const QString categoryName = m_ui->textCategoryName->text();
-    const Path categoryPath = BitTorrent::Session::instance()->downloadPath() / Utils::Fs::toValidPath(categoryName);
-    const bool useDownloadPath = (index == 1) || ((index == 0) && BitTorrent::Session::instance()->isDownloadPathEnabled());
+    const bool useDownloadPath = (index == 1) || ((index == 0) && btSession->isDownloadPathEnabled());
+    const Path categoryPath = btSession->categoryDownloadPath(categoryName, categoryOptions());
     m_ui->comboDownloadPath->setPlaceholder(useDownloadPath ? categoryPath : Path());
 }

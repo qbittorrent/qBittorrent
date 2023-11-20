@@ -142,7 +142,9 @@ namespace BitTorrent
         QStringList categories() const override;
         CategoryOptions categoryOptions(const QString &categoryName) const override;
         Path categorySavePath(const QString &categoryName) const override;
+        Path categorySavePath(const QString &categoryName, const CategoryOptions &options) const override;
         Path categoryDownloadPath(const QString &categoryName) const override;
+        Path categoryDownloadPath(const QString &categoryName, const CategoryOptions &options) const override;
         bool addCategory(const QString &name, const CategoryOptions &options = {}) override;
         bool editCategory(const QString &name, const CategoryOptions &options) override;
         bool removeCategory(const QString &name) override;
@@ -574,6 +576,7 @@ namespace BitTorrent
         void loadCategories();
         void storeCategories() const;
         void upgradeCategories();
+        DownloadPathOption resolveCategoryDownloadPathOption(const QString &categoryName, const std::optional<DownloadPathOption> &option) const;
 
         void saveStatistics() const;
         void loadStatistics();

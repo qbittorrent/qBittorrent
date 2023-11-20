@@ -355,6 +355,24 @@ bool Session::isValidCategoryName(const QString &name)
     return (name.isEmpty() || (name.indexOf(re) == 0));
 }
 
+QString Session::subcategoryName(const QString &category)
+{
+    const int sepIndex = category.lastIndexOf(u'/');
+    if (sepIndex >= 0)
+        return category.mid(sepIndex + 1);
+
+    return category;
+}
+
+QString Session::parentCategoryName(const QString &category)
+{
+    const int sepIndex = category.lastIndexOf(u'/');
+    if (sepIndex >= 0)
+        return category.left(sepIndex);
+
+    return {};
+}
+
 bool Session::isValidTag(const QString &tag)
 {
     return (!tag.trimmed().isEmpty() && !tag.contains(u','));
@@ -782,34 +800,77 @@ CategoryOptions SessionImpl::categoryOptions(const QString &categoryName) const
 
 Path SessionImpl::categorySavePath(const QString &categoryName) const
 {
-    const Path basePath = savePath();
+    return categorySavePath(categoryName, categoryOptions(categoryName));
+}
+
+Path SessionImpl::categorySavePath(const QString &categoryName, const CategoryOptions &options) const
+{
+    Path basePath = savePath();
     if (categoryName.isEmpty())
         return basePath;
 
-    Path path = m_categories.value(categoryName).savePath;
-    if (path.isEmpty()) // use implicit save path
-        path = Utils::Fs::toValidPath(categoryName);
+    Path path = options.savePath;
+    if (path.isEmpty())
+    {
+        // use implicit save path
+        if (isSubcategoriesEnabled())
+        {
+            path = Utils::Fs::toValidPath(subcategoryName(categoryName));
+            basePath = categorySavePath(parentCategoryName(categoryName));
+        }
+        else
+        {
+            path = Utils::Fs::toValidPath(categoryName);
+        }
+    }
 
     return (path.isAbsolute() ? path : (basePath / path));
 }
 
 Path SessionImpl::categoryDownloadPath(const QString &categoryName) const
 {
-    const CategoryOptions categoryOptions = m_categories.value(categoryName);
-    const CategoryOptions::DownloadPathOption downloadPathOption =
-            categoryOptions.downloadPath.value_or(CategoryOptions::DownloadPathOption {isDownloadPathEnabled(), downloadPath()});
+    return categoryDownloadPath(categoryName, categoryOptions(categoryName));
+}
+
+Path SessionImpl::categoryDownloadPath(const QString &categoryName, const CategoryOptions &options) const
+{
+    const DownloadPathOption downloadPathOption = resolveCategoryDownloadPathOption(categoryName, options.downloadPath);
     if (!downloadPathOption.enabled)
         return {};
 
-    const Path basePath = downloadPath();
     if (categoryName.isEmpty())
-        return basePath;
+        return downloadPath();
 
-    const Path path = (!downloadPathOption.path.isEmpty()
-                          ? downloadPathOption.path
-                          : Utils::Fs::toValidPath(categoryName)); // use implicit download path
+    const bool useSubcategories = isSubcategoriesEnabled();
+    const QString name = useSubcategories ? subcategoryName(categoryName) : categoryName;
+    const Path path = !downloadPathOption.path.isEmpty()
+            ? downloadPathOption.path
+            : Utils::Fs::toValidPath(name); // use implicit download path
 
-    return (path.isAbsolute() ? path : (basePath / path));
+    if (path.isAbsolute())
+        return path;
+
+    const QString parentName = useSubcategories ? parentCategoryName(categoryName) : QString();
+    CategoryOptions parentOptions = categoryOptions(parentName);
+    // Even if download path of parent category is disabled (directly or by inheritance)
+    // we need to construct the one as if it would be enabled.
+    if (!parentOptions.downloadPath || !parentOptions.downloadPath->enabled)
+        parentOptions.downloadPath = {true, {}};
+    const Path parentDownloadPath = categoryDownloadPath(parentName, parentOptions);
+    const Path basePath = parentDownloadPath.isEmpty() ? downloadPath() : parentDownloadPath;
+    return (basePath / path);
+}
+
+DownloadPathOption SessionImpl::resolveCategoryDownloadPathOption(const QString &categoryName, const std::optional<DownloadPathOption> &option) const
+{
+    if (categoryName.isEmpty())
+        return {isDownloadPathEnabled(), Path()};
+
+    if (option.has_value())
+        return *option;
+
+    const QString parentName = isSubcategoriesEnabled() ? parentCategoryName(categoryName) : QString();
+    return resolveCategoryDownloadPathOption(parentName, categoryOptions(parentName).downloadPath);
 }
 
 bool SessionImpl::addCategory(const QString &name, const CategoryOptions &options)
@@ -3163,8 +3224,8 @@ void SessionImpl::setDownloadPath(const Path &path)
         {
             const QString &categoryName = it.key();
             const CategoryOptions &categoryOptions = it.value();
-            const CategoryOptions::DownloadPathOption downloadPathOption =
-                    categoryOptions.downloadPath.value_or(CategoryOptions::DownloadPathOption {isDownloadPathEnabled(), downloadPath()});
+            const DownloadPathOption downloadPathOption =
+                    categoryOptions.downloadPath.value_or(DownloadPathOption {isDownloadPathEnabled(), downloadPath()});
             if (downloadPathOption.enabled && downloadPathOption.path.isRelative())
                 affectedCatogories.insert(categoryName);
         }
