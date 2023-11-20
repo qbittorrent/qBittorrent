@@ -61,9 +61,9 @@ window.qBittorrent.ContextMenu = (function() {
                 x: 0,
                 y: 0
             },
-            onShow: $empty,
-            onHide: $empty,
-            onClick: $empty,
+            onShow: () => {},
+            onHide: () => {},
+            onClick: () => {},
             fadeSpeed: 200,
             touchTimer: 600
         },
