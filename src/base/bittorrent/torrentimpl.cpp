@@ -2172,20 +2172,20 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
         const Path newActualParentPath = newActualFilePath.parentPath();
         if (newActualParentPath.filename() == UNWANTED_FOLDER_NAME)
         {
-            Q_ASSERT(oldActualParentPath.filename() != UNWANTED_FOLDER_NAME);
-
+            if (oldActualParentPath.filename() != UNWANTED_FOLDER_NAME)
+            {
 #ifdef Q_OS_WIN
-            const std::wstring winPath = (actualStorageLocation() / newActualParentPath).toString().toStdWString();
-            const DWORD dwAttrs = ::GetFileAttributesW(winPath.c_str());
-            ::SetFileAttributesW(winPath.c_str(), (dwAttrs | FILE_ATTRIBUTE_HIDDEN));
+                const std::wstring winPath = (actualStorageLocation() / newActualParentPath).toString().toStdWString();
+                const DWORD dwAttrs = ::GetFileAttributesW(winPath.c_str());
+                ::SetFileAttributesW(winPath.c_str(), (dwAttrs | FILE_ATTRIBUTE_HIDDEN));
 #endif
+            }
         }
 #ifdef QBT_USES_LIBTORRENT2
         else if (oldActualParentPath.filename() == UNWANTED_FOLDER_NAME)
         {
-            Q_ASSERT(newActualParentPath.filename() != UNWANTED_FOLDER_NAME);
-
-            Utils::Fs::rmdir(actualStorageLocation() / oldActualParentPath);
+            if (newActualParentPath.filename() != UNWANTED_FOLDER_NAME)
+                Utils::Fs::rmdir(actualStorageLocation() / oldActualParentPath);
         }
 #else
         else
