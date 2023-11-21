@@ -2227,6 +2227,8 @@ void SessionImpl::processShareLimits()
                             torrent->setSuperSeeding(true);
                             LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
                         }
+
+                        continue;
                     }
                 }
             }
