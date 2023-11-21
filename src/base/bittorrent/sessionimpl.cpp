@@ -2208,135 +2208,119 @@ void SessionImpl::processShareLimits()
 {
     qDebug("Processing share limits...");
 
+    const auto resolveLimitValue = []<typename T>(const T limit, const T useGlobalLimit, const T globalLimit) -> T
+    {
+        return (limit == useGlobalLimit) ? globalLimit : limit;
+    };
+
     // We shouldn't iterate over `m_torrents` in the loop below
     // since `deleteTorrent()` modifies it indirectly
     const QHash<TorrentID, TorrentImpl *> torrents {m_torrents};
-    for (TorrentImpl *const torrent : torrents)
+    for (const auto &[torrentID, torrent] : torrents.asKeyValueRange())
     {
-        if (torrent->isFinished() && !torrent->isForced())
+        if (!torrent->isFinished() || torrent->isForced())
+            continue;
+
+        if (const qreal ratioLimit = resolveLimitValue(torrent->ratioLimit(), Torrent::USE_GLOBAL_RATIO, globalMaxRatio());
+                ratioLimit >= 0)
         {
-            if (torrent->ratioLimit() != Torrent::NO_RATIO_LIMIT)
+            const qreal ratio = torrent->realRatio();
+            qDebug("Ratio: %f (limit: %f)", ratio, ratioLimit);
+
+            if ((ratio <= Torrent::MAX_RATIO) && (ratio >= ratioLimit))
             {
-                const qreal ratio = torrent->realRatio();
-                qreal ratioLimit = torrent->ratioLimit();
-                if (ratioLimit == Torrent::USE_GLOBAL_RATIO)
-                    // If Global Max Ratio is really set...
-                    ratioLimit = globalMaxRatio();
+                const QString description = tr("Torrent reached the share ratio limit.");
+                const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
 
-                if (ratioLimit >= 0)
+                if (m_maxRatioAction == Remove)
                 {
-                    qDebug("Ratio: %f (limit: %f)", ratio, ratioLimit);
-
-                    if ((ratio <= Torrent::MAX_RATIO) && (ratio >= ratioLimit))
-                    {
-                        const QString description = tr("Torrent reached the share ratio limit.");
-                        const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
-
-                        if (m_maxRatioAction == Remove)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
-                            deleteTorrent(torrent->id());
-                        }
-                        else if (m_maxRatioAction == DeleteFiles)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
-                            deleteTorrent(torrent->id(), DeleteTorrentAndFiles);
-                        }
-                        else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
-                        {
-                            torrent->pause();
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
-                        }
-                        else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
-                        {
-                            torrent->setSuperSeeding(true);
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
-                        }
-
-                        continue;
-                    }
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
+                    deleteTorrent(torrentID);
                 }
+                else if (m_maxRatioAction == DeleteFiles)
+                {
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
+                    deleteTorrent(torrentID, DeleteTorrentAndFiles);
+                }
+                else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
+                {
+                    torrent->pause();
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
+                }
+                else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
+                {
+                    torrent->setSuperSeeding(true);
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
+                }
+
+                continue;
             }
+        }
 
-            if (torrent->seedingTimeLimit() != Torrent::NO_SEEDING_TIME_LIMIT)
+        if (const int seedingTimeLimit = resolveLimitValue(torrent->seedingTimeLimit(), Torrent::USE_GLOBAL_SEEDING_TIME, globalMaxSeedingMinutes());
+                seedingTimeLimit >= 0)
+        {
+            const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
+
+            if ((seedingTimeInMinutes <= Torrent::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= seedingTimeLimit))
             {
-                const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
-                int seedingTimeLimit = torrent->seedingTimeLimit();
-                if (seedingTimeLimit == Torrent::USE_GLOBAL_SEEDING_TIME)
+                const QString description = tr("Torrent reached the seeding time limit.");
+                const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
+
+                if (m_maxRatioAction == Remove)
                 {
-                     // If Global Seeding Time Limit is really set...
-                    seedingTimeLimit = globalMaxSeedingMinutes();
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
+                    deleteTorrent(torrentID);
+                }
+                else if (m_maxRatioAction == DeleteFiles)
+                {
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
+                    deleteTorrent(torrentID, DeleteTorrentAndFiles);
+                }
+                else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
+                {
+                    torrent->pause();
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
+                }
+                else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
+                {
+                    torrent->setSuperSeeding(true);
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
                 }
 
-                if (seedingTimeLimit >= 0)
-                {
-                    if ((seedingTimeInMinutes <= Torrent::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= seedingTimeLimit))
-                    {
-                        const QString description = tr("Torrent reached the seeding time limit.");
-                        const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
-
-                        if (m_maxRatioAction == Remove)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
-                            deleteTorrent(torrent->id());
-                        }
-                        else if (m_maxRatioAction == DeleteFiles)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
-                            deleteTorrent(torrent->id(), DeleteTorrentAndFiles);
-                        }
-                        else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
-                        {
-                            torrent->pause();
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
-                        }
-                        else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
-                        {
-                            torrent->setSuperSeeding(true);
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
-                        }
-                    }
-                }
+                continue;
             }
+        }
 
-            if (torrent->inactiveSeedingTimeLimit() != Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT)
+        if (const int inactiveSeedingTimeLimit = resolveLimitValue(torrent->inactiveSeedingTimeLimit(), Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME, globalMaxInactiveSeedingMinutes());
+                inactiveSeedingTimeLimit >= 0)
+        {
+            const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
+
+            if ((inactiveSeedingTimeInMinutes <= Torrent::MAX_INACTIVE_SEEDING_TIME) && (inactiveSeedingTimeInMinutes >= inactiveSeedingTimeLimit))
             {
-                const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
-                int inactiveSeedingTimeLimit = torrent->inactiveSeedingTimeLimit();
-                if (inactiveSeedingTimeLimit == Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME)
+                const QString description = tr("Torrent reached the inactive seeding time limit.");
+                const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
+
+                if (m_maxRatioAction == Remove)
                 {
-                    // If Global Seeding Time Limit is really set...
-                    inactiveSeedingTimeLimit = globalMaxInactiveSeedingMinutes();
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
+                    deleteTorrent(torrentID);
                 }
-
-                if (inactiveSeedingTimeLimit >= 0)
+                else if (m_maxRatioAction == DeleteFiles)
                 {
-                    if ((inactiveSeedingTimeInMinutes <= Torrent::MAX_INACTIVE_SEEDING_TIME) && (inactiveSeedingTimeInMinutes >= inactiveSeedingTimeLimit))
-                    {
-                        const QString description = tr("Torrent reached the inactive seeding time limit.");
-                        const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
-
-                        if (m_maxRatioAction == Remove)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
-                            deleteTorrent(torrent->id());
-                        }
-                        else if (m_maxRatioAction == DeleteFiles)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
-                            deleteTorrent(torrent->id(), DeleteTorrentAndFiles);
-                        }
-                        else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
-                        {
-                            torrent->pause();
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
-                        }
-                        else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
-                        {
-                            torrent->setSuperSeeding(true);
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
-                        }
-                    }
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
+                    deleteTorrent(torrentID, DeleteTorrentAndFiles);
+                }
+                else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
+                {
+                    torrent->pause();
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
+                }
+                else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
+                {
+                    torrent->setSuperSeeding(true);
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
                 }
             }
         }
