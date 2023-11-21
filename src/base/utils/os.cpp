@@ -31,8 +31,6 @@
 #include "os.h"
 
 #ifdef Q_OS_WIN
-#include <memory>
-
 #include <windows.h>
 #include <powrprof.h>
 #include <shlobj.h>
@@ -87,11 +85,9 @@ void Utils::OS::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &ac
     }
     else
     {
-        const QString msg = QCoreApplication::translate("misc"
-            , "qBittorrent will shutdown the computer now because all downloads are complete.");
-        auto msgWchar = std::make_unique<wchar_t[]>(msg.length() + 1);
-        msg.toWCharArray(msgWchar.get());
-        ::InitiateSystemShutdownW(nullptr, msgWchar.get(), 10, TRUE, FALSE);
+        std::wstring msg = QCoreApplication::translate("misc"
+            , "qBittorrent will shutdown the computer now because all downloads are complete.").toStdWString();
+        ::InitiateSystemShutdownW(nullptr, msg.data(), 10, TRUE, FALSE);
     }
 
     // Disable shutdown privilege.

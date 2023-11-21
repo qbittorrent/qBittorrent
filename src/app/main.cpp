@@ -73,6 +73,7 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #endif // DISABLE_GUI
 
 #include "base/global.h"
+#include "base/logger.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/version.h"
@@ -125,7 +126,7 @@ int main(int argc, char *argv[])
 #ifdef Q_OS_WIN
         // QCoreApplication::applicationDirPath() needs an Application object instantiated first
         // Let's hope that there won't be a crash before this line
-        const char *envName = "_NT_SYMBOL_PATH";
+        const char envName[] = "_NT_SYMBOL_PATH";
         const QString envValue = qEnvironmentVariable(envName);
         if (envValue.isEmpty())
             qputenv(envName, Application::applicationDirPath().toLocal8Bit());
@@ -185,13 +186,13 @@ int main(int argc, char *argv[])
             setCurrentMigrationVersion();
         }
 
-        // Check if qBittorrent is already running for this user
-        if (app->isRunning())
+        // Check if qBittorrent is already running
+        if (app->hasAnotherInstance())
         {
 #if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
             if (params.shouldDaemonize)
             {
-                throw CommandLineParameterError(QCoreApplication::translate("Main", "You cannot use %1: qBittorrent is already running for this user.")
+                throw CommandLineParameterError(QCoreApplication::translate("Main", "You cannot use %1: qBittorrent is already running.")
                                      .arg(u"-d (or --daemon)"_s));
             }
 #endif
@@ -221,8 +222,7 @@ int main(int argc, char *argv[])
         // Since Apple made difficult for users to set PATH, we set here for convenience.
         // Users are supposed to install Homebrew Python for search function.
         // For more info see issue #5571.
-        QByteArray path = "/usr/local/bin:";
-        path += qgetenv("PATH");
+        const QByteArray path = "/usr/local/bin:" + qgetenv("PATH");
         qputenv("PATH", path.constData());
 
         // On OS X the standard is to not show icons in the menus
@@ -235,19 +235,27 @@ int main(int argc, char *argv[])
 #if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
         if (params.shouldDaemonize)
         {
-            app.reset(); // Destroy current application
-            if (daemon(1, 0) == 0)
+            app.reset(); // Destroy current application instance
+            if (::daemon(1, 0) == 0)
             {
                 app = std::make_unique<Application>(argc, argv);
-                if (app->isRunning())
+                if (app->hasAnotherInstance())
                 {
-                    // Another instance had time to start.
+                    // It is undefined behavior to write to log file since there is another qbt instance
+                    // in play. But we still do it since there is chance that the log message will survive.
+                    const QString errorMessage = QCoreApplication::translate("Main", "Found unexpected qBittorrent instance. Exiting this instance. Current process ID: %1.")
+                        .arg(QString::number(QCoreApplication::applicationPid()));
+                    LogMsg(errorMessage, Log::CRITICAL);
+                    // stdout, stderr is closed so we can't use them
                     return EXIT_FAILURE;
                 }
             }
             else
             {
-                qCritical("Something went wrong while daemonizing, exiting...");
+                const QString errorMessage = QCoreApplication::translate("Main", "Error when daemonizing. Reason: \"%1\". Error code: %2.")
+                    .arg(QString::fromLocal8Bit(strerror(errno)), QString::number(errno));
+                LogMsg(errorMessage, Log::CRITICAL);
+                qCritical("%s", qUtf8Printable(errorMessage));
                 return EXIT_FAILURE;
             }
         }
