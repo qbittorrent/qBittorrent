@@ -39,6 +39,7 @@
 #include <QFileDialog>
 #include <QMenu>
 #include <QPushButton>
+#include <QScreen>
 #include <QShortcut>
 #include <QString>
 #include <QUrl>
@@ -134,6 +135,36 @@ namespace
             pathList.prepend(path.toString());
 
         settings()->storeValue(settingsKey, QStringList(pathList.mid(0, maxLength)));
+    }
+
+    void adjustDialogGeometry(QWidget *dialog, const QWidget *parentWindow)
+    {
+        // It is preferable to place the dialog in the center of the parent window.
+        // However, if it goes beyond the current screen, then move it so that it fits there
+        // (or, if the dialog is larger than the current screen, at least make sure that
+        // the upper/left coordinates of the dialog are inside it).
+
+        QRect dialogGeometry = dialog->geometry();
+
+        dialogGeometry.moveCenter(parentWindow->geometry().center());
+
+        const QRect screenGeometry = parentWindow->screen()->availableGeometry();
+
+        QPoint delta = screenGeometry.bottomRight() - dialogGeometry.bottomRight();
+        if (delta.x() > 0)
+            delta.setX(0);
+        if (delta.y() > 0)
+            delta.setY(0);
+        dialogGeometry.translate(delta);
+
+        delta = screenGeometry.topLeft() - dialogGeometry.topLeft();
+        if (delta.x() < 0)
+            delta.setX(0);
+        if (delta.y() < 0)
+            delta.setY(0);
+        dialogGeometry.translate(delta);
+
+        dialog->setGeometry(dialogGeometry);
     }
 }
 
@@ -539,9 +570,14 @@ void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorre
         : dlg->loadTorrentFile(source);
 
     if (isLoaded)
+    {
+        adjustDialogGeometry(dlg, parent);
         dlg->QDialog::show();
+    }
     else
+    {
         delete dlg;
+    }
 }
 
 void AddNewTorrentDialog::show(const QString &source, QWidget *parent)
