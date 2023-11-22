@@ -28,8 +28,8 @@ LangString inst_unist ${LANG_HEBREW} "מסיר את ההתקנה של הגרסה
 LangString launch_qbt ${LANG_HEBREW} "הפעל את qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_HEBREW} "התקנה זו עובדת רק בגירסאות 64 סיביות של Windows."
-;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 1809."
-LangString inst_requires_win10 ${LANG_HEBREW}  "התקנה זו דורשת לפחות Windows 10 1809."
+;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 (1809) / Windows Server 2019."
+LangString inst_requires_win10 ${LANG_HEBREW}  "התקנה זו דורשת לפחות Windows 10 (1809) / Windows Server 2019."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_HEBREW} "הסר את ההתקנה של qBittorrent"
 

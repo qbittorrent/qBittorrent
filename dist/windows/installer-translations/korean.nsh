@@ -28,8 +28,8 @@ LangString inst_unist ${LANG_KOREAN} "이전 버전을 제거하는 중입니다
 LangString launch_qbt ${LANG_KOREAN} "qBittorrent를 실행합니다."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_KOREAN} "이 설치 프로그램은 64비트 Windows 버전에서만 작동합니다."
-;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 1809."
-LangString inst_requires_win10 ${LANG_KOREAN}  "This installer requires at least Windows 10 1809."
+;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 (1809) / Windows Server 2019."
+LangString inst_requires_win10 ${LANG_KOREAN}  "This installer requires at least Windows 10 (1809) / Windows Server 2019."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_KOREAN} "qBittorrent 제거"
 

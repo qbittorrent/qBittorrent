@@ -28,8 +28,8 @@ LangString inst_unist ${LANG_ROMANIAN} "Se dezinstalează versiunea anterioară.
 LangString launch_qbt ${LANG_ROMANIAN} "Lansați qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_ROMANIAN} "Acest program de instalare funcționează doar pe versiunile Windows pe 64 de biți."
-;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 1809."
-LangString inst_requires_win10 ${LANG_ROMANIAN}  "Acest program de instalare necesită cel puțin Windows 10 1809."
+;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 (1809) / Windows Server 2019."
+LangString inst_requires_win10 ${LANG_ROMANIAN}  "Acest program de instalare necesită cel puțin Windows 10 (1809) / Windows Server 2019."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_ROMANIAN} "Dezinstalați qBittorrent"
 
