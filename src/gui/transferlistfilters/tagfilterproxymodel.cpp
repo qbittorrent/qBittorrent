@@ -35,12 +35,12 @@ TagFilterProxyModel::TagFilterProxyModel(QObject *parent)
 {
 }
 
-QModelIndex TagFilterProxyModel::index(const QString &tag) const
+QModelIndex TagFilterProxyModel::index(const Tag &tag) const
 {
     return mapFromSource(static_cast<TagFilterModel *>(sourceModel())->index(tag));
 }
 
-QString TagFilterProxyModel::tag(const QModelIndex &index) const
+Tag TagFilterProxyModel::tag(const QModelIndex &index) const
 {
     return static_cast<TagFilterModel *>(sourceModel())->tag(mapToSource(index));
 }

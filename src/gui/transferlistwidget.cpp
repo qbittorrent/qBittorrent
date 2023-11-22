@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -770,8 +771,8 @@ void TransferListWidget::askNewCategoryForSelection()
 
 void TransferListWidget::askAddTagsForSelection()
 {
-    const QStringList tags = askTagsForSelection(tr("Add Tags"));
-    for (const QString &tag : tags)
+    const TagSet tags = askTagsForSelection(tr("Add Tags"));
+    for (const Tag &tag : tags)
         addSelectionTag(tag);
 }
 
@@ -871,9 +872,9 @@ void TransferListWidget::confirmRemoveAllTagsForSelection()
         clearSelectionTags();
 }
 
-QStringList TransferListWidget::askTagsForSelection(const QString &dialogTitle)
+TagSet TransferListWidget::askTagsForSelection(const QString &dialogTitle)
 {
-    QStringList tags;
+    TagSet tags;
     bool invalid = true;
     while (invalid)
     {
@@ -883,18 +884,23 @@ QStringList TransferListWidget::askTagsForSelection(const QString &dialogTitle)
             this, dialogTitle, tr("Comma-separated tags:"), QLineEdit::Normal, {}, &ok).trimmed();
         if (!ok || tagsInput.isEmpty())
             return {};
-        tags = tagsInput.split(u',', Qt::SkipEmptyParts);
-        for (QString &tag : tags)
+
+        const QStringList tagStrings = tagsInput.split(u',', Qt::SkipEmptyParts);
+        tags.clear();
+        for (const QString &tagStr : tagStrings)
         {
-            tag = tag.trimmed();
-            if (!BitTorrent::Session::isValidTag(tag))
+            const Tag tag {tagStr};
+            if (!tag.isValid())
             {
-                QMessageBox::warning(this, tr("Invalid tag")
-                                     , tr("Tag name: '%1' is invalid").arg(tag));
+                QMessageBox::warning(this, tr("Invalid tag"), tr("Tag name: '%1' is invalid").arg(tag.toString()));
                 invalid = true;
             }
+
+            if (!invalid)
+                tags.insert(tag);
         }
     }
+
     return tags;
 }
 
@@ -939,12 +945,12 @@ void TransferListWidget::setSelectionCategory(const QString &category)
     applyToSelectedTorrents([&category](BitTorrent::Torrent *torrent) { torrent->setCategory(category); });
 }
 
-void TransferListWidget::addSelectionTag(const QString &tag)
+void TransferListWidget::addSelectionTag(const Tag &tag)
 {
     applyToSelectedTorrents([&tag](BitTorrent::Torrent *const torrent) { torrent->addTag(tag); });
 }
 
-void TransferListWidget::removeSelectionTag(const QString &tag)
+void TransferListWidget::removeSelectionTag(const Tag &tag)
 {
     applyToSelectedTorrents([&tag](BitTorrent::Torrent *const torrent) { torrent->removeTag(tag); });
 }
@@ -1187,9 +1193,6 @@ void TransferListWidget::displayListMenu()
     }
 
     // Tag Menu
-    QStringList tags(BitTorrent::Session::instance()->tags().values());
-    std::sort(tags.begin(), tags.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
-
     QMenu *tagsMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon(u"tags"_s, u"view-categories"_s), tr("Ta&gs"));
 
     tagsMenu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_s), tr("&Add...", "Add / assign multiple tags...")
@@ -1204,9 +1207,10 @@ void TransferListWidget::displayListMenu()
     });
     tagsMenu->addSeparator();
 
-    for (const QString &tag : asConst(tags))
+    const TagSet tags = BitTorrent::Session::instance()->tags();
+    for (const Tag &tag : asConst(tags))
     {
-        auto *action = new TriStateAction(tag, tagsMenu);
+        auto *action = new TriStateAction(tag.toString(), tagsMenu);
         action->setCloseOnInteraction(false);
 
         const Qt::CheckState initialState = tagsInAll.contains(tag) ? Qt::Checked
@@ -1320,12 +1324,12 @@ void TransferListWidget::applyCategoryFilter(const QString &category)
         m_sortFilterModel->setCategoryFilter(category);
 }
 
-void TransferListWidget::applyTagFilter(const QString &tag)
+void TransferListWidget::applyTagFilter(const std::optional<Tag> &tag)
 {
-    if (tag.isNull())
+    if (!tag)
         m_sortFilterModel->disableTagFilter();
     else
-        m_sortFilterModel->setTagFilter(tag);
+        m_sortFilterModel->setTagFilter(*tag);
 }
 
 void TransferListWidget::applyTrackerFilterAll()

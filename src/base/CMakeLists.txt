@@ -85,6 +85,7 @@ add_library(qbt_base STATIC
     search/searchhandler.h
     search/searchpluginmanager.h
     settingsstorage.h
+    tag.h
     tagset.h
     torrentfileguard.h
     torrentfileswatcher.h
@@ -174,6 +175,7 @@ add_library(qbt_base STATIC
     search/searchhandler.cpp
     search/searchpluginmanager.cpp
     settingsstorage.cpp
+    tag.cpp
     tagset.cpp
     torrentfileguard.cpp
     torrentfileswatcher.cpp

@@ -128,9 +128,9 @@ namespace BitTorrent
         bool setCategory(const QString &category) override;
 
         TagSet tags() const override;
-        bool hasTag(const QString &tag) const override;
-        bool addTag(const QString &tag) override;
-        bool removeTag(const QString &tag) override;
+        bool hasTag(const Tag &tag) const override;
+        bool addTag(const Tag &tag) override;
+        bool removeTag(const Tag &tag) override;
         void removeAllTags() override;
 
         int filesCount() const override;

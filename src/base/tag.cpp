@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2021  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,24 +26,67 @@
  * exception statement from your version.
  */
 
-#pragma once
-
-#include <QMetaType>
-
-#include "orderedset.h"
 #include "tag.h"
-#include "utils/compare.h"
 
-class TagLessThan
+#include <QDataStream>
+
+#include "base/concepts/stringable.h"
+#include "base/global.h"
+
+namespace
 {
-public:
-    bool operator()(const Tag &left, const Tag &right) const;
+    QString cleanTag(const QString &tag)
+    {
+        return tag.trimmed();
+    }
+}
 
-private:
-    Utils::Compare::NaturalCompare<Qt::CaseInsensitive> m_compare;
-    Utils::Compare::NaturalCompare<Qt::CaseSensitive> m_subCompare;
-};
+// `Tag` should satisfy `Stringable` concept in order to be stored in settings as string
+static_assert(Stringable<Tag>);
 
-using TagSet = OrderedSet<Tag, TagLessThan>;
+Tag::Tag(const QString &tagStr)
+    : m_tagStr {cleanTag(tagStr)}
+{
+}
 
-Q_DECLARE_METATYPE(TagSet)
+Tag::Tag(const std::string &tagStr)
+    : Tag(QString::fromStdString(tagStr))
+{
+}
+
+bool Tag::isValid() const
+{
+    if (isEmpty())
+        return false;
+
+    return !m_tagStr.contains(u',');
+}
+
+bool Tag::isEmpty() const
+{
+    return m_tagStr.isEmpty();
+}
+
+QString Tag::toString() const noexcept
+{
+    return m_tagStr;
+}
+
+Tag::operator QString() const noexcept
+{
+    return toString();
+}
+
+QDataStream &operator<<(QDataStream &out, const Tag &tag)
+{
+    out << tag.toString();
+    return out;
+}
+
+QDataStream &operator>>(QDataStream &in, Tag &tag)
+{
+    QString tagStr;
+    in >> tagStr;
+    tag = Tag(tagStr);
+    return in;
+}

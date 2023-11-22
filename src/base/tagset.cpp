@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2021  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
@@ -28,10 +29,10 @@
 
 #include "tagset.h"
 
-bool TagLessThan::operator()(const QString &left, const QString &right) const
+bool TagLessThan::operator()(const Tag &left, const Tag &right) const
 {
-    const int result = m_compare(left, right);
+    const int result = m_compare(left.toString(), right.toString());
     if (result != 0)
         return (result < 0);
-    return (m_subCompare(left, right) < 0);
+    return (m_subCompare(left.toString(), right.toString()) < 0);
 }

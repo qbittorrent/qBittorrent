@@ -540,8 +540,8 @@ void SyncController::makeMaindataSnapshot()
         m_maindataSnapshot.categories[categoryName] = category.toVariantMap();
     }
 
-    for (const QString &tag : asConst(session->tags()))
-        m_maindataSnapshot.tags.append(tag);
+    for (const Tag &tag : asConst(session->tags()))
+        m_maindataSnapshot.tags.append(tag.toString());
 
     for (auto trackersIter = m_knownTrackers.cbegin(); trackersIter != m_knownTrackers.cend(); ++trackersIter)
     {
@@ -815,16 +815,16 @@ void SyncController::onSubcategoriesSupportChanged()
     }
 }
 
-void SyncController::onTagAdded(const QString &tag)
+void SyncController::onTagAdded(const Tag &tag)
 {
-    m_removedTags.remove(tag);
-    m_addedTags.insert(tag);
+    m_removedTags.remove(tag.toString());
+    m_addedTags.insert(tag.toString());
 }
 
-void SyncController::onTagRemoved(const QString &tag)
+void SyncController::onTagRemoved(const Tag &tag)
 {
-    m_addedTags.remove(tag);
-    m_removedTags.insert(tag);
+    m_addedTags.remove(tag.toString());
+    m_removedTags.insert(tag.toString());
 }
 
 void SyncController::onTorrentAdded(BitTorrent::Torrent *torrent)
@@ -902,12 +902,12 @@ void SyncController::onTorrentSavingModeChanged(BitTorrent::Torrent *torrent)
     m_updatedTorrents.insert(torrent->id());
 }
 
-void SyncController::onTorrentTagAdded(BitTorrent::Torrent *torrent, [[maybe_unused]] const QString &tag)
+void SyncController::onTorrentTagAdded(BitTorrent::Torrent *torrent, [[maybe_unused]] const Tag &tag)
 {
     m_updatedTorrents.insert(torrent->id());
 }
 
-void SyncController::onTorrentTagRemoved(BitTorrent::Torrent *torrent, [[maybe_unused]] const QString &tag)
+void SyncController::onTorrentTagRemoved(BitTorrent::Torrent *torrent, [[maybe_unused]] const Tag &tag)
 {
     m_updatedTorrents.insert(torrent->id());
 }
