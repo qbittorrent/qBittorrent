@@ -207,21 +207,6 @@ int main(int argc, char *argv[])
             return EXIT_SUCCESS;
         }
 
-#ifdef Q_OS_WIN
-        // This affects only Windows apparently and Qt5.
-        // When QNetworkAccessManager is instantiated it regularly starts polling
-        // the network interfaces to see what's available and their status.
-        // This polling creates jitter and high ping with wifi interfaces.
-        // So here we disable it for lack of better measure.
-        // It will also spew this message in the console: QObject::startTimer: Timers cannot have negative intervals
-        // For more info see:
-        // 1. https://github.com/qbittorrent/qBittorrent/issues/4209
-        // 2. https://bugreports.qt.io/browse/QTBUG-40332
-        // 3. https://bugreports.qt.io/browse/QTBUG-46015
-
-        qputenv("QT_BEARER_POLL_TIMEOUT", QByteArray::number(-1));
-#endif // Q_OS_WIN
-
 #ifdef Q_OS_MACOS
         // Since Apple made difficult for users to set PATH, we set here for convenience.
         // Users are supposed to install Homebrew Python for search function.
