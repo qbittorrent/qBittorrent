@@ -70,7 +70,6 @@
 #include "base/bittorrent/torrent.h"
 #include "base/exceptions.h"
 #include "base/global.h"
-#include "base/iconprovider.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/geoipmanager.h"
@@ -793,7 +792,6 @@ int Application::exec()
 
     Net::ProxyConfigurationManager::initInstance();
     Net::DownloadManager::initInstance();
-    IconProvider::initInstance();
 
     BitTorrent::Session::initInstance();
 #ifndef DISABLE_GUI
@@ -1335,7 +1333,6 @@ void Application::cleanup()
     Net::ProxyConfigurationManager::freeInstance();
     Preferences::freeInstance();
     SettingsStorage::freeInstance();
-    IconProvider::freeInstance();
     SearchPluginManager::freeInstance();
     Utils::Fs::removeDirRecursively(Utils::Fs::tempPath());
 
