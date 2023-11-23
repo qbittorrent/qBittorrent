@@ -1708,7 +1708,7 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
     };
 
     const QString newVersion = updater->getNewVersion();
-    if (true==true)
+    if (!newVersion.isEmpty())
     {
         const QString msg {tr("A new version is available.") + u"<br/>"
             + tr("Do you want to download %1?").arg(newVersion) + u"<br/><br/>"
