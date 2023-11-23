@@ -34,6 +34,7 @@ macro(find_libtorrent version)
     else()
         find_package(LibtorrentRasterbar ${version} REQUIRED COMPONENTS torrent-rasterbar)
     endif()
+
 endmacro()
 
 find_libtorrent(${minLibtorrent1Version})

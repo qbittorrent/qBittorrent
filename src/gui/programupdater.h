@@ -32,7 +32,7 @@
 #include <QObject>
 #include <QString>
 #include <QUrl>
-
+#include<QPushButton>
 namespace Net
 {
     struct DownloadResult;
@@ -49,10 +49,12 @@ public:
     void checkForUpdates() const;
     QString getNewVersion() const;
     bool updateProgram() const;
+    QPushButton* m_noUpdate;
+
+    
 
 signals:
     void updateCheckFinished();
-
 private slots:
     void rssDownloadFinished(const Net::DownloadResult &result);
 

@@ -31,7 +31,7 @@
 
 #include <QMainWindow>
 #include <QPointer>
-
+#include <QMessageBox>
 #include "base/bittorrent/torrent.h"
 #include "base/logger.h"
 #include "base/settingvalue.h"
@@ -202,7 +202,7 @@ private:
     void showStatusBar(bool show);
     void showFiltersSidebar(bool show);
     void applyTransferListFilter();
-
+    void blockUpdate();
     Ui::MainWindow *m_ui = nullptr;
 
     QFileSystemWatcher *m_executableWatcher = nullptr;

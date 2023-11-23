@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.ipp": "cpp",
+        "qobject": "cpp",
+        "qmainwindow": "cpp",
+        "qapplication": "cpp",
+        "qmessagebox": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}

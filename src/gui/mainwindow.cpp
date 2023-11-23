@@ -172,7 +172,7 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_s, u"preferences-web-browser-cookies"_s));
     m_ui->menuLog->setIcon(UIThemeManager::instance()->getIcon(u"help-contents"_s));
     m_ui->actionCheckForUpdates->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
-
+    
     auto *lockMenu = new QMenu(m_ui->menuView);
     lockMenu->addAction(tr("&Set Password"), this, &MainWindow::defineUILockPassword);
     lockMenu->addAction(tr("&Clear Password"), this, &MainWindow::clearUILockPassword);
@@ -1708,13 +1708,19 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
     };
 
     const QString newVersion = updater->getNewVersion();
-    if (!newVersion.isEmpty())
+    if (true==true)
     {
         const QString msg {tr("A new version is available.") + u"<br/>"
             + tr("Do you want to download %1?").arg(newVersion) + u"<br/><br/>"
             + u"<a href=\"https://www.qbittorrent.org/news.php\">%1</a>"_s.arg(tr("Open changelog..."))};
         auto *msgBox = new QMessageBox {QMessageBox::Question, tr("qBittorrent Update Available"), msg
             , (QMessageBox::Yes | QMessageBox::No), this};
+        QPushButton *button=new QPushButton(msgBox);
+        button->setText(QStringLiteral("dont show again"));
+        connect(button,&QPushButton::released,this,[this,msgBox](){
+            blockUpdate();
+            msgBox->close();
+        });
         msgBox->setAttribute(Qt::WA_DeleteOnClose);
         msgBox->setAttribute(Qt::WA_ShowWithoutActivating);
         msgBox->setDefaultButton(QMessageBox::Yes);
@@ -1901,6 +1907,11 @@ void MainWindow::checkProgramUpdate(const bool invokedByUser)
     });
     updater->checkForUpdates();
 }
+void MainWindow::blockUpdate (){
+    auto *pref = Preferences::instance();
+    pref->setUpdateCheckEnabled((const bool)false);
+}
+
 #endif
 
 #ifdef Q_OS_WIN
