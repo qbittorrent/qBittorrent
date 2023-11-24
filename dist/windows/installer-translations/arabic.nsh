@@ -28,8 +28,8 @@ LangString inst_unist ${LANG_ARABIC} "جاري ازالة النسخة السا�
 LangString launch_qbt ${LANG_ARABIC} "تشغيل البرنامج"
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_ARABIC} "هذا المثبت يعمل فقط في نسخ ويندوز 64 بت"
-;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 1809."
-LangString inst_requires_win10 ${LANG_ARABIC}  "This installer requires at least Windows 10 1809."
+;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 (1809) / Windows Server 2019."
+LangString inst_requires_win10 ${LANG_ARABIC}  "This installer requires at least Windows 10 (1809) / Windows Server 2019."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_ARABIC} "Uninstall qBittorrent"
 

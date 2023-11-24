@@ -28,8 +28,8 @@ LangString inst_unist ${LANG_GREEK} "Γίνεται απεγκατάσταση �
 LangString launch_qbt ${LANG_GREEK} "Εκκίνηση του qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_GREEK} "Αυτό το αρχείο εγκατάστασης λειτουργεί μόνο σε 64-bit εκδόσεις των Windows."
-;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 1809."
-LangString inst_requires_win10 ${LANG_GREEK}  "This installer requires at least Windows 10 1809."
+;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 (1809) / Windows Server 2019."
+LangString inst_requires_win10 ${LANG_GREEK}  "This installer requires at least Windows 10 (1809) / Windows Server 2019."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_GREEK} "Uninstall qBittorrent"
 
