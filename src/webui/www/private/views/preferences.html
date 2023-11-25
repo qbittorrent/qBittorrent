@@ -1884,7 +1884,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         // Advanced Tab
         const updateNetworkInterfaces = function(default_iface, default_iface_name) {
             const url = 'api/v2/app/networkInterfaceList';
-            $('networkInterface').empty();
+            $('networkInterface').getChildren().each(c => c.destroy());
             new Request.JSON({
                 url: url,
                 method: 'get',
@@ -1911,7 +1911,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         const updateInterfaceAddresses = function(iface, default_addr) {
             const url = 'api/v2/app/networkInterfaceAddressList';
-            $('optionalIPAddressToBind').empty();
+            $('optionalIPAddressToBind').getChildren().each(c => c.destroy());
             new Request.JSON({
                 url: url,
                 method: 'get',
