@@ -402,13 +402,13 @@
                     });
                 });
 
-            $('rssDetailsView').empty();
+            $('rssDetailsView').getChildren().each(c => c.destroy());
             rssArticleTable.updateTable(false);
         };
 
         const showDetails = (feedUid, articleID) => {
             markArticleAsRead(pathByFeedId.get(feedUid), articleID);
-            $('rssDetailsView').empty();
+            $('rssDetailsView').getChildren().each(c => c.destroy());
             let article = feedData[feedUid].filter((article) => article.id === articleID)[0];
             if (article) {
                 $('rssDetailsView').append((() => {
