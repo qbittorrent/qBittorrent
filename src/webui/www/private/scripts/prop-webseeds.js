@@ -50,8 +50,7 @@ window.qBittorrent.PropWebseeds = (function() {
 
         removeRow: function(url) {
             if (this.rows.has(url)) {
-                const tr = this.rows.get(url);
-                tr.dispose();
+                this.rows.get(url).destroy();
                 this.rows.erase(url);
                 return true;
             }

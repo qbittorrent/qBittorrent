@@ -183,7 +183,7 @@ Function .onInit
       Abort
     ${EndIf}
   !else
-    ${IfNot} ${AtLeastWaaS} 1809 ; Windows 10 1809. Min supported version by Qt6
+    ${IfNot} ${AtLeastWaaS} 1809 ; Windows 10 (1809) / Windows Server 2019. Min supported version by Qt6
       MessageBox MB_OK|MB_ICONEXCLAMATION $(inst_requires_win10)
       Abort
     ${EndIf}
