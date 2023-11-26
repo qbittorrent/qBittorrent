@@ -99,6 +99,10 @@ void adjustFileDescriptorLimit();
 // Main
 int main(int argc, char *argv[])
 {
+#ifdef DISABLE_GUI
+    setvbuf(stdout, nullptr, _IONBF, 0);
+#endif
+
 #ifdef Q_OS_UNIX
     adjustFileDescriptorLimit();
 #endif
