@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation>В начало очереди</translation>
+        <translation>Добавить в начало очереди</translation>
     </message>
 </context>
 <context>
@@ -668,7 +668,7 @@
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>Запланировать включение особых ограничений скорости</translation>
+        <translation>Запланировать работу особых ограничений скорости</translation>
     </message>
     <message>
         <source>Torrent Queueing</source>
@@ -1702,7 +1702,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation>В начало очереди</translation>
+        <translation>Добавлять в начало очереди</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
@@ -1750,7 +1750,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation>Выполнить поиск имени хоста через прокси</translation>
+        <translation>Выполнять поиск имени хоста через прокси</translation>
     </message>
     <message>
         <source>Mixed mode</source>
