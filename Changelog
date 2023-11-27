@@ -1,3 +1,12 @@
+Mon Nov 27th 2023 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.2
+    - BUGFIX: Do not apply share limit if the previous one was applied (glassez)
+    - BUGFIX: Show Add new torrent dialog on main window screen (glassez)
+    - WEBUI: Fix JS memory leak (brvphoenix)
+    - WEBUI: Disable stdout buffering for qbt-nox (Chocobo1)
+    - WINDOWS: NSIS: Display correct Minimum Windows OS requirement (xavier2k6)
+    - WINDOWS: NSIS: Add Hebrew translation (avivmu)
+    - LINUX: WAYLAND: Fix parent widget of "Lock qBittorrent" submenu (Vlad Zahorodnii)
+    
 Mon Nov 20th 2023 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.1
     - FEATURE: Add option to enable previous Add new torrent dialog behavior (glassez)
     - BUGFIX: Prevent crash due to race condition when adding magnet link (glassez)
