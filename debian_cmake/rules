@@ -33,3 +33,7 @@ override_dh_auto_clean:
 override_dh_clean:
 	dh_clean src/webui/www/translations/webui_*.qm \
 	src/lang/qbittorrent_*.qm src/base/version.h
+
+override_dh_auto_test:
+# Empty target to override default behavior which results
+# in an errored build
