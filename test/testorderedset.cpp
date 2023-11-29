@@ -34,6 +34,31 @@
 #include "base/global.h"
 #include "base/orderedset.h"
 
+namespace
+{
+    class MyString
+    {
+    public:
+        MyString(const QString &str)
+            : m_str {str}
+        {
+        }
+
+        explicit operator QString() const
+        {
+            return m_str;
+        }
+
+        friend bool operator<(const MyString &left, const MyString &right)
+        {
+            return left.m_str < right.m_str;
+        }
+
+    private:
+        QString m_str;
+    };
+}
+
 class TestOrderedSet final : public QObject
 {
     Q_OBJECT
@@ -80,6 +105,9 @@ private slots:
 
         const OrderedSet<QString> emptySet;
         QCOMPARE(emptySet.join(u","_s), u""_s);
+
+        const OrderedSet<MyString> set2 {u"a"_s, u"b"_s, u"c"_s};
+        QCOMPARE(set2.join(u"+"_s), u"a+b+c"_s);
     }
 
     void testRemove() const

@@ -29,7 +29,6 @@
 #include "serialize_torrent.h"
 
 #include <QDateTime>
-#include <QStringList>
 #include <QVector>
 
 #include "base/bittorrent/infohash.h"
@@ -106,8 +105,6 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
             : (QDateTime::currentDateTime().toSecsSinceEpoch() - timeSinceActivity);
     };
 
-    const TagSet &tags = torrent.tags();
-
     return {
         {KEY_TORRENT_ID, torrent.id().toString()},
         {KEY_TORRENT_INFOHASHV1, torrent.infoHash().v1().toString()},
@@ -130,7 +127,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_FIRST_LAST_PIECE_PRIO, torrent.hasFirstLastPiecePriority()},
 
         {KEY_TORRENT_CATEGORY, torrent.category()},
-        {KEY_TORRENT_TAGS, QStringList(tags.cbegin(), tags.cend()).join(u", "_s)},
+        {KEY_TORRENT_TAGS, torrent.tags().join(u", "_s)},
         {KEY_TORRENT_SUPER_SEEDING, torrent.superSeeding()},
         {KEY_TORRENT_FORCE_START, torrent.isForced()},
         {KEY_TORRENT_SAVE_PATH, torrent.savePath().toString()},

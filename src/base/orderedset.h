@@ -34,6 +34,7 @@
 #include <set>
 
 #include "algorithm.h"
+#include "concepts/explicitlyconvertibleto.h"
 
 template <typename T, typename Compare = std::less<T>>
 class OrderedSet : public std::set<T, Compare>
@@ -71,18 +72,19 @@ public:
     }
 
     QString join(const QString &separator) const
-        requires std::same_as<value_type, QString>
+        requires ExplicitlyConvertibleTo<value_type, QString>
     {
         auto iter = BaseType::cbegin();
         if (iter == BaseType::cend())
             return {};
 
-        QString ret = *iter;
+        auto ret = QString(*iter);
+        ret.reserve((ret.size() + separator.size()) * BaseType::size());  // crude estimate
         ++iter;
 
         while (iter != BaseType::cend())
         {
-            ret.push_back(separator + *iter);
+            ret.append(separator + QString(*iter));
             ++iter;
         }
 
