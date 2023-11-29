@@ -58,6 +58,7 @@
 #include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
+#include "base/utils/string.h"
 #include "lineedit.h"
 #include "torrenttagsdialog.h"
 
@@ -363,7 +364,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
 
     connect(m_ui->categoryComboBox, &QComboBox::currentIndexChanged, this, &AddNewTorrentDialog::categoryChanged);
 
-    m_ui->tagsLineEdit->setText(QStringList(m_torrentParams.tags.cbegin(), m_torrentParams.tags.cend()).join(u", "_s));
+    m_ui->tagsLineEdit->setText(Utils::String::joinIntoString(m_torrentParams.tags, u", "_s));
     connect(m_ui->tagsEditButton, &QAbstractButton::clicked, this, [this]
     {
         auto *dlg = new TorrentTagsDialog(m_torrentParams.tags, this);
@@ -371,7 +372,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
         connect(dlg, &TorrentTagsDialog::accepted, this, [this, dlg]
         {
             m_torrentParams.tags = dlg->tags();
-            m_ui->tagsLineEdit->setText(QStringList(m_torrentParams.tags.cbegin(), m_torrentParams.tags.cend()).join(u", "_s));
+            m_ui->tagsLineEdit->setText(Utils::String::joinIntoString(m_torrentParams.tags, u", "_s));
         });
         dlg->open();
     });

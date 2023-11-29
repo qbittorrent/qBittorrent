@@ -119,14 +119,3 @@ std::optional<double> Utils::String::parseDouble(const QString &string)
 
     return std::nullopt;
 }
-
-QString Utils::String::join(const QList<QStringView> &strings, const QStringView separator)
-{
-    if (strings.empty())
-        return {};
-
-    QString ret = strings[0].toString();
-    for (int i = 1; i < strings.count(); ++i)
-        ret += (separator + strings[i]);
-    return ret;
-}
