@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2016-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -38,6 +38,9 @@
 class CategoryModelItem
 {
 public:
+    inline static const QString UID_ALL {QChar(1)};
+    inline static const QString UID_UNCATEGORIZED;
+
     CategoryModelItem() = default;
 
     CategoryModelItem(CategoryModelItem *parent, const QString &categoryName, const int torrentsCount = 0)
@@ -99,9 +102,21 @@ public:
 
     int pos() const
     {
-        if (!m_parent) return -1;
+        if (!m_parent)
+            return -1;
 
-        return m_parent->m_childUids.indexOf(m_name);
+        if (const int posByName = m_parent->m_childUids.indexOf(m_name); posByName >= 0)
+            return posByName;
+
+        // special cases
+        if (this == m_parent->m_children[UID_ALL])
+            return 0;
+
+        if (this == m_parent->m_children[UID_UNCATEGORIZED])
+            return 1;
+
+        Q_ASSERT(false);
+        return -1;
     }
 
     bool hasChild(const QString &name) const
@@ -202,7 +217,8 @@ int CategoryFilterModel::columnCount(const QModelIndex &) const
 
 QVariant CategoryFilterModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid()) return {};
+    if (!index.isValid())
+        return {};
 
     const auto *item = static_cast<const CategoryModelItem *>(index.internalPointer());
 
@@ -248,8 +264,8 @@ QModelIndex CategoryFilterModel::index(int row, int column, const QModelIndex &p
     if (parent.isValid() && (parent.column() != 0))
         return {};
 
-    auto *parentItem = parent.isValid() ? static_cast<CategoryModelItem *>(parent.internalPointer())
-                                       : m_rootItem;
+    auto *parentItem = parent.isValid()
+            ? static_cast<CategoryModelItem *>(parent.internalPointer()) : m_rootItem;
     if (row < parentItem->childCount())
         return createIndex(row, column, parentItem->childAt(row));
 
@@ -262,7 +278,8 @@ QModelIndex CategoryFilterModel::parent(const QModelIndex &index) const
         return {};
 
     auto *item = static_cast<CategoryModelItem *>(index.internalPointer());
-    if (!item) return {};
+    if (!item)
+        return {};
 
     return this->index(item->parent());
 }
@@ -276,7 +293,8 @@ int CategoryFilterModel::rowCount(const QModelIndex &parent) const
         return m_rootItem->childCount();
 
     auto *item = static_cast<CategoryModelItem *>(parent.internalPointer());
-    if (!item) return 0;
+    if (!item)
+        return 0;
 
     return item->childCount();
 }
@@ -288,13 +306,16 @@ QModelIndex CategoryFilterModel::index(const QString &categoryName) const
 
 QString CategoryFilterModel::categoryName(const QModelIndex &index) const
 {
-    if (!index.isValid()) return {};
+    if (!index.isValid())
+        return {};
+
     return static_cast<CategoryModelItem *>(index.internalPointer())->fullName();
 }
 
 QModelIndex CategoryFilterModel::index(CategoryModelItem *item) const
 {
-    if (!item || !item->parent()) return {};
+    if (!item || !item->parent())
+        return {};
 
     return index(item->pos(), 0, index(item->parent()));
 }
@@ -337,8 +358,17 @@ void CategoryFilterModel::torrentsLoaded(const QVector<BitTorrent::Torrent *> &t
         Q_ASSERT(item);
 
         item->increaseTorrentsCount();
+        QModelIndex i = index(item);
+        while (i.isValid())
+        {
+            emit dataChanged(i, i);
+            i = parent(i);
+        }
+
         m_rootItem->childAt(0)->increaseTorrentsCount();
     }
+
+    emit dataChanged(index(0, 0), index(0, 0));
 }
 
 void CategoryFilterModel::torrentAboutToBeRemoved(BitTorrent::Torrent *const torrent)
@@ -347,18 +377,24 @@ void CategoryFilterModel::torrentAboutToBeRemoved(BitTorrent::Torrent *const tor
     Q_ASSERT(item);
 
     item->decreaseTorrentsCount();
+    QModelIndex i = index(item);
+    while (i.isValid())
+    {
+        emit dataChanged(i, i);
+        i = parent(i);
+    }
+
     m_rootItem->childAt(0)->decreaseTorrentsCount();
+    emit dataChanged(index(0, 0), index(0, 0));
 }
 
 void CategoryFilterModel::torrentCategoryChanged(BitTorrent::Torrent *const torrent, const QString &oldCategory)
 {
-    QModelIndex i;
-
     auto *item = findItem(oldCategory);
     Q_ASSERT(item);
 
     item->decreaseTorrentsCount();
-    i = index(item);
+    QModelIndex i = index(item);
     while (i.isValid())
     {
         emit dataChanged(i, i);
@@ -392,17 +428,16 @@ void CategoryFilterModel::populate()
     const auto torrents = session->torrents();
     m_isSubcategoriesEnabled = session->isSubcategoriesEnabled();
 
-    const QString UID_ALL;
-    const QString UID_UNCATEGORIZED(QChar(1));
-
     // All torrents
-    m_rootItem->addChild(UID_ALL, new CategoryModelItem(nullptr, tr("All"), torrents.count()));
+    m_rootItem->addChild(CategoryModelItem::UID_ALL
+            , new CategoryModelItem(nullptr, tr("All"), torrents.count()));
 
     // Uncategorized torrents
     using Torrent = BitTorrent::Torrent;
     const int torrentsCount = std::count_if(torrents.begin(), torrents.end()
-                                            , [](Torrent *torrent) { return torrent->category().isEmpty(); });
-    m_rootItem->addChild(UID_UNCATEGORIZED, new CategoryModelItem(nullptr, tr("Uncategorized"), torrentsCount));
+            , [](Torrent *torrent) { return torrent->category().isEmpty(); });
+    m_rootItem->addChild(CategoryModelItem::UID_UNCATEGORIZED
+            , new CategoryModelItem(nullptr, tr("Uncategorized"), torrentsCount));
 
     using BitTorrent::Torrent;
     if (m_isSubcategoriesEnabled)
@@ -446,7 +481,9 @@ CategoryModelItem *CategoryFilterModel::findItem(const QString &fullName) const
     for (const QString &subcat : asConst(BitTorrent::Session::expandCategory(fullName)))
     {
         const QString subcatName = shortName(subcat);
-        if (!item->hasChild(subcatName)) return nullptr;
+        if (!item->hasChild(subcatName))
+            return nullptr;
+
         item = item->child(subcatName);
     }
 

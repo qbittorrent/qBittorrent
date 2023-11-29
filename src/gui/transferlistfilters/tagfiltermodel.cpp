@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2017  Tony Gregerson <tony.gregerson@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -35,6 +36,9 @@
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "gui/uithememanager.h"
+
+const int ROW_ALL = 0;
+const int ROW_UNTAGGED = 1;
 
 namespace
 {
@@ -203,21 +207,29 @@ void TagFilterModel::tagRemoved(const QString &tag)
 void TagFilterModel::torrentTagAdded(BitTorrent::Torrent *const torrent, const QString &tag)
 {
     if (torrent->tags().count() == 1)
+    {
         untaggedItem()->decreaseTorrentsCount();
+        const QModelIndex i = index(ROW_UNTAGGED, 0);
+        emit dataChanged(i, i);
+    }
 
     const int row = findRow(tag);
     Q_ASSERT(isValidRow(row));
     TagModelItem &item = m_tagItems[row];
 
     item.increaseTorrentsCount();
-    const QModelIndex i = index(row, 0, QModelIndex());
+    const QModelIndex i = index(row, 0);
     emit dataChanged(i, i);
 }
 
 void TagFilterModel::torrentTagRemoved(BitTorrent::Torrent *const torrent, const QString &tag)
 {
     if (torrent->tags().empty())
+    {
         untaggedItem()->increaseTorrentsCount();
+        const QModelIndex i = index(ROW_UNTAGGED, 0);
+        emit dataChanged(i, i);
+    }
 
     const int row = findRow(tag);
     if (row < 0)
@@ -225,7 +237,7 @@ void TagFilterModel::torrentTagRemoved(BitTorrent::Torrent *const torrent, const
 
     m_tagItems[row].decreaseTorrentsCount();
 
-    const QModelIndex i = index(row, 0, QModelIndex());
+    const QModelIndex i = index(row, 0);
     emit dataChanged(i, i);
 }
 
@@ -242,17 +254,39 @@ void TagFilterModel::torrentsLoaded(const QVector<BitTorrent::Torrent *> &torren
         for (TagModelItem *item : items)
             item->increaseTorrentsCount();
     }
+
+    emit dataChanged(index(0, 0), index((rowCount() - 1), 0));
 }
 
 void TagFilterModel::torrentAboutToBeRemoved(BitTorrent::Torrent *const torrent)
 {
     allTagsItem()->decreaseTorrentsCount();
 
-    if (torrent->tags().isEmpty())
-        untaggedItem()->decreaseTorrentsCount();
+    {
+        const QModelIndex i = index(ROW_ALL, 0);
+        emit dataChanged(i, i);
+    }
 
-    for (TagModelItem *item : asConst(findItems(torrent->tags())))
-        item->decreaseTorrentsCount();
+    if (torrent->tags().isEmpty())
+    {
+        untaggedItem()->decreaseTorrentsCount();
+        const QModelIndex i = index(ROW_UNTAGGED, 0);
+        emit dataChanged(i, i);
+    }
+    else
+    {
+        for (const QString &tag : asConst(torrent->tags()))
+        {
+            const int row = findRow(tag);
+            Q_ASSERT(isValidRow(row));
+            if (!isValidRow(row)) [[unlikely]]
+                continue;
+
+            m_tagItems[row].decreaseTorrentsCount();
+            const QModelIndex i = index(row, 0);
+            emit dataChanged(i, i);
+        }
+    }
 }
 
 QString TagFilterModel::tagDisplayName(const QString &tag)
@@ -299,11 +333,15 @@ void TagFilterModel::removeFromModel(int row)
 
 int TagFilterModel::findRow(const QString &tag) const
 {
+    if (!BitTorrent::Session::isValidTag(tag))
+        return -1;
+
     for (int i = 0; i < m_tagItems.size(); ++i)
     {
         if (m_tagItems[i].tag() == tag)
             return i;
     }
+
     return -1;
 }
 
@@ -333,11 +371,11 @@ QVector<TagModelItem *> TagFilterModel::findItems(const TagSet &tags)
 TagModelItem *TagFilterModel::allTagsItem()
 {
     Q_ASSERT(!m_tagItems.isEmpty());
-    return &m_tagItems[0];
+    return &m_tagItems[ROW_ALL];
 }
 
 TagModelItem *TagFilterModel::untaggedItem()
 {
-    Q_ASSERT(m_tagItems.size() > 1);
-    return &m_tagItems[1];
+    Q_ASSERT(m_tagItems.size() > ROW_UNTAGGED);
+    return &m_tagItems[ROW_UNTAGGED];
 }
