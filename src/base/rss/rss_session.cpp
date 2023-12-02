@@ -117,7 +117,6 @@ Session::Session()
     settingsStorage->removeValue(u"RSS/hosts_cookies"_s);
     settingsStorage->removeValue(u"Rss/Session/EnableProcessing"_s);
     settingsStorage->removeValue(u"Rss/Session/RefreshInterval"_s);
-    settingsStorage->removeValue(u"RSS/Session/FetchDelay"_s);
     settingsStorage->removeValue(u"Rss/Session/MaxArticlesPerFeed"_s);
     settingsStorage->removeValue(u"Rss/AutoDownloader/EnableProcessing"_s);
 }
