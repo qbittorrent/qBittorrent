@@ -73,6 +73,9 @@
 #include <QThreadPool>
 #include <QTimer>
 #include <QUuid>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
 
 #include "base/algorithm.h"
 #include "base/global.h"
@@ -2199,7 +2202,42 @@ void SessionImpl::populateAdditionalTrackers()
     {
         tracker = tracker.trimmed();
         if (!tracker.isEmpty())
-            m_additionalTrackerList.append({tracker.toString()});
+        {
+            // Scan the list of trackers to check if there are links to .txt files
+            // and add their content to the list of trackers
+            if (tracker.startsWith(u"http", Qt::CaseInsensitive) && tracker.endsWith(u".txt", Qt::CaseInsensitive))
+            {
+                // Download the content of the .txt file
+                QNetworkAccessManager manager;
+                QNetworkRequest const request(QUrl(tracker.toString()));
+                QNetworkReply *reply = manager.get(request);
+
+                // Wait for the reply
+                QObject::connect(reply, &QNetworkReply::finished, this, [reply, this]()
+                {
+                    const QString trackerContent = QString::fromUtf8(reply->readAll());
+                    if (!trackerContent.isEmpty())
+                    {
+                        // Add the trackers to the list
+                        auto trackerList = trackerContent.split(QChar(u'\n'), Qt::SkipEmptyParts);
+                        for (const auto &tracker: asConst(trackerList))
+                        {
+                            m_additionalTrackerList.append({tracker.trimmed()});
+                        }
+                    }
+                    reply->deleteLater();
+                });
+
+                // Wait for the reply to finish
+                QEventLoop loop;
+                QObject::connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+                loop.exec();
+            }
+            else
+            {
+                m_additionalTrackerList.append({tracker.toString()});
+            }
+        }
     }
 }
 
