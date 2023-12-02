@@ -73,6 +73,9 @@
 #include <QThreadPool>
 #include <QTimer>
 #include <QUuid>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
 
 #include "base/algorithm.h"
 #include "base/global.h"
