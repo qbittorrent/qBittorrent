@@ -28,6 +28,7 @@
 
 #include "optionsdialog.h"
 
+#include <chrono>
 #include <cstdlib>
 #include <limits>
 
@@ -1164,7 +1165,7 @@ void OptionsDialog::loadRSSTabOptions()
 
     m_ui->checkRSSEnable->setChecked(rssSession->isProcessingEnabled());
     m_ui->spinRSSRefreshInterval->setValue(rssSession->refreshInterval());
-    m_ui->spinRSSFetchDelay->setValue(rssSession->fetchDelay());
+    m_ui->spinRSSFetchDelay->setValue(rssSession->fetchDelay().count());
     m_ui->spinRSSMaxArticlesPerFeed->setValue(rssSession->maxArticlesPerFeed());
     m_ui->checkRSSAutoDownloaderEnable->setChecked(autoDownloader->isProcessingEnabled());
     m_ui->textSmartEpisodeFilters->setPlainText(autoDownloader->smartEpisodeFilters().join(u'\n'));
@@ -1192,7 +1193,7 @@ void OptionsDialog::saveRSSTabOptions() const
 
     rssSession->setProcessingEnabled(m_ui->checkRSSEnable->isChecked());
     rssSession->setRefreshInterval(m_ui->spinRSSRefreshInterval->value());
-    rssSession->setFetchDelay(m_ui->spinRSSFetchDelay->value());
+    rssSession->setFetchDelay(std::chrono::seconds(m_ui->spinRSSFetchDelay->value()));
     rssSession->setMaxArticlesPerFeed(m_ui->spinRSSMaxArticlesPerFeed->value());
     autoDownloader->setProcessingEnabled(m_ui->checkRSSAutoDownloaderEnable->isChecked());
     autoDownloader->setSmartEpisodeFilters(m_ui->textSmartEpisodeFilters->toPlainText().split(u'\n', Qt::SkipEmptyParts));

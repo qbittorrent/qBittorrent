@@ -56,13 +56,14 @@ const QString DATA_FOLDER_NAME = u"rss/articles"_s;
 const QString FEEDS_FILE_NAME = u"feeds.json"_s;
 
 using namespace RSS;
+using namespace std::chrono_literals;
 
 QPointer<Session> Session::m_instance = nullptr;
 
 Session::Session()
     : m_storeProcessingEnabled(u"RSS/Session/EnableProcessing"_s)
     , m_storeRefreshInterval(u"RSS/Session/RefreshInterval"_s, 30)
-    , m_storeFetchDelay(u"RSS/Session/FetchDelay"_s, 2)
+    , m_storeFetchDelay(u"RSS/Session/FetchDelay"_s, 2s)
     , m_storeMaxArticlesPerFeed(u"RSS/Session/MaxArticlesPerFeed"_s, 50)
     , m_workingThread(new QThread)
 {
@@ -526,15 +527,16 @@ void Session::setRefreshInterval(const int refreshInterval)
     }
 }
 
-int Session::fetchDelay() const
+std::chrono::seconds Session::fetchDelay() const
 {
     return m_storeFetchDelay;
 }
 
-void Session::setFetchDelay(const int fetchDelay)
+void Session::setFetchDelay(const std::chrono::seconds delay)
 {
-    if (m_storeFetchDelay == fetchDelay) { return; }
-    m_storeFetchDelay = fetchDelay;
+    if (delay == fetchDelay())
+        return;
+    m_storeFetchDelay = delay;
 }
 
 QThread *Session::workingThread() const

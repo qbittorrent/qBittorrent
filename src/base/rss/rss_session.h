@@ -68,6 +68,8 @@
  * 3.   Feed is JSON object (keys are property names, values are property values; 'uid' and 'url' are required)
  */
 
+#include <chrono>
+
 #include <QHash>
 #include <QObject>
 #include <QPointer>
@@ -114,8 +116,8 @@ namespace RSS
         int refreshInterval() const;
         void setRefreshInterval(int refreshInterval);
 
-        int fetchDelay() const;
-        void setFetchDelay(int fetchDelay);
+        std::chrono::seconds fetchDelay() const;
+        void setFetchDelay(std::chrono::seconds delay);
 
         nonstd::expected<void, QString> addFolder(const QString &path);
         nonstd::expected<void, QString> addFeed(const QString &url, const QString &path);
@@ -164,7 +166,7 @@ namespace RSS
 
         CachedSettingValue<bool> m_storeProcessingEnabled;
         CachedSettingValue<int> m_storeRefreshInterval;
-        CachedSettingValue<int> m_storeFetchDelay;
+        CachedSettingValue<std::chrono::seconds> m_storeFetchDelay;
         CachedSettingValue<int> m_storeMaxArticlesPerFeed;
         Utils::Thread::UniquePtr m_workingThread;
         AsyncFileStorage *m_confFileStorage = nullptr;
