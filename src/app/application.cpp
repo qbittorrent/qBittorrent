@@ -70,7 +70,6 @@
 #include "base/bittorrent/torrent.h"
 #include "base/exceptions.h"
 #include "base/global.h"
-#include "base/iconprovider.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/geoipmanager.h"
@@ -85,6 +84,7 @@
 #include "base/torrentfileswatcher.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
+#include "base/utils/os.h"
 #include "base/utils/string.h"
 #include "base/version.h"
 #include "applicationinstancemanager.h"
@@ -97,16 +97,14 @@
 #include "gui/mainwindow.h"
 #include "gui/shutdownconfirmdialog.h"
 #include "gui/uithememanager.h"
-#include "gui/utils.h"
 #include "gui/windowstate.h"
-
-#ifdef Q_OS_WIN
-#include "base/utils/os.h"
-#endif  // Q_OS_WIN
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
 #include "webui/webui.h"
+#ifdef DISABLE_GUI
+#include "base/utils/password.h"
+#endif
 #endif
 
 namespace
@@ -293,7 +291,8 @@ Application::Application(int &argc, char **argv)
     connect(this, &QGuiApplication::commitDataRequest, this, &Application::shutdownCleanup, Qt::DirectConnection);
 #endif
 
-    LogMsg(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(QStringLiteral(QBT_VERSION)));
+    LogMsg(tr("qBittorrent %1 started. Process ID: %2", "qBittorrent v3.2.0alpha started")
+        .arg(QStringLiteral(QBT_VERSION), QString::number(QCoreApplication::applicationPid())));
     if (portableModeEnabled)
     {
         LogMsg(tr("Running in portable mode. Auto detected profile folder at: %1").arg(profileDir.toString()));
@@ -308,8 +307,8 @@ Application::Application(int &argc, char **argv)
     if (isFileLoggerEnabled())
         m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
 
-    if (m_commandLineArgs.webUiPort > 0) // it will be -1 when user did not set any value
-        Preferences::instance()->setWebUiPort(m_commandLineArgs.webUiPort);
+    if (m_commandLineArgs.webUIPort > 0) // it will be -1 when user did not set any value
+        Preferences::instance()->setWebUIPort(m_commandLineArgs.webUIPort);
 
     if (m_commandLineArgs.torrentingPort > 0) // it will be -1 when user did not set any value
     {
@@ -373,7 +372,7 @@ void Application::setMemoryWorkingSetLimit(const int size)
         return;
 
     m_storeMemoryWorkingSetLimit = size;
-#ifdef QBT_USES_LIBTORRENT2
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
     applyMemoryWorkingSetLimit();
 #endif
 }
@@ -782,7 +781,7 @@ int Application::exec()
     printf("%s\n", qUtf8Printable(loadingStr));
 #endif
 
-#ifdef QBT_USES_LIBTORRENT2
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
     applyMemoryWorkingSetLimit();
 #endif
 
@@ -793,7 +792,6 @@ int Application::exec()
 
     Net::ProxyConfigurationManager::initInstance();
     Net::DownloadManager::initInstance();
-    IconProvider::initInstance();
 
     BitTorrent::Session::initInstance();
 #ifndef DISABLE_GUI
@@ -885,35 +883,31 @@ int Application::exec()
 #endif
         m_window = new MainWindow(this, windowState);
         delete m_startupProgressDialog;
-#ifdef Q_OS_WIN
-        auto *pref = Preferences::instance();
-        if (!pref->neverCheckFileAssoc() && (!Utils::OS::isTorrentFileAssocSet() || !Utils::OS::isMagnetLinkAssocSet()))
-        {
-            if (QMessageBox::question(m_window, tr("Torrent file association")
-                                      , tr("qBittorrent is not the default application for opening torrent files or Magnet links.\nDo you want to make qBittorrent the default application for these?")
-                                      , QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
-            {
-                Utils::OS::setTorrentFileAssoc(true);
-                Utils::OS::setMagnetLinkAssoc(true);
-            }
-            else
-            {
-                pref->setNeverCheckFileAssoc();
-            }
-        }
-#endif // Q_OS_WIN
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
+#ifndef DISABLE_GUI
         m_webui = new WebUI(this);
-#ifdef DISABLE_GUI
-        if (m_webui->isErrored())
-            QCoreApplication::exit(EXIT_FAILURE);
-        connect(m_webui, &WebUI::fatalError, this, []() { QCoreApplication::exit(EXIT_FAILURE); });
+#else
+        const auto *pref = Preferences::instance();
+
+        const QString tempPassword = pref->getWebUIPassword().isEmpty()
+                ? Utils::Password::generate() : QString();
+        m_webui = new WebUI(this, (!tempPassword.isEmpty() ? Utils::Password::PBKDF2::generate(tempPassword) : QByteArray()));
+        connect(m_webui, &WebUI::error, this, [](const QString &message)
+        {
+            fprintf(stderr, "WebUI configuration failed. Reason: %s\n", qUtf8Printable(message));
+        });
 
         printf("%s", qUtf8Printable(u"\n******** %1 ********\n"_s.arg(tr("Information"))));
 
-        if (m_webui->isEnabled())
+        if (m_webui->isErrored())
+        {
+            const QString error = m_webui->errorMessage() + u'\n'
+                    + tr("To fix the error, you may need to edit the config file manually.");
+            fprintf(stderr, "%s\n", qUtf8Printable(error));
+        }
+        else if (m_webui->isEnabled())
         {
             const QHostAddress address = m_webui->hostAddress();
             const QString url = u"%1://%2:%3"_s.arg((m_webui->isHttps() ? u"https"_s : u"http"_s)
@@ -921,12 +915,11 @@ int Application::exec()
                     , QString::number(m_webui->port()));
             printf("%s\n", qUtf8Printable(tr("To control qBittorrent, access the WebUI at: %1").arg(url)));
 
-            const Preferences *pref = Preferences::instance();
-            if (pref->getWebUIPassword() == QByteArrayLiteral("ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ=="))
+            if (!tempPassword.isEmpty())
             {
-                const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + u'\n'
-                        + tr("The Web UI administrator password has not been changed from the default: %1").arg(u"adminadmin"_s) + u'\n'
-                        + tr("This is a security risk, please change your password in program preferences.") + u'\n';
+                const QString warning = tr("The WebUI administrator username is: %1").arg(pref->getWebUIUsername()) + u'\n'
+                        + tr("The WebUI administrator password was not set. A temporary password is provided for this session: %1").arg(tempPassword) + u'\n'
+                        + tr("You should set your own password in program preferences.") + u'\n';
                 printf("%s", qUtf8Printable(warning));
             }
         }
@@ -950,7 +943,7 @@ int Application::exec()
     return BaseApplication::exec();
 }
 
-bool Application::isRunning()
+bool Application::hasAnotherInstance() const
 {
     return !m_instanceManager->isFirstInstance();
 }
@@ -1147,7 +1140,7 @@ void Application::shutdownCleanup([[maybe_unused]] QSessionManager &manager)
 }
 #endif
 
-#ifdef QBT_USES_LIBTORRENT2
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
 void Application::applyMemoryWorkingSetLimit() const
 {
     const size_t MiB = 1024 * 1024;
@@ -1220,12 +1213,12 @@ void Application::setProcessMemoryPriority(const MemoryPriority priority)
 void Application::applyMemoryPriority() const
 {
     using SETPROCESSINFORMATION = BOOL (WINAPI *)(HANDLE, PROCESS_INFORMATION_CLASS, LPVOID, DWORD);
-    const auto setProcessInformation = Utils::Misc::loadWinAPI<SETPROCESSINFORMATION>(u"Kernel32.dll"_s, "SetProcessInformation");
+    const auto setProcessInformation = Utils::OS::loadWinAPI<SETPROCESSINFORMATION>(u"Kernel32.dll"_s, "SetProcessInformation");
     if (!setProcessInformation)  // only available on Windows >= 8
         return;
 
     using SETTHREADINFORMATION = BOOL (WINAPI *)(HANDLE, THREAD_INFORMATION_CLASS, LPVOID, DWORD);
-    const auto setThreadInformation = Utils::Misc::loadWinAPI<SETTHREADINFORMATION>(u"Kernel32.dll"_s, "SetThreadInformation");
+    const auto setThreadInformation = Utils::OS::loadWinAPI<SETTHREADINFORMATION>(u"Kernel32.dll"_s, "SetThreadInformation");
     if (!setThreadInformation)  // only available on Windows >= 8
         return;
 
@@ -1340,7 +1333,6 @@ void Application::cleanup()
     Net::ProxyConfigurationManager::freeInstance();
     Preferences::freeInstance();
     SettingsStorage::freeInstance();
-    IconProvider::freeInstance();
     SearchPluginManager::freeInstance();
     Utils::Fs::removeDirRecursively(Utils::Fs::tempPath());
 
@@ -1365,7 +1357,7 @@ void Application::cleanup()
     if (m_shutdownAct != ShutdownDialogAction::Exit)
     {
         qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
-        Utils::Misc::shutdownComputer(m_shutdownAct);
+        Utils::OS::shutdownComputer(m_shutdownAct);
     }
 }
 
@@ -1373,3 +1365,10 @@ AddTorrentManagerImpl *Application::addTorrentManager() const
 {
     return m_addTorrentManager;
 }
+
+#ifndef DISABLE_WEBUI
+WebUI *Application::webUI() const
+{
+    return m_webui;
+}
+#endif

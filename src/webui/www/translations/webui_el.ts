@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="el">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="el">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Δημιουργία υποφακέλου</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Να μη δημιουργηθεί υποφάκελος</translation>
     </message>
     <message>
@@ -991,8 +993,8 @@
         <translation>%T: Τρέχων tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Συμβουλή: Περικλείστε την παράμετρο με αγγλικά εισαγωγικά για να αποφύγετε την αποκοπή του κειμένου στα κενά (π.χ. &quot;%Ν&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Συμβουλή: Περικλείστε την παράμετρο με αγγλικά εισαγωγικά για να αποφύγετε την αποκοπή του κειμένου στα κενά (π.χ. "%Ν")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1161,10 +1163,6 @@
     <message>
         <source>When ratio reaches</source>
         <translation>Όταν η αναλογία φτάνει</translation>
-    </message>
-    <message>
-        <source>When seeding time reaches</source>
-        <translation>Όταν ο χρόνος seeding φτάσει</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1415,7 +1413,7 @@
         <translation>Πρωτότυπο</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Να μη δημιουργηθεί υποφάκελος</translation>
     </message>
     <message>
@@ -1551,7 +1549,7 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Allowlist για φιλτράρισμα τιμών κεφαλίδας HTTP Host.
 Για να αμυνθείτε από επιθέσεις επαναδέσμευσης DNS,
 θα πρέπει να βάλετε ονόματα τομέα που χρησιμοποιούνται από τον διακομιστή του WebUI.
@@ -1567,8 +1565,8 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>Το πιστοποιητικό HTTPS δεν πρέπει να είναι κενό</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation>Καθορίστε αντίστροφες proxy IPs (ή subnets, π.χ. 0.0.0.0/24) για να χρησιμοποιήσετε τη προωθημένη διεύθυνση του client (X-Forwarded-For header). Χρησιμοποιήστε το &apos;;&apos; για να διαχωρίσετε πολλές εγγραφές.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation>Καθορίστε αντίστροφες proxy IPs (ή subnets, π.χ. 0.0.0.0/24) για να χρησιμοποιήσετε τη προωθημένη διεύθυνση του client (X-Forwarded-For header). Χρησιμοποιήστε το ';' για να διαχωρίσετε πολλές εγγραφές.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1589,10 +1587,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
         <translation>Εάν είναι επιλεγμένο, οι αναζητήσεις ονόματος κεντρικού υπολογιστή γίνονται μέσω του διακομιστή μεσολάβησης.</translation>
-    </message>
-    <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation>Χρήση proxy για αναζητήσεις hostname</translation>
     </message>
     <message>
         <source>Metadata received</source>
@@ -1729,6 +1723,86 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
         <translation>Διάρκεια μίσθωσης UPnP [0: Μόνιμη μίσθωση]</translation>
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
+        <translation>Όριο Bdecode depth:</translation>
+    </message>
+    <message>
+        <source>Bdecode token limit:</source>
+        <translation>Όριο Bdecode token:</translation>
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation>Όταν ο συνολικός χρόνος seeding ολοκληρωθεί</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Κανένα)</translation>
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation>Μήκος εισερχομένων I2P (απαιτεί libtorrent &amp;gt;= 2.0):</translation>
+    </message>
+    <message>
+        <source>Python executable path (may require restart):</source>
+        <translation>Εκτελέσιμη διαδρομή Python (μπορεί να απαιτεί επανεκκίνηση):</translation>
+    </message>
+    <message>
+        <source>Resets to default if empty</source>
+        <translation>Επαναφέρεται στην προεπιλογή εάν είναι κενό</translation>
+    </message>
+    <message>
+        <source>Perform hostname lookup via proxy</source>
+        <translation>Εκτέλεση αναζήτησης hostname μέσω proxy</translation>
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation>Αν η &amp;quot;μικτή λειτουργία&amp;quot; είναι ενεργοποιημένη, τα torrents I2P επιτρέπεται επίσης να λαμβάνουν συνομηλίκους από άλλες πηγές εκτός από τον ιχνηλάτη και να συνδέονται με κανονικές IP, χωρίς να παρέχουν ανωνυμοποίηση. Αυτό μπορεί να είναι χρήσιμο εάν ο χρήστης δεν ενδιαφέρεται για την ανωνυμοποίηση του I2P, αλλά εξακολουθεί να θέλει να μπορεί να συνδεθεί με ομότιμους I2P.</translation>
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation>Μήκος εισερχομένων I2P (απαιτεί libtorrent &amp;gt;= 2.0):</translation>
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation>Μήκος εισερχομένων I2P (απαιτεί libtorrent &amp;gt;= 2.0):</translation>
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation>Μήκος εξερχομένων I2P (απαιτεί libtorrent &amp;gt;= 2.0):</translation>
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation>I2P (Πειραματικό) (απαιτεί libtorrent &amp;gt;= 2.0)</translation>
+    </message>
+    <message>
+        <source>DHT bootstrap nodes:</source>
+        <translation>Κόμβοι εκκίνησης DHT:</translation>
+    </message>
+    <message>
+        <source>When inactive seeding time reaches</source>
+        <translation>Όταν ο χρόνος ανενεργού seeding ολοκληρωθεί</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation>Μικτή λειτουργία</translation>
+    </message>
+    <message>
+        <source>.torrent file size limit:</source>
+        <translation>όριο μεγέθους αρχείου .torrent</translation>
+    </message>
+    <message>
+        <source>(Auto detect if empty)</source>
+        <translation>(Αυτόματος εντοπισμός εάν είναι κενό)</translation>
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2055,10 +2129,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>Η μετονομασία απέτυχε: το αρχείο ή ο φάκελος υπάρχει ήδη</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation>Αντιστοίχιση όλων των εμφανίσεων</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Εναλλαγή Επιλογής</translation>
     </message>
@@ -2093,6 +2163,10 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <source>Case sensitive</source>
         <translation>Διάκριση πεζών-κεφαλαίων</translation>
+    </message>
+    <message>
+        <source>Match all occurrences</source>
+        <translation>Αντιστοίχιση όλων των εμφανίσεων</translation>
     </message>
 </context>
 <context>
@@ -2310,6 +2384,14 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <source>Checking (0)</source>
         <translation>Γίνεται έλεγχος (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2461,6 +2543,10 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <source>Availability</source>
         <translation>Διαθεσιμότητα</translation>
+    </message>
+    <message>
+        <source>Reannounce In</source>
+        <translation>Επανανακοίνωση σε:</translation>
     </message>
 </context>
 <context>
@@ -2883,6 +2969,10 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <source>Renaming</source>
         <translation>Μετονομασία</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2907,8 +2997,12 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>αναλογία</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation>λεπτά</translation>
+        <source>total minutes</source>
+        <translation>συνολικά λεπτά</translation>
+    </message>
+    <message>
+        <source>inactive minutes</source>
+        <translation>ανενεργά λεπτά</translation>
     </message>
 </context>
 <context>
@@ -3117,11 +3211,11 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>εμφανίζονται</translation>
     </message>
     <message>
-        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
         <translation>Κάντε κλικ στο κουμπί «Αναζήτηση προσθηκών...» στην κάτω δεξιά γωνία του παραθύρου για να εγκαταστήσετε μερικές.</translation>
     </message>
     <message>
-        <source>There aren&apos;t any search plugins installed.</source>
+        <source>There aren't any search plugins installed.</source>
         <translation>Δεν υπάρχουν εγκατεστημένες προσθήκες</translation>
     </message>
 </context>
@@ -3152,7 +3246,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>Ενεργοποιημένο</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Προειδοποίηση: Βεβαιωθείτε ότι συμμορφώνεστε με τους νόμους περί πνευματικής ιδιοκτησίας της χώρας σας κατά τη λήψη torrents από οποιαδήποτε από αυτές τις μηχανές αναζήτησης.</translation>
     </message>
     <message>
@@ -3428,7 +3522,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Μετονομασία)</translation>
+        <translation type="vanished">Μετονομασία)</translation>
     </message>
 </context>
 <context>
@@ -3771,8 +3865,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Πρωτότυπο</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Να μη δημιουργηθεί υποφάκελος</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation>Προσθήκη ετικετών</translation>
     </message>
 </context>
 <context>

@@ -14,6 +14,7 @@ add_library(qbt_base STATIC
     bittorrent/common.h
     bittorrent/customstorage.h
     bittorrent/dbresumedatastorage.h
+    bittorrent/downloadpathoption.h
     bittorrent/downloadpriority.h
     bittorrent/extensiondata.h
     bittorrent/filesearcher.h
@@ -53,7 +54,6 @@ add_library(qbt_base STATIC
     http/responsegenerator.h
     http/server.h
     http/types.h
-    iconprovider.h
     indexrange.h
     interfaces/iapplication.h
     logger.h
@@ -118,6 +118,7 @@ add_library(qbt_base STATIC
     bittorrent/categoryoptions.cpp
     bittorrent/customstorage.cpp
     bittorrent/dbresumedatastorage.cpp
+    bittorrent/downloadpathoption.cpp
     bittorrent/downloadpriority.cpp
     bittorrent/filesearcher.cpp
     bittorrent/filterparserthread.cpp
@@ -146,7 +147,6 @@ add_library(qbt_base STATIC
     http/responsebuilder.cpp
     http/responsegenerator.cpp
     http/server.cpp
-    iconprovider.cpp
     logger.cpp
     net/dnsupdater.cpp
     net/downloadhandlerimpl.cpp
@@ -205,9 +205,9 @@ target_link_libraries(qbt_base
 )
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    find_library(IOKit_LIBRARY IOKit)
-    find_library(Carbon_LIBRARY Carbon)
     find_library(AppKit_LIBRARY AppKit)
+    find_library(Carbon_LIBRARY Carbon)
+    find_library(IOKit_LIBRARY IOKit)
 
     target_link_libraries(qbt_base PRIVATE
         ${AppKit_LIBRARY}

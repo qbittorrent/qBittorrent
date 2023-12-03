@@ -111,7 +111,8 @@ window.qBittorrent.DynamicTable = (function() {
 
                     let n = 2;
 
-                    while (panel.clientWidth != panel.offsetWidth && n > 0) { // is panel vertical scrollbar visible ?
+                    // is panel vertical scrollbar visible or does panel content not fit?
+                    while (((panel.clientWidth != panel.offsetWidth) || (panel.clientHeight != panel.scrollHeight)) && (n > 0)) {
                         --n;
                         h -= 0.5;
                         $(this.dynamicTableDivId).style.height = h + 'px';
@@ -816,8 +817,7 @@ window.qBittorrent.DynamicTable = (function() {
             let rowPos = rows.length;
 
             while ((rowPos < trs.length) && (trs.length > 0)) {
-                trs[trs.length - 1].dispose();
-                trs.pop();
+                trs.pop().destroy();
             }
         },
 
@@ -839,7 +839,7 @@ window.qBittorrent.DynamicTable = (function() {
             this.selectedRows.erase(rowId);
             const tr = this.getTrByRowId(rowId);
             if (tr !== null) {
-                tr.dispose();
+                tr.destroy();
                 this.rows.erase(rowId);
                 return true;
             }
@@ -851,8 +851,7 @@ window.qBittorrent.DynamicTable = (function() {
             this.rows.empty();
             const trs = this.tableBody.getElements('tr');
             while (trs.length > 0) {
-                trs[trs.length - 1].dispose();
-                trs.pop();
+                trs.pop().destroy();
             }
         },
 
@@ -1002,9 +1001,12 @@ window.qBittorrent.DynamicTable = (function() {
                     case "checkingUP":
                     case "queuedForChecking":
                     case "checkingResumeData":
-                    case "moving":
                         state = "force-recheck";
                         img_path = "images/force-recheck.svg";
+                        break;
+                    case "moving":
+                        state = "moving";
+                        img_path = "images/set-location.svg";
                         break;
                     case "error":
                     case "unknown":
@@ -1374,6 +1376,10 @@ window.qBittorrent.DynamicTable = (function() {
                     if (state !== 'checkingUP' && state !== 'checkingDL' && state !== 'checkingResumeData')
                         return false;
                     break;
+                case 'moving':
+                    if (state !== 'moving')
+                        return false;
+                    break;
                 case 'errored':
                     if (state != 'error' && state != "unknown" && state != "missingFiles")
                         return false;
@@ -1554,7 +1560,7 @@ window.qBittorrent.DynamicTable = (function() {
 
                 if (!country_code) {
                     if (td.getChildren('img').length > 0)
-                        td.getChildren('img')[0].dispose();
+                        td.getChildren('img')[0].destroy();
                     return;
                 }
 

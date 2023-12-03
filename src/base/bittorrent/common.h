@@ -33,3 +33,4 @@
 #include "base/global.h"
 
 inline const QString QB_EXT = u".!qB"_s;
+inline const QString UNWANTED_FOLDER_NAME = u".unwanted"_s;

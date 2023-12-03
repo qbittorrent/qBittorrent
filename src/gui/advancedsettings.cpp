@@ -63,7 +63,7 @@ namespace
         // qBittorrent section
         QBITTORRENT_HEADER,
         RESUME_DATA_STORAGE,
-#ifdef QBT_USES_LIBTORRENT2
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
         MEMORY_WORKING_SET_LIMIT,
 #endif
 #if defined(Q_OS_WIN)
@@ -100,6 +100,9 @@ namespace
         TRACKER_STATUS,
         TRACKER_PORT,
         TRACKER_PORT_FORWARDING,
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+        ENABLE_MARK_OF_THE_WEB,
+#endif // Q_OS_MACOS || Q_OS_WIN
         PYTHON_EXECUTABLE_PATH,
 
         // libtorrent section
@@ -197,7 +200,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     BitTorrent::Session *const session = BitTorrent::Session::instance();
 
     session->setResumeDataStorageType(m_comboBoxResumeDataStorage.currentData().value<BitTorrent::ResumeDataStorageType>());
-#ifdef QBT_USES_LIBTORRENT2
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
     // Physical memory (RAM) usage limit
     app()->setMemoryWorkingSetLimit(m_spinBoxMemoryWorkingSetLimit.value());
 #endif
@@ -319,6 +322,10 @@ void AdvancedSettings::saveAdvancedSettings() const
     pref->setTrackerPort(m_spinBoxTrackerPort.value());
     pref->setTrackerPortForwardingEnabled(m_checkBoxTrackerPortForwarding.isChecked());
     session->setTrackerEnabled(m_checkBoxTrackerStatus.isChecked());
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+    // Mark-of-the-Web
+    pref->setMarkOfTheWebEnabled(m_checkBoxMarkOfTheWeb.isChecked());
+#endif // Q_OS_MACOS || Q_OS_WIN
     // Python executable path
     pref->setPythonExecutablePath(Path(m_pythonExecutablePath.text().trimmed()));
     // Choking algorithm
@@ -456,7 +463,7 @@ void AdvancedSettings::loadAdvancedSettings()
     m_comboBoxResumeDataStorage.setCurrentIndex(m_comboBoxResumeDataStorage.findData(QVariant::fromValue(session->resumeDataStorageType())));
     addRow(RESUME_DATA_STORAGE, tr("Resume data storage type (requires restart)"), &m_comboBoxResumeDataStorage);
 
-#ifdef QBT_USES_LIBTORRENT2
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
     // Physical memory (RAM) usage limit
     m_spinBoxMemoryWorkingSetLimit.setMinimum(1);
     m_spinBoxMemoryWorkingSetLimit.setMaximum(std::numeric_limits<int>::max());
@@ -473,7 +480,7 @@ void AdvancedSettings::loadAdvancedSettings()
     m_comboBoxOSMemoryPriority.addItem(tr("Low"), QVariant::fromValue(MemoryPriority::Low));
     m_comboBoxOSMemoryPriority.addItem(tr("Very low"), QVariant::fromValue(MemoryPriority::VeryLow));
     m_comboBoxOSMemoryPriority.setCurrentIndex(m_comboBoxOSMemoryPriority.findData(QVariant::fromValue(app()->processMemoryPriority())));
-    addRow(OS_MEMORY_PRIORITY, (tr("Process memory priority (Windows >= 8 only)")
+    addRow(OS_MEMORY_PRIORITY, (tr("Process memory priority")
         + u' ' + makeLink(u"https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-memory_priority_information", u"(?)"))
         , &m_comboBoxOSMemoryPriority);
 #endif
@@ -815,6 +822,16 @@ void AdvancedSettings::loadAdvancedSettings()
     // Tracker port forwarding
     m_checkBoxTrackerPortForwarding.setChecked(pref->isTrackerPortForwardingEnabled());
     addRow(TRACKER_PORT_FORWARDING, tr("Enable port forwarding for embedded tracker"), &m_checkBoxTrackerPortForwarding);
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+    // Mark-of-the-Web
+#ifdef Q_OS_MACOS
+    const QString motwLabel = tr("Enable quarantine for downloaded files");
+#elif defined(Q_OS_WIN)
+    const QString motwLabel = tr("Enable Mark-of-the-Web (MOTW) for downloaded files");
+#endif
+    m_checkBoxMarkOfTheWeb.setChecked(pref->isMarkOfTheWebEnabled());
+    addRow(ENABLE_MARK_OF_THE_WEB, motwLabel, &m_checkBoxMarkOfTheWeb);
+#endif // Q_OS_MACOS || Q_OS_WIN
     // Python executable path
     m_pythonExecutablePath.setPlaceholderText(tr("(Auto detect if empty)"));
     m_pythonExecutablePath.setText(pref->getPythonExecutablePath().toString());

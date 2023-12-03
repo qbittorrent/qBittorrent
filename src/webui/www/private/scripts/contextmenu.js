@@ -61,9 +61,9 @@ window.qBittorrent.ContextMenu = (function() {
                 x: 0,
                 y: 0
             },
-            onShow: $empty,
-            onHide: $empty,
-            onClick: $empty,
+            onShow: () => {},
+            onHide: () => {},
+            onClick: () => {},
             fadeSpeed: 200,
             touchTimer: 600
         },
@@ -444,7 +444,7 @@ window.qBittorrent.ContextMenu = (function() {
 
         updateCategoriesSubMenu: function(category_list) {
             const categoryList = $('contextCategoryList');
-            categoryList.empty();
+            categoryList.getChildren().each(c => c.destroy());
             categoryList.appendChild(new Element('li', {
                 html: '<a href="javascript:torrentNewCategoryFN();"><img src="images/list-add.svg" alt="QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]</a>'
             }));

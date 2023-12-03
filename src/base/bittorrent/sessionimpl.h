@@ -142,7 +142,9 @@ namespace BitTorrent
         QStringList categories() const override;
         CategoryOptions categoryOptions(const QString &categoryName) const override;
         Path categorySavePath(const QString &categoryName) const override;
+        Path categorySavePath(const QString &categoryName, const CategoryOptions &options) const override;
         Path categoryDownloadPath(const QString &categoryName) const override;
+        Path categoryDownloadPath(const QString &categoryName, const CategoryOptions &options) const override;
         bool addCategory(const QString &name, const CategoryOptions &options = {}) override;
         bool editCategory(const QString &name, const CategoryOptions &options) override;
         bool removeCategory(const QString &name) override;
@@ -194,6 +196,8 @@ namespace BitTorrent
         void setTrackerEnabled(bool enabled) override;
         bool isAppendExtensionEnabled() const override;
         void setAppendExtensionEnabled(bool enabled) override;
+        bool isUnwantedFolderEnabled() const override;
+        void setUnwantedFolderEnabled(bool enabled) override;
         int refreshInterval() const override;
         void setRefreshInterval(int value) override;
         bool isPreallocationEnabled() const override;
@@ -572,6 +576,7 @@ namespace BitTorrent
         void loadCategories();
         void storeCategories() const;
         void upgradeCategories();
+        DownloadPathOption resolveCategoryDownloadPathOption(const QString &categoryName, const std::optional<DownloadPathOption> &option) const;
 
         void saveStatistics() const;
         void loadStatistics();
@@ -656,6 +661,7 @@ namespace BitTorrent
         CachedSettingValue<Torrent::StopCondition> m_torrentStopCondition;
         CachedSettingValue<TorrentContentLayout> m_torrentContentLayout;
         CachedSettingValue<bool> m_isAppendExtensionEnabled;
+        CachedSettingValue<bool> m_isUnwantedFolderEnabled;
         CachedSettingValue<int> m_refreshInterval;
         CachedSettingValue<bool> m_isPreallocationEnabled;
         CachedSettingValue<Path> m_torrentExportDirectory;

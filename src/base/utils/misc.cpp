@@ -30,44 +30,24 @@
 
 #include <optional>
 
-#ifdef Q_OS_WIN
-#include <memory>
-
-#include <windows.h>
-#include <powrprof.h>
-#include <shlobj.h>
-#else
-#include <sys/types.h>
-#include <unistd.h>
-#endif
-
-#ifdef Q_OS_MACOS
-#include <Carbon/Carbon.h>
-#include <CoreServices/CoreServices.h>
-#endif
-
 #include <boost/version.hpp>
 #include <libtorrent/version.hpp>
 #include <openssl/crypto.h>
 #include <openssl/opensslv.h>
 #include <zlib.h>
 
+#include <QtAssert>
 #include <QCoreApplication>
 #include <QDebug>
 #include <QLocale>
 #include <QMimeDatabase>
 #include <QRegularExpression>
 #include <QSet>
+#include <QString>
 #include <QSysInfo>
-#include <QVector>
 
-#ifdef QBT_USES_DBUS
-#include <QDBusInterface>
-#endif
-
-#include "base/types.h"
+#include "base/path.h"
 #include "base/unicodestrings.h"
-#include "base/utils/fs.h"
 #include "base/utils/string.h"
 
 namespace
@@ -109,145 +89,6 @@ namespace
         }
         return {{value, static_cast<Utils::Misc::SizeUnit>(i)}};
     }
-}
-
-void Utils::Misc::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &action)
-{
-#if defined(Q_OS_WIN)
-    HANDLE hToken;            // handle to process token
-    TOKEN_PRIVILEGES tkp;     // pointer to token structure
-    if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
-        return;
-    // Get the LUID for shutdown privilege.
-    LookupPrivilegeValue(NULL, SE_SHUTDOWN_NAME,
-                         &tkp.Privileges[0].Luid);
-
-    tkp.PrivilegeCount = 1; // one privilege to set
-    tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-
-    // Get shutdown privilege for this process.
-
-    AdjustTokenPrivileges(hToken, FALSE, &tkp, 0,
-                          (PTOKEN_PRIVILEGES) NULL, 0);
-
-    // Cannot test the return value of AdjustTokenPrivileges.
-
-    if (GetLastError() != ERROR_SUCCESS)
-        return;
-
-    if (action == ShutdownDialogAction::Suspend)
-    {
-        ::SetSuspendState(FALSE, FALSE, FALSE);
-    }
-    else if (action == ShutdownDialogAction::Hibernate)
-    {
-        ::SetSuspendState(TRUE, FALSE, FALSE);
-    }
-    else
-    {
-        const QString msg = QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.");
-        auto msgWchar = std::make_unique<wchar_t[]>(msg.length() + 1);
-        msg.toWCharArray(msgWchar.get());
-        ::InitiateSystemShutdownW(nullptr, msgWchar.get(), 10, TRUE, FALSE);
-    }
-
-    // Disable shutdown privilege.
-    tkp.Privileges[0].Attributes = 0;
-    AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) NULL, 0);
-
-#elif defined(Q_OS_MACOS)
-    AEEventID EventToSend;
-    if (action != ShutdownDialogAction::Shutdown)
-        EventToSend = kAESleep;
-    else
-        EventToSend = kAEShutDown;
-    AEAddressDesc targetDesc;
-    const ProcessSerialNumber kPSNOfSystemProcess = {0, kSystemProcess};
-    AppleEvent eventReply = {typeNull, NULL};
-    AppleEvent appleEventToSend = {typeNull, NULL};
-
-    OSStatus error = AECreateDesc(typeProcessSerialNumber, &kPSNOfSystemProcess,
-                                  sizeof(kPSNOfSystemProcess), &targetDesc);
-
-    if (error != noErr)
-        return;
-
-    error = AECreateAppleEvent(kCoreEventClass, EventToSend, &targetDesc,
-                               kAutoGenerateReturnID, kAnyTransactionID, &appleEventToSend);
-
-    AEDisposeDesc(&targetDesc);
-    if (error != noErr)
-        return;
-
-    error = AESend(&appleEventToSend, &eventReply, kAENoReply,
-                   kAENormalPriority, kAEDefaultTimeout, NULL, NULL);
-
-    AEDisposeDesc(&appleEventToSend);
-    if (error != noErr)
-        return;
-
-    AEDisposeDesc(&eventReply);
-
-#elif defined(QBT_USES_DBUS)
-    // Use dbus to power off / suspend the system
-    if (action != ShutdownDialogAction::Shutdown)
-    {
-        // Some recent systems use systemd's logind
-        QDBusInterface login1Iface(u"org.freedesktop.login1"_s, u"/org/freedesktop/login1"_s,
-                                   u"org.freedesktop.login1.Manager"_s, QDBusConnection::systemBus());
-        if (login1Iface.isValid())
-        {
-            if (action == ShutdownDialogAction::Suspend)
-                login1Iface.call(u"Suspend"_s, false);
-            else
-                login1Iface.call(u"Hibernate"_s, false);
-            return;
-        }
-        // Else, other recent systems use UPower
-        QDBusInterface upowerIface(u"org.freedesktop.UPower"_s, u"/org/freedesktop/UPower"_s,
-                                   u"org.freedesktop.UPower"_s, QDBusConnection::systemBus());
-        if (upowerIface.isValid())
-        {
-            if (action == ShutdownDialogAction::Suspend)
-                upowerIface.call(u"Suspend"_s);
-            else
-                upowerIface.call(u"Hibernate"_s);
-            return;
-        }
-        // HAL (older systems)
-        QDBusInterface halIface(u"org.freedesktop.Hal"_s, u"/org/freedesktop/Hal/devices/computer"_s,
-                                u"org.freedesktop.Hal.Device.SystemPowerManagement"_s,
-                                QDBusConnection::systemBus());
-        if (action == ShutdownDialogAction::Suspend)
-            halIface.call(u"Suspend"_s, 5);
-        else
-            halIface.call(u"Hibernate"_s);
-    }
-    else
-    {
-        // Some recent systems use systemd's logind
-        QDBusInterface login1Iface(u"org.freedesktop.login1"_s, u"/org/freedesktop/login1"_s,
-                                   u"org.freedesktop.login1.Manager"_s, QDBusConnection::systemBus());
-        if (login1Iface.isValid())
-        {
-            login1Iface.call(u"PowerOff"_s, false);
-            return;
-        }
-        // Else, other recent systems use ConsoleKit
-        QDBusInterface consolekitIface(u"org.freedesktop.ConsoleKit"_s, u"/org/freedesktop/ConsoleKit/Manager"_s,
-                                       u"org.freedesktop.ConsoleKit.Manager"_s, QDBusConnection::systemBus());
-        if (consolekitIface.isValid())
-        {
-            consolekitIface.call(u"Stop"_s);
-            return;
-        }
-        // HAL (older systems)
-        QDBusInterface halIface(u"org.freedesktop.Hal"_s, u"/org/freedesktop/Hal/devices/computer"_s,
-                                u"org.freedesktop.Hal.Device.SystemPowerManagement"_s,
-                                QDBusConnection::systemBus());
-        halIface.call(u"Shutdown"_s);
-    }
-#endif
 }
 
 QString Utils::Misc::unitString(const SizeUnit unit, const bool isSpeed)
@@ -411,21 +252,6 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
     return QCoreApplication::translate("misc", "%1y %2d", "e.g: 2 years 10 days").arg(QString::number(years), QString::number(days));
 }
 
-QString Utils::Misc::getUserIDString()
-{
-    QString uid = u"0"_s;
-#ifdef Q_OS_WIN
-    const int UNLEN = 256;
-    WCHAR buffer[UNLEN + 1] = {0};
-    DWORD buffer_len = sizeof(buffer) / sizeof(*buffer);
-    if (::GetUserNameW(buffer, &buffer_len))
-        uid = QString::fromWCharArray(buffer);
-#else
-    uid = QString::number(getuid());
-#endif
-    return uid;
-}
-
 QString Utils::Misc::languageToLocalizedString(const QString &localeStr)
 {
     if (localeStr.startsWith(u"eo", Qt::CaseInsensitive))
@@ -451,7 +277,7 @@ QString Utils::Misc::languageToLocalizedString(const QString &localeStr)
     case QLocale::Byelorussian: return C_LOCALE_BYELORUSSIAN;
     case QLocale::Catalan: return C_LOCALE_CATALAN;
     case QLocale::Chinese:
-        switch (locale.country())
+        switch (locale.territory())
         {
         case QLocale::China: return C_LOCALE_CHINESE_SIMPLIFIED;
         case QLocale::HongKong: return C_LOCALE_CHINESE_TRADITIONAL_HK;
@@ -462,7 +288,7 @@ QString Utils::Misc::languageToLocalizedString(const QString &localeStr)
     case QLocale::Danish: return C_LOCALE_DANISH;
     case QLocale::Dutch: return C_LOCALE_DUTCH;
     case QLocale::English:
-        switch (locale.country())
+        switch (locale.territory())
         {
         case QLocale::Australia: return C_LOCALE_ENGLISH_AUSTRALIA;
         case QLocale::UnitedKingdom: return C_LOCALE_ENGLISH_UNITEDKINGDOM;
@@ -492,7 +318,7 @@ QString Utils::Misc::languageToLocalizedString(const QString &localeStr)
     case QLocale::Persian: return C_LOCALE_PERSIAN;
     case QLocale::Polish: return C_LOCALE_POLISH;
     case QLocale::Portuguese:
-        if (locale.country() == QLocale::Brazil)
+        if (locale.territory() == QLocale::Brazil)
             return C_LOCALE_PORTUGUESE_BRAZIL;
         return C_LOCALE_PORTUGUESE;
     case QLocale::Romanian: return C_LOCALE_ROMANIAN;
@@ -618,37 +444,3 @@ QString Utils::Misc::zlibVersionString()
     static const auto version {QString::fromLatin1(zlibVersion())};
     return version;
 }
-
-#ifdef Q_OS_WIN
-bool Utils::Misc::applyMarkOfTheWeb(const Path &file, const QString &url)
-{
-    const QString zoneIDStream = file.toString() + u":Zone.Identifier";
-    HANDLE handle = ::CreateFileW(zoneIDStream.toStdWString().c_str(), GENERIC_WRITE
-        , (FILE_SHARE_DELETE | FILE_SHARE_READ | FILE_SHARE_WRITE)
-        , nullptr, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
-    if (handle == INVALID_HANDLE_VALUE)
-        return false;
-
-    // 5.6.1 Zone.Identifier Stream Name
-    // https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fscc/6e3f7352-d11c-4d76-8c39-2516a9df36e8
-    const QByteArray zoneID = QByteArrayLiteral("[ZoneTransfer]\r\nZoneId=3\r\n")
-        + (!url.isEmpty() ? u"HostUrl=%1\r\n"_s.arg(url).toUtf8() : QByteArray());
-
-    DWORD written = 0;
-    const BOOL writeResult = ::WriteFile(handle, zoneID.constData(), zoneID.size(), &written, nullptr);
-    ::CloseHandle(handle);
-
-    return writeResult && (written == zoneID.size());
-}
-
-Path Utils::Misc::windowsSystemPath()
-{
-    static const Path path = []() -> Path
-    {
-        WCHAR systemPath[MAX_PATH] = {0};
-        GetSystemDirectoryW(systemPath, sizeof(systemPath) / sizeof(WCHAR));
-        return Path(QString::fromWCharArray(systemPath));
-    }();
-    return path;
-}
-#endif // Q_OS_WIN

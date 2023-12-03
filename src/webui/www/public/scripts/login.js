@@ -31,13 +31,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('username').focus();
     document.getElementById('username').select();
-
-    document.getElementById('loginform').addEventListener('submit', function(e) {
-        e.preventDefault();
-    });
 });
 
-function submitLoginForm() {
+function submitLoginForm(event) {
+    event.preventDefault();
     const errorMsgElement = document.getElementById('error_msg');
 
     const xhr = new XMLHttpRequest();

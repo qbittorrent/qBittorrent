@@ -86,6 +86,12 @@
             <label for="appendext_checkbox">QBT_TR(Append .!qB extension to incomplete files)QBT_TR[CONTEXT=OptionsDialog]</label>
         </span>
     </div>
+    <div class="formRow">
+        <span id="unwantedfoldertr">
+            <input type="checkbox" id="unwantedfolder_checkbox" />
+            <label for="unwantedfolder_checkbox">QBT_TR(Keep unselected files in ".unwanted" folder)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </span>
+    </div>
 
     <fieldset class="settings">
         <legend>QBT_TR(Saving Management)QBT_TR[CONTEXT=HttpServer]</legend>
@@ -1087,6 +1093,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             </tr>
             <tr>
                 <td>
+                    <label for="markOfTheWeb">QBT_TR(Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="markOfTheWeb" />
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="pythonExecutablePath">QBT_TR(Python executable path (may require restart):)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
@@ -1878,7 +1892,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         // Advanced Tab
         const updateNetworkInterfaces = function(default_iface, default_iface_name) {
             const url = 'api/v2/app/networkInterfaceList';
-            $('networkInterface').empty();
+            $('networkInterface').getChildren().each(c => c.destroy());
             new Request.JSON({
                 url: url,
                 method: 'get',
@@ -1905,7 +1919,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         const updateInterfaceAddresses = function(iface, default_addr) {
             const url = 'api/v2/app/networkInterfaceAddressList';
-            $('optionalIPAddressToBind').empty();
+            $('optionalIPAddressToBind').getChildren().each(c => c.destroy());
             new Request.JSON({
                 url: url,
                 method: 'get',
@@ -1997,6 +2011,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                         $('preallocateall_checkbox').setProperty('checked', pref.preallocate_all);
                         $('appendext_checkbox').setProperty('checked', pref.incomplete_files_ext);
+                        $('unwantedfolder_checkbox').setProperty('checked', pref.use_unwanted_folder);
 
                         // Saving Management
                         $('default_tmm_combobox').setProperty('value', pref.auto_tmm_enabled);
@@ -2329,6 +2344,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         $('enableEmbeddedTracker').setProperty('checked', pref.enable_embedded_tracker);
                         $('embeddedTrackerPort').setProperty('value', pref.embedded_tracker_port);
                         $('embeddedTrackerPortForwarding').setProperty('checked', pref.embedded_tracker_port_forwarding);
+                        $('markOfTheWeb').setProperty('checked', pref.mark_of_the_web);
                         $('pythonExecutablePath').setProperty('value', pref.python_executable_path);
                         $('uploadSlotsBehavior').setProperty('value', pref.upload_slots_behavior);
                         $('uploadChokingAlgorithm').setProperty('value', pref.upload_choking_algorithm);
@@ -2374,6 +2390,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             settings.set('preallocate_all', $('preallocateall_checkbox').getProperty('checked'));
             settings.set('incomplete_files_ext', $('appendext_checkbox').getProperty('checked'));
+            settings.set('use_unwanted_folder', $('unwantedfolder_checkbox').getProperty('checked'));
 
             // Saving Management
             settings.set('auto_tmm_enabled', $('default_tmm_combobox').getProperty('value'));
@@ -2774,6 +2791,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings.set('enable_embedded_tracker', $('enableEmbeddedTracker').getProperty('checked'));
             settings.set('embedded_tracker_port', $('embeddedTrackerPort').getProperty('value'));
             settings.set('embedded_tracker_port_forwarding', $('embeddedTrackerPortForwarding').getProperty('checked'));
+            settings.set('mark_of_the_web', $('markOfTheWeb').getProperty('checked'));
             settings.set('python_executable_path', $('pythonExecutablePath').getProperty('value'));
             settings.set('upload_slots_behavior', $('uploadSlotsBehavior').getProperty('value'));
             settings.set('upload_choking_algorithm', $('uploadChokingAlgorithm').getProperty('value'));

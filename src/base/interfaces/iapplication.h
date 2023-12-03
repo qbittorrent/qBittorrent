@@ -36,6 +36,7 @@
 #include "base/pathfwd.h"
 
 class AddTorrentManager;
+class WebUI;
 struct QBtCommandLineParameters;
 
 #ifdef Q_OS_WIN
@@ -85,4 +86,7 @@ public:
 #endif
 
     virtual AddTorrentManager *addTorrentManager() const = 0;
+#ifndef DISABLE_WEBUI
+    virtual WebUI *webUI() const = 0;
+#endif
 };

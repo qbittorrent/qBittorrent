@@ -155,13 +155,17 @@ namespace BitTorrent
         virtual void setDownloadPathEnabled(bool enabled) = 0;
 
         static bool isValidCategoryName(const QString &name);
+        static QString subcategoryName(const QString &category);
+        static QString parentCategoryName(const QString &category);
         // returns category itself and all top level categories
         static QStringList expandCategory(const QString &category);
 
         virtual QStringList categories() const = 0;
         virtual CategoryOptions categoryOptions(const QString &categoryName) const = 0;
         virtual Path categorySavePath(const QString &categoryName) const = 0;
+        virtual Path categorySavePath(const QString &categoryName, const CategoryOptions &options) const = 0;
         virtual Path categoryDownloadPath(const QString &categoryName) const = 0;
+        virtual Path categoryDownloadPath(const QString &categoryName, const CategoryOptions &options) const = 0;
         virtual bool addCategory(const QString &name, const CategoryOptions &options = {}) = 0;
         virtual bool editCategory(const QString &name, const CategoryOptions &options) = 0;
         virtual bool removeCategory(const QString &name) = 0;
@@ -225,6 +229,8 @@ namespace BitTorrent
         virtual void setTrackerEnabled(bool enabled) = 0;
         virtual bool isAppendExtensionEnabled() const = 0;
         virtual void setAppendExtensionEnabled(bool enabled) = 0;
+        virtual bool isUnwantedFolderEnabled() const = 0;
+        virtual void setUnwantedFolderEnabled(bool enabled) = 0;
         virtual int refreshInterval() const = 0;
         virtual void setRefreshInterval(int value) = 0;
         virtual bool isPreallocationEnabled() const = 0;

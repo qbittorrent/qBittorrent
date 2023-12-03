@@ -30,6 +30,7 @@
 
 #include <libtorrent/config.hpp>
 
+#include <QtSystemDetection>
 #include <QCheckBox>
 #include <QComboBox>
 #include <QLineEdit>
@@ -88,7 +89,11 @@ private:
     QCheckBox m_checkBoxCoalesceRW;
 #else
     QComboBox m_comboBoxDiskIOType;
-    QSpinBox m_spinBoxMemoryWorkingSetLimit, m_spinBoxHashingThreads;
+    QSpinBox m_spinBoxHashingThreads;
+#endif
+
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
+    QSpinBox m_spinBoxMemoryWorkingSetLimit;
 #endif
 
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
@@ -96,13 +101,17 @@ private:
 #endif
 
     // OS dependent settings
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
     QComboBox m_comboBoxOSMemoryPriority;
 #endif
 
 #ifndef Q_OS_MACOS
     QCheckBox m_checkBoxIconsInMenusEnabled;
 #endif
+
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+    QCheckBox m_checkBoxMarkOfTheWeb;
+#endif // Q_OS_MACOS || Q_OS_WIN
 
 #ifdef QBT_USES_DBUS
     QSpinBox m_spinBoxNotificationTimeout;

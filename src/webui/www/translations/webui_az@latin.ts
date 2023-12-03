@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="az@latin">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="az@latin">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Alt qovluq yarat</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Alt qovluq yaratmamaq</translation>
     </message>
     <message>
@@ -123,7 +125,7 @@
     <name>HttpServer</name>
     <message>
         <source>Exit qBittorrent</source>
-        <translation>qBittorrent&apos;dən çıxmaq</translation>
+        <translation>qBittorrent'dən çıxmaq</translation>
     </message>
     <message>
         <source>Only one link per line</source>
@@ -363,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>JavaScript tələb olunur! Düzgün şəkildə işləməsi üçün Veb İİ üçün JavaScript&apos;i aktiv etməlisiniz</translation>
+        <translation>JavaScript tələb olunur! Düzgün şəkildə işləməsi üçün Veb İİ üçün JavaScript'i aktiv etməlisiniz</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -490,7 +492,7 @@
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
-        <translation>qBittorent&apos;dən çıxmaq istədiyinizə əminsiniz?</translation>
+        <translation>qBittorent'dən çıxmaq istədiyinizə əminsiniz?</translation>
     </message>
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
@@ -991,8 +993,8 @@
         <translation>%T: Cari izləyici</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Növ: Mətni, ara boşluğunda kəsilmələrndən qorumaq üçün parametrləri dırnaq işarəsinə alın (məs., &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Növ: Mətni, ara boşluğunda kəsilmələrndən qorumaq üçün parametrləri dırnaq işarəsinə alın (məs., "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1163,10 +1165,6 @@
         <translation>Göstəricini aşdıqda</translation>
     </message>
     <message>
-        <source>When seeding time reaches</source>
-        <translation>Paylaşma vaxtını aşdıqda</translation>
-    </message>
-    <message>
         <source>Allow multiple connections from the same IP address:</source>
         <translation>Eyni İP ünvanından çoxsaylı bağlantılara icazə vermək</translation>
     </message>
@@ -1244,7 +1242,7 @@
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation>İştirakçılarla mütənasib (TCP&apos;ni məhdudlaşdırır)</translation>
+        <translation>İştirakçılarla mütənasib (TCP'ni məhdudlaşdırır)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
@@ -1415,7 +1413,7 @@
         <translation>Orijinal</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Alt qovluq yaratmamaq</translation>
     </message>
     <message>
@@ -1448,11 +1446,11 @@
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation>%J: Məlumat heş&apos;i v2</translation>
+        <translation>%J: Məlumat heş'i v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation>%I: Məlumat heş&apos;i v1</translation>
+        <translation>%I: Məlumat heş'i v1</translation>
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
@@ -1551,12 +1549,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>HTTP Host başlıqlarının göstəricilərini filtrləmək üçün ağ siyahı.
 DNS ilə təkrar bağlantı hücumundan qorunmaq üçün WebUI 
 serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
 
-Çoxsaylı elementləri bölmək üçün &apos;;&apos; istifadə edin. &apos;*&apos; ümumi nişanından istifadə edə bilərsiniz</translation>
+Çoxsaylı elementləri bölmək üçün ';' istifadə edin. '*' ümumi nişanından istifadə edə bilərsiniz</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1567,8 +1565,8 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>HTTPS sertifikat boş olmamalıdır</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation>Yönləndirilmiş müştəri ünvanından (X-Forwarded-For header) istifadə etmək üçün əks proxy IP-lərini (və ya alt şəbəkələri, məs., 0.0.0.0/24) göstərin. Birdən çox girişi bölmək üçün &apos;;&apos; işarəsindən istifadə edin.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation>Yönləndirilmiş müştəri ünvanından (X-Forwarded-For header) istifadə etmək üçün əks proxy IP-lərini (və ya alt şəbəkələri, məs., 0.0.0.0/24) göstərin. Birdən çox girişi bölmək üçün ';' işarəsindən istifadə edin.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1589,10 +1587,6 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
         <translation>Əgər işarələnərsə, host adı axtarışı proksi ilə icra olunur.</translation>
-    </message>
-    <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation>Host adı axtarışı ümün proksi istifadə et</translation>
     </message>
     <message>
         <source>Metadata received</source>
@@ -1729,6 +1723,86 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
         <translation>UPnP icarə müddəti [0: daimi icarə]:</translation>
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Bdecode token limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation>Ümumi göndərmə həddinə çatdıqda</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Heç nə)</translation>
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Python executable path (may require restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resets to default if empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Perform hostname lookup via proxy</source>
+        <translation>Proksi vasitəsilə host adı axtarışını icra etmək</translation>
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>DHT bootstrap nodes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When inactive seeding time reaches</source>
+        <translation>Qeyri-aktiv göndərmə həddinə çatdıqda</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation>Qarışıq rejim</translation>
+    </message>
+    <message>
+        <source>.torrent file size limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(Auto detect if empty)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2020,11 +2094,11 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation>Məlumat heş&apos;i v2:</translation>
+        <translation>Məlumat heş'i v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation>Məlumat heş&apos;i v1</translation>
+        <translation>Məlumat heş'i v1</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2053,10 +2127,6 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>Rename failed: file or folder already exists</source>
         <translation>Adını dəyişmək mümkün olmadı: fayl və ya qovluq artıq mövcuddur</translation>
-    </message>
-    <message>
-        <source>Match all occurences</source>
-        <translation>Bütün hadisələri uyğunlaşdır</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2093,6 +2163,10 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>Case sensitive</source>
         <translation>Böyük/kiçik hərfə həssas</translation>
+    </message>
+    <message>
+        <source>Match all occurrences</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2310,6 +2384,14 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <source>Checking (0)</source>
         <translation>Yoxlanılır (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2461,6 +2543,10 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>Availability</source>
         <translation>Əlçatan</translation>
+    </message>
+    <message>
+        <source>Reannounce In</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2857,11 +2943,11 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation>məlumat heş&apos;i v1</translation>
+        <translation>məlumat heş'i v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation>məlumat heş&apos;i v2</translation>
+        <translation>məlumat heş'i v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
@@ -2882,6 +2968,10 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>Renaming</source>
         <translation>Adı dəyişdirilir</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2907,8 +2997,12 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>nisbət</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation>dəqiqələr</translation>
+        <source>total minutes</source>
+        <translation>ümumi dəqiqələr</translation>
+    </message>
+    <message>
+        <source>inactive minutes</source>
+        <translation>qeyri-aktiv dəqiqlələr</translation>
     </message>
 </context>
 <context>
@@ -3117,11 +3211,11 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>göstərərək</translation>
     </message>
     <message>
-        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
-        <translation>Pəncərənin aşağı sağındakı &quot;Axtarış plaqinləri...&quot; düyməsinə vuraraq onlardan birini quraşdırın.</translation>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation>Pəncərənin aşağı sağındakı "Axtarış plaqinləri..." düyməsinə vuraraq onlardan birini quraşdırın.</translation>
     </message>
     <message>
-        <source>There aren&apos;t any search plugins installed.</source>
+        <source>There aren't any search plugins installed.</source>
         <translation>Heç bir axtarış plaqini quraşdırılmayıb</translation>
     </message>
 </context>
@@ -3152,7 +3246,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>Aktiv edildi</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Xəbərdarlıq: Bu axtarış sistemlərinin hər hansı birindən istifadə edərək torrentləri yükləyərkən, mütləq ölkənizin müəllif hüquqları haqqında qanununa rəayət edin.</translation>
     </message>
     <message>
@@ -3428,7 +3522,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Adı dəyişdirilir)</translation>
+        <translation type="vanished">Adı dəyişdirilir)</translation>
     </message>
 </context>
 <context>
@@ -3771,8 +3865,12 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
         <translation>Orijinal</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Alt qovluq yaratmamaq</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

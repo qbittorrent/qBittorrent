@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -88,7 +89,6 @@ private slots:
     void adjustProxyOptions();
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
-    void applySettings();
     void enableApplyButton();
     void toggleComboRatioLimitAct();
     void changePage(QListWidgetItem *, QListWidgetItem *);
@@ -115,6 +115,7 @@ private:
     void showEvent(QShowEvent *e) override;
 
     // Methods
+    bool applySettings();
     void saveOptions() const;
 
     void loadBehaviorTabOptions();
@@ -184,9 +185,9 @@ private:
     int getMaxActiveTorrents() const;
     // WebUI
 #ifndef DISABLE_WEBUI
-    bool isWebUiEnabled() const;
-    QString webUiUsername() const;
-    QString webUiPassword() const;
+    bool isWebUIEnabled() const;
+    QString webUIUsername() const;
+    QString webUIPassword() const;
     bool webUIAuthenticationOk();
     bool isAlternativeWebUIPathValid();
 #endif

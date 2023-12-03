@@ -327,6 +327,7 @@
         <file>qbittorrent-tray-dark.svg</file>
         <file>qbittorrent-tray-light.svg</file>
         <file>qbittorrent-tray.svg</file>
+        <file alias="qbittorrent.svg">qbittorrent-tray.svg</file>
         <file>queued.svg</file>
         <file>ratio.svg</file>
         <file>reannounce.svg</file>

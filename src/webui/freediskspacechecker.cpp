@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2018  Thomas Piccirello <thomas.piccirello@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -31,8 +32,13 @@
 #include "base/bittorrent/session.h"
 #include "base/utils/fs.h"
 
+qint64 FreeDiskSpaceChecker::lastResult() const
+{
+    return m_lastResult;
+}
+
 void FreeDiskSpaceChecker::check()
 {
-    const qint64 freeDiskSpace = Utils::Fs::freeDiskSpaceOnPath(BitTorrent::Session::instance()->savePath());
-    emit checked(freeDiskSpace);
+    m_lastResult = Utils::Fs::freeDiskSpaceOnPath(BitTorrent::Session::instance()->savePath());
+    emit checked(m_lastResult);
 }

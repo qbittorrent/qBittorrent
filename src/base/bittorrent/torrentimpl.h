@@ -263,6 +263,7 @@ namespace BitTorrent
         void handleStateUpdate(const lt::torrent_status &nativeStatus);
         void handleCategoryOptionsChanged();
         void handleAppendExtensionToggled();
+        void handleUnwantedFolderToggled();
         void saveResumeData(lt::resume_data_flags_t flags = {});
         void handleMoveStorageJobFinished(const Path &path, MoveStorageContext context, bool hasOutstandingJob);
         void fileSearchFinished(const Path &savePath, const PathList &fileNames);
@@ -299,11 +300,12 @@ namespace BitTorrent
 
         void setAutoManaged(bool enable);
 
-        Path wantedActualPath(int index, const Path &path) const;
+        Path makeActualPath(int index, const Path &path) const;
+        Path makeUserPath(const Path &path) const;
         void adjustStorageLocation();
         void doRenameFile(int index, const Path &path);
         void moveStorage(const Path &newPath, MoveStorageContext context);
-        void manageIncompleteFiles();
+        void manageActualFilePaths();
         void applyFirstLastPiecePriority(bool enabled);
 
         void prepareResumeData(const lt::add_torrent_params &params);

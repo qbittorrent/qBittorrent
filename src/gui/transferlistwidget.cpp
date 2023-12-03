@@ -574,6 +574,18 @@ void TransferListWidget::copySelectedIDs() const
     qApp->clipboard()->setText(torrentIDs.join(u'\n'));
 }
 
+void TransferListWidget::copySelectedComments() const
+{
+    QStringList torrentComments;
+    for (const BitTorrent::Torrent *torrent : asConst(getSelectedTorrents()))
+    {
+        if (!torrent->comment().isEmpty())
+            torrentComments << torrent->comment();
+    }
+
+    qApp->clipboard()->setText(torrentComments.join(u"\n---------\n"_s));
+}
+
 void TransferListWidget::hideQueuePosColumn(bool hide)
 {
     setColumnHidden(TransferListModel::TR_QUEUE_POSITION, hide);
@@ -986,6 +998,8 @@ void TransferListWidget::displayListMenu()
     connect(actionCopyMagnetLink, &QAction::triggered, this, &TransferListWidget::copySelectedMagnetURIs);
     auto *actionCopyID = new QAction(UIThemeManager::instance()->getIcon(u"help-about"_s, u"edit-copy"_s), tr("Torrent &ID"), listMenu);
     connect(actionCopyID, &QAction::triggered, this, &TransferListWidget::copySelectedIDs);
+    auto *actionCopyComment = new QAction(UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("&Comment"), listMenu);
+    connect(actionCopyComment, &QAction::triggered, this, &TransferListWidget::copySelectedComments);
     auto *actionCopyName = new QAction(UIThemeManager::instance()->getIcon(u"name"_s, u"edit-copy"_s), tr("&Name"), listMenu);
     connect(actionCopyName, &QAction::triggered, this, &TransferListWidget::copySelectedNames);
     auto *actionCopyHash1 = new QAction(UIThemeManager::instance()->getIcon(u"hash"_s, u"edit-copy"_s), tr("Info &hash v1"), listMenu);
@@ -1277,6 +1291,7 @@ void TransferListWidget::displayListMenu()
     actionCopyHash2->setEnabled(hasInfohashV2);
     copySubMenu->addAction(actionCopyMagnetLink);
     copySubMenu->addAction(actionCopyID);
+    copySubMenu->addAction(actionCopyComment);
 
     actionExportTorrent->setToolTip(tr("Exported torrent is not necessarily the same as the imported"));
     listMenu->addAction(actionExportTorrent);

@@ -355,6 +355,24 @@ bool Session::isValidCategoryName(const QString &name)
     return (name.isEmpty() || (name.indexOf(re) == 0));
 }
 
+QString Session::subcategoryName(const QString &category)
+{
+    const int sepIndex = category.lastIndexOf(u'/');
+    if (sepIndex >= 0)
+        return category.mid(sepIndex + 1);
+
+    return category;
+}
+
+QString Session::parentCategoryName(const QString &category)
+{
+    const int sepIndex = category.lastIndexOf(u'/');
+    if (sepIndex >= 0)
+        return category.left(sepIndex);
+
+    return {};
+}
+
 bool Session::isValidTag(const QString &tag)
 {
     return (!tag.trimmed().isEmpty() && !tag.contains(u','));
@@ -455,6 +473,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_torrentStopCondition(BITTORRENT_SESSION_KEY(u"TorrentStopCondition"_s), Torrent::StopCondition::None)
     , m_torrentContentLayout(BITTORRENT_SESSION_KEY(u"TorrentContentLayout"_s), TorrentContentLayout::Original)
     , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY(u"AddExtensionToIncompleteFiles"_s), false)
+    , m_isUnwantedFolderEnabled(BITTORRENT_SESSION_KEY(u"UseUnwantedFolder"_s), false)
     , m_refreshInterval(BITTORRENT_SESSION_KEY(u"RefreshInterval"_s), 1500)
     , m_isPreallocationEnabled(BITTORRENT_SESSION_KEY(u"Preallocation"_s), false)
     , m_torrentExportDirectory(BITTORRENT_SESSION_KEY(u"TorrentExportDirectory"_s))
@@ -695,6 +714,23 @@ void SessionImpl::setAppendExtensionEnabled(const bool enabled)
     }
 }
 
+bool SessionImpl::isUnwantedFolderEnabled() const
+{
+    return m_isUnwantedFolderEnabled;
+}
+
+void SessionImpl::setUnwantedFolderEnabled(const bool enabled)
+{
+    if (isUnwantedFolderEnabled() != enabled)
+    {
+        m_isUnwantedFolderEnabled = enabled;
+
+        // append or remove .!qB extension for incomplete files
+        for (TorrentImpl *const torrent : asConst(m_torrents))
+            torrent->handleUnwantedFolderToggled();
+    }
+}
+
 int SessionImpl::refreshInterval() const
 {
     return m_refreshInterval;
@@ -764,34 +800,77 @@ CategoryOptions SessionImpl::categoryOptions(const QString &categoryName) const
 
 Path SessionImpl::categorySavePath(const QString &categoryName) const
 {
-    const Path basePath = savePath();
+    return categorySavePath(categoryName, categoryOptions(categoryName));
+}
+
+Path SessionImpl::categorySavePath(const QString &categoryName, const CategoryOptions &options) const
+{
+    Path basePath = savePath();
     if (categoryName.isEmpty())
         return basePath;
 
-    Path path = m_categories.value(categoryName).savePath;
-    if (path.isEmpty()) // use implicit save path
-        path = Utils::Fs::toValidPath(categoryName);
+    Path path = options.savePath;
+    if (path.isEmpty())
+    {
+        // use implicit save path
+        if (isSubcategoriesEnabled())
+        {
+            path = Utils::Fs::toValidPath(subcategoryName(categoryName));
+            basePath = categorySavePath(parentCategoryName(categoryName));
+        }
+        else
+        {
+            path = Utils::Fs::toValidPath(categoryName);
+        }
+    }
 
     return (path.isAbsolute() ? path : (basePath / path));
 }
 
 Path SessionImpl::categoryDownloadPath(const QString &categoryName) const
 {
-    const CategoryOptions categoryOptions = m_categories.value(categoryName);
-    const CategoryOptions::DownloadPathOption downloadPathOption =
-            categoryOptions.downloadPath.value_or(CategoryOptions::DownloadPathOption {isDownloadPathEnabled(), downloadPath()});
+    return categoryDownloadPath(categoryName, categoryOptions(categoryName));
+}
+
+Path SessionImpl::categoryDownloadPath(const QString &categoryName, const CategoryOptions &options) const
+{
+    const DownloadPathOption downloadPathOption = resolveCategoryDownloadPathOption(categoryName, options.downloadPath);
     if (!downloadPathOption.enabled)
         return {};
 
-    const Path basePath = downloadPath();
     if (categoryName.isEmpty())
-        return basePath;
+        return downloadPath();
 
-    const Path path = (!downloadPathOption.path.isEmpty()
-                          ? downloadPathOption.path
-                          : Utils::Fs::toValidPath(categoryName)); // use implicit download path
+    const bool useSubcategories = isSubcategoriesEnabled();
+    const QString name = useSubcategories ? subcategoryName(categoryName) : categoryName;
+    const Path path = !downloadPathOption.path.isEmpty()
+            ? downloadPathOption.path
+            : Utils::Fs::toValidPath(name); // use implicit download path
 
-    return (path.isAbsolute() ? path : (basePath / path));
+    if (path.isAbsolute())
+        return path;
+
+    const QString parentName = useSubcategories ? parentCategoryName(categoryName) : QString();
+    CategoryOptions parentOptions = categoryOptions(parentName);
+    // Even if download path of parent category is disabled (directly or by inheritance)
+    // we need to construct the one as if it would be enabled.
+    if (!parentOptions.downloadPath || !parentOptions.downloadPath->enabled)
+        parentOptions.downloadPath = {true, {}};
+    const Path parentDownloadPath = categoryDownloadPath(parentName, parentOptions);
+    const Path basePath = parentDownloadPath.isEmpty() ? downloadPath() : parentDownloadPath;
+    return (basePath / path);
+}
+
+DownloadPathOption SessionImpl::resolveCategoryDownloadPathOption(const QString &categoryName, const std::optional<DownloadPathOption> &option) const
+{
+    if (categoryName.isEmpty())
+        return {isDownloadPathEnabled(), Path()};
+
+    if (option.has_value())
+        return *option;
+
+    const QString parentName = isSubcategoriesEnabled() ? parentCategoryName(categoryName) : QString();
+    return resolveCategoryDownloadPathOption(parentName, categoryOptions(parentName).downloadPath);
 }
 
 bool SessionImpl::addCategory(const QString &name, const CategoryOptions &options)
@@ -2129,135 +2208,119 @@ void SessionImpl::processShareLimits()
 {
     qDebug("Processing share limits...");
 
+    const auto resolveLimitValue = []<typename T>(const T limit, const T useGlobalLimit, const T globalLimit) -> T
+    {
+        return (limit == useGlobalLimit) ? globalLimit : limit;
+    };
+
     // We shouldn't iterate over `m_torrents` in the loop below
     // since `deleteTorrent()` modifies it indirectly
     const QHash<TorrentID, TorrentImpl *> torrents {m_torrents};
-    for (TorrentImpl *const torrent : torrents)
+    for (const auto &[torrentID, torrent] : torrents.asKeyValueRange())
     {
-        if (torrent->isFinished() && !torrent->isForced())
+        if (!torrent->isFinished() || torrent->isForced())
+            continue;
+
+        if (const qreal ratioLimit = resolveLimitValue(torrent->ratioLimit(), Torrent::USE_GLOBAL_RATIO, globalMaxRatio());
+                ratioLimit >= 0)
         {
-            if (torrent->ratioLimit() != Torrent::NO_RATIO_LIMIT)
+            const qreal ratio = torrent->realRatio();
+            qDebug("Ratio: %f (limit: %f)", ratio, ratioLimit);
+
+            if ((ratio <= Torrent::MAX_RATIO) && (ratio >= ratioLimit))
             {
-                const qreal ratio = torrent->realRatio();
-                qreal ratioLimit = torrent->ratioLimit();
-                if (ratioLimit == Torrent::USE_GLOBAL_RATIO)
-                    // If Global Max Ratio is really set...
-                    ratioLimit = globalMaxRatio();
+                const QString description = tr("Torrent reached the share ratio limit.");
+                const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
 
-                if (ratioLimit >= 0)
+                if (m_maxRatioAction == Remove)
                 {
-                    qDebug("Ratio: %f (limit: %f)", ratio, ratioLimit);
-
-                    if ((ratio <= Torrent::MAX_RATIO) && (ratio >= ratioLimit))
-                    {
-                        const QString description = tr("Torrent reached the share ratio limit.");
-                        const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
-
-                        if (m_maxRatioAction == Remove)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
-                            deleteTorrent(torrent->id());
-                        }
-                        else if (m_maxRatioAction == DeleteFiles)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
-                            deleteTorrent(torrent->id(), DeleteTorrentAndFiles);
-                        }
-                        else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
-                        {
-                            torrent->pause();
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
-                        }
-                        else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
-                        {
-                            torrent->setSuperSeeding(true);
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
-                        }
-
-                        continue;
-                    }
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
+                    deleteTorrent(torrentID);
                 }
+                else if (m_maxRatioAction == DeleteFiles)
+                {
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
+                    deleteTorrent(torrentID, DeleteTorrentAndFiles);
+                }
+                else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
+                {
+                    torrent->pause();
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
+                }
+                else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
+                {
+                    torrent->setSuperSeeding(true);
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
+                }
+
+                continue;
             }
+        }
 
-            if (torrent->seedingTimeLimit() != Torrent::NO_SEEDING_TIME_LIMIT)
+        if (const int seedingTimeLimit = resolveLimitValue(torrent->seedingTimeLimit(), Torrent::USE_GLOBAL_SEEDING_TIME, globalMaxSeedingMinutes());
+                seedingTimeLimit >= 0)
+        {
+            const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
+
+            if ((seedingTimeInMinutes <= Torrent::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= seedingTimeLimit))
             {
-                const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
-                int seedingTimeLimit = torrent->seedingTimeLimit();
-                if (seedingTimeLimit == Torrent::USE_GLOBAL_SEEDING_TIME)
+                const QString description = tr("Torrent reached the seeding time limit.");
+                const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
+
+                if (m_maxRatioAction == Remove)
                 {
-                     // If Global Seeding Time Limit is really set...
-                    seedingTimeLimit = globalMaxSeedingMinutes();
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
+                    deleteTorrent(torrentID);
+                }
+                else if (m_maxRatioAction == DeleteFiles)
+                {
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
+                    deleteTorrent(torrentID, DeleteTorrentAndFiles);
+                }
+                else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
+                {
+                    torrent->pause();
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
+                }
+                else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
+                {
+                    torrent->setSuperSeeding(true);
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
                 }
 
-                if (seedingTimeLimit >= 0)
-                {
-                    if ((seedingTimeInMinutes <= Torrent::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= seedingTimeLimit))
-                    {
-                        const QString description = tr("Torrent reached the seeding time limit.");
-                        const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
-
-                        if (m_maxRatioAction == Remove)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
-                            deleteTorrent(torrent->id());
-                        }
-                        else if (m_maxRatioAction == DeleteFiles)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
-                            deleteTorrent(torrent->id(), DeleteTorrentAndFiles);
-                        }
-                        else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
-                        {
-                            torrent->pause();
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
-                        }
-                        else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
-                        {
-                            torrent->setSuperSeeding(true);
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
-                        }
-                    }
-                }
+                continue;
             }
+        }
 
-            if (torrent->inactiveSeedingTimeLimit() != Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT)
+        if (const int inactiveSeedingTimeLimit = resolveLimitValue(torrent->inactiveSeedingTimeLimit(), Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME, globalMaxInactiveSeedingMinutes());
+                inactiveSeedingTimeLimit >= 0)
+        {
+            const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
+
+            if ((inactiveSeedingTimeInMinutes <= Torrent::MAX_INACTIVE_SEEDING_TIME) && (inactiveSeedingTimeInMinutes >= inactiveSeedingTimeLimit))
             {
-                const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
-                int inactiveSeedingTimeLimit = torrent->inactiveSeedingTimeLimit();
-                if (inactiveSeedingTimeLimit == Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME)
+                const QString description = tr("Torrent reached the inactive seeding time limit.");
+                const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
+
+                if (m_maxRatioAction == Remove)
                 {
-                    // If Global Seeding Time Limit is really set...
-                    inactiveSeedingTimeLimit = globalMaxInactiveSeedingMinutes();
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
+                    deleteTorrent(torrentID);
                 }
-
-                if (inactiveSeedingTimeLimit >= 0)
+                else if (m_maxRatioAction == DeleteFiles)
                 {
-                    if ((inactiveSeedingTimeInMinutes <= Torrent::MAX_INACTIVE_SEEDING_TIME) && (inactiveSeedingTimeInMinutes >= inactiveSeedingTimeLimit))
-                    {
-                        const QString description = tr("Torrent reached the inactive seeding time limit.");
-                        const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
-
-                        if (m_maxRatioAction == Remove)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
-                            deleteTorrent(torrent->id());
-                        }
-                        else if (m_maxRatioAction == DeleteFiles)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
-                            deleteTorrent(torrent->id(), DeleteTorrentAndFiles);
-                        }
-                        else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
-                        {
-                            torrent->pause();
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
-                        }
-                        else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
-                        {
-                            torrent->setSuperSeeding(true);
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
-                        }
-                    }
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
+                    deleteTorrent(torrentID, DeleteTorrentAndFiles);
+                }
+                else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
+                {
+                    torrent->pause();
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
+                }
+                else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
+                {
+                    torrent->setSuperSeeding(true);
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
                 }
             }
         }
@@ -2403,6 +2466,11 @@ bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
         return false;
 
     const lt::torrent_handle nativeHandle = downloadedMetadataIter.value();
+    m_downloadedMetadata.erase(downloadedMetadataIter);
+
+    if (!nativeHandle.is_valid())
+        return true;
+
 #ifdef QBT_USES_LIBTORRENT2
     const InfoHash infoHash {nativeHandle.info_hashes()};
     if (infoHash.isHybrid())
@@ -2413,7 +2481,7 @@ bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
         m_downloadedMetadata.remove((altID == downloadedMetadataIter.key()) ? id : altID);
     }
 #endif
-    m_downloadedMetadata.erase(downloadedMetadataIter);
+
     m_nativeSession->remove_torrent(nativeHandle, lt::session::delete_files);
     return true;
 }
@@ -3140,8 +3208,8 @@ void SessionImpl::setDownloadPath(const Path &path)
         {
             const QString &categoryName = it.key();
             const CategoryOptions &categoryOptions = it.value();
-            const CategoryOptions::DownloadPathOption downloadPathOption =
-                    categoryOptions.downloadPath.value_or(CategoryOptions::DownloadPathOption {isDownloadPathEnabled(), downloadPath()});
+            const DownloadPathOption downloadPathOption =
+                    categoryOptions.downloadPath.value_or(DownloadPathOption {isDownloadPathEnabled(), downloadPath()});
             if (downloadPathOption.enabled && downloadPathOption.path.isRelative())
                 affectedCatogories.insert(categoryName);
         }

@@ -8,7 +8,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTORCC_OPTIONS --compress 9 --threshold 5)
+set(CMAKE_AUTORCC_OPTIONS --compress-algo best --threshold 5)
 
 add_library(qbt_common_cfg INTERFACE)
 
@@ -38,9 +38,9 @@ endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     target_compile_definitions(qbt_common_cfg INTERFACE
-        NTDDI_VERSION=0x06010000
-        _WIN32_WINNT=0x0601
-        _WIN32_IE=0x0601
+        NTDDI_VERSION=0x0A000006
+        _WIN32_WINNT=0x0A00
+        _WIN32_IE=0x0A00
         WIN32_LEAN_AND_MEAN
         NOMINMAX
         UNICODE

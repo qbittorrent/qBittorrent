@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="cs">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Vytvořit podsložku</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nevytvářet podsložku</translation>
     </message>
     <message>
@@ -991,8 +993,8 @@
         <translation>%T: Současný tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Tip: Ohraničit parametr uvozovkami, aby nedošlo k odstřižení textu za mezerou (např. &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Tip: Ohraničit parametr uvozovkami, aby nedošlo k odstřižení textu za mezerou (např. "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1161,10 +1163,6 @@
     <message>
         <source>When ratio reaches</source>
         <translation>Když je dosaženo ratio</translation>
-    </message>
-    <message>
-        <source>When seeding time reaches</source>
-        <translation>Když je dosažena doba odesílání</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1415,7 +1413,7 @@
         <translation>Originál</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nevytvářet podsložku</translation>
     </message>
     <message>
@@ -1551,12 +1549,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Seznam povolených pro filtrování hodnot HTTP hlaviček hostitele.
 Pro obranu proti DNS rebinding útokům
 best měli vložit doménové názvy použité pro WebUI server.
 
-Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &apos;*&apos;.</translation>
+Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1567,8 +1565,8 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
         <translation>HTTPS certifikát nemá být prázdný</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation>Uveďte IP adresy (nebo podsítě, např. 0.0.0.0/24) reverzních proxy pro přeposlání adresy klienta (atribut X-Forwarded-For), použijte &apos;;&apos; pro rozdělení více položek.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation>Uveďte IP adresy (nebo podsítě, např. 0.0.0.0/24) reverzních proxy pro přeposlání adresy klienta (atribut X-Forwarded-For), použijte ';' pro rozdělení více položek.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1589,10 +1587,6 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
         <translation>Pokud je zapnuto, zjištění názvu hostitele probíhá přes proxy server.</translation>
-    </message>
-    <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation>Použít proxy pro zjištění názvu hostitele</translation>
     </message>
     <message>
         <source>Metadata received</source>
@@ -1729,6 +1723,86 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
         <translation>Doba UPnP propůjčení [0: trvalé propůjčení]:</translation>
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
+        <translation>Bdecode limit hloubky:</translation>
+    </message>
+    <message>
+        <source>Bdecode token limit:</source>
+        <translation>Bdecode limit tokenu:</translation>
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation>Když celkový čas seedování dosáhne</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(žádný)</translation>
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation>I2P příchozí délka (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
+    </message>
+    <message>
+        <source>Python executable path (may require restart):</source>
+        <translation>Cesta spustitelného Pythonu (může vyžadovat restart):</translation>
+    </message>
+    <message>
+        <source>Resets to default if empty</source>
+        <translation>Resetuje se na výchozí pokud je prázdné</translation>
+    </message>
+    <message>
+        <source>Perform hostname lookup via proxy</source>
+        <translation>Zjišťovat název hostitele pomocí proxy</translation>
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation>Pokud je zapnut &amp;quot;smíšený režim&amp;quot;, tak je I2P torrentům povoleno získávat peery také z jiných zdrojů, než je tracker. Mohou se také připojovat k běžným IP adresám, což neposkytuje žádnou anonymizaci. Toto může být užitečné, pokud uživatel nemá zájem o anonymizaci I2P, ale stále chce mít možnost připojit se k I2P peerům.</translation>
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation>I2P příchozí kvalita (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation>I2P odchozí délka (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation>I2P odchozí kvalita (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation>I2P (Experimentální) (vyžaduje libtorrent &amp;gt;= 2.0)</translation>
+    </message>
+    <message>
+        <source>DHT bootstrap nodes:</source>
+        <translation>DHT bootstrap uzly:</translation>
+    </message>
+    <message>
+        <source>When inactive seeding time reaches</source>
+        <translation>Když čas neaktivního seedování dosáhne</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation>Smíšený režim</translation>
+    </message>
+    <message>
+        <source>.torrent file size limit:</source>
+        <translation>Limit velikosti .torrent souboru:</translation>
+    </message>
+    <message>
+        <source>(Auto detect if empty)</source>
+        <translation>(Automaticky rozpoznat pokud je prázdné)</translation>
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2055,10 +2129,6 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
         <translation>Přejmenování selhalo: soubor nebo složka již existuje</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation>Odpovídá všem výskytům</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Přepnout výběr</translation>
     </message>
@@ -2093,6 +2163,10 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
     <message>
         <source>Case sensitive</source>
         <translation>Rozlišuje velikost písmen</translation>
+    </message>
+    <message>
+        <source>Match all occurrences</source>
+        <translation>Odpovídat všem výskytům</translation>
     </message>
 </context>
 <context>
@@ -2310,6 +2384,14 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
         <source>Checking (0)</source>
         <translation>Kontroluji (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2461,6 +2543,10 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
     <message>
         <source>Availability</source>
         <translation>Dostupnost</translation>
+    </message>
+    <message>
+        <source>Reannounce In</source>
+        <translation>Znovu oznámit za</translation>
     </message>
 </context>
 <context>
@@ -2883,6 +2969,10 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
         <source>Renaming</source>
         <translation>Přejmenování</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2907,8 +2997,12 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
         <translation>ratio</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation>minuty</translation>
+        <source>total minutes</source>
+        <translation>minut celkem</translation>
+    </message>
+    <message>
+        <source>inactive minutes</source>
+        <translation>minut neaktivity</translation>
     </message>
 </context>
 <context>
@@ -3117,11 +3211,11 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
         <translation>zobrazeno</translation>
     </message>
     <message>
-        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
-        <translation>Klikněte na tlačítko &quot;Vyhledávácí pluginy...&quot; dole vpravo v okně, abyste nějaké nainstalovali.</translation>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation>Klikněte na tlačítko "Vyhledávácí pluginy..." dole vpravo v okně, abyste nějaké nainstalovali.</translation>
     </message>
     <message>
-        <source>There aren&apos;t any search plugins installed.</source>
+        <source>There aren't any search plugins installed.</source>
         <translation>Žádné vyhledávací pluginy nejsou instalovány.</translation>
     </message>
 </context>
@@ -3152,7 +3246,7 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
         <translation>Zapnuto</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Varování: Ujistěte se, že dodržujete zákony Vaší země o ochraně duševního vlastnictví když stahujete torrenty z kteréhokoliv z těchto vyhledávačů.</translation>
     </message>
     <message>
@@ -3428,7 +3522,7 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>Přejmenování)</translation>
+        <translation type="vanished">Přejmenování)</translation>
     </message>
 </context>
 <context>
@@ -3771,8 +3865,12 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
         <translation>Originál</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nevytvářet podsložku</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation>Přidat štítky:</translation>
     </message>
 </context>
 <context>

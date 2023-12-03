@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2021-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,28 +26,9 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "downloadpathoption.h"
 
-#include <QObject>
-
-#include "base/pathfwd.h"
-
-class QString;
-
-class IconProvider final : public QObject
+bool BitTorrent::operator==(const DownloadPathOption &left, const DownloadPathOption &right)
 {
-    Q_DISABLE_COPY_MOVE(IconProvider)
-
-public:
-    static void initInstance();
-    static void freeInstance();
-    static IconProvider *instance();
-
-    virtual Path getIconPath(const QString &iconId) const;
-
-protected:
-    explicit IconProvider(QObject *parent = nullptr);
-    ~IconProvider() = default;
-
-    static IconProvider *m_instance;
-};
+    return ((left.enabled == right.enabled) && (left.path == right.path));
+}

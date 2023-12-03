@@ -32,8 +32,22 @@
 
 #include <QtSystemDetection>
 
+#ifdef Q_OS_WIN
+#include <string>
+
+#include <windows.h>
+
+#include <QString>
+#endif
+
+#include "base/path.h"
+
+enum class ShutdownDialogAction;
+
 namespace Utils::OS
 {
+    void shutdownComputer(const ShutdownDialogAction &action);
+
 #ifdef Q_OS_MACOS
     bool isTorrentFileAssocSet();
     void setTorrentFileAssoc();
@@ -42,9 +56,17 @@ namespace Utils::OS
 #endif // Q_OS_MACOS
 
 #ifdef Q_OS_WIN
-    bool isTorrentFileAssocSet();
-    void setTorrentFileAssoc(bool set);
-    bool isMagnetLinkAssocSet();
-    void setMagnetLinkAssoc(bool set);
+    Path windowsSystemPath();
+
+    template <typename T>
+    T loadWinAPI(const QString &source, const char *funcName)
+    {
+        const std::wstring path = (windowsSystemPath() / Path(source)).toString().toStdWString();
+        return reinterpret_cast<T>(::GetProcAddress(::LoadLibraryW(path.c_str()), funcName));
+    }
 #endif // Q_OS_WIN
+
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+    bool applyMarkOfTheWeb(const Path &file, const QString &url = {});
+#endif // Q_OS_MACOS || Q_OS_WIN
 }

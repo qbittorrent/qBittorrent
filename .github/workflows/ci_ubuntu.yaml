@@ -40,6 +40,7 @@ jobs:
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
         with:
+          store_cache: ${{ startsWith(github.ref, 'refs/heads/') }}
           update_packager_index: false
           ccache_options: |
             max_size=2G
@@ -48,9 +49,9 @@ jobs:
         run: |
           curl \
             -L \
-            -o "${{ runner.temp }}/boost.tar.bz2" \
-            "https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2"
-          tar -xf "${{ runner.temp }}/boost.tar.bz2" -C "${{ github.workspace }}/.."
+            -o "${{ runner.temp }}/boost.tar.gz" \
+            "https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.gz"
+          tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."
           mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
 
       - name: Install Qt
@@ -58,6 +59,7 @@ jobs:
         with:
           version: ${{ matrix.qt_version }}
           archives: icu qtbase qtdeclarative qtsvg qttools
+          cache: true
 
       - name: Install libtorrent
         run: |

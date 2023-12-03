@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2021-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,41 +26,17 @@
  * exception statement from your version.
  */
 
-#include "iconprovider.h"
+#pragma once
 
 #include "base/path.h"
 
-IconProvider::IconProvider(QObject *parent)
-    : QObject(parent)
+namespace BitTorrent
 {
+    struct DownloadPathOption
+    {
+        bool enabled = false;
+        Path path;
+    };
+
+    bool operator==(const DownloadPathOption &left, const DownloadPathOption &right);
 }
-
-void IconProvider::initInstance()
-{
-    if (!m_instance)
-        m_instance = new IconProvider;
-}
-
-void IconProvider::freeInstance()
-{
-    delete m_instance;
-    m_instance = nullptr;
-}
-
-IconProvider *IconProvider::instance()
-{
-    return m_instance;
-}
-
-Path IconProvider::getIconPath(const QString &iconId) const
-{
-    // there are a few icons not available in svg
-    const Path pathSvg {u":/icons/" + iconId + u".svg"};
-    if (pathSvg.exists())
-        return pathSvg;
-
-    const Path pathPng {u":/icons/" + iconId + u".png"};
-    return pathPng;
-}
-
-IconProvider *IconProvider::m_instance = nullptr;

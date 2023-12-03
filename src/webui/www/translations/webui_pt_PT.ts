@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pt_PT">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="pt_PT">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Criar subpasta</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Não criar subpasta</translation>
     </message>
     <message>
@@ -876,7 +878,7 @@
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
-        <translation>Aplicar os limites de rácio para o transporte &quot;overhead&quot;</translation>
+        <translation>Aplicar os limites de rácio para o transporte "overhead"</translation>
     </message>
     <message>
         <source>Apply rate limit to µTP protocol</source>
@@ -892,11 +894,11 @@
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Ativar a &apos;Troca de pares&apos; (PeX) para encontrar mais pares</translation>
+        <translation>Ativar a 'Troca de pares' (PeX) para encontrar mais pares</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Ativar &apos;Descoberta de pares locais&apos; para encontrar mais pares</translation>
+        <translation>Ativar 'Descoberta de pares locais' para encontrar mais pares</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -991,8 +993,8 @@
         <translation>%T: Tracker atual</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Dica: Encapsule o parâmetro entre aspas para evitar que sejam cortados os espaços em branco do texto (ex: &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Dica: Encapsule o parâmetro entre aspas para evitar que sejam cortados os espaços em branco do texto (ex: "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1012,7 +1014,7 @@
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation>Ativar a proteção contra o &quot;clickjacking&quot;</translation>
+        <translation>Ativar a proteção contra o "clickjacking"</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
@@ -1044,7 +1046,7 @@
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation>Caminho padrão para o &apos;Guardar&apos;:</translation>
+        <translation>Caminho padrão para o 'Guardar':</translation>
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
@@ -1056,11 +1058,11 @@
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
-        <translation>Mudar torrent para o &apos;Modo manual&apos;</translation>
+        <translation>Mudar torrent para o 'Modo manual'</translation>
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation>Quando a &apos;Categoria do torrent&apos; for alterada:</translation>
+        <translation>Quando a 'Categoria do torrent' for alterada:</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
@@ -1080,7 +1082,7 @@
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation>Quando o &apos;Caminho padrão para guardar&apos; for alterado:</translation>
+        <translation>Quando o 'Caminho padrão para guardar' for alterado:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
@@ -1092,7 +1094,7 @@
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation>Quando alterar a &apos;Categoria do caminho para guardar&apos;:</translation>
+        <translation>Quando alterar a 'Categoria do caminho para guardar':</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -1100,7 +1102,7 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>Mudar os torrents afetados para o &apos;Modo manual&apos;</translation>
+        <translation>Mudar os torrents afetados para o 'Modo manual'</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1161,10 +1163,6 @@
     <message>
         <source>When ratio reaches</source>
         <translation>Quando o rácio atingir</translation>
-    </message>
-    <message>
-        <source>When seeding time reaches</source>
-        <translation>Quando o tempo a semear atingir</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1415,7 +1413,7 @@
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Não criar subpasta</translation>
     </message>
     <message>
@@ -1551,12 +1549,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Lista branca para filtrar os valores do cabeçalho de hosts HTTP.
 Para se defender contra ataques de reinserção de DNS,
 você deverá colocar os nomes de domínio usados pelo servidor da interface web.
 
-Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos;*&apos;.</translation>
+Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1567,8 +1565,8 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
         <translation>O certificado HTTPS não deverá estar vazio</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation>Especifique IPs de proxies reversos (ou sub-máscaras, ex.: 0.0.0.0/24) para utilizar no endereço do cliente encaminhado (atributo X-Forwarded-For). Utilize &apos;;&apos; para dividir múltiplas entradas.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation>Especifique IPs de proxies reversos (ou sub-máscaras, ex.: 0.0.0.0/24) para utilizar no endereço do cliente encaminhado (atributo X-Forwarded-For). Utilize ';' para dividir múltiplas entradas.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1589,10 +1587,6 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
         <translation>Se marcado, as pesquisas de nome da máquina são feitas por meio do proxy.</translation>
-    </message>
-    <message>
-        <source>Use proxy for hostname lookup</source>
-        <translation>Usar proxy para pesquisas de nome da máquina</translation>
     </message>
     <message>
         <source>Metadata received</source>
@@ -1672,31 +1666,31 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Use Subcategories</source>
@@ -1704,7 +1698,7 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1712,23 +1706,103 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Bdecode token limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Nenhum(a))</translation>
+    </message>
+    <message>
+        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Python executable path (may require restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resets to default if empty</source>
+        <translation>Repor o valor por defeito se estiver vazio</translation>
+    </message>
+    <message>
+        <source>Perform hostname lookup via proxy</source>
+        <translation>Realizar a consulta de hostname via proxy</translation>
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>DHT bootstrap nodes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When inactive seeding time reaches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation>Modo misto</translation>
+    </message>
+    <message>
+        <source>.torrent file size limit:</source>
+        <translation>Limite de tamanho do ficheiro .torrent</translation>
+    </message>
+    <message>
+        <source>(Auto detect if empty)</source>
+        <translation>(Deteção automática se estiver vazio)</translation>
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2055,10 +2129,6 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
         <translation>Falha ao renomear: o ficheiro ou pasta já existe</translation>
     </message>
     <message>
-        <source>Match all occurences</source>
-        <translation>Corresponder todas as ocorrências</translation>
-    </message>
-    <message>
         <source>Toggle Selection</source>
         <translation>Mudar seleção</translation>
     </message>
@@ -2094,6 +2164,10 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
         <source>Case sensitive</source>
         <translation>Diferenciar maiúsculas de minúsculas</translation>
     </message>
+    <message>
+        <source>Match all occurrences</source>
+        <translation>Corresponder todas as ocorrências</translation>
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2111,7 +2185,7 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
     </message>
     <message>
         <source>Default save location</source>
-        <translation>Local por defeito para o &apos;Guardar&apos;</translation>
+        <translation>Local por defeito para o 'Guardar'</translation>
     </message>
     <message>
         <source>Other...</source>
@@ -2310,6 +2384,14 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
         <source>Checking (0)</source>
         <translation>A verificar (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2461,6 +2543,10 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
     <message>
         <source>Availability</source>
         <translation>Disponibilidade</translation>
+    </message>
+    <message>
+        <source>Reannounce In</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2883,6 +2969,10 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
         <source>Renaming</source>
         <translation>A renomear</translation>
     </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2907,8 +2997,12 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
         <translation>rácio</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation>minutos</translation>
+        <source>total minutes</source>
+        <translation>minutos totais</translation>
+    </message>
+    <message>
+        <source>inactive minutes</source>
+        <translation>minutos inativos</translation>
     </message>
 </context>
 <context>
@@ -3117,11 +3211,11 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
         <translation>a mostrar</translation>
     </message>
     <message>
-        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
-        <translation>Clique em &quot;Plugins de pesquisa...&quot; na parte inferior da janela para instalar alguns.</translation>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation>Clique em "Plugins de pesquisa..." na parte inferior da janela para instalar alguns.</translation>
     </message>
     <message>
-        <source>There aren&apos;t any search plugins installed.</source>
+        <source>There aren't any search plugins installed.</source>
         <translation>Não existe nenhum plugin de busca instalado.</translation>
     </message>
 </context>
@@ -3152,8 +3246,8 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
         <translation>Ativo</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
-        <translation>Aviso: Certifique-se que cumpre as leis de direitos de autor do seu país ao fazer a transferência de torrents a partir de qualquer um destes motores de busca.</translation>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <translation>Aviso: Certifique-se que cumpre as leis de direitos de autor do seu país ao fazer a transferência de torrents a partir de qualquer um destes motores de pesquisa.</translation>
     </message>
     <message>
         <source>Check for updates</source>
@@ -3428,7 +3522,7 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
     </message>
     <message>
         <source>Renaming)</source>
-        <translation>A renomear)</translation>
+        <translation type="vanished">A renomear)</translation>
     </message>
 </context>
 <context>
@@ -3771,8 +3865,12 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Não criar subpasta</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation>Adicionar etiquetas:</translation>
     </message>
 </context>
 <context>
