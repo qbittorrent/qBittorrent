@@ -46,7 +46,6 @@
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
-#include "base/rss/rss_session.h"
 #include "downloadhandlerimpl.h"
 #include "proxyconfigurationmanager.h"
 
@@ -183,8 +182,9 @@ Net::DownloadHandler *Net::DownloadManager::download(const DownloadRequest &down
     return downloadHandler;
 }
 
-void Net::DownloadManager::registerSequentialService(const Net::ServiceID &serviceID)
+void Net::DownloadManager::registerSequentialService(const Net::ServiceID &serviceID, std::chrono::seconds delay)
 {
+    m_serviceDelay[serviceID] = delay;
     m_sequentialServices.insert(serviceID);
 }
 
@@ -306,7 +306,7 @@ void Net::DownloadManager::processRequest(DownloadHandlerImpl *downloadHandler)
     connect(reply, &QNetworkReply::finished, this, [this, downloadHandler]
     {
         const ServiceID id = ServiceID::fromURL(downloadHandler->url());
-        QTimer::singleShot(RSS::Session::instance()->fetchDelay()*1000 , this, [this, id](){
+        QTimer::singleShot(m_serviceDelay[id] , this, [this, id](){
             handleDownloadFinished(id);
         });
     });

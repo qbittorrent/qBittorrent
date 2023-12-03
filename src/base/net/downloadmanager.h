@@ -29,6 +29,8 @@
 
 #pragma once
 
+#include <chrono>
+
 #include <QtTypes>
 #include <QHash>
 #include <QNetworkProxy>
@@ -137,7 +139,7 @@ namespace Net
         template <typename Context, typename Func>
         void download(const DownloadRequest &downloadRequest, bool useProxy, Context context, Func &&slot);
 
-        void registerSequentialService(const ServiceID &serviceID);
+        void registerSequentialService(const ServiceID &serviceID, std::chrono::seconds delay = std::chrono::seconds(0));
 
         QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const;
         bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url);
@@ -164,6 +166,7 @@ namespace Net
         QSet<ServiceID> m_sequentialServices;
         QSet<ServiceID> m_busyServices;
         QHash<ServiceID, QQueue<DownloadHandlerImpl *>> m_waitingJobs;
+        QHash<ServiceID, std::chrono::seconds> m_serviceDelay;
     };
 
     template <typename Context, typename Func>
