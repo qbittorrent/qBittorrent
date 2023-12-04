@@ -67,7 +67,7 @@ repos:
     hooks:
     - id: codespell
       name: Check spelling (codespell)
-      args: ["--ignore-words-list", "additionals,curren,fo,ket,superseeding,te,ths"]
+      args: ["--ignore-words-list", "additionals,curren,fo,ist,ket,superseeding,te,ths"]
       exclude: |
         (?x)^(
           .*\.desktop |

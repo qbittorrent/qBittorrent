@@ -25,6 +25,7 @@ jobs:
     env:
       boost_path: "${{ github.workspace }}/../boost"
       harden_flags: "-D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS"
+      libtorrent_path: "${{ github.workspace }}/../libtorrent"
 
     steps:
       - name: Checkout repository
@@ -67,8 +68,9 @@ jobs:
             --branch v${{ matrix.libt_version }} \
             --depth 1 \
             --recurse-submodules \
-            https://github.com/arvidn/libtorrent.git
-          cd libtorrent
+            https://github.com/arvidn/libtorrent.git \
+            ${{ env.libtorrent_path }}
+          cd ${{ env.libtorrent_path }}
           CXXFLAGS="$CXXFLAGS ${{ env.harden_flags }}" \
           cmake \
             -B build \
@@ -120,34 +122,38 @@ jobs:
           mkdir upload/cmake
           cp build/compile_commands.json upload/cmake
           mkdir upload/cmake/libtorrent
-          cp libtorrent/build/compile_commands.json upload/cmake/libtorrent
+          cp ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
 
-      - name: 'AppImage: Prepare env'
+      - name: Install AppImage
         run: |
           sudo apt install libfuse2
-          wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
-          wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
-          wget https://github.com/linuxdeploy/linuxdeploy-plugin-appimage/releases/download/continuous/linuxdeploy-plugin-appimage-x86_64.AppImage
-          chmod +x linuxdeploy-x86_64.AppImage
-          chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
-          chmod +x linuxdeploy-plugin-appimage-x86_64.AppImage
+          curl \
+            -L \
+            -Z \
+            -O https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage \
+            -O https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage \
+            -O https://github.com/linuxdeploy/linuxdeploy-plugin-appimage/releases/download/continuous/linuxdeploy-plugin-appimage-x86_64.AppImage
+          chmod +x \
+            linuxdeploy-x86_64.AppImage \
+            linuxdeploy-plugin-qt-x86_64.AppImage \
+            linuxdeploy-plugin-appimage-x86_64.AppImage
 
-      - name: 'AppImage: Prepare nox'
+      - name: Prepare files for AppImage
         if: matrix.qbt_gui == 'GUI=OFF'
         run: |
-          mkdir -p qbittorrent/usr/share/icons/hicolor/scalable/apps/
-          mkdir -p qbittorrent/usr/share/applications/
-          cp dist/unix/menuicons/scalable/apps/qbittorrent.svg qbittorrent/usr/share/icons/hicolor/scalable/apps/qbittorrent.svg
+          mkdir -p qbittorrent/usr/share/applications
           cp .github/workflows/helper/appimage/org.qbittorrent.qBittorrent.desktop qbittorrent/usr/share/applications/org.qbittorrent.qBittorrent.desktop
+          mkdir -p qbittorrent/usr/share/icons/hicolor/scalable/apps
+          cp dist/unix/menuicons/scalable/apps/qbittorrent.svg qbittorrent/usr/share/icons/hicolor/scalable/apps/qbittorrent.svg
 
-      - name: 'AppImage: Package'
+      - name: Package AppImage
         run: |
-          ./linuxdeploy-x86_64.AppImage --appdir=qbittorrent --plugin qt
+          ./linuxdeploy-x86_64.AppImage --appdir qbittorrent --plugin qt
           rm qbittorrent/apprun-hooks/*
           cp .github/workflows/helper/appimage/export_vars.sh qbittorrent/apprun-hooks/export_vars.sh
           NO_APPSTREAM=1 \
-          OUTPUT=upload/qbittorrent-CI_Ubuntu_x86_64.AppImage \
-          ./linuxdeploy-x86_64.AppImage --appdir=qbittorrent --output appimage
+            OUTPUT=upload/qbittorrent-CI_Ubuntu_x86_64.AppImage \
+            ./linuxdeploy-x86_64.AppImage --appdir qbittorrent --output appimage
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3

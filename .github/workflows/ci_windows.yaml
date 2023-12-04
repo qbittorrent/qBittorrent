@@ -21,7 +21,7 @@ jobs:
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
-      libtorrent_path: "${{ github.workspace }}/libtorrent"
+      libtorrent_path: "${{ github.workspace }}/../libtorrent"
       vpkg_triplet_path: "${{ github.workspace }}/../triplets_overlay"
 
     steps:
@@ -98,8 +98,9 @@ jobs:
             --branch v${{ matrix.libt_version }} `
             --depth 1 `
             --recurse-submodules `
-            https://github.com/arvidn/libtorrent.git
-          cd libtorrent
+            https://github.com/arvidn/libtorrent.git `
+            ${{ env.libtorrent_path }}
+          cd ${{ env.libtorrent_path }}
           $env:CXXFLAGS+=" /guard:cf"
           $env:LDFLAGS+=" /guard:cf"
           cmake `
@@ -107,7 +108,7 @@ jobs:
             -G "Ninja" `
             -DCMAKE_BUILD_TYPE=RelWithDebInfo `
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON `
-            -DCMAKE_INSTALL_PREFIX="${{ env.libtorrent_path }}" `
+            -DCMAKE_INSTALL_PREFIX="${{ env.libtorrent_path }}/install" `
             -DCMAKE_TOOLCHAIN_FILE="${{ env.RUNVCPKG_VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake" `
             -DBOOST_ROOT="${{ env.boost_path }}" `
             -DBUILD_SHARED_LIBS=OFF `
@@ -127,7 +128,7 @@ jobs:
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON `
             -DCMAKE_TOOLCHAIN_FILE="${{ env.RUNVCPKG_VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake" `
             -DBOOST_ROOT="${{ env.boost_path }}" `
-            -DLibtorrentRasterbar_DIR="${{ env.libtorrent_path }}/lib/cmake/LibtorrentRasterbar" `
+            -DLibtorrentRasterbar_DIR="${{ env.libtorrent_path }}/install/lib/cmake/LibtorrentRasterbar" `
             -DMSVC_RUNTIME_DYNAMIC=ON `
             -DTESTING=ON `
             -DVCPKG_TARGET_TRIPLET=x64-windows-static-md-release `
@@ -170,7 +171,7 @@ jobs:
           copy build/compile_commands.json upload/cmake
           copy build/target_graph.dot upload/cmake
           mkdir upload/cmake/libtorrent
-          copy libtorrent/build/compile_commands.json upload/cmake/libtorrent
+          copy ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
