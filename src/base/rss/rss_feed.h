@@ -75,6 +75,7 @@ namespace RSS
         int unreadCount() const override;
         void markAsRead() override;
         void refresh() override;
+        void updateFetchDelay() override;
 
         QUuid uid() const;
         QString url() const;

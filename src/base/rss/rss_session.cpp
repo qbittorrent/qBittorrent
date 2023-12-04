@@ -537,6 +537,7 @@ void Session::setFetchDelay(const std::chrono::seconds delay)
     if (delay == fetchDelay())
         return;
     m_storeFetchDelay = delay;
+    rootFolder()->updateFetchDelay();
 }
 
 QThread *Session::workingThread() const

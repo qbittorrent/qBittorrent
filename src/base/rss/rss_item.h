@@ -52,6 +52,7 @@ namespace RSS
         virtual int unreadCount() const = 0;
         virtual void markAsRead() = 0;
         virtual void refresh() = 0;
+        virtual void updateFetchDelay() = 0;
 
         QString path() const;
         QString name() const;

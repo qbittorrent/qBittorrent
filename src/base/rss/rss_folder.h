@@ -54,6 +54,7 @@ namespace RSS
         int unreadCount() const override;
         void markAsRead() override;
         void refresh() override;
+        void updateFetchDelay() override;
 
         QList<Item *> items() const;
 

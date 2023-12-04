@@ -91,6 +91,12 @@ void Folder::refresh()
         item->refresh();
 }
 
+void Folder::updateFetchDelay()
+{
+    for (Item *item : asConst(items()))
+        item->updateFetchDelay();
+}
+
 QList<Item *> Folder::items() const
 {
     return m_items;

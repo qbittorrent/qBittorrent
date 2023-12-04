@@ -140,6 +140,7 @@ namespace Net
         void download(const DownloadRequest &downloadRequest, bool useProxy, Context context, Func &&slot);
 
         void registerSequentialService(const ServiceID &serviceID, std::chrono::seconds delay = std::chrono::seconds(0));
+        void setSequentialServiceDelay(const ServiceID &serviceID, std::chrono::seconds delay);
 
         QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const;
         bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url);

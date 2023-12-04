@@ -159,6 +159,11 @@ void Feed::refresh()
     emit stateChanged(this);
 }
 
+void Feed::updateFetchDelay()
+{
+    Net::DownloadManager::instance()->setSequentialServiceDelay(Net::ServiceID::fromURL(m_url), m_session->fetchDelay());
+}
+
 QUuid Feed::uid() const
 {
     return m_uid;
