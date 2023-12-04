@@ -224,3 +224,9 @@ bool SettingsStorage::hasKey(const QString &key) const
     const QReadLocker locker {&m_lock};
     return m_data.contains(key);
 }
+
+bool SettingsStorage::isEmpty() const
+{
+    const QReadLocker locker {&m_lock};
+    return m_data.isEmpty();
+}
