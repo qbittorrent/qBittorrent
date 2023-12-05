@@ -34,6 +34,7 @@
 #include <QString>
 
 #include "base/bittorrent/infohash.h"
+#include "base/tag.h"
 
 namespace BitTorrent
 {
@@ -66,7 +67,7 @@ public:
     // These mean any permutation, including no category / tag.
     static const std::optional<QString> AnyCategory;
     static const std::optional<TorrentIDSet> AnyID;
-    static const std::optional<QString> AnyTag;
+    static const std::optional<Tag> AnyTag;
 
     static const TorrentFilter DownloadingTorrent;
     static const TorrentFilter SeedingTorrent;
@@ -85,15 +86,15 @@ public:
     TorrentFilter() = default;
     // category & tags: pass empty string for uncategorized / untagged torrents.
     TorrentFilter(Type type, const std::optional<TorrentIDSet> &idSet = AnyID
-            , const std::optional<QString> &category = AnyCategory, const std::optional<QString> &tag = AnyTag);
+            , const std::optional<QString> &category = AnyCategory, const std::optional<Tag> &tag = AnyTag);
     TorrentFilter(const QString &filter, const std::optional<TorrentIDSet> &idSet = AnyID
-            , const std::optional<QString> &category = AnyCategory, const std::optional<QString> &tags = AnyTag);
+            , const std::optional<QString> &category = AnyCategory, const std::optional<Tag> &tags = AnyTag);
 
     bool setType(Type type);
     bool setTypeByName(const QString &filter);
     bool setTorrentIDSet(const std::optional<TorrentIDSet> &idSet);
     bool setCategory(const std::optional<QString> &category);
-    bool setTag(const std::optional<QString> &tag);
+    bool setTag(const std::optional<Tag> &tag);
 
     bool match(const BitTorrent::Torrent *torrent) const;
 
@@ -105,6 +106,6 @@ private:
 
     Type m_type {All};
     std::optional<QString> m_category;
-    std::optional<QString> m_tag;
+    std::optional<Tag> m_tag;
     std::optional<TorrentIDSet> m_idSet;
 };

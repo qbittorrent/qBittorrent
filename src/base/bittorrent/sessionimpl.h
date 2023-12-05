@@ -156,10 +156,10 @@ namespace BitTorrent
         Path suggestedSavePath(const QString &categoryName, std::optional<bool> useAutoTMM) const override;
         Path suggestedDownloadPath(const QString &categoryName, std::optional<bool> useAutoTMM) const override;
 
-        QSet<QString> tags() const override;
-        bool hasTag(const QString &tag) const override;
-        bool addTag(const QString &tag) override;
-        bool removeTag(const QString &tag) override;
+        TagSet tags() const override;
+        bool hasTag(const Tag &tag) const override;
+        bool addTag(const Tag &tag) override;
+        bool removeTag(const Tag &tag) override;
 
         bool isAutoTMMDisabledByDefault() const override;
         void setAutoTMMDisabledByDefault(bool value) override;
@@ -433,8 +433,8 @@ namespace BitTorrent
         void handleTorrentNameChanged(TorrentImpl *torrent);
         void handleTorrentSavePathChanged(TorrentImpl *torrent);
         void handleTorrentCategoryChanged(TorrentImpl *torrent, const QString &oldCategory);
-        void handleTorrentTagAdded(TorrentImpl *torrent, const QString &tag);
-        void handleTorrentTagRemoved(TorrentImpl *torrent, const QString &tag);
+        void handleTorrentTagAdded(TorrentImpl *torrent, const Tag &tag);
+        void handleTorrentTagRemoved(TorrentImpl *torrent, const Tag &tag);
         void handleTorrentSavingModeChanged(TorrentImpl *torrent);
         void handleTorrentMetadataReceived(TorrentImpl *torrent);
         void handleTorrentPaused(TorrentImpl *torrent);
@@ -755,7 +755,7 @@ namespace BitTorrent
         QSet<TorrentID> m_needSaveResumeDataTorrents;
         QHash<TorrentID, TorrentID> m_changedTorrentIDs;
         QMap<QString, CategoryOptions> m_categories;
-        QSet<QString> m_tags;
+        TagSet m_tags;
 
         // This field holds amounts of peers reported by trackers in their responses to announces
         // (torrent.tracker_name.tracker_local_endpoint.protocol_version.num_peers)

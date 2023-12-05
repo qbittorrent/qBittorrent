@@ -32,6 +32,7 @@
 #include <QVariantMap>
 
 #include "base/bittorrent/infohash.h"
+#include "base/tag.h"
 #include "apicontroller.h"
 
 namespace BitTorrent
@@ -64,8 +65,8 @@ private:
     void onCategoryRemoved(const QString &categoryName);
     void onCategoryOptionsChanged(const QString &categoryName);
     void onSubcategoriesSupportChanged();
-    void onTagAdded(const QString &tag);
-    void onTagRemoved(const QString &tag);
+    void onTagAdded(const Tag &tag);
+    void onTagRemoved(const Tag &tag);
     void onTorrentAdded(BitTorrent::Torrent *torrent);
     void onTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent);
     void onTorrentCategoryChanged(BitTorrent::Torrent *torrent, const QString &oldCategory);
@@ -74,8 +75,8 @@ private:
     void onTorrentResumed(BitTorrent::Torrent *torrent);
     void onTorrentSavePathChanged(BitTorrent::Torrent *torrent);
     void onTorrentSavingModeChanged(BitTorrent::Torrent *torrent);
-    void onTorrentTagAdded(BitTorrent::Torrent *torrent, const QString &tag);
-    void onTorrentTagRemoved(BitTorrent::Torrent *torrent, const QString &tag);
+    void onTorrentTagAdded(BitTorrent::Torrent *torrent, const Tag &tag);
+    void onTorrentTagRemoved(BitTorrent::Torrent *torrent, const Tag &tag);
     void onTorrentsUpdated(const QVector<BitTorrent::Torrent *> &torrents);
     void onTorrentTrackersChanged(BitTorrent::Torrent *torrent);
 

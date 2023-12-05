@@ -80,12 +80,9 @@
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
 #include "base/profile.h"
-#include "base/torrentfilter.h"
 #include "base/unicodestrings.h"
-#include "base/utils/bytearray.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
-#include "base/utils/misc.h"
 #include "base/utils/net.h"
 #include "base/utils/random.h"
 #include "base/version.h"
@@ -373,11 +370,6 @@ QString Session::parentCategoryName(const QString &category)
     return {};
 }
 
-bool Session::isValidTag(const QString &tag)
-{
-    return (!tag.trimmed().isEmpty() && !tag.contains(u','));
-}
-
 QStringList Session::expandCategory(const QString &category)
 {
     QStringList result;
@@ -560,7 +552,8 @@ SessionImpl::SessionImpl(QObject *parent)
     }
 
     const QStringList storedTags = m_storedTags.get();
-    m_tags = {storedTags.cbegin(), storedTags.cend()};
+    m_tags.insert(storedTags.cbegin(), storedTags.cend());
+    std::erase_if(m_tags, [](const Tag &tag) { return !tag.isValid(); });
 
     updateSeedingLimitTimer();
     populateAdditionalTrackers();
@@ -1022,34 +1015,37 @@ Path SessionImpl::suggestedDownloadPath(const QString &categoryName, std::option
     return path;
 }
 
-QSet<QString> SessionImpl::tags() const
+TagSet SessionImpl::tags() const
 {
     return m_tags;
 }
 
-bool SessionImpl::hasTag(const QString &tag) const
+bool SessionImpl::hasTag(const Tag &tag) const
 {
     return m_tags.contains(tag);
 }
 
-bool SessionImpl::addTag(const QString &tag)
+bool SessionImpl::addTag(const Tag &tag)
 {
-    if (!isValidTag(tag) || hasTag(tag))
+    if (!tag.isValid() || hasTag(tag))
         return false;
 
     m_tags.insert(tag);
-    m_storedTags = m_tags.values();
+    m_storedTags = QStringList(m_tags.cbegin(), m_tags.cend());
+
     emit tagAdded(tag);
     return true;
 }
 
-bool SessionImpl::removeTag(const QString &tag)
+bool SessionImpl::removeTag(const Tag &tag)
 {
     if (m_tags.remove(tag))
     {
         for (TorrentImpl *const torrent : asConst(m_torrents))
             torrent->removeTag(tag);
-        m_storedTags = m_tags.values();
+
+        m_storedTags = QStringList(m_tags.cbegin(), m_tags.cend());
+
         emit tagRemoved(tag);
         return true;
     }
@@ -1472,7 +1468,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
         }
     }
 
-    std::erase_if(resumeData.tags, [this, &torrentID](const QString &tag)
+    std::erase_if(resumeData.tags, [this, &torrentID](const Tag &tag)
     {
         if (hasTag(tag))
             return false;
@@ -1481,12 +1477,12 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
         {
             LogMsg(tr("Detected inconsistent data: tag is missing from the configuration file."
                       " Tag will be recovered."
-                      " Torrent: \"%1\". Tag: \"%2\"").arg(torrentID.toString(), tag), Log::WARNING);
+                      " Torrent: \"%1\". Tag: \"%2\"").arg(torrentID.toString(), tag.toString()), Log::WARNING);
             return false;
         }
 
         LogMsg(tr("Detected inconsistent data: invalid tag. Torrent: \"%1\". Tag: \"%2\"")
-               .arg(torrentID.toString(), tag), Log::WARNING);
+               .arg(torrentID.toString(), tag.toString()), Log::WARNING);
         return true;
     });
 
@@ -2701,7 +2697,7 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
         }
     }
 
-    for (const QString &tag : addTorrentParams.tags)
+    for (const Tag &tag : addTorrentParams.tags)
     {
         if (hasTag(tag) || addTag(tag))
             loadTorrentParams.tags.insert(tag);
@@ -4863,12 +4859,12 @@ void SessionImpl::handleTorrentCategoryChanged(TorrentImpl *const torrent, const
     emit torrentCategoryChanged(torrent, oldCategory);
 }
 
-void SessionImpl::handleTorrentTagAdded(TorrentImpl *const torrent, const QString &tag)
+void SessionImpl::handleTorrentTagAdded(TorrentImpl *const torrent, const Tag &tag)
 {
     emit torrentTagAdded(torrent, tag);
 }
 
-void SessionImpl::handleTorrentTagRemoved(TorrentImpl *const torrent, const QString &tag)
+void SessionImpl::handleTorrentTagRemoved(TorrentImpl *const torrent, const Tag &tag)
 {
     emit torrentTagRemoved(torrent, tag);
 }

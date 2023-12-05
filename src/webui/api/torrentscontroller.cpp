@@ -152,6 +152,15 @@ namespace
         return it.value();
     }
 
+    std::optional<Tag> getOptionalTag(const StringMap &params, const QString &name)
+    {
+        const auto it = params.constFind(name);
+        if (it == params.cend())
+            return std::nullopt;
+
+        return Tag(it.value());
+    }
+
     QJsonArray getStickyTrackers(const BitTorrent::Torrent *const torrent)
     {
         int seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, leechesDHT = 0, leechesPeX = 0, leechesLSD = 0;
@@ -273,7 +282,7 @@ void TorrentsController::infoAction()
 {
     const QString filter {params()[u"filter"_s]};
     const std::optional<QString> category = getOptionalString(params(), u"category"_s);
-    const std::optional<QString> tag = getOptionalString(params(), u"tag"_s);
+    const std::optional<Tag> tag = getOptionalTag(params(), u"tag"_s);
     const QString sortedColumn {params()[u"sort"_s]};
     const bool reverse {parseBool(params()[u"reverse"_s]).value_or(false)};
     int limit {params()[u"limit"_s].toInt()};
@@ -1317,12 +1326,11 @@ void TorrentsController::addTagsAction()
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     const QStringList tags {params()[u"tags"_s].split(u',', Qt::SkipEmptyParts)};
 
-    for (const QString &tag : tags)
+    for (const QString &tagStr : tags)
     {
-        const QString tagTrimmed {tag.trimmed()};
-        applyToTorrents(hashes, [&tagTrimmed](BitTorrent::Torrent *const torrent)
+        applyToTorrents(hashes, [&tagStr](BitTorrent::Torrent *const torrent)
         {
-            torrent->addTag(tagTrimmed);
+            torrent->addTag(Tag(tagStr));
         });
     }
 }
@@ -1334,12 +1342,11 @@ void TorrentsController::removeTagsAction()
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     const QStringList tags {params()[u"tags"_s].split(u',', Qt::SkipEmptyParts)};
 
-    for (const QString &tag : tags)
+    for (const QString &tagStr : tags)
     {
-        const QString tagTrimmed {tag.trimmed()};
-        applyToTorrents(hashes, [&tagTrimmed](BitTorrent::Torrent *const torrent)
+        applyToTorrents(hashes, [&tagStr](BitTorrent::Torrent *const torrent)
         {
-            torrent->removeTag(tagTrimmed);
+            torrent->removeTag(Tag(tagStr));
         });
     }
 
@@ -1358,8 +1365,8 @@ void TorrentsController::createTagsAction()
 
     const QStringList tags {params()[u"tags"_s].split(u',', Qt::SkipEmptyParts)};
 
-    for (const QString &tag : tags)
-        BitTorrent::Session::instance()->addTag(tag.trimmed());
+    for (const QString &tagStr : tags)
+        BitTorrent::Session::instance()->addTag(Tag(tagStr));
 }
 
 void TorrentsController::deleteTagsAction()
@@ -1367,15 +1374,15 @@ void TorrentsController::deleteTagsAction()
     requireParams({u"tags"_s});
 
     const QStringList tags {params()[u"tags"_s].split(u',', Qt::SkipEmptyParts)};
-    for (const QString &tag : tags)
-        BitTorrent::Session::instance()->removeTag(tag.trimmed());
+    for (const QString &tagStr : tags)
+        BitTorrent::Session::instance()->removeTag(Tag(tagStr));
 }
 
 void TorrentsController::tagsAction()
 {
     QJsonArray result;
-    for (const QString &tag : asConst(BitTorrent::Session::instance()->tags()))
-        result << tag;
+    for (const Tag &tag : asConst(BitTorrent::Session::instance()->tags()))
+        result << tag.toString();
     setResult(result);
 }
 

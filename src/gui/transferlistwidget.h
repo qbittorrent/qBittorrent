@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -63,8 +64,8 @@ public:
 
 public slots:
     void setSelectionCategory(const QString &category);
-    void addSelectionTag(const QString &tag);
-    void removeSelectionTag(const QString &tag);
+    void addSelectionTag(const Tag &tag);
+    void removeSelectionTag(const Tag &tag);
     void clearSelectionTags();
     void setSelectedTorrentsLocation();
     void pauseAllTorrents();
@@ -96,7 +97,7 @@ public slots:
     void applyFilter(const QString &name, const TransferListModel::Column &type);
     void applyStatusFilter(int f);
     void applyCategoryFilter(const QString &category);
-    void applyTagFilter(const QString &tag);
+    void applyTagFilter(const std::optional<Tag> &tag);
     void applyTrackerFilterAll();
     void applyTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
     void previewFile(const Path &filePath);
@@ -128,7 +129,7 @@ private:
     void editTorrentTrackers();
     void exportTorrent();
     void confirmRemoveAllTagsForSelection();
-    QStringList askTagsForSelection(const QString &dialogTitle);
+    TagSet askTagsForSelection(const QString &dialogTitle);
     void applyToSelectedTorrents(const std::function<void (BitTorrent::Torrent *const)> &fn);
     QVector<BitTorrent::Torrent *> getVisibleTorrents() const;
     int visibleColumnsCount() const;

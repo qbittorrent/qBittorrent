@@ -464,7 +464,7 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     {
         m_transferListWidget->applyStatusFilter(pref->getTransSelFilter());
         m_transferListWidget->applyCategoryFilter(QString());
-        m_transferListWidget->applyTagFilter(QString());
+        m_transferListWidget->applyTagFilter(std::nullopt);
         m_transferListWidget->applyTrackerFilterAll();
     }
 

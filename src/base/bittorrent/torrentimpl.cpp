@@ -863,14 +863,14 @@ TagSet TorrentImpl::tags() const
     return m_tags;
 }
 
-bool TorrentImpl::hasTag(const QString &tag) const
+bool TorrentImpl::hasTag(const Tag &tag) const
 {
     return m_tags.contains(tag);
 }
 
-bool TorrentImpl::addTag(const QString &tag)
+bool TorrentImpl::addTag(const Tag &tag)
 {
-    if (!m_session->isValidTag(tag))
+    if (!tag.isValid())
         return false;
     if (hasTag(tag))
         return false;
@@ -886,7 +886,7 @@ bool TorrentImpl::addTag(const QString &tag)
     return true;
 }
 
-bool TorrentImpl::removeTag(const QString &tag)
+bool TorrentImpl::removeTag(const Tag &tag)
 {
     if (m_tags.remove(tag))
     {
@@ -899,7 +899,7 @@ bool TorrentImpl::removeTag(const QString &tag)
 
 void TorrentImpl::removeAllTags()
 {
-    for (const QString &tag : asConst(tags()))
+    for (const Tag &tag : asConst(tags()))
         removeTag(tag);
 }
 

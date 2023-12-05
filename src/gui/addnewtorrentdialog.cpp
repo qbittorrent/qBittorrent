@@ -363,7 +363,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
 
     connect(m_ui->categoryComboBox, &QComboBox::currentIndexChanged, this, &AddNewTorrentDialog::categoryChanged);
 
-    m_ui->tagsLineEdit->setText(m_torrentParams.tags.join(u", "_s));
+    m_ui->tagsLineEdit->setText(QStringList(m_torrentParams.tags.cbegin(), m_torrentParams.tags.cend()).join(u", "_s));
     connect(m_ui->tagsEditButton, &QAbstractButton::clicked, this, [this]
     {
         auto *dlg = new TorrentTagsDialog(m_torrentParams.tags, this);
@@ -371,7 +371,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
         connect(dlg, &TorrentTagsDialog::accepted, this, [this, dlg]
         {
             m_torrentParams.tags = dlg->tags();
-            m_ui->tagsLineEdit->setText(m_torrentParams.tags.join(u", "_s));
+            m_ui->tagsLineEdit->setText(QStringList(m_torrentParams.tags.cbegin(), m_torrentParams.tags.cend()).join(u", "_s));
         });
         dlg->open();
     });

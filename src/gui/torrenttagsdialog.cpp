@@ -53,9 +53,9 @@ TorrentTagsDialog::TorrentTagsDialog(const TagSet &initialTags, QWidget *parent)
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
     auto *tagsLayout = new FlowLayout(m_ui->scrollArea);
-    for (const QString &tag : asConst(initialTags.united(BitTorrent::Session::instance()->tags())))
+    for (const Tag &tag : asConst(initialTags.united(BitTorrent::Session::instance()->tags())))
     {
-        auto *tagWidget = new QCheckBox(tag);
+        auto *tagWidget = new QCheckBox(tag.toString());
         if (initialTags.contains(tag))
             tagWidget->setChecked(true);
         tagsLayout->addWidget(tagWidget);
@@ -83,7 +83,7 @@ TagSet TorrentTagsDialog::tags() const
     {
         const auto *tagWidget = static_cast<QCheckBox *>(layout->itemAt(i)->widget());
         if (tagWidget->isChecked())
-            tags.insert(tagWidget->text());
+            tags.insert(Tag(tagWidget->text()));
     }
 
     return tags;
@@ -92,18 +92,18 @@ TagSet TorrentTagsDialog::tags() const
 void TorrentTagsDialog::addNewTag()
 {
     bool done = false;
-    QString tag;
+    Tag tag;
     while (!done)
     {
         bool ok = false;
-        tag = AutoExpandableDialog::getText(this
-                , tr("New Tag"), tr("Tag:"), QLineEdit::Normal, tag, &ok).trimmed();
+        tag = Tag(AutoExpandableDialog::getText(this, tr("New Tag")
+                , tr("Tag:"), QLineEdit::Normal, tag.toString(), &ok));
         if (!ok || tag.isEmpty())
             break;
 
-        if (!BitTorrent::Session::isValidTag(tag))
+        if (!tag.isValid())
         {
-            QMessageBox::warning(this, tr("Invalid tag name"), tr("Tag name '%1' is invalid.").arg(tag));
+            QMessageBox::warning(this, tr("Invalid tag name"), tr("Tag name '%1' is invalid.").arg(tag.toString()));
         }
         else if (BitTorrent::Session::instance()->tags().contains(tag))
         {
@@ -113,7 +113,7 @@ void TorrentTagsDialog::addNewTag()
         {
             auto *layout = m_ui->scrollArea->layout();
             auto *btn = layout->takeAt(layout->count() - 1);
-            auto *tagWidget = new QCheckBox(tag);
+            auto *tagWidget = new QCheckBox(tag.toString());
             tagWidget->setChecked(true);
             layout->addWidget(tagWidget);
             layout->addItem(btn);
