@@ -55,6 +55,7 @@ namespace Utils::Fs
 
     QString toValidFileName(const QString &name, const QString &pad = u" "_s);
     Path toValidPath(const QString &name, const QString &pad = u" "_s);
+    Path toAbsolutePath(const Path &path);
     Path toCanonicalPath(const Path &path);
 
     bool copyFile(const Path &from, const Path &to);

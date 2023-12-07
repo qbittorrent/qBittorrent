@@ -42,6 +42,7 @@
 #endif
 
 #include "base/global.h"
+#include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 
@@ -336,7 +337,7 @@ QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &en
     , webUIPort(WEBUI_PORT_OPTION.value(env, -1))
     , torrentingPort(TORRENTING_PORT_OPTION.value(env, -1))
     , skipDialog(SKIP_DIALOG_OPTION.value(env))
-    , profileDir(PROFILE_OPTION.value(env))
+    , profileDir(Utils::Fs::toAbsolutePath(Path(PROFILE_OPTION.value(env))))
     , configurationName(CONFIGURATION_OPTION.value(env))
 {
     addTorrentParams.savePath = Path(SAVE_PATH_OPTION.value(env));
@@ -402,7 +403,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
 #endif
             else if (arg == PROFILE_OPTION)
             {
-                result.profileDir = Path(PROFILE_OPTION.value(arg));
+                result.profileDir = Utils::Fs::toAbsolutePath(Path(PROFILE_OPTION.value(arg)));
             }
             else if (arg == RELATIVE_FASTRESUME)
             {
