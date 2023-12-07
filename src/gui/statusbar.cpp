@@ -86,6 +86,9 @@ StatusBar::StatusBar(QWidget *parent)
     m_upSpeedLbl->setStyleSheet(u"text-align:left;"_s);
     m_upSpeedLbl->setMinimumWidth(200);
 
+    m_externalAddressLbl = new QLabel(tr("External Address: %1").arg(0), this);
+    m_externalAddressLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+
     m_DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0), this);
     m_DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
 
@@ -129,6 +132,7 @@ StatusBar::StatusBar(QWidget *parent)
 #ifndef Q_OS_MACOS
     statusSep4->setFrameShadow(QFrame::Raised);
 #endif
+    layout->addWidget(m_externalAddressLbl);
     layout->addWidget(m_DHTLbl);
     layout->addWidget(statusSep1);
     layout->addWidget(m_connecStatusLblIcon);
@@ -212,6 +216,12 @@ void StatusBar::updateDHTNodesNumber()
     }
 }
 
+void StatusBar::updateExternalAddressLabel()
+{
+    m_externalAddressLbl->setText(tr("External Address: %1").
+    arg(BitTorrent::Session::instance()->getExternalAddress()));
+}
+
 void StatusBar::updateSpeedLabels()
 {
     const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
@@ -235,6 +245,7 @@ void StatusBar::refresh()
 {
     updateConnectionStatus();
     updateDHTNodesNumber();
+    updateExternalAddressLabel();
     updateSpeedLabels();
 }
 

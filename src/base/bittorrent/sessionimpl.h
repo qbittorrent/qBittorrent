@@ -455,6 +455,8 @@ namespace BitTorrent
         void findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &savePath
                                  , const Path &downloadPath, const PathList &filePaths = {}) const;
 
+        QString getExternalAddress() const;
+
         void enablePortMapping();
         void disablePortMapping();
         void addMappedPorts(const QSet<quint16> &ports);

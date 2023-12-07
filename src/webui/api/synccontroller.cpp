@@ -82,6 +82,7 @@ namespace
 
     // TransferInfo keys
     const QString KEY_TRANSFER_CONNECTION_STATUS = u"connection_status"_s;
+    const QString KEY_TRANSFER_EXTERNAL_ADDRESS = u"external_address"_s;
     const QString KEY_TRANSFER_DHT_NODES = u"dht_nodes"_s;
     const QString KEY_TRANSFER_DLDATA = u"dl_info_data"_s;
     const QString KEY_TRANSFER_DLRATELIMIT = u"dl_rate_limit"_s;
@@ -161,6 +162,7 @@ namespace
         map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime;
         map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes;
 
+        map[KEY_TRANSFER_EXTERNAL_ADDRESS] = session->getExternalAddress();
         map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes;
         map[KEY_TRANSFER_CONNECTION_STATUS] = session->isListening()
             ? (sessionStatus.hasIncomingConnections ? u"connected"_s : u"firewalled"_s)
@@ -445,6 +447,7 @@ void SyncController::updateFreeDiskSpace(const qint64 freeDiskSpace)
 //  - "total_size": Size including unwanted data
 // Server state map may contain the following keys:
 //  - "connection_status": connection status
+//  - "external_address": external address
 //  - "dht_nodes": DHT nodes count
 //  - "dl_info_data": bytes downloaded
 //  - "dl_info_speed": download speed

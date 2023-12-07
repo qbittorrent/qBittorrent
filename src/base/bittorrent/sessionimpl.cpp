@@ -4795,6 +4795,11 @@ void SessionImpl::setTrackerFilteringEnabled(const bool enabled)
     }
 }
 
+QString SessionImpl::getExternalAddress() const
+{
+    return m_lastExternalIP;
+}
+
 bool SessionImpl::isListening() const
 {
     return m_nativeSessionExtension->isSessionListening();

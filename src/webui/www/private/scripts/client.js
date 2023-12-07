@@ -843,6 +843,7 @@ window.addEvent('load', function() {
         else
             document.title = ("qBittorrent " + qbtVersion() + " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]");
         $('freeSpaceOnDisk').set('html', 'QBT_TR(Free space: %1)QBT_TR[CONTEXT=HttpServer]'.replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.free_space_on_disk)));
+        $('externalAddress').set('html', 'QBT_TR(External Address: %1)QBT_TR[CONTEXT=StatusBar]'.replace("%1", serverState.external_address));
         $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]'.replace("%1", serverState.dht_nodes));
 
         // Statistics dialog
