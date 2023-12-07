@@ -132,15 +132,21 @@ StatusBar::StatusBar(QWidget *parent)
 #ifndef Q_OS_MACOS
     statusSep4->setFrameShadow(QFrame::Raised);
 #endif
+    QFrame *statusSep5 = new QFrame(this);
+    statusSep5->setFrameStyle(QFrame::VLine);
+#ifndef Q_OS_MACOS
+    statusSep5->setFrameShadow(QFrame::Raised);
+#endif
     layout->addWidget(m_externalAddressLbl);
-    layout->addWidget(m_DHTLbl);
     layout->addWidget(statusSep1);
-    layout->addWidget(m_connecStatusLblIcon);
+    layout->addWidget(m_DHTLbl);
     layout->addWidget(statusSep2);
+    layout->addWidget(m_connecStatusLblIcon);
+    layout->addWidget(statusSep3);
     layout->addWidget(m_altSpeedsBtn);
     layout->addWidget(statusSep4);
     layout->addWidget(m_dlSpeedLbl);
-    layout->addWidget(statusSep3);
+    layout->addWidget(statusSep5);
     layout->addWidget(m_upSpeedLbl);
 
     addPermanentWidget(container);
