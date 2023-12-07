@@ -85,6 +85,8 @@ namespace
     const QString KEY_TRANSFER_DLRATELIMIT = u"dl_rate_limit"_s;
     const QString KEY_TRANSFER_DLSPEED = u"dl_info_speed"_s;
     const QString KEY_TRANSFER_FREESPACEONDISK = u"free_space_on_disk"_s;
+    const QString KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4 = u"last_external_address_v4"_s;
+    const QString KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6 = u"last_external_address_v6"_s;
     const QString KEY_TRANSFER_UPDATA = u"up_info_data"_s;
     const QString KEY_TRANSFER_UPRATELIMIT = u"up_rate_limit"_s;
     const QString KEY_TRANSFER_UPSPEED = u"up_info_speed"_s;
@@ -159,6 +161,8 @@ namespace
         map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime;
         map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes;
 
+        map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4] = session->lastExternalIPv4Address();
+        map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6] = session->lastExternalIPv6Address();
         map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes;
         map[KEY_TRANSFER_CONNECTION_STATUS] = session->isListening()
             ? (sessionStatus.hasIncomingConnections ? u"connected"_s : u"firewalled"_s)
@@ -446,6 +450,8 @@ void SyncController::updateFreeDiskSpace(const qint64 freeDiskSpace)
 //  - "dl_info_data": bytes downloaded
 //  - "dl_info_speed": download speed
 //  - "dl_rate_limit: download rate limit
+//  - "last_external_address_v4": last external address v4
+//  - "last_external_address_v6": last external address v6
 //  - "up_info_data: bytes uploaded
 //  - "up_info_speed: upload speed
 //  - "up_rate_limit: upload speed limit

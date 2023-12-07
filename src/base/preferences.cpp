@@ -359,6 +359,19 @@ void Preferences::setStatusbarDisplayed(const bool displayed)
     setValue(u"Preferences/General/StatusbarDisplayed"_s, displayed);
 }
 
+bool Preferences::isStatusbarExternalIPDisplayed() const
+{
+    return value(u"Preferences/General/StatusbarExternalIPDisplayed"_s, false);
+}
+
+void Preferences::setStatusbarExternalIPDisplayed(const bool displayed)
+{
+    if (displayed == isStatusbarExternalIPDisplayed())
+        return;
+
+    setValue(u"Preferences/General/StatusbarExternalIPDisplayed"_s, displayed);
+}
+
 bool Preferences::isSplashScreenDisabled() const
 {
     return value(u"Preferences/General/NoSplashScreen"_s, true);

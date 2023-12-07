@@ -136,6 +136,7 @@ void AppController::preferencesAction()
     // Language
     data[u"locale"_s] = pref->getLocale();
     data[u"performance_warning"_s] = session->isPerformanceWarningEnabled();
+    data[u"status_bar_external_ip"_s] = pref->isStatusbarExternalIPDisplayed();
     // Transfer List
     data[u"confirm_torrent_deletion"_s] = pref->confirmTorrentDeletion();
     // Log file
@@ -519,6 +520,8 @@ void AppController::setPreferencesAction()
             pref->setLocale(locale);
         }
     }
+    if (hasKey(u"status_bar_external_ip"_s))
+        pref->setStatusbarExternalIPDisplayed(it.value().toBool());
     if (hasKey(u"performance_warning"_s))
         session->setPerformanceWarningEnabled(it.value().toBool());
     // Transfer List
