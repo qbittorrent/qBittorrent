@@ -780,6 +780,13 @@
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="checkBoxExternalIPStatusBar">
+              <property name="text">
+               <string>Show external IP in status bar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <spacer name="verticalSpacer_4">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
