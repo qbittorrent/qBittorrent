@@ -47,9 +47,9 @@ AutoExpandableDialog::~AutoExpandableDialog()
     delete m_ui;
 }
 
-QString AutoExpandableDialog::getText(QWidget *parent, const QString &title, const QString &label,
-                                      QLineEdit::EchoMode mode, const QString &text,
-                                      bool *ok, const bool excludeExtension, Qt::InputMethodHints inputMethodHints)
+QString AutoExpandableDialog::getText(QWidget *parent, const QString &title
+        , const QString &label, QLineEdit::EchoMode mode, const QString &text
+        , bool *ok, const bool excludeExtension, Qt::InputMethodHints inputMethodHints)
 {
     AutoExpandableDialog d(parent);
     d.setWindowTitle(title);
@@ -65,6 +65,8 @@ QString AutoExpandableDialog::getText(QWidget *parent, const QString &title, con
         if (!extension.isEmpty())
             d.m_ui->textEdit->setSelection(0, (text.length() - extension.length()));
     }
+
+    d.m_ui->textEdit->setFocus();
 
     bool res = d.exec();
     if (ok)
