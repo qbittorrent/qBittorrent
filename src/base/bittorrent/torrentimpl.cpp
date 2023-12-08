@@ -1767,53 +1767,55 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
 }
 
 void TorrentImpl::reload()
-try
 {
-    m_completedFiles.fill(false);
-    m_filesProgress.fill(0);
-    m_pieces.fill(false);
-    m_nativeStatus.pieces.clear_all();
-    m_nativeStatus.num_pieces = 0;
-
-    const auto queuePos = m_nativeHandle.queue_position();
-
-    m_nativeSession->remove_torrent(m_nativeHandle, lt::session::delete_partfile);
-
-    lt::add_torrent_params p = m_ltAddTorrentParams;
-    p.flags |= lt::torrent_flags::update_subscribe
-            | lt::torrent_flags::override_trackers
-            | lt::torrent_flags::override_web_seeds;
-
-    if (m_isStopped)
+    try
     {
-        p.flags |= lt::torrent_flags::paused;
-        p.flags &= ~lt::torrent_flags::auto_managed;
+        m_completedFiles.fill(false);
+        m_filesProgress.fill(0);
+        m_pieces.fill(false);
+        m_nativeStatus.pieces.clear_all();
+        m_nativeStatus.num_pieces = 0;
+
+        const auto queuePos = m_nativeHandle.queue_position();
+
+        m_nativeSession->remove_torrent(m_nativeHandle, lt::session::delete_partfile);
+
+        lt::add_torrent_params p = m_ltAddTorrentParams;
+        p.flags |= lt::torrent_flags::update_subscribe
+                | lt::torrent_flags::override_trackers
+                | lt::torrent_flags::override_web_seeds;
+
+        if (m_isStopped)
+        {
+            p.flags |= lt::torrent_flags::paused;
+            p.flags &= ~lt::torrent_flags::auto_managed;
+        }
+        else if (m_operatingMode == TorrentOperatingMode::AutoManaged)
+        {
+            p.flags |= (lt::torrent_flags::auto_managed | lt::torrent_flags::paused);
+        }
+        else
+        {
+            p.flags &= ~(lt::torrent_flags::auto_managed | lt::torrent_flags::paused);
+        }
+
+        auto *const extensionData = new ExtensionData;
+        p.userdata = LTClientData(extensionData);
+        m_nativeHandle = m_nativeSession->add_torrent(p);
+
+        m_nativeStatus = extensionData->status;
+
+        if (queuePos >= lt::queue_position_t {})
+            m_nativeHandle.queue_position_set(queuePos);
+        m_nativeStatus.queue_position = queuePos;
+
+        updateState();
     }
-    else if (m_operatingMode == TorrentOperatingMode::AutoManaged)
+    catch (const lt::system_error &err)
     {
-        p.flags |= (lt::torrent_flags::auto_managed | lt::torrent_flags::paused);
+        throw RuntimeError(tr("Failed to reload torrent. Torrent: %1. Reason: %2")
+                .arg(id().toString(), QString::fromLocal8Bit(err.what())));
     }
-    else
-    {
-        p.flags &= ~(lt::torrent_flags::auto_managed | lt::torrent_flags::paused);
-    }
-
-    auto *const extensionData = new ExtensionData;
-    p.userdata = LTClientData(extensionData);
-    m_nativeHandle = m_nativeSession->add_torrent(p);
-
-    m_nativeStatus = extensionData->status;
-
-    if (queuePos >= lt::queue_position_t {})
-        m_nativeHandle.queue_position_set(queuePos);
-    m_nativeStatus.queue_position = queuePos;
-
-    updateState();
-}
-catch (const lt::system_error &err)
-{
-    throw RuntimeError(tr("Failed to reload torrent. Torrent: %1. Reason: %2")
-            .arg(id().toString(), QString::fromLocal8Bit(err.what())));
 }
 
 void TorrentImpl::pause()
