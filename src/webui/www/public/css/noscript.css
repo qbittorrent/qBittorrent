@@ -1,10 +1,8 @@
-@import url("palette.css");
-
 #formplace {
     display: none;
 }
 
 #noscript {
-    color: var(--color-text-red);
+    color: #f00;
     text-align: center;
 }
