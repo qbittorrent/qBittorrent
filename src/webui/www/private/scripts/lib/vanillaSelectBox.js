@@ -1401,4 +1401,3 @@ function vanillaSelectBox_type(target) {
     const lowercased = stripped.toLowerCase();
     return lowercased;
 }
-
