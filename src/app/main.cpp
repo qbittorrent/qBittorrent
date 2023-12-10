@@ -88,17 +88,83 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 
 using namespace std::chrono_literals;
 
-void displayVersion();
-void displayBadArgMessage(const QString &message);
-void displayErrorMessage(const QString &message);
+namespace
+{
+    void displayBadArgMessage(const QString &message)
+    {
+        const QString help = QCoreApplication::translate("Main", "Run application with -h option to read about command line parameters.");
+#if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
+        QMessageBox msgBox(QMessageBox::Critical, QCoreApplication::translate("Main", "Bad command line"),
+                           (message + u'\n' + help), QMessageBox::Ok);
+        msgBox.show(); // Need to be shown or to moveToCenter does not work
+        msgBox.move(Utils::Gui::screenCenter(&msgBox));
+        msgBox.exec();
+#else
+        const QString errMsg = QCoreApplication::translate("Main", "Bad command line: ") + u'\n'
+            + message + u'\n'
+            + help + u'\n';
+        fprintf(stderr, "%s", qUtf8Printable(errMsg));
+#endif
+    }
+
+    void displayErrorMessage(const QString &message)
+    {
+#ifndef DISABLE_GUI
+        if (QApplication::instance())
+        {
+            QMessageBox msgBox;
+            msgBox.setIcon(QMessageBox::Critical);
+            msgBox.setText(QCoreApplication::translate("Main", "An unrecoverable error occurred."));
+            msgBox.setInformativeText(message);
+            msgBox.show(); // Need to be shown or to moveToCenter does not work
+            msgBox.move(Utils::Gui::screenCenter(&msgBox));
+            msgBox.exec();
+        }
+        else
+        {
+            const QString errMsg = QCoreApplication::translate("Main", "qBittorrent has encountered an unrecoverable error.") + u'\n' + message + u'\n';
+            fprintf(stderr, "%s", qUtf8Printable(errMsg));
+        }
+#else
+        const QString errMsg = QCoreApplication::translate("Main", "qBittorrent has encountered an unrecoverable error.") + u'\n' + message + u'\n';
+        fprintf(stderr, "%s", qUtf8Printable(errMsg));
+#endif
+    }
+
+    void displayVersion()
+    {
+        printf("%s %s\n", qUtf8Printable(qApp->applicationName()), QBT_VERSION);
+    }
 
 #ifndef DISABLE_GUI
-void showSplashScreen();
+    void showSplashScreen()
+    {
+        QPixmap splashImg(u":/icons/splash.png"_s);
+        QPainter painter(&splashImg);
+        const auto version = QStringLiteral(QBT_VERSION);
+        painter.setPen(QPen(Qt::white));
+        painter.setFont(QFont(u"Arial"_s, 22, QFont::Black));
+        painter.drawText(224 - painter.fontMetrics().horizontalAdvance(version), 270, version);
+        QSplashScreen *splash = new QSplashScreen(splashImg);
+        splash->show();
+        QTimer::singleShot(1500ms, Qt::CoarseTimer, splash, &QObject::deleteLater);
+        qApp->processEvents();
+    }
 #endif  // DISABLE_GUI
 
 #ifdef Q_OS_UNIX
-void adjustFileDescriptorLimit();
+    void adjustFileDescriptorLimit()
+    {
+        rlimit limit {};
+
+        if (getrlimit(RLIMIT_NOFILE, &limit) != 0)
+            return;
+
+        limit.rlim_cur = limit.rlim_max;
+        setrlimit(RLIMIT_NOFILE, &limit);
+    }
 #endif
+}
 
 // Main
 int main(int argc, char *argv[])
@@ -272,78 +338,3 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 }
-
-#if !defined(DISABLE_GUI)
-void showSplashScreen()
-{
-    QPixmap splashImg(u":/icons/splash.png"_s);
-    QPainter painter(&splashImg);
-    const auto version = QStringLiteral(QBT_VERSION);
-    painter.setPen(QPen(Qt::white));
-    painter.setFont(QFont(u"Arial"_s, 22, QFont::Black));
-    painter.drawText(224 - painter.fontMetrics().horizontalAdvance(version), 270, version);
-    QSplashScreen *splash = new QSplashScreen(splashImg);
-    splash->show();
-    QTimer::singleShot(1500ms, Qt::CoarseTimer, splash, &QObject::deleteLater);
-    qApp->processEvents();
-}
-#endif  // DISABLE_GUI
-
-void displayVersion()
-{
-    printf("%s %s\n", qUtf8Printable(qApp->applicationName()), QBT_VERSION);
-}
-
-void displayBadArgMessage(const QString &message)
-{
-    const QString help = QCoreApplication::translate("Main", "Run application with -h option to read about command line parameters.");
-#if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
-    QMessageBox msgBox(QMessageBox::Critical, QCoreApplication::translate("Main", "Bad command line options"),
-                       (message + u'\n' + help), QMessageBox::Ok);
-    msgBox.show(); // Need to be shown or to moveToCenter does not work
-    msgBox.move(Utils::Gui::screenCenter(&msgBox));
-    msgBox.exec();
-#else
-    const QString errMsg = QCoreApplication::translate("Main", "Bad command line options:") + u'\n'
-        + message + u'\n'
-        + help + u'\n';
-    fprintf(stderr, "%s", qUtf8Printable(errMsg));
-#endif
-}
-
-void displayErrorMessage(const QString &message)
-{
-#ifndef DISABLE_GUI
-    if (QApplication::instance())
-    {
-        QMessageBox msgBox;
-        msgBox.setIcon(QMessageBox::Critical);
-        msgBox.setText(QCoreApplication::translate("Main", "An unrecoverable error occurred."));
-        msgBox.setInformativeText(message);
-        msgBox.show(); // Need to be shown or to moveToCenter does not work
-        msgBox.move(Utils::Gui::screenCenter(&msgBox));
-        msgBox.exec();
-    }
-    else
-    {
-        const QString errMsg = QCoreApplication::translate("Main", "qBittorrent has encountered an unrecoverable error.") + u'\n' + message + u'\n';
-        fprintf(stderr, "%s", qUtf8Printable(errMsg));
-    }
-#else
-    const QString errMsg = QCoreApplication::translate("Main", "qBittorrent has encountered an unrecoverable error.") + u'\n' + message + u'\n';
-    fprintf(stderr, "%s", qUtf8Printable(errMsg));
-#endif
-}
-
-#ifdef Q_OS_UNIX
-void adjustFileDescriptorLimit()
-{
-    rlimit limit {};
-
-    if (getrlimit(RLIMIT_NOFILE, &limit) != 0)
-        return;
-
-    limit.rlim_cur = limit.rlim_max;
-    setrlimit(RLIMIT_NOFILE, &limit);
-}
-#endif
