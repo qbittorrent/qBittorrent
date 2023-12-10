@@ -61,6 +61,8 @@ public:
 
 class DefaultThemeSource final : public UIThemeSource
 {
+    Q_DECLARE_TR_FUNCTIONS(DefaultThemeSource)
+
 public:
     DefaultThemeSource();
 
@@ -78,6 +80,8 @@ private:
 
 class CustomThemeSource : public UIThemeSource
 {
+    Q_DECLARE_TR_FUNCTIONS(CustomThemeSource)
+
 public:
     QColor getColor(const QString &colorId, ColorMode colorMode) const override;
     Path getIconPath(const QString &iconId, ColorMode colorMode) const override;
