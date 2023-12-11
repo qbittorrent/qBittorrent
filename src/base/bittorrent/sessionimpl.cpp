@@ -4795,9 +4795,14 @@ void SessionImpl::setTrackerFilteringEnabled(const bool enabled)
     }
 }
 
-QString SessionImpl::getExternalAddress() const
+QString SessionImpl::getExternalIPv6Address() const
 {
-    return m_lastExternalIP;
+    return m_lastExternalIPv6Address;
+}
+
+QString SessionImpl::getExternalIPv4Address() const
+{
+    return m_lastExternalIPv4Address;
 }
 
 bool SessionImpl::isListening() const
@@ -5798,15 +5803,27 @@ void SessionImpl::handleListenFailedAlert(const lt::listen_failed_alert *p)
 
 void SessionImpl::handleExternalIPAlert(const lt::external_ip_alert *p)
 {
-    const QString externalIP {toString(p->external_address)};
+    QString externalIP {toString(p->external_address)};
     LogMsg(tr("Detected external IP. IP: \"%1\"")
         .arg(externalIP), Log::INFO);
 
-    if (m_lastExternalIP != externalIP)
+    if (externalIP.indexOf(u':') >= 0)
     {
-        if (isReannounceWhenAddressChangedEnabled() && !m_lastExternalIP.isEmpty())
-            reannounceToAllTrackers();
-        m_lastExternalIP = externalIP;
+        if (m_lastExternalIPv6Address != externalIP)
+        {
+            if (isReannounceWhenAddressChangedEnabled() && !m_lastExternalIPv6Address.isEmpty())
+                reannounceToAllTrackers();
+            m_lastExternalIPv6Address = externalIP;
+        }
+    }
+    else
+    {
+        if (m_lastExternalIPv4Address != externalIP)
+        {
+            if (isReannounceWhenAddressChangedEnabled() && !m_lastExternalIPv4Address.isEmpty())
+                reannounceToAllTrackers();
+            m_lastExternalIPv4Address = externalIP;
+        }
     }
 }
 

@@ -45,7 +45,8 @@ const QString KEY_TRANSFER_DLRATELIMIT = u"dl_rate_limit"_s;
 const QString KEY_TRANSFER_UPSPEED = u"up_info_speed"_s;
 const QString KEY_TRANSFER_UPDATA = u"up_info_data"_s;
 const QString KEY_TRANSFER_UPRATELIMIT = u"up_rate_limit"_s;
-const QString KEY_TRANSFER_EXTERNAL_ADDRESS = u"external_address"_s;
+const QString KEY_TRANSFER_EXTERNAL_ADDRESS_V6 = u"external_address_v6"_s;
+const QString KEY_TRANSFER_EXTERNAL_ADDRESS_V4 = u"external_address_v4"_s;
 const QString KEY_TRANSFER_DHT_NODES = u"dht_nodes"_s;
 const QString KEY_TRANSFER_CONNECTION_STATUS = u"connection_status"_s;
 
@@ -73,7 +74,8 @@ void TransferController::infoAction()
     dict[KEY_TRANSFER_UPDATA] = static_cast<qint64>(sessionStatus.totalPayloadUpload);
     dict[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadSpeedLimit();
     dict[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
-    dict[KEY_TRANSFER_EXTERNAL_ADDRESS] = BitTorrent::Session::instance()->getExternalAddress();
+    dict[KEY_TRANSFER_EXTERNAL_ADDRESS_V6] = BitTorrent::Session::instance()->getExternalIPv6Address();
+    dict[KEY_TRANSFER_EXTERNAL_ADDRESS_V4] = BitTorrent::Session::instance()->getExternalIPv4Address();
     dict[KEY_TRANSFER_DHT_NODES] = static_cast<qint64>(sessionStatus.dhtNodes);
     if (!BitTorrent::Session::instance()->isListening())
         dict[KEY_TRANSFER_CONNECTION_STATUS] = u"disconnected"_s;

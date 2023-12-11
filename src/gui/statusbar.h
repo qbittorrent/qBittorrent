@@ -62,12 +62,12 @@ private slots:
 private:
     void updateConnectionStatus();
     void updateDHTNodesNumber();
-    void updateExternalAddressLabel();
+    void updateExternalAddressesLabel();
     void updateSpeedLabels();
 
     QPushButton *m_dlSpeedLbl = nullptr;
     QPushButton *m_upSpeedLbl = nullptr;
-    QLabel *m_externalAddressLbl = nullptr;
+    QLabel *m_externalAddressesLbl = nullptr;
     QLabel *m_DHTLbl = nullptr;
     QPushButton *m_connecStatusLblIcon = nullptr;
     QPushButton *m_altSpeedsBtn = nullptr;

@@ -86,8 +86,8 @@ StatusBar::StatusBar(QWidget *parent)
     m_upSpeedLbl->setStyleSheet(u"text-align:left;"_s);
     m_upSpeedLbl->setMinimumWidth(200);
 
-    m_externalAddressLbl = new QLabel(tr("External Address: %1").arg(0), this);
-    m_externalAddressLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+    m_externalAddressesLbl = new QLabel(tr("External Address(es): %1%2").arg(0), this);
+    m_externalAddressesLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
 
     m_DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0), this);
     m_DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
@@ -137,7 +137,7 @@ StatusBar::StatusBar(QWidget *parent)
 #ifndef Q_OS_MACOS
     statusSep5->setFrameShadow(QFrame::Raised);
 #endif
-    layout->addWidget(m_externalAddressLbl);
+    layout->addWidget(m_externalAddressesLbl);
     layout->addWidget(statusSep1);
     layout->addWidget(m_DHTLbl);
     layout->addWidget(statusSep2);
@@ -222,10 +222,11 @@ void StatusBar::updateDHTNodesNumber()
     }
 }
 
-void StatusBar::updateExternalAddressLabel()
+void StatusBar::updateExternalAddressesLabel()
 {
-    m_externalAddressLbl->setText(tr("External Address: %1").
-    arg(BitTorrent::Session::instance()->getExternalAddress()));
+    m_externalAddressesLbl->setText((tr("External Address(es): %1 %2").
+    arg(BitTorrent::Session::instance()->getExternalIPv4Address()).
+    arg(BitTorrent::Session::instance()->getExternalIPv6Address())).trimmed());
 }
 
 void StatusBar::updateSpeedLabels()
@@ -251,7 +252,7 @@ void StatusBar::refresh()
 {
     updateConnectionStatus();
     updateDHTNodesNumber();
-    updateExternalAddressLabel();
+    updateExternalAddressesLabel();
     updateSpeedLabels();
 }
 
