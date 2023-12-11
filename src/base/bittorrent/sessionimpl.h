@@ -425,6 +425,8 @@ namespace BitTorrent
         void topTorrentsQueuePos(const QVector<TorrentID> &ids) override;
         void bottomTorrentsQueuePos(const QVector<TorrentID> &ids) override;
 
+        QString getExternalAddress() const override;
+
         // Torrent interface
         void handleTorrentNeedSaveResumeData(const TorrentImpl *torrent);
         void handleTorrentSaveResumeDataRequested(const TorrentImpl *torrent);
@@ -454,8 +456,6 @@ namespace BitTorrent
 
         void findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &savePath
                                  , const Path &downloadPath, const PathList &filePaths = {}) const;
-
-        QString getExternalAddress() const;
 
         void enablePortMapping();
         void disablePortMapping();
