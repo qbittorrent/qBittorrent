@@ -1,0 +1,49 @@
+/* Adaptive color palette */
+
+/* Default rules */
+* {
+    --color-accent-blue: hsl(210deg 65% 55%);
+    --color-text-blue: hsl(210deg 100% 55%);
+    --color-text-orange: hsl(26deg 100% 45%);
+    --color-text-red: hsl(0deg 100% 65%);
+    --color-text-green: hsl(110deg 94% 27%);
+    --color-text-white: hsl(0deg 0% 100%);
+    --color-text-disabled: hsl(0deg 0% 60%);
+    --color-text-default: hsl(0deg 0% 33%);
+    --color-background-blue: hsl(210deg 65% 55%);
+    --color-background-popup: hsl(0deg 0% 100%);
+    --color-background-default: hsl(0deg 0% 94%);
+    --color-background-hover: hsl(26deg 80% 60%);
+    --color-border-blue: hsl(210deg 42% 48%);
+    --color-border-default: hsl(0deg 0% 85%);
+}
+
+:root {
+    color-scheme: light dark;
+}
+
+/* Light corrections */
+@media (prefers-color-scheme: light) {
+    :root {
+        color-scheme: light;
+    }
+}
+
+/* Dark corrections */
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+    }
+
+    * {
+        --color-accent-blue: hsl(210deg 42% 48%);
+        --color-text-blue: hsl(210deg 88.1% 73.5%);
+        --color-text-orange: hsl(26deg 65% 70%);
+        --color-text-default: hsl(0deg 0% 90%);
+        --color-background-blue: hsl(210deg 42% 48%);
+        --color-background-popup: hsl(0deg 0% 20%);
+        --color-background-default: hsl(0deg 0% 25%);
+        --color-background-hover: hsl(26deg 50% 55%);
+        --color-border-default: hsl(0deg 0% 33%);
+    }
+}

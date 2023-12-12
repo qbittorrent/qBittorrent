@@ -1,9 +1,37 @@
+@import url("palette.css");
+
 /* Reset */
 
 a img,
 :link img,
 :visited img {
     border: none;
+}
+
+/* Forms */
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="button"],
+button,
+select {
+    border: 1px solid var(--color-border-default);
+    border-radius: 3px;
+    color: var(--color-text-default);
+    padding: 4px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--color-accent-blue);
+}
+
+input[type="button"],
+input[type="submit"],
+button {
+    cursor: pointer;
+    padding: 4px 16px;
 }
 
 /*table { border-collapse: collapse; border-spacing: 0; }*/
@@ -15,7 +43,7 @@ a img,
 /* Structure */
 
 body {
-    color: #555;
+    color: var(--color-text-default);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     line-height: 18px;
@@ -36,7 +64,6 @@ body {
 h2,
 h3,
 h4 {
-    color: #333;
     font-size: 12px;
     font-weight: bold;
     margin: 0;
@@ -44,13 +71,13 @@ h4 {
 }
 
 h2 {
-    color: #555;
+    color: var(--color-text-default);
     font-size: 14px;
     font-weight: bold;
 }
 
 #mochaPage h3 {
-    border-bottom: 1px solid #bbb;
+    border-bottom: 1px solid var(--color-border-default);
     display: block;
     font-size: 12px;
     margin: 0 0 8px;
@@ -59,7 +86,7 @@ h2 {
 
 #error_div,
 #rename_error {
-    color: #f00;
+    color: var(--color-text-red);
     float: left;
     font-size: 14px;
     font-weight: bold;
@@ -70,7 +97,7 @@ h4 {
 }
 
 a {
-    color: #e60;
+    color: var(--color-text-orange);
     cursor: pointer;
     text-decoration: none;
 }
@@ -99,12 +126,19 @@ dd {
     padding: 0 0 9px;
 }
 
+/* Forms */
+
+fieldset {
+    border: 1px solid var(--color-border-default);
+    border-radius: 5px;
+}
+
 /* Code */
 
 pre {
-    background-color: #f6f6f6;
-    border: 1px solid #d1d7dc;
-    color: #006600;
+    background-color: var(--color-background-default);
+    border: 1px solid var(--color-border-default);
+    color: var(--color-text-green);
     display: block;
     font-family: "Courier New", Courier, monospace;
     font-size: 11px;
@@ -117,9 +151,9 @@ pre {
 /* Dividers */
 
 hr {
-    background-color: #ddd;
+    background-color: var(--color-background-default);
     border: 0px;
-    color: #ccc;
+    color: var(--color-text-default);
     height: 1px;
 }
 
@@ -147,22 +181,22 @@ hr {
 
 #Filters ul img {
     height: 16px;
-    padding: 2px 4px;
+    padding: 0 4px;
     vertical-align: middle;
     width: 16px;
 }
 
 .selectedFilter {
-    background-color: #415a8d;
-    color: #ffffff;
+    background-color: var(--color-background-blue) !important;
+    color: var(--color-text-white) !important;
 }
 
 .selectedFilter a {
-    color: #ffffff;
+    color: var(--color-text-white) !important;
 }
 
 #properties {
-    background-color: #e5e5e5;
+    background-color: var(--color-background-default);
 }
 
 a.propButton {
@@ -184,15 +218,15 @@ a.propButton img {
 /* context menu specific */
 
 .contextMenu {
-    background: #eee;
-    border: 1px solid #999;
+    background-color: var(--color-background-default);
+    border: 1px solid var(--color-border-default);
     display: none;
     list-style-type: none;
     padding: 0;
 }
 
 .contextMenu .separator {
-    border-top: 1px solid #999;
+    border-top: 1px solid var(--color-border-default);
 }
 
 .contextMenu li {
@@ -201,7 +235,7 @@ a.propButton img {
 }
 
 .contextMenu li a {
-    color: #000;
+    color: var(--color-text-default);
     display: block;
     font-family: tahoma, arial, sans-serif;
     font-size: 12px;
@@ -211,21 +245,21 @@ a.propButton img {
 }
 
 .contextMenu li a:hover {
-    background-color: #ddd;
+    background-color: var(--color-background-hover);
+    color: var(--color-text-white);
 }
 
 .contextMenu li a.disabled {
-    color: #ccc;
     font-style: italic;
 }
 
 .contextMenu li a.disabled:hover {
-    background-color: #eee;
+    color: var(--color-text-disabled);
 }
 
 .contextMenu li ul {
-    background: #eee;
-    border: 1px solid #999;
+    background: var(--color-background-default);
+    border: 1px solid var(--color-border-default);
     left: -999em;
     list-style-type: none;
     margin: -29px 0 0 100%;
@@ -259,6 +293,7 @@ a.propButton img {
 .contextMenu li img {
     height: 16px;
     margin-bottom: -4px;
+    margin-right: 0.5em; /* return missed padding */
     width: 16px;
 }
 
@@ -328,7 +363,7 @@ a.propButton img {
 /* Mocha Customization */
 
 #mochaToolbar {
-    height: 29px;
+    height: auto !important;
     margin-top: 5px;
     overflow-y: hidden;
     position: relative;
@@ -354,17 +389,20 @@ a.propButton img {
 }
 
 #torrentsFilterToolbar {
-    float: right;
-    margin-right: 30px;
+    display: inline-block;
+    vertical-align: top;
 }
 
 #torrentsFilterInput {
+    background-color: var(--color-background-default);
     background-image: url("../images/edit-find.svg");
     background-position: left;
     background-repeat: no-repeat;
     background-size: 1.5em;
-    padding-left: 2em;
-    width: 160px;
+    border: 1px solid var(--color-border-default);
+    border-radius: 3px;
+    min-width: 160px;
+    padding: 4px 4px 4px 25px;
 }
 
 #torrentFilesFilterToolbar {
@@ -403,7 +441,7 @@ label.partial {
 }
 
 fieldset.settings {
-    border: solid 1px black;
+    border: 1px solid var(--color-border-default);
     border-radius: 8px;
     padding: 4px 4px 4px 10px;
 }
@@ -455,19 +493,21 @@ ul.filterList {
 }
 
 ul.filterList a {
-    color: inherit;
+    color: var(--color-text-default);
     display: block;
     overflow: hidden;
+    padding: 4px 6px;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 ul.filterList li:hover {
-    background-color: #e60;
+    background-color: var(--color-background-hover);
+    color: var(--color-text-white);
 }
 
 ul.filterList li:hover a {
-    color: white;
+    color: var(--color-text-white);
 }
 
 td.generalLabel {
@@ -475,15 +515,6 @@ td.generalLabel {
     vertical-align: top;
     white-space: nowrap;
     width: 1px;
-}
-
-#torrentFilesTableDiv {
-    line-height: 20px;
-}
-
-#torrentTrackersTableDiv,
-#webseedsTable {
-    line-height: 25px;
 }
 
 .filesTableCollapseIcon {
@@ -532,7 +563,6 @@ td.generalLabel {
 }
 
 .select-watched-folder-editable {
-    background-color: white;
     border: solid grey 1px;
     height: 20px;
     position: relative;
@@ -623,27 +653,18 @@ td.statusBarSeparator {
 }
 
 .red {
-    color: red;
+    color: var(--color-text-red);
 }
 
 .green {
-    color: green;
+    color: var(--color-text-green);
 }
 
 .searchPluginsTableRow {
     cursor: pointer;
 }
 
-#torrentFilesTableDiv .dynamicTable tr.nonAlt {
-    background-color: #fff;
-}
-
-#torrentFilesTableDiv .dynamicTable tr.nonAlt.selected {
-    background-color: #354158;
-    color: #fff;
-}
-
 #torrentFilesTableDiv .dynamicTable tr.nonAlt:hover {
-    background-color: #ee6600;
-    color: #fff;
+    background-color: var(--color-background-hover);
+    color: var(--color-text-white);
 }

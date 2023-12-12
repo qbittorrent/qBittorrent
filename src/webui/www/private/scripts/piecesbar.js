@@ -54,10 +54,10 @@ window.qBittorrent.PiecesBar = (() => {
                 'id': 'piecesbar_' + (piecesBarUniqueId++),
                 'width': 0,
                 'height': 0,
-                'downloadingColor': 'green',
-                'haveColor': 'blue',
+                'downloadingColor': 'hsl(110deg 94% 27%)', // @TODO palette vars not supported for this value, apply average
+                'haveColor': 'hsl(210deg 55% 55%)', // @TODO palette vars not supported for this value, apply average
                 'borderSize': 1,
-                'borderColor': '#999'
+                'borderColor': 'var(--color-border-default)'
             };
 
             if (parameters && ($type(parameters) === 'object'))

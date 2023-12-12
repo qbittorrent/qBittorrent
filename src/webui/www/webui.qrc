@@ -10,9 +10,10 @@
         <file>private/css/dynamicTable.css</file>
         <file>private/css/Layout.css</file>
         <file>private/css/noscript.css</file>
+        <file>private/css/palette.css</file>
         <file>private/css/style.css</file>
         <file>private/css/Tabs.css</file>
-        <file>private/css/lib/vanillaSelectBox.css</file>
+        <file>private/css/vanillaSelectBox.css</file>
         <file>private/css/Window.css</file>
         <file>private/download.html</file>
         <file>private/downloadlimit.html</file>
@@ -22,17 +23,13 @@
         <file>private/images/application-rss.svg</file>
         <file>private/images/application-url.svg</file>
         <file>private/images/arrow-right.gif</file>
-        <file>private/images/bg-dropdown.gif</file>
-        <file>private/images/bg-handle-horizontal.gif</file>
-        <file>private/images/bg-header.gif</file>
-        <file>private/images/bg-panel-header.gif</file>
         <file>private/images/checked-completed.svg</file>
         <file>private/images/collapse.svg</file>
         <file>private/images/configure.svg</file>
         <file>private/images/connected.svg</file>
         <file>private/images/dialog-warning.svg</file>
-        <file>private/images/disconnected.svg</file>
         <file>private/images/directory.svg</file>
+        <file>private/images/disconnected.svg</file>
         <file>private/images/download.svg</file>
         <file>private/images/downloading.svg</file>
         <file>private/images/edit-clear.svg</file>
@@ -351,7 +348,6 @@
         <file>private/images/stalledUP.svg</file>
         <file>private/images/stopped.svg</file>
         <file>private/images/system-log-out.svg</file>
-        <file>private/images/tabs.gif</file>
         <file>private/images/tags.svg</file>
         <file>private/images/task-complete.svg</file>
         <file>private/images/task-reject.svg</file>
@@ -387,6 +383,7 @@
         <file>private/scripts/lib/mocha.min.js</file>
         <file>private/scripts/lib/MooTools-Core-1.6.0-compat-compressed.js</file>
         <file>private/scripts/lib/MooTools-More-1.6.0-compat-compressed.js</file>
+        <file>private/scripts/lib/vanillaSelectBox.js</file>
         <file>private/scripts/misc.js</file>
         <file>private/scripts/mocha-init.js</file>
         <file>private/scripts/piecesbar.js</file>
@@ -399,7 +396,6 @@
         <file>private/scripts/prop-webseeds.js</file>
         <file>private/scripts/rename-files.js</file>
         <file>private/scripts/speedslider.js</file>
-        <file>private/scripts/lib/vanillaSelectBox.js</file>
         <file>private/setlocation.html</file>
         <file>private/shareratio.html</file>
         <file>private/upload.html</file>
