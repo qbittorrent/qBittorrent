@@ -66,7 +66,7 @@ QString AutoExpandableDialog::getText(QWidget *parent, const QString &title
             d.m_ui->textEdit->setSelection(0, (text.length() - extension.length()));
     }
 
-    d.m_ui->textEdit->setFocus();
+    d.setTabOrder({d.m_ui->textEdit, d.m_ui->buttonBox});
 
     bool res = d.exec();
     if (ok)
