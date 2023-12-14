@@ -4795,12 +4795,12 @@ void SessionImpl::setTrackerFilteringEnabled(const bool enabled)
     }
 }
 
-QString SessionImpl::getExternalIPv6Address() const
+QString SessionImpl::getLastExternalIPv6Address() const
 {
     return m_lastExternalIPv6Address;
 }
 
-QString SessionImpl::getExternalIPv4Address() const
+QString SessionImpl::getLastExternalIPv4Address() const
 {
     return m_lastExternalIPv4Address;
 }

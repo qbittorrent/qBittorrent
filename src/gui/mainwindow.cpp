@@ -1360,6 +1360,7 @@ void MainWindow::showStatusBar(bool show)
     {
         // Create status bar
         m_statusBar = new StatusBar;
+        connect(m_statusBar.data(), &StatusBar::showExternalAddressesButtonClicked, this, &MainWindow::showExternalAddressesInLog);
         connect(m_statusBar.data(), &StatusBar::connectionButtonClicked, this, &MainWindow::showConnectionSettings);
         connect(m_statusBar.data(), &StatusBar::alternativeSpeedsButtonClicked, this, &MainWindow::toggleAlternativeSpeeds);
         setStatusBar(m_statusBar);
@@ -1758,6 +1759,12 @@ void MainWindow::toggleAlternativeSpeeds()
 void MainWindow::on_actionDonateMoney_triggered()
 {
     QDesktopServices::openUrl(QUrl(u"https://www.qbittorrent.org/donate"_s));
+}
+
+void MainWindow::showExternalAddressesInLog()
+{
+    displayExecutionLogTab();
+    on_actionInformationMessages_triggered(true);
 }
 
 void MainWindow::showConnectionSettings()
