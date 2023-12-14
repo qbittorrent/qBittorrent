@@ -1046,7 +1046,7 @@ window.addEvent('load', function() {
         $("logTabLink").click();
         $("logLevelSelect").options[2].selected = true;
         window.qBittorrent.Log.logLevelChanged();
-        $("filterTextInput").value = 'Detected external IP.';
+        $("filterTextInput").value = 'QBT_TR(Detected external IP.)QBT_TR[CONTEXT=MainWindow]';
         window.qBittorrent.Log.filterTextChanged();
     });
 
