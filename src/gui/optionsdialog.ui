@@ -3127,8 +3127,8 @@ Disable encryption: Only connect to peers without protocol encryption</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>541</width>
-             <height>539</height>
+             <width>336</width>
+             <height>391</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_27">
@@ -3147,28 +3147,32 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                </item>
                <item>
                 <layout class="QGridLayout" name="gridLayout_5">
-                 <item row="2" column="1">
-                  <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed">
-                   <property name="maximum">
-                    <number>2147483646</number>
-                   </property>
-                   <property name="value">
-                    <number>100</number>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_111">
+                   <property name="text">
+                    <string>Feeds refresh interval:</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="2">
-                  <spacer name="horizontalSpacer_6">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                 <item row="1" column="1">
+                  <widget class="QSpinBox" name="spinRSSFetchDelay">
+                   <property name="suffix">
+                    <string> sec</string>
                    </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
+                   <property name="maximum">
+                    <number>999999</number>
                    </property>
-                  </spacer>
+                   <property name="value">
+                    <number>2</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_rss_fetch_delay">
+                   <property name="text">
+                    <string>Delay between requests:</string>
+                   </property>
+                  </widget>
                  </item>
                  <item row="0" column="1">
                   <widget class="QSpinBox" name="spinRSSRefreshInterval">
@@ -3186,37 +3190,33 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                    </property>
                   </widget>
                  </item>
+                 <item row="0" column="2">
+                  <spacer name="horizontalSpacer_6">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed">
+                   <property name="maximum">
+                    <number>2147483646</number>
+                   </property>
+                   <property name="value">
+                    <number>100</number>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="2" column="0">
                   <widget class="QLabel" name="label_12">
                    <property name="text">
                     <string>Maximum number of articles per feed:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_111">
-                   <property name="text">
-                    <string>Feeds refresh interval:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="label_rss_fetch_delay">
-                   <property name="text">
-                    <string>Delay between requests:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QSpinBox" name="spinRSSFetchDelay">
-                   <property name="suffix">
-                    <string> sec</string>
-                   </property>
-                   <property name="maximum">
-                    <number>999999</number>
-                   </property>
-                   <property name="value">
-                    <number>2</number>
                    </property>
                   </widget>
                  </item>
