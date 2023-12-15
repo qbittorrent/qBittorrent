@@ -12,6 +12,17 @@ jobs:
     name: Scan
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        libt_version: ["2.0.9"]
+        qbt_gui: ["GUI=ON"]
+        qt_version: ["6.5.2"]
+
+    env:
+      boost_path: "${{ github.workspace }}/../boost"
+      coverity_path: "${{ github.workspace }}/../coverity"
+      libtorrent_path: "${{ github.workspace }}/../libtorrent"
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,40 +31,55 @@ jobs:
         run: |
           sudo apt update
           sudo apt install \
-            build-essential cmake ninja-build pkg-config \
-            libboost-dev libssl-dev zlib1g-dev
+            build-essential cmake ninja-build \
+            libssl-dev libxkbcommon-x11-dev libxcb-cursor-dev zlib1g-dev
+
+      - name: Install boost
+        run: |
+          curl \
+            -L \
+            -o "${{ runner.temp }}/boost.tar.gz" \
+            "https://boostorg.jfrog.io/artifactory/main/release/1.84.0/source/boost_1_84_0.tar.gz"
+          tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."
+          mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: "6.5.2"
-          archives: icu qtbase qtsvg qttools
+          version: ${{ matrix.qt_version }}
+          archives: icu qtbase qtdeclarative qtsvg qttools
+          cache: true
 
       - name: Install libtorrent
         run: |
           git clone \
-            --branch "v2.0.9" \
+            --branch v${{ matrix.libt_version }} \
             --depth 1 \
             --recurse-submodules \
-            https://github.com/arvidn/libtorrent.git
-          cd libtorrent
+            https://github.com/arvidn/libtorrent.git \
+            ${{ env.libtorrent_path }}
+          cd ${{ env.libtorrent_path }}
           cmake \
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DBOOST_ROOT="${{ env.boost_path }}" \
             -Ddeprecated-functions=OFF
           cmake --build build
           sudo cmake --install build
 
       - name: Download Coverity Build Tool
         run: |
-          wget \
-            -q \
-            https://scan.coverity.com/download/linux64 \
-            --post-data "token=${{ secrets.COVERITY_SCAN_TOKEN }}&project=qbittorrent%2FqBittorrent" \
-            -O coverity_tool.tgz
-          mkdir coverity_tool
-          tar xzf coverity_tool.tgz --strip 1 -C coverity_tool
+          curl \
+            -L \
+            -d "token=${{ secrets.COVERITY_SCAN_TOKEN }}&project=qbittorrent%2FqBittorrent" \
+            -o "${{ runner.temp }}/coverity_tool.tgz" \
+            "https://scan.coverity.com/download/linux64"
+          mkdir -p ${{ env.coverity_path }}
+          tar \
+            -xf "${{ runner.temp }}/coverity_tool.tgz" \
+            -C "${{ env.coverity_path }}" \
+            --strip-components 1
 
       - name: Build qBittorrent
         run: |
@@ -61,10 +87,13 @@ jobs:
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-            -DGUI=ON \
-            -DVERBOSE_CONFIGURE=ON
-          export PATH="$(pwd)/coverity_tool/bin:$PATH"
-          cov-build --dir cov-int cmake --build build
+            -DBOOST_ROOT="${{ env.boost_path }}" \
+            -DVERBOSE_CONFIGURE=ON \
+            -D${{ matrix.qbt_gui }}
+          PATH="${{ env.coverity_path }}/bin:$PATH" \
+          cov-build \
+            --dir cov-int \
+            cmake --build build
 
       - name: Submit the result to Coverity Scan
         run: |
