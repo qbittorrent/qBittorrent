@@ -380,7 +380,10 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_CATEGORY:
         return torrent->category();
     case TR_TAGS:
-        return torrent->tags().join(u", "_s);
+        {
+            const TagSet &tags = torrent->tags();
+            return QStringList(tags.cbegin(), tags.cend()).join(u", "_s);
+        }
     case TR_ADD_DATE:
         return QLocale().toString(torrent->addedTime().toLocalTime(), QLocale::ShortFormat);
     case TR_SEED_DATE:

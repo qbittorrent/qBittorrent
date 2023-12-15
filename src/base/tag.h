@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2021  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,21 +29,39 @@
 #pragma once
 
 #include <QMetaType>
+#include <QString>
 
-#include "orderedset.h"
-#include "tag.h"
-#include "utils/compare.h"
-
-class TagLessThan
+class Tag final
 {
 public:
-    bool operator()(const Tag &left, const Tag &right) const;
+    Tag() = default;
+
+    explicit Tag(const QString &tagStr);
+    explicit Tag(const std::string &tagStr);
+
+    bool isValid() const;
+    bool isEmpty() const;
+
+    QString toString() const noexcept;
+
+    explicit operator QString() const noexcept;
+
+    friend bool operator==(const Tag &, const Tag &) = default;
 
 private:
-    Utils::Compare::NaturalCompare<Qt::CaseInsensitive> m_compare;
-    Utils::Compare::NaturalCompare<Qt::CaseSensitive> m_subCompare;
+    QString m_tagStr;
 };
 
-using TagSet = OrderedSet<Tag, TagLessThan>;
+Q_DECLARE_METATYPE(Tag)
 
-Q_DECLARE_METATYPE(TagSet)
+QDataStream &operator<<(QDataStream &out, const Tag &tag);
+QDataStream &operator>>(QDataStream &in, Tag &tag);
+
+template <>
+struct std::hash<Tag>
+{
+    std::size_t operator()(const Tag &tag, const std::size_t seed = 0) const noexcept
+    {
+        return qHash(tag.toString(), seed);
+    }
+};

@@ -60,7 +60,7 @@ namespace
     {
         TagSet tags;
         for (const QJsonValue &jsonVal : jsonArr)
-            tags.insert(jsonVal.toString());
+            tags.insert(Tag(jsonVal.toString()));
 
         return tags;
     }
@@ -68,8 +68,8 @@ namespace
     QJsonArray serializeTagSet(const TagSet &tags)
     {
         QJsonArray arr;
-        for (const QString &tag : tags)
-            arr.append(tag);
+        for (const Tag &tag : tags)
+            arr.append(tag.toString());
 
         return arr;
     }

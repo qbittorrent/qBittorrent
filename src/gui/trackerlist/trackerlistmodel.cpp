@@ -54,14 +54,14 @@
 using namespace std::chrono_literals;
 using namespace boost::multi_index;
 
-const std::chrono::milliseconds ANNOUNCE_TIME_REFRESH_INTERVAL = 4s;
-
 namespace
 {
-    const QString STR_WORKING = TrackerListModel::tr("Working");
-    const QString STR_DISABLED = TrackerListModel::tr("Disabled");
-    const QString STR_TORRENT_DISABLED = TrackerListModel::tr("Disabled for this torrent");
-    const QString STR_PRIVATE_MSG = TrackerListModel::tr("This torrent is private");
+    const std::chrono::milliseconds ANNOUNCE_TIME_REFRESH_INTERVAL = 4s;
+
+    const char STR_WORKING[] = QT_TRANSLATE_NOOP("TrackerListModel", "Working");
+    const char STR_DISABLED[] = QT_TRANSLATE_NOOP("TrackerListModel", "Disabled");
+    const char STR_TORRENT_DISABLED[] = QT_TRANSLATE_NOOP("TrackerListModel", "Disabled for this torrent");
+    const char STR_PRIVATE_MSG[] = QT_TRANSLATE_NOOP("TrackerListModel", "This torrent is private");
 
     QString prettyCount(const int val)
     {
@@ -73,7 +73,7 @@ namespace
         switch (status)
         {
         case BitTorrent::TrackerEntryStatus::Working:
-            return TrackerListModel::tr("Working");
+            return TrackerListModel::tr(STR_WORKING);
         case BitTorrent::TrackerEntryStatus::Updating:
             return TrackerListModel::tr("Updating...");
         case BitTorrent::TrackerEntryStatus::NotWorking:
@@ -91,34 +91,34 @@ namespace
     QString statusDHT(const BitTorrent::Torrent *torrent)
     {
         if (!torrent->session()->isDHTEnabled())
-            return STR_DISABLED;
+            return TrackerListModel::tr(STR_DISABLED);
 
         if (torrent->isPrivate() || torrent->isDHTDisabled())
-            return STR_TORRENT_DISABLED;
+            return TrackerListModel::tr(STR_TORRENT_DISABLED);
 
-        return STR_WORKING;
+        return TrackerListModel::tr(STR_WORKING);
     }
 
     QString statusPeX(const BitTorrent::Torrent *torrent)
     {
         if (!torrent->session()->isPeXEnabled())
-            return STR_DISABLED;
+            return TrackerListModel::tr(STR_DISABLED);
 
         if (torrent->isPrivate() || torrent->isPEXDisabled())
-            return STR_TORRENT_DISABLED;
+            return TrackerListModel::tr(STR_TORRENT_DISABLED);
 
-        return STR_WORKING;
+        return TrackerListModel::tr(STR_WORKING);
     }
 
     QString statusLSD(const BitTorrent::Torrent *torrent)
     {
         if (!torrent->session()->isLSDEnabled())
-            return STR_DISABLED;
+            return TrackerListModel::tr(STR_DISABLED);
 
         if (torrent->isPrivate() || torrent->isLSDDisabled())
-            return STR_TORRENT_DISABLED;
+            return TrackerListModel::tr(STR_TORRENT_DISABLED);
 
-        return STR_WORKING;
+        return TrackerListModel::tr(STR_WORKING);
     }
 }
 
@@ -299,7 +299,7 @@ void TrackerListModel::populate()
     const QList<BitTorrent::TrackerEntry> trackerEntries = m_torrent->trackers();
     m_items->reserve(trackerEntries.size() + STICKY_ROW_COUNT);
 
-    const QString &privateTorrentMessage = m_torrent->isPrivate() ? STR_PRIVATE_MSG : u""_s;
+    const QString &privateTorrentMessage = m_torrent->isPrivate() ? tr(STR_PRIVATE_MSG) : u""_s;
     m_items->emplace_back(std::make_shared<Item>(u"** [DHT] **", privateTorrentMessage));
     m_items->emplace_back(std::make_shared<Item>(u"** [PeX] **", privateTorrentMessage));
     m_items->emplace_back(std::make_shared<Item>(u"** [LSD] **", privateTorrentMessage));

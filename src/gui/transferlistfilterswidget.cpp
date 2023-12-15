@@ -218,5 +218,5 @@ void TransferListFiltersWidget::onTagFilterStateChanged(bool enabled)
 void TransferListFiltersWidget::toggleTagFilter(bool enabled)
 {
     m_tagFilterWidget->setVisible(enabled);
-    m_transferList->applyTagFilter(enabled ? m_tagFilterWidget->currentTag() : QString());
+    m_transferList->applyTagFilter(enabled ? m_tagFilterWidget->currentTag() : std::nullopt);
 }

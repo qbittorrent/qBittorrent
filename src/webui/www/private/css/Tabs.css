@@ -1,3 +1,5 @@
+@import url("palette.css");
+
 /*
 
 Tabs.css for Mocha UI
@@ -18,10 +20,7 @@ Required by:
 /* Toolbar Tabs */
 
 .toolbarTabs {
-    background: url("../images/tabs.gif") repeat-x;
-    background-position: left -70px;
     overflow: visible;
-    padding: 0 5px 2px 2px;
 }
 
 .tab-menu {
@@ -33,32 +32,28 @@ Required by:
 }
 
 .tab-menu li {
-    background: url("../images/tabs.gif") repeat-x;
-    background-position: left -35px;
     cursor: pointer;
     float: left;
-    margin: 0 0 5px;
-}
-
-.tab-menu li.selected {
-    background: url("../images/tabs.gif") repeat-x;
-    background-position: left 0;
 }
 
 .tab-menu li a {
-    background: url("../images/tabs.gif") repeat-x;
-    background-position: right -35px;
-    color: #181818;
+    background-color: var(--color-background-default);
+    border-radius: 5px 5px 0 0;
+    color: var(--color-text-default);
     display: block;
     font-weight: normal;
     margin-left: 8px;
-    padding: 6px 15px 5px 9px;
+    padding: 5px 16px;
     text-align: center;
 }
 
+.tab-menu li:hover a {
+    background-color: var(--color-background-hover);
+    color: var(--color-text-white);
+}
+
 .tab-menu li.selected a {
-    background: url("../images/tabs.gif") repeat-x;
-    background-position: right 0;
-    color: #181818;
+    background-color: var(--color-background-blue);
+    color: var(--color-text-white);
     font-weight: bold;
 }

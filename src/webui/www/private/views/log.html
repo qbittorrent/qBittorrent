@@ -9,15 +9,13 @@
 
     #logFilterBar>label {
         font-weight: bold;
-        margin-right: 10px;
+        margin-right: .3em;
     }
 
     #logFilterBar>button {
         display: inline-block;
-        height: 24px;
-        padding: 0 .5em;
+        padding: 4px 15px;
         margin-left: .3em;
-        font-weight: bold;
     }
 
     #logView {
@@ -40,9 +38,11 @@
         background-repeat: no-repeat;
         background-position: left;
         background-size: 1.5em;
-        padding: 1px 5px 1px 2em;
-        margin-left: 20px;
+        padding: 4px 5px 4px 2em;
+        margin-left: .3em;
         width: 200px;
+        border: 1px solid var(--color-border-default);
+        border-radius: 3px;
     }
 
     #logFilterSummary {
@@ -56,24 +56,24 @@
     }
 
     .logNormal {
-        color: #80766e;
+        color: var(--color-text-default);
     }
 
     .logInfo {
-        color: #1781b5;
+        color: var(--color-text-blue);
     }
 
     .logWarning {
-        color: #f97d1c;
+        color: var(--color-text-orange);
     }
 
     .logCritical,
     .peerBlocked {
-        color: #ee3f4d;
+        color: var(--color-text-red);
     }
 
     .vsb-main>button {
-        padding: 0 12px !important;
+        padding: 4px 12px !important;
     }
 
     .contextMenu>li>a>img {
@@ -209,6 +209,7 @@
                     clearAll: 'QBT_TR(Clear All)QBT_TR[CONTEXT=ExecutionLogWidget]',
                 },
                 placeHolder: "QBT_TR(Choose a log level...)QBT_TR[CONTEXT=ExecutionLogWidget]",
+                keepInlineStyles: false
             });
 
             const logTableContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({

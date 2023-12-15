@@ -1,3 +1,5 @@
+@import url("palette.css");
+
 /*
 
 Core.css for Mocha UI
@@ -18,11 +20,6 @@ Required by:
 /* Layout
 ---------------------------------------------------------------- */
 
-html,
-body {
-    background: #fff;
-}
-
 body {
     margin: 0; /* Required */
 }
@@ -36,12 +33,7 @@ body {
     position: relative;
 }
 
-#desktopHeader {
-    background: #f2f2f2;
-}
-
 #desktopTitlebarWrapper {
-    background: #718ba6 url("../images/bg-header.gif") repeat-x;
     height: 45px;
     overflow: hidden;
     position: relative;
@@ -55,7 +47,6 @@ body {
 }
 
 #desktopTitlebar h1.applicationTitle {
-    color: #fff;
     display: none;
     font-size: 20px;
     font-weight: bold;
@@ -65,7 +56,6 @@ body {
 }
 
 #desktopTitlebar h2.tagline {
-    color: #d4dce4;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
     font-weight: bold;
@@ -75,12 +65,10 @@ body {
 }
 
 #desktopTitlebar h2.tagline .taglineEm {
-    color: #fff;
     font-weight: bold;
 }
 
 #topNav {
-    color: #d4dce4;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
     padding: 13px 10px 0 0;
@@ -91,7 +79,6 @@ body {
 }
 
 #topNav a {
-    color: #fff;
     font-weight: normal;
 }
 
@@ -102,10 +89,7 @@ body {
 /* Navbar */
 
 #desktopNavbar {
-    background: #f2f2f2;
-    /*background-color: #ccc;*/
-    border-bottom: 1px solid #3f3f3f;
-    height: 20px;
+    background-color: var(--color-background-default);
     margin: 0 0px;
     overflow: hidden; /* Remove this line if you want the menu to be backward compatible with Firefox 2 */
 }
@@ -126,14 +110,14 @@ body {
 }
 
 #desktopNavbar ul li a {
-    color: #333;
+    color: var(--color-text-default);
     font-weight: normal;
-    padding: 2px 10px 6px;
+    padding: 4px 10px;
 }
 
 #desktopNavbar ul li a:hover {
-    background-color: #fff;
-    color: #333;
+    background-color: var(--color-background-hover);
+    color: var(--color-text-white);
 }
 
 #desktopNavbar ul li a.arrow-right,
@@ -144,10 +128,9 @@ body {
 }
 
 #desktopNavbar li ul {
-    background: #fff url("../images/bg-dropdown.gif") repeat-y;
-    border: 1px solid #3f3f3f;
+    background-color: var(--color-background-default);
+    border: 1px solid var(--color-border-default);
     left: -999em;
-    margin-top: -6px;
     position: absolute;
     z-index: 8000;
 }
@@ -165,7 +148,6 @@ body {
 }
 
 #desktopNavbar li ul li .check {
-    background: #555;
     font-size: 1px;
     height: 5px;
     left: 6px;
@@ -177,21 +159,16 @@ body {
 }
 
 #desktopNavbar li ul li a {
-    color: #3f3f3f;
+    color: var(--color-text-default);
     font-weight: normal;
     min-width: 120px;
-    padding: 1px 10px 1px 20px;
+    padding: 4px 10px 4px 25px;
     position: relative;
 }
 
 #desktopNavbar li ul li a:hover {
-    background: #6c98d9;
-    border-radius: 2px;
-    color: #fff;
-}
-
-#desktopNavbar li ul li a:hover .check {
-    background: #fff;
+    background-color: var(--color-background-hover);
+    color: var(--color-text-white);
 }
 
 /* lists nested under hovered list items */
@@ -210,14 +187,14 @@ body {
 }
 
 li.divider {
-    border-top: 1px solid #ebebeb;
+    border-top: 1px solid var(--color-border-default);
     margin-top: 2px;
     padding-top: 3px;
 }
 
 #pageWrapper {
-    border-bottom: 1px solid #909090;
-    border-top: 1px solid #909090;
+    border-bottom: 1px solid var(--color-border-default);
+    border-top: 1px solid var(--color-border-default);
     overflow: hidden; /* This can be set to hidden or auto */
     position: relative;
     /*height: 100%;*/
@@ -235,7 +212,6 @@ li.divider {
 }
 
 #desktopFooter {
-    background: #f2f2f2;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 11px;
     height: 24px;
@@ -256,18 +232,13 @@ li.divider {
 /* Panels */
 
 .panel {
-    background: #f8f8f8;
-    border-bottom: 1px solid #b9b9b9;
+    border-bottom: 1px solid var(--color-border-default);
     overflow: auto;
     position: relative;
 }
 
 .panelWrapper.collapsed .panel-header {
     border-bottom: 0;
-}
-
-.panelAlt {
-    background: #f2f2f2;
 }
 
 .bottomPanel {
@@ -278,14 +249,8 @@ li.divider {
     padding: 8px;
 }
 
-#mainPanel {
-    background: #fff;
-}
-
 .panel-header {
-    background: #f1f1f1 url("../images/bg-panel-header.gif") repeat-x;
-    border-bottom: 1px solid #d3d3d3;
-    height: 30px;
+    border-bottom: 1px solid var(--color-border-default);
     overflow: hidden;
     position: relative;
 }
@@ -294,13 +259,7 @@ li.divider {
     padding-top: 2px;
 }
 
-.panel-headerContent.tabs {
-    background: url("../images/tabs.gif") repeat-x;
-    background-position: left -68px;
-}
-
 .panel-header h2 {
-    color: #333;
     display: inline-block;
     font-size: 12px;
     height: 22px;
@@ -326,7 +285,6 @@ li.divider {
 /* Column and Panel Handles */
 
 .horizontalHandle {
-    background: #eee url("../images/bg-handle-horizontal.gif") repeat-x;
     font-size: 1px;
     height: 4px;
     line-height: 1px;
@@ -348,8 +306,8 @@ li.divider {
 }
 
 .columnHandle {
-    background: #c3c3c3 url("../images/handle-icon.gif") center center no-repeat;
-    border: 1px solid #909090;
+    background: url("../images/handle-icon.gif") center center no-repeat;
+    border: 1px solid var(--color-border-default);
     border-bottom: 0;
     border-top: 0;
     float: left;

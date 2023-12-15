@@ -854,7 +854,7 @@ namespace
             query.bindValue(DB_COLUMN_NAME.placeholder, m_resumeData.name);
             query.bindValue(DB_COLUMN_CATEGORY.placeholder, m_resumeData.category);
             query.bindValue(DB_COLUMN_TAGS.placeholder, (m_resumeData.tags.isEmpty()
-                    ? QString() : m_resumeData.tags.join(u","_s)));
+                    ? QString() : QStringList(m_resumeData.tags.cbegin(), m_resumeData.tags.cend()).join(u","_s)));
             query.bindValue(DB_COLUMN_CONTENT_LAYOUT.placeholder, Utils::String::fromEnum(m_resumeData.contentLayout));
             query.bindValue(DB_COLUMN_RATIO_LIMIT.placeholder, static_cast<int>(m_resumeData.ratioLimit * 1000));
             query.bindValue(DB_COLUMN_SEEDING_TIME_LIMIT.placeholder, m_resumeData.seedingTimeLimit);

@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/lang">
-        <file>qbittorrent_az@latin.qm</file>
         <file>qbittorrent_ar.qm</file>
+        <file>qbittorrent_az@latin.qm</file>
         <file>qbittorrent_be.qm</file>
         <file>qbittorrent_bg.qm</file>
         <file>qbittorrent_ca.qm</file>

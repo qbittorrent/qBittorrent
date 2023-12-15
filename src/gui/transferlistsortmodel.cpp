@@ -59,10 +59,10 @@ namespace
     int customCompare(const TagSet &left, const TagSet &right, const Utils::Compare::NaturalCompare<Qt::CaseInsensitive> &compare)
     {
         for (auto leftIter = left.cbegin(), rightIter = right.cbegin();
-            (leftIter != left.cend()) && (rightIter != right.cend());
-            ++leftIter, ++rightIter)
+                (leftIter != left.cend()) && (rightIter != right.cend());
+                ++leftIter, ++rightIter)
         {
-            const int result = compare(*leftIter, *rightIter);
+            const int result = compare(leftIter->toString(), rightIter->toString());
             if (result != 0)
                 return result;
         }
@@ -130,7 +130,7 @@ void TransferListSortModel::disableCategoryFilter()
         invalidateFilter();
 }
 
-void TransferListSortModel::setTagFilter(const QString &tag)
+void TransferListSortModel::setTagFilter(const Tag &tag)
 {
     if (m_filter.setTag(tag))
         invalidateFilter();

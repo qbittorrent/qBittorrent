@@ -67,6 +67,7 @@ namespace
 class ColorWidget final : public QFrame
 {
     Q_DISABLE_COPY_MOVE(ColorWidget)
+    Q_DECLARE_TR_FUNCTIONS(ColorWidget)
 
 public:
     explicit ColorWidget(const QColor &currentColor, const QColor &defaultColor, QWidget *parent = nullptr)
@@ -140,6 +141,7 @@ private:
 class IconWidget final : public QLabel
 {
     Q_DISABLE_COPY_MOVE(IconWidget)
+    Q_DECLARE_TR_FUNCTIONS(IconWidget)
 
 public:
     explicit IconWidget(const Path &currentPath, const Path &defaultPath, QWidget *parent = nullptr)
