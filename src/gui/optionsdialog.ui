@@ -3170,7 +3170,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  <item row="1" column="0">
                   <widget class="QLabel" name="label_rss_fetch_delay">
                    <property name="text">
-                    <string>Delay between requests:</string>
+                    <string>Same host request delay:</string>
                    </property>
                   </widget>
                  </item>
