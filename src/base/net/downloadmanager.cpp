@@ -184,13 +184,12 @@ Net::DownloadHandler *Net::DownloadManager::download(const DownloadRequest &down
 
 void Net::DownloadManager::registerSequentialService(const Net::ServiceID &serviceID, const std::chrono::seconds delay)
 {
-    setSequentialServiceDelay(serviceID, delay);
-    m_sequentialServices.insert(serviceID);
+    m_sequentialServices.insert(serviceID, delay);
 }
 
 void Net::DownloadManager::setSequentialServiceDelay(const ServiceID &serviceID, const std::chrono::seconds delay)
 {
-    m_serviceDelay[serviceID] = delay;
+    m_sequentialServices[serviceID] = delay;
 }
 
 QList<QNetworkCookie> Net::DownloadManager::cookiesForUrl(const QUrl &url) const
@@ -311,7 +310,7 @@ void Net::DownloadManager::processRequest(DownloadHandlerImpl *downloadHandler)
     connect(reply, &QNetworkReply::finished, this, [this, downloadHandler]
     {
         const ServiceID id = ServiceID::fromURL(downloadHandler->url());
-        QTimer::singleShot(m_serviceDelay[id] , this, [this, id]
+        QTimer::singleShot(m_sequentialServices[id] , this, [this, id]
         {
             handleDownloadFinished(id);
         });
