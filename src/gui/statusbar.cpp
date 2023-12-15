@@ -230,20 +230,24 @@ void StatusBar::updateDHTNodesNumber()
 
 void StatusBar::updateExternalAddressesLabel()
 {
-    QString lastExternalIPv4Address = BitTorrent::Session::instance()->getLastExternalIPv4Address();
-    QString lastExternalIPv6Address = BitTorrent::Session::instance()->getLastExternalIPv6Address();
+    const QString lastExternalIPv4Address = BitTorrent::Session::instance()->getLastExternalIPv4Address();
+    const QString lastExternalIPv6Address = BitTorrent::Session::instance()->getLastExternalIPv6Address();
     QString addressText = tr("External Address(es): Detecting");
 
     if (!lastExternalIPv4Address.isEmpty() || !lastExternalIPv6Address.isEmpty())
     {
         if (!lastExternalIPv4Address.isEmpty() && !lastExternalIPv6Address.isEmpty())
-            addressText = tr("External Addresses: %1, %2").
-            arg(BitTorrent::Session::instance()->getLastExternalIPv4Address()).
-            arg(BitTorrent::Session::instance()->getLastExternalIPv6Address());
+        {
+            addressText = tr("External Addresses: %1, %2")
+                    .arg(BitTorrent::Session::instance()->getLastExternalIPv4Address())
+                    .arg(BitTorrent::Session::instance()->getLastExternalIPv6Address());
+        }
         else
-            addressText = tr("External Address: %1%2").
-            arg(BitTorrent::Session::instance()->getLastExternalIPv4Address()).
-            arg(BitTorrent::Session::instance()->getLastExternalIPv6Address());
+        {
+            addressText = tr("External Address: %1%2")
+                    .arg(BitTorrent::Session::instance()->getLastExternalIPv4Address())
+                    .arg(BitTorrent::Session::instance()->getLastExternalIPv6Address());
+        }
     }
 
     m_lastExternalAddressesLbl->setText(addressText);
