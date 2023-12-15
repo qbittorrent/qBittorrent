@@ -182,13 +182,13 @@ Net::DownloadHandler *Net::DownloadManager::download(const DownloadRequest &down
     return downloadHandler;
 }
 
-void Net::DownloadManager::registerSequentialService(const Net::ServiceID &serviceID, std::chrono::seconds delay)
+void Net::DownloadManager::registerSequentialService(const Net::ServiceID &serviceID, const std::chrono::seconds delay)
 {
     setSequentialServiceDelay(serviceID, delay);
     m_sequentialServices.insert(serviceID);
 }
 
-void Net::DownloadManager::setSequentialServiceDelay(const ServiceID &serviceID, std::chrono::seconds delay)
+void Net::DownloadManager::setSequentialServiceDelay(const ServiceID &serviceID, const std::chrono::seconds delay)
 {
     m_serviceDelay[serviceID] = delay;
 }
