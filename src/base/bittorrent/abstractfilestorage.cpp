@@ -44,7 +44,9 @@ void BitTorrent::AbstractFileStorage::renameFile(const Path &oldPath, const Path
         throw RuntimeError(tr("The new path is invalid: '%1'.").arg(newPath.toString()));
     if (newPath.isAbsolute())
         throw RuntimeError(tr("Absolute path isn't allowed: '%1'.").arg(newPath.toString()));
-
+    if (newPath.exists())
+        throw RuntimeError(tr("Another file exists at new path: '%1'.").arg(newPath.toString()));
+    
     int renamingFileIndex = -1;
     for (int i = 0; i < filesCount(); ++i)
     {
@@ -53,7 +55,7 @@ void BitTorrent::AbstractFileStorage::renameFile(const Path &oldPath, const Path
         if ((renamingFileIndex < 0) && (path == oldPath))
             renamingFileIndex = i;
         else if (path == newPath)
-            throw RuntimeError(tr("The file already exists: '%1'.").arg(newPath.toString()));
+            throw RuntimeError(tr("The file already exists in this torrent: '%1'.").arg(newPath.toString()));
     }
 
     if (renamingFileIndex < 0)
