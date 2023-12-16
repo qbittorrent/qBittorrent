@@ -72,6 +72,7 @@ void BitTorrent::AbstractFileStorage::renameFolder(const Path &oldFolderPath, co
         throw RuntimeError(tr("The new path is invalid: '%1'.").arg(newFolderPath.toString()));
     if (newFolderPath.isAbsolute())
         throw RuntimeError(tr("Absolute path isn't allowed: '%1'.").arg(newFolderPath.toString()));
+    
 
     QVector<int> renamingFileIndexes;
     renamingFileIndexes.reserve(filesCount());
@@ -83,7 +84,7 @@ void BitTorrent::AbstractFileStorage::renameFolder(const Path &oldFolderPath, co
         if (path.hasAncestor(oldFolderPath))
             renamingFileIndexes.append(i);
         else if (path.hasAncestor(newFolderPath))
-            throw RuntimeError(tr("The folder already exists: '%1'.").arg(newFolderPath.toString()));
+            throw RuntimeError(tr("The folder already exists in this torrent: '%1'.").arg(newFolderPath.toString()));
     }
 
     if (renamingFileIndexes.isEmpty())
@@ -92,6 +93,6 @@ void BitTorrent::AbstractFileStorage::renameFolder(const Path &oldFolderPath, co
     for (const int index : renamingFileIndexes)
     {
         const Path newFilePath = newFolderPath / oldFolderPath.relativePathOf(filePath(index));
-        renameFile(index, newFilePath);
+        renameFile(index, newFilePath); // note; if file would be overwritten, we note that is true here
     }
 }
