@@ -14,6 +14,53 @@
             const isDeletingFiles = (new URI().getData('deleteFiles') === "true");
             $('deleteFromDiskCB').checked = isDeletingFiles;
 
+            // Add SVG lock icon to rememberBtn with JS so we can change the fill color
+            new Request({
+                url: '/images/object-locked.svg',
+                method: 'get',
+                onSuccess: function(text, xml) {
+                    // The SVG's height is 32px, which is too big for our dialog
+                    xml.childNodes[0].style.height = '24px';
+                    xml.childNodes[0].style.width = '24px';
+                    $('rememberBtn').appendChild(xml.childNodes[0]);
+                    // Disable button until delete-files checkbox is clicked
+                    disableRememberBtn();
+                }
+            }).send();
+
+            new Request.JSON({
+                url: 'api/v2/app/preferences',
+                method: 'get',
+                noCache: true,
+                onSuccess: function(pref) {
+                    if (pref) {
+                        $('deleteFromDiskCB').checked = pref.delete_torrent_files_as_default;
+                    }
+                }
+            }).send();
+
+            $('rememberBtn').addEvent('click', function(e) {
+                const cmd = 'api/v2/app/setPreferences';
+                const deleteTorrentFilesAsDefault = $('deleteFromDiskCB').checked;
+                new Request({
+                    url: cmd,
+                    method: 'post',
+                    data: {
+                        'json': JSON.encode({
+                            'delete_torrent_files_as_default': deleteTorrentFilesAsDefault
+                        })
+                    },
+                    onComplete: function() {
+                        disableRememberBtn();
+                    }
+                }).send();
+            });
+
+            // Undisable rememberBtn if checkbox is clicked
+            $('deleteFromDiskCB').addEvent('click', function(e) {
+                enableRememberBtn();
+            });
+
             const hashes = new URI().getData('hashes').split('|');
             $('cancelBtn').focus();
             $('cancelBtn').addEvent('click', function(e) {
@@ -38,6 +85,18 @@
                 }).send();
             });
         });
+
+        function enableRememberBtn() {
+            let btn = $('rememberBtn');
+            btn.disabled = false;
+            btn.getElementsByTagName('path')[0].style.fill = "";
+        }
+
+        function disableRememberBtn() {
+            let btn = $('rememberBtn');
+            btn.disabled = true;
+            btn.getElementsByTagName('path')[0].style.fill = "lightgray";
+        }
     </script>
 </head>
 
@@ -45,7 +104,9 @@
     <br />
 
     <p>&nbsp;&nbsp;QBT_TR(Are you sure you want to remove the selected torrents from the transfer list?)QBT_TR[CONTEXT=HttpServer]</p>
-    &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="deleteFromDiskCB" /> <label for="deleteFromDiskCB"><i>QBT_TR(Also permanently delete the files)QBT_TR[CONTEXT=confirmDeletionDlg]</i></label><br /><br />
+    &nbsp;&nbsp;&nbsp;&nbsp;<button id="rememberBtn" type="button" title="Remember choice" style="vertical-align: middle;">
+    </button>
+    <input type="checkbox" id="deleteFromDiskCB" /> <label for="deleteFromDiskCB"><i>QBT_TR(Also permanently delete the files)QBT_TR[CONTEXT=confirmDeletionDlg]</i></label><br /><br />
     <div style="text-align: right;">
         <input type="button" id="cancelBtn" value="QBT_TR(Cancel)QBT_TR[CONTEXT=MainWindow]" />&nbsp;&nbsp;<input type="button" id="confirmBtn" value="QBT_TR(Remove)QBT_TR[CONTEXT=MainWindow]" />&nbsp;&nbsp;
     </div>
