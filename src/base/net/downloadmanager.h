@@ -164,7 +164,7 @@ namespace Net
         QNetworkAccessManager *m_networkManager = nullptr;
         QNetworkProxy m_proxy;
 
-        // m_sequentialServices qhash value is delay for same host requests
+        // m_sequentialServices value is delay for same host requests
         QHash<ServiceID, std::chrono::seconds> m_sequentialServices;
         QSet<ServiceID> m_busyServices;
         QHash<ServiceID, QQueue<DownloadHandlerImpl *>> m_waitingJobs;
