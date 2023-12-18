@@ -166,7 +166,7 @@ namespace RSS
 
         CachedSettingValue<bool> m_storeProcessingEnabled;
         CachedSettingValue<int> m_storeRefreshInterval;
-        CachedSettingValue<std::chrono::seconds> m_storeFetchDelay;
+        CachedSettingValue<qint64> m_storeFetchDelay;
         CachedSettingValue<int> m_storeMaxArticlesPerFeed;
         Utils::Thread::UniquePtr m_workingThread;
         AsyncFileStorage *m_confFileStorage = nullptr;

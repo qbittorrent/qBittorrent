@@ -30,13 +30,11 @@
 
 #pragma once
 
-#include <chrono>
 #include <type_traits>
 
 #include <QObject>
 #include <QReadWriteLock>
 #include <QTimer>
-#include <qtypes.h>
 #include <QVariant>
 #include <QVariantHash>
 
@@ -86,11 +84,6 @@ public:
             const typename T::Int value = loadValue(key, static_cast<typename T::Int>(defaultValue));
             return T {value};
         }
-        else if constexpr (std::same_as<T, std::chrono::seconds>)
-        {
-            const qlonglong value = loadValue(key, static_cast<qlonglong>(defaultValue.count()));
-            return std::chrono::seconds(value);
-        }
         else
         {
             const QVariant value = loadValueImpl(key);
@@ -110,8 +103,6 @@ public:
             storeValueImpl(key, Utils::String::fromEnum(value));
         else if constexpr (IsQFlags<T>)
             storeValueImpl(key, static_cast<typename T::Int>(value));
-        else if constexpr (std::same_as<T, std::chrono::seconds>)
-            storeValueImpl(key, static_cast<qlonglong>(value.count()));
         else
             storeValueImpl(key, QVariant::fromValue(value));
     }
