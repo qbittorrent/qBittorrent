@@ -161,7 +161,8 @@ void Feed::refresh()
 
 void Feed::updateFetchDelay()
 {
-    Net::DownloadManager::instance()->setSequentialServiceDelay(Net::ServiceID::fromURL(m_url), m_session->fetchDelay());
+    // Update delay values for registered sequential services
+    Net::DownloadManager::instance()->registerSequentialService(Net::ServiceID::fromURL(m_url), m_session->fetchDelay());
 }
 
 QUuid Feed::uid() const

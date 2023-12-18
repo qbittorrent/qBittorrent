@@ -187,11 +187,6 @@ void Net::DownloadManager::registerSequentialService(const Net::ServiceID &servi
     m_sequentialServices.insert(serviceID, delay);
 }
 
-void Net::DownloadManager::setSequentialServiceDelay(const ServiceID &serviceID, const std::chrono::seconds delay)
-{
-    m_sequentialServices[serviceID] = delay;
-}
-
 QList<QNetworkCookie> Net::DownloadManager::cookiesForUrl(const QUrl &url) const
 {
     return m_networkCookieJar->cookiesForUrl(url);
