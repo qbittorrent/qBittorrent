@@ -29,11 +29,8 @@
 
 #pragma once
 
-#include <concepts>
 #include <functional>
 #include <set>
-
-#include "algorithm.h"
 
 template <typename T, typename Compare = std::less<T>>
 class OrderedSet : public std::set<T, Compare>
@@ -68,25 +65,6 @@ public:
     bool isEmpty() const
     {
         return BaseType::empty();
-    }
-
-    QString join(const QString &separator) const
-        requires std::same_as<value_type, QString>
-    {
-        auto iter = BaseType::cbegin();
-        if (iter == BaseType::cend())
-            return {};
-
-        QString ret = *iter;
-        ++iter;
-
-        while (iter != BaseType::cend())
-        {
-            ret.push_back(separator + *iter);
-            ++iter;
-        }
-
-        return ret;
     }
 
     bool remove(const key_type &value)

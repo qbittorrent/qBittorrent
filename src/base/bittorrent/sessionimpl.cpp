@@ -552,8 +552,11 @@ SessionImpl::SessionImpl(QObject *parent)
     }
 
     const QStringList storedTags = m_storedTags.get();
-    m_tags.insert(storedTags.cbegin(), storedTags.cend());
-    std::erase_if(m_tags, [](const Tag &tag) { return !tag.isValid(); });
+    for (const QString &tagStr : storedTags)
+    {
+        if (const Tag tag {tagStr}; tag.isValid())
+            m_tags.insert(tag);
+    }
 
     updateSeedingLimitTimer();
     populateAdditionalTrackers();

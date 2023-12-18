@@ -33,6 +33,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/utils/compare.h"
+#include "base/utils/string.h"
 #include "flowlayout.h"
 #include "fspathedit.h"
 #include "torrenttagsdialog.h"
@@ -112,7 +113,7 @@ AddTorrentParamsWidget::AddTorrentParamsWidget(BitTorrent::AddTorrentParams addT
         connect(dlg, &TorrentTagsDialog::accepted, this, [this, dlg]
         {
             m_addTorrentParams.tags = dlg->tags();
-            m_ui->tagsLineEdit->setText(QStringList(m_addTorrentParams.tags.cbegin(), m_addTorrentParams.tags.cend()).join(u", "_s));
+            m_ui->tagsLineEdit->setText(Utils::String::joinIntoString(m_addTorrentParams.tags, u", "_s));
         });
         dlg->open();
     });
@@ -230,7 +231,7 @@ void AddTorrentParamsWidget::populate()
             m_addTorrentParams.stopCondition = data.value<BitTorrent::Torrent::StopCondition>();
     });
 
-    m_ui->tagsLineEdit->setText(QStringList(m_addTorrentParams.tags.cbegin(), m_addTorrentParams.tags.cend()).join(u", "_s));
+    m_ui->tagsLineEdit->setText(Utils::String::joinIntoString(m_addTorrentParams.tags, u", "_s));
 
     m_ui->startTorrentComboBox->disconnect(this);
     m_ui->startTorrentComboBox->setCurrentIndex(m_addTorrentParams.addPaused
