@@ -49,6 +49,8 @@
 #include "downloadhandlerimpl.h"
 #include "proxyconfigurationmanager.h"
 
+using namespace std::chrono_literals;
+
 namespace
 {
     // Disguise as Firefox to avoid web server banning
@@ -305,10 +307,15 @@ void Net::DownloadManager::processRequest(DownloadHandlerImpl *downloadHandler)
     connect(reply, &QNetworkReply::finished, this, [this, downloadHandler]
     {
         const ServiceID id = ServiceID::fromURL(downloadHandler->url());
-        QTimer::singleShot(m_sequentialServices[id] , this, [this, id]
+        if (m_sequentialServices.contains(id))
         {
+            QTimer::singleShot(m_sequentialServices.value(id, 0s) , this, [this, id]
+            {
+                handleDownloadFinished(id);
+            });
+        }else{
             handleDownloadFinished(id);
-        });
+        }
     });
     downloadHandler->assignNetworkReply(reply);
 }
