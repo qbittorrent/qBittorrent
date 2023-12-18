@@ -167,6 +167,9 @@ void AppController::preferencesAction()
     data[u"excluded_file_names_enabled"_s] = session->isExcludedFileNamesEnabled();
     data[u"excluded_file_names"_s] = session->excludedFileNames().join(u'\n');
 
+    // Default setting for torrent file deletion on torrent removal
+    data[u"delete_torrent_files_as_default"_s] = pref->deleteTorrentFilesAsDefault();
+
     // Email notification upon download completion
     data[u"mail_notification_enabled"_s] = pref->isMailNotificationEnabled();
     data[u"mail_notification_sender"_s] = pref->getMailNotificationSender();
@@ -596,6 +599,10 @@ void AppController::setPreferencesAction()
         session->setExcludedFileNamesEnabled(it.value().toBool());
     if (hasKey(u"excluded_file_names"_s))
         session->setExcludedFileNames(it.value().toString().split(u'\n'));
+
+    // Default setting for torrent file deletion on torrent removal
+    if (hasKey(u"delete_torrent_files_as_default"_s))
+        pref->setDeleteTorrentFilesAsDefault(it.value().toBool());
 
     // Email notification upon download completion
     if (hasKey(u"mail_notification_enabled"_s))
