@@ -522,10 +522,7 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
                 str.replace(i, 2, torrent->contentPath().toString());
                 break;
             case u'G':
-                {
-                    const TagSet &tags = torrent->tags();
-                    str.replace(i, 2, QStringList(tags.cbegin(), tags.cend()).join(u","_s));
-                }
+                str.replace(i, 2, Utils::String::joinIntoString(torrent->tags(), u","_s));
                 break;
             case u'I':
                 str.replace(i, 2, (torrent->infoHash().v1().isValid() ? torrent->infoHash().v1().toString() : u"-"_s));

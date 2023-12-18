@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,66 +26,29 @@
  * exception statement from your version.
  */
 
-#include "tag.h"
+#include <string>
 
-#include <QDataStream>
+#include <QObject>
+#include <QString>
+#include <QTest>
 
-#include "base/concepts/stringable.h"
+#include "base/concepts/explicitlyconvertibleto.h"
 
-namespace
+class TestExplicitlyConvertibleTo final : public QObject
 {
-    QString cleanTag(const QString &tag)
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TestExplicitlyConvertibleTo)
+
+public:
+    TestExplicitlyConvertibleTo() = default;
+
+private slots:
+    void testExplicitlyConvertibleTo() const
     {
-        return tag.trimmed();
+        static_assert(ExplicitlyConvertibleTo<const char *, std::string>);
+        static_assert(!ExplicitlyConvertibleTo<std::string, const char *>);
     }
-}
+};
 
-// `Tag` should satisfy `Stringable` concept in order to be stored in settings as string
-static_assert(Stringable<Tag>);
-
-Tag::Tag(const QString &tagStr)
-    : m_tagStr {cleanTag(tagStr)}
-{
-}
-
-Tag::Tag(const std::string &tagStr)
-    : Tag(QString::fromStdString(tagStr))
-{
-}
-
-bool Tag::isValid() const
-{
-    if (isEmpty())
-        return false;
-
-    return !m_tagStr.contains(u',');
-}
-
-bool Tag::isEmpty() const
-{
-    return m_tagStr.isEmpty();
-}
-
-QString Tag::toString() const noexcept
-{
-    return m_tagStr;
-}
-
-Tag::operator QString() const noexcept
-{
-    return toString();
-}
-
-QDataStream &operator<<(QDataStream &out, const Tag &tag)
-{
-    out << tag.toString();
-    return out;
-}
-
-QDataStream &operator>>(QDataStream &in, Tag &tag)
-{
-    QString tagStr;
-    in >> tagStr;
-    tag = Tag(tagStr);
-    return in;
-}
+QTEST_APPLESS_MAIN(TestExplicitlyConvertibleTo)
+#include "testconceptsexplicitlyconvertibleto.moc"

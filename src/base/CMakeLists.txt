@@ -42,6 +42,7 @@ add_library(qbt_base STATIC
     bittorrent/torrentinfo.h
     bittorrent/tracker.h
     bittorrent/trackerentry.h
+    concepts/explicitlyconvertibleto.h
     concepts/stringable.h
     digest32.h
     exceptions.h
