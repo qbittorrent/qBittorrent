@@ -125,7 +125,7 @@ private slots:
     void displaySearchTab();
     void displayRSSTab();
     void displayExecutionLogTab();
-    void focusSearchFilter();
+    void toggleFocusBetweenLineEdits();
     void reloadSessionStats();
     void reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torrents);
     void loadPreferences();

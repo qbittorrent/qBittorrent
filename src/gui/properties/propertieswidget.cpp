@@ -257,6 +257,16 @@ QTreeView *PropertiesWidget::getFilesList() const
     return m_ui->filesList;
 }
 
+PropTabBar *PropertiesWidget::tabBar() const
+{
+    return m_tabBar;
+}
+
+LineEdit *PropertiesWidget::contentFilterLine() const
+{
+    return m_contentFilterLine;
+}
+
 void PropertiesWidget::updateSavePath(BitTorrent::Torrent *const torrent)
 {
     if (torrent == m_torrent)

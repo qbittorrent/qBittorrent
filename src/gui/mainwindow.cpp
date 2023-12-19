@@ -82,6 +82,7 @@
 #include "powermanagement/powermanagement.h"
 #include "properties/peerlistwidget.h"
 #include "properties/propertieswidget.h"
+#include "properties/proptabbar.h"
 #include "rss/rsswidget.h"
 #include "search/searchwidget.h"
 #include "speedlimitdialog.h"
@@ -724,10 +725,18 @@ void MainWindow::displaySearchTab(bool enable)
     }
 }
 
-void MainWindow::focusSearchFilter()
+void MainWindow::toggleFocusBetweenLineEdits()
 {
-    m_columnFilterEdit->setFocus();
-    m_columnFilterEdit->selectAll();
+    if (m_columnFilterEdit->hasFocus() && (m_propertiesWidget->tabBar()->currentIndex() == PropTabBar::FilesTab))
+    {
+        m_propertiesWidget->contentFilterLine()->setFocus();
+        m_propertiesWidget->contentFilterLine()->selectAll();
+    }
+    else
+    {
+        m_columnFilterEdit->setFocus();
+        m_columnFilterEdit->selectAll();
+    }
 }
 
 void MainWindow::updateNbTorrents()
@@ -852,9 +861,9 @@ void MainWindow::createKeyboardShortcuts()
     const auto *switchExecutionLogShortcut = new QShortcut((Qt::ALT | Qt::Key_4), this);
     connect(switchExecutionLogShortcut, &QShortcut::activated, this, &MainWindow::displayExecutionLogTab);
     const auto *switchSearchFilterShortcut = new QShortcut(QKeySequence::Find, m_transferListWidget);
-    connect(switchSearchFilterShortcut, &QShortcut::activated, this, &MainWindow::focusSearchFilter);
+    connect(switchSearchFilterShortcut, &QShortcut::activated, this, &MainWindow::toggleFocusBetweenLineEdits);
     const auto *switchSearchFilterShortcutAlternative = new QShortcut((Qt::CTRL | Qt::Key_E), m_transferListWidget);
-    connect(switchSearchFilterShortcutAlternative, &QShortcut::activated, this, &MainWindow::focusSearchFilter);
+    connect(switchSearchFilterShortcutAlternative, &QShortcut::activated, this, &MainWindow::toggleFocusBetweenLineEdits);
 
     m_ui->actionDocumentation->setShortcut(QKeySequence::HelpContents);
     m_ui->actionOptions->setShortcut(Qt::ALT | Qt::Key_O);
