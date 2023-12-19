@@ -382,6 +382,12 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
     m_filterLine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     connect(m_filterLine, &LineEdit::textChanged, m_ui->contentTreeView, &TorrentContentWidget::setFilterPattern);
     m_ui->contentFilterLayout->insertWidget(3, m_filterLine);
+    const auto *focusSearchHotkey = new QShortcut(QKeySequence::Find, this);
+    connect(focusSearchHotkey, &QShortcut::activated, this, [this]()
+    {
+        m_filterLine->setFocus();
+        m_filterLine->selectAll();
+    });
 
     loadState();
 
