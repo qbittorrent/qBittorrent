@@ -155,7 +155,7 @@ namespace Net
         explicit DownloadManager(QObject *parent = nullptr);
 
         void applyProxySettings();
-        void handleDownloadFinished(const ServiceID &id);
+        void handleDownloadFinished(DownloadHandlerImpl *finishedHandler);
         void processRequest(DownloadHandlerImpl *downloadHandler);
 
         static DownloadManager *m_instance;

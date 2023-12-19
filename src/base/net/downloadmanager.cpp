@@ -262,8 +262,9 @@ void Net::DownloadManager::applyProxySettings()
         m_proxy.setCapabilities(m_proxy.capabilities() & ~QNetworkProxy::HostNameLookupCapability);
 }
 
-void Net::DownloadManager::handleDownloadFinished(const ServiceID &id)
+void Net::DownloadManager::handleDownloadFinished(DownloadHandlerImpl *finishedHandler)
 {
+    const ServiceID id = ServiceID::fromURL(finishedHandler->url());
     const auto waitingJobsIter = m_waitingJobs.find(id);
     if ((waitingJobsIter == m_waitingJobs.end()) || waitingJobsIter.value().isEmpty())
     {
@@ -273,9 +274,12 @@ void Net::DownloadManager::handleDownloadFinished(const ServiceID &id)
     }
 
     auto *handler = waitingJobsIter.value().dequeue();
-    qDebug("Downloading %s...", qUtf8Printable(handler->url()));
-    processRequest(handler);
     handler->disconnect(this);
+    QTimer::singleShot(m_sequentialServices.value(id, 0s) , this, [this, handler]
+    {
+        qDebug("Downloading %s...", qUtf8Printable(handler->url()));
+        processRequest(handler);
+    });
 }
 
 void Net::DownloadManager::processRequest(DownloadHandlerImpl *downloadHandler)
@@ -306,16 +310,7 @@ void Net::DownloadManager::processRequest(DownloadHandlerImpl *downloadHandler)
     QNetworkReply *reply = m_networkManager->get(request);
     connect(reply, &QNetworkReply::finished, this, [this, downloadHandler]
     {
-        const ServiceID id = ServiceID::fromURL(downloadHandler->url());
-        if (m_sequentialServices.contains(id))
-        {
-            QTimer::singleShot(m_sequentialServices.value(id, 0s) , this, [this, id]
-            {
-                handleDownloadFinished(id);
-            });
-        }else{
-            handleDownloadFinished(id);
-        }
+        handleDownloadFinished(downloadHandler);
     });
     downloadHandler->assignNetworkReply(reply);
 }
