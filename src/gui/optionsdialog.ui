@@ -1566,6 +1566,19 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </layout>
                 </widget>
                </item>
+               <item>
+                <widget class="QPushButton" name="sendTestEmail">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text">
+                   <string>Send test email</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -3935,6 +3948,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>groupMailNotifAuth</tabstop>
   <tabstop>mailNotifUsername</tabstop>
   <tabstop>mailNotifPassword</tabstop>
+  <tabstop>sendTestEmail</tabstop>
   <tabstop>checkSmtpSSL</tabstop>
   <tabstop>lineEditRunOnAdded</tabstop>
   <tabstop>lineEditRunOnFinished</tabstop>

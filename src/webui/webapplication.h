@@ -149,12 +149,12 @@ private:
     const QHash<std::pair<QString, QString>, QString> m_allowedMethod =
     {
         // <<controller name, action name>, HTTP method>
+        {{u"app"_s, u"sendTestEmail"_s}, Http::METHOD_POST},
         {{u"app"_s, u"setPreferences"_s}, Http::METHOD_POST},
         {{u"app"_s, u"shutdown"_s}, Http::METHOD_POST},
         {{u"auth"_s, u"login"_s}, Http::METHOD_POST},
         {{u"auth"_s, u"logout"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"addFeed"_s}, Http::METHOD_POST},
-        {{u"rss"_s, u"setFeedURL"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"addFolder"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"markAsRead"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"moveItem"_s}, Http::METHOD_POST},
@@ -162,6 +162,7 @@ private:
         {{u"rss"_s, u"removeItem"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"removeRule"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"renameRule"_s}, Http::METHOD_POST},
+        {{u"rss"_s, u"setFeedURL"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"setRule"_s}, Http::METHOD_POST},
         {{u"search"_s, u"delete"_s}, Http::METHOD_POST},
         {{u"search"_s, u"enablePlugin"_s}, Http::METHOD_POST},
