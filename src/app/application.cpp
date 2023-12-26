@@ -680,6 +680,24 @@ void Application::sendNotificationEmail(const BitTorrent::Torrent *torrent)
                      content);
 }
 
+void Application::sendTestEmail() const
+{
+    const Preferences *pref = Preferences::instance();
+    if (pref->isMailNotificationEnabled())
+    {
+        // Prepare mail content
+        const QString content = tr("This is a test email.") + u'\n'
+            + tr("Thank you for using qBittorrent.") + u'\n';
+
+        // Send the notification email
+        auto *smtp = new Net::Smtp();
+        smtp->sendMail(pref->getMailNotificationSender(),
+                        pref->getMailNotificationEmail(),
+                        tr("Test email"),
+                        content);
+    }
+}
+
 void Application::torrentAdded(const BitTorrent::Torrent *torrent) const
 {
     const Preferences *pref = Preferences::instance();

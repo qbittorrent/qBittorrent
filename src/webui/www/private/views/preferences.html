@@ -263,6 +263,9 @@
                 </tr>
             </table>
         </fieldset>
+        <div class="formRow">
+            <input type="button" id="mail_test_button" value="QBT_TR(Send test email)QBT_TR[CONTEXT=OptionsDialog]" onclick="qBittorrent.Preferences.sendTestEmail();" />
+        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -1553,6 +1556,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 changeWatchFolderSelect: changeWatchFolderSelect,
                 updateMailNotification: updateMailNotification,
                 updateMailAuthSettings: updateMailAuthSettings,
+                sendTestEmail: sendTestEmail,
                 updateAutoRun: updateAutoRun,
                 updateAutoRunOnTorrentAdded: updateAutoRunOnTorrentAdded,
                 generateRandomPort: generateRandomPort,
@@ -1705,6 +1709,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             $('smtp_server_txt').setProperty('disabled', !isMailNotificationEnabled);
             $('mail_ssl_checkbox').setProperty('disabled', !isMailNotificationEnabled);
             $('mail_auth_checkbox').setProperty('disabled', !isMailNotificationEnabled);
+            $('mail_test_button').setProperty('disabled', !isMailNotificationEnabled);
 
             if (!isMailNotificationEnabled) {
                 $('mail_auth_checkbox').setProperty('checked', !isMailNotificationEnabled);
@@ -1716,6 +1721,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const isMailAuthEnabled = $('mail_auth_checkbox').getProperty('checked');
             $('mail_username_text').setProperty('disabled', !isMailAuthEnabled);
             $('mail_password_text').setProperty('disabled', !isMailAuthEnabled);
+        };
+
+        const sendTestEmail = function() {
+            new Request({
+                url: 'api/v2/app/sendTestEmail',
+                method: 'post',
+                onFailure: function() {
+                    alert("QBT_TR(Could not contact qBittorrent)QBT_TR[CONTEXT=HttpServer]");
+                },
+                onSuccess: function() {
+                    alert("QBT_TR(Attempted to send email. Check your inbox to confirm success)QBT_TR[CONTEXT=OptionsDialog]");
+                }
+            }).send();
         };
 
         const updateAutoRunOnTorrentAdded = function() {
