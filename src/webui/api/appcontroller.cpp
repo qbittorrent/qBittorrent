@@ -1074,6 +1074,11 @@ void AppController::defaultSavePathAction()
     setResult(BitTorrent::Session::instance()->savePath().toString());
 }
 
+void AppController::sendTestEmailAction()
+{
+    app()->sendTestEmail();
+}
+
 void AppController::networkInterfaceListAction()
 {
     QJsonArray ifaceList;
