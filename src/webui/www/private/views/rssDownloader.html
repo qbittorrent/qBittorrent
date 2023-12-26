@@ -363,7 +363,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 method: 'get',
                 noCache: true,
                 onFailure: () => {
-                    alert('Could not contact qBittorrent');
+                    alert("QBT_TR(Could not contact qBittorrent)QBT_TR[CONTEXT=HttpServer]");
                 },
                 onSuccess: (pref) => {
                     if (!pref.rss_auto_downloading_enabled)

@@ -64,7 +64,7 @@ window.qBittorrent.Download = (function() {
             method: 'get',
             noCache: true,
             onFailure: function() {
-                alert("Could not contact qBittorrent");
+                alert("QBT_TR(Could not contact qBittorrent)QBT_TR[CONTEXT=HttpServer]");
             },
             onSuccess: function(pref) {
                 if (!pref)
