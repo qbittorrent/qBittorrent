@@ -31,6 +31,9 @@
 #include <Qt>
 #include <QtSystemDetection>
 
+// for QT_FEATURE_xxx, see: https://wiki.qt.io/Qt5_Build_System#How_to
+#include <QtCore/private/qtcore-config_p.h>
+
 #if !defined(Q_OS_WIN) && (!defined(Q_OS_UNIX) || defined(Q_OS_MACOS) || defined(QT_FEATURE_icu))
 #define QBT_USE_QCOLLATOR
 #include <QCollator>
