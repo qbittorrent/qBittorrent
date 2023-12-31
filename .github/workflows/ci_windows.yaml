@@ -22,7 +22,7 @@ jobs:
     env:
       boost_path: "${{ github.workspace }}/../boost"
       libtorrent_path: "${{ github.workspace }}/../libtorrent"
-      vpkg_triplet_path: "${{ github.workspace }}/../triplets_overlay"
+      vcpkg_path: "c:/vcpkg"
 
     steps:
       - name: Checkout repository
@@ -40,13 +40,13 @@ jobs:
           where.exe ninja
           ninja --version
 
-      # use the preinstalled vcpkg from image
-      # https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md#package-management
-      - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v11
+      # https://learn.microsoft.com/en-us/vcpkg/users/binarycaching#gha
+      - name: Set variables for vcpkg
+        uses: actions/github-script@v7
         with:
-          vcpkgDirectory: C:/vcpkg
-          doNotUpdateVcpkg: true  # the preinstalled vcpkg is updated regularly
+          script: |
+            core.exportVariable('ACTIONS_CACHE_URL', (process.env.ACTIONS_CACHE_URL || ''));
+            core.exportVariable('ACTIONS_RUNTIME_TOKEN', (process.env.ACTIONS_RUNTIME_TOKEN || ''));
 
       - name: Install dependencies with vcpkg
         run: |
@@ -54,9 +54,9 @@ jobs:
           New-Item `
             -Force `
             -ItemType File `
-            -Path "${{ env.vpkg_triplet_path }}/x64-windows-static-md-release.cmake"
+            -Path "${{ env.vcpkg_path }}/triplets_overlay/x64-windows-static-md-release.cmake"
           Add-Content `
-            -Path "${{ env.vpkg_triplet_path }}/x64-windows-static-md-release.cmake" `
+            -Path "${{ env.vcpkg_path }}/triplets_overlay/x64-windows-static-md-release.cmake" `
             -Value @("set(VCPKG_TARGET_ARCHITECTURE x64)",
               "set(VCPKG_LIBRARY_LINKAGE static)",
               "set(VCPKG_CRT_LINKAGE dynamic)",
@@ -68,12 +68,13 @@ jobs:
           $packages = `
             "openssl:x64-windows-static-md-release",
             "zlib:x64-windows-static-md-release"
-          ${{ env.RUNVCPKG_VCPKG_ROOT }}/vcpkg.exe upgrade `
+          ${{ env.vcpkg_path }}/vcpkg.exe upgrade `
             --no-dry-run `
-            --overlay-triplets="${{ env.vpkg_triplet_path }}"
-          ${{ env.RUNVCPKG_VCPKG_ROOT }}/vcpkg.exe install `
+            --overlay-triplets="${{ env.vcpkg_path }}/triplets_overlay"
+          ${{ env.vcpkg_path }}/vcpkg.exe install `
+            --binarysource="clear;x-gha,readwrite" `
             --clean-after-build `
-            --overlay-triplets="${{ env.vpkg_triplet_path }}" `
+            --overlay-triplets="${{ env.vcpkg_path }}/triplets_overlay" `
             $packages
 
       - name: Install boost
@@ -109,7 +110,7 @@ jobs:
             -DCMAKE_BUILD_TYPE=RelWithDebInfo `
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON `
             -DCMAKE_INSTALL_PREFIX="${{ env.libtorrent_path }}/install" `
-            -DCMAKE_TOOLCHAIN_FILE="${{ env.RUNVCPKG_VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake" `
+            -DCMAKE_TOOLCHAIN_FILE="${{ env.vcpkg_path }}/scripts/buildsystems/vcpkg.cmake" `
             -DBOOST_ROOT="${{ env.boost_path }}" `
             -DBUILD_SHARED_LIBS=OFF `
             -Ddeprecated-functions=OFF `
@@ -126,7 +127,7 @@ jobs:
             -G "Ninja" `
             -DCMAKE_BUILD_TYPE=RelWithDebInfo `
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON `
-            -DCMAKE_TOOLCHAIN_FILE="${{ env.RUNVCPKG_VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake" `
+            -DCMAKE_TOOLCHAIN_FILE="${{ env.vcpkg_path }}/scripts/buildsystems/vcpkg.cmake" `
             -DBOOST_ROOT="${{ env.boost_path }}" `
             -DLibtorrentRasterbar_DIR="${{ env.libtorrent_path }}/install/lib/cmake/LibtorrentRasterbar" `
             -DMSVC_RUNTIME_DYNAMIC=ON `
