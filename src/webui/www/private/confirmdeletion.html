@@ -25,15 +25,20 @@
                 }
             }).send();
 
+            // Disable 'Remember choice' button until 'Delete files' checkbox is clicked
+            disableRememberBtn();
+            $('deleteFromDiskCB').addEvent('click', function(e) {
+                enableRememberBtn();
+            });
+
+            // Set current "Delete files" choice as the default
             $('rememberBtn').addEvent('click', function(e) {
-                const cmd = 'api/v2/app/setPreferences';
-                const deleteTorrentFilesAsDefault = $('deleteFromDiskCB').checked;
                 new Request({
-                    url: cmd,
+                    url: 'api/v2/app/setPreferences',
                     method: 'post',
                     data: {
                         'json': JSON.encode({
-                            'delete_torrent_files_as_default': deleteTorrentFilesAsDefault
+                            'delete_torrent_files_as_default': $('deleteFromDiskCB').checked
                         })
                     },
                     onComplete: function() {
@@ -42,11 +47,17 @@
                 }).send();
             });
 
-            // Undisable rememberBtn if checkbox is clicked
-            $('deleteFromDiskCB').addEvent('click', function(e) {
-                enableRememberBtn();
-            });
+            function enableRememberBtn() {
+                const btn = $('rememberBtn');
+                btn.disabled = false;
+                btn.getElementsByTagName('path')[0].style.fill = "";
+            }
 
+            function disableRememberBtn() {
+                const btn = $('rememberBtn');
+                btn.disabled = true;
+                btn.getElementsByTagName('path')[0].style.fill = "var(--color-border-default)";
+            }
             const hashes = new URI().getData('hashes').split('|');
             $('cancelBtn').focus();
             $('cancelBtn').addEvent('click', function(e) {
@@ -71,18 +82,6 @@
                 }).send();
             });
         });
-
-        function enableRememberBtn() {
-            let btn = $('rememberBtn');
-            btn.disabled = false;
-            btn.getElementsByTagName('path')[0].style.fill = "";
-        }
-
-        function disableRememberBtn() {
-            let btn = $('rememberBtn');
-            btn.disabled = true;
-            btn.getElementsByTagName('path')[0].style.fill = "lightgray";
-        }
     </script>
 </head>
 
@@ -90,7 +89,7 @@
     <br />
 
     <p>&nbsp;&nbsp;QBT_TR(Are you sure you want to remove the selected torrents from the transfer list?)QBT_TR[CONTEXT=HttpServer]</p>
-    &nbsp;&nbsp;&nbsp;&nbsp;<button id="rememberBtn" type="button" title="Remember choice" style="vertical-align: middle;">
+    &nbsp;&nbsp;&nbsp;&nbsp;<button id="rememberBtn" type="button" title="Remember choice" style="vertical-align: middle; padding: 4px 6px;">
         <!-- ./public/icons/object-locked.svg -->
         <svg height="24" viewBox="0 0 32 32" width="24" xmlns="http://www.w3.org/2000/svg">
             <path d="m22.58889 13.856795h-13.1776846v-3.690063c0-3.2959186 2.9557016-5.9772288 6.5888426-5.9772288 3.633136 0 6.588842 2.6814977 6.588842 5.9772288zm3.515031.03355v-3.723984c0-5.0541989-4.532547-9.16636116-10.103873-9.16636116-5.571329 0-10.1038769 4.11216226-10.1038769 9.16636116v3.72398c-.7962418.150954-1.3961709.793694-1.3961709 1.560369v13.955002c0 .879047.7884216 1.594288 1.7575164 1.594288h19.4849724c.969092 0 1.757511-.715241 1.757511-1.594288v-13.955002c0-.766675-.599832-1.408677-1.396079-1.560372z" fill="#ff8c00" stroke-width="1.980014" />
