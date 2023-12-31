@@ -14,20 +14,6 @@
             const isDeletingFiles = (new URI().getData('deleteFiles') === "true");
             $('deleteFromDiskCB').checked = isDeletingFiles;
 
-            // Add SVG lock icon to rememberBtn with JS so we can change the fill color
-            new Request({
-                url: '/images/object-locked.svg',
-                method: 'get',
-                onSuccess: function(text, xml) {
-                    // The SVG's height is 32px, which is too big for our dialog
-                    xml.childNodes[0].style.height = '24px';
-                    xml.childNodes[0].style.width = '24px';
-                    $('rememberBtn').appendChild(xml.childNodes[0]);
-                    // Disable button until delete-files checkbox is clicked
-                    disableRememberBtn();
-                }
-            }).send();
-
             new Request.JSON({
                 url: 'api/v2/app/preferences',
                 method: 'get',
@@ -105,6 +91,10 @@
 
     <p>&nbsp;&nbsp;QBT_TR(Are you sure you want to remove the selected torrents from the transfer list?)QBT_TR[CONTEXT=HttpServer]</p>
     &nbsp;&nbsp;&nbsp;&nbsp;<button id="rememberBtn" type="button" title="Remember choice" style="vertical-align: middle;">
+        <!-- ./public/icons/object-locked.svg -->
+        <svg height="24" viewBox="0 0 32 32" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="m22.58889 13.856795h-13.1776846v-3.690063c0-3.2959186 2.9557016-5.9772288 6.5888426-5.9772288 3.633136 0 6.588842 2.6814977 6.588842 5.9772288zm3.515031.03355v-3.723984c0-5.0541989-4.532547-9.16636116-10.103873-9.16636116-5.571329 0-10.1038769 4.11216226-10.1038769 9.16636116v3.72398c-.7962418.150954-1.3961709.793694-1.3961709 1.560369v13.955002c0 .879047.7884216 1.594288 1.7575164 1.594288h19.4849724c.969092 0 1.757511-.715241 1.757511-1.594288v-13.955002c0-.766675-.599832-1.408677-1.396079-1.560372z" fill="#ff8c00" stroke-width="1.980014" />
+        </svg>
     </button>
     <input type="checkbox" id="deleteFromDiskCB" /> <label for="deleteFromDiskCB"><i>QBT_TR(Also permanently delete the files)QBT_TR[CONTEXT=confirmDeletionDlg]</i></label><br /><br />
     <div style="text-align: right;">
