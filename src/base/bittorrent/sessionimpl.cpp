@@ -5703,7 +5703,7 @@ void SessionImpl::handleFileErrorAlert(const lt::file_error_alert *p)
 
         const QString msg = QString::fromStdString(p->message());
         LogMsg(tr("File error alert. Torrent: \"%1\". File: \"%2\". Reason: \"%3\"")
-                .arg(torrent->name(), QString::fromLocal8Bit(p->filename()), msg)
+                .arg(torrent->name(), QString::fromUtf8(p->filename()), msg)
             , Log::WARNING);
         emit fullDiskError(torrent, msg);
     }
