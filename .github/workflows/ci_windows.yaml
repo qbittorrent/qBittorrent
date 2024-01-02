@@ -179,7 +179,7 @@ jobs:
           copy ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: qBittorrent-CI_Windows-x64_libtorrent-${{ matrix.libt_version }}
           path: upload
@@ -190,7 +190,7 @@ jobs:
           makensis /DQBT_DIST_DIR="../../upload/qBittorrent" dist/windows/qbittorrent.nsi
 
       - name: Upload installer
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: qBittorrent-CI_Windows-x64_libtorrent-${{ matrix.libt_version }}-setup
           path: dist/windows/qbittorrent_*_setup.exe

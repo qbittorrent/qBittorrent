@@ -39,10 +39,10 @@ jobs:
           git diff --exit-code
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
+        uses: github/codeql-action/init@v3
         with:
           config-file: ./.github/workflows/helper/codeql/js.yaml
           languages: javascript
 
       - name: Run CodeQL analysis
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3
