@@ -194,11 +194,16 @@ add_library(qbt_base STATIC
 
 target_link_libraries(qbt_base
     PRIVATE
-        OpenSSL::Crypto OpenSSL::SSL
+        OpenSSL::Crypto
+        OpenSSL::SSL
         ZLIB::ZLIB
     PUBLIC
         LibtorrentRasterbar::torrent-rasterbar
-        Qt::Core Qt::Network Qt::Sql Qt::Xml
+        Qt::Core
+        Qt::CorePrivate
+        Qt::Network
+        Qt::Sql
+        Qt::Xml
         qbt_common_cfg
 )
 
