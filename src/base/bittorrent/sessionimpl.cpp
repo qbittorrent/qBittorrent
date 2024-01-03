@@ -2662,6 +2662,7 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
     loadTorrentParams.addToQueueTop = addTorrentParams.addToQueueTop.value_or(isAddTorrentToQueueTop());
     loadTorrentParams.ratioLimit = addTorrentParams.ratioLimit;
     loadTorrentParams.seedingTimeLimit = addTorrentParams.seedingTimeLimit;
+    loadTorrentParams.inactiveSeedingTimeLimit = addTorrentParams.inactiveSeedingTimeLimit;
 
     const QString category = addTorrentParams.category;
     if (!category.isEmpty() && !m_categories.contains(category) && !addCategory(category))
