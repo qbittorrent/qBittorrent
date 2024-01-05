@@ -34,8 +34,8 @@ button {
     padding: 4px 16px;
 }
 
-button[disabled] {
-    cursor: auto;
+button:disabled {
+    cursor: initial;
 }
 
 /*table { border-collapse: collapse; border-spacing: 0; }*/

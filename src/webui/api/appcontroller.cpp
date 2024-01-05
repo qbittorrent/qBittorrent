@@ -119,6 +119,8 @@ void AppController::preferencesAction()
     data[u"file_log_delete_old"_s] = app()->isFileLoggerDeleteOld();
     data[u"file_log_age"_s] = app()->fileLoggerAge();
     data[u"file_log_age_type"_s] = app()->fileLoggerAgeType();
+    // Delete torrent contents files on torrent removal
+    data[u"delete_torrent_content_files"_s] = pref->deleteTorrentFilesAsDefault();
 
     // Downloads
     // When adding a torrent
@@ -166,9 +168,6 @@ void AppController::preferencesAction()
     // Excluded file names
     data[u"excluded_file_names_enabled"_s] = session->isExcludedFileNamesEnabled();
     data[u"excluded_file_names"_s] = session->excludedFileNames().join(u'\n');
-
-    // Default setting for torrent file deletion on torrent removal
-    data[u"delete_torrent_files_as_default"_s] = pref->deleteTorrentFilesAsDefault();
 
     // Email notification upon download completion
     data[u"mail_notification_enabled"_s] = pref->isMailNotificationEnabled();
@@ -497,6 +496,9 @@ void AppController::setPreferencesAction()
         app()->setFileLoggerAge(it.value().toInt());
     if (hasKey(u"file_log_age_type"_s))
         app()->setFileLoggerAgeType(it.value().toInt());
+    // Delete torrent content files on torrent removal
+    if (hasKey(u"delete_torrent_content_files"_s))
+        pref->setDeleteTorrentFilesAsDefault(it.value().toBool());
 
     // Downloads
     // When adding a torrent
@@ -599,10 +601,6 @@ void AppController::setPreferencesAction()
         session->setExcludedFileNamesEnabled(it.value().toBool());
     if (hasKey(u"excluded_file_names"_s))
         session->setExcludedFileNames(it.value().toString().split(u'\n'));
-
-    // Default setting for torrent file deletion on torrent removal
-    if (hasKey(u"delete_torrent_files_as_default"_s))
-        pref->setDeleteTorrentFilesAsDefault(it.value().toBool());
 
     // Email notification upon download completion
     if (hasKey(u"mail_notification_enabled"_s))
