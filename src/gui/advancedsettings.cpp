@@ -63,6 +63,7 @@ namespace
         // qBittorrent section
         QBITTORRENT_HEADER,
         RESUME_DATA_STORAGE,
+        TORRENT_CONTENT_REMOVE_OPTION,
 #if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
         MEMORY_WORKING_SET_LIMIT,
 #endif
@@ -364,6 +365,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setI2PInboundLength(m_spinBoxI2PInboundLength.value());
     session->setI2POutboundLength(m_spinBoxI2POutboundLength.value());
 #endif
+
+    session->setTorrentContentRemoveOption(m_comboBoxTorrentContentRemoveOption.currentData().value<BitTorrent::TorrentContentRemoveOption>());
 }
 
 #ifndef QBT_USES_LIBTORRENT2
@@ -471,6 +474,11 @@ void AdvancedSettings::loadAdvancedSettings()
     m_comboBoxResumeDataStorage.addItem(tr("SQLite database (experimental)"), QVariant::fromValue(BitTorrent::ResumeDataStorageType::SQLite));
     m_comboBoxResumeDataStorage.setCurrentIndex(m_comboBoxResumeDataStorage.findData(QVariant::fromValue(session->resumeDataStorageType())));
     addRow(RESUME_DATA_STORAGE, tr("Resume data storage type (requires restart)"), &m_comboBoxResumeDataStorage);
+
+    m_comboBoxTorrentContentRemoveOption.addItem(tr("Delete files permanently"), QVariant::fromValue(BitTorrent::TorrentContentRemoveOption::Delete));
+    m_comboBoxTorrentContentRemoveOption.addItem(tr("Move files to trash (if possible)"), QVariant::fromValue(BitTorrent::TorrentContentRemoveOption::MoveToTrash));
+    m_comboBoxTorrentContentRemoveOption.setCurrentIndex(m_comboBoxTorrentContentRemoveOption.findData(QVariant::fromValue(session->torrentContentRemoveOption())));
+    addRow(TORRENT_CONTENT_REMOVE_OPTION, tr("Torrent content removing mode"), &m_comboBoxTorrentContentRemoveOption);
 
 #if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
     // Physical memory (RAM) usage limit

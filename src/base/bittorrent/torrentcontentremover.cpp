@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,32 +26,36 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "torrentcontentremover.h"
 
-#include <QDialog>
+#include "base/utils/fs.h"
 
-#include "ui_deletionconfirmationdialog.h"
-
-namespace Ui
+void BitTorrent::TorrentContentRemover::performJob(const QString &torrentName, const Path &basePath
+        , const PathList &fileNames, const TorrentContentRemoveOption option)
 {
-    class DeletionConfirmationDialog;
+    QString errorMessage;
+
+    if (!fileNames.isEmpty())
+    {
+        const auto removeFileFn = [&option](const Path &filePath)
+        {
+            return ((option == TorrentContentRemoveOption::MoveToTrash)
+                    ? Utils::Fs::moveFileToTrash : Utils::Fs::removeFile)(filePath);
+        };
+
+        for (const Path &fileName : fileNames)
+        {
+            if (const auto result = removeFileFn(basePath / fileName)
+                    ; !result && errorMessage.isEmpty())
+            {
+                errorMessage = result.error();
+            }
+        }
+
+        const Path rootPath = Path::findRootFolder(fileNames);
+        if (!rootPath.isEmpty())
+            Utils::Fs::smartRemoveEmptyFolderTree(basePath / rootPath);
+    }
+
+    emit jobFinished(torrentName, errorMessage);
 }
-
-class DeletionConfirmationDialog final : public QDialog
-{
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(DeletionConfirmationDialog)
-
-public:
-    DeletionConfirmationDialog(QWidget *parent, int size, const QString &name, bool defaultDeleteFiles);
-    ~DeletionConfirmationDialog() override;
-
-    bool isRemoveContentSelected() const;
-
-private slots:
-    void updateRememberButtonState();
-    void on_rememberBtn_clicked();
-
-private:
-    Ui::DeletionConfirmationDialog *m_ui = nullptr;
-};

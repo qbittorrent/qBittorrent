@@ -1096,11 +1096,11 @@ void TorrentsController::deleteAction()
     requireParams({u"hashes"_s, u"deleteFiles"_s});
 
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
-    const DeleteOption deleteOption = parseBool(params()[u"deleteFiles"_s]).value_or(false)
-            ? DeleteTorrentAndFiles : DeleteTorrent;
+    const BitTorrent::TorrentRemoveOption deleteOption = parseBool(params()[u"deleteFiles"_s]).value_or(false)
+            ? BitTorrent::TorrentRemoveOption::RemoveContent : BitTorrent::TorrentRemoveOption::KeepContent;
     applyToTorrents(hashes, [deleteOption](const BitTorrent::Torrent *torrent)
     {
-        BitTorrent::Session::instance()->deleteTorrent(torrent->id(), deleteOption);
+        BitTorrent::Session::instance()->removeTorrent(torrent->id(), deleteOption);
     });
 }
 

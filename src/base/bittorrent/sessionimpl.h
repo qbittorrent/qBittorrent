@@ -75,6 +75,7 @@ namespace BitTorrent
     class InfoHash;
     class ResumeDataStorage;
     class Torrent;
+    class TorrentContentRemover;
     class TorrentDescriptor;
     class TorrentImpl;
     class Tracker;
@@ -411,6 +412,8 @@ namespace BitTorrent
         void setMergeTrackersEnabled(bool enabled) override;
         bool isStartPaused() const override;
         void setStartPaused(bool value) override;
+        TorrentContentRemoveOption torrentContentRemoveOption() const override;
+        void setTorrentContentRemoveOption(TorrentContentRemoveOption option) override;
 
         bool isRestored() const override;
 
@@ -430,7 +433,7 @@ namespace BitTorrent
 
         bool isKnownTorrent(const InfoHash &infoHash) const override;
         bool addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params = {}) override;
-        bool deleteTorrent(const TorrentID &id, DeleteOption deleteOption = DeleteTorrent) override;
+        bool removeTorrent(const TorrentID &id, TorrentRemoveOption deleteOption = TorrentRemoveOption::KeepContent) override;
         bool downloadMetadata(const TorrentDescriptor &torrentDescr) override;
         bool cancelDownloadMetadata(const TorrentID &id) override;
 
@@ -491,6 +494,7 @@ namespace BitTorrent
         void handleIPFilterParsed(int ruleCount);
         void handleIPFilterError();
         void fileSearchFinished(const TorrentID &id, const Path &savePath, const PathList &fileNames);
+        void torrentContentRemovingFinished(const QString &torrentName, const QString &errorMessage);
 
     private:
         struct ResumeSessionContext;
@@ -506,8 +510,9 @@ namespace BitTorrent
         struct RemovingTorrentData
         {
             QString name;
-            Path pathToRemove;
-            DeleteOption deleteOption {};
+            Path contentStoragePath;
+            PathList fileNames;
+            TorrentRemoveOption removeOption {};
         };
 
         explicit SessionImpl(QObject *parent = nullptr);
@@ -598,6 +603,8 @@ namespace BitTorrent
         void loadStatistics();
 
         void updateTrackerEntryStatuses(lt::torrent_handle torrentHandle, QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>> updatedTrackers);
+
+        void handleRemovedTorrent(const TorrentID &torrentID, const QString &partfileRemoveError = {});
 
         CachedSettingValue<QString> m_DHTBootstrapNodes;
         CachedSettingValue<bool> m_isDHTEnabled;
@@ -723,6 +730,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_I2POutboundQuantity;
         CachedSettingValue<int> m_I2PInboundLength;
         CachedSettingValue<int> m_I2POutboundLength;
+        CachedSettingValue<TorrentContentRemoveOption> m_torrentContentRemoveOption;
         SettingValue<bool> m_startPaused;
 
         lt::session *m_nativeSession = nullptr;
@@ -765,6 +773,7 @@ namespace BitTorrent
         QThreadPool *m_asyncWorker = nullptr;
         ResumeDataStorage *m_resumeDataStorage = nullptr;
         FileSearcher *m_fileSearcher = nullptr;
+        TorrentContentRemover *m_torrentContentRemover = nullptr;
 
         QHash<TorrentID, lt::torrent_handle> m_downloadedMetadata;
 

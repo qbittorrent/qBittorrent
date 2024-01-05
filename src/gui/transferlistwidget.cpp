@@ -116,9 +116,10 @@ namespace
     void removeTorrents(const QVector<BitTorrent::Torrent *> &torrents, const bool isDeleteFileSelected)
     {
         auto *session = BitTorrent::Session::instance();
-        const DeleteOption deleteOption = isDeleteFileSelected ? DeleteTorrentAndFiles : DeleteTorrent;
+        const BitTorrent::TorrentRemoveOption removeOption = isDeleteFileSelected
+                ? BitTorrent::TorrentRemoveOption::RemoveContent : BitTorrent::TorrentRemoveOption::KeepContent;
         for (const BitTorrent::Torrent *torrent : torrents)
-            session->deleteTorrent(torrent->id(), deleteOption);
+            session->removeTorrent(torrent->id(), removeOption);
     }
 }
 
@@ -442,7 +443,7 @@ void TransferListWidget::deleteSelectedTorrents(const bool deleteLocalFiles)
         {
             // Some torrents might be removed when waiting for user input, so refetch the torrent list
             // NOTE: this will only work when dialog is modal
-            removeTorrents(getSelectedTorrents(), dialog->isDeleteFileSelected());
+            removeTorrents(getSelectedTorrents(), dialog->isRemoveContentSelected());
         });
         dialog->open();
     }
@@ -465,7 +466,7 @@ void TransferListWidget::deleteVisibleTorrents()
         {
             // Some torrents might be removed when waiting for user input, so refetch the torrent list
             // NOTE: this will only work when dialog is modal
-            removeTorrents(getVisibleTorrents(), dialog->isDeleteFileSelected());
+            removeTorrents(getVisibleTorrents(), dialog->isRemoveContentSelected());
         });
         dialog->open();
     }
