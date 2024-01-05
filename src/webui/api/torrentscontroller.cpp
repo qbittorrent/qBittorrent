@@ -417,6 +417,11 @@ void TorrentsController::propertiesAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
+    const auto toTimeStamp = [](const QDateTime &dateTime) -> qint64
+    {
+        return dateTime.isValid() ? dateTime.toSecsSinceEpoch() : -1;
+    };
+
     QJsonObject dataDict;
 
     dataDict[KEY_TORRENT_INFOHASHV1] = torrent->infoHash().v1().toString();
@@ -425,7 +430,7 @@ void TorrentsController::propertiesAction()
     dataDict[KEY_TORRENT_ID] = torrent->id().toString();
     dataDict[KEY_PROP_TIME_ELAPSED] = torrent->activeTime();
     dataDict[KEY_PROP_SEEDING_TIME] = torrent->finishedTime();
-    dataDict[KEY_PROP_ETA] = static_cast<double>(torrent->eta());
+    dataDict[KEY_PROP_ETA] = torrent->eta();
     dataDict[KEY_PROP_CONNECT_COUNT] = torrent->connectionsCount();
     dataDict[KEY_PROP_CONNECT_COUNT_LIMIT] = torrent->connectionsLimit();
     dataDict[KEY_PROP_DOWNLOADED] = torrent->totalDownload();
@@ -454,12 +459,12 @@ void TorrentsController::propertiesAction()
     dataDict[KEY_PROP_PIECES_HAVE] = torrent->piecesHave();
     dataDict[KEY_PROP_CREATED_BY] = torrent->creator();
     dataDict[KEY_PROP_ISPRIVATE] = torrent->isPrivate();
-    dataDict[KEY_PROP_ADDITION_DATE] = static_cast<double>(torrent->addedTime().toSecsSinceEpoch());
+    dataDict[KEY_PROP_ADDITION_DATE] = toTimeStamp(torrent->addedTime());
     if (torrent->hasMetadata())
     {
-        dataDict[KEY_PROP_LAST_SEEN] = torrent->lastSeenComplete().isValid() ? torrent->lastSeenComplete().toSecsSinceEpoch() : -1;
-        dataDict[KEY_PROP_COMPLETION_DATE] = torrent->completedTime().isValid() ? torrent->completedTime().toSecsSinceEpoch() : -1;
-        dataDict[KEY_PROP_CREATION_DATE] = static_cast<double>(torrent->creationDate().toSecsSinceEpoch());
+        dataDict[KEY_PROP_LAST_SEEN] = toTimeStamp(torrent->lastSeenComplete());
+        dataDict[KEY_PROP_COMPLETION_DATE] = toTimeStamp(torrent->completedTime());
+        dataDict[KEY_PROP_CREATION_DATE] = toTimeStamp(torrent->creationDate());
     }
     else
     {
