@@ -98,11 +98,16 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         return (ratio > BitTorrent::Torrent::MAX_RATIO) ? -1 : ratio;
     };
 
-    const auto getLastActivityTime = [&torrent]() -> qlonglong
+    const auto toTimeStamp = [](const QDateTime &dateTime) -> qint64
+    {
+        return dateTime.isValid() ? dateTime.toSecsSinceEpoch() : -1;
+    };
+
+    const auto getLastActivityTime = [&torrent, &toTimeStamp]() -> qlonglong
     {
         const qlonglong timeSinceActivity = torrent.timeSinceActivity();
         return (timeSinceActivity < 0)
-            ? torrent.addedTime().toSecsSinceEpoch()
+            ? toTimeStamp(torrent.addedTime())
             : (QDateTime::currentDateTime().toSecsSinceEpoch() - timeSinceActivity);
     };
 
@@ -134,8 +139,8 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_SAVE_PATH, torrent.savePath().toString()},
         {KEY_TORRENT_DOWNLOAD_PATH, torrent.downloadPath().toString()},
         {KEY_TORRENT_CONTENT_PATH, torrent.contentPath().toString()},
-        {KEY_TORRENT_ADDED_ON, torrent.addedTime().toSecsSinceEpoch()},
-        {KEY_TORRENT_COMPLETION_ON, torrent.completedTime().toSecsSinceEpoch()},
+        {KEY_TORRENT_ADDED_ON, toTimeStamp(torrent.addedTime())},
+        {KEY_TORRENT_COMPLETION_ON, toTimeStamp(torrent.completedTime())},
         {KEY_TORRENT_TRACKER, torrent.currentTracker()},
         {KEY_TORRENT_TRACKERS_COUNT, torrent.trackers().size()},
         {KEY_TORRENT_DL_LIMIT, torrent.downloadLimit()},
@@ -153,7 +158,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_RATIO_LIMIT, torrent.ratioLimit()},
         {KEY_TORRENT_SEEDING_TIME_LIMIT, torrent.seedingTimeLimit()},
         {KEY_TORRENT_INACTIVE_SEEDING_TIME_LIMIT, torrent.inactiveSeedingTimeLimit()},
-        {KEY_TORRENT_LAST_SEEN_COMPLETE_TIME, torrent.lastSeenComplete().toSecsSinceEpoch()},
+        {KEY_TORRENT_LAST_SEEN_COMPLETE_TIME, toTimeStamp(torrent.lastSeenComplete())},
         {KEY_TORRENT_AUTO_TORRENT_MANAGEMENT, torrent.isAutoTMMEnabled()},
         {KEY_TORRENT_TIME_ACTIVE, torrent.activeTime()},
         {KEY_TORRENT_SEEDING_TIME, torrent.finishedTime()},
