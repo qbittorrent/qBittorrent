@@ -165,35 +165,35 @@ window.qBittorrent.PropGeneral = (function() {
                         temp = "QBT_TR(Never)QBT_TR[CONTEXT=PropertiesWidget]";
                     $('last_seen').set('html', temp);
 
-                    $('total_size').set('html', window.qBittorrent.Misc.friendlyUnit(data.total_size));
+                    temp = (data.total_size >= 0) ? window.qBittorrent.Misc.friendlyUnit(data.total_size) : "";
+                    $('total_size').set('html', temp);
 
-                    if (data.pieces_num != -1)
+                    if (data.pieces_num >= 0) {
                         temp = "QBT_TR(%1 x %2 (have %3))QBT_TR[CONTEXT=PropertiesWidget]"
-                        .replace("%1", data.pieces_num)
-                        .replace("%2", window.qBittorrent.Misc.friendlyUnit(data.piece_size))
-                        .replace("%3", data.pieces_have);
-                    else
-                        temp = "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]";
+                            .replace("%1", data.pieces_num)
+                            .replace("%2", window.qBittorrent.Misc.friendlyUnit(data.piece_size))
+                            .replace("%3", data.pieces_have);
+                    }
+                    else {
+                        temp = "";
+                    }
                     $('pieces').set('html', temp);
 
                     $('created_by').set('text', data.created_by);
+
                     if (data.addition_date != -1)
                         temp = new Date(data.addition_date * 1000).toLocaleString();
                     else
                         temp = "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]";
-
                     $('addition_date').set('html', temp);
+
                     if (data.completion_date != -1)
                         temp = new Date(data.completion_date * 1000).toLocaleString();
                     else
                         temp = "";
-
                     $('completion_date').set('html', temp);
 
-                    if (data.creation_date != -1)
-                        temp = new Date(data.creation_date * 1000).toLocaleString();
-                    else
-                        temp = "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]";
+                    temp = (data.creation_date >= 0) ? (new Date(data.creation_date * 1000).toLocaleString()) : "";
                     $('creation_date').set('html', temp);
 
                     if (data.infohash_v1 === "")
