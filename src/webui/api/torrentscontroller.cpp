@@ -53,6 +53,7 @@
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/torrentfilter.h"
+#include "base/utils/datetime.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "apierror.h"
@@ -417,11 +418,6 @@ void TorrentsController::propertiesAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    const auto toTimeStamp = [](const QDateTime &dateTime) -> qint64
-    {
-        return dateTime.isValid() ? dateTime.toSecsSinceEpoch() : -1;
-    };
-
     const BitTorrent::InfoHash infoHash = torrent->infoHash();
     const qlonglong totalDownload = torrent->totalDownload();
     const qlonglong totalUpload = torrent->totalUpload();
@@ -465,10 +461,10 @@ void TorrentsController::propertiesAction()
         {KEY_PROP_PIECES_HAVE, torrent->piecesHave()},
         {KEY_PROP_CREATED_BY, torrent->creator()},
         {KEY_PROP_ISPRIVATE, torrent->isPrivate()},
-        {KEY_PROP_ADDITION_DATE, toTimeStamp(torrent->addedTime())},
-        {KEY_PROP_LAST_SEEN, toTimeStamp(torrent->lastSeenComplete())},
-        {KEY_PROP_COMPLETION_DATE, toTimeStamp(torrent->completedTime())},
-        {KEY_PROP_CREATION_DATE, toTimeStamp(torrent->creationDate())},
+        {KEY_PROP_ADDITION_DATE, Utils::DateTime::toSecsSinceEpoch(torrent->addedTime())},
+        {KEY_PROP_LAST_SEEN, Utils::DateTime::toSecsSinceEpoch(torrent->lastSeenComplete())},
+        {KEY_PROP_COMPLETION_DATE, Utils::DateTime::toSecsSinceEpoch(torrent->completedTime())},
+        {KEY_PROP_CREATION_DATE, Utils::DateTime::toSecsSinceEpoch(torrent->creationDate())},
         {KEY_PROP_SAVE_PATH, torrent->savePath().toString()},
         {KEY_PROP_DOWNLOAD_PATH, torrent->downloadPath().toString()},
         {KEY_PROP_COMMENT, torrent->comment()}

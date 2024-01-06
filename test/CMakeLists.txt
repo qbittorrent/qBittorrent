@@ -13,8 +13,9 @@ set(testFiles
     testglobal.cpp
     testorderedset.cpp
     testpath.cpp
-    testutilscompare.cpp
     testutilsbytearray.cpp
+    testutilscompare.cpp
+    testutilsdatetime.cpp
     testutilsgzip.cpp
     testutilsio.cpp
     testutilsstring.cpp
