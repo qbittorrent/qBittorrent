@@ -52,11 +52,15 @@ jobs:
 
       - name: Install boost
         run: |
-          curl \
-            -L \
-            -o "${{ runner.temp }}/boost.tar.gz" \
-            "https://boostorg.jfrog.io/artifactory/main/release/1.83.0/source/boost_1_83_0.tar.gz"
-          tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."
+          boost_url="https://boostorg.jfrog.io/artifactory/main/release/1.83.0/source/boost_1_83_0.tar.gz"
+          boost_url2="https://sourceforge.net/projects/boost/files/boost/1.83.0/boost_1_83_0.tar.gz"
+          set +e
+          curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url"
+          tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
+          if [ "$_exitCode" -ne "0" ]; then
+            curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url2"
+            tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
+          fi
           mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
 
       - name: Install Qt
@@ -126,7 +130,7 @@ jobs:
           cp ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}
           path: upload

@@ -48,11 +48,15 @@ jobs:
 
       - name: Install boost
         run: |
-          curl \
-            -L \
-            -o "${{ runner.temp }}/boost.tar.gz" \
-            "https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.gz"
-          tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."
+          boost_url="https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.gz"
+          boost_url2="https://sourceforge.net/projects/boost/files/boost/1.76.0/boost_1_76_0.tar.gz"
+          set +e
+          curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url"
+          tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
+          if [ "$_exitCode" -ne "0" ]; then
+            curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url2"
+            tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
+          fi
           mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
 
       - name: Install Qt
@@ -85,7 +89,7 @@ jobs:
 
       # to avoid scanning 3rdparty codebases, initialize it just before building qbt
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
+        uses: github/codeql-action/init@v3
         if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON')
         with:
           config-file: ./.github/workflows/helper/codeql/cpp.yaml
@@ -111,7 +115,7 @@ jobs:
           DESTDIR="qbittorrent" cmake --install build
 
       - name: Run CodeQL analysis
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3
         if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON')
         with:
           category: ${{ github.base_ref || github.ref_name }}
@@ -156,7 +160,7 @@ jobs:
             ./linuxdeploy-x86_64.AppImage --appdir qbittorrent --output appimage
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: qBittorrent-CI_Ubuntu-x64_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}
           path: upload

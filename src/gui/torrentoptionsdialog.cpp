@@ -285,7 +285,8 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
 
     const bool useGlobalValue = allSameRatio && allSameSeedingTime
         && (firstTorrentRatio == BitTorrent::Torrent::USE_GLOBAL_RATIO)
-        && (firstTorrentSeedingTime == BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME);
+        && (firstTorrentSeedingTime == BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME)
+        && (firstTorrentInactiveSeedingTime == BitTorrent::Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME);
 
     if (!allSameRatio || !allSameSeedingTime || !allSameInactiveSeedingTime)
     {

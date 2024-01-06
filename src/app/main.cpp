@@ -163,6 +163,14 @@ namespace
         limit.rlim_cur = limit.rlim_max;
         setrlimit(RLIMIT_NOFILE, &limit);
     }
+
+    void adjustLocale()
+    {
+        // specify the default locale just in case if user has not set any other locale
+        // only `C` locale is available universally without installing locale packages
+        if (qEnvironmentVariableIsEmpty("LANG"))
+            qputenv("LANG", "C.UTF-8");
+    }
 #endif
 }
 
@@ -174,6 +182,7 @@ int main(int argc, char *argv[])
 #endif
 
 #ifdef Q_OS_UNIX
+    adjustLocale();
     adjustFileDescriptorLimit();
 #endif
 
