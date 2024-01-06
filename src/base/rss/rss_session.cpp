@@ -56,7 +56,6 @@ const QString DATA_FOLDER_NAME = u"rss/articles"_s;
 const QString FEEDS_FILE_NAME = u"feeds.json"_s;
 
 using namespace RSS;
-using namespace std::chrono_literals;
 
 QPointer<Session> Session::m_instance = nullptr;
 
