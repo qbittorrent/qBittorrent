@@ -319,7 +319,7 @@ void AppController::preferencesAction()
 
     // RSS settings
     data[u"rss_refresh_interval"_s] = RSS::Session::instance()->refreshInterval();
-    data[u"rss_fetch_delay"_s] = static_cast<int>(RSS::Session::instance()->fetchDelay().count());
+    data[u"rss_fetch_delay"_s] = static_cast<qlonglong>(RSS::Session::instance()->fetchDelay().count());
     data[u"rss_max_articles_per_feed"_s] = RSS::Session::instance()->maxArticlesPerFeed();
     data[u"rss_processing_enabled"_s] = RSS::Session::instance()->isProcessingEnabled();
     data[u"rss_auto_downloading_enabled"_s] = RSS::AutoDownloader::instance()->isProcessingEnabled();
@@ -867,7 +867,7 @@ void AppController::setPreferencesAction()
     if (hasKey(u"rss_refresh_interval"_s))
         RSS::Session::instance()->setRefreshInterval(it.value().toInt());
     if (hasKey(u"rss_fetch_delay"_s))
-        RSS::Session::instance()->setFetchDelay(std::chrono::seconds(it.value().toInt()));
+        RSS::Session::instance()->setFetchDelay(std::chrono::seconds(it.value().toLongLong()));
     if (hasKey(u"rss_max_articles_per_feed"_s))
         RSS::Session::instance()->setMaxArticlesPerFeed(it.value().toInt());
     if (hasKey(u"rss_processing_enabled"_s))
