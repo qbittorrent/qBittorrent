@@ -34,24 +34,35 @@
 // for QT_FEATURE_xxx, see: https://wiki.qt.io/Qt5_Build_System#How_to
 #include <QtCore/private/qtcore-config_p.h>
 
+#ifndef QBT_USE_QCOLLATOR
 // macOS and Windows support 'case sensitivity' and 'numeric mode' natively
 // https://github.com/qt/qtbase/blob/6.0/src/corelib/CMakeLists.txt#L777-L793
 // https://github.com/qt/qtbase/blob/6.0/src/corelib/text/qcollator_macx.cpp#L74-L77
 // https://github.com/qt/qtbase/blob/6.0/src/corelib/text/qcollator_win.cpp#L72-L78
 #if ((QT_FEATURE_icu == 1) || defined(Q_OS_MACOS) || defined(Q_OS_WIN))
-#define QBT_USE_QCOLLATOR
+#define QBT_USE_QCOLLATOR 1
 #include <QCollator>
+#else
+#define QBT_USE_QCOLLATOR 0
+#endif
 #endif
 
 class QString;
 
 namespace Utils::Compare
 {
-#ifdef QBT_USE_QCOLLATOR
+    int naturalCompare(const QString &left, const QString &right, Qt::CaseSensitivity caseSensitivity);
+
     template <Qt::CaseSensitivity caseSensitivity>
     class NaturalCompare
     {
     public:
+#if (QBT_USE_QCOLLATOR == 0)
+        int operator()(const QString &left, const QString &right) const
+        {
+            return naturalCompare(left, right, caseSensitivity);
+        }
+#else
         NaturalCompare()
         {
             m_collator.setNumericMode(true);
@@ -65,20 +76,8 @@ namespace Utils::Compare
 
     private:
         QCollator m_collator;
-    };
-#else
-    int naturalCompare(const QString &left, const QString &right, Qt::CaseSensitivity caseSensitivity);
-
-    template <Qt::CaseSensitivity caseSensitivity>
-    class NaturalCompare
-    {
-    public:
-        int operator()(const QString &left, const QString &right) const
-        {
-            return naturalCompare(left, right, caseSensitivity);
-        }
-    };
 #endif
+    };
 
     template <Qt::CaseSensitivity caseSensitivity>
     class NaturalLessThan

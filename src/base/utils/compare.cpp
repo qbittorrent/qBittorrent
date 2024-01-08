@@ -31,7 +31,6 @@
 #include <QChar>
 #include <QString>
 
-#ifndef QBT_USE_QCOLLATOR
 int Utils::Compare::naturalCompare(const QString &left, const QString &right, const Qt::CaseSensitivity caseSensitivity)
 {
     // Return value <0: `left` is smaller than `right`
@@ -45,8 +44,8 @@ int Utils::Compare::naturalCompare(const QString &left, const QString &right, co
         if ((posL == left.size()) || (posR == right.size()))
             return (left.size() - right.size());  // when a shorter string is another string's prefix, shorter string place before longer string
 
-        const QChar leftChar = (caseSensitivity == Qt::CaseSensitive) ? left[posL] : left[posL].toLower();
-        const QChar rightChar = (caseSensitivity == Qt::CaseSensitive) ? right[posR] : right[posR].toLower();
+        const QChar leftChar = (caseSensitivity == Qt::CaseSensitive) ? left[posL] : left[posL].toCaseFolded();
+        const QChar rightChar = (caseSensitivity == Qt::CaseSensitive) ? right[posR] : right[posR].toCaseFolded();
         // Compare only non-digits.
         // Numbers should be compared as a whole
         // otherwise the string->int conversion can yield a wrong value
@@ -89,8 +88,7 @@ int Utils::Compare::naturalCompare(const QString &left, const QString &right, co
         }
         else
         {
-            return (leftChar.unicode() - rightChar.unicode());
+            return QString::localeAwareCompare(leftChar, rightChar);
         }
     }
 }
-#endif
