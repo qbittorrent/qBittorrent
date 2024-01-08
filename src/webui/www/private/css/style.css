@@ -34,6 +34,10 @@ button {
     padding: 4px 16px;
 }
 
+button:disabled {
+    cursor: initial;
+}
+
 /*table { border-collapse: collapse; border-spacing: 0; }*/
 
 :focus {
