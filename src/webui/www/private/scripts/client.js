@@ -354,15 +354,18 @@ window.addEvent('load', function() {
     const serverState = {};
 
     const removeTorrentFromCategoryList = function(hash) {
-        if (hash === null || hash === "")
+        if (!hash)
             return false;
+
         let removed = false;
-        Object.each(category_list, function(category) {
-            if (Object.contains(category.torrents, hash)) {
-                removed = true;
-                category.torrents.splice(category.torrents.indexOf(hash), 1);
-            }
-        });
+        for (const key in category_list) {
+            if (!Object.hasOwn(category_list, key))
+                continue;
+
+            const category = category_list[key];
+            const deleteResult = category.torrents.delete(hash);
+            removed ||= deleteResult;
+        }
         return removed;
     };
 
@@ -370,35 +373,39 @@ window.addEvent('load', function() {
         const category = torrent['category'];
         if (typeof category === 'undefined')
             return false;
+
+        const hash = torrent['hash'];
         if (category.length === 0) { // Empty category
-            removeTorrentFromCategoryList(torrent['hash']);
+            removeTorrentFromCategoryList(hash);
             return true;
         }
         const categoryHash = genHash(category);
-        if (!category_list[categoryHash]) // This should not happen
+        if (!category_list[categoryHash]) { // This should not happen
             category_list[categoryHash] = {
                 name: category,
                 torrents: []
             };
-        if (!Object.contains(category_list[categoryHash].torrents, torrent['hash'])) {
-            removeTorrentFromCategoryList(torrent['hash']);
-            category_list[categoryHash].torrents = category_list[categoryHash].torrents.combine([torrent['hash']]);
+        }
+        if (!category_list[categoryHash].torrents.has(hash)) {
+            removeTorrentFromCategoryList(hash);
+            category_list[categoryHash].torrents.add(hash);
             return true;
         }
         return false;
     };
 
     const removeTorrentFromTagList = function(hash) {
-        if ((hash === null) || (hash === ""))
+        if (!hash)
             return false;
 
         let removed = false;
         for (const key in tagList) {
+            if (!Object.hasOwn(tagList, key))
+                continue;
+
             const tag = tagList[key];
-            if (Object.contains(tag.torrents, hash)) {
-                removed = true;
-                tag.torrents.splice(tag.torrents.indexOf(hash), 1);
-            }
+            const deleteResult = tag.torrents.delete(hash);
+            removed ||= deleteResult;
         }
         return removed;
     };
@@ -407,7 +414,8 @@ window.addEvent('load', function() {
         if (torrent['tags'] === undefined) // Tags haven't changed
             return false;
 
-        removeTorrentFromTagList(torrent['hash']);
+        const hash = torrent['hash'];
+        removeTorrentFromTagList(hash);
 
         if (torrent['tags'].length === 0) // No tags
             return true;
@@ -419,12 +427,12 @@ window.addEvent('load', function() {
             if (!tagList[tagHash]) { // This should not happen
                 tagList[tagHash] = {
                     name: tags,
-                    torrents: []
+                    torrents: new Set()
                 };
             }
-            if (!Object.contains(tagList[tagHash].torrents, torrent['hash'])) {
+            if (!tagList[tagHash].torrents.has(hash)) {
+                tagList[tagHash].torrents.add(hash);
                 added = true;
-                tagList[tagHash].torrents.push(torrent['hash']);
             }
         }
         return added;
@@ -507,12 +515,13 @@ window.addEvent('load', function() {
         for (let i = 0; i < sortedCategories.length; ++i) {
             const categoryName = sortedCategories[i];
             const categoryHash = genHash(categoryName);
-            let categoryCount = category_list[categoryHash].torrents.length;
+            let categoryCount = category_list[categoryHash].torrents.size;
 
             if (useSubcategories) {
-                for (let j = i + 1; j < sortedCategories.length && sortedCategories[j].startsWith(categoryName + "/"); ++j) {
+                for (let j = (i + 1);
+                    (j < sortedCategories.length) && sortedCategories[j].startsWith(categoryName + "/"); ++j) {
                     const hash = genHash(sortedCategories[j]);
-                    categoryCount += category_list[hash].torrents.length;
+                    categoryCount += category_list[hash].torrents.size;
                 }
             }
 
@@ -571,7 +580,7 @@ window.addEvent('load', function() {
         for (let i = 0; i < sortedTags.length; ++i) {
             const tagName = sortedTags[i];
             const tagHash = genHash(tagName);
-            const tagCount = tagList[tagHash].torrents.length;
+            const tagCount = tagList[tagHash].torrents.size;
             tagFilterList.appendChild(createLink(tagHash, tagName, tagCount));
         }
 
@@ -684,7 +693,7 @@ window.addEvent('load', function() {
                                 category_list[categoryHash] = {
                                     name: category.name,
                                     savePath: category.savePath,
-                                    torrents: []
+                                    torrents: new Set()
                                 };
                             }
                         }
@@ -703,7 +712,7 @@ window.addEvent('load', function() {
                             if (!tagList[tagHash]) {
                                 tagList[tagHash] = {
                                     name: tag,
-                                    torrents: []
+                                    torrents: new Set()
                                 };
                             }
                         }
