@@ -291,6 +291,8 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
     // Info hashes
     m_ui->labelInfohash1Val->setText(m_torrent->infoHash().v1().isValid() ? m_torrent->infoHash().v1().toString() : tr("N/A"));
     m_ui->labelInfohash2Val->setText(m_torrent->infoHash().v2().isValid() ? m_torrent->infoHash().v2().toString() : tr("N/A"));
+    // URL seeds
+    loadUrlSeeds();
     if (m_torrent->hasMetadata())
     {
         // Creation date
@@ -300,9 +302,6 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
 
         // Comment
         m_ui->labelCommentVal->setText(Utils::Misc::parseHtmlLinks(m_torrent->comment().toHtmlEscaped()));
-
-        // URL seeds
-        loadUrlSeeds();
 
         m_ui->labelCreatedByVal->setText(m_torrent->creator());
     }
