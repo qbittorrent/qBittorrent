@@ -179,7 +179,8 @@ window.qBittorrent.Misc = (function() {
         return escapedString;
     };
 
-    const naturalSortCollator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#parameters
+    const naturalSortCollator = new Intl.Collator(undefined, { numeric: true, usage: 'sort' });
 
     const safeTrim = function(value) {
         try {

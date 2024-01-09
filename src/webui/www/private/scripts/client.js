@@ -566,7 +566,7 @@ window.addEvent('load', function() {
         const sortedTags = [];
         for (const key in tagList)
             sortedTags.push(tagList[key].name);
-        sortedTags.sort();
+        sortedTags.sort(window.qBittorrent.Misc.naturalSortCollator.compare);
 
         for (let i = 0; i < sortedTags.length; ++i) {
             const tagName = sortedTags[i];
