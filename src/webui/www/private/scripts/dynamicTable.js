@@ -829,7 +829,7 @@ window.qBittorrent.DynamicTable = (function() {
 
             const tds = tr.getElements('td');
             for (let i = 0; i < this.columns.length; ++i) {
-                if (Object.prototype.hasOwnProperty.call(data, this.columns[i].dataProperties[0]))
+                if (Object.hasOwn(data, this.columns[i].dataProperties[0]))
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};
@@ -2641,7 +2641,7 @@ window.qBittorrent.DynamicTable = (function() {
 
             const tds = tr.getElements('td');
             for (let i = 0; i < this.columns.length; ++i) {
-                if (Object.prototype.hasOwnProperty.call(data, this.columns[i].dataProperties[0]))
+                if (Object.hasOwn(data, this.columns[i].dataProperties[0]))
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};
@@ -2786,7 +2786,7 @@ window.qBittorrent.DynamicTable = (function() {
 
             const tds = tr.getElements('td');
             for (let i = 0; i < this.columns.length; ++i) {
-                if (Object.prototype.hasOwnProperty.call(data, this.columns[i].dataProperties[0]))
+                if (Object.hasOwn(data, this.columns[i].dataProperties[0]))
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};
@@ -3067,7 +3067,7 @@ window.qBittorrent.DynamicTable = (function() {
 
             const tds = tr.getElements('td');
             for (let i = 0; i < this.columns.length; ++i) {
-                if (Object.prototype.hasOwnProperty.call(data, this.columns[i].dataProperties[0]))
+                if (Object.hasOwn(data, this.columns[i].dataProperties[0]))
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};
