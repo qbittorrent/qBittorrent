@@ -566,7 +566,7 @@ window.addEvent('load', function() {
         const torrentsCount = torrentsTable.getRowIds().length;
         let untagged = 0;
         for (const key in torrentsTable.rows) {
-            if (Object.prototype.hasOwnProperty.call(torrentsTable.rows, key) && (torrentsTable.rows[key]['full_data'].tags.length === 0))
+            if (Object.hasOwn(torrentsTable.rows, key) && (torrentsTable.rows[key]['full_data'].tags.length === 0))
                 untagged += 1;
         }
         tagFilterList.appendChild(createLink(TAGS_ALL, 'QBT_TR(All)QBT_TR[CONTEXT=TagFilterModel]', torrentsCount));
@@ -620,7 +620,7 @@ window.addEvent('load', function() {
         trackerFilterList.appendChild(createLink(TRACKERS_ALL, 'QBT_TR(All (%1))QBT_TR[CONTEXT=TrackerFiltersList]', torrentsCount));
         let trackerlessTorrentsCount = 0;
         for (const key in torrentsTable.rows) {
-            if (Object.prototype.hasOwnProperty.call(torrentsTable.rows, key) && (torrentsTable.rows[key]['full_data'].trackers_count === 0))
+            if (Object.hasOwn(torrentsTable.rows, key) && (torrentsTable.rows[key]['full_data'].trackers_count === 0))
                 trackerlessTorrentsCount += 1;
         }
         trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, 'QBT_TR(Trackerless (%1))QBT_TR[CONTEXT=TrackerFiltersList]', trackerlessTorrentsCount));
