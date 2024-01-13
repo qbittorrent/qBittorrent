@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -153,7 +153,7 @@ namespace Net
         explicit DownloadManager(QObject *parent = nullptr);
 
         void applyProxySettings();
-        void handleDownloadFinished(DownloadHandlerImpl *finishedHandler);
+        void processWaitingJobs(const ServiceID &serviceID);
         void processRequest(DownloadHandlerImpl *downloadHandler);
 
         static DownloadManager *m_instance;

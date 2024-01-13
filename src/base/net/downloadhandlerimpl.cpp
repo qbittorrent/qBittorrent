@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -75,9 +75,16 @@ Net::DownloadHandlerImpl::DownloadHandlerImpl(DownloadManager *manager
 
 void Net::DownloadHandlerImpl::cancel()
 {
-    if (m_reply)
+    if (m_isFinished)
+        return;
+
+    if (m_reply && m_reply->isRunning())
     {
         m_reply->abort();
+    }
+    else if (m_redirectionHandler)
+    {
+        m_redirectionHandler->cancel();
     }
     else
     {
@@ -90,12 +97,18 @@ void Net::DownloadHandlerImpl::assignNetworkReply(QNetworkReply *reply)
 {
     Q_ASSERT(reply);
     Q_ASSERT(!m_reply);
+    Q_ASSERT(!m_isFinished);
 
     m_reply = reply;
     m_reply->setParent(this);
     if (m_downloadRequest.limit() > 0)
         connect(m_reply, &QNetworkReply::downloadProgress, this, &DownloadHandlerImpl::checkDownloadSize);
     connect(m_reply, &QNetworkReply::finished, this, &DownloadHandlerImpl::processFinishedDownload);
+}
+
+QNetworkReply *Net::DownloadHandlerImpl::assignedNetworkReply() const
+{
+    return m_reply;
 }
 
 // Returns original url
@@ -230,10 +243,10 @@ void Net::DownloadHandlerImpl::handleRedirection(const QUrl &newUrl)
         return;
     }
 
-    auto *redirected = static_cast<DownloadHandlerImpl *>(
+    m_redirectionHandler = static_cast<DownloadHandlerImpl *>(
             m_manager->download(DownloadRequest(m_downloadRequest).url(newUrlString), useProxy()));
-    redirected->m_redirectionCount = m_redirectionCount + 1;
-    connect(redirected, &DownloadHandlerImpl::finished, this, [this](const DownloadResult &result)
+    m_redirectionHandler->m_redirectionCount = m_redirectionCount + 1;
+    connect(m_redirectionHandler, &DownloadHandlerImpl::finished, this, [this](const DownloadResult &result)
     {
         m_result = result;
         m_result.url = url();
@@ -249,6 +262,7 @@ void Net::DownloadHandlerImpl::setError(const QString &error)
 
 void Net::DownloadHandlerImpl::finish()
 {
+    m_isFinished = true;
     emit finished(m_result);
 }
 

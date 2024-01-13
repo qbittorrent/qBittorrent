@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -40,6 +40,7 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSslError>
+#include <QTimer>
 #include <QUrl>
 
 #include "base/global.h"
@@ -156,25 +157,31 @@ Net::DownloadManager *Net::DownloadManager::instance()
 Net::DownloadHandler *Net::DownloadManager::download(const DownloadRequest &downloadRequest, const bool useProxy)
 {
     // Process download request
-    const ServiceID id = ServiceID::fromURL(downloadRequest.url());
-    const bool isSequentialService = m_sequentialServices.contains(id);
+    const auto serviceID = ServiceID::fromURL(downloadRequest.url());
+    const bool isSequentialService = m_sequentialServices.contains(serviceID);
 
     auto *downloadHandler = new DownloadHandlerImpl(this, downloadRequest, useProxy);
-    connect(downloadHandler, &DownloadHandler::finished, downloadHandler, &QObject::deleteLater);
-    connect(downloadHandler, &QObject::destroyed, this, [this, id, downloadHandler]()
+    connect(downloadHandler, &DownloadHandler::finished, this, [this, serviceID, downloadHandler]
     {
-        m_waitingJobs[id].removeOne(downloadHandler);
+        if (!downloadHandler->assignedNetworkReply())
+        {
+            // DownloadHandler was finished (canceled) before QNetworkReply was assigned,
+            // so it's still in the queue. Just remove it from there.
+            m_waitingJobs[serviceID].removeOne(downloadHandler);
+        }
+
+        downloadHandler->deleteLater();
     });
 
-    if (isSequentialService && m_busyServices.contains(id))
+    if (isSequentialService && m_busyServices.contains(serviceID))
     {
-        m_waitingJobs[id].enqueue(downloadHandler);
+        m_waitingJobs[serviceID].enqueue(downloadHandler);
     }
     else
     {
         qDebug("Downloading %s...", qUtf8Printable(downloadRequest.url()));
         if (isSequentialService)
-            m_busyServices.insert(id);
+            m_busyServices.insert(serviceID);
         processRequest(downloadHandler);
     }
 
@@ -259,21 +266,19 @@ void Net::DownloadManager::applyProxySettings()
         m_proxy.setCapabilities(m_proxy.capabilities() & ~QNetworkProxy::HostNameLookupCapability);
 }
 
-void Net::DownloadManager::handleDownloadFinished(DownloadHandlerImpl *finishedHandler)
+void Net::DownloadManager::processWaitingJobs(const ServiceID &serviceID)
 {
-    const ServiceID id = ServiceID::fromURL(finishedHandler->url());
-    const auto waitingJobsIter = m_waitingJobs.find(id);
+    const auto waitingJobsIter = m_waitingJobs.find(serviceID);
     if ((waitingJobsIter == m_waitingJobs.end()) || waitingJobsIter.value().isEmpty())
     {
         // No more waiting jobs for given ServiceID
-        m_busyServices.remove(id);
+        m_busyServices.remove(serviceID);
         return;
     }
 
     auto *handler = waitingJobsIter.value().dequeue();
     qDebug("Downloading %s...", qUtf8Printable(handler->url()));
     processRequest(handler);
-    handler->disconnect(this);
 }
 
 void Net::DownloadManager::processRequest(DownloadHandlerImpl *downloadHandler)
@@ -302,9 +307,9 @@ void Net::DownloadManager::processRequest(DownloadHandlerImpl *downloadHandler)
     request.setTransferTimeout();
 
     QNetworkReply *reply = m_networkManager->get(request);
-    connect(reply, &QNetworkReply::finished, this, [this, downloadHandler]
+    connect(reply, &QNetworkReply::finished, this, [this, serviceID = ServiceID::fromURL(downloadHandler->url())]
     {
-        handleDownloadFinished(downloadHandler);
+        QTimer::singleShot(0, this, [this, serviceID] { processWaitingJobs(serviceID); });
     });
     downloadHandler->assignNetworkReply(reply);
 }
