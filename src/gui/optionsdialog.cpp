@@ -2,6 +2,7 @@
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2024  Jonathan Ketchker <15849761+jNullj@users.noreply.github.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
