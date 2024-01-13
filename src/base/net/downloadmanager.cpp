@@ -311,7 +311,7 @@ void Net::DownloadManager::processRequest(DownloadHandlerImpl *downloadHandler)
     QNetworkReply *reply = m_networkManager->get(request);
     connect(reply, &QNetworkReply::finished, this, [this, serviceID = ServiceID::fromURL(downloadHandler->url())]
     {
-        QTimer::singleShot(0, this, [this, serviceID] { processWaitingJobs(serviceID); });
+        QTimer::singleShot(m_sequentialServices.value(serviceID, 0s), this, [this, serviceID] { processWaitingJobs(serviceID); });
     });
     downloadHandler->assignNetworkReply(reply);
 }
