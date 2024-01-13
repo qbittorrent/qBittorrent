@@ -390,11 +390,11 @@ const initializeWindows = function() {
                 loadMethod: 'iframe',
                 contentURL: new URI("confirmdeletion.html").setData("hashes", hashes.join("|")).setData("deleteFiles", deleteFiles).toString(),
                 scrollbars: false,
-                resizable: false,
+                resizable: true,
                 maximizable: false,
                 padding: 10,
                 width: 424,
-                height: 140
+                height: 160
             });
             updateMainData();
         }
@@ -711,11 +711,11 @@ const initializeWindows = function() {
                 loadMethod: 'iframe',
                 contentURL: new URI("confirmdeletion.html").setData("hashes", hashes.join("|")).toString(),
                 scrollbars: false,
-                resizable: false,
+                resizable: true,
                 maximizable: false,
                 padding: 10,
                 width: 424,
-                height: 140
+                height: 160
             });
             updateMainData();
         }
@@ -852,11 +852,11 @@ const initializeWindows = function() {
                 loadMethod: 'iframe',
                 contentURL: new URI("confirmdeletion.html").setData("hashes", hashes.join("|")).toString(),
                 scrollbars: false,
-                resizable: false,
+                resizable: true,
                 maximizable: false,
                 padding: 10,
                 width: 424,
-                height: 140
+                height: 160
             });
             updateMainData();
         }
@@ -938,11 +938,11 @@ const initializeWindows = function() {
                 loadMethod: 'iframe',
                 contentURL: new URI("confirmdeletion.html").setData("hashes", hashes.join("|")).toString(),
                 scrollbars: false,
-                resizable: false,
+                resizable: true,
                 maximizable: false,
                 padding: 10,
                 width: 424,
-                height: 140,
+                height: 160,
                 onCloseComplete: function() {
                     updateMainData();
                     setTrackerFilter(TRACKERS_ALL);
