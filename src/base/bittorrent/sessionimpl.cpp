@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -1217,13 +1217,13 @@ void SessionImpl::prepareStartup()
         context->isLoadFinished = true;
     });
 
-    connect(this, &SessionImpl::torrentsLoaded, context, [this, context](const QVector<Torrent *> &torrents)
+    connect(this, &SessionImpl::addTorrentAlertsReceived, context, [this, context](const qsizetype alertsCount)
     {
-        context->processingResumeDataCount -= torrents.count();
-        context->finishedResumeDataCount += torrents.count();
+        context->processingResumeDataCount -= alertsCount;
+        context->finishedResumeDataCount += alertsCount;
         if (!context->isLoadedResumeDataHandlingEnqueued)
         {
-            QMetaObject::invokeMethod(this, [this, context]() { handleLoadedResumeData(context); }, Qt::QueuedConnection);
+            QMetaObject::invokeMethod(this, [this, context] { handleLoadedResumeData(context); }, Qt::QueuedConnection);
             context->isLoadedResumeDataHandlingEnqueued = true;
         }
 
@@ -5460,10 +5460,13 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
     if (!isRestored())
         loadedTorrents.reserve(MAX_PROCESSING_RESUMEDATA_COUNT);
 
+    qsizetype alertsCount = 0;
     for (const lt::alert *a : alerts)
     {
         if (a->type() != lt::add_torrent_alert::alert_type)
             continue;
+
+        ++alertsCount;
 
         const auto *alert = static_cast<const lt::add_torrent_alert *>(a);
         if (alert->error)
@@ -5474,6 +5477,7 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
 
             const lt::add_torrent_params &params = alert->params;
             const bool hasMetadata = (params.ti && params.ti->is_valid());
+
 #ifdef QBT_USES_LIBTORRENT2
             const InfoHash infoHash {(hasMetadata ? params.ti->info_hashes() : params.info_hashes)};
             if (infoHash.isHybrid())
@@ -5498,9 +5502,8 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
                 }
             }
 
-            return;
+            continue;
         }
-
 
 #ifdef QBT_USES_LIBTORRENT2
         const InfoHash infoHash {alert->handle.info_hashes()};
@@ -5519,7 +5522,7 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
             loadedTorrents.append(torrent);
         }
         else if (const auto downloadedMetadataIter = m_downloadedMetadata.find(torrentID)
-                 ; downloadedMetadataIter != m_downloadedMetadata.end())
+                ; downloadedMetadataIter != m_downloadedMetadata.end())
         {
             downloadedMetadataIter.value() = alert->handle;
             if (infoHash.isHybrid())
@@ -5531,11 +5534,16 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
         }
     }
 
-    if (!loadedTorrents.isEmpty())
+    if (alertsCount > 0)
     {
-        if (isRestored())
-            m_torrentsQueueChanged = true;
-        emit torrentsLoaded(loadedTorrents);
+        emit addTorrentAlertsReceived(alertsCount);
+
+        if (!loadedTorrents.isEmpty())
+        {
+            if (isRestored())
+                m_torrentsQueueChanged = true;
+            emit torrentsLoaded(loadedTorrents);
+        }
     }
 }
 
