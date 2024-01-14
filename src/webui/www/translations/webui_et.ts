@@ -1738,7 +1738,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>.torrent faili suuruse limiit:</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>

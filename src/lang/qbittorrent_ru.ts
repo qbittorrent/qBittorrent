@@ -336,7 +336,8 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="323"/>
         <source>Download first and last pieces first</source>
-        <translation>Загрузить крайние части первыми</translation>
+        <translation>Загрузить сперва крайние части
+</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="503"/>
@@ -459,7 +460,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="364"/>
         <source>Torrent will stop after files are initially checked.</source>
-        <translation>Торрент остановится по первоначальной проверке файлов.</translation>
+        <translation>Торрент остановится после первичной проверки файлов.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="365"/>
@@ -800,7 +801,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="452"/>
         <source>Resume data storage type (requires restart)</source>
-        <translation>Хранилище данных возобновления (нужен перезапуск)</translation>
+        <translation>Место данных возобновления (нужен перезапуск)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="465"/>
@@ -1110,7 +1111,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="710"/>
         <source>Disallow connection to peers on privileged ports</source>
-        <translation>Не соединять к пирам по общеизвестным портам</translation>
+        <translation>Не соединять пиров по общеизвестным портам</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="719"/>
@@ -1976,12 +1977,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Не удаётся разобрать информацию о торренте: неверный формат</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="385"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="299"/>
+        <source>Mismatching info-hash detected in resume data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="395"/>
         <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
         <translation>Не удалось сохранить метаданные торрента в «%1». Ошибка: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="412"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="422"/>
         <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
         <translation>Не удалось сохранить данные возобновления торрента в «%1». Ошибка: %2.</translation>
     </message>
@@ -1996,12 +2002,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Не удаётся разобрать данные возобновления: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="308"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="318"/>
         <source>Resume data is invalid: neither metadata nor info-hash was found</source>
         <translation>Данные возобновления недействительны: метаданные или инфо-хэш не найдены</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="437"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="447"/>
         <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
         <translation>Не удалось сохранить данные в «%1». Ошибка: %2</translation>
     </message>
@@ -2084,8 +2090,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1564"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1565"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1566"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3688"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4463"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3689"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4464"/>
         <source>ON</source>
         <translation>ВКЛ</translation>
     </message>
@@ -2097,8 +2103,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1564"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1565"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1566"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3688"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4463"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3689"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4464"/>
         <source>OFF</source>
         <translation>ОТКЛ</translation>
     </message>
@@ -2171,19 +2177,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1565"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4463"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4464"/>
         <source>Anonymous mode: %1</source>
         <translation>Анонимный режим: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1566"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3687"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3688"/>
         <source>Encryption support: %1</source>
         <translation>Поддержка шифрования: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1566"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3688"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3689"/>
         <source>FORCED</source>
         <translation>ПРИНУДИТЕЛЬНО</translation>
     </message>
@@ -2249,7 +2255,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2290"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5471"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5475"/>
         <source>Failed to load torrent. Reason: &quot;%1&quot;</source>
         <translation>Не удалось загрузить торрент. Причина: «%1»</translation>
     </message>
@@ -2264,317 +2270,317 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Не удалось загрузить торрент. Источник: «%1». Причина: «%2»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2759"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2760"/>
         <source>Detected an attempt to add a duplicate torrent. Merging of trackers is disabled. Torrent: %1</source>
         <translation>Обнаружена попытка добавления повторяющегося торрента. Объединение трекеров отключено. Торрент: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2766"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2767"/>
         <source>Detected an attempt to add a duplicate torrent. Trackers cannot be merged because it is a private torrent. Torrent: %1</source>
         <translation>Обнаружена попытка добавления повторяющегося торрента. Трекеры нельзя объединить, так как торрент частный. Торрент: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2787"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2788"/>
         <source>Detected an attempt to add a duplicate torrent. Trackers are merged from new source. Torrent: %1</source>
         <translation>Обнаружена попытка добавления повторяющегося торрента. Трекеры объединены из нового источника. Торрент: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2986"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2987"/>
         <source>UPnP/NAT-PMP support: ON</source>
         <translation>Поддержка UPnP/NAT-PMP: ВКЛ</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3005"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3006"/>
         <source>UPnP/NAT-PMP support: OFF</source>
         <translation>Поддержка UPnP/NAT-PMP: ОТКЛ</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3130"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3131"/>
         <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Не удалось экспортировать торрент. Торрент: «%1». Назначение: «%2». Причина: «%3»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3185"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3186"/>
         <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
         <translation>Прервано сохранение данных возобновления. Число невыполненных торрентов: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3298"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3299"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>Состояние сети системы сменилось на «%1»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3298"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3299"/>
         <source>ONLINE</source>
         <translation>В СЕТИ</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3298"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3299"/>
         <source>OFFLINE</source>
         <translation>НЕ В СЕТИ</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3312"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3313"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>Настройки сети %1 сменились, обновление привязки сеанса</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3330"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3331"/>
         <source>The configured network address is invalid. Address: &quot;%1&quot;</source>
         <translation>Настроенный сетевой адрес неверен. Адрес: «%1»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3371"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3405"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3372"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3406"/>
         <source>Failed to find the configured network address to listen on. Address: &quot;%1&quot;</source>
         <translation>Не удалось обнаружить настроенный сетевой адрес для прослушивания. Адрес: «%1»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3384"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3385"/>
         <source>The configured network interface is invalid. Interface: &quot;%1&quot;</source>
         <translation>Настроенный сетевой интерфейс неверен. Интерфейс: «%1»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3988"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3989"/>
         <source>Rejected invalid IP address while applying the list of banned IP addresses. IP: &quot;%1&quot;</source>
         <translation>Отклонён недопустимый адрес IP при применении списка запрещённых IP-адресов. IP: «%1»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4973"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4974"/>
         <source>Added tracker to torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>Трекер добавлен в торрент. Торрент: «%1». Трекер: «%2»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4983"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4984"/>
         <source>Removed tracker from torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>Трекер удалён из торрента. Торрент: «%1». Трекер: «%2»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4998"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4999"/>
         <source>Added URL seed to torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>Добавлен адрес сида в торрент. Торрент: «%1». Адрес: «%2»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5004"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5005"/>
         <source>Removed URL seed from torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>Удалён адрес сида из торрента. Торрент: «%1». Адрес: «%2»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5017"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5018"/>
         <source>Torrent paused. Torrent: &quot;%1&quot;</source>
         <translation>Торрент остановлен. Торрент: «%1»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5023"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5024"/>
         <source>Torrent resumed. Torrent: &quot;%1&quot;</source>
         <translation>Торрент возобновлён. Торрент: «%1»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5034"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5035"/>
         <source>Torrent download finished. Torrent: &quot;%1&quot;</source>
         <translation>Загрузка торрента завершена. Торрент: «%1»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5111"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5112"/>
         <source>Torrent move canceled. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>Перемещение торрента отменено. Торрент: «%1». Источник: «%2». Назначение: «%3»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5122"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5123"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: torrent is currently moving to the destination</source>
         <translation>Не удалось поставить в очередь перемещение торрента. Торрент: «%1». Источник: «%2». Назначение: «%3». Причина: торрент в настоящее время перемещается в путь назначения</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5131"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5132"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot; Destination: &quot;%3&quot;. Reason: both paths point to the same location</source>
         <translation>Не удалось поставить в очередь перемещение торрента. Торрент: «%1». Источник: «%2». Назначение: «%3». Причина: оба пути указывают на одно и то же местоположение</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5139"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5140"/>
         <source>Enqueued torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>Перемещение торрента поставлено в очередь. Торрент: «%1». Источник: «%2». Назначение: «%3»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5156"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5157"/>
         <source>Start moving torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>Началось перемещение торрента. Торрент: «%1». Назначение: «%2»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5205"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5206"/>
         <source>Failed to save Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Не удалось сохранить настройки категорий. Файл: «%1». Ошибка: «%2»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5252"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5253"/>
         <source>Failed to parse Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Не удалось разобрать настройки категорий. Файл: «%1». Ошибка: «%2»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5354"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5355"/>
         <source>Recursive download .torrent file within torrent. Source torrent: &quot;%1&quot;. File: &quot;%2&quot;</source>
         <translation>Рекурсивная загрузка .torrent-файла из торрента. Исходный торрент: «%1». Файл: «%2»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5367"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5368"/>
         <source>Failed to load .torrent file within torrent. Source torrent: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>Не удалось загрузить .torrent-файла из торрента. Исходный торрент: «%1». Файл: «%2». Ошибка: «%3»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5411"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5412"/>
         <source>Successfully parsed the IP filter file. Number of rules applied: %1</source>
-        <translation>Успешно разобран файл IP-фильтра. Число применённых правил: %1</translation>
+        <translation>Успешно разобран файл IP-фильтра. Всего применённых правил: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5421"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5422"/>
         <source>Failed to parse the IP filter file</source>
         <translation>Не удалось разобрать файл IP-фильтра</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5703"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5712"/>
         <source>Restored torrent. Torrent: &quot;%1&quot;</source>
         <translation>Торрент восстановлен. Торрент: «%1»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5707"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5716"/>
         <source>Added new torrent. Torrent: &quot;%1&quot;</source>
         <translation>Добавлен новый торрент. Торрент: «%1»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5713"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5722"/>
         <source>Torrent errored. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Сбой торрента. Торрент: «%1». Ошибка: «%2»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5731"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5782"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5740"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5791"/>
         <source>Removed torrent. Torrent: &quot;%1&quot;</source>
         <translation>Торрент удалён. Торрент: «%1»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5754"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5763"/>
         <source>Removed torrent and deleted its content. Torrent: &quot;%1&quot;</source>
         <translation>Торрент удалён вместе с его содержимым. Торрент: «%1»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5833"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5842"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Предупреждение об ошибке файла. Торрент: «%1». Файл: «%2». Причина: «%3»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5844"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5853"/>
         <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
         <translation>Проброс портов UPnP/NAT-PMP не удался. Сообщение: «%1»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5850"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5859"/>
         <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
         <translation>Проброс портов UPnP/NAT-PMP удался. Сообщение: «%1»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5859"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5868"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
         <translation>IP-фильтр</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5862"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5871"/>
         <source>filtered port (%1)</source>
         <comment>this peer was blocked. Reason: filtered port (8899).</comment>
-        <translation>отфильтрован порт (%1)</translation>
+        <translation>порт отфильтрован (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5868"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5877"/>
         <source>privileged port (%1)</source>
         <comment>this peer was blocked. Reason: privileged port (80).</comment>
         <translation>привилегированный порт (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5941"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5950"/>
         <source>BitTorrent session encountered a serious error. Reason: &quot;%1&quot;</source>
         <translation>Сеанс БитТоррента столкнулся с серьёзной ошибкой. Причина: «%1»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6133"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6142"/>
         <source>SOCKS5 proxy error. Address: %1. Message: &quot;%2&quot;.</source>
         <translation>Ошибка прокси SOCKS5. Адрес: %1. Сообщение: «%2».</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6143"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6152"/>
         <source>I2P error. Message: &quot;%1&quot;.</source>
         <translation>Ошибка I2P. Сообщение: «%1».</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5865"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5874"/>
         <source>%1 mixed mode restrictions</source>
         <comment>this peer was blocked. Reason: I2P mixed mode restrictions.</comment>
         <translation>ограничения смешанного режима %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5244"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5245"/>
         <source>Failed to load Categories. %1</source>
         <translation>Не удалось загрузить категории. %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5259"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5260"/>
         <source>Failed to load Categories configuration. File: &quot;%1&quot;. Error: &quot;Invalid data format&quot;</source>
         <translation>Не удалось загрузить настройки категорий: Файл: «%1». Причина: «неверный формат данных»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5776"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5785"/>
         <source>Removed torrent but failed to delete its content and/or partfile. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Торрент удалён, но его содержимое и/или кусочный файл не удалось стереть. Торрент: «%1». Ошибка: «%2»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5871"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5880"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: uTP is disabled.</comment>
         <translation>%1 отключён</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5874"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5883"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: TCP is disabled.</comment>
         <translation>%1 отключён</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5898"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5907"/>
         <source>URL seed DNS lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>Поиск адреса сида в DNS не удался. Торрент: «%1». Адрес: «%2». Ошибка: «%3»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5904"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5913"/>
         <source>Received error message from URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
         <translation>Получено сообщение об ошибке от адреса сида. Торрент: «%1». Адрес: «%2». Сообщение: «%3»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5913"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5922"/>
         <source>Successfully listening on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;</source>
         <translation>Успешное прослушивание IP. IP: «%1». Порт: «%2/%3»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5920"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5929"/>
         <source>Failed to listen on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>Не удалось прослушать IP. IP: «%1». Порт: «%2/%3». Причина: «%4»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5928"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5937"/>
         <source>Detected external IP. IP: &quot;%1&quot;</source>
         <translation>Обнаружен внешний IP. IP: «%1»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6043"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6052"/>
         <source>Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation>Ошибка: Внутренняя очередь оповещений заполнена, и оповещения были отброшены, вы можете заметить ухудшение быстродействия. Тип отброшенных оповещений: «%1». Сообщение: «%2»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6065"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6074"/>
         <source>Moved torrent successfully. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>Перемещение торрента удалось. Торрент: «%1». Назначение: «%2»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6088"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6097"/>
         <source>Failed to move torrent. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>Не удалось переместить торрент. Торрент: «%1». Источник: «%2». Назначение: «%3». Причина: «%4»</translation>
     </message>
@@ -2831,7 +2837,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../app/cmdoptions.cpp" line="543"/>
         <source>Download first and last pieces first</source>
-        <translation>Загружать крайние части первыми</translation>
+        <translation>Загружать сперва крайние части</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="545"/>
@@ -2857,17 +2863,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>CategoryFilterModel</name>
     <message>
-        <location filename="../gui/transferlistfilters/categoryfiltermodel.cpp" line="238"/>
+        <location filename="../gui/transferlistfilters/categoryfiltermodel.cpp" line="254"/>
         <source>Categories</source>
         <translation>Категории</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/categoryfiltermodel.cpp" line="399"/>
+        <location filename="../gui/transferlistfilters/categoryfiltermodel.cpp" line="433"/>
         <source>All</source>
         <translation>Все</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/categoryfiltermodel.cpp" line="405"/>
+        <location filename="../gui/transferlistfilters/categoryfiltermodel.cpp" line="440"/>
         <source>Uncategorized</source>
         <translation>Без категории</translation>
     </message>
@@ -3338,70 +3344,70 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>Main</name>
     <message>
-        <location filename="../app/main.cpp" line="143"/>
+        <location filename="../app/main.cpp" line="145"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 — неизвестный параметр командной строки.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="155"/>
-        <location filename="../app/main.cpp" line="166"/>
+        <location filename="../app/main.cpp" line="157"/>
+        <location filename="../app/main.cpp" line="168"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 должен быть единственным параметром командной строки.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="198"/>
+        <location filename="../app/main.cpp" line="200"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Нельзя использовать %1: qBittorrent уже выполняется для этого пользователя.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="306"/>
+        <location filename="../app/main.cpp" line="308"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Запустите программу с параметром -h, чтобы получить справку по параметрам командной строки.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="308"/>
+        <location filename="../app/main.cpp" line="310"/>
         <source>Bad command line</source>
         <translation>Неверная командная строка</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="314"/>
+        <location filename="../app/main.cpp" line="316"/>
         <source>Bad command line: </source>
         <translation>Неверная командная строка: </translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="328"/>
+        <location filename="../app/main.cpp" line="330"/>
         <source>An unrecoverable error occurred.</source>
         <translation>Произошла неустранимая ошибка.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="336"/>
-        <location filename="../app/main.cpp" line="340"/>
+        <location filename="../app/main.cpp" line="338"/>
+        <location filename="../app/main.cpp" line="342"/>
         <source>qBittorrent has encountered an unrecoverable error.</source>
         <translation>qBittorrent столкнулся с неустранимой ошибкой.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="351"/>
+        <location filename="../app/main.cpp" line="353"/>
         <source>Legal Notice</source>
         <translation>Официальное уведомление</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="352"/>
+        <location filename="../app/main.cpp" line="354"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent — это программа для обмена файлами. При запуске торрента его данные становятся доступны другим пользователям посредством раздачи. Вы несёте персональную ответственность за все данные, которыми делитесь.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="353"/>
+        <location filename="../app/main.cpp" line="355"/>
         <source>No further notices will be issued.</source>
         <translation>Никаких дальнейших уведомлений выводиться не будет.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="354"/>
+        <location filename="../app/main.cpp" line="356"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Нажмите %1, чтобы принять и продолжить…</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="366"/>
+        <location filename="../app/main.cpp" line="368"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -3410,17 +3416,17 @@ No further notices will be issued.</source>
 Никаких дальнейших уведомлений выводиться не будет.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="367"/>
+        <location filename="../app/main.cpp" line="369"/>
         <source>Legal notice</source>
         <translation>Официальное уведомление</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="368"/>
+        <location filename="../app/main.cpp" line="370"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="369"/>
+        <location filename="../app/main.cpp" line="371"/>
         <source>I Agree</source>
         <translation>Согласиться</translation>
     </message>
@@ -3879,7 +3885,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1399"/>
         <source>Options saved.</source>
-        <translation>Параметры сохранены.</translation>
+        <translation>Настройки сохранены.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1538"/>
@@ -6106,12 +6112,12 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="3420"/>
         <source>Bypass authentication for clients on localhost</source>
-        <translation>Пропускать аутентификацию клиентов для localhost</translation>
+        <translation>Пропускать аутентификацию клиентов с localhost</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3427"/>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
-        <translation>Пропускать аутентификацию клиентов для разрешённых подсетей</translation>
+        <translation>Пропускать аутентификацию клиентов из разрешённых подсетей</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3440"/>
@@ -7113,7 +7119,7 @@ readme[0-9].txt: фильтровать «readme1.txt», «readme2.txt», но �
     <message>
         <location filename="../gui/optionsdialog.cpp" line="520"/>
         <source>Torrent will stop after files are initially checked.</source>
-        <translation>Торрент остановится по первоначальной проверке файлов.</translation>
+        <translation>Торрент остановится после первичной проверки файлов.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="521"/>
@@ -8123,19 +8129,19 @@ Those plugins were disabled.</source>
         <translation>Путь сохранения:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="425"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="424"/>
         <source>Never</source>
         <translation>Никогда</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="435"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="434"/>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
         <translation>%1 × %2 (есть %3)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="371"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="374"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="370"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="373"/>
         <source>%1 (%2 this session)</source>
         <translation>%1 (%2 за сеанс)</translation>
     </message>
@@ -8146,48 +8152,48 @@ Those plugins were disabled.</source>
         <translation>Н/Д</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="384"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="383"/>
         <source>%1 (seeded for %2)</source>
         <comment>e.g. 4m39s (seeded for 3m10s)</comment>
         <translation>%1 (раздаётся %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="394"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="393"/>
         <source>%1 (%2 max)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
         <translation>%1 (%2 макс.)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="407"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="411"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="406"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="410"/>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
         <translation>%1 (всего %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="417"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="422"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="416"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="421"/>
         <source>%1 (%2 avg.)</source>
         <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
         <translation>%1 (сред. %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="516"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="515"/>
         <source>New Web seed</source>
         <translation>Новый веб-сид</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="520"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="519"/>
         <source>Remove Web seed</source>
         <translation>Удалить веб-сида</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="523"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="522"/>
         <source>Copy Web seed URL</source>
         <translation>Копировать адрес веб-сида</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="525"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="524"/>
         <source>Edit Web seed URL</source>
         <translation>Править адрес веб-сида</translation>
     </message>
@@ -8197,39 +8203,39 @@ Those plugins were disabled.</source>
         <translation>Фильтр файлов…</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="560"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="559"/>
         <source>Speed graphs are disabled</source>
         <translation>Графики скорости отключены</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="560"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="559"/>
         <source>You can enable it in Advanced Options</source>
         <translation>Вы можете включить их в расширенных параметрах</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="573"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="572"/>
         <source>New URL seed</source>
         <comment>New HTTP source</comment>
         <translation>Новый адрес сида</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="574"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="573"/>
         <source>New URL seed:</source>
         <translation>Новый адрес сида:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="580"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="633"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="579"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="632"/>
         <source>This URL seed is already in the list.</source>
         <translation>Этот адрес сида уже есть в списке.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="625"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="624"/>
         <source>Web seed editing</source>
         <translation>Правка веб-сида</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="626"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="625"/>
         <source>Web seed URL:</source>
         <translation>Адрес веб-сида:</translation>
     </message>
@@ -8419,7 +8425,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="410"/>
         <source>Incorrect RSS Item path: %1.</source>
-        <translation>Некорректный путь элемента RSS: %1.</translation>
+        <translation>Неверный путь элемента RSS: %1.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="413"/>
@@ -9066,7 +9072,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../base/settingsstorage.cpp" line="147"/>
         <source>Detected unclean program exit. Using fallback file to restore settings: %1</source>
-        <translation>Обнаружено некорректное завершение программы. Используется резервная копия для восстановления настроек: %1</translation>
+        <translation>Обнаружено неаккуратное завершение программы. Используется резервная копия для восстановления настроек: %1</translation>
     </message>
     <message>
         <location filename="../base/settingsstorage.cpp" line="187"/>
@@ -9665,17 +9671,17 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
 <context>
     <name>TagFilterModel</name>
     <message>
-        <location filename="../gui/transferlistfilters/tagfiltermodel.cpp" line="147"/>
+        <location filename="../gui/transferlistfilters/tagfiltermodel.cpp" line="151"/>
         <source>Tags</source>
         <translation>Метки</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/tagfiltermodel.cpp" line="261"/>
+        <location filename="../gui/transferlistfilters/tagfiltermodel.cpp" line="295"/>
         <source>All</source>
         <translation>Все</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/tagfiltermodel.cpp" line="263"/>
+        <location filename="../gui/transferlistfilters/tagfiltermodel.cpp" line="297"/>
         <source>Untagged</source>
         <translation>Без метки</translation>
     </message>
@@ -10462,7 +10468,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="302"/>
         <source>Download first and last pieces first</source>
-        <translation>Загружать крайние части первыми</translation>
+        <translation>Загружать сперва крайние части</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="309"/>
@@ -10481,17 +10487,17 @@ Please choose a different name and try again.</source>
         <translation>Выберите путь сохранения</translation>
     </message>
     <message>
-        <location filename="../gui/torrentoptionsdialog.cpp" line="354"/>
+        <location filename="../gui/torrentoptionsdialog.cpp" line="355"/>
         <source>Not applicable to private torrents</source>
         <translation>Не применяется к частным торрентам</translation>
     </message>
     <message>
-        <location filename="../gui/torrentoptionsdialog.cpp" line="426"/>
+        <location filename="../gui/torrentoptionsdialog.cpp" line="427"/>
         <source>No share limit method selected</source>
         <translation>Не выбран метод ограничения раздачи</translation>
     </message>
     <message>
-        <location filename="../gui/torrentoptionsdialog.cpp" line="426"/>
+        <location filename="../gui/torrentoptionsdialog.cpp" line="427"/>
         <source>Please select a limit method first</source>
         <translation>Пожалуйста, выберите сначала метод ограничения</translation>
     </message>
@@ -10615,7 +10621,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="306"/>
         <source>&apos;sort&apos; parameter is invalid</source>
-        <translation>некорректный параметр «sort»</translation>
+        <translation>параметр «sort» неверен</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="564"/>
@@ -10997,13 +11003,13 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="98"/>
         <source>Downloading metadata</source>
         <comment>Used when loading a magnet link</comment>
-        <translation>Получение метаданных</translation>
+        <translation>Закачка метаданных</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="99"/>
         <source>[F] Downloading metadata</source>
         <comment>Used when forced to load a magnet link. You probably shouldn&apos;t translate the F.</comment>
-        <translation>[П] Получение метаданных</translation>
+        <translation>[П] Закачка метаданных</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="100"/>
@@ -11042,7 +11048,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="108"/>
         <source>Checking resume data</source>
         <comment>Used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
-        <translation>Проверка данных возобновления</translation>
+        <translation>Сверка данных возобновления</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="109"/>
@@ -11466,13 +11472,13 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistwidget.cpp" line="974"/>
         <source>Move to &amp;top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation>В на&amp;чало</translation>
+        <translation>В &amp;начало</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="976"/>
         <source>Move to &amp;bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation>В &amp;конец</translation>
+        <translation>В ко&amp;нец</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="978"/>
@@ -11487,7 +11493,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="982"/>
         <source>Force r&amp;eannounce</source>
-        <translation>Повторить анонс прин&amp;удительно</translation>
+        <translation>Анонсировать прин&amp;удительно</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="984"/>
@@ -11597,7 +11603,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1000"/>
         <source>Download first and last pieces first</source>
-        <translation>Загружать крайние части первыми</translation>
+        <translation>Загружать сперва крайние части</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1002"/>

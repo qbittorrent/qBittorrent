@@ -1145,7 +1145,7 @@ Fel: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="803"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Bifoga dialogrutan &quot;Lägg till ny torrent&quot; i huvudfönstret</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="815"/>
@@ -1155,17 +1155,17 @@ Fel: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="854"/>
         <source>Peer turnover disconnect percentage</source>
-        <translation>Blandat läge</translation>
+        <translation>Procentandel för bortkoppling av peer-omsättning</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="860"/>
         <source>Peer turnover threshold percentage</source>
-        <translation type="unfinished"></translation>
+        <translation>Procenttröskelandel av peer-omsättning</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="866"/>
         <source>Peer turnover disconnect interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervall för bortkoppling av peer-omsättning</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="878"/>
@@ -1477,17 +1477,17 @@ Vill du göra qBittorrent till standardprogrammet för dessa?</translation>
     <message>
         <location filename="../app/application.cpp" line="923"/>
         <source>The WebUI administrator username is: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Webbanvändargränssnittets administratörsanvändarnamn är: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="924"/>
         <source>The WebUI administrator password was not set. A temporary password is provided for this session: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Webbanvändargränssnittets administratörslösenord har inte angetts. Ett tillfälligt lösenord tillhandahålls för denna session: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="925"/>
         <source>You should set your own password in program preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Du bör ställa in ditt eget lösenord i programinställningar.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="957"/>
@@ -1976,12 +1976,17 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <translation>Det går inte att analysera torrentinformation: ogiltigt format</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="385"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="299"/>
+        <source>Mismatching info-hash detected in resume data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="395"/>
         <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
         <translation>Det gick inte att spara torrentmetadata till &quot;%1&quot;. Fel: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="412"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="422"/>
         <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
         <translation>Det gick inte att spara återupptagningsdata för torrent till &quot;%1&quot;. Fel: %2</translation>
     </message>
@@ -1996,12 +2001,12 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <translation>Det går inte att analysera återställningsdata: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="308"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="318"/>
         <source>Resume data is invalid: neither metadata nor info-hash was found</source>
         <translation>Återställningsdata är ogiltiga: varken metadata eller infohash hittades</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="437"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="447"/>
         <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
         <translation>Det gick inte att spara data till &quot;%1&quot;. Fel: %2</translation>
     </message>
@@ -2084,8 +2089,8 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1564"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1565"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1566"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3688"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4463"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3689"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4464"/>
         <source>ON</source>
         <translation>PÅ</translation>
     </message>
@@ -2097,8 +2102,8 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1564"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1565"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1566"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3688"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4463"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3689"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4464"/>
         <source>OFF</source>
         <translation>AV</translation>
     </message>
@@ -2171,19 +2176,19 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1565"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4463"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4464"/>
         <source>Anonymous mode: %1</source>
         <translation>Anonymt läge: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1566"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3687"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3688"/>
         <source>Encryption support: %1</source>
         <translation>Krypteringsstöd: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1566"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3688"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3689"/>
         <source>FORCED</source>
         <translation>TVINGAT</translation>
     </message>
@@ -2249,7 +2254,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2290"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5471"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5475"/>
         <source>Failed to load torrent. Reason: &quot;%1&quot;</source>
         <translation>Det gick inte att läsa in torrent. Orsak: &quot;%1&quot;</translation>
     </message>
@@ -2264,317 +2269,317 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <translation>Det gick inte att läsa in torrent. Källa: &quot;%1&quot;. Orsak: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2759"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2760"/>
         <source>Detected an attempt to add a duplicate torrent. Merging of trackers is disabled. Torrent: %1</source>
         <translation>Upptäckte ett försök att lägga till en dubblettorrent. Sammanslagning av spårare är inaktiverad. Torrent: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2766"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2767"/>
         <source>Detected an attempt to add a duplicate torrent. Trackers cannot be merged because it is a private torrent. Torrent: %1</source>
         <translation>Upptäckte ett försök att lägga till en dubblettorrent. Spårare kan inte slås samman eftersom det är en privat torrent. Torrent: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2787"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2788"/>
         <source>Detected an attempt to add a duplicate torrent. Trackers are merged from new source. Torrent: %1</source>
         <translation>Upptäckte ett försök att lägga till en dubblettorrent. Spårare slås samman från ny källa. Torrent: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2986"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2987"/>
         <source>UPnP/NAT-PMP support: ON</source>
         <translation>UPnP/NAT-PMP-stöd: PÅ</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3005"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3006"/>
         <source>UPnP/NAT-PMP support: OFF</source>
         <translation>UPnP/NAT-PMP-stöd: AV</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3130"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3131"/>
         <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Det gick inte att exportera torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Orsak: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3185"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3186"/>
         <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
         <translation>Avbröt att spara återupptagningsdata. Antal utestående torrents: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3298"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3299"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>Systemets nätverksstatus har ändrats till %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3298"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3299"/>
         <source>ONLINE</source>
         <translation>UPPKOPPLAD</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3298"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3299"/>
         <source>OFFLINE</source>
         <translation>FRÅNKOPPLAD</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3312"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3313"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>Nätverkskonfigurationen för %1 har ändrats, sessionsbindningen uppdateras</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3330"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3331"/>
         <source>The configured network address is invalid. Address: &quot;%1&quot;</source>
         <translation>Den konfigurerade nätverksadressen är ogiltig. Adress: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3371"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3405"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3372"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3406"/>
         <source>Failed to find the configured network address to listen on. Address: &quot;%1&quot;</source>
         <translation>Det gick inte att hitta den konfigurerade nätverksadressen att lyssna på. Adress: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3384"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3385"/>
         <source>The configured network interface is invalid. Interface: &quot;%1&quot;</source>
         <translation>Det konfigurerade nätverksgränssnittet är ogiltigt. Gränssnitt: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3988"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3989"/>
         <source>Rejected invalid IP address while applying the list of banned IP addresses. IP: &quot;%1&quot;</source>
         <translation>Avvisade ogiltig IP-adress när listan över förbjudna IP-adresser tillämpades. IP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4973"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4974"/>
         <source>Added tracker to torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>Lade till spårare till torrent. Torrent: &quot;%1&quot;. Spårare: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4983"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4984"/>
         <source>Removed tracker from torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>Tog bort spårare från torrent. Torrent: &quot;%1&quot;. Spårare: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4998"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4999"/>
         <source>Added URL seed to torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>Lade till URL-distribution till torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5004"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5005"/>
         <source>Removed URL seed from torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>Tog bort URL-distribution från torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5017"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5018"/>
         <source>Torrent paused. Torrent: &quot;%1&quot;</source>
         <translation>Torrent pausad. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5023"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5024"/>
         <source>Torrent resumed. Torrent: &quot;%1&quot;</source>
         <translation>Torrent återupptogs. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5034"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5035"/>
         <source>Torrent download finished. Torrent: &quot;%1&quot;</source>
         <translation>Torrenthämtningen är klar. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5111"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5112"/>
         <source>Torrent move canceled. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>Torrentflytt avbröts. Torrent: &quot;%1&quot;. Källa: &quot;%2&quot;. Destination: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5122"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5123"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: torrent is currently moving to the destination</source>
         <translation>Det gick inte att ställa torrentflyttning i kö. Torrent: &quot;%1&quot;. Källa: &quot;%2&quot;. Destination: &quot;%3&quot;. Orsak: torrent flyttar för närvarande till destinationen</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5131"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5132"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot; Destination: &quot;%3&quot;. Reason: both paths point to the same location</source>
         <translation>Det gick inte att ställa torrentflyttning i kö. Torrent: &quot;%1&quot;. Källa: &quot;%2&quot; Destination: &quot;%3&quot;. Orsak: båda sökvägarna pekar på samma plats</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5139"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5140"/>
         <source>Enqueued torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>Torrentflytt i kö. Torrent: &quot;%1&quot;. Källa: &quot;%2&quot;. Destination: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5156"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5157"/>
         <source>Start moving torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>Börja flytta torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5205"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5206"/>
         <source>Failed to save Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Det gick inte att spara kategorikonfigurationen. Fil: &quot;%1&quot;. Fel: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5252"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5253"/>
         <source>Failed to parse Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Det gick inte att analysera kategorikonfigurationen. Fil: &quot;%1&quot;. Fel: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5354"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5355"/>
         <source>Recursive download .torrent file within torrent. Source torrent: &quot;%1&quot;. File: &quot;%2&quot;</source>
         <translation>Rekursiv hämtning .torrent-fil i torrent. Källtorrent: &quot;%1&quot;. Fil: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5367"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5368"/>
         <source>Failed to load .torrent file within torrent. Source torrent: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>Det gick inte att läsa in .torrent-filen i torrent. Källtorrent: &quot;%1&quot;. Fil: &quot;%2&quot;. Fel: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5411"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5412"/>
         <source>Successfully parsed the IP filter file. Number of rules applied: %1</source>
         <translation>IP-filterfilen har analyserats. Antal tillämpade regler: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5421"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5422"/>
         <source>Failed to parse the IP filter file</source>
         <translation>Det gick inte att analysera IP-filterfilen</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5703"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5712"/>
         <source>Restored torrent. Torrent: &quot;%1&quot;</source>
         <translation>Återställd torrent. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5707"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5716"/>
         <source>Added new torrent. Torrent: &quot;%1&quot;</source>
         <translation>Lade till ny torrent. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5713"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5722"/>
         <source>Torrent errored. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Torrent har fel. Torrent: &quot;%1&quot;. Fel: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5731"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5782"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5740"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5791"/>
         <source>Removed torrent. Torrent: &quot;%1&quot;</source>
         <translation>Tog bort torrent. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5754"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5763"/>
         <source>Removed torrent and deleted its content. Torrent: &quot;%1&quot;</source>
         <translation>Tog bort torrent och dess innehåll. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5833"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5842"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Filfelvarning. Torrent: &quot;%1&quot;. Fil: &quot;%2&quot;. Orsak: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5844"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5853"/>
         <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
         <translation>UPnP/NAT-PMP-portmappning misslyckades. Meddelande: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5850"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5859"/>
         <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
         <translation>UPnP/NAT-PMP-portmappningen lyckades. Meddelande: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5859"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5868"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
         <translation>IP-filter</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5862"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5871"/>
         <source>filtered port (%1)</source>
         <comment>this peer was blocked. Reason: filtered port (8899).</comment>
         <translation>filtrerad port (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5868"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5877"/>
         <source>privileged port (%1)</source>
         <comment>this peer was blocked. Reason: privileged port (80).</comment>
         <translation>privilegierad port (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5941"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5950"/>
         <source>BitTorrent session encountered a serious error. Reason: &quot;%1&quot;</source>
         <translation>BitTorrent-sessionen stötte på ett allvarligt fel. Orsak: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6133"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6142"/>
         <source>SOCKS5 proxy error. Address: %1. Message: &quot;%2&quot;.</source>
         <translation>SOCKS5 proxy-fel. Adress 1. Meddelande: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6143"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6152"/>
         <source>I2P error. Message: &quot;%1&quot;.</source>
         <translation>I2P-fel. Meddelande: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5865"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5874"/>
         <source>%1 mixed mode restrictions</source>
         <comment>this peer was blocked. Reason: I2P mixed mode restrictions.</comment>
         <translation>%1 begränsningar för blandat läge</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5244"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5245"/>
         <source>Failed to load Categories. %1</source>
         <translation>Det gick inte att läsa in kategorier. %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5259"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5260"/>
         <source>Failed to load Categories configuration. File: &quot;%1&quot;. Error: &quot;Invalid data format&quot;</source>
         <translation>Det gick inte att läsa in kategorikonfigurationen. Fil: &quot;%1&quot;. Fel: &quot;Ogiltigt dataformat&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5776"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5785"/>
         <source>Removed torrent but failed to delete its content and/or partfile. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Tog bort torrent men kunde inte att ta bort innehåll och/eller delfil. Torrent: &quot;%1&quot;. Fel: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5871"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5880"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: uTP is disabled.</comment>
         <translation>%1 är inaktiverad</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5874"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5883"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: TCP is disabled.</comment>
         <translation>%1 är inaktiverad</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5898"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5907"/>
         <source>URL seed DNS lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>DNS-uppslagning av URL-distribution misslyckades. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Fel: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5904"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5913"/>
         <source>Received error message from URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
         <translation>Fick felmeddelande från URL-distribution. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Meddelande: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5913"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5922"/>
         <source>Successfully listening on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;</source>
         <translation>Lyssnar på IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5920"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5929"/>
         <source>Failed to listen on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>Det gick inte att lyssna på IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;. Orsak: &quot;%4&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5928"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5937"/>
         <source>Detected external IP. IP: &quot;%1&quot;</source>
         <translation>Upptäckt extern IP. IP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6043"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6052"/>
         <source>Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation>Fel: Den interna varningskön är full och varningar tas bort, du kan se försämrad prestanda. Borttagen varningstyp: &quot;%1&quot;. Meddelande: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6065"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6074"/>
         <source>Moved torrent successfully. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>Flyttade torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6088"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6097"/>
         <source>Failed to move torrent. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>Det gick inte att flytta torrent. Torrent: &quot;%1&quot;. Källa: &quot;%2&quot;. Destination: &quot;%3&quot;. Orsak: &quot;%4&quot;</translation>
     </message>
@@ -2739,7 +2744,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../app/cmdoptions.cpp" line="512"/>
         <source>Change the WebUI port</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra webbanvändargränssnittsporten</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="515"/>
@@ -2857,17 +2862,17 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
 <context>
     <name>CategoryFilterModel</name>
     <message>
-        <location filename="../gui/transferlistfilters/categoryfiltermodel.cpp" line="238"/>
+        <location filename="../gui/transferlistfilters/categoryfiltermodel.cpp" line="254"/>
         <source>Categories</source>
         <translation>Kategorier</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/categoryfiltermodel.cpp" line="399"/>
+        <location filename="../gui/transferlistfilters/categoryfiltermodel.cpp" line="433"/>
         <source>All</source>
         <translation>Alla</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/categoryfiltermodel.cpp" line="405"/>
+        <location filename="../gui/transferlistfilters/categoryfiltermodel.cpp" line="440"/>
         <source>Uncategorized</source>
         <translation>Utan kategorier</translation>
     </message>
@@ -3338,70 +3343,70 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
 <context>
     <name>Main</name>
     <message>
-        <location filename="../app/main.cpp" line="143"/>
+        <location filename="../app/main.cpp" line="145"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 är en okänd kommandoradsparameter.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="155"/>
-        <location filename="../app/main.cpp" line="166"/>
+        <location filename="../app/main.cpp" line="157"/>
+        <location filename="../app/main.cpp" line="168"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 måste vara den enda kommandoradsparametern.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="198"/>
+        <location filename="../app/main.cpp" line="200"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Du kan inte använda %1: qBittorrent körs redan för denna användare.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="306"/>
+        <location filename="../app/main.cpp" line="308"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Kör programmet med -h optionen för att läsa om kommando parametrar.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="308"/>
+        <location filename="../app/main.cpp" line="310"/>
         <source>Bad command line</source>
         <translation>Ogiltig kommandorad</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="314"/>
+        <location filename="../app/main.cpp" line="316"/>
         <source>Bad command line: </source>
         <translation>Ogiltig kommandorad:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="328"/>
+        <location filename="../app/main.cpp" line="330"/>
         <source>An unrecoverable error occurred.</source>
         <translation>Ett oåterställbart fel inträffade.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="336"/>
-        <location filename="../app/main.cpp" line="340"/>
+        <location filename="../app/main.cpp" line="338"/>
+        <location filename="../app/main.cpp" line="342"/>
         <source>qBittorrent has encountered an unrecoverable error.</source>
         <translation>qBittorrent har stött på ett oåterställbart fel.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="351"/>
+        <location filename="../app/main.cpp" line="353"/>
         <source>Legal Notice</source>
         <translation>Juridisk information</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="352"/>
+        <location filename="../app/main.cpp" line="354"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent är ett fildelningsprogram. När du kör en torrent kommer dess data att göras tillgängliga för andra genom sändning. Allt innehåll som du delar är fullständigt på ditt eget ansvar.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="353"/>
+        <location filename="../app/main.cpp" line="355"/>
         <source>No further notices will be issued.</source>
         <translation>Inga ytterligare notiser kommer att utfärdas.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="354"/>
+        <location filename="../app/main.cpp" line="356"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Tryck på %1-tangenten för att godkänna och fortsätta...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="366"/>
+        <location filename="../app/main.cpp" line="368"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -3410,17 +3415,17 @@ No further notices will be issued.</source>
 Inga ytterligare notiser kommer att utfärdas.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="367"/>
+        <location filename="../app/main.cpp" line="369"/>
         <source>Legal notice</source>
         <translation>Juridisk information</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="368"/>
+        <location filename="../app/main.cpp" line="370"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="369"/>
+        <location filename="../app/main.cpp" line="371"/>
         <source>I Agree</source>
         <translation>Jag godkänner</translation>
     </message>
@@ -7198,7 +7203,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; men int
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1233"/>
         <source>WebUI configuration failed. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Webbanvändargränssnittskonfigurationen misslyckades. Orsak: %1</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1770"/>
@@ -7213,12 +7218,12 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; men int
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1891"/>
         <source>The WebUI username must be at least 3 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Webbanvändargränssnittsanvändarnamnet måste vara minst 3 tecken långt.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1898"/>
         <source>The WebUI password must be at least 6 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösenordet för webbanvändargränssnittet måste vara minst 6 tecken långt.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1908"/>
@@ -7281,7 +7286,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; men int
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1908"/>
         <source>The alternative WebUI files location cannot be blank.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternativa platsen för webbanvändargränssnittsfiler får inte vara tom.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1945"/>
@@ -8122,19 +8127,19 @@ De här insticksmodulerna inaktiverades.</translation>
         <translation>Sparsökväg:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="425"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="424"/>
         <source>Never</source>
         <translation>Aldrig</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="435"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="434"/>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
         <translation>%1 x %2 (har %3)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="371"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="374"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="370"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="373"/>
         <source>%1 (%2 this session)</source>
         <translation>%1 (%2 denna session)</translation>
     </message>
@@ -8145,48 +8150,48 @@ De här insticksmodulerna inaktiverades.</translation>
         <translation>Ingen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="384"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="383"/>
         <source>%1 (seeded for %2)</source>
         <comment>e.g. 4m39s (seeded for 3m10s)</comment>
         <translation>%1 (distribuerad i %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="394"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="393"/>
         <source>%1 (%2 max)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
         <translation>%1 (%2 max)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="407"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="411"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="406"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="410"/>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
         <translation>%1 (%2 totalt)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="417"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="422"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="416"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="421"/>
         <source>%1 (%2 avg.)</source>
         <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
         <translation>%1 (%2 genomsnitt)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="516"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="515"/>
         <source>New Web seed</source>
         <translation>Ny webbdistribution</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="520"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="519"/>
         <source>Remove Web seed</source>
         <translation>Ta bort webbdistribution</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="523"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="522"/>
         <source>Copy Web seed URL</source>
         <translation>Kopiera URL för webbdistribution</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="525"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="524"/>
         <source>Edit Web seed URL</source>
         <translation>Ändra URL för webbdistribution</translation>
     </message>
@@ -8196,39 +8201,39 @@ De här insticksmodulerna inaktiverades.</translation>
         <translation>Filtrera filer...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="560"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="559"/>
         <source>Speed graphs are disabled</source>
         <translation>Hastighetsdiagram är inaktiverade</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="560"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="559"/>
         <source>You can enable it in Advanced Options</source>
         <translation>Du kan aktivera det i Avancerade alternativ</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="573"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="572"/>
         <source>New URL seed</source>
         <comment>New HTTP source</comment>
         <translation>Ny URL-distribution</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="574"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="573"/>
         <source>New URL seed:</source>
         <translation>Ny URL-distribution:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="580"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="633"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="579"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="632"/>
         <source>This URL seed is already in the list.</source>
         <translation>Den här URL-distributionen finns redan i listan.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="625"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="624"/>
         <source>Web seed editing</source>
         <translation>Redigering av webbdistribution</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="626"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="625"/>
         <source>Web seed URL:</source>
         <translation>URL för webbdistribution:</translation>
     </message>
@@ -9664,17 +9669,17 @@ Klicka på knappen &quot;Sökinsticksmoduler...&quot; längst ner till höger av
 <context>
     <name>TagFilterModel</name>
     <message>
-        <location filename="../gui/transferlistfilters/tagfiltermodel.cpp" line="147"/>
+        <location filename="../gui/transferlistfilters/tagfiltermodel.cpp" line="151"/>
         <source>Tags</source>
         <translation>Taggar</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/tagfiltermodel.cpp" line="261"/>
+        <location filename="../gui/transferlistfilters/tagfiltermodel.cpp" line="295"/>
         <source>All</source>
         <translation>Alla</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/tagfiltermodel.cpp" line="263"/>
+        <location filename="../gui/transferlistfilters/tagfiltermodel.cpp" line="297"/>
         <source>Untagged</source>
         <translation>Utan taggar</translation>
     </message>
@@ -10480,17 +10485,17 @@ Välj ett annat namn och försök igen.</translation>
         <translation>Välj sparsökväg</translation>
     </message>
     <message>
-        <location filename="../gui/torrentoptionsdialog.cpp" line="354"/>
+        <location filename="../gui/torrentoptionsdialog.cpp" line="355"/>
         <source>Not applicable to private torrents</source>
         <translation>Gäller inte privata torrenter</translation>
     </message>
     <message>
-        <location filename="../gui/torrentoptionsdialog.cpp" line="426"/>
+        <location filename="../gui/torrentoptionsdialog.cpp" line="427"/>
         <source>No share limit method selected</source>
         <translation>Inge delningsgränsmetod vald</translation>
     </message>
     <message>
-        <location filename="../gui/torrentoptionsdialog.cpp" line="426"/>
+        <location filename="../gui/torrentoptionsdialog.cpp" line="427"/>
         <source>Please select a limit method first</source>
         <translation>Välj en gränsmetod först</translation>
     </message>
@@ -11854,22 +11859,22 @@ Välj ett annat namn och försök igen.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="400"/>
         <source>Using built-in WebUI.</source>
-        <translation type="unfinished"></translation>
+        <translation>Använder inbyggt webbanvändargränssnittet.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="402"/>
         <source>Using custom WebUI. Location: &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Använder anpassat webbanvändargränssnitt. Plats: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="414"/>
         <source>WebUI translation for selected locale (%1) has been successfully loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Webbanvändargränssnittsöversättning för valt språk (%1) har lästs in.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="419"/>
         <source>Couldn&apos;t load WebUI translation for selected locale (%1).</source>
-        <translation type="unfinished"></translation>
+        <translation>Det gick inte att läsa in webbgränssnittsöversättning för valt språk (%1).</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="470"/>
@@ -11912,27 +11917,27 @@ Välj ett annat namn och försök igen.</translation>
     <message>
         <location filename="../webui/webui.cpp" line="63"/>
         <source>Credentials are not set</source>
-        <translation type="unfinished"></translation>
+        <translation>Inloggningsuppgifter är inte inställda</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="114"/>
         <source>WebUI: HTTPS setup successful</source>
-        <translation type="unfinished"></translation>
+        <translation>Webbanvändargränssnitt: HTTPS-installationen lyckades</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="116"/>
         <source>WebUI: HTTPS setup failed, fallback to HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>Webbanvändargränssnitt: HTTPS-installationen misslyckades, återgång till HTTP</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="128"/>
         <source>WebUI: Now listening on IP: %1, port: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Webbanvändargränssnitt: Lyssnar nu på IP: %1, port: %2</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="132"/>
         <source>Unable to bind to IP: %1, port: %2. Reason: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Det gick inte att binda till IP: %1, port: %2. Orsak: %3</translation>
     </message>
 </context>
 <context>

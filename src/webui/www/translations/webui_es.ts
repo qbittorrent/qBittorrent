@@ -1726,7 +1726,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <translation>Límite de token de Bdecode:</translation>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
@@ -1738,11 +1738,11 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Límite de profundidad de Bdecode:</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>Límite de tamaño de archivo .torrent</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>
@@ -1758,27 +1758,27 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation>Si el &amp;quot;modo mixto&amp;quot; está habilitado, los torrents I2P también pueden obtener pares de otras fuentes además del rastreador y conectarse a direcciones IP normales, sin proporcionar ninguna anonimización. Esto puede ser útil si el usuario no está interesado en la anonimización de I2P, pero aún desea poder conectarse con pares I2P.</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Cantidad de entrada I2P (requiere libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation>I2P (Experimental) (requiere libtorrent &amp;gt;= 2.0)</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Cantidad saliente I2P (requiere libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Longitud de salida I2P (requiere libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Longitud de entrada I2P (requiere libtorrent &amp;gt;= 2.0):</translation>
     </message>
 </context>
 <context>
@@ -2142,7 +2142,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Coincidir con todas las ocurrencias</translation>
     </message>
 </context>
 <context>
@@ -3826,7 +3826,7 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Añadir etiquetas</translation>
     </message>
 </context>
 <context>

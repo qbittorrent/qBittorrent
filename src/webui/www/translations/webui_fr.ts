@@ -297,7 +297,7 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>Télécharger les torrents depuis leurs URL ou liens magnets</translation>
+        <translation>Télécharger les torrents depuis leurs URL ou liens magnet</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
@@ -357,7 +357,7 @@
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation>Associer aux liens magnets…</translation>
+        <translation>Associer aux liens magnet…</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
@@ -672,7 +672,7 @@
     </message>
     <message>
         <source>Torrent Queueing</source>
-        <translation>Priorisation des torrents</translation>
+        <translation>File d'attente des torrents</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -1130,7 +1130,7 @@
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation>Algorithme de mode mixte μTP-TCP :</translation>
+        <translation>Algorithme du mode mixte μTP-TCP :</translation>
     </message>
     <message>
         <source>Upload rate based</source>
@@ -1390,7 +1390,7 @@
     </message>
     <message>
         <source>RSS Smart Episode Filter</source>
-        <translation>Filtre d'épisodes intelligent par RSS</translation>
+        <translation>Filtre d'épisode intelligent par RSS</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1518,7 +1518,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation>Maximum d'annonces HTTP parallèles :</translation>
+        <translation>Nombre maximal d'annonces HTTP simultanées :</translation>
     </message>
     <message>
         <source>Enable OS cache</source>
@@ -1685,7 +1685,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation>Ports de sortie (Maxi) [0: désactivé]:</translation>
+        <translation>Ports de sortie (Max.) [0: désactivé]:</translation>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
@@ -1709,11 +1709,11 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation>Timeout lors de l’arrêt du tracker [0: désactivé]:</translation>
+        <translation>Délai d'attente lors de l’arrêt du tracker [0: désactivé] :</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation>Ports de sortie (Mini) [0: désactivé]:</translation>
+        <translation>Ports de sortie (Min.) [0: désactivé]:</translation>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1725,7 +1725,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation>Limite de jeton pour Bdecode :</translation>
+        <translation>Limite de jetons pour Bdecode :</translation>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
@@ -1737,7 +1737,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation>Limite de profondeur pour Bdecode :</translation>
+        <translation>Limite de la profondeur pour Bdecode :</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
@@ -1753,7 +1753,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation>Mode mixe</translation>
+        <translation>Mode mixte</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
@@ -2289,7 +2289,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Errored (0)</source>
-        <translation>En erreur (0)</translation>
+        <translation>Erronés (0)</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -2325,7 +2325,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Errored (%1)</source>
-        <translation>En erreur (%1)</translation>
+        <translation>Erronés (%1)</translation>
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
@@ -2445,7 +2445,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation>Limite d'émission</translation>
+        <translation>Limite d'envoi</translation>
     </message>
     <message>
         <source>Downloaded</source>
@@ -2671,7 +2671,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Errored</source>
-        <translation>En erreur</translation>
+        <translation>Erroné</translation>
     </message>
     <message>
         <source>[F] Downloading</source>
@@ -2718,7 +2718,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <name>TransferListFiltersWidget</name>
     <message>
         <source>Status</source>
-        <translation>États</translation>
+        <translation>État</translation>
     </message>
     <message>
         <source>Categories</source>
@@ -3759,7 +3759,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
-        <translation>Utiliser le filtre d'épisodes intelligent</translation>
+        <translation>Utiliser le filtre d'épisode intelligent</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
@@ -3804,7 +3804,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation>Le filtre d'épisodes intelligent vérifiera le numéro de l'épisode afin d'éviter le téléchargement de doublons.
+        <translation>Le filtre d'épisode intelligent vérifiera le numéro de l'épisode afin d'éviter le téléchargement de doublons.
 Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date supportent également - comme séparateur)</translation>
     </message>
     <message>
@@ -3930,7 +3930,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Status</source>
-        <translation>États</translation>
+        <translation>État</translation>
     </message>
     <message>
         <source>Timestamp</source>

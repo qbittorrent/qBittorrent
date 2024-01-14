@@ -2954,11 +2954,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>yhteensä minuutteja</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>ei käynnissä minuutteja</translation>
     </message>
 </context>
 <context>

@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>Необходим JavaScript! Вы должны активировать JavaScript для корректной работы веб-интерфейса</translation>
+        <translation>Необходим JavaScript! Вы должны активировать JavaScript для правильной работы веб-интерфейса</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -696,11 +696,11 @@
     </message>
     <message>
         <source>Bypass authentication for clients on localhost</source>
-        <translation>Пропускать аутентификацию клиентов для localhost</translation>
+        <translation>Пропускать аутентификацию клиентов с localhost</translation>
     </message>
     <message>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
-        <translation>Пропускать аутентификацию клиентов для разрешённых подсетей</translation>
+        <translation>Пропускать аутентификацию клиентов из разрешённых подсетей</translation>
     </message>
     <message>
         <source>Update my dynamic domain name</source>
@@ -1610,7 +1610,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
-        <translation>Хранилище данных возобновления (нужен перезапуск):</translation>
+        <translation>Место данных возобновления (нужен перезапуск):</translation>
     </message>
     <message>
         <source>Fastresume files</source>
@@ -2680,7 +2680,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Downloading metadata</source>
-        <translation>Получение метаданных</translation>
+        <translation>Закачка метаданных</translation>
     </message>
     <message>
         <source>Checking</source>
@@ -2700,7 +2700,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation>Проверка данных возобновления</translation>
+        <translation>Сверка данных возобновления</translation>
     </message>
     <message>
         <source>Stalled</source>
@@ -2712,7 +2712,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation>[П] Получение метаданных</translation>
+        <translation>[П] Закачка метаданных</translation>
     </message>
 </context>
 <context>
@@ -2805,7 +2805,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation>Загружать крайние части первыми</translation>
+        <translation>Загружать сперва крайние части</translation>
     </message>
     <message>
         <source>Automatic Torrent Management</source>

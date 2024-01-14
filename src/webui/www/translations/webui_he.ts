@@ -52,15 +52,15 @@
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>מטא־נתונים התקבלו</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>קבצים שנבדקו</translation>
     </message>
     <message>
         <source>Stop condition:</source>
-        <translation type="unfinished" />
+        <translation>תנאי עצירה :</translation>
     </message>
     <message>
         <source>None</source>
@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>הוספה לראש התור</translation>
     </message>
 </context>
 <context>
@@ -609,11 +609,11 @@
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation type="unfinished" />
+        <translation>האם אתה רוצה להמשיך את כל הטורנטים ?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation type="unfinished" />
+        <translation>האם אתה רוצה לעצור את כל הטורנטים ?</translation>
     </message>
     <message>
         <source>Execution Log</source>
@@ -621,7 +621,7 @@
     </message>
     <message>
         <source>Log</source>
-        <translation type="unfinished" />
+        <translation>דו"ח</translation>
     </message>
 </context>
 <context>
@@ -1530,7 +1530,7 @@
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation>מילישנייה</translation>
     </message>
     <message>
         <source>Excluded file names</source>
@@ -1542,7 +1542,7 @@
     </message>
     <message>
         <source>Run external program on torrent finished</source>
-        <translation type="unfinished" />
+        <translation>הרצת תוכנית בעת סיום הטורנט</translation>
     </message>
     <message>
         <source>Whitelist for filtering HTTP Host header values.
@@ -1558,7 +1558,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Run external program on torrent added</source>
-        <translation type="unfinished" />
+        <translation>הרצת תוכנית בעת הוספת טורנט</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
@@ -1578,7 +1578,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>קבצים שנבדקו</translation>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
@@ -1590,11 +1590,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>מטא־נתונים התקבלו</translation>
     </message>
     <message>
         <source>Torrent stop condition:</source>
-        <translation type="unfinished" />
+        <translation>תנאי עצירה :</translation>
     </message>
     <message>
         <source>None</source>
@@ -1702,7 +1702,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>הוספה לראש התור</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
@@ -1754,7 +1754,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>מצב מעורבב</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>

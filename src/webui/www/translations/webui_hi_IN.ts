@@ -230,7 +230,7 @@
     </message>
     <message>
         <source>Cookie:</source>
-        <translation>कुकी :</translation>
+        <translation>कुकी:</translation>
     </message>
     <message>
         <source>More information</source>

@@ -52,7 +52,7 @@
     </message>
     <message>
         <source>Metadata received</source>
-        <translation>Метададзеныя атрыманы</translation>
+        <translation>Метаданыя атрыманы</translation>
     </message>
     <message>
         <source>Files checked</source>
@@ -181,7 +181,7 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Стасунак раздачы мусіць быць паміж 0 і 9998.</translation>
+        <translation>Рэйтынг раздачы павінен быць у дыяпазоне ад 0 да 9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
@@ -250,7 +250,7 @@
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation>Абмежаванне хуткасці спампавання</translation>
+        <translation>Абмежаванне хуткасці спампоўвання</translation>
     </message>
     <message>
         <source>Rename torrent</source>
@@ -345,7 +345,7 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation>Парог хуткасці спампоўвання павінен быць большым за 0.</translation>
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
@@ -393,7 +393,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Выдаліць выбраныя торэнты са спісу перадач?</translation>
     </message>
 </context>
 <context>
@@ -488,7 +488,7 @@
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation>Агульнае абмежаванне хуткасці спампавання</translation>
+        <translation>Агульнае абмежаванне хуткасці спампоўвання</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -660,7 +660,7 @@
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation>Апавяшчэнне па электроннай пошце пасля завяршэння спампавання</translation>
+        <translation>Апавяшчэнне па электроннай пошце пасля завяршэння спампоўвання</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -772,7 +772,7 @@
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation>Максімальная колькасцьзлучэнняў на торэнт:</translation>
+        <translation>Максімальная колькасць злучэнняў на торэнт:</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
@@ -780,7 +780,7 @@
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Максімальная колькасць слотаў аддачы на торэнт:</translation>
+        <translation>Максімальная колькасць слотаў раздачы на торэнт:</translation>
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
@@ -836,11 +836,11 @@
     </message>
     <message>
         <source>Upload:</source>
-        <translation>Аддача:</translation>
+        <translation>Раздача:</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation>Спампаванне:</translation>
+        <translation>Спампоўванне:</translation>
     </message>
     <message>
         <source>Alternative Rate Limits</source>
@@ -930,7 +930,7 @@
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation>Не ўлічваць колькасць павольных торэнтаў ў гэтых абмежаваннях</translation>
+        <translation>Не ўлічваць колькасць павольных торэнтаў у гэтых абмежаваннях</translation>
     </message>
     <message>
         <source>then</source>
@@ -998,11 +998,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Імя карыстальніка вэб-інтэрфейсу павінна быць не меншым за 3 знакі.</translation>
+        <translation>Імя карыстальніка вэб-інтэрфейсу павінна змяшчаць не менш за 3 сімвалы.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Пароль вэб-інтэрфейсу павінен быць не менш за 6 знакаў.</translation>
+        <translation>Пароль вэб-інтэрфейсу павінен змяшчаць не менш за 6 сімвалаў.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1258,7 +1258,7 @@
     </message>
     <message>
         <source>Upload choking algorithm:</source>
-        <translation type="unfinished" />
+        <translation>Алгарытм прыглушэння раздачы</translation>
     </message>
     <message>
         <source>Seeding Limits</source>
@@ -1590,7 +1590,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Metadata received</source>
-        <translation>Метададзеныя атрыманы</translation>
+        <translation>Метаданыя атрыманы</translation>
     </message>
     <message>
         <source>Torrent stop condition:</source>
@@ -1606,7 +1606,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation>База дадзеных SQLite (эксперыментальная)</translation>
+        <translation>База даных SQLite (эксперыментальная)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
@@ -1662,7 +1662,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
+        <translation>Выкарыстоўваць проксі для мэт RSS</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
@@ -1812,7 +1812,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Хуткасць спампавання</translation>
+        <translation>Хуткасць спампоўвання</translation>
     </message>
     <message>
         <source>Up Speed</source>
@@ -1845,7 +1845,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation>Are you sure you want to permanently ban the selected peers?</translation>
+        <translation>Сапраўды хочаце назаўсёды заблакіраваць выбраныя піры?</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
@@ -1917,7 +1917,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <name>PropertiesWidget</name>
     <message>
         <source>Downloaded:</source>
-        <translation>Сцягнута:</translation>
+        <translation>Спампавана:</translation>
     </message>
     <message>
         <source>Transfer</source>
@@ -1942,7 +1942,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Download Speed:</source>
-        <translation>Хуткасць спампавання:</translation>
+        <translation>Хуткасць спампоўвання:</translation>
     </message>
     <message>
         <source>Upload Speed:</source>
@@ -1954,7 +1954,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Download Limit:</source>
-        <translation>Абмежаванне спампавання:</translation>
+        <translation>Абмежаванне спампоўвання:</translation>
     </message>
     <message>
         <source>Upload Limit:</source>
@@ -1978,7 +1978,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation>Стасунак раздачы:</translation>
+        <translation>Рэйтынг раздачы:</translation>
     </message>
     <message>
         <source>Reannounce In:</source>
@@ -2046,7 +2046,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation>Абмежаванне сцягвання:</translation>
+        <translation>Абмежаванне спампоўвання:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
@@ -2102,7 +2102,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
+        <translation>Не ўдалося перайменаваць: файл або папка з такой назвай ужо існуе</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2207,11 +2207,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>All-time share ratio:</source>
-        <translation>All-time share ratio:</translation>
+        <translation>Агульны рэйтынг раздачы:</translation>
     </message>
     <message>
         <source>All-time download:</source>
-        <translation>Сцягнута за ўвесь час:</translation>
+        <translation>Спампавана за ўвесь час:</translation>
     </message>
     <message>
         <source>Session waste:</source>
@@ -2219,7 +2219,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>All-time upload:</source>
-        <translation>Зацягнута за ўвесь час:</translation>
+        <translation>Раздадзена за ўвесь час:</translation>
     </message>
     <message>
         <source>Total buffer size:</source>
@@ -2491,7 +2491,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation>Абмежаванне стасунку</translation>
+        <translation>Абмежаванне рэйтынгу</translation>
     </message>
     <message>
         <source>Last Seen Complete</source>
@@ -2742,7 +2742,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <name>TransferListWidget</name>
     <message>
         <source>Torrent Download Speed Limiting</source>
-        <translation>Абмежаванне хуткасці спампавання торэнта</translation>
+        <translation>Абмежаванне хуткасці спампоўвання торэнта</translation>
     </message>
     <message>
         <source>Torrent Upload Speed Limiting</source>
@@ -2750,7 +2750,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation>Пераназваць</translation>
+        <translation>Перайменаваць</translation>
     </message>
     <message>
         <source>Resume</source>
@@ -2769,7 +2769,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation>Абмежаваць стасунак раздачы...</translation>
+        <translation>Абмежаваць рэйтынг раздачы...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
@@ -2777,7 +2777,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation>Абмежаваць хуткасць спампавання...</translation>
+        <translation>Абмежаваць хуткасць спампоўвання...</translation>
     </message>
     <message>
         <source>Move up</source>
@@ -2835,7 +2835,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Пераназваць...</translation>
+        <translation>Перайменаваць...</translation>
     </message>
     <message>
         <source>Download in sequential order</source>
@@ -2938,7 +2938,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <name>UpDownRatioDialog</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>Абмежаванне стасунку раздача/спампоўка торэнта</translation>
+        <translation>Абмежаванне рэйтынгу раздачы/спампоўвання торэнта</translation>
     </message>
     <message>
         <source>Use global share limit</source>
@@ -2983,11 +2983,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation>Сцягнуць торэнты па спасылкам</translation>
+        <translation>Спампаваць торэнты па спасылках</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation>Сцягнуць</translation>
+        <translation>Спампаваць</translation>
     </message>
     <message>
         <source>Add Torrent Links</source>
@@ -3525,7 +3525,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Torrents: (double-click to download)</source>
-        <translation>Торэнты: (двайны націск для спампоўвання)</translation>
+        <translation>Торэнты: (падвойнае націсканне, каб спампаваць)</translation>
     </message>
     <message>
         <source>Open news URL</source>
@@ -3569,7 +3569,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation>Сапраўды выдаліць вылучаныя RSS-каналы?</translation>
+        <translation>Сапраўды выдаліць выбраныя RSS-каналы?</translation>
     </message>
     <message>
         <source>New subscription...</source>
@@ -3592,7 +3592,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
-        <translation>* to match zero or more of any characters</translation>
+        <translation>* адпавядае нулю або некалькім любым сімвалам</translation>
     </message>
     <message>
         <source> will match all articles.</source>
@@ -3628,7 +3628,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>? to match any single character</source>
-        <translation>? to match any single character</translation>
+        <translation>? адпавядае аднаму любому сімвалу</translation>
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
@@ -3668,7 +3668,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation>Упэўнены, што хочаце ачысціць спіс спампаваных выпускаў для выбранага правіла?</translation>
+        <translation>Сапраўды ачысціць спіс спампаваных эпізодаў для выбранага правіла?</translation>
     </message>
     <message>
         <source>Must Contain:</source>
@@ -3696,7 +3696,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation>Сапраўды жадаеце выдаліць вылучаныя правілы спампоўвання?</translation>
+        <translation>Сапраўды выдаліць выбраныя правілы спампоўвання?</translation>
     </message>
     <message>
         <source>Use global settings</source>
@@ -3860,7 +3860,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unread</source>
-        <translation>Не прачытана</translation>
+        <translation>Непрачытаныя</translation>
     </message>
 </context>
 <context>

@@ -1726,7 +1726,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode tokeni həddi:</translation>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
@@ -1738,11 +1738,11 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode dərinliyi həddi:</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>.torrent faylı ölçüsünün həddi:</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>
@@ -1758,27 +1758,27 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation>Əgər &amp;quot;qarışıq rejim&amp;quot; aktiv edilərsə I2P torrentlərə izləyicidən başqa digər mənbələrdən iştirakçılar əldə etməyə və heç bir anonimləşdirmə təmin etməyən adi IP-lərə qoşulmağa icazə verilir. Bu, istifadəçiyə I2P-nin anonimləşdirilmə maraqlı deyilsə, lakin yenə də I2P iştirakçılarına qoşulmaq istədiyi halda faydalı ola bilər.</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Daxil olan İ2P kəmiyyəti (libtorrent &amp;gt;= 2.0 tələb olunur):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation>İ2P (Təcrübi) (libtorrent &amp;gt;= 2.0 tələb olunur)</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Çıxan İ2P kəmiyyəti (libtorrent &amp;gt;= 2.0 tələb olunur):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Çıxan İ2P uzunluğu (libtorrent &amp;gt;= 2.0 tələb olunur):</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Daxil olan İ2P uzunluğu (libtorrent &amp;gt;= 2.0 tələb olunur):</translation>
     </message>
 </context>
 <context>
@@ -2142,7 +2142,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Bütün hadisələri uyğunlaşdırın</translation>
     </message>
 </context>
 <context>
@@ -3826,7 +3826,7 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Etiketlər əlavə edin:</translation>
     </message>
 </context>
 <context>
