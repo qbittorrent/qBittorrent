@@ -1798,11 +1798,11 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>Behold fravalgte filer i mappa «.unwanted»</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>Slå på MOTW (internett-markør) for nedlastede filer (krever macOS eller Windows):</translation>
     </message>
 </context>
 <context>
@@ -2386,11 +2386,11 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>Flytter (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>Flytter (0)</translation>
     </message>
 </context>
 <context>
@@ -2971,7 +2971,7 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Kommentar</translation>
     </message>
 </context>
 <context>
@@ -3519,10 +3519,6 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     <message>
         <source>New name:</source>
         <translation>Nytt navn:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Endrer navn)</translation>
     </message>
 </context>
 <context>

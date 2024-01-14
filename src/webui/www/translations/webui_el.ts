@@ -1798,11 +1798,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>Διατήρηση των μη επιλεγμένων αρχείων στον φάκελο «.unwanted».</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>Ενεργοποίηση του Mark-of-the-Web (MOTW) για τα ληφθέντα αρχεία (απαιτείται macOS ή Windows)</translation>
     </message>
 </context>
 <context>
@@ -2386,11 +2386,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>Μετακίνηση (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>Μετακίνηση (0)</translation>
     </message>
 </context>
 <context>
@@ -2971,7 +2971,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Σχόλιο</translation>
     </message>
 </context>
 <context>
@@ -3519,10 +3519,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>New name:</source>
         <translation>Νέο όνομα:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Μετονομασία)</translation>
     </message>
 </context>
 <context>

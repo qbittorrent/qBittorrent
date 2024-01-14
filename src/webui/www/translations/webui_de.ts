@@ -1800,11 +1800,11 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>Behalte abgewählte Dateien im Verzeichnis ".unwanted"</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>Aktiviere 'Mark-of-the-Web' (MOTW) für heruntergeladene Dateien (erfordert macOS oder Windows):</translation>
     </message>
 </context>
 <context>
@@ -2388,11 +2388,11 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>Verschiebe (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>Verschiebe (0)</translation>
     </message>
 </context>
 <context>
@@ -2973,7 +2973,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Kommentar</translation>
     </message>
 </context>
 <context>
@@ -3521,10 +3521,6 @@ Platzhalter '*' kann verwendet werden.</translation>
     <message>
         <source>New name:</source>
         <translation>Neuer Name:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Umbenennen)</translation>
     </message>
 </context>
 <context>

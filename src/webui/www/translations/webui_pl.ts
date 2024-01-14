@@ -1798,11 +1798,11 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>Zachowaj niewybrane pliki w folderze ".unwanted"</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>Włącz Mark-of-the-Web (MOTW) dla pobranych plików (wymaga systemu macOS lub Windows):</translation>
     </message>
 </context>
 <context>
@@ -2386,11 +2386,11 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>Przenoszenie (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>Przenoszenie (0)</translation>
     </message>
 </context>
 <context>
@@ -2971,7 +2971,7 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Komentarz</translation>
     </message>
 </context>
 <context>
@@ -3519,10 +3519,6 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     <message>
         <source>New name:</source>
         <translation>Nowa nazwa:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Zmiana nazwy)</translation>
     </message>
 </context>
 <context>

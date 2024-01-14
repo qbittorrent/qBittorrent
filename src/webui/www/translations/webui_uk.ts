@@ -1798,11 +1798,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>Зберігайте невибрані файли у теці ".unwanted"</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>Увімкніть Mark-of-the-Web (MOTW) для завантажених файлів (потрібно macOS або Windows):</translation>
     </message>
 </context>
 <context>
@@ -2386,11 +2386,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>Переміщення (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>Переміщення (0)</translation>
     </message>
 </context>
 <context>
@@ -2971,7 +2971,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Коментар</translation>
     </message>
 </context>
 <context>
@@ -3519,10 +3519,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>New name:</source>
         <translation>Нова назва:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Перейменування)</translation>
     </message>
 </context>
 <context>

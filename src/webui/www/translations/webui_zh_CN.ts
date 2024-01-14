@@ -1798,11 +1798,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>将未选中的文件保留在 ".unwanted" 文件夹中</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>开启已下载文件 Mark-of-the-Web (MOTW)（需要 macOS 或 Windows 系统）：</translation>
     </message>
 </context>
 <context>
@@ -2386,11 +2386,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>正在移动 (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>正在移动 (0)</translation>
     </message>
 </context>
 <context>
@@ -2971,7 +2971,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>注释</translation>
     </message>
 </context>
 <context>
@@ -3519,10 +3519,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>New name:</source>
         <translation>新名称：</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">正在重命名）</translation>
     </message>
 </context>
 <context>

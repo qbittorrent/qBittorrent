@@ -1306,7 +1306,7 @@
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation type="unfinished" />
+        <translation>Blokir klien setelah kegagalan berturut-turut:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
@@ -1470,7 +1470,7 @@
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>Log peringatan performa</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
@@ -1734,7 +1734,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Saat jumlah waktu pembenihan terpenuhi</translation>
     </message>
     <message>
         <source>(None)</source>
@@ -1750,7 +1750,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation type="unfinished" />
+        <translation>Reset ke default jika kosong</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
@@ -1782,11 +1782,11 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Saat waktu pembenihan nonaktif terpenuhi</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Mode gabungan</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
@@ -1794,11 +1794,11 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>(Auto detect if empty)</source>
-        <translation type="unfinished" />
+        <translation>(Deteksi otomatis jika kosong)</translation>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>Simpan file yang tidak dipilih ke folder ".unwanted"</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
@@ -2546,7 +2546,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation type="unfinished" />
+        <translation>Umumkan ulang di</translation>
     </message>
 </context>
 <context>
@@ -2613,7 +2613,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Leeches</source>
-        <translation type="unfinished" />
+        <translation>Pengunduh</translation>
     </message>
     <message>
         <source>Remove tracker</source>
@@ -2649,7 +2649,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Times Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Jumlah diunduh</translation>
     </message>
     <message>
         <source>Add trackers...</source>
@@ -2998,11 +2998,11 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>jumlah menit</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>menit tidak aktif</translation>
     </message>
 </context>
 <context>
@@ -3103,7 +3103,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1y %2d</translation>
     </message>
 </context>
 <context>
@@ -3499,7 +3499,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Description page URL</source>
-        <translation type="unfinished" />
+        <translation>URL halaman deskripsi</translation>
     </message>
     <message>
         <source>Open description page</source>

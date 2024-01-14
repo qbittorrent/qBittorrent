@@ -2386,11 +2386,11 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>Pārvieto (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>Pārvieto (0)</translation>
     </message>
 </context>
 <context>
@@ -3519,10 +3519,6 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     <message>
         <source>New name:</source>
         <translation>Jaunais nosaukums:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Pārdēvē</translation>
     </message>
 </context>
 <context>
