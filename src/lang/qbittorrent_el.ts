@@ -93,8 +93,8 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
-        <source>Copyright %1 2006-2023 The qBittorrent project</source>
-        <translation>Πνευματικά Δικαιώματα %1 2006-2023 Το εγχείρημα qBittorrent</translation>
+        <source>Copyright %1 2006-2024 The qBittorrent project</source>
+        <translation>Πνευματικά Δικαιώματα %1 2006-2024 Το εγχείρημα qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
