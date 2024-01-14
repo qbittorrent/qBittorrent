@@ -1,3 +1,12 @@
+Mon Jan 15th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.3
+    - BUGFIX: Correctly update number of filtered items (glassez)
+    - BUGFIX: Don't forget to store Stop condition value (glassez)
+    - BUGFIX: Show correctly decoded filename in log (glassez)
+    - BUGFIX: Specify a locale if none is set (Chocobo1)
+    - BUGFIX: Apply inactive seeding time limit set on new torrents (glassez)
+    - BUGFIX: Show URL seeds for torrents that have no metadata (glassez)
+    - BUGFIX: Don't get stuck loading on mismatched info-hashes in resume data (glassez)
+
 Mon Nov 27th 2023 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.2
     - BUGFIX: Do not apply share limit if the previous one was applied (glassez)
     - BUGFIX: Show Add new torrent dialog on main window screen (glassez)
