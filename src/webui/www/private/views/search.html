@@ -541,14 +541,10 @@
                             $('searchResultsTableContainer').style.display = "block";
 
                             // sort plugins alphabetically
-                            const allPlugins = searchPlugins.sort(function(pluginA, pluginB) {
-                                const a = pluginA.fullName.toLowerCase();
-                                const b = pluginB.fullName.toLowerCase();
-                                if (a < b)
-                                    return -1;
-                                if (a > b)
-                                    return 1;
-                                return 0;
+                            const allPlugins = searchPlugins.sort((left, right) => {
+                                const leftName = left.fullName;
+                                const rightName = right.fullName;
+                                return window.qBittorrent.Misc.naturalSortCollator.compare(leftName, rightName);
                             });
 
                             allPlugins.each(function(plugin) {

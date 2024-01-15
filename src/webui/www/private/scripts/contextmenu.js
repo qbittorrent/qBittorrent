@@ -456,7 +456,7 @@ window.qBittorrent.ContextMenu = (function() {
             Object.each(category_list, function(category) {
                 sortedCategories.push(category.name);
             });
-            sortedCategories.sort();
+            sortedCategories.sort(window.qBittorrent.Misc.naturalSortCollator.compare);
 
             let first = true;
             Object.each(sortedCategories, function(categoryName) {
@@ -493,7 +493,7 @@ window.qBittorrent.ContextMenu = (function() {
             const sortedTags = [];
             for (const key in tagList)
                 sortedTags.push(tagList[key].name);
-            sortedTags.sort();
+            sortedTags.sort(window.qBittorrent.Misc.naturalSortCollator.compare);
 
             for (let i = 0; i < sortedTags.length; ++i) {
                 const tagName = sortedTags[i];
