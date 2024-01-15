@@ -1386,50 +1386,41 @@ window.qBittorrent.DynamicTable = (function() {
                     break;
             }
 
-            const categoryHashInt = parseInt(categoryHash);
-            if (!isNaN(categoryHashInt)) {
-                switch (categoryHashInt) {
-                    case CATEGORIES_ALL:
-                        break; // do nothing
-                    case CATEGORIES_UNCATEGORIZED:
-                        if (row['full_data'].category.length !== 0)
+            switch (categoryHash) {
+                case CATEGORIES_ALL:
+                    break; // do nothing
+                case CATEGORIES_UNCATEGORIZED:
+                    if (row['full_data'].category.length !== 0)
+                        return false;
+                    break; // do nothing
+                default:
+                    if (!useSubcategories) {
+                        if (categoryHash !== genHash(row['full_data'].category))
                             return false;
-                        break; // do nothing
-                    default:
-                        if (!useSubcategories) {
-                            if (categoryHashInt !== genHash(row['full_data'].category))
-                                return false;
-                        }
-                        else {
-                            const selectedCategoryName = category_list[categoryHash].name + "/";
-                            const torrentCategoryName = row['full_data'].category + "/";
-                            if (!torrentCategoryName.startsWith(selectedCategoryName))
-                                return false;
-                        }
-                }
+                    }
+                    else {
+                        const selectedCategoryName = category_list.get(categoryHash).name + "/";
+                        const torrentCategoryName = row['full_data'].category + "/";
+                        if (!torrentCategoryName.startsWith(selectedCategoryName))
+                            return false;
+                    }
+                    break;
             }
 
-            const tagHashInt = parseInt(tagHash);
-            const isNumber = !isNaN(tagHashInt);
-            if (isNumber) {
-                switch (tagHashInt) {
-                    case TAGS_ALL:
-                        break; // do nothing
+            switch (tagHash) {
+                case TAGS_ALL:
+                    break; // do nothing
 
-                    case TAGS_UNTAGGED:
-                        if (row['full_data'].tags.length !== 0)
-                            return false;
-                        break; // do nothing
+                case TAGS_UNTAGGED:
+                    if (row['full_data'].tags.length !== 0)
+                        return false;
+                    break; // do nothing
 
-                    default: {
-                        let rowTags = row['full_data'].tags.split(', ');
-                        rowTags = rowTags.map(function(tag) {
-                            return genHash(tag);
-                        });
-                        if (!rowTags.contains(tagHashInt))
-                            return false;
-                        break;
-                    }
+                default: {
+                    const tagHashes = row['full_data'].tags.split(', ').map(tag => genHash(tag));
+                    if (!tagHashes.contains(tagHash))
+                        return false;
+                    break;
                 }
             }
 
@@ -1460,9 +1451,10 @@ window.qBittorrent.DynamicTable = (function() {
             let cnt = 0;
             const rows = this.rows.getValues();
 
-            for (let i = 0; i < rows.length; ++i)
+            for (let i = 0; i < rows.length; ++i) {
                 if (this.applyFilter(rows[i], filterName, categoryHash, tagHash, trackerHash, null))
                     ++cnt;
+            }
             return cnt;
         },
 
@@ -1470,9 +1462,10 @@ window.qBittorrent.DynamicTable = (function() {
             const rowsHashes = [];
             const rows = this.rows.getValues();
 
-            for (let i = 0; i < rows.length; ++i)
+            for (let i = 0; i < rows.length; ++i) {
                 if (this.applyFilter(rows[i], filterName, categoryHash, tagHash, trackerHash, null))
                     rowsHashes.push(rows[i]['rowId']);
+            }
 
             return rowsHashes;
         },

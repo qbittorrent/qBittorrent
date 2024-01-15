@@ -46,18 +46,18 @@ let clipboardEvent;
 const CATEGORIES_ALL = 1;
 const CATEGORIES_UNCATEGORIZED = 2;
 
-let category_list = {};
+const category_list = new Map();
 
-let selected_category = CATEGORIES_ALL;
+let selected_category = Number(LocalPreferences.get('selected_category', CATEGORIES_ALL));
 let setCategoryFilter = function() {};
 
 /* Tags filter */
 const TAGS_ALL = 1;
 const TAGS_UNTAGGED = 2;
 
-let tagList = {};
+const tagList = new Map();
 
-let selectedTag = TAGS_ALL;
+let selectedTag = Number(LocalPreferences.get('selected_tag', TAGS_ALL));
 let setTagFilter = function() {};
 
 /* Trackers filter */
@@ -73,16 +73,6 @@ let setTrackerFilter = function() {};
 let selected_filter = LocalPreferences.get('selected_filter', 'all');
 let setFilter = function() {};
 let toggleFilterDisplay = function() {};
-
-const loadSelectedCategory = function() {
-    selected_category = LocalPreferences.get('selected_category', CATEGORIES_ALL);
-};
-loadSelectedCategory();
-
-const loadSelectedTag = function() {
-    selectedTag = LocalPreferences.get('selected_tag', TAGS_ALL);
-};
-loadSelectedTag();
 
 const loadSelectedTracker = function() {
     selectedTracker = LocalPreferences.get('selected_tracker', TRACKERS_ALL);
@@ -244,7 +234,7 @@ window.addEvent('load', function() {
     };
 
     setTagFilter = function(hash) {
-        selectedTag = hash.toString();
+        selectedTag = hash;
         LocalPreferences.set('selected_tag', selectedTag);
         highlightSelectedTag();
         if (torrentsTable.tableBody !== undefined)
@@ -358,14 +348,11 @@ window.addEvent('load', function() {
             return false;
 
         let removed = false;
-        for (const key in category_list) {
-            if (!Object.hasOwn(category_list, key))
-                continue;
-
-            const category = category_list[key];
+        category_list.forEach((category) => {
             const deleteResult = category.torrents.delete(hash);
             removed ||= deleteResult;
-        }
+        });
+
         return removed;
     };
 
@@ -379,16 +366,19 @@ window.addEvent('load', function() {
             removeTorrentFromCategoryList(hash);
             return true;
         }
+
         const categoryHash = genHash(category);
-        if (!category_list[categoryHash]) { // This should not happen
-            category_list[categoryHash] = {
+        if (!category_list.has(categoryHash)) { // This should not happen
+            category_list.set(categoryHash, {
                 name: category,
-                torrents: []
-            };
+                torrents: new Set()
+            });
         }
-        if (!category_list[categoryHash].torrents.has(hash)) {
+
+        const torrents = category_list.get(categoryHash).torrents;
+        if (!torrents.has(hash)) {
             removeTorrentFromCategoryList(hash);
-            category_list[categoryHash].torrents.add(hash);
+            torrents.add(hash);
             return true;
         }
         return false;
@@ -399,14 +389,11 @@ window.addEvent('load', function() {
             return false;
 
         let removed = false;
-        for (const key in tagList) {
-            if (!Object.hasOwn(tagList, key))
-                continue;
-
-            const tag = tagList[key];
+        tagList.forEach((tag) => {
             const deleteResult = tag.torrents.delete(hash);
             removed ||= deleteResult;
-        }
+        });
+
         return removed;
     };
 
@@ -424,14 +411,16 @@ window.addEvent('load', function() {
         let added = false;
         for (let i = 0; i < tags.length; ++i) {
             const tagHash = genHash(tags[i].trim());
-            if (!tagList[tagHash]) { // This should not happen
-                tagList[tagHash] = {
+            if (!tagList.has(tagHash)) { // This should not happen
+                tagList.set(tagHash, {
                     name: tags,
                     torrents: new Set()
-                };
+                });
             }
-            if (!tagList[tagHash].torrents.has(hash)) {
-                tagList[tagHash].torrents.add(hash);
+
+            const torrents = tagList.get(tagHash).torrents;
+            if (!torrents.has(hash)) {
+                torrents.add(hash);
                 added = true;
             }
         }
@@ -474,7 +463,7 @@ window.addEvent('load', function() {
                 margin_left = (category_path.length - 1) * 20;
             }
 
-            const html = '<a href="#" style="margin-left: ' + margin_left + 'px" onclick="setCategoryFilter(' + hash + ');return false;">'
+            const html = `<a href="#" style="margin-left: ${margin_left}px;" onclick="setCategoryFilter(${hash}); return false;">`
                 + '<img src="images/view-categories.svg"/>'
                 + window.qBittorrent.Misc.escapeHtml(display_name) + ' (' + count + ')' + '</a>';
             const el = new Element('li', {
@@ -487,20 +476,26 @@ window.addEvent('load', function() {
 
         const all = torrentsTable.getRowIds().length;
         let uncategorized = 0;
-        Object.each(torrentsTable.rows, function(row) {
+        for (const key in torrentsTable.rows) {
+            if (!Object.hasOwn(torrentsTable.rows, key))
+                continue;
+
+            const row = torrentsTable.rows[key];
             if (row['full_data'].category.length === 0)
                 uncategorized += 1;
-        });
+        }
         categoryList.appendChild(create_link(CATEGORIES_ALL, 'QBT_TR(All)QBT_TR[CONTEXT=CategoryFilterModel]', all));
         categoryList.appendChild(create_link(CATEGORIES_UNCATEGORIZED, 'QBT_TR(Uncategorized)QBT_TR[CONTEXT=CategoryFilterModel]', uncategorized));
 
         const sortedCategories = [];
-        Object.each(category_list, function(category) {
-            sortedCategories.push(category.name);
-        });
-        sortedCategories.sort((leftCategory, rightCategory) => {
-            const leftSegments = leftCategory.split('/');
-            const rightSegments = rightCategory.split('/');
+        category_list.forEach((category, hash) => sortedCategories.push({
+            categoryName: category.name,
+            categoryHash: hash,
+            categoryCount: category.torrents.size
+        }));
+        sortedCategories.sort((left, right) => {
+            const leftSegments = left.categoryName.split('/');
+            const rightSegments = right.categoryName.split('/');
 
             for (let i = 0, iMax = Math.min(leftSegments.length, rightSegments.length); i < iMax; ++i) {
                 const compareResult = window.qBittorrent.Misc.naturalSortCollator.compare(
@@ -513,15 +508,13 @@ window.addEvent('load', function() {
         });
 
         for (let i = 0; i < sortedCategories.length; ++i) {
-            const categoryName = sortedCategories[i];
-            const categoryHash = genHash(categoryName);
-            let categoryCount = category_list[categoryHash].torrents.size;
+            const { categoryName, categoryHash } = sortedCategories[i];
+            let { categoryCount } = sortedCategories[i];
 
             if (useSubcategories) {
                 for (let j = (i + 1);
-                    (j < sortedCategories.length) && sortedCategories[j].startsWith(categoryName + "/"); ++j) {
-                    const hash = genHash(sortedCategories[j]);
-                    categoryCount += category_list[hash].torrents.size;
+                    ((j < sortedCategories.length) && sortedCategories[j].categoryName.startsWith(categoryName + "/")); ++j) {
+                    categoryCount += sortedCategories[j].categoryCount;
                 }
             }
 
@@ -537,7 +530,7 @@ window.addEvent('load', function() {
             return;
         const children = categoryList.childNodes;
         for (let i = 0; i < children.length; ++i) {
-            if (children[i].id == selected_category)
+            if (Number(children[i].id) === selected_category)
                 children[i].className = "selectedFilter";
             else
                 children[i].className = "";
@@ -552,7 +545,7 @@ window.addEvent('load', function() {
         tagFilterList.getChildren().each(c => c.destroy());
 
         const createLink = function(hash, text, count) {
-            const html = '<a href="#" onclick="setTagFilter(' + hash + ');return false;">'
+            const html = `<a href="#" onclick="setTagFilter(${hash}); return false;">`
                 + '<img src="images/tags.svg"/>'
                 + window.qBittorrent.Misc.escapeHtml(text) + ' (' + count + ')' + '</a>';
             const el = new Element('li', {
@@ -573,16 +566,15 @@ window.addEvent('load', function() {
         tagFilterList.appendChild(createLink(TAGS_UNTAGGED, 'QBT_TR(Untagged)QBT_TR[CONTEXT=TagFilterModel]', untagged));
 
         const sortedTags = [];
-        for (const key in tagList)
-            sortedTags.push(tagList[key].name);
-        sortedTags.sort(window.qBittorrent.Misc.naturalSortCollator.compare);
+        tagList.forEach((tag, hash) => sortedTags.push({
+            tagName: tag.name,
+            tagHash: hash,
+            tagSize: tag.torrents.size
+        }));
+        sortedTags.sort((left, right) => window.qBittorrent.Misc.naturalSortCollator.compare(left.tagName, right.tagName));
 
-        for (let i = 0; i < sortedTags.length; ++i) {
-            const tagName = sortedTags[i];
-            const tagHash = genHash(tagName);
-            const tagCount = tagList[tagHash].torrents.size;
-            tagFilterList.appendChild(createLink(tagHash, tagName, tagCount));
-        }
+        for (const { tagName, tagHash, tagSize } of sortedTags)
+            tagFilterList.appendChild(createLink(tagHash, tagName, tagSize));
 
         highlightSelectedTag();
     };
@@ -594,7 +586,7 @@ window.addEvent('load', function() {
 
         const children = tagFilterList.childNodes;
         for (let i = 0; i < children.length; ++i)
-            children[i].className = (children[i].id === selectedTag) ? "selectedFilter" : "";
+            children[i].className = (Number(children[i].id) === selectedTag) ? "selectedFilter" : "";
     };
 
     const updateTrackerList = function() {
@@ -626,14 +618,15 @@ window.addEvent('load', function() {
         trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, 'QBT_TR(Trackerless (%1))QBT_TR[CONTEXT=TrackerFiltersList]', trackerlessTorrentsCount));
 
         // Sort trackers by hostname
-        const sortedList = [...trackerList.entries()].sort((left, right) => {
-            const leftHost = getHost(left[1].url);
-            const rightHost = getHost(right[1].url);
-            return window.qBittorrent.Misc.naturalSortCollator.compare(leftHost, rightHost);
-        });
-        for (const [hash, tracker] of sortedList) {
-            trackerFilterList.appendChild(createLink(hash, (getHost(tracker.url) + ' (%1)'), tracker.torrents.length));
-        }
+        const sortedList = [];
+        trackerList.forEach((tracker, hash) => sortedList.push({
+            trackerHost: getHost(tracker.url),
+            trackerHash: hash,
+            trackerCount: tracker.torrents.length
+        }));
+        sortedList.sort((left, right) => window.qBittorrent.Misc.naturalSortCollator.compare(left.trackerHost, right.trackerHost));
+        for (const { trackerHost, trackerHash, trackerCount } of sortedList)
+            trackerFilterList.appendChild(createLink(trackerHash, (trackerHost + ' (%1)'), trackerCount));
 
         highlightSelectedTracker();
     };
@@ -675,26 +668,30 @@ window.addEvent('load', function() {
                     if (full_update) {
                         torrentsTableSelectedRows = torrentsTable.selectedRowsIds();
                         torrentsTable.clear();
-                        category_list = {};
-                        tagList = {};
+                        category_list.clear();
+                        tagList.clear();
                     }
                     if (response['rid']) {
                         syncMainDataLastResponseId = response['rid'];
                     }
                     if (response['categories']) {
                         for (const key in response['categories']) {
-                            const category = response['categories'][key];
+                            if (!Object.hasOwn(response['categories'], key))
+                                continue;
+
+                            const responseCategory = response['categories'][key];
                             const categoryHash = genHash(key);
-                            if (category_list[categoryHash] !== undefined) {
+                            const category = category_list.get(categoryHash);
+                            if (category !== undefined) {
                                 // only the save path can change for existing categories
-                                category_list[categoryHash].savePath = category.savePath;
+                                category.savePath = responseCategory.savePath;
                             }
                             else {
-                                category_list[categoryHash] = {
-                                    name: category.name,
-                                    savePath: category.savePath,
+                                category_list.set(categoryHash, {
+                                    name: responseCategory.name,
+                                    savePath: responseCategory.savePath,
                                     torrents: new Set()
-                                };
+                                });
                             }
                         }
                         update_categories = true;
@@ -702,18 +699,18 @@ window.addEvent('load', function() {
                     if (response['categories_removed']) {
                         response['categories_removed'].each(function(category) {
                             const categoryHash = genHash(category);
-                            delete category_list[categoryHash];
+                            category_list.delete(categoryHash);
                         });
                         update_categories = true;
                     }
                     if (response['tags']) {
                         for (const tag of response['tags']) {
                             const tagHash = genHash(tag);
-                            if (!tagList[tagHash]) {
-                                tagList[tagHash] = {
+                            if (!tagList.has(tagHash)) {
+                                tagList.set(tagHash, {
                                     name: tag,
                                     torrents: new Set()
-                                };
+                                });
                             }
                         }
                         updateTags = true;
@@ -721,7 +718,7 @@ window.addEvent('load', function() {
                     if (response['tags_removed']) {
                         for (let i = 0; i < response['tags_removed'].length; ++i) {
                             const tagHash = genHash(response['tags_removed'][i]);
-                            delete tagList[tagHash];
+                            tagList.delete(tagHash);
                         }
                         updateTags = true;
                     }
