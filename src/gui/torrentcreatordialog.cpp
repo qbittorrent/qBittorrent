@@ -227,20 +227,20 @@ void TorrentCreatorDialog::onCreateButtonClicked()
         .replace(QRegularExpression(u"\n\n[\n]+"_s), u"\n\n"_s).split(u'\n');
     const BitTorrent::TorrentCreatorParams params
     {
-        m_ui->checkPrivate->isChecked()
+        .isPrivate = m_ui->checkPrivate->isChecked(),
 #ifdef QBT_USES_LIBTORRENT2
-        , getTorrentFormat()
+        .torrentFormat = getTorrentFormat(),
 #else
-        , m_ui->checkOptimizeAlignment->isChecked()
-        , getPaddedFileSizeLimit()
+        .isAlignmentOptimized = m_ui->checkOptimizeAlignment->isChecked(),
+        .paddedFileSizeLimit = getPaddedFileSizeLimit(),
 #endif
-        , getPieceSize()
-        , inputPath
-        , destPath
-        , m_ui->txtComment->toPlainText()
-        , m_ui->lineEditSource->text()
-        , trackers
-        , m_ui->URLSeedsList->toPlainText().split(u'\n', Qt::SkipEmptyParts)
+        .pieceSize = getPieceSize(),
+        .inputPath = inputPath,
+        .savePath = destPath,
+        .comment = m_ui->txtComment->toPlainText(),
+        .source = m_ui->lineEditSource->text(),
+        .trackers = trackers,
+        .urlSeeds = m_ui->URLSeedsList->toPlainText().split(u'\n', Qt::SkipEmptyParts)
     };
 
     auto *torrentCreator = new BitTorrent::TorrentCreator(params);
