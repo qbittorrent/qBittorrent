@@ -2749,6 +2749,14 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
     if (hasMetadata)
     {
+        // Torrent  that is being added with metadata is considered to be added as stopped
+        // if "metadata received" stop condition is set for it.
+        if (loadTorrentParams.stopCondition == Torrent::StopCondition::MetadataReceived)
+        {
+            loadTorrentParams.stopped = true;
+            loadTorrentParams.stopCondition = Torrent::StopCondition::None;
+        }
+
         const TorrentInfo &torrentInfo = *source.info();
 
         Q_ASSERT(addTorrentParams.filePaths.isEmpty() || (addTorrentParams.filePaths.size() == torrentInfo.filesCount()));
