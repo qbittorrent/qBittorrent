@@ -261,24 +261,6 @@
                   </item>
                   <item>
                    <widget class="QComboBox" name="stopConditionComboBox">
-                    <property name="currentIndex">
-                     <number>0</number>
-                    </property>
-                    <item>
-                     <property name="text">
-                      <string>None</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Metadata received</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Files checked</string>
-                     </property>
-                    </item>
                    </widget>
                   </item>
                  </layout>
