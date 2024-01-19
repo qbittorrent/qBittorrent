@@ -69,9 +69,9 @@ namespace BitTorrent
         int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
         int inactiveSeedingTimeLimit = Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME;
         qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
-    };
 
-    bool operator==(const AddTorrentParams &lhs, const AddTorrentParams &rhs);
+        friend bool operator==(const AddTorrentParams &lhs, const AddTorrentParams &rhs) = default;
+    };
 
     AddTorrentParams parseAddTorrentParams(const QJsonObject &jsonObj);
     QJsonObject serializeAddTorrentParams(const AddTorrentParams &params);

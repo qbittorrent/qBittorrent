@@ -28,8 +28,6 @@
 
 #include "addtorrentparams.h"
 
-#include <tuple>
-
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonValue>
@@ -99,24 +97,6 @@ namespace
         const QJsonValue jsonVal = jsonObj.value(key);
         return Utils::String::toEnum<Enum>(jsonVal.toString(), {});
     }
-}
-
-bool BitTorrent::operator==(const AddTorrentParams &lhs, const AddTorrentParams &rhs)
-{
-        return std::tie(lhs.name, lhs.category, lhs.tags,
-                lhs.savePath, lhs.useDownloadPath, lhs.downloadPath,
-                lhs.sequential, lhs.firstLastPiecePriority, lhs.addForced,
-                lhs.addToQueueTop, lhs.addPaused, lhs.stopCondition,
-                lhs.filePaths, lhs.filePriorities, lhs.skipChecking,
-                lhs.contentLayout, lhs.useAutoTMM, lhs.uploadLimit,
-                lhs.downloadLimit, lhs.seedingTimeLimit, lhs.inactiveSeedingTimeLimit, lhs.ratioLimit)
-            == std::tie(rhs.name, rhs.category, rhs.tags,
-                rhs.savePath, rhs.useDownloadPath, rhs.downloadPath,
-                rhs.sequential, rhs.firstLastPiecePriority, rhs.addForced,
-                rhs.addToQueueTop, rhs.addPaused, rhs.stopCondition,
-                rhs.filePaths, rhs.filePriorities, rhs.skipChecking,
-                rhs.contentLayout, rhs.useAutoTMM, rhs.uploadLimit,
-                rhs.downloadLimit, rhs.seedingTimeLimit, rhs.inactiveSeedingTimeLimit, rhs.ratioLimit);
 }
 
 BitTorrent::AddTorrentParams BitTorrent::parseAddTorrentParams(const QJsonObject &jsonObj)
