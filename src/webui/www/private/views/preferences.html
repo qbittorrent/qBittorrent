@@ -739,6 +739,14 @@
             </tr>
             <tr>
                 <td>
+                    <label for="feedFetchDelay">QBT_TR(Same host request delay:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="feedFetchDelay" style="width: 4em;" />&nbsp;&nbsp;QBT_TR( sec)QBT_TR[CONTEXT=OptionsDialog]
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="maximum_article_number">QBT_TR(Maximum number of articles per feed:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
@@ -2227,6 +2235,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         // RSS Tab
                         $('enable_fetching_rss_feeds_checkbox').setProperty('checked', pref.rss_processing_enabled);
                         $('feed_refresh_interval').setProperty('value', pref.rss_refresh_interval);
+                        $('feedFetchDelay').setProperty('value', perf.rss_fetch_delay);
                         $('maximum_article_number').setProperty('value', pref.rss_max_articles_per_feed);
                         $('enable_auto_downloading_rss_torrents_checkbox').setProperty('checked', pref.rss_auto_downloading_enabled);
                         $('downlock_repack_proper_episodes').setProperty('checked', pref.rss_download_repack_proper_episodes);
@@ -2640,6 +2649,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // RSS Tab
             settings.set('rss_processing_enabled', $('enable_fetching_rss_feeds_checkbox').getProperty('checked'));
             settings.set('rss_refresh_interval', $('feed_refresh_interval').getProperty('value'));
+            settings.set('rss_fetch_delay', $('feedFetchDelay').getProperties('value'));
             settings.set('rss_max_articles_per_feed', $('maximum_article_number').getProperty('value'));
             settings.set('rss_auto_downloading_enabled', $('enable_auto_downloading_rss_torrents_checkbox').getProperty('checked'));
             settings.set('rss_download_repack_proper_episodes', $('downlock_repack_proper_episodes').getProperty('checked'));

@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Jonathan Ketchker
  * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
@@ -68,6 +69,8 @@
  * 3.   Feed is JSON object (keys are property names, values are property values; 'uid' and 'url' are required)
  */
 
+#include <chrono>
+
 #include <QHash>
 #include <QObject>
 #include <QPointer>
@@ -113,6 +116,9 @@ namespace RSS
 
         int refreshInterval() const;
         void setRefreshInterval(int refreshInterval);
+
+        std::chrono::seconds fetchDelay() const;
+        void setFetchDelay(std::chrono::seconds delay);
 
         nonstd::expected<void, QString> addFolder(const QString &path);
         nonstd::expected<void, QString> addFeed(const QString &url, const QString &path);
@@ -161,6 +167,7 @@ namespace RSS
 
         CachedSettingValue<bool> m_storeProcessingEnabled;
         CachedSettingValue<int> m_storeRefreshInterval;
+        CachedSettingValue<qint64> m_storeFetchDelay;
         CachedSettingValue<int> m_storeMaxArticlesPerFeed;
         Utils::Thread::UniquePtr m_workingThread;
         AsyncFileStorage *m_confFileStorage = nullptr;

@@ -3155,19 +3155,22 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   </widget>
                  </item>
                  <item row="1" column="1">
-                  <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed">
+                  <widget class="QSpinBox" name="spinRSSFetchDelay">
+                   <property name="suffix">
+                    <string> sec</string>
+                   </property>
                    <property name="maximum">
                     <number>2147483646</number>
                    </property>
                    <property name="value">
-                    <number>100</number>
+                    <number>2</number>
                    </property>
                   </widget>
                  </item>
                  <item row="1" column="0">
-                  <widget class="QLabel" name="label_12">
+                  <widget class="QLabel" name="labelRSSFetchDelay">
                    <property name="text">
-                    <string>Maximum number of articles per feed:</string>
+                    <string>Same host request delay:</string>
                    </property>
                   </widget>
                  </item>
@@ -3199,6 +3202,23 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                     </size>
                    </property>
                   </spacer>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed">
+                   <property name="maximum">
+                    <number>2147483646</number>
+                   </property>
+                   <property name="value">
+                    <number>100</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_12">
+                   <property name="text">
+                    <string>Maximum number of articles per feed:</string>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>

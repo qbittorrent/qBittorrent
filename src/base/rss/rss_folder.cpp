@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Jonathan Ketchker
  * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
@@ -89,6 +90,12 @@ void Folder::refresh()
 {
     for (Item *item : asConst(items()))
         item->refresh();
+}
+
+void Folder::updateFetchDelay()
+{
+    for (Item *item : asConst(items()))
+        item->updateFetchDelay();
 }
 
 QList<Item *> Folder::items() const

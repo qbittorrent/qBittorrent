@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Jonathan Ketchker
  * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -29,6 +30,7 @@
 
 #include "optionsdialog.h"
 
+#include <chrono>
 #include <cstdlib>
 #include <limits>
 
@@ -1193,6 +1195,7 @@ void OptionsDialog::loadRSSTabOptions()
 
     m_ui->checkRSSEnable->setChecked(rssSession->isProcessingEnabled());
     m_ui->spinRSSRefreshInterval->setValue(rssSession->refreshInterval());
+    m_ui->spinRSSFetchDelay->setValue(rssSession->fetchDelay().count());
     m_ui->spinRSSMaxArticlesPerFeed->setValue(rssSession->maxArticlesPerFeed());
     m_ui->checkRSSAutoDownloaderEnable->setChecked(autoDownloader->isProcessingEnabled());
     m_ui->textSmartEpisodeFilters->setPlainText(autoDownloader->smartEpisodeFilters().join(u'\n'));
@@ -1209,6 +1212,7 @@ void OptionsDialog::loadRSSTabOptions()
     connect(m_ui->textSmartEpisodeFilters, &QPlainTextEdit::textChanged, this, &OptionsDialog::enableApplyButton);
     connect(m_ui->checkSmartFilterDownloadRepacks, &QCheckBox::toggled, this, &OptionsDialog::enableApplyButton);
     connect(m_ui->spinRSSRefreshInterval, qSpinBoxValueChanged, this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->spinRSSFetchDelay, qSpinBoxValueChanged, this, &OptionsDialog::enableApplyButton);
     connect(m_ui->spinRSSMaxArticlesPerFeed, qSpinBoxValueChanged, this, &OptionsDialog::enableApplyButton);
 }
 
@@ -1219,6 +1223,7 @@ void OptionsDialog::saveRSSTabOptions() const
 
     rssSession->setProcessingEnabled(m_ui->checkRSSEnable->isChecked());
     rssSession->setRefreshInterval(m_ui->spinRSSRefreshInterval->value());
+    rssSession->setFetchDelay(std::chrono::seconds(m_ui->spinRSSFetchDelay->value()));
     rssSession->setMaxArticlesPerFeed(m_ui->spinRSSMaxArticlesPerFeed->value());
     autoDownloader->setProcessingEnabled(m_ui->checkRSSAutoDownloaderEnable->isChecked());
     autoDownloader->setSmartEpisodeFilters(m_ui->textSmartEpisodeFilters->toPlainText().split(u'\n', Qt::SkipEmptyParts));

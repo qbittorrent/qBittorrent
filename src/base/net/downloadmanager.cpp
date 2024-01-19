@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Jonathan Ketchker
  * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -48,6 +49,8 @@
 #include "base/preferences.h"
 #include "downloadhandlerimpl.h"
 #include "proxyconfigurationmanager.h"
+
+using namespace std::chrono_literals;
 
 namespace
 {
@@ -188,9 +191,9 @@ Net::DownloadHandler *Net::DownloadManager::download(const DownloadRequest &down
     return downloadHandler;
 }
 
-void Net::DownloadManager::registerSequentialService(const Net::ServiceID &serviceID)
+void Net::DownloadManager::registerSequentialService(const Net::ServiceID &serviceID, const std::chrono::seconds delay)
 {
-    m_sequentialServices.insert(serviceID);
+    m_sequentialServices.insert(serviceID, delay);
 }
 
 QList<QNetworkCookie> Net::DownloadManager::cookiesForUrl(const QUrl &url) const
@@ -309,7 +312,7 @@ void Net::DownloadManager::processRequest(DownloadHandlerImpl *downloadHandler)
     QNetworkReply *reply = m_networkManager->get(request);
     connect(reply, &QNetworkReply::finished, this, [this, serviceID = ServiceID::fromURL(downloadHandler->url())]
     {
-        QTimer::singleShot(0, this, [this, serviceID] { processWaitingJobs(serviceID); });
+        QTimer::singleShot(m_sequentialServices.value(serviceID, 0s), this, [this, serviceID] { processWaitingJobs(serviceID); });
     });
     downloadHandler->assignNetworkReply(reply);
 }

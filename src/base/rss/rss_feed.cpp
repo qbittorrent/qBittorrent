@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Jonathan Ketchker
  * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
@@ -98,7 +99,7 @@ Feed::Feed(const QUuid &uid, const QString &url, const QString &path, Session *s
     else
         connect(m_session, &Session::processingStateChanged, this, &Feed::handleSessionProcessingEnabledChanged);
 
-    Net::DownloadManager::instance()->registerSequentialService(Net::ServiceID::fromURL(m_url));
+    Net::DownloadManager::instance()->registerSequentialService(Net::ServiceID::fromURL(m_url), m_session->fetchDelay());
 
     load();
 }
@@ -157,6 +158,12 @@ void Feed::refresh()
 
     m_isLoading = true;
     emit stateChanged(this);
+}
+
+void Feed::updateFetchDelay()
+{
+    // Update delay values for registered sequential services
+    Net::DownloadManager::instance()->registerSequentialService(Net::ServiceID::fromURL(m_url), m_session->fetchDelay());
 }
 
 QUuid Feed::uid() const
