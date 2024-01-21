@@ -55,6 +55,7 @@
 #include "sessionstatus.h"
 #include "torrentinfo.h"
 #include "trackerentry.h"
+#include "base/net/downloadmanager.h"
 
 class QString;
 class QThread;
@@ -266,6 +267,11 @@ namespace BitTorrent
         void setAddTrackersEnabled(bool enabled) override;
         QString additionalTrackers() const override;
         void setAdditionalTrackers(const QString &trackers) override;
+        bool isAutoUpdateTrackersEnabled() const override;
+        void setAutoUpdateTrackersEnabled(bool enabled) override;
+        QString publicTrackers() const override;
+        void setPublicTrackers(const QString &trackers) override;
+        void updatePublicTracker() override;
         bool isIPFilteringEnabled() const override;
         void setIPFilteringEnabled(bool enabled) override;
         Path IPFilterFile() const override;
@@ -479,6 +485,9 @@ namespace BitTorrent
         void handleIPFilterError();
         void fileSearchFinished(const TorrentID &id, const Path &savePath, const PathList &fileNames);
 
+        // Public Tracker handle slots
+        void handlePublicTrackerTxtDownloadFinished(const Net::DownloadResult &result);
+
     private:
         struct ResumeSessionContext;
 
@@ -519,6 +528,7 @@ namespace BitTorrent
         void enableTracker(bool enable);
         void enableBandwidthScheduler();
         void populateAdditionalTrackers();
+        void populatePublicTrackers();
         void enableIPFilter();
         void disableIPFilter();
         void processTrackerStatuses();
@@ -583,6 +593,7 @@ namespace BitTorrent
         void loadStatistics();
 
         void updateTrackerEntries(lt::torrent_handle torrentHandle, QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>> updatedTrackers);
+        QTimer *m_updateTimer;
 
         // BitTorrent
         lt::session *m_nativeSession = nullptr;
@@ -654,6 +665,8 @@ namespace BitTorrent
         CachedSettingValue<bool> m_blockPeersOnPrivilegedPorts;
         CachedSettingValue<bool> m_isAddTrackersEnabled;
         CachedSettingValue<QString> m_additionalTrackers;
+        CachedSettingValue<QString> m_publicTrackers;
+        CachedSettingValue<bool> m_isAutoUpdateTrackersEnabled;
         CachedSettingValue<qreal> m_globalMaxRatio;
         CachedSettingValue<int> m_globalMaxSeedingMinutes;
         CachedSettingValue<int> m_globalMaxInactiveSeedingMinutes;
@@ -723,6 +736,7 @@ namespace BitTorrent
 
         int m_numResumeData = 0;
         QVector<TrackerEntry> m_additionalTrackerList;
+        QVector<TrackerEntry> m_publicTrackerList;
         QVector<QRegularExpression> m_excludedFileNamesRegExpList;
 
         // Statistics
