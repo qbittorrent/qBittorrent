@@ -2400,7 +2400,8 @@ void SessionImpl::banIP(const QString &ip)
 bool SessionImpl::deleteTorrent(const TorrentID &id, const DeleteOption deleteOption)
 {
     TorrentImpl *const torrent = m_torrents.take(id);
-    if (!torrent) return false;
+    if (!torrent)
+        return false;
 
     qDebug("Deleting torrent with ID: %s", qUtf8Printable(torrent->id().toString()));
     emit torrentAboutToBeRemoved(torrent);
@@ -2595,34 +2596,10 @@ void SessionImpl::bottomTorrentsQueuePos(const QVector<TorrentID> &ids)
     m_torrentsQueueChanged = true;
 }
 
-void SessionImpl::handleTorrentNeedSaveResumeData(const TorrentImpl *torrent)
-{
-    if (m_needSaveResumeDataTorrents.empty())
-    {
-        QMetaObject::invokeMethod(this, [this]()
-        {
-            for (const TorrentID &torrentID : asConst(m_needSaveResumeDataTorrents))
-            {
-                TorrentImpl *torrent = m_torrents.value(torrentID);
-                if (torrent)
-                    torrent->saveResumeData();
-            }
-            m_needSaveResumeDataTorrents.clear();
-        }, Qt::QueuedConnection);
-    }
-
-    m_needSaveResumeDataTorrents.insert(torrent->id());
-}
-
-void SessionImpl::handleTorrentSaveResumeDataRequested(const TorrentImpl *torrent)
+void SessionImpl::handleTorrentResumeDataRequested(const TorrentImpl *torrent)
 {
     qDebug("Saving resume data is requested for torrent '%s'...", qUtf8Printable(torrent->name()));
     ++m_numResumeData;
-}
-
-void SessionImpl::handleTorrentSaveResumeDataFailed([[maybe_unused]] const TorrentImpl *torrent)
-{
-    --m_numResumeData;
 }
 
 QVector<Torrent *> SessionImpl::torrents() const
@@ -3084,27 +3061,21 @@ void SessionImpl::generateResumeData()
 {
     for (TorrentImpl *const torrent : asConst(m_torrents))
     {
-        if (!torrent->isValid()) continue;
-
         if (torrent->needSaveResumeData())
-        {
-            torrent->saveResumeData();
-            m_needSaveResumeDataTorrents.remove(torrent->id());
-        }
+            torrent->requestResumeData();
     }
 }
 
 // Called on exit
 void SessionImpl::saveResumeData()
 {
-    for (const TorrentImpl *torrent : asConst(m_torrents))
+    for (TorrentImpl *torrent : asConst(m_torrents))
     {
         // When the session is terminated due to unrecoverable error
         // some of the torrent handles can be corrupted
         try
         {
-            torrent->nativeHandle().save_resume_data(lt::torrent_handle::only_if_modified);
-            ++m_numResumeData;
+            torrent->requestResumeData(lt::torrent_handle::only_if_modified);
         }
         catch (const std::exception &) {}
     }
@@ -4969,8 +4940,6 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
 
 void SessionImpl::handleTorrentResumeDataReady(TorrentImpl *const torrent, const LoadTorrentParams &data)
 {
-    --m_numResumeData;
-
     m_resumeDataStorage->store(torrent->id(), data);
     const auto iter = m_changedTorrentIDs.find(torrent->id());
     if (iter != m_changedTorrentIDs.end())
@@ -5534,6 +5503,15 @@ void SessionImpl::handleAlert(const lt::alert *a)
 
 void SessionImpl::dispatchTorrentAlert(const lt::torrent_alert *a)
 {
+    // The torrent can be deleted between the time the resume data was requested and
+    // the time we received the appropriate alert. We have to decrease `m_numResumeData` anyway,
+    // so we do this before checking for an existing torrent.
+    if ((a->type() == lt::save_resume_data_alert::alert_type)
+            || (a->type() == lt::save_resume_data_failed_alert::alert_type))
+    {
+        --m_numResumeData;
+    }
+
     const TorrentID torrentID {a->handle.info_hash()};
     TorrentImpl *torrent = m_torrents.value(torrentID);
 #ifdef QBT_USES_LIBTORRENT2
@@ -5571,7 +5549,7 @@ TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, 
         if (params.addToQueueTop)
             nativeHandle.queue_position_top();
 
-        torrent->saveResumeData(lt::torrent_handle::save_info_dict);
+        torrent->requestResumeData(lt::torrent_handle::save_info_dict);
 
         // The following is useless for newly added magnet
         if (torrent->hasMetadata())

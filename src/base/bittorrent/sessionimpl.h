@@ -426,9 +426,7 @@ namespace BitTorrent
         void bottomTorrentsQueuePos(const QVector<TorrentID> &ids) override;
 
         // Torrent interface
-        void handleTorrentNeedSaveResumeData(const TorrentImpl *torrent);
-        void handleTorrentSaveResumeDataRequested(const TorrentImpl *torrent);
-        void handleTorrentSaveResumeDataFailed(const TorrentImpl *torrent);
+        void handleTorrentResumeDataRequested(const TorrentImpl *torrent);
         void handleTorrentShareLimitChanged(TorrentImpl *torrent);
         void handleTorrentNameChanged(TorrentImpl *torrent);
         void handleTorrentSavePathChanged(TorrentImpl *torrent);
@@ -755,7 +753,6 @@ namespace BitTorrent
         QHash<TorrentID, TorrentImpl *> m_hybridTorrentsByAltID;
         QHash<TorrentID, LoadTorrentParams> m_loadingTorrents;
         QHash<TorrentID, RemovingTorrentData> m_removingTorrents;
-        QSet<TorrentID> m_needSaveResumeDataTorrents;
         QHash<TorrentID, TorrentID> m_changedTorrentIDs;
         QMap<QString, CategoryOptions> m_categories;
         TagSet m_tags;
