@@ -1845,6 +1845,16 @@ void Preferences::setToolbarTextPosition(const int position)
     setValue(u"Toolbar/textPosition"_s, position);
 }
 
+QString Preferences::customizeTrackersListUrl() const
+{
+    return value(u"Preferences/Bittorrent/CustomizeTrackersListUrl"_s, u"https://cdn.jsdelivr.net/gh/ngosang/trackerslist/trackers_best.txt"_s);
+}
+
+void Preferences::setCustomizeTrackersListUrl(const QString &trackersUrl)
+{
+    setValue(u"Preferences/Bittorrent/CustomizeTrackersListUrl"_s, trackersUrl);
+}
+
 QList<QNetworkCookie> Preferences::getNetworkCookies() const
 {
     const auto rawCookies = value<QStringList>(u"Network/Cookies"_s);
