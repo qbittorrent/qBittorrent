@@ -117,12 +117,14 @@ Function .onInit
   !insertmacro MUI_LANGDLL_DISPLAY
 
   ${IfNot} ${AtLeastWaaS} 1809 ; Windows 10 (1809) / Windows Server 2019. Min supported version by Qt6
-    MessageBox MB_OK|MB_ICONEXCLAMATION $(inst_requires_win10)
+    MessageBox MB_OK|MB_ICONEXCLAMATION $(inst_requires_win10) /SD IDOK
+    SetErrorLevel 1654 # WinError.h: `ERROR_INSTALL_REJECTED`
     Abort
   ${EndIf}
 
   ${IfNot} ${RunningX64}
-    MessageBox MB_OK|MB_ICONEXCLAMATION $(inst_requires_64bit)
+    MessageBox MB_OK|MB_ICONEXCLAMATION $(inst_requires_64bit) /SD IDOK
+    SetErrorLevel 1654 # WinError.h: `ERROR_INSTALL_REJECTED`
     Abort
   ${EndIf}
 
@@ -147,9 +149,10 @@ Function check_instance
   check:
   FindProcDLL::FindProc "qbittorrent.exe"
   StrCmp $R0 "1" 0 notfound
-  MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION $(inst_warning) IDRETRY check IDCANCEL done
+  MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION $(inst_warning) /SD IDCANCEL IDRETRY check IDCANCEL canceled
 
-  done:
+  canceled:
+  SetErrorLevel 15618 # WinError.h: `ERROR_PACKAGES_IN_USE`
   Abort
 
   notfound:
