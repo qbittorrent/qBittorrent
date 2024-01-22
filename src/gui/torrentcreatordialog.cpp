@@ -257,7 +257,7 @@ void TorrentCreatorDialog::handleCreationFailure(const QString &msg)
 {
     // Remove busy cursor
     setCursor(QCursor(Qt::ArrowCursor));
-    QMessageBox::information(this, tr("Torrent creation failed"), tr("Reason: %1").arg(msg));
+    QMessageBox::information(this, tr("Torrent creation failed"), msg);
     setInteractionEnabled(true);
 }
 
