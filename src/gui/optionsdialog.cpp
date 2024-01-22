@@ -61,6 +61,7 @@
 #include "base/utils/os.h"
 #include "base/utils/password.h"
 #include "base/utils/random.h"
+#include "base/utils/sslkey.h"
 #include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
 #include "banlistoptionsdialog.h"
@@ -783,9 +784,6 @@ void OptionsDialog::loadConnectionTabOptions()
 
     m_ui->comboProtocol->setCurrentIndex(static_cast<int>(session->btProtocol()));
     m_ui->spinPort->setValue(session->port());
-    m_ui->spinSSLPort->setEnabled(session->isSSLEnabled());
-    m_ui->spinSSLPort->setValue(session->sslPort());
-    m_ui->groupSSL->setChecked(session->isSSLEnabled());
     m_ui->checkUPnP->setChecked(Net::PortForwarder::instance()->isEnabled());
 
     int intValue = session->maxConnections();
@@ -888,8 +886,6 @@ void OptionsDialog::loadConnectionTabOptions()
 
     connect(m_ui->comboProtocol, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->spinSSLPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->groupSSL, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkMaxConnections, &QAbstractButton::toggled, m_ui->spinMaxConnec, &QWidget::setEnabled);
@@ -941,8 +937,6 @@ void OptionsDialog::saveConnectionTabOptions() const
 
     session->setBTProtocol(static_cast<BitTorrent::BTProtocol>(m_ui->comboProtocol->currentIndex()));
     session->setPort(getPort());
-    session->setSSLEnabled(m_ui->groupSSL->isChecked());
-    session->setSSLPort(m_ui->spinSSLPort->value());
     Net::PortForwarder::instance()->setEnabled(isUPnPEnabled());
 
     session->setMaxConnections(getMaxConnections());
@@ -1464,14 +1458,6 @@ void OptionsDialog::on_randomButton_clicked()
     m_ui->spinPort->setValue(Utils::Random::rand(1024, 65535));
 }
 
-void OptionsDialog::on_randomSSLButton_clicked()
-{
-    int sslPort = 0;
-    while ((sslPort == getPort()) || (sslPort <= 0))
-        sslPort = Utils::Random::rand(1024, 65535);
-    m_ui->spinSSLPort->setValue(sslPort);
-}
-
 int OptionsDialog::getEncryptionSetting() const
 {
     return m_ui->comboEncryption->currentIndex();
@@ -1882,7 +1868,7 @@ Path OptionsDialog::getFilter() const
 void OptionsDialog::webUIHttpsCertChanged(const Path &path)
 {
     const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
-    const bool isCertValid = Utils::Net::isSSLCertificatesValid(readResult.value_or(QByteArray()));
+    const bool isCertValid = !Utils::SSLKey::load(readResult.value_or(QByteArray())).isNull();
 
     m_ui->textWebUIHttpsCert->setSelectedPath(path);
     m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
@@ -1892,7 +1878,7 @@ void OptionsDialog::webUIHttpsCertChanged(const Path &path)
 void OptionsDialog::webUIHttpsKeyChanged(const Path &path)
 {
     const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
-    const bool isKeyValid = Utils::Net::isSSLKeyValid(readResult.value_or(QByteArray()));
+    const bool isKeyValid = !Utils::SSLKey::load(readResult.value_or(QByteArray())).isNull();
 
     m_ui->textWebUIHttpsKey->setSelectedPath(path);
     m_ui->lblSslKeyStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(

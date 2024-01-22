@@ -53,6 +53,7 @@ namespace BitTorrent
     class TorrentID;
     class TorrentInfo;
     struct PeerAddress;
+    struct SSLParameters;
     struct TrackerEntry;
 
     // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
@@ -303,10 +304,11 @@ namespace BitTorrent
         virtual bool connectPeer(const PeerAddress &peerAddress) = 0;
         virtual void clearPeers() = 0;
         virtual void setMetadata(const TorrentInfo &torrentInfo) = 0;
-        virtual void setSSLCertificate(const QByteArray &certificate, const QByteArray &privateKey, const QByteArray &dhParams) = 0;
 
         virtual StopCondition stopCondition() const = 0;
         virtual void setStopCondition(StopCondition stopCondition) = 0;
+        virtual SSLParameters getSSLParameters() const = 0;
+        virtual void setSSLParameters(const SSLParameters &sslParams) = 0;
 
         virtual QString createMagnetURI() const = 0;
         virtual nonstd::expected<QByteArray, QString> exportToBuffer() const = 0;

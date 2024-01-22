@@ -36,6 +36,7 @@
 
 #include "base/path.h"
 #include "base/tagset.h"
+#include "sslparameters.h"
 #include "torrent.h"
 #include "torrentcontentlayout.h"
 
@@ -69,6 +70,7 @@ namespace BitTorrent
         int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
         int inactiveSeedingTimeLimit = Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME;
         qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
+        SSLParameters sslParameters;
 
         friend bool operator==(const AddTorrentParams &lhs, const AddTorrentParams &rhs) = default;
     };

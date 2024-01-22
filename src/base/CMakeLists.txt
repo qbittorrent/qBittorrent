@@ -33,6 +33,7 @@ add_library(qbt_base STATIC
     bittorrent/sessionimpl.h
     bittorrent/sessionstatus.h
     bittorrent/speedmonitor.h
+    bittorrent/sslparameters.h
     bittorrent/torrent.h
     bittorrent/torrentcontenthandler.h
     bittorrent/torrentcontentlayout.h
@@ -105,6 +106,7 @@ add_library(qbt_base STATIC
     utils/os.h
     utils/password.h
     utils/random.h
+    utils/sslkey.h
     utils/string.h
     utils/thread.h
     utils/version.h
@@ -135,6 +137,7 @@ add_library(qbt_base STATIC
     bittorrent/resumedatastorage.cpp
     bittorrent/sessionimpl.cpp
     bittorrent/speedmonitor.cpp
+    bittorrent/sslparameters.cpp
     bittorrent/torrent.cpp
     bittorrent/torrentcontenthandler.cpp
     bittorrent/torrentcreator.cpp
@@ -194,6 +197,7 @@ add_library(qbt_base STATIC
     utils/os.cpp
     utils/password.cpp
     utils/random.cpp
+    utils/sslkey.cpp
     utils/string.cpp
     utils/thread.cpp
     utils/version.cpp
