@@ -264,7 +264,8 @@ namespace BitTorrent
         void handleCategoryOptionsChanged();
         void handleAppendExtensionToggled();
         void handleUnwantedFolderToggled();
-        void saveResumeData(lt::resume_data_flags_t flags = {});
+        void requestResumeData(lt::resume_data_flags_t flags = {});
+        void deferredRequestResumeData();
         void handleMoveStorageJobFinished(const Path &path, MoveStorageContext context, bool hasOutstandingJob);
         void fileSearchFinished(const Path &savePath, const PathList &fileNames);
         TrackerEntry updateTrackerEntry(const lt::announce_entry &announceEntry, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo);
@@ -372,5 +373,7 @@ namespace BitTorrent
 
         QBitArray m_pieces;
         QVector<std::int64_t> m_filesProgress;
+
+        bool m_deferredRequestResumeDataInvoked = false;
     };
 }
