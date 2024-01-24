@@ -754,7 +754,7 @@ void TorrentsController::addAction()
         }
     }
 
-    const DataMap torrents = data();
+    const DataMap &torrents = data();
     for (auto it = torrents.constBegin(); it != torrents.constEnd(); ++it)
     {
         if (const auto loadResult = BitTorrent::TorrentDescriptor::load(it.value()))
