@@ -56,7 +56,7 @@ public:
     int inactiveSeedingTimeLimit() const;
 
 private:
-    Ui::TorrentShareLimitsWidget *m_ui;
+    Ui::TorrentShareLimitsWidget *m_ui = nullptr;
     int m_seedingTimeLimit = 0;
     int m_inactiveSeedingTimeLimit = 0;
     qreal m_ratioLimit = 0;
