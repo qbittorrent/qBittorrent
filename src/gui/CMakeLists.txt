@@ -29,6 +29,7 @@ qt_wrap_ui(UI_HEADERS
     torrentcategorydialog.ui
     torrentcreatordialog.ui
     torrentoptionsdialog.ui
+    torrentsharelimitswidget.ui
     torrenttagsdialog.ui
     trackerentriesdialog.ui
     trackersadditiondialog.ui
@@ -104,6 +105,7 @@ add_library(qbt_gui STATIC
     torrentcontentwidget.h
     torrentcreatordialog.h
     torrentoptionsdialog.h
+    torrentsharelimitswidget.h
     torrenttagsdialog.h
     trackerentriesdialog.h
     trackerlist/trackerlistitemdelegate.h
@@ -200,6 +202,7 @@ add_library(qbt_gui STATIC
     torrentcontentwidget.cpp
     torrentcreatordialog.cpp
     torrentoptionsdialog.cpp
+    torrentsharelimitswidget.cpp
     torrenttagsdialog.cpp
     trackerentriesdialog.cpp
     trackerlist/trackerlistitemdelegate.cpp
