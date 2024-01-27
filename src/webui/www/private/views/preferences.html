@@ -2043,7 +2043,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         updateExportDirFinEnabled();
 
                         // Automatically add torrents from
-                        for (const [folder, folderType] of Object.entries(pref.scan_dirs)) {
+                        for (const folder in pref.scan_dirs) {
+                            if (!Object.hasOwn(pref.scan_dirs, folder))
+                                continue;
+
+                            const folderType = pref.scan_dirs[folder];
                             let sel = "";
                             let other = "";
                             if (typeof folderType === "number") {

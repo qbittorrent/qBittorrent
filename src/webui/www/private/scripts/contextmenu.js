@@ -311,10 +311,10 @@ window.qBittorrent.ContextMenu = (function() {
             let all_are_super_seeding = true;
             let all_are_auto_tmm = true;
             let there_are_auto_tmm = false;
-            const tagsSelectionState = Object.clone(tagList);
+            const tagCount = new Map();
 
-            const h = torrentsTable.selectedRowsIds();
-            h.each(function(item, index) {
+            const selectedRows = torrentsTable.selectedRowsIds();
+            selectedRows.forEach((item, index) => {
                 const data = torrentsTable.rows.get(item).full_data;
 
                 if (data['seq_dl'] !== true)
@@ -348,23 +348,15 @@ window.qBittorrent.ContextMenu = (function() {
                     all_are_auto_tmm = false;
 
                 const torrentTags = data['tags'].split(', ');
-                for (const key in tagsSelectionState) {
-                    const tag = tagsSelectionState[key];
-                    const tagExists = torrentTags.contains(tag.name);
-                    if ((tag.checked !== undefined) && (tag.checked != tagExists))
-                        tag.indeterminate = true;
-                    if (tag.checked === undefined)
-                        tag.checked = tagExists;
-                    else
-                        tag.checked = tag.checked && tagExists;
+                for (const tag of torrentTags) {
+                    const count = tagCount.get(tag);
+                    tagCount.set(tag, ((count !== undefined) ? (count + 1) : 1));
                 }
             });
 
-            let show_seq_dl = true;
-
             // hide renameFiles when more than 1 torrent is selected
-            if (h.length == 1) {
-                const data = torrentsTable.rows.get(h[0]).full_data;
+            if (selectedRows.length == 1) {
+                const data = torrentsTable.rows.get(selectedRows[0]).full_data;
                 let metadata_downloaded = !(data['state'] == 'metaDL' || data['state'] == 'forcedMetaDL' || data['total_size'] == -1);
 
                 // hide renameFiles when metadata hasn't been downloaded yet
@@ -372,16 +364,9 @@ window.qBittorrent.ContextMenu = (function() {
                     ? this.showItem('renameFiles')
                     : this.hideItem('renameFiles');
             }
-            else
+            else {
                 this.hideItem('renameFiles');
-
-            if (!all_are_seq_dl && there_are_seq_dl)
-                show_seq_dl = false;
-
-            let show_f_l_piece_prio = true;
-
-            if (!all_are_f_l_piece_prio && there_are_f_l_piece_prio)
-                show_f_l_piece_prio = false;
+            }
 
             if (all_are_downloaded) {
                 this.hideItem('downloadLimit');
@@ -392,6 +377,9 @@ window.qBittorrent.ContextMenu = (function() {
                 this.setItemChecked('superSeeding', all_are_super_seeding);
             }
             else {
+                const show_seq_dl = (all_are_seq_dl || !there_are_seq_dl);
+                const show_f_l_piece_prio = (all_are_f_l_piece_prio || !there_are_f_l_piece_prio);
+
                 if (!show_seq_dl && show_f_l_piece_prio)
                     this.menu.getElement('a[href$=firstLastPiecePrio]').parentNode.addClass('separator');
                 else
@@ -434,42 +422,45 @@ window.qBittorrent.ContextMenu = (function() {
             }
 
             const contextTagList = $('contextTagList');
-            for (const tagHash in tagList) {
-                const checkbox = contextTagList.getElement('a[href=#Tag/' + tagHash + '] input[type=checkbox]');
-                const checkboxState = tagsSelectionState[tagHash];
-                checkbox.indeterminate = checkboxState.indeterminate;
-                checkbox.checked = checkboxState.checked;
-            }
+            tagList.forEach((tag, tagHash) => {
+                const checkbox = contextTagList.getElement(`a[href="#Tag/${tagHash}"] input[type="checkbox"]`);
+                const count = tagCount.get(tag.name);
+                const hasCount = (count !== undefined);
+                const isLesser = (count < selectedRows.length);
+                checkbox.indeterminate = (hasCount ? isLesser : false);
+                checkbox.checked = (hasCount ? !isLesser : false);
+            });
         },
 
-        updateCategoriesSubMenu: function(category_list) {
-            const categoryList = $('contextCategoryList');
-            categoryList.getChildren().each(c => c.destroy());
-            categoryList.appendChild(new Element('li', {
+        updateCategoriesSubMenu: function(categoryList) {
+            const contextCategoryList = $('contextCategoryList');
+            contextCategoryList.getChildren().each(c => c.destroy());
+            contextCategoryList.appendChild(new Element('li', {
                 html: '<a href="javascript:torrentNewCategoryFN();"><img src="images/list-add.svg" alt="QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]</a>'
             }));
-            categoryList.appendChild(new Element('li', {
+            contextCategoryList.appendChild(new Element('li', {
                 html: '<a href="javascript:torrentSetCategoryFN(0);"><img src="images/edit-clear.svg" alt="QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]</a>'
             }));
 
             const sortedCategories = [];
-            Object.each(category_list, function(category) {
-                sortedCategories.push(category.name);
-            });
-            sortedCategories.sort(window.qBittorrent.Misc.naturalSortCollator.compare);
+            categoryList.forEach((category, hash) => sortedCategories.push({
+                categoryName: category.name,
+                categoryHash: hash
+            }));
+            sortedCategories.sort((left, right) => window.qBittorrent.Misc.naturalSortCollator.compare(
+                left.categoryName, right.categoryName));
 
             let first = true;
-            Object.each(sortedCategories, function(categoryName) {
-                const categoryHash = genHash(categoryName);
+            for (const { categoryName, categoryHash } of sortedCategories) {
                 const el = new Element('li', {
-                    html: '<a href="javascript:torrentSetCategoryFN(\'' + categoryHash + '\');"><img src="images/view-categories.svg"/> ' + window.qBittorrent.Misc.escapeHtml(categoryName) + '</a>'
+                    html: `<a href="javascript:torrentSetCategoryFN(${categoryHash});"><img src="images/view-categories.svg"/>${window.qBittorrent.Misc.escapeHtml(categoryName)}</a>`
                 });
                 if (first) {
                     el.addClass('separator');
                     first = false;
                 }
-                categoryList.appendChild(el);
-            });
+                contextCategoryList.appendChild(el);
+            }
         },
 
         updateTagsSubMenu: function(tagList) {
@@ -491,15 +482,16 @@ window.qBittorrent.ContextMenu = (function() {
             }));
 
             const sortedTags = [];
-            for (const key in tagList)
-                sortedTags.push(tagList[key].name);
-            sortedTags.sort(window.qBittorrent.Misc.naturalSortCollator.compare);
+            tagList.forEach((tag, hash) => sortedTags.push({
+                tagName: tag.name,
+                tagHash: hash
+            }));
+            sortedTags.sort((left, right) => window.qBittorrent.Misc.naturalSortCollator.compare(left.tagName, right.tagName));
 
             for (let i = 0; i < sortedTags.length; ++i) {
-                const tagName = sortedTags[i];
-                const tagHash = genHash(tagName);
+                const { tagName, tagHash } = sortedTags[i];
                 const el = new Element('li', {
-                    html: '<a href="#Tag/' + tagHash + '" onclick="event.preventDefault(); torrentSetTagsFN(\'' + tagHash + '\', !event.currentTarget.getElement(\'input[type=checkbox]\').checked);">'
+                    html: `<a href="#Tag/${tagHash}" onclick="event.preventDefault(); torrentSetTagsFN(${tagHash}, !event.currentTarget.getElement('input[type=checkbox]').checked);">`
                         + '<input type="checkbox" onclick="this.checked = !this.checked;"> ' + window.qBittorrent.Misc.escapeHtml(tagName)
                         + '</a>'
                 });
@@ -513,8 +505,8 @@ window.qBittorrent.ContextMenu = (function() {
     const CategoriesFilterContextMenu = new Class({
         Extends: ContextMenu,
         updateMenuItems: function() {
-            const id = this.options.element.id;
-            if ((id != CATEGORIES_ALL) && (id != CATEGORIES_UNCATEGORIZED)) {
+            const id = Number(this.options.element.id);
+            if ((id !== CATEGORIES_ALL) && (id !== CATEGORIES_UNCATEGORIZED)) {
                 this.showItem('editCategory');
                 this.showItem('deleteCategory');
                 if (useSubcategories) {
@@ -535,8 +527,8 @@ window.qBittorrent.ContextMenu = (function() {
     const TagsFilterContextMenu = new Class({
         Extends: ContextMenu,
         updateMenuItems: function() {
-            const id = this.options.element.id;
-            if ((id !== TAGS_ALL.toString()) && (id !== TAGS_UNTAGGED.toString()))
+            const id = Number(this.options.element.id);
+            if ((id !== TAGS_ALL) && (id !== TAGS_UNTAGGED))
                 this.showItem('deleteTag');
             else
                 this.hideItem('deleteTag');

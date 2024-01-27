@@ -573,20 +573,21 @@ const initializeWindows = function() {
     };
 
     torrentSetCategoryFN = function(categoryHash) {
-        let categoryName = '';
-        if (categoryHash != 0)
-            categoryName = category_list[categoryHash].name;
         const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length) {
-            new Request({
-                url: 'api/v2/torrents/setCategory',
-                method: 'post',
-                data: {
-                    hashes: hashes.join("|"),
-                    category: categoryName
-                }
-            }).send();
-        }
+        if (hashes.length <= 0)
+            return;
+
+        const categoryName = category_list.has(categoryHash)
+            ? category_list.get(categoryHash).name
+            : '';
+        new Request({
+            url: 'api/v2/torrents/setCategory',
+            method: 'post',
+            data: {
+                hashes: hashes.join("|"),
+                category: categoryName
+            }
+        }).send();
     };
 
     createCategoryFN = function() {
@@ -609,7 +610,7 @@ const initializeWindows = function() {
 
     createSubcategoryFN = function(categoryHash) {
         const action = "createSubcategory";
-        const categoryName = category_list[categoryHash].name + "/";
+        const categoryName = category_list.get(categoryHash).name + "/";
         new MochaUI.Window({
             id: 'newSubcategoryPage',
             title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
@@ -628,13 +629,12 @@ const initializeWindows = function() {
 
     editCategoryFN = function(categoryHash) {
         const action = "edit";
-        const categoryName = category_list[categoryHash].name;
-        const savePath = category_list[categoryHash].savePath;
+        const category = category_list.get(categoryHash);
         new MochaUI.Window({
             id: 'editCategoryPage',
             title: "QBT_TR(Edit Category)QBT_TR[CONTEXT=TransferListWidget]",
             loadMethod: 'iframe',
-            contentURL: new URI('newcategory.html').setData("action", action).setData("categoryName", categoryName).setData("savePath", savePath).toString(),
+            contentURL: new URI('newcategory.html').setData("action", action).setData("categoryName", category.name).setData("savePath", category.savePath).toString(),
             scrollbars: false,
             resizable: true,
             maximizable: false,
@@ -647,7 +647,7 @@ const initializeWindows = function() {
     };
 
     removeCategoryFN = function(categoryHash) {
-        const categoryName = category_list[categoryHash].name;
+        const categoryName = category_list.get(categoryHash).name;
         new Request({
             url: 'api/v2/torrents/removeCategories',
             method: 'post',
@@ -660,10 +660,11 @@ const initializeWindows = function() {
 
     deleteUnusedCategoriesFN = function() {
         const categories = [];
-        for (const hash in category_list) {
+        category_list.forEach((category, hash) => {
             if (torrentsTable.getFilteredTorrentsNumber('all', hash, TAGS_ALL, TRACKERS_ALL) === 0)
-                categories.push(category_list[hash].name);
-        }
+                categories.push(category.name);
+        });
+
         new Request({
             url: 'api/v2/torrents/removeCategories',
             method: 'post',
@@ -742,18 +743,19 @@ const initializeWindows = function() {
     };
 
     torrentSetTagsFN = function(tagHash, isSet) {
-        const tagName = ((tagHash === '0') ? '' : tagList[tagHash].name);
         const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length) {
-            new Request({
-                url: (isSet ? 'api/v2/torrents/addTags' : 'api/v2/torrents/removeTags'),
-                method: 'post',
-                data: {
-                    hashes: hashes.join("|"),
-                    tags: tagName,
-                }
-            }).send();
-        }
+        if (hashes.length <= 0)
+            return;
+
+        const tagName = tagList.has(tagHash) ? tagList.get(tagHash).name : '';
+        new Request({
+            url: (isSet ? 'api/v2/torrents/addTags' : 'api/v2/torrents/removeTags'),
+            method: 'post',
+            data: {
+                hashes: hashes.join("|"),
+                tags: tagName,
+            }
+        }).send();
     };
 
     torrentRemoveAllTagsFN = function() {
@@ -788,7 +790,7 @@ const initializeWindows = function() {
     };
 
     removeTagFN = function(tagHash) {
-        const tagName = tagList[tagHash].name;
+        const tagName = tagList.get(tagHash).name;
         new Request({
             url: 'api/v2/torrents/deleteTags',
             method: 'post',
@@ -801,10 +803,10 @@ const initializeWindows = function() {
 
     deleteUnusedTagsFN = function() {
         const tags = [];
-        for (const hash in tagList) {
+        tagList.forEach((tag, hash) => {
             if (torrentsTable.getFilteredTorrentsNumber('all', CATEGORIES_ALL, hash, TRACKERS_ALL) === 0)
-                tags.push(tagList[hash].name);
-        }
+                tags.push(tag.name);
+        });
         new Request({
             url: 'api/v2/torrents/deleteTags',
             method: 'post',
