@@ -241,7 +241,7 @@ a.propButton img {
 .contextMenu li a {
     color: var(--color-text-default);
     display: block;
-    font-family: tahoma, arial, sans-serif;
+    font-family: Tahoma, Arial, sans-serif;
     font-size: 12px;
     padding: 5px 20px 5px 5px;
     text-decoration: none;

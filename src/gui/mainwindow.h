@@ -84,7 +84,7 @@ class MainWindow final : public GUIApplicationComponent<QMainWindow>
     Q_DISABLE_COPY_MOVE(MainWindow)
 
 public:
-    explicit MainWindow(IGUIApplication *app, WindowState initialState = WindowState::Normal);
+    explicit MainWindow(IGUIApplication *app, WindowState initialState = WindowState::Normal, const QString &titleSuffix = {});
     ~MainWindow() override;
 
     QWidget *currentTabWidget() const;
@@ -97,11 +97,11 @@ public:
     Log::MsgTypes executionLogMsgTypes() const;
     void setExecutionLogMsgTypes(Log::MsgTypes value);
 
-    // Notifications properties
-
     // Misc properties
     bool isDownloadTrackerFavicon() const;
     void setDownloadTrackerFavicon(bool value);
+
+    void setTitleSuffix(const QString &suffix);
 
     void activate();
     void cleanup();
@@ -207,6 +207,7 @@ private:
 
     QFileSystemWatcher *m_executableWatcher = nullptr;
     // GUI related
+    QString m_windowTitle;
     bool m_posInitialized = false;
     bool m_neverShown = true;
     QPointer<QTabWidget> m_tabs;

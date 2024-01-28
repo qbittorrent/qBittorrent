@@ -226,6 +226,7 @@ namespace
 Application::Application(int &argc, char **argv)
     : BaseApplication(argc, argv)
     , m_commandLineArgs(parseCommandLine(Application::arguments()))
+    , m_storeInstanceName(SETTINGS_KEY(u"InstanceName"_s))
     , m_storeFileLoggerEnabled(FILELOGGER_SETTINGS_KEY(u"Enabled"_s))
     , m_storeFileLoggerBackup(FILELOGGER_SETTINGS_KEY(u"Backup"_s))
     , m_storeFileLoggerDeleteOld(FILELOGGER_SETTINGS_KEY(u"DeleteOld"_s))
@@ -358,6 +359,23 @@ void Application::setTorrentAddedNotificationsEnabled(const bool value)
 const QBtCommandLineParameters &Application::commandLineArgs() const
 {
     return m_commandLineArgs;
+}
+
+QString Application::instanceName() const
+{
+    return m_storeInstanceName;
+}
+
+void Application::setInstanceName(const QString &name)
+{
+    if (name == instanceName())
+        return;
+
+    m_storeInstanceName = name;
+#ifndef DISABLE_GUI
+    if (MainWindow *mw = mainWindow())
+        mw->setTitleSuffix(name);
+#endif
 }
 
 int Application::memoryWorkingSetLimit() const
@@ -880,7 +898,8 @@ int Application::exec()
         const WindowState windowState = (m_startupProgressDialog->windowState() & Qt::WindowMinimized)
                 ? WindowState::Minimized : WindowState::Normal;
 #endif
-        m_window = new MainWindow(this, windowState);
+        m_window = new MainWindow(this, windowState, instanceName());
+
         delete m_startupProgressDialog;
 #endif // DISABLE_GUI
 
