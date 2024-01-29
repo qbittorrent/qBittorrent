@@ -105,7 +105,7 @@ BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(const Path &path,
     }
 
     const QRegularExpression filenamePattern {u"^([A-Fa-f0-9]{40})\\.fastresume$"_s};
-    const QStringList filenames = QDir(path.data()).entryList(QStringList(u"*.fastresume"_s), QDir::Files, QDir::Unsorted);
+    const QStringList filenames = QDir(path.data()).entryList({u"*.fastresume"_s}, QDir::Files);
 
     m_registeredTorrents.reserve(filenames.size());
     for (const QString &filename : filenames)
