@@ -125,14 +125,18 @@ namespace
     QString createLanguagesOptionsHtml()
     {
         // List language files
-        const QDir langDir {u":/www/translations"_s};
-        const QStringList langFiles = langDir.entryList(QStringList(u"webui_*.qm"_s), QDir::Files);
+        const QStringList langFiles = QDir(u":/www/translations"_s)
+            .entryList({u"webui_*.qm"_s}, QDir::Files, QDir::Name);
+
         QStringList languages;
+        languages.reserve(langFiles.size());
+
         for (const QString &langFile : langFiles)
         {
-            const QString localeStr = langFile.section(u"_"_s, 1, -1).section(u"."_s, 0, 0); // remove "webui_" and ".qm"
-            languages << u"<option value=\"%1\">%2</option>"_s.arg(localeStr, Utils::Misc::languageToLocalizedString(localeStr));
-            qDebug() << "Supported locale:" << localeStr;
+            const auto langCode = QStringView(langFile).sliced(6).chopped(3); // remove "webui_" and ".qm"
+            const QString entry = u"<option value=\"%1\">%2</option>"_s
+                .arg(langCode, Utils::Misc::languageToLocalizedString(langCode));
+            languages.append(entry);
         }
 
         return languages.join(u'\n');

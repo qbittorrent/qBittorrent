@@ -153,20 +153,7 @@
                 </widget>
                </item>
                <item row="1" column="1">
-                <widget class="QComboBox" name="comboI18n">
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>0</height>
-                  </size>
-                 </property>
-                 <property name="sizeAdjustPolicy">
-                  <enum>QComboBox::AdjustToContents</enum>
-                 </property>
-                 <property name="modelColumn">
-                  <number>0</number>
-                 </property>
-                </widget>
+                <widget class="QComboBox" name="comboI18n"/>
                </item>
                <item row="1" column="2">
                 <spacer name="horizontalSpacer_111">
@@ -1097,7 +1084,7 @@
             <item>
              <widget class="QCheckBox" name="checkUnwantedFolder">
               <property name="text">
-               <string>Keep unselected files in ".unwanted" folder</string>
+               <string>Keep unselected files in &quot;.unwanted&quot; folder</string>
               </property>
              </widget>
             </item>
