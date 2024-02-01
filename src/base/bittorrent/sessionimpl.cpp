@@ -2478,7 +2478,7 @@ bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
         // if magnet link was hybrid initially then it is indexed also by v1 info hash
         // so we need to remove both entries
         const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
-        m_downloadedMetadata.remove((altID == downloadedMetadataIter.key()) ? id : altID);
+        m_downloadedMetadata.remove(altID);
     }
 #endif
 
