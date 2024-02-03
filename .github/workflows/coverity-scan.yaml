@@ -35,9 +35,13 @@ jobs:
             libssl-dev libxkbcommon-x11-dev libxcb-cursor-dev zlib1g-dev
 
       - name: Install boost
+        env:
+          BOOST_MAJOR_VERSION: "1"
+          BOOST_MINOR_VERSION: "84"
+          BOOST_PATCH_VERSION: "0"
         run: |
-          boost_url="https://boostorg.jfrog.io/artifactory/main/release/1.84.0/source/boost_1_84_0.tar.gz"
-          boost_url2="https://sourceforge.net/projects/boost/files/boost/1.84.0/boost_1_84_0.tar.gz"
+          boost_url="https://boostorg.jfrog.io/artifactory/main/release/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/source/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
+          boost_url2="https://sourceforge.net/projects/boost/files/boost/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
           set +e
           curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url"
           tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
