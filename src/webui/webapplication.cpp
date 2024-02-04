@@ -64,6 +64,7 @@
 #include "api/synccontroller.h"
 #include "api/torrentscontroller.h"
 #include "api/transfercontroller.h"
+#include "api/transmissionrpccontroller.h"
 #include "freediskspacechecker.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
@@ -719,6 +720,7 @@ void WebApplication::sessionStart()
     m_currentSession->registerAPIController<SearchController>(u"search"_s);
     m_currentSession->registerAPIController<TorrentsController>(u"torrents"_s);
     m_currentSession->registerAPIController<TransferController>(u"transfer"_s);
+    m_currentSession->registerAPIController<TransmissionRPCController>(u"transmission"_s);
 
     auto *syncController = m_currentSession->registerAPIController<SyncController>(u"sync"_s);
     syncController->updateFreeDiskSpace(m_freeDiskSpaceChecker->lastResult());
