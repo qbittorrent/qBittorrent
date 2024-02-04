@@ -298,6 +298,12 @@ bool RequestParser::parsePostMessage(const QByteArrayView data)
         });
     }
 
+    if (contentTypeLower.startsWith(CONTENT_TYPE_JSON))
+    {
+        m_request.files.append({u""_s, CONTENT_TYPE_JSON, data.toByteArray()});
+        return true;
+    }
+
     qWarning() << Q_FUNC_INFO << "unknown content type:" << contentType;
     return false;
 }

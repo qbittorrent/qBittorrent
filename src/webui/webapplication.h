@@ -214,6 +214,7 @@ private:
         {{u"transfer"_s, u"setSpeedLimitsMode"_s}, Http::METHOD_POST},
         {{u"transfer"_s, u"setUploadLimit"_s}, Http::METHOD_POST},
         {{u"transfer"_s, u"toggleSpeedLimitsMode"_s}, Http::METHOD_POST},
+        {{u"transmission"_s, u"rpc"_s}, Http::METHOD_POST},
     };
     bool m_isAltUIUsed = false;
     Path m_rootFolder;

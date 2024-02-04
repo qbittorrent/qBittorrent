@@ -161,6 +161,7 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
     , m_freeDiskSpaceCheckingTimer {new QTimer(this)}
 {
     declarePublicAPI(u"auth/login"_s);
+    declarePublicAPI(u"transmission/rpc"_s);
 
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &WebApplication::configure);
