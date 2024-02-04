@@ -125,24 +125,8 @@ function getSyncMainDataInterval() {
     return customSyncMainDataInterval ? customSyncMainDataInterval : serverSyncMainDataInterval;
 }
 
-const fetchQbtVersion = function() {
-    new Request({
-        url: 'api/v2/app/version',
-        method: 'get',
-        onSuccess: function(info) {
-            if (!info)
-                return;
-            sessionStorage.setItem('qbtVersion', info);
-        }
-    }).send();
-};
-fetchQbtVersion();
-
 const qbtVersion = function() {
-    const version = sessionStorage.getItem('qbtVersion');
-    if (!version)
-        return '';
-    return version;
+    return LocalPreferences.get('qbtVersion', '');
 };
 
 window.addEvent('load', function() {
@@ -1474,6 +1458,38 @@ window.addEvent('load', function() {
         });
     };
     registerDragAndDrop();
+
+    // fetch qbt version and store it locally
+    new Request({
+        url: 'api/v2/app/version',
+        method: 'get',
+        noCache: true,
+        onSuccess: (info) => {
+            if (!info)
+                return;
+
+            LocalPreferences.set('qbtVersion', info);
+        }
+    }).send();
+
+    // fetch build info and store it locally
+    new Request.JSON({
+        url: 'api/v2/app/buildInfo',
+        method: 'get',
+        noCache: true,
+        onSuccess: (info) => {
+            if (!info)
+                return;
+
+            LocalPreferences.set('buildInfo.qtVersion', info.qt);
+            LocalPreferences.set('buildInfo.libtorrentVersion', info.libtorrent);
+            LocalPreferences.set('buildInfo.boostVersion', info.boost);
+            LocalPreferences.set('buildInfo.opensslVersion', info.openssl);
+            LocalPreferences.set('buildInfo.zlibVersion', info.zlib);
+            LocalPreferences.set('buildInfo.bitness', info.bitness);
+            LocalPreferences.set('buildInfo.platform', info.platform);
+        }
+    }).send();
 });
 
 function registerMagnetHandler() {
