@@ -9,6 +9,7 @@
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/torrentfileguard.h"
+#include "base/utils/misc.h"
 #include "base/version.h"
 
 #include "apierror.h"
@@ -130,7 +131,7 @@ QJsonObject sessionGet(const QJsonObject &args)
     insertIfRequested(u"trash-original-torrent-files"_s, [&] { return TorrentFileGuard::autoDeleteMode() >= TorrentFileGuard::AutoDeleteMode::IfAdded; });
     insertIfRequested(u"units"_s, [&] { return QJsonObject{}; });
     insertIfRequested(u"utp-enabled"_s, [&]{return false;}); // not supported in qbt
-    insertIfRequested(u"version"_s, [&]{return QStringLiteral(QBT_VERSION);});
+    insertIfRequested(u"version"_s, [&]{return u"qBitTorrent %1 with Qt %2, libtorrent %3"_s.arg(QStringLiteral(QBT_VERSION), QStringLiteral(QT_VERSION_STR), Utils::Misc::libtorrentVersionString());});
 
     return result;
 }
@@ -154,6 +155,10 @@ void TransmissionRPCController::rpcAction()
         if (method == u"session-get"_s)
         {
             methodResult = sessionGet(args);
+        }
+        else
+        {
+            throw TransmissionAPIError(APIErrorType::NotFound, u"Undefined method %1"_s.arg(method));
         }
         result[u"arguments"_s] = methodResult;
         result[u"result"_s] = u"success"_s;
