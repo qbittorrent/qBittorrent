@@ -2012,14 +2012,13 @@ void OptionsDialog::on_fetchButton_clicked()
 
 void OptionsDialog::handlePublicTrackersListChanged(const Net::DownloadResult &result)
 {
-    switch (result.status) {
-        case Net::DownloadStatus::Success:
-            BitTorrent::Session::instance()->setPublicTrackers(QString::fromUtf8(result.data.data()));
-            m_ui->textPublicTrackers->setPlainText(QString::fromUtf8(result.data.data()));
-            m_ui->fetchButton->setEnabled(false);
-            m_ui->fetchButton->setText(u"Fetched!"_s);
-            break;
-        default:
-            m_ui->textPublicTrackers->setPlainText(u"Refetch failed. Reason: "_s + result.errorString);
+    if (result.status == Net::DownloadStatus::Success) {
+        BitTorrent::Session::instance()->setPublicTrackers(QString::fromUtf8(result.data.data()));
+        m_ui->textPublicTrackers->setPlainText(QString::fromUtf8(result.data.data()));
+        m_ui->fetchButton->setEnabled(false);
+        m_ui->fetchButton->setText(u"Fetched!"_s);
+    }
+    else {
+        m_ui->textPublicTrackers->setPlainText(u"Refetch failed. Reason: "_s + result.errorString);
     }
 }

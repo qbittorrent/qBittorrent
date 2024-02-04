@@ -2265,18 +2265,19 @@ void SessionImpl::setPublicTrackers(const QString &trackers)
 void SessionImpl::updatePublicTracker()
 {
     Preferences *const pref = Preferences::instance();
-    Net::DownloadManager::instance()->download(Net::DownloadRequest(pref->customizeTrackersListUrl()).userAgent(QStringLiteral("qBittorrent Enhanced/" QBT_VERSION_2)), Preferences::instance()->useProxyForGeneralPurposes(), this, &SessionImpl::handlePublicTrackerTxtDownloadFinished);
+    Net::DownloadManager::instance()->download(Net::DownloadRequest(pref->customizeTrackersListUrl()).userAgent(QStringLiteral("qBittorrent/" QBT_VERSION_2)), Preferences::instance()->useProxyForGeneralPurposes(), this, &SessionImpl::handlePublicTrackerTxtDownloadFinished);
 }
 
 void SessionImpl::handlePublicTrackerTxtDownloadFinished(const Net::DownloadResult &result)
 {
-    switch (result.status) {
-        case Net::DownloadStatus::Success:
-            setPublicTrackers(QString::fromUtf8(result.data.data()));
-            LogMsg(tr("The public tracker list updated."), Log::INFO);
-            break;
-        default:
-            LogMsg(tr("Updating the public tracker list failed: %1").arg(result.errorString, Log::WARNING));
+    if (result.status == Net::DownloadStatus::Success)
+    {
+        setPublicTrackers(QString::fromUtf8(result.data.data()));
+        LogMsg(tr("The public tracker list updated."), Log::INFO);
+    }
+    else
+    {
+        LogMsg(tr("Updating the public tracker list failed: %1").arg(result.errorString, Log::WARNING));
     }
 }
 
