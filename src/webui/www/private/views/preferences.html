@@ -355,10 +355,10 @@
         </table>
     </fieldset>
 
-    <fieldset class="settings">
+    <fieldset class="settings" id="fieldsetI2p">
         <legend>
             <input type="checkbox" id="i2pEnabledCheckbox" onclick="qBittorrent.Preferences.updateI2PSettingsEnabled();" />
-            <label for="i2pEnabledCheckbox">QBT_TR(I2P (Experimental) (requires libtorrent &gt;= 2.0))QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label for="i2pEnabledCheckbox">QBT_TR(I2P (Experimental))QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
         <table>
             <tr>
@@ -993,9 +993,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     </select>
                 </td>
             </tr>
-            <tr>
+            <tr id="rowMemoryWorkingSetLimit">
                 <td>
-                    <label for="memoryWorkingSetLimit">QBT_TR(Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://wikipedia.org/wiki/Working_set" target="_blank">(?)</a></label>
+                    <label for="memoryWorkingSetLimit">QBT_TR(Physical memory (RAM) usage limit:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://wikipedia.org/wiki/Working_set" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="memoryWorkingSetLimit" style="width: 15em;" title="QBT_TR(This option is less effective on Linux)QBT_TR[CONTEXT=OptionsDialog]">&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
@@ -1091,7 +1091,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <input type="checkbox" id="embeddedTrackerPortForwarding" />
                 </td>
             </tr>
-            <tr>
+            <tr id="rowMarkOfTheWeb">
                 <td>
                     <label for="markOfTheWeb">QBT_TR(Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
@@ -1136,9 +1136,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <input type="text" id="asyncIOThreads" style="width: 15em;" />
                 </td>
             </tr>
-            <tr>
+            <tr id="rowHashingThreads">
                 <td>
-                    <label for="hashingThreads">QBT_TR(Hashing threads (requires libtorrent &gt;= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#hashing_threads" target="_blank">(?)</a></label>
+                    <label for="hashingThreads">QBT_TR(Hashing threads:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#hashing_threads" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="hashingThreads" style="width: 15em;" />
@@ -1160,17 +1160,17 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <input type="text" id="outstandMemoryWhenCheckingTorrents" style="width: 15em;" />&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
                 </td>
             </tr>
-            <tr>
+            <tr id="rowDiskCache">
                 <td>
-                    <label for="diskCache">QBT_TR(Disk cache (requires libtorrent &lt; 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#cache_size" target="_blank">(?)</a></label>
+                    <label for="diskCache">QBT_TR(Disk cache:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#cache_size" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="diskCache" style="width: 15em;" />&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
                 </td>
             </tr>
-            <tr>
+            <tr id="rowDiskCacheExpiryInterval">
                 <td>
-                    <label for="diskCacheExpiryInterval">QBT_TR(Disk cache expiry interval (requires libtorrent &lt; 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#cache_expiry" target="_blank">(?)</a></label>
+                    <label for="diskCacheExpiryInterval">QBT_TR(Disk cache expiry interval:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#cache_expiry" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="diskCacheExpiryInterval" style="width: 15em;">&nbsp;&nbsp;QBT_TR(s)QBT_TR[CONTEXT=OptionsDialog]
@@ -1184,9 +1184,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <input type="text" id="diskQueueSize" style="width: 15em;">&nbsp;&nbsp;QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]
                 </td>
             </tr>
-            <tr>
+            <tr id="rowDiskIOType">
                 <td>
-                    <label for="diskIOType">QBT_TR(Disk IO type (libtorrent &gt;= 2.0; requires restart):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/single-page-ref.html#default-disk-io-constructor" target="_blank">(?)</a></label>
+                    <label for="diskIOType">QBT_TR(Disk IO type (requires restart):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/single-page-ref.html#default-disk-io-constructor" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <select id="diskIOType" style="width: 15em;">
@@ -1215,13 +1215,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <select id="diskIOWriteMode" style="width: 15em;">
                         <option value="0">QBT_TR(Disable OS cache)QBT_TR[CONTEXT=OptionsDialog]</option>
                         <option value="1">QBT_TR(Enable OS cache)QBT_TR[CONTEXT=OptionsDialog]</option>
-                        <option value="2">QBT_TR(Write-through (requires libtorrent &gt;= 2.0.6))QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="2" id="diskIOWriteModeWriteThrough">QBT_TR(Write-through)QBT_TR[CONTEXT=OptionsDialog]</option>
                     </select>
                 </td>
             </tr>
-            <tr>
+            <tr id="rowCoalesceReadsAndWrites">
                 <td>
-                    <label for="coalesceReadsAndWrites">QBT_TR(Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#coalesce_reads" target="_blank">(?)</a></label>
+                    <label for="coalesceReadsAndWrites">QBT_TR(Coalesce reads &amp; writes:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#coalesce_reads" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="checkbox" id="coalesceReadsAndWrites" />
@@ -1485,33 +1485,33 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <input type="text" id="dhtBootstrapNodes" placeholder="QBT_TR(Resets to default if empty)QBT_TR[CONTEXT=OptionsDialog]" style="width: 15em;" />
                 </td>
             </tr>
-            <tr>
+            <tr id="rowI2pInboundQuantity">
                 <td>
-                    <label for="i2pInboundQuantity">QBT_TR(I2P inbound quantity (requires libtorrent &gt;= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#i2p_inbound_quantity" target="_blank">(?)</a></label>
+                    <label for="i2pInboundQuantity">QBT_TR(I2P inbound quantity:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#i2p_inbound_quantity" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input id="i2pInboundQuantity" type="number" min="1" max="16" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 15em;" />
                 </td>
             </tr>
-            <tr>
+            <tr id="rowI2pOutboundQuantity">
                 <td>
-                    <label for="i2pOutboundQuantity">QBT_TR(I2P outbound quantity (requires libtorrent &gt;= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#i2p_outbound_quantity" target="_blank">(?)</a></label>
+                    <label for="i2pOutboundQuantity">QBT_TR(I2P outbound quantity:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#i2p_outbound_quantity" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input id="i2pOutboundQuantity" type="number" min="1" max="16" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 15em;" />
                 </td>
             </tr>
-            <tr>
+            <tr id="rowI2pInboundLength">
                 <td>
-                    <label for="i2pInboundLength">QBT_TR(I2P inbound length (requires libtorrent &gt;= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#i2p_inbound_length" target="_blank">(?)</a></label>
+                    <label for="i2pInboundLength">QBT_TR(I2P inbound length:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#i2p_inbound_length" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input id="i2pInboundLength" type="number" min="0" max="7" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 15em;" />
                 </td>
             </tr>
-            <tr>
+            <tr id="rowI2pOutboundLength">
                 <td>
-                    <label for="i2pOutboundLength">QBT_TR(I2P outbound length (requires libtorrent &gt;= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#i2p_outbound_length" target="_blank">(?)</a></label>
+                    <label for="i2pOutboundLength">QBT_TR(I2P outbound length:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#i2p_outbound_length" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input id="i2pOutboundLength" type="number" min="0" max="7" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 15em;" />
@@ -1573,6 +1573,33 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 applyPreferences: applyPreferences
             };
         };
+
+        // hide entries
+        const libtorrentVersion = window.qBittorrent.Misc.parseVersion(LocalPreferences.get('buildInfo.libtorrentVersion', ''));
+        if (libtorrentVersion.valid) {
+            if (libtorrentVersion.major >= 2) {
+                $('rowDiskCache').style.display = 'none';
+                $('rowDiskCacheExpiryInterval').style.display = 'none';
+                $('rowCoalesceReadsAndWrites').style.display = 'none';
+            }
+            else {
+                $('fieldsetI2p').style.display = 'none';
+                $('rowMemoryWorkingSetLimit').style.display = 'none';
+                $('rowHashingThreads').style.display = 'none';
+                $('rowDiskIOType').style.display = 'none';
+                $('rowI2pInboundQuantity').style.display = 'none';
+                $('rowI2pOutboundQuantity').style.display = 'none';
+                $('rowI2pInboundLength').style.display = 'none';
+                $('rowI2pOutboundLength').style.display = 'none';
+            }
+
+            if (!((libtorrentVersion.major >= 2) && (libtorrentVersion.minor >= 0) && (libtorrentVersion.fix >= 6)))
+                $('diskIOWriteModeWriteThrough').style.display = 'none';
+        }
+
+        const serverPlatform = LocalPreferences.get('buildInfo.platform', '');
+        if ((serverPlatform !== 'macos') && (serverPlatform !== 'windows'))
+            $('rowMarkOfTheWeb').style.display = 'none';
 
         // Behavior tab
         const numberInputLimiter = (input) => {

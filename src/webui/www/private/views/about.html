@@ -843,25 +843,11 @@
 <script>
     'use strict';
 
-    (function() {
-        $('qbittorrentVersion').innerText = ("qBittorrent " + qbtVersion()
-            + " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]");
-
-        new Request.JSON({
-            url: 'api/v2/app/buildInfo',
-            method: 'get',
-            noCache: true,
-            onSuccess: function(info) {
-                if (!info)
-                    return;
-
-                $('qtVersion').textContent = info.qt;
-                $('libtorrentVersion').textContent = info.libtorrent;
-                $('boostVersion').textContent = info.boost;
-                $('opensslVersion').textContent = info.openssl;
-                $('zlibVersion').textContent = info.zlib;
-                $('qbittorrentVersion').textContent += " (" + info.bitness + "-bit)";
-            }
-        }).send();
-    })();
+    $('qbittorrentVersion').innerText = `qBittorrent ${qbtVersion()} QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]`;
+    $('qtVersion').textContent = LocalPreferences.get('buildInfo.qtVersion');
+    $('libtorrentVersion').textContent = LocalPreferences.get('buildInfo.libtorrentVersion');
+    $('boostVersion').textContent = LocalPreferences.get('buildInfo.boostVersion');
+    $('opensslVersion').textContent = LocalPreferences.get('buildInfo.opensslVersion');
+    $('zlibVersion').textContent = LocalPreferences.get('buildInfo.zlibVersion');
+    $('qbittorrentVersion').textContent += ` (${LocalPreferences.get('buildInfo.bitness')}-bit)`;
 </script>
