@@ -196,6 +196,27 @@ QJsonObject freeSpace(const QJsonObject &args)
         {u"total_size"_s, static_cast<qint64>(space.capacity)}
     };
 }
+
+QJsonObject torrentGet(const QJsonObject &)
+{
+    return {};
+}
+}
+
+TransmissionRPCController::TransmissionRPCController(IApplication *app, QObject *parent)
+    : APIController(app, parent)
+{
+    using namespace BitTorrent;
+    const Session *const session = Session::instance();
+    QVector<Torrent*> const torrents = session->torrents();
+    m_idToTorrent.reserve(torrents.size());
+    m_torrentToId.reserve(torrents.size());
+    for(Torrent *t : torrents)
+    {
+        saveMapping(t);
+    }
+    QObject::connect(session, &Session::torrentAdded, this, &TransmissionRPCController::saveMapping);
+    QObject::connect(session, &Session::torrentAboutToBeRemoved, this, &TransmissionRPCController::removeMapping);
 }
 
 void TransmissionRPCController::rpcAction()
@@ -224,6 +245,10 @@ void TransmissionRPCController::rpcAction()
                 QCoreApplication::exit();
             });
         }
+        else if (method == u"torrent-get"_s)
+        {
+            methodResult = torrentGet(args);
+        }
         else if (method == u"free-space"_s)
         {
             methodResult = freeSpace(args);
@@ -241,4 +266,17 @@ void TransmissionRPCController::rpcAction()
     }
 
     setResult(result);
+}
+
+void TransmissionRPCController::saveMapping(BitTorrent::Torrent *tor)
+{
+    const int this_id = m_lastId++;
+    m_idToTorrent[this_id] = tor;
+    m_torrentToId[tor] = this_id;
+}
+
+void TransmissionRPCController::removeMapping(BitTorrent::Torrent *tor)
+{
+    const int id = m_torrentToId.take(tor);
+    m_idToTorrent.remove(id);
 }
