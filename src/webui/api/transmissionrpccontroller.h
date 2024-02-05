@@ -17,9 +17,12 @@ private slots:
     void rpcAction();
 
 private:
-    QHash<int, BitTorrent::Torrent*> m_idToTorrent;
-    QHash<BitTorrent::Torrent*, int> m_torrentToId;
     void saveMapping(BitTorrent::Torrent*);
     void removeMapping(BitTorrent::Torrent*);
+    QJsonObject torrentGet(const QJsonObject &) const;
+    QVector<BitTorrent::Torrent*> collectTorrentsForRequest(const QJsonValue&) const;
+
+    QHash<int, BitTorrent::Torrent*> m_idToTorrent;
+    QHash<BitTorrent::Torrent*, int> m_torrentToId;
     int m_lastId = 1;
 };

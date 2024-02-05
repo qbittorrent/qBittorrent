@@ -85,17 +85,45 @@ int transmissionSchedulerDays(Scheduler::Days days)
     }
 }
 
-QJsonObject sessionGet(const QJsonObject &args)
+enum class TorrentGetFormat
 {
-    QJsonObject result{};
-    const QJsonValue fields = args[u"fields"_s];
-    if (!fields.isUndefined() && !fields.isArray())
+    Object,
+    Table
+};
+
+TorrentGetFormat torrentGetParseFormatArg(const QJsonValue &format)
+{
+    auto onError = [](const QString &actual){
+        throw TransmissionAPIError(APIErrorType::BadParams, u"'format' key in 'arguments' to torrent-get must be either 'object' or 'table' if present, got '%1'"_s.arg(actual));
+    };
+    TorrentGetFormat rv = TorrentGetFormat::Object; // default if not present
+    if (format.isString())
     {
-        throw TransmissionAPIError(APIErrorType::BadParams, u"'fields' key in 'arguments' to session-get should be an array"_s);
+        const QString formatStr = format.toString();
+        if (formatStr == u"object"_s)
+        {
+            rv = TorrentGetFormat::Object;
+        }
+        else if (formatStr == u"table"_s)
+        {
+            rv = TorrentGetFormat::Table;
+        }
+        else
+        {
+            onError(formatStr);
+        }
     }
-    const QJsonArray fieldsArray = fields.toArray();
+    else if (!format.isUndefined())
+    {
+        onError(format.toVariant().toString());
+    }
+    return rv;
+}
+
+QSet<QString> fieldsAsSet(const QJsonArray &fields)
+{
     QSet<QString> fieldsSet{};
-    for (QJsonValue &&f : fieldsArray)
+    for (QJsonValue &&f : fields)
     {
         if (f.isString())
         {
@@ -107,6 +135,18 @@ QJsonObject sessionGet(const QJsonObject &args)
                                        u"'fields' value '%1' is not a string"_s.arg(f.toVariant().toString()));
         }
     }
+    return fieldsSet;
+}
+
+QJsonObject sessionGet(const QJsonObject &args)
+{
+    QJsonObject result{};
+    const QJsonValue fields = args[u"fields"_s];
+    if (!fields.isUndefined() && !fields.isArray())
+    {
+        throw TransmissionAPIError(APIErrorType::BadParams, u"'fields' key in 'arguments' to session-get should be an array"_s);
+    }
+    const QSet<QString> fieldsSet = fieldsAsSet(fields.toArray());
 
     const auto insertIfRequested = [&](const QString &key, auto &&value_fn){
         if (fieldsSet.empty() || fieldsSet.contains(key))
@@ -196,11 +236,6 @@ QJsonObject freeSpace(const QJsonObject &args)
         {u"total_size"_s, static_cast<qint64>(space.capacity)}
     };
 }
-
-QJsonObject torrentGet(const QJsonObject &)
-{
-    return {};
-}
 }
 
 TransmissionRPCController::TransmissionRPCController(IApplication *app, QObject *parent)
@@ -279,4 +314,55 @@ void TransmissionRPCController::removeMapping(BitTorrent::Torrent *tor)
 {
     const int id = m_torrentToId.take(tor);
     m_idToTorrent.remove(id);
+}
+
+QJsonObject TransmissionRPCController::torrentGet(const QJsonObject &args) const
+{
+    const QJsonValue fields = args[u"fields"_s];
+    if (!fields.isArray())
+    {
+        throw TransmissionAPIError(APIErrorType::BadParams, u"'fields' key in 'arguments' to torrent-get must be an array"_s);
+    }
+    const TorrentGetFormat format = torrentGetParseFormatArg(args[u"format"_s]);
+    const QSet<QString> fieldsSet = fieldsAsSet(fields.toArray());
+    QVector<BitTorrent::Torrent*> requestedTorrents = collectTorrentsForRequest(args[u"ids"_s]);
+
+    return {};
+}
+
+QVector<BitTorrent::Torrent*> TransmissionRPCController::collectTorrentsForRequest(const QJsonValue& ids) const
+{
+    if (ids.isUndefined())
+    {
+        return BitTorrent::Session::instance()->torrents();
+    }
+    else if (ids.isArray())
+    {
+        const QJsonArray idsArray = ids.toArray();
+        QVector<BitTorrent::Torrent*> rv{};
+        rv.reserve(idsArray.size());
+        for (const QJsonValueConstRef &idVal : idsArray)
+        {
+            if (idVal.isDouble())
+            {
+                rv.push_back(m_idToTorrent[idVal.toInt()]);
+            }
+        }
+        return rv;
+    }
+    else if (ids.toString() == u"recently-active"_s)
+    {
+        // FIXME
+        return {};
+    }
+    else if (ids.isDouble())
+    {
+        QVector<BitTorrent::Torrent*> rv{};
+        rv.push_back(m_idToTorrent[ids.toInt()]);
+        return rv;
+    }
+    else
+    {
+        throw TransmissionAPIError(APIErrorType::BadParams, u"Unknown type for 'ids'"_s);
+    }
 }
