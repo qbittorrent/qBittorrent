@@ -151,11 +151,11 @@ qint64 Utils::Fs::computePathSize(const Path &path)
 
     // Compute folder size based on its content
     qint64 size = 0;
-    QDirIterator iter {path.data(), QDir::Files | QDir::Hidden | QDir::NoSymLinks, QDirIterator::Subdirectories};
+    QDirIterator iter {path.data(), (QDir::Files | QDir::Hidden | QDir::NoSymLinks), QDirIterator::Subdirectories};
     while (iter.hasNext())
     {
-        iter.next();
-        size += iter.fileInfo().size();
+        const QFileInfo fileInfo = iter.nextFileInfo();
+        size += fileInfo.size();
     }
     return size;
 }

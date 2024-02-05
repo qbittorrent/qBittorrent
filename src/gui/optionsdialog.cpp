@@ -1379,13 +1379,11 @@ void OptionsDialog::saveWebUITabOptions() const
 void OptionsDialog::initializeLanguageCombo()
 {
     // List language files
-    const QDir langDir(u":/lang"_s);
-    const QStringList langFiles = langDir.entryList(QStringList(u"qbittorrent_*.qm"_s), QDir::Files);
+    const QStringList langFiles = QDir(u":/lang"_s).entryList({u"qbittorrent_*.qm"_s}, QDir::Files, QDir::Name);
     for (const QString &langFile : langFiles)
     {
-        const QString localeStr = langFile.section(u"_"_s, 1, -1).section(u"."_s, 0, 0); // remove "qbittorrent_" and ".qm"
-        m_ui->comboI18n->addItem(/*QIcon(":/icons/flags/"+country+".svg"), */ Utils::Misc::languageToLocalizedString(localeStr), localeStr);
-        qDebug() << "Supported locale:" << localeStr;
+        const QString langCode = QStringView(langFile).sliced(12).chopped(3).toString(); // remove "qbittorrent_" and ".qm"
+        m_ui->comboI18n->addItem(Utils::Misc::languageToLocalizedString(langCode), langCode);
     }
 }
 
