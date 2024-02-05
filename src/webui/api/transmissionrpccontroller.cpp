@@ -131,7 +131,7 @@ QJsonObject sessionGet(const QJsonObject &args)
     insertIfRequested(u"default-trackers"_s, [&] { return session->isAddTrackersEnabled() ? session->additionalTrackers() : QString{}; });
     insertIfRequested(u"dht-enabled"_s, [&] { return session->isDHTEnabled(); });
     insertIfRequested(u"download-dir"_s, [&] { return session->savePath().toString(); });
-    insertIfRequested(u"download-dir-free-space"_s, [&] { return static_cast<qint64>(std::filesystem::space(session->savePath().toStdFsPath()).available); }); // TODO
+    insertIfRequested(u"download-dir-free-space"_s, [&] { return static_cast<qint64>(std::filesystem::space(session->savePath().toStdFsPath()).available); });
     insertIfRequested(u"download-queue-enabled"_s, [&] { return session->isQueueingSystemEnabled(); });
     insertIfRequested(u"download-queue-size"_s, [&] { return session->maxActiveDownloads(); });
     insertIfRequested(u"encryption"_s, [&] {
@@ -189,7 +189,7 @@ QJsonObject freeSpace(const QJsonObject &args)
         throw TransmissionAPIError(APIErrorType::BadParams,
                                    u"Missing parameter 'path' missing or not a string : %1"_s.arg(args[u"path"_s].toVariant().toString()));
     }
-    std::filesystem::space_info space = std::filesystem::space(Path{path}.toStdFsPath());
+    const std::filesystem::space_info space = std::filesystem::space(Path{path}.toStdFsPath());
     return {
         {u"path"_s, path},
         {u"size-bytes"_s, static_cast<qint64>(space.available)},
