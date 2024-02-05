@@ -352,18 +352,25 @@ void WebApplication::doProcessRequest()
 
     try
     {
-        const QVariant result = controller->run(action, m_params, data);
-        switch (result.userType())
+        const APIResult result = controller->run(action, m_params, data);
+        switch (result.data.userType())
         {
         case QMetaType::QJsonDocument:
-            print(result.toJsonDocument().toJson(QJsonDocument::Compact), Http::CONTENT_TYPE_JSON);
+            print(result.data.toJsonDocument().toJson(QJsonDocument::Compact), Http::CONTENT_TYPE_JSON);
             break;
         case QMetaType::QByteArray:
-            print(result.toByteArray(), Http::CONTENT_TYPE_TXT);
+            {
+                const auto resultData = result.data.toByteArray();
+                print(resultData, (!result.mimeType.isEmpty() ? result.mimeType : Http::CONTENT_TYPE_TXT));
+                if (!result.filename.isEmpty())
+                {
+                    setHeader({u"Content-Disposition"_s, u"attachment; filename=\"%1\""_s.arg(result.filename)});
+                }
+            }
             break;
         case QMetaType::QString:
         default:
-            print(result.toString(), Http::CONTENT_TYPE_TXT);
+            print(result.data.toString(), Http::CONTENT_TYPE_TXT);
             break;
         }
     }
