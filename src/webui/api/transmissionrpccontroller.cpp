@@ -120,6 +120,32 @@ TorrentGetFormat torrentGetParseFormatArg(const QJsonValue &format)
     return rv;
 }
 
+QJsonValue torrentGetSingleField(const BitTorrent::Torrent &, const QString &)
+{
+    // TODO
+    return QJsonValue{};
+}
+
+QJsonObject torrentGetObject(const BitTorrent::Torrent &tor, const QSet<QString> &fields)
+{
+    QJsonObject result{};
+    for(const QString &f : fields)
+    {
+        result[f] = torrentGetSingleField(tor, f);
+    }
+    return result;
+}
+
+QJsonArray torrentGetTable(const BitTorrent::Torrent &tor, const QSet<QString> &fields)
+{
+    QJsonArray result{};
+    for(const QString &f : fields)
+    {
+        result.push_back(torrentGetSingleField(tor, f));
+    }
+    return result;
+}
+
 QSet<QString> fieldsAsSet(const QJsonArray &fields)
 {
     QSet<QString> fieldsSet{};
@@ -326,8 +352,29 @@ QJsonObject TransmissionRPCController::torrentGet(const QJsonObject &args) const
     const TorrentGetFormat format = torrentGetParseFormatArg(args[u"format"_s]);
     const QSet<QString> fieldsSet = fieldsAsSet(fields.toArray());
     QVector<BitTorrent::Torrent*> requestedTorrents = collectTorrentsForRequest(args[u"ids"_s]);
+    QJsonArray torrents;
+    if (format == TorrentGetFormat::Object)
+    {
+        for (BitTorrent::Torrent *t : requestedTorrents)
+        {
+            torrents.push_back(torrentGetObject(*t, fieldsSet));
+        }
+    }
+    else if (format == TorrentGetFormat::Table)
+    {
+        QJsonArray fields;
+        for (const QString &f : fieldsSet)
+        {
+            fields.push_back(f);
+        }
+        torrents.push_back(fields);
+        for (BitTorrent::Torrent *t : requestedTorrents)
+        {
+            torrents.push_back(torrentGetTable(*t, fieldsSet));
+        }
+    }
 
-    return {};
+    return {{u"torrents"_s, torrents}};
 }
 
 QVector<BitTorrent::Torrent*> TransmissionRPCController::collectTorrentsForRequest(const QJsonValue& ids) const
