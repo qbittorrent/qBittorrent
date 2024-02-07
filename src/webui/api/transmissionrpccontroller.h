@@ -7,13 +7,15 @@ namespace BitTorrent
 class Torrent;
 }
 
+class WebSession;
+
 class TransmissionRPCController : public APIController
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(TransmissionRPCController)
 
 public:
-    explicit TransmissionRPCController(IApplication *app, QObject *parent = nullptr);
+    explicit TransmissionRPCController(IApplication *app, WebSession *parent = nullptr);
 
 private slots:
     void rpcAction();
@@ -27,4 +29,5 @@ private:
     QHash<int, BitTorrent::Torrent*> m_idToTorrent;
     QHash<BitTorrent::Torrent*, int> m_torrentToId;
     int m_lastId = 1;
+    QString m_sid;
 };

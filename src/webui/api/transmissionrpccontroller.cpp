@@ -16,6 +16,7 @@
 #include "base/version.h"
 
 #include "apierror.h"
+#include "../webapplication.h"
 
 using namespace Qt::Literals::StringLiterals;
 
@@ -164,7 +165,7 @@ QSet<QString> fieldsAsSet(const QJsonArray &fields)
     return fieldsSet;
 }
 
-QJsonObject sessionGet(const QJsonObject &args)
+QJsonObject sessionGet(const QJsonObject &args, const QString &sid)
 {
     QJsonObject result{};
     const QJsonValue fields = args[u"fields"_s];
@@ -177,9 +178,11 @@ QJsonObject sessionGet(const QJsonObject &args)
     {
         const BitTorrent::Session *session;
         const Preferences *pref;
+        QString sid;
     } func_args = {
         BitTorrent::Session::instance(),
-        Preferences::instance()
+        Preferences::instance(),
+        sid
     };
 
     static const QHash<QString, QJsonValue (*)(const FieldValueFuncArgs&)> fieldValueFuncHash = {
@@ -210,7 +213,6 @@ QJsonObject sessionGet(const QJsonObject &args)
     {u"lpd-enabled"_s, [](const auto &args) -> QJsonValue { return args.session->isLSDEnabled(); }},
     {u"peer-limit-global"_s, [](const auto &args) -> QJsonValue { return args.session->maxConnections(); }},
     {u"peer-limit-per-torrent"_s, [](const auto &args) -> QJsonValue { return args.session->maxConnectionsPerTorrent(); }},
-    {u"peer-port-random-on-start"_s, [](const auto &) -> QJsonValue { return false; }}, // functionality deprecated in qbt
     {u"peer-port"_s, [](const auto &args) -> QJsonValue { return args.session->port(); }},
     {u"pex-enabled"_s, [](const auto &args) -> QJsonValue { return args.session->isPeXEnabled(); }},
     {u"port-forwarding-enabled"_s, [](const auto &) -> QJsonValue { return Net::PortForwarder::instance()->isEnabled(); }},
@@ -233,17 +235,19 @@ QJsonObject sessionGet(const QJsonObject &args)
     {u"units"_s, [](const auto&) -> QJsonValue { return ::units(); }},
     {u"utp-enabled"_s, [](const auto &args) -> QJsonValue{using btp = BitTorrent::SessionSettingsEnums::BTProtocol; const btp proto = args.session->btProtocol(); return proto == btp::Both || proto == btp::UTP; }},
     {u"version"_s, [](const auto &) -> QJsonValue{return u"qBitTorrent %1 with Qt %2, libtorrent %3"_s.arg(QStringLiteral(QBT_VERSION), QStringLiteral(QT_VERSION_STR), Utils::Misc::libtorrentVersionString());}},
+    {u"session-id"_s, [](const auto &args) -> QJsonValue { return args.sid; }}, // not applicable, maybe use cookie?
+
+    {u"peer-port-random-on-start"_s, [](const auto &) -> QJsonValue { return false; }}, // functionality deprecated in qbt
+    {u"script-torrent-done-seeding-enabled"_s, [](const auto&) -> QJsonValue { return false; }}, // not supported in qbt
+    {u"script-torrent-done-seeding-filename"_s, [](const auto&) -> QJsonValue { return QString{}; }}, // not supported in qbt
+    {u"seed-queue-enabled"_s, [](const auto&) -> QJsonValue { return false; }}, // not supported?
+    {u"seed-queue-size"_s, [](const auto&) -> QJsonValue { return 0; }},
 
     {u"blocklist-size"_s, [](const auto&) -> QJsonValue { return 0; }}, // TODO
     {u"idle-seeding-limit-enabled"_s, [](const auto&) -> QJsonValue { return false; }}, // TODO
     {u"idle-seeding-limit"_s, [](const auto&) -> QJsonValue { return 0; }}, // TODO
     {u"queue-stalled-enabled"_s, [](const auto&) -> QJsonValue { return false; }}, // TODO
     {u"queue-stalled-minutes"_s, [](const auto&) -> QJsonValue { return 0; }}, // TODO
-    {u"script-torrent-done-seeding-enabled"_s, [](const auto&) -> QJsonValue { return false; }}, // not supported in qbt
-    {u"script-torrent-done-seeding-filename"_s, [](const auto&) -> QJsonValue { return QString{}; }}, // not supported in qbt
-    {u"seed-queue-enabled"_s, [](const auto&) -> QJsonValue { return false; }}, // TODO not supported?
-    {u"seed-queue-size"_s, [](const auto&) -> QJsonValue { return 0; }},
-    {u"session-id"_s, [](const auto&) -> QJsonValue { return u"foobar"_s; }}, // not applicable, maybe use cookie?
     };
 
     const QSet<QString> fieldsSet = fieldsAsSet(fields.toArray());
@@ -290,8 +294,8 @@ QJsonObject freeSpace(const QJsonObject &args)
 }
 }
 
-TransmissionRPCController::TransmissionRPCController(IApplication *app, QObject *parent)
-    : APIController(app, parent)
+TransmissionRPCController::TransmissionRPCController(IApplication *app, WebSession *parent)
+    : APIController(app, parent), m_sid(parent->id())
 {
     using namespace BitTorrent;
     const Session *const session = Session::instance();
@@ -323,7 +327,7 @@ void TransmissionRPCController::rpcAction()
         QJsonObject methodResult{};
         if (method == u"session-get"_s)
         {
-            methodResult = sessionGet(args);
+            methodResult = sessionGet(args, m_sid);
         }
         else if (method == u"session-close"_s)
         {
