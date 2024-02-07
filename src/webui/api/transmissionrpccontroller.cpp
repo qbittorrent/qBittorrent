@@ -172,78 +172,104 @@ QJsonObject sessionGet(const QJsonObject &args)
     {
         throw TransmissionAPIError(APIErrorType::BadParams, u"'fields' key in 'arguments' to session-get should be an array"_s);
     }
-    const QSet<QString> fieldsSet = fieldsAsSet(fields.toArray());
 
-    const auto insertIfRequested = [&](const QString &key, auto &&value_fn){
-        if (fieldsSet.empty() || fieldsSet.contains(key))
-        {
-            result[key] = value_fn();
-        }
+    const struct FieldValueFuncArgs
+    {
+        const BitTorrent::Session *session;
+        const Preferences *pref;
+    } func_args = {
+        BitTorrent::Session::instance(),
+        Preferences::instance()
     };
-    const Preferences *const pref = Preferences::instance();
-    const BitTorrent::Session *const session = BitTorrent::Session::instance();
 
-    insertIfRequested(u"alt-speed-down"_s, [&] { return session->altGlobalDownloadSpeedLimit(); });
-    insertIfRequested(u"alt-speed-enabled"_s, [&] { return session->isAltGlobalSpeedLimitEnabled(); });
-    insertIfRequested(u"alt-speed-time-begin"_s, [&] { return minutesAfterMidnight(pref->getSchedulerStartTime());});
-    insertIfRequested(u"alt-speed-time-day"_s, [&] { return transmissionSchedulerDays(pref->getSchedulerDays()); });
-    insertIfRequested(u"alt-speed-time-enabled"_s, [&] { return session->isBandwidthSchedulerEnabled(); });
-    insertIfRequested(u"alt-speed-time-end"_s, [&] { return minutesAfterMidnight(pref->getSchedulerEndTime()); });
-    insertIfRequested(u"alt-speed-up"_s, [&] { return session->altGlobalUploadSpeedLimit(); });
-    insertIfRequested(u"blocklist-enabled"_s, [&] { return session->isIPFilteringEnabled(); });
-    insertIfRequested(u"blocklist-url"_s, [&] { return session->IPFilterFile().toString(); });
-    insertIfRequested(u"cache-size-mb"_s, [&] { return session->diskCacheSize() / 1024 / 1024; });
-    insertIfRequested(u"config-dir"_s, [&] { return Profile::instance()->location(SpecialFolder::Config).toString(); });
-    insertIfRequested(u"default-trackers"_s, [&] { return session->isAddTrackersEnabled() ? session->additionalTrackers() : QString{}; });
-    insertIfRequested(u"dht-enabled"_s, [&] { return session->isDHTEnabled(); });
-    insertIfRequested(u"download-dir"_s, [&] { return session->savePath().toString(); });
-    insertIfRequested(u"download-dir-free-space"_s, [&] { return static_cast<qint64>(std::filesystem::space(session->savePath().toStdFsPath()).available); });
-    insertIfRequested(u"download-queue-enabled"_s, [&] { return session->isQueueingSystemEnabled(); });
-    insertIfRequested(u"download-queue-size"_s, [&] { return session->maxActiveDownloads(); });
-    insertIfRequested(u"encryption"_s, [&] {
+    static const QHash<QString, QJsonValue (*)(const FieldValueFuncArgs&)> fieldValueFuncHash = {
+        {u"alt-speed-down"_s, [](const auto& args) -> QJsonValue { { return args.session->altGlobalDownloadSpeedLimit(); } }},
+        {u"alt-speed-enabled"_s, [](const auto& args) -> QJsonValue { return args.session->isAltGlobalSpeedLimitEnabled(); }},
+        {u"alt-speed-time-begin"_s, [](const auto& args) -> QJsonValue { return minutesAfterMidnight(args.pref->getSchedulerStartTime());}},
+    {u"alt-speed-time-day"_s, [](const auto &args) -> QJsonValue { return transmissionSchedulerDays(args.pref->getSchedulerDays()); }},
+    {u"alt-speed-time-enabled"_s, [](const auto &args) -> QJsonValue { return args.session->isBandwidthSchedulerEnabled(); }},
+    {u"alt-speed-time-end"_s, [](const auto &args) -> QJsonValue { return minutesAfterMidnight(args.pref->getSchedulerEndTime()); }},
+    {u"alt-speed-up"_s, [](const auto &args) -> QJsonValue { return args.session->altGlobalUploadSpeedLimit(); }},
+    {u"blocklist-enabled"_s, [](const auto &args) -> QJsonValue { return args.session->isIPFilteringEnabled(); }},
+    {u"blocklist-url"_s, [](const auto &args) -> QJsonValue { return args.session->IPFilterFile().toString(); }},
+    {u"cache-size-mb"_s, [](const auto &args) -> QJsonValue { return args.session->diskCacheSize() / 1024 / 1024; }},
+    {u"config-dir"_s, [](const auto &) -> QJsonValue { return Profile::instance()->location(SpecialFolder::Config).toString(); }},
+    {u"default-trackers"_s, [](const auto &args) -> QJsonValue { return args.session->isAddTrackersEnabled() ? args.session->additionalTrackers() : QString{}; }},
+    {u"dht-enabled"_s, [](const auto &args) -> QJsonValue { return args.session->isDHTEnabled(); }},
+    {u"download-dir"_s, [](const auto &args) -> QJsonValue { return args.session->savePath().toString(); }},
+    {u"download-dir-free-space"_s, [](const auto &args) -> QJsonValue { return static_cast<qint64>(std::filesystem::space(args.session->savePath().toStdFsPath()).available); }},
+    {u"download-queue-enabled"_s, [](const auto &args) -> QJsonValue { return args.session->isQueueingSystemEnabled(); }},
+    {u"download-queue-size"_s, [](const auto &args) -> QJsonValue { return args.session->maxActiveDownloads(); }},
+    {u"encryption"_s, [](const auto &args) -> QJsonValue {
         auto const strings = std::array{u"preferred"_s, u"required"_s, u"tolerated"_s};
-        const int val = session->encryption();
+        const int val = args.session->encryption();
         Q_ASSERT(val < static_cast<int>(strings.size()));
-        return strings[val];});
-    insertIfRequested(u"incomplete-dir-enabled"_s, [&] { return session->isDownloadPathEnabled(); });
-    insertIfRequested(u"incomplete-dir"_s, [&] { return session->downloadPath().toString(); });
-    insertIfRequested(u"lpd-enabled"_s, [&] { return session->isLSDEnabled(); });
-    insertIfRequested(u"peer-limit-global"_s, [&] { return session->maxConnections(); });
-    insertIfRequested(u"peer-limit-per-torrent"_s, [&] { return session->maxConnectionsPerTorrent(); });
-    insertIfRequested(u"peer-port-random-on-start"_s, [&] { return false; }); // functionality deprecated in qbt
-    insertIfRequested(u"peer-port"_s, [&] { return session->port(); });
-    insertIfRequested(u"pex-enabled"_s, [&] { return session->isPeXEnabled(); });
-    insertIfRequested(u"port-forwarding-enabled"_s, [&] { return Net::PortForwarder::instance()->isEnabled(); });
-    insertIfRequested(u"rename-partial-files"_s, [&] { return session->isAppendExtensionEnabled(); });
-    insertIfRequested(u"rpc-version-minimum"_s, [&] { return 18; });
-    insertIfRequested(u"rpc-version-semver"_s, [&] { return u"5.4.0"_s; });
-    insertIfRequested(u"rpc-version"_s, [&] { return 18; });
-    insertIfRequested(u"script-torrent-added-enabled"_s, [&] { return pref->isAutoRunOnTorrentAddedEnabled(); });
-    insertIfRequested(u"script-torrent-added-filename"_s, [&] { return pref->getAutoRunOnTorrentAddedProgram(); });
-    insertIfRequested(u"script-torrent-done-enabled"_s, [&] { return pref->isAutoRunOnTorrentFinishedEnabled(); });
-    insertIfRequested(u"script-torrent-done-filename"_s, [&] { return pref->getAutoRunOnTorrentFinishedProgram(); });
-    insertIfRequested(u"seedRatioLimit"_s, [&] { return session->globalMaxRatio(); });
-    insertIfRequested(u"seedRatioLimited"_s, [&] { return session->globalMaxRatio() >= 0.; });
-    insertIfRequested(u"speed-limit-down-enabled"_s, [&] { return session->globalDownloadSpeedLimit() > 0; });
-    insertIfRequested(u"speed-limit-down"_s, [&] { return session->globalDownloadSpeedLimit() / 1024; });
-    insertIfRequested(u"speed-limit-up-enabled"_s, [&] { return session->globalUploadSpeedLimit() > 0; });
-    insertIfRequested(u"speed-limit-up"_s, [&] { return session->globalUploadSpeedLimit() / 1024; });
-    insertIfRequested(u"start-added-torrents"_s, [&] { return !session->isAddTorrentPaused(); });
-    insertIfRequested(u"trash-original-torrent-files"_s, [&] { return TorrentFileGuard::autoDeleteMode() >= TorrentFileGuard::AutoDeleteMode::IfAdded; });
-    insertIfRequested(u"units"_s, ::units);
-    insertIfRequested(u"utp-enabled"_s, [&]{using btp = BitTorrent::SessionSettingsEnums::BTProtocol; const btp proto = session->btProtocol(); return proto == btp::Both || proto == btp::UTP; });
-    insertIfRequested(u"version"_s, [&]{return u"qBitTorrent %1 with Qt %2, libtorrent %3"_s.arg(QStringLiteral(QBT_VERSION), QStringLiteral(QT_VERSION_STR), Utils::Misc::libtorrentVersionString());});
+        return strings[val];}},
+    {u"incomplete-dir-enabled"_s, [](const auto &args) -> QJsonValue { return args.session->isDownloadPathEnabled(); }},
+    {u"incomplete-dir"_s, [](const auto &args) -> QJsonValue { return args.session->downloadPath().toString(); }},
+    {u"lpd-enabled"_s, [](const auto &args) -> QJsonValue { return args.session->isLSDEnabled(); }},
+    {u"peer-limit-global"_s, [](const auto &args) -> QJsonValue { return args.session->maxConnections(); }},
+    {u"peer-limit-per-torrent"_s, [](const auto &args) -> QJsonValue { return args.session->maxConnectionsPerTorrent(); }},
+    {u"peer-port-random-on-start"_s, [](const auto &) -> QJsonValue { return false; }}, // functionality deprecated in qbt
+    {u"peer-port"_s, [](const auto &args) -> QJsonValue { return args.session->port(); }},
+    {u"pex-enabled"_s, [](const auto &args) -> QJsonValue { return args.session->isPeXEnabled(); }},
+    {u"port-forwarding-enabled"_s, [](const auto &) -> QJsonValue { return Net::PortForwarder::instance()->isEnabled(); }},
+    {u"rename-partial-files"_s, [](const auto &args) -> QJsonValue { return args.session->isAppendExtensionEnabled(); }},
+    {u"rpc-version-minimum"_s, [](const auto &) -> QJsonValue { return 18; }},
+    {u"rpc-version-semver"_s, [](const auto &) -> QJsonValue { return u"5.4.0"_s; }},
+    {u"rpc-version"_s, [](const auto &) -> QJsonValue { return 18; }},
+    {u"script-torrent-added-enabled"_s, [](const auto &args) -> QJsonValue { return args.pref->isAutoRunOnTorrentAddedEnabled(); }},
+    {u"script-torrent-added-filename"_s, [](const auto &args) -> QJsonValue { return args.pref->getAutoRunOnTorrentAddedProgram(); }},
+    {u"script-torrent-done-enabled"_s, [](const auto &args) -> QJsonValue { return args.pref->isAutoRunOnTorrentFinishedEnabled(); }},
+    {u"script-torrent-done-filename"_s, [](const auto &args) -> QJsonValue { return args.pref->getAutoRunOnTorrentFinishedProgram(); }},
+    {u"seedRatioLimit"_s, [](const auto &args) -> QJsonValue { return args.session->globalMaxRatio(); }},
+    {u"seedRatioLimited"_s, [](const auto &args) -> QJsonValue { return args.session->globalMaxRatio() >= 0.; }},
+    {u"speed-limit-down-enabled"_s, [](const auto &args) -> QJsonValue { return args.session->globalDownloadSpeedLimit() > 0; }},
+    {u"speed-limit-down"_s, [](const auto &args) -> QJsonValue { return args.session->globalDownloadSpeedLimit() / 1024; }},
+    {u"speed-limit-up-enabled"_s, [](const auto &args) -> QJsonValue { return args.session->globalUploadSpeedLimit() > 0; }},
+    {u"speed-limit-up"_s, [](const auto &args) -> QJsonValue { return args.session->globalUploadSpeedLimit() / 1024; }},
+    {u"start-added-torrents"_s, [](const auto &args) -> QJsonValue { return !args.session->isAddTorrentPaused(); }},
+    {u"trash-original-torrent-files"_s, [](const auto &) -> QJsonValue { return TorrentFileGuard::autoDeleteMode() >= TorrentFileGuard::AutoDeleteMode::IfAdded; }},
+    {u"units"_s, [](const auto&) -> QJsonValue { return ::units(); }},
+    {u"utp-enabled"_s, [](const auto &args) -> QJsonValue{using btp = BitTorrent::SessionSettingsEnums::BTProtocol; const btp proto = args.session->btProtocol(); return proto == btp::Both || proto == btp::UTP; }},
+    {u"version"_s, [](const auto &) -> QJsonValue{return u"qBitTorrent %1 with Qt %2, libtorrent %3"_s.arg(QStringLiteral(QBT_VERSION), QStringLiteral(QT_VERSION_STR), Utils::Misc::libtorrentVersionString());}},
 
-    insertIfRequested(u"blocklist-size"_s, [&] { return 0; }); // TODO
-    insertIfRequested(u"idle-seeding-limit-enabled"_s, [&] { return false; }); // TODO
-    insertIfRequested(u"idle-seeding-limit"_s, [&] { return 0; }); // TODO
-    insertIfRequested(u"queue-stalled-enabled"_s, [&] { return false; }); // TODO
-    insertIfRequested(u"queue-stalled-minutes"_s, [&] { return 0; }); // TODO
-    insertIfRequested(u"script-torrent-done-seeding-enabled"_s, [&] { return false; }); // not supported in qbt
-    insertIfRequested(u"script-torrent-done-seeding-filename"_s, [&] { return QString{}; }); // not supported in qbt
-    insertIfRequested(u"seed-queue-enabled"_s, [&] { return false; }); // TODO not supported?
-    insertIfRequested(u"seed-queue-size"_s, [&] { return 0; });
-    insertIfRequested(u"session-id"_s, [&] { return u"foobar"_s; }); // not applicable, maybe use cookie?
+    {u"blocklist-size"_s, [](const auto&) -> QJsonValue { return 0; }}, // TODO
+    {u"idle-seeding-limit-enabled"_s, [](const auto&) -> QJsonValue { return false; }}, // TODO
+    {u"idle-seeding-limit"_s, [](const auto&) -> QJsonValue { return 0; }}, // TODO
+    {u"queue-stalled-enabled"_s, [](const auto&) -> QJsonValue { return false; }}, // TODO
+    {u"queue-stalled-minutes"_s, [](const auto&) -> QJsonValue { return 0; }}, // TODO
+    {u"script-torrent-done-seeding-enabled"_s, [](const auto&) -> QJsonValue { return false; }}, // not supported in qbt
+    {u"script-torrent-done-seeding-filename"_s, [](const auto&) -> QJsonValue { return QString{}; }}, // not supported in qbt
+    {u"seed-queue-enabled"_s, [](const auto&) -> QJsonValue { return false; }}, // TODO not supported?
+    {u"seed-queue-size"_s, [](const auto&) -> QJsonValue { return 0; }},
+    {u"session-id"_s, [](const auto&) -> QJsonValue { return u"foobar"_s; }}, // not applicable, maybe use cookie?
+    };
+
+    const QSet<QString> fieldsSet = fieldsAsSet(fields.toArray());
+    if (!fieldsSet.empty())
+    {
+        for(const QString &key : fieldsSet)
+        {
+            if (auto func = fieldValueFuncHash.value(key, nullptr))
+            {
+                result[key] = func(func_args);
+            }
+            else
+            {
+                throw TransmissionAPIError(APIErrorType::BadParams, u"Unknown arg '%1' to session-get"_s.arg(key));
+            }
+        }
+    }
+    else
+    {
+        const auto it_end = fieldValueFuncHash.constKeyValueEnd();
+        for(auto it = fieldValueFuncHash.constKeyValueBegin(); it != it_end ; ++it)
+        {
+            result[it->first] = it->second(func_args);
+        }
+    }
+
     return result;
 }
 
