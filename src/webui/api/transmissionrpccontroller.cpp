@@ -2,16 +2,19 @@
 
 #include <filesystem>
 
+#include <QBitArray>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QTimer>
 
+#include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/net/portforwarder.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/torrentfileguard.h"
+#include "base/utils/datetime.h"
 #include "base/utils/misc.h"
 #include "base/version.h"
 
@@ -121,10 +124,74 @@ TorrentGetFormat torrentGetParseFormatArg(const QJsonValue &format)
     return rv;
 }
 
-QJsonValue torrentGetSingleField(const BitTorrent::Torrent &, const QString &)
+QJsonValue torrentGetSingleField(const BitTorrent::Torrent &tor, const QString &fld)
 {
-    // TODO
-    return QJsonValue{};
+    const struct FieldValueFuncArgs
+    {
+        const BitTorrent::Torrent &tor;
+    } args = { tor };
+
+    static const QHash<QString, QJsonValue (*)(const FieldValueFuncArgs&)> fieldValueFuncHash = {
+    {u"activityDate"_s, [](const auto &args) -> QJsonValue {
+        const qlonglong timeSinceActivity = args.tor.timeSinceActivity();
+        return (timeSinceActivity < 0)
+            ? Utils::DateTime::toSecsSinceEpoch(args.tor.addedTime())
+            : (QDateTime::currentDateTime().toSecsSinceEpoch() - timeSinceActivity);
+    }},
+    {u"addedDate"_s, [](const auto &args) -> QJsonValue { return Utils::DateTime::toSecsSinceEpoch(args.tor.addedTime()); }},
+    {u"availability"_s, [](const auto &args) -> QJsonValue {
+        const QVector<int> peersPerPiece = args.tor.pieceAvailability();
+        const QBitArray ourPieces = args.tor.pieces();
+        Q_ASSERT(peersPerPiece.size() == ourPieces.size());
+        QJsonArray result = {};
+        for(qsizetype i = 0 ; i < ourPieces.size() ; ++i)
+        {
+            result.push_back(ourPieces[i] ? -1 : peersPerPiece[i]);
+        }
+        return result;
+    }},
+    {u"bandwidthPriority"_s, [](const auto &) -> QJsonValue {
+        // qBt doesn't appear to have torrent priorities so just report everything as NORMAL
+        return 0;
+    }},
+    {u"comment"_s, [](const auto &args) -> QJsonValue { return args.tor.comment(); }},
+    {u"corruptEver"_s, [](const auto &args) -> QJsonValue {
+        // not really "ever" - resets on pause in qBt, while Transmission saves this info to resume files
+        return args.tor.wastedSize();
+    }},
+    {u"creator"_s, [](const auto &args) -> QJsonValue { return args.tor.creator(); }},
+    {u"dateCreated"_s, [](const auto &args) -> QJsonValue { return Utils::DateTime::toSecsSinceEpoch(args.tor.creationDate()); }},
+    {u"desiredAvailable"_s, [](const auto &args) -> QJsonValue
+    {
+        const QVector<int> peersPerPiece = args.tor.pieceAvailability();
+        const QBitArray ourPieces = args.tor.pieces();
+        Q_ASSERT(peersPerPiece.size() == ourPieces.size());
+        qint64 result = 0;
+        const auto singlePieceSize = args.tor.pieceLength();
+        for(qsizetype i = 0 ; i < ourPieces.size() ; ++i)
+        {
+            if (!ourPieces[i] && peersPerPiece[i] >= 1)
+            {
+                result += singlePieceSize;
+            }
+        }
+        return result;
+    }},
+    {u"doneDate"_s, [](const auto &args) -> QJsonValue { return Utils::DateTime::toSecsSinceEpoch(args.tor.completedTime()); }},
+    {u"downloadDir"_s, [](const auto &args) -> QJsonValue { return args.tor.savePath().toString(); }},
+    {u"downloadedEver"_s, [](const auto &args) -> QJsonValue { return args.tor.totalDownload(); }},
+    {u"downloadLimit"_s, [](const auto &args) -> QJsonValue { return args.tor.downloadLimit(); } },
+    {u"downloadLimited"_s, [](const auto &args) -> QJsonValue { return args.tor.downloadLimit() != 0; }}
+    };
+
+    if (auto func = fieldValueFuncHash.value(fld, nullptr))
+    {
+        return func(args);
+    }
+    else
+    {
+        throw TransmissionAPIError(APIErrorType::BadParams, u"Unknown arg '%1' to torrent-get"_s.arg(fld));
+    }
 }
 
 QJsonObject torrentGetObject(const BitTorrent::Torrent &tor, const QSet<QString> &fields)
