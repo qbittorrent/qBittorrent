@@ -77,10 +77,10 @@ int transmissionSchedulerDays(Scheduler::Days days)
     {
     case Scheduler::Days::EveryDay:
         return weekend | weekday;
-    case Scheduler::Days::Weekend:
-        return weekend;
     case Scheduler::Days::Weekday:
         return weekday;
+    case Scheduler::Days::Weekend:
+        return weekend;
     default:
         return getBitmask(days);
     }
@@ -234,7 +234,7 @@ QJsonObject sessionGet(const QJsonObject &args, const QString &sid)
     {u"trash-original-torrent-files"_s, [](const auto &) -> QJsonValue { return TorrentFileGuard::autoDeleteMode() >= TorrentFileGuard::AutoDeleteMode::IfAdded; }},
     {u"units"_s, [](const auto&) -> QJsonValue { return ::units(); }},
     {u"utp-enabled"_s, [](const auto &args) -> QJsonValue{using btp = BitTorrent::SessionSettingsEnums::BTProtocol; const btp proto = args.session->btProtocol(); return proto == btp::Both || proto == btp::UTP; }},
-    {u"version"_s, [](const auto &) -> QJsonValue{return u"qBitTorrent %1 with Qt %2, libtorrent %3"_s.arg(QStringLiteral(QBT_VERSION), QStringLiteral(QT_VERSION_STR), Utils::Misc::libtorrentVersionString());}},
+    {u"version"_s, [](const auto &) -> QJsonValue{return u"qBt %1 Qt %2 lb %3"_s.arg(QStringLiteral(QBT_VERSION), QStringLiteral(QT_VERSION_STR), Utils::Misc::libtorrentVersionString());}},
     {u"session-id"_s, [](const auto &args) -> QJsonValue { return args.sid; }}, // not applicable, maybe use cookie?
 
     {u"peer-port-random-on-start"_s, [](const auto &) -> QJsonValue { return false; }}, // functionality deprecated in qbt
