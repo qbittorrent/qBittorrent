@@ -2850,12 +2850,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 },
                 onFailure: function() {
                     alert("QBT_TR(Unable to save program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
-                    window.parent.closeWindows();
+                    window.parent.qBittorrent.Client.closeWindows();
                 },
                 onSuccess: function() {
                     // Close window
                     window.parent.location.reload();
-                    window.parent.closeWindows();
+                    window.parent.qBittorrent.Client.closeWindows();
                 }
             }).send();
         };

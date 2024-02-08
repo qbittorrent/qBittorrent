@@ -164,7 +164,7 @@
 
         $('upload_frame').addEventListener("load", function() {
             if (submitted)
-                window.parent.closeWindows();
+                window.parent.qBittorrent.Client.closeWindows();
         });
 
         if ((Browser.platform === 'ios') || ((Browser.platform === 'mac') && (navigator.maxTouchPoints > 1))) {

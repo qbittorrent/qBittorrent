@@ -36,7 +36,7 @@
                         },
                         onComplete: function() {
                             window.parent.updateMainData();
-                            window.parent.closeWindows();
+                            window.parent.qBittorrent.Client.closeWindows();
                         }
                     }).send();
                 }
@@ -49,7 +49,7 @@
                             'limit': limit
                         },
                         onComplete: function() {
-                            window.parent.closeWindows();
+                            window.parent.qBittorrent.Client.closeWindows();
                         }
                     }).send();
                 }
@@ -67,11 +67,11 @@
                     event.preventDefault();
                 },
                 'Escape': function(event) {
-                    window.parent.closeWindows();
+                    window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 },
                 'Esc': function(event) {
-                    window.parent.closeWindows();
+                    window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 }
             }

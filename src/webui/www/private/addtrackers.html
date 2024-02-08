@@ -15,11 +15,11 @@
                 defaultEventType: 'keydown',
                 events: {
                     'Escape': function(event) {
-                        window.parent.closeWindows();
+                        window.parent.qBittorrent.Client.closeWindows();
                         event.preventDefault();
                     },
                     'Esc': function(event) {
-                        window.parent.closeWindows();
+                        window.parent.qBittorrent.Client.closeWindows();
                         event.preventDefault();
                     }
                 }
@@ -37,7 +37,7 @@
                         urls: $('trackersUrls').value
                     },
                     onComplete: function() {
-                        window.parent.closeWindows();
+                        window.parent.qBittorrent.Client.closeWindows();
                     }
                 }).send();
             });

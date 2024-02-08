@@ -75,7 +75,7 @@
             $('cancelBtn').focus();
             $('cancelBtn').addEvent('click', function(e) {
                 new Event(e).stop();
-                window.parent.closeWindows();
+                window.parent.qBittorrent.Client.closeWindows();
             });
             $('confirmBtn').addEvent('click', function(e) {
                 parent.torrentsTable.deselectAll();
@@ -90,7 +90,7 @@
                         'deleteFiles': deleteFiles
                     },
                     onComplete: function() {
-                        window.parent.closeWindows();
+                        window.parent.qBittorrent.Client.closeWindows();
                     }
                 }).send();
             });
