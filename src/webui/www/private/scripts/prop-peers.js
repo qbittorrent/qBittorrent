@@ -56,7 +56,7 @@ window.qBittorrent.PropPeers = (function() {
             syncTorrentPeersLastResponseId = 0;
             torrentPeersTable.clear();
             clearTimeout(loadTorrentPeersTimer);
-            loadTorrentPeersTimer = loadTorrentPeersData.delay(getSyncMainDataInterval());
+            loadTorrentPeersTimer = loadTorrentPeersData.delay(window.qBittorrent.Client.getSyncMainDataInterval());
             return;
         }
         const url = new URI('api/v2/sync/torrentPeers');
@@ -68,7 +68,7 @@ window.qBittorrent.PropPeers = (function() {
             method: 'get',
             onComplete: function() {
                 clearTimeout(loadTorrentPeersTimer);
-                loadTorrentPeersTimer = loadTorrentPeersData.delay(getSyncMainDataInterval());
+                loadTorrentPeersTimer = loadTorrentPeersData.delay(window.qBittorrent.Client.getSyncMainDataInterval());
             },
             onSuccess: function(response) {
                 $('error_div').set('html', '');

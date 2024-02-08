@@ -187,7 +187,7 @@
 
         $('download_frame').addEventListener("load", function() {
             if (submitted)
-                window.parent.closeWindows();
+                window.parent.qBittorrent.Client.closeWindows();
         });
     </script>
     <div id="download_spinner" class="mochaSpinner"></div>
