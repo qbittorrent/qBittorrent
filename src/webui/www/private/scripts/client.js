@@ -1576,6 +1576,8 @@ window.addEvent('load', function() {
         }
     }).activate();
 
+    window.parent.qBittorrent.Cache.preferences.init();
+
     // fetch qbt version and store it locally
     new Request({
         url: 'api/v2/app/version',

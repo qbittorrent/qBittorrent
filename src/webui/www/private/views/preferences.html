@@ -1985,17 +1985,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const loadPreferences = function() {
-            new Request.JSON({
-                url: 'api/v2/app/preferences',
-                method: 'get',
-                noCache: true,
-                onFailure: function() {
-                    alert("Could not contact qBittorrent");
-                },
-                onSuccess: function(pref) {
-                    if (!pref)
-                        return;
-
+            window.parent.qBittorrent.Cache.preferences.init({
+                onSuccess: (pref) => {
                     // Behavior tab
                     $('filelog_checkbox').setProperty('checked', pref.file_log_enabled);
                     $('filelog_save_path_input').setProperty('value', pref.file_log_path);
@@ -2395,75 +2386,75 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $('i2pInboundLength').setProperty('value', pref.i2p_inbound_length);
                     $('i2pOutboundLength').setProperty('value', pref.i2p_outbound_length);
                 }
-            }).send();
+            });
         };
 
         const applyPreferences = function() {
-            const settings = new Hash();
+            const settings = {};
             // Validate form data
 
             // Behavior tab
-            settings.set('file_log_enabled', $('filelog_checkbox').getProperty('checked'));
-            settings.set('file_log_path', $('filelog_save_path_input').getProperty('value'));
-            settings.set('file_log_backup_enabled', $('filelog_backup_checkbox').getProperty('checked'));
-            settings.set('file_log_max_size', Number($('filelog_max_size_input').getProperty('value')));
-            settings.set('file_log_delete_old', $('filelog_delete_old_checkbox').getProperty('checked'));
-            settings.set('file_log_age', Number($('filelog_age_input').getProperty('value')));
-            settings.set('file_log_age_type', Number($('filelog_age_type_select').getProperty('value')));
+            settings['file_log_enabled'] = $('filelog_checkbox').getProperty('checked');
+            settings['file_log_path'] = $('filelog_save_path_input').getProperty('value');
+            settings['file_log_backup_enabled'] = $('filelog_backup_checkbox').getProperty('checked');
+            settings['file_log_max_size'] = Number($('filelog_max_size_input').getProperty('value'));
+            settings['file_log_delete_old'] = $('filelog_delete_old_checkbox').getProperty('checked');
+            settings['file_log_age'] = Number($('filelog_age_input').getProperty('value'));
+            settings['file_log_age_type'] = Number($('filelog_age_type_select').getProperty('value'));
 
             // Downloads tab
             // When adding a torrent
-            settings.set('torrent_content_layout', $('contentlayout_select').getSelected()[0].getProperty('value'));
-            settings.set('add_to_top_of_queue', $('addToTopOfQueueCheckbox').getProperty('checked'));
-            settings.set('start_paused_enabled', $('dontstartdownloads_checkbox').getProperty('checked'));
-            settings.set('torrent_stop_condition', $('stopConditionSelect').getSelected()[0].getProperty('value'));
-            settings.set('auto_delete_mode', Number($('deletetorrentfileafter_checkbox').getProperty('checked')));
+            settings['torrent_content_layout'] = $('contentlayout_select').getSelected()[0].getProperty('value');
+            settings['add_to_top_of_queue'] = $('addToTopOfQueueCheckbox').getProperty('checked');
+            settings['start_paused_enabled'] = $('dontstartdownloads_checkbox').getProperty('checked');
+            settings['torrent_stop_condition'] = $('stopConditionSelect').getSelected()[0].getProperty('value');
+            settings['auto_delete_mode'] = Number($('deletetorrentfileafter_checkbox').getProperty('checked'));
 
-            settings.set('preallocate_all', $('preallocateall_checkbox').getProperty('checked'));
-            settings.set('incomplete_files_ext', $('appendext_checkbox').getProperty('checked'));
-            settings.set('use_unwanted_folder', $('unwantedfolder_checkbox').getProperty('checked'));
+            settings['preallocate_all'] = $('preallocateall_checkbox').getProperty('checked');
+            settings['incomplete_files_ext'] = $('appendext_checkbox').getProperty('checked');
+            settings['use_unwanted_folder'] = $('unwantedfolder_checkbox').getProperty('checked');
 
             // Saving Management
-            settings.set('auto_tmm_enabled', ($('default_tmm_combobox').getProperty('value') === 'true'));
-            settings.set('torrent_changed_tmm_enabled', ($('torrent_changed_tmm_combobox').getProperty('value') === 'true'));
-            settings.set('save_path_changed_tmm_enabled', ($('save_path_changed_tmm_combobox').getProperty('value') === 'true'));
-            settings.set('category_changed_tmm_enabled', ($('category_changed_tmm_combobox').getProperty('value') === 'true'));
-            settings.set('use_subcategories', $('use_subcategories_checkbox').getProperty('checked'));
-            settings.set('save_path', $('savepath_text').getProperty('value'));
-            settings.set('temp_path_enabled', $('temppath_checkbox').getProperty('checked'));
-            settings.set('temp_path', $('temppath_text').getProperty('value'));
+            settings['auto_tmm_enabled'] = ($('default_tmm_combobox').getProperty('value') === 'true');
+            settings['torrent_changed_tmm_enabled'] = ($('torrent_changed_tmm_combobox').getProperty('value') === 'true');
+            settings['save_path_changed_tmm_enabled'] = ($('save_path_changed_tmm_combobox').getProperty('value') === 'true');
+            settings['category_changed_tmm_enabled'] = ($('category_changed_tmm_combobox').getProperty('value') === 'true');
+            settings['use_subcategories'] = $('use_subcategories_checkbox').getProperty('checked');
+            settings['save_path'] = $('savepath_text').getProperty('value');
+            settings['temp_path_enabled'] = $('temppath_checkbox').getProperty('checked');
+            settings['temp_path'] = $('temppath_text').getProperty('value');
             if ($('exportdir_checkbox').getProperty('checked'))
-                settings.set('export_dir', $('exportdir_text').getProperty('value'));
+                settings['export_dir'] = $('exportdir_text').getProperty('value');
             else
-                settings.set('export_dir', '');
+                settings['export_dir'] = '';
             if ($('exportdirfin_checkbox').getProperty('checked'))
-                settings.set('export_dir_fin', $('exportdirfin_text').getProperty('value'));
+                settings['export_dir_fin'] = $('exportdirfin_text').getProperty('value');
             else
-                settings.set('export_dir_fin', '');
+                settings['export_dir_fin'] = '';
 
             // Automatically add torrents from
-            settings.set('scan_dirs', getWatchedFolders());
+            settings['scan_dirs'] = getWatchedFolders();
 
             // Excluded file names
-            settings.set('excluded_file_names_enabled', $('excludedFileNamesCheckbox').getProperty('checked'));
-            settings.set('excluded_file_names', $('excludedFileNamesTextarea').getProperty('value'));
+            settings['excluded_file_names_enabled'] = $('excludedFileNamesCheckbox').getProperty('checked');
+            settings['excluded_file_names'] = $('excludedFileNamesTextarea').getProperty('value');
 
             // Email notification upon download completion
-            settings.set('mail_notification_enabled', $('mail_notification_checkbox').getProperty('checked'));
-            settings.set('mail_notification_sender', $('src_email_txt').getProperty('value'));
-            settings.set('mail_notification_email', $('dest_email_txt').getProperty('value'));
-            settings.set('mail_notification_smtp', $('smtp_server_txt').getProperty('value'));
-            settings.set('mail_notification_ssl_enabled', $('mail_ssl_checkbox').getProperty('checked'));
-            settings.set('mail_notification_auth_enabled', $('mail_auth_checkbox').getProperty('checked'));
-            settings.set('mail_notification_username', $('mail_username_text').getProperty('value'));
-            settings.set('mail_notification_password', $('mail_password_text').getProperty('value'));
+            settings['mail_notification_enabled'] = $('mail_notification_checkbox').getProperty('checked');
+            settings['mail_notification_sender'] = $('src_email_txt').getProperty('value');
+            settings['mail_notification_email'] = $('dest_email_txt').getProperty('value');
+            settings['mail_notification_smtp'] = $('smtp_server_txt').getProperty('value');
+            settings['mail_notification_ssl_enabled'] = $('mail_ssl_checkbox').getProperty('checked');
+            settings['mail_notification_auth_enabled'] = $('mail_auth_checkbox').getProperty('checked');
+            settings['mail_notification_username'] = $('mail_username_text').getProperty('value');
+            settings['mail_notification_password'] = $('mail_password_text').getProperty('value');
 
             // Run an external program on torrent added
-            settings.set('autorun_on_torrent_added_enabled', $('autorunOnTorrentAddedCheckbox').getProperty('checked'));
-            settings.set('autorun_on_torrent_added_program', $('autorunOnTorrentAddedProgram').getProperty('value'));
+            settings['autorun_on_torrent_added_enabled'] = $('autorunOnTorrentAddedCheckbox').getProperty('checked');
+            settings['autorun_on_torrent_added_program'] = $('autorunOnTorrentAddedProgram').getProperty('value');
             // Run an external program on torrent finished
-            settings.set('autorun_enabled', $('autorun_checkbox').getProperty('checked'));
-            settings.set('autorun_program', $('autorunProg_txt').getProperty('value'));
+            settings['autorun_enabled'] = $('autorun_checkbox').getProperty('checked');
+            settings['autorun_program'] = $('autorunProg_txt').getProperty('value');
 
             // Connection tab
             // Listening Port
@@ -2472,8 +2463,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 alert("QBT_TR(The port used for incoming connections must be between 0 and 65535.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
-            settings.set('listen_port', listen_port);
-            settings.set('upnp', $('upnp_checkbox').getProperty('checked'));
+            settings['listen_port'] = listen_port;
+            settings['upnp'] = $('upnp_checkbox').getProperty('checked');
 
             // Connections Limits
             let max_connec = -1;
@@ -2484,7 +2475,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     return;
                 }
             }
-            settings.set('max_connec', max_connec);
+            settings['max_connec'] = max_connec;
             let max_connec_per_torrent = -1;
             if ($('max_connec_per_torrent_checkbox').getProperty('checked')) {
                 max_connec_per_torrent = $('max_connec_per_torrent_value').getProperty('value').toInt();
@@ -2493,7 +2484,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     return;
                 }
             }
-            settings.set('max_connec_per_torrent', max_connec_per_torrent);
+            settings['max_connec_per_torrent'] = max_connec_per_torrent;
             let max_uploads = -1;
             if ($('max_uploads_checkbox').getProperty('checked')) {
                 max_uploads = $('max_uploads_value').getProperty('value').toInt();
@@ -2502,7 +2493,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     return;
                 }
             }
-            settings.set('max_uploads', max_uploads);
+            settings['max_uploads'] = max_uploads;
             let max_uploads_per_torrent = -1;
             if ($('max_uploads_per_torrent_checkbox').getProperty('checked')) {
                 max_uploads_per_torrent = $('max_uploads_per_torrent_value').getProperty('value').toInt();
@@ -2511,32 +2502,32 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     return;
                 }
             }
-            settings.set('max_uploads_per_torrent', max_uploads_per_torrent);
+            settings['max_uploads_per_torrent'] = max_uploads_per_torrent;
 
             // I2P
-            settings.set('i2p_enabled', $('i2pEnabledCheckbox').getProperty('checked'));
-            settings.set('i2p_address', $('i2pAddress').getProperty('value'));
-            settings.set('i2p_port', $('i2pPort').getProperty('value').toInt());
-            settings.set('i2p_mixed_mode', $('i2pMixedMode').getProperty('checked'));
+            settings['i2p_enabled'] = $('i2pEnabledCheckbox').getProperty('checked');
+            settings['i2p_address'] = $('i2pAddress').getProperty('value');
+            settings['i2p_port'] = $('i2pPort').getProperty('value').toInt();
+            settings['i2p_mixed_mode'] = $('i2pMixedMode').getProperty('checked');
 
             // Proxy Server
-            settings.set('proxy_type', $('peer_proxy_type_select').getProperty('value'));
-            settings.set('proxy_ip', $('peer_proxy_host_text').getProperty('value'));
-            settings.set('proxy_port', $('peer_proxy_port_value').getProperty('value').toInt());
-            settings.set('proxy_auth_enabled', $('peer_proxy_auth_checkbox').getProperty('checked'));
-            settings.set('proxy_username', $('peer_proxy_username_text').getProperty('value'));
-            settings.set('proxy_password', $('peer_proxy_password_text').getProperty('value'));
-            settings.set('proxy_hostname_lookup', $('proxyHostnameLookupCheckbox').getProperty('checked'));
-            settings.set('proxy_bittorrent', $('proxy_bittorrent_checkbox').getProperty('checked'));
-            settings.set('proxy_peer_connections', $('use_peer_proxy_checkbox').getProperty('checked'));
-            settings.set('proxy_rss', $('proxy_rss_checkbox').getProperty('checked'));
-            settings.set('proxy_misc', $('proxy_misc_checkbox').getProperty('checked'));
+            settings['proxy_type'] = $('peer_proxy_type_select').getProperty('value');
+            settings['proxy_ip'] = $('peer_proxy_host_text').getProperty('value');
+            settings['proxy_port'] = $('peer_proxy_port_value').getProperty('value').toInt();
+            settings['proxy_auth_enabled'] = $('peer_proxy_auth_checkbox').getProperty('checked');
+            settings['proxy_username'] = $('peer_proxy_username_text').getProperty('value');
+            settings['proxy_password'] = $('peer_proxy_password_text').getProperty('value');
+            settings['proxy_hostname_lookup'] = $('proxyHostnameLookupCheckbox').getProperty('checked');
+            settings['proxy_bittorrent'] = $('proxy_bittorrent_checkbox').getProperty('checked');
+            settings['proxy_peer_connections'] = $('use_peer_proxy_checkbox').getProperty('checked');
+            settings['proxy_rss'] = $('proxy_rss_checkbox').getProperty('checked');
+            settings['proxy_misc'] = $('proxy_misc_checkbox').getProperty('checked');
 
             // IP Filtering
-            settings.set('ip_filter_enabled', $('ipfilter_text_checkbox').getProperty('checked'));
-            settings.set('ip_filter_path', $('ipfilter_text').getProperty('value'));
-            settings.set('ip_filter_trackers', $('ipfilter_trackers_checkbox').getProperty('checked'));
-            settings.set('banned_IPs', $('banned_IPs_textarea').getProperty('value'));
+            settings['ip_filter_enabled'] = $('ipfilter_text_checkbox').getProperty('checked');
+            settings['ip_filter_path'] = $('ipfilter_text').getProperty('value');
+            settings['ip_filter_trackers'] = $('ipfilter_trackers_checkbox').getProperty('checked');
+            settings['banned_IPs'] = $('banned_IPs_textarea').getProperty('value');
 
             // Speed tab
             // Global Rate Limits
@@ -2545,14 +2536,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 alert("QBT_TR(Global upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
-            settings.set('up_limit', up_limit);
+            settings['up_limit'] = up_limit;
 
             const dl_limit = $('dl_limit_value').getProperty('value').toInt() * 1024;
             if (isNaN(dl_limit) || dl_limit < 0) {
                 alert("QBT_TR(Global download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
-            settings.set('dl_limit', dl_limit);
+            settings['dl_limit'] = dl_limit;
 
             // Alternative Global Rate Limits
             const alt_up_limit = $('alt_up_limit_value').getProperty('value').toInt() * 1024;
@@ -2560,81 +2551,81 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 alert("QBT_TR(Alternative upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
-            settings.set('alt_up_limit', alt_up_limit);
+            settings['alt_up_limit'] = alt_up_limit;
 
             const alt_dl_limit = $('alt_dl_limit_value').getProperty('value').toInt() * 1024;
             if (isNaN(alt_dl_limit) || alt_dl_limit < 0) {
                 alert("QBT_TR(Alternative download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
-            settings.set('alt_dl_limit', alt_dl_limit);
+            settings['alt_dl_limit'] = alt_dl_limit;
 
-            settings.set('bittorrent_protocol', Number($('enable_protocol_combobox').getProperty('value')));
-            settings.set('limit_utp_rate', $('limit_utp_rate_checkbox').getProperty('checked'));
-            settings.set('limit_tcp_overhead', $('limit_tcp_overhead_checkbox').getProperty('checked'));
-            settings.set('limit_lan_peers', $('limit_lan_peers_checkbox').getProperty('checked'));
+            settings['bittorrent_protocol'] = Number($('enable_protocol_combobox').getProperty('value'));
+            settings['limit_utp_rate'] = $('limit_utp_rate_checkbox').getProperty('checked');
+            settings['limit_tcp_overhead'] = $('limit_tcp_overhead_checkbox').getProperty('checked');
+            settings['limit_lan_peers'] = $('limit_lan_peers_checkbox').getProperty('checked');
 
             // Scheduler
             const scheduling_enabled = $('limitSchedulingCheckbox').getProperty('checked');
-            settings.set('scheduler_enabled', scheduling_enabled);
+            settings['scheduler_enabled'] = scheduling_enabled;
             if (scheduling_enabled) {
-                settings.set('schedule_from_hour', $('schedule_from_hour').getProperty('value').toInt());
-                settings.set('schedule_from_min', $('schedule_from_min').getProperty('value').toInt());
-                settings.set('schedule_to_hour', $('schedule_to_hour').getProperty('value').toInt());
-                settings.set('schedule_to_min', $('schedule_to_min').getProperty('value').toInt());
-                settings.set('scheduler_days', $('schedule_freq_select').getProperty('value').toInt());
+                settings['schedule_from_hour'] = $('schedule_from_hour').getProperty('value').toInt();
+                settings['schedule_from_min'] = $('schedule_from_min').getProperty('value').toInt();
+                settings['schedule_to_hour'] = $('schedule_to_hour').getProperty('value').toInt();
+                settings['schedule_to_min'] = $('schedule_to_min').getProperty('value').toInt();
+                settings['scheduler_days'] = $('schedule_freq_select').getProperty('value').toInt();
             }
 
             // Bittorrent tab
             // Privacy
-            settings.set('dht', $('dht_checkbox').getProperty('checked'));
-            settings.set('pex', $('pex_checkbox').getProperty('checked'));
-            settings.set('lsd', $('lsd_checkbox').getProperty('checked'));
-            settings.set('encryption', Number($('encryption_select').getSelected()[0].getProperty('value')));
-            settings.set('anonymous_mode', $('anonymous_mode_checkbox').getProperty('checked'));
+            settings['dht'] = $('dht_checkbox').getProperty('checked');
+            settings['pex'] = $('pex_checkbox').getProperty('checked');
+            settings['lsd'] = $('lsd_checkbox').getProperty('checked');
+            settings['encryption'] = Number($('encryption_select').getSelected()[0].getProperty('value'));
+            settings['anonymous_mode'] = $('anonymous_mode_checkbox').getProperty('checked');
 
-            settings.set('max_active_checking_torrents', Number($('maxActiveCheckingTorrents').getProperty('value')));
+            settings['max_active_checking_torrents'] = Number($('maxActiveCheckingTorrents').getProperty('value'));
 
             // Torrent Queueing
-            settings.set('queueing_enabled', $('queueing_checkbox').getProperty('checked'));
+            settings['queueing_enabled'] = $('queueing_checkbox').getProperty('checked');
             if ($('queueing_checkbox').getProperty('checked')) {
                 const max_active_downloads = $('max_active_dl_value').getProperty('value').toInt();
                 if (isNaN(max_active_downloads) || max_active_downloads < -1) {
                     alert("QBT_TR(Maximum active downloads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
-                settings.set('max_active_downloads', max_active_downloads);
+                settings['max_active_downloads'] = max_active_downloads;
                 const max_active_uploads = $('max_active_up_value').getProperty('value').toInt();
                 if (isNaN(max_active_uploads) || max_active_uploads < -1) {
                     alert("QBT_TR(Maximum active uploads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
-                settings.set('max_active_uploads', max_active_uploads);
+                settings['max_active_uploads'] = max_active_uploads;
                 const max_active_torrents = $('max_active_to_value').getProperty('value').toInt();
                 if (isNaN(max_active_torrents) || max_active_torrents < -1) {
                     alert("QBT_TR(Maximum active torrents must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
-                settings.set('max_active_torrents', max_active_torrents);
-                settings.set('dont_count_slow_torrents', $('dont_count_slow_torrents_checkbox').getProperty('checked'));
+                settings['max_active_torrents'] = max_active_torrents;
+                settings['dont_count_slow_torrents'] = $('dont_count_slow_torrents_checkbox').getProperty('checked');
                 const dl_rate_threshold = $('dl_rate_threshold').getProperty('value').toInt();
                 if (isNaN(dl_rate_threshold) || (dl_rate_threshold < 1)) {
                     alert("QBT_TR(Download rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
-                settings.set('slow_torrent_dl_rate_threshold', dl_rate_threshold);
+                settings['slow_torrent_dl_rate_threshold'] = dl_rate_threshold;
                 const ul_rate_threshold = $('ul_rate_threshold').getProperty('value').toInt();
                 if (isNaN(ul_rate_threshold) || (ul_rate_threshold < 1)) {
                     alert("QBT_TR(Upload rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
-                settings.set('slow_torrent_ul_rate_threshold', ul_rate_threshold);
+                settings['slow_torrent_ul_rate_threshold'] = ul_rate_threshold;
                 const torrent_inactive_timer = $('torrent_inactive_timer').getProperty('value').toInt();
                 if (isNaN(torrent_inactive_timer) || (torrent_inactive_timer < 1)) {
                     alert("QBT_TR(Torrent inactivity timer must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
-                settings.set('slow_torrent_inactive_timer', torrent_inactive_timer);
+                settings['slow_torrent_inactive_timer'] = torrent_inactive_timer;
             }
 
             // Share Ratio Limiting
@@ -2646,8 +2637,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     return;
                 }
             }
-            settings.set('max_ratio_enabled', $('max_ratio_checkbox').getProperty('checked'));
-            settings.set('max_ratio', max_ratio);
+            settings['max_ratio_enabled'] = $('max_ratio_checkbox').getProperty('checked');
+            settings['max_ratio'] = max_ratio;
 
             let max_seeding_time = -1;
             if ($('max_seeding_time_checkbox').getProperty('checked')) {
@@ -2657,9 +2648,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     return;
                 }
             }
-            settings.set('max_seeding_time_enabled', $('max_seeding_time_checkbox').getProperty('checked'));
-            settings.set('max_seeding_time', max_seeding_time);
-            settings.set('max_ratio_act', $('max_ratio_act').getProperty('value').toInt());
+            settings['max_seeding_time_enabled'] = $('max_seeding_time_checkbox').getProperty('checked');
+            settings['max_seeding_time'] = max_seeding_time;
+            settings['max_ratio_act'] = $('max_ratio_act').getProperty('value').toInt();
 
             let max_inactive_seeding_time = -1;
             if ($('max_inactive_seeding_time_checkbox').getProperty('checked')) {
@@ -2669,52 +2660,52 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     return;
                 }
             }
-            settings.set('max_inactive_seeding_time_enabled', $('max_inactive_seeding_time_checkbox').getProperty('checked'));
-            settings.set('max_inactive_seeding_time', max_inactive_seeding_time);
-            settings.set('max_ratio_act', $('max_ratio_act').getProperty('value').toInt());
+            settings['max_inactive_seeding_time_enabled'] = $('max_inactive_seeding_time_checkbox').getProperty('checked');
+            settings['max_inactive_seeding_time'] = max_inactive_seeding_time;
+            settings['max_ratio_act'] = $('max_ratio_act').getProperty('value').toInt();
 
             // Add trackers
-            settings.set('add_trackers_enabled', $('add_trackers_checkbox').getProperty('checked'));
-            settings.set('add_trackers', $('add_trackers_textarea').getProperty('value'));
+            settings['add_trackers_enabled'] = $('add_trackers_checkbox').getProperty('checked');
+            settings['add_trackers'] = $('add_trackers_textarea').getProperty('value');
 
             // RSS Tab
-            settings.set('rss_processing_enabled', $('enable_fetching_rss_feeds_checkbox').getProperty('checked'));
-            settings.set('rss_refresh_interval', Number($('feed_refresh_interval').getProperty('value')));
-            settings.set('rss_fetch_delay', Number($('feedFetchDelay').getProperty('value')));
-            settings.set('rss_max_articles_per_feed', Number($('maximum_article_number').getProperty('value')));
-            settings.set('rss_auto_downloading_enabled', $('enable_auto_downloading_rss_torrents_checkbox').getProperty('checked'));
-            settings.set('rss_download_repack_proper_episodes', $('downlock_repack_proper_episodes').getProperty('checked'));
-            settings.set('rss_smart_episode_filters', $('rss_filter_textarea').getProperty('value'));
+            settings['rss_processing_enabled'] = $('enable_fetching_rss_feeds_checkbox').getProperty('checked');
+            settings['rss_refresh_interval'] = Number($('feed_refresh_interval').getProperty('value'));
+            settings['rss_fetch_delay'] = Number($('feedFetchDelay').getProperty('value'));
+            settings['rss_max_articles_per_feed'] = Number($('maximum_article_number').getProperty('value'));
+            settings['rss_auto_downloading_enabled'] = $('enable_auto_downloading_rss_torrents_checkbox').getProperty('checked');
+            settings['rss_download_repack_proper_episodes'] = $('downlock_repack_proper_episodes').getProperty('checked');
+            settings['rss_smart_episode_filters'] = $('rss_filter_textarea').getProperty('value');
 
             // Web UI tab
             // Language
-            settings.set('locale', $('locale_select').getProperty('value'));
-            settings.set('performance_warning', $('performanceWarning').getProperty('checked'));
+            settings['locale'] = $('locale_select').getProperty('value');
+            settings['performance_warning'] = $('performanceWarning').getProperty('checked');
 
             // HTTP Server
-            settings.set('web_ui_domain_list', $('webui_domain_textarea').getProperty('value'));
+            settings['web_ui_domain_list'] = $('webui_domain_textarea').getProperty('value');
             const web_ui_address = $('webui_address_value').getProperty('value').toString();
             const web_ui_port = $('webui_port_value').getProperty('value').toInt();
             if (isNaN(web_ui_port) || web_ui_port < 1 || web_ui_port > 65535) {
                 alert("QBT_TR(The port used for the Web UI must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
-            settings.set('web_ui_address', web_ui_address);
-            settings.set('web_ui_port', web_ui_port);
-            settings.set('web_ui_upnp', $('webui_upnp_checkbox').getProperty('checked'));
+            settings['web_ui_address'] = web_ui_address;
+            settings['web_ui_port'] = web_ui_port;
+            settings['web_ui_upnp'] = $('webui_upnp_checkbox').getProperty('checked');
 
             const useHTTPS = $('use_https_checkbox').getProperty('checked');
-            settings.set('use_https', useHTTPS);
+            settings['use_https'] = useHTTPS;
 
             const httpsCertificate = $('ssl_cert_text').getProperty('value');
-            settings.set('web_ui_https_cert_path', httpsCertificate);
+            settings['web_ui_https_cert_path'] = httpsCertificate;
             if (useHTTPS && (httpsCertificate.length === 0)) {
                 alert("QBT_TR(HTTPS certificate should not be empty)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
 
             const httpsKey = $('ssl_key_text').getProperty('value');
-            settings.set('web_ui_https_key_path', httpsKey);
+            settings['web_ui_https_key_path'] = httpsKey;
             if (useHTTPS && (httpsKey.length === 0)) {
                 alert("QBT_TR(HTTPS key should not be empty)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
@@ -2732,15 +2723,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 return;
             }
 
-            settings.set('web_ui_username', web_ui_username);
+            settings['web_ui_username'] = web_ui_username;
             if (web_ui_password.length > 0)
-                settings.set('web_ui_password', web_ui_password);
-            settings.set('bypass_local_auth', $('bypass_local_auth_checkbox').getProperty('checked'));
-            settings.set('bypass_auth_subnet_whitelist_enabled', $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked'));
-            settings.set('bypass_auth_subnet_whitelist', $('bypass_auth_subnet_whitelist_textarea').getProperty('value'));
-            settings.set('web_ui_max_auth_fail_count', Number($('webUIMaxAuthFailCountInput').getProperty('value')));
-            settings.set('web_ui_ban_duration', Number($('webUIBanDurationInput').getProperty('value')));
-            settings.set('web_ui_session_timeout', Number($('webUISessionTimeoutInput').getProperty('value')));
+                settings['web_ui_password'] = web_ui_password;
+            settings['bypass_local_auth'] = $('bypass_local_auth_checkbox').getProperty('checked');
+            settings['bypass_auth_subnet_whitelist_enabled'] = $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked');
+            settings['bypass_auth_subnet_whitelist'] = $('bypass_auth_subnet_whitelist_textarea').getProperty('value');
+            settings['web_ui_max_auth_fail_count'] = Number($('webUIMaxAuthFailCountInput').getProperty('value'));
+            settings['web_ui_ban_duration'] = Number($('webUIBanDurationInput').getProperty('value'));
+            settings['web_ui_session_timeout'] = Number($('webUISessionTimeoutInput').getProperty('value'));
 
             // Use alternative Web UI
             const alternative_webui_enabled = $('use_alt_webui_checkbox').getProperty('checked');
@@ -2749,105 +2740,101 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 alert("QBT_TR(The alternative Web UI files location cannot be blank.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
-            settings.set('alternative_webui_enabled', alternative_webui_enabled);
-            settings.set('alternative_webui_path', webui_files_location_textarea);
+            settings['alternative_webui_enabled'] = alternative_webui_enabled;
+            settings['alternative_webui_path'] = webui_files_location_textarea;
 
             // Security
-            settings.set('web_ui_clickjacking_protection_enabled', $('clickjacking_protection_checkbox').getProperty('checked'));
-            settings.set('web_ui_csrf_protection_enabled', $('csrf_protection_checkbox').getProperty('checked'));
-            settings.set('web_ui_secure_cookie_enabled', $('secureCookieCheckbox').getProperty('checked'));
-            settings.set('web_ui_host_header_validation_enabled', $('host_header_validation_checkbox').getProperty('checked'));
+            settings['web_ui_clickjacking_protection_enabled'] = $('clickjacking_protection_checkbox').getProperty('checked');
+            settings['web_ui_csrf_protection_enabled'] = $('csrf_protection_checkbox').getProperty('checked');
+            settings['web_ui_secure_cookie_enabled'] = $('secureCookieCheckbox').getProperty('checked');
+            settings['web_ui_host_header_validation_enabled'] = $('host_header_validation_checkbox').getProperty('checked');
 
             // Custom HTTP headers
-            settings.set('web_ui_use_custom_http_headers_enabled', $('webUIUseCustomHTTPHeadersCheckbox').getProperty('checked'));
-            settings.set('web_ui_custom_http_headers', $('webUICustomHTTPHeadersTextarea').getProperty('value'));
+            settings['web_ui_use_custom_http_headers_enabled'] = $('webUIUseCustomHTTPHeadersCheckbox').getProperty('checked');
+            settings['web_ui_custom_http_headers'] = $('webUICustomHTTPHeadersTextarea').getProperty('value');
 
             // Reverse Proxy
-            settings.set('web_ui_reverse_proxy_enabled', $('webUIReverseProxySupportCheckbox').getProperty('checked'));
-            settings.set('web_ui_reverse_proxies_list', $('webUIReverseProxiesListTextarea').getProperty('value'));
+            settings['web_ui_reverse_proxy_enabled'] = $('webUIReverseProxySupportCheckbox').getProperty('checked');
+            settings['web_ui_reverse_proxies_list'] = $('webUIReverseProxiesListTextarea').getProperty('value');
 
             // Update my dynamic domain name
-            settings.set('dyndns_enabled', $('use_dyndns_checkbox').getProperty('checked'));
-            settings.set('dyndns_service', Number($('dyndns_select').getProperty('value')));
-            settings.set('dyndns_domain', $('dyndns_domain_text').getProperty('value'));
-            settings.set('dyndns_username', $('dyndns_username_text').getProperty('value'));
-            settings.set('dyndns_password', $('dyndns_password_text').getProperty('value'));
+            settings['dyndns_enabled'] = $('use_dyndns_checkbox').getProperty('checked');
+            settings['dyndns_service'] = Number($('dyndns_select').getProperty('value'));
+            settings['dyndns_domain'] = $('dyndns_domain_text').getProperty('value');
+            settings['dyndns_username'] = $('dyndns_username_text').getProperty('value');
+            settings['dyndns_password'] = $('dyndns_password_text').getProperty('value');
 
             // Update advanced settings
             // qBittorrent section
-            settings.set('resume_data_storage_type', $('resumeDataStorageType').getProperty('value'));
-            settings.set('memory_working_set_limit', Number($('memoryWorkingSetLimit').getProperty('value')));
-            settings.set('current_network_interface', $('networkInterface').getProperty('value'));
-            settings.set('current_interface_address', $('optionalIPAddressToBind').getProperty('value'));
-            settings.set('save_resume_data_interval', Number($('saveResumeDataInterval').getProperty('value')));
-            settings.set('torrent_file_size_limit', ($('torrentFileSizeLimit').getProperty('value') * 1024 * 1024));
-            settings.set('recheck_completed_torrents', $('recheckTorrentsOnCompletion').getProperty('checked'));
-            settings.set('refresh_interval', Number($('refreshInterval').getProperty('value')));
-            settings.set('resolve_peer_countries', $('resolvePeerCountries').getProperty('checked'));
-            settings.set('reannounce_when_address_changed', $('reannounceWhenAddressChanged').getProperty('checked'));
+            settings['resume_data_storage_type'] = $('resumeDataStorageType').getProperty('value');
+            settings['memory_working_set_limit'] = Number($('memoryWorkingSetLimit').getProperty('value'));
+            settings['current_network_interface'] = $('networkInterface').getProperty('value');
+            settings['current_interface_address'] = $('optionalIPAddressToBind').getProperty('value');
+            settings['save_resume_data_interval'] = Number($('saveResumeDataInterval').getProperty('value'));
+            settings['torrent_file_size_limit'] = ($('torrentFileSizeLimit').getProperty('value') * 1024 * 1024);
+            settings['recheck_completed_torrents'] = $('recheckTorrentsOnCompletion').getProperty('checked');
+            settings['refresh_interval'] = Number($('refreshInterval').getProperty('value'));
+            settings['resolve_peer_countries'] = $('resolvePeerCountries').getProperty('checked');
+            settings['reannounce_when_address_changed'] = $('reannounceWhenAddressChanged').getProperty('checked');
 
             // libtorrent section
-            settings.set('bdecode_depth_limit', Number($('bdecodeDepthLimit').getProperty('value')));
-            settings.set('bdecode_token_limit', Number($('bdecodeTokenLimit').getProperty('value')));
-            settings.set('async_io_threads', Number($('asyncIOThreads').getProperty('value')));
-            settings.set('hashing_threads', Number($('hashingThreads').getProperty('value')));
-            settings.set('file_pool_size', Number($('filePoolSize').getProperty('value')));
-            settings.set('checking_memory_use', Number($('outstandMemoryWhenCheckingTorrents').getProperty('value')));
-            settings.set('disk_cache', Number($('diskCache').getProperty('value')));
-            settings.set('disk_cache_ttl', Number($('diskCacheExpiryInterval').getProperty('value')));
-            settings.set('disk_queue_size', (Number($('diskQueueSize').getProperty('value')) * 1024));
-            settings.set('disk_io_type', Number($('diskIOType').getProperty('value')));
-            settings.set('disk_io_read_mode', Number($('diskIOReadMode').getProperty('value')));
-            settings.set('disk_io_write_mode', Number($('diskIOWriteMode').getProperty('value')));
-            settings.set('enable_coalesce_read_write', $('coalesceReadsAndWrites').getProperty('checked'));
-            settings.set('enable_piece_extent_affinity', $('pieceExtentAffinity').getProperty('checked'));
-            settings.set('enable_upload_suggestions', $('sendUploadPieceSuggestions').getProperty('checked'));
-            settings.set('send_buffer_watermark', Number($('sendBufferWatermark').getProperty('value')));
-            settings.set('send_buffer_low_watermark', Number($('sendBufferLowWatermark').getProperty('value')));
-            settings.set('send_buffer_watermark_factor', Number($('sendBufferWatermarkFactor').getProperty('value')));
-            settings.set('connection_speed', Number($('connectionSpeed').getProperty('value')));
-            settings.set('socket_send_buffer_size', ($('socketSendBufferSize').getProperty('value') * 1024));
-            settings.set('socket_receive_buffer_size', ($('socketReceiveBufferSize').getProperty('value') * 1024));
-            settings.set('socket_backlog_size', Number($('socketBacklogSize').getProperty('value')));
-            settings.set('outgoing_ports_min', Number($('outgoingPortsMin').getProperty('value')));
-            settings.set('outgoing_ports_max', Number($('outgoingPortsMax').getProperty('value')));
-            settings.set('upnp_lease_duration', Number($('UPnPLeaseDuration').getProperty('value')));
-            settings.set('peer_tos', Number($('peerToS').getProperty('value')));
-            settings.set('utp_tcp_mixed_mode', Number($('utpTCPMixedModeAlgorithm').getProperty('value')));
-            settings.set('idn_support_enabled', $('IDNSupportCheckbox').getProperty('checked'));
-            settings.set('enable_multi_connections_from_same_ip', $('allowMultipleConnectionsFromTheSameIPAddress').getProperty('checked'));
-            settings.set('validate_https_tracker_certificate', $('validateHTTPSTrackerCertificate').getProperty('checked'));
-            settings.set('ssrf_mitigation', $('mitigateSSRF').getProperty('checked'));
-            settings.set('block_peers_on_privileged_ports', $('blockPeersOnPrivilegedPorts').getProperty('checked'));
-            settings.set('enable_embedded_tracker', $('enableEmbeddedTracker').getProperty('checked'));
-            settings.set('embedded_tracker_port', Number($('embeddedTrackerPort').getProperty('value')));
-            settings.set('embedded_tracker_port_forwarding', $('embeddedTrackerPortForwarding').getProperty('checked'));
-            settings.set('mark_of_the_web', $('markOfTheWeb').getProperty('checked'));
-            settings.set('python_executable_path', $('pythonExecutablePath').getProperty('value'));
-            settings.set('upload_slots_behavior', Number($('uploadSlotsBehavior').getProperty('value')));
-            settings.set('upload_choking_algorithm', Number($('uploadChokingAlgorithm').getProperty('value')));
-            settings.set('announce_to_all_trackers', $('announceAllTrackers').getProperty('checked'));
-            settings.set('announce_to_all_tiers', $('announceAllTiers').getProperty('checked'));
-            settings.set('announce_ip', $('announceIP').getProperty('value'));
-            settings.set('max_concurrent_http_announces', Number($('maxConcurrentHTTPAnnounces').getProperty('value')));
-            settings.set('stop_tracker_timeout', Number($('stopTrackerTimeout').getProperty('value')));
-            settings.set('peer_turnover', Number($('peerTurnover').getProperty('value')));
-            settings.set('peer_turnover_cutoff', Number($('peerTurnoverCutoff').getProperty('value')));
-            settings.set('peer_turnover_interval', Number($('peerTurnoverInterval').getProperty('value')));
-            settings.set('request_queue_size', Number($('requestQueueSize').getProperty('value')));
-            settings.set('dht_bootstrap_nodes', $('dhtBootstrapNodes').getProperty('value'));
-            settings.set('i2p_inbound_quantity', Number($('i2pInboundQuantity').getProperty('value')));
-            settings.set('i2p_outbound_quantity', Number($('i2pOutboundQuantity').getProperty('value')));
-            settings.set('i2p_inbound_length', Number($('i2pInboundLength').getProperty('value')));
-            settings.set('i2p_outbound_length', Number($('i2pOutboundLength').getProperty('value')));
+            settings['bdecode_depth_limit'] = Number($('bdecodeDepthLimit').getProperty('value'));
+            settings['bdecode_token_limit'] = Number($('bdecodeTokenLimit').getProperty('value'));
+            settings['async_io_threads'] = Number($('asyncIOThreads').getProperty('value'));
+            settings['hashing_threads'] = Number($('hashingThreads').getProperty('value'));
+            settings['file_pool_size'] = Number($('filePoolSize').getProperty('value'));
+            settings['checking_memory_use'] = Number($('outstandMemoryWhenCheckingTorrents').getProperty('value'));
+            settings['disk_cache'] = Number($('diskCache').getProperty('value'));
+            settings['disk_cache_ttl'] = Number($('diskCacheExpiryInterval').getProperty('value'));
+            settings['disk_queue_size'] = (Number($('diskQueueSize').getProperty('value')) * 1024);
+            settings['disk_io_type'] = Number($('diskIOType').getProperty('value'));
+            settings['disk_io_read_mode'] = Number($('diskIOReadMode').getProperty('value'));
+            settings['disk_io_write_mode'] = Number($('diskIOWriteMode').getProperty('value'));
+            settings['enable_coalesce_read_write'] = $('coalesceReadsAndWrites').getProperty('checked');
+            settings['enable_piece_extent_affinity'] = $('pieceExtentAffinity').getProperty('checked');
+            settings['enable_upload_suggestions'] = $('sendUploadPieceSuggestions').getProperty('checked');
+            settings['send_buffer_watermark'] = Number($('sendBufferWatermark').getProperty('value'));
+            settings['send_buffer_low_watermark'] = Number($('sendBufferLowWatermark').getProperty('value'));
+            settings['send_buffer_watermark_factor'] = Number($('sendBufferWatermarkFactor').getProperty('value'));
+            settings['connection_speed'] = Number($('connectionSpeed').getProperty('value'));
+            settings['socket_send_buffer_size'] = ($('socketSendBufferSize').getProperty('value') * 1024);
+            settings['socket_receive_buffer_size'] = ($('socketReceiveBufferSize').getProperty('value') * 1024);
+            settings['socket_backlog_size'] = Number($('socketBacklogSize').getProperty('value'));
+            settings['outgoing_ports_min'] = Number($('outgoingPortsMin').getProperty('value'));
+            settings['outgoing_ports_max'] = Number($('outgoingPortsMax').getProperty('value'));
+            settings['upnp_lease_duration'] = Number($('UPnPLeaseDuration').getProperty('value'));
+            settings['peer_tos'] = Number($('peerToS').getProperty('value'));
+            settings['utp_tcp_mixed_mode'] = Number($('utpTCPMixedModeAlgorithm').getProperty('value'));
+            settings['idn_support_enabled'] = $('IDNSupportCheckbox').getProperty('checked');
+            settings['enable_multi_connections_from_same_ip'] = $('allowMultipleConnectionsFromTheSameIPAddress').getProperty('checked');
+            settings['validate_https_tracker_certificate'] = $('validateHTTPSTrackerCertificate').getProperty('checked');
+            settings['ssrf_mitigation'] = $('mitigateSSRF').getProperty('checked');
+            settings['block_peers_on_privileged_ports'] = $('blockPeersOnPrivilegedPorts').getProperty('checked');
+            settings['enable_embedded_tracker'] = $('enableEmbeddedTracker').getProperty('checked');
+            settings['embedded_tracker_port'] = Number($('embeddedTrackerPort').getProperty('value'));
+            settings['embedded_tracker_port_forwarding'] = $('embeddedTrackerPortForwarding').getProperty('checked');
+            settings['mark_of_the_web'] = $('markOfTheWeb').getProperty('checked');
+            settings['python_executable_path'] = $('pythonExecutablePath').getProperty('value');
+            settings['upload_slots_behavior'] = Number($('uploadSlotsBehavior').getProperty('value'));
+            settings['upload_choking_algorithm'] = Number($('uploadChokingAlgorithm').getProperty('value'));
+            settings['announce_to_all_trackers'] = $('announceAllTrackers').getProperty('checked');
+            settings['announce_to_all_tiers'] = $('announceAllTiers').getProperty('checked');
+            settings['announce_ip'] = $('announceIP').getProperty('value');
+            settings['max_concurrent_http_announces'] = Number($('maxConcurrentHTTPAnnounces').getProperty('value'));
+            settings['stop_tracker_timeout'] = Number($('stopTrackerTimeout').getProperty('value'));
+            settings['peer_turnover'] = Number($('peerTurnover').getProperty('value'));
+            settings['peer_turnover_cutoff'] = Number($('peerTurnoverCutoff').getProperty('value'));
+            settings['peer_turnover_interval'] = Number($('peerTurnoverInterval').getProperty('value'));
+            settings['request_queue_size'] = Number($('requestQueueSize').getProperty('value'));
+            settings['dht_bootstrap_nodes'] = $('dhtBootstrapNodes').getProperty('value');
+            settings['i2p_inbound_quantity'] = Number($('i2pInboundQuantity').getProperty('value'));
+            settings['i2p_outbound_quantity'] = Number($('i2pOutboundQuantity').getProperty('value'));
+            settings['i2p_inbound_length'] = Number($('i2pInboundLength').getProperty('value'));
+            settings['i2p_outbound_length'] = Number($('i2pOutboundLength').getProperty('value'));
 
             // Send it to qBT
-            new Request({
-                url: 'api/v2/app/setPreferences',
-                method: 'post',
-                data: {
-                    'json': JSON.encode(settings),
-                },
+            window.parent.qBittorrent.Cache.preferences.set({
+                data: settings,
                 onFailure: function() {
                     alert("QBT_TR(Unable to save program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
                     window.parent.qBittorrent.Client.closeWindows();
@@ -2857,7 +2844,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     window.parent.location.reload();
                     window.parent.qBittorrent.Client.closeWindows();
                 }
-            }).send();
+            });
         };
 
         $('networkInterface').addEvent('change', function() {
