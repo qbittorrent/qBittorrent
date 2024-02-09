@@ -138,7 +138,6 @@
             const url = new URI('api/v2/search/uninstallPlugin');
             new Request({
                 url: url,
-                noCache: true,
                 method: 'post',
                 data: {
                     names: plugins,
@@ -155,7 +154,6 @@
             const url = new URI('api/v2/search/enablePlugin');
             new Request({
                 url: url,
-                noCache: true,
                 method: 'post',
                 data: {
                     names: plugins.join('|'),
@@ -168,7 +166,6 @@
             const url = new URI('api/v2/search/updatePlugins');
             new Request({
                 url: url,
-                noCache: true,
                 method: 'post'
             }).send();
         };

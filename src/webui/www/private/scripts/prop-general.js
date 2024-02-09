@@ -90,8 +90,8 @@ window.qBittorrent.PropGeneral = (function() {
         const url = new URI('api/v2/torrents/properties?hash=' + current_id);
         new Request.JSON({
             url: url,
-            noCache: true,
             method: 'get',
+            noCache: true,
             onFailure: function() {
                 $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
                 clearTimeout(loadTorrentDataTimer);
@@ -223,8 +223,8 @@ window.qBittorrent.PropGeneral = (function() {
         const piecesUrl = new URI('api/v2/torrents/pieceStates?hash=' + current_id);
         new Request.JSON({
             url: piecesUrl,
-            noCache: true,
             method: 'get',
+            noCache: true,
             onFailure: function() {
                 $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
                 clearTimeout(loadTorrentDataTimer);

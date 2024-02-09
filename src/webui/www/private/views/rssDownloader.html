@@ -436,8 +436,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             // get all categories and add to combobox
             new Request.JSON({
                 url: 'api/v2/torrents/categories',
-                noCache: true,
                 method: 'get',
+                noCache: true,
                 onSuccess: (response) => {
                     let combobox = $('assignCategoryCombobox');
                     for (let cat in response) {
@@ -450,8 +450,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             // get all rss feed
             new Request.JSON({
                 url: 'api/v2/rss/items',
-                noCache: true,
                 method: 'get',
+                noCache: true,
                 data: {
                     withData: false
                 },
@@ -478,8 +478,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             // get all rules
             new Request.JSON({
                 url: 'api/v2/rss/rules',
-                noCache: true,
                 method: 'get',
+                noCache: true,
                 onSuccess: (response) => {
                     rssDownloaderRulesTable.clear();
                     let rowCount = 0;
@@ -500,7 +500,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             rulesList[rule][setting] = newState;
             new Request({
                 url: 'api/v2/rss/setRule',
-                noCache: true,
                 method: 'post',
                 data: {
                     ruleName: rule,
@@ -627,7 +626,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
             new Request({
                 url: 'api/v2/rss/setRule',
-                noCache: true,
                 method: 'post',
                 data: {
                     ruleName: rule,
@@ -642,8 +640,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const updateMatchingArticles = (ruleName) => {
             new Request.JSON({
                 url: 'api/v2/rss/matchingArticles',
-                noCache: true,
                 method: 'get',
+                noCache: true,
                 data: {
                     ruleName: ruleName
                 },

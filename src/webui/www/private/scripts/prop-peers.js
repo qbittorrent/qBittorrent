@@ -64,8 +64,8 @@ window.qBittorrent.PropPeers = (function() {
         url.setData('hash', current_hash);
         new Request.JSON({
             url: url,
-            noCache: true,
             method: 'get',
+            noCache: true,
             onComplete: function() {
                 clearTimeout(loadTorrentPeersTimer);
                 loadTorrentPeersTimer = loadTorrentPeersData.delay(window.qBittorrent.Client.getSyncMainDataInterval());
@@ -144,7 +144,6 @@ window.qBittorrent.PropPeers = (function() {
                 if (confirm('QBT_TR(Are you sure you want to permanently ban the selected peers?)QBT_TR[CONTEXT=PeerListWidget]')) {
                     new Request({
                         url: 'api/v2/transfer/banPeers',
-                        noCache: true,
                         method: 'post',
                         data: {
                             hash: torrentsTable.getCurrentTorrentID(),
