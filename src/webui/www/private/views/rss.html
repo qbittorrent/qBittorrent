@@ -446,8 +446,8 @@
         const updateRssFeedList = () => {
             new Request.JSON({
                 url: 'api/v2/rss/items',
-                noCache: true,
                 method: 'get',
+                noCache: true,
                 data: {
                     withData: true
                 },
@@ -668,7 +668,6 @@
 
             new Request({
                 url: 'api/v2/rss/refreshItem',
-                noCache: true,
                 method: 'post',
                 data: {
                     itemPath: pathByFeedId.get(feedUid)
@@ -746,7 +745,6 @@
             // send request
             new Request({
                 url: 'api/v2/rss/markAsRead',
-                noCache: true,
                 method: 'post',
                 data: {
                     itemPath: path
@@ -787,7 +785,6 @@
 
                 new Request({
                     url: 'api/v2/rss/markAsRead',
-                    noCache: true,
                     method: 'post',
                     data: {
                         itemPath: path,

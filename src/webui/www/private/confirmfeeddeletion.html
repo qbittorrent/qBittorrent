@@ -23,7 +23,6 @@
                 paths.forEach((path) => {
                     new Request({
                         url: 'api/v2/rss/removeItem',
-                        noCache: true,
                         method: 'post',
                         data: {
                             path: decodeURIComponent(path)

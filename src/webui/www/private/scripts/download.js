@@ -41,8 +41,8 @@ window.qBittorrent.Download = (function() {
     const getCategories = function() {
         new Request.JSON({
             url: 'api/v2/torrents/categories',
-            noCache: true,
             method: 'get',
+            noCache: true,
             onSuccess: function(data) {
                 if (data) {
                     categories = data;
