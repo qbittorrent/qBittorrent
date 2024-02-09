@@ -59,51 +59,40 @@ window.qBittorrent.Download = (function() {
     };
 
     const getPreferences = function() {
-        new Request.JSON({
-            url: 'api/v2/app/preferences',
-            method: 'get',
-            noCache: true,
-            onFailure: function() {
-                alert("Could not contact qBittorrent");
-            },
-            onSuccess: function(pref) {
-                if (!pref)
-                    return;
+        const pref = window.parent.qBittorrent.Cache.preferences.get();
 
-                defaultSavePath = pref.save_path;
-                $('savepath').setProperty('value', defaultSavePath);
-                $('startTorrent').checked = !pref.start_paused_enabled;
-                $('addToTopOfQueue').checked = pref.add_to_top_of_queue;
+        defaultSavePath = pref.save_path;
+        $('savepath').setProperty('value', defaultSavePath);
+        $('startTorrent').checked = !pref.start_paused_enabled;
+        $('addToTopOfQueue').checked = pref.add_to_top_of_queue;
 
-                if (pref.auto_tmm_enabled == 1) {
-                    $('autoTMM').selectedIndex = 1;
-                    $('savepath').disabled = true;
-                }
-                else {
-                    $('autoTMM').selectedIndex = 0;
-                }
+        if (pref.auto_tmm_enabled == 1) {
+            $('autoTMM').selectedIndex = 1;
+            $('savepath').disabled = true;
+        }
+        else {
+            $('autoTMM').selectedIndex = 0;
+        }
 
-                if (pref.torrent_stop_condition === "MetadataReceived") {
-                    $('stopCondition').selectedIndex = 1;
-                }
-                else if (pref.torrent_stop_condition === "FilesChecked") {
-                    $('stopCondition').selectedIndex = 2;
-                }
-                else {
-                    $('stopCondition').selectedIndex = 0;
-                }
+        if (pref.torrent_stop_condition === "MetadataReceived") {
+            $('stopCondition').selectedIndex = 1;
+        }
+        else if (pref.torrent_stop_condition === "FilesChecked") {
+            $('stopCondition').selectedIndex = 2;
+        }
+        else {
+            $('stopCondition').selectedIndex = 0;
+        }
 
-                if (pref.torrent_content_layout === "Subfolder") {
-                    $('contentLayout').selectedIndex = 1;
-                }
-                else if (pref.torrent_content_layout === "NoSubfolder") {
-                    $('contentLayout').selectedIndex = 2;
-                }
-                else {
-                    $('contentLayout').selectedIndex = 0;
-                }
-            }
-        }).send();
+        if (pref.torrent_content_layout === "Subfolder") {
+            $('contentLayout').selectedIndex = 1;
+        }
+        else if (pref.torrent_content_layout === "NoSubfolder") {
+            $('contentLayout').selectedIndex = 2;
+        }
+        else {
+            $('contentLayout').selectedIndex = 0;
+        }
     };
 
     const changeCategorySelect = function(item) {

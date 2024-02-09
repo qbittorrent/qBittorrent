@@ -189,31 +189,22 @@
         let rssArticleTable = new window.qBittorrent.DynamicTable.RssArticleTable();
 
         const init = () => {
-            new Request.JSON({
-                url: 'api/v2/app/preferences',
-                method: 'get',
-                noCache: true,
-                onFailure: () => {
-                    alert('Could not contact qBittorrent');
-                },
-                onSuccess: (pref) => {
-                    if (!pref.rss_processing_enabled)
-                        $('rssFetchingDisabled').removeClass('invisible');
+            const pref = window.parent.qBittorrent.Cache.preferences.get();
 
-                    // recalculate heights
-                    let nonPageHeight = $('rssTopBar').getBoundingClientRect().height
-                        + $('desktopHeader').getBoundingClientRect().height
-                        + $('desktopFooterWrapper').getBoundingClientRect().height + 20;
-                    $('rssDetailsView').style.height = 'calc(100vh - ' + nonPageHeight + 'px)';
+            if (!pref.rss_processing_enabled)
+                $('rssFetchingDisabled').removeClass('invisible');
 
-                    let nonTableHeight = nonPageHeight + $('rssFeedFixedHeaderDiv').getBoundingClientRect().height;
+            // recalculate heights
+            const nonPageHeight = $('rssTopBar').getBoundingClientRect().height
+                + $('desktopHeader').getBoundingClientRect().height
+                + $('desktopFooterWrapper').getBoundingClientRect().height + 20;
+            $('rssDetailsView').style.height = 'calc(100vh - ' + nonPageHeight + 'px)';
 
-                    $('rssFeedTableDiv').style.height = 'calc(100vh - ' + nonTableHeight + 'px)';
-                    $('rssArticleTableDiv').style.height = 'calc(100vh - ' + nonTableHeight + 'px)';
+            const nonTableHeight = nonPageHeight + $('rssFeedFixedHeaderDiv').getBoundingClientRect().height;
+            $('rssFeedTableDiv').style.height = 'calc(100vh - ' + nonTableHeight + 'px)';
+            $('rssArticleTableDiv').style.height = 'calc(100vh - ' + nonTableHeight + 'px)';
 
-                    $('rssContentView').style.height = 'calc(100% - ' + $('rssTopBar').getBoundingClientRect().height + 'px)';
-                }
-            }).send();
+            $('rssContentView').style.height = 'calc(100% - ' + $('rssTopBar').getBoundingClientRect().height + 'px)';
 
             const rssFeedContextMenu = new window.qBittorrent.ContextMenu.RssFeedContextMenu({
                 targets: '.rssFeedContextMenuTarget',

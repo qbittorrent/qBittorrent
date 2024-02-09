@@ -37,38 +37,25 @@
             const isDeletingFiles = (new URI().getData('deleteFiles') === "true");
             $('deleteFromDiskCB').checked = isDeletingFiles;
 
-            let prefDeleteContentFiles = false;
-            new Request.JSON({
-                url: 'api/v2/app/preferences',
-                method: 'get',
-                noCache: true,
-                onSuccess: function(pref) {
-                    if (!pref)
-                        return;
+            const prefCache = window.parent.qBittorrent.Cache.preferences.get();
+            let prefDeleteContentFiles = prefCache.delete_torrent_content_files;
 
-                    prefDeleteContentFiles = pref.delete_torrent_content_files;
-                    $('deleteFromDiskCB').checked ||= prefDeleteContentFiles;
-                }
-            }).send();
+            $('deleteFromDiskCB').checked ||= prefDeleteContentFiles;
             $('deleteFromDiskCB').addEvent('click', function(e) {
                 setRememberBtnEnabled($('deleteFromDiskCB').checked !== prefDeleteContentFiles);
             });
 
             // Set current "Delete files" choice as the default
             $('rememberBtn').addEvent('click', function(e) {
-                new Request({
-                    url: 'api/v2/app/setPreferences',
-                    method: 'post',
+                window.parent.qBittorrent.Cache.preferences.set({
                     data: {
-                        'json': JSON.encode({
-                            'delete_torrent_content_files': $('deleteFromDiskCB').checked
-                        })
+                        'delete_torrent_content_files': $('deleteFromDiskCB').checked
                     },
                     onSuccess: function() {
                         prefDeleteContentFiles = $('deleteFromDiskCB').checked;
                         setRememberBtnEnabled(false);
                     }
-                }).send();
+                });
             });
 
             const hashes = new URI().getData('hashes').split('|');
