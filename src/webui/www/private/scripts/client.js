@@ -34,8 +34,7 @@ window.qBittorrent.Client = (() => {
         return {
             closeWindows: closeWindows,
             genHash: genHash,
-            getSyncMainDataInterval: getSyncMainDataInterval,
-            qbtVersion: qbtVersion
+            getSyncMainDataInterval: getSyncMainDataInterval
         };
     };
 
@@ -55,10 +54,6 @@ window.qBittorrent.Client = (() => {
 
     const getSyncMainDataInterval = function() {
         return customSyncMainDataInterval ? customSyncMainDataInterval : serverSyncMainDataInterval;
-    };
-
-    const qbtVersion = function() {
-        return LocalPreferences.get('qbtVersion', '');
     };
 
     return exports();
@@ -110,7 +105,7 @@ let selected_filter = LocalPreferences.get('selected_filter', 'all');
 let setFilter = function() {};
 let toggleFilterDisplay = function() {};
 
-window.addEvent('load', function() {
+window.addEventListener("DOMContentLoaded", function() {
     const saveColumnSizes = function() {
         const filters_width = $('Filters').getSize().x;
         const properties_height_rel = $('propertiesPanel').getSize().y / Window.getSize().y;
@@ -869,12 +864,15 @@ window.addEvent('load', function() {
             transfer_info += " [" + window.qBittorrent.Misc.friendlyUnit(serverState.up_rate_limit, true) + "]";
         transfer_info += " (" + window.qBittorrent.Misc.friendlyUnit(serverState.up_info_data, false) + ")";
         $("UpInfos").set('html', transfer_info);
+
+        const qbtVersion = window.qBittorrent.Cache.qbtVersion.get();
+
         if (speedInTitle) {
-            document.title = "QBT_TR([D: %1, U: %2] qBittorrent %3)QBT_TR[CONTEXT=MainWindow]".replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_speed, true)).replace("%2", window.qBittorrent.Misc.friendlyUnit(serverState.up_info_speed, true)).replace("%3", window.qBittorrent.Client.qbtVersion());
+            document.title = "QBT_TR([D: %1, U: %2] qBittorrent %3)QBT_TR[CONTEXT=MainWindow]".replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_speed, true)).replace("%2", window.qBittorrent.Misc.friendlyUnit(serverState.up_info_speed, true)).replace("%3", qbtVersion);
             document.title += " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]";
         }
         else
-            document.title = ("qBittorrent " + window.qBittorrent.Client.qbtVersion() + " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]");
+            document.title = ("qBittorrent " + qbtVersion + " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]");
         $('freeSpaceOnDisk').set('html', 'QBT_TR(Free space: %1)QBT_TR[CONTEXT=HttpServer]'.replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.free_space_on_disk)));
         $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]'.replace("%1", serverState.dht_nodes));
 
@@ -1575,38 +1573,11 @@ window.addEvent('load', function() {
             }
         }
     }).activate();
+});
 
-    window.parent.qBittorrent.Cache.preferences.init();
-
-    // fetch qbt version and store it locally
-    new Request({
-        url: 'api/v2/app/version',
-        method: 'get',
-        noCache: true,
-        onSuccess: (info) => {
-            if (!info)
-                return;
-
-            LocalPreferences.set('qbtVersion', info);
-        }
-    }).send();
-
-    // fetch build info and store it locally
-    new Request.JSON({
-        url: 'api/v2/app/buildInfo',
-        method: 'get',
-        noCache: true,
-        onSuccess: (info) => {
-            if (!info)
-                return;
-
-            LocalPreferences.set('buildInfo.qtVersion', info.qt);
-            LocalPreferences.set('buildInfo.libtorrentVersion', info.libtorrent);
-            LocalPreferences.set('buildInfo.boostVersion', info.boost);
-            LocalPreferences.set('buildInfo.opensslVersion', info.openssl);
-            LocalPreferences.set('buildInfo.zlibVersion', info.zlib);
-            LocalPreferences.set('buildInfo.bitness', info.bitness);
-            LocalPreferences.set('buildInfo.platform', info.platform);
-        }
-    }).send();
+window.addEventListener("load", () => {
+    // fetch various data and store it in memory
+    window.qBittorrent.Cache.buildInfo.init();
+    window.qBittorrent.Cache.preferences.init();
+    window.qBittorrent.Cache.qbtVersion.init();
 });
