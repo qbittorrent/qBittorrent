@@ -1575,7 +1575,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         // hide entries
-        const libtorrentVersion = window.qBittorrent.Misc.parseVersion(LocalPreferences.get('buildInfo.libtorrentVersion', ''));
+        const buildInfo = window.qBittorrent.Cache.buildInfo.get();
+
+        const libtorrentVersion = window.qBittorrent.Misc.parseVersion(buildInfo.libtorrent);
         if (libtorrentVersion.valid) {
             if (libtorrentVersion.major >= 2) {
                 $('rowDiskCache').style.display = 'none';
@@ -1597,8 +1599,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 $('diskIOWriteModeWriteThrough').style.display = 'none';
         }
 
-        const serverPlatform = LocalPreferences.get('buildInfo.platform', '');
-        if ((serverPlatform !== 'macos') && (serverPlatform !== 'windows'))
+        if ((buildInfo.platform !== 'macos') && (buildInfo.platform !== 'windows'))
             $('rowMarkOfTheWeb').style.display = 'none';
 
         // Behavior tab

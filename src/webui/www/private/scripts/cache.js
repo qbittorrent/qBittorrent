@@ -34,9 +34,32 @@ if (window.qBittorrent === undefined)
 window.qBittorrent.Cache = (() => {
     const exports = () => {
         return {
-            preferences: new PreferencesCache()
+            buildInfo: new BuildInfoCache(),
+            preferences: new PreferencesCache(),
+            qbtVersion: new QbtVersionCache()
         };
     };
+
+    class BuildInfoCache {
+        #m_store = {};
+
+        init() {
+            new Request.JSON({
+                url: 'api/v2/app/buildInfo',
+                method: 'get',
+                noCache: true,
+                onSuccess: (responseJSON) => {
+                    if (!responseJSON)
+                        return;
+                    this.#m_store = responseJSON;
+                }
+            }).send();
+        }
+
+        get() {
+            return structuredClone(this.#m_store);
+        }
+    }
 
     class PreferencesCache {
         #m_store = {};
@@ -103,6 +126,27 @@ window.qBittorrent.Cache = (() => {
                         obj.onSuccess(responseText, responseXML);
                 }
             }).send();
+        }
+    }
+
+    class QbtVersionCache {
+        #m_store = '';
+
+        init() {
+            new Request({
+                url: 'api/v2/app/version',
+                method: 'get',
+                noCache: true,
+                onSuccess: (responseText) => {
+                    if (!responseText)
+                        return;
+                    this.#m_store = responseText;
+                }
+            }).send();
+        }
+
+        get() {
+            return this.#m_store;
         }
     }
 
