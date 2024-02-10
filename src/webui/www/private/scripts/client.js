@@ -264,29 +264,21 @@ window.addEventListener("DOMContentLoaded", function() {
     initializeWindows();
 
     // Show Top Toolbar is enabled by default
-    let showTopToolbar = true;
-    if (LocalPreferences.get('show_top_toolbar') !== null)
-        showTopToolbar = LocalPreferences.get('show_top_toolbar') == "true";
+    let showTopToolbar = LocalPreferences.get('show_top_toolbar', 'true') == "true";
     if (!showTopToolbar) {
         $('showTopToolbarLink').firstChild.style.opacity = '0';
         $('mochaToolbar').addClass('invisible');
     }
 
     // Show Status Bar is enabled by default
-    let showStatusBar = true;
-    if (LocalPreferences.get('show_status_bar') !== null)
-        showStatusBar = LocalPreferences.get('show_status_bar') === "true";
+    let showStatusBar = LocalPreferences.get('show_status_bar', 'true') === "true";
     if (!showStatusBar) {
         $('showStatusBarLink').firstChild.style.opacity = '0';
         $('desktopFooterWrapper').addClass('invisible');
     }
 
-    const getShowFiltersSidebar = function() {
-        // Show Filters Sidebar is enabled by default
-        const show = LocalPreferences.get('show_filters_sidebar');
-        return (show === null) || (show === 'true');
-    };
-    const showFiltersSidebar = getShowFiltersSidebar();
+    // Show Filters Sidebar is enabled by default
+    let showFiltersSidebar = LocalPreferences.get('show_filters_sidebar', 'true') === "true";
     if (!showFiltersSidebar) {
         $('showFiltersSidebarLink').firstChild.style.opacity = '0';
         $('filtersColumn').addClass('invisible');
@@ -1032,7 +1024,7 @@ window.addEventListener("DOMContentLoaded", function() {
     });
 
     $('showFiltersSidebarLink').addEvent('click', function(e) {
-        const showFiltersSidebar = !getShowFiltersSidebar();
+        showFiltersSidebar = !showFiltersSidebar;
         LocalPreferences.set('show_filters_sidebar', showFiltersSidebar.toString());
         if (showFiltersSidebar) {
             $('showFiltersSidebarLink').firstChild.style.opacity = '1';
