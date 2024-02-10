@@ -1574,34 +1574,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             };
         };
 
-        // hide entries
-        const buildInfo = window.qBittorrent.Cache.buildInfo.get();
-
-        const libtorrentVersion = window.qBittorrent.Misc.parseVersion(buildInfo.libtorrent);
-        if (libtorrentVersion.valid) {
-            if (libtorrentVersion.major >= 2) {
-                $('rowDiskCache').style.display = 'none';
-                $('rowDiskCacheExpiryInterval').style.display = 'none';
-                $('rowCoalesceReadsAndWrites').style.display = 'none';
-            }
-            else {
-                $('fieldsetI2p').style.display = 'none';
-                $('rowMemoryWorkingSetLimit').style.display = 'none';
-                $('rowHashingThreads').style.display = 'none';
-                $('rowDiskIOType').style.display = 'none';
-                $('rowI2pInboundQuantity').style.display = 'none';
-                $('rowI2pOutboundQuantity').style.display = 'none';
-                $('rowI2pInboundLength').style.display = 'none';
-                $('rowI2pOutboundLength').style.display = 'none';
-            }
-
-            if (!((libtorrentVersion.major >= 2) && (libtorrentVersion.minor >= 0) && (libtorrentVersion.fix >= 6)))
-                $('diskIOWriteModeWriteThrough').style.display = 'none';
-        }
-
-        if ((buildInfo.platform !== 'macos') && (buildInfo.platform !== 'windows'))
-            $('rowMarkOfTheWeb').style.display = 'none';
-
         // Behavior tab
         const numberInputLimiter = (input) => {
             const min = input.getAttribute("min");
@@ -2847,6 +2819,34 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 }
             });
         };
+
+        // hide entries
+        const buildInfo = window.qBittorrent.Cache.buildInfo.get();
+
+        const libtorrentVersion = window.qBittorrent.Misc.parseVersion(buildInfo.libtorrent);
+        if (libtorrentVersion.valid) {
+            if (libtorrentVersion.major >= 2) {
+                $('rowDiskCache').style.display = 'none';
+                $('rowDiskCacheExpiryInterval').style.display = 'none';
+                $('rowCoalesceReadsAndWrites').style.display = 'none';
+            }
+            else {
+                $('fieldsetI2p').style.display = 'none';
+                $('rowMemoryWorkingSetLimit').style.display = 'none';
+                $('rowHashingThreads').style.display = 'none';
+                $('rowDiskIOType').style.display = 'none';
+                $('rowI2pInboundQuantity').style.display = 'none';
+                $('rowI2pOutboundQuantity').style.display = 'none';
+                $('rowI2pInboundLength').style.display = 'none';
+                $('rowI2pOutboundLength').style.display = 'none';
+            }
+
+            if (!((libtorrentVersion.major >= 2) && (libtorrentVersion.minor >= 0) && (libtorrentVersion.fix >= 6)))
+                $('diskIOWriteModeWriteThrough').style.display = 'none';
+        }
+
+        if ((buildInfo.platform !== 'macos') && (buildInfo.platform !== 'windows'))
+            $('rowMarkOfTheWeb').style.display = 'none';
 
         $('networkInterface').addEvent('change', function() {
             updateInterfaceAddresses($(this).getProperty('value'), '');
