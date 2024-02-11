@@ -21,44 +21,43 @@
             </div>
             <div class="clear"></div>
         </div>
-        <script>
-            'use strict';
-
-            const hashes = new URI().getData('hashes').split('|');
-            const setDlLimit = function() {
-                const limit = $("dllimitUpdatevalue").value.toInt() * 1024;
-                if (hashes[0] == "global") {
-                    new Request({
-                        url: 'api/v2/transfer/setDownloadLimit',
-                        method: 'post',
-                        data: {
-                            'limit': limit
-                        },
-                        onComplete: function() {
-                            window.parent.updateMainData();
-                            window.parent.qBittorrent.Client.closeWindows();
-                        }
-                    }).send();
-                }
-                else {
-                    new Request({
-                        url: 'api/v2/torrents/setDownloadLimit',
-                        method: 'post',
-                        data: {
-                            'hashes': hashes.join('|'),
-                            'limit': limit
-                        },
-                        onComplete: function() {
-                            window.parent.qBittorrent.Client.closeWindows();
-                        }
-                    }).send();
-                }
-            };
-        </script>
         <input type="button" id="applyButton" value="QBT_TR(Apply)QBT_TR[CONTEXT=HttpServer]" onclick="setDlLimit()" />
     </div>
 
     <script>
+        'use strict';
+
+        const hashes = new URI().getData('hashes').split('|');
+        const setDlLimit = function() {
+            const limit = $("dllimitUpdatevalue").value.toInt() * 1024;
+            if (hashes[0] == "global") {
+                new Request({
+                    url: 'api/v2/transfer/setDownloadLimit',
+                    method: 'post',
+                    data: {
+                        'limit': limit
+                    },
+                    onComplete: function() {
+                        window.parent.updateMainData();
+                        window.parent.qBittorrent.Client.closeWindows();
+                    }
+                }).send();
+            }
+            else {
+                new Request({
+                    url: 'api/v2/torrents/setDownloadLimit',
+                    method: 'post',
+                    data: {
+                        'hashes': hashes.join('|'),
+                        'limit': limit
+                    },
+                    onComplete: function() {
+                        window.parent.qBittorrent.Client.closeWindows();
+                    }
+                }).send();
+            }
+        };
+
         new Keyboard({
             defaultEventType: 'keydown',
             events: {
@@ -81,7 +80,6 @@
 
         MochaUI.addDlLimitSlider(hashes);
     </script>
-
 </body>
 
 </html>
