@@ -173,6 +173,10 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_s, u"preferences-web-browser-cookies"_s));
     m_ui->menuLog->setIcon(UIThemeManager::instance()->getIcon(u"help-contents"_s));
     m_ui->actionCheckForUpdates->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
+    m_ui->actionRSSReader->setIcon(UIThemeManager::instance()->getIcon(u"rss"_s));
+    m_ui->actionShowFiltersSidebar->setIcon(UIThemeManager::instance()->getIcon(u"view-sidetree"_s));
+    m_ui->actionSpeedInTitleBar->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_s));
+    m_ui->actionSearchWidget->setIcon(UIThemeManager::instance()->getIcon(u"search"_s));
 
     auto *lockMenu = new QMenu(m_ui->menuView);
     lockMenu->addAction(tr("&Set Password"), this, &MainWindow::defineUILockPassword);
