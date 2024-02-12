@@ -34,7 +34,9 @@ window.qBittorrent.Client = (() => {
         return {
             closeWindows: closeWindows,
             genHash: genHash,
-            getSyncMainDataInterval: getSyncMainDataInterval
+            getSyncMainDataInterval: getSyncMainDataInterval,
+            isStopped: isStopped,
+            stop: stop
         };
     };
 
@@ -54,6 +56,15 @@ window.qBittorrent.Client = (() => {
 
     const getSyncMainDataInterval = function() {
         return customSyncMainDataInterval ? customSyncMainDataInterval : serverSyncMainDataInterval;
+    };
+
+    let stopped = false;
+    const isStopped = () => {
+        return stopped;
+    };
+
+    const stop = () => {
+        stopped = true;
     };
 
     return exports();
@@ -654,7 +665,7 @@ window.addEventListener("DOMContentLoaded", function() {
         };
     })();
 
-    let syncMainDataTimer;
+    let syncMainDataTimeoutID;
     let syncRequestInProgress = false;
     const syncMainData = function() {
         const url = new URI('api/v2/sync/maindata');
@@ -839,10 +850,15 @@ window.addEventListener("DOMContentLoaded", function() {
     };
 
     const syncData = function(delay) {
-        if (!syncRequestInProgress) {
-            clearTimeout(syncMainDataTimer);
-            syncMainDataTimer = syncMainData.delay(delay);
-        }
+        if (syncRequestInProgress)
+            return;
+
+        clearTimeout(syncMainDataTimeoutID);
+
+        if (window.qBittorrent.Client.isStopped())
+            return;
+
+        syncMainDataTimeoutID = syncMainData.delay(delay);
     };
 
     const processServerState = function() {
