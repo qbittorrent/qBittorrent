@@ -873,7 +873,7 @@
 
         <fieldset class="settings">
             <legend><input type="checkbox" id="use_alt_webui_checkbox" onclick="qBittorrent.Preferences.updateAlternativeWebUISettings();" />
-                <label for="use_alt_webui_checkbox">QBT_TR(Use alternative Web UI)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <label for="use_alt_webui_checkbox">QBT_TR(Use alternative WebUI)QBT_TR[CONTEXT=OptionsDialog]</label>
             </legend>
             <div class="formRow">
                 <label for="webui_files_location_textarea">QBT_TR(Files location:)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -1825,7 +1825,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             $('add_trackers_textarea').setProperty('disabled', !isAddTrackersEnabled);
         };
 
-        // Web UI tab
+        // WebUI tab
         const updateHttpsSettings = function() {
             const isUseHttpsEnabled = $('use_https_checkbox').getProperty('checked');
             $('ssl_cert_text').setProperty('disabled', !isUseHttpsEnabled);
@@ -2237,7 +2237,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $('downlock_repack_proper_episodes').setProperty('checked', pref.rss_download_repack_proper_episodes);
                     $('rss_filter_textarea').setProperty('value', pref.rss_smart_episode_filters);
 
-                    // Web UI tab
+                    // WebUI tab
                     // Language
                     updateWebuiLocaleSelect(pref.locale);
                     $('performanceWarning').setProperty('checked', pref.performance_warning);
@@ -2262,7 +2262,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $('webUIBanDurationInput').setProperty('value', pref.web_ui_ban_duration.toInt());
                     $('webUISessionTimeoutInput').setProperty('value', pref.web_ui_session_timeout.toInt());
 
-                    // Use alternative Web UI
+                    // Use alternative WebUI
                     $('use_alt_webui_checkbox').setProperty('checked', pref.alternative_webui_enabled);
                     $('webui_files_location_textarea').setProperty('value', pref.alternative_webui_path);
                     updateAlternativeWebUISettings();
@@ -2650,7 +2650,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings['rss_download_repack_proper_episodes'] = $('downlock_repack_proper_episodes').getProperty('checked');
             settings['rss_smart_episode_filters'] = $('rss_filter_textarea').getProperty('value');
 
-            // Web UI tab
+            // WebUI tab
             // Language
             settings['locale'] = $('locale_select').getProperty('value');
             settings['performance_warning'] = $('performanceWarning').getProperty('checked');
@@ -2660,7 +2660,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const web_ui_address = $('webui_address_value').getProperty('value').toString();
             const web_ui_port = $('webui_port_value').getProperty('value').toInt();
             if (isNaN(web_ui_port) || web_ui_port < 1 || web_ui_port > 65535) {
-                alert("QBT_TR(The port used for the Web UI must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
+                alert("QBT_TR(The port used for the WebUI must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings['web_ui_address'] = web_ui_address;
@@ -2687,12 +2687,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Authentication
             const web_ui_username = $('webui_username_text').getProperty('value');
             if (web_ui_username.length < 3) {
-                alert("QBT_TR(The Web UI username must be at least 3 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
+                alert("QBT_TR(The WebUI username must be at least 3 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
             const web_ui_password = $('webui_password_text').getProperty('value');
             if ((0 < web_ui_password.length) && (web_ui_password.length < 6)) {
-                alert("QBT_TR(The Web UI password must be at least 6 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
+                alert("QBT_TR(The WebUI password must be at least 6 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
 
@@ -2706,11 +2706,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings['web_ui_ban_duration'] = Number($('webUIBanDurationInput').getProperty('value'));
             settings['web_ui_session_timeout'] = Number($('webUISessionTimeoutInput').getProperty('value'));
 
-            // Use alternative Web UI
+            // Use alternative WebUI
             const alternative_webui_enabled = $('use_alt_webui_checkbox').getProperty('checked');
             const webui_files_location_textarea = $('webui_files_location_textarea').getProperty('value');
             if (alternative_webui_enabled && (webui_files_location_textarea.trim() === "")) {
-                alert("QBT_TR(The alternative Web UI files location cannot be blank.)QBT_TR[CONTEXT=OptionsDialog]");
+                alert("QBT_TR(The alternative WebUI files location cannot be blank.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
             settings['alternative_webui_enabled'] = alternative_webui_enabled;

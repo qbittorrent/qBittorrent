@@ -752,7 +752,7 @@ window.addEventListener("DOMContentLoaded", function() {
                             const torrents = response['trackers'][tracker];
                             const hash = window.qBittorrent.Client.genHash(getHost(tracker));
 
-                            // the reason why we need the merge here is because the web ui api returned trackers may have different url for the same tracker host.
+                            // the reason why we need the merge here is because the WebUI api returned trackers may have different url for the same tracker host.
                             // for example, some private trackers use diff urls for each torrent from the same tracker host.
                             // then we got the response of `trackers` from qBittorrent api will like:
                             // {
