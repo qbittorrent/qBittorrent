@@ -1,6 +1,7 @@
 #include "transmissionrpccontroller.h"
 
 #include <filesystem>
+#include <iterator>
 
 #include <QBitArray>
 #include <QJsonArray>
@@ -188,12 +189,13 @@ QJsonValue torrentGetFileStats(const BitTorrent::Torrent &tor)
     return result;
 }
 
-QJsonValue torrentGetSingleField(const BitTorrent::Torrent &tor, const QString &fld)
+QJsonValue torrentGetSingleField(const BitTorrent::Torrent &tor, int transmissionTorId, const QString &fld)
 {
     const struct FieldValueFuncArgs
     {
         const BitTorrent::Torrent &tor;
-    } args = { tor };
+        int id;
+    } args = { tor, transmissionTorId };
 
     static const QHash<QString, QJsonValue (*)(const FieldValueFuncArgs&)> fieldValueFuncHash = {
     {u"activityDate"_s, [](const auto &args) -> QJsonValue {
@@ -282,7 +284,7 @@ QJsonValue torrentGetSingleField(const BitTorrent::Torrent &tor, const QString &
     {u"haveUnchecked"_s, [](const auto &) -> QJsonValue { return 0; }}, // looks like this isn't exposed by lbt or I couldn't find it
     {u"haveValid"_s, [](const auto &args) -> QJsonValue { return args.tor.completedSize(); }},
     {u"honorsSessionLimits"_s, [](const auto &) -> QJsonValue { return false; }}, // TODO
-    {u"id"_s, [](const auto &) -> QJsonValue { return -1; }}, // FIXME
+    {u"id"_s, [](const auto &args) -> QJsonValue { return args.id; }}, // FIXME
     };
 
     if (auto func = fieldValueFuncHash.value(fld, nullptr))
@@ -295,22 +297,22 @@ QJsonValue torrentGetSingleField(const BitTorrent::Torrent &tor, const QString &
     }
 }
 
-QJsonObject torrentGetObject(const BitTorrent::Torrent &tor, const QSet<QString> &fields)
+QJsonObject torrentGetObject(const BitTorrent::Torrent &tor, int transmissionTorId, const QSet<QString> &fields)
 {
     QJsonObject result{};
     for(const QString &f : fields)
     {
-        result[f] = torrentGetSingleField(tor, f);
+        result[f] = torrentGetSingleField(tor, transmissionTorId, f);
     }
     return result;
 }
 
-QJsonArray torrentGetTable(const BitTorrent::Torrent &tor, const QSet<QString> &fields)
+QJsonArray torrentGetTable(const BitTorrent::Torrent &tor, int transmissionTorId, const QSet<QString> &fields)
 {
     QJsonArray result{};
     for(const QString &f : fields)
     {
-        result.push_back(torrentGetSingleField(tor, f));
+        result.push_back(torrentGetSingleField(tor, transmissionTorId, f));
     }
     return result;
 }
@@ -549,13 +551,13 @@ QJsonObject TransmissionRPCController::torrentGet(const QJsonObject &args) const
     }
     const TorrentGetFormat format = torrentGetParseFormatArg(args[u"format"_s]);
     const QSet<QString> fieldsSet = fieldsAsSet(fields.toArray());
-    QVector<BitTorrent::Torrent*> requestedTorrents = collectTorrentsForRequest(args[u"ids"_s]);
+    QVector<std::pair<int, BitTorrent::Torrent*>> requestedTorrents = collectTorrentsForRequest(args[u"ids"_s]);
     QJsonArray torrents;
     if (format == TorrentGetFormat::Object)
     {
-        for (BitTorrent::Torrent *t : requestedTorrents)
+        for (auto [id, t] : requestedTorrents)
         {
-            torrents.push_back(torrentGetObject(*t, fieldsSet));
+            torrents.push_back(torrentGetObject(*t, id, fieldsSet));
         }
     }
     else if (format == TorrentGetFormat::Table)
@@ -566,44 +568,57 @@ QJsonObject TransmissionRPCController::torrentGet(const QJsonObject &args) const
             fields.push_back(f);
         }
         torrents.push_back(fields);
-        for (BitTorrent::Torrent *t : requestedTorrents)
+        for (auto [id, t] : requestedTorrents)
         {
-            torrents.push_back(torrentGetTable(*t, fieldsSet));
+            torrents.push_back(torrentGetTable(*t, id, fieldsSet));
         }
     }
 
     return {{u"torrents"_s, torrents}};
 }
 
-QVector<BitTorrent::Torrent*> TransmissionRPCController::collectTorrentsForRequest(const QJsonValue& ids) const
+QVector<std::pair<int, BitTorrent::Torrent *> > TransmissionRPCController::collectTorrentsForRequest(const QJsonValue& ids) const
 {
+    QVector<std::pair<int, BitTorrent::Torrent*>> rv{};
+    const auto saveTorrent = [&](int id) {
+        if (BitTorrent::Torrent *const tor = m_idToTorrent.value(id, nullptr))
+        {
+            rv.push_back(std::make_pair(id, tor));
+        }
+        else
+        {
+            throw TransmissionAPIError(APIErrorType::BadParams, u"Undefined id '%1'"_s.arg(id));
+        }
+    };
+
     if (ids.isUndefined())
     {
-        return BitTorrent::Session::instance()->torrents();
+        rv.reserve(m_idToTorrent.size());
+        std::copy(m_idToTorrent.keyValueBegin(), m_idToTorrent.keyValueEnd(), std::back_inserter(rv));
+        return rv;
     }
     else if (ids.isArray())
     {
         const QJsonArray idsArray = ids.toArray();
-        QVector<BitTorrent::Torrent*> rv{};
         rv.reserve(idsArray.size());
         for (const QJsonValueConstRef &idVal : idsArray)
         {
             if (idVal.isDouble())
             {
-                rv.push_back(m_idToTorrent[idVal.toInt()]);
+                const int id = idVal.toInt();
+                saveTorrent(id);
             }
         }
         return rv;
     }
     else if (ids.toString() == u"recently-active"_s)
     {
-        // FIXME
+        // FIXME "recently" means 60 seconds in Transmission
         return {};
     }
     else if (ids.isDouble())
     {
-        QVector<BitTorrent::Torrent*> rv{};
-        rv.push_back(m_idToTorrent[ids.toInt()]);
+        saveTorrent(ids.toInt());
         return rv;
     }
     else

@@ -24,7 +24,7 @@ private:
     void saveMapping(BitTorrent::Torrent*);
     void removeMapping(BitTorrent::Torrent*);
     QJsonObject torrentGet(const QJsonObject &) const;
-    QVector<BitTorrent::Torrent*> collectTorrentsForRequest(const QJsonValue&) const;
+    QVector<std::pair<int, BitTorrent::Torrent*>> collectTorrentsForRequest(const QJsonValue&) const;
 
     QHash<int, BitTorrent::Torrent*> m_idToTorrent;
     QHash<BitTorrent::Torrent*, int> m_torrentToId;
