@@ -285,6 +285,29 @@ QJsonValue torrentGetSingleField(const BitTorrent::Torrent &tor, int transmissio
     {u"haveValid"_s, [](const auto &args) -> QJsonValue { return args.tor.completedSize(); }},
     {u"honorsSessionLimits"_s, [](const auto &) -> QJsonValue { return false; }}, // TODO
     {u"id"_s, [](const auto &args) -> QJsonValue { return args.id; }}, // FIXME
+    {u"isFinished"_s, [](const auto &args) -> QJsonValue { return args.tor.isFinished(); }},
+    {u"isPrivate"_s, [](const auto &args) -> QJsonValue { return args.tor.isPrivate(); }},
+    {u"isStalled"_s, [](const auto &args) -> QJsonValue {
+        using ts = BitTorrent::TorrentState;
+        const ts state = args.tor.state();
+        return state == ts::StalledDownloading || state == ts::StalledUploading;
+    }},
+    {u"labels"_s, [](const auto &args) -> QJsonValue {
+        QJsonArray rv{};
+        for(auto &&t : args.tor.tags())
+        {
+            rv.push_back(t.toString());
+        }
+        return rv;
+    }},
+    {u"leftUntilDone"_s, [](const auto &args) -> QJsonValue { return args.tor.wantedSize() - args.tor.completedSize(); }},
+    {u"magnetLink"_s, [](const auto &args) -> QJsonValue { return args.tor.createMagnetURI(); }},
+    {u"manualAnnounceTime"_s, [](const auto &) -> QJsonValue { return -1; }}, // FIXME not really doable, use now() + min_interval at least
+    {u"maxConnectedPeers"_s, [](const auto &args) -> QJsonValue { return args.tor.connectionsLimit(); }},
+    {u"metadataPercentComplete"_s, [](const auto &args) -> QJsonValue { return args.tor.hasMetadata() ? 1.0 : 0.0; }}, // TODO?
+    {u"name"_s, [](const auto &args) -> QJsonValue { return args.tor.name(); }},
+    {u"peer-limit"_s, [](const auto &args) -> QJsonValue { return args.tor.connectionsLimit(); }},
+
     };
 
     if (auto func = fieldValueFuncHash.value(fld, nullptr))
