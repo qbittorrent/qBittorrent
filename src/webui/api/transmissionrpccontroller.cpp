@@ -8,8 +8,11 @@
 #include <QJsonObject>
 #include <QTimer>
 
+#include "base/bittorrent/downloadpriority.h"
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
+#include "base/bittorrent/torrentinfo.h"
 #include "base/net/portforwarder.h"
 #include "base/preferences.h"
 #include "base/profile.h"
@@ -124,6 +127,67 @@ TorrentGetFormat torrentGetParseFormatArg(const QJsonValue &format)
     return rv;
 }
 
+QJsonValue torrentGetFiles(const BitTorrent::Torrent &tor)
+{
+    QJsonArray result{};
+    const BitTorrent::TorrentInfo info = tor.info();
+    const int filesCount = info.filesCount();
+    const QVector<qreal> filesProgress = tor.filesProgress();
+    const PathList filePaths = tor.filePaths();
+    for(int i = 0 ; i < filesCount ; ++i)
+    {
+        // need to basically undo what fileProgress() does
+        const qlonglong fileSize = info.fileSize(i);
+        const qint64 byteProgress = fileSize * filesProgress[i];
+        const BitTorrent::TorrentInfo::PieceRange pieces = info.filePieces(i);
+        result.push_back(QJsonObject
+                         {
+                             { u"bytesCompleted"_s, byteProgress },
+                             { u"length"_s, fileSize },
+                             { u"name"_s, filePaths[i].toString() },
+                             { u"beginPiece"_s, pieces.first() },
+                             { u"endPiece"_s, pieces.last() + 1 }
+                         });
+    }
+    return result;
+}
+
+qint64 convertToTransmissionFilePriority(BitTorrent::DownloadPriority priority) {
+    using dp = BitTorrent::DownloadPriority;
+    switch(priority) {
+    case dp::Normal:
+        return 0; // TR_PRI_NORMAL
+    case dp::High:
+    case dp::Maximum:
+        return 1; // TR_PRI_HIGH, doesn't map too nicely :(
+    default:
+        return -1; // TR_PRI_LOW as there's no other choice
+    }
+}
+
+QJsonValue torrentGetFileStats(const BitTorrent::Torrent &tor)
+{
+    QJsonArray result{};
+    const BitTorrent::TorrentInfo info = tor.info();
+    const int filesCount = info.filesCount();
+    const QVector<qreal> filesProgress = tor.filesProgress();
+    using dp = BitTorrent::DownloadPriority;
+    const QVector<dp> filePriorities = tor.filePriorities();
+    for(int i = 0 ; i < filesCount ; ++i)
+    {
+        const qlonglong fileSize = info.fileSize(i);
+        const qint64 byteProgress = fileSize * filesProgress[i];
+        const dp priority = filePriorities[i];
+        result.push_back(QJsonObject
+                         {
+                             { u"bytesCompleted"_s, byteProgress },
+                             { u"wanted"_s, priority != dp::Ignored },
+                             { u"priority"_s, convertToTransmissionFilePriority(priority) },
+                         });
+    }
+    return result;
+}
+
 QJsonValue torrentGetSingleField(const BitTorrent::Torrent &tor, const QString &fld)
 {
     const struct FieldValueFuncArgs
@@ -181,7 +245,44 @@ QJsonValue torrentGetSingleField(const BitTorrent::Torrent &tor, const QString &
     {u"downloadDir"_s, [](const auto &args) -> QJsonValue { return args.tor.savePath().toString(); }},
     {u"downloadedEver"_s, [](const auto &args) -> QJsonValue { return args.tor.totalDownload(); }},
     {u"downloadLimit"_s, [](const auto &args) -> QJsonValue { return args.tor.downloadLimit(); } },
-    {u"downloadLimited"_s, [](const auto &args) -> QJsonValue { return args.tor.downloadLimit() != 0; }}
+    {u"downloadLimited"_s, [](const auto &args) -> QJsonValue { return args.tor.downloadLimit() != 0; }},
+    {u"editDate"_s, [](const auto &) -> QJsonValue { return 0; }}, // unsupported, so return Transmission's default value.
+    {u"error"_s, [](const auto &args) -> QJsonValue {
+        if (args.tor.state() == BitTorrent::TorrentState::MissingFiles ||
+                args.tor.state() == BitTorrent::TorrentState::Error)
+        {
+            return 3; // TR_STAT_LOCAL_ERROR - "local trouble"
+        }
+
+        const QVector<BitTorrent::TrackerEntry> trackers = args.tor.trackers();
+        const bool trackerHasError = std::any_of(trackers.cbegin(), trackers.cend(), [](const BitTorrent::TrackerEntry &entry){
+            return entry.status == BitTorrent::TrackerEntryStatus::TrackerError;
+        });
+        return trackerHasError ? 2 /* TR_STAT_TRACKER_ERROR */ : 0 /* TR_STAT_OK */;
+    }},
+    {u"errorString"_s, [](const auto &args) -> QJsonValue { return args.tor.error(); }},
+    {u"eta"_s, [](const auto &args) -> QJsonValue { return args.tor.eta(); }},
+    {u"etaIdle"_s, [](const auto &args) -> QJsonValue {
+        const int maxInactiveSeedingTimeValue = args.tor.maxInactiveSeedingTime();
+        if (maxInactiveSeedingTimeValue >= 0)
+        {
+            const qint64 inactiveSeedingTimeEta = (maxInactiveSeedingTimeValue * 60) - args.tor.timeSinceActivity();
+            return std::max(inactiveSeedingTimeEta, qint64{0});
+        }
+        else
+        {
+            return 0;
+        }
+    }},
+    {u"file-count"_s, [](const auto &args) -> QJsonValue { return args.tor.info().filesCount(); }},
+    {u"files"_s, [](const auto &args) -> QJsonValue { return ::torrentGetFiles(args.tor); }},
+    {u"fileStats"_s, [](const auto &args) -> QJsonValue { return ::torrentGetFileStats(args.tor); }},
+    {u"group"_s, [](const auto&) -> QJsonValue { return QString{}; }}, // TODO not supported in qbt?
+    {u"hashString"_s, [](const auto &args) -> QJsonValue { return args.tor.infoHash().v1().toString(); }},
+    {u"haveUnchecked"_s, [](const auto &) -> QJsonValue { return 0; }}, // looks like this isn't exposed by lbt or I couldn't find it
+    {u"haveValid"_s, [](const auto &args) -> QJsonValue { return args.tor.completedSize(); }},
+    {u"honorsSessionLimits"_s, [](const auto &) -> QJsonValue { return false; }}, // TODO
+    {u"id"_s, [](const auto &) -> QJsonValue { return -1; }}, // FIXME
     };
 
     if (auto func = fieldValueFuncHash.value(fld, nullptr))
