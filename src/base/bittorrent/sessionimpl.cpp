@@ -2193,14 +2193,14 @@ void SessionImpl::enableBandwidthScheduler()
 void SessionImpl::populateAdditionalTrackers()
 {
     m_additionalTrackerList.clear();
-
+    
     const QString trackers = additionalTrackers();
-    for (QStringView tracker : asConst(QStringView(trackers).split(u'\n')))
-    {
-        tracker = tracker.trimmed();
-        if (!tracker.isEmpty())
-            m_additionalTrackerList.append({tracker.toString()});
-    }
+    QVector<TrackerEntry> newTrackerEntries = QVector<TrackerEntry>::fromList(parseTrackerEntries(QStringView(trackers)));
+
+    m_additionalTrackerList.reserve(newTrackerEntries.size());                                                      
+    std::move(newTrackerEntries.begin(), newTrackerEntries.end(), std::inserter(m_additionalTrackerList, m_additionalTrackerList.end()));
+    newTrackerEntries.clear();
+
 }
 
 void SessionImpl::processShareLimits()
@@ -2821,11 +2821,15 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
     if (isAddTrackersEnabled() && !(hasMetadata && p.ti->priv()))
     {
+        int trackerTier = (p.tracker_tiers.size() > 0 ? p.tracker_tiers.back() : -1);
+        if (trackerTier < std::numeric_limits<decltype(trackerTier)>::max())  // prevent overflow
+            ++trackerTier;
         p.trackers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
         p.tracker_tiers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
         p.tracker_tiers.resize(p.trackers.size(), 0);
-        for (const TrackerEntry &trackerEntry : asConst(m_additionalTrackerList))
+        for (TrackerEntry &trackerEntry : m_additionalTrackerList)
         {
+            trackerEntry.tier = trackerTier;
             p.trackers.push_back(trackerEntry.url.toStdString());
             p.tracker_tiers.push_back(trackerEntry.tier);
         }
@@ -2990,11 +2994,15 @@ bool SessionImpl::downloadMetadata(const TorrentDescriptor &torrentDescr)
     if (isAddTrackersEnabled())
     {
         // Use "additional trackers" when metadata retrieving (this can help when the DHT nodes are few)
+        int trackerTier = (p.tracker_tiers.size() > 0 ? p.tracker_tiers.back() : -1);
+        if (trackerTier < std::numeric_limits<decltype(trackerTier)>::max())  // prevent overflow
+            ++trackerTier;
         p.trackers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
         p.tracker_tiers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
         p.tracker_tiers.resize(p.trackers.size(), 0);
-        for (const TrackerEntry &trackerEntry : asConst(m_additionalTrackerList))
+        for (TrackerEntry &trackerEntry : m_additionalTrackerList)
         {
+            trackerEntry.tier = trackerTier;
             p.trackers.push_back(trackerEntry.url.toStdString());
             p.tracker_tiers.push_back(trackerEntry.tier);
         }

@@ -782,7 +782,9 @@ void TorrentsController::addTrackersAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    const QVector<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(params()[u"urls"_s]);
+    const QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+    int maxTier = (trackers.size() > 0 ? trackers.back().tier : -1);  // get maximum tier of current torrent
+    const QVector<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(params()[u"urls"_s], maxTier + 1);
     torrent->addTrackers(entries);
 }
 

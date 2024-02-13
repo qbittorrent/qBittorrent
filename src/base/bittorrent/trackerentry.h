@@ -81,7 +81,7 @@ namespace BitTorrent
         QHash<std::pair<QString, int>, TrackerEndpointEntry> endpointEntries {};
     };
 
-    QList<TrackerEntry> parseTrackerEntries(QStringView str);
+    QList<TrackerEntry> parseTrackerEntries(QStringView str, int defaultTier = 0);
 
     bool operator==(const TrackerEntry &left, const TrackerEntry &right);
     std::size_t qHash(const TrackerEntry &key, std::size_t seed = 0);

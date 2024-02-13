@@ -137,6 +137,28 @@ private slots:
             };
             QVERIFY(isEqual(BitTorrent::parseTrackerEntries(input), output));
         }
+
+        {
+            const int overrideValue = 0;
+            const QString input = u"\n \n \n http://localhost:1234 \n \n \n \n http://[::1]:4567 \n \n \n"_s;
+            const Entries output =
+            {
+                {u"http://localhost:1234"_s, 3},
+                {u"http://[::1]:4567"_s, 6}
+            };
+            QVERIFY(isEqual(BitTorrent::parseTrackerEntries(input, overrideValue), output));
+        }
+
+        {
+            const int overrideValue = INT_MAX;
+            const QString input = u"\n \n \n http://localhost:1234 \n \n \n \n http://[::1]:4567 \n \n \n"_s;
+            const Entries output =
+            {
+                {u"http://localhost:1234"_s, overrideValue},
+                {u"http://[::1]:4567"_s, overrideValue}
+            };
+            QVERIFY(isEqual(BitTorrent::parseTrackerEntries(input, overrideValue), output));
+        }
     }
 };
 

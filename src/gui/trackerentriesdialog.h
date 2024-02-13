@@ -53,7 +53,7 @@ public:
     ~TrackerEntriesDialog() override;
 
     void setTrackers(const QVector<BitTorrent::TrackerEntry> &trackers);
-    QVector<BitTorrent::TrackerEntry> trackers() const;
+    QVector<BitTorrent::TrackerEntry> trackers(const int &tierGroupOverride = -1) const;
 
 private:
     void saveSettings();
