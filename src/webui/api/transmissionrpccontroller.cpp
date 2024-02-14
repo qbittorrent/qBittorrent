@@ -11,6 +11,7 @@
 
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/infohash.h"
+#include "base/bittorrent/peeraddress.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrentinfo.h"
@@ -128,7 +129,7 @@ TorrentGetFormat torrentGetParseFormatArg(const QJsonValue &format)
     return rv;
 }
 
-QJsonValue torrentGetFiles(const BitTorrent::Torrent &tor)
+QJsonArray torrentGetFiles(const BitTorrent::Torrent &tor)
 {
     QJsonArray result{};
     const BitTorrent::TorrentInfo info = tor.info();
@@ -166,7 +167,7 @@ qint64 convertToTransmissionFilePriority(BitTorrent::DownloadPriority priority) 
     }
 }
 
-QJsonValue torrentGetFileStats(const BitTorrent::Torrent &tor)
+QJsonArray torrentGetFileStats(const BitTorrent::Torrent &tor)
 {
     QJsonArray result{};
     const BitTorrent::TorrentInfo info = tor.info();
@@ -189,13 +190,104 @@ QJsonValue torrentGetFileStats(const BitTorrent::Torrent &tor)
     return result;
 }
 
+QJsonObject torrentGetPeersFrom(const QVector<BitTorrent::PeerInfo>& peers)
+{
+    unsigned int fromCache = 0;
+    unsigned int fromDht = 0;
+    unsigned int fromIncoming = 0;
+    unsigned int fromLpd = 0;
+    unsigned int fromLtep = 0;
+    unsigned int fromPex = 0;
+    unsigned int fromTracker = 0;
+    for (const BitTorrent::PeerInfo &p : peers)
+    {
+        if (p.fromDHT())
+        {
+            ++fromDht;
+        }
+        else if (p.fromPeX())
+        {
+            ++fromPex;
+        }
+        else if (p.fromLSD())
+        {
+            ++fromLpd;
+        }
+#if 0 // TODO perhaps expose these in qBt's PeerInfo
+        else if (p.m_nativeInfo.source & lt::peer_info::tracker)
+        {
+            ++fromTracker;
+        }
+        else if (p.m_nativeInfo.source & lt::peer_info::resume_data)
+        {
+            ++fromCache;
+        }
+        else if (p.m_nativeInfo.source & lt::peer_info::incoming)
+        {
+            ++fromIncoming;
+        }
+#endif
+    }
+#define pair_from_var(v) { u ## #v ## _s, qint64{v} }
+    return QJsonObject{
+        pair_from_var(fromCache),
+        pair_from_var(fromDht),
+        pair_from_var(fromIncoming),
+        pair_from_var(fromLpd),
+        pair_from_var(fromLtep),
+        pair_from_var(fromPex),
+        pair_from_var(fromTracker)
+    };
+#undef pair_from_var
+}
+
+bool peerIsBeingUploadedTo(const BitTorrent::PeerInfo &peer)
+{
+    return peer.isRemoteInterested() && !peer.isChocked();
+}
+
+bool peerIsBeingDownloadedFrom(const BitTorrent::PeerInfo &peer)
+{
+    return peer.isInteresting() && !peer.isRemoteChocked();
+}
+
+QJsonArray torrentGetPeers(const QVector<BitTorrent::PeerInfo> &peers)
+{
+    QJsonArray result{};
+    for (const BitTorrent::PeerInfo &p : peers)
+    {
+        const BitTorrent::PeerAddress addr = p.address();
+        result.push_back(QJsonObject
+                         {
+            {u"address"_s, addr.ip.toString()},
+            {u"clientIsChoked"_s, p.isChocked()},
+            {u"clientIsInterested"_s, p.isInteresting()},
+            {u"clientName"_s, p.client()},
+            {u"flagStr"_s, p.flags()},
+            {u"isDownloadingFrom"_s, peerIsBeingDownloadedFrom(p)},
+            {u"isEncrypted"_s, p.isRC4Encrypted()},
+            {u"isIncoming"_s, !p.isLocalConnection()},
+            {u"isUTP"_s, p.useUTPSocket()},
+            {u"isUploadingTo"_s, peerIsBeingUploadedTo(p)},
+            {u"peerIsChoked"_s, p.isRemoteChocked()},
+            {u"peerIsInterested"_s, p.isRemoteInterested()},
+            {u"port"_s, addr.port},
+            {u"progress"_s, p.progress()},
+            {u"rateToClient"_s, p.payloadDownSpeed()},
+            {u"rateToPeer"_s, p.payloadUpSpeed()}
+        });
+    }
+    return result;
+}
+
 QJsonValue torrentGetSingleField(const BitTorrent::Torrent &tor, int transmissionTorId, const QString &fld)
 {
     const struct FieldValueFuncArgs
     {
         const BitTorrent::Torrent &tor;
+        const QVector<BitTorrent::PeerInfo> peers;
         int id;
-    } args = { tor, transmissionTorId };
+    } args = { tor, tor.peers(), transmissionTorId };
 
     static const QHash<QString, QJsonValue (*)(const FieldValueFuncArgs&)> fieldValueFuncHash = {
     {u"activityDate"_s, [](const auto &args) -> QJsonValue {
@@ -307,7 +399,19 @@ QJsonValue torrentGetSingleField(const BitTorrent::Torrent &tor, int transmissio
     {u"metadataPercentComplete"_s, [](const auto &args) -> QJsonValue { return args.tor.hasMetadata() ? 1.0 : 0.0; }}, // TODO?
     {u"name"_s, [](const auto &args) -> QJsonValue { return args.tor.name(); }},
     {u"peer-limit"_s, [](const auto &args) -> QJsonValue { return args.tor.connectionsLimit(); }},
-
+    {u"peers"_s, [](const auto &args) -> QJsonValue { return ::torrentGetPeers(args.peers); }},
+    {u"peersConnected"_s, [](const auto &args) -> QJsonValue { return args.tor.peersCount(); }},
+    {u"peersFrom"_s, [](const auto &args) -> QJsonValue { return ::torrentGetPeersFrom(args.peers); }},
+    {u"peersGettingFromUs"_s, [](const auto &args) -> QJsonValue {
+        return qint64{std::count_if(args.peers.begin(), args.peers.end(), [](const BitTorrent::PeerInfo &p) { return ::peerIsBeingUploadedTo(p); })};
+    }},
+    {u"peersSendingToUs"_s, [](const auto &args) -> QJsonValue {
+         return qint64{std::count_if(args.peers.begin(), args.peers.end(), [](const BitTorrent::PeerInfo &p) { return ::peerIsBeingDownloadedFrom(p); })};
+    }},
+    {u"percentComplete"_s, [](const auto &args) -> QJsonValue { return static_cast<qreal>(args.tor.piecesHave()) / args.tor.piecesCount(); }},
+    {u"percentDone"_s, [](const auto &args) -> QJsonValue { return args.tor.progress(); }},
+    {u"pieceCount"_s, [](const auto &args) -> QJsonValue { return args.tor.piecesCount(); }},
+    {u"pieceSize"_s, [](const auto &args) -> QJsonValue { return args.tor.pieceLength(); }}
     };
 
     if (auto func = fieldValueFuncHash.value(fld, nullptr))
