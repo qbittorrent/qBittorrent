@@ -196,7 +196,7 @@ QJsonObject torrentGetPeersFrom(const QVector<BitTorrent::PeerInfo>& peers)
     unsigned int fromDht = 0;
     unsigned int fromIncoming = 0;
     unsigned int fromLpd = 0;
-    unsigned int fromLtep = 0;
+    constexpr unsigned int fromLtep = 0;
     unsigned int fromPex = 0;
     unsigned int fromTracker = 0;
     for (const BitTorrent::PeerInfo &p : peers)
@@ -278,6 +278,32 @@ QJsonArray torrentGetPeers(const QVector<BitTorrent::PeerInfo> &peers)
         });
     }
     return result;
+}
+
+int torrentGetStatus(const BitTorrent::Torrent &tor)
+{
+    if (tor.isPaused())
+    {
+        return 0; // TR_STATUS_STOPPED
+    }
+    int status = 1;
+    if (tor.isChecking())
+    {
+        status = 2; // TR_STATUS_CHECK
+    }
+    else if (tor.isDownloading())
+    {
+        status = 4; // TR_STATUS_DOWNLOAD
+    }
+    else if (tor.isUploading())
+    {
+        status = 6; // TR_STATUS_SEED
+    }
+    if (tor.isQueued())
+    {
+        status--; // gives us the appropriate _WAIT state or _STOPPED if nothing matched.
+    }
+    return status;
 }
 
 QJsonValue torrentGetSingleField(const BitTorrent::Torrent &tor, int transmissionTorId, const QString &fld)
@@ -411,7 +437,36 @@ QJsonValue torrentGetSingleField(const BitTorrent::Torrent &tor, int transmissio
     {u"percentComplete"_s, [](const auto &args) -> QJsonValue { return static_cast<qreal>(args.tor.piecesHave()) / args.tor.piecesCount(); }},
     {u"percentDone"_s, [](const auto &args) -> QJsonValue { return args.tor.progress(); }},
     {u"pieceCount"_s, [](const auto &args) -> QJsonValue { return args.tor.piecesCount(); }},
-    {u"pieceSize"_s, [](const auto &args) -> QJsonValue { return args.tor.pieceLength(); }}
+    {u"pieceSize"_s, [](const auto &args) -> QJsonValue { return args.tor.pieceLength(); }},
+    {u"pieces"_s, [](const auto &args) -> QJsonValue {
+        const QBitArray pieces = args.tor.pieces();
+        const QByteArray piecesAsByteAr = QByteArray::fromRawData(pieces.bits(), (pieces.size() + 7) / 8);
+        return QString::fromLatin1(piecesAsByteAr.toBase64());
+    }},
+    {u"priorities"_s, [](const auto &args) -> QJsonValue {
+        const QVector<BitTorrent::DownloadPriority> prios = args.tor.filePriorities();
+        QJsonArray result{};
+        for(const BitTorrent::DownloadPriority p : prios)
+        {
+            result.push_back(convertToTransmissionFilePriority(p));
+        }
+        return result;
+    }},
+    {u"primary-mime-type"_s, [](const auto &) -> QJsonValue { return u"application/octet-stream"_s; }}, // guesswork anyway and qBt doesn't do it at all - return what Transmission returns when unknown
+    {u"queuePosition"_s, [](const auto &args) -> QJsonValue { return args.tor.queuePosition(); }},
+    {u"rateDownload"_s, [](const auto &args) -> QJsonValue { return args.tor.downloadPayloadRate(); }},
+    {u"rateUpload"_s, [](const auto &args) -> QJsonValue { return args.tor.uploadPayloadRate(); }},
+    {u"recheckProgress"_s, [](const auto &args) -> QJsonValue { return args.tor.isChecking() ? args.tor.progress() : 0.0; }},
+    {u"secondsDownloading"_s, [](const auto &args) -> QJsonValue { return args.tor.activeTime() - args.tor.finishedTime(); }},
+    {u"secondsSeeding"_s, [](const auto &args) -> QJsonValue { return args.tor.finishedTime(); }},
+    {u"seedIdleLimit"_s, [](const auto &args) -> QJsonValue { return args.tor.inactiveSeedingTimeLimit(); }},
+    {u"seedIdleMode"_s, [](const auto &) -> QJsonValue { return 0; }}, // TODO?
+    {u"seedRatioLimit"_s, [](const auto &args) -> QJsonValue { return args.tor.ratioLimit(); }},
+    {u"seedRatioMode"_s, [](const auto &) -> QJsonValue { return 0; }}, // TODO?
+    {u"sequentialDownload"_s, [](const auto &args) -> QJsonValue { return args.tor.isSequentialDownload(); }},
+    {u"sizeWhenDone"_s, [](const auto &args) -> QJsonValue { return args.tor.wantedSize(); }},
+    {u"startDate"_s, [](const auto &args) -> QJsonValue { return Utils::DateTime::toSecsSinceEpoch(args.tor.addedTime()); }}, // FIXME? doesn't look exposed by lbt, so just use addedDate instead
+    {u"status"_s, [](const auto &args) -> QJsonValue { return ::torrentGetStatus(args.tor); }},
     };
 
     if (auto func = fieldValueFuncHash.value(fld, nullptr))
