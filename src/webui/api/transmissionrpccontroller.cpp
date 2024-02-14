@@ -306,6 +306,16 @@ int torrentGetStatus(const BitTorrent::Torrent &tor)
     return status;
 }
 
+QJsonArray torrentGetTrackers(const BitTorrent::Torrent &tor)
+{
+    return {};
+}
+
+QJsonArray torrentGetTrackerStats(const BitTorrent::Torrent &tor)
+{
+    return {};
+}
+
 QJsonValue torrentGetSingleField(const BitTorrent::Torrent &tor, int transmissionTorId, const QString &fld)
 {
     const struct FieldValueFuncArgs
@@ -467,6 +477,52 @@ QJsonValue torrentGetSingleField(const BitTorrent::Torrent &tor, int transmissio
     {u"sizeWhenDone"_s, [](const auto &args) -> QJsonValue { return args.tor.wantedSize(); }},
     {u"startDate"_s, [](const auto &args) -> QJsonValue { return Utils::DateTime::toSecsSinceEpoch(args.tor.addedTime()); }}, // FIXME? doesn't look exposed by lbt, so just use addedDate instead
     {u"status"_s, [](const auto &args) -> QJsonValue { return ::torrentGetStatus(args.tor); }},
+    {u"trackers"_s, [](const auto &args) -> QJsonValue { return ::torrentGetTrackers(args.tor); }},
+        {u"trackerList"_s, [](const auto &args) -> QJsonValue {
+             const QVector<BitTorrent::TrackerEntry> trackers = args.tor.trackers();
+             QMap<int, QVector<QString>> trackersByTier;
+             for(const BitTorrent::TrackerEntry &trk : trackers)
+             {
+                 trackersByTier[trk.tier] << trk.url;
+             }
+             QString result;
+             for(auto it = trackersByTier.keyValueBegin(); it != trackersByTier.keyValueEnd() ; ++it)
+             {
+                 for(const QString &url : it->second)
+                 {
+                     result += url;
+                     result += u'\n';
+                 }
+                 result += u'\n';
+             }
+             return result;
+         }},
+    {u"trackerStats"_s, [](const auto &args) -> QJsonValue { return ::torrentGetTrackerStats(args.tor); }},
+    {u"totalSize"_s, [](const auto &args) -> QJsonValue { return args.tor.totalSize(); }},
+    {u"torrentFile"_s, [](const auto &) -> QJsonValue { return u"foobar.torrent"_s; }}, // FIXME not available?
+    {u"uploadedEver"_s, [](const auto &args) -> QJsonValue { return args.tor.totalUpload(); }},
+    {u"uploadLimit"_s, [](const auto &args) -> QJsonValue { return args.tor.uploadLimit(); } },
+    {u"uploadLimited"_s, [](const auto &args) -> QJsonValue { return args.tor.uploadLimit() != 0; }},
+    {u"uploadRatio"_s, [](const auto &args) -> QJsonValue { return static_cast<qreal>(args.tor.totalUpload()) / args.tor.wantedSize(); }},
+    {u"wanted"_s, [](const auto &args) -> QJsonValue {
+         const QVector<BitTorrent::DownloadPriority> prios = args.tor.filePriorities();
+         QJsonArray result{};
+         for(const BitTorrent::DownloadPriority p : prios)
+         {
+             result.push_back(p != BitTorrent::DownloadPriority::Ignored);
+         }
+         return result;
+         }},
+        {u"webseeds"_s, [](const auto &args) -> QJsonValue {
+             const QVector<QUrl> webSeeds = args.tor.urlSeeds();
+             QJsonArray result;
+             for(const QUrl &ws : webSeeds)
+             {
+                 result << ws.toString();
+             }
+             return result;
+         }},
+    {u"webseedsSendingToUs"_s, [](const auto &) -> QJsonValue { return 0; }} // FIXME
     };
 
     if (auto func = fieldValueFuncHash.value(fld, nullptr))
