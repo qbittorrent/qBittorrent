@@ -729,6 +729,7 @@ void WebApplication::sessionStart()
     cookie.setHttpOnly(true);
     cookie.setSecure(m_isSecureCookieEnabled && m_isHttpsEnabled);
     cookie.setPath(u"/"_s);
+    cookie.setExpirationDate(QDateTime::currentDateTime().addSecs(m_sessionTimeout));
     QByteArray cookieRawForm = cookie.toRawForm();
     if (m_isCSRFProtectionEnabled)
         cookieRawForm.append("; SameSite=Strict");
