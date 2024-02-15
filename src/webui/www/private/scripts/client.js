@@ -1,5 +1,6 @@
 /*
  * MIT License
+ * Copyright (C) 2024  Mike Tzou (Chocobo1)
  * Copyright (c) 2008 Ishan Arora <ishan@qbittorrent.org>,
  * Christophe Dumez <chris@qbittorrent.org>
  *
@@ -24,6 +25,54 @@
 
 'use strict';
 
+if (window.qBittorrent === undefined) {
+    window.qBittorrent = {};
+}
+
+window.qBittorrent.Client = (() => {
+    const exports = () => {
+        return {
+            closeWindows: closeWindows,
+            genHash: genHash,
+            getSyncMainDataInterval: getSyncMainDataInterval,
+            isStopped: isStopped,
+            stop: stop
+        };
+    };
+
+    const closeWindows = function() {
+        MochaUI.closeAll();
+    };
+
+    const genHash = function(string) {
+        // origins:
+        // https://stackoverflow.com/a/8831937
+        // https://gist.github.com/hyamamoto/fd435505d29ebfa3d9716fd2be8d42f0
+        let hash = 0;
+        for (let i = 0; i < string.length; ++i)
+            hash = ((Math.imul(hash, 31) + string.charCodeAt(i)) | 0);
+        return hash;
+    };
+
+    const getSyncMainDataInterval = function() {
+        return customSyncMainDataInterval ? customSyncMainDataInterval : serverSyncMainDataInterval;
+    };
+
+    let stopped = false;
+    const isStopped = () => {
+        return stopped;
+    };
+
+    const stop = () => {
+        stopped = true;
+    };
+
+    return exports();
+})();
+Object.freeze(window.qBittorrent.Client);
+
+// TODO: move global functions/variables into some namespace/scope
+
 this.torrentsTable = new window.qBittorrent.DynamicTable.TorrentsTable();
 
 let updatePropertiesPanel = function() {};
@@ -34,13 +83,6 @@ let queueing_enabled = true;
 let serverSyncMainDataInterval = 1500;
 let customSyncMainDataInterval = null;
 let useSubcategories = true;
-let searchTabInitialized = false;
-let rssTabInitialized = false;
-let logTabInitialized = false;
-
-let syncRequestInProgress = false;
-
-let clipboardEvent;
 
 /* Categories filter */
 const CATEGORIES_ALL = 1;
@@ -66,7 +108,7 @@ const TRACKERS_TRACKERLESS = 2;
 
 const trackerList = new Map();
 
-let selectedTracker = TRACKERS_ALL;
+let selectedTracker = LocalPreferences.get('selected_tracker', TRACKERS_ALL);
 let setTrackerFilter = function() {};
 
 /* All filters */
@@ -74,78 +116,7 @@ let selected_filter = LocalPreferences.get('selected_filter', 'all');
 let setFilter = function() {};
 let toggleFilterDisplay = function() {};
 
-const loadSelectedTracker = function() {
-    selectedTracker = LocalPreferences.get('selected_tracker', TRACKERS_ALL);
-};
-loadSelectedTracker();
-
-const getShowFiltersSidebar = function() {
-    // Show Filters Sidebar is enabled by default
-    const show = LocalPreferences.get('show_filters_sidebar');
-    return (show === null) || (show === 'true');
-};
-
-// getHost emulate the GUI version `QString getHost(const QString &url)`
-function getHost(url) {
-    // We want the hostname.
-    // If failed to parse the domain, original input should be returned
-
-    if (!/^(?:https?|udp):/i.test(url)) {
-        return url;
-    }
-
-    try {
-        // hack: URL can not get hostname from udp protocol
-        const parsedUrl = new URL(url.replace(/^udp:/i, 'https:'));
-        // host: "example.com:8443"
-        // hostname: "example.com"
-        const host = parsedUrl.hostname;
-        if (!host) {
-            return url;
-        }
-
-        return host;
-    }
-    catch (error) {
-        return url;
-    }
-}
-
-function genHash(string) {
-    // origins:
-    // https://stackoverflow.com/a/8831937
-    // https://gist.github.com/hyamamoto/fd435505d29ebfa3d9716fd2be8d42f0
-    let hash = 0;
-    for (let i = 0; i < string.length; ++i)
-        hash = ((Math.imul(hash, 31) + string.charCodeAt(i)) | 0);
-    return hash;
-}
-
-function getSyncMainDataInterval() {
-    return customSyncMainDataInterval ? customSyncMainDataInterval : serverSyncMainDataInterval;
-}
-
-const fetchQbtVersion = function() {
-    new Request({
-        url: 'api/v2/app/version',
-        method: 'get',
-        onSuccess: function(info) {
-            if (!info)
-                return;
-            sessionStorage.setItem('qbtVersion', info);
-        }
-    }).send();
-};
-fetchQbtVersion();
-
-const qbtVersion = function() {
-    const version = sessionStorage.getItem('qbtVersion');
-    if (!version)
-        return '';
-    return version;
-};
-
-window.addEvent('load', function() {
+window.addEventListener("DOMContentLoaded", function() {
     const saveColumnSizes = function() {
         const filters_width = $('Filters').getSize().x;
         const properties_height_rel = $('propertiesPanel').getSize().y / Window.getSize().y;
@@ -304,24 +275,21 @@ window.addEvent('load', function() {
     initializeWindows();
 
     // Show Top Toolbar is enabled by default
-    let showTopToolbar = true;
-    if (LocalPreferences.get('show_top_toolbar') !== null)
-        showTopToolbar = LocalPreferences.get('show_top_toolbar') == "true";
+    let showTopToolbar = LocalPreferences.get('show_top_toolbar', 'true') == "true";
     if (!showTopToolbar) {
         $('showTopToolbarLink').firstChild.style.opacity = '0';
         $('mochaToolbar').addClass('invisible');
     }
 
     // Show Status Bar is enabled by default
-    let showStatusBar = true;
-    if (LocalPreferences.get('show_status_bar') !== null)
-        showStatusBar = LocalPreferences.get('show_status_bar') === "true";
+    let showStatusBar = LocalPreferences.get('show_status_bar', 'true') === "true";
     if (!showStatusBar) {
         $('showStatusBarLink').firstChild.style.opacity = '0';
         $('desktopFooterWrapper').addClass('invisible');
     }
 
-    const showFiltersSidebar = getShowFiltersSidebar();
+    // Show Filters Sidebar is enabled by default
+    let showFiltersSidebar = LocalPreferences.get('show_filters_sidebar', 'true') === "true";
     if (!showFiltersSidebar) {
         $('showFiltersSidebarLink').firstChild.style.opacity = '0';
         $('filtersColumn').addClass('invisible');
@@ -367,7 +335,7 @@ window.addEvent('load', function() {
             return true;
         }
 
-        const categoryHash = genHash(category);
+        const categoryHash = window.qBittorrent.Client.genHash(category);
         if (!category_list.has(categoryHash)) { // This should not happen
             category_list.set(categoryHash, {
                 name: category,
@@ -410,7 +378,7 @@ window.addEvent('load', function() {
         const tags = torrent['tags'].split(',');
         let added = false;
         for (let i = 0; i < tags.length; ++i) {
-            const tagHash = genHash(tags[i].trim());
+            const tagHash = window.qBittorrent.Client.genHash(tags[i].trim());
             if (!tagList.has(tagHash)) { // This should not happen
                 tagList.set(tagHash, {
                     name: tags,
@@ -589,6 +557,32 @@ window.addEvent('load', function() {
             children[i].className = (Number(children[i].id) === selectedTag) ? "selectedFilter" : "";
     };
 
+    // getHost emulate the GUI version `QString getHost(const QString &url)`
+    const getHost = function(url) {
+        // We want the hostname.
+        // If failed to parse the domain, original input should be returned
+
+        if (!/^(?:https?|udp):/i.test(url)) {
+            return url;
+        }
+
+        try {
+            // hack: URL can not get hostname from udp protocol
+            const parsedUrl = new URL(url.replace(/^udp:/i, 'https:'));
+            // host: "example.com:8443"
+            // hostname: "example.com"
+            const host = parsedUrl.hostname;
+            if (!host) {
+                return url;
+            }
+
+            return host;
+        }
+        catch (error) {
+            return url;
+        }
+    };
+
     const updateTrackerList = function() {
         const trackerFilterList = $('trackerFilterList');
         if (trackerFilterList === null)
@@ -641,7 +635,38 @@ window.addEvent('load', function() {
             child.className = (child.id === selectedTracker) ? "selectedFilter" : "";
     };
 
-    let syncMainDataTimer;
+    const setupCopyEventHandler = (function() {
+        let clipboardEvent;
+
+        return () => {
+            if (clipboardEvent)
+                clipboardEvent.destroy();
+
+            clipboardEvent = new ClipboardJS('.copyToClipboard', {
+                text: function(trigger) {
+                    switch (trigger.id) {
+                        case "copyName":
+                            return copyNameFN();
+                        case "copyInfohash1":
+                            return copyInfohashFN(1);
+                        case "copyInfohash2":
+                            return copyInfohashFN(2);
+                        case "copyMagnetLink":
+                            return copyMagnetLinkFN();
+                        case "copyID":
+                            return copyIdFN();
+                        case "copyComment":
+                            return copyCommentFN();
+                        default:
+                            return "";
+                    }
+                }
+            });
+        };
+    })();
+
+    let syncMainDataTimeoutID;
+    let syncRequestInProgress = false;
     const syncMainData = function() {
         const url = new URI('api/v2/sync/maindata');
         url.setData('rid', syncMainDataLastResponseId);
@@ -680,7 +705,7 @@ window.addEvent('load', function() {
                                 continue;
 
                             const responseCategory = response['categories'][key];
-                            const categoryHash = genHash(key);
+                            const categoryHash = window.qBittorrent.Client.genHash(key);
                             const category = category_list.get(categoryHash);
                             if (category !== undefined) {
                                 // only the save path can change for existing categories
@@ -698,14 +723,14 @@ window.addEvent('load', function() {
                     }
                     if (response['categories_removed']) {
                         response['categories_removed'].each(function(category) {
-                            const categoryHash = genHash(category);
+                            const categoryHash = window.qBittorrent.Client.genHash(category);
                             category_list.delete(categoryHash);
                         });
                         update_categories = true;
                     }
                     if (response['tags']) {
                         for (const tag of response['tags']) {
-                            const tagHash = genHash(tag);
+                            const tagHash = window.qBittorrent.Client.genHash(tag);
                             if (!tagList.has(tagHash)) {
                                 tagList.set(tagHash, {
                                     name: tag,
@@ -717,7 +742,7 @@ window.addEvent('load', function() {
                     }
                     if (response['tags_removed']) {
                         for (let i = 0; i < response['tags_removed'].length; ++i) {
-                            const tagHash = genHash(response['tags_removed'][i]);
+                            const tagHash = window.qBittorrent.Client.genHash(response['tags_removed'][i]);
                             tagList.delete(tagHash);
                         }
                         updateTags = true;
@@ -725,7 +750,7 @@ window.addEvent('load', function() {
                     if (response['trackers']) {
                         for (const tracker in response['trackers']) {
                             const torrents = response['trackers'][tracker];
-                            const hash = genHash(getHost(tracker));
+                            const hash = window.qBittorrent.Client.genHash(getHost(tracker));
 
                             // the reason why we need the merge here is because the web ui api returned trackers may have different url for the same tracker host.
                             // for example, some private trackers use diff urls for each torrent from the same tracker host.
@@ -755,7 +780,7 @@ window.addEvent('load', function() {
                     if (response['trackers_removed']) {
                         for (let i = 0; i < response['trackers_removed'].length; ++i) {
                             const tracker = response['trackers_removed'][i];
-                            const hash = genHash(getHost(tracker));
+                            const hash = window.qBittorrent.Client.genHash(getHost(tracker));
                             trackerList.delete(hash);
                         }
                         updateTrackers = true;
@@ -812,7 +837,7 @@ window.addEvent('load', function() {
                         torrentsTable.reselectRows(torrentsTableSelectedRows);
                 }
                 syncRequestInProgress = false;
-                syncData(getSyncMainDataInterval());
+                syncData(window.qBittorrent.Client.getSyncMainDataInterval());
             }
         });
         syncRequestInProgress = true;
@@ -825,10 +850,15 @@ window.addEvent('load', function() {
     };
 
     const syncData = function(delay) {
-        if (!syncRequestInProgress) {
-            clearTimeout(syncMainDataTimer);
-            syncMainDataTimer = syncMainData.delay(delay);
-        }
+        if (syncRequestInProgress)
+            return;
+
+        clearTimeout(syncMainDataTimeoutID);
+
+        if (window.qBittorrent.Client.isStopped())
+            return;
+
+        syncMainDataTimeoutID = syncMainData.delay(delay);
     };
 
     const processServerState = function() {
@@ -842,12 +872,15 @@ window.addEvent('load', function() {
             transfer_info += " [" + window.qBittorrent.Misc.friendlyUnit(serverState.up_rate_limit, true) + "]";
         transfer_info += " (" + window.qBittorrent.Misc.friendlyUnit(serverState.up_info_data, false) + ")";
         $("UpInfos").set('html', transfer_info);
+
+        const qbtVersion = window.qBittorrent.Cache.qbtVersion.get();
+
         if (speedInTitle) {
-            document.title = "QBT_TR([D: %1, U: %2] qBittorrent %3)QBT_TR[CONTEXT=MainWindow]".replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_speed, true)).replace("%2", window.qBittorrent.Misc.friendlyUnit(serverState.up_info_speed, true)).replace("%3", qbtVersion());
+            document.title = "QBT_TR([D: %1, U: %2] qBittorrent %3)QBT_TR[CONTEXT=MainWindow]".replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_speed, true)).replace("%2", window.qBittorrent.Misc.friendlyUnit(serverState.up_info_speed, true)).replace("%3", qbtVersion);
             document.title += " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]";
         }
         else
-            document.title = ("qBittorrent " + qbtVersion() + " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]");
+            document.title = ("qBittorrent " + qbtVersion + " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]");
         $('freeSpaceOnDisk').set('html', 'QBT_TR(Free space: %1)QBT_TR[CONTEXT=HttpServer]'.replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.free_space_on_disk)));
         $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]'.replace("%1", serverState.dht_nodes));
 
@@ -982,12 +1015,32 @@ window.addEvent('load', function() {
         MochaUI.Desktop.setDesktopSize();
     });
 
+    const registerMagnetHandler = function() {
+        if (typeof navigator.registerProtocolHandler !== 'function') {
+            if (window.location.protocol !== 'https:')
+                alert("QBT_TR(To use this feature, the WebUI needs to be accessed over HTTPS)QBT_TR[CONTEXT=MainWindow]");
+            else
+                alert("QBT_TR(Your browser does not support this feature)QBT_TR[CONTEXT=MainWindow]");
+            return;
+        }
+
+        const hashString = location.hash ? location.hash.replace(/^#/, '') : '';
+        const hashParams = new URLSearchParams(hashString);
+        hashParams.set('download', '');
+
+        const templateHashString = hashParams.toString().replace('download=', 'download=%s');
+        const templateUrl = location.origin + location.pathname
+            + location.search + '#' + templateHashString;
+
+        navigator.registerProtocolHandler('magnet', templateUrl,
+            'qBittorrent WebUI magnet handler');
+    };
     $('registerMagnetHandlerLink').addEvent('click', function(e) {
         registerMagnetHandler();
     });
 
     $('showFiltersSidebarLink').addEvent('click', function(e) {
-        const showFiltersSidebar = !getShowFiltersSidebar();
+        showFiltersSidebar = !showFiltersSidebar;
         LocalPreferences.set('show_filters_sidebar', showFiltersSidebar.toString());
         if (showFiltersSidebar) {
             $('showFiltersSidebarLink').firstChild.style.opacity = '1';
@@ -1104,39 +1157,47 @@ window.addEvent('load', function() {
         MochaUI.Desktop.resizePanels();
     };
 
-    const showSearchTab = function() {
-        if (!searchTabInitialized) {
-            window.qBittorrent.Search.init();
-            searchTabInitialized = true;
-        }
+    const showSearchTab = (function() {
+        let searchTabInitialized = false;
 
-        $("searchTabColumn").removeClass("invisible");
-        customSyncMainDataInterval = 30000;
-        hideTransfersTab();
-        hideRssTab();
-        hideLogTab();
-    };
+        return () => {
+            if (!searchTabInitialized) {
+                window.qBittorrent.Search.init();
+                searchTabInitialized = true;
+            }
+
+            $("searchTabColumn").removeClass("invisible");
+            customSyncMainDataInterval = 30000;
+            hideTransfersTab();
+            hideRssTab();
+            hideLogTab();
+        };
+    })();
 
     const hideSearchTab = function() {
         $("searchTabColumn").addClass("invisible");
         MochaUI.Desktop.resizePanels();
     };
 
-    const showRssTab = function() {
-        if (!rssTabInitialized) {
-            window.qBittorrent.Rss.init();
-            rssTabInitialized = true;
-        }
-        else {
-            window.qBittorrent.Rss.load();
-        }
+    const showRssTab = (function() {
+        let rssTabInitialized = false;
 
-        $("rssTabColumn").removeClass("invisible");
-        customSyncMainDataInterval = 30000;
-        hideTransfersTab();
-        hideSearchTab();
-        hideLogTab();
-    };
+        return () => {
+            if (!rssTabInitialized) {
+                window.qBittorrent.Rss.init();
+                rssTabInitialized = true;
+            }
+            else {
+                window.qBittorrent.Rss.load();
+            }
+
+            $("rssTabColumn").removeClass("invisible");
+            customSyncMainDataInterval = 30000;
+            hideTransfersTab();
+            hideSearchTab();
+            hideLogTab();
+        };
+    })();
 
     const hideRssTab = function() {
         $("rssTabColumn").addClass("invisible");
@@ -1144,21 +1205,25 @@ window.addEvent('load', function() {
         MochaUI.Desktop.resizePanels();
     };
 
-    const showLogTab = function() {
-        if (!logTabInitialized) {
-            window.qBittorrent.Log.init();
-            logTabInitialized = true;
-        }
-        else {
-            window.qBittorrent.Log.load();
-        }
+    const showLogTab = (function() {
+        let logTabInitialized = false;
 
-        $('logTabColumn').removeClass('invisible');
-        customSyncMainDataInterval = 30000;
-        hideTransfersTab();
-        hideSearchTab();
-        hideRssTab();
-    };
+        return () => {
+            if (!logTabInitialized) {
+                window.qBittorrent.Log.init();
+                logTabInitialized = true;
+            }
+            else {
+                window.qBittorrent.Log.load();
+            }
+
+            $('logTabColumn').removeClass('invisible');
+            customSyncMainDataInterval = 30000;
+            hideTransfersTab();
+            hideSearchTab();
+            hideRssTab();
+        };
+    })();
 
     const hideLogTab = function() {
         $('logTabColumn').addClass('invisible');
@@ -1238,6 +1303,18 @@ window.addEvent('load', function() {
             column: 'logTabColumn',
             height: null
         });
+    };
+
+    const handleDownloadParam = function() {
+        // Extract torrent URL from download param in WebUI URL hash
+        const downloadHash = "#download=";
+        if (location.hash.indexOf(downloadHash) !== 0)
+            return;
+
+        const url = decodeURIComponent(location.hash.substring(downloadHash.length));
+        // Remove the processed hash from the URL
+        history.replaceState('', document.title, (location.pathname + location.search));
+        showDownloadPage([url]);
     };
 
     new MochaUI.Panel({
@@ -1474,97 +1551,41 @@ window.addEvent('load', function() {
         });
     };
     registerDragAndDrop();
-});
 
-function registerMagnetHandler() {
-    if (typeof navigator.registerProtocolHandler !== 'function') {
-        if (window.location.protocol !== 'https:')
-            alert("QBT_TR(To use this feature, the WebUI needs to be accessed over HTTPS)QBT_TR[CONTEXT=MainWindow]");
-        else
-            alert("QBT_TR(Your browser does not support this feature)QBT_TR[CONTEXT=MainWindow]");
-        return;
-    }
-
-    const hashString = location.hash ? location.hash.replace(/^#/, '') : '';
-    const hashParams = new URLSearchParams(hashString);
-    hashParams.set('download', '');
-
-    const templateHashString = hashParams.toString().replace('download=', 'download=%s');
-    const templateUrl = location.origin + location.pathname
-        + location.search + '#' + templateHashString;
-
-    navigator.registerProtocolHandler('magnet', templateUrl,
-        'qBittorrent WebUI magnet handler');
-}
-
-function handleDownloadParam() {
-    // Extract torrent URL from download param in WebUI URL hash
-    const downloadHash = "#download=";
-    if (location.hash.indexOf(downloadHash) !== 0)
-        return;
-
-    const url = decodeURIComponent(location.hash.substring(downloadHash.length));
-    // Remove the processed hash from the URL
-    history.replaceState('', document.title, (location.pathname + location.search));
-    showDownloadPage([url]);
-}
-
-function closeWindows() {
-    MochaUI.closeAll();
-}
-
-function setupCopyEventHandler() {
-    if (clipboardEvent)
-        clipboardEvent.destroy();
-
-    clipboardEvent = new ClipboardJS('.copyToClipboard', {
-        text: function(trigger) {
-            switch (trigger.id) {
-                case "copyName":
-                    return copyNameFN();
-                case "copyInfohash1":
-                    return copyInfohashFN(1);
-                case "copyInfohash2":
-                    return copyInfohashFN(2);
-                case "copyMagnetLink":
-                    return copyMagnetLinkFN();
-                case "copyID":
-                    return copyIdFN();
-                case "copyComment":
-                    return copyCommentFN();
-                default:
-                    return "";
+    new Keyboard({
+        defaultEventType: 'keydown',
+        events: {
+            'ctrl+a': function(event) {
+                if (event.target.nodeName == "INPUT" || event.target.nodeName == "TEXTAREA")
+                    return;
+                if (event.target.isContentEditable)
+                    return;
+                torrentsTable.selectAll();
+                event.preventDefault();
+            },
+            'delete': function(event) {
+                if (event.target.nodeName == "INPUT" || event.target.nodeName == "TEXTAREA")
+                    return;
+                if (event.target.isContentEditable)
+                    return;
+                deleteFN();
+                event.preventDefault();
+            },
+            'shift+delete': (event) => {
+                if (event.target.nodeName == "INPUT" || event.target.nodeName == "TEXTAREA")
+                    return;
+                if (event.target.isContentEditable)
+                    return;
+                deleteFN(true);
+                event.preventDefault();
             }
         }
-    });
-}
+    }).activate();
+});
 
-new Keyboard({
-    defaultEventType: 'keydown',
-    events: {
-        'ctrl+a': function(event) {
-            if (event.target.nodeName == "INPUT" || event.target.nodeName == "TEXTAREA")
-                return;
-            if (event.target.isContentEditable)
-                return;
-            torrentsTable.selectAll();
-            event.preventDefault();
-        },
-        'delete': function(event) {
-            if (event.target.nodeName == "INPUT" || event.target.nodeName == "TEXTAREA")
-                return;
-            if (event.target.isContentEditable)
-                return;
-            deleteFN();
-            event.preventDefault();
-        },
-        'shift+delete': (event) => {
-            if (event.target.nodeName == "INPUT" || event.target.nodeName == "TEXTAREA")
-                return;
-            if (event.target.isContentEditable)
-                return;
-            deleteFN(true);
-            event.preventDefault();
-        }
-    }
-}).activate();
+window.addEventListener("load", () => {
+    // fetch various data and store it in memory
+    window.qBittorrent.Cache.buildInfo.init();
+    window.qBittorrent.Cache.preferences.init();
+    window.qBittorrent.Cache.qbtVersion.init();
+});

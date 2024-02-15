@@ -126,14 +126,18 @@ namespace
     QString createLanguagesOptionsHtml()
     {
         // List language files
-        const QDir langDir {u":/www/translations"_s};
-        const QStringList langFiles = langDir.entryList(QStringList(u"webui_*.qm"_s), QDir::Files);
+        const QStringList langFiles = QDir(u":/www/translations"_s)
+            .entryList({u"webui_*.qm"_s}, QDir::Files, QDir::Name);
+
         QStringList languages;
+        languages.reserve(langFiles.size());
+
         for (const QString &langFile : langFiles)
         {
-            const QString localeStr = langFile.section(u"_"_s, 1, -1).section(u"."_s, 0, 0); // remove "webui_" and ".qm"
-            languages << u"<option value=\"%1\">%2</option>"_s.arg(localeStr, Utils::Misc::languageToLocalizedString(localeStr));
-            qDebug() << "Supported locale:" << localeStr;
+            const auto langCode = QStringView(langFile).sliced(6).chopped(3); // remove "webui_" and ".qm"
+            const QString entry = u"<option value=\"%1\">%2</option>"_s
+                .arg(langCode, Utils::Misc::languageToLocalizedString(langCode));
+            languages.append(entry);
         }
 
         return languages.join(u'\n');
@@ -350,18 +354,25 @@ void WebApplication::doProcessRequest()
 
     try
     {
-        const QVariant result = controller->run(action, m_params, data);
-        switch (result.userType())
+        const APIResult result = controller->run(action, m_params, data);
+        switch (result.data.userType())
         {
         case QMetaType::QJsonDocument:
-            print(result.toJsonDocument().toJson(QJsonDocument::Compact), Http::CONTENT_TYPE_JSON);
+            print(result.data.toJsonDocument().toJson(QJsonDocument::Compact), Http::CONTENT_TYPE_JSON);
             break;
         case QMetaType::QByteArray:
-            print(result.toByteArray(), Http::CONTENT_TYPE_TXT);
+            {
+                const auto resultData = result.data.toByteArray();
+                print(resultData, (!result.mimeType.isEmpty() ? result.mimeType : Http::CONTENT_TYPE_TXT));
+                if (!result.filename.isEmpty())
+                {
+                    setHeader({u"Content-Disposition"_s, u"attachment; filename=\"%1\""_s.arg(result.filename)});
+                }
+            }
             break;
         case QMetaType::QString:
         default:
-            print(result.toString(), Http::CONTENT_TYPE_TXT);
+            print(result.data.toString(), Http::CONTENT_TYPE_TXT);
             break;
         }
     }

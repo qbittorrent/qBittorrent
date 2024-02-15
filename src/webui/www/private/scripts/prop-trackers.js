@@ -64,8 +64,8 @@ window.qBittorrent.PropTrackers = (function() {
         const url = new URI('api/v2/torrents/trackers?hash=' + current_hash);
         new Request.JSON({
             url: url,
-            noCache: true,
             method: 'get',
+            noCache: true,
             onComplete: function() {
                 clearTimeout(loadTrackersDataTimer);
                 loadTrackersDataTimer = loadTrackersData.delay(10000);

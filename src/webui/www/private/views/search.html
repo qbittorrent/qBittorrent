@@ -303,7 +303,6 @@
             const url = new URI('api/v2/search/start');
             new Request.JSON({
                 url: url,
-                noCache: true,
                 method: 'post',
                 data: {
                     pattern: pattern,
@@ -323,7 +322,6 @@
             const url = new URI('api/v2/search/stop');
             new Request({
                 url: url,
-                noCache: true,
                 method: 'post',
                 data: {
                     id: activeSearchId
@@ -515,8 +513,8 @@
         const getPlugins = function() {
             new Request.JSON({
                 url: new URI('api/v2/search/plugins'),
-                noCache: true,
                 method: 'get',
+                noCache: true,
                 onSuccess: function(response) {
                     if (response !== prevSearchPluginsResponse) {
                         prevSearchPluginsResponse = response;
@@ -641,8 +639,8 @@
             const url = new URI('api/v2/search/results');
             new Request.JSON({
                 url: url,
-                noCache: true,
                 method: 'get',
+                noCache: true,
                 data: {
                     id: activeSearchId,
                     limit: maxResults,

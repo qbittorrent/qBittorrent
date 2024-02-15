@@ -19,11 +19,11 @@
                     event.preventDefault();
                 },
                 'Escape': (event) => {
-                    window.parent.closeWindows();
+                    window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 },
                 'Esc': (event) => {
-                    window.parent.closeWindows();
+                    window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 }
             }
@@ -53,7 +53,6 @@
 
                 new Request({
                     url: 'api/v2/rss/moveItem',
-                    noCache: true,
                     method: 'post',
                     data: {
                         itemPath: oldPath,
@@ -61,7 +60,7 @@
                     },
                     onSuccess: (response) => {
                         window.parent.qBittorrent.Rss.updateRssFeedList();
-                        window.parent.closeWindows();
+                        window.parent.qBittorrent.Client.closeWindows();
                     },
                     onFailure: (response) => {
                         if (response.status === 409) {
