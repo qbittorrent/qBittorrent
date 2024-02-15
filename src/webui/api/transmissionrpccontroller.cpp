@@ -2,6 +2,7 @@
 
 #include <filesystem>
 #include <iterator>
+#include <optional>
 
 #include <QBitArray>
 #include <QJsonArray>
@@ -308,15 +309,65 @@ int torrentGetStatus(const BitTorrent::Torrent &tor)
 
 QJsonArray torrentGetTrackers(const BitTorrent::Torrent &tor)
 {
-    return {};
+    QJsonArray result;
+    const QVector<BitTorrent::TrackerEntry> trackers = tor.trackers();
+    qint64 id = 0; // should be unique but eh
+    for (const BitTorrent::TrackerEntry &t : trackers)
+    {
+        result.push_back(QJsonObject{
+            {u"announce"_s, t.url},
+            {u"id"_s, id++},
+            {u"scrape"_s, QString{}}, // FIXME not available?
+            {u"sitename"_s, QString{}}, // FIXME perhaps duplicate what Transmission does
+            {u"tier"_s, t.tier}
+        });
+    }
+    return result;
 }
 
 QJsonArray torrentGetTrackerStats(const BitTorrent::Torrent &tor)
 {
-    return {};
+    QJsonArray result;
+    const QVector<BitTorrent::TrackerEntry> trackers = tor.trackers();
+    qint64 id = 0; // should be unique but eh
+
+    for (const BitTorrent::TrackerEntry &t : trackers)
+    {
+        // FIXME there are mostly placeholders here
+        result.push_back(QJsonObject{
+            {u"announce"_s, t.url},
+            {u"announceState"_s, 0},
+            {u"downloadCount"_s, t.numDownloaded},
+            {u"hasAnnounced"_s, false},
+            {u"hasScraped"_s, false},
+            {u"host"_s, t.url},
+            {u"id"_s, id++},
+            {u"isBackup"_s, false},
+            {u"lastAnnouncePeerCount"_s, 0},
+            {u"lastAnnounceResult"_s, 0},
+            {u"lastAnnounceStartTime"_s, 0},
+            {u"lastAnnounceSucceeded"_s, false},
+            {u"lastAnnounceTime"_s, 0},
+            {u"lastAnnounceTimedOut"_s, false},
+            {u"lastScrapeResult"_s, 0},
+            {u"lastScrapeStartTime"_s, 0},
+            {u"lastScrapeSucceeded"_s, false},
+            {u"lastScrapeTime"_s, 0},
+            {u"lastScrapeTimedOut"_s, false},
+            {u"leecherCount"_s, 0},
+            {u"nextAnnounceTime"_s, 0},
+            {u"nextScrapeTime"_s, 0},
+            {u"scrape"_s, QString{}},
+            {u"scrapeState"_s, 0},
+            {u"seederCount"_s, 0},
+            {u"sitename"_s, QString{}},
+            {u"tier"_s, t.tier}
+        });
+    }
+    return result;
 }
 
-QJsonValue torrentGetSingleField(const BitTorrent::Torrent &tor, int transmissionTorId, const QString &fld)
+std::optional<QJsonValue> torrentGetSingleField(const BitTorrent::Torrent &tor, int transmissionTorId, const QString &fld)
 {
     const struct FieldValueFuncArgs
     {
@@ -531,7 +582,7 @@ QJsonValue torrentGetSingleField(const BitTorrent::Torrent &tor, int transmissio
     }
     else
     {
-        throw TransmissionAPIError(APIErrorType::BadParams, u"Unknown arg '%1' to torrent-get"_s.arg(fld));
+        return std::nullopt;
     }
 }
 
@@ -540,7 +591,10 @@ QJsonObject torrentGetObject(const BitTorrent::Torrent &tor, int transmissionTor
     QJsonObject result{};
     for(const QString &f : fields)
     {
-        result[f] = torrentGetSingleField(tor, transmissionTorId, f);
+        if (auto val = torrentGetSingleField(tor, transmissionTorId, f))
+        {
+            result[f] = *val;
+        }
     }
     return result;
 }
@@ -550,7 +604,10 @@ QJsonArray torrentGetTable(const BitTorrent::Torrent &tor, int transmissionTorId
     QJsonArray result{};
     for(const QString &f : fields)
     {
-        result.push_back(torrentGetSingleField(tor, transmissionTorId, f));
+        if (auto val = torrentGetSingleField(tor, transmissionTorId, f))
+        {
+            result.push_back(*val);
+        }
     }
     return result;
 }
