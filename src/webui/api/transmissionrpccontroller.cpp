@@ -367,218 +367,232 @@ QJsonArray torrentGetTrackerStats(const BitTorrent::Torrent &tor)
     return result;
 }
 
-std::optional<QJsonValue> torrentGetSingleField(const BitTorrent::Torrent &tor, int transmissionTorId, const QString &fld)
+struct TorrentGetFieldFuncs
 {
-    const struct FieldValueFuncArgs
+    struct GetArgs
     {
         const BitTorrent::Torrent &tor;
         const QVector<BitTorrent::PeerInfo> peers;
         int id;
-    } args = { tor, tor.peers(), transmissionTorId };
-
-    static const QHash<QString, QJsonValue (*)(const FieldValueFuncArgs&)> fieldValueFuncHash = {
-        {u"activityDate"_s, [](const auto &args) -> QJsonValue {
-             const qlonglong timeSinceActivity = args.tor.timeSinceActivity();
-             return (timeSinceActivity < 0)
-                        ? Utils::DateTime::toSecsSinceEpoch(args.tor.addedTime())
-                        : (QDateTime::currentDateTime().toSecsSinceEpoch() - timeSinceActivity);
-         }},
-        {u"addedDate"_s, [](const auto &args) -> QJsonValue { return Utils::DateTime::toSecsSinceEpoch(args.tor.addedTime()); }},
-        {u"availability"_s, [](const auto &args) -> QJsonValue {
-             const QVector<int> peersPerPiece = args.tor.pieceAvailability();
-             const QBitArray ourPieces = args.tor.pieces();
-             Q_ASSERT(peersPerPiece.size() == ourPieces.size());
-             QJsonArray result = {};
-             for(qsizetype i = 0 ; i < ourPieces.size() ; ++i)
-             {
-                 result.push_back(ourPieces[i] ? -1 : peersPerPiece[i]);
-             }
-             return result;
-         }},
-        {u"bandwidthPriority"_s, [](const auto &) -> QJsonValue {
-             // qBt doesn't appear to have torrent priorities so just report everything as NORMAL
-             return 0;
-         }},
-        {u"comment"_s, [](const auto &args) -> QJsonValue { return args.tor.comment(); }},
-        {u"corruptEver"_s, [](const auto &args) -> QJsonValue {
-             // not really "ever" - resets on pause in qBt, while Transmission saves this info to resume files
-             return args.tor.wastedSize();
-         }},
-        {u"creator"_s, [](const auto &args) -> QJsonValue { return args.tor.creator(); }},
-        {u"dateCreated"_s, [](const auto &args) -> QJsonValue { return Utils::DateTime::toSecsSinceEpoch(args.tor.creationDate()); }},
-        {u"desiredAvailable"_s, [](const auto &args) -> QJsonValue
-         {
-             const QVector<int> peersPerPiece = args.tor.pieceAvailability();
-             const QBitArray ourPieces = args.tor.pieces();
-             Q_ASSERT(peersPerPiece.size() == ourPieces.size());
-             qint64 result = 0;
-             const auto singlePieceSize = args.tor.pieceLength();
-             for(qsizetype i = 0 ; i < ourPieces.size() ; ++i)
-             {
-                 if (!ourPieces[i] && peersPerPiece[i] >= 1)
-                 {
-                     result += singlePieceSize;
-                 }
-             }
-             return result;
-         }},
-        {u"doneDate"_s, [](const auto &args) -> QJsonValue { return Utils::DateTime::toSecsSinceEpoch(args.tor.completedTime()); }},
-        {u"downloadDir"_s, [](const auto &args) -> QJsonValue { return args.tor.savePath().toString(); }},
-        {u"downloadedEver"_s, [](const auto &args) -> QJsonValue { return args.tor.totalDownload(); }},
-        {u"downloadLimit"_s, [](const auto &args) -> QJsonValue { return args.tor.downloadLimit(); } },
-        {u"downloadLimited"_s, [](const auto &args) -> QJsonValue { return args.tor.downloadLimit() != 0; }},
-        {u"editDate"_s, [](const auto &) -> QJsonValue { return 0; }}, // unsupported, so return Transmission's default value.
-        {u"error"_s, [](const auto &args) -> QJsonValue {
-             if (args.tor.state() == BitTorrent::TorrentState::MissingFiles ||
-                 args.tor.state() == BitTorrent::TorrentState::Error)
-             {
-                 return 3; // TR_STAT_LOCAL_ERROR - "local trouble"
-             }
-
-             const QVector<BitTorrent::TrackerEntry> trackers = args.tor.trackers();
-             const bool trackerHasError = std::any_of(trackers.cbegin(), trackers.cend(), [](const BitTorrent::TrackerEntry &entry){
-                 return entry.status == BitTorrent::TrackerEntryStatus::TrackerError;
-             });
-             return trackerHasError ? 2 /* TR_STAT_TRACKER_ERROR */ : 0 /* TR_STAT_OK */;
-         }},
-        {u"errorString"_s, [](const auto &args) -> QJsonValue { return args.tor.error(); }},
-        {u"eta"_s, [](const auto &args) -> QJsonValue { return args.tor.eta(); }},
-        {u"etaIdle"_s, [](const auto &args) -> QJsonValue {
-             const int maxInactiveSeedingTimeValue = args.tor.maxInactiveSeedingTime();
-             if (maxInactiveSeedingTimeValue >= 0)
-             {
-                 const qint64 inactiveSeedingTimeEta = (maxInactiveSeedingTimeValue * 60) - args.tor.timeSinceActivity();
-                 return std::max(inactiveSeedingTimeEta, qint64{0});
-             }
-             else
-             {
-                 return 0;
-             }
-         }},
-        {u"file-count"_s, [](const auto &args) -> QJsonValue { return args.tor.info().filesCount(); }},
-        {u"files"_s, [](const auto &args) -> QJsonValue { return ::torrentGetFiles(args.tor); }},
-        {u"fileStats"_s, [](const auto &args) -> QJsonValue { return ::torrentGetFileStats(args.tor); }},
-        {u"group"_s, [](const auto&) -> QJsonValue { return QString{}; }}, // TODO not supported in qbt?
-        {u"hashString"_s, [](const auto &args) -> QJsonValue { return args.tor.infoHash().v1().toString(); }},
-        {u"haveUnchecked"_s, [](const auto &) -> QJsonValue { return 0; }}, // looks like this isn't exposed by lbt or I couldn't find it
-        {u"haveValid"_s, [](const auto &args) -> QJsonValue { return args.tor.completedSize(); }},
-        {u"honorsSessionLimits"_s, [](const auto &) -> QJsonValue { return false; }}, // TODO
-        {u"id"_s, [](const auto &args) -> QJsonValue { return args.id; }}, // FIXME
-        {u"isFinished"_s, [](const auto &args) -> QJsonValue { return args.tor.isFinished(); }},
-        {u"isPrivate"_s, [](const auto &args) -> QJsonValue { return args.tor.isPrivate(); }},
-        {u"isStalled"_s, [](const auto &args) -> QJsonValue {
-             using ts = BitTorrent::TorrentState;
-             const ts state = args.tor.state();
-             return state == ts::StalledDownloading || state == ts::StalledUploading;
-         }},
-        {u"labels"_s, [](const auto &args) -> QJsonValue {
-             QJsonArray rv{};
-             for(auto &&t : args.tor.tags())
-             {
-                 rv.push_back(t.toString());
-             }
-             return rv;
-         }},
-        {u"leftUntilDone"_s, [](const auto &args) -> QJsonValue { return args.tor.wantedSize() - args.tor.completedSize(); }},
-        {u"magnetLink"_s, [](const auto &args) -> QJsonValue { return args.tor.createMagnetURI(); }},
-        {u"manualAnnounceTime"_s, [](const auto &) -> QJsonValue { return -1; }}, // FIXME not really doable, use now() + min_interval at least
-        {u"maxConnectedPeers"_s, [](const auto &args) -> QJsonValue { return args.tor.connectionsLimit(); }},
-        {u"metadataPercentComplete"_s, [](const auto &args) -> QJsonValue { return args.tor.hasMetadata() ? 1.0 : 0.0; }}, // TODO?
-        {u"name"_s, [](const auto &args) -> QJsonValue { return args.tor.name(); }},
-        {u"peer-limit"_s, [](const auto &args) -> QJsonValue { return args.tor.connectionsLimit(); }},
-        {u"peers"_s, [](const auto &args) -> QJsonValue { return ::torrentGetPeers(args.peers); }},
-        {u"peersConnected"_s, [](const auto &args) -> QJsonValue { return args.tor.peersCount(); }},
-        {u"peersFrom"_s, [](const auto &args) -> QJsonValue { return ::torrentGetPeersFrom(args.peers); }},
-        {u"peersGettingFromUs"_s, [](const auto &args) -> QJsonValue {
-             return qint64{std::count_if(args.peers.begin(), args.peers.end(), [](const BitTorrent::PeerInfo &p) { return ::peerIsBeingUploadedTo(p); })};
-         }},
-        {u"peersSendingToUs"_s, [](const auto &args) -> QJsonValue {
-             return qint64{std::count_if(args.peers.begin(), args.peers.end(), [](const BitTorrent::PeerInfo &p) { return ::peerIsBeingDownloadedFrom(p); })};
-         }},
-        {u"percentComplete"_s, [](const auto &args) -> QJsonValue { return static_cast<qreal>(args.tor.piecesHave()) / args.tor.piecesCount(); }},
-        {u"percentDone"_s, [](const auto &args) -> QJsonValue { return args.tor.progress(); }},
-        {u"pieceCount"_s, [](const auto &args) -> QJsonValue { return args.tor.piecesCount(); }},
-        {u"pieceSize"_s, [](const auto &args) -> QJsonValue { return args.tor.pieceLength(); }},
-        {u"pieces"_s, [](const auto &args) -> QJsonValue {
-             const QBitArray pieces = args.tor.pieces();
-             const QByteArray piecesAsByteAr = QByteArray::fromRawData(pieces.bits(), (pieces.size() + 7) / 8);
-             return QString::fromLatin1(piecesAsByteAr.toBase64());
-         }},
-        {u"priorities"_s, [](const auto &args) -> QJsonValue {
-             const QVector<BitTorrent::DownloadPriority> prios = args.tor.filePriorities();
-             QJsonArray result{};
-             for(const BitTorrent::DownloadPriority p : prios)
-             {
-                 result.push_back(convertToTransmissionFilePriority(p));
-             }
-             return result;
-         }},
-        {u"primary-mime-type"_s, [](const auto &) -> QJsonValue { return u"application/octet-stream"_s; }}, // guesswork anyway and qBt doesn't do it at all - return what Transmission returns when unknown
-        {u"queuePosition"_s, [](const auto &args) -> QJsonValue { return args.tor.queuePosition(); }},
-        {u"rateDownload"_s, [](const auto &args) -> QJsonValue { return args.tor.downloadPayloadRate(); }},
-        {u"rateUpload"_s, [](const auto &args) -> QJsonValue { return args.tor.uploadPayloadRate(); }},
-        {u"recheckProgress"_s, [](const auto &args) -> QJsonValue { return args.tor.isChecking() ? args.tor.progress() : 0.0; }},
-        {u"secondsDownloading"_s, [](const auto &args) -> QJsonValue { return args.tor.activeTime() - args.tor.finishedTime(); }},
-        {u"secondsSeeding"_s, [](const auto &args) -> QJsonValue { return args.tor.finishedTime(); }},
-        {u"seedIdleLimit"_s, [](const auto &args) -> QJsonValue { return args.tor.inactiveSeedingTimeLimit(); }},
-        {u"seedIdleMode"_s, [](const auto &) -> QJsonValue { return 0; }}, // TODO?
-        {u"seedRatioLimit"_s, [](const auto &args) -> QJsonValue { return args.tor.ratioLimit(); }},
-        {u"seedRatioMode"_s, [](const auto &) -> QJsonValue { return 0; }}, // TODO?
-        {u"sequentialDownload"_s, [](const auto &args) -> QJsonValue { return args.tor.isSequentialDownload(); }},
-        {u"sizeWhenDone"_s, [](const auto &args) -> QJsonValue { return args.tor.wantedSize(); }},
-        {u"startDate"_s, [](const auto &args) -> QJsonValue { return Utils::DateTime::toSecsSinceEpoch(args.tor.addedTime()); }}, // FIXME? doesn't look exposed by lbt, so just use addedDate instead
-        {u"status"_s, [](const auto &args) -> QJsonValue { return ::torrentGetStatus(args.tor); }},
-        {u"trackers"_s, [](const auto &args) -> QJsonValue { return ::torrentGetTrackers(args.tor); }},
-        {u"trackerList"_s, [](const auto &args) -> QJsonValue {
-             const QVector<BitTorrent::TrackerEntry> trackers = args.tor.trackers();
-             QMap<int, QVector<QString>> trackersByTier;
-             for(const BitTorrent::TrackerEntry &trk : trackers)
-             {
-                 trackersByTier[trk.tier] << trk.url;
-             }
-             QString result;
-             for(auto it = trackersByTier.keyValueBegin(); it != trackersByTier.keyValueEnd() ; ++it)
-             {
-                 for(const QString &url : it->second)
-                 {
-                     result += url;
-                     result += u'\n';
-                 }
-                 result += u'\n';
-             }
-             return result;
-         }},
-        {u"trackerStats"_s, [](const auto &args) -> QJsonValue { return ::torrentGetTrackerStats(args.tor); }},
-        {u"totalSize"_s, [](const auto &args) -> QJsonValue { return args.tor.totalSize(); }},
-        {u"torrentFile"_s, [](const auto &) -> QJsonValue { return u"foobar.torrent"_s; }}, // FIXME not available?
-        {u"uploadedEver"_s, [](const auto &args) -> QJsonValue { return args.tor.totalUpload(); }},
-        {u"uploadLimit"_s, [](const auto &args) -> QJsonValue { return args.tor.uploadLimit(); } },
-        {u"uploadLimited"_s, [](const auto &args) -> QJsonValue { return args.tor.uploadLimit() != 0; }},
-        {u"uploadRatio"_s, [](const auto &args) -> QJsonValue { return static_cast<qreal>(args.tor.totalUpload()) / args.tor.wantedSize(); }},
-        {u"wanted"_s, [](const auto &args) -> QJsonValue {
-             const QVector<BitTorrent::DownloadPriority> prios = args.tor.filePriorities();
-             QJsonArray result{};
-             for(const BitTorrent::DownloadPriority p : prios)
-             {
-                 result.push_back(p != BitTorrent::DownloadPriority::Ignored);
-             }
-             return result;
-         }},
-        {u"webseeds"_s, [](const auto &args) -> QJsonValue {
-             const QVector<QUrl> webSeeds = args.tor.urlSeeds();
-             QJsonArray result;
-             for(const QUrl &ws : webSeeds)
-             {
-                 result << ws.toString();
-             }
-             return result;
-         }},
-        {u"webseedsSendingToUs"_s, [](const auto &) -> QJsonValue { return 0; }} // FIXME
     };
+    using GetFunc = QJsonValue(*)(const GetArgs&);
+    GetFunc get = nullptr;
 
-    if (auto func = fieldValueFuncHash.value(fld, nullptr))
+    struct SetArgs
     {
-        return func(args);
+        void *foobar; // placeholder
+    };
+    using SetFunc = void(*)(const SetArgs&);
+    SetFunc set = nullptr;
+};
+
+const QHash<QString, TorrentGetFieldFuncs> fieldValueFuncHash = {
+    {u"activityDate"_s, { .get = [](const auto &args) -> QJsonValue {
+                             const qlonglong timeSinceActivity = args.tor.timeSinceActivity();
+                             return (timeSinceActivity < 0)
+                                        ? Utils::DateTime::toSecsSinceEpoch(args.tor.addedTime())
+                                        : (QDateTime::currentDateTime().toSecsSinceEpoch() - timeSinceActivity);
+                         }, .set = nullptr}},
+    {u"addedDate"_s, { .get = [](const auto &args) -> QJsonValue { return Utils::DateTime::toSecsSinceEpoch(args.tor.addedTime()); }, .set = nullptr}},
+    {u"availability"_s, { .get = [](const auto &args) -> QJsonValue {
+         const QVector<int> peersPerPiece = args.tor.pieceAvailability();
+         const QBitArray ourPieces = args.tor.pieces();
+         Q_ASSERT(peersPerPiece.size() == ourPieces.size());
+         QJsonArray result = {};
+         for(qsizetype i = 0 ; i < ourPieces.size() ; ++i)
+         {
+             result.push_back(ourPieces[i] ? -1 : peersPerPiece[i]);
+         }
+         return result;
+     }}},
+    {u"bandwidthPriority"_s, {.get = [](const auto &) -> QJsonValue {
+                                  // qBt doesn't appear to have torrent priorities so just report everything as NORMAL
+                                  return 0;
+                              }, .set = nullptr}},
+    {u"comment"_s, {.get = [](const auto &args) -> QJsonValue { return args.tor.comment(); }, .set=nullptr}},
+    {u"corruptEver"_s, {.get=[](const auto &args) -> QJsonValue {
+                            // not really "ever" - resets on pause in qBt, while Transmission saves this info to resume files
+                            return args.tor.wastedSize();
+                        }, .set=nullptr}},
+    {u"creator"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.creator(); }, .set=nullptr}},
+    {u"dateCreated"_s, {.get=[](const auto &args) -> QJsonValue { return Utils::DateTime::toSecsSinceEpoch(args.tor.creationDate()); }, .set=nullptr}},
+    {u"desiredAvailable"_s, {.get = [](const auto &args) -> QJsonValue
+                             {
+                                 const QVector<int> peersPerPiece = args.tor.pieceAvailability();
+                                 const QBitArray ourPieces = args.tor.pieces();
+                                 Q_ASSERT(peersPerPiece.size() == ourPieces.size());
+                                 qint64 result = 0;
+                                 const auto singlePieceSize = args.tor.pieceLength();
+                                 for(qsizetype i = 0 ; i < ourPieces.size() ; ++i)
+                                 {
+                                     if (!ourPieces[i] && peersPerPiece[i] >= 1)
+                                     {
+                                         result += singlePieceSize;
+                                     }
+                                 }
+                                 return result;
+                             }, .set = nullptr}},
+    {u"doneDate"_s, {.get = [](const auto &args) -> QJsonValue { return Utils::DateTime::toSecsSinceEpoch(args.tor.completedTime()); }, .set=nullptr}},
+    {u"downloadDir"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.savePath().toString(); }, .set=nullptr}},
+    {u"downloadedEver"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.totalDownload(); }, .set=nullptr}},
+    {u"downloadLimit"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.downloadLimit(); }, .set=nullptr} },
+    {u"downloadLimited"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.downloadLimit() != 0; }, .set=nullptr}},
+    {u"editDate"_s, {.get=[](const auto &) -> QJsonValue { return 0; }, .set=nullptr}}, // unsupported, so return Transmission's default value.
+    {u"error"_s, {.get=[](const auto &args) -> QJsonValue {
+                      if (args.tor.state() == BitTorrent::TorrentState::MissingFiles ||
+                          args.tor.state() == BitTorrent::TorrentState::Error)
+                      {
+                          return 3; // TR_STAT_LOCAL_ERROR - "local trouble"
+                      }
+
+                      const QVector<BitTorrent::TrackerEntry> trackers = args.tor.trackers();
+                      const bool trackerHasError = std::any_of(trackers.cbegin(), trackers.cend(), [](const BitTorrent::TrackerEntry &entry){
+                          return entry.status == BitTorrent::TrackerEntryStatus::TrackerError;
+                      });
+                      return trackerHasError ? 2 /* TR_STAT_TRACKER_ERROR */ : 0 /* TR_STAT_OK */;
+                  }, .set=nullptr}},
+    {u"errorString"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.error(); }, .set=nullptr}},
+    {u"eta"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.eta(); }, .set=nullptr}},
+    {u"etaIdle"_s, {.get=[](const auto &args) -> QJsonValue {
+                        const int maxInactiveSeedingTimeValue = args.tor.maxInactiveSeedingTime();
+                        if (maxInactiveSeedingTimeValue >= 0)
+                        {
+                            const qint64 inactiveSeedingTimeEta = (maxInactiveSeedingTimeValue * 60) - args.tor.timeSinceActivity();
+                            return std::max(inactiveSeedingTimeEta, qint64{0});
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                    }, .set=nullptr}},
+    {u"file-count"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.info().filesCount(); }, .set=nullptr}},
+    {u"files"_s, {.get=[](const auto &args) -> QJsonValue { return ::torrentGetFiles(args.tor); }, .set=nullptr}},
+    {u"fileStats"_s, {.get=[](const auto &args) -> QJsonValue { return ::torrentGetFileStats(args.tor); }, .set=nullptr}},
+    {u"group"_s, {.get=[](const auto&) -> QJsonValue { return QString{}; }, .set=nullptr}}, // TODO not supported in qbt?
+    {u"hashString"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.infoHash().v1().toString(); }, .set=nullptr}},
+    {u"haveUnchecked"_s, {.get=[](const auto &) -> QJsonValue { return 0; }, .set=nullptr}}, // looks like this isn't exposed by lbt or I couldn't find it
+    {u"haveValid"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.completedSize(); }, .set=nullptr}},
+    {u"honorsSessionLimits"_s, {.get=[](const auto &) -> QJsonValue { return false; }, .set=nullptr}}, // TODO
+    {u"id"_s, {.get=[](const auto &args) -> QJsonValue { return args.id; }, .set=nullptr}},
+    {u"isFinished"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.isFinished(); }, .set=nullptr}},
+    {u"isPrivate"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.isPrivate(); }, .set=nullptr}},
+    {u"isStalled"_s, {.get=[](const auto &args) -> QJsonValue {
+                          using ts = BitTorrent::TorrentState;
+                          const ts state = args.tor.state();
+                          return state == ts::StalledDownloading || state == ts::StalledUploading;
+                      }, .set=nullptr}},
+    {u"labels"_s, {.get=[](const auto &args) -> QJsonValue {
+                       QJsonArray rv{};
+                       for(auto &&t : args.tor.tags())
+                       {
+                           rv.push_back(t.toString());
+                       }
+                       return rv;
+                   }, .set=nullptr}},
+    {u"leftUntilDone"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.wantedSize() - args.tor.completedSize(); }, .set=nullptr}},
+    {u"magnetLink"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.createMagnetURI(); }, .set=nullptr}},
+    {u"manualAnnounceTime"_s, {.get=[](const auto &) -> QJsonValue { return -1; }, .set=nullptr}}, // FIXME not really doable, use now() + min_interval at least
+    {u"maxConnectedPeers"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.connectionsLimit(); }, .set=nullptr}},
+    {u"metadataPercentComplete"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.hasMetadata() ? 1.0 : 0.0; }, .set=nullptr}}, // TODO?
+    {u"name"_s, {.get= [](const auto &args) -> QJsonValue { return args.tor.name(); }, .set=nullptr}},
+    {u"peer-limit"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.connectionsLimit(); }, .set=nullptr}},
+    {u"peers"_s, {.get=[](const auto &args) -> QJsonValue { return ::torrentGetPeers(args.peers); }, .set=nullptr}},
+    {u"peersConnected"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.peersCount(); }, .set=nullptr}},
+    {u"peersFrom"_s, {.get=[](const auto &args) -> QJsonValue { return ::torrentGetPeersFrom(args.peers); }, .set=nullptr}},
+    {u"peersGettingFromUs"_s, {.get=[](const auto &args) -> QJsonValue {
+                                   return qint64{std::count_if(args.peers.begin(), args.peers.end(), [](const BitTorrent::PeerInfo &p) { return ::peerIsBeingUploadedTo(p); })};
+                               }, .set=nullptr}},
+    {u"peersSendingToUs"_s, {.get=[](const auto &args) -> QJsonValue {
+                                 return qint64{std::count_if(args.peers.begin(), args.peers.end(), [](const BitTorrent::PeerInfo &p) { return ::peerIsBeingDownloadedFrom(p); })};
+                             }, .set=nullptr}},
+    {u"percentComplete"_s, {.get=[](const auto &args) -> QJsonValue { return static_cast<qreal>(args.tor.piecesHave()) / args.tor.piecesCount(); }, .set=nullptr}},
+    {u"percentDone"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.progress(); }, .set=nullptr}},
+    {u"pieceCount"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.piecesCount(); }, .set=nullptr}},
+    {u"pieceSize"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.pieceLength(); }, .set=nullptr}},
+    {u"pieces"_s, {.get=[](const auto &args) -> QJsonValue {
+                       const QBitArray pieces = args.tor.pieces();
+                       const QByteArray piecesAsByteAr = QByteArray::fromRawData(pieces.bits(), (pieces.size() + 7) / 8);
+                       return QString::fromLatin1(piecesAsByteAr.toBase64());
+                   }, .set=nullptr}},
+    {u"priorities"_s, {.get=[](const auto &args) -> QJsonValue {
+                           const QVector<BitTorrent::DownloadPriority> prios = args.tor.filePriorities();
+                           QJsonArray result{};
+                           for(const BitTorrent::DownloadPriority p : prios)
+                           {
+                               result.push_back(convertToTransmissionFilePriority(p));
+                           }
+                           return result;
+                       }, .set=nullptr}},
+    {u"primary-mime-type"_s, {.get=[](const auto &) -> QJsonValue { return u"application/octet-stream"_s; }, .set=nullptr}}, // guesswork anyway and qBt doesn't do it at all - return what Transmission returns when unknown
+    {u"queuePosition"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.queuePosition(); }, .set=nullptr}},
+    {u"rateDownload"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.downloadPayloadRate(); }, .set=nullptr}},
+    {u"rateUpload"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.uploadPayloadRate(); }, .set=nullptr}},
+    {u"recheckProgress"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.isChecking() ? args.tor.progress() : 0.0; }, .set=nullptr}},
+    {u"secondsDownloading"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.activeTime() - args.tor.finishedTime(); }, .set=nullptr}},
+    {u"secondsSeeding"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.finishedTime(); }, .set=nullptr}},
+    {u"seedIdleLimit"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.inactiveSeedingTimeLimit(); }, .set=nullptr}},
+    {u"seedIdleMode"_s, {.get=[](const auto &) -> QJsonValue { return 0; }, .set=nullptr}}, // TODO?
+    {u"seedRatioLimit"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.ratioLimit(); }, .set=nullptr}},
+    {u"seedRatioMode"_s, {.get=[](const auto &) -> QJsonValue { return 0; }, .set=nullptr}}, // TODO?
+    {u"sequentialDownload"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.isSequentialDownload(); }, .set=nullptr}},
+    {u"sizeWhenDone"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.wantedSize(); }, .set=nullptr}},
+    {u"startDate"_s, {.get=[](const auto &args) -> QJsonValue { return Utils::DateTime::toSecsSinceEpoch(args.tor.addedTime()); }, .set=nullptr}}, // FIXME? doesn't look exposed by lbt, so just use addedDate instead
+    {u"status"_s, {.get=[](const auto &args) -> QJsonValue { return ::torrentGetStatus(args.tor); }, .set=nullptr}},
+    {u"trackers"_s, {.get=[](const auto &args) -> QJsonValue { return ::torrentGetTrackers(args.tor); }, .set=nullptr}},
+    {u"trackerList"_s, {.get=[](const auto &args) -> QJsonValue {
+                            const QVector<BitTorrent::TrackerEntry> trackers = args.tor.trackers();
+                            QMap<int, QVector<QString>> trackersByTier;
+                            for(const BitTorrent::TrackerEntry &trk : trackers)
+                            {
+                                trackersByTier[trk.tier] << trk.url;
+                            }
+                            QString result;
+                            for(auto it = trackersByTier.keyValueBegin(); it != trackersByTier.keyValueEnd() ; ++it)
+                            {
+                                for(const QString &url : it->second)
+                                {
+                                    result += url;
+                                    result += u'\n';
+                                }
+                                result += u'\n';
+                            }
+                            return result;
+                        }, .set=nullptr}},
+    {u"trackerStats"_s, {.get=[](const auto &args) -> QJsonValue { return ::torrentGetTrackerStats(args.tor); }, .set=nullptr}},
+    {u"totalSize"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.totalSize(); }, .set=nullptr}},
+    {u"torrentFile"_s, {.get=[](const auto &) -> QJsonValue { return u"foobar.torrent"_s; }, .set=nullptr}}, // FIXME not available?
+    {u"uploadedEver"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.totalUpload(); }, .set=nullptr}},
+    {u"uploadLimit"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.uploadLimit(); }, .set=nullptr} },
+    {u"uploadLimited"_s, {.get=[](const auto &args) -> QJsonValue { return args.tor.uploadLimit() != 0; }, .set=nullptr}},
+    {u"uploadRatio"_s, {.get=[](const auto &args) -> QJsonValue { return static_cast<qreal>(args.tor.totalUpload()) / args.tor.wantedSize(); }, .set=nullptr}},
+    {u"wanted"_s, {.get=[](const auto &args) -> QJsonValue {
+                       const QVector<BitTorrent::DownloadPriority> prios = args.tor.filePriorities();
+                       QJsonArray result{};
+                       for(const BitTorrent::DownloadPriority p : prios)
+                       {
+                           result.push_back(p != BitTorrent::DownloadPriority::Ignored);
+                       }
+                       return result;
+                   }, .set=nullptr}},
+    {u"webseeds"_s, {.get=[](const auto &args) -> QJsonValue {
+                         const QVector<QUrl> webSeeds = args.tor.urlSeeds();
+                         QJsonArray result;
+                         for(const QUrl &ws : webSeeds)
+                         {
+                             result << ws.toString();
+                         }
+                         return result;
+                     }, .set=nullptr}},
+    {u"webseedsSendingToUs"_s, {.get=[](const auto &) -> QJsonValue { return 0; }, .set=nullptr}} // FIXME
+};
+
+std::optional<QJsonValue> torrentGetSingleField(const BitTorrent::Torrent &tor, int transmissionTorId, const QString &fld)
+{
+    const TorrentGetFieldFuncs::GetArgs args = { tor, tor.peers(), transmissionTorId };
+    const TorrentGetFieldFuncs funcs = fieldValueFuncHash.value(fld);
+    if (funcs.get)
+    {
+        return funcs.get(args);
     }
     else
     {
@@ -599,15 +613,13 @@ QJsonObject torrentGetObject(const BitTorrent::Torrent &tor, int transmissionTor
     return result;
 }
 
-QJsonArray torrentGetTable(const BitTorrent::Torrent &tor, int transmissionTorId, const QSet<QString> &fields)
+QJsonArray torrentGetTable(const BitTorrent::Torrent &tor, int transmissionTorId, const QVector<TorrentGetFieldFuncs::GetFunc> &getFieldFuncs)
 {
     QJsonArray result{};
-    for(const QString &f : fields)
+    const TorrentGetFieldFuncs::GetArgs args = { tor, tor.peers(), transmissionTorId };
+    for(const TorrentGetFieldFuncs::GetFunc f : getFieldFuncs)
     {
-        if (auto val = torrentGetSingleField(tor, transmissionTorId, f))
-        {
-            result.push_back(*val);
-        }
+        result.push_back(f(args));
     }
     return result;
 }
@@ -858,14 +870,21 @@ QJsonObject TransmissionRPCController::torrentGet(const QJsonObject &args) const
     else if (format == TorrentGetFormat::Table)
     {
         QJsonArray fields;
+        QVector<TorrentGetFieldFuncs::GetFunc> fieldGetFuncs;
+        fieldGetFuncs.reserve(fieldsSet.size());
         for (const QString &f : fieldsSet)
         {
-            fields.push_back(f);
+            const TorrentGetFieldFuncs funcs = fieldValueFuncHash.value(f);
+            if (funcs.get)
+            {
+                fieldGetFuncs.push_back(funcs.get);
+                fields.push_back(f);
+            }
         }
         torrents.push_back(fields);
         for (auto [id, t] : requestedTorrents)
         {
-            torrents.push_back(torrentGetTable(*t, id, fieldsSet));
+            torrents.push_back(torrentGetTable(*t, id, fieldGetFuncs));
         }
     }
 
