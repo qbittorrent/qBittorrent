@@ -22,7 +22,7 @@ jobs:
           python-version: "*"
 
       - name: Check files
-        uses: pre-commit/action@v3.0.0
+        uses: pre-commit/action@v3.0.1
 
       - name: Check doc
         env:
