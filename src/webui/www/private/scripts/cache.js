@@ -40,6 +40,18 @@ window.qBittorrent.Cache = (() => {
         };
     };
 
+    const deepFreeze = (obj) => {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze#examples
+
+        const keys = Reflect.ownKeys(obj);
+        for (const key of keys) {
+            const value = obj[key];
+            if ((value && (typeof value === 'object')) || (typeof value === 'function'))
+                deepFreeze(value);
+        }
+        Object.freeze(obj);
+    };
+
     class BuildInfoCache {
         #m_store = {};
 
@@ -51,13 +63,15 @@ window.qBittorrent.Cache = (() => {
                 onSuccess: (responseJSON) => {
                     if (!responseJSON)
                         return;
+
+                    deepFreeze(responseJSON);
                     this.#m_store = responseJSON;
                 }
             }).send();
         }
 
         get() {
-            return structuredClone(this.#m_store);
+            return this.#m_store;
         }
     }
 
@@ -80,7 +94,9 @@ window.qBittorrent.Cache = (() => {
                 onSuccess: (responseJSON, responseText) => {
                     if (!responseJSON)
                         return;
-                    this.#m_store = structuredClone(responseJSON);
+
+                    deepFreeze(responseJSON);
+                    this.#m_store = responseJSON;
 
                     if (typeof obj.onSuccess === 'function')
                         obj.onSuccess(responseJSON, responseText);
@@ -89,7 +105,7 @@ window.qBittorrent.Cache = (() => {
         }
 
         get() {
-            return structuredClone(this.#m_store);
+            return this.#m_store;
         }
 
         // obj: {
@@ -114,6 +130,7 @@ window.qBittorrent.Cache = (() => {
                         obj.onFailure(xhr);
                 },
                 onSuccess: (responseText, responseXML) => {
+                    this.#m_store = structuredClone(this.#m_store);
                     for (const key in obj.data) {
                         if (!Object.hasOwn(obj.data, key))
                             continue;
@@ -121,6 +138,7 @@ window.qBittorrent.Cache = (() => {
                         const value = obj.data[key];
                         this.#m_store[key] = value;
                     }
+                    deepFreeze(this.#m_store);
 
                     if (typeof obj.onSuccess === 'function')
                         obj.onSuccess(responseText, responseXML);
