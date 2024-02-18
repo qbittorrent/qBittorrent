@@ -43,7 +43,7 @@ function submitLoginForm(event) {
     xhr.addEventListener('readystatechange', function() {
         if (xhr.readyState === 4) { // DONE state
             if ((xhr.status === 200) && (xhr.responseText === "Ok."))
-                location.assign(location);
+                location.replace(location);
                 location.reload(true);
             else
                 errorMsgElement.textContent = 'QBT_TR(Invalid Username or Password.)QBT_TR[CONTEXT=HttpServer]';
