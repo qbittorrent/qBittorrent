@@ -54,6 +54,7 @@
 #include <QShortcut>
 #include <QSplitter>
 #include <QStatusBar>
+#include <QString>
 #include <QTimer>
 
 #include "base/bittorrent/session.h"

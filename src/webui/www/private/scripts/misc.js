@@ -47,6 +47,8 @@ window.qBittorrent.Misc = (function() {
             toFixedPointString: toFixedPointString,
             containsAllTerms: containsAllTerms,
             sleep: sleep,
+            // variables
+            FILTER_INPUT_DELAY: 400,
             MAX_ETA: 8640000
         };
     };
