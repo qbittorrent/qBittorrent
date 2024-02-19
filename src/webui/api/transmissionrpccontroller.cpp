@@ -127,9 +127,9 @@ namespace
     TorrentGetFormat torrentGetParseFormatArg(const QJsonValue &format)
     {
         auto onError = [](const QString &actual){
-                           throw TransmissionAPIError(APIErrorType::BadParams,
-                                                      u"'format' key in 'arguments' to torrent-get must be "
-                                                      "either 'object' or 'table' if present, got '%1'"_s.arg(actual));
+            auto errStr = QString{                                                      u"'format' key in 'arguments' to torrent-get must be "
+                                  "either 'object' or 'table' if present, got '%1'"_s}.arg(actual);
+                           throw TransmissionAPIError(APIErrorType::BadParams, errStr);
                        };
         TorrentGetFormat rv = TorrentGetFormat::Object; // default if not present
         if (format.isString()){
