@@ -11,7 +11,7 @@ set(minBoostVersion 1.76)
 set(minQt6Version 6.5.0)
 set(minOpenSSLVersion 3.0.2)
 set(minLibtorrent1Version 1.2.19)
-set(minLibtorrentVersion 2.0.9)
+set(minLibtorrentVersion 2.0.10)
 set(minZlibVersion 1.2.11)
 
 include(GNUInstallDirs)
