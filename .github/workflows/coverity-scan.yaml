@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        libt_version: ["2.0.9"]
+        libt_version: ["2.0.10"]
         qbt_gui: ["GUI=ON"]
         qt_version: ["6.5.2"]
 
