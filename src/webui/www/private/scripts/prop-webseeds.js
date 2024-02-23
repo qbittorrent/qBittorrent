@@ -113,8 +113,8 @@ window.qBittorrent.PropWebseeds = (function() {
         const url = new URI('api/v2/torrents/webseeds?hash=' + current_hash);
         new Request.JSON({
             url: url,
-            noCache: true,
             method: 'get',
+            noCache: true,
             onFailure: function() {
                 $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
                 clearTimeout(loadWebSeedsDataTimer);

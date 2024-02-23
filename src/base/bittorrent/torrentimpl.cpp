@@ -811,7 +811,12 @@ void TorrentImpl::deferredRequestResumeData()
 {
     if (!m_deferredRequestResumeDataInvoked)
     {
-        QMetaObject::invokeMethod(this, [this] { requestResumeData(); }, Qt::QueuedConnection);
+        QMetaObject::invokeMethod(this, [this]
+        {
+            requestResumeData((m_maintenanceJob == MaintenanceJob::HandleMetadata)
+                    ? lt::torrent_handle::save_info_dict : lt::resume_data_flags_t());
+        }, Qt::QueuedConnection);
+
         m_deferredRequestResumeDataInvoked = true;
     }
 }
@@ -1706,8 +1711,8 @@ void TorrentImpl::resetTrackerEntries()
 
 std::shared_ptr<const libtorrent::torrent_info> TorrentImpl::nativeTorrentInfo() const
 {
-    if (m_nativeStatus.torrent_file.expired())
-        m_nativeStatus.torrent_file = m_nativeHandle.torrent_file();
+    Q_ASSERT(!m_nativeStatus.torrent_file.expired());
+
     return m_nativeStatus.torrent_file.lock();
 }
 
@@ -2041,7 +2046,7 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
         fetchURLSeeds([this](const QVector<QUrl> &urlSeeds) { m_urlSeeds = urlSeeds; });
     }
 
-    if (m_maintenanceJob == MaintenanceJob::HandleMetadata)
+    if ((m_maintenanceJob == MaintenanceJob::HandleMetadata) && p->params.ti)
     {
         Q_ASSERT(m_indexMap.isEmpty());
 
@@ -2053,7 +2058,9 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
         m_ltAddTorrentParams.have_pieces.clear();
         m_ltAddTorrentParams.verified_pieces.clear();
 
-        TorrentInfo metadata = TorrentInfo(*nativeTorrentInfo());
+        m_nativeStatus.torrent_file = m_ltAddTorrentParams.ti;
+
+        const auto metadata = TorrentInfo(*m_ltAddTorrentParams.ti);
 
         const auto &renamedFiles = m_ltAddTorrentParams.renamed_files;
         PathList filePaths = metadata.filePaths();
@@ -2061,8 +2068,7 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
         {
             const Path originalRootFolder = Path::findRootFolder(filePaths);
             const auto originalContentLayout = (originalRootFolder.isEmpty()
-                                                ? TorrentContentLayout::NoSubfolder
-                                                : TorrentContentLayout::Subfolder);
+                    ? TorrentContentLayout::NoSubfolder : TorrentContentLayout::Subfolder);
             if (m_contentLayout != originalContentLayout)
             {
                 if (m_contentLayout == TorrentContentLayout::NoSubfolder)

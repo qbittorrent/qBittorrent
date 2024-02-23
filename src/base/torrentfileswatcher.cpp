@@ -443,10 +443,10 @@ void TorrentFilesWatcher::Worker::processFolder(const Path &path, const Path &wa
 
     if (options.recursive)
     {
-        QDirIterator dirIter {path.data(), (QDir::Dirs | QDir::NoDot | QDir::NoDotDot)};
-        while (dirIter.hasNext())
+        QDirIterator iter {path.data(), (QDir::Dirs | QDir::NoDotAndDotDot)};
+        while (iter.hasNext())
         {
-            const Path folderPath {dirIter.next()};
+            const Path folderPath {iter.next()};
             // Skip processing of subdirectory that is explicitly set as watched folder
             if (!m_watchedFolders.contains(folderPath))
                 processFolder(folderPath, watchedFolderPath, options);

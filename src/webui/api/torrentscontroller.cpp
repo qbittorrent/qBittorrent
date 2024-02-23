@@ -1442,5 +1442,5 @@ void TorrentsController::exportAction()
     if (!result)
         throw APIError(APIErrorType::Conflict, tr("Unable to export torrent file. Error: %1").arg(result.error()));
 
-    setResult(result.value());
+    setResult(result.value(), u"application/x-bittorrent"_s, (id.toString() + u".torrent"));
 }

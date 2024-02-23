@@ -33,6 +33,7 @@
 #include "base/pathfwd.h"
 
 class QString;
+class QStringView;
 
 /*  Miscellaneous functions that can be useful */
 namespace Utils::Misc
@@ -82,5 +83,5 @@ namespace Utils::Misc
     // time duration like "1d 2h 10m".
     QString userFriendlyDuration(qlonglong seconds, qlonglong maxCap = -1, TimeResolution resolution = TimeResolution::Minutes);
 
-    QString languageToLocalizedString(const QString &localeStr);
+    QString languageToLocalizedString(QStringView localeStr);
 }

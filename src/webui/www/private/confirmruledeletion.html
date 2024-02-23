@@ -24,7 +24,6 @@
                 rules.forEach((rule) => {
                     new Request({
                         url: 'api/v2/rss/removeRule',
-                        noCache: true,
                         method: 'post',
                         data: {
                             ruleName: decodeURIComponent(rule)

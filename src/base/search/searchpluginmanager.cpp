@@ -74,12 +74,11 @@ namespace
             }
 
             // python 2: remove "*.pyc" files
-            const QStringList files = QDir(dir.data()).entryList(QDir::Files);
-            for (const QString &file : files)
+            QDirIterator it {dir.data(), {u"*.pyc"_s}, QDir::Files};
+            while (it.hasNext())
             {
-                const Path path {file};
-                if (path.hasExtension(u".pyc"_s))
-                    Utils::Fs::removeFile(path);
+                const QString filePath = it.next();
+                Utils::Fs::removeFile(Path(filePath));
             }
         }
     }
@@ -298,11 +297,13 @@ bool SearchPluginManager::uninstallPlugin(const QString &name)
     clearPythonCache(engineLocation());
 
     // remove it from hard drive
-    const Path pluginsPath = pluginsLocation();
-    const QStringList filters {name + u".*"};
-    const QStringList files = QDir(pluginsPath.data()).entryList(filters, QDir::Files, QDir::Unsorted);
-    for (const QString &file : files)
-        Utils::Fs::removeFile(pluginsPath / Path(file));
+    QDirIterator iter {pluginsLocation().data(), {name + u".*"}, QDir::Files};
+    while (iter.hasNext())
+    {
+        const QString filePath = iter.next();
+        Utils::Fs::removeFile(Path(filePath));
+    }
+
     // Remove it from supported engines
     delete m_plugins.take(name);
 

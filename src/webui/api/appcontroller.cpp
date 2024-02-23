@@ -78,6 +78,17 @@ void AppController::versionAction()
 
 void AppController::buildInfoAction()
 {
+    const QString platformName =
+#ifdef Q_OS_LINUX
+        u"linux"_s;
+#elif defined(Q_OS_MACOS)
+        u"macos"_s;
+#elif defined(Q_OS_WIN)
+        u"windows"_s;
+#else
+        u"unknown"_s;
+#endif
+
     const QJsonObject versions =
     {
         {u"qt"_s, QStringLiteral(QT_VERSION_STR)},
@@ -85,7 +96,8 @@ void AppController::buildInfoAction()
         {u"boost"_s, Utils::Misc::boostVersionString()},
         {u"openssl"_s, Utils::Misc::opensslVersionString()},
         {u"zlib"_s, Utils::Misc::zlibVersionString()},
-        {u"bitness"_s, (QT_POINTER_SIZE * 8)}
+        {u"bitness"_s, (QT_POINTER_SIZE * 8)},
+        {u"platform"_s, platformName}
     };
     setResult(versions);
 }

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018, 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,14 +30,22 @@
 
 #include <QtContainerFwd>
 #include <QObject>
+#include <QString>
 #include <QVariant>
 
 #include "base/applicationcomponent.h"
 
-class QString;
-
 using DataMap = QHash<QString, QByteArray>;
 using StringMap = QHash<QString, QString>;
+
+struct APIResult
+{
+    QVariant data;
+    QString mimeType;
+    QString filename;
+
+    void clear();
+};
 
 class APIController : public ApplicationComponent<QObject>
 {
@@ -47,7 +55,7 @@ class APIController : public ApplicationComponent<QObject>
 public:
     explicit APIController(IApplication *app, QObject *parent = nullptr);
 
-    QVariant run(const QString &action, const StringMap &params, const DataMap &data = {});
+    APIResult run(const QString &action, const StringMap &params, const DataMap &data = {});
 
 protected:
     const StringMap &params() const;
@@ -57,10 +65,10 @@ protected:
     void setResult(const QString &result);
     void setResult(const QJsonArray &result);
     void setResult(const QJsonObject &result);
-    void setResult(const QByteArray &result);
+    void setResult(const QByteArray &result, const QString &mimeType = {}, const QString &filename = {});
 
 private:
     StringMap m_params;
     DataMap m_data;
-    QVariant m_result;
+    APIResult m_result;
 };

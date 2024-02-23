@@ -358,8 +358,8 @@ window.qBittorrent.PropFiles = (function() {
         const url = new URI('api/v2/torrents/files?hash=' + current_hash);
         new Request.JSON({
             url: url,
-            noCache: true,
             method: 'get',
+            noCache: true,
             onComplete: function() {
                 clearTimeout(loadTorrentFilesDataTimer);
                 loadTorrentFilesDataTimer = loadTorrentFilesData.delay(5000);

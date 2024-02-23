@@ -19,11 +19,11 @@
                     event.preventDefault();
                 },
                 'Escape': function(event) {
-                    window.parent.closeWindows();
+                    window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 },
                 'Esc': function(event) {
-                    window.parent.closeWindows();
+                    window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 }
             }
@@ -66,7 +66,7 @@
                                 tags: tagName,
                             },
                             onComplete: function() {
-                                window.parent.closeWindows();
+                                window.parent.qBittorrent.Client.closeWindows();
                             }
                         }).send();
                         break;
@@ -82,7 +82,7 @@
                                 tags: tagName,
                             },
                             onComplete: function() {
-                                window.parent.closeWindows();
+                                window.parent.qBittorrent.Client.closeWindows();
                             }
                         }).send();
                         break;

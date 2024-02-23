@@ -358,42 +358,34 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         let feedList = [];
 
         const initRssDownloader = () => {
-            new Request.JSON({
-                url: 'api/v2/app/preferences',
-                method: 'get',
-                noCache: true,
-                onFailure: () => {
-                    alert('Could not contact qBittorrent');
-                },
-                onSuccess: (pref) => {
-                    if (!pref.rss_auto_downloading_enabled)
-                        $('rssDownloaderDisabled').removeClass('invisible');
+            const pref = window.parent.qBittorrent.Cache.preferences.get();
 
-                    // recalculate height
-                    let warningHeight = $('rssDownloaderDisabled').getBoundingClientRect().height;
+            if (!pref.rss_auto_downloading_enabled)
+                $('rssDownloaderDisabled').removeClass('invisible');
 
-                    $('leftRssDownloaderColumn').style.height = 'calc(100% - ' + warningHeight + 'px)';
-                    $('centerRssDownloaderColumn').style.height = 'calc(100% - ' + warningHeight + 'px)';
-                    $('rightRssDownloaderColumn').style.height = 'calc(100% - ' + warningHeight + 'px)';
+            // recalculate height
+            const warningHeight = $('rssDownloaderDisabled').getBoundingClientRect().height;
 
-                    $('rulesTable').style.height = 'calc(100% - ' + $('rulesTableDesc').getBoundingClientRect().height + 'px)';
-                    $('rssDownloaderArticlesTable').style.height = 'calc(100% - ' + $('articleTableDesc').getBoundingClientRect().height + 'px)';
+            $('leftRssDownloaderColumn').style.height = 'calc(100% - ' + warningHeight + 'px)';
+            $('centerRssDownloaderColumn').style.height = 'calc(100% - ' + warningHeight + 'px)';
+            $('rightRssDownloaderColumn').style.height = 'calc(100% - ' + warningHeight + 'px)';
 
-                    let centerRowNotTableHeight = $('saveButton').getBoundingClientRect().height
-                        + $('ruleSettings').getBoundingClientRect().height + 15;
+            $('rulesTable').style.height = 'calc(100% - ' + $('rulesTableDesc').getBoundingClientRect().height + 'px)';
+            $('rssDownloaderArticlesTable').style.height = 'calc(100% - ' + $('articleTableDesc').getBoundingClientRect().height + 'px)';
 
-                    $('rssDownloaderFeeds').style.height = 'calc(100% - ' + centerRowNotTableHeight + 'px)';
+            const centerRowNotTableHeight = $('saveButton').getBoundingClientRect().height
+                + $('ruleSettings').getBoundingClientRect().height + 15;
 
-                    // firefox calculates the height of the table inside fieldset differently and thus doesn't need the offset
-                    if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-                        $('rssDownloaderFeedsTable').style.height = '100%';
-                    }
-                    else {
-                        let outsideTableHeight = ($('rssDownloaderFeedsTable').getBoundingClientRect().top - $('rssDownloaderFeeds').getBoundingClientRect().top) - 10;
-                        $('rssDownloaderFeedsTable').style.height = 'calc(100% - ' + outsideTableHeight + 'px)';
-                    }
-                }
-            }).send();
+            $('rssDownloaderFeeds').style.height = 'calc(100% - ' + centerRowNotTableHeight + 'px)';
+
+            // firefox calculates the height of the table inside fieldset differently and thus doesn't need the offset
+            if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+                $('rssDownloaderFeedsTable').style.height = '100%';
+            }
+            else {
+                let outsideTableHeight = ($('rssDownloaderFeedsTable').getBoundingClientRect().top - $('rssDownloaderFeeds').getBoundingClientRect().top) - 10;
+                $('rssDownloaderFeedsTable').style.height = 'calc(100% - ' + outsideTableHeight + 'px)';
+            }
 
             const rssDownloaderRuleContextMenu = new window.qBittorrent.ContextMenu.RssDownloaderRuleContextMenu({
                 targets: '',
@@ -436,8 +428,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             // get all categories and add to combobox
             new Request.JSON({
                 url: 'api/v2/torrents/categories',
-                noCache: true,
                 method: 'get',
+                noCache: true,
                 onSuccess: (response) => {
                     let combobox = $('assignCategoryCombobox');
                     for (let cat in response) {
@@ -450,8 +442,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             // get all rss feed
             new Request.JSON({
                 url: 'api/v2/rss/items',
-                noCache: true,
                 method: 'get',
+                noCache: true,
                 data: {
                     withData: false
                 },
@@ -478,8 +470,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             // get all rules
             new Request.JSON({
                 url: 'api/v2/rss/rules',
-                noCache: true,
                 method: 'get',
+                noCache: true,
                 onSuccess: (response) => {
                     rssDownloaderRulesTable.clear();
                     let rowCount = 0;
@@ -500,7 +492,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             rulesList[rule][setting] = newState;
             new Request({
                 url: 'api/v2/rss/setRule',
-                noCache: true,
                 method: 'post',
                 data: {
                     ruleName: rule,
@@ -627,7 +618,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
             new Request({
                 url: 'api/v2/rss/setRule',
-                noCache: true,
                 method: 'post',
                 data: {
                     ruleName: rule,
@@ -642,8 +632,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const updateMatchingArticles = (ruleName) => {
             new Request.JSON({
                 url: 'api/v2/rss/matchingArticles',
-                noCache: true,
                 method: 'get',
+                noCache: true,
                 data: {
                     ruleName: ruleName
                 },

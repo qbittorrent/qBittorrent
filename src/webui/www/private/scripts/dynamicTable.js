@@ -1395,7 +1395,7 @@ window.qBittorrent.DynamicTable = (function() {
                     break; // do nothing
                 default:
                     if (!useSubcategories) {
-                        if (categoryHash !== genHash(row['full_data'].category))
+                        if (categoryHash !== window.qBittorrent.Client.genHash(row['full_data'].category))
                             return false;
                     }
                     else {
@@ -1417,7 +1417,7 @@ window.qBittorrent.DynamicTable = (function() {
                     break; // do nothing
 
                 default: {
-                    const tagHashes = row['full_data'].tags.split(', ').map(tag => genHash(tag));
+                    const tagHashes = row['full_data'].tags.split(', ').map(tag => window.qBittorrent.Client.genHash(tag));
                     if (!tagHashes.contains(tagHash))
                         return false;
                     break;

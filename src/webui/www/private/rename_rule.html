@@ -52,7 +52,6 @@
                 $('renameButton').disabled = true;
                 new Request({
                     url: 'api/v2/rss/renameRule',
-                    noCache: true,
                     method: 'post',
                     data: {
                         ruleName: oldName,

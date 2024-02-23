@@ -124,8 +124,8 @@ void TorrentCreator::run()
             QDirIterator dirIter {m_params.inputPath.data(), (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories};
             while (dirIter.hasNext())
             {
-                dirIter.next();
-                dirs.append(dirIter.filePath());
+                const QString filePath = dirIter.next();
+                dirs.append(filePath);
             }
             std::sort(dirs.begin(), dirs.end(), naturalLessThan);
 
@@ -139,11 +139,11 @@ void TorrentCreator::run()
                 QDirIterator fileIter {dir, QDir::Files};
                 while (fileIter.hasNext())
                 {
-                    fileIter.next();
+                    const QFileInfo fileInfo = fileIter.nextFileInfo();
 
-                    const auto relFilePath = parentPath.relativePathOf(Path(fileIter.filePath()));
+                    const Path relFilePath = parentPath.relativePathOf(Path(fileInfo.filePath()));
                     tmpNames.append(relFilePath.toString());
-                    fileSizeMap[tmpNames.last()] = fileIter.fileInfo().size();
+                    fileSizeMap[tmpNames.last()] = fileInfo.size();
                 }
 
                 std::sort(tmpNames.begin(), tmpNames.end(), naturalLessThan);

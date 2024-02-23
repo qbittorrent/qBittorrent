@@ -15,7 +15,7 @@
             $('cancelBtn').focus();
             $('cancelBtn').addEvent('click', (e) => {
                 new Event(e).stop();
-                window.parent.closeWindows();
+                window.parent.qBittorrent.Client.closeWindows();
             });
             $('confirmBtn').addEvent('click', (e) => {
                 new Event(e).stop();
@@ -23,7 +23,6 @@
                 paths.forEach((path) => {
                     new Request({
                         url: 'api/v2/rss/removeItem',
-                        noCache: true,
                         method: 'post',
                         data: {
                             path: decodeURIComponent(path)
@@ -32,7 +31,7 @@
                             ++completionCount;
                             if (completionCount === paths.length) {
                                 window.parent.qBittorrent.Rss.updateRssFeedList();
-                                window.parent.closeWindows();
+                                window.parent.qBittorrent.Client.closeWindows();
                             }
                         }
                     }).send();

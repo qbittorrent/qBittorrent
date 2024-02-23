@@ -40,6 +40,7 @@ window.qBittorrent.Misc = (function() {
             friendlyPercentage: friendlyPercentage,
             friendlyFloat: friendlyFloat,
             parseHtmlLinks: parseHtmlLinks,
+            parseVersion: parseVersion,
             escapeHtml: escapeHtml,
             naturalSortCollator: naturalSortCollator,
             safeTrim: safeTrim,
@@ -169,6 +170,29 @@ window.qBittorrent.Misc = (function() {
     const parseHtmlLinks = function(text) {
         const exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])/ig;
         return text.replace(exp, "<a target='_blank' rel='noopener noreferrer' href='$1'>$1</a>");
+    };
+
+    const parseVersion = function(versionString) {
+        const failure = {
+            valid: false
+        };
+
+        if (typeof versionString !== 'string')
+            return failure;
+
+        const tryToNumber = (str) => {
+            const num = Number(str);
+            return (isNaN(num) ? str : num);
+        };
+
+        const ver = versionString.split('.', 4).map(val => tryToNumber(val));
+        return {
+            valid: true,
+            major: ver[0],
+            minor: ver[1],
+            fix: ver[2],
+            patch: ver[3]
+        };
     };
 
     const escapeHtml = function(str) {
