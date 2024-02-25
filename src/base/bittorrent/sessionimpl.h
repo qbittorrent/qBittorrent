@@ -230,6 +230,10 @@ namespace BitTorrent
         void setSaveResumeDataInterval(int value) override;
         int port() const override;
         void setPort(int port) override;
+        bool isSSLEnabled() const override;
+        void setSSLEnabled(bool enabled) override;
+        int sslPort() const override;
+        void setSSLPort(int port) override;
         QString networkInterface() const override;
         void setNetworkInterface(const QString &iface) override;
         QString networkInterfaceName() const override;
@@ -543,6 +547,7 @@ namespace BitTorrent
         void handleTorrentRemovedAlert(const lt::torrent_removed_alert *p);
         void handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p);
         void handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *p);
+        void handleTorrentNeedCertAlert(const lt::torrent_need_cert_alert *a);
         void handlePortmapWarningAlert(const lt::portmap_error_alert *p);
         void handlePortmapAlert(const lt::portmap_alert *p);
         void handlePeerBlockedAlert(const lt::peer_blocked_alert *p);
@@ -676,6 +681,8 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isPerformanceWarningEnabled;
         CachedSettingValue<int> m_saveResumeDataInterval;
         CachedSettingValue<int> m_port;
+        CachedSettingValue<bool> m_sslEnabled;
+        CachedSettingValue<int> m_sslPort;
         CachedSettingValue<QString> m_networkInterface;
         CachedSettingValue<QString> m_networkInterfaceName;
         CachedSettingValue<QString> m_networkInterfaceAddress;

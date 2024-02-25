@@ -479,6 +479,8 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_isPerformanceWarningEnabled(BITTORRENT_SESSION_KEY(u"PerformanceWarning"_s), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY(u"SaveResumeDataInterval"_s), 60)
     , m_port(BITTORRENT_SESSION_KEY(u"Port"_s), -1)
+    , m_sslEnabled(BITTORRENT_SESSION_KEY(u"SSL/Enabled"_s), false)
+    , m_sslPort(BITTORRENT_SESSION_KEY(u"SSL/Port"_s), -1)
     , m_networkInterface(BITTORRENT_SESSION_KEY(u"Interface"_s))
     , m_networkInterfaceName(BITTORRENT_SESSION_KEY(u"InterfaceName"_s))
     , m_networkInterfaceAddress(BITTORRENT_SESSION_KEY(u"InterfaceAddress"_s))
@@ -529,6 +531,12 @@ SessionImpl::SessionImpl(QObject *parent)
 
     if (port() < 0)
         m_port = Utils::Random::rand(1024, 65535);
+    if (sslPort() < 0)
+    {
+        m_sslPort = Utils::Random::rand(1024, 65535);
+        while (m_sslPort == port())
+            m_sslPort = Utils::Random::rand(1024, 65535);
+    }
 
     m_recentErroredTorrentsTimer->setSingleShot(true);
     m_recentErroredTorrentsTimer->setInterval(1s);
@@ -2022,7 +2030,9 @@ void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack
 
     QStringList endpoints;
     QStringList outgoingInterfaces;
-    const QString portString = u':' + QString::number(port());
+    QStringList portStrings = {u':' + QString::number(port())};
+    if (isSSLEnabled())
+        portStrings.append(u':' + QString::number(sslPort()) + u's');
 
     for (const QString &ip : asConst(getListeningIPs()))
     {
@@ -2034,7 +2044,8 @@ void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack
                           ? Utils::Net::canonicalIPv6Addr(addr).toString()
                           : addr.toString();
 
-            endpoints << ((isIPv6 ? (u'[' + ip + u']') : ip) + portString);
+            for (const QString &portString : asConst(portStrings))
+                endpoints << ((isIPv6 ? (u'[' + ip + u']') : ip) + portString);
 
             if ((ip != u"0.0.0.0") && (ip != u"::"))
                 outgoingInterfaces << ip;
@@ -2049,7 +2060,8 @@ void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack
             const QString guid = convertIfaceNameToGuid(ip);
             if (!guid.isEmpty())
             {
-                endpoints << (guid + portString);
+                for (const QString &portString : asConst(portStrings))
+                    endpoints << (guid + portString);
                 outgoingInterfaces << guid;
             }
             else
@@ -2057,11 +2069,13 @@ void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack
                 LogMsg(tr("Could not find GUID of network interface. Interface: \"%1\"").arg(ip), Log::WARNING);
                 // Since we can't get the GUID, we'll pass the interface name instead.
                 // Otherwise an empty string will be passed to outgoing_interface which will cause IP leak.
-                endpoints << (ip + portString);
+                for (const QString &portString : asConst(portStrings))
+                    endpoints << (ip + portString);
                 outgoingInterfaces << ip;
             }
 #else
-            endpoints << (ip + portString);
+            for (const QString &portString : asConst(portStrings))
+                endpoints << (ip + portString);
             outgoingInterfaces << ip;
 #endif
         }
@@ -2640,6 +2654,7 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
     loadTorrentParams.ratioLimit = addTorrentParams.ratioLimit;
     loadTorrentParams.seedingTimeLimit = addTorrentParams.seedingTimeLimit;
     loadTorrentParams.inactiveSeedingTimeLimit = addTorrentParams.inactiveSeedingTimeLimit;
+    loadTorrentParams.sslParameters = addTorrentParams.sslParameters;
 
     const QString category = addTorrentParams.category;
     if (!category.isEmpty() && !m_categories.contains(category) && !addCategory(category))
@@ -3523,6 +3538,40 @@ void SessionImpl::setPort(const int port)
         if (isReannounceWhenAddressChangedEnabled())
             reannounceToAllTrackers();
     }
+}
+
+bool SessionImpl::isSSLEnabled() const
+{
+    return m_sslEnabled;
+}
+
+void SessionImpl::setSSLEnabled(const bool enabled)
+{
+    if (enabled == isSSLEnabled())
+        return;
+
+    m_sslEnabled = enabled;
+    configureListeningInterface();
+
+    if (isReannounceWhenAddressChangedEnabled())
+        reannounceToAllTrackers();
+}
+
+int SessionImpl::sslPort() const
+{
+    return m_sslPort;
+}
+
+void SessionImpl::setSSLPort(const int port)
+{
+    if (port == sslPort())
+        return;
+
+    m_sslPort = port;
+    configureListeningInterface();
+
+    if (isReannounceWhenAddressChangedEnabled())
+        reannounceToAllTrackers();
 }
 
 QString SessionImpl::networkInterface() const
@@ -5449,6 +5498,9 @@ void SessionImpl::handleAlert(const lt::alert *a)
         case lt::torrent_delete_failed_alert::alert_type:
             handleTorrentDeleteFailedAlert(static_cast<const lt::torrent_delete_failed_alert *>(a));
             break;
+        case lt::torrent_need_cert_alert::alert_type:
+            handleTorrentNeedCertAlert(static_cast<const lt::torrent_need_cert_alert *>(a));
+            break;
         case lt::portmap_error_alert::alert_type:
             handlePortmapWarningAlert(static_cast<const lt::portmap_error_alert *>(a));
             break;
@@ -5650,6 +5702,26 @@ void SessionImpl::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed
     }
 
     m_removingTorrents.erase(removingTorrentDataIter);
+}
+
+void SessionImpl::handleTorrentNeedCertAlert(const lt::torrent_need_cert_alert *a)
+{
+#ifdef QBT_USES_LIBTORRENT2
+    const InfoHash infoHash {a->handle.info_hashes()};
+#else
+    const InfoHash infoHash {a->handle.info_hash()};
+#endif
+    const auto torrentID = TorrentID::fromInfoHash(infoHash);
+
+    TorrentImpl *const torrent = m_torrents.value(torrentID);
+    if (!torrent) [[unlikely]]
+        return;
+
+    if (!torrent->applySSLParameters())
+    {
+        LogMsg(tr("Torrent is missing SSL parameters. Torrent: \"%1\". Message: \"%2\"").arg(torrent->name(), QString::fromStdString(a->message()))
+            , Log::WARNING);
+    }
 }
 
 void SessionImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)

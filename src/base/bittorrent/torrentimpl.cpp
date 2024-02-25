@@ -304,6 +304,7 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
     , m_hasFirstLastPiecePriority(params.firstLastPiecePriority)
     , m_useAutoTMM(params.useAutoTMM)
     , m_isStopped(params.stopped)
+    , m_sslParams(params.sslParameters)
     , m_ltAddTorrentParams(params.ltAddTorrentParams)
     , m_downloadLimit(cleanLimitValue(m_ltAddTorrentParams.download_limit))
     , m_uploadLimit(cleanLimitValue(m_ltAddTorrentParams.upload_limit))
@@ -2123,26 +2124,27 @@ void TorrentImpl::prepareResumeData(const lt::add_torrent_params &params)
     // We shouldn't save upload_mode flag to allow torrent operate normally on next run
     m_ltAddTorrentParams.flags &= ~lt::torrent_flags::upload_mode;
 
-    LoadTorrentParams resumeData;
-    resumeData.name = m_name;
-    resumeData.category = m_category;
-    resumeData.tags = m_tags;
-    resumeData.contentLayout = m_contentLayout;
-    resumeData.ratioLimit = m_ratioLimit;
-    resumeData.seedingTimeLimit = m_seedingTimeLimit;
-    resumeData.inactiveSeedingTimeLimit = m_inactiveSeedingTimeLimit;
-    resumeData.firstLastPiecePriority = m_hasFirstLastPiecePriority;
-    resumeData.hasFinishedStatus = m_hasFinishedStatus;
-    resumeData.stopped = m_isStopped;
-    resumeData.stopCondition = m_stopCondition;
-    resumeData.operatingMode = m_operatingMode;
-    resumeData.ltAddTorrentParams = m_ltAddTorrentParams;
-    resumeData.useAutoTMM = m_useAutoTMM;
-    if (!resumeData.useAutoTMM)
+    const LoadTorrentParams resumeData
     {
-        resumeData.savePath = m_savePath;
-        resumeData.downloadPath = m_downloadPath;
-    }
+        .ltAddTorrentParams = m_ltAddTorrentParams,
+        .name = m_name,
+        .category = m_category,
+        .tags = m_tags,
+        .savePath = (!m_useAutoTMM ? m_savePath : Path()),
+        .downloadPath = (!m_useAutoTMM ? m_downloadPath : Path()),
+        .contentLayout = m_contentLayout,
+        .operatingMode = m_operatingMode,
+        .useAutoTMM = m_useAutoTMM,
+        .firstLastPiecePriority = m_hasFirstLastPiecePriority,
+        .hasFinishedStatus = m_hasFinishedStatus,
+        .stopped = m_isStopped,
+        .stopCondition = m_stopCondition,
+        .addToQueueTop = false,
+        .ratioLimit = m_ratioLimit,
+        .seedingTimeLimit = m_seedingTimeLimit,
+        .inactiveSeedingTimeLimit = m_inactiveSeedingTimeLimit,
+        .sslParameters = m_sslParams
+    };
 
     m_session->handleTorrentResumeDataReady(this, resumeData);
 }
@@ -2474,6 +2476,32 @@ void TorrentImpl::setStopCondition(const StopCondition stopCondition)
         return;
 
     m_stopCondition = stopCondition;
+}
+
+SSLParameters TorrentImpl::getSSLParameters() const
+{
+    return m_sslParams;
+}
+
+void TorrentImpl::setSSLParameters(const SSLParameters &sslParams)
+{
+    if (sslParams == getSSLParameters())
+        return;
+
+    m_sslParams = sslParams;
+    applySSLParameters();
+
+    deferredRequestResumeData();
+}
+
+bool TorrentImpl::applySSLParameters()
+{
+    if (!m_sslParams.isValid())
+        return false;
+
+    m_nativeHandle.set_ssl_certificate_buffer(m_sslParams.certificate.toPem().toStdString()
+        , m_sslParams.privateKey.toPem().toStdString(), m_sslParams.dhParams.toStdString());
+    return true;
 }
 
 bool TorrentImpl::isMoveInProgress() const

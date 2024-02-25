@@ -61,6 +61,7 @@
 #include "base/utils/os.h"
 #include "base/utils/password.h"
 #include "base/utils/random.h"
+#include "base/utils/sslkey.h"
 #include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
 #include "banlistoptionsdialog.h"
@@ -1865,7 +1866,7 @@ Path OptionsDialog::getFilter() const
 void OptionsDialog::webUIHttpsCertChanged(const Path &path)
 {
     const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
-    const bool isCertValid = Utils::Net::isSSLCertificatesValid(readResult.value_or(QByteArray()));
+    const bool isCertValid = !Utils::SSLKey::load(readResult.value_or(QByteArray())).isNull();
 
     m_ui->textWebUIHttpsCert->setSelectedPath(path);
     m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
@@ -1875,7 +1876,7 @@ void OptionsDialog::webUIHttpsCertChanged(const Path &path)
 void OptionsDialog::webUIHttpsKeyChanged(const Path &path)
 {
     const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
-    const bool isKeyValid = Utils::Net::isSSLKeyValid(readResult.value_or(QByteArray()));
+    const bool isKeyValid = !Utils::SSLKey::load(readResult.value_or(QByteArray())).isNull();
 
     m_ui->textWebUIHttpsKey->setSelectedPath(path);
     m_ui->lblSslKeyStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(

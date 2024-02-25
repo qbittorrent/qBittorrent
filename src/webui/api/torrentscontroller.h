@@ -89,4 +89,6 @@ private slots:
     void renameFileAction();
     void renameFolderAction();
     void exportAction();
+    void SSLParametersAction();
+    void setSSLParametersAction();
 };

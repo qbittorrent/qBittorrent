@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016  Alexandr Milovantsev <dzmat@yandex.ru>
+ * Copyright (C) 2024  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,31 +26,9 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "sslparameters.h"
 
-#include <optional>
-#include <utility>
-
-#include <QtContainerFwd>
-#include <QHostAddress>
-
-class QSslCertificate;
-class QSslKey;
-class QString;
-
-namespace Utils::Net
+bool BitTorrent::SSLParameters::isValid() const
 {
-    // alias for `QHostAddress::parseSubnet()` return type
-    using Subnet = std::pair<QHostAddress, int>;
-
-    bool isValidIP(const QString &ip);
-    std::optional<Subnet> parseSubnet(const QString &subnetStr);
-    bool isLoopbackAddress(const QHostAddress &addr);
-    bool isIPInSubnets(const QHostAddress &addr, const QVector<Subnet> &subnets);
-    QString subnetToString(const Subnet &subnet);
-    QHostAddress canonicalIPv6Addr(const QHostAddress &addr);
-
-    inline const int MAX_SSL_FILE_SIZE = 1024 * 1024;
-    QList<QSslCertificate> loadSSLCertificate(const QByteArray &data);
-    bool isSSLCertificatesValid(const QByteArray &data);
+    return (!certificate.isNull() && !privateKey.isNull() && !dhParams.isEmpty());
 }

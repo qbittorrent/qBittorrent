@@ -51,6 +51,7 @@
 #include "base/tagset.h"
 #include "infohash.h"
 #include "speedmonitor.h"
+#include "sslparameters.h"
 #include "torrent.h"
 #include "torrentcontentlayout.h"
 #include "torrentinfo.h"
@@ -243,6 +244,9 @@ namespace BitTorrent
 
         StopCondition stopCondition() const override;
         void setStopCondition(StopCondition stopCondition) override;
+        SSLParameters getSSLParameters() const override;
+        void setSSLParameters(const SSLParameters &sslParams) override;
+        bool applySSLParameters();
 
         QString createMagnetURI() const override;
         nonstd::expected<QByteArray, QString> exportToBuffer() const override;
@@ -363,6 +367,7 @@ namespace BitTorrent
         bool m_useAutoTMM;
         bool m_isStopped;
         StopCondition m_stopCondition = StopCondition::None;
+        SSLParameters m_sslParams;
 
         bool m_unchecked = false;
 

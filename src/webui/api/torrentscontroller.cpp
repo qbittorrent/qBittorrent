@@ -45,6 +45,7 @@
 #include "base/bittorrent/peeraddress.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
+#include "base/bittorrent/sslparameters.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/torrentdescriptor.h"
 #include "base/bittorrent/trackerentry.h"
@@ -55,6 +56,7 @@
 #include "base/torrentfilter.h"
 #include "base/utils/datetime.h"
 #include "base/utils/fs.h"
+#include "base/utils/sslkey.h"
 #include "base/utils/string.h"
 #include "apierror.h"
 #include "serialize/serialize_torrent.h"
@@ -108,6 +110,9 @@ const QString KEY_PROP_SAVE_PATH = u"save_path"_s;
 const QString KEY_PROP_DOWNLOAD_PATH = u"download_path"_s;
 const QString KEY_PROP_COMMENT = u"comment"_s;
 const QString KEY_PROP_ISPRIVATE = u"is_private"_s;
+const QString KEY_PROP_SSL_CERTIFICATE = u"ssl_certificate"_s;
+const QString KEY_PROP_SSL_PRIVATEKEY = u"ssl_private_key"_s;
+const QString KEY_PROP_SSL_DHPARAMS = u"ssl_dh_params"_s;
 
 // File keys
 const QString KEY_FILE_INDEX = u"index"_s;
@@ -721,27 +726,38 @@ void TorrentsController::addAction()
         }
     }
 
-    BitTorrent::AddTorrentParams addTorrentParams;
-    // TODO: Check if destination actually exists
-    addTorrentParams.skipChecking = skipChecking;
-    addTorrentParams.sequential = seqDownload;
-    addTorrentParams.firstLastPiecePriority = firstLastPiece;
-    addTorrentParams.addToQueueTop = addToQueueTop;
-    addTorrentParams.addPaused = addPaused;
-    addTorrentParams.stopCondition = stopCondition;
-    addTorrentParams.contentLayout = contentLayout;
-    addTorrentParams.savePath = Path(savepath);
-    addTorrentParams.downloadPath = Path(downloadPath);
-    addTorrentParams.useDownloadPath = useDownloadPath;
-    addTorrentParams.category = category;
-    addTorrentParams.tags.insert(tags.cbegin(), tags.cend());
-    addTorrentParams.name = torrentName;
-    addTorrentParams.uploadLimit = upLimit;
-    addTorrentParams.downloadLimit = dlLimit;
-    addTorrentParams.seedingTimeLimit = seedingTimeLimit;
-    addTorrentParams.inactiveSeedingTimeLimit = inactiveSeedingTimeLimit;
-    addTorrentParams.ratioLimit = ratioLimit;
-    addTorrentParams.useAutoTMM = autoTMM;
+    const BitTorrent::AddTorrentParams addTorrentParams
+    {
+        // TODO: Check if destination actually exists
+        .name = torrentName,
+        .category = category,
+        .tags = {tags.cbegin(), tags.cend()},
+        .savePath = Path(savepath),
+        .useDownloadPath = useDownloadPath,
+        .downloadPath = Path(downloadPath),
+        .sequential = seqDownload,
+        .firstLastPiecePriority = firstLastPiece,
+        .addForced = false,
+        .addToQueueTop = addToQueueTop,
+        .addPaused = addPaused,
+        .stopCondition = stopCondition,
+        .filePaths = {},
+        .filePriorities = {},
+        .skipChecking = skipChecking,
+        .contentLayout = contentLayout,
+        .useAutoTMM = autoTMM,
+        .uploadLimit = upLimit,
+        .downloadLimit = dlLimit,
+        .seedingTimeLimit = seedingTimeLimit,
+        .inactiveSeedingTimeLimit = inactiveSeedingTimeLimit,
+        .ratioLimit = ratioLimit,
+        .sslParameters =
+        {
+            .certificate = QSslCertificate(params()[KEY_PROP_SSL_CERTIFICATE].toLatin1()),
+            .privateKey = Utils::SSLKey::load(params()[KEY_PROP_SSL_PRIVATEKEY].toLatin1()),
+            .dhParams = params()[KEY_PROP_SSL_DHPARAMS].toLatin1()
+        }
+    };
 
     bool partialSuccess = false;
     for (QString url : asConst(urls.split(u'\n')))
@@ -1443,4 +1459,44 @@ void TorrentsController::exportAction()
         throw APIError(APIErrorType::Conflict, tr("Unable to export torrent file. Error: %1").arg(result.error()));
 
     setResult(result.value(), u"application/x-bittorrent"_s, (id.toString() + u".torrent"));
+}
+
+void TorrentsController::SSLParametersAction()
+{
+    requireParams({u"hash"_s});
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
+    const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    const BitTorrent::SSLParameters sslParams = torrent->getSSLParameters();
+    const QJsonObject ret
+    {
+        {KEY_PROP_SSL_CERTIFICATE, QString::fromLatin1(sslParams.certificate.toPem())},
+        {KEY_PROP_SSL_PRIVATEKEY, QString::fromLatin1(sslParams.privateKey.toPem())},
+        {KEY_PROP_SSL_DHPARAMS, QString::fromLatin1(sslParams.dhParams)}
+    };
+    setResult(ret);
+}
+
+void TorrentsController::setSSLParametersAction()
+{
+    requireParams({u"hash"_s, KEY_PROP_SSL_CERTIFICATE, KEY_PROP_SSL_PRIVATEKEY, KEY_PROP_SSL_DHPARAMS});
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    const BitTorrent::SSLParameters sslParams
+    {
+        .certificate = QSslCertificate(params()[KEY_PROP_SSL_CERTIFICATE].toLatin1()),
+        .privateKey = Utils::SSLKey::load(params()[KEY_PROP_SSL_PRIVATEKEY].toLatin1()),
+        .dhParams = params()[KEY_PROP_SSL_DHPARAMS].toLatin1()
+    };
+    if (!sslParams.isValid())
+        throw APIError(APIErrorType::BadData);
+
+    torrent->setSSLParameters(sslParams);
 }

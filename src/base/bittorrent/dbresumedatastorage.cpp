@@ -58,6 +58,7 @@
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/utils/fs.h"
+#include "base/utils/sslkey.h"
 #include "base/utils/string.h"
 #include "infohash.h"
 #include "loadtorrentparams.h"
@@ -66,7 +67,7 @@ namespace
 {
     const QString DB_CONNECTION_NAME = u"ResumeDataStorage"_s;
 
-    const int DB_VERSION = 5;
+    const int DB_VERSION = 6;
 
     const QString DB_TABLE_META = u"meta"_s;
     const QString DB_TABLE_TORRENTS = u"torrents"_s;
@@ -121,7 +122,8 @@ namespace
 
     Column makeColumn(const char *columnName)
     {
-        return {QString::fromLatin1(columnName), (u':' + QString::fromLatin1(columnName))};
+        const QString name = QString::fromLatin1(columnName);
+        return {.name = name, .placeholder = (u':' + name)};
     }
 
     const Column DB_COLUMN_ID = makeColumn("id");
@@ -141,6 +143,9 @@ namespace
     const Column DB_COLUMN_OPERATING_MODE = makeColumn("operating_mode");
     const Column DB_COLUMN_STOPPED = makeColumn("stopped");
     const Column DB_COLUMN_STOP_CONDITION = makeColumn("stop_condition");
+    const Column DB_COLUMN_SSL_CERTIFICATE = makeColumn("ssl_certificate");
+    const Column DB_COLUMN_SSL_PRIVATE_KEY = makeColumn("ssl_private_key");
+    const Column DB_COLUMN_SSL_DH_PARAMS = makeColumn("ssl_dh_params");
     const Column DB_COLUMN_RESUMEDATA = makeColumn("libtorrent_resume_data");
     const Column DB_COLUMN_METADATA = makeColumn("metadata");
     const Column DB_COLUMN_VALUE = makeColumn("value");
@@ -154,7 +159,6 @@ namespace
     QString quoted(const QString &name)
     {
         const QChar quote = u'`';
-
         return (quote + name + quote);
     }
 
@@ -237,6 +241,12 @@ namespace
         resumeData.stopped = query.value(DB_COLUMN_STOPPED.name).toBool();
         resumeData.stopCondition = Utils::String::toEnum(
                     query.value(DB_COLUMN_STOP_CONDITION.name).toString(), Torrent::StopCondition::None);
+        resumeData.sslParameters =
+        {
+            .certificate = QSslCertificate(query.value(DB_COLUMN_SSL_CERTIFICATE.name).toByteArray()),
+            .privateKey = Utils::SSLKey::load(query.value(DB_COLUMN_SSL_PRIVATE_KEY.name).toByteArray()),
+            .dhParams = query.value(DB_COLUMN_SSL_DH_PARAMS.name).toByteArray()
+        };
 
         resumeData.savePath = Profile::instance()->fromPortablePath(
                     Path(query.value(DB_COLUMN_TARGET_SAVE_PATH.name).toString()));
@@ -535,6 +545,9 @@ void BitTorrent::DBResumeDataStorage::createDB() const
             makeColumnDefinition(DB_COLUMN_OPERATING_MODE, "TEXT NOT NULL"),
             makeColumnDefinition(DB_COLUMN_STOPPED, "INTEGER NOT NULL"),
             makeColumnDefinition(DB_COLUMN_STOP_CONDITION, "TEXT NOT NULL DEFAULT `None`"),
+            makeColumnDefinition(DB_COLUMN_SSL_CERTIFICATE, "TEXT"),
+            makeColumnDefinition(DB_COLUMN_SSL_PRIVATE_KEY, "TEXT"),
+            makeColumnDefinition(DB_COLUMN_SSL_DH_PARAMS, "TEXT"),
             makeColumnDefinition(DB_COLUMN_RESUMEDATA, "BLOB NOT NULL"),
             makeColumnDefinition(DB_COLUMN_METADATA, "BLOB")
         };
@@ -574,31 +587,22 @@ void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
 
     try
     {
-        if (fromVersion == 1)
+        const auto addColumn = [&query](const QString &table, const Column &column, const char *definition)
         {
-            const auto testQuery = u"SELECT COUNT(%1) FROM %2;"_s
-                    .arg(quoted(DB_COLUMN_DOWNLOAD_PATH.name), quoted(DB_TABLE_TORRENTS));
-            if (!query.exec(testQuery))
-            {
-                const auto alterTableTorrentsQuery = u"ALTER TABLE %1 ADD %2"_s
-                        .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_DOWNLOAD_PATH, "TEXT"));
-                if (!query.exec(alterTableTorrentsQuery))
-                    throw RuntimeError(query.lastError().text());
-            }
-        }
+            const auto testQuery = u"SELECT COUNT(%1) FROM %2;"_s.arg(quoted(column.name), quoted(table));
+            if (query.exec(testQuery))
+                return;
+
+            const auto alterTableQuery = u"ALTER TABLE %1 ADD %2"_s.arg(quoted(table), makeColumnDefinition(column, definition));
+            if (!query.exec(alterTableQuery))
+                throw RuntimeError(query.lastError().text());
+        };
+
+        if (fromVersion <= 1)
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_DOWNLOAD_PATH, "TEXT");
 
         if (fromVersion <= 2)
-        {
-            const auto testQuery = u"SELECT COUNT(%1) FROM %2;"_s
-                    .arg(quoted(DB_COLUMN_STOP_CONDITION.name), quoted(DB_TABLE_TORRENTS));
-            if (!query.exec(testQuery))
-            {
-                const auto alterTableTorrentsQuery = u"ALTER TABLE %1 ADD %2"_s
-                        .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_STOP_CONDITION, "TEXT NOT NULL DEFAULT `None`"));
-                if (!query.exec(alterTableTorrentsQuery))
-                    throw RuntimeError(query.lastError().text());
-            }
-        }
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_STOP_CONDITION, "TEXT NOT NULL DEFAULT `None`");
 
         if (fromVersion <= 3)
         {
@@ -610,16 +614,13 @@ void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
         }
 
         if (fromVersion <= 4)
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT, "INTEGER NOT NULL DEFAULT -2");
+
+        if (fromVersion <= 5)
         {
-            const auto testQuery = u"SELECT COUNT(%1) FROM %2;"_s
-                    .arg(quoted(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT.name), quoted(DB_TABLE_TORRENTS));
-            if (!query.exec(testQuery))
-            {
-                const auto alterTableTorrentsQuery = u"ALTER TABLE %1 ADD %2"_s
-                        .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT, "INTEGER NOT NULL DEFAULT -2"));
-                if (!query.exec(alterTableTorrentsQuery))
-                    throw RuntimeError(query.lastError().text());
-            }
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_SSL_CERTIFICATE, "TEXT");
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_SSL_PRIVATE_KEY, "TEXT");
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_SSL_DH_PARAMS, "TEXT");
         }
 
         const QString updateMetaVersionQuery = makeUpdateStatement(DB_TABLE_META, {DB_COLUMN_NAME, DB_COLUMN_VALUE});
@@ -805,6 +806,9 @@ namespace
             DB_COLUMN_OPERATING_MODE,
             DB_COLUMN_STOPPED,
             DB_COLUMN_STOP_CONDITION,
+            DB_COLUMN_SSL_CERTIFICATE,
+            DB_COLUMN_SSL_PRIVATE_KEY,
+            DB_COLUMN_SSL_DH_PARAMS,
             DB_COLUMN_RESUMEDATA
         };
 
@@ -864,6 +868,9 @@ namespace
             query.bindValue(DB_COLUMN_OPERATING_MODE.placeholder, Utils::String::fromEnum(m_resumeData.operatingMode));
             query.bindValue(DB_COLUMN_STOPPED.placeholder, m_resumeData.stopped);
             query.bindValue(DB_COLUMN_STOP_CONDITION.placeholder, Utils::String::fromEnum(m_resumeData.stopCondition));
+            query.bindValue(DB_COLUMN_SSL_CERTIFICATE.placeholder, QString::fromLatin1(m_resumeData.sslParameters.certificate.toPem()));
+            query.bindValue(DB_COLUMN_SSL_PRIVATE_KEY.placeholder, QString::fromLatin1(m_resumeData.sslParameters.privateKey.toPem()));
+            query.bindValue(DB_COLUMN_SSL_DH_PARAMS.placeholder, QString::fromLatin1(m_resumeData.sslParameters.dhParams));
 
             if (!m_resumeData.useAutoTMM)
             {

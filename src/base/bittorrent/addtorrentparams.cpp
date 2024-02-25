@@ -32,6 +32,7 @@
 #include <QJsonObject>
 #include <QJsonValue>
 
+#include "base/utils/sslkey.h"
 #include "base/utils/string.h"
 
 const QString PARAM_CATEGORY = u"category"_s;
@@ -51,6 +52,9 @@ const QString PARAM_DOWNLOADLIMIT = u"download_limit"_s;
 const QString PARAM_SEEDINGTIMELIMIT = u"seeding_time_limit"_s;
 const QString PARAM_INACTIVESEEDINGTIMELIMIT = u"inactive_seeding_time_limit"_s;
 const QString PARAM_RATIOLIMIT = u"ratio_limit"_s;
+const QString PARAM_SSL_CERTIFICATE = u"ssl_certificate"_s;
+const QString PARAM_SSL_PRIVATEKEY = u"ssl_private_key"_s;
+const QString PARAM_SSL_DHPARAMS = u"ssl_dh_params"_s;
 
 namespace
 {
@@ -122,7 +126,13 @@ BitTorrent::AddTorrentParams BitTorrent::parseAddTorrentParams(const QJsonObject
         .downloadLimit = jsonObj.value(PARAM_DOWNLOADLIMIT).toInt(-1),
         .seedingTimeLimit = jsonObj.value(PARAM_SEEDINGTIMELIMIT).toInt(Torrent::USE_GLOBAL_SEEDING_TIME),
         .inactiveSeedingTimeLimit = jsonObj.value(PARAM_INACTIVESEEDINGTIMELIMIT).toInt(Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME),
-        .ratioLimit = jsonObj.value(PARAM_RATIOLIMIT).toDouble(Torrent::USE_GLOBAL_RATIO)
+        .ratioLimit = jsonObj.value(PARAM_RATIOLIMIT).toDouble(Torrent::USE_GLOBAL_RATIO),
+        .sslParameters =
+        {
+            .certificate = QSslCertificate(jsonObj.value(PARAM_SSL_CERTIFICATE).toString().toLatin1()),
+            .privateKey = Utils::SSLKey::load(jsonObj.value(PARAM_SSL_PRIVATEKEY).toString().toLatin1()),
+            .dhParams = jsonObj.value(PARAM_SSL_DHPARAMS).toString().toLatin1()
+        }
     };
     return params;
 }
@@ -136,13 +146,16 @@ QJsonObject BitTorrent::serializeAddTorrentParams(const AddTorrentParams &params
         {PARAM_SAVEPATH, params.savePath.data()},
         {PARAM_DOWNLOADPATH, params.downloadPath.data()},
         {PARAM_OPERATINGMODE, Utils::String::fromEnum(params.addForced
-                                                          ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged)},
+            ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged)},
         {PARAM_SKIPCHECKING, params.skipChecking},
         {PARAM_UPLOADLIMIT, params.uploadLimit},
         {PARAM_DOWNLOADLIMIT, params.downloadLimit},
         {PARAM_SEEDINGTIMELIMIT, params.seedingTimeLimit},
         {PARAM_INACTIVESEEDINGTIMELIMIT, params.inactiveSeedingTimeLimit},
-        {PARAM_RATIOLIMIT, params.ratioLimit}
+        {PARAM_RATIOLIMIT, params.ratioLimit},
+        {PARAM_SSL_CERTIFICATE, QString::fromLatin1(params.sslParameters.certificate.toPem())},
+        {PARAM_SSL_PRIVATEKEY, QString::fromLatin1(params.sslParameters.privateKey.toPem())},
+        {PARAM_SSL_DHPARAMS, QString::fromLatin1(params.sslParameters.dhParams)}
     };
 
     if (params.addToQueueTop)
