@@ -551,7 +551,10 @@ void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorre
     // Qt::Window is required to avoid showing only two dialog on top (see #12852).
     // Also improves the general convenience of adding multiple torrents.
     if (!attached)
+    {
         dlg->setWindowFlags(Qt::Window);
+        adjustDialogGeometry(dlg, parent);
+    }
     dlg->setAttribute(Qt::WA_DeleteOnClose);
 
     if (Net::DownloadManager::hasSupportedScheme(source))
@@ -570,14 +573,9 @@ void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorre
         : dlg->loadTorrentFile(source);
 
     if (isLoaded)
-    {
-        adjustDialogGeometry(dlg, parent);
         dlg->QDialog::show();
-    }
     else
-    {
         delete dlg;
-    }
 }
 
 void AddNewTorrentDialog::show(const QString &source, QWidget *parent)
