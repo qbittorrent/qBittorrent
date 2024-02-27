@@ -366,6 +366,7 @@ window.qBittorrent.PropFiles = (function() {
             },
             onSuccess: function(files) {
                 clearTimeout(torrentFilesFilterInputTimer);
+                torrentFilesFilterInputTimer = -1;
 
                 if (files.length === 0) {
                     torrentFilesTable.clear();
@@ -640,26 +641,27 @@ window.qBittorrent.PropFiles = (function() {
     if (torrentFilesTable.getSortedColumn() === null)
         torrentFilesTable.setSortedColumn('name');
 
-    let prevTorrentFilesFilterValue;
-    let torrentFilesFilterInputTimer = null;
     // listen for changes to torrentFilesFilterInput
-    $('torrentFilesFilterInput').addEvent('input', function() {
-        const value = $('torrentFilesFilterInput').get("value");
-        if (value !== prevTorrentFilesFilterValue) {
-            prevTorrentFilesFilterValue = value;
-            torrentFilesTable.setFilter(value);
-            clearTimeout(torrentFilesFilterInputTimer);
-            torrentFilesFilterInputTimer = setTimeout(function() {
-                if (current_hash === "")
-                    return;
-                torrentFilesTable.updateTable(false);
+    let torrentFilesFilterInputTimer = -1;
+    $('torrentFilesFilterInput').addEvent('input', () => {
+        clearTimeout(torrentFilesFilterInputTimer);
 
-                if (value.trim() === "")
-                    collapseAllNodes();
-                else
-                    expandAllNodes();
-            }, 400);
-        }
+        const value = $('torrentFilesFilterInput').get("value");
+        torrentFilesTable.setFilter(value);
+
+        torrentFilesFilterInputTimer = setTimeout(() => {
+            torrentFilesFilterInputTimer = -1;
+
+            if (current_hash === "")
+                return;
+
+            torrentFilesTable.updateTable();
+
+            if (value.trim() === "")
+                collapseAllNodes();
+            else
+                expandAllNodes();
+        }, window.qBittorrent.Misc.FILTER_INPUT_DELAY);
     });
 
     /**

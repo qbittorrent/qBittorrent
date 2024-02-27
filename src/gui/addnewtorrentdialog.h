@@ -38,12 +38,12 @@
 #include "base/path.h"
 #include "base/settingvalue.h"
 
+class LineEdit;
+
 namespace Ui
 {
     class AddNewTorrentDialog;
 }
-
-class LineEdit;
 
 class AddNewTorrentDialog final : public QDialog
 {

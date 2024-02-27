@@ -175,12 +175,14 @@ window.qBittorrent.ContextMenu = (function() {
 
                 const touchstartEvent = e;
                 this.touchstartTimer = setTimeout(function() {
+                    this.touchstartTimer = -1;
                     this.triggerMenu(touchstartEvent, elem);
                 }.bind(this), this.options.touchTimer);
             }.bind(this));
             elem.addEvent('touchend', function(e) {
                 e.preventDefault();
                 clearTimeout(this.touchstartTimer);
+                this.touchstartTimer = -1;
             }.bind(this));
         },
 

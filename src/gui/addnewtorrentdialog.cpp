@@ -33,6 +33,7 @@
 #include <functional>
 
 #include <QAction>
+#include <QByteArray>
 #include <QDateTime>
 #include <QDebug>
 #include <QDir>
@@ -41,6 +42,7 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QShortcut>
+#include <QSize>
 #include <QString>
 #include <QUrl>
 #include <QVector>
