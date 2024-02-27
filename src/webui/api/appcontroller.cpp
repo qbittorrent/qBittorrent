@@ -361,6 +361,8 @@ void AppController::preferencesAction()
     data[u"torrent_file_size_limit"_s] = pref->getTorrentFileSizeLimit();
     // Recheck completed torrents
     data[u"recheck_completed_torrents"_s] = pref->recheckTorrentsOnCompletion();
+    // Customize application instance name
+    data[u"app_instance_name"_s] = app()->instanceName();
     // Refresh interval
     data[u"refresh_interval"_s] = session->refreshInterval();
     // Resolve peer countries
@@ -943,6 +945,9 @@ void AppController::setPreferencesAction()
     // Recheck completed torrents
     if (hasKey(u"recheck_completed_torrents"_s))
         pref->recheckTorrentsOnCompletion(it.value().toBool());
+    // Customize application instance name
+    if (hasKey(u"app_instance_name"_s))
+        app()->setInstanceName(it.value().toString());
     // Refresh interval
     if (hasKey(u"refresh_interval"_s))
         session->setRefreshInterval(it.value().toInt());

@@ -79,6 +79,7 @@ namespace
         CONFIRM_RECHECK_TORRENT,
         RECHECK_COMPLETED,
         // UI related
+        APP_INSTANCE_NAME,
         LIST_REFRESH,
         RESOLVE_HOSTS,
         RESOLVE_COUNTRIES,
@@ -280,6 +281,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setBlockPeersOnPrivilegedPorts(m_checkBoxBlockPeersOnPrivilegedPorts.isChecked());
     // Recheck torrents on completion
     pref->recheckTorrentsOnCompletion(m_checkBoxRecheckCompleted.isChecked());
+    // Customize application instance name
+    app()->setInstanceName(m_lineEditAppInstanceName.text());
     // Transfer list refresh interval
     session->setRefreshInterval(m_spinBoxListRefresh.value());
     // Peer resolution
@@ -723,6 +726,10 @@ void AdvancedSettings::loadAdvancedSettings()
     // Recheck completed torrents
     m_checkBoxRecheckCompleted.setChecked(pref->recheckTorrentsOnCompletion());
     addRow(RECHECK_COMPLETED, tr("Recheck torrents on completion"), &m_checkBoxRecheckCompleted);
+    // Customize application instance name
+    m_lineEditAppInstanceName.setText(app()->instanceName());
+    m_lineEditAppInstanceName.setToolTip(tr("It appends the text to the window title to help distinguish qBittorent instances"));
+    addRow(APP_INSTANCE_NAME, tr("Customize application instance name"), &m_lineEditAppInstanceName);
     // Refresh interval
     m_spinBoxListRefresh.setMinimum(30);
     m_spinBoxListRefresh.setMaximum(99999);

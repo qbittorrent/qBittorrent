@@ -1157,7 +1157,8 @@ const initializeWindows = function() {
                 url: 'api/v2/app/shutdown',
                 method: 'post',
                 onSuccess: function() {
-                    document.write('<!doctype html><html lang="${LANG}"><head> <meta charset="UTF-8"> <meta name="color-scheme" content="light dark" /> <title>QBT_TR(qBittorrent has been shutdown)QBT_TR[CONTEXT=HttpServer]</title></head><body> <h1 style="text-align: center;">QBT_TR(qBittorrent has been shutdown)QBT_TR[CONTEXT=HttpServer]</h1></body></html>');
+                    const shutdownMessage = 'QBT_TR(%1 has been shutdown)QBT_TR[CONTEXT=HttpServer]'.replace("%1", window.qBittorrent.Client.mainTitle());
+                    document.write(`<!doctype html><html lang="${LANG}"><head> <meta charset="UTF-8"> <meta name="color-scheme" content="light dark"> <title>${shutdownMessage}</title> <style>* {font-family: Arial, Helvetica, sans-serif;}</style></head><body> <h1 style="text-align: center;">${shutdownMessage}</h1></body></html>`);
                     document.close();
                     window.stop();
                     window.qBittorrent.Client.stop();
