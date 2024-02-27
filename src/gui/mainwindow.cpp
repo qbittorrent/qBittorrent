@@ -57,6 +57,7 @@
 #include <QShortcut>
 #include <QSplitter>
 #include <QStatusBar>
+#include <QString>
 #include <QtGlobal>
 #include <QTimer>
 

@@ -183,7 +183,7 @@
         };
 
         let customSyncLogDataInterval = null;
-        let logFilterTimer;
+        let logFilterTimer = -1;
         let inputtedFilterText = "";
         let selectBox;
         let selectedLogLevels = JSON.parse(LocalPreferences.get('qbt_selected_log_levels')) || ['1', '2', '4', '8'];
@@ -297,9 +297,11 @@
         const logFilterChanged = () => {
             clearTimeout(logFilterTimer);
             logFilterTimer = setTimeout((curTab) => {
+                logFilterTimer = -1;
+
                 tableInfo[curTab].instance.updateTable(false);
                 updateLabelCount(curTab);
-            }, 400, currentSelectedTab);
+            }, window.qBittorrent.Misc.FILTER_INPUT_DELAY, currentSelectedTab);
         };
 
         const setCurrentTab = (tab) => {
@@ -321,6 +323,7 @@
             }
 
             clearTimeout(logFilterTimer);
+            logFilterTimer = -1;
             load();
 
             if (tableInfo[currentSelectedTab].instance.filterText !== getFilterText()) {
@@ -377,6 +380,8 @@
 
                     if (response.length > 0) {
                         clearTimeout(logFilterTimer);
+                        logFilterTimer = -1;
+
                         for (let i = 0; i < response.length; ++i) {
                             let row;
                             if (curTab === 'main') {

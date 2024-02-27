@@ -29,20 +29,41 @@
 
 #include "lineedit.h"
 
+#include <chrono>
+
 #include <QAction>
 #include <QKeyEvent>
+#include <QTimer>
 
 #include "base/global.h"
 #include "uithememanager.h"
 
+using namespace std::chrono_literals;
+
+namespace
+{
+    const std::chrono::milliseconds FILTER_INPUT_DELAY {400};
+}
+
 LineEdit::LineEdit(QWidget *parent)
     : QLineEdit(parent)
+    , m_delayedTextChangedTimer {new QTimer(this)}
 {
     auto *action = new QAction(UIThemeManager::instance()->getIcon(u"edit-find"_s), QString(), this);
     addAction(action, QLineEdit::LeadingPosition);
 
     setClearButtonEnabled(true);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+
+    m_delayedTextChangedTimer->setSingleShot(true);
+    connect(m_delayedTextChangedTimer, &QTimer::timeout, this, [this]
+    {
+        emit textChanged(text());
+    });
+    connect(this, &QLineEdit::textChanged, this, [this]
+    {
+        m_delayedTextChangedTimer->start(FILTER_INPUT_DELAY);
+    });
 }
 
 void LineEdit::keyPressEvent(QKeyEvent *event)

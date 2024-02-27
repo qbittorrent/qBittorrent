@@ -233,7 +233,6 @@
             max: 0.00,
             maxUnit: 3
         };
-        let prevNameFilterValue;
         let selectedCategory = "QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]";
         let selectedPlugin = "all";
         let prevSelectedPlugin;
@@ -258,18 +257,17 @@
             searchResultsTable.setup('searchResultsTableDiv', 'searchResultsTableFixedHeaderDiv', searchResultsTableContextMenu);
             getPlugins();
 
-            let searchInNameFilterTimer = null;
             // listen for changes to searchInNameFilter
-            $('searchInNameFilter').addEvent('input', function() {
-                const value = $('searchInNameFilter').get("value");
-                if (value !== prevNameFilterValue) {
-                    prevNameFilterValue = value;
-                    clearTimeout(searchInNameFilterTimer);
-                    searchInNameFilterTimer = setTimeout(function() {
-                        searchText.filterPattern = value;
-                        searchFilterChanged();
-                    }, 400);
-                }
+            let searchInNameFilterTimer = -1;
+            $('searchInNameFilter').addEvent('input', () => {
+                clearTimeout(searchInNameFilterTimer);
+                searchInNameFilterTimer = setTimeout(() => {
+                    searchInNameFilterTimer = -1;
+
+                    const value = $('searchInNameFilter').get("value");
+                    searchText.filterPattern = value;
+                    searchFilterChanged();
+                }, window.qBittorrent.Misc.FILTER_INPUT_DELAY);
             });
 
             new Keyboard({

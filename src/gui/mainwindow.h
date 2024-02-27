@@ -42,6 +42,7 @@ class QCloseEvent;
 class QComboBox;
 class QFileSystemWatcher;
 class QSplitter;
+class QString;
 class QTabWidget;
 class QTimer;
 

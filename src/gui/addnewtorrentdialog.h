@@ -39,6 +39,9 @@
 #include "base/path.h"
 #include "base/settingvalue.h"
 
+class LineEdit;
+class TorrentFileGuard;
+
 namespace BitTorrent
 {
     class InfoHash;
@@ -53,9 +56,6 @@ namespace Ui
 {
     class AddNewTorrentDialog;
 }
-
-class LineEdit;
-class TorrentFileGuard;
 
 class AddNewTorrentDialog final : public QDialog
 {

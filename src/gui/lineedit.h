@@ -31,6 +31,9 @@
 
 #include <QLineEdit>
 
+class QKeyEvent;
+class QTimer;
+
 class LineEdit final : public QLineEdit
 {
     Q_OBJECT
@@ -39,6 +42,11 @@ class LineEdit final : public QLineEdit
 public:
     explicit LineEdit(QWidget *parent = nullptr);
 
+signals:
+    void textChanged(const QString &text);
+
 private:
     void keyPressEvent(QKeyEvent *event) override;
+
+    QTimer *m_delayedTextChangedTimer = nullptr;
 };

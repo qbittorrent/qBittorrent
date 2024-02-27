@@ -658,6 +658,8 @@ window.addEvent('load', function() {
                 $('error_div').set('html', '');
                 if (response) {
                     clearTimeout(torrentsFilterInputTimer);
+                    torrentsFilterInputTimer = -1;
+
                     let torrentsTableSelectedRows;
                     let update_categories = false;
                     let updateTags = false;
@@ -1357,18 +1359,14 @@ window.addEvent('load', function() {
         $('torrentFilesFilterToolbar').addClass("invisible");
     };
 
-    let prevTorrentsFilterValue;
-    let torrentsFilterInputTimer = null;
     // listen for changes to torrentsFilterInput
-    $('torrentsFilterInput').addEvent('input', function() {
-        const value = $('torrentsFilterInput').get("value");
-        if (value !== prevTorrentsFilterValue) {
-            prevTorrentsFilterValue = value;
-            clearTimeout(torrentsFilterInputTimer);
-            torrentsFilterInputTimer = setTimeout(function() {
-                torrentsTable.updateTable(false);
-            }, 400);
-        }
+    let torrentsFilterInputTimer = -1;
+    $('torrentsFilterInput').addEvent('input', () => {
+        clearTimeout(torrentsFilterInputTimer);
+        torrentsFilterInputTimer = setTimeout(() => {
+            torrentsFilterInputTimer = -1;
+            torrentsTable.updateTable();
+        }, window.qBittorrent.Misc.FILTER_INPUT_DELAY);
     });
 
     $('transfersTabLink').addEvent('click', showTransfersTab);
