@@ -279,7 +279,7 @@ QVector<TrackerEntry> TorrentInfo::trackers() const
     QVector<TrackerEntry> ret;
     ret.reserve(static_cast<decltype(ret)::size_type>(trackers.size()));
     for (const lt::announce_entry &tracker : trackers)
-        ret.append({QString::fromStdString(tracker.url), tracker.tier});
+        ret.append({.url = QString::fromStdString(tracker.url), .tier = tracker.tier});
 
     return ret;
 }

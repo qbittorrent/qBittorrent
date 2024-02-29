@@ -48,14 +48,17 @@ class QUrl;
 namespace BitTorrent
 {
     enum class DownloadPriority;
+
     class InfoHash;
     class PeerInfo;
     class Session;
     class TorrentID;
     class TorrentInfo;
+
     struct PeerAddress;
     struct SSLParameters;
     struct TrackerEntry;
+    struct TrackerEntryStatus;
 
     // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
     // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
@@ -245,7 +248,7 @@ namespace BitTorrent
         virtual bool hasMissingFiles() const = 0;
         virtual bool hasError() const = 0;
         virtual int queuePosition() const = 0;
-        virtual QVector<TrackerEntry> trackers() const = 0;
+        virtual QVector<TrackerEntryStatus> trackers() const = 0;
         virtual QVector<QUrl> urlSeeds() const = 0;
         virtual QString error() const = 0;
         virtual qlonglong totalDownload() const = 0;

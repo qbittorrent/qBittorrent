@@ -33,7 +33,7 @@
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrent.h"
-#include "base/bittorrent/trackerentry.h"
+#include "base/bittorrent/trackerentrystatus.h"
 #include "base/path.h"
 #include "base/tagset.h"
 #include "base/utils/datetime.h"
