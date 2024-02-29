@@ -28,6 +28,8 @@
 
 #pragma once
 
+#include <optional>
+
 #include <QWidget>
 
 #include "base/bittorrent/torrent.h"
@@ -43,21 +45,20 @@ class TorrentShareLimitsWidget final : public QWidget
     Q_DISABLE_COPY_MOVE(TorrentShareLimitsWidget)
 
 public:
-    explicit TorrentShareLimitsWidget(QWidget *parent = nullptr
-            , qreal ratioLimit = BitTorrent::Torrent::USE_GLOBAL_RATIO
-            , int seedingTimeLimit = BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME
-            , int inactiveSeedingTimeLimit = BitTorrent::Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME);
+    explicit TorrentShareLimitsWidget(QWidget *parent = nullptr);
     ~TorrentShareLimitsWidget() override;
 
-    void setTorrentShareLimits(qreal ratioLimit, int seedingTimeLimit, int inactiveSeedingTimeLimit);
+    void setRatioLimit(qreal ratioLimit);
+    void setSeedingTimeLimit(int seedingTimeLimit);
+    void setInactiveSeedingTimeLimit(int inactiveSeedingTimeLimit);
 
-    qreal ratioLimit() const;
-    int seedingTimeLimit() const;
-    int inactiveSeedingTimeLimit() const;
+    std::optional<qreal> ratioLimit() const;
+    std::optional<int> seedingTimeLimit() const;
+    std::optional<int> inactiveSeedingTimeLimit() const;
 
 private:
     Ui::TorrentShareLimitsWidget *m_ui = nullptr;
-    int m_seedingTimeLimit = 0;
-    int m_inactiveSeedingTimeLimit = 0;
-    qreal m_ratioLimit = 0;
+    int m_seedingTimeLimit = 1440;
+    int m_inactiveSeedingTimeLimit = 1440;
+    qreal m_ratioLimit = 1;
 };
