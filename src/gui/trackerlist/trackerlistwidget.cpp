@@ -47,7 +47,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
-#include "base/bittorrent/trackerentry.h"
+#include "base/bittorrent/trackerentrystatus.h"
 #include "base/global.h"
 #include "base/preferences.h"
 #include "gui/autoexpandabledialog.h"
@@ -142,52 +142,68 @@ QModelIndexList TrackerListWidget::getSelectedTrackerRows() const
 
 void TrackerListWidget::decreaseSelectedTrackerTiers()
 {
-    const auto &trackerIndexes = getSelectedTrackerRows();
+    const QModelIndexList trackerIndexes = getSelectedTrackerRows();
     if (trackerIndexes.isEmpty())
         return;
 
     QSet<QString> trackerURLs;
+    trackerURLs.reserve(trackerIndexes.size());
     for (const QModelIndex &index : trackerIndexes)
-    {
         trackerURLs.insert(index.siblingAtColumn(TrackerListModel::COL_URL).data().toString());
-    }
 
-    QList<BitTorrent::TrackerEntry> trackers = m_model->torrent()->trackers();
-    for (BitTorrent::TrackerEntry &trackerEntry : trackers)
+    const QList<BitTorrent::TrackerEntryStatus> trackers = m_model->torrent()->trackers();
+    QList<BitTorrent::TrackerEntry> adjustedTrackers;
+    adjustedTrackers.reserve(trackers.size());
+
+    for (const BitTorrent::TrackerEntryStatus &status : trackers)
     {
-        if (trackerURLs.contains(trackerEntry.url))
+        BitTorrent::TrackerEntry entry
         {
-            if (trackerEntry.tier > 0)
-                --trackerEntry.tier;
+            .url = status.url,
+            .tier = status.tier
+        };
+        if (trackerURLs.contains(entry.url))
+        {
+            if (entry.tier > 0)
+                --entry.tier;
         }
+        adjustedTrackers.append(entry);
     }
 
-    m_model->torrent()->replaceTrackers(trackers);
+    m_model->torrent()->replaceTrackers(adjustedTrackers);
 }
 
 void TrackerListWidget::increaseSelectedTrackerTiers()
 {
-    const auto &trackerIndexes = getSelectedTrackerRows();
+    const QModelIndexList trackerIndexes = getSelectedTrackerRows();
     if (trackerIndexes.isEmpty())
         return;
 
     QSet<QString> trackerURLs;
+    trackerURLs.reserve(trackerIndexes.size());
     for (const QModelIndex &index : trackerIndexes)
-    {
         trackerURLs.insert(index.siblingAtColumn(TrackerListModel::COL_URL).data().toString());
-    }
 
-    QList<BitTorrent::TrackerEntry> trackers = m_model->torrent()->trackers();
-    for (BitTorrent::TrackerEntry &trackerEntry : trackers)
+    const QList<BitTorrent::TrackerEntryStatus> trackers = m_model->torrent()->trackers();
+    QList<BitTorrent::TrackerEntry> adjustedTrackers;
+    adjustedTrackers.reserve(trackers.size());
+
+    for (const BitTorrent::TrackerEntryStatus &status : trackers)
     {
-        if (trackerURLs.contains(trackerEntry.url))
+        BitTorrent::TrackerEntry entry
         {
-            if (trackerEntry.tier < std::numeric_limits<decltype(trackerEntry.tier)>::max())
-                ++trackerEntry.tier;
+            .url = status.url,
+            .tier = status.tier
+        };
+        if (trackerURLs.contains(entry.url))
+        {
+            if (entry.tier < std::numeric_limits<decltype(entry.tier)>::max())
+                ++entry.tier;
         }
+        adjustedTrackers.append(entry);
     }
 
-    m_model->torrent()->replaceTrackers(trackers);
+    m_model->torrent()->replaceTrackers(adjustedTrackers);
 }
 
 void TrackerListWidget::openAddTrackersDialog()
@@ -205,7 +221,7 @@ void TrackerListWidget::copyTrackerUrl()
     if (!torrent())
         return;
 
-    const auto &selectedTrackerIndexes = getSelectedTrackerRows();
+    const QModelIndexList selectedTrackerIndexes = getSelectedTrackerRows();
     if (selectedTrackerIndexes.isEmpty())
         return;
 
@@ -226,7 +242,7 @@ void TrackerListWidget::deleteSelectedTrackers()
     if (!torrent())
         return;
 
-    const auto &selectedTrackerIndexes = getSelectedTrackerRows();
+    const QModelIndexList selectedTrackerIndexes = getSelectedTrackerRows();
     if (selectedTrackerIndexes.isEmpty())
         return;
 
@@ -245,7 +261,7 @@ void TrackerListWidget::editSelectedTracker()
     if (!torrent())
         return;
 
-    const auto &selectedTrackerIndexes = getSelectedTrackerRows();
+    const QModelIndexList selectedTrackerIndexes = getSelectedTrackerRows();
     if (selectedTrackerIndexes.isEmpty())
         return;
 
@@ -268,24 +284,36 @@ void TrackerListWidget::editSelectedTracker()
     if (newTrackerURL == trackerURL)
         return;
 
-    QList<BitTorrent::TrackerEntry> trackers = torrent()->trackers();
+    const QList<BitTorrent::TrackerEntryStatus> trackers = torrent()->trackers();
+    QList<BitTorrent::TrackerEntry> entries;
+    entries.reserve(trackers.size());
+
     bool match = false;
-    for (BitTorrent::TrackerEntry &entry : trackers)
+    for (const BitTorrent::TrackerEntryStatus &status : trackers)
     {
-        if (newTrackerURL == QUrl(entry.url))
+        const QUrl url {status.url};
+
+        if (newTrackerURL == url)
         {
             QMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL already exists."));
             return;
         }
 
-        if (!match && (trackerURL == QUrl(entry.url)))
+        BitTorrent::TrackerEntry entry
+        {
+            .url = status.url,
+            .tier = status.tier
+        };
+
+        if (!match && (trackerURL == url))
         {
             match = true;
             entry.url = newTrackerURL.toString();
         }
+        entries.append(entry);
     }
 
-    torrent()->replaceTrackers(trackers);
+    torrent()->replaceTrackers(entries);
 }
 
 void TrackerListWidget::reannounceSelected()
@@ -315,14 +343,12 @@ void TrackerListWidget::reannounceSelected()
         trackerURLs.insert(index.siblingAtColumn(TrackerListModel::COL_URL).data().toString());
     }
 
-    const QList<BitTorrent::TrackerEntry> &trackers = m_model->torrent()->trackers();
+    const QList<BitTorrent::TrackerEntryStatus> &trackers = m_model->torrent()->trackers();
     for (qsizetype i = 0; i < trackers.size(); ++i)
     {
-        const BitTorrent::TrackerEntry &trackerEntry = trackers.at(i);
-        if (trackerURLs.contains(trackerEntry.url))
-        {
+        const BitTorrent::TrackerEntryStatus &status = trackers.at(i);
+        if (trackerURLs.contains(status.url))
             torrent()->forceReannounce(i);
-        }
     }
 }
 

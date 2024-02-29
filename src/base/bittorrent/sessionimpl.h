@@ -54,7 +54,7 @@
 #include "session.h"
 #include "sessionstatus.h"
 #include "torrentinfo.h"
-#include "trackerentry.h"
+#include "trackerentrystatus.h"
 
 class QString;
 class QThread;
@@ -69,16 +69,18 @@ class NativeSessionExtension;
 
 namespace BitTorrent
 {
+    enum class MoveStorageMode;
+    enum class MoveStorageContext;
+
     class InfoHash;
     class ResumeDataStorage;
     class Torrent;
     class TorrentDescriptor;
     class TorrentImpl;
     class Tracker;
-    struct LoadTorrentParams;
 
-    enum class MoveStorageMode;
-    enum class MoveStorageContext;
+    struct LoadTorrentParams;
+    struct TrackerEntry;
 
     struct SessionMetricIndices
     {
@@ -587,7 +589,7 @@ namespace BitTorrent
         void saveStatistics() const;
         void loadStatistics();
 
-        void updateTrackerEntries(lt::torrent_handle torrentHandle, QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>> updatedTrackers);
+        void updateTrackerEntryStatuses(lt::torrent_handle torrentHandle, QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>> updatedTrackers);
 
         // BitTorrent
         lt::session *m_nativeSession = nullptr;
@@ -766,7 +768,7 @@ namespace BitTorrent
 
         // This field holds amounts of peers reported by trackers in their responses to announces
         // (torrent.tracker_name.tracker_local_endpoint.protocol_version.num_peers)
-        QHash<lt::torrent_handle, QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>>> m_updatedTrackerEntries;
+        QHash<lt::torrent_handle, QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>>> m_updatedTrackerStatuses;
 
         // I/O errored torrents
         QSet<TorrentID> m_recentErroredTorrents;

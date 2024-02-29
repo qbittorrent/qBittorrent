@@ -43,7 +43,7 @@
 #include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/torrentinfo.h"
-#include "base/bittorrent/trackerentry.h"
+#include "base/bittorrent/trackerentrystatus.h"
 #include "base/global.h"
 #include "base/net/geoipmanager.h"
 #include "base/preferences.h"
@@ -523,8 +523,8 @@ void SyncController::makeMaindataSnapshot()
         QVariantMap serializedTorrent = serialize(*torrent);
         serializedTorrent.remove(KEY_TORRENT_ID);
 
-        for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers()))
-            m_knownTrackers[tracker.url].insert(torrentID);
+        for (const BitTorrent::TrackerEntryStatus &status : asConst(torrent->trackers()))
+            m_knownTrackers[status.url].insert(torrentID);
 
         m_maindataSnapshot.torrents[torrentID.toString()] = serializedTorrent;
     }
@@ -834,11 +834,11 @@ void SyncController::onTorrentAdded(BitTorrent::Torrent *torrent)
     m_removedTorrents.remove(torrentID);
     m_updatedTorrents.insert(torrentID);
 
-    for (const BitTorrent::TrackerEntry &trackerEntry : asConst(torrent->trackers()))
+    for (const BitTorrent::TrackerEntryStatus &status : asConst(torrent->trackers()))
     {
-        m_knownTrackers[trackerEntry.url].insert(torrentID);
-        m_updatedTrackers.insert(trackerEntry.url);
-        m_removedTrackers.remove(trackerEntry.url);
+        m_knownTrackers[status.url].insert(torrentID);
+        m_updatedTrackers.insert(status.url);
+        m_removedTrackers.remove(status.url);
     }
 }
 
@@ -849,9 +849,9 @@ void SyncController::onTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent)
     m_updatedTorrents.remove(torrentID);
     m_removedTorrents.insert(torrentID);
 
-    for (const BitTorrent::TrackerEntry &trackerEntry : asConst(torrent->trackers()))
+    for (const BitTorrent::TrackerEntryStatus &status : asConst(torrent->trackers()))
     {
-        auto iter = m_knownTrackers.find(trackerEntry.url);
+        auto iter = m_knownTrackers.find(status.url);
         Q_ASSERT(iter != m_knownTrackers.end());
         if (iter == m_knownTrackers.end()) [[unlikely]]
             continue;
@@ -861,12 +861,12 @@ void SyncController::onTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent)
         if (torrentIDs.isEmpty())
         {
             m_knownTrackers.erase(iter);
-            m_updatedTrackers.remove(trackerEntry.url);
-            m_removedTrackers.insert(trackerEntry.url);
+            m_updatedTrackers.remove(status.url);
+            m_removedTrackers.insert(status.url);
         }
         else
         {
-            m_updatedTrackers.insert(trackerEntry.url);
+            m_updatedTrackers.insert(status.url);
         }
     }
 }
@@ -922,11 +922,12 @@ void SyncController::onTorrentTrackersChanged(BitTorrent::Torrent *torrent)
 {
     using namespace BitTorrent;
 
-    const QVector<TrackerEntry> currentTrackerEntries = torrent->trackers();
+    const QVector<TrackerEntryStatus> trackers = torrent->trackers();
+
     QSet<QString> currentTrackers;
-    currentTrackers.reserve(currentTrackerEntries.size());
-    for (const TrackerEntry &currentTrackerEntry : currentTrackerEntries)
-        currentTrackers.insert(currentTrackerEntry.url);
+    currentTrackers.reserve(trackers.size());
+    for (const TrackerEntryStatus &status : trackers)
+        currentTrackers.insert(status.url);
 
     const TorrentID torrentID = torrent->id();
     Algorithm::removeIf(m_knownTrackers

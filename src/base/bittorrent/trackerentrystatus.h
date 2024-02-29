@@ -1,6 +1,5 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024  Mike Tzou (Chocobo1)
  * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
@@ -27,43 +26,64 @@
  * exception statement from your version.
  */
 
-#include "trackerentry.h"
+#pragma once
 
+#include <QDateTime>
 #include <QHash>
-#include <QList>
-#include <QStringView>
+#include <QString>
 
-QList<BitTorrent::TrackerEntry> BitTorrent::parseTrackerEntries(const QStringView str)
+class QStringView;
+
+namespace BitTorrent
 {
-    const QList<QStringView> trackers = str.split(u'\n');  // keep the empty parts to track tracker tier
-
-    QList<BitTorrent::TrackerEntry> entries;
-    entries.reserve(trackers.size());
-
-    int trackerTier = 0;
-    for (QStringView tracker : trackers)
+    enum class TrackerEndpointState
     {
-        tracker = tracker.trimmed();
+        NotContacted = 1,
+        Working = 2,
+        Updating = 3,
+        NotWorking = 4,
+        TrackerError = 5,
+        Unreachable = 6
+    };
 
-        if (tracker.isEmpty())
-        {
-            if (trackerTier < std::numeric_limits<decltype(trackerTier)>::max())  // prevent overflow
-                ++trackerTier;
-            continue;
-        }
+    struct TrackerEndpointStatus
+    {
+        QString name {};
+        int btVersion = 1;
 
-        entries.append({tracker.toString(), trackerTier});
-    }
+        TrackerEndpointState state = TrackerEndpointState::NotContacted;
+        QString message {};
 
-    return entries;
-}
+        int numPeers = -1;
+        int numSeeds = -1;
+        int numLeeches = -1;
+        int numDownloaded = -1;
 
-bool BitTorrent::operator==(const TrackerEntry &left, const TrackerEntry &right)
-{
-    return (left.url == right.url);
-}
+        QDateTime nextAnnounceTime {};
+        QDateTime minAnnounceTime {};
+    };
 
-std::size_t BitTorrent::qHash(const TrackerEntry &key, const std::size_t seed)
-{
-    return ::qHash(key.url, seed);
+    struct TrackerEntryStatus
+    {
+        QString url {};
+        int tier = 0;
+
+        TrackerEndpointState state = TrackerEndpointState::NotContacted;
+        QString message {};
+
+        int numPeers = -1;
+        int numSeeds = -1;
+        int numLeeches = -1;
+        int numDownloaded = -1;
+
+        QDateTime nextAnnounceTime {};
+        QDateTime minAnnounceTime {};
+
+        QHash<std::pair<QString, int>, TrackerEndpointStatus> endpoints {};
+
+        void clear();
+    };
+
+    bool operator==(const TrackerEntryStatus &left, const TrackerEntryStatus &right);
+    std::size_t qHash(const TrackerEntryStatus &key, std::size_t seed = 0);
 }

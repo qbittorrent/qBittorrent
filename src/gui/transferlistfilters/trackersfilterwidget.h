@@ -32,11 +32,16 @@
 #include <QtContainerFwd>
 #include <QHash>
 
-#include "base/bittorrent/trackerentry.h"
 #include "base/path.h"
 #include "basefilterwidget.h"
 
 class TransferListWidget;
+
+namespace BitTorrent
+{
+    struct TrackerEntry;
+    struct TrackerEntryStatus;
+}
 
 namespace Net
 {
@@ -55,8 +60,8 @@ public:
     void addTrackers(const BitTorrent::Torrent *torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
     void removeTrackers(const BitTorrent::Torrent *torrent, const QStringList &trackers);
     void refreshTrackers(const BitTorrent::Torrent *torrent);
-    void handleTrackerEntriesUpdated(const BitTorrent::Torrent *torrent
-            , const QHash<QString, BitTorrent::TrackerEntry> &updatedTrackerEntries);
+    void handleTrackerStatusesUpdated(const BitTorrent::Torrent *torrent
+            , const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers);
     void setDownloadTrackerFavicon(bool value);
 
 private slots:

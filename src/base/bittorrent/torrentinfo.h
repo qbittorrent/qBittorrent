@@ -46,7 +46,7 @@ class QUrl;
 namespace BitTorrent
 {
     class InfoHash;
-    struct TrackerEntry;
+    struct TrackerEntryStatus;
 
     class TorrentInfo
     {
@@ -80,7 +80,7 @@ namespace BitTorrent
         PathList filePaths() const;
         qlonglong fileSize(int index) const;
         qlonglong fileOffset(int index) const;
-        QVector<TrackerEntry> trackers() const;
+        QVector<TrackerEntryStatus> trackers() const;
         QVector<QUrl> urlSeeds() const;
         QByteArray metadata() const;
         PathList filesForPiece(int pieceIndex) const;
