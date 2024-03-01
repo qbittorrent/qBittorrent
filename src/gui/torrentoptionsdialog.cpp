@@ -282,6 +282,7 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
                            , this, &TorrentOptionsDialog::handleDownSpeedLimitChanged);
     }
 
+    m_ui->torrentShareLimitsWidget->setDefaultLimits(session->globalMaxRatio(), session->globalMaxSeedingMinutes(), session->globalMaxInactiveSeedingMinutes());
     if (allSameRatio)
         m_ui->torrentShareLimitsWidget->setRatioLimit(firstTorrentRatio);
     if (allSameSeedingTime)
