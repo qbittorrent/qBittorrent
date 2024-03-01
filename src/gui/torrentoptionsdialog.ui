@@ -151,111 +151,13 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_2">
+    <widget class="QGroupBox" name="torrentShareLimitsBox">
      <property name="title">
       <string>Torrent share limits</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <layout class="QVBoxLayout" name="torrentShareLimitsBoxLayout">
       <item>
-       <widget class="QRadioButton" name="radioUseGlobalShareLimits">
-        <property name="text">
-         <string>Use global share limit</string>
-        </property>
-        <attribute name="buttonGroup">
-         <string notr="true">buttonGroup</string>
-        </attribute>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radioNoLimit">
-        <property name="text">
-         <string>Set no share limit</string>
-        </property>
-        <attribute name="buttonGroup">
-         <string notr="true">buttonGroup</string>
-        </attribute>
-       </widget>
-      </item>
-      <item>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
-         <widget class="QRadioButton" name="radioTorrentLimit">
-          <property name="text">
-           <string>Set share limit to</string>
-          </property>
-          <attribute name="buttonGroup">
-           <string notr="true">buttonGroup</string>
-          </attribute>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QCheckBox" name="checkMaxRatio">
-          <property name="text">
-           <string>ratio</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QDoubleSpinBox" name="spinRatioLimit">
-          <property name="maximum">
-           <double>9999.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.050000000000000</double>
-          </property>
-          <property name="value">
-           <double>1.000000000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QCheckBox" name="checkMaxTime">
-          <property name="text">
-           <string>total minutes</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QSpinBox" name="spinTimeLimit">
-          <property name="maximum">
-           <number>525600</number>
-          </property>
-          <property name="value">
-           <number>1440</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="3">
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="2" column="1">
-         <widget class="QCheckBox" name="checkMaxInactiveTime">
-          <property name="text">
-           <string>inactive minutes</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QSpinBox" name="spinInactiveTimeLimit">
-          <property name="maximum">
-           <number>525600</number>
-          </property>
-          <property name="value">
-           <number>1440</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="TorrentShareLimitsWidget" name="torrentShareLimitsWidget" native="true"/>
       </item>
      </layout>
     </widget>
@@ -339,6 +241,12 @@
    <class>FileSystemPathComboEdit</class>
    <extends>QWidget</extends>
    <header>gui/fspathedit.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TorrentShareLimitsWidget</class>
+   <extends>QWidget</extends>
+   <header>gui/torrentsharelimitswidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2020  thalieht
  * Copyright (C) 2011  Christian Kandeler
  * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
@@ -29,6 +30,8 @@
  */
 
 #pragma once
+
+#include <optional>
 
 #include <QDialog>
 
@@ -68,13 +71,7 @@ private slots:
     void handleUpSpeedLimitChanged();
     void handleDownSpeedLimitChanged();
 
-    void handleRatioTypeChanged();
-
 private:
-    qreal getRatio() const;
-    int getSeedingTime() const;
-    int getInactiveSeedingTime() const;
-
     QVector<BitTorrent::TorrentID> m_torrentIDs;
     Ui::TorrentOptionsDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;
@@ -87,9 +84,9 @@ private:
         Path savePath;
         Path downloadPath;
         QString category;
-        qreal ratio;
-        int seedingTime;
-        int inactiveSeedingTime;
+        std::optional<qreal> ratio;
+        std::optional<int> seedingTime;
+        std::optional<int> inactiveSeedingTime;
         int upSpeedLimit;
         int downSpeedLimit;
         Qt::CheckState autoTMM;
