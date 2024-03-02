@@ -2449,7 +2449,7 @@ bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
         // if magnet link was hybrid initially then it is indexed also by v1 info hash
         // so we need to remove both entries
         const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
-        m_downloadedMetadata.remove((altID == downloadedMetadataIter.key()) ? id : altID);
+        m_downloadedMetadata.remove(altID);
     }
 #endif
 
@@ -2807,6 +2807,14 @@ bool SessionImpl::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &so
 
     if (hasMetadata)
     {
+        // Torrent  that is being added with metadata is considered to be added as stopped
+        // if "metadata received" stop condition is set for it.
+        if (loadTorrentParams.stopCondition == Torrent::StopCondition::MetadataReceived)
+        {
+            loadTorrentParams.stopped = true;
+            loadTorrentParams.stopCondition = Torrent::StopCondition::None;
+        }
+
         const TorrentInfo &torrentInfo = std::get<TorrentInfo>(source);
 
         Q_ASSERT(addTorrentParams.filePaths.isEmpty() || (addTorrentParams.filePaths.size() == torrentInfo.filesCount()));

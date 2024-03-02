@@ -31,7 +31,14 @@
 #include <Qt>
 #include <QtGlobal>
 
-#if !defined(Q_OS_WIN) && (!defined(Q_OS_UNIX) || defined(Q_OS_MACOS) || defined(QT_FEATURE_icu))
+// for QT_FEATURE_xxx, see: https://wiki.qt.io/Qt5_Build_System#How_to
+#include <QtCore/private/qtcore-config_p.h>
+
+// macOS and Windows support 'case sensitivity' and 'numeric mode' natively
+// https://github.com/qt/qtbase/blob/6.0/src/corelib/CMakeLists.txt#L777-L793
+// https://github.com/qt/qtbase/blob/6.0/src/corelib/text/qcollator_macx.cpp#L74-L77
+// https://github.com/qt/qtbase/blob/6.0/src/corelib/text/qcollator_win.cpp#L72-L78
+#if ((QT_FEATURE_icu == 1) || defined(Q_OS_MACOS) || defined(Q_OS_WIN))
 #define QBT_USE_QCOLLATOR
 #include <QCollator>
 #endif
