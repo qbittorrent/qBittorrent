@@ -43,7 +43,7 @@ function submitLoginForm(event) {
     xhr.addEventListener('readystatechange', function() {
         if (xhr.readyState === 4) { // DONE state
             if ((xhr.status === 200) && (xhr.responseText === "Ok."))
-                location.reload(true);
+                location.replace(location);
             else
                 errorMsgElement.textContent = 'Invalid Username or Password.';
         }
