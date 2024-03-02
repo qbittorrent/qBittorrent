@@ -419,6 +419,7 @@ namespace BitTorrent
         void banIP(const QString &ip) override;
 
         bool isKnownTorrent(const InfoHash &infoHash) const override;
+        void applyTorrentParamRules(const TorrentDescriptor &torrentDescr, AddTorrentParams *params) const override;
         bool addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params = {}) override;
         bool deleteTorrent(const TorrentID &id, DeleteOption deleteOption = DeleteTorrent) override;
         bool downloadMetadata(const TorrentDescriptor &torrentDescr) override;
@@ -583,6 +584,8 @@ namespace BitTorrent
         void storeCategories() const;
         void upgradeCategories();
         DownloadPathOption resolveCategoryDownloadPathOption(const QString &categoryName, const std::optional<DownloadPathOption> &option) const;
+
+        void loadTorrentParamRules();
 
         void saveStatistics() const;
         void loadStatistics();
@@ -753,6 +756,7 @@ namespace BitTorrent
         QThreadPool *m_asyncWorker = nullptr;
         ResumeDataStorage *m_resumeDataStorage = nullptr;
         FileSearcher *m_fileSearcher = nullptr;
+        TorrentParamRules *m_torrentParamRules = nullptr;
 
         QHash<TorrentID, lt::torrent_handle> m_downloadedMetadata;
 

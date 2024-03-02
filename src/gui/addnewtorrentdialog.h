@@ -76,6 +76,7 @@ private slots:
 private:
     class TorrentContentAdaptor;
 
+    void loadAddTorrentParams();
     void populateSavePaths();
     void loadState();
     void saveState();

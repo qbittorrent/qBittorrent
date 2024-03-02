@@ -32,6 +32,7 @@
 #include <QtContainerFwd>
 #include <QObject>
 
+#include "base/bittorrent/torrentparamrules.h"
 #include "base/pathfwd.h"
 #include "base/tagset.h"
 #include "addtorrentparams.h"
@@ -452,6 +453,7 @@ namespace BitTorrent
         virtual void banIP(const QString &ip) = 0;
 
         virtual bool isKnownTorrent(const InfoHash &infoHash) const = 0;
+        virtual void applyTorrentParamRules(const TorrentDescriptor &torrentDescr, AddTorrentParams *params) const = 0;
         virtual bool addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params = {}) = 0;
         virtual bool deleteTorrent(const TorrentID &id, DeleteOption deleteOption = DeleteOption::DeleteTorrent) = 0;
         virtual bool downloadMetadata(const TorrentDescriptor &torrentDescr) = 0;

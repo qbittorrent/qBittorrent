@@ -43,6 +43,7 @@ add_library(qbt_base STATIC
     bittorrent/torrentdescriptor.h
     bittorrent/torrentimpl.h
     bittorrent/torrentinfo.h
+    bittorrent/torrentparamrules.h
     bittorrent/tracker.h
     bittorrent/trackerentry.h
     concepts/explicitlyconvertibleto.h
@@ -148,6 +149,7 @@ add_library(qbt_base STATIC
     bittorrent/torrentdescriptor.cpp
     bittorrent/torrentimpl.cpp
     bittorrent/torrentinfo.cpp
+    bittorrent/torrentparamrules.cpp
     bittorrent/tracker.cpp
     bittorrent/trackerentry.cpp
     exceptions.cpp

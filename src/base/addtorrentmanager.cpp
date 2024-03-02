@@ -32,6 +32,7 @@
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrentdescriptor.h"
+#include "base/bittorrent/torrentparamrules.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
@@ -177,15 +178,15 @@ void AddTorrentManager::releaseTorrentFileGuard(const QString &source)
 }
 
 bool AddTorrentManager::processTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr
-        , const BitTorrent::AddTorrentParams &addTorrentParams)
+        , BitTorrent::AddTorrentParams addTorrentParams)
 {
     const BitTorrent::InfoHash infoHash = torrentDescr.infoHash();
 
+    const bool hasMetadata = torrentDescr.info().has_value();
     if (BitTorrent::Torrent *torrent = btSession()->findTorrent(infoHash))
     {
         // a duplicate torrent is being added
 
-        const bool hasMetadata = torrentDescr.info().has_value();
         if (hasMetadata)
         {
             // Trying to set metadata to existing torrent in case if it has none
@@ -212,6 +213,10 @@ bool AddTorrentManager::processTorrent(const QString &source, const BitTorrent::
         handleDuplicateTorrent(source, torrent, tr("Trackers are merged from new source"));
         return false;
     }
+
+    // If metadata is not available now, rules will be applied after it is downloaded.
+    if (hasMetadata)
+        btSession()->applyTorrentParamRules(torrentDescr, &addTorrentParams);
 
     return addTorrentToSession(source, torrentDescr, addTorrentParams);
 }
