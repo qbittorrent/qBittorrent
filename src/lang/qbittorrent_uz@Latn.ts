@@ -91,8 +91,8 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
-        <source>Copyright %1 2006-2023 The qBittorrent project</source>
-        <translation>Mualliflik huquqi %1 2006-2023 qBittorrent loyihasi</translation>
+        <source>Copyright %1 2006-2024 The qBittorrent project</source>
+        <translation>Mualliflik huquqi %1 2006-2024 qBittorrent loyihasi</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
