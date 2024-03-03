@@ -998,11 +998,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Web UI kasutajanimi peab olema minimaalselt 3 tähte pikk.</translation>
+        <translation>Web UI kasutajanimi peab olema vähemalt 3 tähemärki.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Web UI parool peab olema minimaalselt 6 tähte pikk.</translation>
+        <translation>Web UI parool peab olema vähemalt 6 tähemärki.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1666,7 +1666,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Füüsilise mälu (RAM) kasutamise limiit (määratakse kui libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
@@ -2118,7 +2118,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished" />
+        <translation>Asenda Kõik</translation>
     </message>
     <message>
         <source>Include files</source>
@@ -2927,7 +2927,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Ümbernimetatakse</translation>
     </message>
 </context>
 <context>
@@ -3470,7 +3470,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Ümbernimetatakse</translation>
     </message>
     <message>
         <source>New name:</source>

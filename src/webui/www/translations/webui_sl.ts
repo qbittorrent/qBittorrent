@@ -621,7 +621,7 @@
     </message>
     <message>
         <source>Log</source>
-        <translation type="unfinished" />
+        <translation>Dnevnik</translation>
     </message>
 </context>
 <context>
@@ -1234,7 +1234,7 @@
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation>s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -1254,7 +1254,7 @@
     </message>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>min</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
@@ -1526,11 +1526,11 @@
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>Interval osveževanja:</translation>
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation>ms</translation>
     </message>
     <message>
         <source>Excluded file names</source>
@@ -2090,15 +2090,15 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation>Ime datoteke</translation>
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation type="unfinished" />
+        <translation>Ime datoteke + Končnica</translation>
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation type="unfinished" />
+        <translation>Oštevilči datoteke</translation>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
@@ -2114,7 +2114,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation>Zamenjaj</translation>
     </message>
     <message>
         <source>Extension</source>
@@ -2122,15 +2122,15 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished" />
+        <translation>Zamenjaj vse</translation>
     </message>
     <message>
         <source>Include files</source>
-        <translation type="unfinished" />
+        <translation>Vključi datoteke</translation>
     </message>
     <message>
         <source>Include folders</source>
-        <translation type="unfinished" />
+        <translation>Vključi mape</translation>
     </message>
     <message>
         <source>Search Files</source>
@@ -2847,7 +2847,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished" />
+        <translation>Lokacija</translation>
     </message>
     <message>
         <source>New name</source>
@@ -3081,19 +3081,19 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Plugin path:</source>
-        <translation type="unfinished" />
+        <translation>Pot do vtičnika:</translation>
     </message>
     <message>
         <source>URL or local directory</source>
-        <translation type="unfinished" />
+        <translation>URL ali lokalna mapa</translation>
     </message>
     <message>
         <source>Install plugin</source>
-        <translation type="unfinished" />
+        <translation>Namesti vtičnik</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>V redu</translation>
     </message>
 </context>
 <context>
@@ -3132,7 +3132,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Filter</source>
-        <translation type="unfinished" />
+        <translation>Filter</translation>
     </message>
     <message>
         <source>Torrent names only</source>
@@ -3144,7 +3144,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>od</translation>
     </message>
     <message>
         <source>Everywhere</source>
@@ -3156,7 +3156,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
-        <translation type="unfinished" />
+        <translation>Razširi okno za prikaz vseh filtrov</translation>
     </message>
     <message>
         <source>to</source>
@@ -3176,7 +3176,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
-        <translation type="unfinished" />
+        <translation>Ni nameščenih vtičnikov za iskanje.</translation>
     </message>
 </context>
 <context>
@@ -3187,11 +3187,11 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Install new plugin</source>
-        <translation type="unfinished" />
+        <translation>Namestiti nov vtičnik</translation>
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
-        <translation type="unfinished" />
+        <translation>Tukaj lahko najdeš vtičnike za iskanje:</translation>
     </message>
     <message>
         <source>Close</source>
@@ -3284,7 +3284,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>V redu</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -3421,11 +3421,11 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent Maskota</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent ikona</translation>
     </message>
 </context>
 <context>
@@ -3896,11 +3896,11 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished" />
+        <translation>ID</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation type="unfinished" />
+        <translation>Vrsta dnevnika</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -3920,7 +3920,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Filter logs</source>
-        <translation type="unfinished" />
+        <translation>Filtriraj dnevnike</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
@@ -3928,7 +3928,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>od</translation>
     </message>
     <message>
         <source>Status</source>
@@ -3936,11 +3936,11 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Timestamp</source>
-        <translation type="unfinished" />
+        <translation>Časovni žig</translation>
     </message>
     <message>
         <source>Clear All</source>
-        <translation type="unfinished" />
+        <translation>Počisti vse</translation>
     </message>
     <message>
         <source>Message</source>
@@ -3948,11 +3948,11 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation type="unfinished" />
+        <translation>Ravni dnevnika:</translation>
     </message>
     <message>
         <source>Reason</source>
-        <translation type="unfinished" />
+        <translation>Razlog</translation>
     </message>
     <message>
         <source>item</source>
@@ -3964,7 +3964,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Banned</source>
-        <translation type="unfinished" />
+        <translation>Prepovedano</translation>
     </message>
     <message>
         <source>Normal Messages</source>
@@ -3972,7 +3972,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Critical</source>
-        <translation type="unfinished" />
+        <translation>Kritično</translation>
     </message>
     <message>
         <source>Critical Messages</source>
@@ -3992,11 +3992,11 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished" />
+        <translation>Informacije</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation type="unfinished" />
+        <translation>Izberi raven dnevnika:</translation>
     </message>
 </context>
 </TS>

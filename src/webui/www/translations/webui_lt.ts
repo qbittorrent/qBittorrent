@@ -609,11 +609,11 @@
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Ar norėtumėte pratęsti visus torentus?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Ar norėtumėte pristabdyti visus torentus?</translation>
     </message>
     <message>
         <source>Execution Log</source>

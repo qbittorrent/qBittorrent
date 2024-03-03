@@ -720,7 +720,7 @@
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
-        <translation>為所有檔案事先分配硬碟空間</translation>
+        <translation>為所有檔案預先分配磁碟空間</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
@@ -1666,7 +1666,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>磁碟快取過期間隔（需要 libtorrent &amp;lt; 2.0）：</translation>
+        <translation>磁碟快取到期區間（需要 libtorrent &amp;lt; 2.0）：</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
@@ -1674,7 +1674,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>磁碟快娶（需要 libtorrent &amp;lt; 2.0）：</translation>
+        <translation>磁碟快取（需要 libtorrent &amp;lt; 2.0）：</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>

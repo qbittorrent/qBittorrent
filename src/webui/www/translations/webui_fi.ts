@@ -181,7 +181,7 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Jakosuhteen raja pitää olla 0 ja 9998 välillä.</translation>
+        <translation>Jakosuhderajoituksen on oltava väliltä 0–9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
@@ -2765,7 +2765,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation>Rajoita jakosuhde...</translation>
+        <translation>Rajoita jakosuhdetta...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
@@ -3806,7 +3806,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation>Torrent:in sisältöasu:</translation>
+        <translation>Torrentin sisällön asettelu:</translation>
     </message>
     <message>
         <source>Create subfolder</source>

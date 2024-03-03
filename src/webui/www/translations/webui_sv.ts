@@ -1446,11 +1446,11 @@
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation>%J: Infohash v2</translation>
+        <translation>%J: Info-hash v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation>%I: Infohash v1</translation>
+        <translation>%I: Info-hash v1</translation>
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
@@ -1610,7 +1610,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
-        <translation>Återuppta datalagringstyp (kräver omstart):</translation>
+        <translation>Lagringstyp för återupptagningsdata (kräver omstart):</translation>
     </message>
     <message>
         <source>Fastresume files</source>
@@ -2070,11 +2070,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation>Infohash v2:</translation>
+        <translation>Info-hash v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation>Infohash v1:</translation>
+        <translation>Info-hash v1:</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2907,11 +2907,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation>Infohash v1</translation>
+        <translation>Info-hash v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation>Infohash v2</translation>
+        <translation>Info-hash v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>

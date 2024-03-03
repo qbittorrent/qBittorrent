@@ -337,7 +337,7 @@
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation>टॉरेंट निष्क्रियता कालक 0 से बड़ा होना चाहिये।</translation>
     </message>
     <message>
         <source>Saving Management</source>
@@ -357,7 +357,7 @@
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation type="unfinished" />
+        <translation>चुँबक कड़ियों को सँभालने के लिये पंजीकृत करें...</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
@@ -385,7 +385,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>आवक संपर्कों के लिये प्रयोग होने वाला पोर्ट 0 और 65535 के बीच होना चाहिये।</translation>
     </message>
     <message>
         <source>Original author</source>
@@ -2968,7 +2968,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>confirmDeletionDlg</name>
     <message>
         <source>Also permanently delete the files</source>
-        <translation type="unfinished" />
+        <translation>फाइलों को भी मिटा दें</translation>
     </message>
     <message>
         <source>Remove torrent(s)</source>
