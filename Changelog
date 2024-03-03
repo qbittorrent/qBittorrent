@@ -5,7 +5,6 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - FEATURE: Allow to remove tracker from tracker filter widget menu (glassez) 30189ae943b9a85d39484f6cdc64e2200518654f
     - FEATURE: Implement `Reannounce In` column (Hanabishi) c394868f87e71d8ab614c6ae5463c712acffd172
     - FEATURE: Expose `DHT bootstrap nodes` setting (Chocobo1) dcba9eda009fcb74e8aebbee4a4c5df7248abf06
-    - FEATURE: Improve GUI behavior when adding multiple torrents (glassez) 70b438e6d9249bacf8589ba50d16bbfd617fd199
     - FEATURE: Add support for [Mark-of-the-Web](https://redcanary.com/threat-detection-report/techniques/mark-of-the-web-bypass/) (Chocobo1) 34f7b75f12390454ed831037ff34531b90307c55
     - FEATURE: Allow to keep unwanted files in separate folder (glassez) e216a9cf53ae1203d148a013ab5d71d6672fe97a
     - FEATURE: Add `Copy Comment` to the torrent list's context menu (thalieht) 30d9978c97a582b396c53441c938b05b124ba8c9
@@ -15,7 +14,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - FEATURE: Subcategories implicitly follow the parent category options (glassez) d652aa1c78a0455e4787e1fe95b95b767dd1c2667982e10495fdd5175242f029a7e2b9a6373ea985
     - BUGFIX: Display error message when unrecoverable error occurred (glassez) a0e41a11dec9e195455d990fd0e87390882c703d
     - BUGFIX: Update size of selected files when selection is changed (glassez) eddfaedc4d34cfcaf8a38210e6700ace0886cc9f
-    - BUGFIX: Tags with leading whitespace can now be removed (glassez) 7a4119259703179909dd37153031f11a3ef617e8
+    - BUGFIX: Normalize tags by trimming leading/trailing whitespace (glassez) 7a4119259703179909dd37153031f11a3ef617e8
     - WEBUI: Improve WebUI responsiveness (Chocobo1) 2edb1a0765dc501bb66d133d1bc8ac3c37704f51
     - WEBUI: Do not exit the app when WebUI has failed to start (Hanabishi) 35e4b35d125983051a25173d595119d99b7bda3a
     - WEBUI: Add `Moving` filter to side panel (xavier2k6) f067ab169224013cb4bf21630b8a3eaa5d7d2dd6
@@ -23,11 +22,11 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - WEBUI: Allow to remember torrent content files deletion (David) e69f85782881a4b831ed97694263f027ecfa568d
     - WEBUI: Leave the fields empty when value is invalid (Chocobo1) 54bcabeca4292a72649202a03eaf09e711d73395
     - WEBUI: Use natural sorting (Chocobo1) 00372dd559dedd19e3bcb66db8e7d5faf597d4b2
-    - WEBAPI: Get torrent count  (glassez) cecbb44a031c96e8fce48f12eeddda47b9c85a27
-    - WEBAPI: Fix wrong timestamp values  (Chocobo1) 114652205c92bf7fcf63f355cab439a5eb4b184f
-    - WEBAPI: Allow WebAPI to specify filename and mime type for result data  (glassez) 60bb819e2e839d691dec6915d592d4a2c66d1de2
+    - WEBAPI: Add endpoint to get torrent count (glassez) cecbb44a031c96e8fce48f12eeddda47b9c85a27
+    - WEBAPI: Fix wrong timestamp values (Chocobo1) 114652205c92bf7fcf63f355cab439a5eb4b184f
+    - WEBAPI: Send binary data with filename and mime type specified (glassez) 60bb819e2e839d691dec6915d592d4a2c66d1de2
     - RSS: Show RSS feed title in HTML browser (Jay) f3b688217eb518ca67de23edd716278efde0b990
-    - RSS: Rate limit requests to the same host (jNullj) c5d7b62473887c337c249ac7b3bd6420286c7e83
+    - RSS: Allow to set delay between requests to the same host (jNullj) c5d7b62473887c337c249ac7b3bd6420286c7e83
     - SEARCH: Allow users to specify Python executable path (Chocobo1) b3fda76027859707b57530a1de0e2c68c0b27d9f
     - WINDOWS: Use Fusion style on Windows 10+. It has better compatibility with dark mode (glassez) 5a334175a8b5047cf56552c0bf5a54c3e3e14893
     - WINDOWS: Allow to set qBittorrent as default program (glassez) 6860c0d60de0ad2bb4374096354fadf3d0261a43
