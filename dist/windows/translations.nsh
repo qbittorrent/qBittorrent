@@ -1,5 +1,6 @@
 ﻿!define TR_DIR "${__FILEDIR__}\installer-translations"
 !define FALLBACK_EXTRA "${TR_DIR}\EnglishExtra.nsh"
+!define TR_STUB_DIR "${TR_DIR}\StubNSIS"
 
 !insertmacro MUI_LANGUAGE "English"
 !insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\EnglishExtra.nsh" "${FALLBACK_EXTRA}"
@@ -117,3 +118,6 @@
 !insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\UzbekExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Welsh"
 !insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\WelshExtra.nsh" "${FALLBACK_EXTRA}"
+
+!insertmacro MUI_LANGUAGEEX "${TR_STUB_DIR}" "Filipino"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\FilipinoExtra.nsh" "${FALLBACK_EXTRA}"
