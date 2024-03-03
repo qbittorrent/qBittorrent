@@ -166,7 +166,7 @@
         <translation>Salvează în</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="584"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="566"/>
         <source>Never show again</source>
         <translation>Nu arăta din nou</translation>
     </message>
@@ -191,12 +191,12 @@
         <translation>Pornește torentul</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="397"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="379"/>
         <source>Torrent information</source>
         <translation>Informații torent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="309"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="291"/>
         <source>Skip hash check</source>
         <translation>Omite verificarea indexului</translation>
     </message>
@@ -231,70 +231,75 @@
         <translation>Condiție de oprire:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="269"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="309"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="311"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="316"/>
         <source>None</source>
         <translation>Niciuna</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="274"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="310"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="312"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="318"/>
         <source>Metadata received</source>
         <translation>Metadate primite</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="279"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="312"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="313"/>
+        <source>Torrents that have metadata initially will be added as stopped.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="314"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="319"/>
         <source>Files checked</source>
         <translation>Fișiere verificate</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="302"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="284"/>
         <source>Add to top of queue</source>
         <translation>Adaugă în vârful cozii</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="330"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="312"/>
         <source>When checked, the .torrent file will not be deleted regardless of the settings at the &quot;Download&quot; page of the Options dialog</source>
         <translation>Când e bifat, fișierul .torrent nu va fi șters, indiferent de configurările de pe pagina „Descărcări” a dialogului Opțiuni</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="344"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="326"/>
         <source>Content layout:</source>
         <translation>Aranjament conținut:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="355"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="337"/>
         <source>Original</source>
         <translation>Original</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="360"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="342"/>
         <source>Create subfolder</source>
         <translation>Creează subdosar</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="365"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="347"/>
         <source>Don&apos;t create subfolder</source>
         <translation>Nu crea subdosar</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="403"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="385"/>
         <source>Info hash v1:</source>
         <translation>Informații index v1:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="482"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="464"/>
         <source>Size:</source>
         <translation>Dimensiune:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="472"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="454"/>
         <source>Comment:</source>
         <translation>Comentariu:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="496"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="478"/>
         <source>Date:</source>
         <translation>Dată:</translation>
     </message>
@@ -324,152 +329,151 @@
         <translation>Ține minte ultima cale de salvare folosită</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="333"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="315"/>
         <source>Do not delete .torrent file</source>
         <translation>Nu șterge fișierul .torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="316"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="298"/>
         <source>Download in sequential order</source>
         <translation>Descarcă în ordine secvențială</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="323"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="305"/>
         <source>Download first and last pieces first</source>
         <translation>Descarcă întâi primele și ultimele bucăți</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="503"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="485"/>
         <source>Info hash v2:</source>
         <translation>Informații index v2:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="526"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="508"/>
         <source>Select All</source>
         <translation>Selectează toate</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="533"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="515"/>
         <source>Select None</source>
         <translation>Nu selecta nimic</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="636"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="618"/>
         <source>Save as .torrent file...</source>
         <translation>Salvare ca fișier .torrent...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="587"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="599"/>
         <source>I/O Error</source>
         <translation>Eroare Intrare/Ieșire</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="406"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="418"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
         <translation>Nu este disponibil</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="407"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="419"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
         <translation>Nu este disponibil</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="784"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="804"/>
         <source>Not available</source>
         <translation>Nu este disponibil</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="437"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="449"/>
         <source>Magnet link</source>
         <translation>Legătură magnet</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="439"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="451"/>
         <source>Retrieving metadata...</source>
         <translation>Se obțin metadatele...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="297"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="303"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="299"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="305"/>
         <source>Choose save path</source>
         <translation>Alegeți calea de salvare</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="309"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="311"/>
         <source>No stop condition is set.</source>
         <translation>Nicio condiție de oprire stabilită.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="310"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="312"/>
         <source>Torrent will stop after metadata is received.</source>
         <translation>Torentul se va opri dupa ce se primesc metadatele.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="311"/>
         <source>Torrents that have metadata initially aren&apos;t affected.</source>
-        <translation>Torentele care au metadate inițial nu sunt afectate.</translation>
+        <translation type="vanished">Torentele care au metadate inițial nu sunt afectate.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="312"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="314"/>
         <source>Torrent will stop after files are initially checked.</source>
         <translation>Torentul se va opri după ce fișierele sunt verificate inițial.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="313"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="315"/>
         <source>This will also download metadata if it wasn&apos;t there initially.</source>
         <translation>Aceasta va descarca de asemenea și metadatele dacă nu au fost acolo inițial.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="426"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="427"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="438"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="439"/>
         <source>N/A</source>
         <translation>Indisponibil</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="510"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="522"/>
         <source>%1 (Free space on disk: %2)</source>
         <translation>%1 (Spațiu disponibil pe disc: %2)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="511"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="523"/>
         <source>Not available</source>
         <comment>This size is unavailable.</comment>
         <translation>Indisponibil</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="574"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="586"/>
         <source>Torrent file (*%1)</source>
         <translation>Fisier torent (*%1)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="576"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="588"/>
         <source>Save as torrent file</source>
         <translation>Salvează ca fișier torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="588"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="600"/>
         <source>Couldn&apos;t export torrent metadata file &apos;%1&apos;. Reason: %2.</source>
         <translation>Nu s-a putut exporta fișierul „%1” cu metadatele torentului. Motiv: %2.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="759"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="779"/>
         <source>Cannot create v2 torrent until its data is fully downloaded.</source>
         <translation>Nu poate fi creat un torent de versiuna 2 ptână când datele nu sunt complet descărcate.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="381"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="393"/>
         <source>Filter files...</source>
         <translation>Filtrare fișiere...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="746"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="758"/>
         <source>Parsing metadata...</source>
         <translation>Se analizează metadatele...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="753"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="762"/>
         <source>Metadata retrieval complete</source>
         <translation>Metadatele au fost obținute</translation>
     </message>
@@ -590,6 +594,11 @@
         <translation>Omite verificarea indexului</translation>
     </message>
     <message>
+        <location filename="../gui/addtorrentparamswidget.ui" line="354"/>
+        <source>Torrent share limits</source>
+        <translation type="unfinished">Limitele de partajare a torenților</translation>
+    </message>
+    <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="78"/>
         <location filename="../gui/addtorrentparamswidget.cpp" line="81"/>
         <source>Choose save path</source>
@@ -663,632 +672,642 @@
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="368"/>
-        <location filename="../gui/advancedsettings.cpp" line="470"/>
-        <location filename="../gui/advancedsettings.cpp" line="532"/>
-        <location filename="../gui/advancedsettings.cpp" line="661"/>
+        <location filename="../gui/advancedsettings.cpp" line="371"/>
+        <location filename="../gui/advancedsettings.cpp" line="473"/>
+        <location filename="../gui/advancedsettings.cpp" line="535"/>
+        <location filename="../gui/advancedsettings.cpp" line="664"/>
         <source> MiB</source>
         <translation>MiO</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="725"/>
+        <location filename="../gui/advancedsettings.cpp" line="728"/>
         <source>Recheck torrents on completion</source>
         <translation>Reverifică torentele la finalizare</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="380"/>
-        <location filename="../gui/advancedsettings.cpp" line="730"/>
+        <location filename="../gui/advancedsettings.cpp" line="383"/>
+        <location filename="../gui/advancedsettings.cpp" line="737"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation> ms</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="182"/>
+        <location filename="../gui/advancedsettings.cpp" line="183"/>
         <source>Setting</source>
         <translation>Configurare</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="182"/>
+        <location filename="../gui/advancedsettings.cpp" line="183"/>
         <source>Value</source>
         <comment>Value set for this setting</comment>
         <translation>Valoare</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="364"/>
+        <location filename="../gui/advancedsettings.cpp" line="367"/>
         <source> (disabled)</source>
         <translation> (dezactivată)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="366"/>
+        <location filename="../gui/advancedsettings.cpp" line="369"/>
         <source> (auto)</source>
         <translation> (automată)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="654"/>
+        <location filename="../gui/advancedsettings.cpp" line="657"/>
         <source> min</source>
         <comment> minutes</comment>
         <translation> min</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="402"/>
+        <location filename="../gui/advancedsettings.cpp" line="405"/>
         <source>All addresses</source>
         <translation>Toate adresele</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="450"/>
+        <location filename="../gui/advancedsettings.cpp" line="453"/>
         <source>qBittorrent Section</source>
         <translation>Secțiune qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="447"/>
-        <location filename="../gui/advancedsettings.cpp" line="455"/>
+        <location filename="../gui/advancedsettings.cpp" line="450"/>
+        <location filename="../gui/advancedsettings.cpp" line="458"/>
         <source>Open documentation</source>
         <translation>Deschide documentația</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="403"/>
+        <location filename="../gui/advancedsettings.cpp" line="406"/>
         <source>All IPv4 addresses</source>
         <translation>Toate adresele IPv4</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="404"/>
+        <location filename="../gui/advancedsettings.cpp" line="407"/>
         <source>All IPv6 addresses</source>
         <translation>Toate adresele IPv6</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="458"/>
+        <location filename="../gui/advancedsettings.cpp" line="461"/>
         <source>libtorrent Section</source>
         <translation>Secțiune libtorrent</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="461"/>
+        <location filename="../gui/advancedsettings.cpp" line="464"/>
         <source>Fastresume files</source>
         <translation>Reia rapid fișierele</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="462"/>
+        <location filename="../gui/advancedsettings.cpp" line="465"/>
         <source>SQLite database (experimental)</source>
         <translation>Bază de date SQLite (experimental)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="464"/>
+        <location filename="../gui/advancedsettings.cpp" line="467"/>
         <source>Resume data storage type (requires restart)</source>
         <translation>Tip stocare date de reluare (necesită repornirea programului)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="477"/>
+        <location filename="../gui/advancedsettings.cpp" line="480"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="478"/>
+        <location filename="../gui/advancedsettings.cpp" line="481"/>
         <source>Below normal</source>
         <translation>Sub normal</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="479"/>
+        <location filename="../gui/advancedsettings.cpp" line="482"/>
         <source>Medium</source>
         <translation>Mediu</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="480"/>
+        <location filename="../gui/advancedsettings.cpp" line="483"/>
         <source>Low</source>
         <translation>Scăzut</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="481"/>
+        <location filename="../gui/advancedsettings.cpp" line="484"/>
         <source>Very low</source>
         <translation>Foarte scăzut</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="473"/>
+        <location filename="../gui/advancedsettings.cpp" line="476"/>
         <source>Physical memory (RAM) usage limit</source>
         <translation>Limită de folosire a memorie fizice (RAM)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="503"/>
+        <location filename="../gui/advancedsettings.cpp" line="506"/>
         <source>Asynchronous I/O threads</source>
         <translation>Fire de execuție Intrare/Ieșire asincrone</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="511"/>
+        <location filename="../gui/advancedsettings.cpp" line="514"/>
         <source>Hashing threads</source>
         <translation>Fire pentru sumele de control</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="519"/>
+        <location filename="../gui/advancedsettings.cpp" line="522"/>
         <source>File pool size</source>
         <translation>Numărul maxim de fișiere deschise</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="533"/>
+        <location filename="../gui/advancedsettings.cpp" line="536"/>
         <source>Outstanding memory when checking torrents</source>
         <translation>Memorie pentru verificarea torentelor</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="549"/>
+        <location filename="../gui/advancedsettings.cpp" line="552"/>
         <source>Disk cache</source>
         <translation>Prestocare disc</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="555"/>
-        <location filename="../gui/advancedsettings.cpp" line="683"/>
-        <location filename="../gui/advancedsettings.cpp" line="776"/>
-        <location filename="../gui/advancedsettings.cpp" line="891"/>
+        <location filename="../gui/advancedsettings.cpp" line="558"/>
+        <location filename="../gui/advancedsettings.cpp" line="686"/>
+        <location filename="../gui/advancedsettings.cpp" line="783"/>
+        <location filename="../gui/advancedsettings.cpp" line="898"/>
         <source> s</source>
         <comment> seconds</comment>
         <translation> s</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="556"/>
+        <location filename="../gui/advancedsettings.cpp" line="559"/>
         <source>Disk cache expiry interval</source>
         <translation>Interval de expirare prestocare (cache) disc</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="564"/>
+        <location filename="../gui/advancedsettings.cpp" line="567"/>
         <source>Disk queue size</source>
         <translation>Dimensiune coadă disc</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="577"/>
-        <location filename="../gui/advancedsettings.cpp" line="583"/>
+        <location filename="../gui/advancedsettings.cpp" line="580"/>
+        <location filename="../gui/advancedsettings.cpp" line="586"/>
         <source>Enable OS cache</source>
         <translation>Activează prestocarea (cache-ul) sistemului</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="593"/>
+        <location filename="../gui/advancedsettings.cpp" line="596"/>
         <source>Coalesce reads &amp; writes</source>
         <translation>Contopește citirile și scrierile</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="598"/>
+        <location filename="../gui/advancedsettings.cpp" line="601"/>
         <source>Use piece extent affinity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="601"/>
+        <location filename="../gui/advancedsettings.cpp" line="604"/>
         <source>Send upload piece suggestions</source>
         <translation>Trimite sugestii bucăți de încărcat</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="655"/>
-        <location filename="../gui/advancedsettings.cpp" line="667"/>
-        <location filename="../gui/advancedsettings.cpp" line="675"/>
-        <location filename="../gui/advancedsettings.cpp" line="777"/>
+        <location filename="../gui/advancedsettings.cpp" line="658"/>
+        <location filename="../gui/advancedsettings.cpp" line="670"/>
+        <location filename="../gui/advancedsettings.cpp" line="678"/>
+        <location filename="../gui/advancedsettings.cpp" line="784"/>
         <source>0 (disabled)</source>
         <translation>0 (dezactivat)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="656"/>
+        <location filename="../gui/advancedsettings.cpp" line="659"/>
         <source>Save resume data interval [0: disabled]</source>
         <comment>How often the fastresume file is saved.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="668"/>
+        <location filename="../gui/advancedsettings.cpp" line="671"/>
         <source>Outgoing ports (Min) [0: disabled]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="676"/>
+        <location filename="../gui/advancedsettings.cpp" line="679"/>
         <source>Outgoing ports (Max) [0: disabled]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="684"/>
+        <location filename="../gui/advancedsettings.cpp" line="687"/>
         <source>0 (permanent lease)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="685"/>
+        <location filename="../gui/advancedsettings.cpp" line="688"/>
         <source>UPnP lease duration [0: permanent lease]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="778"/>
+        <location filename="../gui/advancedsettings.cpp" line="785"/>
         <source>Stop tracker timeout [0: disabled]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="794"/>
+        <location filename="../gui/advancedsettings.cpp" line="801"/>
         <source>Notification timeout [0: infinite, -1: system default]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="899"/>
+        <location filename="../gui/advancedsettings.cpp" line="906"/>
         <source>Maximum outstanding requests to a single peer</source>
         <translation>Număr maxim de cereri în așteptare spre un singur partener</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="563"/>
-        <location filename="../gui/advancedsettings.cpp" line="606"/>
-        <location filename="../gui/advancedsettings.cpp" line="612"/>
-        <location filename="../gui/advancedsettings.cpp" line="632"/>
-        <location filename="../gui/advancedsettings.cpp" line="640"/>
+        <location filename="../gui/advancedsettings.cpp" line="566"/>
+        <location filename="../gui/advancedsettings.cpp" line="609"/>
+        <location filename="../gui/advancedsettings.cpp" line="615"/>
+        <location filename="../gui/advancedsettings.cpp" line="635"/>
+        <location filename="../gui/advancedsettings.cpp" line="643"/>
         <source> KiB</source>
         <translation> KiO</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="376"/>
+        <location filename="../gui/advancedsettings.cpp" line="379"/>
         <source> (infinite)</source>
         <translation>(infinit)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="378"/>
+        <location filename="../gui/advancedsettings.cpp" line="381"/>
         <source> (system default)</source>
         <translation>(implicit sistemului)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="471"/>
+        <location filename="../gui/advancedsettings.cpp" line="474"/>
         <source>This option is less effective on Linux</source>
         <translation>Această opțiune are mai puțin efect pe Linux</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="483"/>
+        <location filename="../gui/advancedsettings.cpp" line="486"/>
         <source>Process memory priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="491"/>
+        <location filename="../gui/advancedsettings.cpp" line="494"/>
         <source>Bdecode depth limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="497"/>
+        <location filename="../gui/advancedsettings.cpp" line="500"/>
         <source>Bdecode token limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="568"/>
+        <location filename="../gui/advancedsettings.cpp" line="571"/>
         <source>Default</source>
         <translation>Implicit</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="569"/>
+        <location filename="../gui/advancedsettings.cpp" line="572"/>
         <source>Memory mapped files</source>
         <translation>Fișiere mapate în memorie</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="570"/>
+        <location filename="../gui/advancedsettings.cpp" line="573"/>
         <source>POSIX-compliant</source>
         <translation>Compatibil cu standardul POSIX</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="572"/>
+        <location filename="../gui/advancedsettings.cpp" line="575"/>
         <source>Disk IO type (requires restart)</source>
         <translation>Tipul IO al discului (neceistă repornire)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="576"/>
-        <location filename="../gui/advancedsettings.cpp" line="582"/>
+        <location filename="../gui/advancedsettings.cpp" line="579"/>
+        <location filename="../gui/advancedsettings.cpp" line="585"/>
         <source>Disable OS cache</source>
         <translation>Dezactivează prestocarea (cache-ul) sistemului</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="579"/>
+        <location filename="../gui/advancedsettings.cpp" line="582"/>
         <source>Disk IO read mode</source>
         <translation>Modul de citire IO al discului</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="585"/>
+        <location filename="../gui/advancedsettings.cpp" line="588"/>
         <source>Write-through</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="588"/>
+        <location filename="../gui/advancedsettings.cpp" line="591"/>
         <source>Disk IO write mode</source>
         <translation>Modul de scriere IO al discului</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="608"/>
+        <location filename="../gui/advancedsettings.cpp" line="611"/>
         <source>Send buffer watermark</source>
         <translation>Filigranul tamponului de trimitere</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="614"/>
+        <location filename="../gui/advancedsettings.cpp" line="617"/>
         <source>Send buffer low watermark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="620"/>
+        <location filename="../gui/advancedsettings.cpp" line="623"/>
         <source>Send buffer watermark factor</source>
         <translation>Factorul filigranului tamponului de trimitere</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="626"/>
+        <location filename="../gui/advancedsettings.cpp" line="629"/>
         <source>Outgoing connections per second</source>
         <translation>Conexiuni de ieșire pe secundă</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="633"/>
-        <location filename="../gui/advancedsettings.cpp" line="641"/>
+        <location filename="../gui/advancedsettings.cpp" line="636"/>
+        <location filename="../gui/advancedsettings.cpp" line="644"/>
         <source>0 (system default)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="634"/>
+        <location filename="../gui/advancedsettings.cpp" line="637"/>
         <source>Socket send buffer size [0: system default]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="642"/>
+        <location filename="../gui/advancedsettings.cpp" line="645"/>
         <source>Socket receive buffer size [0: system default]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="648"/>
+        <location filename="../gui/advancedsettings.cpp" line="651"/>
         <source>Socket backlog size</source>
         <translation>Dimensiunea cozii pentru socluri</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="662"/>
+        <location filename="../gui/advancedsettings.cpp" line="665"/>
         <source>.torrent file size limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="691"/>
+        <location filename="../gui/advancedsettings.cpp" line="694"/>
         <source>Type of service (ToS) for connections to peers</source>
         <translation>Tip de serviciu (ToS) pentru conexiunile spre parteneri</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="694"/>
+        <location filename="../gui/advancedsettings.cpp" line="697"/>
         <source>Prefer TCP</source>
         <translation>Preferă TCP</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="695"/>
+        <location filename="../gui/advancedsettings.cpp" line="698"/>
         <source>Peer proportional (throttles TCP)</source>
         <translation>Proporțional cu partenerii (limitează protocolul TCP)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="702"/>
+        <location filename="../gui/advancedsettings.cpp" line="705"/>
         <source>Support internationalized domain name (IDN)</source>
         <translation>Sprijină nume de domenii internaționale (IDN)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="707"/>
+        <location filename="../gui/advancedsettings.cpp" line="710"/>
         <source>Allow multiple connections from the same IP address</source>
         <translation>Permite conexiuni multiple de la aceeași adresă IP</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="712"/>
+        <location filename="../gui/advancedsettings.cpp" line="715"/>
         <source>Validate HTTPS tracker certificates</source>
         <translation>Validează certificatele HTTPS ale urmăritoarelor</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="717"/>
+        <location filename="../gui/advancedsettings.cpp" line="720"/>
         <source>Server-side request forgery (SSRF) mitigation</source>
         <translation>Atenuare contrafacere cerere pe partea servitorului (SSRF)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="722"/>
+        <location filename="../gui/advancedsettings.cpp" line="725"/>
         <source>Disallow connection to peers on privileged ports</source>
         <translation>Interzice conexiuni spre parteneri pe porturi privilegiate</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="731"/>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="732"/>
+        <source>Customize application instance name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="738"/>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
         <translation>Controlează intervalul de actualizare al stării interne care la rândul său va afecta actualizările interfeței grafice</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="732"/>
+        <location filename="../gui/advancedsettings.cpp" line="739"/>
         <source>Refresh interval</source>
         <translation>Interval de reîmprospătare</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="738"/>
+        <location filename="../gui/advancedsettings.cpp" line="745"/>
         <source>Resolve peer host names</source>
         <translation>Rezolvă numele de gazdă ale partenerilor</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="765"/>
+        <location filename="../gui/advancedsettings.cpp" line="772"/>
         <source>IP address reported to trackers (requires restart)</source>
         <translation>Adresa IP raportată umăritoarelor (necesită repornirea programului)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="798"/>
+        <location filename="../gui/advancedsettings.cpp" line="805"/>
         <source>Reannounce to all trackers when IP or port changed</source>
         <translation>Reanunță toate urmăritoarele când se schimbă IP-ul sau portul</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="812"/>
+        <location filename="../gui/advancedsettings.cpp" line="819"/>
         <source>Enable icons in menus</source>
         <translation>Activează pictogramele în meniuri</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="824"/>
+        <location filename="../gui/advancedsettings.cpp" line="831"/>
         <source>Enable port forwarding for embedded tracker</source>
         <translation>Activează port forwarding pentru urmăritoarele încorporate</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="828"/>
+        <location filename="../gui/advancedsettings.cpp" line="835"/>
         <source>Enable quarantine for downloaded files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="830"/>
+        <location filename="../gui/advancedsettings.cpp" line="837"/>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="836"/>
+        <location filename="../gui/advancedsettings.cpp" line="843"/>
         <source>(Auto detect if empty)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="838"/>
+        <location filename="../gui/advancedsettings.cpp" line="845"/>
         <source>Python executable path (may require restart)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="863"/>
+        <location filename="../gui/advancedsettings.cpp" line="870"/>
         <source>Confirm removal of tracker from all torrents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="881"/>
+        <location filename="../gui/advancedsettings.cpp" line="888"/>
         <source>Peer turnover disconnect percentage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="887"/>
+        <location filename="../gui/advancedsettings.cpp" line="894"/>
         <source>Peer turnover threshold percentage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="893"/>
+        <location filename="../gui/advancedsettings.cpp" line="900"/>
         <source>Peer turnover disconnect interval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="902"/>
+        <location filename="../gui/advancedsettings.cpp" line="909"/>
         <source>Resets to default if empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="904"/>
+        <location filename="../gui/advancedsettings.cpp" line="911"/>
         <source>DHT bootstrap nodes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="911"/>
+        <location filename="../gui/advancedsettings.cpp" line="918"/>
         <source>I2P inbound quantity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="916"/>
+        <location filename="../gui/advancedsettings.cpp" line="923"/>
         <source>I2P outbound quantity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="921"/>
+        <location filename="../gui/advancedsettings.cpp" line="928"/>
         <source>I2P inbound length</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="926"/>
+        <location filename="../gui/advancedsettings.cpp" line="933"/>
         <source>I2P outbound length</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="782"/>
+        <location filename="../gui/advancedsettings.cpp" line="789"/>
         <source>Display notifications</source>
         <translation>Afișează notificări</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="785"/>
+        <location filename="../gui/advancedsettings.cpp" line="792"/>
         <source>Display notifications for added torrents</source>
         <translation>Afișează notificări pentru torentele adăugate</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="801"/>
+        <location filename="../gui/advancedsettings.cpp" line="808"/>
         <source>Download tracker&apos;s favicon</source>
         <translation>Descarcă pictograma de favorite a urmăritorului</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="805"/>
+        <location filename="../gui/advancedsettings.cpp" line="812"/>
         <source>Save path history length</source>
         <translation>Lungime istoric cale de salvare</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="808"/>
+        <location filename="../gui/advancedsettings.cpp" line="815"/>
         <source>Enable speed graphs</source>
         <translation>Activează graficele de viteză</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="840"/>
+        <location filename="../gui/advancedsettings.cpp" line="847"/>
         <source>Fixed slots</source>
         <translation>Socluri fixe</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="841"/>
+        <location filename="../gui/advancedsettings.cpp" line="848"/>
         <source>Upload rate based</source>
         <translation>Bazat pe rata de încărcare</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="843"/>
+        <location filename="../gui/advancedsettings.cpp" line="850"/>
         <source>Upload slots behavior</source>
         <translation>Comportament socluri de încărcare</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="846"/>
+        <location filename="../gui/advancedsettings.cpp" line="853"/>
         <source>Round-robin</source>
         <translation>Round-robin</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="847"/>
+        <location filename="../gui/advancedsettings.cpp" line="854"/>
         <source>Fastest upload</source>
         <translation>Cea mai rapidă încărcare</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="848"/>
+        <location filename="../gui/advancedsettings.cpp" line="855"/>
         <source>Anti-leech</source>
         <translation>Anti-lipitori</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="850"/>
+        <location filename="../gui/advancedsettings.cpp" line="857"/>
         <source>Upload choking algorithm</source>
         <translation>Algoritm de înecare a încărcării</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="855"/>
+        <location filename="../gui/advancedsettings.cpp" line="862"/>
         <source>Confirm torrent recheck</source>
         <translation>Cere confirmare pentru reverificarea torentelor</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="859"/>
+        <location filename="../gui/advancedsettings.cpp" line="866"/>
         <source>Confirm removal of all tags</source>
         <translation>Confirmă ștergerea tuturor marcajelor</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="867"/>
+        <location filename="../gui/advancedsettings.cpp" line="874"/>
         <source>Always announce to all trackers in a tier</source>
         <translation>Anunță întotdeauna tuturor urmăritoarelor dintr-un strat</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="873"/>
+        <location filename="../gui/advancedsettings.cpp" line="880"/>
         <source>Always announce to all tiers</source>
         <translation>Anunță întotdeauna tuturor straturilor</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="740"/>
+        <location filename="../gui/advancedsettings.cpp" line="747"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Oricare interfață</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="697"/>
+        <location filename="../gui/advancedsettings.cpp" line="700"/>
         <source>%1-TCP mixed mode algorithm</source>
         <comment>uTP-TCP mixed mode algorithm</comment>
         <translation>Algoritm %1-TCP în regim amestecat</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="735"/>
+        <location filename="../gui/advancedsettings.cpp" line="742"/>
         <source>Resolve peer countries</source>
         <translation>Rezolvă țările partenerilor</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="759"/>
+        <location filename="../gui/advancedsettings.cpp" line="766"/>
         <source>Network interface</source>
         <translation>Interfața de rețea</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="762"/>
+        <location filename="../gui/advancedsettings.cpp" line="769"/>
         <source>Optional IP address to bind to</source>
         <translation>Adresă IP opțională de ascultat</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="771"/>
+        <location filename="../gui/advancedsettings.cpp" line="778"/>
         <source>Max concurrent HTTP announces</source>
         <translation>Număr maxim de anunțuri HTTP simultane</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="816"/>
+        <location filename="../gui/advancedsettings.cpp" line="823"/>
         <source>Enable embedded tracker</source>
         <translation>Activează urmăritorul încorporat</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="821"/>
+        <location filename="../gui/advancedsettings.cpp" line="828"/>
         <source>Embedded tracker port</source>
         <translation>Port urmăritor încorporat</translation>
     </message>
@@ -1296,125 +1315,120 @@
 <context>
     <name>Application</name>
     <message>
-        <source>qBittorrent %1 started</source>
-        <comment>qBittorrent v3.2.0alpha started</comment>
-        <translation type="vanished">qBittorrent %1 a pornit</translation>
-    </message>
-    <message>
-        <location filename="../app/application.cpp" line="297"/>
+        <location filename="../app/application.cpp" line="298"/>
         <source>Running in portable mode. Auto detected profile folder at: %1</source>
         <translation>Rulează în regim portabil. Dosar de profil detectat automat la: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="299"/>
+        <location filename="../app/application.cpp" line="300"/>
         <source>Redundant command line flag detected: &quot;%1&quot;. Portable mode implies relative fastresume.</source>
         <translation>Fanion redundant depistat în linia de comandă: „%1”. Regimul portabil implică reîncepere-rapidă relativă.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="303"/>
+        <location filename="../app/application.cpp" line="304"/>
         <source>Using config directory: %1</source>
         <translation>Se folosește directorul de configurație: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="649"/>
+        <location filename="../app/application.cpp" line="667"/>
         <source>Torrent name: %1</source>
         <translation>Nume torent: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="650"/>
+        <location filename="../app/application.cpp" line="668"/>
         <source>Torrent size: %1</source>
         <translation>Mărime torent: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="651"/>
+        <location filename="../app/application.cpp" line="669"/>
         <source>Save path: %1</source>
         <translation>Calea de salvare: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="652"/>
+        <location filename="../app/application.cpp" line="670"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torentul a fost descărcat în %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="654"/>
+        <location filename="../app/application.cpp" line="672"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Vă mulțumim că folosiți qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="685"/>
+        <location filename="../app/application.cpp" line="703"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>Torent: %1, se trimite notificare prin poșta electronică</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="870"/>
+        <location filename="../app/application.cpp" line="888"/>
         <source>Add torrent failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="871"/>
+        <location filename="../app/application.cpp" line="889"/>
         <source>Couldn&apos;t add torrent &apos;%1&apos;, reason: %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="919"/>
+        <location filename="../app/application.cpp" line="938"/>
         <source>The WebUI administrator username is: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="920"/>
+        <location filename="../app/application.cpp" line="939"/>
         <source>The WebUI administrator password was not set. A temporary password is provided for this session: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="921"/>
+        <location filename="../app/application.cpp" line="940"/>
         <source>You should set your own password in program preferences.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="927"/>
+        <location filename="../app/application.cpp" line="946"/>
         <source>The WebUI is disabled! To enable the WebUI, edit the config file manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="563"/>
+        <location filename="../app/application.cpp" line="581"/>
         <source>Running external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
         <translation>Se rulează program extern. Torent: „%1”. Comandă: `%2`</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="564"/>
+        <location filename="../app/application.cpp" line="582"/>
         <source>Failed to run external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="661"/>
+        <location filename="../app/application.cpp" line="679"/>
         <source>Torrent &quot;%1&quot; has finished downloading</source>
         <translation> Torentul &apos;%1&apos; s-a terminat de descărcat</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="779"/>
+        <location filename="../app/application.cpp" line="797"/>
         <source>WebUI will be started shortly after internal preparations. Please wait...</source>
         <translation>Interfața web va porni la scurt timp după pregătiri interne. Așteptați…</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="800"/>
-        <location filename="../app/application.cpp" line="958"/>
+        <location filename="../app/application.cpp" line="818"/>
+        <location filename="../app/application.cpp" line="977"/>
         <source>Loading torrents...</source>
         <translation>Se încarcă torentele...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="803"/>
+        <location filename="../app/application.cpp" line="821"/>
         <source>E&amp;xit</source>
         <translation>Închid&amp;e programul</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="852"/>
+        <location filename="../app/application.cpp" line="870"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Eroare I/O</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="853"/>
+        <location filename="../app/application.cpp" line="871"/>
         <source>An I/O error occurred for torrent &apos;%1&apos;.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
@@ -1423,100 +1437,100 @@
 Motivul: %2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="865"/>
+        <location filename="../app/application.cpp" line="883"/>
         <source>Torrent added</source>
         <translation>Torent adăugat</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="865"/>
+        <location filename="../app/application.cpp" line="883"/>
         <source>&apos;%1&apos; was added.</source>
         <comment>e.g: xxx.avi was added.</comment>
         <translation>„%1” a fost adăugat.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="859"/>
+        <location filename="../app/application.cpp" line="877"/>
         <source>Download completed</source>
         <translation>Descărcare finalizată</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="293"/>
+        <location filename="../app/application.cpp" line="294"/>
         <source>qBittorrent %1 started. Process ID: %2</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="859"/>
+        <location filename="../app/application.cpp" line="877"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>&apos;%1&apos; s-a descărcat.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="901"/>
+        <location filename="../app/application.cpp" line="920"/>
         <source>Information</source>
         <translation>Informație</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="906"/>
+        <location filename="../app/application.cpp" line="925"/>
         <source>To fix the error, you may need to edit the config file manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="915"/>
+        <location filename="../app/application.cpp" line="934"/>
         <source>To control qBittorrent, access the WebUI at: %1</source>
         <translation>Pentru a controla qBittorrent, accesați interfața web la adresa: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="958"/>
+        <location filename="../app/application.cpp" line="977"/>
         <source>Exit</source>
         <translation>Ieșire</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1004"/>
+        <location filename="../app/application.cpp" line="1023"/>
         <source>Recursive download confirmation</source>
         <translation>Confirmare descărcare recursivă</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1005"/>
+        <location filename="../app/application.cpp" line="1024"/>
         <source>The torrent &apos;%1&apos; contains .torrent files, do you want to proceed with their downloads?</source>
         <translation>Torentul „%1” conține fișiere .torrent, doriți să continuați cu descărcarea acestora?</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1011"/>
+        <location filename="../app/application.cpp" line="1030"/>
         <source>Never</source>
         <translation>Niciodată</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1040"/>
+        <location filename="../app/application.cpp" line="1059"/>
         <source>Recursive download .torrent file within torrent. Source torrent: &quot;%1&quot;. File: &quot;%2&quot;</source>
         <translation>Descarc recursiv fișierul .torrent din torent. Torentul sursă: „%1”. Fișier: „%2”</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1146"/>
+        <location filename="../app/application.cpp" line="1165"/>
         <source>Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: &quot;%2&quot;</source>
         <translation>A eșuat stabilirea unei limite de folosire a memorie fizice (RAM). Error code: %1. Mesaj de eroare: „%2”</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1181"/>
+        <location filename="../app/application.cpp" line="1200"/>
         <source>Failed to set physical memory (RAM) usage hard limit. Requested size: %1. System hard limit: %2. Error code: %3. Error message: &quot;%4&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1284"/>
+        <location filename="../app/application.cpp" line="1303"/>
         <source>qBittorrent termination initiated</source>
         <translation>Terminare qBittorrent inițiată</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1290"/>
+        <location filename="../app/application.cpp" line="1309"/>
         <source>qBittorrent is shutting down...</source>
         <translation>qBittorrent se închide...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1304"/>
+        <location filename="../app/application.cpp" line="1323"/>
         <source>Saving torrent progress...</source>
         <translation>Se salvează progresul torentelor...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1338"/>
+        <location filename="../app/application.cpp" line="1357"/>
         <source>qBittorrent is now ready to exit</source>
         <translation>qBittorrent e gata să iasă</translation>
     </message>
@@ -1524,7 +1538,7 @@ Motivul: %2</translation>
 <context>
     <name>AsyncFileStorage</name>
     <message>
-        <location filename="../base/asyncfilestorage.cpp" line="45"/>
+        <location filename="../base/asyncfilestorage.cpp" line="59"/>
         <source>Could not create directory &apos;%1&apos;.</source>
         <translation>Nu s-a putut crea dosarul „%1”.</translation>
     </message>
@@ -1951,58 +1965,58 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
 <context>
     <name>BitTorrent::BencodeResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="103"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="114"/>
         <source>Cannot create torrent resume folder: &quot;%1&quot;</source>
         <translation>Nu se poate crea dosar pentru reluarea torentului: „%1”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="214"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="225"/>
         <source>Cannot parse resume data: invalid format</source>
         <translation>Datele despre reluare nu pot fi parcurse: format nevalid</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="281"/>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="288"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="298"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="305"/>
         <source>Cannot parse torrent info: %1</source>
         <translation>Informațiile despre torent nu pot fi parcurse: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="284"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="301"/>
         <source>Cannot parse torrent info: invalid format</source>
         <translation>Informațiile despre torent nu pot fi parcurse: format nevalid</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="299"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="316"/>
         <source>Mismatching info-hash detected in resume data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="395"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="412"/>
         <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
         <translation>Nu s-au putut salva metadatele torentului în „%1”. Eroare: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="422"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="446"/>
         <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
         <translation>Nu s-au putut salva datele de reluare ale torentului în „%1”. Eroare: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="177"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="188"/>
         <source>Couldn&apos;t load torrents queue: %1</source>
         <translation>Nu se poate încărca coada de torente: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="211"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="222"/>
         <source>Cannot parse resume data: %1</source>
         <translation>Datele despre reluare nu pot fi parcurse: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="318"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="335"/>
         <source>Resume data is invalid: neither metadata nor info-hash was found</source>
         <translation>Datele despre reluare sunt nevalide: nu s-au găsit nici metadate, nici info-hash</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="447"/>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="471"/>
         <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
         <translation>Nu s-au putut salva datele în „%1”. Eroare: %2</translation>
     </message>
@@ -2010,38 +2024,38 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
 <context>
     <name>BitTorrent::DBResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="382"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="392"/>
         <source>Not found.</source>
         <translation>Nu a fost găsit.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="386"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="396"/>
         <source>Couldn&apos;t load resume data of torrent &apos;%1&apos;. Error: %2</source>
         <translation>Nu s-au putut încărca datele de reluare ale torentului „%1”. Eroare: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="470"/>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="475"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="480"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="485"/>
         <source>Database is corrupted.</source>
         <translation>Baza de date este coruptă.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="488"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="498"/>
         <source>Couldn&apos;t enable Write-Ahead Logging (WAL) journaling mode. Error: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="654"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="655"/>
         <source>Couldn&apos;t obtain query result.</source>
         <translation>Nu s-a putut obține rezultatul interogării.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="658"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="659"/>
         <source>WAL mode is probably unsupported due to filesystem limitations.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="707"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="708"/>
         <source>Couldn&apos;t begin transaction. Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2049,22 +2063,22 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
 <context>
     <name>BitTorrent::ResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="832"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="836"/>
         <source>Couldn&apos;t save torrent metadata. Error: %1.</source>
         <translation>Nu s-au putut salva metadatele torentului. Eroare: %1.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="883"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="890"/>
         <source>Couldn&apos;t store resume data for torrent &apos;%1&apos;. Error: %2</source>
         <translation>Nu s-au putut stoca datele de reluare ale torentului „%1”. Eroare: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="911"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="918"/>
         <source>Couldn&apos;t delete resume data of torrent &apos;%1&apos;. Error: %2</source>
         <translation>Nu s-au putut șterge datele de reluare ale torentului „%1”. Eroare: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="945"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="952"/>
         <source>Couldn&apos;t store torrents queue positions. Error: %1</source>
         <translation>Nu s-a putut stoca coada cu pozițiile torentelor. Eroare: %1</translation>
     </message>
@@ -2072,189 +2086,189 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
 <context>
     <name>BitTorrent::SessionImpl</name>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="649"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1619"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="657"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1627"/>
         <source>Distributed Hash Table (DHT) support: %1</source>
         <translation>Susținere Distributed Hash Table (DHT): %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="649"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="664"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1619"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1620"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1621"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1622"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1623"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3599"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4374"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="657"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="672"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1627"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1628"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1629"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1630"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1631"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3627"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4402"/>
         <source>ON</source>
         <translation>PORNIT</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="649"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="664"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1619"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1620"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1621"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1622"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1623"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3599"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4374"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="657"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="672"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1627"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1628"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1629"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1630"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1631"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3627"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4402"/>
         <source>OFF</source>
         <translation>OPRIT</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="664"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1620"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="672"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1628"/>
         <source>Local Peer Discovery support: %1</source>
         <translation>Susținere Local Peer Discovery: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="678"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="686"/>
         <source>Restart is required to toggle Peer Exchange (PeX) support</source>
         <translation>Repornirea este necesară pentru comutarea susținerii Peer Exchange (PeX)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1347"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1355"/>
         <source>Failed to resume torrent. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Reluarea torentului a eșuat Torent: „%1”: Motiv: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1401"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1411"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1409"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1419"/>
         <source>Failed to resume torrent: inconsistent torrent ID is detected. Torrent: &quot;%1&quot;</source>
         <translation>Reluarea torentului a eșuat: s-a depistat identificator de torent inconsistent. Torent: „%1”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1445"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1453"/>
         <source>Detected inconsistent data: category is missing from the configuration file. Category will be recovered but its settings will be reset to default. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
         <translation>S-au depistat date neconsistente: categoria lipsește din fișierul de configurare. Categoria va fi recuperată dar configurările acesteia vor fi inițializate cu valori implicite. Torent: „%1”. Categorie: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1452"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1460"/>
         <source>Detected inconsistent data: invalid category. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
         <translation>S-au depistat date neconsistente: categoria nu e validă. Torent: „%1”. Categorie: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1467"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1475"/>
         <source>Detected mismatch between the save paths of the recovered category and the current save path of the torrent. Torrent is now switched to Manual mode. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
         <translation>S-au depistat divergențe între căile de salvare ale categoriei recuperate și calea actuală de salvare a torentului. Torentul e trecut acum la regim manual. Torent: „%1”. Categorie: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1481"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1489"/>
         <source>Detected inconsistent data: tag is missing from the configuration file. Tag will be recovered. Torrent: &quot;%1&quot;. Tag: &quot;%2&quot;</source>
         <translation>S-au depistat date neconsistente: marcajul lipsește din fișierul de configurare. Marcajul va fi recuperat. Torent: „%1”. Marcaj: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1487"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1495"/>
         <source>Detected inconsistent data: invalid tag. Torrent: &quot;%1&quot;. Tag: &quot;%2&quot;</source>
         <translation>S-au depistat date neconsistente: marcaj nevalid. Torent: „%1”. Marcaj: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1556"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1564"/>
         <source>System wake-up event detected. Re-announcing to all the trackers...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1617"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1625"/>
         <source>Peer ID: &quot;%1&quot;</source>
         <translation>Id. partener: „%1”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1618"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1626"/>
         <source>HTTP User-Agent: &quot;%1&quot;</source>
         <translation>Agent utilizator HTTP: „%1”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1621"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1629"/>
         <source>Peer Exchange (PeX) support: %1</source>
         <translation>Susținere Peer Exchange (PeX): %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1622"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4374"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1630"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4402"/>
         <source>Anonymous mode: %1</source>
         <translation>Regim anonim: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1623"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3598"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1631"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3626"/>
         <source>Encryption support: %1</source>
         <translation>Susținerea criptării: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1623"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3599"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1631"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3627"/>
         <source>FORCED</source>
         <translation>FORȚAT</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2057"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2069"/>
         <source>Could not find GUID of network interface. Interface: &quot;%1&quot;</source>
         <translation>Nu se poate găsi GUID al interfeței de rețea. Interfața: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2072"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2086"/>
         <source>Trying to listen on the following list of IP addresses: &quot;%1&quot;</source>
         <translation>Se încearcă urmărirea următoarei liste de adrese IP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2231"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2245"/>
         <source>Torrent reached the share ratio limit.</source>
         <translation>Torentul a atins limita raportului de partajare.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2232"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2267"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2302"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2246"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2281"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2316"/>
         <source>Torrent: &quot;%1&quot;.</source>
         <translation>Torentul: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2236"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2271"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2306"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2250"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2285"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2320"/>
         <source>Removed torrent.</source>
         <translation>Torentul a fost eliminat.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2241"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2276"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2311"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2255"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2290"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2325"/>
         <source>Removed torrent and deleted its content.</source>
         <translation>Torentul a fost eliminat și conținutul său a fost șters.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2247"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2282"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2317"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2261"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2296"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2331"/>
         <source>Torrent paused.</source>
         <translation>Torentul a fost pus în pauză.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2252"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2287"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2322"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2266"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2301"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2336"/>
         <source>Super seeding enabled.</source>
         <translation>Super-contribuirea a fost activată.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2266"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2280"/>
         <source>Torrent reached the seeding time limit.</source>
         <translation>Torentul a atins limita timpului de partajare.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2301"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2315"/>
         <source>Torrent reached the inactive seeding time limit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5346"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5372"/>
         <source>Failed to load torrent. Reason: &quot;%1&quot;</source>
         <translation>Nu s-a putut încărca torentul. Motivul: %1.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6024"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6082"/>
         <source>I2P error. Message: &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2274,264 +2288,277 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
         <translation>Exportul torentului a eșuat. Torent: „%1”. Destinație: „%2”. Motiv: „%3”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3119"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3113"/>
         <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
         <translation>S-a abandonat salvarea datelor de reluare. Număr de torente în așteptare: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3241"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3235"/>
         <source>The configured network address is invalid. Address: &quot;%1&quot;</source>
         <translation>Adresa configurată a interfeței de rețea nu e validă. Adresă: „%1”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3282"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3316"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3276"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3310"/>
         <source>Failed to find the configured network address to listen on. Address: &quot;%1&quot;</source>
         <translation>Nu s-a putut găsi adresa de rețea configurată pentru ascultat. Adresă: „%1”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3295"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3289"/>
         <source>The configured network interface is invalid. Interface: &quot;%1&quot;</source>
         <translation>Interfața de rețea configurată nu e validă. Interfață: „%1”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3899"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3927"/>
         <source>Rejected invalid IP address while applying the list of banned IP addresses. IP: &quot;%1&quot;</source>
         <translation>S-a respins adresa IP nevalidă în timpul aplicării listei de adrese IP blocate. IP: „%1”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4884"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4912"/>
         <source>Added tracker to torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>S-a adăugat urmăritor la torent. Torent: „%1”. Urmăritor: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4891"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4919"/>
         <source>Removed tracker from torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>S-a eliminat urmăritor de la torent. Torent: „%1”. Urmăritor: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4903"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4931"/>
         <source>Added URL seed to torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>S-a adăugat sămânță URL la torent. Torent: „%1”. URL: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4909"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4937"/>
         <source>Removed URL seed from torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>S-a eliminat sămânță URL de la torent. Torent: „%1”. URL: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4931"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4959"/>
         <source>Torrent paused. Torrent: &quot;%1&quot;</source>
         <translation>Torentul a fost pus în pauză. Torentul: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4937"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4965"/>
         <source>Torrent resumed. Torrent: &quot;%1&quot;</source>
         <translation>Torent reluat. Torentul: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4948"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4976"/>
         <source>Torrent download finished. Torrent: &quot;%1&quot;</source>
         <translation>Descărcare torent încheiată. Torentul: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5015"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5041"/>
         <source>Torrent move canceled. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>Mutare torent anulată. Torent: „%1”. Sursă: „%2”. Destinație: „%3”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5026"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5052"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: torrent is currently moving to the destination</source>
         <translation>Nu s-a putut pune în coadă mutarea torentului. Torent: „%1”. Sursă: „%2”. Destinație: „%3”. Motiv: torentul e în curs de mutare spre destinație</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5035"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5061"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot; Destination: &quot;%3&quot;. Reason: both paths point to the same location</source>
         <translation>Nu s-a putut pune în coadă mutarea torentului. Torent: „%1”. Sursă: „%2”. Destinație: „%3”. Motiv: ambele căi indică spre același loc</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5043"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5069"/>
         <source>Enqueued torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>S-a pus în coadă mutarea torentului. Torent: „%1”. Sursă: „%2”. Destinație: „%3”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5060"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5086"/>
         <source>Start moving torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>Începe mutarea torentului. Torent: „%1”. Destinație: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5109"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5135"/>
         <source>Failed to save Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Nu s-a putut salva configurația categoriilor. Fișier: „%1”. Eroare: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5156"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5182"/>
         <source>Failed to parse Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Nu s-a putut parcurge configurația categoriilor. Fișier: „%1”. Eroare: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5283"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5309"/>
         <source>Successfully parsed the IP filter file. Number of rules applied: %1</source>
         <translation>Fișierul cu filtre IP a fost parcurs cu succes. Numărul de reguli aplicate: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5293"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5319"/>
         <source>Failed to parse the IP filter file</source>
         <translation>Eșec la parcurgerea fișierului cu filtre IP</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5584"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5622"/>
         <source>Restored torrent. Torrent: &quot;%1&quot;</source>
         <translation>Torent restaurat. Torent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5588"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5626"/>
         <source>Added new torrent. Torrent: &quot;%1&quot;</source>
         <translation>S-a adăugat un nou torent. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5594"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5632"/>
         <source>Torrent errored. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Torent eronat. Torent: „%1”. Eroare: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5612"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5663"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5650"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5701"/>
         <source>Removed torrent. Torrent: &quot;%1&quot;</source>
         <translation>Torent eliminat. Torent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5635"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5673"/>
         <source>Removed torrent and deleted its content. Torrent: &quot;%1&quot;</source>
         <translation>Torentul a fost eliminat și conținutul său a fost șters. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5714"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5722"/>
+        <source>Torrent is missing SSL parameters. Torrent: &quot;%1&quot;. Message: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5772"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Alertă de eroare în fișier. Torent: „%1”. Fișier: „%2”. Motiv: „%3”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5725"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5783"/>
         <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5731"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5789"/>
         <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5740"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5798"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
         <translation>Filtru IP</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5743"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5801"/>
         <source>filtered port (%1)</source>
         <comment>this peer was blocked. Reason: filtered port (8899).</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5749"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5807"/>
         <source>privileged port (%1)</source>
         <comment>this peer was blocked. Reason: privileged port (80).</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5822"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5880"/>
         <source>BitTorrent session encountered a serious error. Reason: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6014"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6072"/>
         <source>SOCKS5 proxy error. Address: %1. Message: &quot;%2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5746"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5804"/>
         <source>%1 mixed mode restrictions</source>
         <comment>this peer was blocked. Reason: I2P mixed mode restrictions.</comment>
         <translation>%1 restricții de regim mixt</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5148"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5174"/>
         <source>Failed to load Categories. %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5163"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5189"/>
         <source>Failed to load Categories configuration. File: &quot;%1&quot;. Error: &quot;Invalid data format&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5657"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5695"/>
         <source>Removed torrent but failed to delete its content and/or partfile. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5752"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5810"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: uTP is disabled.</comment>
         <translation>%1 este dezactivat.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5755"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5813"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: TCP is disabled.</comment>
         <translation>%1 este dezactivat.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5779"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5837"/>
         <source>URL seed DNS lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5785"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5843"/>
         <source>Received error message from URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5794"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5852"/>
         <source>Successfully listening on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;</source>
         <translation>Se ascultă cu succes pe IP. IP: „%1”. Port: „%2/%3”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5801"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5859"/>
         <source>Failed to listen on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>Ascultarea pe IP a eșuat. IP: „%1”. Port: „%2/%3”. Motiv: „%4”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5809"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5867"/>
         <source>Detected external IP. IP: &quot;%1&quot;</source>
         <translation>IP extern depistat. IP: „%1”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5924"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5982"/>
         <source>Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation>Eroare: Coada internă de alerte e plină și alertele sunt aruncate, e posibil să observați performanță redusă. Tip alertă aruncată: „%1”. Mesaj: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5946"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6004"/>
         <source>Moved torrent successfully. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>Torent mutat cu succes. Torent: „%1”. Destinație: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5969"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6027"/>
         <source>Failed to move torrent. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>Mutarea torent eșuată. Torent: „%1”. Sursă: „%2”. Destinație: „%3”. Motiv: „%4”</translation>
     </message>
 </context>
 <context>
+    <name>BitTorrent::TorrentCreationTask</name>
+    <message>
+        <location filename="../base/bittorrent/torrentcreationtask.cpp" line="71"/>
+        <source>Failed to start seeding.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>BitTorrent::TorrentCreator</name>
     <message>
-        <location filename="../base/bittorrent/torrentcreator.cpp" line="91"/>
+        <location filename="../base/bittorrent/torrentcreator.cpp" line="92"/>
         <source>Operation aborted</source>
         <translation>Operație abandonată</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentcreator.cpp" line="218"/>
-        <location filename="../base/bittorrent/torrentcreator.cpp" line="222"/>
+        <location filename="../base/bittorrent/torrentcreator.cpp" line="236"/>
+        <location filename="../base/bittorrent/torrentcreator.cpp" line="240"/>
         <source>Create new torrent file failed. Reason: %1.</source>
         <translation>Crearea noului fișier cu torent a eșuat. Motiv: %1</translation>
     </message>
@@ -2539,67 +2566,67 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
 <context>
     <name>BitTorrent::TorrentImpl</name>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="788"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="789"/>
         <source>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</source>
         <translation>Adăugarea partenerului „%1” la torentul „%2 a eșuat. Motiv: %3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="793"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="794"/>
         <source>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</source>
         <translation>Partenerul „%1” e adăugat la torentul „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="837"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="854"/>
         <source>Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1192"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1209"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation>Nu s-a putut scrie în fișier. Motiv: „%1. Torentul e acum în regim „numai încărcare”.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1615"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1632"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
         <translation>Descarcă întâi prima și ultima bucată: %1, torent: &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1616"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1633"/>
         <source>On</source>
         <translation>Pornit</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1616"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1633"/>
         <source>Off</source>
         <translation>Oprit</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1816"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1833"/>
         <source>Failed to reload torrent. Torrent: %1. Reason: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2137"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2156"/>
         <source>Generate resume data failed. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Generarea datelor de reluare a eșuat. Torent: „%1”. Motiv: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2148"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2165"/>
         <source>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Restabilirea torentului a eșuat. Fișierele au fost probabil mutate sau stocarea nu e accesibilă. Torent: „%1”. Motiv: „%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2697"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2740"/>
         <source>Missing metadata</source>
         <translation>Metadate lipsă</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2227"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2244"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
         <translation>Redenumirea fișierului a eșuat. Torent: „%1”, fișier: „%2”, motiv: „%3”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2298"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2315"/>
         <source>Performance alert: %1. More info: %2</source>
         <translation>Alertă performanță: %1. Mai multe informații: %2</translation>
     </message>
@@ -3301,17 +3328,17 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     <message>
         <location filename="../app/legalnotice.cpp" line="50"/>
         <source>Legal Notice</source>
-        <translation type="unfinished">Notă juridică</translation>
+        <translation>Notă juridică</translation>
     </message>
     <message>
         <location filename="../app/legalnotice.cpp" line="51"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
-        <translation type="unfinished">qBittorrent este un program de partajat fișiere. Când rulați un torent, datele sale vor disponibile și altora prin partajare. Orice conținut partajați este responsabilitatea dumneavoastră.</translation>
+        <translation>qBittorrent este un program de partajat fișiere. Când rulați un torent, datele sale vor disponibile și altora prin partajare. Orice conținut partajați este responsabilitatea dumneavoastră.</translation>
     </message>
     <message>
         <location filename="../app/legalnotice.cpp" line="52"/>
         <source>No further notices will be issued.</source>
-        <translation type="unfinished">Nu vor mai fi emise alte avertizări.</translation>
+        <translation>Nu vor mai fi emise alte avertizări.</translation>
     </message>
     <message>
         <location filename="../app/legalnotice.cpp" line="58"/>
@@ -3352,10 +3379,6 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
         <location filename="../app/main.cpp" line="241"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 trebuie să fie singurul parametru pentru linia de comandă.</translation>
-    </message>
-    <message>
-        <source>You cannot use %1: qBittorrent is already running for this user.</source>
-        <translation type="vanished">Nu puteți utiliza %1: qBittorrent rulează deja pentru acest utilizator.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="95"/>
@@ -3402,42 +3425,6 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
         <location filename="../app/main.cpp" line="323"/>
         <source>Error when daemonizing. Reason: &quot;%1&quot;. Error code: %2.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Legal Notice</source>
-        <translation type="vanished">Notă juridică</translation>
-    </message>
-    <message>
-        <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
-        <translation type="vanished">qBittorrent este un program de partajat fișiere. Când rulați un torent, datele sale vor disponibile și altora prin partajare. Orice conținut partajați este responsabilitatea dumneavoastră.</translation>
-    </message>
-    <message>
-        <source>No further notices will be issued.</source>
-        <translation type="vanished">Nu vor mai fi emise alte avertizări.</translation>
-    </message>
-    <message>
-        <source>Press %1 key to accept and continue...</source>
-        <translation type="vanished">Apăsați tasta %1 pentru a accepta și continua...</translation>
-    </message>
-    <message>
-        <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
-
-No further notices will be issued.</source>
-        <translation type="vanished">qBittorrent este un program de partajat fișiere. Când rulați un torent, datele sale vor fi disponibile și altora prin partajare. Orice conținut partajați este responsabilitatea dumneavoastră 
-
-Nu vor fi emise alte notificări.</translation>
-    </message>
-    <message>
-        <source>Legal notice</source>
-        <translation type="vanished">Notă juridică</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Renunță</translation>
-    </message>
-    <message>
-        <source>I Agree</source>
-        <translation type="vanished">Sunt de acord</translation>
     </message>
 </context>
 <context>
@@ -3726,12 +3713,12 @@ Nu vor fi emise alte notificări.</translation>
     <message>
         <location filename="../gui/mainwindow.ui" line="407"/>
         <location filename="../gui/mainwindow.ui" line="441"/>
-        <location filename="../gui/mainwindow.cpp" line="1542"/>
+        <location filename="../gui/mainwindow.cpp" line="1555"/>
         <source>Show</source>
         <translation>Arată</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1710"/>
+        <location filename="../gui/mainwindow.cpp" line="1723"/>
         <source>Check for program updates</source>
         <translation>Verifică pentru actualizări program</translation>
     </message>
@@ -3746,306 +3733,311 @@ Nu vor fi emise alte notificări.</translation>
         <translation>Dacă vă place qBittorrent, vă rugăm să donați!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1790"/>
-        <location filename="../gui/mainwindow.cpp" line="1792"/>
+        <location filename="../gui/mainwindow.cpp" line="1803"/>
+        <location filename="../gui/mainwindow.cpp" line="1805"/>
         <source>Execution Log</source>
         <translation>Jurnal de execuție</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="637"/>
+        <location filename="../gui/mainwindow.cpp" line="649"/>
         <source>Clear the password</source>
         <translation>Eliminare parolă</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="178"/>
+        <location filename="../gui/mainwindow.cpp" line="180"/>
         <source>&amp;Set Password</source>
         <translation>&amp;Stabilire parolă</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="147"/>
+        <location filename="../gui/mainwindow.cpp" line="149"/>
         <source>Preferences</source>
         <translation>Preferințe</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="179"/>
+        <location filename="../gui/mainwindow.cpp" line="181"/>
         <source>&amp;Clear Password</source>
         <translation>&amp;Eliminare parolă</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="235"/>
+        <location filename="../gui/mainwindow.cpp" line="237"/>
         <source>Transfers</source>
         <translation>Transferuri</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="436"/>
-        <location filename="../gui/mainwindow.cpp" line="1231"/>
+        <location filename="../gui/mainwindow.cpp" line="438"/>
+        <location filename="../gui/mainwindow.cpp" line="1243"/>
         <source>qBittorrent is minimized to tray</source>
         <translation>qBittorrent este minimizat în tăvița de sistem</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="436"/>
-        <location filename="../gui/mainwindow.cpp" line="1138"/>
-        <location filename="../gui/mainwindow.cpp" line="1231"/>
+        <location filename="../gui/mainwindow.cpp" line="438"/>
+        <location filename="../gui/mainwindow.cpp" line="1150"/>
+        <location filename="../gui/mainwindow.cpp" line="1243"/>
         <source>This behavior can be changed in the settings. You won&apos;t be reminded again.</source>
         <translation>Acest comportament poate fi schimbat în configurări. Nu vi se va mai reaminti.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="535"/>
+        <location filename="../gui/mainwindow.cpp" line="547"/>
         <source>Icons Only</source>
         <translation>Doar pictograme</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="536"/>
+        <location filename="../gui/mainwindow.cpp" line="548"/>
         <source>Text Only</source>
         <translation>Doar text</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="537"/>
+        <location filename="../gui/mainwindow.cpp" line="549"/>
         <source>Text Alongside Icons</source>
         <translation>Text alături de pictograme</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="538"/>
+        <location filename="../gui/mainwindow.cpp" line="550"/>
         <source>Text Under Icons</source>
         <translation>Text sub pictograme</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="539"/>
+        <location filename="../gui/mainwindow.cpp" line="551"/>
         <source>Follow System Style</source>
         <translation>Utilizează stilul sistemului</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="620"/>
-        <location filename="../gui/mainwindow.cpp" line="976"/>
+        <location filename="../gui/mainwindow.cpp" line="632"/>
+        <location filename="../gui/mainwindow.cpp" line="988"/>
         <source>UI lock password</source>
         <translation>Parolă de blocare interfață</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="621"/>
-        <location filename="../gui/mainwindow.cpp" line="977"/>
+        <location filename="../gui/mainwindow.cpp" line="633"/>
+        <location filename="../gui/mainwindow.cpp" line="989"/>
         <source>Please type the UI lock password:</source>
         <translation>Introduceți parola pentru blocarea interfeței:</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="638"/>
+        <location filename="../gui/mainwindow.cpp" line="650"/>
         <source>Are you sure you want to clear the password?</source>
         <translation>Sigur doriți să eliminați parola?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="697"/>
+        <location filename="../gui/mainwindow.cpp" line="709"/>
         <source>Use regular expressions</source>
         <translation>Folosește expresii regulate</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="719"/>
+        <location filename="../gui/mainwindow.cpp" line="731"/>
         <source>Search</source>
         <translation>Căutare</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="744"/>
+        <location filename="../gui/mainwindow.cpp" line="756"/>
         <source>Transfers (%1)</source>
         <translation>Transferuri (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="999"/>
+        <location filename="../gui/mainwindow.cpp" line="1011"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
         <translation>qBittorrent tocmai a fost actualizat și trebuie să fie repornit pentru ca schimbările să intre în vigoare.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1138"/>
+        <location filename="../gui/mainwindow.cpp" line="1150"/>
         <source>qBittorrent is closed to tray</source>
         <translation>qBittorrent  este închis în tăvița de sistem</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1158"/>
+        <location filename="../gui/mainwindow.cpp" line="1170"/>
         <source>Some files are currently transferring.</source>
         <translation>Unele fișiere sunt în curs de transferare.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1158"/>
+        <location filename="../gui/mainwindow.cpp" line="1170"/>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation>Sigur doriți să închideți qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1160"/>
+        <location filename="../gui/mainwindow.cpp" line="1172"/>
         <source>&amp;No</source>
         <translation>&amp;Nu</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1161"/>
+        <location filename="../gui/mainwindow.cpp" line="1173"/>
         <source>&amp;Yes</source>
         <translation>&amp;Da</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1162"/>
+        <location filename="../gui/mainwindow.cpp" line="1174"/>
         <source>&amp;Always Yes</source>
         <translation>Î&amp;ntotdeauna Da</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1357"/>
+        <location filename="../gui/mainwindow.cpp" line="1369"/>
         <source>Options saved.</source>
         <translation>Opțiuni salvate.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1646"/>
-        <location filename="../gui/mainwindow.cpp" line="1652"/>
+        <location filename="../gui/mainwindow.cpp" line="1515"/>
+        <source>[D: %1, U: %2] %3</source>
+        <comment>D = Download; U = Upload; %3 is the rest of the window title</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1659"/>
+        <location filename="../gui/mainwindow.cpp" line="1665"/>
         <source>Missing Python Runtime</source>
         <translation>Lipsește executabilul Python</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1725"/>
+        <location filename="../gui/mainwindow.cpp" line="1738"/>
         <source>qBittorrent Update Available</source>
         <translation>Este disponibilă o actualizare pentru qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1647"/>
+        <location filename="../gui/mainwindow.cpp" line="1660"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>Python este necesar pentru a putea folosi motorul de căutare, dar nu pare a fi instalat.
 Doriți să îl instalați acum?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1653"/>
+        <location filename="../gui/mainwindow.cpp" line="1666"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
         <translation>Python este necesar pentru a putea folosi motorul de căutare, dar nu pare a fi instalat.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1665"/>
-        <location filename="../gui/mainwindow.cpp" line="1672"/>
+        <location filename="../gui/mainwindow.cpp" line="1678"/>
+        <location filename="../gui/mainwindow.cpp" line="1685"/>
         <source>Old Python Runtime</source>
         <translation>Executabil Python învechit.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1722"/>
+        <location filename="../gui/mainwindow.cpp" line="1735"/>
         <source>A new version is available.</source>
         <translation>Este disponibilă o nouă versiune.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1723"/>
+        <location filename="../gui/mainwindow.cpp" line="1736"/>
         <source>Do you want to download %1?</source>
         <translation>Doriți să descărcați %1?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1724"/>
+        <location filename="../gui/mainwindow.cpp" line="1737"/>
         <source>Open changelog...</source>
         <translation>Deschidere jurnalul cu modificări…</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1746"/>
+        <location filename="../gui/mainwindow.cpp" line="1759"/>
         <source>No updates available.
 You are already using the latest version.</source>
         <translation>Nu sunt disponibile actualizări.
 Utilizați deja ultima versiune.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1709"/>
+        <location filename="../gui/mainwindow.cpp" line="1722"/>
         <source>&amp;Check for Updates</source>
         <translation>&amp;Verifică dacă sunt actualizări</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1666"/>
+        <location filename="../gui/mainwindow.cpp" line="1679"/>
         <source>Your Python version (%1) is outdated. Minimum requirement: %2.
 Do you want to install a newer version now?</source>
         <translation>Versiunea dumneavoastră de Python (%1) este învechită. Versiunea minimiă necesară este: %2.
 Doriți să instalați o versiune mai nouă acum?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1673"/>
+        <location filename="../gui/mainwindow.cpp" line="1686"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: %2.</source>
         <translation>Versiunea dumneavoastră de Python (%1) este învechită. Actualizați-l la ultima versiune pentru ca motoarele de căutare să funcționeze.
 Cerința minimă: %2.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1902"/>
+        <location filename="../gui/mainwindow.cpp" line="1915"/>
         <source>Checking for Updates...</source>
         <translation>Se verifică dacă sunt actualizări...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1903"/>
+        <location filename="../gui/mainwindow.cpp" line="1916"/>
         <source>Already checking for program updates in the background</source>
         <translation>Se caută deja actualizări de program în fundal</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1933"/>
+        <location filename="../gui/mainwindow.cpp" line="1946"/>
         <source>Download error</source>
         <translation>Eroare la descărcare</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1934"/>
+        <location filename="../gui/mainwindow.cpp" line="1947"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>Programul de instalare Python nu a putut fi descărcat, motivul: %1.
 Instalați-l manual.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="627"/>
-        <location filename="../gui/mainwindow.cpp" line="985"/>
+        <location filename="../gui/mainwindow.cpp" line="639"/>
+        <location filename="../gui/mainwindow.cpp" line="997"/>
         <source>Invalid password</source>
         <translation>Parolă nevalidă</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="200"/>
+        <location filename="../gui/mainwindow.cpp" line="202"/>
         <source>Filter torrents...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="205"/>
+        <location filename="../gui/mainwindow.cpp" line="207"/>
         <source>Filter by:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="627"/>
+        <location filename="../gui/mainwindow.cpp" line="639"/>
         <source>The password must be at least 3 characters long</source>
         <translation>Parola trebuie să aibă o lungime de minim 3 caractere</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="663"/>
-        <location filename="../gui/mainwindow.cpp" line="676"/>
-        <location filename="../gui/mainwindow.cpp" line="678"/>
+        <location filename="../gui/mainwindow.cpp" line="675"/>
+        <location filename="../gui/mainwindow.cpp" line="688"/>
+        <location filename="../gui/mainwindow.cpp" line="690"/>
         <source>RSS (%1)</source>
         <translation>RSS (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="985"/>
+        <location filename="../gui/mainwindow.cpp" line="997"/>
         <source>The password is invalid</source>
         <translation>Parola nu este validă</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1494"/>
+        <location filename="../gui/mainwindow.cpp" line="1508"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Viteză descărcare: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1495"/>
+        <location filename="../gui/mainwindow.cpp" line="1509"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Viteză încărcare: %1 </translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1501"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[D: %1/s, Î: %2/s] qBittorrent %3</translation>
+        <translation type="vanished">[D: %1/s, Î: %2/s] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1542"/>
+        <location filename="../gui/mainwindow.cpp" line="1555"/>
         <source>Hide</source>
         <translation>Ascunde</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1156"/>
+        <location filename="../gui/mainwindow.cpp" line="1168"/>
         <source>Exiting qBittorrent</source>
         <translation>Se închide qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1330"/>
+        <location filename="../gui/mainwindow.cpp" line="1342"/>
         <source>Open Torrent Files</source>
         <translation>Deschide fișiere torrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1331"/>
+        <location filename="../gui/mainwindow.cpp" line="1343"/>
         <source>Torrent Files</source>
         <translation>Fișiere torrent</translation>
     </message>
@@ -4106,133 +4098,133 @@ Instalați-l manual.</translation>
 <context>
     <name>Net::DownloadHandlerImpl</name>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="178"/>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="195"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="164"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="181"/>
         <source>I/O Error: %1</source>
         <translation>Eroare de Intrare/Ieșire: %1</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="215"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="201"/>
         <source>The file size (%1) exceeds the download limit (%2)</source>
         <translation>Mărimea fișierului (%1) depășește limita de descărcare (%2)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="226"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="212"/>
         <source>Exceeded max redirections (%1)</source>
         <translation>S-au depășit numărul maxim de redirectări (%1)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="241"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="227"/>
         <source>Redirected to magnet URI</source>
         <translation>Redirecționare la URI-ul magnet.</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="274"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="260"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Numele gazdei la distanță nu a fost găsit (nume de gazdă nevalid)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="276"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="262"/>
         <source>The operation was canceled</source>
         <translation>Operația a fost abandonată</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="278"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="264"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Serverul de la distanță a închis conexiunea prematur, înainte ca întregul răspuns să fie primit și procesat</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="280"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="266"/>
         <source>The connection to the remote server timed out</source>
         <translation>Conexiunea la serverul de la distanță a expirat</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="268"/>
         <source>SSL/TLS handshake failed</source>
         <translation>Inițierea conexiunii SSL/TLS a eșuat</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="270"/>
         <source>The remote server refused the connection</source>
         <translation>Serverul la distanță a refuzat conexiunea</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="286"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="272"/>
         <source>The connection to the proxy server was refused</source>
         <translation>Conexiunea la serverul proxy a fost refuzată</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="274"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Serverul proxy a închis conexiunea prematur</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="276"/>
         <source>The proxy host name was not found</source>
         <translation>Numele de gazdă a serverului proxy nu a fost găsit</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="292"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="278"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>Conexiunea la proxy a expirat sau proxy-ul nu a răspuns la timp cererii trimise</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="294"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="280"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
         <translation>Proxy-ul cere autentificare pentru a putea onora cererea dar nu a acceptat certificările oferite</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="296"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
         <source>The access to the remote content was denied (401)</source>
         <translation>Accesul la conținutul la distanță a fost refuzat (401)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="298"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>Operațiunea cerută asupra conținutului la distanță nu este permisă</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="300"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="286"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Conținutul la distanță nu a fost găsit pe server (404)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="302"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
         <translation>Servitorul la distanță cere autentificare pentru a furniza conținutul dar credențialele oferite nu au fost acceptate</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="304"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>API-ul de acces la rețea nu poate onora cererea deoarece protocolul nu este cunoscut</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="306"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="292"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>Operațiunea cerută nu este validă pentru acest protocol</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="308"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="294"/>
         <source>An unknown network-related error was detected</source>
         <translation>O eroare necunoscută legată de rețea a fost detectată</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="310"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="296"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>A fost depistată o eroare necunoscută legată de proxy</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="312"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="298"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>A fost depistată o eroare necunoscută legată de conținutul distant</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="314"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="300"/>
         <source>A breakdown in protocol was detected</source>
         <translation>O întrerupere a fost detectată în protocol</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="316"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="302"/>
         <source>Unknown error</source>
         <translation>Eroare necunoscută</translation>
     </message>
@@ -4240,7 +4232,7 @@ Instalați-l manual.</translation>
 <context>
     <name>Net::DownloadManager</name>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="128"/>
+        <location filename="../base/net/downloadmanager.cpp" line="131"/>
         <source>Ignoring SSL error, URL: &quot;%1&quot;, errors: &quot;%2&quot;</source>
         <translation>Se ignoră eroarea SSL, URL: „%1”, erori: „%2”</translation>
     </message>
@@ -5627,284 +5619,284 @@ Instalați-l manual.</translation>
         <translation>Avansate</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="216"/>
+        <location filename="../gui/optionsdialog.ui" line="203"/>
         <source>Customize UI Theme...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="226"/>
+        <location filename="../gui/optionsdialog.ui" line="213"/>
         <source>Transfer List</source>
         <translation>Lista de transferuri</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="235"/>
+        <location filename="../gui/optionsdialog.ui" line="222"/>
         <source>Confirm when deleting torrents</source>
         <translation>Cere confirmare la ștergerea torentelor</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="245"/>
+        <location filename="../gui/optionsdialog.ui" line="232"/>
         <source>Shows a confirmation dialog upon pausing/resuming all the torrents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="248"/>
+        <location filename="../gui/optionsdialog.ui" line="235"/>
         <source>Confirm &quot;Pause/Resume all&quot; actions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="258"/>
+        <location filename="../gui/optionsdialog.ui" line="245"/>
         <source>Use alternating row colors</source>
         <extracomment>In table elements, every other row will have a grey background.</extracomment>
         <translation>Utilizează culori de rând alternative</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="270"/>
+        <location filename="../gui/optionsdialog.ui" line="257"/>
         <source>Hide zero and infinity values</source>
         <translation>Ascunde valorile zero și infinit</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="278"/>
+        <location filename="../gui/optionsdialog.ui" line="265"/>
         <source>Always</source>
         <translation>Întotdeauna</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="283"/>
+        <location filename="../gui/optionsdialog.ui" line="270"/>
         <source>Paused torrents only</source>
         <translation>Doar torentele suspendate</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="306"/>
+        <location filename="../gui/optionsdialog.ui" line="293"/>
         <source>Action on double-click</source>
         <translation>Acțiune la clic dublu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="312"/>
+        <location filename="../gui/optionsdialog.ui" line="299"/>
         <source>Downloading torrents:</source>
         <translation>Torente în curs de descărcare:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="323"/>
-        <location filename="../gui/optionsdialog.ui" line="359"/>
+        <location filename="../gui/optionsdialog.ui" line="310"/>
+        <location filename="../gui/optionsdialog.ui" line="346"/>
         <source>Start / Stop Torrent</source>
         <translation>Pornește / Oprește torent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="328"/>
-        <location filename="../gui/optionsdialog.ui" line="364"/>
+        <location filename="../gui/optionsdialog.ui" line="315"/>
+        <location filename="../gui/optionsdialog.ui" line="351"/>
         <source>Open destination folder</source>
         <translation>Deschide dosarul destinație</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="343"/>
-        <location filename="../gui/optionsdialog.ui" line="379"/>
+        <location filename="../gui/optionsdialog.ui" line="330"/>
+        <location filename="../gui/optionsdialog.ui" line="366"/>
         <source>No action</source>
         <translation>Nicio acțiune</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="351"/>
+        <location filename="../gui/optionsdialog.ui" line="338"/>
         <source>Completed torrents:</source>
         <translation>Torente încheiate:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="403"/>
+        <location filename="../gui/optionsdialog.ui" line="390"/>
         <source>Auto hide zero status filters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="413"/>
+        <location filename="../gui/optionsdialog.ui" line="400"/>
         <source>Desktop</source>
         <translation>Spațiul de lucru</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="419"/>
+        <location filename="../gui/optionsdialog.ui" line="406"/>
         <source>Start qBittorrent on Windows start up</source>
         <translation>Pornește qBittorrent la pornirea Windows-ului</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="426"/>
+        <location filename="../gui/optionsdialog.ui" line="413"/>
         <source>Show splash screen on start up</source>
         <translation>Arată ecranul de întâmpinare la pornire</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="470"/>
+        <location filename="../gui/optionsdialog.ui" line="457"/>
         <source>Confirmation on exit when torrents are active</source>
         <translation>Confirmare la ieșire când torrentele sunt active</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="480"/>
+        <location filename="../gui/optionsdialog.ui" line="467"/>
         <source>Confirmation on auto-exit when downloads finish</source>
         <translation>Confirmare la ieșirea automată când descărcările s-au încheiat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="621"/>
+        <location filename="../gui/optionsdialog.ui" line="608"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To set qBittorrent as default program for .torrent files and/or Magnet links&lt;br/&gt;you can use &lt;span style=&quot; font-weight:600;&quot;&gt;Default Programs&lt;/span&gt; dialog from &lt;span style=&quot; font-weight:600;&quot;&gt;Control Panel&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="711"/>
+        <location filename="../gui/optionsdialog.ui" line="698"/>
         <source> KiB</source>
         <translation> KiO</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="889"/>
+        <location filename="../gui/optionsdialog.ui" line="876"/>
         <source>Torrent content layout:</source>
         <translation>Amplasarea conținutului torentului:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="900"/>
+        <location filename="../gui/optionsdialog.ui" line="887"/>
         <source>Original</source>
         <translation>Original</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="905"/>
+        <location filename="../gui/optionsdialog.ui" line="892"/>
         <source>Create subfolder</source>
         <translation>Creează subdosar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="910"/>
+        <location filename="../gui/optionsdialog.ui" line="897"/>
         <source>Don&apos;t create subfolder</source>
         <translation>Nu crea subdosar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="933"/>
+        <location filename="../gui/optionsdialog.ui" line="920"/>
         <source>The torrent will be added to the top of the download queue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="936"/>
+        <location filename="../gui/optionsdialog.ui" line="923"/>
         <source>Add to top of queue</source>
         <extracomment>The torrent will be added to the top of the download queue</extracomment>
         <translation>Adaugă în vârful cozii</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="999"/>
+        <location filename="../gui/optionsdialog.ui" line="986"/>
         <source>When duplicate torrent is being added</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1005"/>
+        <location filename="../gui/optionsdialog.ui" line="992"/>
         <source>Merge trackers to existing torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1100"/>
+        <location filename="../gui/optionsdialog.ui" line="1087"/>
         <source>Keep unselected files in &quot;.unwanted&quot; folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1403"/>
+        <location filename="../gui/optionsdialog.ui" line="1390"/>
         <source>Add...</source>
         <translation>Adăugare...</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1413"/>
+        <location filename="../gui/optionsdialog.ui" line="1400"/>
         <source>Options..</source>
         <translation>Opțiuni..</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1423"/>
+        <location filename="../gui/optionsdialog.ui" line="1410"/>
         <source>Remove</source>
         <translation>Elimină</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1487"/>
+        <location filename="../gui/optionsdialog.ui" line="1474"/>
         <source>Email notification &amp;upon download completion</source>
         <translation>Trimite notificări prin poșta electronică la finalizarea descărcării</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1684"/>
+        <location filename="../gui/optionsdialog.ui" line="1671"/>
         <source>Peer connection protocol:</source>
         <translation>Conexiuni totale cu parteneri:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1743"/>
+        <location filename="../gui/optionsdialog.ui" line="1730"/>
         <source>Any</source>
         <translation>Oricare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1893"/>
+        <location filename="../gui/optionsdialog.ui" line="1880"/>
         <source>I2P (experimental)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1952"/>
+        <location filename="../gui/optionsdialog.ui" line="1939"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;mixed mode&amp;quot; is enabled I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1955"/>
+        <location filename="../gui/optionsdialog.ui" line="1942"/>
         <source>Mixed mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2036"/>
+        <location filename="../gui/optionsdialog.ui" line="2023"/>
         <source>Some options are incompatible with the chosen proxy type!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2043"/>
+        <location filename="../gui/optionsdialog.ui" line="2030"/>
         <source>If checked, hostname lookups are done via the proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2046"/>
+        <location filename="../gui/optionsdialog.ui" line="2033"/>
         <source>Perform hostname lookup via proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2106"/>
+        <location filename="../gui/optionsdialog.ui" line="2093"/>
         <source>Use proxy for BitTorrent purposes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2131"/>
+        <location filename="../gui/optionsdialog.ui" line="2118"/>
         <source>RSS feeds will use proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2134"/>
+        <location filename="../gui/optionsdialog.ui" line="2121"/>
         <source>Use proxy for RSS purposes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2144"/>
+        <location filename="../gui/optionsdialog.ui" line="2131"/>
         <source>Search engine, software updates or anything else will use proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2147"/>
+        <location filename="../gui/optionsdialog.ui" line="2134"/>
         <source>Use proxy for general purposes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2160"/>
+        <location filename="../gui/optionsdialog.ui" line="2147"/>
         <source>IP Fi&amp;ltering</source>
         <translation>Fi&amp;ltrare adrese IP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2354"/>
+        <location filename="../gui/optionsdialog.ui" line="2341"/>
         <source>Schedule &amp;the use of alternative rate limits</source>
         <translation>Planifică utilizarea limitelor alternative de viteză</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2369"/>
+        <location filename="../gui/optionsdialog.ui" line="2356"/>
         <source>From:</source>
         <comment>From start time</comment>
         <translation>De la:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2396"/>
+        <location filename="../gui/optionsdialog.ui" line="2383"/>
         <source>To:</source>
         <comment>To end time</comment>
         <translation>Către:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2601"/>
+        <location filename="../gui/optionsdialog.ui" line="2588"/>
         <source>Find peers on the DHT network</source>
         <translation>Găsiți colegi în rețeaua DHT</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2649"/>
+        <location filename="../gui/optionsdialog.ui" line="2636"/>
         <source>Allow encryption: Connect to peers regardless of setting
 Require encryption: Only connect to peers with protocol encryption
 Disable encryption: Only connect to peers without protocol encryption</source>
@@ -5913,140 +5905,145 @@ Necesită criptare: conectați-vă numai la parteneri cu criptare de protocol
 Dezactivați criptarea: conectați-vă numai la parteneri fără criptarea protocolului    </translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2655"/>
+        <location filename="../gui/optionsdialog.ui" line="2642"/>
         <source>Allow encryption</source>
         <translation>Permite criptarea</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2700"/>
+        <location filename="../gui/optionsdialog.ui" line="2687"/>
         <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Mai multe informații&lt;/a&gt;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2730"/>
+        <location filename="../gui/optionsdialog.ui" line="2717"/>
         <source>Maximum active checking torrents:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2765"/>
+        <location filename="../gui/optionsdialog.ui" line="2752"/>
         <source>&amp;Torrent Queueing</source>
         <translation>Coadă torente</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2986"/>
+        <location filename="../gui/optionsdialog.ui" line="2973"/>
         <source>When total seeding time reaches</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3009"/>
+        <location filename="../gui/optionsdialog.ui" line="2996"/>
         <source>When inactive seeding time reaches</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3072"/>
+        <location filename="../gui/optionsdialog.ui" line="3059"/>
         <source>A&amp;utomatically add these trackers to new downloads:</source>
         <translation>Adaugă a&amp;utomat aceste urmăritoare la noile descărcări:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3138"/>
+        <location filename="../gui/optionsdialog.ui" line="3125"/>
         <source>RSS Reader</source>
         <translation>Cititor RSS</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3144"/>
+        <location filename="../gui/optionsdialog.ui" line="3131"/>
         <source>Enable fetching RSS feeds</source>
         <translation>Activează preluarea fluxurilor RSS</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3153"/>
+        <location filename="../gui/optionsdialog.ui" line="3140"/>
         <source>Feeds refresh interval:</source>
         <translation>Interval de reîmprospătare al fluxurilor:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3170"/>
+        <location filename="../gui/optionsdialog.ui" line="3160"/>
+        <source>Same host request delay:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="3206"/>
         <source>Maximum number of articles per feed:</source>
         <translation>Numărul maxim de articole pe flux:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2996"/>
-        <location filename="../gui/optionsdialog.ui" line="3019"/>
-        <location filename="../gui/optionsdialog.ui" line="3177"/>
+        <location filename="../gui/optionsdialog.ui" line="2983"/>
+        <location filename="../gui/optionsdialog.ui" line="3006"/>
+        <location filename="../gui/optionsdialog.ui" line="3167"/>
         <source> min</source>
         <extracomment>minutes</extracomment>
         <translation> min</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2944"/>
+        <location filename="../gui/optionsdialog.ui" line="2931"/>
         <source>Seeding Limits</source>
         <translation>Limite de contribuire</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3046"/>
+        <location filename="../gui/optionsdialog.ui" line="3033"/>
         <source>Pause torrent</source>
         <translation>Suspendă torentul</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3051"/>
+        <location filename="../gui/optionsdialog.ui" line="3038"/>
         <source>Remove torrent</source>
         <translation>Elimină torentul</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3056"/>
+        <location filename="../gui/optionsdialog.ui" line="3043"/>
         <source>Remove torrent and its files</source>
         <translation>Elimină torentul și fișierele acestuia</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3061"/>
+        <location filename="../gui/optionsdialog.ui" line="3048"/>
         <source>Enable super seeding for torrent</source>
         <translation>Activați super contribuirea pentru torent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2950"/>
+        <location filename="../gui/optionsdialog.ui" line="2937"/>
         <source>When ratio reaches</source>
         <translation>Când raportul ajunge la</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3211"/>
+        <location filename="../gui/optionsdialog.ui" line="3218"/>
         <source>RSS Torrent Auto Downloader</source>
         <translation>Descărcare automată a torentelor RSS</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3217"/>
+        <location filename="../gui/optionsdialog.ui" line="3224"/>
         <source>Enable auto downloading of RSS torrents</source>
         <translation>Activați descărcarea automată a torrentelor RSS</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3224"/>
+        <location filename="../gui/optionsdialog.ui" line="3231"/>
         <source>Edit auto downloading rules...</source>
         <translation>Modifică reguli de descărcare automată…</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3234"/>
+        <location filename="../gui/optionsdialog.ui" line="3241"/>
         <source>RSS Smart Episode Filter</source>
         <translation>Filtru RSS Smart Episode</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3240"/>
+        <location filename="../gui/optionsdialog.ui" line="3247"/>
         <source>Download REPACK/PROPER episodes</source>
         <translation>Descarcă episoade REPACK/PROPER</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3247"/>
+        <location filename="../gui/optionsdialog.ui" line="3254"/>
         <source>Filters:</source>
         <translation>Filtre:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3308"/>
+        <location filename="../gui/optionsdialog.ui" line="3315"/>
         <source>Web User Interface (Remote control)</source>
         <translation>Interfață utilizator Web (Control la distanță)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3334"/>
+        <location filename="../gui/optionsdialog.ui" line="3341"/>
         <source>IP address:</source>
         <translation>Adrese IP:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3341"/>
+        <location filename="../gui/optionsdialog.ui" line="3348"/>
         <source>IP address that the Web UI will bind to.
 Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv4 address,
 &quot;::&quot; for any IPv6 address, or &quot;*&quot; for both IPv4 and IPv6.</source>
@@ -6055,42 +6052,42 @@ Specificați o adresă IPv4 sau IPv6. Puteți folosii „0.0.0.0” pentru orice
 „::” pentru orice adresă IPv6, sau „*” pentru amândouă IPv4 și IPv6.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3499"/>
+        <location filename="../gui/optionsdialog.ui" line="3506"/>
         <source>Ban client after consecutive failures:</source>
         <translation>Interzice clientul după eșecuri consecutive:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3519"/>
+        <location filename="../gui/optionsdialog.ui" line="3526"/>
         <source>Never</source>
         <translation>Niciodată</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3529"/>
+        <location filename="../gui/optionsdialog.ui" line="3536"/>
         <source>ban for:</source>
         <translation>interzice pentru:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3556"/>
+        <location filename="../gui/optionsdialog.ui" line="3563"/>
         <source>Session timeout:</source>
         <translation>Expirarea sesiunii:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3563"/>
+        <location filename="../gui/optionsdialog.ui" line="3570"/>
         <source>Disabled</source>
         <translation>Dezactivat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3639"/>
+        <location filename="../gui/optionsdialog.ui" line="3646"/>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>Activează fanionul de securitate pentru cookie (necesită HTTPS)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3657"/>
+        <location filename="../gui/optionsdialog.ui" line="3664"/>
         <source>Server domains:</source>
         <translation>Domenii servitor:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3664"/>
+        <location filename="../gui/optionsdialog.ui" line="3671"/>
         <source>Whitelist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
@@ -6099,37 +6096,37 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3382"/>
+        <location filename="../gui/optionsdialog.ui" line="3389"/>
         <source>&amp;Use HTTPS instead of HTTP</source>
         <translation>&amp;Utilizează HTTPS în locul HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3470"/>
+        <location filename="../gui/optionsdialog.ui" line="3477"/>
         <source>Bypass authentication for clients on localhost</source>
         <translation>Sari autentificarea pentru clienți din rețeaua locală</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3477"/>
+        <location filename="../gui/optionsdialog.ui" line="3484"/>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
         <translation>Sari autentificarea pentru clienți din rețele IP permise</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3490"/>
+        <location filename="../gui/optionsdialog.ui" line="3497"/>
         <source>IP subnet whitelist...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3723"/>
+        <location filename="../gui/optionsdialog.ui" line="3730"/>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3735"/>
+        <location filename="../gui/optionsdialog.ui" line="3742"/>
         <source>Upda&amp;te my dynamic domain name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="502"/>
+        <location filename="../gui/optionsdialog.ui" line="489"/>
         <source>Minimize qBittorrent to notification area</source>
         <translation>Minimizează qBittorrent în zona de notificare</translation>
     </message>
@@ -6144,180 +6141,180 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>Limbă:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="524"/>
+        <location filename="../gui/optionsdialog.ui" line="511"/>
         <source>Tray icon style:</source>
         <translation>Stilul pictogramei din tăvița de sistem:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="532"/>
-        <location filename="../gui/optionsdialog.cpp" line="282"/>
+        <location filename="../gui/optionsdialog.ui" line="519"/>
+        <location filename="../gui/optionsdialog.cpp" line="285"/>
         <source>Normal</source>
         <translation>Normală</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="568"/>
+        <location filename="../gui/optionsdialog.ui" line="555"/>
         <source>File association</source>
         <translation>Asociere fișier</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="589"/>
+        <location filename="../gui/optionsdialog.ui" line="576"/>
         <source>Use qBittorrent for .torrent files</source>
         <translation>Utilizează qBittorrent pentru fișiere .torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="596"/>
+        <location filename="../gui/optionsdialog.ui" line="583"/>
         <source>Use qBittorrent for magnet links</source>
         <translation>Utilizează qBittorrent pentru legături magnet</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="634"/>
+        <location filename="../gui/optionsdialog.ui" line="621"/>
         <source>Check for program updates</source>
         <translation>Verifică pentru actualizări ale programului</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="644"/>
+        <location filename="../gui/optionsdialog.ui" line="631"/>
         <source>Power Management</source>
         <translation>Gestionare energie</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="687"/>
+        <location filename="../gui/optionsdialog.ui" line="674"/>
         <source>Save path:</source>
         <translation>Cale de salvare:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="704"/>
+        <location filename="../gui/optionsdialog.ui" line="691"/>
         <source>Backup the log file after:</source>
         <translation>Fă o copie de rezervă a fișierului jurnal după:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="744"/>
+        <location filename="../gui/optionsdialog.ui" line="731"/>
         <source>Delete backup logs older than:</source>
         <translation>Șterge copiile de rezervă ale fișierului jurnal mai vechi decât:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="859"/>
+        <location filename="../gui/optionsdialog.ui" line="846"/>
         <source>When adding a torrent</source>
         <translation>Când se adaugă un torent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="874"/>
+        <location filename="../gui/optionsdialog.ui" line="861"/>
         <source>Bring torrent dialog to the front</source>
         <translation>Adu fereastra de dialog a torentului în față</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1043"/>
+        <location filename="../gui/optionsdialog.ui" line="1030"/>
         <source>Also delete .torrent files whose addition was cancelled</source>
         <translation>Șterge fișierele .torent a căror adăugare a fost abandonată</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1046"/>
+        <location filename="../gui/optionsdialog.ui" line="1033"/>
         <source>Also when addition is cancelled</source>
         <translation>Și când adăugarea a fost abandonată</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1068"/>
+        <location filename="../gui/optionsdialog.ui" line="1055"/>
         <source>Warning! Data loss possible!</source>
         <translation>Atenție! Este posibilă pierderea datelor!</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1117"/>
+        <location filename="../gui/optionsdialog.ui" line="1104"/>
         <source>Saving Management</source>
         <translation>Gestionare salvare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1125"/>
+        <location filename="../gui/optionsdialog.ui" line="1112"/>
         <source>Default Torrent Management Mode:</source>
         <translation>Mod implicit de gestionare a torentelor:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1142"/>
+        <location filename="../gui/optionsdialog.ui" line="1129"/>
         <source>Manual</source>
         <translation>Manual</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1147"/>
+        <location filename="../gui/optionsdialog.ui" line="1134"/>
         <source>Automatic</source>
         <translation>Automat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1170"/>
+        <location filename="../gui/optionsdialog.ui" line="1157"/>
         <source>When Torrent Category changed:</source>
         <translation>Când categoria torentului s-a schimbat:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1180"/>
+        <location filename="../gui/optionsdialog.ui" line="1167"/>
         <source>Relocate torrent</source>
         <translation>Mută torentul</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1185"/>
+        <location filename="../gui/optionsdialog.ui" line="1172"/>
         <source>Switch torrent to Manual Mode</source>
         <translation>Treci torentul în regim manual</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1221"/>
-        <location filename="../gui/optionsdialog.ui" line="1262"/>
+        <location filename="../gui/optionsdialog.ui" line="1208"/>
+        <location filename="../gui/optionsdialog.ui" line="1249"/>
         <source>Relocate affected torrents</source>
         <translation>Mută torentele afectate</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1226"/>
-        <location filename="../gui/optionsdialog.ui" line="1267"/>
+        <location filename="../gui/optionsdialog.ui" line="1213"/>
+        <location filename="../gui/optionsdialog.ui" line="1254"/>
         <source>Switch affected torrents to Manual Mode</source>
         <translation>Treci torentele afectate în regim manual</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1292"/>
+        <location filename="../gui/optionsdialog.ui" line="1279"/>
         <source>Use Subcategories</source>
         <translation>Utilizează subcategoriile</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1311"/>
+        <location filename="../gui/optionsdialog.ui" line="1298"/>
         <source>Default Save Path:</source>
         <translation>Cale de salvare implicită:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1331"/>
+        <location filename="../gui/optionsdialog.ui" line="1318"/>
         <source>Copy .torrent files to:</source>
         <translation>Copiază fișierele .torrent în:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="490"/>
+        <location filename="../gui/optionsdialog.ui" line="477"/>
         <source>Show &amp;qBittorrent in notification area</source>
         <translation>Arată qBittorrent în zona de notificare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="667"/>
+        <location filename="../gui/optionsdialog.ui" line="654"/>
         <source>&amp;Log file</source>
         <translation>Fișier jurna&amp;l</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="865"/>
+        <location filename="../gui/optionsdialog.ui" line="852"/>
         <source>Display &amp;torrent content and some options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1031"/>
+        <location filename="../gui/optionsdialog.ui" line="1018"/>
         <source>De&amp;lete .torrent files afterwards </source>
         <translation>Șterge fișierele .torrent după</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1344"/>
+        <location filename="../gui/optionsdialog.ui" line="1331"/>
         <source>Copy .torrent files for finished downloads to:</source>
         <translation>Copiază fișierele .torrent pentru descărcările încheiate în:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1086"/>
+        <location filename="../gui/optionsdialog.ui" line="1073"/>
         <source>Pre-allocate disk space for all files</source>
         <translation>Pre-alocă spațiu pe disc pentru toate fișierele</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="187"/>
+        <location filename="../gui/optionsdialog.ui" line="174"/>
         <source>Use custom UI Theme</source>
         <translation>Folosește temă interfață grafică personalizată:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="196"/>
+        <location filename="../gui/optionsdialog.ui" line="183"/>
         <source>UI Theme file:</source>
         <translation>Fișier temă interfață grafică:</translation>
     </message>
@@ -6327,213 +6324,213 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>Pentru modificarea setărilor interfeței trebuie să reporniți aplicația</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="232"/>
+        <location filename="../gui/optionsdialog.ui" line="219"/>
         <source>Shows a confirmation dialog upon torrent deletion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="333"/>
-        <location filename="../gui/optionsdialog.ui" line="369"/>
+        <location filename="../gui/optionsdialog.ui" line="320"/>
+        <location filename="../gui/optionsdialog.ui" line="356"/>
         <source>Preview file, otherwise open destination folder</source>
         <translation>Previzualizează fișierul, altfel deschide dosarul destinație</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="338"/>
-        <location filename="../gui/optionsdialog.ui" line="374"/>
+        <location filename="../gui/optionsdialog.ui" line="325"/>
+        <location filename="../gui/optionsdialog.ui" line="361"/>
         <source>Show torrent options</source>
         <translation>Arată opțiunile torentului</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="467"/>
+        <location filename="../gui/optionsdialog.ui" line="454"/>
         <source>Shows a confirmation dialog when exiting with active torrents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="499"/>
+        <location filename="../gui/optionsdialog.ui" line="486"/>
         <source>When minimizing, the main window is closed and must be reopened from the systray icon</source>
         <translation>Când se minimizează, fereastra principală este închisă și trebuie să fie redeschisă de la pictograma din tăvița de sistem</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="512"/>
+        <location filename="../gui/optionsdialog.ui" line="499"/>
         <source>The systray icon will still be visible when closing the main window</source>
         <translation>Pictograma din tăvița de sistem va continua să fie vizibilă când este închisă fereastra principală</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="515"/>
+        <location filename="../gui/optionsdialog.ui" line="502"/>
         <source>Close qBittorrent to notification area</source>
         <extracomment>The systray icon will still be visible when closing the main window</extracomment>
         <translation>Închide qBittorrent în zona de notificare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="537"/>
+        <location filename="../gui/optionsdialog.ui" line="524"/>
         <source>Monochrome (for dark theme)</source>
         <translation>Monocromatic (pentru tema întunecată)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="542"/>
+        <location filename="../gui/optionsdialog.ui" line="529"/>
         <source>Monochrome (for light theme)</source>
         <translation>Monocromatic (pentru tema luminoasă)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="650"/>
+        <location filename="../gui/optionsdialog.ui" line="637"/>
         <source>Inhibit system sleep when torrents are downloading</source>
         <translation>Împiedică suspendarea sistemului cât timp sunt torente care se descarcă</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="657"/>
+        <location filename="../gui/optionsdialog.ui" line="644"/>
         <source>Inhibit system sleep when torrents are seeding</source>
         <translation>Împiedică suspendarea sistemului cât timp sunt torente care se contribuie</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="701"/>
+        <location filename="../gui/optionsdialog.ui" line="688"/>
         <source>Creates an additional log file after the log file reaches the specified file size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="768"/>
+        <location filename="../gui/optionsdialog.ui" line="755"/>
         <source>days</source>
         <extracomment>Delete backup logs older than 10 days</extracomment>
         <translation>zile</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="773"/>
+        <location filename="../gui/optionsdialog.ui" line="760"/>
         <source>months</source>
         <extracomment>Delete backup logs older than 10 months</extracomment>
         <translation>luni</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="778"/>
+        <location filename="../gui/optionsdialog.ui" line="765"/>
         <source>years</source>
         <extracomment>Delete backup logs older than 10 years</extracomment>
         <translation>ani</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="804"/>
+        <location filename="../gui/optionsdialog.ui" line="791"/>
         <source>Log performance warnings</source>
         <translation>Înregistrează avertizările de performanță</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="943"/>
+        <location filename="../gui/optionsdialog.ui" line="930"/>
         <source>The torrent will be added to download list in a paused state</source>
         <translation>Torentul va fi adăugat în lista de descărcare cu starea suspendat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="946"/>
+        <location filename="../gui/optionsdialog.ui" line="933"/>
         <source>Do not start the download automatically</source>
         <extracomment>The torrent will be added to download list in a paused state</extracomment>
         <translation>Nu porni automat descărcarea</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1028"/>
+        <location filename="../gui/optionsdialog.ui" line="1015"/>
         <source>Whether the .torrent file should be deleted after adding it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1083"/>
+        <location filename="../gui/optionsdialog.ui" line="1070"/>
         <source>Allocate full file sizes on disk before starting downloads, to minimize fragmentation. Only useful for HDDs.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1093"/>
+        <location filename="../gui/optionsdialog.ui" line="1080"/>
         <source>Append .!qB extension to incomplete files</source>
         <translation>Adaugă extensia .!qB fișierelor incomplete</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1107"/>
+        <location filename="../gui/optionsdialog.ui" line="1094"/>
         <source>When a torrent is downloaded, offer to add torrents from any .torrent files found inside it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1110"/>
+        <location filename="../gui/optionsdialog.ui" line="1097"/>
         <source>Enable recursive download dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1137"/>
+        <location filename="../gui/optionsdialog.ui" line="1124"/>
         <source>Automatic: Various torrent properties (e.g. save path) will be decided by the associated category
 Manual: Various torrent properties (e.g. save path) must be assigned manually</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1208"/>
+        <location filename="../gui/optionsdialog.ui" line="1195"/>
         <source>When Default Save/Incomplete Path changed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1249"/>
+        <location filename="../gui/optionsdialog.ui" line="1236"/>
         <source>When Category Save Path changed:</source>
         <translation>Când calea de salvare a categoriei s-a schimbat:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1302"/>
+        <location filename="../gui/optionsdialog.ui" line="1289"/>
         <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1299"/>
+        <location filename="../gui/optionsdialog.ui" line="1286"/>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="209"/>
+        <location filename="../gui/optionsdialog.ui" line="196"/>
         <source>Use icons from system theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="438"/>
+        <location filename="../gui/optionsdialog.ui" line="425"/>
         <source>Window state on start up:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="445"/>
+        <location filename="../gui/optionsdialog.ui" line="432"/>
         <source>qBittorrent window state on start up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="955"/>
+        <location filename="../gui/optionsdialog.ui" line="942"/>
         <source>Torrent stop condition:</source>
         <translation>Condiție de oprire a torentului:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="966"/>
-        <location filename="../gui/optionsdialog.cpp" line="524"/>
+        <location filename="../gui/optionsdialog.ui" line="953"/>
+        <location filename="../gui/optionsdialog.cpp" line="527"/>
         <source>None</source>
         <translation>Niciuna</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="971"/>
-        <location filename="../gui/optionsdialog.cpp" line="525"/>
+        <location filename="../gui/optionsdialog.ui" line="958"/>
+        <location filename="../gui/optionsdialog.cpp" line="528"/>
         <source>Metadata received</source>
         <translation>Metadate primite</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="976"/>
-        <location filename="../gui/optionsdialog.cpp" line="527"/>
+        <location filename="../gui/optionsdialog.ui" line="963"/>
+        <location filename="../gui/optionsdialog.cpp" line="530"/>
         <source>Files checked</source>
         <translation>Fișiere verificate</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1015"/>
+        <location filename="../gui/optionsdialog.ui" line="1002"/>
         <source>Ask for merging trackers when torrent is being added manually</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1321"/>
+        <location filename="../gui/optionsdialog.ui" line="1308"/>
         <source>Use another path for incomplete torrents:</source>
         <translation>Folosește o altă cale pentru torentele incomplete:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1356"/>
+        <location filename="../gui/optionsdialog.ui" line="1343"/>
         <source>Automatically add torrents from:</source>
         <translation>Adaugă automat torente din:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1450"/>
+        <location filename="../gui/optionsdialog.ui" line="1437"/>
         <source>Excluded file names</source>
         <translation>Denumiri de fișiere excluse</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1462"/>
+        <location filename="../gui/optionsdialog.ui" line="1449"/>
         <source>Blacklist filtered file names from being downloaded from torrent(s).
 Files matching any of the filters in this list will have their priority automatically set to &quot;Do not download&quot;.
 
@@ -6550,766 +6547,771 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1504"/>
+        <location filename="../gui/optionsdialog.ui" line="1491"/>
         <source>Receiver</source>
         <translation>Destinatarul</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1507"/>
+        <location filename="../gui/optionsdialog.ui" line="1494"/>
         <source>To:</source>
         <comment>To receiver</comment>
         <translation>Către:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1514"/>
+        <location filename="../gui/optionsdialog.ui" line="1501"/>
         <source>SMTP server:</source>
         <translation>Servitor SMTP:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1527"/>
+        <location filename="../gui/optionsdialog.ui" line="1514"/>
         <source>Sender</source>
         <translation>Expeditor</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1530"/>
+        <location filename="../gui/optionsdialog.ui" line="1517"/>
         <source>From:</source>
         <comment>From sender</comment>
         <translation>De la:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1539"/>
+        <location filename="../gui/optionsdialog.ui" line="1526"/>
         <source>This server requires a secure connection (SSL)</source>
         <translation>Servitorul necesită o conexiune securizată (SSL)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1546"/>
-        <location filename="../gui/optionsdialog.ui" line="3433"/>
+        <location filename="../gui/optionsdialog.ui" line="1533"/>
+        <location filename="../gui/optionsdialog.ui" line="3440"/>
         <source>Authentication</source>
         <translation>Autentificare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1558"/>
-        <location filename="../gui/optionsdialog.ui" line="2070"/>
-        <location filename="../gui/optionsdialog.ui" line="3441"/>
-        <location filename="../gui/optionsdialog.ui" line="3793"/>
+        <location filename="../gui/optionsdialog.ui" line="1545"/>
+        <location filename="../gui/optionsdialog.ui" line="2057"/>
+        <location filename="../gui/optionsdialog.ui" line="3448"/>
+        <location filename="../gui/optionsdialog.ui" line="3800"/>
         <source>Username:</source>
         <translation>Nume utilizator:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1568"/>
-        <location filename="../gui/optionsdialog.ui" line="2080"/>
-        <location filename="../gui/optionsdialog.ui" line="3451"/>
-        <location filename="../gui/optionsdialog.ui" line="3803"/>
+        <location filename="../gui/optionsdialog.ui" line="1555"/>
+        <location filename="../gui/optionsdialog.ui" line="2067"/>
+        <location filename="../gui/optionsdialog.ui" line="3458"/>
+        <location filename="../gui/optionsdialog.ui" line="3810"/>
         <source>Password:</source>
         <translation>Parolă:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1588"/>
+        <location filename="../gui/optionsdialog.ui" line="1575"/>
         <source>Run external program</source>
         <translation>Rulează program extern</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1594"/>
+        <location filename="../gui/optionsdialog.ui" line="1581"/>
         <source>Run on torrent added</source>
         <translation>Rulează când este adăugat un torent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1612"/>
+        <location filename="../gui/optionsdialog.ui" line="1599"/>
         <source>Run on torrent finished</source>
         <translation>Rulează când un torent este finalizat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1630"/>
+        <location filename="../gui/optionsdialog.ui" line="1617"/>
         <source>Show console window</source>
         <translation>Arată fereastra de consolă</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1692"/>
+        <location filename="../gui/optionsdialog.ui" line="1679"/>
         <source>TCP and μTP</source>
         <translation>TCP și μTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1725"/>
+        <location filename="../gui/optionsdialog.ui" line="1712"/>
         <source>Listening Port</source>
         <translation>Port ascultat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1733"/>
+        <location filename="../gui/optionsdialog.ui" line="1720"/>
         <source>Port used for incoming connections:</source>
         <translation>Portul utilizat pentru conexiunile de intrare:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1740"/>
+        <location filename="../gui/optionsdialog.ui" line="1727"/>
         <source>Set to 0 to let your system pick an unused port</source>
         <translation>Setează ca 0 pentru a lăsa sistemul să folosească un port neutilizat.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1753"/>
+        <location filename="../gui/optionsdialog.ui" line="1740"/>
         <source>Random</source>
         <translation>Aleator</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1775"/>
+        <location filename="../gui/optionsdialog.ui" line="1762"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Utilizează înaintare port UPnP / NAT-PMP de la routerul meu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1788"/>
+        <location filename="../gui/optionsdialog.ui" line="1775"/>
         <source>Connections Limits</source>
         <translation>Stabilește limitele conexiunii</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1804"/>
+        <location filename="../gui/optionsdialog.ui" line="1791"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Numărul maxim de conexiuni per torent:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1814"/>
+        <location filename="../gui/optionsdialog.ui" line="1801"/>
         <source>Global maximum number of connections:</source>
         <translation>Număr maxim global de conexiuni:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1853"/>
+        <location filename="../gui/optionsdialog.ui" line="1840"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Numărul maxim de sloturi de încărcare per torent:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1860"/>
+        <location filename="../gui/optionsdialog.ui" line="1847"/>
         <source>Global maximum number of upload slots:</source>
         <translation>Număr maxim global de sloturi de încărcare:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1968"/>
+        <location filename="../gui/optionsdialog.ui" line="1955"/>
         <source>Proxy Server</source>
         <translation>Servitor proxy</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1976"/>
+        <location filename="../gui/optionsdialog.ui" line="1963"/>
         <source>Type:</source>
         <translation>Tip:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="856"/>
+        <location filename="../gui/optionsdialog.cpp" line="859"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="857"/>
+        <location filename="../gui/optionsdialog.cpp" line="860"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="858"/>
+        <location filename="../gui/optionsdialog.cpp" line="861"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1907"/>
-        <location filename="../gui/optionsdialog.ui" line="1986"/>
+        <location filename="../gui/optionsdialog.ui" line="1894"/>
+        <location filename="../gui/optionsdialog.ui" line="1973"/>
         <source>Host:</source>
         <translation>Gazdă:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1917"/>
-        <location filename="../gui/optionsdialog.ui" line="1996"/>
-        <location filename="../gui/optionsdialog.ui" line="3350"/>
+        <location filename="../gui/optionsdialog.ui" line="1904"/>
+        <location filename="../gui/optionsdialog.ui" line="1983"/>
+        <location filename="../gui/optionsdialog.ui" line="3357"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2118"/>
+        <location filename="../gui/optionsdialog.ui" line="2105"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
         <translation>Altfel, servitorul proxy este utilizat doar pentru conexiuni la urmăritor</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2121"/>
+        <location filename="../gui/optionsdialog.ui" line="2108"/>
         <source>Use proxy for peer connections</source>
         <translation>Utilizează proxy pentru conexiuni la parteneri</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2056"/>
+        <location filename="../gui/optionsdialog.ui" line="2043"/>
         <source>A&amp;uthentication</source>
         <translation>A&amp;utentificare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2096"/>
+        <location filename="../gui/optionsdialog.ui" line="2083"/>
         <source>Info: The password is saved unencrypted</source>
         <translation>Informație: Parola este salvată fără criptare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2168"/>
+        <location filename="../gui/optionsdialog.ui" line="2155"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Cale filtru (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2178"/>
+        <location filename="../gui/optionsdialog.ui" line="2165"/>
         <source>Reload the filter</source>
         <translation>Reîncarcă filtrul</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2193"/>
+        <location filename="../gui/optionsdialog.ui" line="2180"/>
         <source>Manually banned IP addresses...</source>
         <translation>Adrese IP blocate manual...</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2200"/>
+        <location filename="../gui/optionsdialog.ui" line="2187"/>
         <source>Apply to trackers</source>
         <translation>Aplică urmăritoarelor</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2258"/>
+        <location filename="../gui/optionsdialog.ui" line="2245"/>
         <source>Global Rate Limits</source>
         <translation>Limite de viteză globale</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2264"/>
-        <location filename="../gui/optionsdialog.ui" line="2280"/>
-        <location filename="../gui/optionsdialog.ui" line="2335"/>
-        <location filename="../gui/optionsdialog.ui" line="2471"/>
-        <location filename="../gui/optionsdialog.ui" line="2784"/>
-        <location filename="../gui/optionsdialog.ui" line="2804"/>
-        <location filename="../gui/optionsdialog.ui" line="2824"/>
+        <location filename="../gui/optionsdialog.ui" line="2251"/>
+        <location filename="../gui/optionsdialog.ui" line="2267"/>
+        <location filename="../gui/optionsdialog.ui" line="2322"/>
+        <location filename="../gui/optionsdialog.ui" line="2458"/>
+        <location filename="../gui/optionsdialog.ui" line="2771"/>
+        <location filename="../gui/optionsdialog.ui" line="2791"/>
+        <location filename="../gui/optionsdialog.ui" line="2811"/>
         <source>∞</source>
         <translation>∞</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2267"/>
-        <location filename="../gui/optionsdialog.ui" line="2283"/>
-        <location filename="../gui/optionsdialog.ui" line="2338"/>
-        <location filename="../gui/optionsdialog.ui" line="2474"/>
+        <location filename="../gui/optionsdialog.ui" line="2254"/>
+        <location filename="../gui/optionsdialog.ui" line="2270"/>
+        <location filename="../gui/optionsdialog.ui" line="2325"/>
+        <location filename="../gui/optionsdialog.ui" line="2461"/>
+        <location filename="../gui/optionsdialog.ui" line="2849"/>
         <location filename="../gui/optionsdialog.ui" line="2862"/>
-        <location filename="../gui/optionsdialog.ui" line="2875"/>
         <source> KiB/s</source>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2312"/>
-        <location filename="../gui/optionsdialog.ui" line="2500"/>
+        <location filename="../gui/optionsdialog.ui" line="2299"/>
+        <location filename="../gui/optionsdialog.ui" line="2487"/>
         <source>Upload:</source>
         <translation>Încărcare:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2319"/>
-        <location filename="../gui/optionsdialog.ui" line="2507"/>
+        <location filename="../gui/optionsdialog.ui" line="2306"/>
+        <location filename="../gui/optionsdialog.ui" line="2494"/>
         <source>Download:</source>
         <translation>Descărcare:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2329"/>
+        <location filename="../gui/optionsdialog.ui" line="2316"/>
         <source>Alternative Rate Limits</source>
         <translation>Limite de viteză alternative</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2366"/>
+        <location filename="../gui/optionsdialog.ui" line="2353"/>
         <source>Start time</source>
         <translation>Timpul de început</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2393"/>
+        <location filename="../gui/optionsdialog.ui" line="2380"/>
         <source>End time</source>
         <translation>Timpul de finalizare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2423"/>
+        <location filename="../gui/optionsdialog.ui" line="2410"/>
         <source>When:</source>
         <translation>Când:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2437"/>
+        <location filename="../gui/optionsdialog.ui" line="2424"/>
         <source>Every day</source>
         <translation>Zilnic</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2442"/>
+        <location filename="../gui/optionsdialog.ui" line="2429"/>
         <source>Weekdays</source>
         <translation>Zile lucrătoare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2447"/>
+        <location filename="../gui/optionsdialog.ui" line="2434"/>
         <source>Weekends</source>
         <translation>Zile libere</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2517"/>
+        <location filename="../gui/optionsdialog.ui" line="2504"/>
         <source>Rate Limits Settings</source>
         <translation>Setări limite de viteză</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2537"/>
+        <location filename="../gui/optionsdialog.ui" line="2524"/>
         <source>Apply rate limit to peers on LAN</source>
         <translation>Aplică limitarea ratei partenerilor din rețeaua locală</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2530"/>
+        <location filename="../gui/optionsdialog.ui" line="2517"/>
         <source>Apply rate limit to transport overhead</source>
         <translation>Aplică limitarea de viteză incluzând datele de transport</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2523"/>
+        <location filename="../gui/optionsdialog.ui" line="2510"/>
         <source>Apply rate limit to µTP protocol</source>
         <translation>Aplică limitarea ratei protocolului µTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2595"/>
+        <location filename="../gui/optionsdialog.ui" line="2582"/>
         <source>Privacy</source>
         <translation>Confidențialitate</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2604"/>
+        <location filename="../gui/optionsdialog.ui" line="2591"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Activează rețeaua descentralizată (DHT) pentru a găsi mai multe surse</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2614"/>
+        <location filename="../gui/optionsdialog.ui" line="2601"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Schimbă parteneri cu clienții Bittorrent compatibili (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2617"/>
+        <location filename="../gui/optionsdialog.ui" line="2604"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Activează schimbul de surse (PeX) cu alți clienți pentru a găsi mai multe surse</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2627"/>
+        <location filename="../gui/optionsdialog.ui" line="2614"/>
         <source>Look for peers on your local network</source>
         <translation>Caută parteneri în rețeaua locală</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2630"/>
+        <location filename="../gui/optionsdialog.ui" line="2617"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Activează descoperirea partenerilor locali pentru a găsi mai mulți parteneri</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2642"/>
+        <location filename="../gui/optionsdialog.ui" line="2629"/>
         <source>Encryption mode:</source>
         <translation>Modul criptării:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2660"/>
+        <location filename="../gui/optionsdialog.ui" line="2647"/>
         <source>Require encryption</source>
         <translation>Necesită criptarea</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2665"/>
+        <location filename="../gui/optionsdialog.ui" line="2652"/>
         <source>Disable encryption</source>
         <translation>Dezactivează criptarea</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2690"/>
+        <location filename="../gui/optionsdialog.ui" line="2677"/>
         <source>Enable when using a proxy or a VPN connection</source>
         <translation>Activează când este utilizată o conexiune VPN sau proxy</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2693"/>
+        <location filename="../gui/optionsdialog.ui" line="2680"/>
         <source>Enable anonymous mode</source>
         <translation>Activează modalitatea anonimă</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2777"/>
+        <location filename="../gui/optionsdialog.ui" line="2764"/>
         <source>Maximum active downloads:</source>
         <translation>Numărul maxim de descărcări active:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2797"/>
+        <location filename="../gui/optionsdialog.ui" line="2784"/>
         <source>Maximum active uploads:</source>
         <translation>Numărul maxim de încărcări active:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2817"/>
+        <location filename="../gui/optionsdialog.ui" line="2804"/>
         <source>Maximum active torrents:</source>
         <translation>Numărul maxim de torente active:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2850"/>
+        <location filename="../gui/optionsdialog.ui" line="2837"/>
         <source>Do not count slow torrents in these limits</source>
         <translation>Nu socoti torentele lente în aceste limite</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2888"/>
+        <location filename="../gui/optionsdialog.ui" line="2875"/>
         <source>Upload rate threshold:</source>
         <translation>Prag viteză de încărcare:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2895"/>
+        <location filename="../gui/optionsdialog.ui" line="2882"/>
         <source>Download rate threshold:</source>
         <translation>Prag viteză de descărcare:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2915"/>
-        <location filename="../gui/optionsdialog.ui" line="3539"/>
-        <location filename="../gui/optionsdialog.ui" line="3566"/>
+        <location filename="../gui/optionsdialog.ui" line="2902"/>
+        <location filename="../gui/optionsdialog.ui" line="3147"/>
+        <location filename="../gui/optionsdialog.ui" line="3546"/>
+        <location filename="../gui/optionsdialog.ui" line="3573"/>
         <source> sec</source>
         <extracomment>seconds</extracomment>
         <translation> sec</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2931"/>
+        <location filename="../gui/optionsdialog.ui" line="2918"/>
         <source>Torrent inactivity timer:</source>
         <translation>Temporizator de inactivitate a torentului:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3032"/>
+        <location filename="../gui/optionsdialog.ui" line="3019"/>
         <source>then</source>
         <translation>apoi</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3372"/>
+        <location filename="../gui/optionsdialog.ui" line="3379"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>Utilizează UPnP / NAT-PMP pentru a înainta portul din routerul meu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3401"/>
+        <location filename="../gui/optionsdialog.ui" line="3408"/>
         <source>Certificate:</source>
         <translation>Certificat:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3394"/>
+        <location filename="../gui/optionsdialog.ui" line="3401"/>
         <source>Key:</source>
         <translation>Cheie:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3414"/>
+        <location filename="../gui/optionsdialog.ui" line="3421"/>
         <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Informații despre certificate&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3461"/>
+        <location filename="../gui/optionsdialog.ui" line="3468"/>
         <source>Change current password</source>
         <translation>Schimbă parola curentă</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3594"/>
+        <location filename="../gui/optionsdialog.ui" line="3601"/>
         <source>Use alternative Web UI</source>
         <translation>Folosește interfață web alternativă</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3606"/>
+        <location filename="../gui/optionsdialog.ui" line="3613"/>
         <source>Files location:</source>
         <translation>Amplasarea fișierelor:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3619"/>
+        <location filename="../gui/optionsdialog.ui" line="3626"/>
         <source>Security</source>
         <translation>Securitate</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3625"/>
+        <location filename="../gui/optionsdialog.ui" line="3632"/>
         <source>Enable clickjacking protection</source>
         <translation>Activează protecția împotriva furtului de clicuri</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3632"/>
+        <location filename="../gui/optionsdialog.ui" line="3639"/>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
         <translation>Activează protecția Cross-Site Request Forgery (CSRF)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3646"/>
+        <location filename="../gui/optionsdialog.ui" line="3653"/>
         <source>Enable Host header validation</source>
         <translation>Activează validarea antetului gazdei</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3683"/>
+        <location filename="../gui/optionsdialog.ui" line="3690"/>
         <source>Add custom HTTP headers</source>
         <translation>Adaugă antete HTTP particularizate</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3695"/>
+        <location filename="../gui/optionsdialog.ui" line="3702"/>
         <source>Header: value pairs, one per line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3705"/>
+        <location filename="../gui/optionsdialog.ui" line="3712"/>
         <source>Enable reverse proxy support</source>
         <translation>Activează sprijin proximitate (proxy)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3716"/>
+        <location filename="../gui/optionsdialog.ui" line="3723"/>
         <source>Trusted proxies list:</source>
         <translation>Listă cu proxy-uri de încredere:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3747"/>
+        <location filename="../gui/optionsdialog.ui" line="3754"/>
         <source>Service:</source>
         <translation>Serviciu:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3770"/>
+        <location filename="../gui/optionsdialog.ui" line="3777"/>
         <source>Register</source>
         <translation>Înregistrează</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3779"/>
+        <location filename="../gui/optionsdialog.ui" line="3786"/>
         <source>Domain name:</source>
         <translation>Nume de domeniu:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="552"/>
+        <location filename="../gui/optionsdialog.cpp" line="555"/>
         <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
         <translation>Prin activarea acestor opțiuni, puteți &lt;strong&gt;pierde în mod definitiv&lt;strong&gt; fișierele dumneavoastră .torrent!</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="559"/>
+        <location filename="../gui/optionsdialog.cpp" line="562"/>
         <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
         <translation>Dacă activați cea de-a doua opțiune (&amp;ldquo;Și când adăugarea a fost abandonată&amp;rdquo;) fișierul .torent &lt;strong&gt;va fi șters&lt;strong&gt;chiar dacă apăsați &amp;ldquo;
 &lt;strong&gt;Abandonează&lt;strong&gt;&amp;rdquo; în fereastra de dialog &amp;ldquo;Adăugare torent&amp;rdquo;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="238"/>
+        <location filename="../gui/optionsdialog.cpp" line="241"/>
         <source>Select qBittorrent UI Theme file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1240"/>
+        <location filename="../gui/optionsdialog.cpp" line="1246"/>
         <source>Choose Alternative UI files location</source>
         <translation>Alege o locație alternativă pentru fișierele UI</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="632"/>
+        <location filename="../gui/optionsdialog.cpp" line="635"/>
         <source>Supported parameters (case sensitive):</source>
         <translation>Parametri sprijiniți (sensibil la majuscule):</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="283"/>
+        <location filename="../gui/optionsdialog.cpp" line="286"/>
         <source>Minimized</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="285"/>
+        <location filename="../gui/optionsdialog.cpp" line="288"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="300"/>
+        <location filename="../gui/optionsdialog.cpp" line="303"/>
         <source>Disabled due to failed to detect system tray presence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="524"/>
+        <location filename="../gui/optionsdialog.cpp" line="527"/>
         <source>No stop condition is set.</source>
         <translation>Nicio condiție de oprire stabilită.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="525"/>
+        <location filename="../gui/optionsdialog.cpp" line="528"/>
         <source>Torrent will stop after metadata is received.</source>
         <translation>Torentul se va opri dupa ce se primesc metadatele.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="526"/>
         <source>Torrents that have metadata initially aren&apos;t affected.</source>
-        <translation>Torentele care au metadate inițial nu sunt afectate.</translation>
+        <translation type="vanished">Torentele care au metadate inițial nu sunt afectate.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="527"/>
+        <location filename="../gui/optionsdialog.cpp" line="530"/>
         <source>Torrent will stop after files are initially checked.</source>
         <translation>Torentul se va opri după ce fișierele sunt verificate inițial.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="528"/>
+        <location filename="../gui/optionsdialog.cpp" line="531"/>
         <source>This will also download metadata if it wasn&apos;t there initially.</source>
         <translation>Aceasta va descarca de asemenea și metadatele dacă nu au fost acolo inițial.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="633"/>
+        <location filename="../gui/optionsdialog.cpp" line="636"/>
         <source>%N: Torrent name</source>
         <translation>%N: Nume torent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="634"/>
+        <location filename="../gui/optionsdialog.cpp" line="637"/>
         <source>%L: Category</source>
         <translation>%L: Categorie</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="636"/>
+        <location filename="../gui/optionsdialog.cpp" line="639"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation>%F: Cale conținut (aceeași cu calea rădăcină pentru torrent cu mai multe fișiere)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="637"/>
+        <location filename="../gui/optionsdialog.cpp" line="640"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
         <translation>%R: Cale rădăcină (cale subdirector a primului torrent)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="638"/>
+        <location filename="../gui/optionsdialog.cpp" line="641"/>
         <source>%D: Save path</source>
         <translation>%D: Cale de salvare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="639"/>
+        <location filename="../gui/optionsdialog.cpp" line="642"/>
         <source>%C: Number of files</source>
         <translation>%C: Număr de fișiere</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="640"/>
+        <location filename="../gui/optionsdialog.cpp" line="643"/>
         <source>%Z: Torrent size (bytes)</source>
         <translation>%Z: Dimensiune torrent (octeți)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="641"/>
+        <location filename="../gui/optionsdialog.cpp" line="644"/>
         <source>%T: Current tracker</source>
         <translation>%T: Urmăritor actual</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="645"/>
+        <location filename="../gui/optionsdialog.cpp" line="648"/>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
         <translation>Sfat: Încapsulați parametrul între ghilimele (englezești) pentru a evita ca textul să fie tăiat la spațiu (de ex., &quot;%N&quot;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="855"/>
+        <location filename="../gui/optionsdialog.cpp" line="858"/>
         <source>(None)</source>
         <translation>(Niciunul)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1054"/>
+        <location filename="../gui/optionsdialog.cpp" line="1057"/>
         <source>A torrent will be considered slow if its download and upload rates stay below these values for &quot;Torrent inactivity timer&quot; seconds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1234"/>
+        <location filename="../gui/optionsdialog.cpp" line="1240"/>
         <source>Certificate</source>
         <translation>Certificat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1235"/>
+        <location filename="../gui/optionsdialog.cpp" line="1241"/>
         <source>Select certificate</source>
         <translation>Selectare certificat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1237"/>
+        <location filename="../gui/optionsdialog.cpp" line="1243"/>
         <source>Private key</source>
         <translation>Cheie privată</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1238"/>
+        <location filename="../gui/optionsdialog.cpp" line="1244"/>
         <source>Select private key</source>
         <translation>Selectare cheie privată</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1243"/>
+        <location filename="../gui/optionsdialog.cpp" line="1249"/>
         <source>WebUI configuration failed. Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1780"/>
+        <location filename="../gui/optionsdialog.cpp" line="1784"/>
         <source>Select folder to monitor</source>
         <translation>Selectați dosarul ce va fi supravegheat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1802"/>
+        <location filename="../gui/optionsdialog.cpp" line="1806"/>
         <source>Adding entry failed</source>
         <translation>Adăugarea intrării a eșuat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1901"/>
+        <location filename="../gui/optionsdialog.cpp" line="1905"/>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1908"/>
+        <location filename="../gui/optionsdialog.cpp" line="1912"/>
         <source>The WebUI password must be at least 6 characters long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1918"/>
+        <location filename="../gui/optionsdialog.cpp" line="1922"/>
         <source>Location Error</source>
         <translation>Eroare locație</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="589"/>
-        <location filename="../gui/optionsdialog.cpp" line="597"/>
+        <location filename="../gui/optionsdialog.cpp" line="592"/>
+        <location filename="../gui/optionsdialog.cpp" line="600"/>
         <source>Choose export directory</source>
         <translation>Alegeți un dosar pentru exportare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="554"/>
+        <location filename="../gui/optionsdialog.cpp" line="557"/>
         <source>When these options are enabled, qBittorrent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="239"/>
+        <location filename="../gui/optionsdialog.cpp" line="242"/>
         <source>qBittorrent UI Theme file (*.qbtheme config.json)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="635"/>
+        <location filename="../gui/optionsdialog.cpp" line="638"/>
         <source>%G: Tags (separated by comma)</source>
         <translation>%G: Etichete (separate prin virgulă)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="642"/>
+        <location filename="../gui/optionsdialog.cpp" line="645"/>
         <source>%I: Info hash v1 (or &apos;-&apos; if unavailable)</source>
         <translation>%I: Informații index v1 (or „-” dacă nu sunt disponibile)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="643"/>
+        <location filename="../gui/optionsdialog.cpp" line="646"/>
         <source>%J: Info hash v2 (or &apos;-&apos; if unavailable)</source>
         <translation>%J: Informații index v2 (sau „-” dacă nu sunt disponibile)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="644"/>
+        <location filename="../gui/optionsdialog.cpp" line="647"/>
         <source>%K: Torrent ID (either sha-1 info hash for v1 torrent or truncated sha-256 info hash for v2/hybrid torrent)</source>
         <translation>%K: ID torent (ori informații index de tip sha-1 pentru un torent de versiuna 1 ori informații de tip sha-256 reduse pentru un torent de versiunea 2/torent hibrid)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="327"/>
-        <location filename="../gui/optionsdialog.cpp" line="577"/>
-        <location filename="../gui/optionsdialog.cpp" line="582"/>
+        <location filename="../gui/optionsdialog.cpp" line="330"/>
+        <location filename="../gui/optionsdialog.cpp" line="580"/>
+        <location filename="../gui/optionsdialog.cpp" line="585"/>
         <source>Choose a save directory</source>
         <translation>Alegeți un dosar pentru salvare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="875"/>
+        <location filename="../gui/optionsdialog.cpp" line="529"/>
+        <source>Torrents that have metadata initially will be added as stopped.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.cpp" line="878"/>
         <source>Choose an IP filter file</source>
         <translation>Alegeți un fișier filtru IP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="877"/>
+        <location filename="../gui/optionsdialog.cpp" line="880"/>
         <source>All supported filters</source>
         <translation>Toate filtrele sprijinite</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1918"/>
+        <location filename="../gui/optionsdialog.cpp" line="1922"/>
         <source>The alternative WebUI files location cannot be blank.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1955"/>
+        <location filename="../gui/optionsdialog.cpp" line="1959"/>
         <source>Parsing error</source>
         <translation>Eroare de analiză</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1955"/>
+        <location filename="../gui/optionsdialog.cpp" line="1959"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>A eșuat analiza filtrului IP furnizat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1957"/>
+        <location filename="../gui/optionsdialog.cpp" line="1961"/>
         <source>Successfully refreshed</source>
         <translation>Reîmprospătat cu succes</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1957"/>
+        <location filename="../gui/optionsdialog.cpp" line="1961"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>S-a analizat cu succes filtrul IP furnizat: %1 reguli au fost aplicate.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="143"/>
+        <location filename="../gui/optionsdialog.cpp" line="146"/>
         <source>Preferences</source>
         <translation>Preferințe</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1966"/>
+        <location filename="../gui/optionsdialog.cpp" line="1970"/>
         <source>Time Error</source>
         <translation>Eroare timp</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1966"/>
+        <location filename="../gui/optionsdialog.cpp" line="1970"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Timpul de pornire și timpul de încheiere nu pot fi aceiași.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1901"/>
-        <location filename="../gui/optionsdialog.cpp" line="1908"/>
+        <location filename="../gui/optionsdialog.cpp" line="1905"/>
+        <location filename="../gui/optionsdialog.cpp" line="1912"/>
         <source>Length Error</source>
         <translation>Eroare lungime</translation>
     </message>
@@ -8283,22 +8285,22 @@ Totuși, acele module au fost dezactivate.</translation>
 <context>
     <name>RSS::Feed</name>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="236"/>
+        <location filename="../base/rss/rss_feed.cpp" line="243"/>
         <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="272"/>
+        <location filename="../base/rss/rss_feed.cpp" line="279"/>
         <source>RSS feed at &apos;%1&apos; updated. Added %2 new articles.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="269"/>
+        <location filename="../base/rss/rss_feed.cpp" line="276"/>
         <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="223"/>
+        <location filename="../base/rss/rss_feed.cpp" line="230"/>
         <source>RSS feed at &apos;%1&apos; is successfully downloaded. Starting to parse it.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8347,99 +8349,99 @@ Totuși, acele module au fost dezactivate.</translation>
 <context>
     <name>RSS::Session</name>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="76"/>
+        <location filename="../base/rss/rss_session.cpp" line="78"/>
         <source>Couldn&apos;t save RSS session configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="85"/>
+        <location filename="../base/rss/rss_session.cpp" line="87"/>
         <source>Couldn&apos;t save RSS session data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="153"/>
-        <location filename="../base/rss/rss_session.cpp" line="186"/>
+        <location filename="../base/rss/rss_session.cpp" line="155"/>
+        <location filename="../base/rss/rss_session.cpp" line="188"/>
         <source>RSS feed with given URL already exists: %1.</source>
         <translation>Elementul RSS cu URL-ul dat există deja: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="173"/>
+        <location filename="../base/rss/rss_session.cpp" line="175"/>
         <source>Feed doesn&apos;t exist: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="200"/>
+        <location filename="../base/rss/rss_session.cpp" line="202"/>
         <source>Cannot move root folder.</source>
         <translation>Nu se poate muta dosarul rădăcină.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="204"/>
-        <location filename="../base/rss/rss_session.cpp" line="241"/>
+        <location filename="../base/rss/rss_session.cpp" line="206"/>
+        <location filename="../base/rss/rss_session.cpp" line="243"/>
         <source>Item doesn&apos;t exist: %1.</source>
         <translation>Elementul nu există: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="220"/>
+        <location filename="../base/rss/rss_session.cpp" line="222"/>
         <source>Couldn&apos;t move folder into itself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="237"/>
+        <location filename="../base/rss/rss_session.cpp" line="239"/>
         <source>Cannot delete root folder.</source>
         <translation>Nu se poate șterge dosarul rădăcină.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="278"/>
+        <location filename="../base/rss/rss_session.cpp" line="280"/>
         <source>Failed to read RSS session data. %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="286"/>
+        <location filename="../base/rss/rss_session.cpp" line="288"/>
         <source>Failed to parse RSS session data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="293"/>
+        <location filename="../base/rss/rss_session.cpp" line="295"/>
         <source>Failed to load RSS session data. File: &quot;%1&quot;. Error: &quot;Invalid data format.&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="324"/>
+        <location filename="../base/rss/rss_session.cpp" line="326"/>
         <source>Couldn&apos;t load RSS feed. Feed: &quot;%1&quot;. Reason: URL is required.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="335"/>
+        <location filename="../base/rss/rss_session.cpp" line="337"/>
         <source>Couldn&apos;t load RSS feed. Feed: &quot;%1&quot;. Reason: UID is invalid.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="342"/>
+        <location filename="../base/rss/rss_session.cpp" line="344"/>
         <source>Duplicate RSS feed found. UID: &quot;%1&quot;. Error: Configuration seems to be corrupted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="364"/>
+        <location filename="../base/rss/rss_session.cpp" line="366"/>
         <source>Couldn&apos;t load RSS item. Item: &quot;%1&quot;. Invalid data format.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="378"/>
+        <location filename="../base/rss/rss_session.cpp" line="380"/>
         <source>Corrupted RSS list, not loading it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="410"/>
+        <location filename="../base/rss/rss_session.cpp" line="412"/>
         <source>Incorrect RSS Item path: %1.</source>
         <translation>Calea pentru elementul RSS e incorectă: %1</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="413"/>
+        <location filename="../base/rss/rss_session.cpp" line="415"/>
         <source>RSS item with given path already exists: %1.</source>
         <translation>Elementul RSS cu calea dată există deja: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="418"/>
+        <location filename="../base/rss/rss_session.cpp" line="420"/>
         <source>Parent folder doesn&apos;t exist: %1.</source>
         <translation>Dosarul părinte nu există: %1.</translation>
     </message>
@@ -8861,104 +8863,104 @@ Totuși, acele module au fost dezactivate.</translation>
 <context>
     <name>SearchPluginManager</name>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="234"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="233"/>
         <source>Unknown search engine plugin file format.</source>
         <translation>Format fișier necunoscut pentru modul motor de căutare.</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="245"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="244"/>
         <source>Plugin already at version %1, which is greater than %2</source>
         <translation>Plugin-ul este la versiunea %1, care e mai mare decât %2</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="246"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="245"/>
         <source>A more recent version of this plugin is already installed.</source>
         <translation>O versiune mai recentă a acestui plugin este deja instalată</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="270"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="269"/>
         <source>Plugin %1 is not supported.</source>
         <translation>Modulul %1 nu este sprijinit.</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="278"/>
-        <location filename="../base/search/searchpluginmanager.cpp" line="282"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="277"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="281"/>
         <source>Plugin is not supported.</source>
         <translation>Modulul nu este sprijinit.</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="290"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="289"/>
         <source>Plugin %1 has been successfully updated.</source>
         <translation>Extensia %1 a fost actualizată cu succes.</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="357"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="358"/>
         <source>All categories</source>
         <translation>Toate categoriile</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="358"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="359"/>
         <source>Movies</source>
         <translation>Filme artistice</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="359"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="360"/>
         <source>TV shows</source>
         <translation>Filme seriale</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="360"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="361"/>
         <source>Music</source>
         <translation>Muzică</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="361"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="362"/>
         <source>Games</source>
         <translation>Jocuri</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="362"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="363"/>
         <source>Anime</source>
         <translation>Anime</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="363"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="364"/>
         <source>Software</source>
         <translation>Software</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="364"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="365"/>
         <source>Pictures</source>
         <translation>Imagini</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="365"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="366"/>
         <source>Books</source>
         <translation>Cărți</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="445"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="446"/>
         <source>Update server is temporarily unavailable. %1</source>
         <translation>Servitorul de actualizări este temporar nedisponibil. %1</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="465"/>
-        <location filename="../base/search/searchpluginmanager.cpp" line="467"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="466"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="468"/>
         <source>Failed to download the plugin file. %1</source>
         <translation>Descărcarea fișierului modulului a eșuat. %1</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="601"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="602"/>
         <source>Plugin &quot;%1&quot; is outdated, updating to version %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="608"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="609"/>
         <source>Incorrect update info received for %1 out of %2 plugins.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="649"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="650"/>
         <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10052,6 +10054,24 @@ Alegeți o denumire diferită și încercați iar.</translation>
     </message>
 </context>
 <context>
+    <name>TorrentCreatorController</name>
+    <message>
+        <location filename="../webui/api/torrentcreatorcontroller.cpp" line="141"/>
+        <source>Too many active tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/api/torrentcreatorcontroller.cpp" line="228"/>
+        <source>Torrent creation is still unfinished.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/api/torrentcreatorcontroller.cpp" line="231"/>
+        <source>Torrent creation failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TorrentCreatorDialog</name>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="17"/>
@@ -10075,13 +10095,13 @@ Alegeți o denumire diferită și încercați iar.</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="101"/>
-        <location filename="../gui/torrentcreatordialog.cpp" line="143"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="145"/>
         <source>Select file</source>
         <translation>Alegeți fișierul</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="108"/>
-        <location filename="../gui/torrentcreatordialog.cpp" line="135"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="137"/>
         <source>Select folder</source>
         <translation>Alegeți dosarul</translation>
     </message>
@@ -10106,7 +10126,7 @@ Alegeți o denumire diferită și încercați iar.</translation>
         <translation>Dimensiune bucată:</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="84"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="86"/>
         <source>Auto</source>
         <translation>Automat</translation>
     </message>
@@ -10186,58 +10206,57 @@ Alegeți o denumire diferită și încercați iar.</translation>
         <translation>Progres:</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="96"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="98"/>
         <source>Create Torrent</source>
         <translation>Creează torent</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="209"/>
-        <location filename="../gui/torrentcreatordialog.cpp" line="260"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="211"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="262"/>
         <source>Torrent creation failed</source>
         <translation>Crearea torentului a eșuat</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="209"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="211"/>
         <source>Reason: Path to file/folder is not readable.</source>
         <translation>Motiv: Calea către fișier/dosar nu este accesibilă.</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="215"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="217"/>
         <source>Select where to save the new torrent</source>
         <translation>Alegeți unde să fie salvat torentul nou</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="215"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="217"/>
         <source>Torrent Files (*.torrent)</source>
         <translation>Fișiere torent (*.torrent)</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="260"/>
         <source>Reason: %1</source>
-        <translation>Motiv: %1</translation>
+        <translation type="vanished">Motiv: %1</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="277"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="293"/>
         <source>Add torrent to transfer list failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="277"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="293"/>
         <source>Reason: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="278"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="294"/>
         <source>Add torrent failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="269"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="271"/>
         <source>Torrent creator</source>
         <translation>Creator de torente</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="270"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="272"/>
         <source>Torrent created:</source>
         <translation>Torent creat:</translation>
     </message>
@@ -10468,6 +10487,54 @@ Alegeți o denumire diferită și încercați iar.</translation>
     </message>
 </context>
 <context>
+    <name>TorrentShareLimitsWidget</name>
+    <message>
+        <location filename="../gui/torrentsharelimitswidget.ui" line="35"/>
+        <location filename="../gui/torrentsharelimitswidget.ui" line="57"/>
+        <location filename="../gui/torrentsharelimitswidget.ui" line="109"/>
+        <source>Default</source>
+        <translation type="unfinished">Implicit</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentsharelimitswidget.ui" line="40"/>
+        <location filename="../gui/torrentsharelimitswidget.ui" line="62"/>
+        <location filename="../gui/torrentsharelimitswidget.ui" line="114"/>
+        <source>Unlimited</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentsharelimitswidget.ui" line="45"/>
+        <location filename="../gui/torrentsharelimitswidget.ui" line="67"/>
+        <location filename="../gui/torrentsharelimitswidget.ui" line="119"/>
+        <source>Set to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentsharelimitswidget.ui" line="75"/>
+        <source>Seeding time:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentsharelimitswidget.ui" line="85"/>
+        <location filename="../gui/torrentsharelimitswidget.ui" line="130"/>
+        <location filename="../gui/torrentsharelimitswidget.cpp" line="69"/>
+        <location filename="../gui/torrentsharelimitswidget.cpp" line="84"/>
+        <source> min</source>
+        <extracomment>minutes</extracomment>
+        <translation type="unfinished"> min</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentsharelimitswidget.ui" line="98"/>
+        <source>Inactive seeding time:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentsharelimitswidget.ui" line="159"/>
+        <source>Ratio:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TorrentTagsDialog</name>
     <message>
         <location filename="../gui/torrenttagsdialog.ui" line="14"/>
@@ -10508,115 +10575,115 @@ Alegeți o denumire diferită și încercați iar.</translation>
 <context>
     <name>TorrentsController</name>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="766"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="782"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.</source>
         <translation>Eroare: „%1” nu este un fișier torent valid.</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="908"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="924"/>
         <source>Priority must be an integer</source>
         <translation>Prioritatea trebuie să fie un număr întreg</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="911"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="927"/>
         <source>Priority is not valid</source>
         <translation>Prioritatea nu este validă</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="917"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="933"/>
         <source>Torrent&apos;s metadata has not yet downloaded</source>
         <translation>Metadatele torentului nu au fost descărcate încă</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="926"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="942"/>
         <source>File IDs must be integers</source>
         <translation>ID-urile fișierului trebuie să fie numere întregi</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="928"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="944"/>
         <source>File ID is not valid</source>
         <translation>ID-urile fișierului nu sunt valide</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1073"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1084"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1095"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1106"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1089"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1100"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1111"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1122"/>
         <source>Torrent queueing must be enabled</source>
         <translation>Punerea în coadă a torentelor trebuie să fie activată</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1120"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1143"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1136"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1159"/>
         <source>Save path cannot be empty</source>
         <translation>Calea de salvare nu trebuie să fie goală</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1147"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1171"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1163"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1187"/>
         <source>Cannot create target directory</source>
         <translation>Dosarul țintă nu poate fi creat</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1252"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1277"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1268"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1293"/>
         <source>Category cannot be empty</source>
         <translation>Categoria nu trebuie să fie goală</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1268"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1284"/>
         <source>Unable to create category</source>
         <translation>Nu s-a putut crea categoria</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1290"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1306"/>
         <source>Unable to edit category</source>
         <translation>Nu s-a putut modifica categoria</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1443"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1459"/>
         <source>Unable to export torrent file. Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1124"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1140"/>
         <source>Cannot make save path</source>
         <translation>Nu am putut crea calea de salvare</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="318"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="323"/>
         <source>&apos;sort&apos; parameter is invalid</source>
         <translation>Parametrul &apos;sort&apos; de sortare e invalid</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="577"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="582"/>
         <source>&quot;%1&quot; is not a valid file index.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="579"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="584"/>
         <source>Index %1 is out of bounds.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1151"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1175"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1167"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1191"/>
         <source>Cannot write to directory</source>
         <translation>Nu pot scrie în director</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1128"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1144"/>
         <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
         <translation>Interfață web - Stabilire locație: se mută „%1”, din „%2” în „%3”</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1193"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1209"/>
         <source>Incorrect torrent name</source>
         <translation>Nume torent incorect</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1242"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1255"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1258"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1271"/>
         <source>Incorrect category name</source>
         <translation>Nume categorie incorectă</translation>
     </message>
@@ -10765,7 +10832,7 @@ Alegeți o denumire diferită și încercați iar.</translation>
 <context>
     <name>TrackerListWidget</name>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="195"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="200"/>
         <source>This torrent is private</source>
         <translation>Acest torent este privat</translation>
     </message>
@@ -11789,27 +11856,27 @@ Alegeți o denumire diferită și încercați iar.</translation>
 <context>
     <name>Utils::IO</name>
     <message>
-        <location filename="../base/utils/io.cpp" line="82"/>
+        <location filename="../base/utils/io.cpp" line="83"/>
         <source>File open error. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/utils/io.cpp" line="90"/>
+        <location filename="../base/utils/io.cpp" line="91"/>
         <source>File size exceeds limit. File: &quot;%1&quot;. File size: %2. Size limit: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/utils/io.cpp" line="96"/>
+        <location filename="../base/utils/io.cpp" line="97"/>
         <source>File size exceeds data size limit. File: &quot;%1&quot;. File size: %2. Array limit: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/utils/io.cpp" line="106"/>
+        <location filename="../base/utils/io.cpp" line="107"/>
         <source>File read error. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/utils/io.cpp" line="121"/>
+        <location filename="../base/utils/io.cpp" line="122"/>
         <source>Read size mismatch. File: &quot;%1&quot;. Expected: %2. Actual: %3</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11873,72 +11940,72 @@ Alegeți o denumire diferită și încercați iar.</translation>
 <context>
     <name>WebApplication</name>
     <message>
-        <location filename="../webui/webapplication.cpp" line="172"/>
+        <location filename="../webui/webapplication.cpp" line="179"/>
         <source>Unacceptable session cookie name is specified: &apos;%1&apos;. Default one is used.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="222"/>
+        <location filename="../webui/webapplication.cpp" line="229"/>
         <source>Unacceptable file type, only regular file is allowed.</source>
         <translation>Tip de fișier neacceptabil, numai fișierele obișnuite sunt permise</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="230"/>
+        <location filename="../webui/webapplication.cpp" line="237"/>
         <source>Symlinks inside alternative UI folder are forbidden.</source>
         <translation>Legăturile simbolice înăuntrul dosarului de interfață alternativ sunt interzise.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="399"/>
+        <location filename="../webui/webapplication.cpp" line="413"/>
         <source>Using built-in WebUI.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="401"/>
+        <location filename="../webui/webapplication.cpp" line="415"/>
         <source>Using custom WebUI. Location: &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="413"/>
+        <location filename="../webui/webapplication.cpp" line="427"/>
         <source>WebUI translation for selected locale (%1) has been successfully loaded.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="418"/>
+        <location filename="../webui/webapplication.cpp" line="432"/>
         <source>Couldn&apos;t load WebUI translation for selected locale (%1).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="469"/>
+        <location filename="../webui/webapplication.cpp" line="483"/>
         <source>Missing &apos;:&apos; separator in WebUI custom HTTP header: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="536"/>
+        <location filename="../webui/webapplication.cpp" line="550"/>
         <source>Web server error. %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="556"/>
+        <location filename="../webui/webapplication.cpp" line="570"/>
         <source>Web server error. Unknown error.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="782"/>
+        <location filename="../webui/webapplication.cpp" line="798"/>
         <source>WebUI: Origin header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="794"/>
+        <location filename="../webui/webapplication.cpp" line="810"/>
         <source>WebUI: Referer header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="813"/>
+        <location filename="../webui/webapplication.cpp" line="829"/>
         <source>WebUI: Invalid Host header, port mismatch. Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="834"/>
+        <location filename="../webui/webapplication.cpp" line="850"/>
         <source>WebUI: Invalid Host header. Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11974,86 +12041,86 @@ Alegeți o denumire diferită și încercați iar.</translation>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../base/utils/misc.cpp" line="57"/>
+        <location filename="../base/utils/misc.cpp" line="58"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>O</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="58"/>
+        <location filename="../base/utils/misc.cpp" line="59"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiO</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="59"/>
+        <location filename="../base/utils/misc.cpp" line="60"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiO</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="60"/>
+        <location filename="../base/utils/misc.cpp" line="61"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiO</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="61"/>
+        <location filename="../base/utils/misc.cpp" line="62"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiO</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="62"/>
+        <location filename="../base/utils/misc.cpp" line="63"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
         <translation>PiO</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="63"/>
+        <location filename="../base/utils/misc.cpp" line="64"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
         <translation>EiO</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="99"/>
+        <location filename="../base/utils/misc.cpp" line="100"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="229"/>
+        <location filename="../base/utils/misc.cpp" line="230"/>
         <source>%1s</source>
         <comment>e.g: 10 seconds</comment>
         <translation type="unfinished">%1m {1s?}</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="234"/>
+        <location filename="../base/utils/misc.cpp" line="235"/>
         <source>%1m</source>
         <comment>e.g: 10 minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="240"/>
+        <location filename="../base/utils/misc.cpp" line="241"/>
         <source>%1h %2m</source>
         <comment>e.g: 3 hours 5 minutes</comment>
         <translation>%1o %2m</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="247"/>
+        <location filename="../base/utils/misc.cpp" line="248"/>
         <source>%1d %2h</source>
         <comment>e.g: 2 days 10 hours</comment>
         <translation>%1z %2o</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="252"/>
+        <location filename="../base/utils/misc.cpp" line="253"/>
         <source>%1y %2d</source>
         <comment>e.g: 2 years 10 days</comment>
         <translation>%1a %2z</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="107"/>
-        <location filename="../base/utils/misc.cpp" line="119"/>
+        <location filename="../base/utils/misc.cpp" line="108"/>
+        <location filename="../base/utils/misc.cpp" line="120"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Necunoscut</translation>
@@ -12064,7 +12131,7 @@ Alegeți o denumire diferită și încercați iar.</translation>
         <translation>qBittorrent va opri acum calculatorul deoarece toate descărcările au fost finalizate.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="227"/>
+        <location filename="../base/utils/misc.cpp" line="228"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>

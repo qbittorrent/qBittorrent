@@ -181,7 +181,7 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Jakosuhteen raja pitää olla 0 ja 9998 välillä.</translation>
+        <translation>Jakosuhderajoituksen on oltava väliltä 0–9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
@@ -189,27 +189,27 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Web-käyttöliittymälle tarkoitetun portin numero pitää olla väliltä 1-65535.</translation>
+        <translation type="vanished">Web-käyttöliittymälle tarkoitetun portin numero pitää olla väliltä 1-65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Kirjautuminen epäonnistui, qBittorrent ei luultavasti ole tavoitettavissa.</translation>
+        <translation type="vanished">Kirjautuminen epäonnistui, qBittorrent ei luultavasti ole tavoitettavissa.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>Virheellinen käyttäjätunnus tai salasana.</translation>
+        <translation type="vanished">Virheellinen käyttäjätunnus tai salasana.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Käyttäjänimi</translation>
+        <translation type="vanished">Käyttäjänimi</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Salasana</translation>
+        <translation type="vanished">Salasana</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>Kirjaudu</translation>
+        <translation type="vanished">Kirjaudu</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -349,7 +349,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>qBittorrent on sammutettu</translation>
+        <translation type="vanished">qBittorrent on sammutettu</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -361,10 +361,6 @@
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -393,6 +389,18 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -497,7 +505,7 @@
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[Lataus: %1, Lähetys: %2] qBittorrent %3</translation>
+        <translation type="vanished">[Lataus: %1, Lähetys: %2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -623,6 +631,10 @@
         <source>Log</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -648,7 +660,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Web-käyttöliittymä</translation>
+        <translation type="vanished">Web-käyttöliittymä</translation>
     </message>
     <message>
         <source>Language</source>
@@ -998,11 +1010,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Web-käyttöliittymän käyttäjätunnuksen pitää olla vähintään 3 merkkiä pitkä.</translation>
+        <translation type="vanished">Web-käyttöliittymän käyttäjätunnuksen pitää olla vähintään 3 merkkiä pitkä.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Web-käyttöliittymän salasanan pitää olla vähintään 6 merkkiä pitkä.</translation>
+        <translation type="vanished">Web-käyttöliittymän salasanan pitää olla vähintään 6 merkkiä pitkä.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1042,7 +1054,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>Käytä vaihtoehtoista web-käyttöliittymän teemaa</translation>
+        <translation type="vanished">Käytä vaihtoehtoista web-käyttöliittymän teemaa</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1050,7 +1062,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>Vaihtoehtoisen ulkoasun tiedostosijainti ei voi olla tyhjä.</translation>
+        <translation type="vanished">Vaihtoehtoisen ulkoasun tiedostosijainti ei voi olla tyhjä.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1661,23 +1673,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Käytä välityspalvelinta RSS-tarkoituksiin</translation>
     </message>
     <message>
-        <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1693,16 +1689,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Käytä alikategorioita</translation>
     </message>
     <message>
-        <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>Lisää jonon kärkeen</translation>
-    </message>
-    <message>
-        <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished" />
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
@@ -1710,10 +1698,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1737,10 +1721,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>(Ei mikään)</translation>
     </message>
     <message>
-        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Python executable path (may require restart):</source>
         <translation type="unfinished" />
     </message>
@@ -1754,22 +1734,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1798,6 +1762,90 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2801,7 +2849,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation>Rajoita jakosuhde...</translation>
+        <translation>Rajoita jakosuhdetta...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
@@ -3846,7 +3894,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation>Torrent:in sisältöasu:</translation>
+        <translation>Torrentin sisällön asettelu:</translation>
     </message>
     <message>
         <source>Create subfolder</source>

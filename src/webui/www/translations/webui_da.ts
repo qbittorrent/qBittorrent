@@ -189,27 +189,27 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Porten der bruges til webgrænsefladen skal være mellem 1 og 65535.</translation>
+        <translation type="vanished">Porten der bruges til webgrænsefladen skal være mellem 1 og 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Kan ikke logge ind, qBittorrent er formodentligt ikke til at få kontakt med.</translation>
+        <translation type="vanished">Kan ikke logge ind, qBittorrent er formodentligt ikke til at få kontakt med.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>Ugyldigt brugernavn eller adgangskode.</translation>
+        <translation type="vanished">Ugyldigt brugernavn eller adgangskode.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Brugernavn</translation>
+        <translation type="vanished">Brugernavn</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Adgangskode</translation>
+        <translation type="vanished">Adgangskode</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>Login</translation>
+        <translation type="vanished">Login</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -349,7 +349,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>qBittorrent er blevet lukket ned</translation>
+        <translation type="vanished">qBittorrent er blevet lukket ned</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>JavaScript kræves! Du skal aktivere JavaScript for at webgrænsefladen virker korrekt</translation>
+        <translation type="vanished">JavaScript kræves! Du skal aktivere JavaScript for at webgrænsefladen virker korrekt</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -393,6 +393,18 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -497,7 +509,7 @@
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[D: %1/s, U: %2/s] qBittorrent %3</translation>
+        <translation type="vanished">[D: %1/s, U: %2/s] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -623,6 +635,10 @@
         <source>Log</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -648,7 +664,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Webgrænseflade</translation>
+        <translation type="vanished">Webgrænseflade</translation>
     </message>
     <message>
         <source>Language</source>
@@ -998,11 +1014,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Webgrænsefladens brugernavn skal være mindst 3 tegn langt.</translation>
+        <translation type="vanished">Webgrænsefladens brugernavn skal være mindst 3 tegn langt.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Webgrænsefladens adgangskode skal være mindst 6 tegn langt.</translation>
+        <translation type="vanished">Webgrænsefladens adgangskode skal være mindst 6 tegn langt.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1042,7 +1058,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>Brug alternativ webgrænseflade</translation>
+        <translation type="vanished">Brug alternativ webgrænseflade</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1050,7 +1066,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>Placeringen til de alternative webbrugefladefiler må ikke være tom.</translation>
+        <translation type="vanished">Placeringen til de alternative webbrugefladefiler må ikke være tom.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1665,23 +1681,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1697,15 +1697,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation>Brug underkategorier</translation>
     </message>
     <message>
-        <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1714,10 +1706,6 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1741,10 +1729,6 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation>(Ingen)</translation>
     </message>
     <message>
-        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Python executable path (may require restart):</source>
         <translation type="unfinished" />
     </message>
@@ -1758,22 +1742,6 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1802,6 +1770,90 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
         <translation type="unfinished" />
     </message>
 </context>

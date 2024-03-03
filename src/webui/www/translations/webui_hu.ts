@@ -189,27 +189,27 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Web UI-hoz használt portnak 1024 és 65535 közé kell esnie.</translation>
+        <translation type="vanished">Web UI-hoz használt portnak 1024 és 65535 közé kell esnie.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Nem sikerült bejelentkezni, qBittorrent talán elérhetetlen.</translation>
+        <translation type="vanished">Nem sikerült bejelentkezni, qBittorrent talán elérhetetlen.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>Érvénytelen felhasználónév vagy Jelszó.</translation>
+        <translation type="vanished">Érvénytelen felhasználónév vagy Jelszó.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Felhasználónév</translation>
+        <translation type="vanished">Felhasználónév</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Jelszó</translation>
+        <translation type="vanished">Jelszó</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>Bejelentkezés</translation>
+        <translation type="vanished">Bejelentkezés</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -349,7 +349,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>qBittorrent le lett állítva</translation>
+        <translation type="vanished">qBittorrent le lett állítva</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>JavaScript szükséges! A Web UI megfelelő működéséhez engedélyeznie kell a JavaScriptet</translation>
+        <translation type="vanished">JavaScript szükséges! A Web UI megfelelő működéséhez engedélyeznie kell a JavaScriptet</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -394,6 +394,18 @@
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
         <translation>Egészen biztos, hogy törlöd a kiválasztott torrenteket az átviteli listáról?</translation>
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -497,7 +509,7 @@
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[L: %1/s, F: %2/s] qBittorrent %3</translation>
+        <translation type="vanished">[L: %1/s, F: %2/s] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -623,6 +635,10 @@
         <source>Log</source>
         <translation>Napló</translation>
     </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -648,7 +664,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Web UI</translation>
+        <translation type="vanished">Web UI</translation>
     </message>
     <message>
         <source>Language</source>
@@ -998,11 +1014,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Web UI felhasználónevének legalább 3 karakter hosszúnak kell lennie.</translation>
+        <translation type="vanished">Web UI felhasználónevének legalább 3 karakter hosszúnak kell lennie.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Web UI jelszavának legalább 6 karakter hosszúnak kell lennie.</translation>
+        <translation type="vanished">Web UI jelszavának legalább 6 karakter hosszúnak kell lennie.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1042,7 +1058,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>Alternatív Web UI használata</translation>
+        <translation type="vanished">Alternatív Web UI használata</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1050,7 +1066,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>Alternatív Web UI fájlok helye nem lehet üres.</translation>
+        <translation type="vanished">Alternatív Web UI fájlok helye nem lehet üres.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1666,15 +1682,15 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Merevlemez gyorsítótár lejárati időköze (libtorrent &amp;lt; 2.0 szükséges):</translation>
+        <translation type="vanished">Merevlemez gyorsítótár lejárati időköze (libtorrent &amp;lt; 2.0 szükséges):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation>Fizikai memória (RAM) használati korlát (alkalmazva ha libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Fizikai memória (RAM) használati korlát (alkalmazva ha libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Merevlemez gyorsítótár (libtorrent &amp;lt; 2.0 szükséges):</translation>
+        <translation type="vanished">Merevlemez gyorsítótár (libtorrent &amp;lt; 2.0 szükséges):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
@@ -1682,7 +1698,7 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Olvasások és írások egyesítése (libtorrent &amp;lt; 2.0 szükséges):</translation>
+        <translation type="vanished">Olvasások és írások egyesítése (libtorrent &amp;lt; 2.0 szükséges):</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
@@ -1698,7 +1714,7 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation>Lemez IO típusa (libtorrent &amp;gt;= 2.0; újraindítást igényel):</translation>
+        <translation type="vanished">Lemez IO típusa (libtorrent &amp;gt;= 2.0; újraindítást igényel):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1706,7 +1722,7 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation>Write-through (libtorrent &amp;gt;= 2.0.6 szükséges)</translation>
+        <translation type="vanished">Write-through (libtorrent &amp;gt;= 2.0.6 szükséges)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
@@ -1718,7 +1734,7 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Hash ellenőrző szálak (libtorrent &amp;gt;= 2.0 szükséges):</translation>
+        <translation type="vanished">Hash ellenőrző szálak (libtorrent &amp;gt;= 2.0 szükséges):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
@@ -1742,7 +1758,7 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P bejövő hossz (libtorrent &gt;= 2.0 szükséges):</translation>
+        <translation type="vanished">I2P bejövő hossz (libtorrent &gt;= 2.0 szükséges):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
@@ -1762,19 +1778,19 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P bejövő mennyiség (libtorrent &amp;gt;= 2.0 szükséges):</translation>
+        <translation type="vanished">I2P bejövő mennyiség (libtorrent &amp;gt;= 2.0 szükséges):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P kimenő hossz (libtorrent &amp;gt;= 2.0 szükséges):</translation>
+        <translation type="vanished">I2P kimenő hossz (libtorrent &amp;gt;= 2.0 szükséges):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P kimenő mennyiség (libtorrent &amp;gt;= 2.0 szükséges):</translation>
+        <translation type="vanished">I2P kimenő mennyiség (libtorrent &amp;gt;= 2.0 szükséges):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation>I2P (Kísérleti) (libtorrent &amp;gt;= 2.0 szükséges)</translation>
+        <translation type="vanished">I2P (Kísérleti) (libtorrent &amp;gt;= 2.0 szükséges)</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
@@ -1803,6 +1819,90 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation>Engedélyezze a Mark-of-the-Web (MOTW) használatát letöltött fájlokhoz (macOS vagy Windows szükséges):</translation>
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

@@ -189,27 +189,27 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Порт, який використовується для Веб-інтерфейсу повинен бути між 1 і 65535.</translation>
+        <translation type="vanished">Порт, який використовується для Веб-інтерфейсу повинен бути між 1 і 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Не вдалося увійти, qBittorrent напевне недосяжний.</translation>
+        <translation type="vanished">Не вдалося увійти, qBittorrent напевне недосяжний.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>Неправильний логін або пароль.</translation>
+        <translation type="vanished">Неправильний логін або пароль.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Ім'я користувача</translation>
+        <translation type="vanished">Ім'я користувача</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Пароль</translation>
+        <translation type="vanished">Пароль</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>Логін</translation>
+        <translation type="vanished">Логін</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -349,7 +349,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>qBittorrent вимкнено.</translation>
+        <translation type="vanished">qBittorrent вимкнено.</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>Вимагається JavaScript! Ви повинні увімкнути JavaScript для правильної роботи Веб-інтерфейсу</translation>
+        <translation type="vanished">Вимагається JavaScript! Ви повинні увімкнути JavaScript для правильної роботи Веб-інтерфейсу</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -394,6 +394,18 @@
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
         <translation>Ви впевнені, що хочете видалити вибрані торренти зі списку передачі?</translation>
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -497,7 +509,7 @@
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[З: %1, В: %2] qBittorrent %3</translation>
+        <translation type="vanished">[З: %1, В: %2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -623,6 +635,10 @@
         <source>Log</source>
         <translation>Журнал</translation>
     </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -648,7 +664,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Веб-інтерфейс</translation>
+        <translation type="vanished">Веб-інтерфейс</translation>
     </message>
     <message>
         <source>Language</source>
@@ -998,11 +1014,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Ім'я користувача веб-інтерфейсу повинне містити хоча б 3 символи.</translation>
+        <translation type="vanished">Ім'я користувача веб-інтерфейсу повинне містити хоча б 3 символи.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Пароль від Веб-інтерфейсу повинен містити хоча би 6 символів.</translation>
+        <translation type="vanished">Пароль від Веб-інтерфейсу повинен містити хоча би 6 символів.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1042,7 +1058,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>Використовувати альтернативний Веб-інтерфейс</translation>
+        <translation type="vanished">Використовувати альтернативний Веб-інтерфейс</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1050,7 +1066,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>Розташування альтернативних файлів Веб-інтерфейсу не може бути порожнім.</translation>
+        <translation type="vanished">Розташування альтернативних файлів Веб-інтерфейсу не може бути порожнім.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1666,15 +1682,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Інтервал дії кешу диска (потребує libtorrent &lt; 2.0):</translation>
+        <translation type="vanished">Інтервал дії кешу диска (потребує libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation>Ліміт використання фізичної пам’яті (RAM) (застосовується, якщо libtorrent &gt;= 2.0):</translation>
+        <translation type="vanished">Ліміт використання фізичної пам’яті (RAM) (застосовується, якщо libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Кешування диску (потребує libtorrent &lt; 2.0):</translation>
+        <translation type="vanished">Кешування диску (потребує libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
@@ -1682,7 +1698,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Об'єднувати операції читання і запису (потребує libtorrent &lt; 2.0):</translation>
+        <translation type="vanished">Об'єднувати операції читання і запису (потребує libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
@@ -1698,7 +1714,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation>Тип введення-виводу диска (libtorrent &gt;= 2.0; потребує перезапуску):</translation>
+        <translation type="vanished">Тип введення-виводу диска (libtorrent &gt;= 2.0; потребує перезапуску):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1706,7 +1722,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation>Наскрізний запис (потрібен libtorrent &gt;= 2.0.6)</translation>
+        <translation type="vanished">Наскрізний запис (потрібен libtorrent &gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
@@ -1718,7 +1734,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Хешувати потоки (потребує libtorrent &gt;= 2.0):</translation>
+        <translation type="vanished">Хешувати потоки (потребує libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
@@ -1742,7 +1758,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Довжина вхідного I2P (потрібен libtorrent &gt;= 2.0):</translation>
+        <translation type="vanished">Довжина вхідного I2P (потрібен libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
@@ -1762,19 +1778,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Вхідна кількість I2P (потрібен libtorrent &gt;= 2.0):</translation>
+        <translation type="vanished">Вхідна кількість I2P (потрібен libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Довжина вихідного I2P (потрібен libtorrent &gt;= 2.0):</translation>
+        <translation type="vanished">Довжина вихідного I2P (потрібен libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Вихідна кількість I2P (потрібен libtorrent &gt;= 2.0):</translation>
+        <translation type="vanished">Вихідна кількість I2P (потрібен libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation>I2P (експериментальний) (потрібен libtorrent &gt;= 2.0)</translation>
+        <translation type="vanished">I2P (експериментальний) (потрібен libtorrent &gt;= 2.0)</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
@@ -1803,6 +1819,90 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation>Увімкніть Mark-of-the-Web (MOTW) для завантажених файлів (потрібно macOS або Windows):</translation>
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

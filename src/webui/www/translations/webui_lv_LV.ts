@@ -189,27 +189,27 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Tālvadības kontroles paneļa portam ir jābūt starp 1 un 65535.</translation>
+        <translation type="vanished">Tālvadības kontroles paneļa portam ir jābūt starp 1 un 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Neizdevās pierakstīties, qBittorrent droši vien nav sasniedzams.</translation>
+        <translation type="vanished">Neizdevās pierakstīties, qBittorrent droši vien nav sasniedzams.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>Nederīgs lietotājvārds vai parole.</translation>
+        <translation type="vanished">Nederīgs lietotājvārds vai parole.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Lietotājvārds</translation>
+        <translation type="vanished">Lietotājvārds</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Parole</translation>
+        <translation type="vanished">Parole</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>Pierakstīties</translation>
+        <translation type="vanished">Pierakstīties</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -349,7 +349,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>qBittorrent klients ir izslēgts.</translation>
+        <translation type="vanished">qBittorrent klients ir izslēgts.</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>Nepieciešams JavaScript! Jums ir jāieslēdz JavaScript, lai Web UI darbotos pareizi.</translation>
+        <translation type="vanished">Nepieciešams JavaScript! Jums ir jāieslēdz JavaScript, lai Web UI darbotos pareizi.</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -394,6 +394,18 @@
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
         <translation>Vai esat pārliecināts, ka vēlaties izdzēst atlasītos torrentus no Torrentu saraksta?</translation>
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -497,7 +509,7 @@
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[L: %1, A: %2] qBittorrent %3</translation>
+        <translation type="vanished">[L: %1, A: %2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -623,6 +635,10 @@
         <source>Log</source>
         <translation>Reģistrs</translation>
     </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -648,7 +664,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Tālvadība</translation>
+        <translation type="vanished">Tālvadība</translation>
     </message>
     <message>
         <source>Language</source>
@@ -998,11 +1014,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Tālvadības paneļa lietotājvārdam jāsatur vismaz 3 rakstzīmes.</translation>
+        <translation type="vanished">Tālvadības paneļa lietotājvārdam jāsatur vismaz 3 rakstzīmes.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Tālvadības paneļa parolei jāsatur vismaz 6 rakstzīmes.</translation>
+        <translation type="vanished">Tālvadības paneļa parolei jāsatur vismaz 6 rakstzīmes.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1042,7 +1058,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>Lietot citu Tālvadības paneļa saskarni</translation>
+        <translation type="vanished">Lietot citu Tālvadības paneļa saskarni</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1050,7 +1066,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>Saskarnes failu atrašanās vieta nevar tikt atstāta tukša.</translation>
+        <translation type="vanished">Saskarnes failu atrašanās vieta nevar tikt atstāta tukša.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1666,15 +1682,15 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Diska kešatmiņas derīguma intervāls (nepieciešams libtorrent &lt; 2.0):</translation>
+        <translation type="vanished">Diska kešatmiņas derīguma intervāls (nepieciešams libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation>Fiziskās atmiņas (RAM) izmantošanas robeža (pielāgota, ja libtorrent &gt;= 2.0):</translation>
+        <translation type="vanished">Fiziskās atmiņas (RAM) izmantošanas robeža (pielāgota, ja libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Diska kešatmiņa (nepieciešams libtorrent &lt; 2.0):</translation>
+        <translation type="vanished">Diska kešatmiņa (nepieciešams libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
@@ -1682,7 +1698,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Apvienot lasīšanas un rakstīšanas darbības (nepieciešams libtorrent &lt; 2.0):</translation>
+        <translation type="vanished">Apvienot lasīšanas un rakstīšanas darbības (nepieciešams libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
@@ -1698,7 +1714,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation>Diska Ievades/Izvades tips (libtorrent &gt;= 2.0; nepieciešama pārstartēšana):</translation>
+        <translation type="vanished">Diska Ievades/Izvades tips (libtorrent &gt;= 2.0; nepieciešama pārstartēšana):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1706,7 +1722,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation>Pārrakstīšana (nepieciešams libtorrent &gt;= 2.0.6)</translation>
+        <translation type="vanished">Pārrakstīšana (nepieciešams libtorrent &gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
@@ -1718,7 +1734,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Plūsmu jaukšana (nepieciešams libtorrent &gt;= 2.0):</translation>
+        <translation type="vanished">Plūsmu jaukšana (nepieciešams libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
@@ -1741,10 +1757,6 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <translation>(Nevienu)</translation>
     </message>
     <message>
-        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Python executable path (may require restart):</source>
         <translation type="unfinished" />
     </message>
@@ -1758,22 +1770,6 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1802,6 +1798,90 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
         <translation type="unfinished" />
     </message>
 </context>

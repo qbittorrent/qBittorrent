@@ -5,14 +5,14 @@
     <name>AboutDlg</name>
     <message>
         <source>About</source>
-        <translation type="vanished">Аб праграме</translation>
+        <translation type="vanished">Пра праґраму</translation>
     </message>
 </context>
 <context>
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Category:</source>
-        <translation>Катэгорыя:</translation>
+        <translation>Катэґорыя:</translation>
     </message>
     <message>
         <source>Start torrent</source>
@@ -20,11 +20,11 @@
     </message>
     <message>
         <source>Skip hash check</source>
-        <translation>Прапусціць праверку хэшу</translation>
+        <translation>Прапусьціць праверку хэшу</translation>
     </message>
     <message>
         <source>Torrent Management Mode:</source>
-        <translation>Рэжым кіравання торэнтамі:</translation>
+        <translation>Рэжым кіраваньня торэнтамі:</translation>
     </message>
     <message>
         <source>Content layout:</source>
@@ -36,11 +36,11 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation>Стварыць падпапку</translation>
+        <translation>Стварыць падкаталёґ</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation>Не ствараць падпапку</translation>
+        <translation>Не ствараць падкаталёґ</translation>
     </message>
     <message>
         <source>Manual</source>
@@ -189,27 +189,27 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Порт для вэб-інтэрфейсу мусіць быць паміж 1 і 65535.</translation>
+        <translation type="vanished">Порт для вэб-інтэрфейсу мусіць быць паміж 1 і 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Немагчыма ўвайсці. Выглядае, што qBittorrent недасяжны.</translation>
+        <translation type="vanished">Немагчыма ўвайсці. Выглядае, што qBittorrent недасяжны.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>Нядзейсныя імя карыстальніка ці пароль.</translation>
+        <translation type="vanished">Нядзейсныя імя карыстальніка ці пароль.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Імя карыстальніка</translation>
+        <translation type="vanished">Імя карыстальніка</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Пароль</translation>
+        <translation type="vanished">Пароль</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>Логін</translation>
+        <translation type="vanished">Логін</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -313,7 +313,7 @@
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>Ґлябальнае абмежаваньне колькасьці слотаў раздачы мусіць быць большае за 0 або вымкнутае.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
@@ -337,7 +337,7 @@
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation>Таймэр неактыўнасьці торэнта мусіць быць большым за 0.</translation>
     </message>
     <message>
         <source>Saving Management</source>
@@ -349,7 +349,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>qBittorrent быў спынены</translation>
+        <translation type="vanished">qBittorrent быў спынены</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Патрэбная JavaScript! Для слушнае працы Вы павінны ўвамкнуць JavaScript для Web UI.</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -385,7 +385,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>Порт для ўваходных падлучэньняў мусіць быць у дыяпазоне ад 0 да 65535.</translation>
     </message>
     <message>
         <source>Original author</source>
@@ -394,6 +394,18 @@
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
         <translation>Выдаліць выбраныя торэнты са спісу перадач?</translation>
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -497,7 +509,7 @@
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[С: %1, Р: %2] qBittorrent %3</translation>
+        <translation type="vanished">[С: %1, Р: %2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -557,7 +569,7 @@
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation type="unfinished" />
+        <translation>Для выкарыстаньня гэтае функцыі доступ да WebUI мусіць быць зьдзейсьнены па пратаколе HTTPS</translation>
     </message>
     <message>
         <source>Connection status: Firewalled</source>
@@ -623,6 +635,10 @@
         <source>Log</source>
         <translation>Журнал</translation>
     </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -648,7 +664,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Веб-інтэрфейс</translation>
+        <translation type="vanished">Веб-інтэрфейс</translation>
     </message>
     <message>
         <source>Language</source>
@@ -998,11 +1014,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Імя карыстальніка вэб-інтэрфейсу павінна змяшчаць не менш за 3 сімвалы.</translation>
+        <translation type="vanished">Імя карыстальніка вэб-інтэрфейсу павінна змяшчаць не менш за 3 сімвалы.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Пароль вэб-інтэрфейсу павінен змяшчаць не менш за 6 сімвалаў.</translation>
+        <translation type="vanished">Пароль вэб-інтэрфейсу павінен змяшчаць не менш за 6 сімвалаў.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1042,7 +1058,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>Выкарыстоўваць альтэрнатыўны вэб-інтэрфейс</translation>
+        <translation type="vanished">Выкарыстоўваць альтэрнатыўны вэб-інтэрфейс</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1050,7 +1066,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>Размяшчэнне файлаў альтэрнатыўнага вэб-інтэрфейсу не можа быць пустым.</translation>
+        <translation type="vanished">Размяшчэнне файлаў альтэрнатыўнага вэб-інтэрфейсу не можа быць пустым.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1130,7 +1146,7 @@
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation type="unfinished" />
+        <translation>Альґарытм зьмешанага рэжыму μTP-TCP:</translation>
     </message>
     <message>
         <source>Upload rate based</source>
@@ -1382,7 +1398,7 @@
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation type="unfinished" />
+        <translation>Забараніць злучэньне з вузламі на прывілеяваных партах:</translation>
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
@@ -1446,11 +1462,11 @@
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>%J: інфармацыйны хэш v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>%I: інфармацыйны хэш v1</translation>
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
@@ -1502,7 +1518,7 @@
     </message>
     <message>
         <source>Disk IO read mode:</source>
-        <translation type="unfinished" />
+        <translation>Рэжым чытаньня дыскавага УВ:</translation>
     </message>
     <message>
         <source>Disable OS cache</source>
@@ -1510,11 +1526,11 @@
     </message>
     <message>
         <source>Disk IO write mode:</source>
-        <translation type="unfinished" />
+        <translation>Рэжым запісу дыскавага УВ:</translation>
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation type="unfinished" />
+        <translation>Выкарыстаньне блізкасьці памеру фраґмэнту:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
@@ -1526,11 +1542,11 @@
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>Інтэрвал абнаўленьня:</translation>
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation>мс</translation>
     </message>
     <message>
         <source>Excluded file names</source>
@@ -1538,11 +1554,11 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
-        <translation type="unfinished" />
+        <translation>Падтрымка інтэрнацыяналізаваных даменных імёнаў (IDN):</translation>
     </message>
     <message>
         <source>Run external program on torrent finished</source>
-        <translation type="unfinished" />
+        <translation>Запускаць вонкавую праґраму па завяршэньні торэнта</translation>
     </message>
     <message>
         <source>Whitelist for filtering HTTP Host header values.
@@ -1558,11 +1574,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
-        <translation type="unfinished" />
+        <translation>Запускаць вонкавую праґраму пасьля даданьня торэнта</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
-        <translation type="unfinished" />
+        <translation>Сэртыфікат HTTPS ня мусіць быць пустым</translation>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
@@ -1570,7 +1586,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
-        <translation type="unfinished" />
+        <translation>Ключ HTTPS ня мусіць быць пустым</translation>
     </message>
     <message>
         <source>Run external program</source>
@@ -1610,7 +1626,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Аднавіць тып захаваньня дадзеных (патрэбны перазапуск):</translation>
     </message>
     <message>
         <source>Fastresume files</source>
@@ -1626,7 +1642,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>Файл часапісу</translation>
     </message>
     <message>
         <source>Behavior</source>
@@ -1638,7 +1654,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
+        <translation>Ужываць проксі для мэтаў BitTorrent</translation>
     </message>
     <message>
         <source>years</source>
@@ -1654,34 +1670,26 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
+        <translation>Запамятаць налады шматэлемэнтнага пераназваньня</translation>
     </message>
     <message>
         <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
+        <translation>Ужываць проксі для агульных мэтаў</translation>
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
         <translation>Выкарыстоўваць проксі для мэт RSS</translation>
     </message>
     <message>
-        <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Абмежаваньне выкарыстаньня фізычнае памяці (АЗП) (ужываецца, калі libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Кэш дыска (патрабуе libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1698,15 +1706,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Тып УВ дыска (libtorrent &amp;gt;= 2.0; патрэбны перазапуск):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
         <translation>Дадаць у пачатак чаргі</translation>
-    </message>
-    <message>
-        <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished" />
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
@@ -1714,10 +1718,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1741,10 +1741,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation>(Няма)</translation>
     </message>
     <message>
-        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Python executable path (may require restart):</source>
         <translation type="unfinished" />
     </message>
@@ -1761,22 +1757,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>DHT bootstrap nodes:</source>
         <translation type="unfinished" />
     </message>
@@ -1790,18 +1770,102 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>Абмежаваньне памеру файла .torrent:</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
-        <translation type="unfinished" />
+        <translation>(Аўтавызначаць, калі пуста)</translation>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>Захоўваць неабраныя файлы ў каталёзе ".unwanted".</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2114,15 +2178,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation>Назва файла</translation>
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation type="unfinished" />
+        <translation>Назва файла + Пашырэньне</translation>
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation type="unfinished" />
+        <translation>Пералічыць файлы</translation>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
@@ -2134,19 +2198,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Replacement Input</source>
-        <translation type="unfinished" />
+        <translation>Тэкст замены</translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation>Замяніць</translation>
     </message>
     <message>
         <source>Extension</source>
-        <translation type="unfinished" />
+        <translation>Пашырэньне</translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished" />
+        <translation>Замяніць усё</translation>
     </message>
     <message>
         <source>Include files</source>
@@ -2158,11 +2222,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Search Files</source>
-        <translation type="unfinished" />
+        <translation>Пошук файлаў</translation>
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished" />
+        <translation>З улікам рэґістра</translation>
     </message>
     <message>
         <source>Match all occurrences</source>
@@ -2943,11 +3007,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>Інфармацыйны хэш v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>Інфармацыйны хэш v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
@@ -3212,11 +3276,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation type="unfinished" />
+        <translation>Для ўсталяваньня новых убудоваў націсьніце ў правым ніжнім куце акна кнопку "Пошук убудоваў..."</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
-        <translation type="unfinished" />
+        <translation>Не ўсталявана аніякіх пошукавых убудоваў.</translation>
     </message>
 </context>
 <context>
@@ -3911,7 +3975,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Blocked</source>
-        <translation type="unfinished" />
+        <translation>Заблякавана</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3935,11 +3999,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished" />
+        <translation>Ідэнтыфікатар</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation type="unfinished" />
+        <translation>Тып часапіса</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -3959,7 +4023,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Filter logs</source>
-        <translation type="unfinished" />
+        <translation>Часапісы фільтрацыі</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
@@ -3975,7 +4039,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Timestamp</source>
-        <translation type="unfinished" />
+        <translation>Часовая пазнака</translation>
     </message>
     <message>
         <source>Clear All</source>
@@ -3987,7 +4051,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation type="unfinished" />
+        <translation>Узроўні часапіса:</translation>
     </message>
     <message>
         <source>Reason</source>
@@ -3995,7 +4059,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>item</source>
-        <translation type="unfinished" />
+        <translation>Элемэнт</translation>
     </message>
     <message>
         <source>IP</source>
@@ -4023,7 +4087,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>items</source>
-        <translation type="unfinished" />
+        <translation>Элемэнты</translation>
     </message>
     <message>
         <source>Results</source>
@@ -4031,11 +4095,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished" />
+        <translation>Інфармацыя</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation type="unfinished" />
+        <translation>Абраць узровень часапіса...</translation>
     </message>
 </context>
 </TS>

@@ -189,27 +189,27 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>El puerto utilizado para la interfaz Web debe estar comprendido entre 1 y 65535.</translation>
+        <translation type="vanished">El puerto utilizado para la interfaz Web debe estar comprendido entre 1 y 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Error al iniciar sesión, imposible conectar a qBittorrent.</translation>
+        <translation type="vanished">Error al iniciar sesión, imposible conectar a qBittorrent.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>Nombre de usuario o contraseña inválidos.</translation>
+        <translation type="vanished">Nombre de usuario o contraseña inválidos.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Nombre de usuario</translation>
+        <translation type="vanished">Nombre de usuario</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Contraseña</translation>
+        <translation type="vanished">Contraseña</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>Iniciar sesión</translation>
+        <translation type="vanished">Iniciar sesión</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -349,7 +349,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>qBittorrent ha sido cerrado</translation>
+        <translation type="vanished">qBittorrent ha sido cerrado</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>¡Es necesario JavaScript! Debes habilitar JavaScript para que la Web UI funcione correctamente.</translation>
+        <translation type="vanished">¡Es necesario JavaScript! Debes habilitar JavaScript para que la Web UI funcione correctamente.</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -394,6 +394,18 @@
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
         <translation>¿Está seguro de que desea eliminar los torrents seleccionados de la lista de transferencias?</translation>
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -497,7 +509,7 @@
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[B: %1, S: %2] qBittorrent %3</translation>
+        <translation type="vanished">[B: %1, S: %2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -623,6 +635,10 @@
         <source>Log</source>
         <translation>Registro</translation>
     </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -648,7 +664,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Interfaz Web</translation>
+        <translation type="vanished">Interfaz Web</translation>
     </message>
     <message>
         <source>Language</source>
@@ -998,11 +1014,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>El nombre de usuario de la interfaz Web debe ser de al menos 3 caracteres.</translation>
+        <translation type="vanished">El nombre de usuario de la interfaz Web debe ser de al menos 3 caracteres.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>La contraseña de Interfaz de Usuario Web debe ser de al menos 6 caracteres.</translation>
+        <translation type="vanished">La contraseña de Interfaz de Usuario Web debe ser de al menos 6 caracteres.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1042,7 +1058,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>Usar la interfaz Web alternativa</translation>
+        <translation type="vanished">Usar la interfaz Web alternativa</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1050,7 +1066,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>La ubicación de los archivos de la Interfaz de Usuario Web alternativa no puede estar vacía.</translation>
+        <translation type="vanished">La ubicación de los archivos de la Interfaz de Usuario Web alternativa no puede estar vacía.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1666,15 +1682,15 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Intervalo de caducidad de caché de disco (requiere libtorrent &amp;lt; 2.0):</translation>
+        <translation type="vanished">Intervalo de caducidad de caché de disco (requiere libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation>Límite de uso de memoria física (RAM) (aplicado si libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Límite de uso de memoria física (RAM) (aplicado si libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Caché de disco (requiere libtorrent &amp;lt; 2.0):</translation>
+        <translation type="vanished">Caché de disco (requiere libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
@@ -1682,7 +1698,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Juntar lecturas y escrituras (requiere libtorrent &amp;lt; 2.0):</translation>
+        <translation type="vanished">Juntar lecturas y escrituras (requiere libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
@@ -1698,7 +1714,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation>Tipo de disco de E/S (libtorrent &amp;gt;= 2.0; requiere reiniciar):</translation>
+        <translation type="vanished">Tipo de disco de E/S (libtorrent &amp;gt;= 2.0; requiere reiniciar):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1706,7 +1722,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation>Escritura directa (requiere libtorrent &amp;gt;= 2.0.6)</translation>
+        <translation type="vanished">Escritura directa (requiere libtorrent &amp;gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
@@ -1718,7 +1734,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Hilos de hasing (requiere libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Hilos de hasing (requiere libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
@@ -1742,7 +1758,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Longitud de entrada I2P (requiere libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Longitud de entrada I2P (requiere libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
@@ -1762,19 +1778,19 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Cantidad de entrada I2P (requiere libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Cantidad de entrada I2P (requiere libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Longitud de salida I2P (requiere libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Longitud de salida I2P (requiere libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Cantidad saliente I2P (requiere libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Cantidad saliente I2P (requiere libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation>I2P (Experimental) (requiere libtorrent &amp;gt;= 2.0)</translation>
+        <translation type="vanished">I2P (Experimental) (requiere libtorrent &amp;gt;= 2.0)</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
@@ -1803,6 +1819,90 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation>Habilite la Marca de la Web (MOTW) para archivos descargados (requiere MacOS o Windows):</translation>
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

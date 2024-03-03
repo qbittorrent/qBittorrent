@@ -189,27 +189,27 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Port webového rozhraní musí být mezi 1 a 65535.</translation>
+        <translation type="vanished">Port webového rozhraní musí být mezi 1 a 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Nelze se přihlásit, qBittorrent je pravděpodobně nedostupný</translation>
+        <translation type="vanished">Nelze se přihlásit, qBittorrent je pravděpodobně nedostupný</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>Neplatné jméno nebo heslo</translation>
+        <translation type="vanished">Neplatné jméno nebo heslo</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Uživatelské jméno</translation>
+        <translation type="vanished">Uživatelské jméno</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Heslo</translation>
+        <translation type="vanished">Heslo</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>Přihlášení</translation>
+        <translation type="vanished">Přihlášení</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -349,7 +349,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>qBittorrent byl ukončen</translation>
+        <translation type="vanished">qBittorrent byl ukončen</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>Je vyžadován JavaScript! Musíte povolit JavaScript aby Web UI pracovalo správně</translation>
+        <translation type="vanished">Je vyžadován JavaScript! Musíte povolit JavaScript aby Web UI pracovalo správně</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -394,6 +394,18 @@
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
         <translation>Opravdu chcete smazat vybrané torrenty ze seznamu přenosů?</translation>
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -497,7 +509,7 @@
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[S: %1, O: %2] qBittorrent %3</translation>
+        <translation type="vanished">[S: %1, O: %2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -623,6 +635,10 @@
         <source>Log</source>
         <translation>Log</translation>
     </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -648,7 +664,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Web UI</translation>
+        <translation type="vanished">Web UI</translation>
     </message>
     <message>
         <source>Language</source>
@@ -998,11 +1014,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Uživatelské jméno pro webové rozhraní musí být nejméně 3 znaky dlouhé.</translation>
+        <translation type="vanished">Uživatelské jméno pro webové rozhraní musí být nejméně 3 znaky dlouhé.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Heslo pro webové rozhraní musí být nejméně 6 znaků dlouhé.</translation>
+        <translation type="vanished">Heslo pro webové rozhraní musí být nejméně 6 znaků dlouhé.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1042,7 +1058,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>Použít alternativní Web UI</translation>
+        <translation type="vanished">Použít alternativní Web UI</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1050,7 +1066,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>Umístění souborů Alternativního UI nemůže být prázdné.</translation>
+        <translation type="vanished">Umístění souborů Alternativního UI nemůže být prázdné.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1666,15 +1682,15 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Interval vypršení diskové cache (vyžaduje libtorrent &amp;lt; 2.0):</translation>
+        <translation type="vanished">Interval vypršení diskové cache (vyžaduje libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation>Limit využití fyzické paměti (RAM) (použito pokud je libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Limit využití fyzické paměti (RAM) (použito pokud je libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Disková cache (vyžaduje libtorrent &amp;lt; 2.0):</translation>
+        <translation type="vanished">Disková cache (vyžaduje libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
@@ -1682,7 +1698,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Sloučení čtecích &amp; zapisovacích operací (vyžaduje libtorrent &amp;lt; 2.0):</translation>
+        <translation type="vanished">Sloučení čtecích &amp; zapisovacích operací (vyžaduje libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
@@ -1698,7 +1714,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation>Disk IO typ (libtorrent &amp;gt;= 2.0; vyžaduje restart):</translation>
+        <translation type="vanished">Disk IO typ (libtorrent &amp;gt;= 2.0; vyžaduje restart):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1706,7 +1722,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation>Write-through (vyžaduje libtorrent &amp;gt;= 2.0.6)</translation>
+        <translation type="vanished">Write-through (vyžaduje libtorrent &amp;gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
@@ -1718,7 +1734,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Hashovací vlákna (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Hashovací vlákna (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
@@ -1742,7 +1758,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P příchozí délka (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">I2P příchozí délka (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
@@ -1762,19 +1778,19 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P příchozí kvalita (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">I2P příchozí kvalita (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P odchozí délka (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">I2P odchozí délka (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P odchozí kvalita (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">I2P odchozí kvalita (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation>I2P (Experimentální) (vyžaduje libtorrent &amp;gt;= 2.0)</translation>
+        <translation type="vanished">I2P (Experimentální) (vyžaduje libtorrent &amp;gt;= 2.0)</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
@@ -1803,6 +1819,90 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation>Zapnout Mark-of-the-Web (MOTW) pro stažené soubory (vyžaduje macOS nebo Windows):</translation>
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

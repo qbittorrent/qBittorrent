@@ -189,27 +189,27 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Port korišten za web sučelje mora biti između  1 i 65535.</translation>
+        <translation type="vanished">Port korišten za web sučelje mora biti između  1 i 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Nije moguća prijava. qBittorrent je vjerojatno nedostupan.</translation>
+        <translation type="vanished">Nije moguća prijava. qBittorrent je vjerojatno nedostupan.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>Neispravno korisničko ime ili lozinka</translation>
+        <translation type="vanished">Neispravno korisničko ime ili lozinka</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Korisničko ime</translation>
+        <translation type="vanished">Korisničko ime</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Lozinka</translation>
+        <translation type="vanished">Lozinka</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>Prijava</translation>
+        <translation type="vanished">Prijava</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -349,7 +349,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>qBittorrent je ugašen</translation>
+        <translation type="vanished">qBittorrent je ugašen</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>Potreban je JavaScript! Morate omogućiti JavaScript kako bi web sučelje ispravno radilo</translation>
+        <translation type="vanished">Potreban je JavaScript! Morate omogućiti JavaScript kako bi web sučelje ispravno radilo</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -394,6 +394,18 @@
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
         <translation>Jeste li sigurni da želite ukloniti odabrane torrente s popisa prijenosa?</translation>
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -497,7 +509,7 @@
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[P: %1, S: %2] qBittorrent %3</translation>
+        <translation type="vanished">[P: %1, S: %2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -623,6 +635,10 @@
         <source>Log</source>
         <translation>Zapis</translation>
     </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -648,7 +664,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Web UI</translation>
+        <translation type="vanished">Web UI</translation>
     </message>
     <message>
         <source>Language</source>
@@ -998,11 +1014,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Korisničko ime web sučelja mora imati najmanje 3 znaka.</translation>
+        <translation type="vanished">Korisničko ime web sučelja mora imati najmanje 3 znaka.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Korisničko ime web sučelja mora imati najmanje 6 znakova.</translation>
+        <translation type="vanished">Korisničko ime web sučelja mora imati najmanje 6 znakova.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1042,7 +1058,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>Koristite alternativno web sučelje</translation>
+        <translation type="vanished">Koristite alternativno web sučelje</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1050,7 +1066,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>Alternativna lokacija datoteka web sučelja ne može biti prazna.</translation>
+        <translation type="vanished">Alternativna lokacija datoteka web sučelja ne može biti prazna.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1666,15 +1682,15 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Interval isteka predmemorije diska (zahtijeva libtorren &amp;lt; 2.0):</translation>
+        <translation type="vanished">Interval isteka predmemorije diska (zahtijeva libtorren &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation>Ograničenje upotrebe fizičke memorije (RAM) (primjenjuje se ako je libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Ograničenje upotrebe fizičke memorije (RAM) (primjenjuje se ako je libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Disk cache (zahtijeva libtorrent &amp;lt; 2.0):</translation>
+        <translation type="vanished">Disk cache (zahtijeva libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
@@ -1682,7 +1698,7 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Spajanje čitanja i pisanja (zahtijeva libtorrent &amp;lt; 2.0):</translation>
+        <translation type="vanished">Spajanje čitanja i pisanja (zahtijeva libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
@@ -1698,7 +1714,7 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation>Vrsta IO diska (libtorrent &amp;gt;= 2.0; zahtijeva ponovno pokretanje):</translation>
+        <translation type="vanished">Vrsta IO diska (libtorrent &amp;gt;= 2.0; zahtijeva ponovno pokretanje):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1706,7 +1722,7 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation>Pisanje kroz (zahtijeva libtorrent &amp;gt;= 2.0.6)</translation>
+        <translation type="vanished">Pisanje kroz (zahtijeva libtorrent &amp;gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
@@ -1718,7 +1734,7 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Haširanje threadova (zahtijeva libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Haširanje threadova (zahtijeva libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
@@ -1742,7 +1758,7 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P ulazna duljina (zahtijeva libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">I2P ulazna duljina (zahtijeva libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
@@ -1762,19 +1778,19 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P ulazna količina (zahtijeva libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">I2P ulazna količina (zahtijeva libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P izlazna duljina (zahtijeva libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">I2P izlazna duljina (zahtijeva libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P izlazna količina (zahtijeva libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">I2P izlazna količina (zahtijeva libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation>I2P (eksperimentalno) (zahtijeva libtorrent &amp;gt;= 2.0)</translation>
+        <translation type="vanished">I2P (eksperimentalno) (zahtijeva libtorrent &amp;gt;= 2.0)</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
@@ -1803,6 +1819,90 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation>Omogućite Mark-of-the-Web (MOTW) za preuzete datoteke (zahtijeva macOS ili Windows):</translation>
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

@@ -189,27 +189,27 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Porten som används för webbgränssnittet måste vara mellan 1 och 65535.</translation>
+        <translation type="vanished">Porten som används för webbgränssnittet måste vara mellan 1 och 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Det gick inte att logga in. qBittorrent är troligtvis inte nåbart.</translation>
+        <translation type="vanished">Det gick inte att logga in. qBittorrent är troligtvis inte nåbart.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>Felaktigt användarnamn eller lösenord.</translation>
+        <translation type="vanished">Felaktigt användarnamn eller lösenord.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Användarnamn</translation>
+        <translation type="vanished">Användarnamn</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Lösenord</translation>
+        <translation type="vanished">Lösenord</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>Inloggning</translation>
+        <translation type="vanished">Inloggning</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -349,7 +349,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>qBittorrent har stängts av</translation>
+        <translation type="vanished">qBittorrent har stängts av</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>JavaScript Krävs! Du måste aktivera JavaScript för att webbgränssnittet ska fungera korrekt</translation>
+        <translation type="vanished">JavaScript Krävs! Du måste aktivera JavaScript för att webbgränssnittet ska fungera korrekt</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -394,6 +394,18 @@
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
         <translation>Är du säker på att du vill ta bort de valda torrenterna från överföringslistan?</translation>
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -497,7 +509,7 @@
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[N: %1/s, U: %2/s] qBittorrent %3</translation>
+        <translation type="vanished">[N: %1/s, U: %2/s] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -623,6 +635,10 @@
         <source>Log</source>
         <translation>Logg</translation>
     </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -648,7 +664,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Webbgränssnitt</translation>
+        <translation type="vanished">Webbgränssnitt</translation>
     </message>
     <message>
         <source>Language</source>
@@ -998,11 +1014,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Webbanvändarnamnet måste vara minst 3 tecken långt.</translation>
+        <translation type="vanished">Webbanvändarnamnet måste vara minst 3 tecken långt.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Webbanvändarlösenordet måste vara minst 6 tecken långt.</translation>
+        <translation type="vanished">Webbanvändarlösenordet måste vara minst 6 tecken långt.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1042,7 +1058,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>Använd alternativt webbgränssnitt</translation>
+        <translation type="vanished">Använd alternativt webbgränssnitt</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1050,7 +1066,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>Platsen för alternativa webbgränssnittsfiler kan inte vara tom.</translation>
+        <translation type="vanished">Platsen för alternativa webbgränssnittsfiler kan inte vara tom.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1446,11 +1462,11 @@
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation>%J: Infohash v2</translation>
+        <translation>%J: Info-hash v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation>%I: Infohash v1</translation>
+        <translation>%I: Info-hash v1</translation>
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
@@ -1610,7 +1626,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
-        <translation>Återuppta datalagringstyp (kräver omstart):</translation>
+        <translation>Lagringstyp för återupptagningsdata (kräver omstart):</translation>
     </message>
     <message>
         <source>Fastresume files</source>
@@ -1666,15 +1682,15 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Utgångsintervall för diskcache (kräver libtorrent &amp;lt; 2.0):</translation>
+        <translation type="vanished">Utgångsintervall för diskcache (kräver libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation>Användningsgräns för fysiskt minne (RAM) (tillämpas om libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Användningsgräns för fysiskt minne (RAM) (tillämpas om libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Diskcache (kräver libtorrent &amp;lt; 2.0):</translation>
+        <translation type="vanished">Diskcache (kräver libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
@@ -1682,7 +1698,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Koalition läsningar &amp; skrivningar (kräver libtorrent &amp;lt; 2.0):</translation>
+        <translation type="vanished">Koalition läsningar &amp; skrivningar (kräver libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
@@ -1698,7 +1714,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation>Disk IO-typ (libtorrent &amp;gt;= 2.0; kräver omstart):</translation>
+        <translation type="vanished">Disk IO-typ (libtorrent &amp;gt;= 2.0; kräver omstart):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1706,7 +1722,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation>Genomskrivning (kräver libtorrent &amp;gt;= 2.0.6)</translation>
+        <translation type="vanished">Genomskrivning (kräver libtorrent &amp;gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
@@ -1718,7 +1734,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Hashingstrådar (kräver libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Hashingstrådar (kräver libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
@@ -1742,7 +1758,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P inkommande längd (kräver libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">I2P inkommande längd (kräver libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
@@ -1762,19 +1778,19 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P inkommande kvantitet (kräver libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">I2P inkommande kvantitet (kräver libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P utgående längd (kräver libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">I2P utgående längd (kräver libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P utgående kvantitet (kräver libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">I2P utgående kvantitet (kräver libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation>I2P (experimentell) (kräver libtorrent &amp;gt;= 2.0)</translation>
+        <translation type="vanished">I2P (experimentell) (kräver libtorrent &amp;gt;= 2.0)</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
@@ -1803,6 +1819,90 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation>Aktivera Mark-of-the-Web (MOTW) för hämtade filer (kräver macOS eller Windows):</translation>
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2094,11 +2194,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation>Infohash v2:</translation>
+        <translation>Info-hash v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation>Infohash v1:</translation>
+        <translation>Info-hash v1:</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2943,11 +3043,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation>Infohash v1</translation>
+        <translation>Info-hash v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation>Infohash v2</translation>
+        <translation>Info-hash v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>

@@ -189,27 +189,27 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Cổng được sử dụng cho giao diện người dùng Web phải từ 1 đến 65535.</translation>
+        <translation type="vanished">Cổng được sử dụng cho giao diện người dùng Web phải từ 1 đến 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Không thể đăng nhập, qBittorrent có thể không truy cập được.</translation>
+        <translation type="vanished">Không thể đăng nhập, qBittorrent có thể không truy cập được.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>Tên tài khoản hoặc Mật khẩu không hợp lệ</translation>
+        <translation type="vanished">Tên tài khoản hoặc Mật khẩu không hợp lệ</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Tên tài khoản</translation>
+        <translation type="vanished">Tên tài khoản</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Mật khẩu</translation>
+        <translation type="vanished">Mật khẩu</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>Đăng nhập</translation>
+        <translation type="vanished">Đăng nhập</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -349,7 +349,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>qBittorrent đã bị tắt</translation>
+        <translation type="vanished">qBittorrent đã bị tắt</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>Yêu cầu JavaScript! Bạn phải bật JavaScript để Giao diện Web UI hoạt động</translation>
+        <translation type="vanished">Yêu cầu JavaScript! Bạn phải bật JavaScript để Giao diện Web UI hoạt động</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -394,6 +394,18 @@
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
         <translation>Bạn có chắc muốn xóa các torrent đã chọn khỏi danh sách trao đổi không?</translation>
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -497,7 +509,7 @@
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[D: %1, U: %2] qBittorrent %3</translation>
+        <translation type="vanished">[D: %1, U: %2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -623,6 +635,10 @@
         <source>Log</source>
         <translation>Nhật ký</translation>
     </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -648,7 +664,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Web UI</translation>
+        <translation type="vanished">Web UI</translation>
     </message>
     <message>
         <source>Language</source>
@@ -998,11 +1014,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Tên người dùng giao diện người dùng Web phải dài ít nhất 3 ký tự.</translation>
+        <translation type="vanished">Tên người dùng giao diện người dùng Web phải dài ít nhất 3 ký tự.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Mật khẩu giao diện người dùng Web phải dài ít nhất 6 ký tự.</translation>
+        <translation type="vanished">Mật khẩu giao diện người dùng Web phải dài ít nhất 6 ký tự.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1042,7 +1058,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>Sử dụng giao diện người dùng web thay thế</translation>
+        <translation type="vanished">Sử dụng giao diện người dùng web thay thế</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1050,7 +1066,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>Vị trí tệp giao diện người dùng Web thay thế không được để trống.</translation>
+        <translation type="vanished">Vị trí tệp giao diện người dùng Web thay thế không được để trống.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1666,15 +1682,15 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Khoảng thời gian hết hạn bộ đệm đĩa (yêu cầu libtorrent &amp;lt; 2.0):</translation>
+        <translation type="vanished">Khoảng thời gian hết hạn bộ đệm đĩa (yêu cầu libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation>Giới hạn sử dụng bộ nhớ vật lý (RAM) (áp dụng nếu libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Giới hạn sử dụng bộ nhớ vật lý (RAM) (áp dụng nếu libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Bộ đệm đĩa (yêu cầu libtorrent &amp;lt; 2.0):</translation>
+        <translation type="vanished">Bộ đệm đĩa (yêu cầu libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
@@ -1682,7 +1698,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Kết hợp đọc &amp;amp; ghi (yêu cầu libtorrent &amp;lt; 2.0):</translation>
+        <translation type="vanished">Kết hợp đọc &amp;amp; ghi (yêu cầu libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
@@ -1698,7 +1714,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation>Kiểu IO Ổ Đĩa (libtorrent &amp;gt;= 2.0; buộc khởi chạy lại):</translation>
+        <translation type="vanished">Kiểu IO Ổ Đĩa (libtorrent &amp;gt;= 2.0; buộc khởi chạy lại):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1706,7 +1722,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation>Ghi qua (yêu cầu libtorrent &amp;gt;= 2.0.6)</translation>
+        <translation type="vanished">Ghi qua (yêu cầu libtorrent &amp;gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
@@ -1718,7 +1734,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Chuỗi băm (yêu cầu libtorrent &gt;= 2.0):</translation>
+        <translation type="vanished">Chuỗi băm (yêu cầu libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
@@ -1742,7 +1758,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Độ dài gửi đến I2P (yêu cầu libtorrent &gt;= 2.0):</translation>
+        <translation type="vanished">Độ dài gửi đến I2P (yêu cầu libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
@@ -1762,19 +1778,19 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Số lượng gửi đến I2P (yêu cầu libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Số lượng gửi đến I2P (yêu cầu libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Độ dài gửi đi I2P (yêu cầu libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Độ dài gửi đi I2P (yêu cầu libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Số lượng gửi đi I2P (yêu cầu libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Số lượng gửi đi I2P (yêu cầu libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation>I2P (Thử nghiệm) (yêu cầu libtorrent &amp;gt;= 2.0)</translation>
+        <translation type="vanished">I2P (Thử nghiệm) (yêu cầu libtorrent &amp;gt;= 2.0)</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
@@ -1803,6 +1819,90 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation>Bật Mark-of-the-Web (MOTW) cho các tệp đã tải xuống (yêu cầu macOS hoặc Windows):</translation>
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

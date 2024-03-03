@@ -189,27 +189,27 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Veb İİ üçün istifadə olunan port 1 İlə 65535 arasında olmalıdır</translation>
+        <translation type="vanished">Veb İİ üçün istifadə olunan port 1 İlə 65535 arasında olmalıdır</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Giriş mümkün olmadı, qBittorrent çox güman ki, əlçatmazdır.</translation>
+        <translation type="vanished">Giriş mümkün olmadı, qBittorrent çox güman ki, əlçatmazdır.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>İstifadəçi adı və Şifrə səhvdir.</translation>
+        <translation type="vanished">İstifadəçi adı və Şifrə səhvdir.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>İstifadəçi adı</translation>
+        <translation type="vanished">İstifadəçi adı</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Şifrə</translation>
+        <translation type="vanished">Şifrə</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>Giriş</translation>
+        <translation type="vanished">Giriş</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -349,7 +349,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>qBittorrent söndürüldü</translation>
+        <translation type="vanished">qBittorrent söndürüldü</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>JavaScript tələb olunur! Düzgün şəkildə işləməsi üçün Veb İİ üçün JavaScript'i aktiv etməlisiniz</translation>
+        <translation type="vanished">JavaScript tələb olunur! Düzgün şəkildə işləməsi üçün Veb İİ üçün JavaScript'i aktiv etməlisiniz</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -394,6 +394,18 @@
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
         <translation>Köçürmə siyahısından seçilmiş torrentləri silmək istədiyinizə əminsiniz?</translation>
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -497,7 +509,7 @@
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[D: %1, U: %2] qBittorrent %3</translation>
+        <translation type="vanished">[D: %1, U: %2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -623,6 +635,10 @@
         <source>Log</source>
         <translation>Jurnal</translation>
     </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -648,7 +664,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Veb İİ</translation>
+        <translation type="vanished">Veb İİ</translation>
     </message>
     <message>
         <source>Language</source>
@@ -998,11 +1014,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Web İİ istifadəçi adı ən az 3 işarədən uzun olmalıdır.</translation>
+        <translation type="vanished">Web İİ istifadəçi adı ən az 3 işarədən uzun olmalıdır.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Web İİ şifrəsi ən azı 6 işarədən çox olmalıdır.</translation>
+        <translation type="vanished">Web İİ şifrəsi ən azı 6 işarədən çox olmalıdır.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1042,7 +1058,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>Alternativ Web İstifadəçi İnterfeysindən istifadə etmək</translation>
+        <translation type="vanished">Alternativ Web İstifadəçi İnterfeysindən istifadə etmək</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1050,7 +1066,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>Alternativ Web İİ faylları yeri boş ola bilməz.</translation>
+        <translation type="vanished">Alternativ Web İİ faylları yeri boş ola bilməz.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1666,15 +1682,15 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Disk keşinin son istifadə intervalı (libtorrent &amp;lt; 2.0 tələb edilir):</translation>
+        <translation type="vanished">Disk keşinin son istifadə intervalı (libtorrent &amp;lt; 2.0 tələb edilir):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation>Fiziki yaddaşın (RAM) istifadə həddi (libtorrent &amp;gt;= 2.0 olarsa tətbiq edilir):</translation>
+        <translation type="vanished">Fiziki yaddaşın (RAM) istifadə həddi (libtorrent &amp;gt;= 2.0 olarsa tətbiq edilir):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Disk keşi ( libtorrent &amp;lt; 2.0 tələb olunur):</translation>
+        <translation type="vanished">Disk keşi ( libtorrent &amp;lt; 2.0 tələb olunur):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
@@ -1682,7 +1698,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>Oxuma və yazma əməllərini birləşdirmək (libtorrnet &amp;lt; 2.0 tələb olunur):</translation>
+        <translation type="vanished">Oxuma və yazma əməllərini birləşdirmək (libtorrnet &amp;lt; 2.0 tələb olunur):</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
@@ -1698,7 +1714,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation>Disk giriş/çıxış növü (libtorrent &amp;gt;= 2.0; yenidən başladılmalıdır):</translation>
+        <translation type="vanished">Disk giriş/çıxış növü (libtorrent &amp;gt;= 2.0; yenidən başladılmalıdır):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1706,7 +1722,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation>Başdan sona yazmaq (libtorrent &amp;gt;= 2.0.6 tələb olunur)</translation>
+        <translation type="vanished">Başdan sona yazmaq (libtorrent &amp;gt;= 2.0.6 tələb olunur)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
@@ -1718,7 +1734,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Heşləmə axını (libtorrent &amp;gt;= 2.0 tələb olunur):</translation>
+        <translation type="vanished">Heşləmə axını (libtorrent &amp;gt;= 2.0 tələb olunur):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
@@ -1742,7 +1758,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Daxil olan İ2P uzunluğu (libtorrent &amp;gt;= 2.0 tələb olunur):</translation>
+        <translation type="vanished">Daxil olan İ2P uzunluğu (libtorrent &amp;gt;= 2.0 tələb olunur):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
@@ -1762,19 +1778,19 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Daxil olan İ2P kəmiyyəti (libtorrent &amp;gt;= 2.0 tələb olunur):</translation>
+        <translation type="vanished">Daxil olan İ2P kəmiyyəti (libtorrent &amp;gt;= 2.0 tələb olunur):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Çıxan İ2P uzunluğu (libtorrent &amp;gt;= 2.0 tələb olunur):</translation>
+        <translation type="vanished">Çıxan İ2P uzunluğu (libtorrent &amp;gt;= 2.0 tələb olunur):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Çıxan İ2P kəmiyyəti (libtorrent &amp;gt;= 2.0 tələb olunur):</translation>
+        <translation type="vanished">Çıxan İ2P kəmiyyəti (libtorrent &amp;gt;= 2.0 tələb olunur):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation>İ2P (Təcrübi) (libtorrent &amp;gt;= 2.0 tələb olunur)</translation>
+        <translation type="vanished">İ2P (Təcrübi) (libtorrent &amp;gt;= 2.0 tələb olunur)</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
@@ -1803,6 +1819,90 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation>Endirilmiş fayllar üçün veb markasını (Mark-of-the-Web - MOTW) aktiv edin (macOS və ya Windows tələb olunur):</translation>
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

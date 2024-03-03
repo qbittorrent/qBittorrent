@@ -189,27 +189,27 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Vrata uporabljena za spletni vmesnik morajo biti med 1 in 65535.</translation>
+        <translation type="vanished">Vrata uporabljena za spletni vmesnik morajo biti med 1 in 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Prijava ni mogoča, qBittorrent je verjetno nedosegljiv.</translation>
+        <translation type="vanished">Prijava ni mogoča, qBittorrent je verjetno nedosegljiv.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>Neveljavno uporabniško ime ali geslo.</translation>
+        <translation type="vanished">Neveljavno uporabniško ime ali geslo.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Uporabniško ime</translation>
+        <translation type="vanished">Uporabniško ime</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Geslo</translation>
+        <translation type="vanished">Geslo</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>Prijava</translation>
+        <translation type="vanished">Prijava</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -348,10 +348,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>qBittorrent has been shutdown</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Open documentation</source>
         <translation>Odpri dokumentacijo</translation>
     </message>
@@ -365,7 +361,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>Zahtevan JavaScript! Za uspešno delovanje spletnega uporabniškega vmesnika (Web UI) je potrebno omogočiti JavaScript.</translation>
+        <translation type="vanished">Zahtevan JavaScript! Za uspešno delovanje spletnega uporabniškega vmesnika (Web UI) je potrebno omogočiti JavaScript.</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -393,6 +389,18 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -497,7 +505,7 @@
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[Pr: %1, Po: %2] qBittorrent %3</translation>
+        <translation type="vanished">[Pr: %1, Po: %2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -621,6 +629,10 @@
     </message>
     <message>
         <source>Log</source>
+        <translation>Dnevnik</translation>
+    </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -648,7 +660,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Spletni vmesnik</translation>
+        <translation type="vanished">Spletni vmesnik</translation>
     </message>
     <message>
         <source>Language</source>
@@ -998,11 +1010,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Uporabniško ime za spletni vmesnik mora vsebovati vsaj 3 znake.</translation>
+        <translation type="vanished">Uporabniško ime za spletni vmesnik mora vsebovati vsaj 3 znake.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Geslo za spletni vmesnik mora vsebovati vsaj 6 znakov.</translation>
+        <translation type="vanished">Geslo za spletni vmesnik mora vsebovati vsaj 6 znakov.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1042,15 +1054,11 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>Uporabi alternativni spletni vmesnik</translation>
+        <translation type="vanished">Uporabi alternativni spletni vmesnik</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
         <translation>Privzeta pot za shranjevanje:</translation>
-    </message>
-    <message>
-        <source>The alternative Web UI files location cannot be blank.</source>
-        <translation type="unfinished" />
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1234,7 +1242,7 @@
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation>s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -1254,7 +1262,7 @@
     </message>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>min</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
@@ -1526,11 +1534,11 @@
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>Interval osveževanja:</translation>
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation>ms</translation>
     </message>
     <message>
         <source>Excluded file names</source>
@@ -1665,23 +1673,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation>Uporabljaj posredniški strežnik za delovanje RSS</translation>
     </message>
     <message>
-        <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1697,16 +1689,8 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation>Uporabi Podkategorije</translation>
     </message>
     <message>
-        <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>Dodaj na vrh čakalne vrste</translation>
-    </message>
-    <message>
-        <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished" />
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
@@ -1714,10 +1698,6 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1741,10 +1721,6 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation>(Brez)</translation>
     </message>
     <message>
-        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Python executable path (may require restart):</source>
         <translation type="unfinished" />
     </message>
@@ -1758,22 +1734,6 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1802,6 +1762,90 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2114,15 +2158,15 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation>Ime datoteke</translation>
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation type="unfinished" />
+        <translation>Ime datoteke + Končnica</translation>
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation type="unfinished" />
+        <translation>Oštevilči datoteke</translation>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
@@ -2138,7 +2182,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation>Zamenjaj</translation>
     </message>
     <message>
         <source>Extension</source>
@@ -2146,15 +2190,15 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished" />
+        <translation>Zamenjaj vse</translation>
     </message>
     <message>
         <source>Include files</source>
-        <translation type="unfinished" />
+        <translation>Vključi datoteke</translation>
     </message>
     <message>
         <source>Include folders</source>
-        <translation type="unfinished" />
+        <translation>Vključi mape</translation>
     </message>
     <message>
         <source>Search Files</source>
@@ -2883,7 +2927,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished" />
+        <translation>Lokacija</translation>
     </message>
     <message>
         <source>New name</source>
@@ -3121,19 +3165,19 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Plugin path:</source>
-        <translation type="unfinished" />
+        <translation>Pot do vtičnika:</translation>
     </message>
     <message>
         <source>URL or local directory</source>
-        <translation type="unfinished" />
+        <translation>URL ali lokalna mapa</translation>
     </message>
     <message>
         <source>Install plugin</source>
-        <translation type="unfinished" />
+        <translation>Namesti vtičnik</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>V redu</translation>
     </message>
 </context>
 <context>
@@ -3172,7 +3216,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Filter</source>
-        <translation type="unfinished" />
+        <translation>Filter</translation>
     </message>
     <message>
         <source>Torrent names only</source>
@@ -3184,7 +3228,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>od</translation>
     </message>
     <message>
         <source>Everywhere</source>
@@ -3196,7 +3240,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
-        <translation type="unfinished" />
+        <translation>Razširi okno za prikaz dodatnih filtrov</translation>
     </message>
     <message>
         <source>to</source>
@@ -3216,7 +3260,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
-        <translation type="unfinished" />
+        <translation>Ni nameščenih vtičnikov za iskanje.</translation>
     </message>
 </context>
 <context>
@@ -3227,11 +3271,11 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Install new plugin</source>
-        <translation type="unfinished" />
+        <translation>Namesti nov vtičnik</translation>
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
-        <translation type="unfinished" />
+        <translation>Tukaj lahko najdeš vtičnike za iskanje:</translation>
     </message>
     <message>
         <source>Close</source>
@@ -3324,7 +3368,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>V redu</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -3461,11 +3505,11 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent Maskota</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent ikona</translation>
     </message>
 </context>
 <context>
@@ -3936,11 +3980,11 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished" />
+        <translation>ID</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation type="unfinished" />
+        <translation>Vrsta dnevnika</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -3960,7 +4004,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Filter logs</source>
-        <translation type="unfinished" />
+        <translation>Filtriraj dnevnike</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
@@ -3968,7 +4012,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>od</translation>
     </message>
     <message>
         <source>Status</source>
@@ -3976,11 +4020,11 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Timestamp</source>
-        <translation type="unfinished" />
+        <translation>Časovni žig</translation>
     </message>
     <message>
         <source>Clear All</source>
-        <translation type="unfinished" />
+        <translation>Počisti vse</translation>
     </message>
     <message>
         <source>Message</source>
@@ -3988,11 +4032,11 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation type="unfinished" />
+        <translation>Ravni dnevnika:</translation>
     </message>
     <message>
         <source>Reason</source>
-        <translation type="unfinished" />
+        <translation>Razlog</translation>
     </message>
     <message>
         <source>item</source>
@@ -4004,7 +4048,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Banned</source>
-        <translation type="unfinished" />
+        <translation>Prepovedano</translation>
     </message>
     <message>
         <source>Normal Messages</source>
@@ -4012,7 +4056,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Critical</source>
-        <translation type="unfinished" />
+        <translation>Kritično</translation>
     </message>
     <message>
         <source>Critical Messages</source>
@@ -4032,11 +4076,11 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished" />
+        <translation>Informacije</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation type="unfinished" />
+        <translation>Izberi raven dnevnika:</translation>
     </message>
 </context>
 </TS>

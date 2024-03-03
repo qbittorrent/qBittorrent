@@ -189,27 +189,27 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Web UI 使用的埠號必須在 1 到 65535 之間。</translation>
+        <translation type="vanished">Web UI 使用的埠號必須在 1 到 65535 之間。</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>無法登入，qBittorrent 可能無法連線。</translation>
+        <translation type="vanished">無法登入，qBittorrent 可能無法連線。</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>無效的使用者名稱或密碼。</translation>
+        <translation type="vanished">無效的使用者名稱或密碼。</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>使用者名稱</translation>
+        <translation type="vanished">使用者名稱</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>密碼</translation>
+        <translation type="vanished">密碼</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>登入</translation>
+        <translation type="vanished">登入</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -349,7 +349,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>qBittorrent 已經關閉</translation>
+        <translation type="vanished">qBittorrent 已經關閉</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>需要 JavaScript！您必須啟用 JavaScript 以讓 WebUI 正常運作</translation>
+        <translation type="vanished">需要 JavaScript！您必須啟用 JavaScript 以讓 WebUI 正常運作</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -394,6 +394,18 @@
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
         <translation>您確定要移除在傳輸清單中選定的 torrent 嗎？</translation>
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -497,7 +509,7 @@
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[下載：%1，上傳：%2] qBittorrent %3</translation>
+        <translation type="vanished">[下載：%1，上傳：%2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -623,6 +635,10 @@
         <source>Log</source>
         <translation>紀錄檔</translation>
     </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -648,7 +664,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Web UI</translation>
+        <translation type="vanished">Web UI</translation>
     </message>
     <message>
         <source>Language</source>
@@ -720,7 +736,7 @@
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
-        <translation>為所有檔案事先分配硬碟空間</translation>
+        <translation>為所有檔案預先分配磁碟空間</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
@@ -998,11 +1014,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Web UI 使用者名稱必須至少 3 字元長。</translation>
+        <translation type="vanished">Web UI 使用者名稱必須至少 3 字元長。</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Web UI 密碼必須至少 6 字元長。</translation>
+        <translation type="vanished">Web UI 密碼必須至少 6 字元長。</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1042,7 +1058,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>使用替補 Web UI</translation>
+        <translation type="vanished">使用替補 Web UI</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1050,7 +1066,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>替補的 Web UI 檔案位置不應該為空白。</translation>
+        <translation type="vanished">替補的 Web UI 檔案位置不應該為空白。</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1666,15 +1682,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>磁碟快取過期間隔（需要 libtorrent &amp;lt; 2.0）：</translation>
+        <translation type="vanished">磁碟快取到期區間（需要 libtorrent &amp;lt; 2.0）：</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation>實體記憶體 (RAM) 使用限制（僅適用於 libtorrent &amp;gt;= 2.0）：</translation>
+        <translation type="vanished">實體記憶體 (RAM) 使用限制（僅適用於 libtorrent &amp;gt;= 2.0）：</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>磁碟快娶（需要 libtorrent &amp;lt; 2.0）：</translation>
+        <translation type="vanished">磁碟快取（需要 libtorrent &amp;lt; 2.0）：</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
@@ -1682,7 +1698,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>合併讀寫（需要 libtorrent &amp;lt; 2.0）：</translation>
+        <translation type="vanished">合併讀寫（需要 libtorrent &amp;lt; 2.0）：</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
@@ -1698,7 +1714,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation>磁碟 IO 類型（libtorrent &amp;gt;= 2.0；需要重新啟動）：</translation>
+        <translation type="vanished">磁碟 IO 類型（libtorrent &amp;gt;= 2.0；需要重新啟動）：</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1706,7 +1722,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation>連續寫入（需要 libtorrent &amp;gt;= 2.0.6）</translation>
+        <translation type="vanished">連續寫入（需要 libtorrent &amp;gt;= 2.0.6）</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
@@ -1718,7 +1734,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>雜湊執行緒（需要 libtorrent &amp;gt;= 2.0）：</translation>
+        <translation type="vanished">雜湊執行緒（需要 libtorrent &amp;gt;= 2.0）：</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
@@ -1742,7 +1758,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P 入站長度（需要 libtorrent &amp;gt;= 2.0）：</translation>
+        <translation type="vanished">I2P 入站長度（需要 libtorrent &amp;gt;= 2.0）：</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
@@ -1762,19 +1778,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P 入站數量（需要 libtorrent &amp;gt;= 2.0）：</translation>
+        <translation type="vanished">I2P 入站數量（需要 libtorrent &amp;gt;= 2.0）：</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P 出站長度（需要 libtorrent &amp;gt;= 2.0）：</translation>
+        <translation type="vanished">I2P 出站長度（需要 libtorrent &amp;gt;= 2.0）：</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P 出站數量（需要 libtorrent &amp;gt;= 2.0）：</translation>
+        <translation type="vanished">I2P 出站數量（需要 libtorrent &amp;gt;= 2.0）：</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation>I2P（實驗性）（需要 libtorrent &amp;gt;= 2.0）</translation>
+        <translation type="vanished">I2P（實驗性）（需要 libtorrent &amp;gt;= 2.0）</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
@@ -1803,6 +1819,90 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation>啟用已下載檔案的 Mark-of-the-Web (MOTW)（需要 macOS 或 Windows）：</translation>
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

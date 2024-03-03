@@ -189,27 +189,27 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>O porto usado para a interface web debe estar entre 1 e 65535.</translation>
+        <translation type="vanished">O porto usado para a interface web debe estar entre 1 e 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Non é posíbel iniciar sesión. Probabelmente o qBittorrent non está accesíbel.</translation>
+        <translation type="vanished">Non é posíbel iniciar sesión. Probabelmente o qBittorrent non está accesíbel.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>O usuario ou o contrasinal son incorrectos.</translation>
+        <translation type="vanished">O usuario ou o contrasinal son incorrectos.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Nome do usuario</translation>
+        <translation type="vanished">Nome do usuario</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Contrasinal</translation>
+        <translation type="vanished">Contrasinal</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>Iniciar sesión</translation>
+        <translation type="vanished">Iniciar sesión</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -350,7 +350,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>O qBittorrent foi pechado.</translation>
+        <translation type="vanished">O qBittorrent foi pechado.</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -366,7 +366,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>Precísase JavaScript. Debe activar JavaScript para que a interface web de usuario funcione correctamente.</translation>
+        <translation type="vanished">Precísase JavaScript. Debe activar JavaScript para que a interface web de usuario funcione correctamente.</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -394,6 +394,18 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -498,7 +510,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[D: %1, E: %2] qBittorrent %3</translation>
+        <translation type="vanished">[D: %1, E: %2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -624,6 +636,10 @@ Non use caracteres especiais no nome da categoría.</translation>
         <source>Log</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -649,7 +665,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Interface web</translation>
+        <translation type="vanished">Interface web</translation>
     </message>
     <message>
         <source>Language</source>
@@ -999,11 +1015,11 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>O nome de usuario da interface web debe ter polo menos 3 caracteres.</translation>
+        <translation type="vanished">O nome de usuario da interface web debe ter polo menos 3 caracteres.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>O contrasinal da interface web debe ter polo menos 6 caracteres.</translation>
+        <translation type="vanished">O contrasinal da interface web debe ter polo menos 6 caracteres.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1043,7 +1059,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>Usar a interface web alternativa</translation>
+        <translation type="vanished">Usar a interface web alternativa</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1051,7 +1067,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>A localización alternativa dos ficheiros da interface de usuario non pode quedar baleira.</translation>
+        <translation type="vanished">A localización alternativa dos ficheiros da interface de usuario non pode quedar baleira.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1666,23 +1682,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1698,15 +1698,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <translation>Usar subcategorías</translation>
     </message>
     <message>
-        <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1715,10 +1707,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1742,10 +1730,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <translation>(Ningún)</translation>
     </message>
     <message>
-        <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Python executable path (may require restart):</source>
         <translation type="unfinished" />
     </message>
@@ -1759,22 +1743,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1803,6 +1771,90 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
         <translation type="unfinished" />
     </message>
 </context>

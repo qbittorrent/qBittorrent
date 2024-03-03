@@ -189,27 +189,27 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>웹 UI에 사용하는 포트는 1 ~ 65535여야 합니다.</translation>
+        <translation type="vanished">웹 UI에 사용하는 포트는 1 ~ 65535여야 합니다.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>로그인 할 수 없습니다. qBittorrent가 접근할 수 없는 것 같습니다.</translation>
+        <translation type="vanished">로그인 할 수 없습니다. qBittorrent가 접근할 수 없는 것 같습니다.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>사용자 이름/암호가 올바르지 않습니다.</translation>
+        <translation type="vanished">사용자 이름/암호가 올바르지 않습니다.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>사용자 이름</translation>
+        <translation type="vanished">사용자 이름</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>암호</translation>
+        <translation type="vanished">암호</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>로그인</translation>
+        <translation type="vanished">로그인</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -349,7 +349,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>qBitTorrent가 전원을 끕니다</translation>
+        <translation type="vanished">qBitTorrent가 전원을 끕니다</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>JavaScript가 필요합니다! 웹 UI가 올바르게 동작하려면 반드시 JavaScript를 활성화해야 합니다</translation>
+        <translation type="vanished">JavaScript가 필요합니다! 웹 UI가 올바르게 동작하려면 반드시 JavaScript를 활성화해야 합니다</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -394,6 +394,18 @@
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
         <translation>전송 목록에서 선택한 토렌트를 제거하시겠습니까?</translation>
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -497,7 +509,7 @@
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[D: %1, U: %2] qBittorrent %3</translation>
+        <translation type="vanished">[D: %1, U: %2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -623,6 +635,10 @@
         <source>Log</source>
         <translation>로그</translation>
     </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -648,7 +664,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation>웹 UI</translation>
+        <translation type="vanished">웹 UI</translation>
     </message>
     <message>
         <source>Language</source>
@@ -998,11 +1014,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>웹 UI 사용자 이름은 최소한 3 문자 이상이어야 합니다.</translation>
+        <translation type="vanished">웹 UI 사용자 이름은 최소한 3 문자 이상이어야 합니다.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>웹 UI 비밀번호는 적어도 6자 이상이어야 합니다.</translation>
+        <translation type="vanished">웹 UI 비밀번호는 적어도 6자 이상이어야 합니다.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1042,7 +1058,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>대체 웹 UI 사용</translation>
+        <translation type="vanished">대체 웹 UI 사용</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1050,7 +1066,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>대체 웹 UI 파일 위치는 꼭 입력해야 합니다.</translation>
+        <translation type="vanished">대체 웹 UI 파일 위치는 꼭 입력해야 합니다.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1666,15 +1682,15 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>디스크 캐시 만료 주기 (libtorrent 2.0 필요):</translation>
+        <translation type="vanished">디스크 캐시 만료 주기 (libtorrent 2.0 필요):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation>물리적 메모리(RAM) 사용량 제한 (libtorrent &amp;gt;= 2.0인 경우 적용됨):</translation>
+        <translation type="vanished">물리적 메모리(RAM) 사용량 제한 (libtorrent &amp;gt;= 2.0인 경우 적용됨):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>디스크 캐시 (libtorrent &amp;lt; 2.0 필요):</translation>
+        <translation type="vanished">디스크 캐시 (libtorrent &amp;lt; 2.0 필요):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
@@ -1682,7 +1698,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation>읽기 &amp;amp; 쓰기 통합 (libtorrent &amp;lt; 2.0 필요):</translation>
+        <translation type="vanished">읽기 &amp;amp; 쓰기 통합 (libtorrent &amp;lt; 2.0 필요):</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
@@ -1698,7 +1714,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation>디스크 IO 유형 (libtorrent &amp;gt;= 2.0; 다시 시작해야 함):</translation>
+        <translation type="vanished">디스크 IO 유형 (libtorrent &amp;gt;= 2.0; 다시 시작해야 함):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1706,7 +1722,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation>연속 기입 (libtorrent &amp;gt;= 2.0.6 필요)</translation>
+        <translation type="vanished">연속 기입 (libtorrent &amp;gt;= 2.0.6 필요)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
@@ -1718,7 +1734,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>해싱 쓰레드 (libtorrent &amp;gt;= 2.0 필요):</translation>
+        <translation type="vanished">해싱 쓰레드 (libtorrent &amp;gt;= 2.0 필요):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
@@ -1742,7 +1758,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P 인바운드 길이 (libtorrent &amp;gt;= 2.0 필요):</translation>
+        <translation type="vanished">I2P 인바운드 길이 (libtorrent &amp;gt;= 2.0 필요):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
@@ -1762,19 +1778,19 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P 인바운드 수량 (libtorrent &amp;gt;= 2.0 필요):</translation>
+        <translation type="vanished">I2P 인바운드 수량 (libtorrent &amp;gt;= 2.0 필요):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P 아웃바운드 길이 (libtorrent &amp;gt;= 2.0 필요):</translation>
+        <translation type="vanished">I2P 아웃바운드 길이 (libtorrent &amp;gt;= 2.0 필요):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>I2P 아웃바운드 수량 (libtorrent &amp;gt;= 2.0 필요):</translation>
+        <translation type="vanished">I2P 아웃바운드 수량 (libtorrent &amp;gt;= 2.0 필요):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation>I2P (실험적) (libtorrent &amp;gt;= 2.0 필요)</translation>
+        <translation type="vanished">I2P (실험적) (libtorrent &amp;gt;= 2.0 필요)</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
@@ -1803,6 +1819,90 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
         <translation>내려받은 파일에 대해 MOTW(Mark-of-the-Web)를 활성화합니다 (macOS 또는 Windows 필요).</translation>
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
