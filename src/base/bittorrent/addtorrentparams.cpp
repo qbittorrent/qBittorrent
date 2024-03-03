@@ -28,12 +28,11 @@
 
 #include "addtorrentparams.h"
 
-#include <tuple>
-
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonValue>
 
+#include "base/utils/sslkey.h"
 #include "base/utils/string.h"
 
 const QString PARAM_CATEGORY = u"category"_s;
@@ -44,6 +43,7 @@ const QString PARAM_DOWNLOADPATH = u"download_path"_s;
 const QString PARAM_OPERATINGMODE = u"operating_mode"_s;
 const QString PARAM_QUEUETOP = u"add_to_top_of_queue"_s;
 const QString PARAM_STOPPED = u"stopped"_s;
+const QString PARAM_STOPCONDITION = u"stop_condition"_s;
 const QString PARAM_SKIPCHECKING = u"skip_checking"_s;
 const QString PARAM_CONTENTLAYOUT = u"content_layout"_s;
 const QString PARAM_AUTOTMM = u"use_auto_tmm"_s;
@@ -52,6 +52,9 @@ const QString PARAM_DOWNLOADLIMIT = u"download_limit"_s;
 const QString PARAM_SEEDINGTIMELIMIT = u"seeding_time_limit"_s;
 const QString PARAM_INACTIVESEEDINGTIMELIMIT = u"inactive_seeding_time_limit"_s;
 const QString PARAM_RATIOLIMIT = u"ratio_limit"_s;
+const QString PARAM_SSL_CERTIFICATE = u"ssl_certificate"_s;
+const QString PARAM_SSL_PRIVATEKEY = u"ssl_private_key"_s;
+const QString PARAM_SSL_DHPARAMS = u"ssl_dh_params"_s;
 
 namespace
 {
@@ -59,7 +62,7 @@ namespace
     {
         TagSet tags;
         for (const QJsonValue &jsonVal : jsonArr)
-            tags.insert(jsonVal.toString());
+            tags.insert(Tag(jsonVal.toString()));
 
         return tags;
     }
@@ -67,8 +70,8 @@ namespace
     QJsonArray serializeTagSet(const TagSet &tags)
     {
         QJsonArray arr;
-        for (const QString &tag : tags)
-            arr.append(tag);
+        for (const Tag &tag : tags)
+            arr.append(tag.toString());
 
         return arr;
     }
@@ -100,68 +103,67 @@ namespace
     }
 }
 
-bool BitTorrent::operator==(const AddTorrentParams &lhs, const AddTorrentParams &rhs)
-{
-        return std::tie(lhs.name, lhs.category, lhs.tags,
-                lhs.savePath, lhs.useDownloadPath, lhs.downloadPath,
-                lhs.sequential, lhs.firstLastPiecePriority, lhs.addForced,
-                lhs.addToQueueTop, lhs.addPaused, lhs.stopCondition,
-                lhs.filePaths, lhs.filePriorities, lhs.skipChecking,
-                lhs.contentLayout, lhs.useAutoTMM, lhs.uploadLimit,
-                lhs.downloadLimit, lhs.seedingTimeLimit, lhs.inactiveSeedingTimeLimit, lhs.ratioLimit)
-            == std::tie(rhs.name, rhs.category, rhs.tags,
-                rhs.savePath, rhs.useDownloadPath, rhs.downloadPath,
-                rhs.sequential, rhs.firstLastPiecePriority, rhs.addForced,
-                rhs.addToQueueTop, rhs.addPaused, rhs.stopCondition,
-                rhs.filePaths, rhs.filePriorities, rhs.skipChecking,
-                rhs.contentLayout, rhs.useAutoTMM, rhs.uploadLimit,
-                rhs.downloadLimit, rhs.seedingTimeLimit, rhs.inactiveSeedingTimeLimit, rhs.ratioLimit);
-}
-
 BitTorrent::AddTorrentParams BitTorrent::parseAddTorrentParams(const QJsonObject &jsonObj)
 {
-    AddTorrentParams params;
-    params.category = jsonObj.value(PARAM_CATEGORY).toString();
-    params.tags = parseTagSet(jsonObj.value(PARAM_TAGS).toArray());
-    params.savePath = Path(jsonObj.value(PARAM_SAVEPATH).toString());
-    params.useDownloadPath = getOptionalBool(jsonObj, PARAM_USEDOWNLOADPATH);
-    params.downloadPath = Path(jsonObj.value(PARAM_DOWNLOADPATH).toString());
-    params.addForced = (getEnum<BitTorrent::TorrentOperatingMode>(jsonObj, PARAM_OPERATINGMODE) == BitTorrent::TorrentOperatingMode::Forced);
-    params.addToQueueTop = getOptionalBool(jsonObj, PARAM_QUEUETOP);
-    params.addPaused = getOptionalBool(jsonObj, PARAM_STOPPED);
-    params.skipChecking = jsonObj.value(PARAM_SKIPCHECKING).toBool();
-    params.contentLayout = getOptionalEnum<BitTorrent::TorrentContentLayout>(jsonObj, PARAM_CONTENTLAYOUT);
-    params.useAutoTMM = getOptionalBool(jsonObj, PARAM_AUTOTMM);
-    params.uploadLimit = jsonObj.value(PARAM_UPLOADLIMIT).toInt(-1);
-    params.downloadLimit = jsonObj.value(PARAM_DOWNLOADLIMIT).toInt(-1);
-    params.seedingTimeLimit = jsonObj.value(PARAM_SEEDINGTIMELIMIT).toInt(BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME);
-    params.inactiveSeedingTimeLimit = jsonObj.value(PARAM_INACTIVESEEDINGTIMELIMIT).toInt(BitTorrent::Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME);
-    params.ratioLimit = jsonObj.value(PARAM_RATIOLIMIT).toDouble(BitTorrent::Torrent::USE_GLOBAL_RATIO);
-
+    const AddTorrentParams params
+    {
+        .name = {},
+        .category = jsonObj.value(PARAM_CATEGORY).toString(),
+        .tags = parseTagSet(jsonObj.value(PARAM_TAGS).toArray()),
+        .savePath = Path(jsonObj.value(PARAM_SAVEPATH).toString()),
+        .useDownloadPath = getOptionalBool(jsonObj, PARAM_USEDOWNLOADPATH),
+        .downloadPath = Path(jsonObj.value(PARAM_DOWNLOADPATH).toString()),
+        .addForced = (getEnum<TorrentOperatingMode>(jsonObj, PARAM_OPERATINGMODE) == TorrentOperatingMode::Forced),
+        .addToQueueTop = getOptionalBool(jsonObj, PARAM_QUEUETOP),
+        .addPaused = getOptionalBool(jsonObj, PARAM_STOPPED),
+        .stopCondition = getOptionalEnum<Torrent::StopCondition>(jsonObj, PARAM_STOPCONDITION),
+        .filePaths = {},
+        .filePriorities = {},
+        .skipChecking = jsonObj.value(PARAM_SKIPCHECKING).toBool(),
+        .contentLayout = getOptionalEnum<TorrentContentLayout>(jsonObj, PARAM_CONTENTLAYOUT),
+        .useAutoTMM = getOptionalBool(jsonObj, PARAM_AUTOTMM),
+        .uploadLimit = jsonObj.value(PARAM_UPLOADLIMIT).toInt(-1),
+        .downloadLimit = jsonObj.value(PARAM_DOWNLOADLIMIT).toInt(-1),
+        .seedingTimeLimit = jsonObj.value(PARAM_SEEDINGTIMELIMIT).toInt(Torrent::USE_GLOBAL_SEEDING_TIME),
+        .inactiveSeedingTimeLimit = jsonObj.value(PARAM_INACTIVESEEDINGTIMELIMIT).toInt(Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME),
+        .ratioLimit = jsonObj.value(PARAM_RATIOLIMIT).toDouble(Torrent::USE_GLOBAL_RATIO),
+        .sslParameters =
+        {
+            .certificate = QSslCertificate(jsonObj.value(PARAM_SSL_CERTIFICATE).toString().toLatin1()),
+            .privateKey = Utils::SSLKey::load(jsonObj.value(PARAM_SSL_PRIVATEKEY).toString().toLatin1()),
+            .dhParams = jsonObj.value(PARAM_SSL_DHPARAMS).toString().toLatin1()
+        }
+    };
     return params;
 }
 
 QJsonObject BitTorrent::serializeAddTorrentParams(const AddTorrentParams &params)
 {
-    QJsonObject jsonObj {
+    QJsonObject jsonObj
+    {
         {PARAM_CATEGORY, params.category},
         {PARAM_TAGS, serializeTagSet(params.tags)},
         {PARAM_SAVEPATH, params.savePath.data()},
         {PARAM_DOWNLOADPATH, params.downloadPath.data()},
         {PARAM_OPERATINGMODE, Utils::String::fromEnum(params.addForced
-                                                          ? BitTorrent::TorrentOperatingMode::Forced : BitTorrent::TorrentOperatingMode::AutoManaged)},
+            ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged)},
         {PARAM_SKIPCHECKING, params.skipChecking},
         {PARAM_UPLOADLIMIT, params.uploadLimit},
         {PARAM_DOWNLOADLIMIT, params.downloadLimit},
         {PARAM_SEEDINGTIMELIMIT, params.seedingTimeLimit},
         {PARAM_INACTIVESEEDINGTIMELIMIT, params.inactiveSeedingTimeLimit},
-        {PARAM_RATIOLIMIT, params.ratioLimit}
+        {PARAM_RATIOLIMIT, params.ratioLimit},
+        {PARAM_SSL_CERTIFICATE, QString::fromLatin1(params.sslParameters.certificate.toPem())},
+        {PARAM_SSL_PRIVATEKEY, QString::fromLatin1(params.sslParameters.privateKey.toPem())},
+        {PARAM_SSL_DHPARAMS, QString::fromLatin1(params.sslParameters.dhParams)}
     };
 
     if (params.addToQueueTop)
         jsonObj[PARAM_QUEUETOP] = *params.addToQueueTop;
     if (params.addPaused)
         jsonObj[PARAM_STOPPED] = *params.addPaused;
+    if (params.stopCondition)
+        jsonObj[PARAM_STOPCONDITION] = Utils::String::fromEnum(*params.stopCondition);
     if (params.contentLayout)
         jsonObj[PARAM_CONTENTLAYOUT] = Utils::String::fromEnum(*params.contentLayout);
     if (params.useAutoTMM)

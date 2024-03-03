@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024  Jonathan Ketchker
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -28,6 +29,8 @@
  */
 
 #pragma once
+
+#include <chrono>
 
 #include <QtTypes>
 #include <QHash>
@@ -137,7 +140,7 @@ namespace Net
         template <typename Context, typename Func>
         void download(const DownloadRequest &downloadRequest, bool useProxy, Context context, Func &&slot);
 
-        void registerSequentialService(const ServiceID &serviceID);
+        void registerSequentialService(const ServiceID &serviceID, std::chrono::seconds delay = std::chrono::seconds(0));
 
         QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const;
         bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url);
@@ -153,7 +156,7 @@ namespace Net
         explicit DownloadManager(QObject *parent = nullptr);
 
         void applyProxySettings();
-        void handleDownloadFinished(DownloadHandlerImpl *finishedHandler);
+        void processWaitingJobs(const ServiceID &serviceID);
         void processRequest(DownloadHandlerImpl *downloadHandler);
 
         static DownloadManager *m_instance;
@@ -161,7 +164,8 @@ namespace Net
         QNetworkAccessManager *m_networkManager = nullptr;
         QNetworkProxy m_proxy;
 
-        QSet<ServiceID> m_sequentialServices;
+        // m_sequentialServices value is delay for same host requests
+        QHash<ServiceID, std::chrono::seconds> m_sequentialServices;
         QSet<ServiceID> m_busyServices;
         QHash<ServiceID, QQueue<DownloadHandlerImpl *>> m_waitingJobs;
     };

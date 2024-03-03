@@ -19,9 +19,6 @@ target_compile_features(qbt_common_cfg INTERFACE
     cxx_std_20
 )
 
-set(CMAKE_CXX_VISIBILITY_PRESET hidden)
-set(CMAKE_VISIBILITY_INLINES_HIDDEN ON)
-
 target_compile_definitions(qbt_common_cfg INTERFACE
     QT_DISABLE_DEPRECATED_UP_TO=0x060500
     QT_NO_CAST_FROM_ASCII
@@ -86,6 +83,7 @@ endif()
 if (MSVC)
     target_compile_options(qbt_common_cfg INTERFACE
         /guard:cf
+        /permissive-
         /utf-8
         # https://devblogs.microsoft.com/cppblog/msvc-now-correctly-reports-__cplusplus/
         /Zc:__cplusplus

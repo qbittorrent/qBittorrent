@@ -103,4 +103,6 @@ namespace Utils::IO
 
     nonstd::expected<void, QString> saveToFile(const Path &path, const QByteArray &data);
     nonstd::expected<void, QString> saveToFile(const Path &path, const lt::entry &data);
+    nonstd::expected<Path, QString> saveToTempFile(const QByteArray &data);
+    nonstd::expected<Path, QString> saveToTempFile(const lt::entry &data);
 }

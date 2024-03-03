@@ -33,6 +33,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/utils/compare.h"
+#include "base/utils/string.h"
 #include "flowlayout.h"
 #include "fspathedit.h"
 #include "torrenttagsdialog.h"
@@ -112,7 +113,7 @@ AddTorrentParamsWidget::AddTorrentParamsWidget(BitTorrent::AddTorrentParams addT
         connect(dlg, &TorrentTagsDialog::accepted, this, [this, dlg]
         {
             m_addTorrentParams.tags = dlg->tags();
-            m_ui->tagsLineEdit->setText(m_addTorrentParams.tags.join(u", "_s));
+            m_ui->tagsLineEdit->setText(Utils::String::joinIntoString(m_addTorrentParams.tags, u", "_s));
         });
         dlg->open();
     });
@@ -142,7 +143,12 @@ void AddTorrentParamsWidget::setAddTorrentParams(BitTorrent::AddTorrentParams ad
 
 BitTorrent::AddTorrentParams AddTorrentParamsWidget::addTorrentParams() const
 {
-    return cleanParams(m_addTorrentParams);
+    BitTorrent::AddTorrentParams addTorrentParams = cleanParams(m_addTorrentParams);
+    addTorrentParams.ratioLimit = m_ui->torrentShareLimitsWidget->ratioLimit();
+    addTorrentParams.seedingTimeLimit = m_ui->torrentShareLimitsWidget->seedingTimeLimit();
+    addTorrentParams.inactiveSeedingTimeLimit = m_ui->torrentShareLimitsWidget->inactiveSeedingTimeLimit();
+
+    return addTorrentParams;
 }
 
 void AddTorrentParamsWidget::populate()
@@ -230,7 +236,7 @@ void AddTorrentParamsWidget::populate()
             m_addTorrentParams.stopCondition = data.value<BitTorrent::Torrent::StopCondition>();
     });
 
-    m_ui->tagsLineEdit->setText(m_addTorrentParams.tags.join(u", "_s));
+    m_ui->tagsLineEdit->setText(Utils::String::joinIntoString(m_addTorrentParams.tags, u", "_s));
 
     m_ui->startTorrentComboBox->disconnect(this);
     m_ui->startTorrentComboBox->setCurrentIndex(m_addTorrentParams.addPaused
@@ -262,6 +268,9 @@ void AddTorrentParamsWidget::populate()
         else
             m_addTorrentParams.addToQueueTop = data.toBool();
     });
+
+    m_ui->torrentShareLimitsWidget->setTorrentShareLimits(m_addTorrentParams.ratioLimit
+            , m_addTorrentParams.seedingTimeLimit, m_addTorrentParams.inactiveSeedingTimeLimit);
 }
 
 void AddTorrentParamsWidget::loadCustomSavePathOptions()

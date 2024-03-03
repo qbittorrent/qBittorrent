@@ -1798,11 +1798,11 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>Držite neodabrane datoteke u mapi ".neželjeno"</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>Omogućite Mark-of-the-Web (MOTW) za preuzete datoteke (zahtijeva macOS ili Windows):</translation>
     </message>
 </context>
 <context>
@@ -2386,11 +2386,11 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>Premještanje (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>Premještanje (0)</translation>
     </message>
 </context>
 <context>
@@ -2971,7 +2971,7 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Komentar</translation>
     </message>
 </context>
 <context>
@@ -3519,10 +3519,6 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
     <message>
         <source>New name:</source>
         <translation>Novi naziv:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Preimenovanje)</translation>
     </message>
 </context>
 <context>

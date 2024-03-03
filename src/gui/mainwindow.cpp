@@ -54,6 +54,7 @@
 #include <QShortcut>
 #include <QSplitter>
 #include <QStatusBar>
+#include <QString>
 #include <QTimer>
 
 #include "base/bittorrent/session.h"
@@ -82,6 +83,7 @@
 #include "powermanagement/powermanagement.h"
 #include "properties/peerlistwidget.h"
 #include "properties/propertieswidget.h"
+#include "properties/proptabbar.h"
 #include "rss/rsswidget.h"
 #include "search/searchwidget.h"
 #include "speedlimitdialog.h"
@@ -121,7 +123,7 @@ namespace
     }
 }
 
-MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
+MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, const QString &titleSuffix)
     : GUIApplicationComponent(app)
     , m_ui(new Ui::MainWindow)
     , m_storeExecutionLogEnabled(EXECUTIONLOG_SETTINGS_KEY(u"Enabled"_s))
@@ -133,9 +135,10 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
 {
     m_ui->setupUi(this);
 
+    setTitleSuffix(titleSuffix);
+
     Preferences *const pref = Preferences::instance();
     m_uiLocked = pref->isUILocked();
-    setWindowTitle(QStringLiteral("qBittorrent " QBT_VERSION));
     m_displaySpeedInTitle = pref->speedInTitleBar();
     // Setting icons
 #ifndef Q_OS_MACOS
@@ -173,7 +176,7 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     m_ui->menuLog->setIcon(UIThemeManager::instance()->getIcon(u"help-contents"_s));
     m_ui->actionCheckForUpdates->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
 
-    auto *lockMenu = new QMenu(this);
+    auto *lockMenu = new QMenu(m_ui->menuView);
     lockMenu->addAction(tr("&Set Password"), this, &MainWindow::defineUILockPassword);
     lockMenu->addAction(tr("&Clear Password"), this, &MainWindow::clearUILockPassword);
     m_ui->actionLock->setMenu(lockMenu);
@@ -464,7 +467,7 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     {
         m_transferListWidget->applyStatusFilter(pref->getTransSelFilter());
         m_transferListWidget->applyCategoryFilter(QString());
-        m_transferListWidget->applyTagFilter(QString());
+        m_transferListWidget->applyTagFilter(std::nullopt);
         m_transferListWidget->applyTrackerFilterAll();
     }
 
@@ -521,6 +524,16 @@ void MainWindow::setDownloadTrackerFavicon(const bool value)
     if (m_transferListFiltersWidget)
         m_transferListFiltersWidget->setDownloadTrackerFavicon(value);
     m_storeDownloadTrackerFavicon = value;
+}
+
+void MainWindow::setTitleSuffix(const QString &suffix)
+{
+    const auto emDash = QChar(0x2014);
+    const QString separator = u' ' + emDash + u' ';
+    m_windowTitle = QStringLiteral("qBittorrent " QBT_VERSION)
+        + (!suffix.isEmpty() ? (separator + suffix) : QString());
+
+    setWindowTitle(m_windowTitle);
 }
 
 void MainWindow::addToolbarContextMenu()
@@ -724,10 +737,18 @@ void MainWindow::displaySearchTab(bool enable)
     }
 }
 
-void MainWindow::focusSearchFilter()
+void MainWindow::toggleFocusBetweenLineEdits()
 {
-    m_columnFilterEdit->setFocus();
-    m_columnFilterEdit->selectAll();
+    if (m_columnFilterEdit->hasFocus() && (m_propertiesWidget->tabBar()->currentIndex() == PropTabBar::FilesTab))
+    {
+        m_propertiesWidget->contentFilterLine()->setFocus();
+        m_propertiesWidget->contentFilterLine()->selectAll();
+    }
+    else
+    {
+        m_columnFilterEdit->setFocus();
+        m_columnFilterEdit->selectAll();
+    }
 }
 
 void MainWindow::updateNbTorrents()
@@ -852,9 +873,9 @@ void MainWindow::createKeyboardShortcuts()
     const auto *switchExecutionLogShortcut = new QShortcut((Qt::ALT | Qt::Key_4), this);
     connect(switchExecutionLogShortcut, &QShortcut::activated, this, &MainWindow::displayExecutionLogTab);
     const auto *switchSearchFilterShortcut = new QShortcut(QKeySequence::Find, m_transferListWidget);
-    connect(switchSearchFilterShortcut, &QShortcut::activated, this, &MainWindow::focusSearchFilter);
+    connect(switchSearchFilterShortcut, &QShortcut::activated, this, &MainWindow::toggleFocusBetweenLineEdits);
     const auto *switchSearchFilterShortcutAlternative = new QShortcut((Qt::CTRL | Qt::Key_E), m_transferListWidget);
-    connect(switchSearchFilterShortcutAlternative, &QShortcut::activated, this, &MainWindow::focusSearchFilter);
+    connect(switchSearchFilterShortcutAlternative, &QShortcut::activated, this, &MainWindow::toggleFocusBetweenLineEdits);
 
     m_ui->actionDocumentation->setShortcut(QKeySequence::HelpContents);
     m_ui->actionOptions->setShortcut(Qt::ALT | Qt::Key_O);
@@ -1476,23 +1497,24 @@ void MainWindow::loadPreferences()
 void MainWindow::reloadSessionStats()
 {
     const BitTorrent::SessionStatus &status = BitTorrent::Session::instance()->status();
+    const QString downloadRate = Utils::Misc::friendlyUnit(status.payloadDownloadRate, true);
+    const QString uploadRate = Utils::Misc::friendlyUnit(status.payloadUploadRate, true);
 
     // update global information
 #ifdef Q_OS_MACOS
     m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
 #else
     const auto toolTip = u"%1\n%2"_s.arg(
-        tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
-        , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
+        tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(downloadRate)
+        , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(uploadRate));
     app()->desktopIntegration()->setToolTip(toolTip); // tray icon
 #endif  // Q_OS_MACOS
 
     if (m_displaySpeedInTitle)
     {
-        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version")
-            .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true)
-                , Utils::Misc::friendlyUnit(status.payloadUploadRate, true)
-                , QStringLiteral(QBT_VERSION)));
+        const QString title = tr("[D: %1, U: %2] %3", "D = Download; U = Upload; %3 is the rest of the window title")
+            .arg(downloadRate, uploadRate, m_windowTitle);
+        setWindowTitle(title);
     }
 }
 
@@ -1612,7 +1634,7 @@ void MainWindow::on_actionSpeedInTitleBar_triggered()
     if (m_displaySpeedInTitle)
         reloadSessionStats();
     else
-        setWindowTitle(QStringLiteral("qBittorrent " QBT_VERSION));
+        setWindowTitle(m_windowTitle);
 }
 
 void MainWindow::on_actionRSSReader_triggered()

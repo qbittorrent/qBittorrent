@@ -1798,11 +1798,11 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>Seçilmeyen dosyaları ".unwanted" klasöründe tut</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>İndirilen dosyalar için Web İşaretini (MOTW) etkinleştir (macOS veya Windows gerektirir):</translation>
     </message>
 </context>
 <context>
@@ -2386,11 +2386,11 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>Taşınıyor (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>Taşınıyor (0)</translation>
     </message>
 </context>
 <context>
@@ -2971,7 +2971,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Açıklama</translation>
     </message>
 </context>
 <context>
@@ -3519,10 +3519,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <source>New name:</source>
         <translation>Yeni adı:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Yeniden adlandırma)</translation>
     </message>
 </context>
 <context>

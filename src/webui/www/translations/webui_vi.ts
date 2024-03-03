@@ -297,7 +297,7 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>Tải xuống Torrent từ các URL hoặc liên kết Nam châm của họ</translation>
+        <translation>Tải xuống Torrent từ các URL hoặc liên kết Magnet của họ</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
@@ -305,11 +305,11 @@
     </message>
     <message>
         <source>Save</source>
-        <translation>Lưu lại</translation>
+        <translation>Lưu</translation>
     </message>
     <message>
         <source>qBittorrent client is not reachable</source>
-        <translation>Hiện không thể kết nối đến máy trạm của qBittorrent</translation>
+        <translation>Máy khách qBittorrent không thể kết nối</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
@@ -317,7 +317,7 @@
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation>Tên danh mục không hợp lệ: \nVui lòng không sử dụng bất kỳ ký tự đặc biệt nào trong tên danh mục.</translation>
+        <translation>Tên danh mục không hợp lệ: \nĐừng dùng ký tự đặc biệt nào trong tên danh mục.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
@@ -357,7 +357,7 @@
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation>Đăng ký để xử lý các liên kết nam châm...</translation>
+        <translation>Đăng ký xử lý các liên kết magnet...</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>Yêu cầu JavaScript! Bạn phải bật JavaScript để giao diện người dùng Web hoạt động bình thường</translation>
+        <translation>Yêu cầu JavaScript! Bạn phải bật JavaScript để Giao diện Web UI hoạt động</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -424,7 +424,7 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>Hoạt Động Trở Lại</translation>
+        <translation>Tiếp Tục Lại</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -444,7 +444,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Tiếp tục tất cả</translation>
+        <translation>Tiếp Tục Tất Cả</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -1798,11 +1798,11 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>Giữ các tập tin không được chọn trong thư mục ".unwanted"</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>Bật Mark-of-the-Web (MOTW) cho các tệp đã tải xuống (yêu cầu macOS hoặc Windows):</translation>
     </message>
 </context>
 <context>
@@ -2386,11 +2386,11 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>Đang di chuyển (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>Đang di chuyển (0)</translation>
     </message>
 </context>
 <context>
@@ -2971,7 +2971,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Bình luận</translation>
     </message>
 </context>
 <context>
@@ -3519,10 +3519,6 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     <message>
         <source>New name:</source>
         <translation>Tên mới:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Đổi tên)</translation>
     </message>
 </context>
 <context>

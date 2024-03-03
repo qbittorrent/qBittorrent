@@ -20,11 +20,11 @@
                     event.preventDefault();
                 },
                 'Escape': function(event) {
-                    window.parent.closeWindows();
+                    window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 },
                 'Esc': function(event) {
-                    window.parent.closeWindows();
+                    window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 }
             }
@@ -70,7 +70,7 @@
                         newPath: newPath
                     },
                     onSuccess: function() {
-                        window.parent.closeWindows();
+                        window.parent.qBittorrent.Client.closeWindows();
                     },
                     onFailure: function() {
                         alert('QBT_TR(Failed to update name)QBT_TR[CONTEXT=HttpServer]');

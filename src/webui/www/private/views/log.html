@@ -9,15 +9,13 @@
 
     #logFilterBar>label {
         font-weight: bold;
-        margin-right: 10px;
+        margin-right: .3em;
     }
 
     #logFilterBar>button {
         display: inline-block;
-        height: 24px;
-        padding: 0 .5em;
+        padding: 4px 15px;
         margin-left: .3em;
-        font-weight: bold;
     }
 
     #logView {
@@ -40,9 +38,11 @@
         background-repeat: no-repeat;
         background-position: left;
         background-size: 1.5em;
-        padding: 1px 5px 1px 2em;
-        margin-left: 20px;
+        padding: 4px 5px 4px 2em;
+        margin-left: .3em;
         width: 200px;
+        border: 1px solid var(--color-border-default);
+        border-radius: 3px;
     }
 
     #logFilterSummary {
@@ -56,24 +56,24 @@
     }
 
     .logNormal {
-        color: #80766e;
+        color: var(--color-text-default);
     }
 
     .logInfo {
-        color: #1781b5;
+        color: var(--color-text-blue);
     }
 
     .logWarning {
-        color: #f97d1c;
+        color: var(--color-text-orange);
     }
 
     .logCritical,
     .peerBlocked {
-        color: #ee3f4d;
+        color: var(--color-text-red);
     }
 
     .vsb-main>button {
-        padding: 0 12px !important;
+        padding: 4px 12px !important;
     }
 
     .contextMenu>li>a>img {
@@ -183,7 +183,7 @@
         };
 
         let customSyncLogDataInterval = null;
-        let logFilterTimer;
+        let logFilterTimer = -1;
         let inputtedFilterText = "";
         let selectBox;
         let selectedLogLevels = JSON.parse(LocalPreferences.get('qbt_selected_log_levels')) || ['1', '2', '4', '8'];
@@ -209,6 +209,7 @@
                     clearAll: 'QBT_TR(Clear All)QBT_TR[CONTEXT=ExecutionLogWidget]',
                 },
                 placeHolder: "QBT_TR(Choose a log level...)QBT_TR[CONTEXT=ExecutionLogWidget]",
+                keepInlineStyles: false
             });
 
             const logTableContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
@@ -297,9 +298,11 @@
         const logFilterChanged = () => {
             clearTimeout(logFilterTimer);
             logFilterTimer = setTimeout((curTab) => {
+                logFilterTimer = -1;
+
                 tableInfo[curTab].instance.updateTable(false);
                 updateLabelCount(curTab);
-            }, 400, currentSelectedTab);
+            }, window.qBittorrent.Misc.FILTER_INPUT_DELAY, currentSelectedTab);
         };
 
         const setCurrentTab = (tab) => {
@@ -321,6 +324,7 @@
             }
 
             clearTimeout(logFilterTimer);
+            logFilterTimer = -1;
             load();
 
             if (tableInfo[currentSelectedTab].instance.filterText !== getFilterText()) {
@@ -360,8 +364,8 @@
 
             new Request.JSON({
                 url: url,
-                noCache: true,
                 method: 'get',
+                noCache: true,
                 onFailure: function(response) {
                     const errorDiv = $('error_div');
                     if (errorDiv)
@@ -377,6 +381,8 @@
 
                     if (response.length > 0) {
                         clearTimeout(logFilterTimer);
+                        logFilterTimer = -1;
+
                         for (let i = 0; i < response.length; ++i) {
                             let row;
                             if (curTab === 'main') {
@@ -424,4 +430,6 @@
 
         return exports();
     })();
+
+    Object.freeze(window.qBittorrent.Log);
 </script>

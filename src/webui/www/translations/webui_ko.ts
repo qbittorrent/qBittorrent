@@ -1726,11 +1726,11 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode 깊이 제한:</translation>
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode 토큰 제한:</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>
@@ -1742,11 +1742,11 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P 인바운드 길이 (libtorrent &amp;gt;= 2.0 필요):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
-        <translation type="unfinished" />
+        <translation>Python 실행 파일 경로 (다시 시작해야 할 수 있음):</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
@@ -1758,27 +1758,27 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation>"혼합 모드"인 경우 활성화되면 I2P 토렌트는 트래커가 아닌 다른 소스에서 피어를 가져오고 익명화를 제공하지 않고 일반 IP에 연결할 수도 있습니다. 이는 사용자가 I2P의 익명화에 관심이 없지만 여전히 I2P 피어에 연결할 수 있기를 원하는 경우 유용할 수 있습니다.</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P 인바운드 수량 (libtorrent &amp;gt;= 2.0 필요):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P 아웃바운드 길이 (libtorrent &amp;gt;= 2.0 필요):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P 아웃바운드 수량 (libtorrent &amp;gt;= 2.0 필요):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation>I2P (실험적) (libtorrent &amp;gt;= 2.0 필요)</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
-        <translation type="unfinished" />
+        <translation>DHT 부트스트랩 노드:</translation>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
@@ -1790,7 +1790,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>.torrent 파일 크기 제한:</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
@@ -1798,11 +1798,11 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>선택하지 않은 파일을 ".unwanted" 폴더에 보관하기</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>내려받은 파일에 대해 MOTW(Mark-of-the-Web)를 활성화합니다 (macOS 또는 Windows 필요).</translation>
     </message>
 </context>
 <context>
@@ -2166,7 +2166,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>모든 항목 일치</translation>
     </message>
 </context>
 <context>
@@ -2386,11 +2386,11 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>이동 중 (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>이동 중 (0)</translation>
     </message>
 </context>
 <context>
@@ -2971,7 +2971,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>주석</translation>
     </message>
 </context>
 <context>
@@ -3520,10 +3520,6 @@ DNS 재결합 공격을 방어하기 위해
         <source>New name:</source>
         <translation>새 이름:</translation>
     </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">이름 바꾸는 중)</translation>
-    </message>
 </context>
 <context>
     <name>RSSWidget</name>
@@ -3870,7 +3866,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>태그 추가:</translation>
     </message>
 </context>
 <context>

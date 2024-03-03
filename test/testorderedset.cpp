@@ -33,6 +33,7 @@
 
 #include "base/global.h"
 #include "base/orderedset.h"
+#include "base/utils/string.h"
 
 class TestOrderedSet final : public QObject
 {
@@ -57,7 +58,7 @@ private slots:
         OrderedSet<QString> set {u"a"_s, u"b"_s, u"c"_s};
         set.intersect({u"c"_s, u"a"_s});
         QCOMPARE(set.size(), 2);
-        QCOMPARE(set.join(u","_s), u"a,c"_s);
+        QCOMPARE(Utils::String::joinIntoString(set, u","_s), u"a,c"_s);
 
         OrderedSet<QString> emptySet;
         emptySet.intersect({u"a"_s}).intersect({u"c"_s});;
@@ -73,24 +74,15 @@ private slots:
         QVERIFY(emptySet.isEmpty());
     }
 
-    void testJoin() const
-    {
-        const OrderedSet<QString> set {u"a"_s, u"b"_s, u"c"_s};
-        QCOMPARE(set.join(u","_s), u"a,b,c"_s);
-
-        const OrderedSet<QString> emptySet;
-        QCOMPARE(emptySet.join(u","_s), u""_s);
-    }
-
     void testRemove() const
     {
         OrderedSet<QString> set {u"a"_s, u"b"_s, u"c"_s};
         QVERIFY(!set.remove(u"z"_s));
-        QCOMPARE(set.join(u","_s), u"a,b,c"_s);
+        QCOMPARE(Utils::String::joinIntoString(set, u","_s), u"a,b,c"_s);
         QVERIFY(set.remove(u"b"_s));
-        QCOMPARE(set.join(u","_s), u"a,c"_s);
+        QCOMPARE(Utils::String::joinIntoString(set, u","_s), u"a,c"_s);
         QVERIFY(set.remove(u"a"_s));
-        QCOMPARE(set.join(u","_s), u"c"_s);
+        QCOMPARE(Utils::String::joinIntoString(set, u","_s), u"c"_s);
         QVERIFY(set.remove(u"c"_s));
         QVERIFY(set.isEmpty());
 
@@ -107,15 +99,15 @@ private slots:
 
         OrderedSet<QString> set {u"a"_s, u"b"_s, u"c"_s};
         set.unite(newData1);
-        QCOMPARE(set.join(u","_s), u"a,b,c,z"_s);
+        QCOMPARE(Utils::String::joinIntoString(set, u","_s), u"a,b,c,z"_s);
         set.unite(newData2);
-        QCOMPARE(set.join(u","_s), u"a,b,c,y,z"_s);
+        QCOMPARE(Utils::String::joinIntoString(set, u","_s), u"a,b,c,y,z"_s);
         set.unite(newData3);
-        QCOMPARE(set.join(u","_s), u"a,b,c,d,e,y,z"_s);
+        QCOMPARE(Utils::String::joinIntoString(set, u","_s), u"a,b,c,d,e,y,z"_s);
 
         OrderedSet<QString> emptySet;
         emptySet.unite(newData1).unite(newData2).unite(newData3);
-        QCOMPARE(emptySet.join(u","_s), u"c,d,e,y,z"_s);
+        QCOMPARE(Utils::String::joinIntoString(emptySet, u","_s), u"c,d,e,y,z"_s);
     }
 
     void testUnited() const
@@ -126,11 +118,11 @@ private slots:
 
         OrderedSet<QString> set {u"a"_s, u"b"_s, u"c"_s};
 
-        QCOMPARE(set.united(newData1).join(u","_s), u"a,b,c,z"_s);
-        QCOMPARE(set.united(newData2).join(u","_s), u"a,b,c,y"_s);
-        QCOMPARE(set.united(newData3).join(u","_s), u"a,b,c,d,e"_s);
+        QCOMPARE(Utils::String::joinIntoString(set.united(newData1), u","_s), u"a,b,c,z"_s);
+        QCOMPARE(Utils::String::joinIntoString(set.united(newData2), u","_s), u"a,b,c,y"_s);
+        QCOMPARE(Utils::String::joinIntoString(set.united(newData3), u","_s), u"a,b,c,d,e"_s);
 
-        QCOMPARE(OrderedSet<QString>().united(newData1).united(newData2).united(newData3).join(u","_s), u"c,d,e,y,z"_s);
+        QCOMPARE(Utils::String::joinIntoString(OrderedSet<QString>().united(newData1).united(newData2).united(newData3), u","_s), u"c,d,e,y,z"_s);
     }
 };
 

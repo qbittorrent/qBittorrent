@@ -1798,11 +1798,11 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>Zanechat nevybrané soubory ve složce ".unwanted"</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>Zapnout Mark-of-the-Web (MOTW) pro stažené soubory (vyžaduje macOS nebo Windows):</translation>
     </message>
 </context>
 <context>
@@ -2386,11 +2386,11 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>Přesouvání (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>Přesouvání (0)</translation>
     </message>
 </context>
 <context>
@@ -2971,7 +2971,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Komentář</translation>
     </message>
 </context>
 <context>
@@ -3519,10 +3519,6 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     <message>
         <source>New name:</source>
         <translation>Nové jméno:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Přejmenování)</translation>
     </message>
 </context>
 <context>

@@ -136,19 +136,5 @@ namespace Utils
         {
             return !loadSSLCertificate(data).isEmpty();
         }
-
-        QSslKey loadSSLKey(const QByteArray &data)
-        {
-            // try different formats
-            const QSslKey key {data, QSsl::Rsa};
-            if (!key.isNull())
-                return key;
-            return {data, QSsl::Ec};
-        }
-
-        bool isSSLKeyValid(const QByteArray &data)
-        {
-            return !loadSSLKey(data).isNull();
-        }
     }
 }

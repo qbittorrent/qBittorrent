@@ -65,25 +65,25 @@
                     createCategoryFN();
                 },
                 createSubcategory: function(element, ref) {
-                    createSubcategoryFN(element.id);
+                    createSubcategoryFN(Number(element.id));
                 },
                 editCategory: function(element, ref) {
-                    editCategoryFN(element.id);
+                    editCategoryFN(Number(element.id));
                 },
                 deleteCategory: function(element, ref) {
-                    removeCategoryFN(element.id);
+                    removeCategoryFN(Number(element.id));
                 },
                 deleteUnusedCategories: function(element, ref) {
                     deleteUnusedCategoriesFN();
                 },
                 startTorrentsByCategory: function(element, ref) {
-                    startTorrentsByCategoryFN(element.id);
+                    startTorrentsByCategoryFN(Number(element.id));
                 },
                 pauseTorrentsByCategory: function(element, ref) {
-                    pauseTorrentsByCategoryFN(element.id);
+                    pauseTorrentsByCategoryFN(Number(element.id));
                 },
                 deleteTorrentsByCategory: function(element, ref) {
-                    deleteTorrentsByCategoryFN(element.id);
+                    deleteTorrentsByCategoryFN(Number(element.id));
                 }
             },
             offsets: {
@@ -103,19 +103,19 @@
                     createTagFN();
                 },
                 deleteTag: function(element, ref) {
-                    removeTagFN(element.id);
+                    removeTagFN(Number(element.id));
                 },
                 deleteUnusedTags: function(element, ref) {
                     deleteUnusedTagsFN();
                 },
                 startTorrentsByTag: function(element, ref) {
-                    startTorrentsByTagFN(element.id);
+                    startTorrentsByTagFN(Number(element.id));
                 },
                 pauseTorrentsByTag: function(element, ref) {
-                    pauseTorrentsByTagFN(element.id);
+                    pauseTorrentsByTagFN(Number(element.id));
                 },
                 deleteTorrentsByTag: function(element, ref) {
-                    deleteTorrentsByTagFN(element.id);
+                    deleteTorrentsByTagFN(Number(element.id));
                 }
             },
             offsets: {

@@ -57,7 +57,6 @@
 #include <QProgressDialog>
 #ifdef Q_OS_WIN
 #include <QSessionManager>
-#include <QSharedMemory>
 #endif // Q_OS_WIN
 #ifdef Q_OS_MACOS
 #include <QFileOpenEvent>
@@ -70,7 +69,6 @@
 #include "base/bittorrent/torrent.h"
 #include "base/exceptions.h"
 #include "base/global.h"
-#include "base/iconprovider.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/geoipmanager.h"
@@ -93,7 +91,6 @@
 #include "upgrade.h"
 
 #ifndef DISABLE_GUI
-#include "gui/guiaddtorrentmanager.h"
 #include "gui/desktopintegration.h"
 #include "gui/mainwindow.h"
 #include "gui/shutdownconfirmdialog.h"
@@ -229,6 +226,7 @@ namespace
 Application::Application(int &argc, char **argv)
     : BaseApplication(argc, argv)
     , m_commandLineArgs(parseCommandLine(Application::arguments()))
+    , m_storeInstanceName(SETTINGS_KEY(u"InstanceName"_s))
     , m_storeFileLoggerEnabled(FILELOGGER_SETTINGS_KEY(u"Enabled"_s))
     , m_storeFileLoggerBackup(FILELOGGER_SETTINGS_KEY(u"Backup"_s))
     , m_storeFileLoggerDeleteOld(FILELOGGER_SETTINGS_KEY(u"DeleteOld"_s))
@@ -272,16 +270,17 @@ Application::Application(int &argc, char **argv)
     SettingsStorage::initInstance();
     Preferences::initInstance();
 
-    const bool firstTimeUser = !Preferences::instance()->getAcceptedLegal();
-    if (!firstTimeUser)
+    const bool firstTimeUser = SettingsStorage::instance()->isEmpty();
+    if (firstTimeUser)
+    {
+        setCurrentMigrationVersion();
+        handleChangedDefaults(DefaultPreferencesMode::Current);
+    }
+    else
     {
         if (!upgrade())
             throw RuntimeError(u"Failed migration of old settings"_s); // Not translatable. Translation isn't configured yet.
         handleChangedDefaults(DefaultPreferencesMode::Legacy);
-    }
-    else
-    {
-        handleChangedDefaults(DefaultPreferencesMode::Current);
     }
 
     initializeTranslation();
@@ -292,7 +291,8 @@ Application::Application(int &argc, char **argv)
     connect(this, &QGuiApplication::commitDataRequest, this, &Application::shutdownCleanup, Qt::DirectConnection);
 #endif
 
-    LogMsg(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(QStringLiteral(QBT_VERSION)));
+    LogMsg(tr("qBittorrent %1 started. Process ID: %2", "qBittorrent v3.2.0alpha started")
+        .arg(QStringLiteral(QBT_VERSION), QString::number(QCoreApplication::applicationPid())));
     if (portableModeEnabled)
     {
         LogMsg(tr("Running in portable mode. Auto detected profile folder at: %1").arg(profileDir.toString()));
@@ -359,6 +359,23 @@ void Application::setTorrentAddedNotificationsEnabled(const bool value)
 const QBtCommandLineParameters &Application::commandLineArgs() const
 {
     return m_commandLineArgs;
+}
+
+QString Application::instanceName() const
+{
+    return m_storeInstanceName;
+}
+
+void Application::setInstanceName(const QString &name)
+{
+    if (name == instanceName())
+        return;
+
+    m_storeInstanceName = name;
+#ifndef DISABLE_GUI
+    if (MainWindow *mw = mainWindow())
+        mw->setTitleSuffix(name);
+#endif
 }
 
 int Application::memoryWorkingSetLimit() const
@@ -523,7 +540,7 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
                 str.replace(i, 2, torrent->contentPath().toString());
                 break;
             case u'G':
-                str.replace(i, 2, torrent->tags().join(u","_s));
+                str.replace(i, 2, Utils::String::joinIntoString(torrent->tags(), u","_s));
                 break;
             case u'I':
                 str.replace(i, 2, (torrent->infoHash().v1().isValid() ? torrent->infoHash().v1().toString() : u"-"_s));
@@ -792,7 +809,6 @@ int Application::exec()
 
     Net::ProxyConfigurationManager::initInstance();
     Net::DownloadManager::initInstance();
-    IconProvider::initInstance();
 
     BitTorrent::Session::initInstance();
 #ifndef DISABLE_GUI
@@ -882,7 +898,8 @@ int Application::exec()
         const WindowState windowState = (m_startupProgressDialog->windowState() & Qt::WindowMinimized)
                 ? WindowState::Minimized : WindowState::Normal;
 #endif
-        m_window = new MainWindow(this, windowState);
+        m_window = new MainWindow(this, windowState, instanceName());
+
         delete m_startupProgressDialog;
 #endif // DISABLE_GUI
 
@@ -944,7 +961,7 @@ int Application::exec()
     return BaseApplication::exec();
 }
 
-bool Application::isRunning()
+bool Application::hasAnotherInstance() const
 {
     return !m_instanceManager->isFirstInstance();
 }
@@ -1334,7 +1351,6 @@ void Application::cleanup()
     Net::ProxyConfigurationManager::freeInstance();
     Preferences::freeInstance();
     SettingsStorage::freeInstance();
-    IconProvider::freeInstance();
     SearchPluginManager::freeInstance();
     Utils::Fs::removeDirRecursively(Utils::Fs::tempPath());
 

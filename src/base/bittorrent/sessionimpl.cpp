@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -80,12 +80,9 @@
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
 #include "base/profile.h"
-#include "base/torrentfilter.h"
 #include "base/unicodestrings.h"
-#include "base/utils/bytearray.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
-#include "base/utils/misc.h"
 #include "base/utils/net.h"
 #include "base/utils/random.h"
 #include "base/version.h"
@@ -355,9 +352,22 @@ bool Session::isValidCategoryName(const QString &name)
     return (name.isEmpty() || (name.indexOf(re) == 0));
 }
 
-bool Session::isValidTag(const QString &tag)
+QString Session::subcategoryName(const QString &category)
 {
-    return (!tag.trimmed().isEmpty() && !tag.contains(u','));
+    const int sepIndex = category.lastIndexOf(u'/');
+    if (sepIndex >= 0)
+        return category.mid(sepIndex + 1);
+
+    return category;
+}
+
+QString Session::parentCategoryName(const QString &category)
+{
+    const int sepIndex = category.lastIndexOf(u'/');
+    if (sepIndex >= 0)
+        return category.left(sepIndex);
+
+    return {};
 }
 
 QStringList Session::expandCategory(const QString &category)
@@ -469,6 +479,8 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_isPerformanceWarningEnabled(BITTORRENT_SESSION_KEY(u"PerformanceWarning"_s), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY(u"SaveResumeDataInterval"_s), 60)
     , m_port(BITTORRENT_SESSION_KEY(u"Port"_s), -1)
+    , m_sslEnabled(BITTORRENT_SESSION_KEY(u"SSL/Enabled"_s), false)
+    , m_sslPort(BITTORRENT_SESSION_KEY(u"SSL/Port"_s), -1)
     , m_networkInterface(BITTORRENT_SESSION_KEY(u"Interface"_s))
     , m_networkInterfaceName(BITTORRENT_SESSION_KEY(u"InterfaceName"_s))
     , m_networkInterfaceAddress(BITTORRENT_SESSION_KEY(u"InterfaceAddress"_s))
@@ -519,6 +531,12 @@ SessionImpl::SessionImpl(QObject *parent)
 
     if (port() < 0)
         m_port = Utils::Random::rand(1024, 65535);
+    if (sslPort() < 0)
+    {
+        m_sslPort = Utils::Random::rand(1024, 65535);
+        while (m_sslPort == port())
+            m_sslPort = Utils::Random::rand(1024, 65535);
+    }
 
     m_recentErroredTorrentsTimer->setSingleShot(true);
     m_recentErroredTorrentsTimer->setInterval(1s);
@@ -542,7 +560,11 @@ SessionImpl::SessionImpl(QObject *parent)
     }
 
     const QStringList storedTags = m_storedTags.get();
-    m_tags = {storedTags.cbegin(), storedTags.cend()};
+    for (const QString &tagStr : storedTags)
+    {
+        if (const Tag tag {tagStr}; tag.isValid())
+            m_tags.insert(tag);
+    }
 
     updateSeedingLimitTimer();
     populateAdditionalTrackers();
@@ -782,34 +804,77 @@ CategoryOptions SessionImpl::categoryOptions(const QString &categoryName) const
 
 Path SessionImpl::categorySavePath(const QString &categoryName) const
 {
-    const Path basePath = savePath();
+    return categorySavePath(categoryName, categoryOptions(categoryName));
+}
+
+Path SessionImpl::categorySavePath(const QString &categoryName, const CategoryOptions &options) const
+{
+    Path basePath = savePath();
     if (categoryName.isEmpty())
         return basePath;
 
-    Path path = m_categories.value(categoryName).savePath;
-    if (path.isEmpty()) // use implicit save path
-        path = Utils::Fs::toValidPath(categoryName);
+    Path path = options.savePath;
+    if (path.isEmpty())
+    {
+        // use implicit save path
+        if (isSubcategoriesEnabled())
+        {
+            path = Utils::Fs::toValidPath(subcategoryName(categoryName));
+            basePath = categorySavePath(parentCategoryName(categoryName));
+        }
+        else
+        {
+            path = Utils::Fs::toValidPath(categoryName);
+        }
+    }
 
     return (path.isAbsolute() ? path : (basePath / path));
 }
 
 Path SessionImpl::categoryDownloadPath(const QString &categoryName) const
 {
-    const CategoryOptions categoryOptions = m_categories.value(categoryName);
-    const CategoryOptions::DownloadPathOption downloadPathOption =
-            categoryOptions.downloadPath.value_or(CategoryOptions::DownloadPathOption {isDownloadPathEnabled(), downloadPath()});
+    return categoryDownloadPath(categoryName, categoryOptions(categoryName));
+}
+
+Path SessionImpl::categoryDownloadPath(const QString &categoryName, const CategoryOptions &options) const
+{
+    const DownloadPathOption downloadPathOption = resolveCategoryDownloadPathOption(categoryName, options.downloadPath);
     if (!downloadPathOption.enabled)
         return {};
 
-    const Path basePath = downloadPath();
     if (categoryName.isEmpty())
-        return basePath;
+        return downloadPath();
 
-    const Path path = (!downloadPathOption.path.isEmpty()
-                          ? downloadPathOption.path
-                          : Utils::Fs::toValidPath(categoryName)); // use implicit download path
+    const bool useSubcategories = isSubcategoriesEnabled();
+    const QString name = useSubcategories ? subcategoryName(categoryName) : categoryName;
+    const Path path = !downloadPathOption.path.isEmpty()
+            ? downloadPathOption.path
+            : Utils::Fs::toValidPath(name); // use implicit download path
 
-    return (path.isAbsolute() ? path : (basePath / path));
+    if (path.isAbsolute())
+        return path;
+
+    const QString parentName = useSubcategories ? parentCategoryName(categoryName) : QString();
+    CategoryOptions parentOptions = categoryOptions(parentName);
+    // Even if download path of parent category is disabled (directly or by inheritance)
+    // we need to construct the one as if it would be enabled.
+    if (!parentOptions.downloadPath || !parentOptions.downloadPath->enabled)
+        parentOptions.downloadPath = {true, {}};
+    const Path parentDownloadPath = categoryDownloadPath(parentName, parentOptions);
+    const Path basePath = parentDownloadPath.isEmpty() ? downloadPath() : parentDownloadPath;
+    return (basePath / path);
+}
+
+DownloadPathOption SessionImpl::resolveCategoryDownloadPathOption(const QString &categoryName, const std::optional<DownloadPathOption> &option) const
+{
+    if (categoryName.isEmpty())
+        return {isDownloadPathEnabled(), Path()};
+
+    if (option.has_value())
+        return *option;
+
+    const QString parentName = isSubcategoriesEnabled() ? parentCategoryName(categoryName) : QString();
+    return resolveCategoryDownloadPathOption(parentName, categoryOptions(parentName).downloadPath);
 }
 
 bool SessionImpl::addCategory(const QString &name, const CategoryOptions &options)
@@ -961,34 +1026,37 @@ Path SessionImpl::suggestedDownloadPath(const QString &categoryName, std::option
     return path;
 }
 
-QSet<QString> SessionImpl::tags() const
+TagSet SessionImpl::tags() const
 {
     return m_tags;
 }
 
-bool SessionImpl::hasTag(const QString &tag) const
+bool SessionImpl::hasTag(const Tag &tag) const
 {
     return m_tags.contains(tag);
 }
 
-bool SessionImpl::addTag(const QString &tag)
+bool SessionImpl::addTag(const Tag &tag)
 {
-    if (!isValidTag(tag) || hasTag(tag))
+    if (!tag.isValid() || hasTag(tag))
         return false;
 
     m_tags.insert(tag);
-    m_storedTags = m_tags.values();
+    m_storedTags = QStringList(m_tags.cbegin(), m_tags.cend());
+
     emit tagAdded(tag);
     return true;
 }
 
-bool SessionImpl::removeTag(const QString &tag)
+bool SessionImpl::removeTag(const Tag &tag)
 {
     if (m_tags.remove(tag))
     {
         for (TorrentImpl *const torrent : asConst(m_torrents))
             torrent->removeTag(tag);
-        m_storedTags = m_tags.values();
+
+        m_storedTags = QStringList(m_tags.cbegin(), m_tags.cend());
+
         emit tagRemoved(tag);
         return true;
     }
@@ -1214,13 +1282,13 @@ void SessionImpl::prepareStartup()
         context->isLoadFinished = true;
     });
 
-    connect(this, &SessionImpl::torrentsLoaded, context, [this, context](const QVector<Torrent *> &torrents)
+    connect(this, &SessionImpl::addTorrentAlertsReceived, context, [this, context](const qsizetype alertsCount)
     {
-        context->processingResumeDataCount -= torrents.count();
-        context->finishedResumeDataCount += torrents.count();
+        context->processingResumeDataCount -= alertsCount;
+        context->finishedResumeDataCount += alertsCount;
         if (!context->isLoadedResumeDataHandlingEnqueued)
         {
-            QMetaObject::invokeMethod(this, [this, context]() { handleLoadedResumeData(context); }, Qt::QueuedConnection);
+            QMetaObject::invokeMethod(this, [this, context] { handleLoadedResumeData(context); }, Qt::QueuedConnection);
             context->isLoadedResumeDataHandlingEnqueued = true;
         }
 
@@ -1411,7 +1479,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
         }
     }
 
-    std::erase_if(resumeData.tags, [this, &torrentID](const QString &tag)
+    std::erase_if(resumeData.tags, [this, &torrentID](const Tag &tag)
     {
         if (hasTag(tag))
             return false;
@@ -1420,12 +1488,12 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
         {
             LogMsg(tr("Detected inconsistent data: tag is missing from the configuration file."
                       " Tag will be recovered."
-                      " Torrent: \"%1\". Tag: \"%2\"").arg(torrentID.toString(), tag), Log::WARNING);
+                      " Torrent: \"%1\". Tag: \"%2\"").arg(torrentID.toString(), tag.toString()), Log::WARNING);
             return false;
         }
 
         LogMsg(tr("Detected inconsistent data: invalid tag. Torrent: \"%1\". Tag: \"%2\"")
-               .arg(torrentID.toString(), tag), Log::WARNING);
+               .arg(torrentID.toString(), tag.toString()), Log::WARNING);
         return true;
     });
 
@@ -1962,7 +2030,9 @@ void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack
 
     QStringList endpoints;
     QStringList outgoingInterfaces;
-    const QString portString = u':' + QString::number(port());
+    QStringList portStrings = {u':' + QString::number(port())};
+    if (isSSLEnabled())
+        portStrings.append(u':' + QString::number(sslPort()) + u's');
 
     for (const QString &ip : asConst(getListeningIPs()))
     {
@@ -1974,7 +2044,8 @@ void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack
                           ? Utils::Net::canonicalIPv6Addr(addr).toString()
                           : addr.toString();
 
-            endpoints << ((isIPv6 ? (u'[' + ip + u']') : ip) + portString);
+            for (const QString &portString : asConst(portStrings))
+                endpoints << ((isIPv6 ? (u'[' + ip + u']') : ip) + portString);
 
             if ((ip != u"0.0.0.0") && (ip != u"::"))
                 outgoingInterfaces << ip;
@@ -1989,7 +2060,8 @@ void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack
             const QString guid = convertIfaceNameToGuid(ip);
             if (!guid.isEmpty())
             {
-                endpoints << (guid + portString);
+                for (const QString &portString : asConst(portStrings))
+                    endpoints << (guid + portString);
                 outgoingInterfaces << guid;
             }
             else
@@ -1997,11 +2069,13 @@ void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack
                 LogMsg(tr("Could not find GUID of network interface. Interface: \"%1\"").arg(ip), Log::WARNING);
                 // Since we can't get the GUID, we'll pass the interface name instead.
                 // Otherwise an empty string will be passed to outgoing_interface which will cause IP leak.
-                endpoints << (ip + portString);
+                for (const QString &portString : asConst(portStrings))
+                    endpoints << (ip + portString);
                 outgoingInterfaces << ip;
             }
 #else
-            endpoints << (ip + portString);
+            for (const QString &portString : asConst(portStrings))
+                endpoints << (ip + portString);
             outgoingInterfaces << ip;
 #endif
         }
@@ -2147,135 +2221,119 @@ void SessionImpl::processShareLimits()
 {
     qDebug("Processing share limits...");
 
+    const auto resolveLimitValue = []<typename T>(const T limit, const T useGlobalLimit, const T globalLimit) -> T
+    {
+        return (limit == useGlobalLimit) ? globalLimit : limit;
+    };
+
     // We shouldn't iterate over `m_torrents` in the loop below
     // since `deleteTorrent()` modifies it indirectly
     const QHash<TorrentID, TorrentImpl *> torrents {m_torrents};
-    for (TorrentImpl *const torrent : torrents)
+    for (const auto &[torrentID, torrent] : torrents.asKeyValueRange())
     {
-        if (torrent->isFinished() && !torrent->isForced())
+        if (!torrent->isFinished() || torrent->isForced())
+            continue;
+
+        if (const qreal ratioLimit = resolveLimitValue(torrent->ratioLimit(), Torrent::USE_GLOBAL_RATIO, globalMaxRatio());
+                ratioLimit >= 0)
         {
-            if (torrent->ratioLimit() != Torrent::NO_RATIO_LIMIT)
+            const qreal ratio = torrent->realRatio();
+            qDebug("Ratio: %f (limit: %f)", ratio, ratioLimit);
+
+            if ((ratio <= Torrent::MAX_RATIO) && (ratio >= ratioLimit))
             {
-                const qreal ratio = torrent->realRatio();
-                qreal ratioLimit = torrent->ratioLimit();
-                if (ratioLimit == Torrent::USE_GLOBAL_RATIO)
-                    // If Global Max Ratio is really set...
-                    ratioLimit = globalMaxRatio();
+                const QString description = tr("Torrent reached the share ratio limit.");
+                const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
 
-                if (ratioLimit >= 0)
+                if (m_maxRatioAction == Remove)
                 {
-                    qDebug("Ratio: %f (limit: %f)", ratio, ratioLimit);
-
-                    if ((ratio <= Torrent::MAX_RATIO) && (ratio >= ratioLimit))
-                    {
-                        const QString description = tr("Torrent reached the share ratio limit.");
-                        const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
-
-                        if (m_maxRatioAction == Remove)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
-                            deleteTorrent(torrent->id());
-                        }
-                        else if (m_maxRatioAction == DeleteFiles)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
-                            deleteTorrent(torrent->id(), DeleteTorrentAndFiles);
-                        }
-                        else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
-                        {
-                            torrent->pause();
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
-                        }
-                        else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
-                        {
-                            torrent->setSuperSeeding(true);
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
-                        }
-
-                        continue;
-                    }
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
+                    deleteTorrent(torrentID);
                 }
+                else if (m_maxRatioAction == DeleteFiles)
+                {
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
+                    deleteTorrent(torrentID, DeleteTorrentAndFiles);
+                }
+                else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
+                {
+                    torrent->pause();
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
+                }
+                else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
+                {
+                    torrent->setSuperSeeding(true);
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
+                }
+
+                continue;
             }
+        }
 
-            if (torrent->seedingTimeLimit() != Torrent::NO_SEEDING_TIME_LIMIT)
+        if (const int seedingTimeLimit = resolveLimitValue(torrent->seedingTimeLimit(), Torrent::USE_GLOBAL_SEEDING_TIME, globalMaxSeedingMinutes());
+                seedingTimeLimit >= 0)
+        {
+            const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
+
+            if ((seedingTimeInMinutes <= Torrent::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= seedingTimeLimit))
             {
-                const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
-                int seedingTimeLimit = torrent->seedingTimeLimit();
-                if (seedingTimeLimit == Torrent::USE_GLOBAL_SEEDING_TIME)
+                const QString description = tr("Torrent reached the seeding time limit.");
+                const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
+
+                if (m_maxRatioAction == Remove)
                 {
-                     // If Global Seeding Time Limit is really set...
-                    seedingTimeLimit = globalMaxSeedingMinutes();
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
+                    deleteTorrent(torrentID);
+                }
+                else if (m_maxRatioAction == DeleteFiles)
+                {
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
+                    deleteTorrent(torrentID, DeleteTorrentAndFiles);
+                }
+                else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
+                {
+                    torrent->pause();
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
+                }
+                else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
+                {
+                    torrent->setSuperSeeding(true);
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
                 }
 
-                if (seedingTimeLimit >= 0)
-                {
-                    if ((seedingTimeInMinutes <= Torrent::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= seedingTimeLimit))
-                    {
-                        const QString description = tr("Torrent reached the seeding time limit.");
-                        const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
-
-                        if (m_maxRatioAction == Remove)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
-                            deleteTorrent(torrent->id());
-                        }
-                        else if (m_maxRatioAction == DeleteFiles)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
-                            deleteTorrent(torrent->id(), DeleteTorrentAndFiles);
-                        }
-                        else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
-                        {
-                            torrent->pause();
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
-                        }
-                        else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
-                        {
-                            torrent->setSuperSeeding(true);
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
-                        }
-                    }
-                }
+                continue;
             }
+        }
 
-            if (torrent->inactiveSeedingTimeLimit() != Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT)
+        if (const int inactiveSeedingTimeLimit = resolveLimitValue(torrent->inactiveSeedingTimeLimit(), Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME, globalMaxInactiveSeedingMinutes());
+                inactiveSeedingTimeLimit >= 0)
+        {
+            const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
+
+            if ((inactiveSeedingTimeInMinutes <= Torrent::MAX_INACTIVE_SEEDING_TIME) && (inactiveSeedingTimeInMinutes >= inactiveSeedingTimeLimit))
             {
-                const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
-                int inactiveSeedingTimeLimit = torrent->inactiveSeedingTimeLimit();
-                if (inactiveSeedingTimeLimit == Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME)
+                const QString description = tr("Torrent reached the inactive seeding time limit.");
+                const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
+
+                if (m_maxRatioAction == Remove)
                 {
-                    // If Global Seeding Time Limit is really set...
-                    inactiveSeedingTimeLimit = globalMaxInactiveSeedingMinutes();
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
+                    deleteTorrent(torrentID);
                 }
-
-                if (inactiveSeedingTimeLimit >= 0)
+                else if (m_maxRatioAction == DeleteFiles)
                 {
-                    if ((inactiveSeedingTimeInMinutes <= Torrent::MAX_INACTIVE_SEEDING_TIME) && (inactiveSeedingTimeInMinutes >= inactiveSeedingTimeLimit))
-                    {
-                        const QString description = tr("Torrent reached the inactive seeding time limit.");
-                        const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
-
-                        if (m_maxRatioAction == Remove)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent."), torrentName));
-                            deleteTorrent(torrent->id());
-                        }
-                        else if (m_maxRatioAction == DeleteFiles)
-                        {
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
-                            deleteTorrent(torrent->id(), DeleteTorrentAndFiles);
-                        }
-                        else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
-                        {
-                            torrent->pause();
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
-                        }
-                        else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
-                        {
-                            torrent->setSuperSeeding(true);
-                            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
-                        }
-                    }
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removed torrent and deleted its content."), torrentName));
+                    deleteTorrent(torrentID, DeleteTorrentAndFiles);
+                }
+                else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
+                {
+                    torrent->pause();
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
+                }
+                else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
+                {
+                    torrent->setSuperSeeding(true);
+                    LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
                 }
             }
         }
@@ -2356,7 +2414,8 @@ void SessionImpl::banIP(const QString &ip)
 bool SessionImpl::deleteTorrent(const TorrentID &id, const DeleteOption deleteOption)
 {
     TorrentImpl *const torrent = m_torrents.take(id);
-    if (!torrent) return false;
+    if (!torrent)
+        return false;
 
     qDebug("Deleting torrent with ID: %s", qUtf8Printable(torrent->id().toString()));
     emit torrentAboutToBeRemoved(torrent);
@@ -2433,7 +2492,7 @@ bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
         // if magnet link was hybrid initially then it is indexed also by v1 info hash
         // so we need to remove both entries
         const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
-        m_downloadedMetadata.remove((altID == downloadedMetadataIter.key()) ? id : altID);
+        m_downloadedMetadata.remove(altID);
     }
 #endif
 
@@ -2551,34 +2610,10 @@ void SessionImpl::bottomTorrentsQueuePos(const QVector<TorrentID> &ids)
     m_torrentsQueueChanged = true;
 }
 
-void SessionImpl::handleTorrentNeedSaveResumeData(const TorrentImpl *torrent)
-{
-    if (m_needSaveResumeDataTorrents.empty())
-    {
-        QMetaObject::invokeMethod(this, [this]()
-        {
-            for (const TorrentID &torrentID : asConst(m_needSaveResumeDataTorrents))
-            {
-                TorrentImpl *torrent = m_torrents.value(torrentID);
-                if (torrent)
-                    torrent->saveResumeData();
-            }
-            m_needSaveResumeDataTorrents.clear();
-        }, Qt::QueuedConnection);
-    }
-
-    m_needSaveResumeDataTorrents.insert(torrent->id());
-}
-
-void SessionImpl::handleTorrentSaveResumeDataRequested(const TorrentImpl *torrent)
+void SessionImpl::handleTorrentResumeDataRequested(const TorrentImpl *torrent)
 {
     qDebug("Saving resume data is requested for torrent '%s'...", qUtf8Printable(torrent->name()));
     ++m_numResumeData;
-}
-
-void SessionImpl::handleTorrentSaveResumeDataFailed([[maybe_unused]] const TorrentImpl *torrent)
-{
-    --m_numResumeData;
 }
 
 QVector<Torrent *> SessionImpl::torrents() const
@@ -2618,6 +2653,8 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
     loadTorrentParams.addToQueueTop = addTorrentParams.addToQueueTop.value_or(isAddTorrentToQueueTop());
     loadTorrentParams.ratioLimit = addTorrentParams.ratioLimit;
     loadTorrentParams.seedingTimeLimit = addTorrentParams.seedingTimeLimit;
+    loadTorrentParams.inactiveSeedingTimeLimit = addTorrentParams.inactiveSeedingTimeLimit;
+    loadTorrentParams.sslParameters = addTorrentParams.sslParameters;
 
     const QString category = addTorrentParams.category;
     if (!category.isEmpty() && !m_categories.contains(category) && !addCategory(category))
@@ -2656,7 +2693,7 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
         }
     }
 
-    for (const QString &tag : addTorrentParams.tags)
+    for (const Tag &tag : addTorrentParams.tags)
     {
         if (hasTag(tag) || addTag(tag))
             loadTorrentParams.tags.insert(tag);
@@ -2704,6 +2741,14 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
     if (hasMetadata)
     {
+        // Torrent  that is being added with metadata is considered to be added as stopped
+        // if "metadata received" stop condition is set for it.
+        if (loadTorrentParams.stopCondition == Torrent::StopCondition::MetadataReceived)
+        {
+            loadTorrentParams.stopped = true;
+            loadTorrentParams.stopCondition = Torrent::StopCondition::None;
+        }
+
         const TorrentInfo &torrentInfo = *source.info();
 
         Q_ASSERT(addTorrentParams.filePaths.isEmpty() || (addTorrentParams.filePaths.size() == torrentInfo.filesCount()));
@@ -3031,27 +3076,21 @@ void SessionImpl::generateResumeData()
 {
     for (TorrentImpl *const torrent : asConst(m_torrents))
     {
-        if (!torrent->isValid()) continue;
-
         if (torrent->needSaveResumeData())
-        {
-            torrent->saveResumeData();
-            m_needSaveResumeDataTorrents.remove(torrent->id());
-        }
+            torrent->requestResumeData();
     }
 }
 
 // Called on exit
 void SessionImpl::saveResumeData()
 {
-    for (const TorrentImpl *torrent : asConst(m_torrents))
+    for (TorrentImpl *torrent : asConst(m_torrents))
     {
         // When the session is terminated due to unrecoverable error
         // some of the torrent handles can be corrupted
         try
         {
-            torrent->nativeHandle().save_resume_data(lt::torrent_handle::only_if_modified);
-            ++m_numResumeData;
+            torrent->requestResumeData(lt::torrent_handle::only_if_modified);
         }
         catch (const std::exception &) {}
     }
@@ -3163,8 +3202,8 @@ void SessionImpl::setDownloadPath(const Path &path)
         {
             const QString &categoryName = it.key();
             const CategoryOptions &categoryOptions = it.value();
-            const CategoryOptions::DownloadPathOption downloadPathOption =
-                    categoryOptions.downloadPath.value_or(CategoryOptions::DownloadPathOption {isDownloadPathEnabled(), downloadPath()});
+            const DownloadPathOption downloadPathOption =
+                    categoryOptions.downloadPath.value_or(DownloadPathOption {isDownloadPathEnabled(), downloadPath()});
             if (downloadPathOption.enabled && downloadPathOption.path.isRelative())
                 affectedCatogories.insert(categoryName);
         }
@@ -3499,6 +3538,40 @@ void SessionImpl::setPort(const int port)
         if (isReannounceWhenAddressChangedEnabled())
             reannounceToAllTrackers();
     }
+}
+
+bool SessionImpl::isSSLEnabled() const
+{
+    return m_sslEnabled;
+}
+
+void SessionImpl::setSSLEnabled(const bool enabled)
+{
+    if (enabled == isSSLEnabled())
+        return;
+
+    m_sslEnabled = enabled;
+    configureListeningInterface();
+
+    if (isReannounceWhenAddressChangedEnabled())
+        reannounceToAllTrackers();
+}
+
+int SessionImpl::sslPort() const
+{
+    return m_sslPort;
+}
+
+void SessionImpl::setSSLPort(const int port)
+{
+    if (port == sslPort())
+        return;
+
+    m_sslPort = port;
+    configureListeningInterface();
+
+    if (isReannounceWhenAddressChangedEnabled())
+        reannounceToAllTrackers();
 }
 
 QString SessionImpl::networkInterface() const
@@ -4818,12 +4891,12 @@ void SessionImpl::handleTorrentCategoryChanged(TorrentImpl *const torrent, const
     emit torrentCategoryChanged(torrent, oldCategory);
 }
 
-void SessionImpl::handleTorrentTagAdded(TorrentImpl *const torrent, const QString &tag)
+void SessionImpl::handleTorrentTagAdded(TorrentImpl *const torrent, const Tag &tag)
 {
     emit torrentTagAdded(torrent, tag);
 }
 
-void SessionImpl::handleTorrentTagRemoved(TorrentImpl *const torrent, const QString &tag)
+void SessionImpl::handleTorrentTagRemoved(TorrentImpl *const torrent, const Tag &tag)
 {
     emit torrentTagRemoved(torrent, tag);
 }
@@ -4916,8 +4989,6 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
 
 void SessionImpl::handleTorrentResumeDataReady(TorrentImpl *const torrent, const LoadTorrentParams &data)
 {
-    --m_numResumeData;
-
     m_resumeDataStorage->store(torrent->id(), data);
     const auto iter = m_changedTorrentIDs.find(torrent->id());
     if (iter != m_changedTorrentIDs.end())
@@ -5286,10 +5357,13 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
     if (!isRestored())
         loadedTorrents.reserve(MAX_PROCESSING_RESUMEDATA_COUNT);
 
+    qsizetype alertsCount = 0;
     for (const lt::alert *a : alerts)
     {
         if (a->type() != lt::add_torrent_alert::alert_type)
             continue;
+
+        ++alertsCount;
 
         const auto *alert = static_cast<const lt::add_torrent_alert *>(a);
         if (alert->error)
@@ -5300,6 +5374,7 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
 
             const lt::add_torrent_params &params = alert->params;
             const bool hasMetadata = (params.ti && params.ti->is_valid());
+
 #ifdef QBT_USES_LIBTORRENT2
             const InfoHash infoHash {(hasMetadata ? params.ti->info_hashes() : params.info_hashes)};
             if (infoHash.isHybrid())
@@ -5325,9 +5400,8 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
                 }
             }
 
-            return;
+            continue;
         }
-
 
 #ifdef QBT_USES_LIBTORRENT2
         const InfoHash infoHash {alert->handle.info_hashes()};
@@ -5346,7 +5420,7 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
             loadedTorrents.append(torrent);
         }
         else if (const auto downloadedMetadataIter = m_downloadedMetadata.find(torrentID)
-                 ; downloadedMetadataIter != m_downloadedMetadata.end())
+                ; downloadedMetadataIter != m_downloadedMetadata.end())
         {
             downloadedMetadataIter.value() = alert->handle;
             if (infoHash.isHybrid())
@@ -5358,11 +5432,16 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
         }
     }
 
-    if (!loadedTorrents.isEmpty())
+    if (alertsCount > 0)
     {
-        if (isRestored())
-            m_torrentsQueueChanged = true;
-        emit torrentsLoaded(loadedTorrents);
+        emit addTorrentAlertsReceived(alertsCount);
+
+        if (!loadedTorrents.isEmpty())
+        {
+            if (isRestored())
+                m_torrentsQueueChanged = true;
+            emit torrentsLoaded(loadedTorrents);
+        }
     }
 }
 
@@ -5419,6 +5498,9 @@ void SessionImpl::handleAlert(const lt::alert *a)
         case lt::torrent_delete_failed_alert::alert_type:
             handleTorrentDeleteFailedAlert(static_cast<const lt::torrent_delete_failed_alert *>(a));
             break;
+        case lt::torrent_need_cert_alert::alert_type:
+            handleTorrentNeedCertAlert(static_cast<const lt::torrent_need_cert_alert *>(a));
+            break;
         case lt::portmap_error_alert::alert_type:
             handlePortmapWarningAlert(static_cast<const lt::portmap_error_alert *>(a));
             break;
@@ -5473,6 +5555,15 @@ void SessionImpl::handleAlert(const lt::alert *a)
 
 void SessionImpl::dispatchTorrentAlert(const lt::torrent_alert *a)
 {
+    // The torrent can be deleted between the time the resume data was requested and
+    // the time we received the appropriate alert. We have to decrease `m_numResumeData` anyway,
+    // so we do this before checking for an existing torrent.
+    if ((a->type() == lt::save_resume_data_alert::alert_type)
+            || (a->type() == lt::save_resume_data_failed_alert::alert_type))
+    {
+        --m_numResumeData;
+    }
+
     const TorrentID torrentID {a->handle.info_hash()};
     TorrentImpl *torrent = m_torrents.value(torrentID);
 #ifdef QBT_USES_LIBTORRENT2
@@ -5510,7 +5601,7 @@ TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, 
         if (params.addToQueueTop)
             nativeHandle.queue_position_top();
 
-        torrent->saveResumeData(lt::torrent_handle::save_info_dict);
+        torrent->requestResumeData(lt::torrent_handle::save_info_dict);
 
         // The following is useless for newly added magnet
         if (torrent->hasMetadata())
@@ -5613,6 +5704,26 @@ void SessionImpl::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed
     m_removingTorrents.erase(removingTorrentDataIter);
 }
 
+void SessionImpl::handleTorrentNeedCertAlert(const lt::torrent_need_cert_alert *a)
+{
+#ifdef QBT_USES_LIBTORRENT2
+    const InfoHash infoHash {a->handle.info_hashes()};
+#else
+    const InfoHash infoHash {a->handle.info_hash()};
+#endif
+    const auto torrentID = TorrentID::fromInfoHash(infoHash);
+
+    TorrentImpl *const torrent = m_torrents.value(torrentID);
+    if (!torrent) [[unlikely]]
+        return;
+
+    if (!torrent->applySSLParameters())
+    {
+        LogMsg(tr("Torrent is missing SSL parameters. Torrent: \"%1\". Message: \"%2\"").arg(torrent->name(), QString::fromStdString(a->message()))
+            , Log::WARNING);
+    }
+}
+
 void SessionImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 {
     const TorrentID torrentID {p->handle.info_hash()};
@@ -5659,7 +5770,7 @@ void SessionImpl::handleFileErrorAlert(const lt::file_error_alert *p)
 
         const QString msg = QString::fromStdString(p->message());
         LogMsg(tr("File error alert. Torrent: \"%1\". File: \"%2\". Reason: \"%3\"")
-                .arg(torrent->name(), QString::fromLocal8Bit(p->filename()), msg)
+                .arg(torrent->name(), QString::fromUtf8(p->filename()), msg)
             , Log::WARNING);
         emit fullDiskError(torrent, msg);
     }

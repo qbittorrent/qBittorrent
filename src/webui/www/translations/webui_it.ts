@@ -1801,11 +1801,11 @@ Ciò può essere utile se l'utente non è interessato all'anonimizzazione di I2P
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>Conserva file non selezionati nella cartella ".unwanted".</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>Abilita Mark-of-the-Web (MOTW) per i file scaricati (richiede macOS o Windows):</translation>
     </message>
 </context>
 <context>
@@ -2389,11 +2389,11 @@ Ciò può essere utile se l'utente non è interessato all'anonimizzazione di I2P
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>Spostamento (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>Spostamento (0)</translation>
     </message>
 </context>
 <context>
@@ -2974,7 +2974,7 @@ Ciò può essere utile se l'utente non è interessato all'anonimizzazione di I2P
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Commento</translation>
     </message>
 </context>
 <context>
@@ -3523,10 +3523,6 @@ Il database è concesso in licenza con la licenza internazionale Creative Common
     <message>
         <source>New name:</source>
         <translation>Nuovo nome:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">rinomina)</translation>
     </message>
 </context>
 <context>

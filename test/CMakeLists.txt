@@ -8,12 +8,14 @@ include_directories("../src")
 set(testFiles
     testalgorithm.cpp
     testbittorrenttrackerentry.cpp
+    testconceptsexplicitlyconvertibleto.cpp
     testconceptsstringable.cpp
     testglobal.cpp
     testorderedset.cpp
     testpath.cpp
-    testutilscompare.cpp
     testutilsbytearray.cpp
+    testutilscompare.cpp
+    testutilsdatetime.cpp
     testutilsgzip.cpp
     testutilsio.cpp
     testutilsstring.cpp

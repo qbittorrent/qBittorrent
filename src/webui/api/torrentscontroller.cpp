@@ -45,6 +45,7 @@
 #include "base/bittorrent/peeraddress.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
+#include "base/bittorrent/sslparameters.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/torrentdescriptor.h"
 #include "base/bittorrent/trackerentry.h"
@@ -53,7 +54,9 @@
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/torrentfilter.h"
+#include "base/utils/datetime.h"
 #include "base/utils/fs.h"
+#include "base/utils/sslkey.h"
 #include "base/utils/string.h"
 #include "apierror.h"
 #include "serialize/serialize_torrent.h"
@@ -107,6 +110,9 @@ const QString KEY_PROP_SAVE_PATH = u"save_path"_s;
 const QString KEY_PROP_DOWNLOAD_PATH = u"download_path"_s;
 const QString KEY_PROP_COMMENT = u"comment"_s;
 const QString KEY_PROP_ISPRIVATE = u"is_private"_s;
+const QString KEY_PROP_SSL_CERTIFICATE = u"ssl_certificate"_s;
+const QString KEY_PROP_SSL_PRIVATEKEY = u"ssl_private_key"_s;
+const QString KEY_PROP_SSL_DHPARAMS = u"ssl_dh_params"_s;
 
 // File keys
 const QString KEY_FILE_INDEX = u"index"_s;
@@ -150,6 +156,15 @@ namespace
             return std::nullopt;
 
         return it.value();
+    }
+
+    std::optional<Tag> getOptionalTag(const StringMap &params, const QString &name)
+    {
+        const auto it = params.constFind(name);
+        if (it == params.cend())
+            return std::nullopt;
+
+        return Tag(it.value());
     }
 
     QJsonArray getStickyTrackers(const BitTorrent::Torrent *const torrent)
@@ -273,7 +288,7 @@ void TorrentsController::infoAction()
 {
     const QString filter {params()[u"filter"_s]};
     const std::optional<QString> category = getOptionalString(params(), u"category"_s);
-    const std::optional<QString> tag = getOptionalString(params(), u"tag"_s);
+    const std::optional<Tag> tag = getOptionalTag(params(), u"tag"_s);
     const QString sortedColumn {params()[u"sort"_s]};
     const bool reverse {parseBool(params()[u"reverse"_s]).value_or(false)};
     int limit {params()[u"limit"_s].toInt()};
@@ -404,65 +419,63 @@ void TorrentsController::propertiesAction()
     requireParams({u"hash"_s});
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+    const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    QJsonObject dataDict;
-
-    dataDict[KEY_TORRENT_INFOHASHV1] = torrent->infoHash().v1().toString();
-    dataDict[KEY_TORRENT_INFOHASHV2] = torrent->infoHash().v2().toString();
-    dataDict[KEY_TORRENT_NAME] = torrent->name();
-    dataDict[KEY_TORRENT_ID] = torrent->id().toString();
-    dataDict[KEY_PROP_TIME_ELAPSED] = torrent->activeTime();
-    dataDict[KEY_PROP_SEEDING_TIME] = torrent->finishedTime();
-    dataDict[KEY_PROP_ETA] = static_cast<double>(torrent->eta());
-    dataDict[KEY_PROP_CONNECT_COUNT] = torrent->connectionsCount();
-    dataDict[KEY_PROP_CONNECT_COUNT_LIMIT] = torrent->connectionsLimit();
-    dataDict[KEY_PROP_DOWNLOADED] = torrent->totalDownload();
-    dataDict[KEY_PROP_DOWNLOADED_SESSION] = torrent->totalPayloadDownload();
-    dataDict[KEY_PROP_UPLOADED] = torrent->totalUpload();
-    dataDict[KEY_PROP_UPLOADED_SESSION] = torrent->totalPayloadUpload();
-    dataDict[KEY_PROP_DL_SPEED] = torrent->downloadPayloadRate();
+    const BitTorrent::InfoHash infoHash = torrent->infoHash();
+    const qlonglong totalDownload = torrent->totalDownload();
+    const qlonglong totalUpload = torrent->totalUpload();
     const qlonglong dlDuration = torrent->activeTime() - torrent->finishedTime();
-    dataDict[KEY_PROP_DL_SPEED_AVG] = torrent->totalDownload() / ((dlDuration == 0) ? -1 : dlDuration);
-    dataDict[KEY_PROP_UP_SPEED] = torrent->uploadPayloadRate();
     const qlonglong ulDuration = torrent->activeTime();
-    dataDict[KEY_PROP_UP_SPEED_AVG] = torrent->totalUpload() / ((ulDuration == 0) ? -1 : ulDuration);
-    dataDict[KEY_PROP_DL_LIMIT] = torrent->downloadLimit() <= 0 ? -1 : torrent->downloadLimit();
-    dataDict[KEY_PROP_UP_LIMIT] = torrent->uploadLimit() <= 0 ? -1 : torrent->uploadLimit();
-    dataDict[KEY_PROP_WASTED] = torrent->wastedSize();
-    dataDict[KEY_PROP_SEEDS] = torrent->seedsCount();
-    dataDict[KEY_PROP_SEEDS_TOTAL] = torrent->totalSeedsCount();
-    dataDict[KEY_PROP_PEERS] = torrent->leechsCount();
-    dataDict[KEY_PROP_PEERS_TOTAL] = torrent->totalLeechersCount();
+    const int downloadLimit = torrent->downloadLimit();
+    const int uploadLimit = torrent->uploadLimit();
     const qreal ratio = torrent->realRatio();
-    dataDict[KEY_PROP_RATIO] = ratio > BitTorrent::Torrent::MAX_RATIO ? -1 : ratio;
-    dataDict[KEY_PROP_REANNOUNCE] = torrent->nextAnnounce();
-    dataDict[KEY_PROP_TOTAL_SIZE] = torrent->totalSize();
-    dataDict[KEY_PROP_PIECES_NUM] = torrent->piecesCount();
-    dataDict[KEY_PROP_PIECE_SIZE] = torrent->pieceLength();
-    dataDict[KEY_PROP_PIECES_HAVE] = torrent->piecesHave();
-    dataDict[KEY_PROP_CREATED_BY] = torrent->creator();
-    dataDict[KEY_PROP_ISPRIVATE] = torrent->isPrivate();
-    dataDict[KEY_PROP_ADDITION_DATE] = static_cast<double>(torrent->addedTime().toSecsSinceEpoch());
-    if (torrent->hasMetadata())
-    {
-        dataDict[KEY_PROP_LAST_SEEN] = torrent->lastSeenComplete().isValid() ? torrent->lastSeenComplete().toSecsSinceEpoch() : -1;
-        dataDict[KEY_PROP_COMPLETION_DATE] = torrent->completedTime().isValid() ? torrent->completedTime().toSecsSinceEpoch() : -1;
-        dataDict[KEY_PROP_CREATION_DATE] = static_cast<double>(torrent->creationDate().toSecsSinceEpoch());
-    }
-    else
-    {
-        dataDict[KEY_PROP_LAST_SEEN] = -1;
-        dataDict[KEY_PROP_COMPLETION_DATE] = -1;
-        dataDict[KEY_PROP_CREATION_DATE] = -1;
-    }
-    dataDict[KEY_PROP_SAVE_PATH] = torrent->savePath().toString();
-    dataDict[KEY_PROP_DOWNLOAD_PATH] = torrent->downloadPath().toString();
-    dataDict[KEY_PROP_COMMENT] = torrent->comment();
 
-    setResult(dataDict);
+    const QJsonObject ret
+    {
+        {KEY_TORRENT_INFOHASHV1, infoHash.v1().toString()},
+        {KEY_TORRENT_INFOHASHV2, infoHash.v2().toString()},
+        {KEY_TORRENT_NAME, torrent->name()},
+        {KEY_TORRENT_ID, torrent->id().toString()},
+        {KEY_PROP_TIME_ELAPSED, torrent->activeTime()},
+        {KEY_PROP_SEEDING_TIME, torrent->finishedTime()},
+        {KEY_PROP_ETA, torrent->eta()},
+        {KEY_PROP_CONNECT_COUNT, torrent->connectionsCount()},
+        {KEY_PROP_CONNECT_COUNT_LIMIT, torrent->connectionsLimit()},
+        {KEY_PROP_DOWNLOADED, totalDownload},
+        {KEY_PROP_DOWNLOADED_SESSION, torrent->totalPayloadDownload()},
+        {KEY_PROP_UPLOADED, totalUpload},
+        {KEY_PROP_UPLOADED_SESSION, torrent->totalPayloadUpload()},
+        {KEY_PROP_DL_SPEED, torrent->downloadPayloadRate()},
+        {KEY_PROP_DL_SPEED_AVG, ((dlDuration > 0) ? (totalDownload / dlDuration) : -1)},
+        {KEY_PROP_UP_SPEED, torrent->uploadPayloadRate()},
+        {KEY_PROP_UP_SPEED_AVG, ((ulDuration > 0) ? (totalUpload / ulDuration) : -1)},
+        {KEY_PROP_DL_LIMIT, ((downloadLimit > 0) ? downloadLimit : -1)},
+        {KEY_PROP_UP_LIMIT, ((uploadLimit > 0) ? uploadLimit : -1)},
+        {KEY_PROP_WASTED, torrent->wastedSize()},
+        {KEY_PROP_SEEDS, torrent->seedsCount()},
+        {KEY_PROP_SEEDS_TOTAL, torrent->totalSeedsCount()},
+        {KEY_PROP_PEERS, torrent->leechsCount()},
+        {KEY_PROP_PEERS_TOTAL, torrent->totalLeechersCount()},
+        {KEY_PROP_RATIO, ((ratio > BitTorrent::Torrent::MAX_RATIO) ? -1 : ratio)},
+        {KEY_PROP_REANNOUNCE, torrent->nextAnnounce()},
+        {KEY_PROP_TOTAL_SIZE, torrent->totalSize()},
+        {KEY_PROP_PIECES_NUM, torrent->piecesCount()},
+        {KEY_PROP_PIECE_SIZE, torrent->pieceLength()},
+        {KEY_PROP_PIECES_HAVE, torrent->piecesHave()},
+        {KEY_PROP_CREATED_BY, torrent->creator()},
+        {KEY_PROP_ISPRIVATE, torrent->isPrivate()},
+        {KEY_PROP_ADDITION_DATE, Utils::DateTime::toSecsSinceEpoch(torrent->addedTime())},
+        {KEY_PROP_LAST_SEEN, Utils::DateTime::toSecsSinceEpoch(torrent->lastSeenComplete())},
+        {KEY_PROP_COMPLETION_DATE, Utils::DateTime::toSecsSinceEpoch(torrent->completedTime())},
+        {KEY_PROP_CREATION_DATE, Utils::DateTime::toSecsSinceEpoch(torrent->creationDate())},
+        {KEY_PROP_SAVE_PATH, torrent->savePath().toString()},
+        {KEY_PROP_DOWNLOAD_PATH, torrent->downloadPath().toString()},
+        {KEY_PROP_COMMENT, torrent->comment()}
+    };
+
+    setResult(ret);
 }
 
 // Returns the trackers for a torrent in JSON format.
@@ -713,27 +726,38 @@ void TorrentsController::addAction()
         }
     }
 
-    BitTorrent::AddTorrentParams addTorrentParams;
-    // TODO: Check if destination actually exists
-    addTorrentParams.skipChecking = skipChecking;
-    addTorrentParams.sequential = seqDownload;
-    addTorrentParams.firstLastPiecePriority = firstLastPiece;
-    addTorrentParams.addToQueueTop = addToQueueTop;
-    addTorrentParams.addPaused = addPaused;
-    addTorrentParams.stopCondition = stopCondition;
-    addTorrentParams.contentLayout = contentLayout;
-    addTorrentParams.savePath = Path(savepath);
-    addTorrentParams.downloadPath = Path(downloadPath);
-    addTorrentParams.useDownloadPath = useDownloadPath;
-    addTorrentParams.category = category;
-    addTorrentParams.tags.insert(tags.cbegin(), tags.cend());
-    addTorrentParams.name = torrentName;
-    addTorrentParams.uploadLimit = upLimit;
-    addTorrentParams.downloadLimit = dlLimit;
-    addTorrentParams.seedingTimeLimit = seedingTimeLimit;
-    addTorrentParams.inactiveSeedingTimeLimit = inactiveSeedingTimeLimit;
-    addTorrentParams.ratioLimit = ratioLimit;
-    addTorrentParams.useAutoTMM = autoTMM;
+    const BitTorrent::AddTorrentParams addTorrentParams
+    {
+        // TODO: Check if destination actually exists
+        .name = torrentName,
+        .category = category,
+        .tags = {tags.cbegin(), tags.cend()},
+        .savePath = Path(savepath),
+        .useDownloadPath = useDownloadPath,
+        .downloadPath = Path(downloadPath),
+        .sequential = seqDownload,
+        .firstLastPiecePriority = firstLastPiece,
+        .addForced = false,
+        .addToQueueTop = addToQueueTop,
+        .addPaused = addPaused,
+        .stopCondition = stopCondition,
+        .filePaths = {},
+        .filePriorities = {},
+        .skipChecking = skipChecking,
+        .contentLayout = contentLayout,
+        .useAutoTMM = autoTMM,
+        .uploadLimit = upLimit,
+        .downloadLimit = dlLimit,
+        .seedingTimeLimit = seedingTimeLimit,
+        .inactiveSeedingTimeLimit = inactiveSeedingTimeLimit,
+        .ratioLimit = ratioLimit,
+        .sslParameters =
+        {
+            .certificate = QSslCertificate(params()[KEY_PROP_SSL_CERTIFICATE].toLatin1()),
+            .privateKey = Utils::SSLKey::load(params()[KEY_PROP_SSL_PRIVATEKEY].toLatin1()),
+            .dhParams = params()[KEY_PROP_SSL_DHPARAMS].toLatin1()
+        }
+    };
 
     bool partialSuccess = false;
     for (QString url : asConst(urls.split(u'\n')))
@@ -746,7 +770,7 @@ void TorrentsController::addAction()
         }
     }
 
-    const DataMap torrents = data();
+    const DataMap &torrents = data();
     for (auto it = torrents.constBegin(); it != torrents.constEnd(); ++it)
     {
         if (const auto loadResult = BitTorrent::TorrentDescriptor::load(it.value()))
@@ -1317,12 +1341,11 @@ void TorrentsController::addTagsAction()
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     const QStringList tags {params()[u"tags"_s].split(u',', Qt::SkipEmptyParts)};
 
-    for (const QString &tag : tags)
+    for (const QString &tagStr : tags)
     {
-        const QString tagTrimmed {tag.trimmed()};
-        applyToTorrents(hashes, [&tagTrimmed](BitTorrent::Torrent *const torrent)
+        applyToTorrents(hashes, [&tagStr](BitTorrent::Torrent *const torrent)
         {
-            torrent->addTag(tagTrimmed);
+            torrent->addTag(Tag(tagStr));
         });
     }
 }
@@ -1334,12 +1357,11 @@ void TorrentsController::removeTagsAction()
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     const QStringList tags {params()[u"tags"_s].split(u',', Qt::SkipEmptyParts)};
 
-    for (const QString &tag : tags)
+    for (const QString &tagStr : tags)
     {
-        const QString tagTrimmed {tag.trimmed()};
-        applyToTorrents(hashes, [&tagTrimmed](BitTorrent::Torrent *const torrent)
+        applyToTorrents(hashes, [&tagStr](BitTorrent::Torrent *const torrent)
         {
-            torrent->removeTag(tagTrimmed);
+            torrent->removeTag(Tag(tagStr));
         });
     }
 
@@ -1358,8 +1380,8 @@ void TorrentsController::createTagsAction()
 
     const QStringList tags {params()[u"tags"_s].split(u',', Qt::SkipEmptyParts)};
 
-    for (const QString &tag : tags)
-        BitTorrent::Session::instance()->addTag(tag.trimmed());
+    for (const QString &tagStr : tags)
+        BitTorrent::Session::instance()->addTag(Tag(tagStr));
 }
 
 void TorrentsController::deleteTagsAction()
@@ -1367,15 +1389,15 @@ void TorrentsController::deleteTagsAction()
     requireParams({u"tags"_s});
 
     const QStringList tags {params()[u"tags"_s].split(u',', Qt::SkipEmptyParts)};
-    for (const QString &tag : tags)
-        BitTorrent::Session::instance()->removeTag(tag.trimmed());
+    for (const QString &tagStr : tags)
+        BitTorrent::Session::instance()->removeTag(Tag(tagStr));
 }
 
 void TorrentsController::tagsAction()
 {
     QJsonArray result;
-    for (const QString &tag : asConst(BitTorrent::Session::instance()->tags()))
-        result << tag;
+    for (const Tag &tag : asConst(BitTorrent::Session::instance()->tags()))
+        result << tag.toString();
     setResult(result);
 }
 
@@ -1436,5 +1458,45 @@ void TorrentsController::exportAction()
     if (!result)
         throw APIError(APIErrorType::Conflict, tr("Unable to export torrent file. Error: %1").arg(result.error()));
 
-    setResult(result.value());
+    setResult(result.value(), u"application/x-bittorrent"_s, (id.toString() + u".torrent"));
+}
+
+void TorrentsController::SSLParametersAction()
+{
+    requireParams({u"hash"_s});
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
+    const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    const BitTorrent::SSLParameters sslParams = torrent->getSSLParameters();
+    const QJsonObject ret
+    {
+        {KEY_PROP_SSL_CERTIFICATE, QString::fromLatin1(sslParams.certificate.toPem())},
+        {KEY_PROP_SSL_PRIVATEKEY, QString::fromLatin1(sslParams.privateKey.toPem())},
+        {KEY_PROP_SSL_DHPARAMS, QString::fromLatin1(sslParams.dhParams)}
+    };
+    setResult(ret);
+}
+
+void TorrentsController::setSSLParametersAction()
+{
+    requireParams({u"hash"_s, KEY_PROP_SSL_CERTIFICATE, KEY_PROP_SSL_PRIVATEKEY, KEY_PROP_SSL_DHPARAMS});
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    const BitTorrent::SSLParameters sslParams
+    {
+        .certificate = QSslCertificate(params()[KEY_PROP_SSL_CERTIFICATE].toLatin1()),
+        .privateKey = Utils::SSLKey::load(params()[KEY_PROP_SSL_PRIVATEKEY].toLatin1()),
+        .dhParams = params()[KEY_PROP_SSL_DHPARAMS].toLatin1()
+    };
+    if (!sslParams.isValid())
+        throw APIError(APIErrorType::BadData);
+
+    torrent->setSSLParameters(sslParams);
 }

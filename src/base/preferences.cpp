@@ -1480,19 +1480,6 @@ void Preferences::setDNSLastIP(const QString &ip)
     setValue(u"DNSUpdater/lastIP"_s, ip);
 }
 
-bool Preferences::getAcceptedLegal() const
-{
-    return value(u"LegalNotice/Accepted"_s, false);
-}
-
-void Preferences::setAcceptedLegal(const bool accepted)
-{
-    if (accepted == getAcceptedLegal())
-        return;
-
-    setValue(u"LegalNotice/Accepted"_s, accepted);
-}
-
 QByteArray Preferences::getMainGeometry() const
 {
     return value<QByteArray>(u"MainWindow/geometry"_s);

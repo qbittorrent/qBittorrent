@@ -73,6 +73,8 @@ public:
     TrackerListWidget *getTrackerList() const;
     PeerListWidget *getPeerList() const;
     QTreeView *getFilesList() const;
+    PropTabBar *tabBar() const;
+    LineEdit *contentFilterLine() const;
 
 public slots:
     void setVisibility(bool visible);

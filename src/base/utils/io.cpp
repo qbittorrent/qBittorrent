@@ -40,6 +40,7 @@
 #include <QFileDevice>
 #include <QSaveFile>
 #include <QString>
+#include <QTemporaryFile>
 
 #include "base/path.h"
 #include "base/utils/fs.h"
@@ -148,4 +149,28 @@ nonstd::expected<void, QString> Utils::IO::saveToFile(const Path &path, const lt
         return nonstd::make_unexpected(file.errorString());
 
     return {};
+}
+
+nonstd::expected<Path, QString> Utils::IO::saveToTempFile(const QByteArray &data)
+{
+    QTemporaryFile file {(Utils::Fs::tempPath() / Path(u"file_"_s)).data()};
+    if (!file.open() || (file.write(data) != data.length()) || !file.flush())
+        return nonstd::make_unexpected(file.errorString());
+
+    file.setAutoRemove(false);
+    return Path(file.fileName());
+}
+
+nonstd::expected<Path, QString> Utils::IO::saveToTempFile(const lt::entry &data)
+{
+    QTemporaryFile file {(Utils::Fs::tempPath() / Path(u"file_"_s)).data()};
+    if (!file.open())
+        return nonstd::make_unexpected(file.errorString());
+
+    const int bencodedDataSize = lt::bencode(Utils::IO::FileDeviceOutputIterator {file}, data);
+    if ((file.size() != bencodedDataSize) || !file.flush())
+        return nonstd::make_unexpected(file.errorString());
+
+    file.setAutoRemove(false);
+    return Path(file.fileName());
 }

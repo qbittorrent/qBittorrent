@@ -17,13 +17,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        libt_version: ["2.0.9", "1.2.19"]
+        libt_version: ["2.0.10", "1.2.19"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
         qt_version: ["6.5.2"]
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
       openssl_root: /usr/local/opt/openssl@3
+      libtorrent_path: "${{ github.workspace }}/../libtorrent"
 
     steps:
       - name: Checkout repository
@@ -46,15 +47,24 @@ jobs:
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
         with:
+          store_cache: ${{ startsWith(github.ref, 'refs/heads/') }}
           update_packager_index: false
 
       - name: Install boost
+        env:
+          BOOST_MAJOR_VERSION: "1"
+          BOOST_MINOR_VERSION: "84"
+          BOOST_PATCH_VERSION: "0"
         run: |
-          curl \
-            -L \
-            -o "${{ runner.temp }}/boost.tar.gz" \
-            "https://boostorg.jfrog.io/artifactory/main/release/1.83.0/source/boost_1_83_0.tar.gz"
-          tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."
+          boost_url="https://boostorg.jfrog.io/artifactory/main/release/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/source/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
+          boost_url2="https://sourceforge.net/projects/boost/files/boost/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
+          set +e
+          curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url"
+          tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
+          if [ "$_exitCode" -ne "0" ]; then
+            curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url2"
+            tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
+          fi
           mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
 
       - name: Install Qt
@@ -63,6 +73,7 @@ jobs:
           version: ${{ matrix.qt_version }}
           archives: qtbase qtdeclarative qtsvg qttools
           # Not sure why Qt made a hard dependency on qtdeclarative, try removing it when Qt > 6.4.0
+          cache: true
 
       - name: Install libtorrent
         run: |
@@ -70,8 +81,9 @@ jobs:
             --branch v${{ matrix.libt_version }} \
             --depth 1 \
             --recurse-submodules \
-            https://github.com/arvidn/libtorrent.git
-          cd libtorrent
+            https://github.com/arvidn/libtorrent.git \
+            ${{ env.libtorrent_path }}
+          cd ${{ env.libtorrent_path }}
           cmake \
             -B build \
             -G "Ninja" \
@@ -119,10 +131,10 @@ jobs:
           mkdir upload/cmake
           cp build/compile_commands.json upload/cmake
           mkdir upload/cmake/libtorrent
-          cp libtorrent/build/compile_commands.json upload/cmake/libtorrent
+          cp ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}
           path: upload

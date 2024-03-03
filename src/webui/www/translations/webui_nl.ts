@@ -1726,15 +1726,15 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Limiet Bdecode-diepte:</translation>
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <translation>Limiet Bdecode-token:</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Wanneer een totale seed-tijd bereikt wordt van</translation>
     </message>
     <message>
         <source>(None)</source>
@@ -1742,15 +1742,15 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P inkomende lengte (vereist libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
-        <translation type="unfinished" />
+        <translation>Pad naar python-executable (kan herstart vereisen):</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation type="unfinished" />
+        <translation>Wordt teruggezet op standaard als deze leeg is</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
@@ -1758,31 +1758,31 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation>Als &amp;quot;gemengde modus&amp;quot; is ingeschakeld, kunnen I2P-torrents ook peers krijgen van andere bronnen dan de tracker, en verbinding maken met gewone IP's, zonder enige anonimisering. Dit kan nuttig zijn als de gebruiker niet geïnteresseerd is in de anonimisering van I2P, maar toch wil kunnen verbinden met I2P-peers.</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P inkomende hoeveelheid (vereist libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P uitgaande lengte (vereist libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P uitgaande hoeveelheid (vereist libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation>I2P (experimenteel) (vereist libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
-        <translation type="unfinished" />
+        <translation>DHT-bootstrap-nodes:</translation>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Wanneer een niet-actieve seed-tijd bereikt wordt van</translation>
     </message>
     <message>
         <source>Mixed mode</source>
@@ -1790,19 +1790,19 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>Limiet .torrent-bestandsgrootte:</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
-        <translation type="unfinished" />
+        <translation>(automatisch detecteren wanneer leeg)</translation>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>Niet-geselecteerde bestanden in ".unwanted"-map houden</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>Mark-of-the-Web (MOTW) voor gedownloade bestanden inschakelen (vereist macOS of Windows):</translation>
     </message>
 </context>
 <context>
@@ -2166,7 +2166,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Overeenkomen met alle resultaten</translation>
     </message>
 </context>
 <context>
@@ -2386,11 +2386,11 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>Verplaatsen (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>Verplaatsen (0)</translation>
     </message>
 </context>
 <context>
@@ -2546,7 +2546,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation type="unfinished" />
+        <translation>Opnieuw aankondigen over</translation>
     </message>
 </context>
 <context>
@@ -2971,7 +2971,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Opmerking</translation>
     </message>
 </context>
 <context>
@@ -2998,11 +2998,11 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>totaal aantal minuten</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>aantal minuten niet actief</translation>
     </message>
 </context>
 <context>
@@ -3520,10 +3520,6 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <source>New name:</source>
         <translation>Nieuwe naam:</translation>
     </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Naam wijzigen)</translation>
-    </message>
 </context>
 <context>
     <name>RSSWidget</name>
@@ -3870,7 +3866,7 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Labels toevoegen:</translation>
     </message>
 </context>
 <context>

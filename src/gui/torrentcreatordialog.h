@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Radu Carpa <radu.carpa@cern.ch>
  * Copyright (C) 2017  Mike Tzou (Chocobo1)
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -58,7 +59,7 @@ private slots:
     void onAddFileButtonClicked();
     void onAddFolderButtonClicked();
     void handleCreationFailure(const QString &msg);
-    void handleCreationSuccess(const Path &path, const Path &branchPath);
+    void handleCreationSuccess(const BitTorrent::TorrentCreatorResult &result);
 
 private:
     void dropEvent(QDropEvent *event) override;

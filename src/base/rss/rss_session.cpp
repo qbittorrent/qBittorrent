@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Jonathan Ketchker
  * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
@@ -62,6 +63,7 @@ QPointer<Session> Session::m_instance = nullptr;
 Session::Session()
     : m_storeProcessingEnabled(u"RSS/Session/EnableProcessing"_s)
     , m_storeRefreshInterval(u"RSS/Session/RefreshInterval"_s, 30)
+    , m_storeFetchDelay(u"RSS/Session/FetchDelay"_s, 2)
     , m_storeMaxArticlesPerFeed(u"RSS/Session/MaxArticlesPerFeed"_s, 50)
     , m_workingThread(new QThread)
 {
@@ -523,6 +525,19 @@ void Session::setRefreshInterval(const int refreshInterval)
         m_storeRefreshInterval = refreshInterval;
         m_refreshTimer.start(std::chrono::minutes(m_storeRefreshInterval));
     }
+}
+
+std::chrono::seconds Session::fetchDelay() const
+{
+    return std::chrono::seconds(m_storeFetchDelay);
+}
+
+void Session::setFetchDelay(const std::chrono::seconds delay)
+{
+    if (delay == fetchDelay())
+        return;
+    m_storeFetchDelay = static_cast<qint64>(delay.count());
+    rootFolder()->updateFetchDelay();
 }
 
 QThread *Session::workingThread() const

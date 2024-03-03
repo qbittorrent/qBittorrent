@@ -42,6 +42,7 @@
 #endif
 
 #include "base/global.h"
+#include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 
@@ -302,7 +303,10 @@ namespace
     };
 
     constexpr const BoolOption SHOW_HELP_OPTION {"help", 'h'};
+#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
     constexpr const BoolOption SHOW_VERSION_OPTION {"version", 'v'};
+#endif
+    constexpr const BoolOption CONFIRM_LEGAL_NOTICE {"confirm-legal-notice"};
 #if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
     constexpr const BoolOption DAEMON_OPTION {"daemon", 'd'};
 #else
@@ -323,7 +327,8 @@ namespace
 }
 
 QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &env)
-    : relativeFastresumePaths(RELATIVE_FASTRESUME.value(env))
+    : confirmLegalNotice(CONFIRM_LEGAL_NOTICE.value(env))
+    , relativeFastresumePaths(RELATIVE_FASTRESUME.value(env))
 #ifndef DISABLE_GUI
     , noSplash(NO_SPLASH_OPTION.value(env))
 #elif !defined(Q_OS_WIN)
@@ -332,7 +337,7 @@ QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &en
     , webUIPort(WEBUI_PORT_OPTION.value(env, -1))
     , torrentingPort(TORRENTING_PORT_OPTION.value(env, -1))
     , skipDialog(SKIP_DIALOG_OPTION.value(env))
-    , profileDir(PROFILE_OPTION.value(env))
+    , profileDir(Utils::Fs::toAbsolutePath(Path(PROFILE_OPTION.value(env))))
     , configurationName(CONFIGURATION_OPTION.value(env))
 {
     addTorrentParams.savePath = Path(SAVE_PATH_OPTION.value(env));
@@ -365,6 +370,10 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
                 result.showVersion = true;
             }
 #endif
+            else if (arg == CONFIRM_LEGAL_NOTICE)
+            {
+                result.confirmLegalNotice = true;
+            }
             else if (arg == WEBUI_PORT_OPTION)
             {
                 result.webUIPort = WEBUI_PORT_OPTION.value(arg);
@@ -394,7 +403,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
 #endif
             else if (arg == PROFILE_OPTION)
             {
-                result.profileDir = Path(PROFILE_OPTION.value(arg));
+                result.profileDir = Utils::Fs::toAbsolutePath(Path(PROFILE_OPTION.value(arg)));
             }
             else if (arg == RELATIVE_FASTRESUME)
             {
@@ -484,10 +493,11 @@ QString makeUsage(const QString &prgName)
         + indentation + prgName + u' ' + QCoreApplication::translate("CMD Options", "[options] [(<filename> | <url>)...]") + u'\n'
 
         + QCoreApplication::translate("CMD Options", "Options:") + u'\n'
+        + SHOW_HELP_OPTION.usage() + wrapText(QCoreApplication::translate("CMD Options", "Display this help message and exit")) + u'\n'
 #if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
         + SHOW_VERSION_OPTION.usage() + wrapText(QCoreApplication::translate("CMD Options", "Display program version and exit")) + u'\n'
 #endif
-        + SHOW_HELP_OPTION.usage() + wrapText(QCoreApplication::translate("CMD Options", "Display this help message and exit")) + u'\n'
+        + CONFIRM_LEGAL_NOTICE.usage() + wrapText(QCoreApplication::translate("CMD Options", "Confirm the legal notice")) + u'\n'
         + WEBUI_PORT_OPTION.usage(QCoreApplication::translate("CMD Options", "port"))
         + wrapText(QCoreApplication::translate("CMD Options", "Change the WebUI port"))
         + u'\n'

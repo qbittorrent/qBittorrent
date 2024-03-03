@@ -47,10 +47,10 @@ window.qBittorrent.ProgressBar = (function() {
                 'value': $pick(value, 0),
                 'width': 0,
                 'height': 0,
-                'darkbg': '#006',
-                'darkfg': '#fff',
-                'lightbg': '#fff',
-                'lightfg': '#000'
+                'darkbg': 'var(--color-background-blue)',
+                'darkfg': 'var(--color-text-white)',
+                'lightbg': 'var(--color-background-default)',
+                'lightfg': 'var(--color-text-default)'
             };
             if (parameters && $type(parameters) == 'object')
                 $extend(vals, parameters);
@@ -60,7 +60,7 @@ window.qBittorrent.ProgressBar = (function() {
                 'id': vals.id,
                 'class': 'progressbar_wrapper',
                 'styles': {
-                    'border': '1px solid #000',
+                    'border': '1px solid var(--color-border-default)',
                     'width': vals.width,
                     'height': vals.height,
                     'position': 'relative',

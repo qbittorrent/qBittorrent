@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Mike Tzou (Chocobo1)
  * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -29,14 +30,15 @@
 
 #pragma once
 
+#include <numeric>
 #include <optional>
 
 #include <QChar>
 #include <QMetaEnum>
 #include <QString>
-#include <Qt>
 #include <QtContainerFwd>
 
+#include "base/concepts/explicitlyconvertibleto.h"
 #include "base/global.h"
 
 namespace Utils::String
@@ -63,9 +65,36 @@ namespace Utils::String
 
     QStringList splitCommand(const QString &command);
 
-    QString join(const QList<QStringView> &strings, QStringView separator);
-
     QString fromDouble(double n, int precision);
+
+    template <typename Container>
+    QString joinIntoString(const Container &container, const QString &separator)
+        requires ExplicitlyConvertibleTo<typename Container::value_type, QString>
+    {
+        auto iter = container.cbegin();
+        const auto end = container.cend();
+        if (iter == end)
+            return {};
+
+        const qsizetype totalLength = std::accumulate(iter, end, (separator.size() * (container.size() - 1))
+            , [](const qsizetype total, const typename Container::value_type &value)
+        {
+            return total + QString(value).size();
+        });
+
+        QString ret;
+        ret.reserve(totalLength);
+        ret.append(QString(*iter));
+        ++iter;
+
+        while (iter != end)
+        {
+            ret.append(separator + QString(*iter));
+            ++iter;
+        }
+
+        return ret;
+    }
 
     template <typename T>
     QString fromEnum(const T &value)

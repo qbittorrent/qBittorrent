@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -142,7 +142,9 @@ namespace BitTorrent
         QStringList categories() const override;
         CategoryOptions categoryOptions(const QString &categoryName) const override;
         Path categorySavePath(const QString &categoryName) const override;
+        Path categorySavePath(const QString &categoryName, const CategoryOptions &options) const override;
         Path categoryDownloadPath(const QString &categoryName) const override;
+        Path categoryDownloadPath(const QString &categoryName, const CategoryOptions &options) const override;
         bool addCategory(const QString &name, const CategoryOptions &options = {}) override;
         bool editCategory(const QString &name, const CategoryOptions &options) override;
         bool removeCategory(const QString &name) override;
@@ -154,10 +156,10 @@ namespace BitTorrent
         Path suggestedSavePath(const QString &categoryName, std::optional<bool> useAutoTMM) const override;
         Path suggestedDownloadPath(const QString &categoryName, std::optional<bool> useAutoTMM) const override;
 
-        QSet<QString> tags() const override;
-        bool hasTag(const QString &tag) const override;
-        bool addTag(const QString &tag) override;
-        bool removeTag(const QString &tag) override;
+        TagSet tags() const override;
+        bool hasTag(const Tag &tag) const override;
+        bool addTag(const Tag &tag) override;
+        bool removeTag(const Tag &tag) override;
 
         bool isAutoTMMDisabledByDefault() const override;
         void setAutoTMMDisabledByDefault(bool value) override;
@@ -228,6 +230,10 @@ namespace BitTorrent
         void setSaveResumeDataInterval(int value) override;
         int port() const override;
         void setPort(int port) override;
+        bool isSSLEnabled() const override;
+        void setSSLEnabled(bool enabled) override;
+        int sslPort() const override;
+        void setSSLPort(int port) override;
         QString networkInterface() const override;
         void setNetworkInterface(const QString &iface) override;
         QString networkInterfaceName() const override;
@@ -424,15 +430,13 @@ namespace BitTorrent
         void bottomTorrentsQueuePos(const QVector<TorrentID> &ids) override;
 
         // Torrent interface
-        void handleTorrentNeedSaveResumeData(const TorrentImpl *torrent);
-        void handleTorrentSaveResumeDataRequested(const TorrentImpl *torrent);
-        void handleTorrentSaveResumeDataFailed(const TorrentImpl *torrent);
+        void handleTorrentResumeDataRequested(const TorrentImpl *torrent);
         void handleTorrentShareLimitChanged(TorrentImpl *torrent);
         void handleTorrentNameChanged(TorrentImpl *torrent);
         void handleTorrentSavePathChanged(TorrentImpl *torrent);
         void handleTorrentCategoryChanged(TorrentImpl *torrent, const QString &oldCategory);
-        void handleTorrentTagAdded(TorrentImpl *torrent, const QString &tag);
-        void handleTorrentTagRemoved(TorrentImpl *torrent, const QString &tag);
+        void handleTorrentTagAdded(TorrentImpl *torrent, const Tag &tag);
+        void handleTorrentTagRemoved(TorrentImpl *torrent, const Tag &tag);
         void handleTorrentSavingModeChanged(TorrentImpl *torrent);
         void handleTorrentMetadataReceived(TorrentImpl *torrent);
         void handleTorrentPaused(TorrentImpl *torrent);
@@ -465,6 +469,9 @@ namespace BitTorrent
         }
 
         void invokeAsync(std::function<void ()> func);
+
+    signals:
+        void addTorrentAlertsReceived(qsizetype count);
 
     private slots:
         void configureDeferred();
@@ -540,6 +547,7 @@ namespace BitTorrent
         void handleTorrentRemovedAlert(const lt::torrent_removed_alert *p);
         void handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p);
         void handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *p);
+        void handleTorrentNeedCertAlert(const lt::torrent_need_cert_alert *a);
         void handlePortmapWarningAlert(const lt::portmap_error_alert *p);
         void handlePortmapAlert(const lt::portmap_alert *p);
         void handlePeerBlockedAlert(const lt::peer_blocked_alert *p);
@@ -574,6 +582,7 @@ namespace BitTorrent
         void loadCategories();
         void storeCategories() const;
         void upgradeCategories();
+        DownloadPathOption resolveCategoryDownloadPathOption(const QString &categoryName, const std::optional<DownloadPathOption> &option) const;
 
         void saveStatistics() const;
         void loadStatistics();
@@ -672,6 +681,8 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isPerformanceWarningEnabled;
         CachedSettingValue<int> m_saveResumeDataInterval;
         CachedSettingValue<int> m_port;
+        CachedSettingValue<bool> m_sslEnabled;
+        CachedSettingValue<int> m_sslPort;
         CachedSettingValue<QString> m_networkInterface;
         CachedSettingValue<QString> m_networkInterfaceName;
         CachedSettingValue<QString> m_networkInterfaceAddress;
@@ -749,10 +760,9 @@ namespace BitTorrent
         QHash<TorrentID, TorrentImpl *> m_hybridTorrentsByAltID;
         QHash<TorrentID, LoadTorrentParams> m_loadingTorrents;
         QHash<TorrentID, RemovingTorrentData> m_removingTorrents;
-        QSet<TorrentID> m_needSaveResumeDataTorrents;
         QHash<TorrentID, TorrentID> m_changedTorrentIDs;
         QMap<QString, CategoryOptions> m_categories;
-        QSet<QString> m_tags;
+        TagSet m_tags;
 
         // This field holds amounts of peers reported by trackers in their responses to announces
         // (torrent.tracker_name.tracker_local_endpoint.protocol_version.num_peers)

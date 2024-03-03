@@ -44,6 +44,7 @@
 #include <QRegularExpression>
 #include <QSet>
 #include <QString>
+#include <QStringView>
 #include <QSysInfo>
 
 #include "base/path.h"
@@ -252,7 +253,7 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
     return QCoreApplication::translate("misc", "%1y %2d", "e.g: 2 years 10 days").arg(QString::number(years), QString::number(days));
 }
 
-QString Utils::Misc::languageToLocalizedString(const QString &localeStr)
+QString Utils::Misc::languageToLocalizedString(const QStringView localeStr)
 {
     if (localeStr.startsWith(u"eo", Qt::CaseInsensitive))
     {

@@ -151,11 +151,11 @@ qint64 Utils::Fs::computePathSize(const Path &path)
 
     // Compute folder size based on its content
     qint64 size = 0;
-    QDirIterator iter {path.data(), QDir::Files | QDir::Hidden | QDir::NoSymLinks, QDirIterator::Subdirectories};
+    QDirIterator iter {path.data(), (QDir::Files | QDir::Hidden | QDir::NoSymLinks), QDirIterator::Subdirectories};
     while (iter.hasNext())
     {
-        iter.next();
-        size += iter.fileInfo().size();
+        const QFileInfo fileInfo = iter.nextFileInfo();
+        size += fileInfo.size();
     }
     return size;
 }
@@ -343,6 +343,11 @@ QDateTime Utils::Fs::lastModified(const Path &path)
 bool Utils::Fs::isDir(const Path &path)
 {
     return QFileInfo(path.data()).isDir();
+}
+
+Path Utils::Fs::toAbsolutePath(const Path &path)
+{
+    return Path(QFileInfo(path.data()).absoluteFilePath());
 }
 
 Path Utils::Fs::toCanonicalPath(const Path &path)

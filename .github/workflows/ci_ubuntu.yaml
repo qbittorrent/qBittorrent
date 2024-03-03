@@ -18,13 +18,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        libt_version: ["2.0.9", "1.2.19"]
+        libt_version: ["2.0.10", "1.2.19"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
         qt_version: ["6.5.2"]
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
       harden_flags: "-D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS"
+      libtorrent_path: "${{ github.workspace }}/../libtorrent"
 
     steps:
       - name: Checkout repository
@@ -40,17 +41,26 @@ jobs:
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
         with:
+          store_cache: ${{ startsWith(github.ref, 'refs/heads/') }}
           update_packager_index: false
           ccache_options: |
             max_size=2G
 
       - name: Install boost
+        env:
+          BOOST_MAJOR_VERSION: "1"
+          BOOST_MINOR_VERSION: "76"
+          BOOST_PATCH_VERSION: "0"
         run: |
-          curl \
-            -L \
-            -o "${{ runner.temp }}/boost.tar.gz" \
-            "https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.gz"
-          tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."
+          boost_url="https://boostorg.jfrog.io/artifactory/main/release/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/source/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
+          boost_url2="https://sourceforge.net/projects/boost/files/boost/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
+          set +e
+          curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url"
+          tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
+          if [ "$_exitCode" -ne "0" ]; then
+            curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url2"
+            tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
+          fi
           mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
 
       - name: Install Qt
@@ -58,6 +68,7 @@ jobs:
         with:
           version: ${{ matrix.qt_version }}
           archives: icu qtbase qtdeclarative qtsvg qttools
+          cache: true
 
       - name: Install libtorrent
         run: |
@@ -65,8 +76,9 @@ jobs:
             --branch v${{ matrix.libt_version }} \
             --depth 1 \
             --recurse-submodules \
-            https://github.com/arvidn/libtorrent.git
-          cd libtorrent
+            https://github.com/arvidn/libtorrent.git \
+            ${{ env.libtorrent_path }}
+          cd ${{ env.libtorrent_path }}
           CXXFLAGS="$CXXFLAGS ${{ env.harden_flags }}" \
           cmake \
             -B build \
@@ -81,7 +93,7 @@ jobs:
 
       # to avoid scanning 3rdparty codebases, initialize it just before building qbt
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
+        uses: github/codeql-action/init@v3
         if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON')
         with:
           config-file: ./.github/workflows/helper/codeql/cpp.yaml
@@ -107,7 +119,7 @@ jobs:
           DESTDIR="qbittorrent" cmake --install build
 
       - name: Run CodeQL analysis
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3
         if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON')
         with:
           category: ${{ github.base_ref || github.ref_name }}
@@ -118,37 +130,41 @@ jobs:
           mkdir upload/cmake
           cp build/compile_commands.json upload/cmake
           mkdir upload/cmake/libtorrent
-          cp libtorrent/build/compile_commands.json upload/cmake/libtorrent
+          cp ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
 
-      - name: 'AppImage: Prepare env'
+      - name: Install AppImage
         run: |
           sudo apt install libfuse2
-          wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
-          wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
-          wget https://github.com/linuxdeploy/linuxdeploy-plugin-appimage/releases/download/continuous/linuxdeploy-plugin-appimage-x86_64.AppImage
-          chmod +x linuxdeploy-x86_64.AppImage
-          chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
-          chmod +x linuxdeploy-plugin-appimage-x86_64.AppImage
+          curl \
+            -L \
+            -Z \
+            -O https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage \
+            -O https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage \
+            -O https://github.com/linuxdeploy/linuxdeploy-plugin-appimage/releases/download/continuous/linuxdeploy-plugin-appimage-x86_64.AppImage
+          chmod +x \
+            linuxdeploy-x86_64.AppImage \
+            linuxdeploy-plugin-qt-x86_64.AppImage \
+            linuxdeploy-plugin-appimage-x86_64.AppImage
 
-      - name: 'AppImage: Prepare nox'
+      - name: Prepare files for AppImage
         if: matrix.qbt_gui == 'GUI=OFF'
         run: |
-          mkdir -p qbittorrent/usr/share/icons/hicolor/scalable/apps/
-          mkdir -p qbittorrent/usr/share/applications/
-          cp dist/unix/menuicons/scalable/apps/qbittorrent.svg qbittorrent/usr/share/icons/hicolor/scalable/apps/qbittorrent.svg
+          mkdir -p qbittorrent/usr/share/applications
           cp .github/workflows/helper/appimage/org.qbittorrent.qBittorrent.desktop qbittorrent/usr/share/applications/org.qbittorrent.qBittorrent.desktop
+          mkdir -p qbittorrent/usr/share/icons/hicolor/scalable/apps
+          cp dist/unix/menuicons/scalable/apps/qbittorrent.svg qbittorrent/usr/share/icons/hicolor/scalable/apps/qbittorrent.svg
 
-      - name: 'AppImage: Package'
+      - name: Package AppImage
         run: |
-          ./linuxdeploy-x86_64.AppImage --appdir=qbittorrent --plugin qt
+          ./linuxdeploy-x86_64.AppImage --appdir qbittorrent --plugin qt
           rm qbittorrent/apprun-hooks/*
           cp .github/workflows/helper/appimage/export_vars.sh qbittorrent/apprun-hooks/export_vars.sh
           NO_APPSTREAM=1 \
-          OUTPUT=upload/qbittorrent-CI_Ubuntu_x86_64.AppImage \
-          ./linuxdeploy-x86_64.AppImage --appdir=qbittorrent --output appimage
+            OUTPUT=upload/qbittorrent-CI_Ubuntu_x86_64.AppImage \
+            ./linuxdeploy-x86_64.AppImage --appdir qbittorrent --output appimage
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: qBittorrent-CI_Ubuntu-x64_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}
           path: upload

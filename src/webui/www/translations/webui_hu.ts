@@ -1798,11 +1798,11 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>Tartsa a nem kiválasztott fájlokat ".unwanted" mappában</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>Engedélyezze a Mark-of-the-Web (MOTW) használatát letöltött fájlokhoz (macOS vagy Windows szükséges):</translation>
     </message>
 </context>
 <context>
@@ -2386,11 +2386,11 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>Áthelyezés (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>Áthelyezés (0)</translation>
     </message>
 </context>
 <context>
@@ -2971,7 +2971,7 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Megjegyzés</translation>
     </message>
 </context>
 <context>
@@ -3519,10 +3519,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     <message>
         <source>New name:</source>
         <translation>Új név:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Átnevezés)</translation>
     </message>
 </context>
 <context>

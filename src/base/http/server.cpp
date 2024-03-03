@@ -43,6 +43,7 @@
 #include "base/algorithm.h"
 #include "base/global.h"
 #include "base/utils/net.h"
+#include "base/utils/sslkey.h"
 #include "connection.h"
 
 using namespace std::chrono_literals;
@@ -161,7 +162,7 @@ void Server::dropTimedOutConnection()
 bool Server::setupHttps(const QByteArray &certificates, const QByteArray &privateKey)
 {
     const QList<QSslCertificate> certs {Utils::Net::loadSSLCertificate(certificates)};
-    const QSslKey key {Utils::Net::loadSSLKey(privateKey)};
+    const QSslKey key {Utils::SSLKey::load(privateKey)};
 
     if (certs.isEmpty() || key.isNull())
     {

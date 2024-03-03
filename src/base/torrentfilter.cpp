@@ -33,7 +33,7 @@
 
 const std::optional<QString> TorrentFilter::AnyCategory;
 const std::optional<TorrentIDSet> TorrentFilter::AnyID;
-const std::optional<QString> TorrentFilter::AnyTag;
+const std::optional<Tag> TorrentFilter::AnyTag;
 
 const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
 const TorrentFilter TorrentFilter::SeedingTorrent(TorrentFilter::Seeding);
@@ -52,19 +52,19 @@ const TorrentFilter TorrentFilter::ErroredTorrent(TorrentFilter::Errored);
 using BitTorrent::Torrent;
 
 TorrentFilter::TorrentFilter(const Type type, const std::optional<TorrentIDSet> &idSet
-                             , const std::optional<QString> &category, const std::optional<QString> &tag)
-    : m_type(type)
-    , m_category(category)
-    , m_tag(tag)
-    , m_idSet(idSet)
+        , const std::optional<QString> &category, const std::optional<Tag> &tag)
+    : m_type {type}
+    , m_category {category}
+    , m_tag {tag}
+    , m_idSet {idSet}
 {
 }
 
 TorrentFilter::TorrentFilter(const QString &filter, const std::optional<TorrentIDSet> &idSet
-                             , const std::optional<QString> &category, const std::optional<QString> &tag)
-    : m_category(category)
-    , m_tag(tag)
-    , m_idSet(idSet)
+        , const std::optional<QString> &category, const std::optional<Tag> &tag)
+    : m_category {category}
+    , m_tag {tag}
+    , m_idSet {idSet}
 {
     setTypeByName(filter);
 }
@@ -136,7 +136,7 @@ bool TorrentFilter::setCategory(const std::optional<QString> &category)
     return false;
 }
 
-bool TorrentFilter::setTag(const std::optional<QString> &tag)
+bool TorrentFilter::setTag(const std::optional<Tag> &tag)
 {
     if (m_tag != tag)
     {

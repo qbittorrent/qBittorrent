@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Jonathan Ketchker
  * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2006-2012  Ishan Arora <ishan@qbittorrent.org>
@@ -77,6 +78,17 @@ void AppController::versionAction()
 
 void AppController::buildInfoAction()
 {
+    const QString platformName =
+#ifdef Q_OS_LINUX
+        u"linux"_s;
+#elif defined(Q_OS_MACOS)
+        u"macos"_s;
+#elif defined(Q_OS_WIN)
+        u"windows"_s;
+#else
+        u"unknown"_s;
+#endif
+
     const QJsonObject versions =
     {
         {u"qt"_s, QStringLiteral(QT_VERSION_STR)},
@@ -84,7 +96,8 @@ void AppController::buildInfoAction()
         {u"boost"_s, Utils::Misc::boostVersionString()},
         {u"openssl"_s, Utils::Misc::opensslVersionString()},
         {u"zlib"_s, Utils::Misc::zlibVersionString()},
-        {u"bitness"_s, (QT_POINTER_SIZE * 8)}
+        {u"bitness"_s, (QT_POINTER_SIZE * 8)},
+        {u"platform"_s, platformName}
     };
     setResult(versions);
 }
@@ -119,6 +132,8 @@ void AppController::preferencesAction()
     data[u"file_log_delete_old"_s] = app()->isFileLoggerDeleteOld();
     data[u"file_log_age"_s] = app()->fileLoggerAge();
     data[u"file_log_age_type"_s] = app()->fileLoggerAgeType();
+    // Delete torrent contents files on torrent removal
+    data[u"delete_torrent_content_files"_s] = pref->deleteTorrentFilesAsDefault();
 
     // Downloads
     // When adding a torrent
@@ -186,6 +201,8 @@ void AppController::preferencesAction()
     // Connection
     // Listening Port
     data[u"listen_port"_s] = session->port();
+    data[u"ssl_enabled"_s] = session->isSSLEnabled();
+    data[u"ssl_listen_port"_s] = session->sslPort();
     data[u"random_port"_s] = (session->port() == 0);  // deprecated
     data[u"upnp"_s] = Net::PortForwarder::instance()->isEnabled();
     // Connections Limits
@@ -319,6 +336,7 @@ void AppController::preferencesAction()
 
     // RSS settings
     data[u"rss_refresh_interval"_s] = RSS::Session::instance()->refreshInterval();
+    data[u"rss_fetch_delay"_s] = static_cast<qlonglong>(RSS::Session::instance()->fetchDelay().count());
     data[u"rss_max_articles_per_feed"_s] = RSS::Session::instance()->maxArticlesPerFeed();
     data[u"rss_processing_enabled"_s] = RSS::Session::instance()->isProcessingEnabled();
     data[u"rss_auto_downloading_enabled"_s] = RSS::AutoDownloader::instance()->isProcessingEnabled();
@@ -343,6 +361,8 @@ void AppController::preferencesAction()
     data[u"torrent_file_size_limit"_s] = pref->getTorrentFileSizeLimit();
     // Recheck completed torrents
     data[u"recheck_completed_torrents"_s] = pref->recheckTorrentsOnCompletion();
+    // Customize application instance name
+    data[u"app_instance_name"_s] = app()->instanceName();
     // Refresh interval
     data[u"refresh_interval"_s] = session->refreshInterval();
     // Resolve peer countries
@@ -494,6 +514,9 @@ void AppController::setPreferencesAction()
         app()->setFileLoggerAge(it.value().toInt());
     if (hasKey(u"file_log_age_type"_s))
         app()->setFileLoggerAgeType(it.value().toInt());
+    // Delete torrent content files on torrent removal
+    if (hasKey(u"delete_torrent_content_files"_s))
+        pref->setDeleteTorrentFilesAsDefault(it.value().toBool());
 
     // Downloads
     // When adding a torrent
@@ -635,6 +658,11 @@ void AppController::setPreferencesAction()
     {
         session->setPort(it.value().toInt());
     }
+    // SSL Torrents
+    if (hasKey(u"ssl_enabled"_s))
+        session->setSSLEnabled(it.value().toBool());
+    if (hasKey(u"ssl_listen_port"_s))
+        session->setSSLPort(it.value().toInt());
     if (hasKey(u"upnp"_s))
         Net::PortForwarder::instance()->setEnabled(it.value().toBool());
     // Connections Limits
@@ -865,6 +893,8 @@ void AppController::setPreferencesAction()
 
     if (hasKey(u"rss_refresh_interval"_s))
         RSS::Session::instance()->setRefreshInterval(it.value().toInt());
+    if (hasKey(u"rss_fetch_delay"_s))
+        RSS::Session::instance()->setFetchDelay(std::chrono::seconds(it.value().toLongLong()));
     if (hasKey(u"rss_max_articles_per_feed"_s))
         RSS::Session::instance()->setMaxArticlesPerFeed(it.value().toInt());
     if (hasKey(u"rss_processing_enabled"_s))
@@ -915,6 +945,9 @@ void AppController::setPreferencesAction()
     // Recheck completed torrents
     if (hasKey(u"recheck_completed_torrents"_s))
         pref->recheckTorrentsOnCompletion(it.value().toBool());
+    // Customize application instance name
+    if (hasKey(u"app_instance_name"_s))
+        app()->setInstanceName(it.value().toString());
     // Refresh interval
     if (hasKey(u"refresh_interval"_s))
         session->setRefreshInterval(it.value().toInt());

@@ -1,5 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024  Radu Carpa <radu.carpa@cern.ch>
  * Copyright (C) 2017  Mike Tzou (Chocobo1)
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -227,27 +229,27 @@ void TorrentCreatorDialog::onCreateButtonClicked()
         .replace(QRegularExpression(u"\n\n[\n]+"_s), u"\n\n"_s).split(u'\n');
     const BitTorrent::TorrentCreatorParams params
     {
-        m_ui->checkPrivate->isChecked()
+        .isPrivate = m_ui->checkPrivate->isChecked(),
 #ifdef QBT_USES_LIBTORRENT2
-        , getTorrentFormat()
+        .torrentFormat = getTorrentFormat(),
 #else
-        , m_ui->checkOptimizeAlignment->isChecked()
-        , getPaddedFileSizeLimit()
+        .isAlignmentOptimized = m_ui->checkOptimizeAlignment->isChecked(),
+        .paddedFileSizeLimit = getPaddedFileSizeLimit(),
 #endif
-        , getPieceSize()
-        , inputPath
-        , destPath
-        , m_ui->txtComment->toPlainText()
-        , m_ui->lineEditSource->text()
-        , trackers
-        , m_ui->URLSeedsList->toPlainText().split(u'\n', Qt::SkipEmptyParts)
+        .pieceSize = getPieceSize(),
+        .sourcePath = inputPath,
+        .torrentFilePath = destPath,
+        .comment = m_ui->txtComment->toPlainText(),
+        .source = m_ui->lineEditSource->text(),
+        .trackers = trackers,
+        .urlSeeds = m_ui->URLSeedsList->toPlainText().split(u'\n', Qt::SkipEmptyParts)
     };
 
     auto *torrentCreator = new BitTorrent::TorrentCreator(params);
     connect(this, &QDialog::rejected, torrentCreator, &BitTorrent::TorrentCreator::requestInterruption);
     connect(torrentCreator, &BitTorrent::TorrentCreator::creationSuccess, this, &TorrentCreatorDialog::handleCreationSuccess);
     connect(torrentCreator, &BitTorrent::TorrentCreator::creationFailure, this, &TorrentCreatorDialog::handleCreationFailure);
-    connect(torrentCreator, &BitTorrent::TorrentCreator::updateProgress, this, &TorrentCreatorDialog::updateProgressBar);
+    connect(torrentCreator, &BitTorrent::TorrentCreator::progressUpdated, this, &TorrentCreatorDialog::updateProgressBar);
 
     // run the torrentCreator in a thread
     m_threadPool.start(torrentCreator);
@@ -257,40 +259,40 @@ void TorrentCreatorDialog::handleCreationFailure(const QString &msg)
 {
     // Remove busy cursor
     setCursor(QCursor(Qt::ArrowCursor));
-    QMessageBox::information(this, tr("Torrent creation failed"), tr("Reason: %1").arg(msg));
+    QMessageBox::information(this, tr("Torrent creation failed"), msg);
     setInteractionEnabled(true);
 }
 
-void TorrentCreatorDialog::handleCreationSuccess(const Path &path, const Path &branchPath)
+void TorrentCreatorDialog::handleCreationSuccess(const BitTorrent::TorrentCreatorResult &result)
 {
     setCursor(QCursor(Qt::ArrowCursor));
     setInteractionEnabled(true);
 
     QMessageBox::information(this, tr("Torrent creator")
-        , u"%1\n%2"_s.arg(tr("Torrent created:"), path.toString()));
+        , u"%1\n%2"_s.arg(tr("Torrent created:"), result.torrentFilePath.toString()));
 
     if (m_ui->checkStartSeeding->isChecked())
     {
-        const auto loadResult = BitTorrent::TorrentDescriptor::loadFromFile(path);
-        if (!loadResult)
+        if (const auto loadResult = BitTorrent::TorrentDescriptor::loadFromFile(result.torrentFilePath))
+        {
+            BitTorrent::AddTorrentParams params;
+            params.savePath = result.savePath;
+            params.skipChecking = true;
+            if (m_ui->checkIgnoreShareLimits->isChecked())
+            {
+                params.ratioLimit = BitTorrent::Torrent::NO_RATIO_LIMIT;
+                params.seedingTimeLimit = BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT;
+                params.inactiveSeedingTimeLimit = BitTorrent::Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT;
+            }
+            params.useAutoTMM = false;  // otherwise if it is on by default, it will overwrite `savePath` to the default save path
+
+            BitTorrent::Session::instance()->addTorrent(loadResult.value(), params);
+        }
+        else
         {
             const QString message = tr("Add torrent to transfer list failed.") + u'\n' + tr("Reason: \"%1\"").arg(loadResult.error());
             QMessageBox::critical(this, tr("Add torrent failed"), message);
-            return;
         }
-
-        BitTorrent::AddTorrentParams params;
-        params.savePath = branchPath;
-        params.skipChecking = true;
-        if (m_ui->checkIgnoreShareLimits->isChecked())
-        {
-            params.ratioLimit = BitTorrent::Torrent::NO_RATIO_LIMIT;
-            params.seedingTimeLimit = BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT;
-            params.inactiveSeedingTimeLimit = BitTorrent::Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT;
-        }
-        params.useAutoTMM = false;  // otherwise if it is on by default, it will overwrite `savePath` to the default save path
-
-        BitTorrent::Session::instance()->addTorrent(loadResult.value(), params);
     }
 }
 

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -53,6 +53,7 @@ namespace Net
         bool useProxy() const;
 
         void assignNetworkReply(QNetworkReply *reply);
+        QNetworkReply *assignedNetworkReply() const;
 
     private:
         void processFinishedDownload();
@@ -65,9 +66,11 @@ namespace Net
 
         DownloadManager *m_manager = nullptr;
         QNetworkReply *m_reply = nullptr;
+        DownloadHandlerImpl *m_redirectionHandler = nullptr;
         const DownloadRequest m_downloadRequest;
         const bool m_useProxy = false;
         short m_redirectionCount = 0;
         DownloadResult m_result;
+        bool m_isFinished = false;
     };
 }

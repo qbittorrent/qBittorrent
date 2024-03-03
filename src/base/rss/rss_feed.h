@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Jonathan Ketchker
  * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
@@ -75,6 +76,7 @@ namespace RSS
         int unreadCount() const override;
         void markAsRead() override;
         void refresh() override;
+        void updateFetchDelay() override;
 
         QUuid uid() const;
         QString url() const;

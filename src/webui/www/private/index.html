@@ -5,7 +5,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <meta name="application-name" content="qBittorrent" />
-    <title>qBittorrent Web UI</title>
+    <meta name="description" content="qBittorrent WebUI">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>qBittorrent WebUI</title>
+
     <link rel="icon" type="image/png" href="images/qbittorrent32.png" sizes="32x32" />
     <link rel="icon" type="image/svg+xml" href="images/qbittorrent-tray.svg" sizes="any" />
     <link rel="stylesheet" type="text/css" href="css/dynamicTable.css?v=${CACHEID}" />
@@ -18,26 +22,28 @@
     <noscript>
         <link rel="stylesheet" type="text/css" href="css/noscript.css?v=${CACHEID}" />
     </noscript>
-    <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
-    <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
-    <script src="scripts/lib/mocha.min.js"></script>
-    <script src="scripts/preferences.js"></script>
-    <script src="scripts/mocha-init.js?locale=${LANG}&v=${CACHEID}"></script>
-    <script src="scripts/lib/clipboard.min.js"></script>
-    <script src="scripts/filesystem.js?v=${CACHEID}"></script>
-    <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
-    <script src="scripts/progressbar.js?v=${CACHEID}"></script>
-    <script src="scripts/piecesbar.js?v=${CACHEID}"></script>
-    <script src="scripts/file-tree.js?v=${CACHEID}"></script>
-    <script src="scripts/dynamicTable.js?locale=${LANG}&v=${CACHEID}"></script>
-    <script src="scripts/rename-files.js?v=${CACHEID}"></script>
-    <script src="scripts/client.js?locale=${LANG}&v=${CACHEID}"></script>
-    <script src="scripts/contextmenu.js?locale=${LANG}&v=${CACHEID}"></script>
+
+    <script defer src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
+    <script defer src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
+    <script defer src="scripts/lib/mocha.min.js"></script>
+    <script defer src="scripts/cache.js?v=${CACHEID}"></script>
+    <script defer src="scripts/localpreferences.js?v=${CACHEID}"></script>
+    <script defer src="scripts/mocha-init.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script defer src="scripts/lib/clipboard.min.js"></script>
+    <script defer src="scripts/filesystem.js?v=${CACHEID}"></script>
+    <script defer src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script defer src="scripts/progressbar.js?v=${CACHEID}"></script>
+    <script defer src="scripts/piecesbar.js?v=${CACHEID}"></script>
+    <script defer src="scripts/file-tree.js?v=${CACHEID}"></script>
+    <script defer src="scripts/dynamicTable.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script defer src="scripts/rename-files.js?v=${CACHEID}"></script>
+    <script defer src="scripts/client.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script defer src="scripts/contextmenu.js?locale=${LANG}&v=${CACHEID}"></script>
 </head>
 
 <body>
     <noscript id="noscript">
-        <h1>QBT_TR(JavaScript Required! You must enable JavaScript for the Web UI to work properly)QBT_TR[CONTEXT=HttpServer]</h1>
+        <h1>QBT_TR(JavaScript Required! You must enable JavaScript for the WebUI to work properly)QBT_TR[CONTEXT=HttpServer]</h1>
     </noscript>
     <div id="desktop">
         <div id="desktopHeader">

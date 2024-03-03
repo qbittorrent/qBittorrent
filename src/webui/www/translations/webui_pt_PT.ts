@@ -2386,11 +2386,11 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>A mover (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>A mover (0)</translation>
     </message>
 </context>
 <context>
@@ -3519,10 +3519,6 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     <message>
         <source>New name:</source>
         <translation>Novo nome:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">A renomear)</translation>
     </message>
 </context>
 <context>

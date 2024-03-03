@@ -61,6 +61,9 @@ class IApplication
 public:
     virtual ~IApplication() = default;
 
+    virtual QString instanceName() const = 0;
+    virtual void setInstanceName(const QString &name) = 0;
+
     // FileLogger properties
     virtual bool isFileLoggerEnabled() const = 0;
     virtual void setFileLoggerEnabled(bool value) = 0;

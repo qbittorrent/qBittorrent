@@ -3,37 +3,43 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>qBittorrent QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]</title>
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="qBittorrent WebUI">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>qBittorrent WebUI</title>
+
     <link rel="icon" type="image/png" href="images/qbittorrent32.png" />
     <link rel="icon" type="image/svg+xml" href="images/qbittorrent-tray.svg" />
     <link rel="stylesheet" type="text/css" href="css/login.css?v=${CACHEID}" />
     <noscript>
         <link rel="stylesheet" type="text/css" href="css/noscript.css?v=${CACHEID}" />
     </noscript>
-    <script src="scripts/login.js?locale=${LANG}&v=${CACHEID}"></script>
+
+    <script defer src="scripts/login.js?locale=${LANG}&v=${CACHEID}"></script>
 </head>
 
 <body>
     <noscript id="noscript">
-        <h1>QBT_TR(JavaScript Required! You must enable JavaScript for the Web UI to work properly)QBT_TR[CONTEXT=HttpServer]</h1>
+        <h1>JavaScript Required! You must enable JavaScript for the WebUI to work properly</h1>
     </noscript>
     <div id="main">
-        <h1>qBittorrent QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]</h1>
+        <h1>qBittorrent WebUI</h1>
         <div id="logo" class="col">
             <img src="images/qbittorrent-tray.svg" alt="qBittorrent logo" />
         </div>
         <div id="formplace" class="col">
             <form id="loginform" method="post" onsubmit="submitLoginForm(event);">
                 <div class="row">
-                    <label for="username">QBT_TR(Username)QBT_TR[CONTEXT=HttpServer]</label><br />
+                    <label for="username">Username</label><br />
                     <input type="text" id="username" name="username" autocomplete="username" required />
                 </div>
                 <div class="row">
-                    <label for="password">QBT_TR(Password)QBT_TR[CONTEXT=HttpServer]</label><br />
+                    <label for="password">Password</label><br />
                     <input type="password" id="password" name="password" autocomplete="current-password" required />
                 </div>
                 <div class="row">
-                    <input type="submit" id="login" value="QBT_TR(Login)QBT_TR[CONTEXT=HttpServer]" />
+                    <input type="submit" id="login" value="Login" />
                 </div>
             </form>
         </div>

@@ -26,11 +26,32 @@
  * exception statement from your version.
  */
 
+#include <QList>
 #include <QObject>
 #include <QTest>
 
 #include "base/global.h"
 #include "base/utils/string.h"
+
+namespace
+{
+    class MyString
+    {
+    public:
+        MyString(const QString &str)
+            : m_str {str}
+        {
+        }
+
+        explicit operator QString() const
+        {
+            return m_str;
+        }
+
+    private:
+        QString m_str;
+    };
+}
 
 class TestUtilsString final : public QObject
 {
@@ -41,6 +62,21 @@ public:
     TestUtilsString() = default;
 
 private slots:
+    void testJoinIntoString() const
+    {
+        const QList<QString> list1;
+        QCOMPARE(Utils::String::joinIntoString(list1, u","_s), u""_s);
+
+        const QList<QString> list2 {u"a"_s};
+        QCOMPARE(Utils::String::joinIntoString(list2, u","_s), u"a"_s);
+
+        const QList<QString> list3 {u"a"_s, u"b"_s};
+        QCOMPARE(Utils::String::joinIntoString(list3, u" , "_s), u"a , b"_s);
+
+        const QList<MyString> list4 {u"a"_s, u"b"_s, u"cd"_s};
+        QCOMPARE(Utils::String::joinIntoString(list4, u"++"_s), u"a++b++cd"_s);
+    }
+
     void testSplitCommand() const
     {
         QCOMPARE(Utils::String::splitCommand({}), {});

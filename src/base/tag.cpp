@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,28 +26,66 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "tag.h"
 
-#include <QObject>
+#include <QDataStream>
 
-#include "base/pathfwd.h"
+#include "base/concepts/stringable.h"
 
-class QString;
-
-class IconProvider final : public QObject
+namespace
 {
-    Q_DISABLE_COPY_MOVE(IconProvider)
+    QString cleanTag(const QString &tag)
+    {
+        return tag.trimmed();
+    }
+}
 
-public:
-    static void initInstance();
-    static void freeInstance();
-    static IconProvider *instance();
+// `Tag` should satisfy `Stringable` concept in order to be stored in settings as string
+static_assert(Stringable<Tag>);
 
-    virtual Path getIconPath(const QString &iconId) const;
+Tag::Tag(const QString &tagStr)
+    : m_tagStr {cleanTag(tagStr)}
+{
+}
 
-protected:
-    explicit IconProvider(QObject *parent = nullptr);
-    ~IconProvider() = default;
+Tag::Tag(const std::string &tagStr)
+    : Tag(QString::fromStdString(tagStr))
+{
+}
 
-    static IconProvider *m_instance;
-};
+bool Tag::isValid() const
+{
+    if (isEmpty())
+        return false;
+
+    return !m_tagStr.contains(u',');
+}
+
+bool Tag::isEmpty() const
+{
+    return m_tagStr.isEmpty();
+}
+
+QString Tag::toString() const noexcept
+{
+    return m_tagStr;
+}
+
+Tag::operator QString() const noexcept
+{
+    return toString();
+}
+
+QDataStream &operator<<(QDataStream &out, const Tag &tag)
+{
+    out << tag.toString();
+    return out;
+}
+
+QDataStream &operator>>(QDataStream &in, Tag &tag)
+{
+    QString tagStr;
+    in >> tagStr;
+    tag = Tag(tagStr);
+    return in;
+}

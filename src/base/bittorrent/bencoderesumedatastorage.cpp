@@ -49,6 +49,7 @@
 #include "base/tagset.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
+#include "base/utils/sslkey.h"
 #include "base/utils/string.h"
 #include "infohash.h"
 #include "loadtorrentparams.h"
@@ -73,10 +74,20 @@ namespace BitTorrent
 
 namespace
 {
+    const char KEY_SSL_CERTIFICATE[] = "qBt-sslCertificate";
+    const char KEY_SSL_PRIVATE_KEY[] = "qBt-sslPrivateKey";
+    const char KEY_SSL_DH_PARAMS[] = "qBt-sslDhParams";
+
     template <typename LTStr>
     QString fromLTString(const LTStr &str)
     {
-        return QString::fromUtf8(str.data(), static_cast<int>(str.size()));
+        return QString::fromUtf8(str.data(), static_cast<qsizetype>(str.size()));
+    }
+
+    template <typename LTStr>
+    QByteArray toByteArray(const LTStr &str)
+    {
+        return {str.data(), static_cast<qsizetype>(str.size())};
     }
 
     using ListType = lt::entry::list_type;
@@ -85,8 +96,8 @@ namespace
     {
         ListType entryList;
         entryList.reserve(input.size());
-        for (const QString &setValue : input)
-            entryList.emplace_back(setValue.toStdString());
+        for (const Tag &setValue : input)
+            entryList.emplace_back(setValue.toString().toStdString());
         return entryList;
     }
 }
@@ -105,7 +116,7 @@ BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(const Path &path,
     }
 
     const QRegularExpression filenamePattern {u"^([A-Fa-f0-9]{40})\\.fastresume$"_s};
-    const QStringList filenames = QDir(path.data()).entryList(QStringList(u"*.fastresume"_s), QDir::Files, QDir::Unsorted);
+    const QStringList filenames = QDir(path.data()).entryList({u"*.fastresume"_s}, QDir::Files);
 
     m_registeredTorrents.reserve(filenames.size());
     for (const QString &filename : filenames)
@@ -251,6 +262,12 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
 
     torrentParams.stopCondition = Utils::String::toEnum(
                 fromLTString(resumeDataRoot.dict_find_string_value("qBt-stopCondition")), Torrent::StopCondition::None);
+    torrentParams.sslParameters =
+    {
+        .certificate = QSslCertificate(toByteArray(resumeDataRoot.dict_find_string_value(KEY_SSL_CERTIFICATE))),
+        .privateKey = Utils::SSLKey::load(toByteArray(resumeDataRoot.dict_find_string_value(KEY_SSL_PRIVATE_KEY))),
+        .dhParams = toByteArray(resumeDataRoot.dict_find_string_value(KEY_SSL_DH_PARAMS))
+    };
 
     const lt::string_view ratioLimitString = resumeDataRoot.dict_find_string_value("qBt-ratioLimit");
     if (ratioLimitString.empty())
@@ -263,7 +280,7 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
     {
         for (int i = 0; i < tagsNode.list_size(); ++i)
         {
-            const QString tag = fromLTString(tagsNode.list_string_value_at(i));
+            const Tag tag {fromLTString(tagsNode.list_string_value_at(i))};
             torrentParams.tags.insert(tag);
         }
     }
@@ -288,6 +305,16 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
             return nonstd::make_unexpected(tr("Cannot parse torrent info: %1").arg(QString::fromStdString(ec.message())));
 
         p.ti = torrentInfo;
+
+#ifdef QBT_USES_LIBTORRENT2
+        if (((p.info_hashes.has_v1() && (p.info_hashes.v1 != p.ti->info_hashes().v1))
+                || (p.info_hashes.has_v2() && (p.info_hashes.v2 != p.ti->info_hashes().v2))))
+#else
+        if (!p.info_hash.is_all_zeros() && (p.info_hash != p.ti->info_hash()))
+#endif
+        {
+            return nonstd::make_unexpected(tr("Mismatching info-hash detected in resume data"));
+        }
     }
 
     p.save_path = Profile::instance()->fromPortablePath(
@@ -398,6 +425,13 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
     data["qBt-contentLayout"] = Utils::String::fromEnum(resumeData.contentLayout).toStdString();
     data["qBt-firstLastPiecePriority"] = resumeData.firstLastPiecePriority;
     data["qBt-stopCondition"] = Utils::String::fromEnum(resumeData.stopCondition).toStdString();
+
+    if (!resumeData.sslParameters.certificate.isNull())
+        data[KEY_SSL_CERTIFICATE] = resumeData.sslParameters.certificate.toPem().toStdString();
+    if (!resumeData.sslParameters.privateKey.isNull())
+        data[KEY_SSL_PRIVATE_KEY] = resumeData.sslParameters.privateKey.toPem().toStdString();
+    if (!resumeData.sslParameters.dhParams.isEmpty())
+        data[KEY_SSL_DH_PARAMS] = resumeData.sslParameters.dhParams.toStdString();
 
     if (!resumeData.useAutoTMM)
     {

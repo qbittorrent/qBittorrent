@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014, 2017, 2022-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024  Radu Carpa <radu.carpa@cern.ch>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -53,7 +54,7 @@
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
 
-inline const Utils::Version<3, 2> API_VERSION {2, 10, 1};
+inline const Utils::Version<3, 2> API_VERSION {2, 10, 4};
 
 class QTimer;
 
@@ -61,6 +62,11 @@ class APIController;
 class AuthController;
 class FreeDiskSpaceChecker;
 class WebApplication;
+
+namespace BitTorrent
+{
+    class TorrentCreationManager;
+}
 
 class WebSession final : public ApplicationComponent<QObject>, public ISession
 {
@@ -72,15 +78,7 @@ public:
     bool hasExpired(qint64 seconds) const;
     void updateTimestamp();
 
-    template <typename T>
-    T *registerAPIController(const QString &scope)
-    {
-        static_assert(std::is_base_of_v<APIController, T>, "Class should be derived from APIController.");
-        auto *controller = new T(app(), this);
-        m_apiControllers[scope] = controller;
-        return controller;
-    }
-
+    void registerAPIController(const QString &scope, APIController *controller);
     APIController *getAPIController(const QString &scope) const;
 
 private:
@@ -172,6 +170,8 @@ private:
         {{u"search"_s, u"stop"_s}, Http::METHOD_POST},
         {{u"search"_s, u"uninstallPlugin"_s}, Http::METHOD_POST},
         {{u"search"_s, u"updatePlugins"_s}, Http::METHOD_POST},
+        {{u"torrentcreator"_s, u"addTask"_s}, Http::METHOD_POST},
+        {{u"torrentcreator"_s, u"deleteTask"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"add"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"addPeers"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"addTags"_s}, Http::METHOD_POST},
@@ -204,6 +204,7 @@ private:
         {{u"torrents"_s, u"setLocation"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setSavePath"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setShareLimits"_s}, Http::METHOD_POST},
+        {{u"torrents"_s, u"setSSLParameters"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setSuperSeeding"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setUploadLimit"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"toggleFirstLastPiecePrio"_s}, Http::METHOD_POST},
@@ -253,4 +254,5 @@ private:
     Utils::Thread::UniquePtr m_workerThread;
     FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
     QTimer *m_freeDiskSpaceCheckingTimer = nullptr;
+    BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
 };

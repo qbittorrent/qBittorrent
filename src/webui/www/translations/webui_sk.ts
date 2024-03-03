@@ -1742,15 +1742,15 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P prichádzajúca dĺžka (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
-        <translation type="unfinished" />
+        <translation>Cesta k binárke Pythonu (môže vyžadovať reštart):</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation type="unfinished" />
+        <translation>Vráti pôvodné (ak je prázdne)</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
@@ -1758,27 +1758,27 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation>Ak je zapnutý &amp;quot;zmiešaný režim&amp;quot; I2P torrenty majú povolené získavať peerov tiež z iných zdrojov ako z trackera a pripájať sa na bežné IP adresy bez poskytovania akejkoľvek anonymizácie. To môže byť užitočné, ak používateľ nemá záujem o anonymizáciu I2P, no napriek tomu chce byť schopný pripájať sa na I2P peerov.</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P prichádzajúce množstvo (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P odchádzajúca dĺžka (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P odchádzajúce množstvo (vyžaduje libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation>I2P (Experimentáne) (vyžadue libtorrent &amp;gt;= 2.0)</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
-        <translation type="unfinished" />
+        <translation>DHT bootstrap uzly:</translation>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
@@ -1794,15 +1794,15 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>(Auto detect if empty)</source>
-        <translation type="unfinished" />
+        <translation>(Automaticky zistiť, ak je prázdne)</translation>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>Ponechať neoznačené súbory v adresári ".unwanted"</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>Zapnúť Mark-of-the-Web (MOTW) pre stiahnuté súbory (vyžaduje macOS alebo Windows):</translation>
     </message>
 </context>
 <context>
@@ -2386,11 +2386,11 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>Presúvané (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>Presúvané (0)</translation>
     </message>
 </context>
 <context>
@@ -2546,7 +2546,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation type="unfinished" />
+        <translation>Znova ohlásiť o:</translation>
     </message>
 </context>
 <context>
@@ -2971,7 +2971,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Komentár:</translation>
     </message>
 </context>
 <context>
@@ -3520,10 +3520,6 @@ Kliknite na tlačidlo "Vyhľadať pluginy..." vpravo dole v okne, aby ste nejak�
     <message>
         <source>New name:</source>
         <translation>Nový názov:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Premenovanie)</translation>
     </message>
 </context>
 <context>

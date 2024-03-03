@@ -40,12 +40,15 @@ window.qBittorrent.Misc = (function() {
             friendlyPercentage: friendlyPercentage,
             friendlyFloat: friendlyFloat,
             parseHtmlLinks: parseHtmlLinks,
+            parseVersion: parseVersion,
             escapeHtml: escapeHtml,
             naturalSortCollator: naturalSortCollator,
             safeTrim: safeTrim,
             toFixedPointString: toFixedPointString,
             containsAllTerms: containsAllTerms,
             sleep: sleep,
+            // variables
+            FILTER_INPUT_DELAY: 400,
             MAX_ETA: 8640000
         };
     };
@@ -137,38 +140,34 @@ window.qBittorrent.Misc = (function() {
     };
 
     /*
-     * From: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-     */
-    if (!Date.prototype.toISOString) {
-        (function() {
-
-            function pad(number) {
-                if (number < 10) {
-                    return '0' + number;
-                }
-                return number;
-            }
-
-            Date.prototype.toISOString = function() {
-                return this.getUTCFullYear()
-                    + '-' + pad(this.getUTCMonth() + 1)
-                    + '-' + pad(this.getUTCDate())
-                    + 'T' + pad(this.getUTCHours())
-                    + ':' + pad(this.getUTCMinutes())
-                    + ':' + pad(this.getUTCSeconds())
-                    + '.' + (this.getUTCMilliseconds() / 1000).toFixed(3).slice(2, 5)
-                    + 'Z';
-            };
-
-        }());
-    }
-
-    /*
      * JS counterpart of the function in src/misc.cpp
      */
     const parseHtmlLinks = function(text) {
         const exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])/ig;
         return text.replace(exp, "<a target='_blank' rel='noopener noreferrer' href='$1'>$1</a>");
+    };
+
+    const parseVersion = function(versionString) {
+        const failure = {
+            valid: false
+        };
+
+        if (typeof versionString !== 'string')
+            return failure;
+
+        const tryToNumber = (str) => {
+            const num = Number(str);
+            return (isNaN(num) ? str : num);
+        };
+
+        const ver = versionString.split('.', 4).map(val => tryToNumber(val));
+        return {
+            valid: true,
+            major: ver[0],
+            minor: ver[1],
+            fix: ver[2],
+            patch: ver[3]
+        };
     };
 
     const escapeHtml = function(str) {
@@ -179,7 +178,8 @@ window.qBittorrent.Misc = (function() {
         return escapedString;
     };
 
-    const naturalSortCollator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#parameters
+    const naturalSortCollator = new Intl.Collator(undefined, { numeric: true, usage: 'sort' });
 
     const safeTrim = function(value) {
         try {

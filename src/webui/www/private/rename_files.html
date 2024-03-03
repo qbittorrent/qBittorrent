@@ -75,11 +75,11 @@
                 defaultEventType: 'keydown',
                 events: {
                     'Escape': function(event) {
-                        window.parent.closeWindows();
+                        window.parent.qBittorrent.Client.closeWindows();
                         event.preventDefault();
                     },
                     'Esc': function(event) {
-                        window.parent.closeWindows();
+                        window.parent.qBittorrent.Client.closeWindows();
                         event.preventDefault();
                     }
                 }
@@ -298,7 +298,7 @@
             $('renameButton').set('value', replaceOperation);
         });
         $('closeButton').addEvent('click', function() {
-            window.parent.closeWindows();
+            window.parent.qBittorrent.Client.closeWindows();
             event.preventDefault();
         });
         // synchronize header scrolling to table body

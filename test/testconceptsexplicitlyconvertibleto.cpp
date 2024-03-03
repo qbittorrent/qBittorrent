@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2023  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,41 +26,29 @@
  * exception statement from your version.
  */
 
-#include "iconprovider.h"
+#include <string>
 
-#include "base/path.h"
+#include <QObject>
+#include <QString>
+#include <QTest>
 
-IconProvider::IconProvider(QObject *parent)
-    : QObject(parent)
+#include "base/concepts/explicitlyconvertibleto.h"
+
+class TestExplicitlyConvertibleTo final : public QObject
 {
-}
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TestExplicitlyConvertibleTo)
 
-void IconProvider::initInstance()
-{
-    if (!m_instance)
-        m_instance = new IconProvider;
-}
+public:
+    TestExplicitlyConvertibleTo() = default;
 
-void IconProvider::freeInstance()
-{
-    delete m_instance;
-    m_instance = nullptr;
-}
+private slots:
+    void testExplicitlyConvertibleTo() const
+    {
+        static_assert(ExplicitlyConvertibleTo<const char *, std::string>);
+        static_assert(!ExplicitlyConvertibleTo<std::string, const char *>);
+    }
+};
 
-IconProvider *IconProvider::instance()
-{
-    return m_instance;
-}
-
-Path IconProvider::getIconPath(const QString &iconId) const
-{
-    // there are a few icons not available in svg
-    const Path pathSvg {u":/icons/" + iconId + u".svg"};
-    if (pathSvg.exists())
-        return pathSvg;
-
-    const Path pathPng {u":/icons/" + iconId + u".png"};
-    return pathPng;
-}
-
-IconProvider *IconProvider::m_instance = nullptr;
+QTEST_APPLESS_MAIN(TestExplicitlyConvertibleTo)
+#include "testconceptsexplicitlyconvertibleto.moc"

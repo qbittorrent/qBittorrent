@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -65,12 +65,6 @@ QJsonObject BitTorrent::CategoryOptions::toJSON() const
         {OPTION_SAVEPATH, savePath.data()},
         {OPTION_DOWNLOADPATH, downloadPathValue}
     };
-}
-
-bool BitTorrent::operator==(const BitTorrent::CategoryOptions::DownloadPathOption &left, const BitTorrent::CategoryOptions::DownloadPathOption &right)
-{
-    return ((left.enabled == right.enabled)
-            && (left.path == right.path));
 }
 
 bool BitTorrent::operator==(const BitTorrent::CategoryOptions &left, const BitTorrent::CategoryOptions &right)

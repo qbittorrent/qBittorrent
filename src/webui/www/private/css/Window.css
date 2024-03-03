@@ -1,3 +1,5 @@
+@import url("palette.css");
+
 /*
 
 Window.css for Mocha UI
@@ -19,12 +21,15 @@ Required by:
 ---------------------------------------------------------------- */
 
 .mocha {
-    background-color: #e5e5e5;
+    background-color: var(--color-background-default);
     display: none;
     overflow: hidden;
 }
 
 .mochaOverlay {
+    background-color: var(--color-background-default);
+    border-radius: 5px;
+    height: auto !important; /* also fixes out of block issue */
     left: 0;
     position: absolute; /* This is also set in theme.js in order to make theme transitions smoother */
     top: 0;
@@ -42,13 +47,13 @@ Required by:
 */
 
 .mochaTitlebar {
-    background: url("../images/spacer.gif?from=fafafa&to=e5e5e5");
+    background-color: var(--color-background-default);
+    border-radius: 5px;
     overflow: hidden;
     width: 100%;
 }
 
 .mochaTitlebar h3 {
-    color: #888;
     font-size: 12px;
     font-weight: bold;
     line-height: 15px;
@@ -56,14 +61,9 @@ Required by:
     padding: 5px 10px 4px 12px;
 }
 
-.mocha.isFocused .mochaTitlebar h3 {
-    color: #181818;
-}
-
 .mochaToolbarWrapper {
-    background: #f1f1f1;
-    border-top: 1px solid #d9d9d9;
-    height: 29px;
+    background-color: var(--color-background-popup);
+    height: auto !important;
     overflow: hidden;
     position: relative;
     width: 100%; /* For IE */
@@ -71,22 +71,24 @@ Required by:
 
 div.mochaToolbarWrapper.bottom {
     border: 0;
-    border-bottom: 1px solid #d9d9d9;
+    border-bottom: 1px solid var(--color-border-default);
 }
 
 .mochaToolbar {
-    border-top: 1px solid #fff;
+    border-top: 1px solid var(--color-border-default);
+    height: auto !important;
+    padding-top: 4px;
     width: 100%; /* For IE */
 }
 
 .mochaContentBorder {
-    border-bottom: 1px solid #dadada;
-    border-top: 1px solid #dadada;
+    border-bottom: 1px solid var(--color-border-default);
+    border-top: 1px solid var(--color-border-default);
 }
 
 /* Has a fixed height and scrollbars if required. */
 .mochaContentWrapper {
-    background: #fff;
+    background-color: var(--color-background-popup);
     font-size: 12px;
     overflow: auto;
 }
@@ -115,13 +117,12 @@ div.mochaToolbarWrapper.bottom {
 
 /* Bottom right resize handle */
 .mocha .cornerSE {
-    background: #fefefe; /* This is the color of the visible resize handle */
+    background-color: var(--color-background-default);
     height: 20px;
     width: 20px;
 }
 
 .mochaCanvasHeader {
-    background: transparent;
     left: 0;
     overflow: hidden;
     position: absolute;
@@ -131,7 +132,6 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mochaControls {
-    background: transparent;
     height: 14px;
     position: absolute;
     right: 8px;
@@ -141,7 +141,6 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mochaCanvasControls {
-    background: transparent;
     position: absolute;
     right: 8px;
     top: 8px;
@@ -159,8 +158,8 @@ div.mochaToolbarWrapper.bottom {
 .mochaMinimizeButton,
 .mochaMaximizeButton,
 .mochaCloseButton {
-    background-color: #fff;
-    color: #666;
+    background-color: var(--color-background-default);
+    color: var(--color-text-default);
     cursor: pointer;
     float: right;
     font-size: 1px;

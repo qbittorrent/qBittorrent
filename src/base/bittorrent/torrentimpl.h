@@ -51,6 +51,7 @@
 #include "base/tagset.h"
 #include "infohash.h"
 #include "speedmonitor.h"
+#include "sslparameters.h"
 #include "torrent.h"
 #include "torrentcontentlayout.h"
 #include "torrentinfo.h"
@@ -128,9 +129,9 @@ namespace BitTorrent
         bool setCategory(const QString &category) override;
 
         TagSet tags() const override;
-        bool hasTag(const QString &tag) const override;
-        bool addTag(const QString &tag) override;
-        bool removeTag(const QString &tag) override;
+        bool hasTag(const Tag &tag) const override;
+        bool addTag(const Tag &tag) override;
+        bool removeTag(const Tag &tag) override;
         void removeAllTags() override;
 
         int filesCount() const override;
@@ -243,6 +244,9 @@ namespace BitTorrent
 
         StopCondition stopCondition() const override;
         void setStopCondition(StopCondition stopCondition) override;
+        SSLParameters getSSLParameters() const override;
+        void setSSLParameters(const SSLParameters &sslParams) override;
+        bool applySSLParameters();
 
         QString createMagnetURI() const override;
         nonstd::expected<QByteArray, QString> exportToBuffer() const override;
@@ -264,7 +268,8 @@ namespace BitTorrent
         void handleCategoryOptionsChanged();
         void handleAppendExtensionToggled();
         void handleUnwantedFolderToggled();
-        void saveResumeData(lt::resume_data_flags_t flags = {});
+        void requestResumeData(lt::resume_data_flags_t flags = {});
+        void deferredRequestResumeData();
         void handleMoveStorageJobFinished(const Path &path, MoveStorageContext context, bool hasOutstandingJob);
         void fileSearchFinished(const Path &savePath, const PathList &fileNames);
         TrackerEntry updateTrackerEntry(const lt::announce_entry &announceEntry, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo);
@@ -362,6 +367,7 @@ namespace BitTorrent
         bool m_useAutoTMM;
         bool m_isStopped;
         StopCondition m_stopCondition = StopCondition::None;
+        SSLParameters m_sslParams;
 
         bool m_unchecked = false;
 
@@ -372,5 +378,7 @@ namespace BitTorrent
 
         QBitArray m_pieces;
         QVector<std::int64_t> m_filesProgress;
+
+        bool m_deferredRequestResumeDataInvoked = false;
     };
 }

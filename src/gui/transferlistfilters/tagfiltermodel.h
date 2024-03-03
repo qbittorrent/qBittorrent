@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2017  Tony Gregerson <tony.gregerson@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -55,26 +56,24 @@ public:
     QModelIndex index(int row, int column, const QModelIndex &parent = {}) const override;
     int rowCount(const QModelIndex &parent = {}) const override;
 
-    QModelIndex index(const QString &tag) const;
-    QString tag(const QModelIndex &index) const;
+    QModelIndex index(const Tag &tag) const;
+    Tag tag(const QModelIndex &index) const;
 
 private slots:
-    void tagAdded(const QString &tag);
-    void tagRemoved(const QString &tag);
-    void torrentTagAdded(BitTorrent::Torrent *torrent, const QString &tag);
-    void torrentTagRemoved(BitTorrent::Torrent *, const QString &tag);
+    void tagAdded(const Tag &tag);
+    void tagRemoved(const Tag &tag);
+    void torrentTagAdded(BitTorrent::Torrent *torrent, const Tag &tag);
+    void torrentTagRemoved(BitTorrent::Torrent *, const Tag &tag);
     void torrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents);
     void torrentAboutToBeRemoved(BitTorrent::Torrent *torrent);
 
 private:
-    static QString tagDisplayName(const QString &tag);
-
     void populate();
-    void addToModel(const QString &tag, int count);
+    void addToModel(const Tag &tag, int count);
     void removeFromModel(int row);
     bool isValidRow(int row) const;
-    int findRow(const QString &tag) const;
-    TagModelItem *findItem(const QString &tag);
+    int findRow(const Tag &tag) const;
+    TagModelItem *findItem(const Tag &tag);
     QVector<TagModelItem *> findItems(const TagSet &tags);
     TagModelItem *allTagsItem();
     TagModelItem *untaggedItem();

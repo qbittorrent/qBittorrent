@@ -1330,7 +1330,7 @@
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation type="unfinished" />
+        <translation>Procenttröskelandel av peer-omsättning:</translation>
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
@@ -1362,7 +1362,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation type="unfinished" />
+        <translation>Procentandel för bortkoppling av peer-omsättning:</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
@@ -1374,7 +1374,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation type="unfinished" />
+        <translation>Intervall för bortkoppling av peer-omsättning:</translation>
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
@@ -1746,7 +1746,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
-        <translation>Körbar Python sökväg (kan kräva omstart):</translation>
+        <translation>Python körbar sökväg (kan kräva omstart):</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
@@ -1758,7 +1758,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation>Om &amp;quot;blandat läge&amp;quot; är aktiverat, tillåts I2P-torrenter att även få jämlikar från andra källor än spåraren och ansluta till vanliga IP-adresser, utan att ge någon anonymisering. Detta kan vara användbart om användaren inte är intresserad av anonymisering av I2P, men ändå vill kunna ansluta till I2P-jämlikar.</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1794,15 +1794,15 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>(Auto detect if empty)</source>
-        <translation>(Detektera automatiskt om den är tom)</translation>
+        <translation>(Detektera automatiskt om tom)</translation>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation type="unfinished" />
+        <translation>Behåll omarkerade filer i mappen ".unwanted".</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>Aktivera Mark-of-the-Web (MOTW) för hämtade filer (kräver macOS eller Windows):</translation>
     </message>
 </context>
 <context>
@@ -2006,7 +2006,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Reannounce In:</source>
-        <translation>Annonseras igen:</translation>
+        <translation>Annonsera igen om:</translation>
     </message>
     <message>
         <source>Last Seen Complete:</source>
@@ -2386,11 +2386,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>Flyttar (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>Flyttar (0)</translation>
     </message>
 </context>
 <context>
@@ -2546,7 +2546,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation>Återannonsera om</translation>
+        <translation>Annonsera igen om</translation>
     </message>
 </context>
 <context>
@@ -2971,7 +2971,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Kommentar</translation>
     </message>
 </context>
 <context>
@@ -3519,10 +3519,6 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     <message>
         <source>New name:</source>
         <translation>Nytt namn:</translation>
-    </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="vanished">Byter namn)</translation>
     </message>
 </context>
 <context>

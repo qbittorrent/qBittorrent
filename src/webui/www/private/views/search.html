@@ -1,12 +1,13 @@
 <style>
     #searchPattern {
         width: 300px;
-        line-height: 2em;
-        padding: 1px 5px 1px 2em;
         background-image: url("images/edit-find.svg");
         background-repeat: no-repeat;
         background-size: 1.5em;
         background-position: left;
+        border: 1px solid var(--color-border-default);
+        border-radius: 3px;
+        padding: 4px 2px 4px 25px;
     }
 
     #categorySelect {
@@ -15,10 +16,6 @@
 
     #pluginsSelect {
         width: 150px;
-    }
-
-    #startSearchButton {
-        width: 90px;
     }
 
     #searchResultsNoPlugins {
@@ -233,7 +230,6 @@
             max: 0.00,
             maxUnit: 3
         };
-        let prevNameFilterValue;
         let selectedCategory = "QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]";
         let selectedPlugin = "all";
         let prevSelectedPlugin;
@@ -258,18 +254,17 @@
             searchResultsTable.setup('searchResultsTableDiv', 'searchResultsTableFixedHeaderDiv', searchResultsTableContextMenu);
             getPlugins();
 
-            let searchInNameFilterTimer = null;
             // listen for changes to searchInNameFilter
-            $('searchInNameFilter').addEvent('input', function() {
-                const value = $('searchInNameFilter').get("value");
-                if (value !== prevNameFilterValue) {
-                    prevNameFilterValue = value;
-                    clearTimeout(searchInNameFilterTimer);
-                    searchInNameFilterTimer = setTimeout(function() {
-                        searchText.filterPattern = value;
-                        searchFilterChanged();
-                    }, 400);
-                }
+            let searchInNameFilterTimer = -1;
+            $('searchInNameFilter').addEvent('input', () => {
+                clearTimeout(searchInNameFilterTimer);
+                searchInNameFilterTimer = setTimeout(() => {
+                    searchInNameFilterTimer = -1;
+
+                    const value = $('searchInNameFilter').get("value");
+                    searchText.filterPattern = value;
+                    searchFilterChanged();
+                }, window.qBittorrent.Misc.FILTER_INPUT_DELAY);
             });
 
             new Keyboard({
@@ -306,7 +301,6 @@
             const url = new URI('api/v2/search/start');
             new Request.JSON({
                 url: url,
-                noCache: true,
                 method: 'post',
                 data: {
                     pattern: pattern,
@@ -326,7 +320,6 @@
             const url = new URI('api/v2/search/stop');
             new Request({
                 url: url,
-                noCache: true,
                 method: 'post',
                 data: {
                     id: activeSearchId
@@ -518,8 +511,8 @@
         const getPlugins = function() {
             new Request.JSON({
                 url: new URI('api/v2/search/plugins'),
-                noCache: true,
                 method: 'get',
+                noCache: true,
                 onSuccess: function(response) {
                     if (response !== prevSearchPluginsResponse) {
                         prevSearchPluginsResponse = response;
@@ -544,14 +537,10 @@
                             $('searchResultsTableContainer').style.display = "block";
 
                             // sort plugins alphabetically
-                            const allPlugins = searchPlugins.sort(function(pluginA, pluginB) {
-                                const a = pluginA.fullName.toLowerCase();
-                                const b = pluginB.fullName.toLowerCase();
-                                if (a < b)
-                                    return -1;
-                                if (a > b)
-                                    return 1;
-                                return 0;
+                            const allPlugins = searchPlugins.sort((left, right) => {
+                                const leftName = left.fullName;
+                                const rightName = right.fullName;
+                                return window.qBittorrent.Misc.naturalSortCollator.compare(leftName, rightName);
                             });
 
                             allPlugins.each(function(plugin) {
@@ -648,8 +637,8 @@
             const url = new URI('api/v2/search/results');
             new Request.JSON({
                 url: url,
-                noCache: true,
                 method: 'get',
+                noCache: true,
                 data: {
                     id: activeSearchId,
                     limit: maxResults,

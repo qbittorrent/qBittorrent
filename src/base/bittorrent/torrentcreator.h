@@ -1,5 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024  Radu Carpa <radu.carpa@cern.ch>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -53,16 +55,23 @@ namespace BitTorrent
 #ifdef QBT_USES_LIBTORRENT2
         TorrentFormat torrentFormat = TorrentFormat::Hybrid;
 #else
-        bool isAlignmentOptimized;
-        int paddedFileSizeLimit;
+        bool isAlignmentOptimized = false;
+        int paddedFileSizeLimit = 0;
 #endif
         int pieceSize = 0;
-        Path inputPath;
-        Path savePath;
+        Path sourcePath;
+        Path torrentFilePath;
         QString comment;
         QString source;
         QStringList trackers;
         QStringList urlSeeds;
+    };
+
+    struct TorrentCreatorResult
+    {
+        Path torrentFilePath;
+        Path savePath;
+        int pieceSize;
     };
 
     class TorrentCreator final : public QObject, public QRunnable
@@ -73,24 +82,26 @@ namespace BitTorrent
     public:
         explicit TorrentCreator(const TorrentCreatorParams &params, QObject *parent = nullptr);
 
-        void run() override;
-
+        const TorrentCreatorParams &params() const;
         bool isInterruptionRequested() const;
 
-    public slots:
-        void requestInterruption();
+        void run() override;
 
 #ifdef QBT_USES_LIBTORRENT2
         static int calculateTotalPieces(const Path &inputPath, int pieceSize, TorrentFormat torrentFormat);
 #else
-        static int calculateTotalPieces(const Path &inputPath
-            , const int pieceSize, const bool isAlignmentOptimized, int paddedFileSizeLimit);
+        static int calculateTotalPieces(const Path &inputPath, const int pieceSize
+                , const bool isAlignmentOptimized, int paddedFileSizeLimit);
 #endif
 
+    public slots:
+        void requestInterruption();
+
     signals:
+        void started();
         void creationFailure(const QString &msg);
-        void creationSuccess(const Path &path, const Path &branchPath);
-        void updateProgress(int progress);
+        void creationSuccess(const TorrentCreatorResult &result);
+        void progressUpdated(int progress);
 
     private:
         void sendProgressSignal(int currentPieceIdx, int totalPieces);

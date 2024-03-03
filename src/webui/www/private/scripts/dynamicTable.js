@@ -701,10 +701,7 @@ window.qBittorrent.DynamicTable = (function() {
             return null;
         },
 
-        updateTable: function(fullUpdate) {
-            if (fullUpdate === undefined)
-                fullUpdate = false;
-
+        updateTable: function(fullUpdate = false) {
             const rows = this.getFilteredAndSortedRows();
 
             for (let i = 0; i < this.selectedRows.length; ++i)
@@ -817,8 +814,7 @@ window.qBittorrent.DynamicTable = (function() {
             let rowPos = rows.length;
 
             while ((rowPos < trs.length) && (trs.length > 0)) {
-                trs[trs.length - 1].dispose();
-                trs.pop();
+                trs.pop().destroy();
             }
         },
 
@@ -830,7 +826,7 @@ window.qBittorrent.DynamicTable = (function() {
 
             const tds = tr.getElements('td');
             for (let i = 0; i < this.columns.length; ++i) {
-                if (Object.prototype.hasOwnProperty.call(data, this.columns[i].dataProperties[0]))
+                if (Object.hasOwn(data, this.columns[i].dataProperties[0]))
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};
@@ -840,7 +836,7 @@ window.qBittorrent.DynamicTable = (function() {
             this.selectedRows.erase(rowId);
             const tr = this.getTrByRowId(rowId);
             if (tr !== null) {
-                tr.dispose();
+                tr.destroy();
                 this.rows.erase(rowId);
                 return true;
             }
@@ -852,8 +848,7 @@ window.qBittorrent.DynamicTable = (function() {
             this.rows.empty();
             const trs = this.tableBody.getElements('tr');
             while (trs.length > 0) {
-                trs[trs.length - 1].dispose();
-                trs.pop();
+                trs.pop().destroy();
             }
         },
 
@@ -1388,50 +1383,41 @@ window.qBittorrent.DynamicTable = (function() {
                     break;
             }
 
-            const categoryHashInt = parseInt(categoryHash);
-            if (!isNaN(categoryHashInt)) {
-                switch (categoryHashInt) {
-                    case CATEGORIES_ALL:
-                        break; // do nothing
-                    case CATEGORIES_UNCATEGORIZED:
-                        if (row['full_data'].category.length !== 0)
+            switch (categoryHash) {
+                case CATEGORIES_ALL:
+                    break; // do nothing
+                case CATEGORIES_UNCATEGORIZED:
+                    if (row['full_data'].category.length !== 0)
+                        return false;
+                    break; // do nothing
+                default:
+                    if (!useSubcategories) {
+                        if (categoryHash !== window.qBittorrent.Client.genHash(row['full_data'].category))
                             return false;
-                        break; // do nothing
-                    default:
-                        if (!useSubcategories) {
-                            if (categoryHashInt !== genHash(row['full_data'].category))
-                                return false;
-                        }
-                        else {
-                            const selectedCategoryName = category_list[categoryHash].name + "/";
-                            const torrentCategoryName = row['full_data'].category + "/";
-                            if (!torrentCategoryName.startsWith(selectedCategoryName))
-                                return false;
-                        }
-                }
+                    }
+                    else {
+                        const selectedCategoryName = category_list.get(categoryHash).name + "/";
+                        const torrentCategoryName = row['full_data'].category + "/";
+                        if (!torrentCategoryName.startsWith(selectedCategoryName))
+                            return false;
+                    }
+                    break;
             }
 
-            const tagHashInt = parseInt(tagHash);
-            const isNumber = !isNaN(tagHashInt);
-            if (isNumber) {
-                switch (tagHashInt) {
-                    case TAGS_ALL:
-                        break; // do nothing
+            switch (tagHash) {
+                case TAGS_ALL:
+                    break; // do nothing
 
-                    case TAGS_UNTAGGED:
-                        if (row['full_data'].tags.length !== 0)
-                            return false;
-                        break; // do nothing
+                case TAGS_UNTAGGED:
+                    if (row['full_data'].tags.length !== 0)
+                        return false;
+                    break; // do nothing
 
-                    default: {
-                        let rowTags = row['full_data'].tags.split(', ');
-                        rowTags = rowTags.map(function(tag) {
-                            return genHash(tag);
-                        });
-                        if (!rowTags.contains(tagHashInt))
-                            return false;
-                        break;
-                    }
+                default: {
+                    const tagHashes = row['full_data'].tags.split(', ').map(tag => window.qBittorrent.Client.genHash(tag));
+                    if (!tagHashes.contains(tagHash))
+                        return false;
+                    break;
                 }
             }
 
@@ -1462,9 +1448,10 @@ window.qBittorrent.DynamicTable = (function() {
             let cnt = 0;
             const rows = this.rows.getValues();
 
-            for (let i = 0; i < rows.length; ++i)
+            for (let i = 0; i < rows.length; ++i) {
                 if (this.applyFilter(rows[i], filterName, categoryHash, tagHash, trackerHash, null))
                     ++cnt;
+            }
             return cnt;
         },
 
@@ -1472,9 +1459,10 @@ window.qBittorrent.DynamicTable = (function() {
             const rowsHashes = [];
             const rows = this.rows.getValues();
 
-            for (let i = 0; i < rows.length; ++i)
+            for (let i = 0; i < rows.length; ++i) {
                 if (this.applyFilter(rows[i], filterName, categoryHash, tagHash, trackerHash, null))
                     rowsHashes.push(rows[i]['rowId']);
+            }
 
             return rowsHashes;
         },
@@ -1562,7 +1550,7 @@ window.qBittorrent.DynamicTable = (function() {
 
                 if (!country_code) {
                     if (td.getChildren('img').length > 0)
-                        td.getChildren('img')[0].dispose();
+                        td.getChildren('img')[0].destroy();
                     return;
                 }
 
@@ -2643,7 +2631,7 @@ window.qBittorrent.DynamicTable = (function() {
 
             const tds = tr.getElements('td');
             for (let i = 0; i < this.columns.length; ++i) {
-                if (Object.prototype.hasOwnProperty.call(data, this.columns[i].dataProperties[0]))
+                if (Object.hasOwn(data, this.columns[i].dataProperties[0]))
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};
@@ -2788,7 +2776,7 @@ window.qBittorrent.DynamicTable = (function() {
 
             const tds = tr.getElements('td');
             for (let i = 0; i < this.columns.length; ++i) {
-                if (Object.prototype.hasOwnProperty.call(data, this.columns[i].dataProperties[0]))
+                if (Object.hasOwn(data, this.columns[i].dataProperties[0]))
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};
@@ -3069,7 +3057,7 @@ window.qBittorrent.DynamicTable = (function() {
 
             const tds = tr.getElements('td');
             for (let i = 0; i < this.columns.length; ++i) {
-                if (Object.prototype.hasOwnProperty.call(data, this.columns[i].dataProperties[0]))
+                if (Object.hasOwn(data, this.columns[i].dataProperties[0]))
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};

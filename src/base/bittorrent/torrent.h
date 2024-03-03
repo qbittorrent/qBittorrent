@@ -53,6 +53,7 @@ namespace BitTorrent
     class TorrentID;
     class TorrentInfo;
     struct PeerAddress;
+    struct SSLParameters;
     struct TrackerEntry;
 
     // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
@@ -202,9 +203,9 @@ namespace BitTorrent
         virtual bool setCategory(const QString &category) = 0;
 
         virtual TagSet tags() const = 0;
-        virtual bool hasTag(const QString &tag) const = 0;
-        virtual bool addTag(const QString &tag) = 0;
-        virtual bool removeTag(const QString &tag) = 0;
+        virtual bool hasTag(const Tag &tag) const = 0;
+        virtual bool addTag(const Tag &tag) = 0;
+        virtual bool removeTag(const Tag &tag) = 0;
         virtual void removeAllTags() = 0;
 
         virtual int piecesCount() const = 0;
@@ -306,6 +307,8 @@ namespace BitTorrent
 
         virtual StopCondition stopCondition() const = 0;
         virtual void setStopCondition(StopCondition stopCondition) = 0;
+        virtual SSLParameters getSSLParameters() const = 0;
+        virtual void setSSLParameters(const SSLParameters &sslParams) = 0;
 
         virtual QString createMagnetURI() const = 0;
         virtual nonstd::expected<QByteArray, QString> exportToBuffer() const = 0;

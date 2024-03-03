@@ -33,6 +33,7 @@
 #include <QObject>
 
 #include "base/pathfwd.h"
+#include "base/tagset.h"
 #include "addtorrentparams.h"
 #include "categoryoptions.h"
 #include "trackerentry.h"
@@ -155,13 +156,17 @@ namespace BitTorrent
         virtual void setDownloadPathEnabled(bool enabled) = 0;
 
         static bool isValidCategoryName(const QString &name);
+        static QString subcategoryName(const QString &category);
+        static QString parentCategoryName(const QString &category);
         // returns category itself and all top level categories
         static QStringList expandCategory(const QString &category);
 
         virtual QStringList categories() const = 0;
         virtual CategoryOptions categoryOptions(const QString &categoryName) const = 0;
         virtual Path categorySavePath(const QString &categoryName) const = 0;
+        virtual Path categorySavePath(const QString &categoryName, const CategoryOptions &options) const = 0;
         virtual Path categoryDownloadPath(const QString &categoryName) const = 0;
+        virtual Path categoryDownloadPath(const QString &categoryName, const CategoryOptions &options) const = 0;
         virtual bool addCategory(const QString &name, const CategoryOptions &options = {}) = 0;
         virtual bool editCategory(const QString &name, const CategoryOptions &options) = 0;
         virtual bool removeCategory(const QString &name) = 0;
@@ -173,11 +178,10 @@ namespace BitTorrent
         virtual Path suggestedSavePath(const QString &categoryName, std::optional<bool> useAutoTMM) const = 0;
         virtual Path suggestedDownloadPath(const QString &categoryName, std::optional<bool> useAutoTMM) const = 0;
 
-        static bool isValidTag(const QString &tag);
-        virtual QSet<QString> tags() const = 0;
-        virtual bool hasTag(const QString &tag) const = 0;
-        virtual bool addTag(const QString &tag) = 0;
-        virtual bool removeTag(const QString &tag) = 0;
+        virtual TagSet tags() const = 0;
+        virtual bool hasTag(const Tag &tag) const = 0;
+        virtual bool addTag(const Tag &tag) = 0;
+        virtual bool removeTag(const Tag &tag) = 0;
 
         // Torrent Management Mode subsystem (TMM)
         //
@@ -259,6 +263,10 @@ namespace BitTorrent
         virtual void setSaveResumeDataInterval(int value) = 0;
         virtual int port() const = 0;
         virtual void setPort(int port) = 0;
+        virtual bool isSSLEnabled() const = 0;
+        virtual void setSSLEnabled(bool enabled) = 0;
+        virtual int sslPort() const = 0;
+        virtual void setSSLPort(int port) = 0;
         virtual QString networkInterface() const = 0;
         virtual void setNetworkInterface(const QString &iface) = 0;
         virtual QString networkInterfaceName() const = 0;
@@ -469,8 +477,8 @@ namespace BitTorrent
         void speedLimitModeChanged(bool alternative);
         void statsUpdated();
         void subcategoriesSupportChanged();
-        void tagAdded(const QString &tag);
-        void tagRemoved(const QString &tag);
+        void tagAdded(const Tag &tag);
+        void tagRemoved(const Tag &tag);
         void torrentAboutToBeRemoved(Torrent *torrent);
         void torrentAdded(Torrent *torrent);
         void torrentCategoryChanged(Torrent *torrent, const QString &oldCategory);
@@ -483,8 +491,8 @@ namespace BitTorrent
         void torrentSavingModeChanged(Torrent *torrent);
         void torrentsLoaded(const QVector<Torrent *> &torrents);
         void torrentsUpdated(const QVector<Torrent *> &torrents);
-        void torrentTagAdded(Torrent *torrent, const QString &tag);
-        void torrentTagRemoved(Torrent *torrent, const QString &tag);
+        void torrentTagAdded(Torrent *torrent, const Tag &tag);
+        void torrentTagRemoved(Torrent *torrent, const Tag &tag);
         void trackerError(Torrent *torrent, const QString &tracker);
         void trackersAdded(Torrent *torrent, const QVector<TrackerEntry> &trackers);
         void trackersChanged(Torrent *torrent);
