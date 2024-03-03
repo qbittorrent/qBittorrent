@@ -1,123 +1,119 @@
-;Nsis translations
+﻿!define TR_DIR "${__FILEDIR__}\installer-translations"
+!define FALLBACK_EXTRA "${TR_DIR}\EnglishExtra.nsh"
 
 !insertmacro MUI_LANGUAGE "English"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\EnglishExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Afrikaans"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\AfrikaansExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Albanian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\AlbanianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Arabic"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\ArabicExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Basque"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\BasqueExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Belarusian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\BelarusianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Bosnian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\BosnianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Breton"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\BretonExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Bulgarian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\BulgarianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Catalan"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\CatalanExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Croatian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\CroatianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Czech"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\CzechExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Danish"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\DanishExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Dutch"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\DutchExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Esperanto"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\EsperantoExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Estonian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\EstonianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Farsi"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\FarsiExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Finnish"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\FinnishExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "French"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\FrenchExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Galician"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\GalicianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "German"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\GermanExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Greek"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\GreekExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Hebrew"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\HebrewExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Hungarian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\HungarianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Icelandic"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\IcelandicExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Indonesian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\IndonesianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Irish"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\IrishExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Italian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\ItalianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Japanese"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\JapaneseExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Korean"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\KoreanExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Kurdish"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\KurdishExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Latvian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\LatvianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Lithuanian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\LithuanianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Luxembourgish"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\LuxembourgishExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Macedonian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\MacedonianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Malay"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\MalayExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Mongolian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\MongolianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Norwegian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\NorwegianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "NorwegianNynorsk"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\NorwegianNynorskExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Polish"
-!insertmacro MUI_LANGUAGE "Portuguese"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\PolishExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "PortugueseBR"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\PortugueseBRExtra.nsh" "${FALLBACK_EXTRA}"
+!insertmacro MUI_LANGUAGE "Portuguese"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\PortugueseExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Romanian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\RomanianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Russian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\RussianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Serbian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\SerbianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "SerbianLatin"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\SerbianLatinExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "SimpChinese"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\SimpChineseExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Slovak"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\SlovakExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Slovenian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\SlovenianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Spanish"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\SpanishExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "SpanishInternational"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\SpanishInternationalExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Swedish"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\SwedishExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Thai"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\ThaiExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "TradChinese"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\TradChineseExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Turkish"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\TurkishExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Ukrainian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\UkrainianExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Uzbek"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\UzbekExtra.nsh" "${FALLBACK_EXTRA}"
 !insertmacro MUI_LANGUAGE "Welsh"
-
-;Installer/Uninstaller translations
-!addincludedir installer-translations
-
-;The languages should be in alphabetical order
-!include afrikaans.nsh
-!include albanian.nsh
-!include arabic.nsh
-!include basque.nsh
-!include belarusian.nsh
-!include bosnian.nsh
-!include breton.nsh
-!include bulgarian.nsh
-!include catalan.nsh
-!include croatian.nsh
-!include czech.nsh
-!include danish.nsh
-!include dutch.nsh
-!include english.nsh
-!include esperanto.nsh
-!include estonian.nsh
-!include farsi.nsh
-!include finnish.nsh
-!include french.nsh
-!include galician.nsh
-!include german.nsh
-!include greek.nsh
-!include hebrew.nsh
-!include hungarian.nsh
-!include icelandic.nsh
-!include indonesian.nsh
-!include irish.nsh
-!include italian.nsh
-!include japanese.nsh
-!include korean.nsh
-!include kurdish.nsh
-!include latvian.nsh
-!include lithuanian.nsh
-!include luxembourgish.nsh
-!include macedonian.nsh
-!include malay.nsh
-!include mongolian.nsh
-!include norwegian.nsh
-!include norwegiannynorsk.nsh
-!include polish.nsh
-!include portuguese.nsh
-!include portuguesebr.nsh
-!include romanian.nsh
-!include russian.nsh
-!include serbian.nsh
-!include serbianlatin.nsh
-!include simpchinese.nsh
-!include slovak.nsh
-!include slovenian.nsh
-!include spanish.nsh
-!include spanishinternational.nsh
-!include swedish.nsh
-!include thai.nsh
-!include tradchinese.nsh
-!include turkish.nsh
-!include ukrainian.nsh
-!include uzbek.nsh
-!include welsh.nsh
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${TR_DIR}\WelshExtra.nsh" "${FALLBACK_EXTRA}"
