@@ -116,3 +116,6 @@
 !insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\UzbekExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Welsh"
 !insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\WelshExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
+
+!insertmacro MUI_LANGUAGEEX "${__FILEDIR__}\installer-translations\StubNSIS" "Filipino"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\FilipinoExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
