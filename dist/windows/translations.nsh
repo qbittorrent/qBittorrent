@@ -1,123 +1,118 @@
-;Nsis translations
-
-!insertmacro MUI_LANGUAGE "English"
+﻿!insertmacro MUI_LANGUAGE "English"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\EnglishExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Afrikaans"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\AfrikaansExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Albanian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\AlbanianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Arabic"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\ArabicExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Basque"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\BasqueExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Belarusian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\BelarusianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Bosnian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\BosnianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Breton"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\BretonExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Bulgarian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\BulgarianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Catalan"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\CatalanExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Croatian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\CroatianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Czech"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\CzechExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Danish"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\DanishExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Dutch"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\DutchExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Esperanto"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\EsperantoExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Estonian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\EstonianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Farsi"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\FarsiExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
+!insertmacro MUI_LANGUAGE "Filipino"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\FilipinoExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Finnish"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\FinnishExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "French"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\FrenchExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Galician"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\GalicianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "German"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\GermanExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Greek"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\GreekExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Hebrew"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\HebrewExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Hungarian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\HungarianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Icelandic"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\IcelandicExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Indonesian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\IndonesianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Irish"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\IrishExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Italian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\ItalianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Japanese"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\JapaneseExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Korean"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\KoreanExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Kurdish"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\KurdishExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Latvian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\LatvianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Lithuanian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\LithuanianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Luxembourgish"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\LuxembourgishExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Macedonian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\MacedonianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Malay"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\MalayExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Mongolian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\MongolianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Norwegian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\NorwegianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "NorwegianNynorsk"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\NorwegianNynorskExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Polish"
-!insertmacro MUI_LANGUAGE "Portuguese"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\PolishExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "PortugueseBR"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\PortugueseBRExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
+!insertmacro MUI_LANGUAGE "Portuguese"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\PortugueseExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Romanian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\RomanianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Russian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\RussianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Serbian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\SerbianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "SerbianLatin"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\SerbianLatinExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "SimpChinese"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\SimpChineseExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Slovak"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\SlovakExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Slovenian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\SlovenianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Spanish"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\SpanishExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "SpanishInternational"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\SpanishInternationalExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Swedish"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\SwedishExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Thai"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\ThaiExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "TradChinese"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\TradChineseExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Turkish"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\TurkishExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Ukrainian"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\UkrainianExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Uzbek"
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\UzbekExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
 !insertmacro MUI_LANGUAGE "Welsh"
-
-;Installer/Uninstaller translations
-!addincludedir installer-translations
-
-;The languages should be in alphabetical order
-!include afrikaans.nsh
-!include albanian.nsh
-!include arabic.nsh
-!include basque.nsh
-!include belarusian.nsh
-!include bosnian.nsh
-!include breton.nsh
-!include bulgarian.nsh
-!include catalan.nsh
-!include croatian.nsh
-!include czech.nsh
-!include danish.nsh
-!include dutch.nsh
-!include english.nsh
-!include esperanto.nsh
-!include estonian.nsh
-!include farsi.nsh
-!include finnish.nsh
-!include french.nsh
-!include galician.nsh
-!include german.nsh
-!include greek.nsh
-!include hebrew.nsh
-!include hungarian.nsh
-!include icelandic.nsh
-!include indonesian.nsh
-!include irish.nsh
-!include italian.nsh
-!include japanese.nsh
-!include korean.nsh
-!include kurdish.nsh
-!include latvian.nsh
-!include lithuanian.nsh
-!include luxembourgish.nsh
-!include macedonian.nsh
-!include malay.nsh
-!include mongolian.nsh
-!include norwegian.nsh
-!include norwegiannynorsk.nsh
-!include polish.nsh
-!include portuguese.nsh
-!include portuguesebr.nsh
-!include romanian.nsh
-!include russian.nsh
-!include serbian.nsh
-!include serbianlatin.nsh
-!include simpchinese.nsh
-!include slovak.nsh
-!include slovenian.nsh
-!include spanish.nsh
-!include spanishinternational.nsh
-!include swedish.nsh
-!include thai.nsh
-!include tradchinese.nsh
-!include turkish.nsh
-!include ukrainian.nsh
-!include uzbek.nsh
-!include welsh.nsh
+!insertmacro LANGFILE_INCLUDE_WITHDEFAULT "${__FILEDIR__}\installer-translations\WelshExtra.nsh" "${__FILEDIR__}\installer-translations\EnglishExtra.nsh"
