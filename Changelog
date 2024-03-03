@@ -12,6 +12,8 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - FEATURE: Enable Ctrl+F hotkey for more inputs (thalieht) 8dcc734df562885131dbd0c2cc4ec31e24361559
     - FEATURE: Add seeding limits to RSS and Watched folders options UI (glassez) d652a10495fdd5175242f029a7e2b9a6373ea985
     - FEATURE: Subcategories implicitly follow the parent category options (glassez) d652aa1c78a0455e4787e1fe95b95b767dd1c2667982e10495fdd5175242f029a7e2b9a6373ea985
+    - FEATURE: Add support for SSL torrents (Chocobo1, Radu Carpa) cffd74b62a0e19f9c1e291306125475e24659f86
+    - FEATURE: Option to name each qbittorrent instance (Chocobo1) 46e8ee50c833ac3f0691a05a7d9c4b6dcb095641
     - BUGFIX: Display error message when unrecoverable error occurred (glassez) a0e41a11dec9e195455d990fd0e87390882c703d
     - BUGFIX: Update size of selected files when selection is changed (glassez) eddfaedc4d34cfcaf8a38210e6700ace0886cc9f
     - BUGFIX: Normalize tags by trimming leading/trailing whitespace (glassez) 7a4119259703179909dd37153031f11a3ef617e8
@@ -22,9 +24,11 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - WEBUI: Allow to remember torrent content files deletion (David) e69f85782881a4b831ed97694263f027ecfa568d
     - WEBUI: Leave the fields empty when value is invalid (Chocobo1) 54bcabeca4292a72649202a03eaf09e711d73395
     - WEBUI: Use natural sorting (Chocobo1) 00372dd559dedd19e3bcb66db8e7d5faf597d4b2
+    - WEBUI: Improve WebUI login behavior (JayRet) f265eb0166f57a5dd866a5461b7bf2ab3076ee9f
     - WEBAPI: Add endpoint to get torrent count (glassez) cecbb44a031c96e8fce48f12eeddda47b9c85a27
     - WEBAPI: Fix wrong timestamp values (Chocobo1) 114652205c92bf7fcf63f355cab439a5eb4b184f
     - WEBAPI: Send binary data with filename and mime type specified (glassez) 60bb819e2e839d691dec6915d592d4a2c66d1de2
+    - WEBAPI: Expose API for the torrent creator (glassez, Radu Carpa) 0114610a40e3cc63613baa406f330107385a1626
     - RSS: Show RSS feed title in HTML browser (Jay) f3b688217eb518ca67de23edd716278efde0b990
     - RSS: Allow to set delay between requests to the same host (jNullj) c5d7b62473887c337c249ac7b3bd6420286c7e83
     - SEARCH: Allow users to specify Python executable path (Chocobo1) b3fda76027859707b57530a1de0e2c68c0b27d9f
