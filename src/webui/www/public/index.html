@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="${LANG}">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
@@ -16,7 +16,8 @@
         <link rel="stylesheet" type="text/css" href="css/noscript.css?v=${CACHEID}" />
     </noscript>
 
-    <script defer src="scripts/login.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script defer src="scripts/lib/i18next.min.js"></script>
+    <script defer src="scripts/login.js?v=${CACHEID}"></script>
 </head>
 
 <body>
@@ -29,17 +30,17 @@
             <img src="images/qbittorrent-tray.svg" alt="qBittorrent logo" />
         </div>
         <div id="formplace" class="col">
-            <form id="loginform" method="post" onsubmit="submitLoginForm(event);">
+            <form id="loginform">
                 <div class="row">
-                    <label for="username">Username</label><br />
-                    <input type="text" id="username" name="username" autocomplete="username" required />
+                    <label for="username" class="qbt-translatable" data-i18n="Username">Username</label><br />
+                    <input type="text" id="username" name="username" autocomplete="username" autofocus required />
                 </div>
                 <div class="row">
-                    <label for="password">Password</label><br />
+                    <label for="password" class="qbt-translatable" data-i18n="Password">Password</label><br />
                     <input type="password" id="password" name="password" autocomplete="current-password" required />
                 </div>
                 <div class="row">
-                    <input type="submit" id="login" value="Login" />
+                    <input type="submit" id="loginButton" class="qbt-translatable" data-i18n="Login" value="Login" />
                 </div>
             </form>
         </div>

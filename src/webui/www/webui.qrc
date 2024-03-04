@@ -423,6 +423,63 @@
         <file>public/images/qbittorrent-tray.svg</file>
         <file>public/images/qbittorrent32.png</file>
         <file>public/index.html</file>
+        <file>public/lang/ar.json</file>
+        <file>public/lang/az@latin.json</file>
+        <file>public/lang/be.json</file>
+        <file>public/lang/bg.json</file>
+        <file>public/lang/ca.json</file>
+        <file>public/lang/cs.json</file>
+        <file>public/lang/da.json</file>
+        <file>public/lang/de.json</file>
+        <file>public/lang/el.json</file>
+        <file>public/lang/en.json</file>
+        <file>public/lang/en_AU.json</file>
+        <file>public/lang/en_GB.json</file>
+        <file>public/lang/eo.json</file>
+        <file>public/lang/es.json</file>
+        <file>public/lang/et.json</file>
+        <file>public/lang/eu.json</file>
+        <file>public/lang/fa.json</file>
+        <file>public/lang/fi.json</file>
+        <file>public/lang/fr.json</file>
+        <file>public/lang/gl.json</file>
+        <file>public/lang/he.json</file>
+        <file>public/lang/hi_IN.json</file>
+        <file>public/lang/hr.json</file>
+        <file>public/lang/hu.json</file>
+        <file>public/lang/hy.json</file>
+        <file>public/lang/id.json</file>
+        <file>public/lang/is.json</file>
+        <file>public/lang/it.json</file>
+        <file>public/lang/ja.json</file>
+        <file>public/lang/ka.json</file>
+        <file>public/lang/ko.json</file>
+        <file>public/lang/lt.json</file>
+        <file>public/lang/ltg.json</file>
+        <file>public/lang/lv_LV.json</file>
+        <file>public/lang/mn_MN.json</file>
+        <file>public/lang/ms_MY.json</file>
+        <file>public/lang/nb.json</file>
+        <file>public/lang/nl.json</file>
+        <file>public/lang/oc.json</file>
+        <file>public/lang/pl.json</file>
+        <file>public/lang/pt_BR.json</file>
+        <file>public/lang/pt_PT.json</file>
+        <file>public/lang/ro.json</file>
+        <file>public/lang/ru.json</file>
+        <file>public/lang/sk.json</file>
+        <file>public/lang/sl.json</file>
+        <file>public/lang/sr.json</file>
+        <file>public/lang/sv.json</file>
+        <file>public/lang/th.json</file>
+        <file>public/lang/tr.json</file>
+        <file>public/lang/uk.json</file>
+        <file>public/lang/uz@Latn.json</file>
+        <file>public/lang/vi.json</file>
+        <file>public/lang/zh_CN.json</file>
+        <file>public/lang/zh_HK.json</file>
+        <file>public/lang/zh_TW.json</file>
+        <file>public/scripts/lib/i18next.min.js</file>
         <file>public/scripts/login.js</file>
     </qresource>
 </RCC>
