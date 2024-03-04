@@ -28,70 +28,39 @@
 
 #include "torrentsharelimitswidget.h"
 
+#include "base/bittorrent/torrent.h"
 #include "ui_torrentsharelimitswidget.h"
 
 namespace
 {
     enum ShareLimitModeIndex
     {
+        UninitializedModeIndex = -1,
         DefaultModeIndex,
         UnlimitedModeIndex,
         AssignedModeIndex
     };
 }
 
-TorrentShareLimitsWidget::TorrentShareLimitsWidget(QWidget *parent, const qreal ratioLimit
-        , const int seedingTimeLimit, const int inactiveSeedingTimeLimit)
+TorrentShareLimitsWidget::TorrentShareLimitsWidget(QWidget *parent)
     : QWidget(parent)
     , m_ui {new Ui::TorrentShareLimitsWidget}
 {
     m_ui->setupUi(this);
 
-    connect(m_ui->comboBoxRatioMode, &QComboBox::currentIndexChanged, this, [this](const int index)
-    {
-        m_ui->spinBoxRatioValue->setEnabled(index == AssignedModeIndex);
-        if (index == AssignedModeIndex)
-        {
-            m_ui->spinBoxRatioValue->setValue(m_ratioLimit);
-        }
-        else
-        {
-            m_ratioLimit = m_ui->spinBoxRatioValue->value();
-            m_ui->spinBoxRatioValue->clear();
-        }
-    });
-    connect(m_ui->comboBoxSeedingTimeMode, &QComboBox::currentIndexChanged, this, [this](const int index)
-    {
-        m_ui->spinBoxSeedingTimeValue->setEnabled(index == AssignedModeIndex);
-        if (index == AssignedModeIndex)
-        {
-            m_ui->spinBoxSeedingTimeValue->setValue(m_seedingTimeLimit);
-            m_ui->spinBoxSeedingTimeValue->setSuffix(tr(" min"));
-        }
-        else
-        {
-            m_seedingTimeLimit = m_ui->spinBoxSeedingTimeValue->value();
-            m_ui->spinBoxSeedingTimeValue->setSuffix({});
-            m_ui->spinBoxSeedingTimeValue->clear();
-        }
-    });
-    connect(m_ui->comboBoxInactiveSeedingTimeMode, &QComboBox::currentIndexChanged, this, [this](const int index)
-    {
-        m_ui->spinBoxInactiveSeedingTimeValue->setEnabled(index == AssignedModeIndex);
-        if (index == AssignedModeIndex)
-        {
-            m_ui->spinBoxInactiveSeedingTimeValue->setValue(m_inactiveSeedingTimeLimit);
-            m_ui->spinBoxInactiveSeedingTimeValue->setSuffix(tr(" min"));
-        }
-        else
-        {
-            m_inactiveSeedingTimeLimit = m_ui->spinBoxInactiveSeedingTimeValue->value();
-            m_ui->spinBoxInactiveSeedingTimeValue->setSuffix({});
-            m_ui->spinBoxInactiveSeedingTimeValue->clear();
-        }
-    });
+    m_ui->spinBoxRatioValue->setEnabled(false);
+    m_ui->spinBoxRatioValue->setSuffix({});
+    m_ui->spinBoxRatioValue->clear();
+    m_ui->spinBoxSeedingTimeValue->setEnabled(false);
+    m_ui->spinBoxSeedingTimeValue->setSuffix({});
+    m_ui->spinBoxSeedingTimeValue->clear();
+    m_ui->spinBoxInactiveSeedingTimeValue->setEnabled(false);
+    m_ui->spinBoxInactiveSeedingTimeValue->setSuffix({});
+    m_ui->spinBoxInactiveSeedingTimeValue->clear();
 
-    setTorrentShareLimits(ratioLimit, seedingTimeLimit, inactiveSeedingTimeLimit);
+    connect(m_ui->comboBoxRatioMode, &QComboBox::currentIndexChanged, this, &TorrentShareLimitsWidget::refreshRatioLimitControls);
+    connect(m_ui->comboBoxSeedingTimeMode, &QComboBox::currentIndexChanged, this, &TorrentShareLimitsWidget::refreshSeedingTimeLimitControls);
+    connect(m_ui->comboBoxInactiveSeedingTimeMode, &QComboBox::currentIndexChanged, this, &TorrentShareLimitsWidget::refreshInactiveSeedingTimeLimitControls);
 }
 
 TorrentShareLimitsWidget::~TorrentShareLimitsWidget()
@@ -99,7 +68,7 @@ TorrentShareLimitsWidget::~TorrentShareLimitsWidget()
     delete m_ui;
 }
 
-void TorrentShareLimitsWidget::setTorrentShareLimits(const qreal ratioLimit, const int seedingTimeLimit, const int inactiveSeedingTimeLimit)
+void TorrentShareLimitsWidget::setRatioLimit(const qreal ratioLimit)
 {
     if (ratioLimit == BitTorrent::Torrent::USE_GLOBAL_RATIO)
     {
@@ -114,7 +83,10 @@ void TorrentShareLimitsWidget::setTorrentShareLimits(const qreal ratioLimit, con
         m_ui->comboBoxRatioMode->setCurrentIndex(AssignedModeIndex);
         m_ui->spinBoxRatioValue->setValue(ratioLimit);
     }
+}
 
+void TorrentShareLimitsWidget::setSeedingTimeLimit(const int seedingTimeLimit)
+{
     if (seedingTimeLimit == BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME)
     {
         m_ui->comboBoxSeedingTimeMode->setCurrentIndex(DefaultModeIndex);
@@ -128,7 +100,10 @@ void TorrentShareLimitsWidget::setTorrentShareLimits(const qreal ratioLimit, con
         m_ui->comboBoxSeedingTimeMode->setCurrentIndex(AssignedModeIndex);
         m_ui->spinBoxSeedingTimeValue->setValue(seedingTimeLimit);
     }
+}
 
+void TorrentShareLimitsWidget::setInactiveSeedingTimeLimit(const int inactiveSeedingTimeLimit)
+{
     if (inactiveSeedingTimeLimit == BitTorrent::Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME)
     {
         m_ui->comboBoxInactiveSeedingTimeMode->setCurrentIndex(DefaultModeIndex);
@@ -144,44 +119,134 @@ void TorrentShareLimitsWidget::setTorrentShareLimits(const qreal ratioLimit, con
     }
 }
 
-qreal TorrentShareLimitsWidget::ratioLimit() const
+void TorrentShareLimitsWidget::setDefaultLimits(const qreal ratioLimit, const int seedingTimeLimit, const int inactiveSeedingTimeLimit)
+{
+    if (m_defaultRatioLimit != ratioLimit)
+    {
+        m_defaultRatioLimit = ratioLimit;
+        refreshRatioLimitControls();
+    }
+
+    if (m_defaultSeedingTimeLimit != seedingTimeLimit)
+    {
+        m_defaultSeedingTimeLimit = seedingTimeLimit;
+        refreshSeedingTimeLimitControls();
+    }
+
+    if (m_defaultInactiveSeedingTimeLimit != inactiveSeedingTimeLimit)
+    {
+        m_defaultInactiveSeedingTimeLimit = inactiveSeedingTimeLimit;
+        refreshInactiveSeedingTimeLimitControls();
+    }
+}
+
+std::optional<qreal> TorrentShareLimitsWidget::ratioLimit() const
 {
     switch (m_ui->comboBoxRatioMode->currentIndex())
     {
     case DefaultModeIndex:
-    default:
         return BitTorrent::Torrent::USE_GLOBAL_RATIO;
     case UnlimitedModeIndex:
         return BitTorrent::Torrent::NO_RATIO_LIMIT;
     case AssignedModeIndex:
         return m_ui->spinBoxRatioValue->value();
+    default:
+        return std::nullopt;
     }
 }
 
-int TorrentShareLimitsWidget::seedingTimeLimit() const
+std::optional<int> TorrentShareLimitsWidget::seedingTimeLimit() const
 {
     switch (m_ui->comboBoxSeedingTimeMode->currentIndex())
     {
     case DefaultModeIndex:
-    default:
         return BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME;
     case UnlimitedModeIndex:
         return BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT;
     case AssignedModeIndex:
         return m_ui->spinBoxSeedingTimeValue->value();
+    default:
+        return std::nullopt;
     }
 }
 
-int TorrentShareLimitsWidget::inactiveSeedingTimeLimit() const
+std::optional<int> TorrentShareLimitsWidget::inactiveSeedingTimeLimit() const
 {
     switch (m_ui->comboBoxInactiveSeedingTimeMode->currentIndex())
     {
     case DefaultModeIndex:
-    default:
         return BitTorrent::Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME;
     case UnlimitedModeIndex:
         return BitTorrent::Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT;
     case AssignedModeIndex:
         return m_ui->spinBoxInactiveSeedingTimeValue->value();
+    default:
+        return std::nullopt;
+    }
+}
+
+void TorrentShareLimitsWidget::refreshRatioLimitControls()
+{
+    const auto index = m_ui->comboBoxRatioMode->currentIndex();
+
+    m_ui->spinBoxRatioValue->setEnabled(index == AssignedModeIndex);
+    if (index == AssignedModeIndex)
+    {
+        m_ui->spinBoxRatioValue->setValue(m_ratioLimit);
+    }
+    else if ((index == DefaultModeIndex) && (m_defaultRatioLimit >= 0))
+    {
+        m_ui->spinBoxRatioValue->setValue(m_defaultRatioLimit);
+    }
+    else
+    {
+        m_ratioLimit = m_ui->spinBoxRatioValue->value();
+        m_ui->spinBoxRatioValue->clear();
+    }
+}
+
+void TorrentShareLimitsWidget::refreshSeedingTimeLimitControls()
+{
+    const auto index = m_ui->comboBoxSeedingTimeMode->currentIndex();
+
+    m_ui->spinBoxSeedingTimeValue->setEnabled(index == AssignedModeIndex);
+    if (index == AssignedModeIndex)
+    {
+        m_ui->spinBoxSeedingTimeValue->setValue(m_seedingTimeLimit);
+        m_ui->spinBoxSeedingTimeValue->setSuffix(tr(" min"));
+    }
+    else if ((index == DefaultModeIndex) && (m_defaultSeedingTimeLimit >= 0))
+    {
+        m_ui->spinBoxSeedingTimeValue->setValue(m_defaultSeedingTimeLimit);
+        m_ui->spinBoxSeedingTimeValue->setSuffix(tr(" min"));
+    }
+    else
+    {
+        m_seedingTimeLimit = m_ui->spinBoxSeedingTimeValue->value();
+        m_ui->spinBoxSeedingTimeValue->setSuffix({});
+        m_ui->spinBoxSeedingTimeValue->clear();
+    }
+}
+
+void TorrentShareLimitsWidget::refreshInactiveSeedingTimeLimitControls()
+{
+    const auto index = m_ui->comboBoxInactiveSeedingTimeMode->currentIndex();
+
+    m_ui->spinBoxInactiveSeedingTimeValue->setEnabled(index == AssignedModeIndex);
+    if (index == AssignedModeIndex)
+    {
+        m_ui->spinBoxInactiveSeedingTimeValue->setValue(m_inactiveSeedingTimeLimit);
+        m_ui->spinBoxInactiveSeedingTimeValue->setSuffix(tr(" min"));
+    }
+    else if ((index == DefaultModeIndex) && (m_defaultInactiveSeedingTimeLimit >= 0))
+    {
+        m_ui->spinBoxInactiveSeedingTimeValue->setValue(m_defaultInactiveSeedingTimeLimit);
+        m_ui->spinBoxInactiveSeedingTimeValue->setSuffix(tr(" min"));
+    }
+    else
+    {
+        m_inactiveSeedingTimeLimit = m_ui->spinBoxInactiveSeedingTimeValue->value();
+        m_ui->spinBoxInactiveSeedingTimeValue->setSuffix({});
+        m_ui->spinBoxInactiveSeedingTimeValue->clear();
     }
 }
