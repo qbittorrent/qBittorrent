@@ -32,6 +32,8 @@
 
 #include <QWidget>
 
+#include "base/bittorrent/sharelimitaction.h"
+
 namespace Ui
 {
     class TorrentShareLimitsWidget;
@@ -49,12 +51,14 @@ public:
     void setRatioLimit(qreal ratioLimit);
     void setSeedingTimeLimit(int seedingTimeLimit);
     void setInactiveSeedingTimeLimit(int inactiveSeedingTimeLimit);
+    void setShareLimitAction(BitTorrent::ShareLimitAction action);
 
     void setDefaultLimits(qreal ratioLimit, int seedingTimeLimit, int inactiveSeedingTimeLimit);
 
     std::optional<qreal> ratioLimit() const;
     std::optional<int> seedingTimeLimit() const;
     std::optional<int> inactiveSeedingTimeLimit() const;
+    std::optional<BitTorrent::ShareLimitAction> shareLimitAction() const;
 
 private:
     void refreshRatioLimitControls();

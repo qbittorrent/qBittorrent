@@ -40,6 +40,16 @@ namespace
         UnlimitedModeIndex,
         AssignedModeIndex
     };
+
+    enum ShareLimitActionIndex
+    {
+        UninitializedActionIndex = -1,
+        DefaultActionIndex,
+        StopActionIndex,
+        RemoveActionIndex,
+        RemoveWithContentActionIndex,
+        SuperSeedingActionIndex
+    };
 }
 
 TorrentShareLimitsWidget::TorrentShareLimitsWidget(QWidget *parent)
@@ -119,6 +129,29 @@ void TorrentShareLimitsWidget::setInactiveSeedingTimeLimit(const int inactiveSee
     }
 }
 
+void TorrentShareLimitsWidget::setShareLimitAction(const BitTorrent::ShareLimitAction action)
+{
+    switch (action)
+    {
+    case BitTorrent::ShareLimitAction::Default:
+    default:
+        m_ui->comboBoxAction->setCurrentIndex(DefaultActionIndex);
+        break;
+    case BitTorrent::ShareLimitAction::Stop:
+        m_ui->comboBoxAction->setCurrentIndex(StopActionIndex);
+        break;
+    case BitTorrent::ShareLimitAction::Remove:
+        m_ui->comboBoxAction->setCurrentIndex(RemoveActionIndex);
+        break;
+    case BitTorrent::ShareLimitAction::RemoveWithContent:
+        m_ui->comboBoxAction->setCurrentIndex(RemoveWithContentActionIndex);
+        break;
+    case BitTorrent::ShareLimitAction::EnableSuperSeeding:
+        m_ui->comboBoxAction->setCurrentIndex(SuperSeedingActionIndex);
+        break;
+    }
+}
+
 void TorrentShareLimitsWidget::setDefaultLimits(const qreal ratioLimit, const int seedingTimeLimit, const int inactiveSeedingTimeLimit)
 {
     if (m_defaultRatioLimit != ratioLimit)
@@ -180,6 +213,25 @@ std::optional<int> TorrentShareLimitsWidget::inactiveSeedingTimeLimit() const
         return BitTorrent::Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT;
     case AssignedModeIndex:
         return m_ui->spinBoxInactiveSeedingTimeValue->value();
+    default:
+        return std::nullopt;
+    }
+}
+
+std::optional<BitTorrent::ShareLimitAction> TorrentShareLimitsWidget::shareLimitAction() const
+{
+    switch (m_ui->comboBoxAction->currentIndex())
+    {
+    case DefaultActionIndex:
+        return BitTorrent::ShareLimitAction::Default;
+    case StopActionIndex:
+        return BitTorrent::ShareLimitAction::Stop;
+    case RemoveActionIndex:
+        return BitTorrent::ShareLimitAction::Remove;
+    case RemoveWithContentActionIndex:
+        return BitTorrent::ShareLimitAction::RemoveWithContent;
+    case SuperSeedingActionIndex:
+        return BitTorrent::ShareLimitAction::EnableSuperSeeding;
     default:
         return std::nullopt;
     }

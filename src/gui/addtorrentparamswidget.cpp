@@ -147,6 +147,7 @@ BitTorrent::AddTorrentParams AddTorrentParamsWidget::addTorrentParams() const
     addTorrentParams.ratioLimit = m_ui->torrentShareLimitsWidget->ratioLimit().value();
     addTorrentParams.seedingTimeLimit = m_ui->torrentShareLimitsWidget->seedingTimeLimit().value();
     addTorrentParams.inactiveSeedingTimeLimit = m_ui->torrentShareLimitsWidget->inactiveSeedingTimeLimit().value();
+    addTorrentParams.shareLimitAction = m_ui->torrentShareLimitsWidget->shareLimitAction().value();
 
     return addTorrentParams;
 }
@@ -272,6 +273,7 @@ void AddTorrentParamsWidget::populate()
     m_ui->torrentShareLimitsWidget->setRatioLimit(m_addTorrentParams.ratioLimit);
     m_ui->torrentShareLimitsWidget->setSeedingTimeLimit(m_addTorrentParams.seedingTimeLimit);
     m_ui->torrentShareLimitsWidget->setInactiveSeedingTimeLimit(m_addTorrentParams.inactiveSeedingTimeLimit);
+    m_ui->torrentShareLimitsWidget->setShareLimitAction(m_addTorrentParams.shareLimitAction);
 }
 
 void AddTorrentParamsWidget::loadCustomSavePathOptions()

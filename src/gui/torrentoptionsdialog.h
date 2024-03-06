@@ -35,6 +35,7 @@
 
 #include <QDialog>
 
+#include "base/bittorrent/sharelimitaction.h"
 #include "base/path.h"
 #include "base/settingvalue.h"
 
@@ -87,6 +88,7 @@ private:
         std::optional<qreal> ratio;
         std::optional<int> seedingTime;
         std::optional<int> inactiveSeedingTime;
+        std::optional<BitTorrent::ShareLimitAction> shareLimitAction;
         int upSpeedLimit;
         int downSpeedLimit;
         Qt::CheckState autoTMM;

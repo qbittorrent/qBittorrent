@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -36,19 +36,10 @@
 #include "base/tagset.h"
 #include "addtorrentparams.h"
 #include "categoryoptions.h"
+#include "sharelimitaction.h"
 #include "trackerentry.h"
 
 class QString;
-
-// These values should remain unchanged when adding new items
-// so as not to break the existing user settings.
-enum MaxRatioAction
-{
-    Pause = 0,
-    Remove = 1,
-    DeleteFiles = 3,
-    EnableSuperSeeding = 2
-};
 
 enum DeleteOption
 {
@@ -209,6 +200,9 @@ namespace BitTorrent
         virtual void setGlobalMaxSeedingMinutes(int minutes) = 0;
         virtual int globalMaxInactiveSeedingMinutes() const = 0;
         virtual void setGlobalMaxInactiveSeedingMinutes(int minutes) = 0;
+        virtual ShareLimitAction shareLimitAction() const = 0;
+        virtual void setShareLimitAction(ShareLimitAction act) = 0;
+
         virtual QString getDHTBootstrapNodes() const = 0;
         virtual void setDHTBootstrapNodes(const QString &nodes) = 0;
         virtual bool isDHTEnabled() const = 0;
@@ -445,9 +439,6 @@ namespace BitTorrent
         virtual const SessionStatus &status() const = 0;
         virtual const CacheStatus &cacheStatus() const = 0;
         virtual bool isListening() const = 0;
-
-        virtual MaxRatioAction maxRatioAction() const = 0;
-        virtual void setMaxRatioAction(MaxRatioAction act) = 0;
 
         virtual void banIP(const QString &ip) = 0;
 

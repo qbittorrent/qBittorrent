@@ -32,6 +32,7 @@
 #include <QCoreApplication>
 #include <QMetaEnum>
 
+#include "base/bittorrent/sharelimitaction.h"
 #include "base/bittorrent/torrentcontentlayout.h"
 #include "base/global.h"
 #include "base/logger.h"
@@ -45,7 +46,7 @@
 
 namespace
 {
-    const int MIGRATION_VERSION = 6;
+    const int MIGRATION_VERSION = 7;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_s;
 
     void exportWebUIHttpsFiles()
@@ -437,6 +438,36 @@ namespace
                 settingsStorage->storeValue(key, u"zh_CN"_s);
         }
     }
+
+    void migrateShareLimitActionSettings()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+        const auto oldKey = u"BitTorrent/Session/MaxRatioAction"_s;
+        const auto newKey = u"BitTorrent/Session/ShareLimitAction"_s;
+        const auto value = settingsStorage->loadValue<int>(oldKey);
+
+        switch (value)
+        {
+        case 0:
+            settingsStorage->storeValue(newKey, BitTorrent::ShareLimitAction::Stop);
+            break;
+        case 1:
+            settingsStorage->storeValue(newKey, BitTorrent::ShareLimitAction::Remove);
+            break;
+        case 2:
+            settingsStorage->storeValue(newKey, BitTorrent::ShareLimitAction::EnableSuperSeeding);
+            break;
+        case 3:
+            settingsStorage->storeValue(newKey, BitTorrent::ShareLimitAction::RemoveWithContent);
+            break;
+        default:
+            LogMsg(QCoreApplication::translate("Upgrade", "Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
+                    .arg(oldKey, QString::number(value)), Log::WARNING);
+            break;
+        }
+
+        settingsStorage->removeValue(oldKey);
+    }
 }
 
 bool upgrade()
@@ -474,6 +505,9 @@ bool upgrade()
 
         if (version < 6)
             migrateProxySettings();
+
+        if (version < 7)
+            migrateShareLimitActionSettings();
 
         version = MIGRATION_VERSION;
     }

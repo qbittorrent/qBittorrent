@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Jonathan Ketchker
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -45,6 +45,7 @@
 #include <QTranslator>
 
 #include "base/bittorrent/session.h"
+#include "base/bittorrent/sharelimitaction.h"
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/net/portforwarder.h"
@@ -1110,14 +1111,14 @@ void OptionsDialog::loadBittorrentTabOptions()
     }
     m_ui->comboRatioLimitAct->setEnabled((session->globalMaxSeedingMinutes() >= 0) || (session->globalMaxRatio() >= 0.) || (session->globalMaxInactiveSeedingMinutes() >= 0));
 
-    const QHash<MaxRatioAction, int> actIndex =
+    const QHash<BitTorrent::ShareLimitAction, int> actIndex =
     {
-        {Pause, 0},
-        {Remove, 1},
-        {DeleteFiles, 2},
-        {EnableSuperSeeding, 3}
+                                                               {BitTorrent::ShareLimitAction::Stop, 0},
+        {BitTorrent::ShareLimitAction::Remove, 1},
+        {BitTorrent::ShareLimitAction::RemoveWithContent, 2},
+        {BitTorrent::ShareLimitAction::EnableSuperSeeding, 3}
     };
-    m_ui->comboRatioLimitAct->setCurrentIndex(actIndex.value(session->maxRatioAction()));
+    m_ui->comboRatioLimitAct->setCurrentIndex(actIndex.value(session->shareLimitAction()));
 
     m_ui->checkEnableAddTrackers->setChecked(session->isAddTrackersEnabled());
     m_ui->textTrackers->setPlainText(session->additionalTrackers());
@@ -1181,14 +1182,14 @@ void OptionsDialog::saveBittorrentTabOptions() const
     session->setGlobalMaxRatio(getMaxRatio());
     session->setGlobalMaxSeedingMinutes(getMaxSeedingMinutes());
     session->setGlobalMaxInactiveSeedingMinutes(getMaxInactiveSeedingMinutes());
-    const QVector<MaxRatioAction> actIndex =
+    const QVector<BitTorrent::ShareLimitAction> actIndex =
     {
-        Pause,
-        Remove,
-        DeleteFiles,
-        EnableSuperSeeding
+        BitTorrent::ShareLimitAction::Stop,
+        BitTorrent::ShareLimitAction::Remove,
+        BitTorrent::ShareLimitAction::RemoveWithContent,
+        BitTorrent::ShareLimitAction::EnableSuperSeeding
     };
-    session->setMaxRatioAction(actIndex.value(m_ui->comboRatioLimitAct->currentIndex()));
+    session->setShareLimitAction(actIndex.value(m_ui->comboRatioLimitAct->currentIndex()));
 
     session->setAddTrackersEnabled(m_ui->checkEnableAddTrackers->isChecked());
     session->setAdditionalTrackers(m_ui->textTrackers->toPlainText());
