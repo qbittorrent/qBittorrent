@@ -1266,6 +1266,7 @@ void OptionsDialog::loadWebUITabOptions()
     m_ui->spinSessionTimeout->setValue(pref->getWebUISessionTimeout());
     // Alternative UI
     m_ui->groupAltWebUI->setChecked(pref->isAltWebUIEnabled());
+    m_ui->checkAltWebUIDerivative->setChecked(pref->isAltWebUIDerivative());
     m_ui->textWebUIRootFolder->setSelectedPath(pref->getWebUIRootFolder());
     // Security
     m_ui->checkClickjacking->setChecked(pref->isWebUIClickjackingProtectionEnabled());
@@ -1309,6 +1310,7 @@ void OptionsDialog::loadWebUITabOptions()
 
     connect(m_ui->groupAltWebUI, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIRootFolder, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkAltWebUIDerivative, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkClickjacking, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkCSRFProtection, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
@@ -1355,6 +1357,7 @@ void OptionsDialog::saveWebUITabOptions() const
     pref->setWebUIAuthSubnetWhitelistEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
     // Alternative UI
     pref->setAltWebUIEnabled(m_ui->groupAltWebUI->isChecked());
+    pref->setAltWebUIDerivativeStatus(m_ui->checkAltWebUIDerivative->isChecked());
     pref->setWebUIRootFolder(m_ui->textWebUIRootFolder->selectedPath());
     // Security
     pref->setWebUIClickjackingProtectionEnabled(m_ui->checkClickjacking->isChecked());

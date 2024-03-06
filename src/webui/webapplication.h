@@ -217,6 +217,7 @@ private:
         {{u"transfer"_s, u"toggleSpeedLimitsMode"_s}, Http::METHOD_POST},
     };
     bool m_isAltUIUsed = false;
+    bool m_isAltUIDerivative = false;
     Path m_rootFolder;
 
     struct TranslatedFile

@@ -122,8 +122,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>504</width>
-             <height>1064</height>
+             <width>526</width>
+             <height>1342</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -835,8 +835,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>539</width>
-             <height>1457</height>
+             <width>601</width>
+             <height>1833</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -1658,8 +1658,8 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>504</width>
-             <height>848</height>
+             <width>420</width>
+             <height>1028</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -2234,8 +2234,8 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>302</width>
-             <height>408</height>
+             <width>326</width>
+             <height>494</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2571,8 +2571,8 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>413</width>
-             <height>693</height>
+             <width>511</width>
+             <height>895</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -3114,8 +3114,8 @@ Disable encryption: Only connect to peers without protocol encryption</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>336</width>
-             <height>391</height>
+             <width>398</width>
+             <height>495</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_27">
@@ -3303,9 +3303,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>382</width>
-             <height>1045</height>
+             <y>-349</y>
+             <width>526</width>
+             <height>1323</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -3606,16 +3606,30 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                  <property name="checked">
                   <bool>false</bool>
                  </property>
-                 <layout class="QHBoxLayout" name="horizontalLayout_5">
+                 <layout class="QVBoxLayout" name="verticalLayout_altWebUI">
                   <item>
-                   <widget class="QLabel" name="labelWebUIRootFolder">
-                    <property name="text">
-                     <string>Files location:</string>
-                    </property>
-                   </widget>
+                   <layout class="QHBoxLayout" name="horizontalLayout_altWebUI_RootFolder">
+                    <item>
+                     <widget class="QLabel" name="labelWebUIRootFolder">
+                      <property name="text">
+                       <string>Files location:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="FileSystemPathLineEdit" name="textWebUIRootFolder" native="true"/>
+                    </item>
+                   </layout>
                   </item>
                   <item>
-                   <widget class="FileSystemPathLineEdit" name="textWebUIRootFolder" native="true"/>
+                   <widget class="QCheckBox" name="checkAltWebUIDerivative">
+                    <property name="toolTip">
+                     <string>Enables built-in translations and HTTPS security options. Indicates that the alternative Web UI is a derivative work of the original Web UI.</string>
+                    </property>
+                    <property name="text">
+                     <string>Derived from original qBittorrent Web UI code base</string>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </widget>

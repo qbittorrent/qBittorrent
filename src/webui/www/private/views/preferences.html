@@ -879,6 +879,10 @@
                 <label for="webui_files_location_textarea">QBT_TR(Files location:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 <input type="text" id="webui_files_location_textarea" />
             </div>
+            <div class="formRow">
+                <input type="checkbox" id="webui_derivative_checkbox" />
+                <label for="webui_derivative_checkbox">QBT_TR(Derived from original qBittorrent Web UI code base)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
         </fieldset>
 
         <fieldset class="settings">
@@ -1849,6 +1853,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const updateAlternativeWebUISettings = function() {
             const isUseAlternativeWebUIEnabled = $('use_alt_webui_checkbox').getProperty('checked');
             $('webui_files_location_textarea').setProperty('disabled', !isUseAlternativeWebUIEnabled);
+            $('webui_derivative_checkbox').setProperty('disabled', !isUseAlternativeWebUIEnabled);
         };
 
         const updateHostHeaderValidationSettings = function() {
@@ -2273,6 +2278,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Use alternative WebUI
                     $('use_alt_webui_checkbox').setProperty('checked', pref.alternative_webui_enabled);
                     $('webui_files_location_textarea').setProperty('value', pref.alternative_webui_path);
+                    $('webui_derivative_checkbox').setProperty('checked', pref.alternative_webui_derivative);
                     updateAlternativeWebUISettings();
 
                     // Security
@@ -2724,6 +2730,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             }
             settings['alternative_webui_enabled'] = alternative_webui_enabled;
             settings['alternative_webui_path'] = webui_files_location_textarea;
+            settings['alternative_webui_derivative'] = $('webui_derivative_checkbox').getProperty('checked');
 
             // Security
             settings['web_ui_clickjacking_protection_enabled'] = $('clickjacking_protection_checkbox').getProperty('checked');
