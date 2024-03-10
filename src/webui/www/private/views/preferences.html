@@ -705,7 +705,7 @@
                 <td style="text-align: right;"><label for="max_ratio_act">QBT_TR(then)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                 <td>
                     <select id="max_ratio_act">
-                        <option value="0">QBT_TR(Pause torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="0">QBT_TR(Stop torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
                         <option value="1">QBT_TR(Remove torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
                         <option value="3">QBT_TR(Remove torrent and its files)QBT_TR[CONTEXT=OptionsDialog]</option>
                         <option value="2">QBT_TR(Enable super seeding for torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
@@ -2232,7 +2232,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $('max_inactive_seeding_time_value').setProperty('value', (pref.max_inactive_seeding_time_enabled ? pref.max_inactive_seeding_time.toInt() : 1440));
                     let maxRatioAct = 0;
                     switch (pref.max_ratio_act.toInt()) {
-                        case 0: // Pause
+                        case 0: // Stop
                         default:
                             maxRatioAct = 0;
                             break;

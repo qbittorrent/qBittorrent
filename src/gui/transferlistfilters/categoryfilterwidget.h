@@ -43,7 +43,7 @@ public:
 signals:
     void categoryChanged(const QString &categoryName);
     void actionResumeTorrentsTriggered();
-    void actionPauseTorrentsTriggered();
+    void actionStopTorrentsTriggered();
     void actionDeleteTorrentsTriggered();
 
 private slots:

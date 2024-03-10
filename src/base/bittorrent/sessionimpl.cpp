@@ -2277,7 +2277,7 @@ void SessionImpl::processShareLimits()
             else if ((shareLimitAction == ShareLimitAction::Stop) && !torrent->isPaused())
             {
                 torrent->pause();
-                LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
+                LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent stopped."), torrentName));
             }
             else if ((shareLimitAction == ShareLimitAction::EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
             {
@@ -4907,7 +4907,7 @@ void SessionImpl::handleTorrentPaused(TorrentImpl *const torrent)
         updatedTrackerEntries.emplace(trackerEntry.url, trackerEntry);
     emit trackerEntriesUpdated(torrent, updatedTrackerEntries);
 
-    LogMsg(tr("Torrent paused. Torrent: \"%1\"").arg(torrent->name()));
+    LogMsg(tr("Torrent stopped. Torrent: \"%1\"").arg(torrent->name()));
     emit torrentPaused(torrent);
 }
 

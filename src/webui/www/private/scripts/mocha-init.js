@@ -55,7 +55,7 @@ let globalDownloadLimitFN = function() {};
 let StatisticsLinkFN = function() {};
 let downloadLimitFN = function() {};
 let deleteFN = function() {};
-let pauseFN = function() {};
+let stopFN = function() {};
 let startFN = function() {};
 let autoTorrentManagementFN = function() {};
 let recheckFN = function() {};
@@ -71,7 +71,7 @@ let editCategoryFN = function() {};
 let removeCategoryFN = function() {};
 let deleteUnusedCategoriesFN = function() {};
 let startTorrentsByCategoryFN = function() {};
-let pauseTorrentsByCategoryFN = function() {};
+let stopTorrentsByCategoryFN = function() {};
 let deleteTorrentsByCategoryFN = function() {};
 let torrentAddTagsFN = function() {};
 let torrentSetTagsFN = function() {};
@@ -80,10 +80,10 @@ let createTagFN = function() {};
 let removeTagFN = function() {};
 let deleteUnusedTagsFN = function() {};
 let startTorrentsByTagFN = function() {};
-let pauseTorrentsByTagFN = function() {};
+let stopTorrentsByTagFN = function() {};
 let deleteTorrentsByTagFN = function() {};
 let resumeTorrentsByTrackerFN = function() {};
-let pauseTorrentsByTrackerFN = function() {};
+let stopTorrentsByTrackerFN = function() {};
 let deleteTorrentsByTrackerFN = function() {};
 let copyNameFN = function() {};
 let copyInfohashFN = function(policy) {};
@@ -405,7 +405,7 @@ const initializeWindows = function() {
         deleteFN();
     });
 
-    pauseFN = function() {
+    stopFN = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
@@ -689,7 +689,7 @@ const initializeWindows = function() {
         }
     };
 
-    pauseTorrentsByCategoryFN = function(categoryHash) {
+    stopTorrentsByCategoryFN = function(categoryHash) {
         const hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL, TRACKERS_ALL);
         if (hashes.length) {
             new Request({
@@ -831,7 +831,7 @@ const initializeWindows = function() {
         }
     };
 
-    pauseTorrentsByTagFN = function(tagHash) {
+    stopTorrentsByTagFN = function(tagHash) {
         const hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, tagHash, TRACKERS_ALL);
         if (hashes.length) {
             new Request({
@@ -891,7 +891,7 @@ const initializeWindows = function() {
         }
     };
 
-    pauseTorrentsByTrackerFN = function(trackerHash) {
+    stopTorrentsByTrackerFN = function(trackerHash) {
         const trackerHashInt = Number.parseInt(trackerHash, 10);
         let hashes = [];
         switch (trackerHashInt) {
@@ -1047,10 +1047,10 @@ const initializeWindows = function() {
         }
     };
 
-    addClickEvent('pauseAll', (e) => {
+    addClickEvent('stopAll', (e) => {
         new Event(e).stop();
 
-        if (confirm('QBT_TR(Would you like to pause all torrents?)QBT_TR[CONTEXT=MainWindow]')) {
+        if (confirm('QBT_TR(Would you like to stop all torrents?)QBT_TR[CONTEXT=MainWindow]')) {
             new Request({
                 url: 'api/v2/torrents/pause',
                 method: 'post',

@@ -546,7 +546,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string extracomment="Time (duration) the torrent is active (not paused)">Time Active:</string>
+                 <string extracomment="Time (duration) the torrent is active (not stopped)">Time Active:</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

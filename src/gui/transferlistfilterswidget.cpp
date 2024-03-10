@@ -123,8 +123,8 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     m_categoryFilterWidget = new CategoryFilterWidget(this);
     connect(m_categoryFilterWidget, &CategoryFilterWidget::actionDeleteTorrentsTriggered
             , transferList, &TransferListWidget::deleteVisibleTorrents);
-    connect(m_categoryFilterWidget, &CategoryFilterWidget::actionPauseTorrentsTriggered
-            , transferList, &TransferListWidget::pauseVisibleTorrents);
+    connect(m_categoryFilterWidget, &CategoryFilterWidget::actionStopTorrentsTriggered
+            , transferList, &TransferListWidget::stopVisibleTorrents);
     connect(m_categoryFilterWidget, &CategoryFilterWidget::actionResumeTorrentsTriggered
             , transferList, &TransferListWidget::startVisibleTorrents);
     connect(m_categoryFilterWidget, &CategoryFilterWidget::categoryChanged
@@ -141,8 +141,8 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     m_tagFilterWidget = new TagFilterWidget(this);
     connect(m_tagFilterWidget, &TagFilterWidget::actionDeleteTorrentsTriggered
             , transferList, &TransferListWidget::deleteVisibleTorrents);
-    connect(m_tagFilterWidget, &TagFilterWidget::actionPauseTorrentsTriggered
-            , transferList, &TransferListWidget::pauseVisibleTorrents);
+    connect(m_tagFilterWidget, &TagFilterWidget::actionStopTorrentsTriggered
+            , transferList, &TransferListWidget::stopVisibleTorrents);
     connect(m_tagFilterWidget, &TagFilterWidget::actionResumeTorrentsTriggered
             , transferList, &TransferListWidget::startVisibleTorrents);
     connect(m_tagFilterWidget, &TagFilterWidget::tagChanged

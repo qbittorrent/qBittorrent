@@ -1076,7 +1076,7 @@ window.qBittorrent.DynamicTable = (function() {
                         status = "QBT_TR(Checking resume data)QBT_TR[CONTEXT=TransferListDelegate]";
                         break;
                     case "pausedDL":
-                        status = "QBT_TR(Paused)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = "QBT_TR(Stopped)QBT_TR[CONTEXT=TransferListDelegate]";
                         break;
                     case "pausedUP":
                         status = "QBT_TR(Completed)QBT_TR[CONTEXT=TransferListDelegate]";
@@ -1502,7 +1502,7 @@ window.qBittorrent.DynamicTable = (function() {
                 if (state.indexOf('paused') > -1)
                     startFN();
                 else
-                    pauseFN();
+                    stopFN();
                 return true;
             });
             tr.addClass("torrentsTableContextMenuTarget");

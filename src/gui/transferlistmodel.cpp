@@ -106,7 +106,7 @@ TransferListModel::TransferListModel(QObject *parent)
           {BitTorrent::TorrentState::CheckingDownloading, tr("Checking", "Torrent local data is being checked")},
           {BitTorrent::TorrentState::CheckingUploading, tr("Checking", "Torrent local data is being checked")},
           {BitTorrent::TorrentState::CheckingResumeData, tr("Checking resume data", "Used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.")},
-          {BitTorrent::TorrentState::PausedDownloading, tr("Paused")},
+          {BitTorrent::TorrentState::PausedDownloading, tr("Stopped")},
           {BitTorrent::TorrentState::PausedUploading, tr("Completed")},
           {BitTorrent::TorrentState::Moving, tr("Moving", "Torrent local data are being moved/relocated")},
           {BitTorrent::TorrentState::MissingFiles, tr("Missing Files")},
@@ -161,7 +161,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_NAME: return tr("Name", "i.e: torrent name");
             case TR_SIZE: return tr("Size", "i.e: torrent size");
             case TR_PROGRESS: return tr("Progress", "% Done");
-            case TR_STATUS: return tr("Status", "Torrent status (e.g. downloading, seeding, paused)");
+            case TR_STATUS: return tr("Status", "Torrent status (e.g. downloading, seeding, stopped)");
             case TR_SEEDS: return tr("Seeds", "i.e. full sources (often untranslated)");
             case TR_PEERS: return tr("Peers", "i.e. partial sources (often untranslated)");
             case TR_DLSPEED: return tr("Down Speed", "i.e: Download speed");
@@ -180,7 +180,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_AMOUNT_DOWNLOADED_SESSION: return tr("Session Download", "Amount of data downloaded since program open (e.g. in MB)");
             case TR_AMOUNT_UPLOADED_SESSION: return tr("Session Upload", "Amount of data uploaded since program open (e.g. in MB)");
             case TR_AMOUNT_LEFT: return tr("Remaining", "Amount of data left to download (e.g. in MB)");
-            case TR_TIME_ELAPSED: return tr("Time Active", "Time (duration) the torrent is active (not paused)");
+            case TR_TIME_ELAPSED: return tr("Time Active", "Time (duration) the torrent is active (not stopped)");
             case TR_SAVE_PATH: return tr("Save Path", "Torrent save path");
             case TR_DOWNLOAD_PATH: return tr("Incomplete Save Path", "Torrent incomplete save path");
             case TR_COMPLETED: return tr("Completed", "Amount of data completed (e.g. in MB)");
