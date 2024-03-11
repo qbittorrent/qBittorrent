@@ -264,11 +264,8 @@ Application::Application(int &argc, char **argv)
     Logger::initInstance();
 
     const auto portableProfilePath = Path(QCoreApplication::applicationDirPath()) / DEFAULT_PORTABLE_MODE_PROFILE_DIR;
-    const bool portableModeEnabled = m_commandLineArgs.profileDir.isEmpty() && portableProfilePath.exists();
-
-    const Path profileDir = portableModeEnabled
-        ? portableProfilePath
-        : m_commandLineArgs.profileDir;
+    const bool portableModeEnabled = m_commandLineArgs.profileDir.isEmpty() && Utils::Fs::isDir(portableProfilePath);
+    const Path profileDir = portableModeEnabled ? portableProfilePath : m_commandLineArgs.profileDir;
     Profile::initInstance(profileDir, m_commandLineArgs.configurationName,
                         (m_commandLineArgs.relativeFastresumePaths || portableModeEnabled));
 
