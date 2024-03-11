@@ -13,7 +13,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - FEATURE: Add seeding limits to RSS and Watched folders options UI (glassez) d652a10495fdd5175242f029a7e2b9a6373ea985
     - FEATURE: Subcategories implicitly follow the parent category options (glassez) d652aa1c78a0455e4787e1fe95b95b767dd1c2667982e10495fdd5175242f029a7e2b9a6373ea985
     - FEATURE: Add support for SSL torrents (Chocobo1, Radu Carpa) cffd74b62a0e19f9c1e291306125475e24659f86
-    - FEATURE: Option to name each qbittorrent instance (Chocobo1) 46e8ee50c833ac3f0691a05a7d9c4b6dcb095641
+    - FEATURE: Add option to name each qbittorrent instance (Chocobo1) 46e8ee50c833ac3f0691a05a7d9c4b6dcb095641
     - BUGFIX: Display error message when unrecoverable error occurred (glassez) a0e41a11dec9e195455d990fd0e87390882c703d
     - BUGFIX: Update size of selected files when selection is changed (glassez) eddfaedc4d34cfcaf8a38210e6700ace0886cc9f
     - BUGFIX: Normalize tags by trimming leading/trailing whitespace (glassez) 7a4119259703179909dd37153031f11a3ef617e8
@@ -35,7 +35,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - WINDOWS: Use Fusion style on Windows 10+. It has better compatibility with dark mode (glassez) 5a334175a8b5047cf56552c0bf5a54c3e3e14893
     - WINDOWS: Allow to set qBittorrent as default program (glassez) 6860c0d60de0ad2bb4374096354fadf3d0261a43
     - LINUX: Add support for systemd power management (Chocobo1) f3f9cfe44ed49d5bf3de0e318fa9c8ec48645ca4
-    - LINUX: Support for localized man pages (Victor Chernyakin) 2dc1a7d66f246faee94f08c1a033f107ae126f0f
+    - LINUX: Add support for localized man pages (Victor Chernyakin) 2dc1a7d66f246faee94f08c1a033f107ae126f0f
     - LINUX: Specify a locale if none is set (Chocobo1) fc56fdade75610fabf42426cdc8960b9f1ba77a4
     - MACOS: Display download/upload speed in dock icon (Nick Korotysh) e6ec3d0c2bbdda2d3228558907353f725a4d45b7
     - MACOS: Add support for quarantine on macOS (Chocobo1) 98576dacae1ea6fb5369f4aef2cf91426766cb57
