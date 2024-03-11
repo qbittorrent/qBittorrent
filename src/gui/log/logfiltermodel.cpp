@@ -39,7 +39,7 @@ LogFilterModel::LogFilterModel(const Log::MsgTypes types, QObject *parent)
 void LogFilterModel::setMessageTypes(const Log::MsgTypes types)
 {
     m_types = types;
-    invalidateFilter();
+    invalidateRowsFilter();
 }
 
 bool LogFilterModel::filterAcceptsRow(const int sourceRow, const QModelIndex &sourceParent) const

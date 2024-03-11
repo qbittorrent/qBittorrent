@@ -112,46 +112,46 @@ void TransferListSortModel::sort(const int column, const Qt::SortOrder order)
     QSortFilterProxyModel::sort(column, order);
 }
 
-void TransferListSortModel::setStatusFilter(TorrentFilter::Type filter)
+void TransferListSortModel::setStatusFilter(const TorrentFilter::Type filter)
 {
     if (m_filter.setType(filter))
-        invalidateFilter();
+        invalidateRowsFilter();
 }
 
 void TransferListSortModel::setCategoryFilter(const QString &category)
 {
     if (m_filter.setCategory(category))
-        invalidateFilter();
+        invalidateRowsFilter();
 }
 
 void TransferListSortModel::disableCategoryFilter()
 {
     if (m_filter.setCategory(TorrentFilter::AnyCategory))
-        invalidateFilter();
+        invalidateRowsFilter();
 }
 
 void TransferListSortModel::setTagFilter(const Tag &tag)
 {
     if (m_filter.setTag(tag))
-        invalidateFilter();
+        invalidateRowsFilter();
 }
 
 void TransferListSortModel::disableTagFilter()
 {
     if (m_filter.setTag(TorrentFilter::AnyTag))
-        invalidateFilter();
+        invalidateRowsFilter();
 }
 
 void TransferListSortModel::setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs)
 {
     if (m_filter.setTorrentIDSet(torrentIDs))
-        invalidateFilter();
+        invalidateRowsFilter();
 }
 
 void TransferListSortModel::disableTrackerFilter()
 {
     if (m_filter.setTorrentIDSet(TorrentFilter::AnyID))
-        invalidateFilter();
+        invalidateRowsFilter();
 }
 
 int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &right) const
