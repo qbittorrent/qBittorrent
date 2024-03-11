@@ -14,6 +14,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - FEATURE: Subcategories implicitly follow the parent category options (glassez) d652aa1c78a0455e4787e1fe95b95b767dd1c2667982e10495fdd5175242f029a7e2b9a6373ea985
     - FEATURE: Add support for SSL torrents (Chocobo1, Radu Carpa) cffd74b62a0e19f9c1e291306125475e24659f86
     - FEATURE: Add option to name each qbittorrent instance (Chocobo1) 46e8ee50c833ac3f0691a05a7d9c4b6dcb095641
+    - FEATURE: Add button for sending test email (Thomas Piccirello) c06817f4ebf02ce05136916f66d5819d146b8594
     - BUGFIX: Display error message when unrecoverable error occurred (glassez) a0e41a11dec9e195455d990fd0e87390882c703d
     - BUGFIX: Update size of selected files when selection is changed (glassez) eddfaedc4d34cfcaf8a38210e6700ace0886cc9f
     - BUGFIX: Normalize tags by trimming leading/trailing whitespace (glassez) 7a4119259703179909dd37153031f11a3ef617e8
