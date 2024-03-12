@@ -227,12 +227,12 @@
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkConfirmStopAndResumeAll">
+                <widget class="QCheckBox" name="checkConfirmStopAndStartAll">
                  <property name="toolTip">
-                  <string>Shows a confirmation dialog upon pausing/resuming all the torrents</string>
+                  <string>Shows a confirmation dialog upon pausing/starting all the torrents</string>
                  </property>
                  <property name="text">
-                  <string>Confirm &quot;Stop/Resume all&quot; actions</string>
+                  <string>Confirm &quot;Stop/Start all&quot; actions</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>

@@ -392,13 +392,13 @@ void TransferListWidget::stopAllTorrents()
         torrent->pause();
 }
 
-void TransferListWidget::resumeAllTorrents()
+void TransferListWidget::startAllTorrents()
 {
     if (Preferences::instance()->confirmPauseAndResumeAll())
     {
-        // Show confirmation if user would really like to Resume All
-        const QMessageBox::StandardButton ret = QMessageBox::question(this, tr("Confirm resume")
-                , tr("Would you like to resume all torrents?"), (QMessageBox::Yes | QMessageBox::No));
+        // Show confirmation if user would really like to Start All
+        const QMessageBox::StandardButton ret = QMessageBox::question(this, tr("Confirm start all torrents")
+                , tr("Would you like to start all torrents?"), (QMessageBox::Yes | QMessageBox::No));
 
         if (ret != QMessageBox::Yes)
             return;
@@ -972,11 +972,11 @@ void TransferListWidget::displayListMenu()
 
     // Create actions
 
-    auto *actionStart = new QAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("&Resume", "Resume/start the torrent"), listMenu);
+    auto *actionStart = new QAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("&Start", "Resume/start the torrent"), listMenu);
     connect(actionStart, &QAction::triggered, this, &TransferListWidget::startSelectedTorrents);
     auto *actionStop = new QAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("Sto&p", "Stop the torrent"), listMenu);
     connect(actionStop, &QAction::triggered, this, &TransferListWidget::stopSelectedTorrents);
-    auto *actionForceStart = new QAction(UIThemeManager::instance()->getIcon(u"torrent-start-forced"_s, u"media-playback-start"_s), tr("Force Resu&me", "Force Resume/start the torrent"), listMenu);
+    auto *actionForceStart = new QAction(UIThemeManager::instance()->getIcon(u"torrent-start-forced"_s, u"media-playback-start"_s), tr("Force Star&t", "Force Resume/start the torrent"), listMenu);
     connect(actionForceStart, &QAction::triggered, this, &TransferListWidget::forceStartSelectedTorrents);
     auto *actionDelete = new QAction(UIThemeManager::instance()->getIcon(u"list-remove"_s), tr("&Remove", "Remove the torrent"), listMenu);
     connect(actionDelete, &QAction::triggered, this, &TransferListWidget::softDeleteSelectedTorrents);

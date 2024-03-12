@@ -45,7 +45,7 @@ public:
 
 signals:
     void tagChanged(const std::optional<Tag> &tag);
-    void actionResumeTorrentsTriggered();
+    void actionStartTorrentsTriggered();
     void actionStopTorrentsTriggered();
     void actionDeleteTorrentsTriggered();
 

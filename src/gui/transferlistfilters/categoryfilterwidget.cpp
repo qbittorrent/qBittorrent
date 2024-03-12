@@ -128,8 +128,8 @@ void CategoryFilterWidget::showMenu()
     menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove unused categories")
         , this, &CategoryFilterWidget::removeUnusedCategories);
     menu->addSeparator();
-    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Resume torrents")
-        , this, &CategoryFilterWidget::actionResumeTorrentsTriggered);
+    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Start torrents")
+        , this, &CategoryFilterWidget::actionStartTorrentsTriggered);
     menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("Stop torrents")
         , this, &CategoryFilterWidget::actionStopTorrentsTriggered);
     menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_s), tr("Remove torrents")

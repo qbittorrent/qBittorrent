@@ -55,9 +55,9 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
     auto *completed = new QListWidgetItem(this);
     completed->setData(Qt::DisplayRole, tr("Completed (0)"));
     completed->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"checked-completed"_s, u"completed"_s));
-    auto *resumed = new QListWidgetItem(this);
-    resumed->setData(Qt::DisplayRole, tr("Resumed (0)"));
-    resumed->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s));
+    auto *started = new QListWidgetItem(this);
+    started->setData(Qt::DisplayRole, tr("Started (0)"));
+    started->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s));
     auto *stopped = new QListWidgetItem(this);
     stopped->setData(Qt::DisplayRole, tr("Stopped (0)"));
     stopped->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"stopped"_s, u"media-playback-pause"_s));
@@ -167,7 +167,7 @@ void StatusFilterWidget::updateTexts()
     item(TorrentFilter::Downloading)->setData(Qt::DisplayRole, tr("Downloading (%1)").arg(m_nbDownloading));
     item(TorrentFilter::Seeding)->setData(Qt::DisplayRole, tr("Seeding (%1)").arg(m_nbSeeding));
     item(TorrentFilter::Completed)->setData(Qt::DisplayRole, tr("Completed (%1)").arg(m_nbCompleted));
-    item(TorrentFilter::Resumed)->setData(Qt::DisplayRole, tr("Resumed (%1)").arg(m_nbResumed));
+    item(TorrentFilter::Resumed)->setData(Qt::DisplayRole, tr("Started (%1)").arg(m_nbResumed));
     item(TorrentFilter::Paused)->setData(Qt::DisplayRole, tr("Stopped (%1)").arg(m_nbPaused));
     item(TorrentFilter::Active)->setData(Qt::DisplayRole, tr("Active (%1)").arg(m_nbActive));
     item(TorrentFilter::Inactive)->setData(Qt::DisplayRole, tr("Inactive (%1)").arg(m_nbInactive));
@@ -218,7 +218,7 @@ void StatusFilterWidget::showMenu()
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Resume torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Start torrents")
         , transferList(), &TransferListWidget::startVisibleTorrents);
     menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("Stop torrents")
         , transferList(), &TransferListWidget::stopVisibleTorrents);

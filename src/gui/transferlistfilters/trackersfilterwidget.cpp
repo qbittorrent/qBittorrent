@@ -568,7 +568,7 @@ void TrackersFilterWidget::showMenu()
         menu->addSeparator();
     }
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Resume torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Start torrents")
         , transferList(), &TransferListWidget::startVisibleTorrents);
     menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("Stop torrents")
         , transferList(), &TransferListWidget::stopVisibleTorrents);

@@ -285,7 +285,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 
     // Transfer list slots
     connect(m_ui->actionStart, &QAction::triggered, m_transferListWidget, &TransferListWidget::startSelectedTorrents);
-    connect(m_ui->actionStartAll, &QAction::triggered, m_transferListWidget, &TransferListWidget::resumeAllTorrents);
+    connect(m_ui->actionStartAll, &QAction::triggered, m_transferListWidget, &TransferListWidget::startAllTorrents);
     connect(m_ui->actionStop, &QAction::triggered, m_transferListWidget, &TransferListWidget::stopSelectedTorrents);
     connect(m_ui->actionStopAll, &QAction::triggered, m_transferListWidget, &TransferListWidget::stopAllTorrents);
     connect(m_ui->actionDelete, &QAction::triggered, m_transferListWidget, &TransferListWidget::softDeleteSelectedTorrents);

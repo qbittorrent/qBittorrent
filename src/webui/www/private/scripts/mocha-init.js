@@ -82,7 +82,7 @@ let deleteUnusedTagsFN = function() {};
 let startTorrentsByTagFN = function() {};
 let stopTorrentsByTagFN = function() {};
 let deleteTorrentsByTagFN = function() {};
-let resumeTorrentsByTrackerFN = function() {};
+let startTorrentsByTrackerFN = function() {};
 let stopTorrentsByTrackerFN = function() {};
 let deleteTorrentsByTrackerFN = function() {};
 let copyNameFN = function() {};
@@ -864,7 +864,7 @@ const initializeWindows = function() {
         }
     };
 
-    resumeTorrentsByTrackerFN = function(trackerHash) {
+    startTorrentsByTrackerFN = function(trackerHash) {
         const trackerHashInt = Number.parseInt(trackerHash, 10);
         let hashes = [];
         switch (trackerHashInt) {
@@ -1062,10 +1062,10 @@ const initializeWindows = function() {
         }
     });
 
-    addClickEvent('resumeAll', (e) => {
+    addClickEvent('startAll', (e) => {
         new Event(e).stop();
 
-        if (confirm('QBT_TR(Would you like to resume all torrents?)QBT_TR[CONTEXT=MainWindow]')) {
+        if (confirm('QBT_TR(Would you like to start all torrents?)QBT_TR[CONTEXT=MainWindow]')) {
             new Request({
                 url: 'api/v2/torrents/resume',
                 method: 'post',

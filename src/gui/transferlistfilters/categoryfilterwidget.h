@@ -42,7 +42,7 @@ public:
 
 signals:
     void categoryChanged(const QString &categoryName);
-    void actionResumeTorrentsTriggered();
+    void actionStartTorrentsTriggered();
     void actionStopTorrentsTriggered();
     void actionDeleteTorrentsTriggered();
 

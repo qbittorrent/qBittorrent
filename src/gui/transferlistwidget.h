@@ -69,7 +69,7 @@ public slots:
     void clearSelectionTags();
     void setSelectedTorrentsLocation();
     void stopAllTorrents();
-    void resumeAllTorrents();
+    void startAllTorrents();
     void startSelectedTorrents();
     void forceStartSelectedTorrents();
     void startVisibleTorrents();
