@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "",
-  "Login": "",
-  "Password": "",
+  "Invalid Username or Password.": "Nome de usuário ou senha inválidos.",
+  "Login": "Login",
+  "Password": "Senha",
   "Unable to log in, server is probably unreachable.": "",
-  "Username": ""
+  "Username": "Nome de usuário"
 }

@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "",
-  "Login": "",
-  "Password": "",
+  "Invalid Username or Password.": "Numele de utilizator sau parola nu sunt valide.",
+  "Login": "Autentifică",
+  "Password": "Parolă",
   "Unable to log in, server is probably unreachable.": "",
-  "Username": ""
+  "Username": "Nume de utilizator"
 }
