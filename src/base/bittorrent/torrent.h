@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -37,6 +37,7 @@
 #include "base/3rdparty/expected.hpp"
 #include "base/pathfwd.h"
 #include "base/tagset.h"
+#include "sharelimitaction.h"
 #include "torrentcontenthandler.h"
 
 class QBitArray;
@@ -212,9 +213,16 @@ namespace BitTorrent
         virtual int piecesHave() const = 0;
         virtual qreal progress() const = 0;
         virtual QDateTime addedTime() const = 0;
+
+        // Share limits
         virtual qreal ratioLimit() const = 0;
+        virtual void setRatioLimit(qreal limit) = 0;
         virtual int seedingTimeLimit() const = 0;
+        virtual void setSeedingTimeLimit(int limit) = 0;
         virtual int inactiveSeedingTimeLimit() const = 0;
+        virtual void setInactiveSeedingTimeLimit(int limit) = 0;
+        virtual ShareLimitAction shareLimitAction() const = 0;
+        virtual void setShareLimitAction(ShareLimitAction action) = 0;
 
         virtual PathList filePaths() const = 0;
 
@@ -287,9 +295,6 @@ namespace BitTorrent
         virtual void forceReannounce(int index = -1) = 0;
         virtual void forceDHTAnnounce() = 0;
         virtual void forceRecheck() = 0;
-        virtual void setRatioLimit(qreal limit) = 0;
-        virtual void setSeedingTimeLimit(int limit) = 0;
-        virtual void setInactiveSeedingTimeLimit(int limit) = 0;
         virtual void setUploadLimit(int limit) = 0;
         virtual void setDownloadLimit(int limit) = 0;
         virtual void setSuperSeeding(bool enable) = 0;

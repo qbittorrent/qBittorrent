@@ -139,9 +139,15 @@ namespace BitTorrent
         int piecesHave() const override;
         qreal progress() const override;
         QDateTime addedTime() const override;
+
         qreal ratioLimit() const override;
+        void setRatioLimit(qreal limit) override;
         int seedingTimeLimit() const override;
+        void setSeedingTimeLimit(int limit) override;
         int inactiveSeedingTimeLimit() const override;
+        void setInactiveSeedingTimeLimit(int limit) override;
+        ShareLimitAction shareLimitAction() const override;
+        void setShareLimitAction(ShareLimitAction action) override;
 
         Path filePath(int index) const override;
         Path actualFilePath(int index) const override;
@@ -223,9 +229,6 @@ namespace BitTorrent
         void forceRecheck() override;
         void renameFile(int index, const Path &path) override;
         void prioritizeFiles(const QVector<DownloadPriority> &priorities) override;
-        void setRatioLimit(qreal limit) override;
-        void setSeedingTimeLimit(int limit) override;
-        void setInactiveSeedingTimeLimit(int limit) override;
         void setUploadLimit(int limit) override;
         void setDownloadLimit(int limit) override;
         void setSuperSeeding(bool enable) override;
@@ -356,16 +359,17 @@ namespace BitTorrent
         Path m_downloadPath;
         QString m_category;
         TagSet m_tags;
-        qreal m_ratioLimit;
-        int m_seedingTimeLimit;
-        int m_inactiveSeedingTimeLimit;
-        TorrentOperatingMode m_operatingMode;
-        TorrentContentLayout m_contentLayout;
-        bool m_hasFinishedStatus;
+        qreal m_ratioLimit = 0;
+        int m_seedingTimeLimit = 0;
+        int m_inactiveSeedingTimeLimit = 0;
+        ShareLimitAction m_shareLimitAction = ShareLimitAction::Default;
+        TorrentOperatingMode m_operatingMode = TorrentOperatingMode::AutoManaged;
+        TorrentContentLayout m_contentLayout = TorrentContentLayout::Original;
+        bool m_hasFinishedStatus = false;
         bool m_hasMissingFiles = false;
         bool m_hasFirstLastPiecePriority = false;
-        bool m_useAutoTMM;
-        bool m_isStopped;
+        bool m_useAutoTMM = false;
+        bool m_isStopped = false;
         StopCondition m_stopCondition = StopCondition::None;
         SSLParameters m_sslParams;
 

@@ -176,6 +176,9 @@ namespace BitTorrent
         void setGlobalMaxSeedingMinutes(int minutes) override;
         int globalMaxInactiveSeedingMinutes() const override;
         void setGlobalMaxInactiveSeedingMinutes(int minutes) override;
+        ShareLimitAction shareLimitAction() const override;
+        void setShareLimitAction(ShareLimitAction act) override;
+
         QString getDHTBootstrapNodes() const override;
         void setDHTBootstrapNodes(const QString &nodes) override;
         bool isDHTEnabled() const override;
@@ -412,9 +415,6 @@ namespace BitTorrent
         const SessionStatus &status() const override;
         const CacheStatus &cacheStatus() const override;
         bool isListening() const override;
-
-        MaxRatioAction maxRatioAction() const override;
-        void setMaxRatioAction(MaxRatioAction act) override;
 
         void banIP(const QString &ip) override;
 
@@ -692,7 +692,7 @@ namespace BitTorrent
         CachedSettingValue<ChokingAlgorithm> m_chokingAlgorithm;
         CachedSettingValue<SeedChokingAlgorithm> m_seedChokingAlgorithm;
         CachedSettingValue<QStringList> m_storedTags;
-        CachedSettingValue<int> m_maxRatioAction;
+        CachedSettingValue<ShareLimitAction> m_shareLimitAction;
         CachedSettingValue<Path> m_savePath;
         CachedSettingValue<Path> m_downloadPath;
         CachedSettingValue<bool> m_isDownloadPathEnabled;

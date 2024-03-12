@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -51,6 +51,7 @@ const QString PARAM_UPLOADLIMIT = u"upload_limit"_s;
 const QString PARAM_DOWNLOADLIMIT = u"download_limit"_s;
 const QString PARAM_SEEDINGTIMELIMIT = u"seeding_time_limit"_s;
 const QString PARAM_INACTIVESEEDINGTIMELIMIT = u"inactive_seeding_time_limit"_s;
+const QString PARAM_SHARELIMITACTION = u"share_limit_action"_s;
 const QString PARAM_RATIOLIMIT = u"ratio_limit"_s;
 const QString PARAM_SSL_CERTIFICATE = u"ssl_certificate"_s;
 const QString PARAM_SSL_PRIVATEKEY = u"ssl_private_key"_s;
@@ -96,10 +97,10 @@ namespace
     }
 
     template <typename Enum>
-    Enum getEnum(const QJsonObject &jsonObj, const QString &key)
+    Enum getEnum(const QJsonObject &jsonObj, const QString &key, const Enum defaultValue = {})
     {
         const QJsonValue jsonVal = jsonObj.value(key);
-        return Utils::String::toEnum<Enum>(jsonVal.toString(), {});
+        return Utils::String::toEnum<Enum>(jsonVal.toString(), defaultValue);
     }
 }
 
@@ -127,6 +128,7 @@ BitTorrent::AddTorrentParams BitTorrent::parseAddTorrentParams(const QJsonObject
         .seedingTimeLimit = jsonObj.value(PARAM_SEEDINGTIMELIMIT).toInt(Torrent::USE_GLOBAL_SEEDING_TIME),
         .inactiveSeedingTimeLimit = jsonObj.value(PARAM_INACTIVESEEDINGTIMELIMIT).toInt(Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME),
         .ratioLimit = jsonObj.value(PARAM_RATIOLIMIT).toDouble(Torrent::USE_GLOBAL_RATIO),
+        .shareLimitAction = getEnum<ShareLimitAction>(jsonObj, PARAM_SHARELIMITACTION, ShareLimitAction::Default),
         .sslParameters =
         {
             .certificate = QSslCertificate(jsonObj.value(PARAM_SSL_CERTIFICATE).toString().toLatin1()),
@@ -146,12 +148,13 @@ QJsonObject BitTorrent::serializeAddTorrentParams(const AddTorrentParams &params
         {PARAM_SAVEPATH, params.savePath.data()},
         {PARAM_DOWNLOADPATH, params.downloadPath.data()},
         {PARAM_OPERATINGMODE, Utils::String::fromEnum(params.addForced
-            ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged)},
+                ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged)},
         {PARAM_SKIPCHECKING, params.skipChecking},
         {PARAM_UPLOADLIMIT, params.uploadLimit},
         {PARAM_DOWNLOADLIMIT, params.downloadLimit},
         {PARAM_SEEDINGTIMELIMIT, params.seedingTimeLimit},
         {PARAM_INACTIVESEEDINGTIMELIMIT, params.inactiveSeedingTimeLimit},
+        {PARAM_SHARELIMITACTION, Utils::String::fromEnum(params.shareLimitAction)},
         {PARAM_RATIOLIMIT, params.ratioLimit},
         {PARAM_SSL_CERTIFICATE, QString::fromLatin1(params.sslParameters.certificate.toPem())},
         {PARAM_SSL_PRIVATEKEY, QString::fromLatin1(params.sslParameters.privateKey.toPem())},

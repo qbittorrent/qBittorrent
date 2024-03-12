@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -298,6 +298,7 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
     , m_ratioLimit(params.ratioLimit)
     , m_seedingTimeLimit(params.seedingTimeLimit)
     , m_inactiveSeedingTimeLimit(params.inactiveSeedingTimeLimit)
+    , m_shareLimitAction(params.shareLimitAction)
     , m_operatingMode(params.operatingMode)
     , m_contentLayout(params.contentLayout)
     , m_hasFinishedStatus(params.hasFinishedStatus)
@@ -2143,6 +2144,7 @@ void TorrentImpl::prepareResumeData(const lt::add_torrent_params &params)
         .ratioLimit = m_ratioLimit,
         .seedingTimeLimit = m_seedingTimeLimit,
         .inactiveSeedingTimeLimit = m_inactiveSeedingTimeLimit,
+        .shareLimitAction = m_shareLimitAction,
         .sslParameters = m_sslParams
     };
 
@@ -2613,6 +2615,21 @@ void TorrentImpl::setInactiveSeedingTimeLimit(int limit)
     if (m_inactiveSeedingTimeLimit != limit)
     {
         m_inactiveSeedingTimeLimit = limit;
+        deferredRequestResumeData();
+        m_session->handleTorrentShareLimitChanged(this);
+    }
+}
+
+ShareLimitAction TorrentImpl::shareLimitAction() const
+{
+    return m_shareLimitAction;
+}
+
+void TorrentImpl::setShareLimitAction(const ShareLimitAction action)
+{
+    if (m_shareLimitAction != action)
+    {
+        m_shareLimitAction = action;
         deferredRequestResumeData();
         m_session->handleTorrentShareLimitChanged(this);
     }

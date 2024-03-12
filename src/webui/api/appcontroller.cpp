@@ -288,7 +288,7 @@ void AppController::preferencesAction()
     data[u"max_seeding_time"_s] = session->globalMaxSeedingMinutes();
     data[u"max_inactive_seeding_time_enabled"_s] = (session->globalMaxInactiveSeedingMinutes() >= 0.);
     data[u"max_inactive_seeding_time"_s] = session->globalMaxInactiveSeedingMinutes();
-    data[u"max_ratio_act"_s] = session->maxRatioAction();
+    data[u"max_ratio_act"_s] = static_cast<int>(session->shareLimitAction());
     // Add trackers
     data[u"add_trackers_enabled"_s] = session->isAddTrackersEnabled();
     data[u"add_trackers"_s] = session->additionalTrackers();
@@ -812,7 +812,24 @@ void AppController::setPreferencesAction()
             ? m[u"max_inactive_seeding_time"_s].toInt() : -1);
     }
     if (hasKey(u"max_ratio_act"_s))
-        session->setMaxRatioAction(static_cast<MaxRatioAction>(it.value().toInt()));
+    {
+        switch (it.value().toInt())
+        {
+        default:
+        case 0:
+            session->setShareLimitAction(BitTorrent::ShareLimitAction::Stop);
+            break;
+        case 1:
+            session->setShareLimitAction(BitTorrent::ShareLimitAction::Remove);
+            break;
+        case 2:
+            session->setShareLimitAction(BitTorrent::ShareLimitAction::EnableSuperSeeding);
+            break;
+        case 3:
+            session->setShareLimitAction(BitTorrent::ShareLimitAction::RemoveWithContent);
+            break;
+        }
+    }
     // Add trackers
     if (hasKey(u"add_trackers_enabled"_s))
         session->setAddTrackersEnabled(it.value().toBool());

@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,43 +29,29 @@
 
 #pragma once
 
-#include <libtorrent/add_torrent_params.hpp>
-
-#include <QString>
-
-#include "base/path.h"
-#include "base/tagset.h"
-#include "sharelimitaction.h"
-#include "sslparameters.h"
-#include "torrent.h"
-#include "torrentcontentlayout.h"
+#include <QMetaEnum>
 
 namespace BitTorrent
 {
-    struct LoadTorrentParams
+    // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
+    // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
+    // https://www.kdab.com/new-qt-5-8-meta-object-support-namespaces/#comment-143779
+    inline namespace ShareLimitActionNS
     {
-        lt::add_torrent_params ltAddTorrentParams {};
+        Q_NAMESPACE
 
-        QString name;
-        QString category;
-        TagSet tags;
-        Path savePath;
-        Path downloadPath;
-        TorrentContentLayout contentLayout = TorrentContentLayout::Original;
-        TorrentOperatingMode operatingMode = TorrentOperatingMode::AutoManaged;
-        bool useAutoTMM = false;
-        bool firstLastPiecePriority = false;
-        bool hasFinishedStatus = false;
-        bool stopped = false;
-        Torrent::StopCondition stopCondition = Torrent::StopCondition::None;
+        // These values should remain unchanged when adding new items
+        // so as not to break the existing user settings.
+        enum class ShareLimitAction
+        {
+            Default = -1, // special value
 
-        bool addToQueueTop = false; // only for new torrents
+            Stop = 0,
+            Remove = 1,
+            RemoveWithContent = 3,
+            EnableSuperSeeding = 2
+        };
 
-        qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
-        int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
-        int inactiveSeedingTimeLimit = Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME;
-        ShareLimitAction shareLimitAction = ShareLimitAction::Default;
-
-        SSLParameters sslParameters;
-    };
+        Q_ENUM_NS(ShareLimitAction)
+    }
 }
