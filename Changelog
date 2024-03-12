@@ -26,7 +26,6 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - WEBUI: Leave the fields empty when value is invalid (Chocobo1) 54bcabeca4292a72649202a03eaf09e711d73395
     - WEBUI: Use natural sorting (Chocobo1) 00372dd559dedd19e3bcb66db8e7d5faf597d4b2
     - WEBUI: Improve WebUI login behavior (JayRet) f265eb0166f57a5dd866a5461b7bf2ab3076ee9f
-    - WEBAPI: Add endpoint to get torrent count (glassez) cecbb44a031c96e8fce48f12eeddda47b9c85a27
     - WEBAPI: Fix wrong timestamp values (Chocobo1) 114652205c92bf7fcf63f355cab439a5eb4b184f
     - WEBAPI: Send binary data with filename and mime type specified (glassez) 60bb819e2e839d691dec6915d592d4a2c66d1de2
     - WEBAPI: Expose API for the torrent creator (glassez, Radu Carpa) 0114610a40e3cc63613baa406f330107385a1626
