@@ -15,9 +15,11 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - FEATURE: Add support for SSL torrents (Chocobo1, Radu Carpa) cffd74b62a0e19f9c1e291306125475e24659f86
     - FEATURE: Add option to name each qbittorrent instance (Chocobo1) 46e8ee50c833ac3f0691a05a7d9c4b6dcb095641
     - FEATURE: Add button for sending test email (Thomas Piccirello) c06817f4ebf02ce05136916f66d5819d146b8594
+    - FEATURE: Allow torrents to override default share limit action (glassez) d5e41bf679529c2bf6f9abb77a751fbc091fc66b
     - BUGFIX: Display error message when unrecoverable error occurred (glassez) a0e41a11dec9e195455d990fd0e87390882c703d
     - BUGFIX: Update size of selected files when selection is changed (glassez) eddfaedc4d34cfcaf8a38210e6700ace0886cc9f
     - BUGFIX: Normalize tags by trimming leading/trailing whitespace (glassez) 7a4119259703179909dd37153031f11a3ef617e8
+    - BUGFIX: Correctly handle share limits in torrent options dialog (glassez) 1702b6c891cd111a209ffcc71c40ca336e97efc0
     - WEBUI: Improve WebUI responsiveness (Chocobo1) 2edb1a0765dc501bb66d133d1bc8ac3c37704f51
     - WEBUI: Do not exit the app when WebUI has failed to start (Hanabishi) 35e4b35d125983051a25173d595119d99b7bda3a
     - WEBUI: Add `Moving` filter to side panel (xavier2k6) f067ab169224013cb4bf21630b8a3eaa5d7d2dd6
