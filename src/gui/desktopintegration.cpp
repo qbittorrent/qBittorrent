@@ -31,6 +31,7 @@
 
 #include <chrono>
 
+#include <QtGlobal>
 #include <QMenu>
 #include <QTimer>
 
@@ -300,11 +301,11 @@ QIcon DesktopIntegration::getSystrayIcon() const
         icon = UIThemeManager::instance()->getIcon(u"qbittorrent-tray-light"_s);
         break;
     }
-#if ((QT_VERSION < QT_VERSION_CHECK(6, 0, 0)) && defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+#ifdef Q_OS_UNIX
     // Workaround for invisible tray icon in KDE, https://bugreports.qt.io/browse/QTBUG-53550
-    return {icon.pixmap(32)};
-#else
-    return icon;
+    if (qEnvironmentVariable("XDG_CURRENT_DESKTOP").compare(u"KDE", Qt::CaseInsensitive) == 0)
+        return icon.pixmap(32);
 #endif
+    return icon;
 }
 #endif // Q_OS_MACOS
