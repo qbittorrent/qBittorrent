@@ -132,6 +132,8 @@ inline QSet<QString> defaultUIThemeIcons()
         u"network-connect"_s,
         u"network-server"_s,
         u"object-locked"_s,
+        u"pause-session"_s,
+        u"paused"_s,
         u"peers"_s,
         u"peers-add"_s,
         u"peers-remove"_s,
