@@ -1437,10 +1437,16 @@ window.qBittorrent.DynamicTable = (function() {
                 }
             }
 
-            if ((filterTerms !== undefined) && (filterTerms !== null)
-                && (filterTerms.length > 0) && !window.qBittorrent.Misc.containsAllTerms(name, filterTerms))
-                return false;
-
+            if ((filterTerms !== undefined) && (filterTerms !== null)) {
+                if (Array.isArray(filterTerms)) {
+                    if ((filterTerms.length > 0) && !window.qBittorrent.Misc.containsAllTerms(name, filterTerms))
+                        return false;
+                }
+                else { // regex search
+                    if (!filterTerms.test(name))
+                        return false;
+                }
+            }
             return true;
         },
 
@@ -1471,8 +1477,15 @@ window.qBittorrent.DynamicTable = (function() {
             const filteredRows = [];
 
             const rows = this.rows.getValues();
+            const torrentsFilterRegex = $('torrentsFilterRegexBox').checked;
             const filterText = $('torrentsFilterInput').value.trim().toLowerCase();
-            const filterTerms = (filterText.length > 0) ? filterText.split(" ") : null;
+            let filterTerms;
+            if (torrentsFilterRegex) {
+                filterTerms = (filterText.length > 0) ? new RegExp(filterText) : null;
+            }
+            else {
+                filterTerms = (filterText.length > 0) ? filterText.split(" ") : null;
+            }
 
             for (let i = 0; i < rows.length; ++i) {
                 if (this.applyFilter(rows[i], selected_filter, selected_category, selectedTag, selectedTracker, filterTerms)) {
