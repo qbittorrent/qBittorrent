@@ -36,8 +36,8 @@ output = '''<!DOCTYPE RCC><RCC version="1.0">
 <qresource>
 '''
 for language in languages_list:
-  output += '  <file>%s</file>'%('lang'+os.sep+language)
-  output += os.linesep
+    output += '  <file>%s</file>' % ('lang' + os.sep + language)
+    output += os.linesep
 output += '''</qresource>
 </RCC>'''
 lang_file = open('lang.qrc', 'w')
@@ -48,41 +48,41 @@ lang_file.close()
 os.chdir('gui/searchengine')
 search_list = []
 for root, dirs, files in os.walk('nova3'):
-  for file in files:
-    if file.startswith("__"):
-      continue
-    if splitext(file)[-1] in ('.py', '.png'):
-      search_list.append(join(root, file))
+    for file in files:
+        if file.startswith("__"):
+            continue
+        if splitext(file)[-1] in ('.py', '.png'):
+            search_list.append(join(root, file))
 
 output = '''<!DOCTYPE RCC><RCC version="1.0">
 <qresource>
 '''
 for file in search_list:
-  output += '  <file>%s</file>'%(file)
-  output += os.linesep
+    output += '  <file>%s</file>' % (file)
+    output += os.linesep
 output += '''</qresource>
 </RCC>'''
 search_file = open('search.qrc', 'w')
 search_file.write(output)
 search_file.close()
 
-os.chdir('../..');
+os.chdir('../..')
 
 # update icons files directory
 icons_list = []
 for root, dirs, files in os.walk('icons'):
-  if 'skin_unused' in dirs:
-    dirs.remove('skin_unused')
-  for file in files:
-    if splitext(file)[-1] in ('.png', '.jpg', '.gif'):
-      icons_list.append(join(root, file))
+    if 'skin_unused' in dirs:
+        dirs.remove('skin_unused')
+    for file in files:
+        if splitext(file)[-1] in ('.png', '.jpg', '.gif'):
+            icons_list.append(join(root, file))
 
 output = '''<!DOCTYPE RCC><RCC version="1.0">
 <qresource>
 '''
 for icon in icons_list:
-  output += '  <file>%s</file>'%(icon)
-  output += os.linesep
+    output += '  <file>%s</file>' % (icon)
+    output += os.linesep
 output += '''</qresource>
 </RCC>'''
 icons_file = open('icons.qrc', 'w')

@@ -7,8 +7,10 @@ import shutil
 import sys
 from typing import List
 
+
 def isNotStub(path: str) -> bool:
     return (os.path.getsize(path) >= (10 * 1024))
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description='Gather valid Qt translations for NSIS packaging.')
@@ -26,6 +28,7 @@ def main() -> int:
         shutil.copy2(file, args.nsis_packaging_folder)
 
     return 0
+
 
 if __name__ == '__main__':
     sys.exit(main())
