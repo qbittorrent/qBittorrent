@@ -1,0 +1,79 @@
+name: CI - Python
+
+on: [pull_request, push]
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: ${{ github.head_ref != '' }}
+
+jobs:
+  ci:
+    name: Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup python (auxiliary scripts)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3'  # use default version
+
+      - name: Install tools (auxiliary scripts)
+        run: pip install bandit pycodestyle pyflakes
+
+      - name: Gather files (auxiliary scripts)
+        run: |
+          export "PY_FILES=$(find . -type f -name '*.py' ! -path '*searchengine*' -printf '%p ')"
+          echo $PY_FILES
+          echo "PY_FILES=$PY_FILES" >> "$GITHUB_ENV"
+
+      - name: Lint code (auxiliary scripts)
+        run: |
+          pyflakes $PY_FILES
+          bandit --skip B314,B405 $PY_FILES
+
+      - name: Format code (auxiliary scripts)
+        run: |
+          pycodestyle \
+            --max-line-length=1000 \
+            --statistics \
+            $PY_FILES
+
+      - name: Build code (auxiliary scripts)
+        run: |
+          python -m compileall $PY_FILES
+
+      - name: Setup python (search engine)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.7'
+
+      - name: Install tools (search engine)
+        run: pip install bandit pycodestyle pyflakes
+
+      - name: Gather files (search engine)
+        run: |
+          export "PY_FILES=$(find . -type f -name '*.py' -path '*searchengine*' ! -name 'socks.py' -printf '%p ')"
+          echo $PY_FILES
+          echo "PY_FILES=$PY_FILES" >> "$GITHUB_ENV"
+
+      - name: Lint code (search engine)
+        run: |
+          pyflakes $PY_FILES
+          bandit --skip B110,B310,B314,B405 $PY_FILES
+
+      - name: Format code (search engine)
+        run: |
+          pycodestyle \
+            --ignore=E265,E402 \
+            --max-line-length=1000 \
+            --statistics \
+            $PY_FILES
+
+      - name: Build code (search engine)
+        run: |
+          python -m compileall $PY_FILES
