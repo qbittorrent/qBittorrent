@@ -1,0 +1,7 @@
+{
+  "Invalid Username or Password.": "Neteisingas naudotojo vardas ar slaptažodis.",
+  "Login": "Prisijungimas",
+  "Password": "Slaptažodis",
+  "Unable to log in, server is probably unreachable.": "",
+  "Username": "Naudotojo vardas"
+}

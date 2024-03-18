@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2019  Mike Tzou (Chocobo1)
+ * Copyright (C) 2019-2024  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,10 +28,64 @@
 
 'use strict';
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('username').focus();
-    document.getElementById('username').select();
-});
+async function setupI18n() {
+    const languages = (() => {
+        const langs = new Set();
+        for (const lang of navigator.languages) {
+            langs.add(lang.replace('-', '_'));
+
+            const idx = lang.indexOf('-');
+            if (idx > 0)
+                langs.add(lang.slice(0, idx));
+        }
+        langs.add('en'); // fallback
+        return Array.from(langs);
+    })();
+
+    // it is faster to fetch all translation files at once than one by one
+    const fetches = languages.map(lang => fetch(`lang/${lang}.json`));
+    const fetchResults = await Promise.allSettled(fetches);
+    const translations = fetchResults
+        .map((value, idx) => ({ lang: languages[idx], result: value }))
+        .filter(v => (v.result.value.status === 200));
+    const translation = {
+        lang: (translations.length > 0) ? translations[0].lang.replace('_', '-') : undefined,
+        data: (translations.length > 0) ? (await translations[0].result.value.json()) : {}
+    };
+
+    // present it to i18next
+    const i18nextOptions = {
+        lng: translation.lang,
+        fallbackLng: false,
+        load: 'currentOnly',
+        resources: {
+            [translation.lang]: { translation: translation.data }
+        },
+        returnEmptyString: false
+    };
+    i18next.init(i18nextOptions, replaceI18nText);
+}
+
+function replaceI18nText() {
+    const tr = i18next.t; // workaround for warnings from i18next-parser
+    for (const element of document.getElementsByClassName('qbt-translatable')) {
+        const translationKey = element.getAttribute('data-i18n');
+        const translatedValue = tr(translationKey);
+        switch (element.nodeName) {
+            case 'INPUT':
+                element.value = translatedValue;
+                break;
+            case 'LABEL':
+                element.textContent = translatedValue;
+                break;
+            default:
+                console.error(`Unhandled element: ${element}`);
+                break;
+        }
+    }
+
+    document.documentElement.lang = i18next.language.split('-')[0];
+}
 
 function submitLoginForm(event) {
     event.preventDefault();
@@ -40,18 +94,18 @@ function submitLoginForm(event) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'api/v2/auth/login', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    xhr.addEventListener('readystatechange', function() {
+    xhr.addEventListener('readystatechange', () => {
         if (xhr.readyState === 4) { // DONE state
             if ((xhr.status === 200) && (xhr.responseText === "Ok."))
                 location.replace(location);
             else
-                errorMsgElement.textContent = 'Invalid Username or Password.';
+                errorMsgElement.textContent = i18next.t('Invalid Username or Password.');
         }
     });
-    xhr.addEventListener('error', function() {
+    xhr.addEventListener('error', () => {
         errorMsgElement.textContent = (xhr.responseText !== "")
             ? xhr.responseText
-            : 'Unable to log in, qBittorrent is probably unreachable.';
+            : i18next.t('Unable to log in, server is probably unreachable.');
     });
 
     const usernameElement = document.getElementById('username');
@@ -62,3 +116,11 @@ function submitLoginForm(event) {
     // clear the field
     passwordElement.value = '';
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('loginform');
+    loginForm.setAttribute('method', 'POST');
+    loginForm.addEventListener('submit', submitLoginForm);
+
+    setupI18n();
+});

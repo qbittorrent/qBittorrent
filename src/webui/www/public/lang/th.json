@@ -1,0 +1,7 @@
+{
+  "Invalid Username or Password.": "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง.",
+  "Login": "ล็อกอิน",
+  "Password": "รหัสผ่าน",
+  "Unable to log in, server is probably unreachable.": "",
+  "Username": "ชื่อผู้ใช้"
+}

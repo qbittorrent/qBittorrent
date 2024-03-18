@@ -1,0 +1,7 @@
+{
+  "Invalid Username or Password.": "Неправильний логін або пароль.",
+  "Login": "Логін",
+  "Password": "Пароль",
+  "Unable to log in, server is probably unreachable.": "",
+  "Username": "Ім'я користувача"
+}
