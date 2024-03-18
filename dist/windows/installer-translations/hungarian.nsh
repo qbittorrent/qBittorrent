@@ -29,7 +29,7 @@ LangString launch_qbt ${LANG_HUNGARIAN} "qBittorrent indítása."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_HUNGARIAN} "A telepítő csak 64-bites Windows verziókon működik."
 ;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 (1809) / Windows Server 2019."
-LangString inst_requires_win10 ${LANG_HUNGARIAN}  "This installer requires at least Windows 10 (1809) / Windows Server 2019."
+LangString inst_requires_win10 ${LANG_HUNGARIAN}  "A telepítéshez minimum Windows 10 (1809) / Windows Server 2019 szükséges."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_HUNGARIAN} "qBittorrent eltávolítása"
 
