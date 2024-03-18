@@ -1461,11 +1461,7 @@ window.addEventListener("DOMContentLoaded", function() {
         }, window.qBittorrent.Misc.FILTER_INPUT_DELAY);
     });
     $('torrentsFilterRegexBox').addEvent('change', () => {
-        clearTimeout(torrentsFilterInputTimer);
-        torrentsFilterInputTimer = setTimeout(() => {
-            torrentsFilterInputTimer = -1;
-            torrentsTable.updateTable();
-        }, window.qBittorrent.Misc.FILTER_INPUT_DELAY);
+        torrentsTable.updateTable();
     });
 
     $('transfersTabLink').addEvent('click', showTransfersTab);

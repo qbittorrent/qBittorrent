@@ -413,27 +413,27 @@ a.propButton img {
     display: none;
 }
 
-#torrentsFilterRegexBox+label {
+#torrentsFilterRegexBox + label {
     background-image: url("../images/regex.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 1.5em;
-    border-radius: 4px;
     border: 1px solid var(--color-border-default);
+    border-radius: 4px;
     display: inline-block;
     height: 26px;
     margin-bottom: -9px;
     width: 26px;
 }
 
-#torrentsFilterRegexBox:checked+label {
+#torrentsFilterRegexBox:checked + label {
     background-color: var(--color-background-default);
     background-image: url("../images/regex.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 1.5em;
-    border-radius: 4px;
     border: 1px solid var(--color-accent-blue);
+    border-radius: 4px;
     display: inline-block;
     height: 26px;
     margin-bottom: -9px;
