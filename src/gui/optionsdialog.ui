@@ -925,7 +925,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkStartStopped">
+                <widget class="QCheckBox" name="checkAddStopped">
                  <property name="toolTip">
                   <string>The torrent will be added to download list in a stopped state</string>
                  </property>
@@ -3897,7 +3897,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>comboI18n</tabstop>
   <tabstop>checkUseCustomTheme</tabstop>
   <tabstop>customThemeFilePath</tabstop>
-  <tabstop>checkStartStopped</tabstop>
+  <tabstop>checkAddStopped</tabstop>
   <tabstop>stopConditionComboBox</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>

@@ -522,7 +522,7 @@ void OptionsDialog::loadDownloadsTabOptions()
 
     m_ui->contentLayoutComboBox->setCurrentIndex(static_cast<int>(session->torrentContentLayout()));
     m_ui->checkAddToQueueTop->setChecked(session->isAddTorrentToQueueTop());
-    m_ui->checkStartStopped->setChecked(session->isAddTorrentPaused());
+    m_ui->checkAddStopped->setChecked(session->isAddTorrentPaused());
 
     m_ui->stopConditionComboBox->setToolTip(
                 u"<html><body><p><b>" + tr("None") + u"</b> - " + tr("No stop condition is set.") + u"</p><p><b>" +
@@ -534,8 +534,8 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->stopConditionComboBox->setItemData(1, QVariant::fromValue(BitTorrent::Torrent::StopCondition::MetadataReceived));
     m_ui->stopConditionComboBox->setItemData(2, QVariant::fromValue(BitTorrent::Torrent::StopCondition::FilesChecked));
     m_ui->stopConditionComboBox->setCurrentIndex(m_ui->stopConditionComboBox->findData(QVariant::fromValue(session->torrentStopCondition())));
-    m_ui->stopConditionLabel->setEnabled(!m_ui->checkStartStopped->isChecked());
-    m_ui->stopConditionComboBox->setEnabled(!m_ui->checkStartStopped->isChecked());
+    m_ui->stopConditionLabel->setEnabled(!m_ui->checkAddStopped->isChecked());
+    m_ui->stopConditionComboBox->setEnabled(!m_ui->checkAddStopped->isChecked());
 
     m_ui->checkMergeTrackers->setChecked(session->isMergeTrackersEnabled());
     m_ui->checkConfirmMergeTrackers->setEnabled(m_ui->checkAdditionDialog->isChecked());
@@ -655,8 +655,8 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->contentLayoutComboBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkAddToQueueTop, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkStartStopped, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkStartStopped, &QAbstractButton::toggled, this, [this](const bool checked)
+    connect(m_ui->checkAddStopped, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkAddStopped, &QAbstractButton::toggled, this, [this](const bool checked)
     {
         m_ui->stopConditionLabel->setEnabled(!checked);
         m_ui->stopConditionComboBox->setEnabled(!checked);
@@ -1689,7 +1689,7 @@ bool OptionsDialog::preAllocateAllFiles() const
 
 bool OptionsDialog::addTorrentsInPause() const
 {
-    return m_ui->checkStartStopped->isChecked();
+    return m_ui->checkAddStopped->isChecked();
 }
 
 // Proxy settings

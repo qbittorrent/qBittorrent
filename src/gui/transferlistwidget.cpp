@@ -294,10 +294,10 @@ void TransferListWidget::torrentDoubleClicked()
     switch (action)
     {
     case TOGGLE_PAUSE:
-        if (torrent->isPaused())
-            torrent->resume();
+        if (torrent->isStopped())
+            torrent->start();
         else
-            torrent->pause();
+            torrent->stop();
         break;
     case PREVIEW_FILE:
         if (torrentContainsPreviewableFiles(torrent))
@@ -389,7 +389,7 @@ void TransferListWidget::stopAllTorrents()
     }
 
     for (BitTorrent::Torrent *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
-        torrent->pause();
+        torrent->stop();
 }
 
 void TransferListWidget::startAllTorrents()
@@ -405,37 +405,37 @@ void TransferListWidget::startAllTorrents()
     }
 
     for (BitTorrent::Torrent *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
-        torrent->resume();
+        torrent->start();
 }
 
 void TransferListWidget::startSelectedTorrents()
 {
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
-        torrent->resume();
+        torrent->start();
 }
 
 void TransferListWidget::forceStartSelectedTorrents()
 {
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
-        torrent->resume(BitTorrent::TorrentOperatingMode::Forced);
+        torrent->start(BitTorrent::TorrentOperatingMode::Forced);
 }
 
 void TransferListWidget::startVisibleTorrents()
 {
     for (BitTorrent::Torrent *const torrent : asConst(getVisibleTorrents()))
-        torrent->resume();
+        torrent->start();
 }
 
 void TransferListWidget::stopSelectedTorrents()
 {
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
-        torrent->pause();
+        torrent->stop();
 }
 
 void TransferListWidget::stopVisibleTorrents()
 {
     for (BitTorrent::Torrent *const torrent : asConst(getVisibleTorrents()))
-        torrent->pause();
+        torrent->stop();
 }
 
 void TransferListWidget::softDeleteSelectedTorrents()
@@ -1108,7 +1108,7 @@ void TransferListWidget::displayListMenu()
         else
             needsStart = true;
 
-        const bool isStopped = torrent->isPaused();
+        const bool isStopped = torrent->isStopped();
         if (isStopped)
             needsStart = true;
         else

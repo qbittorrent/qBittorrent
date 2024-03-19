@@ -346,14 +346,14 @@ void TrackerListWidget::showTrackerListMenu()
                 , this, &TrackerListWidget::deleteSelectedTrackers);
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("Copy tracker URL")
                 , this, &TrackerListWidget::copyTrackerUrl);
-        if (!torrent()->isPaused())
+        if (!torrent()->isStopped())
         {
             menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"view-refresh"_s), tr("Force reannounce to selected trackers")
                     , this, &TrackerListWidget::reannounceSelected);
         }
     }
 
-    if (!torrent()->isPaused())
+    if (!torrent()->isStopped())
     {
         menu->addSeparator();
         menu->addAction(UIThemeManager::instance()->getIcon(u"reannounce"_s, u"view-refresh"_s), tr("Force reannounce to all trackers")

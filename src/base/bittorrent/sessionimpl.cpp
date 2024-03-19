@@ -2274,12 +2274,12 @@ void SessionImpl::processShareLimits()
                 LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removing torrent and deleting its content."), torrentName));
                 deleteTorrent(torrentID, DeleteTorrentAndFiles);
             }
-            else if ((shareLimitAction == ShareLimitAction::Stop) && !torrent->isPaused())
+            else if ((shareLimitAction == ShareLimitAction::Stop) && !torrent->isStopped())
             {
-                torrent->pause();
+                torrent->stop();
                 LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent stopped."), torrentName));
             }
-            else if ((shareLimitAction == ShareLimitAction::EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
+            else if ((shareLimitAction == ShareLimitAction::EnableSuperSeeding) && !torrent->isStopped() && !torrent->superSeeding())
             {
                 torrent->setSuperSeeding(true);
                 LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
@@ -4932,7 +4932,7 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
 
     const bool hasUnfinishedTorrents = std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
     {
-        return !(torrent->isFinished() || torrent->isPaused() || torrent->isErrored());
+        return !(torrent->isFinished() || torrent->isStopped() || torrent->isErrored());
     });
     if (!hasUnfinishedTorrents)
         emit allTorrentsFinished();
@@ -6151,7 +6151,7 @@ void SessionImpl::updateTrackerEntries(lt::torrent_handle torrentHandle, QHash<s
                     , updatedTrackers = std::move(updatedTrackers)]
             {
                 TorrentImpl *torrent = m_torrents.value(torrentHandle.info_hash());
-                if (!torrent || torrent->isPaused())
+                if (!torrent || torrent->isStopped())
                     return;
 
                 QHash<QString, TrackerEntry> updatedTrackerEntries;

@@ -841,7 +841,7 @@ void TorrentsController::editTrackerAction()
 
     torrent->replaceTrackers(trackers);
 
-    if (!torrent->isPaused())
+    if (!torrent->isStopped())
         torrent->forceReannounce();
 }
 
@@ -857,7 +857,7 @@ void TorrentsController::removeTrackersAction()
     const QStringList urls = params()[u"urls"_s].split(u'|');
     torrent->removeTrackers(urls);
 
-    if (!torrent->isPaused())
+    if (!torrent->isStopped())
         torrent->forceReannounce();
 }
 
@@ -904,7 +904,7 @@ void TorrentsController::pauseAction()
     requireParams({u"hashes"_s});
 
     const QStringList hashes = params()[u"hashes"_s].split(u'|');
-    applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent) { torrent->pause(); });
+    applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent) { torrent->stop(); });
 }
 
 void TorrentsController::resumeAction()
@@ -912,7 +912,7 @@ void TorrentsController::resumeAction()
     requireParams({u"hashes"_s});
 
     const QStringList idStrings = params()[u"hashes"_s].split(u'|');
-    applyToTorrents(idStrings, [](BitTorrent::Torrent *const torrent) { torrent->resume(); });
+    applyToTorrents(idStrings, [](BitTorrent::Torrent *const torrent) { torrent->start(); });
 }
 
 void TorrentsController::filePrioAction()
@@ -1066,7 +1066,7 @@ void TorrentsController::setForceStartAction()
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     applyToTorrents(hashes, [value](BitTorrent::Torrent *const torrent)
     {
-        torrent->resume(value ? BitTorrent::TorrentOperatingMode::Forced : BitTorrent::TorrentOperatingMode::AutoManaged);
+        torrent->start(value ? BitTorrent::TorrentOperatingMode::Forced : BitTorrent::TorrentOperatingMode::AutoManaged);
     });
 }
 
