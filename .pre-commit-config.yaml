@@ -78,7 +78,11 @@ repos:
           m4/.* |
           src/base/3rdparty/.* |
           src/searchengine/nova3/socks.py |
-          src/webui/www/private/scripts/lib/.*
+          src/webui/www/private/lang/.* |
+          src/webui/www/private/scripts/lib/.* |
+          src/webui/www/public/lang/.* |
+          src/webui/www/public/scripts/lib/.* |
+          src/webui/www/transifex/.*
         )$
       exclude_types:
         - ts
@@ -102,7 +106,11 @@ repos:
           m4/.* |
           src/base/3rdparty/.* |
           src/searchengine/nova3/socks.py |
-          src/webui/www/private/scripts/lib/.*
+          src/webui/www/private/lang/.* |
+          src/webui/www/private/scripts/lib/.* |
+          src/webui/www/public/lang/.* |
+          src/webui/www/public/scripts/lib/.* |
+          src/webui/www/transifex/.*
         )$
       exclude_types:
         - svg

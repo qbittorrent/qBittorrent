@@ -1,0 +1,7 @@
+{
+  "Invalid Username or Password.": "Numele de utilizator sau parola nu sunt valide.",
+  "Login": "Autentifică",
+  "Password": "Parolă",
+  "Unable to log in, server is probably unreachable.": "",
+  "Username": "Nume de utilizator"
+}

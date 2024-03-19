@@ -1,0 +1,7 @@
+{
+  "Invalid Username or Password.": "ユーザー名またはパスワーが正しくありません。",
+  "Login": "ログイン",
+  "Password": "パスワード",
+  "Unable to log in, server is probably unreachable.": "",
+  "Username": "ユーザー名"
+}

@@ -1,0 +1,7 @@
+{
+  "Invalid Username or Password.": "Неважеће корисничко име или шифра.",
+  "Login": "Логовање",
+  "Password": "Шифра",
+  "Unable to log in, server is probably unreachable.": "",
+  "Username": "Корисничко име"
+}
