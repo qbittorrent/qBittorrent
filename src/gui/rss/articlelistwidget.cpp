@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017-2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,6 +28,7 @@
 
 #include "articlelistwidget.h"
 
+#include <QApplication>
 #include <QListWidgetItem>
 
 #include "base/global.h"
@@ -42,6 +43,12 @@ ArticleListWidget::ArticleListWidget(QWidget *parent)
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     checkInvariant();
+
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, [this]
+    {
+        for (int row = 0; row < count(); ++row)
+            applyUITheme(item(row));
+    });
 }
 
 RSS::Article *ArticleListWidget::getRSSArticle(QListWidgetItem *item) const
@@ -100,11 +107,10 @@ void ArticleListWidget::handleArticleAdded(RSS::Article *rssArticle)
 void ArticleListWidget::handleArticleRead(RSS::Article *rssArticle)
 {
     auto *item = mapRSSArticle(rssArticle);
-    if (!item) return;
+    if (!item)
+        return;
 
-    const QBrush foregroundBrush {UIThemeManager::instance()->getColor(u"RSS.ReadArticle"_s)};
-    item->setData(Qt::ForegroundRole, foregroundBrush);
-    item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"rss_read_article"_s, u"sphere"_s));
+    applyUITheme(item);
 
     checkInvariant();
 }
@@ -127,18 +133,25 @@ QListWidgetItem *ArticleListWidget::createItem(RSS::Article *article) const
 
     item->setData(Qt::DisplayRole, article->title());
     item->setData(Qt::UserRole, QVariant::fromValue(article));
-    if (article->isRead())
+    applyUITheme(item);
+
+    return item;
+}
+
+void ArticleListWidget::applyUITheme(QListWidgetItem *item) const
+{
+    const bool isRead = getRSSArticle(item)->isRead();
+    const auto *themeManager = UIThemeManager::instance();
+    if (isRead)
     {
-        const QBrush foregroundBrush {UIThemeManager::instance()->getColor(u"RSS.ReadArticle"_s)};
-        item->setData(Qt::ForegroundRole, foregroundBrush);
-        item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"rss_read_article"_s, u"sphere"_s));
+        const QColor color = themeManager->getColor(u"RSS.ReadArticle"_s);
+        item->setData(Qt::ForegroundRole, (color.isValid() ? color : QApplication::palette().color(QPalette::Inactive, QPalette::WindowText)));
+        item->setData(Qt::DecorationRole, themeManager->getIcon(u"rss_read_article"_s, u"sphere"_s));
     }
     else
     {
-        const QBrush foregroundBrush {UIThemeManager::instance()->getColor(u"RSS.UnreadArticle"_s)};
-        item->setData(Qt::ForegroundRole, foregroundBrush);
-        item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"rss_unread_article"_s, u"sphere"_s));
+        const QColor color = themeManager->getColor(u"RSS.UnreadArticle"_s);
+        item->setData(Qt::ForegroundRole, (color.isValid() ? color : QApplication::palette().color(QPalette::Active, QPalette::Link)));
+        item->setData(Qt::DecorationRole, themeManager->getIcon(u"rss_unread_article"_s, u"sphere"_s));
     }
-
-    return item;
 }

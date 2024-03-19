@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2019  Prince Gupta <jagannatharjun11@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -38,7 +38,6 @@
 #include <QPixmap>
 #include <QString>
 
-#include "base/pathfwd.h"
 #include "uithemesource.h"
 
 class UIThemeManager final : public QObject
@@ -57,11 +56,15 @@ public:
 
     QColor getColor(const QString &id) const;
 
+signals:
+    void themeChanged();
+
 private:
     UIThemeManager(); // singleton class
 
     void applyPalette() const;
     void applyStyleSheet() const;
+    void onColorSchemeChanged();
 
     static UIThemeManager *m_instance;
     const bool m_useCustomTheme;

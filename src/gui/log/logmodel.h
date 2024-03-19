@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2020  Prince Gupta <jagannatharjun11@gmail.com>
  * Copyright (C) 2019  sledgehammer999 <hammered999@gmail.com>
  *
@@ -62,25 +63,27 @@ protected:
     class Message
     {
     public:
-        Message(const QString &time, const QString &message, const QColor &foreground, Log::MsgType type);
+        Message(const QString &time, const QString &message, Log::MsgType type);
 
-        QVariant time() const;
-        QVariant message() const;
-        QVariant foreground() const;
-        QVariant type() const;
+        QString time() const;
+        QString message() const;
+        Log::MsgType type() const;
 
     private:
-        QVariant m_time;
-        QVariant m_message;
-        QVariant m_foreground;
-        QVariant m_type;
+        QString m_time;
+        QString m_message;
+        Log::MsgType m_type;
     };
 
     void addNewMessage(const Message &message);
+    virtual QColor messageForeground(const Message &message) const = 0;
+    virtual void onUIThemeChanged();
 
 private:
+    void loadColors();
+
     boost::circular_buffer_space_optimized<Message> m_messages;
-    const QColor m_timeForeground;
+    QColor m_timeForeground;
 };
 
 class LogMessageModel : public BaseLogModel
@@ -95,7 +98,11 @@ private slots:
     void handleNewMessage(const Log::Msg &message);
 
 private:
-    const QHash<int, QColor> m_foregroundForMessageTypes;
+    QColor messageForeground(const Message &message) const override;
+    void onUIThemeChanged() override;
+    void loadColors();
+
+    QHash<int, QColor> m_foregroundForMessageTypes;
 };
 
 class LogPeerModel : public BaseLogModel
@@ -110,5 +117,9 @@ private slots:
     void handleNewMessage(const Log::Peer &peer);
 
 private:
-    const QColor m_bannedPeerForeground;
+    QColor messageForeground(const Message &message) const override;
+    void onUIThemeChanged() override;
+    void loadColors();
+
+    QColor m_bannedPeerForeground;
 };

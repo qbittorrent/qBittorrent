@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2020  Prince Gupta <jagannatharjun11@gmail.com>
  * Copyright (C) 2019  sledgehammer999 <hammered999@gmail.com>
  *
@@ -36,65 +37,26 @@
 #include "base/global.h"
 #include "gui/uithememanager.h"
 
-namespace
-{
-    const int MAX_VISIBLE_MESSAGES = 20000;
+const int MAX_VISIBLE_MESSAGES = 20000;
 
-    QColor getTimestampColor()
-    {
-        return UIThemeManager::instance()->getColor(u"Log.TimeStamp"_s);
-    }
-
-    QColor getLogNormalColor()
-    {
-        return UIThemeManager::instance()->getColor(u"Log.Normal"_s);
-    }
-
-    QColor getLogInfoColor()
-    {
-        return UIThemeManager::instance()->getColor(u"Log.Info"_s);
-    }
-
-    QColor getLogWarningColor()
-    {
-        return UIThemeManager::instance()->getColor(u"Log.Warning"_s);
-    }
-
-    QColor getLogCriticalColor()
-    {
-        return UIThemeManager::instance()->getColor(u"Log.Critical"_s);
-    }
-
-    QColor getPeerBannedColor()
-    {
-        return UIThemeManager::instance()->getColor(u"Log.BannedPeer"_s);
-    }
-}
-
-BaseLogModel::Message::Message(const QString &time, const QString &message, const QColor &foreground, const Log::MsgType type)
-    : m_time(time)
-    , m_message(message)
-    , m_foreground(foreground)
-    , m_type(type)
+BaseLogModel::Message::Message(const QString &time, const QString &message, const Log::MsgType type)
+    : m_time {time}
+    , m_message {message}
+    , m_type {type}
 {
 }
 
-QVariant BaseLogModel::Message::time() const
+QString BaseLogModel::Message::time() const
 {
     return m_time;
 }
 
-QVariant BaseLogModel::Message::message() const
+QString BaseLogModel::Message::message() const
 {
     return m_message;
 }
 
-QVariant BaseLogModel::Message::foreground() const
-{
-    return m_foreground;
-}
-
-QVariant BaseLogModel::Message::type() const
+Log::MsgType BaseLogModel::Message::type() const
 {
     return m_type;
 }
@@ -102,8 +64,9 @@ QVariant BaseLogModel::Message::type() const
 BaseLogModel::BaseLogModel(QObject *parent)
     : QAbstractListModel(parent)
     , m_messages(MAX_VISIBLE_MESSAGES)
-    , m_timeForeground(getTimestampColor())
 {
+    loadColors();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &BaseLogModel::onUIThemeChanged);
 }
 
 int BaseLogModel::rowCount(const QModelIndex &) const
@@ -135,7 +98,7 @@ QVariant BaseLogModel::data(const QModelIndex &index, const int role) const
     case TimeForegroundRole:
         return m_timeForeground;
     case MessageForegroundRole:
-        return message.foreground();
+        return messageForeground(message);
     case TypeRole:
         return message.type();
     default:
@@ -160,6 +123,17 @@ void BaseLogModel::addNewMessage(const BaseLogModel::Message &message)
     endInsertRows();
 }
 
+void BaseLogModel::onUIThemeChanged()
+{
+    loadColors();
+    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)), {TimeForegroundRole, MessageForegroundRole});
+}
+
+void BaseLogModel::loadColors()
+{
+    m_timeForeground = UIThemeManager::instance()->getColor(u"Log.TimeStamp"_s);
+}
+
 void BaseLogModel::reset()
 {
     beginResetModel();
@@ -169,14 +143,9 @@ void BaseLogModel::reset()
 
 LogMessageModel::LogMessageModel(QObject *parent)
     : BaseLogModel(parent)
-    , m_foregroundForMessageTypes
-    {
-        {Log::NORMAL, getLogNormalColor()},
-        {Log::INFO, getLogInfoColor()},
-        {Log::WARNING, getLogWarningColor()},
-        {Log::CRITICAL, getLogCriticalColor()}
-    }
 {
+    loadColors();
+
     for (const Log::Msg &msg : asConst(Logger::instance()->getMessages()))
         handleNewMessage(msg);
     connect(Logger::instance(), &Logger::newLogMessage, this, &LogMessageModel::handleNewMessage);
@@ -185,16 +154,38 @@ LogMessageModel::LogMessageModel(QObject *parent)
 void LogMessageModel::handleNewMessage(const Log::Msg &message)
 {
     const QString time = QLocale::system().toString(QDateTime::fromSecsSinceEpoch(message.timestamp), QLocale::ShortFormat);
-    const QString messageText = message.message;
-    const QColor foreground = m_foregroundForMessageTypes[message.type];
+    addNewMessage({time, message.message, message.type});
+}
 
-    addNewMessage({time, messageText, foreground, message.type});
+QColor LogMessageModel::messageForeground(const Message &message) const
+{
+    return m_foregroundForMessageTypes.value(message.type());
+}
+
+void LogMessageModel::onUIThemeChanged()
+{
+    loadColors();
+    BaseLogModel::onUIThemeChanged();
+}
+
+void LogMessageModel::loadColors()
+{
+    const auto *themeManager = UIThemeManager::instance();
+    const QColor normalColor = themeManager->getColor(u"Log.Normal"_s);
+    m_foregroundForMessageTypes =
+    {
+        {Log::NORMAL, normalColor.isValid() ? normalColor : QApplication::palette().color(QPalette::Active, QPalette::WindowText)},
+        {Log::INFO, themeManager->getColor(u"Log.Info"_s)},
+        {Log::WARNING, themeManager->getColor(u"Log.Warning"_s)},
+        {Log::CRITICAL, themeManager->getColor(u"Log.Critical"_s)}
+    };
 }
 
 LogPeerModel::LogPeerModel(QObject *parent)
     : BaseLogModel(parent)
-    , m_bannedPeerForeground(getPeerBannedColor())
 {
+    loadColors();
+
     for (const Log::Peer &peer : asConst(Logger::instance()->getPeers()))
         handleNewMessage(peer);
     connect(Logger::instance(), &Logger::newLogPeer, this, &LogPeerModel::handleNewMessage);
@@ -207,5 +198,21 @@ void LogPeerModel::handleNewMessage(const Log::Peer &peer)
             ? tr("%1 was blocked. Reason: %2.", "0.0.0.0 was blocked. Reason: reason for blocking.").arg(peer.ip, peer.reason)
             : tr("%1 was banned", "0.0.0.0 was banned").arg(peer.ip);
 
-    addNewMessage({time, message, m_bannedPeerForeground, Log::NORMAL});
+    addNewMessage({time, message, Log::NORMAL});
+}
+
+QColor LogPeerModel::messageForeground([[maybe_unused]] const Message &message) const
+{
+    return m_bannedPeerForeground;
+}
+
+void LogPeerModel::onUIThemeChanged()
+{
+    loadColors();
+    BaseLogModel::onUIThemeChanged();
+}
+
+void LogPeerModel::loadColors()
+{
+    m_bannedPeerForeground = UIThemeManager::instance()->getColor(u"Log.BannedPeer"_s);
 }
