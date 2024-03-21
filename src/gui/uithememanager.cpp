@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2019, 2021  Prince Gupta <jagannatharjun11@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -33,6 +33,8 @@
 #include <QPalette>
 #include <QPixmapCache>
 #include <QResource>
+#include <QStyle>
+#include <QStyleHints>
 
 #include "base/global.h"
 #include "base/logger.h"
@@ -44,9 +46,16 @@ namespace
 {
     bool isDarkTheme()
     {
-        const QPalette palette = qApp->palette();
-        const QColor &color = palette.color(QPalette::Active, QPalette::Base);
-        return (color.lightness() < 127);
+        switch (qApp->styleHints()->colorScheme())
+        {
+        case Qt::ColorScheme::Dark:
+            return true;
+        case Qt::ColorScheme::Light:
+            return false;
+        default:
+            // fallback to custom method
+            return (qApp->palette().color(QPalette::Active, QPalette::Base).lightness() < 127);
+        }
     }
 }
 
@@ -70,6 +79,12 @@ UIThemeManager::UIThemeManager()
     , m_useSystemIcons {Preferences::instance()->useSystemIcons()}
 #endif
 {
+    connect(QApplication::styleHints(), &QStyleHints::colorSchemeChanged, this, []
+    {
+        // workaround to refresh styled controls once color scheme is changed
+        QApplication::setStyle(QApplication::style()->name());
+    });
+
     if (m_useCustomTheme)
     {
         const Path themePath = Preferences::instance()->customUIThemePath();
