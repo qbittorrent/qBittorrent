@@ -2,6 +2,6 @@
   "Invalid Username or Password.": "Неверное имя пользователя или пароль.",
   "Login": "Войти",
   "Password": "Пароль",
-  "Unable to log in, server is probably unreachable.": "",
+  "Unable to log in, server is probably unreachable.": "Не удаётся войти. Вероятно, сервер недоступен.",
   "Username": "Имя пользователя"
 }
