@@ -94,8 +94,8 @@ namespace BitTorrent
         CheckingUploading,
         CheckingDownloading,
 
-        PausedDownloading,
-        PausedUploading,
+        StoppedDownloading,
+        StoppedUploading,
 
         Moving,
 

@@ -409,7 +409,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/pause',
+                url: 'api/v2/torrents/stop',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -423,7 +423,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/resume',
+                url: 'api/v2/torrents/start',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -679,7 +679,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL, TRACKERS_ALL);
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/resume',
+                url: 'api/v2/torrents/start',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -693,7 +693,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL, TRACKERS_ALL);
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/pause',
+                url: 'api/v2/torrents/stop',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -821,7 +821,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, tagHash, TRACKERS_ALL);
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/resume',
+                url: 'api/v2/torrents/start',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -835,7 +835,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, tagHash, TRACKERS_ALL);
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/pause',
+                url: 'api/v2/torrents/stop',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -881,7 +881,7 @@ const initializeWindows = function() {
 
         if (hashes.length > 0) {
             new Request({
-                url: 'api/v2/torrents/resume',
+                url: 'api/v2/torrents/start',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -908,7 +908,7 @@ const initializeWindows = function() {
 
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/pause',
+                url: 'api/v2/torrents/stop',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -1052,7 +1052,7 @@ const initializeWindows = function() {
 
         if (confirm('QBT_TR(Would you like to stop all torrents?)QBT_TR[CONTEXT=MainWindow]')) {
             new Request({
-                url: 'api/v2/torrents/pause',
+                url: 'api/v2/torrents/stop',
                 method: 'post',
                 data: {
                     hashes: "all"
@@ -1067,7 +1067,7 @@ const initializeWindows = function() {
 
         if (confirm('QBT_TR(Would you like to start all torrents?)QBT_TR[CONTEXT=MainWindow]')) {
             new Request({
-                url: 'api/v2/torrents/resume',
+                url: 'api/v2/torrents/start',
                 method: 'post',
                 data: {
                     hashes: "all"
@@ -1077,7 +1077,7 @@ const initializeWindows = function() {
         }
     });
 
-    ['pause', 'resume', 'recheck'].each(function(item) {
+    ['stop', 'start', 'recheck'].each(function(item) {
         addClickEvent(item, function(e) {
             new Event(e).stop();
             const hashes = torrentsTable.selectedRowsIds();

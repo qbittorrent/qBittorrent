@@ -240,15 +240,15 @@ void AddTorrentParamsWidget::populate()
     m_ui->tagsLineEdit->setText(Utils::String::joinIntoString(m_addTorrentParams.tags, u", "_s));
 
     m_ui->startTorrentComboBox->disconnect(this);
-    m_ui->startTorrentComboBox->setCurrentIndex(m_addTorrentParams.addPaused
-            ? m_ui->startTorrentComboBox->findData(!*m_addTorrentParams.addPaused) : 0);
+    m_ui->startTorrentComboBox->setCurrentIndex(m_addTorrentParams.addStopped
+                                                    ? m_ui->startTorrentComboBox->findData(!*m_addTorrentParams.addStopped) : 0);
     connect(m_ui->startTorrentComboBox, &QComboBox::currentIndexChanged, this, [this]
     {
         const QVariant data = m_ui->startTorrentComboBox->currentData();
         if (!data.isValid())
-            m_addTorrentParams.addPaused = std::nullopt;
+            m_addTorrentParams.addStopped = std::nullopt;
         else
-            m_addTorrentParams.addPaused = !data.toBool();
+            m_addTorrentParams.addStopped = !data.toBool();
     });
 
     m_ui->skipCheckingCheckBox->disconnect(this);

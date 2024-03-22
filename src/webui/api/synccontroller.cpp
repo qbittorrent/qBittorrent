@@ -474,8 +474,8 @@ void SyncController::maindataAction()
         connect(btSession, &BitTorrent::Session::torrentAboutToBeRemoved, this, &SyncController::onTorrentAboutToBeRemoved);
         connect(btSession, &BitTorrent::Session::torrentCategoryChanged, this, &SyncController::onTorrentCategoryChanged);
         connect(btSession, &BitTorrent::Session::torrentMetadataReceived, this, &SyncController::onTorrentMetadataReceived);
-        connect(btSession, &BitTorrent::Session::torrentPaused, this, &SyncController::onTorrentPaused);
-        connect(btSession, &BitTorrent::Session::torrentResumed, this, &SyncController::onTorrentResumed);
+        connect(btSession, &BitTorrent::Session::torrentStopped, this, &SyncController::onTorrentStopped);
+        connect(btSession, &BitTorrent::Session::torrentStarted, this, &SyncController::onTorrentStarted);
         connect(btSession, &BitTorrent::Session::torrentSavePathChanged, this, &SyncController::onTorrentSavePathChanged);
         connect(btSession, &BitTorrent::Session::torrentSavingModeChanged, this, &SyncController::onTorrentSavingModeChanged);
         connect(btSession, &BitTorrent::Session::torrentTagAdded, this, &SyncController::onTorrentTagAdded);
@@ -882,12 +882,12 @@ void SyncController::onTorrentMetadataReceived(BitTorrent::Torrent *torrent)
     m_updatedTorrents.insert(torrent->id());
 }
 
-void SyncController::onTorrentPaused(BitTorrent::Torrent *torrent)
+void SyncController::onTorrentStopped(BitTorrent::Torrent *torrent)
 {
     m_updatedTorrents.insert(torrent->id());
 }
 
-void SyncController::onTorrentResumed(BitTorrent::Torrent *torrent)
+void SyncController::onTorrentStarted(BitTorrent::Torrent *torrent)
 {
     m_updatedTorrents.insert(torrent->id());
 }

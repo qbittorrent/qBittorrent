@@ -169,9 +169,9 @@ void PluginSelectDialog::togglePluginState(QTreeWidgetItem *item, int)
 
 void PluginSelectDialog::displayContextMenu()
 {
-    // Enable/disable pause/start action given the DL state
     const QList<QTreeWidgetItem *> items = m_ui->pluginsTree->selectedItems();
-    if (items.isEmpty()) return;
+    if (items.isEmpty())
+        return;
 
     QMenu *myContextMenu = new QMenu(this);
     myContextMenu->setAttribute(Qt::WA_DeleteOnClose);

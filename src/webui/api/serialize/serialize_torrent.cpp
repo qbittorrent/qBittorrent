@@ -51,10 +51,10 @@ namespace
             return u"missingFiles"_s;
         case BitTorrent::TorrentState::Uploading:
             return u"uploading"_s;
-        case BitTorrent::TorrentState::PausedUploading:
-            return u"pausedUP"_s;
+        case BitTorrent::TorrentState::StoppedUploading:
+            return u"stoppedUP"_s;
         case BitTorrent::TorrentState::QueuedUploading:
-            return u"queuedUP"_s;
+            return u"stoppedUP"_s;
         case BitTorrent::TorrentState::StalledUploading:
             return u"stalledUP"_s;
         case BitTorrent::TorrentState::CheckingUploading:
@@ -67,8 +67,8 @@ namespace
             return u"metaDL"_s;
         case BitTorrent::TorrentState::ForcedDownloadingMetadata:
             return u"forcedMetaDL"_s;
-        case BitTorrent::TorrentState::PausedDownloading:
-            return u"pausedDL"_s;
+        case BitTorrent::TorrentState::StoppedDownloading:
+            return u"stoppedDL"_s;
         case BitTorrent::TorrentState::QueuedDownloading:
             return u"queuedDL"_s;
         case BitTorrent::TorrentState::StalledDownloading:

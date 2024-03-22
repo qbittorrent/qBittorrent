@@ -988,7 +988,7 @@ bool TorrentImpl::isStopped() const
 
 bool TorrentImpl::isQueued() const
 {
-    // Torrent is Queued if it isn't in Paused state but paused internally
+    // Torrent is Queued if it isn't in Stopped state but paused internally
     return (!isStopped()
             && (m_nativeStatus.flags & lt::torrent_flags::auto_managed)
             && (m_nativeStatus.flags & lt::torrent_flags::paused));
@@ -1009,7 +1009,7 @@ bool TorrentImpl::isDownloading() const
     case TorrentState::ForcedDownloadingMetadata:
     case TorrentState::StalledDownloading:
     case TorrentState::CheckingDownloading:
-    case TorrentState::PausedDownloading:
+    case TorrentState::StoppedDownloading:
     case TorrentState::QueuedDownloading:
     case TorrentState::ForcedDownloading:
         return true;
@@ -1049,7 +1049,7 @@ bool TorrentImpl::isCompleted() const
     case TorrentState::Uploading:
     case TorrentState::StalledUploading:
     case TorrentState::CheckingUploading:
-    case TorrentState::PausedUploading:
+    case TorrentState::StoppedUploading:
     case TorrentState::QueuedUploading:
     case TorrentState::ForcedUploading:
         return true;
@@ -1141,7 +1141,7 @@ void TorrentImpl::updateState()
     else if (!hasMetadata())
     {
         if (isStopped())
-            m_state = TorrentState::PausedDownloading;
+            m_state = TorrentState::StoppedDownloading;
         else if (m_session->isQueueingSystemEnabled() && isQueued())
             m_state = TorrentState::QueuedDownloading;
         else
@@ -1155,7 +1155,7 @@ void TorrentImpl::updateState()
     else if (isFinished())
     {
         if (isStopped())
-            m_state = TorrentState::PausedUploading;
+            m_state = TorrentState::StoppedUploading;
         else if (m_session->isQueueingSystemEnabled() && isQueued())
             m_state = TorrentState::QueuedUploading;
         else if (isForced())
@@ -1168,7 +1168,7 @@ void TorrentImpl::updateState()
     else
     {
         if (isStopped())
-            m_state = TorrentState::PausedDownloading;
+            m_state = TorrentState::StoppedDownloading;
         else if (m_session->isQueueingSystemEnabled() && isQueued())
             m_state = TorrentState::QueuedDownloading;
         else if (isForced())
@@ -1499,13 +1499,13 @@ qreal TorrentImpl::realRatio() const
 
 int TorrentImpl::uploadPayloadRate() const
 {
-    // workaround: suppress the speed for paused state
+    // workaround: suppress the speed for Stopped state
     return isStopped() ? 0 : m_nativeStatus.upload_payload_rate;
 }
 
 int TorrentImpl::downloadPayloadRate() const
 {
-    // workaround: suppress the speed for paused state
+    // workaround: suppress the speed for Stopped state
     return isStopped() ? 0 : m_nativeStatus.download_payload_rate;
 }
 
@@ -1599,7 +1599,7 @@ void TorrentImpl::forceRecheck()
 
     if (isStopped())
     {
-        // When "force recheck" is applied on paused torrent, we temporarily resume it
+        // When "force recheck" is applied on Stopped torrent, we start them to perform checking
         start();
         m_stopCondition = StopCondition::FilesChecked;
     }
@@ -1768,7 +1768,7 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
         p.flags |= lt::torrent_flags::paused;
         p.flags &= ~lt::torrent_flags::auto_managed;
 
-        m_session->handleTorrentPaused(this);
+        m_session->handleTorrentStopped(this);
     }
 
     reload();
@@ -1843,7 +1843,7 @@ void TorrentImpl::stop()
         m_stopCondition = StopCondition::None;
         m_isStopped = true;
         deferredRequestResumeData();
-        m_session->handleTorrentPaused(this);
+        m_session->handleTorrentStopped(this);
     }
 
     if (m_maintenanceJob == MaintenanceJob::None)
@@ -1878,7 +1878,7 @@ void TorrentImpl::start(const TorrentOperatingMode mode)
     {
         m_isStopped = false;
         deferredRequestResumeData();
-        m_session->handleTorrentResumed(this);
+        m_session->handleTorrentStarted(this);
     }
 
     if (m_maintenanceJob == MaintenanceJob::None)

@@ -334,7 +334,7 @@ window.qBittorrent.ContextMenu = (function() {
                 else if (data['super_seeding'] !== true)
                     all_are_super_seeding = false;
 
-                if (data['state'] != 'pausedUP' && data['state'] != 'pausedDL')
+                if (data['state'] != 'stoppedUP' && data['state'] != 'stoppedDL')
                     all_are_stopped = false;
                 else
                     there_are_stopped = true;

@@ -461,7 +461,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxSeedingMinutes"_s), -1, lowerLimited(-1))
     , m_globalMaxInactiveSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxInactiveSeedingMinutes"_s), -1, lowerLimited(-1))
     , m_isAddTorrentToQueueTop(BITTORRENT_SESSION_KEY(u"AddTorrentToTopOfQueue"_s), false)
-    , m_isAddTorrentPaused(BITTORRENT_SESSION_KEY(u"AddTorrentPaused"_s), false)
+    , m_isAddTorrentStopped(BITTORRENT_SESSION_KEY(u"AddTorrentStopped"_s), false)
     , m_torrentStopCondition(BITTORRENT_SESSION_KEY(u"TorrentStopCondition"_s), Torrent::StopCondition::None)
     , m_torrentContentLayout(BITTORRENT_SESSION_KEY(u"TorrentContentLayout"_s), TorrentContentLayout::Original)
     , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY(u"AddExtensionToIncompleteFiles"_s), false)
@@ -1114,14 +1114,14 @@ void SessionImpl::setAddTorrentToQueueTop(bool value)
     m_isAddTorrentToQueueTop = value;
 }
 
-bool SessionImpl::isAddTorrentPaused() const
+bool SessionImpl::isAddTorrentStopped() const
 {
-    return m_isAddTorrentPaused;
+    return m_isAddTorrentStopped;
 }
 
-void SessionImpl::setAddTorrentPaused(const bool value)
+void SessionImpl::setAddTorrentStopped(const bool value)
 {
-    m_isAddTorrentPaused = value;
+    m_isAddTorrentStopped = value;
 }
 
 Torrent::StopCondition SessionImpl::torrentStopCondition() const
@@ -2596,7 +2596,7 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
     loadTorrentParams.hasFinishedStatus = addTorrentParams.skipChecking; // do not react on 'torrent_finished_alert' when skipping
     loadTorrentParams.contentLayout = addTorrentParams.contentLayout.value_or(torrentContentLayout());
     loadTorrentParams.operatingMode = (addTorrentParams.addForced ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged);
-    loadTorrentParams.stopped = addTorrentParams.addPaused.value_or(isAddTorrentPaused());
+    loadTorrentParams.stopped = addTorrentParams.addStopped.value_or(isAddTorrentStopped());
     loadTorrentParams.stopCondition = addTorrentParams.stopCondition.value_or(torrentStopCondition());
     loadTorrentParams.addToQueueTop = addTorrentParams.addToQueueTop.value_or(isAddTorrentToQueueTop());
     loadTorrentParams.ratioLimit = addTorrentParams.ratioLimit;
@@ -4896,7 +4896,7 @@ void SessionImpl::handleTorrentMetadataReceived(TorrentImpl *const torrent)
     emit torrentMetadataReceived(torrent);
 }
 
-void SessionImpl::handleTorrentPaused(TorrentImpl *const torrent)
+void SessionImpl::handleTorrentStopped(TorrentImpl *const torrent)
 {
     torrent->resetTrackerEntries();
 
@@ -4908,13 +4908,13 @@ void SessionImpl::handleTorrentPaused(TorrentImpl *const torrent)
     emit trackerEntriesUpdated(torrent, updatedTrackerEntries);
 
     LogMsg(tr("Torrent stopped. Torrent: \"%1\"").arg(torrent->name()));
-    emit torrentPaused(torrent);
+    emit torrentStopped(torrent);
 }
 
-void SessionImpl::handleTorrentResumed(TorrentImpl *const torrent)
+void SessionImpl::handleTorrentStarted(TorrentImpl *const torrent)
 {
     LogMsg(tr("Torrent resumed. Torrent: \"%1\"").arg(torrent->name()));
-    emit torrentResumed(torrent);
+    emit torrentStarted(torrent);
 }
 
 void SessionImpl::handleTorrentChecked(TorrentImpl *const torrent)

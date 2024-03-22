@@ -170,7 +170,7 @@ private slots:
     void on_actionDownloadFromURL_triggered();
     void on_actionExit_triggered();
     void on_actionLock_triggered();
-    // Check for unpaused downloading or seeding torrents and prevent system suspend/sleep according to preferences
+    // Check for non-stopped downloading or seeding torrents and prevent system suspend/sleep according to preferences
     void updatePowerManagementState() const;
 
     void toolbarMenuRequested();

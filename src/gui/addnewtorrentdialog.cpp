@@ -325,7 +325,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
     }
     else
     {
-        m_ui->startTorrentCheckBox->setChecked(!m_torrentParams.addPaused.value_or(session->isAddTorrentPaused()));
+        m_ui->startTorrentCheckBox->setChecked(!m_torrentParams.addStopped.value_or(session->isAddTorrentStopped()));
         m_ui->stopConditionComboBox->setCurrentIndex(m_ui->stopConditionComboBox->findData(QVariant::fromValue(stopCondition)));
     }
     m_ui->stopConditionLabel->setEnabled(m_ui->startTorrentCheckBox->isChecked());
@@ -693,7 +693,7 @@ void AddNewTorrentDialog::accept()
     m_storeRememberLastSavePath = m_ui->checkBoxRememberLastSavePath->isChecked();
 
     m_torrentParams.addToQueueTop = m_ui->addToQueueTopCheckBox->isChecked();
-    m_torrentParams.addPaused = !m_ui->startTorrentCheckBox->isChecked();
+    m_torrentParams.addStopped = !m_ui->startTorrentCheckBox->isChecked();
     m_torrentParams.stopCondition = m_ui->stopConditionComboBox->currentData().value<BitTorrent::Torrent::StopCondition>();
     m_torrentParams.contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex());
 

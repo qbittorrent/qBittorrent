@@ -2012,7 +2012,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     }
                     $('contentlayout_select').getChildren('option')[index].selected = true;
                     $('addToTopOfQueueCheckbox').setProperty('checked', pref.add_to_top_of_queue);
-                    $('dontstartdownloads_checkbox').setProperty('checked', pref.start_paused_enabled);
+                    $('dontstartdownloads_checkbox').setProperty('checked', pref.add_stopped_enabled);
                     switch (pref.torrent_stop_condition) {
                         case "None":
                             index = 0;
@@ -2406,7 +2406,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // When adding a torrent
             settings['torrent_content_layout'] = $('contentlayout_select').getSelected()[0].getProperty('value');
             settings['add_to_top_of_queue'] = $('addToTopOfQueueCheckbox').getProperty('checked');
-            settings['start_paused_enabled'] = $('dontstartdownloads_checkbox').getProperty('checked');
+            settings['add_stopped_enabled'] = $('dontstartdownloads_checkbox').getProperty('checked');
             settings['torrent_stop_condition'] = $('stopConditionSelect').getSelected()[0].getProperty('value');
             settings['auto_delete_mode'] = Number($('deletetorrentfileafter_checkbox').getProperty('checked'));
 

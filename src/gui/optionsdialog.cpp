@@ -253,17 +253,17 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());
     m_ui->comboHideZero->setEnabled(m_ui->checkHideZero->isChecked());
 
-    m_ui->actionTorrentDlOnDblClBox->setItemData(0, TOGGLE_PAUSE);
+    m_ui->actionTorrentDlOnDblClBox->setItemData(0, TOGGLE_STOP);
     m_ui->actionTorrentDlOnDblClBox->setItemData(1, OPEN_DEST);
     m_ui->actionTorrentDlOnDblClBox->setItemData(2, PREVIEW_FILE);
     m_ui->actionTorrentDlOnDblClBox->setItemData(3, SHOW_OPTIONS);
     m_ui->actionTorrentDlOnDblClBox->setItemData(4, NO_ACTION);
     int actionDownloading = pref->getActionOnDblClOnTorrentDl();
     if ((actionDownloading < 0) || (actionDownloading >= m_ui->actionTorrentDlOnDblClBox->count()))
-        actionDownloading = TOGGLE_PAUSE;
+        actionDownloading = TOGGLE_STOP;
     m_ui->actionTorrentDlOnDblClBox->setCurrentIndex(m_ui->actionTorrentDlOnDblClBox->findData(actionDownloading));
 
-    m_ui->actionTorrentFnOnDblClBox->setItemData(0, TOGGLE_PAUSE);
+    m_ui->actionTorrentFnOnDblClBox->setItemData(0, TOGGLE_STOP);
     m_ui->actionTorrentFnOnDblClBox->setItemData(1, OPEN_DEST);
     m_ui->actionTorrentFnOnDblClBox->setItemData(2, PREVIEW_FILE);
     m_ui->actionTorrentFnOnDblClBox->setItemData(3, SHOW_OPTIONS);
@@ -522,7 +522,7 @@ void OptionsDialog::loadDownloadsTabOptions()
 
     m_ui->contentLayoutComboBox->setCurrentIndex(static_cast<int>(session->torrentContentLayout()));
     m_ui->checkAddToQueueTop->setChecked(session->isAddTorrentToQueueTop());
-    m_ui->checkAddStopped->setChecked(session->isAddTorrentPaused());
+    m_ui->checkAddStopped->setChecked(session->isAddTorrentStopped());
 
     m_ui->stopConditionComboBox->setToolTip(
                 u"<html><body><p><b>" + tr("None") + u"</b> - " + tr("No stop condition is set.") + u"</p><p><b>" +
@@ -732,7 +732,7 @@ void OptionsDialog::saveDownloadsTabOptions() const
     session->setTorrentContentLayout(static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex()));
 
     session->setAddTorrentToQueueTop(m_ui->checkAddToQueueTop->isChecked());
-    session->setAddTorrentPaused(addTorrentsInPause());
+    session->setAddTorrentStopped(addTorrentsStopped());
     session->setTorrentStopCondition(m_ui->stopConditionComboBox->currentData().value<BitTorrent::Torrent::StopCondition>());
     TorrentFileGuard::setAutoDeleteMode(!m_ui->deleteTorrentBox->isChecked() ? TorrentFileGuard::Never
                              : !m_ui->deleteCancelledTorrentBox->isChecked() ? TorrentFileGuard::IfAdded
@@ -1687,7 +1687,7 @@ bool OptionsDialog::preAllocateAllFiles() const
     return m_ui->checkPreallocateAll->isChecked();
 }
 
-bool OptionsDialog::addTorrentsInPause() const
+bool OptionsDialog::addTorrentsStopped() const
 {
     return m_ui->checkAddStopped->isChecked();
 }

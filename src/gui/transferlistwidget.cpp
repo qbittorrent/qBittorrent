@@ -293,7 +293,7 @@ void TransferListWidget::torrentDoubleClicked()
 
     switch (action)
     {
-    case TOGGLE_PAUSE:
+    case TOGGLE_STOP:
         if (torrent->isStopped())
             torrent->start();
         else
@@ -1048,10 +1048,9 @@ void TransferListWidget::displayListMenu()
 
     for (const QModelIndex &index : selectedIndexes)
     {
-        // Get the file name
-        // Get handle and pause the torrent
         const BitTorrent::Torrent *torrent = m_listModel->torrentHandle(mapToSource(index));
-        if (!torrent) continue;
+        if (!torrent)
+            continue;
 
         if (firstCategory.isEmpty() && first)
             firstCategory = torrent->category();

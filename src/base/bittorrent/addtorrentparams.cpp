@@ -116,7 +116,7 @@ BitTorrent::AddTorrentParams BitTorrent::parseAddTorrentParams(const QJsonObject
         .downloadPath = Path(jsonObj.value(PARAM_DOWNLOADPATH).toString()),
         .addForced = (getEnum<TorrentOperatingMode>(jsonObj, PARAM_OPERATINGMODE) == TorrentOperatingMode::Forced),
         .addToQueueTop = getOptionalBool(jsonObj, PARAM_QUEUETOP),
-        .addPaused = getOptionalBool(jsonObj, PARAM_STOPPED),
+        .addStopped = getOptionalBool(jsonObj, PARAM_STOPPED),
         .stopCondition = getOptionalEnum<Torrent::StopCondition>(jsonObj, PARAM_STOPCONDITION),
         .filePaths = {},
         .filePriorities = {},
@@ -163,8 +163,8 @@ QJsonObject BitTorrent::serializeAddTorrentParams(const AddTorrentParams &params
 
     if (params.addToQueueTop)
         jsonObj[PARAM_QUEUETOP] = *params.addToQueueTop;
-    if (params.addPaused)
-        jsonObj[PARAM_STOPPED] = *params.addPaused;
+    if (params.addStopped)
+        jsonObj[PARAM_STOPPED] = *params.addStopped;
     if (params.stopCondition)
         jsonObj[PARAM_STOPCONDITION] = Utils::String::fromEnum(*params.stopCondition);
     if (params.contentLayout)
