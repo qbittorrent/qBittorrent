@@ -1,3 +1,13 @@
+Sun Mar 24th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.4
+    - BUGFIX: Correctly adjust "Add New torrent" dialog position in all the cases (glassez)
+    - BUGFIX: Change "metadata received" stop condition behavior (glassez)
+    - BUGFIX: Add a small delay before processing the key input of search boxes (Chocobo1)
+    - BUGFIX: Ensure the profile path is pointing to a directory (Chocobo1)
+    - RSS: Use better icons for RSS articles (glassez)
+    - WINDOWS: NSIS: Update French, Hungarian translations (MarcDrieu, foxi69)
+    - LINUX: Fix sorting when ICU isn't used (Chocobo1)
+    - LINUX: Fix invisible tray icon on Plasma 6 (tehcneko)
+
 Mon Jan 15th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.3
     - BUGFIX: Correctly update number of filtered items (glassez)
     - BUGFIX: Don't forget to store Stop condition value (glassez)
