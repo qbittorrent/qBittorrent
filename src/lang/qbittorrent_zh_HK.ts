@@ -231,20 +231,20 @@
         <translation>停止條件：</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="361"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="366"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="363"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="368"/>
         <source>None</source>
         <translation>無</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="362"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="368"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="364"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="370"/>
         <source>Metadata received</source>
         <translation>收到的元資料</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="364"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="369"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="366"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="371"/>
         <source>Files checked</source>
         <translation>已檢查的檔案</translation>
     </message>
@@ -359,40 +359,40 @@
         <translation>另存為 .torrent 檔案……</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="839"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="841"/>
         <source>I/O Error</source>
         <translation>入出錯誤</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="605"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1090"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="607"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1092"/>
         <source>Invalid torrent</source>
         <translation>無效Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="464"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="466"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
         <translation>不可選用</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="465"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="467"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
         <translation>不可選用</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1047"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1049"/>
         <source>Not available</source>
         <translation>不可選用</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="673"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="675"/>
         <source>Invalid magnet link</source>
         <translation>無效磁性連結</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="606"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="608"/>
         <source>Failed to load the torrent: %1.
 Error: %2</source>
         <comment>Don&apos;t remove the &apos;
@@ -401,159 +401,155 @@ Error: %2</source>
 錯誤：%2</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="673"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="675"/>
         <source>This magnet link was not recognized</source>
         <translation>無法辨認此磁性連結</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="722"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="724"/>
         <source>Magnet link</source>
         <translation>磁性連結</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="728"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="730"/>
         <source>Retrieving metadata...</source>
         <translation>檢索元資料…</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="349"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="355"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="351"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="357"/>
         <source>Choose save path</source>
         <translation>選取儲存路徑</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="633"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="640"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="655"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="690"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="697"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="712"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="635"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="642"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="657"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="692"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="699"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="714"/>
         <source>Torrent is already present</source>
         <translation>Torrent已存在</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="690"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="692"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Trackers haven&apos;t been merged because it is a private torrent.</source>
         <translation>Torrent「%1」已於傳輸清單。私人Torrent原故，追蹤器不會合併。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="655"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="657"/>
         <source>Torrent is already queued for processing.</source>
         <translation>Torrent已加入排程等待處理。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="361"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="363"/>
         <source>No stop condition is set.</source>
         <translation>停止條件未設定。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="362"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="364"/>
         <source>Torrent will stop after metadata is received.</source>
         <translation>Torrent會在收到元資料後停止。</translation>
     </message>
     <message>
-        <source>Torrents that have metadata initially aren&apos;t affected.</source>
-        <translation type="vanished">一開始就有元資料的 torrent 則不受影響。</translation>
-    </message>
-    <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="364"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="366"/>
         <source>Torrent will stop after files are initially checked.</source>
         <translation>初步檢查完檔案後，Torrent 將會停止。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="365"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="367"/>
         <source>This will also download metadata if it wasn&apos;t there initially.</source>
         <translation>如果一開始不存在，這也會下載元資料。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="661"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="662"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="729"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="730"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="663"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="664"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="731"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="732"/>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="712"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="714"/>
         <source>Magnet link is already queued for processing.</source>
         <translation>磁性連結已加入排程等待處理。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="762"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="764"/>
         <source>%1 (Free space on disk: %2)</source>
         <translation>%1（硬碟上的可用空間：%2）</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="763"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="765"/>
         <source>Not available</source>
         <comment>This size is unavailable.</comment>
         <translation>無法使用</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="826"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="828"/>
         <source>Torrent file (*%1)</source>
         <translation>Torrent 檔案 (*%1)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="828"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
         <source>Save as torrent file</source>
         <translation>另存為 torrent 檔案</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="840"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="842"/>
         <source>Couldn&apos;t export torrent metadata file &apos;%1&apos;. Reason: %2.</source>
         <translation>無法匯出 torrent 詮釋資料檔案「%1」。理由：%2。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1024"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1026"/>
         <source>Cannot create v2 torrent until its data is fully downloaded.</source>
         <translation>在完全下載其資料前無法建立 v2 torrent。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1112"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1114"/>
         <source>Cannot download &apos;%1&apos;: %2</source>
         <translation>無法下載「%1」：%2</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="443"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="445"/>
         <source>Filter files...</source>
         <translation>過濾檔案…</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="363"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="365"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="633"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="635"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Trackers cannot be merged because it is a private torrent.</source>
         <translation>Torrent「%1」已經在傳輸清單中。因為這是私有的 torrent，所以追蹤者無法合併。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="641"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="698"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="643"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="700"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Do you want to merge trackers from new source?</source>
         <translation>Torrent「%1」已經在傳輸清單中。您想合併來自新來源的追蹤者嗎？</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1003"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1005"/>
         <source>Parsing metadata...</source>
         <translation>解析元資料…</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1007"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1009"/>
         <source>Metadata retrieval complete</source>
         <translation>完成檢索元資料</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1090"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1092"/>
         <source>Failed to load from URL: %1.
 Error: %2</source>
         <translation>從 URL 載入失敗：%1。
 錯誤：%2</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1111"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1113"/>
         <source>Download Error</source>
         <translation>下載錯誤</translation>
     </message>
@@ -1317,96 +1313,96 @@ Error: %2</source>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="300"/>
+        <location filename="../app/application.cpp" line="297"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>已啟動qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="303"/>
+        <location filename="../app/application.cpp" line="300"/>
         <source>Running in portable mode. Auto detected profile folder at: %1</source>
         <translation>正以可攜模式執行。自動偵測到的設定檔資料夾位於：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="305"/>
+        <location filename="../app/application.cpp" line="302"/>
         <source>Redundant command line flag detected: &quot;%1&quot;. Portable mode implies relative fastresume.</source>
         <translation>偵測到冗餘的命令列旗標：「%1」。可攜模式代表了相對快速的恢復。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="309"/>
+        <location filename="../app/application.cpp" line="306"/>
         <source>Using config directory: %1</source>
         <translation>正在使用設定目錄：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="656"/>
+        <location filename="../app/application.cpp" line="653"/>
         <source>Torrent name: %1</source>
         <translation>Torrent名：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="657"/>
+        <location filename="../app/application.cpp" line="654"/>
         <source>Torrent size: %1</source>
         <translation>Torrent大小：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="658"/>
+        <location filename="../app/application.cpp" line="655"/>
         <source>Save path: %1</source>
         <translation>儲存路徑：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="659"/>
+        <location filename="../app/application.cpp" line="656"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrent用%1完成下載。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="661"/>
+        <location filename="../app/application.cpp" line="658"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>多謝使用qBittorrent。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="692"/>
+        <location filename="../app/application.cpp" line="689"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>Torrent：%1，傳送電郵通知</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="570"/>
+        <location filename="../app/application.cpp" line="567"/>
         <source>Running external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
         <translation>正在執行外部程式。Torrent：「%1」。指令：「%2」</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="571"/>
+        <location filename="../app/application.cpp" line="568"/>
         <source>Failed to run external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="668"/>
+        <location filename="../app/application.cpp" line="665"/>
         <source>Torrent &quot;%1&quot; has finished downloading</source>
         <translation>Torrent「%1」已下載完畢</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="774"/>
+        <location filename="../app/application.cpp" line="771"/>
         <source>WebUI will be started shortly after internal preparations. Please wait...</source>
         <translation>WebUI 將在內部準備不久後啟動。請稍等…</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="796"/>
-        <location filename="../app/application.cpp" line="957"/>
+        <location filename="../app/application.cpp" line="793"/>
+        <location filename="../app/application.cpp" line="954"/>
         <source>Loading torrents...</source>
         <translation>正在載入 torrent…</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="799"/>
+        <location filename="../app/application.cpp" line="796"/>
         <source>E&amp;xit</source>
         <translation>關閉(&amp;X)</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="846"/>
+        <location filename="../app/application.cpp" line="843"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O 錯誤</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="847"/>
+        <location filename="../app/application.cpp" line="844"/>
         <source>An I/O error occurred for torrent &apos;%1&apos;.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
@@ -1415,116 +1411,116 @@ Error: %2</source>
 理由：「%2」</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="853"/>
+        <location filename="../app/application.cpp" line="850"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="853"/>
+        <location filename="../app/application.cpp" line="850"/>
         <source>Failed to add torrent: %1</source>
         <translation>新增 torrent 失敗：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="859"/>
+        <location filename="../app/application.cpp" line="856"/>
         <source>Torrent added</source>
         <translation>已新增 Torrent</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="859"/>
+        <location filename="../app/application.cpp" line="856"/>
         <source>&apos;%1&apos; was added.</source>
         <comment>e.g: xxx.avi was added.</comment>
         <translation>「%1」已新增。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="864"/>
+        <location filename="../app/application.cpp" line="861"/>
         <source>Download completed</source>
         <translation>下載完成</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="864"/>
+        <location filename="../app/application.cpp" line="861"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>「%1」已下載完畢。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="869"/>
+        <location filename="../app/application.cpp" line="866"/>
         <source>URL download error</source>
         <translation>URL 下載錯誤</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="870"/>
+        <location filename="../app/application.cpp" line="867"/>
         <source>Couldn&apos;t download file at URL &apos;%1&apos;, reason: %2.</source>
         <translation>無法下載 URL「%1」的檔案，理由：%2。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="888"/>
+        <location filename="../app/application.cpp" line="885"/>
         <source>Torrent file association</source>
         <translation>Torrent 檔案關聯</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="889"/>
+        <location filename="../app/application.cpp" line="886"/>
         <source>qBittorrent is not the default application for opening torrent files or Magnet links.
 Do you want to make qBittorrent the default application for these?</source>
         <translation>qBittorrent 不是開啟 torrent 檔案或磁力連結的預設應用程式。
 您想要讓 qBittorrent 變成這些關聯的預設應用程式嗎？</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="917"/>
+        <location filename="../app/application.cpp" line="914"/>
         <source>Information</source>
         <translation>資訊</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="918"/>
+        <location filename="../app/application.cpp" line="915"/>
         <source>To control qBittorrent, access the WebUI at: %1</source>
         <translation>要控制 qBittorrent，請從 %1 造訪 WebUI</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="923"/>
+        <location filename="../app/application.cpp" line="920"/>
         <source>The WebUI administrator username is: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="924"/>
+        <location filename="../app/application.cpp" line="921"/>
         <source>The WebUI administrator password was not set. A temporary password is provided for this session: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="925"/>
+        <location filename="../app/application.cpp" line="922"/>
         <source>You should set your own password in program preferences.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="957"/>
+        <location filename="../app/application.cpp" line="954"/>
         <source>Exit</source>
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1092"/>
+        <location filename="../app/application.cpp" line="1089"/>
         <source>Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: &quot;%2&quot;</source>
         <translation>設定實體記憶體(RAM)使用率限制失敗。錯誤代碼：%1。錯誤訊息：「%2」</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1127"/>
+        <location filename="../app/application.cpp" line="1124"/>
         <source>Failed to set physical memory (RAM) usage hard limit. Requested size: %1. System hard limit: %2. Error code: %3. Error message: &quot;%4&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1230"/>
+        <location filename="../app/application.cpp" line="1227"/>
         <source>qBittorrent termination initiated</source>
         <translation>qBittorrent 中止操作</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1236"/>
+        <location filename="../app/application.cpp" line="1233"/>
         <source>qBittorrent is shutting down...</source>
         <translation>qBittorrent 正在關閉……</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1250"/>
+        <location filename="../app/application.cpp" line="1247"/>
         <source>Saving torrent progress...</source>
         <translation>儲存Torrent進度…</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1284"/>
+        <location filename="../app/application.cpp" line="1281"/>
         <source>qBittorrent is now ready to exit</source>
         <translation>qBittorrent 已準備好關閉</translation>
     </message>
@@ -3720,12 +3716,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="407"/>
         <location filename="../gui/mainwindow.ui" line="441"/>
-        <location filename="../gui/mainwindow.cpp" line="1601"/>
+        <location filename="../gui/mainwindow.cpp" line="1602"/>
         <source>Show</source>
         <translation>顯示</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1770"/>
+        <location filename="../gui/mainwindow.cpp" line="1771"/>
         <source>Check for program updates</source>
         <translation>檢查程式更新</translation>
     </message>
@@ -3740,327 +3736,327 @@ No further notices will be issued.</source>
         <translation>如果你喜歡qBittorrent，請捐款！</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1850"/>
-        <location filename="../gui/mainwindow.cpp" line="1852"/>
+        <location filename="../gui/mainwindow.cpp" line="1851"/>
+        <location filename="../gui/mainwindow.cpp" line="1853"/>
         <source>Execution Log</source>
         <translation>執行日誌</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="637"/>
+        <location filename="../gui/mainwindow.cpp" line="638"/>
         <source>Clear the password</source>
         <translation>清除密碼</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="178"/>
+        <location filename="../gui/mainwindow.cpp" line="179"/>
         <source>&amp;Set Password</source>
         <translation>設定密碼（&amp;S）</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="147"/>
+        <location filename="../gui/mainwindow.cpp" line="148"/>
         <source>Preferences</source>
         <translation>喜好設定</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="179"/>
+        <location filename="../gui/mainwindow.cpp" line="180"/>
         <source>&amp;Clear Password</source>
         <translation>清除密碼（&amp;C）</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="236"/>
+        <location filename="../gui/mainwindow.cpp" line="237"/>
         <source>Transfers</source>
         <translation>傳輸</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="436"/>
-        <location filename="../gui/mainwindow.cpp" line="1259"/>
+        <location filename="../gui/mainwindow.cpp" line="437"/>
+        <location filename="../gui/mainwindow.cpp" line="1260"/>
         <source>qBittorrent is minimized to tray</source>
         <translation>qBittorrent最小化到工作列通知區域</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="436"/>
-        <location filename="../gui/mainwindow.cpp" line="1166"/>
-        <location filename="../gui/mainwindow.cpp" line="1259"/>
+        <location filename="../gui/mainwindow.cpp" line="437"/>
+        <location filename="../gui/mainwindow.cpp" line="1167"/>
+        <location filename="../gui/mainwindow.cpp" line="1260"/>
         <source>This behavior can be changed in the settings. You won&apos;t be reminded again.</source>
         <translation>此行為可於喜好設定更改。往後不會再有提醒。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="535"/>
+        <location filename="../gui/mainwindow.cpp" line="536"/>
         <source>Icons Only</source>
         <translation>只有圖示</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="536"/>
+        <location filename="../gui/mainwindow.cpp" line="537"/>
         <source>Text Only</source>
         <translation>只有文字</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="537"/>
+        <location filename="../gui/mainwindow.cpp" line="538"/>
         <source>Text Alongside Icons</source>
         <translation>文字於圖示旁</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="538"/>
+        <location filename="../gui/mainwindow.cpp" line="539"/>
         <source>Text Under Icons</source>
         <translation>文字於圖示下</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="539"/>
+        <location filename="../gui/mainwindow.cpp" line="540"/>
         <source>Follow System Style</source>
         <translation>跟隨系統風格</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="620"/>
-        <location filename="../gui/mainwindow.cpp" line="1000"/>
+        <location filename="../gui/mainwindow.cpp" line="621"/>
+        <location filename="../gui/mainwindow.cpp" line="1001"/>
         <source>UI lock password</source>
         <translation>UI鎖定密碼</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="621"/>
-        <location filename="../gui/mainwindow.cpp" line="1001"/>
+        <location filename="../gui/mainwindow.cpp" line="622"/>
+        <location filename="../gui/mainwindow.cpp" line="1002"/>
         <source>Please type the UI lock password:</source>
         <translation>請輸入UI鎖定密碼：</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="638"/>
+        <location filename="../gui/mainwindow.cpp" line="639"/>
         <source>Are you sure you want to clear the password?</source>
         <translation>清除密碼，確定？</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="697"/>
+        <location filename="../gui/mainwindow.cpp" line="698"/>
         <source>Use regular expressions</source>
         <translation>使用正規表示法</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="719"/>
+        <location filename="../gui/mainwindow.cpp" line="720"/>
         <source>Search</source>
         <translation>搜尋</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="736"/>
+        <location filename="../gui/mainwindow.cpp" line="737"/>
         <source>Transfers (%1)</source>
         <translation>傳輸（%1）</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="926"/>
+        <location filename="../gui/mainwindow.cpp" line="927"/>
         <source>Recursive download confirmation</source>
         <translation>確認反復下載</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="933"/>
+        <location filename="../gui/mainwindow.cpp" line="934"/>
         <source>Never</source>
         <translation>從不</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1023"/>
+        <location filename="../gui/mainwindow.cpp" line="1024"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
         <translation>qBittorrent更新後須重新啟動。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1166"/>
+        <location filename="../gui/mainwindow.cpp" line="1167"/>
         <source>qBittorrent is closed to tray</source>
         <translation>qBittorrent關閉到工作列通知區域</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1186"/>
+        <location filename="../gui/mainwindow.cpp" line="1187"/>
         <source>Some files are currently transferring.</source>
         <translation>部份檔案仍在傳輸。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1186"/>
+        <location filename="../gui/mainwindow.cpp" line="1187"/>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation>確定離開qBittorrent嗎？</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1188"/>
+        <location filename="../gui/mainwindow.cpp" line="1189"/>
         <source>&amp;No</source>
         <translation>否（&amp;N）</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1189"/>
+        <location filename="../gui/mainwindow.cpp" line="1190"/>
         <source>&amp;Yes</source>
         <translation>是（(&amp;Y）</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1190"/>
+        <location filename="../gui/mainwindow.cpp" line="1191"/>
         <source>&amp;Always Yes</source>
         <translation>總是（&amp;A）</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1399"/>
+        <location filename="../gui/mainwindow.cpp" line="1400"/>
         <source>Options saved.</source>
         <translation>已儲存選項。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1538"/>
+        <location filename="../gui/mainwindow.cpp" line="1539"/>
         <source>%1/s</source>
         <comment>s is a shorthand for seconds</comment>
         <translation>%1每秒</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1705"/>
-        <location filename="../gui/mainwindow.cpp" line="1711"/>
+        <location filename="../gui/mainwindow.cpp" line="1706"/>
+        <location filename="../gui/mainwindow.cpp" line="1712"/>
         <source>Missing Python Runtime</source>
         <translation>沒有Python直譯器</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1785"/>
+        <location filename="../gui/mainwindow.cpp" line="1786"/>
         <source>qBittorrent Update Available</source>
         <translation>qBittorrent存在新版本</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1706"/>
+        <location filename="../gui/mainwindow.cpp" line="1707"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>沒有安裝搜尋器需要的Pyrhon。
 立即安裝？</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1712"/>
+        <location filename="../gui/mainwindow.cpp" line="1713"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
         <translation>沒有安裝搜尋器需要的Pyrhon。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1724"/>
-        <location filename="../gui/mainwindow.cpp" line="1731"/>
+        <location filename="../gui/mainwindow.cpp" line="1725"/>
+        <location filename="../gui/mainwindow.cpp" line="1732"/>
         <source>Old Python Runtime</source>
         <translation>舊Python直譯器</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1782"/>
+        <location filename="../gui/mainwindow.cpp" line="1783"/>
         <source>A new version is available.</source>
         <translation>存在新版本。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1783"/>
+        <location filename="../gui/mainwindow.cpp" line="1784"/>
         <source>Do you want to download %1?</source>
         <translation>下載%1嗎？</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1784"/>
+        <location filename="../gui/mainwindow.cpp" line="1785"/>
         <source>Open changelog...</source>
         <translation>開啟更新日誌…</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1806"/>
+        <location filename="../gui/mainwindow.cpp" line="1807"/>
         <source>No updates available.
 You are already using the latest version.</source>
         <translation>沒有較新的版本
 你的版本已是最新。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1769"/>
+        <location filename="../gui/mainwindow.cpp" line="1770"/>
         <source>&amp;Check for Updates</source>
         <translation>檢查更新（&amp;C）</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1725"/>
+        <location filename="../gui/mainwindow.cpp" line="1726"/>
         <source>Your Python version (%1) is outdated. Minimum requirement: %2.
 Do you want to install a newer version now?</source>
         <translation>您的 Python 版本 (%1) 太舊了。最低需求：%2。
 您想要現在安裝更新版本嗎？</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1732"/>
+        <location filename="../gui/mainwindow.cpp" line="1733"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: %2.</source>
         <translation>您的 Python 版本 (%1) 太舊了。請升級到最新版本來讓搜尋引擎運作。
 最低需求：%2。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1959"/>
+        <location filename="../gui/mainwindow.cpp" line="1960"/>
         <source>Checking for Updates...</source>
         <translation>正在檢查更新…</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1960"/>
+        <location filename="../gui/mainwindow.cpp" line="1961"/>
         <source>Already checking for program updates in the background</source>
         <translation>已於背景檢查程式更新</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1998"/>
+        <location filename="../gui/mainwindow.cpp" line="1999"/>
         <source>Download error</source>
         <translation>下載錯誤</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1999"/>
+        <location filename="../gui/mainwindow.cpp" line="2000"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>Python安裝程式無法下載。理由：%1。
 請手動安裝。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="627"/>
-        <location filename="../gui/mainwindow.cpp" line="1009"/>
+        <location filename="../gui/mainwindow.cpp" line="628"/>
+        <location filename="../gui/mainwindow.cpp" line="1010"/>
         <source>Invalid password</source>
         <translation>無效密碼</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="201"/>
+        <location filename="../gui/mainwindow.cpp" line="202"/>
         <source>Filter torrents...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="206"/>
+        <location filename="../gui/mainwindow.cpp" line="207"/>
         <source>Filter by:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="627"/>
+        <location filename="../gui/mainwindow.cpp" line="628"/>
         <source>The password must be at least 3 characters long</source>
         <translation>密碼長度必須至少有 3 個字元</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="663"/>
-        <location filename="../gui/mainwindow.cpp" line="676"/>
-        <location filename="../gui/mainwindow.cpp" line="678"/>
+        <location filename="../gui/mainwindow.cpp" line="664"/>
+        <location filename="../gui/mainwindow.cpp" line="677"/>
+        <location filename="../gui/mainwindow.cpp" line="679"/>
         <source>RSS (%1)</source>
         <translation>RSS（%1）</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="927"/>
+        <location filename="../gui/mainwindow.cpp" line="928"/>
         <source>The torrent &apos;%1&apos; contains .torrent files, do you want to proceed with their downloads?</source>
         <translation>Torrent「%1」包含 .torrent 檔案，您想要執行下載作業嗎？</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1009"/>
+        <location filename="../gui/mainwindow.cpp" line="1010"/>
         <source>The password is invalid</source>
         <translation>無效密碼</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1547"/>
+        <location filename="../gui/mainwindow.cpp" line="1548"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>下載速度：%1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1548"/>
+        <location filename="../gui/mainwindow.cpp" line="1549"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>上載速度：%1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1554"/>
+        <location filename="../gui/mainwindow.cpp" line="1555"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[下載：%1，上載：%2] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1601"/>
+        <location filename="../gui/mainwindow.cpp" line="1602"/>
         <source>Hide</source>
         <translation>隱藏</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1184"/>
+        <location filename="../gui/mainwindow.cpp" line="1185"/>
         <source>Exiting qBittorrent</source>
         <translation>離開qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1365"/>
+        <location filename="../gui/mainwindow.cpp" line="1366"/>
         <source>Open Torrent Files</source>
         <translation>開啟Torrent檔</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1366"/>
+        <location filename="../gui/mainwindow.cpp" line="1367"/>
         <source>Torrent Files</source>
         <translation>Torrent檔</translation>
     </message>
@@ -7115,10 +7111,6 @@ readme[0-9].txt：過濾「readme1.txt」、「readme2.txt」但不包含「read
         <translation>Torrent 將會在收到詮釋資料後停止。</translation>
     </message>
     <message>
-        <source>Torrents that have metadata initially aren&apos;t affected.</source>
-        <translation type="vanished">一開始就有詮釋資料的 torrent 則不受影響。</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="520"/>
         <source>Torrent will stop after files are initially checked.</source>
         <translation>初步檢查檔案後，torrent 將會停止。</translation>
@@ -7917,27 +7909,27 @@ Those plugins were disabled.</source>
 <context>
     <name>Private::FileLineEdit</name>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="290"/>
+        <location filename="../gui/fspathedit_p.cpp" line="307"/>
         <source>Path does not exist</source>
         <translation>路徑不存在</translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="292"/>
+        <location filename="../gui/fspathedit_p.cpp" line="309"/>
         <source>Path does not point to a directory</source>
         <translation>路徑未指向目錄</translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="294"/>
+        <location filename="../gui/fspathedit_p.cpp" line="311"/>
         <source>Path does not point to a file</source>
         <translation>路徑未指向檔案</translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="296"/>
+        <location filename="../gui/fspathedit_p.cpp" line="313"/>
         <source>Don&apos;t have read permission to path</source>
         <translation>沒有讀取路徑的權限</translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="298"/>
+        <location filename="../gui/fspathedit_p.cpp" line="315"/>
         <source>Don&apos;t have write permission to path</source>
         <translation>沒有寫入路徑的權限</translation>
     </message>

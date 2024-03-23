@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>Pridėti į eilės viršų</translation>
     </message>
 </context>
 <context>
@@ -1704,7 +1704,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>Pridėti į eilės viršų</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
@@ -1859,7 +1859,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Pridėti siuntėjus...</translation>
     </message>
     <message>
         <source>Peer ID Client</source>
@@ -2974,7 +2974,7 @@ pakaitos simbolį "*".</translation>
     <name>confirmDeletionDlg</name>
     <message>
         <source>Also permanently delete the files</source>
-        <translation type="unfinished" />
+        <translation>Taip pat visam laikui ištrinti failus</translation>
     </message>
     <message>
         <source>Remove torrent(s)</source>

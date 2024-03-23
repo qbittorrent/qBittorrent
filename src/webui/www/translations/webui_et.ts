@@ -1258,7 +1258,7 @@
     </message>
     <message>
         <source>Upload choking algorithm:</source>
-        <translation type="unfinished" />
+        <translation>Üleslaadimise choking-algoritm</translation>
     </message>
     <message>
         <source>Seeding Limits</source>

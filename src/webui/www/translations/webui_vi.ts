@@ -1530,7 +1530,7 @@
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation>ms</translation>
     </message>
     <message>
         <source>Excluded file names</source>
@@ -3895,7 +3895,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished" />
+        <translation>ID</translation>
     </message>
     <message>
         <source>Log Type</source>

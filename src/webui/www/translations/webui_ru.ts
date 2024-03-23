@@ -189,7 +189,7 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Порт для для веб-интерфейса должен принимать значения от 1 до 65535.</translation>
+        <translation>Порт для веб-интерфейса должен принимать значения от 1 до 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>

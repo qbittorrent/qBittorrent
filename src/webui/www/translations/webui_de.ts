@@ -557,7 +557,7 @@
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation>Um diese Funktion zu nutzen muss das WebUI über HTTPS aufgerufen werden</translation>
+        <translation>Um diese Funktion zu nutzen muss das Webinterface über HTTPS aufgerufen werden</translation>
     </message>
     <message>
         <source>Connection status: Firewalled</source>
@@ -1553,7 +1553,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Liste der erlaubten HTTP-Host Header-Felder.
 Um sich vor DNS-Rebinding-Attacken zu schützen,
 sollten hier Domain-Namen eingetragen weden,
-die vom WebUI-Server verwendet werden.
+die vom Webinterface-Server verwendet werden.
 
 Verwende ';' um mehrere Einträge zu trennen.
 Platzhalter '*' kann verwendet werden.</translation>
@@ -1720,7 +1720,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation>Zerlege Threads (erfordert libtorrent &amp;gt;= 2.0):</translation>
+        <translation>Zerlege Hash-Threads (erfordert libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
