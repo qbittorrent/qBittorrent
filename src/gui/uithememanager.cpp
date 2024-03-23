@@ -30,6 +30,7 @@
 
 #include "uithememanager.h"
 
+#include <QApplication>
 #include <QPalette>
 #include <QPixmapCache>
 #include <QResource>
@@ -79,11 +80,8 @@ UIThemeManager::UIThemeManager()
     , m_useSystemIcons {Preferences::instance()->useSystemIcons()}
 #endif
 {
-    connect(QApplication::styleHints(), &QStyleHints::colorSchemeChanged, this, []
-    {
-        // workaround to refresh styled controls once color scheme is changed
-        QApplication::setStyle(QApplication::style()->name());
-    });
+    // NOTE: Qt::QueuedConnection can be omitted as soon as support for Qt 6.5 is dropped
+    connect(QApplication::styleHints(), &QStyleHints::colorSchemeChanged, this, &UIThemeManager::onColorSchemeChanged, Qt::QueuedConnection);
 
     if (m_useCustomTheme)
     {
@@ -120,6 +118,14 @@ UIThemeManager *UIThemeManager::instance()
 void UIThemeManager::applyStyleSheet() const
 {
     qApp->setStyleSheet(QString::fromUtf8(m_themeSource->readStyleSheet()));
+}
+
+void UIThemeManager::onColorSchemeChanged()
+{
+    emit themeChanged();
+
+    // workaround to refresh styled controls once color scheme is changed
+    QApplication::setStyle(QApplication::style()->name());
 }
 
 QIcon UIThemeManager::getIcon(const QString &iconId, [[maybe_unused]] const QString &fallback) const
@@ -184,8 +190,6 @@ QPixmap UIThemeManager::getScaledPixmap(const QString &iconId, const int height)
 QColor UIThemeManager::getColor(const QString &id) const
 {
     const QColor color = m_themeSource->getColor(id, (isDarkTheme() ? ColorMode::Dark : ColorMode::Light));
-    Q_ASSERT(color.isValid());
-
     return color;
 }
 

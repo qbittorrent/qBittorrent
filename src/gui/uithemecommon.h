@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,7 +29,6 @@
 
 #pragma once
 
-#include <QApplication>
 #include <QColor>
 #include <QHash>
 #include <QPalette>
@@ -53,17 +52,16 @@ struct UIThemeColor
 
 inline QHash<QString, UIThemeColor> defaultUIThemeColors()
 {
-    const QPalette palette = QApplication::palette();
     return {
         {u"Log.TimeStamp"_s, {Color::Primer::Light::fgSubtle, Color::Primer::Dark::fgSubtle}},
-        {u"Log.Normal"_s, {palette.color(QPalette::Active, QPalette::WindowText), palette.color(QPalette::Active, QPalette::WindowText)}},
+        {u"Log.Normal"_s, {{}, {}}},
         {u"Log.Info"_s, {Color::Primer::Light::accentFg, Color::Primer::Dark::accentFg}},
         {u"Log.Warning"_s, {Color::Primer::Light::severeFg, Color::Primer::Dark::severeFg}},
         {u"Log.Critical"_s, {Color::Primer::Light::dangerFg, Color::Primer::Dark::dangerFg}},
         {u"Log.BannedPeer"_s, {Color::Primer::Light::dangerFg, Color::Primer::Dark::dangerFg}},
 
-        {u"RSS.ReadArticle"_s, {palette.color(QPalette::Inactive, QPalette::WindowText), palette.color(QPalette::Inactive, QPalette::WindowText)}},
-        {u"RSS.UnreadArticle"_s, {palette.color(QPalette::Active, QPalette::Link), palette.color(QPalette::Active, QPalette::Link)}},
+        {u"RSS.ReadArticle"_s, {{}, {}}},
+        {u"RSS.UnreadArticle"_s, {{}, {}}},
 
         {u"TransferList.Downloading"_s, {Color::Primer::Light::successFg, Color::Primer::Dark::successFg}},
         {u"TransferList.StalledDownloading"_s, {Color::Primer::Light::successEmphasis, Color::Primer::Dark::successEmphasis}},

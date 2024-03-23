@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -114,6 +114,7 @@ private slots:
 
 private:
     void configure();
+    void loadUIThemeResources();
     QString displayValue(const BitTorrent::Torrent *torrent, int column) const;
     QVariant internalValue(const BitTorrent::Torrent *torrent, int column, bool alt) const;
     QIcon getIconByState(BitTorrent::TorrentState state) const;
@@ -122,7 +123,7 @@ private:
     QHash<BitTorrent::Torrent *, int> m_torrentMap;  // maps torrent handle to row number
     const QHash<BitTorrent::TorrentState, QString> m_statusStrings;
     // row text colors
-    const QHash<BitTorrent::TorrentState, QColor> m_stateThemeColors;
+    QHash<BitTorrent::TorrentState, QColor> m_stateThemeColors;
 
     enum class HideZeroValuesMode
     {

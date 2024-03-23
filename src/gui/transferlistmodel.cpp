@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -112,20 +112,16 @@ TransferListModel::TransferListModel(QObject *parent)
           {BitTorrent::TorrentState::MissingFiles, tr("Missing Files")},
           {BitTorrent::TorrentState::Error, tr("Errored", "Torrent status, the torrent has an error")}
     }
-    , m_stateThemeColors {torrentStateColorsFromUITheme()}
-    , m_checkingIcon {UIThemeManager::instance()->getIcon(u"force-recheck"_s, u"checking"_s)}
-    , m_completedIcon {UIThemeManager::instance()->getIcon(u"checked-completed"_s, u"completed"_s)}
-    , m_downloadingIcon {UIThemeManager::instance()->getIcon(u"downloading"_s)}
-    , m_errorIcon {UIThemeManager::instance()->getIcon(u"error"_s)}
-    , m_movingIcon {UIThemeManager::instance()->getIcon(u"set-location"_s)}
-    , m_pausedIcon {UIThemeManager::instance()->getIcon(u"stopped"_s, u"media-playback-pause"_s)}
-    , m_queuedIcon {UIThemeManager::instance()->getIcon(u"queued"_s)}
-    , m_stalledDLIcon {UIThemeManager::instance()->getIcon(u"stalledDL"_s)}
-    , m_stalledUPIcon {UIThemeManager::instance()->getIcon(u"stalledUP"_s)}
-    , m_uploadingIcon {UIThemeManager::instance()->getIcon(u"upload"_s, u"uploading"_s)}
 {
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &TransferListModel::configure);
+
+    loadUIThemeResources();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, [this]
+    {
+        loadUIThemeResources();
+        emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)), {Qt::DecorationRole, Qt::ForegroundRole});
+    });
 
     // Load the torrents
     using namespace BitTorrent;
@@ -697,6 +693,23 @@ void TransferListModel::configure()
         m_hideZeroValuesMode = hideZeroValuesMode;
         emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
     }
+}
+
+void TransferListModel::loadUIThemeResources()
+{
+    m_stateThemeColors = torrentStateColorsFromUITheme();
+
+    const auto *themeManager = UIThemeManager::instance();
+    m_checkingIcon = themeManager->getIcon(u"force-recheck"_s, u"checking"_s);
+    m_completedIcon = themeManager->getIcon(u"checked-completed"_s, u"completed"_s);
+    m_downloadingIcon = themeManager->getIcon(u"downloading"_s);
+    m_errorIcon = themeManager->getIcon(u"error"_s);
+    m_movingIcon = themeManager->getIcon(u"set-location"_s);
+    m_pausedIcon = themeManager->getIcon(u"stopped"_s, u"media-playback-pause"_s);
+    m_queuedIcon = themeManager->getIcon(u"queued"_s);
+    m_stalledDLIcon = themeManager->getIcon(u"stalledDL"_s);
+    m_stalledUPIcon = themeManager->getIcon(u"stalledUP"_s);
+    m_uploadingIcon = themeManager->getIcon(u"upload"_s, u"uploading"_s);
 }
 
 QIcon TransferListModel::getIconByState(const BitTorrent::TorrentState state) const
