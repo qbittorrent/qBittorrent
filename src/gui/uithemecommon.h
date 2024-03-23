@@ -149,6 +149,8 @@ inline QSet<QString> defaultUIThemeIcons()
         u"queued"_s,
         u"ratio"_s,
         u"reannounce"_s,
+        u"rss_read_article"_s,
+        u"rss_unread_article"_s,
         u"security-high"_s,
         u"security-low"_s,
         u"set-location"_s,

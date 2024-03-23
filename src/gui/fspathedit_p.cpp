@@ -1,7 +1,8 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022 Mike Tzou (Chocobo1)
- * Copyright (C) 2016 Eugene Shalygin
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022  Mike Tzou (Chocobo1)
+ * Copyright (C) 2016  Eugene Shalygin
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,6 +33,7 @@
 #include <QCompleter>
 #include <QContextMenuEvent>
 #include <QDir>
+#include <QFileIconProvider>
 #include <QFileInfo>
 #include <QFileSystemModel>
 #include <QMenu>
@@ -160,36 +162,33 @@ QValidator::State Private::FileSystemPathValidator::validate(QString &input, int
 }
 
 Private::FileLineEdit::FileLineEdit(QWidget *parent)
-    : QLineEdit {parent}
-    , m_completerModel {new QFileSystemModel(this)}
-    , m_completer {new QCompleter(this)}
+    : QLineEdit(parent)
 {
-    m_iconProvider.setOptions(QFileIconProvider::DontUseCustomDirectoryIcons);
-
-    m_completerModel->setIconProvider(&m_iconProvider);
-    m_completerModel->setOptions(QFileSystemModel::DontWatchForChanges);
-
-    m_completer->setModel(m_completerModel);
-    setCompleter(m_completer);
-
     connect(this, &QLineEdit::textChanged, this, &FileLineEdit::validateText);
 }
 
 Private::FileLineEdit::~FileLineEdit()
 {
     delete m_completerModel; // has to be deleted before deleting the m_iconProvider object
+    delete m_iconProvider;
 }
 
 void Private::FileLineEdit::completeDirectoriesOnly(const bool completeDirsOnly)
 {
-    const QDir::Filters filters = QDir::NoDotAndDotDot
-        | (completeDirsOnly ? QDir::Dirs : QDir::AllEntries);
-    m_completerModel->setFilter(filters);
+    m_completeDirectoriesOnly = completeDirsOnly;
+    if (m_completerModel)
+    {
+        const QDir::Filters filters = QDir::NoDotAndDotDot
+                | (completeDirsOnly ? QDir::Dirs : QDir::AllEntries);
+        m_completerModel->setFilter(filters);
+    }
 }
 
 void Private::FileLineEdit::setFilenameFilters(const QStringList &filters)
 {
-    m_completerModel->setNameFilters(filters);
+    m_filenameFilters = filters;
+    if (m_completerModel)
+        m_completerModel->setNameFilters(m_filenameFilters);
 }
 
 void Private::FileLineEdit::setBrowseAction(QAction *action)
@@ -223,6 +222,24 @@ void Private::FileLineEdit::keyPressEvent(QKeyEvent *e)
 
     if ((e->key() == Qt::Key_Space) && (e->modifiers() == Qt::CTRL))
     {
+        if (!m_completer)
+        {
+            m_iconProvider = new QFileIconProvider;
+            m_iconProvider->setOptions(QFileIconProvider::DontUseCustomDirectoryIcons);
+
+            m_completerModel = new QFileSystemModel(this);
+            m_completerModel->setIconProvider(m_iconProvider);
+            m_completerModel->setOptions(QFileSystemModel::DontWatchForChanges);
+            m_completerModel->setNameFilters(m_filenameFilters);
+            const QDir::Filters filters = QDir::NoDotAndDotDot
+                    | (m_completeDirectoriesOnly ? QDir::Dirs : QDir::AllEntries);
+            m_completerModel->setFilter(filters);
+
+            m_completer = new QCompleter(this);
+            m_completer->setModel(m_completerModel);
+            setCompleter(m_completer);
+        }
+
         m_completerModel->setRootPath(Path(text()).data());
         showCompletionPopup();
     }

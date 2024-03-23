@@ -128,9 +128,9 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     m_lineEditSearchResultsFilter->setPlaceholderText(tr("Filter search results..."));
     m_lineEditSearchResultsFilter->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(m_lineEditSearchResultsFilter, &QWidget::customContextMenuRequested, this, &SearchJobWidget::showFilterContextMenu);
+    connect(m_lineEditSearchResultsFilter, &LineEdit::textChanged, this, &SearchJobWidget::filterSearchResults);
     m_ui->horizontalLayout->insertWidget(0, m_lineEditSearchResultsFilter);
 
-    connect(m_lineEditSearchResultsFilter, &LineEdit::textChanged, this, &SearchJobWidget::filterSearchResults);
     connect(m_ui->filterMode, qOverload<int>(&QComboBox::currentIndexChanged)
             , this, &SearchJobWidget::updateFilter);
     connect(m_ui->minSeeds, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateFilter);

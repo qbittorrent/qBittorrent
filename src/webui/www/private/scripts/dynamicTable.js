@@ -701,10 +701,7 @@ window.qBittorrent.DynamicTable = (function() {
             return null;
         },
 
-        updateTable: function(fullUpdate) {
-            if (fullUpdate === undefined)
-                fullUpdate = false;
-
+        updateTable: function(fullUpdate = false) {
             const rows = this.getFilteredAndSortedRows();
 
             for (let i = 0; i < this.selectedRows.length; ++i)
