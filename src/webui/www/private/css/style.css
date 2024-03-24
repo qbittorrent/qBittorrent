@@ -409,6 +409,37 @@ a.propButton img {
     padding: 4px 4px 4px 25px;
 }
 
+#torrentsFilterRegexBox {
+    display: none;
+}
+
+#torrentsFilterRegexBox + label {
+    background-image: url("../images/regex.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 1.5em;
+    border: 1px solid var(--color-border-default);
+    border-radius: 4px;
+    display: inline-block;
+    height: 26px;
+    margin-bottom: -9px;
+    width: 26px;
+}
+
+#torrentsFilterRegexBox:checked + label {
+    background-color: var(--color-background-default);
+    background-image: url("../images/regex.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 1.5em;
+    border: 1px solid var(--color-accent-blue);
+    border-radius: 4px;
+    display: inline-block;
+    height: 26px;
+    margin-bottom: -9px;
+    width: 26px;
+}
+
 #torrentFilesFilterToolbar {
     float: right;
     margin-right: 30px;
