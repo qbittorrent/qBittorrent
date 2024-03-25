@@ -412,6 +412,14 @@
 
             tab.destroy();
 
+            new Request({
+                url: new URI('api/v2/search/delete'),
+                method: 'post',
+                data: {
+                    id: searchId
+                },
+            }).send();
+
             const searchJobs = JSON.parse(LocalPreferences.get('search_jobs', '[]'));
             const jobIndex = searchJobs.findIndex((job) => job.id === searchId);
             if (jobIndex >= 0) {
