@@ -1,4 +1,4 @@
-#VERSION: 1.46
+#VERSION: 1.47
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -45,13 +45,13 @@ def anySizeToBytes(size_string):
     # separate integer from unit
     try:
         size, unit = size_string.split()
-    except:
+    except Exception:
         try:
             size = size_string.strip()
             unit = ''.join([c for c in size if c.isalpha()])
             if len(unit) > 0:
                 size = size[:-len(unit)]
-        except:
+        except Exception:
             return -1
     if len(size) == 0:
         return -1

@@ -41,9 +41,10 @@ no_obsolete = False
 www_folder = "."
 ts_folder = os.path.join(www_folder, "translations")
 
+
 def parseSource(filename, sources):
     print("Parsing %s..." % (os.path.normpath(filename)))
-    with open(filename, encoding = 'utf-8', mode = 'r') as file:
+    with open(filename, encoding='utf-8', mode='r') as file:
         regex = re.compile(
             r"QBT_TR\((([^\)]|\)(?!QBT_TR))+)\)QBT_TR\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\]")
         for match in regex.finditer(file.read()):
@@ -54,11 +55,12 @@ def parseSource(filename, sources):
                 sources[context] = set()
             sources[context].add(string)
 
+
 def processTranslation(filename, sources):
     print('Processing %s...' % (os.path.normpath(filename)))
 
     try:
-        tree = ET.ElementTree(file = filename)
+        tree = ET.ElementTree(file=filename)
     except Exception:
         print('\tFailed to parse %s!' % (os.path.normpath(filename)))
         return
@@ -82,7 +84,7 @@ def processTranslation(filename, sources):
 
                 trtype = translation.attrib.get('type')
                 if (trtype == 'obsolete') or (trtype == 'vanished'):
-                    del translation.attrib['type'] # i.e. finished
+                    del translation.attrib['type']  # i.e. finished
             else:
                 if no_obsolete or (translation.attrib.get('type', '') == 'unfinished'):
                     context.remove(message)
@@ -117,13 +119,15 @@ def processTranslation(filename, sources):
         context.tail = '\n'
         context.find('./name').tail = '\n' + indent
         messages = context.findall('./message')
-        if len(messages) == 0: continue
+        if len(messages) == 0:
+            continue
 
         for message in messages:
             message.text = '\n' + (indent * 2)
             message.tail = '\n' + indent
             elems = message.findall('./')
-            if len(elems) == 0: continue
+            if len(elems) == 0:
+                continue
 
             for elem in elems:
                 elem.tail = '\n' + (indent * 2)
@@ -131,24 +135,25 @@ def processTranslation(filename, sources):
         messages[-1:][0].tail = '\n'
 
     try:
-        with open(filename, mode = 'wb') as file:
+        with open(filename, mode='wb') as file:
             file.write(b'<?xml version="1.0" encoding="utf-8"?>\n'
                        b'<!DOCTYPE TS>\n')
-            tree.write(file, encoding = 'utf-8')
+            tree.write(file, encoding='utf-8')
     except Exception:
         print('\tFailed to write %s!' % (os.path.normpath(filename)))
 
+
 argp = argparse.ArgumentParser(
-    prog = 'tstool.py', description = 'Update qBittorrent WebUI translation files.')
-argp.add_argument('--no-obsolete', dest = 'no_obsolete', action = 'store_true',
-                  default = no_obsolete,
-                  help = 'remove obsolete messages (default: mark them as obsolete)')
-argp.add_argument('--www-folder', dest = 'www_folder', action = 'store',
-                  default = www_folder,
-                  help = 'folder with WebUI source files (default: "%s")' % (www_folder))
-argp.add_argument('--ts-folder', dest = 'ts_folder', action = 'store',
-                  default = ts_folder,
-                  help = 'folder with WebUI translation files (default: "%s")' % (ts_folder))
+    prog='tstool.py', description='Update qBittorrent WebUI translation files.')
+argp.add_argument('--no-obsolete', dest='no_obsolete', action='store_true',
+                  default=no_obsolete,
+                  help='remove obsolete messages (default: mark them as obsolete)')
+argp.add_argument('--www-folder', dest='www_folder', action='store',
+                  default=www_folder,
+                  help='folder with WebUI source files (default: "%s")' % (www_folder))
+argp.add_argument('--ts-folder', dest='ts_folder', action='store',
+                  default=ts_folder,
+                  help='folder with WebUI translation files (default: "%s")' % (ts_folder))
 
 args = argp.parse_args()
 no_obsolete = args.no_obsolete
@@ -174,8 +179,7 @@ print("")
 
 print("Processing translation files...")
 for entry in os.scandir(ts_folder):
-    if (entry.is_file() and entry.name.startswith('webui_')
-        and entry.name.endswith(".ts")):
+    if (entry.is_file() and entry.name.startswith('webui_') and entry.name.endswith(".ts")):
         processTranslation(entry.path, copy.deepcopy(source_ts))
 
 print("Done!")

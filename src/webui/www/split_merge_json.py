@@ -16,6 +16,7 @@ import os
 from pathlib import PurePath
 import sys
 
+
 def updateJson(json_file: str, source: dict[str, str]) -> None:
     trimmed_path: str = json_file
     path_parts = PurePath(json_file).parts
@@ -42,6 +43,7 @@ def updateJson(json_file: str, source: dict[str, str]) -> None:
         file.write("\n")
         file.truncate()
 
+
 def splitJson(transifex_dir: str, json_public_dir: str, json_private_dir: str) -> None:
     locales: list[str] = glob.glob("*.json", root_dir=transifex_dir)
     locales = [x for x in locales if x != "en.json"]
@@ -64,6 +66,7 @@ def splitJson(transifex_dir: str, json_public_dir: str, json_private_dir: str) -
 
         updateJson(public_file, transifex_json)
         updateJson(private_file, transifex_json)
+
 
 def mergeJson(transifex_dir: str, json_public_dir: str, json_private_dir: str) -> None:
     transifex_en_file: str = f"{transifex_dir}/en.json"
@@ -91,6 +94,7 @@ def mergeJson(transifex_dir: str, json_public_dir: str, json_private_dir: str) -
     with open(transifex_en_file, mode="w", encoding='utf-8') as file:
         json.dump(transifex_en_json, file, ensure_ascii=False, indent=2, sort_keys=True)
         file.write("\n")
+
 
 def main() -> int:
     script_path: str = os.path.dirname(os.path.realpath(__file__))
@@ -123,6 +127,7 @@ def main() -> int:
     print("Done.")
 
     return 0
+
 
 if __name__ == '__main__':
     sys.exit(main())

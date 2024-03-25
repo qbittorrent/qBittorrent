@@ -14,6 +14,7 @@ import os
 import sys
 import xml.etree.ElementTree as ET
 
+
 def getTsStrings(ts_file: str, key: str) -> list[str]:
     tr_strings: list[str] = []
     tree = ET.parse(ts_file)
@@ -32,6 +33,7 @@ def getTsStrings(ts_file: str, key: str) -> list[str]:
                 tr_strings.append(translation)
 
     return tr_strings
+
 
 def migrate2Json(ts_dir: str, json_dir: str, locale: str) -> None:
     ts_file: str = f"{ts_dir}/webui_{locale}.ts"
@@ -71,6 +73,7 @@ def migrate2Json(ts_dir: str, json_dir: str, locale: str) -> None:
 
     print("\tFinished.")
 
+
 def main() -> int:
     script_path: str = os.path.dirname(os.path.realpath(__file__))
     ts_dir: str = f"{script_path}/translations"
@@ -96,6 +99,7 @@ def main() -> int:
     print("Done.")
 
     return 0
+
 
 if __name__ == '__main__':
     sys.exit(main())
