@@ -129,6 +129,7 @@ let toggleFilterDisplay = function() {};
 
 window.addEventListener("DOMContentLoaded", function() {
     let isSearchPanelLoaded = false;
+    let isLogPanelLoaded = false;
 
     const saveColumnSizes = function() {
         const filters_width = $('Filters').getSize().x;
@@ -1228,6 +1229,16 @@ window.addEventListener("DOMContentLoaded", function() {
         let logTabInitialized = false;
 
         return () => {
+            // we must wait until the panel is fully loaded before proceeding.
+            // this include's the panel's custom js, which is loaded via MochaUI.Panel's 'require' field.
+            // MochaUI loads these files asynchronously and thus all required libs may not be available immediately
+            if (!isLogPanelLoaded) {
+                setTimeout(() => {
+                    showLogTab();
+                }, 100);
+                return;
+            }
+
             if (!logTabInitialized) {
                 window.qBittorrent.Log.init();
                 logTabInitialized = true;
@@ -1310,6 +1321,9 @@ window.addEventListener("DOMContentLoaded", function() {
             require: {
                 css: ['css/vanillaSelectBox.css'],
                 js: ['scripts/lib/vanillaSelectBox.js'],
+                onload: () => {
+                    isLogPanelLoaded = true;
+                },
             },
             tabsURL: 'views/logTabs.html',
             tabsOnload: function() {
