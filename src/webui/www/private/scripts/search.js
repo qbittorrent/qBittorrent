@@ -830,13 +830,13 @@ window.qBittorrent.Search = (function() {
                         searchResultsTable.altRow();
                     }
 
+                    setupSearchTableEvents(true);
+
                     if ((response.status === "Stopped") && (state.rowId >= response.total)) {
                         resetSearchState(searchId);
                         updateStatusIconElement(searchId, 'QBT_TR(Search has finished)QBT_TR[CONTEXT=SearchJobWidget]', 'images/task-complete.svg');
                         return;
                     }
-
-                    setupSearchTableEvents(true);
                 }
 
                 clearTimeout(state.loadResultsTimer);
