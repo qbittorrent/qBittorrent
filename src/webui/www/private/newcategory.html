@@ -94,7 +94,7 @@
                                 }).send();
                             },
                             onFailure: function() {
-                                alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=HttpServer] " + window.qBittorrent.Misc.escapeHtml(categoryName));
+                                alert(`${i18next.t("Unable to create category")} ${window.qBittorrent.Misc.escapeHtml(categoryName)}`);
                             }
                         }).send();
                         break;
