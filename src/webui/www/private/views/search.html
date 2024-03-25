@@ -77,7 +77,7 @@
 <div id="searchResults">
     <div style="overflow: hidden; height: 70px;">
         <div style="margin: 20px 0; height: 30px;">
-            <input type="text" id="searchPattern" class="searchInputField" placeholder="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocomplete="off" autocapitalize="none" />
+            <input type="text" id="searchPattern" class="searchInputField qbt-translatable" data-i18n="[placeholder]Search" placeholder="Search" autocorrect="off" autocomplete="off" autocapitalize="none" />
             <select id="categorySelect" class="searchInputField" onchange="qBittorrent.Search.categorySelected()"></select>
             <select id="pluginsSelect" class="searchInputField" onchange="qBittorrent.Search.pluginSelected()"></select>
             <button type="button" id="startSearchButton" class="searchInputField qbt-translatable" onclick="qBittorrent.Search.startStopSearch()" data-i18n="Search">Search</button>
@@ -111,7 +111,7 @@
                 <option value="everywhere" class="qbt-translatable" data-i18n="Everywhere">Everywhere</option>
             </select>
 
-            <img id="searchResultsGranularFiltersWarning" src="images/dialog-warning.svg" class="qbt-translatable" data-i18n="[title]Increase window width to display additional filters" title="Increase window width to display additional filters" alt="QBT_TR(Warning)QBT_TR[CONTEXT=SearchEngineWidget]" width="24" height="24">
+            <img id="searchResultsGranularFiltersWarning" src="images/dialog-warning.svg" class="qbt-translatable qbt-translatable" data-i18n="[title]Increase window width to display additional filters" title="Increase window width to display additional filters" data-i18n="[alt]Warning" alt="Warning" width="24" height="24">
 
             <div id="searchResultsGranularFilters">
                 <span style="margin-left: 15px;" class="qbt-translatable" data-i18n="Seeds:">Seeds:</span>
