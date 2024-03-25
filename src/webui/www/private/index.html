@@ -129,7 +129,7 @@
                     <div class="clear"></div>
                 </div>
                 <div id="torrentsFilterToolbar">
-                    <input type="text" id="torrentsFilterInput" placeholder="QBT_TR(Filter torrent list...)QBT_TR[CONTEXT=MainWindow]" autocorrect="off" autocapitalize="none" />
+                    <input type="text" id="torrentsFilterInput" class="qbt-translatable" data-i18n="[placeholder]Filter torrent list..." placeholder="Filter torrent list..." autocorrect="off" autocapitalize="none" />
                 </div>
             </div>
         </div>
@@ -137,98 +137,98 @@
         </div>
     </div>
     <ul id="torrentsTableMenu" class="contextMenu">
-        <li><a href="#start"><img src="images/torrent-start.svg" alt="QBT_TR(Resume)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Resume)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#pause"><img src="images/torrent-stop.svg" alt="QBT_TR(Pause)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Pause)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#forceStart"><img src="images/torrent-start-forced.svg" alt="QBT_TR(Force Resume)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Force Resume)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li class="separator"><a href="#delete"><img src="images/list-remove.svg" alt="QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#start"><img src="images/torrent-start.svg" class="qbt-translatable" data-i18n="[alt]Resume" alt="Resume" /> QBT_TR(Resume)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#pause"><img src="images/torrent-stop.svg" class="qbt-translatable" data-i18n="[alt]Pause" alt="Pause" /> QBT_TR(Pause)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#forceStart"><img src="images/torrent-start-forced.svg" class="qbt-translatable" data-i18n="[alt]Force Resume" alt="Force Resume" /> QBT_TR(Force Resume)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li class="separator"><a href="#delete"><img src="images/list-remove.svg" class="qbt-translatable" data-i18n="[alt]Remove" alt="Remove" /> QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]</a></li>
         <li class="separator">
-            <a href="#setLocation"><img src="images/set-location.svg" alt="QBT_TR(Set location...)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Set location...)QBT_TR[CONTEXT=TransferListWidget]</a>
+            <a href="#setLocation"><img src="images/set-location.svg" class="qbt-translatable" data-i18n="[alt]Set location..." alt="Set location..." /> QBT_TR(Set location...)QBT_TR[CONTEXT=TransferListWidget]</a>
         </li>
         <li>
-            <a href="#rename"><img src="images/edit-rename.svg" alt="QBT_TR(Rename...)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Rename...)QBT_TR[CONTEXT=TransferListWidget]</a>
+            <a href="#rename"><img src="images/edit-rename.svg" class="qbt-translatable" data-i18n="[alt]Rename..." alt="Rename..." /> QBT_TR(Rename...)QBT_TR[CONTEXT=TransferListWidget]</a>
         </li>
         <li>
-            <a href="#renameFiles"><img src="images/edit-rename.svg" alt="QBT_TR(Rename Files...)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Rename Files...)QBT_TR[CONTEXT=TransferListWidget]</a>
+            <a href="#renameFiles"><img src="images/edit-rename.svg" class="qbt-translatable" data-i18n="[alt]Rename Files..." alt="Rename Files..." /> QBT_TR(Rename Files...)QBT_TR[CONTEXT=TransferListWidget]</a>
         </li>
         <li>
-            <a href="#Category" class="arrow-right"><img src="images/view-categories.svg" alt="QBT_TR(Category)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Category)QBT_TR[CONTEXT=TransferListWidget]</a>
+            <a href="#Category" class="arrow-right"><img src="images/view-categories.svg" class="qbt-translatable" data-i18n="[alt]Category" alt="Category" /> QBT_TR(Category)QBT_TR[CONTEXT=TransferListWidget]</a>
             <ul id="contextCategoryList" class="scrollableMenu"></ul>
         </li>
         <li>
-            <a href="#Tags" class="arrow-right"><img src="images/tags.svg" alt="QBT_TR(Tags)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Tags)QBT_TR[CONTEXT=TransferListWidget]</a>
+            <a href="#Tags" class="arrow-right"><img src="images/tags.svg" class="qbt-translatable" data-i18n="[alt]Tags" alt="Tags" /> QBT_TR(Tags)QBT_TR[CONTEXT=TransferListWidget]</a>
             <ul id="contextTagList" class="scrollableMenu"></ul>
         </li>
         <li>
-            <a href="#autoTorrentManagement"><img src="images/checked-completed.svg" alt="QBT_TR(Automatic Torrent Management)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Automatic Torrent Management)QBT_TR[CONTEXT=TransferListWidget]</a>
+            <a href="#autoTorrentManagement"><img src="images/checked-completed.svg" class="qbt-translatable" data-i18n="[alt]Automatic Torrent Management" alt="Automatic Torrent Management" /> QBT_TR(Automatic Torrent Management)QBT_TR[CONTEXT=TransferListWidget]</a>
         </li>
-        <li class="separator"><a href="#downloadLimit"><img src="images/download.svg" alt="QBT_TR(Limit download rate...)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Limit download rate...)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#uploadLimit"><img src="images/upload.svg" alt="QBT_TR(Limit upload rate...)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Limit upload rate...)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#shareRatio"><img src="images/ratio.svg" alt="QBT_TR(Limit share ratio...)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Limit share ratio...)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#superSeeding"><img src="images/checked-completed.svg" alt="QBT_TR(Super seeding mode)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Super seeding mode)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li class="separator"><a href="#sequentialDownload"><img src="images/checked-completed.svg" alt="QBT_TR(Download in sequential order)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Download in sequential order)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#firstLastPiecePrio"><img src="images/checked-completed.svg" alt="QBT_TR(Download first and last pieces first)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Download first and last pieces first)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li class="separator"><a href="#forceRecheck"><img src="images/force-recheck.svg" alt="QBT_TR(Force recheck)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Force recheck)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#forceReannounce"><img src="images/reannounce.svg" alt="QBT_TR(Force reannounce)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Force reannounce)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li class="separator"><a href="#downloadLimit"><img src="images/download.svg" class="qbt-translatable" data-i18n="[alt]Limit download rate..." alt="Limit download rate..." /> QBT_TR(Limit download rate...)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#uploadLimit"><img src="images/upload.svg" class="qbt-translatable" data-i18n="[alt]Limit upload rate..." alt="Limit upload rate..." /> QBT_TR(Limit upload rate...)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#shareRatio"><img src="images/ratio.svg" class="qbt-translatable" data-i18n="[alt]Limit share ratio..." alt="Limit share ratio..." /> QBT_TR(Limit share ratio...)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#superSeeding"><img src="images/checked-completed.svg" class="qbt-translatable" data-i18n="[alt]Super seeding mode" alt="Super seeding mode" /> QBT_TR(Super seeding mode)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li class="separator"><a href="#sequentialDownload"><img src="images/checked-completed.svg" class="qbt-translatable" data-i18n="[alt]Download in sequential order" alt="Download in sequential order" /> QBT_TR(Download in sequential order)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#firstLastPiecePrio"><img src="images/checked-completed.svg" class="qbt-translatable" data-i18n="[alt]Download first and last pieces first" alt="Download first and last pieces first" /> QBT_TR(Download first and last pieces first)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li class="separator"><a href="#forceRecheck"><img src="images/force-recheck.svg" class="qbt-translatable" data-i18n="[alt]Force recheck" alt="Force recheck" /> QBT_TR(Force recheck)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#forceReannounce"><img src="images/reannounce.svg" class="qbt-translatable" data-i18n="[alt]Force reannounce" alt="Force reannounce" /> QBT_TR(Force reannounce)QBT_TR[CONTEXT=TransferListWidget]</a></li>
         <li id="queueingMenuItems" class="separator">
             <a href="#queue" class="arrow-right"><span style="display: inline-block; width:16px"></span> QBT_TR(Queue)QBT_TR[CONTEXT=TransferListWidget]</a>
             <ul>
-                <li><a href="#queueTop"><img src="images/go-top.svg" alt="QBT_TR(Move to top)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Move to top)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-                <li><a href="#queueUp"><img src="images/go-up.svg" alt="QBT_TR(Move up)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Move up)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-                <li><a href="#queueDown"><img src="images/go-down.svg" alt="QBT_TR(Move down)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Move down)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-                <li><a href="#queueBottom"><img src="images/go-bottom.svg" alt="QBT_TR(Move to bottom)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Move to bottom)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li><a href="#queueTop"><img src="images/go-top.svg" class="qbt-translatable" data-i18n="[alt]Move to top" alt="Move to top" /> QBT_TR(Move to top)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li><a href="#queueUp"><img src="images/go-up.svg" class="qbt-translatable" data-i18n="[alt]Move up" alt="Move up" /> QBT_TR(Move up)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li><a href="#queueDown"><img src="images/go-down.svg" class="qbt-translatable" data-i18n="[alt]Move down" alt="Move down" /> QBT_TR(Move down)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li><a href="#queueBottom"><img src="images/go-bottom.svg" class="qbt-translatable" data-i18n="[alt]Move to bottom" alt="Move to bottom" /> QBT_TR(Move to bottom)QBT_TR[CONTEXT=TransferListWidget]</a></li>
             </ul>
         </li>
         <li>
-            <a href="#" class="arrow-right"><img src="images/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Copy)QBT_TR[CONTEXT=TransferListWidget]</a>
+            <a href="#" class="arrow-right"><img src="images/edit-copy.svg" class="qbt-translatable" data-i18n="[alt]Copy" alt="Copy" /> QBT_TR(Copy)QBT_TR[CONTEXT=TransferListWidget]</a>
             <ul>
-                <li><a href="#" id="copyName" class="copyToClipboard"><img src="images/name.svg" alt="QBT_TR(Name)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Name)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-                <li><a href="#" id="copyInfohash1" class="copyToClipboard"><img src="images/hash.svg" alt="QBT_TR(Info hash v1)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Info hash v1)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-                <li><a href="#" id="copyInfohash2" class="copyToClipboard"><img src="images/hash.svg" alt="QBT_TR(Info hash v2)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Info hash v2)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-                <li><a href="#" id="copyMagnetLink" class="copyToClipboard"><img src="images/torrent-magnet.svg" alt="QBT_TR(Magnet link)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Magnet link)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-                <li><a href="#" id="copyID" class="copyToClipboard"><img src="images/help-about.svg" alt="QBT_TR(Torrent ID)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Torrent ID)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-                <li><a href="#" id="copyComment" class="copyToClipboard"><img src="images/edit-copy.svg" alt="QBT_TR(Comment)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Comment)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li><a href="#" id="copyName" class="copyToClipboard"><img src="images/name.svg" class="qbt-translatable" data-i18n="[alt]Name" alt="Name" /> QBT_TR(Name)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li><a href="#" id="copyInfohash1" class="copyToClipboard"><img src="images/hash.svg" class="qbt-translatable" data-i18n="[alt]Info hash v1" alt="Info hash v1" /> QBT_TR(Info hash v1)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li><a href="#" id="copyInfohash2" class="copyToClipboard"><img src="images/hash.svg" class="qbt-translatable" data-i18n="[alt]Info hash v2" alt="Info hash v2" /> QBT_TR(Info hash v2)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li><a href="#" id="copyMagnetLink" class="copyToClipboard"><img src="images/torrent-magnet.svg" class="qbt-translatable" data-i18n="[alt]Magnet link" alt="Magnet link" /> QBT_TR(Magnet link)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li><a href="#" id="copyID" class="copyToClipboard"><img src="images/help-about.svg" class="qbt-translatable" data-i18n="[alt]Torrent ID" alt="Torrent ID" /> QBT_TR(Torrent ID)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li><a href="#" id="copyComment" class="copyToClipboard"><img src="images/edit-copy.svg" class="qbt-translatable" data-i18n="[alt]Comment" alt="Comment" /> QBT_TR(Comment)QBT_TR[CONTEXT=TransferListWidget]</a></li>
             </ul>
         </li>
         <li>
-            <a href="#exportTorrent"><img src="images/edit-copy.svg" alt="QBT_TR(Export .torrent)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Export .torrent)QBT_TR[CONTEXT=TransferListWidget]</a>
+            <a href="#exportTorrent"><img src="images/edit-copy.svg" class="qbt-translatable" data-i18n="[alt]Export .torrent" alt="Export .torrent" /> QBT_TR(Export .torrent)QBT_TR[CONTEXT=TransferListWidget]</a>
         </li>
     </ul>
     <ul id="categoriesFilterMenu" class="contextMenu">
-        <li><a href="#createCategory"><img src="images/list-add.svg" alt="QBT_TR(Add category...)QBT_TR[CONTEXT=CategoryFilterWidget]" /> QBT_TR(Add category...)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
-        <li><a href="#createSubcategory"><img src="images/list-add.svg" alt="QBT_TR(Add subcategory...)QBT_TR[CONTEXT=CategoryFilterWidget]" /> QBT_TR(Add subcategory...)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
-        <li><a href="#editCategory"><img src="images/edit-rename.svg" alt="QBT_TR(Edit category...)QBT_TR[CONTEXT=CategoryFilterWidget]" /> QBT_TR(Edit category...)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
-        <li><a href="#deleteCategory"><img src="images/list-remove.svg" alt="QBT_TR(Remove category)QBT_TR[CONTEXT=CategoryFilterWidget]" /> QBT_TR(Remove category)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
-        <li><a href="#deleteUnusedCategories"><img src="images/list-remove.svg" alt="QBT_TR(Remove unused categories)QBT_TR[CONTEXT=CategoryFilterWidget]" /> QBT_TR(Remove unused categories)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
-        <li class="separator"><a href="#startTorrentsByCategory"><img src="images/torrent-start.svg" alt="QBT_TR(Resume torrents)QBT_TR[CONTEXT=CategoryFilterWidget]" /> QBT_TR(Resume torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
-        <li><a href="#pauseTorrentsByCategory"><img src="images/torrent-stop.svg" alt="QBT_TR(Pause torrents)QBT_TR[CONTEXT=CategoryFilterWidget]" /> QBT_TR(Pause torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
-        <li><a href="#deleteTorrentsByCategory"><img src="images/list-remove.svg" alt="QBT_TR(Remove torrents)QBT_TR[CONTEXT=CategoryFilterWidget]" /> QBT_TR(Remove torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li><a href="#createCategory"><img src="images/list-add.svg" class="qbt-translatable" data-i18n="[alt]Add category..." alt="Add category..." /> QBT_TR(Add category...)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li><a href="#createSubcategory"><img src="images/list-add.svg" class="qbt-translatable" data-i18n="[alt]Add subcategory..." alt="Add subcategory..." /> QBT_TR(Add subcategory...)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li><a href="#editCategory"><img src="images/edit-rename.svg" class="qbt-translatable" data-i18n="[alt]Edit category..." alt="Edit category..." /> QBT_TR(Edit category...)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li><a href="#deleteCategory"><img src="images/list-remove.svg" class="qbt-translatable" data-i18n="[alt]Remove category" alt="Remove category" /> QBT_TR(Remove category)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li><a href="#deleteUnusedCategories"><img src="images/list-remove.svg" class="qbt-translatable" data-i18n="[alt]Remove unused categories" alt="Remove unused categories" /> QBT_TR(Remove unused categories)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li class="separator"><a href="#startTorrentsByCategory"><img src="images/torrent-start.svg" class="qbt-translatable" data-i18n="[alt]Resume torrents" alt="Resume torrents" /> QBT_TR(Resume torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li><a href="#pauseTorrentsByCategory"><img src="images/torrent-stop.svg" class="qbt-translatable" data-i18n="[alt]Pause torrents" alt="Pause torrents" /> QBT_TR(Pause torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li><a href="#deleteTorrentsByCategory"><img src="images/list-remove.svg" class="qbt-translatable" data-i18n="[alt]Remove torrents" alt="Remove torrents" /> QBT_TR(Remove torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
     </ul>
     <ul id="tagsFilterMenu" class="contextMenu">
-        <li><a href="#createTag"><img src="images/list-add.svg" alt="QBT_TR(Add tag...)QBT_TR[CONTEXT=TagFilterWidget]" /> QBT_TR(Add tag...)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
-        <li><a href="#deleteTag"><img src="images/list-remove.svg" alt="QBT_TR(Remove tag)QBT_TR[CONTEXT=TagFilterWidget]" /> QBT_TR(Remove tag)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
-        <li><a href="#deleteUnusedTags"><img src="images/list-remove.svg" alt="QBT_TR(Remove unused tags)QBT_TR[CONTEXT=TagFilterWidget]" /> QBT_TR(Remove unused tags)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
-        <li class="separator"><a href="#startTorrentsByTag"><img src="images/torrent-start.svg" alt="QBT_TR(Resume torrents)QBT_TR[CONTEXT=TagFilterWidget]" /> QBT_TR(Resume torrents)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
-        <li><a href="#pauseTorrentsByTag"><img src="images/torrent-stop.svg" alt="QBT_TR(Pause torrents)QBT_TR[CONTEXT=TagFilterWidget]" /> QBT_TR(Pause torrents)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
-        <li><a href="#deleteTorrentsByTag"><img src="images/list-remove.svg" alt="QBT_TR(Remove torrents)QBT_TR[CONTEXT=TagFilterWidget]" /> QBT_TR(Remove torrents)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
+        <li><a href="#createTag"><img src="images/list-add.svg" class="qbt-translatable" data-i18n="[alt]Add tag..." alt="Add tag..." /> QBT_TR(Add tag...)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
+        <li><a href="#deleteTag"><img src="images/list-remove.svg" class="qbt-translatable" data-i18n="[alt]Remove tag" alt="Remove tag" /> QBT_TR(Remove tag)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
+        <li><a href="#deleteUnusedTags"><img src="images/list-remove.svg" class="qbt-translatable" data-i18n="[alt]Remove unused tags" alt="Remove unused tags" /> QBT_TR(Remove unused tags)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
+        <li class="separator"><a href="#startTorrentsByTag"><img src="images/torrent-start.svg" class="qbt-translatable" data-i18n="[alt]Resume torrents" alt="Resume torrents" /> QBT_TR(Resume torrents)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
+        <li><a href="#pauseTorrentsByTag"><img src="images/torrent-stop.svg" class="qbt-translatable" data-i18n="[alt]Pause torrents" alt="Pause torrents" /> QBT_TR(Pause torrents)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
+        <li><a href="#deleteTorrentsByTag"><img src="images/list-remove.svg" class="qbt-translatable" data-i18n="[alt]Remove torrents" alt="Remove torrents" /> QBT_TR(Remove torrents)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
     </ul>
     <ul id="trackersFilterMenu" class="contextMenu">
-        <li><a href="#resumeTorrentsByTracker"><img src="images/torrent-start.svg" alt="QBT_TR(Resume torrents)QBT_TR[CONTEXT=TrackerFiltersList]" /> QBT_TR(Resume torrents)QBT_TR[CONTEXT=TrackerFiltersList]</a></li>
-        <li><a href="#pauseTorrentsByTracker"><img src="images/torrent-stop.svg" alt="QBT_TR(Pause torrents)QBT_TR[CONTEXT=TrackerFiltersList]" /> QBT_TR(Pause torrents)QBT_TR[CONTEXT=TrackerFiltersList]</a></li>
-        <li><a href="#deleteTorrentsByTracker"><img src="images/list-remove.svg" alt="QBT_TR(Remove torrents)QBT_TR[CONTEXT=TrackerFiltersList]" /> QBT_TR(Remove torrents)QBT_TR[CONTEXT=TrackerFiltersList]</a></li>
+        <li><a href="#resumeTorrentsByTracker"><img src="images/torrent-start.svg" class="qbt-translatable" data-i18n="[alt]Resume torrents" alt="Resume torrents" /> QBT_TR(Resume torrents)QBT_TR[CONTEXT=TrackerFiltersList]</a></li>
+        <li><a href="#pauseTorrentsByTracker"><img src="images/torrent-stop.svg" class="qbt-translatable" data-i18n="[alt]Pause torrents" alt="Pause torrents" /> QBT_TR(Pause torrents)QBT_TR[CONTEXT=TrackerFiltersList]</a></li>
+        <li><a href="#deleteTorrentsByTracker"><img src="images/list-remove.svg" class="qbt-translatable" data-i18n="[alt]Remove torrents" alt="Remove torrents" /> QBT_TR(Remove torrents)QBT_TR[CONTEXT=TrackerFiltersList]</a></li>
     </ul>
     <ul id="torrentTrackersMenu" class="contextMenu">
-        <li><a href="#AddTracker"><img src="images/list-add.svg" alt="QBT_TR(Add trackers...)QBT_TR[CONTEXT=TrackerListWidget]" /> QBT_TR(Add trackers...)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
-        <li class="separator"><a href="#EditTracker"><img src="images/edit-rename.svg" alt="QBT_TR(Edit tracker URL...)QBT_TR[CONTEXT=TrackerListWidget]" /> QBT_TR(Edit tracker URL...)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
-        <li><a href="#RemoveTracker"><img src="images/list-remove.svg" alt="QBT_TR(Remove tracker)QBT_TR[CONTEXT=TrackerListWidget]" /> QBT_TR(Remove tracker)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
-        <li><a href="#CopyTrackerUrl" id="CopyTrackerUrl"><img src="images/edit-copy.svg" alt="QBT_TR(Copy tracker URL)QBT_TR[CONTEXT=TrackerListWidget]" /> QBT_TR(Copy tracker URL)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
+        <li><a href="#AddTracker"><img src="images/list-add.svg" class="qbt-translatable" data-i18n="[alt]Add trackers..." alt="Add trackers..." /> QBT_TR(Add trackers...)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
+        <li class="separator"><a href="#EditTracker"><img src="images/edit-rename.svg" class="qbt-translatable" data-i18n="[alt]Edit tracker URL..." alt="Edit tracker URL..." /> QBT_TR(Edit tracker URL...)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
+        <li><a href="#RemoveTracker"><img src="images/list-remove.svg" class="qbt-translatable" data-i18n="[alt]Remove tracker" alt="Remove tracker" /> QBT_TR(Remove tracker)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
+        <li><a href="#CopyTrackerUrl" id="CopyTrackerUrl"><img src="images/edit-copy.svg" class="qbt-translatable" data-i18n="[alt]Copy tracker URL" alt="Copy tracker URL" /> QBT_TR(Copy tracker URL)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
     </ul>
     <ul id="torrentPeersMenu" class="contextMenu">
-        <li><a href="#addPeer"><img src="images/peers-add.svg" alt="QBT_TR(Add peers...)QBT_TR[CONTEXT=PeerListWidget]" /> QBT_TR(Add peers...)QBT_TR[CONTEXT=PeerListWidget]</a></li>
-        <li><a href="#copyPeer" id="CopyPeerInfo"><img src="images/edit-copy.svg" alt="QBT_TR(Copy IP:port)QBT_TR[CONTEXT=PeerListWidget]" /> QBT_TR(Copy IP:port)QBT_TR[CONTEXT=PeerListWidget]</a></li>
-        <li class="separator"><a href="#banPeer"><img src="images/peers-remove.svg" alt="QBT_TR(Ban peer permanently)QBT_TR[CONTEXT=PeerListWidget]" /> QBT_TR(Ban peer permanently)QBT_TR[CONTEXT=PeerListWidget]</a></li>
+        <li><a href="#addPeer"><img src="images/peers-add.svg" class="qbt-translatable" data-i18n="[alt]Add peers..." alt="Add peers..." /> QBT_TR(Add peers...)QBT_TR[CONTEXT=PeerListWidget]</a></li>
+        <li><a href="#copyPeer" id="CopyPeerInfo"><img src="images/edit-copy.svg" class="qbt-translatable" data-i18n="[alt]Copy IP:port" alt="Copy IP:port" /> QBT_TR(Copy IP:port)QBT_TR[CONTEXT=PeerListWidget]</a></li>
+        <li class="separator"><a href="#banPeer"><img src="images/peers-remove.svg" class="qbt-translatable" data-i18n="[alt]Ban peer permanently" alt="Ban peer permanently" /> QBT_TR(Ban peer permanently)QBT_TR[CONTEXT=PeerListWidget]</a></li>
     </ul>
     <ul id="torrentFilesMenu" class="contextMenu">
-        <li><a href="#Rename"><img src="images/edit-rename.svg" alt="QBT_TR(Rename...)QBT_TR[CONTEXT=PropertiesWidget]" /> QBT_TR(Rename...)QBT_TR[CONTEXT=PropertiesWidget]</a></li>
+        <li><a href="#Rename"><img src="images/edit-rename.svg" class="qbt-translatable" data-i18n="[alt]Rename..." alt="Rename..." /> QBT_TR(Rename...)QBT_TR[CONTEXT=PropertiesWidget]</a></li>
         <li class="separator">
             <a href="#FilePrio" class="arrow-right"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Priority)QBT_TR[CONTEXT=PropertiesWidget]</a>
             <ul>
@@ -240,7 +240,7 @@
         </li>
     </ul>
     <ul id="multiRenameFilesMenu" class="contextMenu">
-        <li><a href="#ToggleSelection"><img src="images/edit-rename.svg" alt="QBT_TR(Toggle Selection)QBT_TR[CONTEXT=PropertiesWidget]" /> QBT_TR(Toggle Selection)QBT_TR[CONTEXT=PropertiesWidget]</a></li>
+        <li><a href="#ToggleSelection"><img src="images/edit-rename.svg" class="qbt-translatable" data-i18n="[alt]Toggle Selection" alt="Toggle Selection" /> QBT_TR(Toggle Selection)QBT_TR[CONTEXT=PropertiesWidget]</a></li>
     </ul>
     <div id="desktopFooterWrapper">
         <div id="desktopFooter">
@@ -251,13 +251,13 @@
                     <td class="statusBarSeparator"></td>
                     <td id="DHTNodes"></td>
                     <td class="statusBarSeparator"></td>
-                    <td><img id="connectionStatus" alt="QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]" title="QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]" src="images/firewalled.svg" style="height: 1.5em;" /></td>
+                    <td><img id="connectionStatus" class="qbt-translatable" data-i18n="[alt]Connection status: Firewalled" alt="Connection status: Firewalled" title="QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]" src="images/firewalled.svg" style="height: 1.5em;" /></td>
                     <td class="statusBarSeparator"></td>
-                    <td style="cursor:pointer;"><img id="alternativeSpeedLimits" alt="QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]" title="QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]" src="images/slow_off.svg" style="height: 1.5em;" /></td>
+                    <td style="cursor:pointer;"><img id="alternativeSpeedLimits" class="qbt-translatable" data-i18n="[alt]Alternative speed limits: Off" alt="Alternative speed limits: Off" title="QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]" src="images/slow_off.svg" style="height: 1.5em;" /></td>
                     <td class="statusBarSeparator"></td>
-                    <td class="speedLabel"><img src="images/downloading.svg" alt="QBT_TR(Download speed icon)QBT_TR[CONTEXT=MainWindow]" style="height: 1.5em; padding-right: 5px; margin-bottom: -4px;"><span id="DlInfos"></span></td>
+                    <td class="speedLabel"><img src="images/downloading.svg" class="qbt-translatable" data-i18n="[alt]Download speed icon" alt="Download speed icon" style="height: 1.5em; padding-right: 5px; margin-bottom: -4px;"><span id="DlInfos"></span></td>
                     <td class="statusBarSeparator"></td>
-                    <td class="speedLabel"><img src="images/upload.svg" alt="QBT_TR(Upload speed icon)QBT_TR[CONTEXT=MainWindow]" style="height: 1.5em; padding-right: 5px; margin-bottom: -4px;"><span id="UpInfos"></span></td>
+                    <td class="speedLabel"><img src="images/upload.svg" class="qbt-translatable" data-i18n="[alt]Upload speed icon" alt="Upload speed icon" style="height: 1.5em; padding-right: 5px; margin-bottom: -4px;"><span id="UpInfos"></span></td>
                 </tr>
             </table>
         </div>

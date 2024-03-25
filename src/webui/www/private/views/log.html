@@ -93,7 +93,7 @@
                 <option value="8" class="qbt-translatable" data-i18n="Critical Messages">Critical Messages</option>
             </select>
 
-            <input type="text" id="filterTextInput" onkeyup="window.qBittorrent.Log.filterTextChanged()" placeholder="QBT_TR(Filter logs)QBT_TR[CONTEXT=ExecutionLogWidget]" autocomplete="off" autocorrect="off" autocapitalize="none" />
+            <input type="text" id="filterTextInput" onkeyup="window.qBittorrent.Log.filterTextChanged()" class="qbt-translatable" data-i18n="[placeholder]Filter logs" placeholder="Filter logs" autocomplete="off" autocorrect="off" autocapitalize="none" />
             <button type="button" title="Clear input" onclick="javascript:document.querySelector('#filterTextInput').value='';window.qBittorrent.Log.filterTextChanged();" class="qbt-translatable" data-i18n="Clear">Clear</button>
         </div>
 
@@ -141,8 +141,8 @@
 </div>
 
 <ul id="logTableMenu" class="contextMenu">
-    <li><a href="#" class="copyLogDataToClipboard"><img src="images/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=ExecutionLogWidget]" / class="qbt-translatable" data-i18n="Copy">Copy</a></li>
-    <li><a href="#Clear"><img src="images/list-remove.svg" alt="QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]" / class="qbt-translatable" data-i18n="Clear">Clear</a></li>
+    <li><a href="#" class="copyLogDataToClipboard"><img src="images/edit-copy.svg" class="qbt-translatable" data-i18n="[alt]Copy" alt="Copy" / class="qbt-translatable" data-i18n="Copy">Copy</a></li>
+    <li><a href="#Clear"><img src="images/list-remove.svg" class="qbt-translatable" data-i18n="[alt]Clear" alt="Clear" / class="qbt-translatable" data-i18n="Clear">Clear</a></li>
 </ul>
 
 <script>

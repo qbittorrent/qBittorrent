@@ -264,7 +264,7 @@
             </table>
         </fieldset>
         <div class="formRow">
-            <input type="button" id="mail_test_button" value="QBT_TR(Send test email)QBT_TR[CONTEXT=OptionsDialog]" onclick="qBittorrent.Preferences.sendTestEmail();" />
+            <input type="button" id="mail_test_button" class="qbt-translatable" data-i18n="[value]Send test email" value="Send test email" onclick="qBittorrent.Preferences.sendTestEmail();" />
         </div>
     </fieldset>
 
@@ -315,7 +315,7 @@
         <legend class="qbt-translatable" data-i18n="Listening Port">Listening Port</legend>
         <div class="formRow">
             <label for="port_value" class="qbt-translatable" data-i18n="Port used for incoming connections:">Port used for incoming connections:</label>
-            <input type="text" id="port_value" style="width: 4em;" title="QBT_TR(Set to 0 to let your system pick an unused port)QBT_TR[CONTEXT=OptionsDialog]" />
+            <input type="text" id="port_value" style="width: 4em;" class="qbt-translatable" data-i18n="[title]Set to 0 to let your system pick an unused port" title="Set to 0 to let your system pick an unused port" />
             <button type="button" style="margin-left: 1em;" onclick="qBittorrent.Preferences.generateRandomPort();" class="qbt-translatable" data-i18n="Random">Random</button>
         </div>
         <div class="formRow">
@@ -380,7 +380,7 @@
             </tr>
         </table>
         <div class="formRow">
-            <input type="checkbox" id="i2pMixedMode" title="QBT_TR(If &quot;mixed mode&quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.)QBT_TR[CONTEXT=OptionsDialog]" />
+            <input type="checkbox" id="i2pMixedMode" class="qbt-translatable" data-i18n="[title]If &quot;mixed mode&quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers." title="If &quot;mixed mode&quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers." />
             <label for="i2pMixedMode" class="qbt-translatable" data-i18n="Mixed mode">Mixed mode</label>
         </div>
     </fieldset>
@@ -416,7 +416,7 @@
         </table>
 
         <div class="formRow">
-            <input type="checkbox" id="proxyHostnameLookupCheckbox" title="QBT_TR(If checked, hostname lookups are done via the proxy.)QBT_TR[CONTEXT=OptionsDialog]" />
+            <input type="checkbox" id="proxyHostnameLookupCheckbox" class="qbt-translatable" data-i18n="[title]If checked, hostname lookups are done via the proxy." title="If checked, hostname lookups are done via the proxy." />
             <label for="proxyHostnameLookupCheckbox" class="qbt-translatable" data-i18n="Perform hostname lookup via proxy">Perform hostname lookup via proxy</label>
         </div>
 
@@ -496,7 +496,7 @@
         <table>
             <tr>
                 <td rowspan="2">
-                    <img src="images/slow_off.svg" style="height: 1.5em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
+                    <img src="images/slow_off.svg" style="height: 1.5em;" class="qbt-translatable" data-i18n="[alt]Alternative speed limits" alt="Alternative speed limits">
                 </td>
                 <td><label for="up_limit_value" class="qbt-translatable" data-i18n="Upload:">Upload:</label></td>
                 <td><input type="number" id="up_limit_value" style="width: 4em;" min="0" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
@@ -514,7 +514,7 @@
         <table>
             <tr>
                 <td rowspan="2">
-                    <img src="images/slow.svg" style="height: 1.5em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
+                    <img src="images/slow.svg" style="height: 1.5em;" class="qbt-translatable" data-i18n="[alt]Alternative speed limits" alt="Alternative speed limits">
                 </td>
                 <td><label for="alt_up_limit_value" class="qbt-translatable" data-i18n="Upload:">Upload:</label></td>
                 <td><input type="number" id="alt_up_limit_value" style="width: 4em;" min="0" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
@@ -841,7 +841,7 @@
                         <label for="webui_password_text" class="qbt-translatable" data-i18n="Password:">Password:</label>
                     </td>
                     <td>
-                        <input type="password" id="webui_password_text" placeholder="QBT_TR(Change current password)QBT_TR[CONTEXT=OptionsDialog]" autocomplete="new-password" />
+                        <input type="password" id="webui_password_text" class="qbt-translatable" data-i18n="[placeholder]Change current password" placeholder="Change current password" autocomplete="new-password" />
                     </td>
                 </tr>
             </table>
@@ -854,7 +854,7 @@
                 <label for="bypass_auth_subnet_whitelist_checkbox" class="qbt-translatable" data-i18n="Bypass authentication for clients in whitelisted IP subnets">Bypass authentication for clients in whitelisted IP subnets</label>
             </div>
             <div class="formRow" style="padding-left: 30px; padding-top: 5px;">
-                <textarea id="bypass_auth_subnet_whitelist_textarea" rows="5" cols="48" placeholder="QBT_TR(Example: 172.17.32.0/24, fdff:ffff:c8::/40)QBT_TR[CONTEXT=OptionsDialog]"></textarea>
+                <textarea id="bypass_auth_subnet_whitelist_textarea" rows="5" cols="48" class="qbt-translatable" data-i18n="[placeholder]Example: 172.17.32.0/24, fdff:ffff:c8::/40" placeholder="Example: 172.17.32.0/24, fdff:ffff:c8::/40"></textarea>
             </div>
             <table>
                 <tr>
@@ -926,7 +926,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 <input type="checkbox" id="webUIUseCustomHTTPHeadersCheckbox" onclick="qBittorrent.Preferences.updateWebUICustomHTTPHeadersSettings();" />
                 <label for="webUIUseCustomHTTPHeadersCheckbox" class="qbt-translatable" data-i18n="Add custom HTTP headers">Add custom HTTP headers</label>
             </legend>
-            <textarea id="webUICustomHTTPHeadersTextarea" placeholder="QBT_TR(Header: value pairs, one per line)QBT_TR[CONTEXT=OptionsDialog]" style="width: 90%;"></textarea>
+            <textarea id="webUICustomHTTPHeadersTextarea" class="qbt-translatable" data-i18n="[placeholder]Header: value pairs, one per line" placeholder="Header: value pairs, one per line" style="width: 90%;"></textarea>
         </fieldset>
 
         <fieldset class="settings">
@@ -936,7 +936,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             </legend>
             <div class="formRow">
                 <label for="webUIReverseProxiesListTextarea" class="qbt-translatable" data-i18n="Trusted proxies list:">Trusted proxies list:</label>
-                <input type="text" id="webUIReverseProxiesListTextarea" title="QBT_TR(Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.)QBT_TR[CONTEXT=OptionsDialog]" />
+                <input type="text" id="webUIReverseProxiesListTextarea" class="qbt-translatable" data-i18n="[title]Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries." title="Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries." />
             </div>
         </fieldset>
 
@@ -951,7 +951,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             <option value="0">DynDNS</option>
             <option value="1">NO-IP</option>
         </select>
-        <input type="button" value="QBT_TR(Register)QBT_TR[CONTEXT=OptionsDialog]" onclick="qBittorrent.Preferences.registerDynDns();" />
+        <input type="button" class="qbt-translatable" data-i18n="[value]Register" value="Register" onclick="qBittorrent.Preferences.registerDynDns();" />
         <table style="margin-top: 10px;">
             <tr>
                 <td>
@@ -1001,7 +1001,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <label for="memoryWorkingSetLimit" class="qbt-translatable" data-i18n="Physical memory (RAM) usage limit:">Physical memory (RAM) usage limit:&nbsp;<a href="https://wikipedia.org/wiki/Working_set" target="_blank">(?)</a></label>
                 </td>
                 <td>
-                    <input type="text" id="memoryWorkingSetLimit" style="width: 15em;" title="QBT_TR(This option is less effective on Linux)QBT_TR[CONTEXT=OptionsDialog]">&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
+                    <input type="text" id="memoryWorkingSetLimit" style="width: 15em;" class="qbt-translatable" data-i18n="[title]This option is less effective on Linux" title="This option is less effective on Linux">&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
                 </td>
             </tr>
             <tr>
@@ -1051,7 +1051,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <label for="appInstanceName" class="qbt-translatable" data-i18n="Customize application instance name:">Customize application instance name:</label>
                 </td>
                 <td>
-                    <input type="text" id="appInstanceName" style="width: 15em;" title="QBT_TR(It appends the text to the window title to help distinguish qBittorent instances)QBT_TR[CONTEXT=OptionsDialog]" />
+                    <input type="text" id="appInstanceName" style="width: 15em;" class="qbt-translatable" data-i18n="[title]It appends the text to the window title to help distinguish qBittorent instances" title="It appends the text to the window title to help distinguish qBittorent instances" />
                 </td>
             </tr>
             <tr>
@@ -1059,7 +1059,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <label for="refreshInterval" class="qbt-translatable" data-i18n="Refresh interval:">Refresh interval:</label>
                 </td>
                 <td>
-                    <input type="text" id="refreshInterval" style="width: 15em;" title="QBT_TR(It controls the internal state update interval which in turn will affect UI updates)QBT_TR[CONTEXT=OptionsDialog]">&nbsp;&nbsp;QBT_TR(ms)QBT_TR[CONTEXT=OptionsDialog]
+                    <input type="text" id="refreshInterval" style="width: 15em;" class="qbt-translatable" data-i18n="[title]It controls the internal state update interval which in turn will affect UI updates" title="It controls the internal state update interval which in turn will affect UI updates">&nbsp;&nbsp;QBT_TR(ms)QBT_TR[CONTEXT=OptionsDialog]
                 </td>
             </tr>
             <tr>
@@ -1115,7 +1115,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <label for="pythonExecutablePath" class="qbt-translatable" data-i18n="Python executable path (may require restart):">Python executable path (may require restart):</label>
                 </td>
                 <td>
-                    <input type="text" id="pythonExecutablePath" placeholder="QBT_TR((Auto detect if empty))QBT_TR[CONTEXT=OptionsDialog]" style="width: 15em;" />
+                    <input type="text" id="pythonExecutablePath" class="qbt-translatable" data-i18n="[placeholder](Auto detect if empty)" placeholder="(Auto detect if empty)" style="width: 15em;" />
                 </td>
             </tr>
         </table>
@@ -1493,7 +1493,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <label for="dhtBootstrapNodes" class="qbt-translatable" data-i18n="DHT bootstrap nodes:">DHT bootstrap nodes:&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#dht_bootstrap_nodes" target="_blank">(?)</a></label>
                 </td>
                 <td>
-                    <input type="text" id="dhtBootstrapNodes" placeholder="QBT_TR(Resets to default if empty)QBT_TR[CONTEXT=OptionsDialog]" style="width: 15em;" />
+                    <input type="text" id="dhtBootstrapNodes" class="qbt-translatable" data-i18n="[placeholder]Resets to default if empty" placeholder="Resets to default if empty" style="width: 15em;" />
                 </td>
             </tr>
             <tr id="rowI2pInboundQuantity">
@@ -1532,7 +1532,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
     </fieldset>
 </div>
 
-<div style="text-align: center; margin-top: 1em;"><input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" onclick="qBittorrent.Preferences.applyPreferences();" /></div>
+<div style="text-align: center; margin-top: 1em;"><input type="button" class="qbt-translatable" data-i18n="[value]Save" value="Save" onclick="qBittorrent.Preferences.applyPreferences();" /></div>
 
 <script>
     'use strict';
