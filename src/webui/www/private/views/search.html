@@ -322,6 +322,12 @@
                     }
                 }
             }).activate();
+
+            // restore search tabs
+            const searchJobs = JSON.parse(LocalPreferences.get('search_jobs', '[]'));
+            for (const { id, pattern } of searchJobs) {
+                createSearchTab(id, pattern);
+            }
         };
 
         const numSearchTabs = function() {
@@ -405,6 +411,13 @@
             }
 
             tab.destroy();
+
+            const searchJobs = JSON.parse(LocalPreferences.get('search_jobs', '[]'));
+            const jobIndex = searchJobs.findIndex((job) => job.id === searchId);
+            if (jobIndex >= 0) {
+                searchJobs.splice(jobIndex, 1);
+                LocalPreferences.set('search_jobs', JSON.stringify(searchJobs));
+            }
 
             if (numSearchTabs() === 0) {
                 resetSearchState();
@@ -559,6 +572,10 @@
                     $('startSearchButton').set('text', 'QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]');
                     const searchId = response.id;
                     createSearchTab(searchId, pattern);
+
+                    const searchJobs = JSON.parse(LocalPreferences.get('search_jobs', '[]'));
+                    searchJobs.push({ id: searchId, pattern: pattern });
+                    LocalPreferences.set('search_jobs', JSON.stringify(searchJobs));
                 }
             }).send();
         };
@@ -799,7 +816,9 @@
                         const searchPluginsEmpty = (searchPlugins.length === 0);
                         if (!searchPluginsEmpty) {
                             $('searchResultsNoPlugins').style.display = "none";
-                            $('searchResultsNoSearches').style.display = "block";
+                            if (numSearchTabs() === 0) {
+                                $('searchResultsNoSearches').style.display = "block";
+                            }
 
                             // sort plugins alphabetically
                             const allPlugins = searchPlugins.sort((left, right) => {
@@ -921,7 +940,7 @@
                     offset: state.rowId
                 },
                 onFailure: function(response) {
-                    if (response.status === 400) {
+                    if ((response.status === 400) || (response.status === 404)) {
                         // bad params. search id is invalid
                         resetSearchState(searchId);
                         updateStatusIconElement(searchId, 'QBT_TR(An error occurred during search...)QBT_TR[CONTEXT=SearchJobWidget]', 'images/error.svg');
