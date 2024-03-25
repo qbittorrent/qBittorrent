@@ -279,7 +279,7 @@
         };
         fileRenamer.onRenameError = function(err, row) {
             if (err.xhr.status === 409) {
-                $('rename_error').set('text', `QBT_TR(Rename failed: file or folder already exists)QBT_TR[CONTEXT=PropertiesWidget] \`${row.renamed}\``);
+                $('rename_error').set('text', `\${i18next.t('Rename failed: file or folder already exists')} \`${row.renamed}\``);
             }
         };
         $('renameOptions').addEvent('change', function(e) {
