@@ -81,7 +81,7 @@ private:
     void onSessionTorrentAdded(BitTorrent::Torrent *torrent);
     void onSessionAddTorrentFailed(const BitTorrent::InfoHash &infoHash, const QString &reason);
     bool processTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr
-            , const BitTorrent::AddTorrentParams &addTorrentParams);
+            , BitTorrent::AddTorrentParams addTorrentParams);
 
     BitTorrent::Session *m_btSession = nullptr;
     QHash<QString, BitTorrent::AddTorrentParams> m_downloadedTorrents;

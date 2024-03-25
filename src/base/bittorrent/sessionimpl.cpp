@@ -107,6 +107,7 @@ using namespace std::chrono_literals;
 using namespace BitTorrent;
 
 const Path CATEGORIES_FILE_NAME {u"categories.json"_s};
+const Path TORRENT_PARAM_RULES_FILE_NAME {u"auto_torrent_customizer_rules.json"_s};
 const int MAX_PROCESSING_RESUMEDATA_COUNT = 50;
 const int STATISTICS_SAVE_INTERVAL = std::chrono::milliseconds(15min).count();
 
@@ -580,6 +581,9 @@ SessionImpl::SessionImpl(QObject *parent)
     m_fileSearcher->moveToThread(m_ioThread.get());
     connect(m_ioThread.get(), &QThread::finished, m_fileSearcher, &QObject::deleteLater);
     connect(m_fileSearcher, &FileSearcher::searchFinished, this, &SessionImpl::fileSearchFinished);
+
+    m_torrentParamRules = new TorrentParamRules(this);
+    loadTorrentParamRules();
 
     m_ioThread->start();
 
@@ -4793,6 +4797,11 @@ void SessionImpl::setShareLimitAction(const ShareLimitAction act)
     m_shareLimitAction = act;
 }
 
+void SessionImpl::applyTorrentParamRules(const TorrentDescriptor &torrentDescr, AddTorrentParams *params) const
+{
+    m_torrentParamRules->apply(torrentDescr, params);
+}
+
 bool SessionImpl::isKnownTorrent(const InfoHash &infoHash) const
 {
     const bool isHybrid = infoHash.isHybrid();
@@ -4890,6 +4899,8 @@ void SessionImpl::handleTorrentUrlSeedsRemoved(TorrentImpl *const torrent, const
 
 void SessionImpl::handleTorrentMetadataReceived(TorrentImpl *const torrent)
 {
+    qDebug() << "Metadata received for " << torrent->name();
+    m_torrentParamRules->apply(torrent);
     if (!torrentExportDirectory().isEmpty())
         exportTorrentFile(torrent, torrentExportDirectory());
 
@@ -5149,6 +5160,45 @@ void SessionImpl::loadCategories()
         const auto categoryOptions = CategoryOptions::fromJSON(it.value().toObject());
         m_categories[categoryName] = categoryOptions;
     }
+}
+
+void SessionImpl::loadTorrentParamRules()
+{
+    const Path path = specialFolderLocation(SpecialFolder::Config) / TORRENT_PARAM_RULES_FILE_NAME;
+    const QString pathStr = path.toString();
+    if (!path.exists())
+    {
+        LogMsg(tr("Auto torrent customizer rules not found at \"%1\"").arg(pathStr), Log::INFO);
+        return;
+    }
+
+    constexpr int fileMaxSize = 1024 * 1024;
+    const auto readResult = Utils::IO::readFile(path, fileMaxSize);
+    if (!readResult)
+    {
+        LogMsg(tr("Failed to read auto torrent customizer rules file \"%1\"").arg(readResult.error().message), Log::WARNING);
+        return;
+    }
+
+    QJsonParseError jsonError;
+    const auto jsonDoc = QJsonDocument::fromJson(readResult.value(), &jsonError);
+    if (jsonError.error != QJsonParseError::NoError)
+    {
+        LogMsg(tr("Failed to parse auto torrent customizer rules file: \"%1\". Error: \"%2\"")
+               .arg(pathStr, jsonError.errorString()), Log::WARNING);
+        return;
+    }
+
+    if (!jsonDoc.isObject())
+    {
+        LogMsg(tr("Failed to load auto torrent customizer rules from \"%1\". Error: \"Invalid data format\"")
+               .arg(pathStr), Log::WARNING);
+        return;
+    }
+
+    m_torrentParamRules->clearRules();
+    const size_t numRules = m_torrentParamRules->loadRulesFromJson(jsonDoc.object());
+    LogMsg(tr("Loaded %1 auto torrent customizer rule(s) from \"%2\"", nullptr, numRules).arg(numRules).arg(pathStr), Log::INFO);
 }
 
 bool SessionImpl::hasPerTorrentRatioLimit() const

@@ -305,8 +305,6 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
     m_ui->downloadPath->setDialogCaption(tr("Choose save path"));
     m_ui->downloadPath->setMaxVisibleItems(20);
 
-    m_ui->addToQueueTopCheckBox->setChecked(m_torrentParams.addToQueueTop.value_or(session->isAddTorrentToQueueTop()));
-
     m_ui->stopConditionComboBox->setToolTip(
                 u"<html><body><p><b>" + tr("None") + u"</b> - " + tr("No stop condition is set.") + u"</p><p><b>" +
                 tr("Metadata received") + u"</b> - " + tr("Torrent will stop after metadata is received.") +
@@ -317,19 +315,6 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
     if (!hasMetadata())
         m_ui->stopConditionComboBox->addItem(tr("Metadata received"), QVariant::fromValue(BitTorrent::Torrent::StopCondition::MetadataReceived));
     m_ui->stopConditionComboBox->addItem(tr("Files checked"), QVariant::fromValue(BitTorrent::Torrent::StopCondition::FilesChecked));
-    const auto stopCondition = m_torrentParams.stopCondition.value_or(session->torrentStopCondition());
-    if (hasMetadata() && (stopCondition == BitTorrent::Torrent::StopCondition::MetadataReceived))
-    {
-        m_ui->startTorrentCheckBox->setChecked(false);
-        m_ui->stopConditionComboBox->setCurrentIndex(m_ui->stopConditionComboBox->findData(QVariant::fromValue(BitTorrent::Torrent::StopCondition::None)));
-    }
-    else
-    {
-        m_ui->startTorrentCheckBox->setChecked(!m_torrentParams.addPaused.value_or(session->isAddTorrentPaused()));
-        m_ui->stopConditionComboBox->setCurrentIndex(m_ui->stopConditionComboBox->findData(QVariant::fromValue(stopCondition)));
-    }
-    m_ui->stopConditionLabel->setEnabled(m_ui->startTorrentCheckBox->isChecked());
-    m_ui->stopConditionComboBox->setEnabled(m_ui->startTorrentCheckBox->isChecked());
     connect(m_ui->startTorrentCheckBox, &QCheckBox::toggled, this, [this](const bool checked)
     {
         m_ui->stopConditionLabel->setEnabled(checked);
@@ -337,7 +322,11 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
     });
 
     m_ui->comboTTM->blockSignals(true); // the TreeView size isn't correct if the slot does its job at this point
-    m_ui->comboTTM->setCurrentIndex(session->isAutoTMMDisabledByDefault() ? 0 : 1);
+
+    // Any UI elements that depend on m_torrentParams should be configured in this method to
+    // allow them to be updated if the params change after metadata download.
+    loadAddTorrentParams();
+
     m_ui->comboTTM->blockSignals(false);
     connect(m_ui->comboTTM, &QComboBox::currentIndexChanged, this, &AddNewTorrentDialog::TMMChanged);
 
@@ -347,23 +336,14 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
 
     m_ui->checkBoxRememberLastSavePath->setChecked(m_storeRememberLastSavePath);
 
-    m_ui->contentLayoutComboBox->setCurrentIndex(
-            static_cast<int>(m_torrentParams.contentLayout.value_or(session->torrentContentLayout())));
     connect(m_ui->contentLayoutComboBox, &QComboBox::currentIndexChanged, this, &AddNewTorrentDialog::contentLayoutChanged);
 
-    m_ui->sequentialCheckBox->setChecked(m_torrentParams.sequential);
-    m_ui->firstLastCheckBox->setChecked(m_torrentParams.firstLastPiecePriority);
-
-    m_ui->skipCheckingCheckBox->setChecked(m_torrentParams.skipChecking);
     m_ui->doNotDeleteTorrentCheckBox->setVisible(TorrentFileGuard::autoDeleteMode() != TorrentFileGuard::Never);
 
     // Load categories
     QStringList categories = session->categories();
     std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
     const QString defaultCategory = m_storeDefaultCategory;
-
-    if (!m_torrentParams.category.isEmpty())
-        m_ui->categoryComboBox->addItem(m_torrentParams.category);
     if (!defaultCategory.isEmpty())
         m_ui->categoryComboBox->addItem(defaultCategory);
     m_ui->categoryComboBox->addItem(u""_s);
@@ -376,7 +356,6 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
 
     connect(m_ui->categoryComboBox, &QComboBox::currentIndexChanged, this, &AddNewTorrentDialog::categoryChanged);
 
-    m_ui->tagsLineEdit->setText(Utils::String::joinIntoString(m_torrentParams.tags, u", "_s));
     connect(m_ui->tagsEditButton, &QAbstractButton::clicked, this, [this]
     {
         auto *dlg = new TorrentTagsDialog(m_torrentParams.tags, this);
@@ -612,6 +591,8 @@ void AddNewTorrentDialog::populateSavePaths()
 
     m_ui->savePath->blockSignals(true);
     m_ui->savePath->clear();
+    if (!m_torrentParams.savePath.isEmpty())
+        m_ui->savePath->addItem(m_torrentParams.savePath);
     const auto savePathHistory = settings()->loadValue<QStringList>(KEY_SAVEPATHHISTORY);
     if (savePathHistory.size() > 0)
     {
@@ -757,8 +738,11 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &metadata
     m_torrentDescr.setTorrentInfo(metadata);
     setMetadataProgressIndicator(true, tr("Parsing metadata..."));
 
+    BitTorrent::Session::instance()->applyTorrentParamRules(m_torrentDescr, &m_torrentParams);
+
     // Update UI
     setupTreeview();
+    loadAddTorrentParams();
     setMetadataProgressIndicator(false, tr("Metadata retrieval complete"));
 
     if (const auto stopCondition = m_ui->stopConditionComboBox->currentData().value<BitTorrent::Torrent::StopCondition>()
@@ -778,6 +762,46 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &metadata
         m_ui->buttonSave->setEnabled(false);
         m_ui->buttonSave->setToolTip(tr("Cannot create v2 torrent until its data is fully downloaded."));
     }
+}
+
+void AddNewTorrentDialog::loadAddTorrentParams()
+{
+    const auto *session = BitTorrent::Session::instance();
+
+    m_ui->addToQueueTopCheckBox->setChecked(m_torrentParams.addToQueueTop.value_or(session->isAddTorrentToQueueTop()));
+
+    const auto stopCondition = m_torrentParams.stopCondition.value_or(session->torrentStopCondition());
+    if (hasMetadata() && (stopCondition == BitTorrent::Torrent::StopCondition::MetadataReceived))
+    {
+        m_ui->startTorrentCheckBox->setChecked(false);
+        m_ui->stopConditionComboBox->setCurrentIndex(m_ui->stopConditionComboBox->findData(QVariant::fromValue(BitTorrent::Torrent::StopCondition::None)));
+    }
+    else
+    {
+        m_ui->startTorrentCheckBox->setChecked(!m_torrentParams.addPaused.value_or(session->isAddTorrentPaused()));
+        m_ui->stopConditionComboBox->setCurrentIndex(m_ui->stopConditionComboBox->findData(QVariant::fromValue(stopCondition)));
+    }
+    m_ui->stopConditionLabel->setEnabled(m_ui->startTorrentCheckBox->isChecked());
+    m_ui->stopConditionComboBox->setEnabled(m_ui->startTorrentCheckBox->isChecked());
+
+    m_ui->contentLayoutComboBox->setCurrentIndex(
+        static_cast<int>(m_torrentParams.contentLayout.value_or(session->torrentContentLayout())));
+
+    m_ui->sequentialCheckBox->setChecked(m_torrentParams.sequential);
+    m_ui->firstLastCheckBox->setChecked(m_torrentParams.firstLastPiecePriority);
+
+    m_ui->skipCheckingCheckBox->setChecked(m_torrentParams.skipChecking);
+
+    if (!m_torrentParams.category.isEmpty())
+    {
+        m_ui->categoryComboBox->addItem(m_torrentParams.category);
+        m_ui->categoryComboBox->setCurrentIndex(m_ui->categoryComboBox->findText(m_torrentParams.category));
+    }
+
+    m_ui->tagsLineEdit->setText(Utils::String::joinIntoString(m_torrentParams.tags, u", "_s));
+
+    const bool useTMM = m_torrentParams.useAutoTMM.value_or(!session->isAutoTMMDisabledByDefault());
+    m_ui->comboTTM->setCurrentIndex(useTMM ? 1 : 0);
 }
 
 void AddNewTorrentDialog::setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText)

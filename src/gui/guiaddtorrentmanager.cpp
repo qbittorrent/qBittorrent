@@ -33,6 +33,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrentdescriptor.h"
+#include "base/bittorrent/torrentparamrules.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
@@ -174,7 +175,7 @@ void GUIAddTorrentManager::onMetadataDownloaded(const BitTorrent::TorrentInfo &m
     }
 }
 
-bool GUIAddTorrentManager::processTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr, const BitTorrent::AddTorrentParams &params)
+bool GUIAddTorrentManager::processTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr, BitTorrent::AddTorrentParams params)
 {
     const bool hasMetadata = torrentDescr.info().has_value();
     const BitTorrent::InfoHash infoHash = torrentDescr.infoHash();
@@ -213,7 +214,11 @@ bool GUIAddTorrentManager::processTorrent(const QString &source, const BitTorren
         return false;
     }
 
-    if (!hasMetadata)
+    // If metadata is available now, apply rules so they are reflected in the UI.
+    // Otherwise they will be applied once metadata download finishes.
+    if (hasMetadata)
+        btSession()->applyTorrentParamRules(torrentDescr, &params);
+    else
         btSession()->downloadMetadata(torrentDescr);
 
     // By not setting a parent to the "AddNewTorrentDialog", all those dialogs
