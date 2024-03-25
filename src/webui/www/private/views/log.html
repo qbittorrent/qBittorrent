@@ -202,13 +202,13 @@
                 maxHeight: 200,
                 search: false,
                 translations: {
-                    all: 'QBT_TR(All)QBT_TR[CONTEXT=ExecutionLogWidget]',
-                    item: 'QBT_TR(item)QBT_TR[CONTEXT=ExecutionLogWidget]',
-                    items: 'QBT_TR(items)QBT_TR[CONTEXT=ExecutionLogWidget]',
-                    selectAll: 'QBT_TR(Select All)QBT_TR[CONTEXT=ExecutionLogWidget]',
-                    clearAll: 'QBT_TR(Clear All)QBT_TR[CONTEXT=ExecutionLogWidget]',
+                    all: i18next.t('All'),
+                    item: i18next.t('item'),
+                    items: i18next.t('items'),
+                    selectAll: i18next.t('Select All'),
+                    clearAll: i18next.t('Clear All'),
                 },
-                placeHolder: "QBT_TR(Choose a log level...)QBT_TR[CONTEXT=ExecutionLogWidget]",
+                placeHolder: i18next.t("Choose a log level..."),
                 keepInlineStyles: false
             });
 
@@ -369,7 +369,7 @@
                 onFailure: function(response) {
                     const errorDiv = $('error_div');
                     if (errorDiv)
-                        errorDiv.set('text', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
+                        errorDiv.set('text', i18next.t('qBittorrent client is not reachable'));
                     tableInfo[curTab].progress = false;
                     syncLogWithInterval(10000);
                 },

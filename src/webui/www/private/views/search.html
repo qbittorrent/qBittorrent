@@ -230,7 +230,7 @@
             max: 0.00,
             maxUnit: 3
         };
-        let selectedCategory = "QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]";
+        let selectedCategory = i18next.t("All categories");
         let selectedPlugin = "all";
         let prevSelectedPlugin;
         let activeSearchId = null;
@@ -308,7 +308,7 @@
                     plugins: plugins
                 },
                 onSuccess: function(response) {
-                    $('startSearchButton').set('text', 'QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]');
+                    $('startSearchButton').set('text', i18next.t('Stop'));
                     searchRunning = true;
                     activeSearchId = response.id;
                     updateSearchResultsData();
@@ -397,7 +397,7 @@
             if (!$(id))
                 new MochaUI.Window({
                     id: id,
-                    title: "QBT_TR(Search plugins)QBT_TR[CONTEXT=PluginSelectDlg]",
+                    title: i18next.t("Search plugins"),
                     loadMethod: 'xhr',
                     contentURL: 'views/searchplugins.html',
                     scrollbars: false,
@@ -454,7 +454,7 @@
 
         const resetSearchState = function() {
             clearTimeout(loadSearchResultsTimer);
-            $('startSearchButton').set('text', 'QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]');
+            $('startSearchButton').set('text', i18next.t('Search'));
             searchResultsRowId = 0;
             searchRunning = false;
             activeSearchId = null;

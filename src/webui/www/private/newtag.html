@@ -34,7 +34,7 @@
             const uriHashes = window.qBittorrent.Misc.safeTrim(new URI().getData('hashes'));
 
             if (uriAction === 'create')
-                $('legendText').innerText = 'QBT_TR(Tag:)QBT_TR[CONTEXT=TagFilterWidget]';
+                $('legendText').innerText = i18next.t('Tag:');
 
             $('tagName').focus();
 
@@ -47,7 +47,7 @@
                     if ((name === null) || (name === ""))
                         return false;
                     if (name.indexOf(",") >= 0) {
-                        alert("QBT_TR(Invalid tag name)QBT_TR[CONTEXT=TagFilterWidget]");
+                        alert(i18next.t("Invalid tag name"));
                         return false;
                     }
                     return true;

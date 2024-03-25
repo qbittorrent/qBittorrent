@@ -62,7 +62,7 @@
                     if ((name === null) || (name === ""))
                         return false;
                     if (name.match("^([^\\\\\\/]|[^\\\\\\/]([^\\\\\\/]|\\/(?=[^\\/]))*[^\\\\\\/])$") === null) {
-                        alert("QBT_TR(Invalid category name:\nPlease do not use any special characters in the category name.)QBT_TR[CONTEXT=HttpServer]");
+                        alert(i18next.t("Invalid category name:\nPlease do not use any special characters in the category name."));
                         return false;
                     }
                     return true;

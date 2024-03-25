@@ -46,12 +46,12 @@
                 // check field
                 const newName = $('rename').value.trim();
                 if (newName === '') {
-                    alert('QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]');
+                    alert(i18next.t('Name cannot be empty'));
                     return;
                 }
 
                 if (newName === oldName) {
-                    alert('QBT_TR(Name is unchanged)QBT_TR[CONTEXT=HttpServer]');
+                    alert(i18next.t('Name is unchanged'));
                     return;
                 }
 
@@ -73,7 +73,7 @@
                         window.parent.qBittorrent.Client.closeWindows();
                     },
                     onFailure: function() {
-                        alert('QBT_TR(Failed to update name)QBT_TR[CONTEXT=HttpServer]');
+                        alert(i18next.t('Failed to update name'));
                         $('renameButton').disabled = false;
                     }
                 }).send();

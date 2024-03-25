@@ -40,12 +40,12 @@
                 // check field
                 const newPath = $('rename').value.trim();
                 if (newPath === '') {
-                    alert('QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]');
+                    alert(i18next.t('Name cannot be empty'));
                     return;
                 }
 
                 if (newPath === oldPath) {
-                    alert('QBT_TR(Name is unchanged)QBT_TR[CONTEXT=HttpServer]');
+                    alert(i18next.t('Name is unchanged'));
                     return;
                 }
 

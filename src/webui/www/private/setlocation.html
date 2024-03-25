@@ -42,7 +42,7 @@
                 // check field
                 const location = $('setLocation').value.trim();
                 if ((location === null) || (location === "")) {
-                    $('error_div').set('text', 'QBT_TR(Save path is empty)QBT_TR[CONTEXT=TorrentsController]');
+                    $('error_div').set('text', i18next.t('Save path is empty'));
                     return false;
                 }
 

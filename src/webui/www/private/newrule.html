@@ -35,7 +35,7 @@
                 // check field
                 const name = $('name').value.trim();
                 if (name === '') {
-                    alert('QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]');
+                    alert(i18next.t('Name cannot be empty'));
                     return;
                 }
                 $('submitButton').disabled = true;

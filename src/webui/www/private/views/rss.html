@@ -320,7 +320,7 @@
 
             new MochaUI.Window({
                 id: 'newFeed',
-                title: 'QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]',
+                title: i18next.t('Please type a RSS feed URL'),
                 loadMethod: 'iframe',
                 contentURL: 'newfeed.html?path=' + encodeURIComponent(path),
                 scrollbars: false,
@@ -347,7 +347,7 @@
 
             new MochaUI.Window({
                 id: 'newFolder',
-                title: 'QBT_TR(Please choose a folder name)QBT_TR[CONTEXT=RSSWidget]',
+                title: i18next.t('Please choose a folder name'),
                 loadMethod: 'iframe',
                 contentURL: 'newfolder.html?path=' + encodeURIComponent(path),
                 scrollbars: false,
@@ -413,7 +413,7 @@
                     torrentDate.setAttribute('id', 'rssTorrentDetailsDate');
 
                     let torrentDateDesc = document.createElement('b');
-                    torrentDateDesc.innerText = 'QBT_TR(Date: )QBT_TR[CONTEXT=RSSWidget]';
+                    torrentDateDesc.innerText = i18next.t('Date: ');
                     torrentDate.append(torrentDateDesc);
 
                     let torrentDateData = document.createElement('span');
@@ -590,7 +590,7 @@
                         // Unread entry at top
                         rssFeedTable.updateRowData({
                             rowId: 0,
-                            name: 'QBT_TR(Unread)QBT_TR[CONTEXT=FeedListWidget]',
+                            name: i18next.t('Unread'),
                             unread: 0,
                             status: 'unread',
                             indentation: 0,
@@ -678,7 +678,7 @@
         const moveItem = (oldPath) => {
             new MochaUI.Window({
                 id: 'renamePage',
-                title: 'QBT_TR(Please choose a new name for this RSS feed)QBT_TR[CONTEXT=RSSWidget]',
+                title: i18next.t('Please choose a new name for this RSS feed'),
                 loadMethod: 'iframe',
                 contentURL: 'rename_feed.html?oldPath=' + encodeURIComponent(oldPath),
                 scrollbars: false,
@@ -693,7 +693,7 @@
             const encodedPaths = paths.map((path) => encodeURIComponent(path));
             new MochaUI.Window({
                 id: 'confirmFeedDeletionPage',
-                title: 'QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=RSSWidget]',
+                title: i18next.t('Deletion confirmation'),
                 loadMethod: 'iframe',
                 contentURL: 'confirmfeeddeletion.html?paths=' + encodeURIComponent(encodedPaths.join('|')),
                 scrollbars: false,
@@ -803,7 +803,7 @@
             const id = 'rssdownloaderpage';
             new MochaUI.Window({
                 id: id,
-                title: 'QBT_TR(Rss Downloader)QBT_TR[CONTEXT=AutomatedRssDownloader]',
+                title: i18next.t('Rss Downloader'),
                 loadMethod: 'xhr',
                 contentURL: 'views/rssDownloader.html',
                 maximizable: false,
