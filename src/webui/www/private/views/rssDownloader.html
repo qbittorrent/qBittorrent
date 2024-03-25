@@ -766,15 +766,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const setElementTitles = () => {
             let mainPart;
             if ($('useRegEx').checked) {
-                mainPart = 'QBT_TR(Regex mode: use Perl-compatible regular expressions)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n';
+                mainPart = `${i18next.t('Regex mode: use Perl-compatible regular expressions')}\n\n`;
             }
             else {
-                mainPart = 'QBT_TR(Wildcard mode: you can use)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n'
-                    + ' ● QBT_TR(? to match any single character)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                    + ' ● QBT_TR(* to match zero or more of any characters)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                    + ' ● QBT_TR(Whitespaces count as AND operators (all words, any order))QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                    + ' ● QBT_TR(| is used as OR operator)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n'
-                    + 'QBT_TR(If word order is important use * instead of whitespace.)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n';
+                mainPart = `${i18next.t('Wildcard mode: you can use')}\n\n`
+                    + ` ● ${i18next.t('? to match any single character')}\n`
+                    + ` ● ${i18next.t('* to match zero or more of any characters')}\n`
+                    + ` ● ${i18next.t('Whitespaces count as AND operators (all words, any order)')}\n`
+                    + ` ● ${i18next.t('| is used as OR operator')}\n\n`
+                    + `${i18next.t('If word order is important use * instead of whitespace.')}\n\n`;
             }
             let secondPart = i18next.t('An expression with an empty %1 clause (e.g. %2)')
                 .replace('%1', '|').replace('%2', 'expr|');
@@ -782,18 +782,18 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             $('mustContainText').title = mainPart + secondPart + i18next.t(' will match all articles.');
             $('mustNotContainText').title = mainPart + secondPart + i18next.t(' will exclude all articles.');
 
-            let episodeFilterTitle = 'QBT_TR(Matches articles based on episode filter.)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n'
+            let episodeFilterTitle = `${i18next.t('Matches articles based on episode filter.')}\n\n`
                 + i18next.t('Example: ')
                 + '1x2;8-15;5;30-;'
-                + 'QBT_TR( will match 2, 5, 8 through 15, 30 and onward episodes of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n'
-                + 'QBT_TR(Episode filter rules: )QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n'
-                + ' ● QBT_TR(Season number is a mandatory non-zero value)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                + ' ● QBT_TR(Episode number is a mandatory positive value)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                + ' ● QBT_TR(Filter must end with semicolon)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                + ' ● QBT_TR(Three range types for episodes are supported: )QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                + '    ● QBT_TR(Single number: <b>1x25;</b> matches episode 25 of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                + '    ● QBT_TR(Normal range: <b>1x25-40;</b> matches episodes 25 through 40 of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                + '    ● QBT_TR(Infinite range: <b>1x25-;</b> matches episodes 25 and upward of season one, and all episodes of later seasons)QBT_TR[CONTEXT=AutomatedRssDownloader]';
+                + `${i18next.t(' will match 2, 5, 8 through 15, 30 and onward episodes of season one')}\n\n`
+                + `${i18next.t('Episode filter rules: ')}\n\n`
+                + ` ● ${i18next.t('Season number is a mandatory non-zero value')}\n`
+                + ` ● ${i18next.t('Episode number is a mandatory positive value')}\n`
+                + ` ● ${i18next.t('Filter must end with semicolon')}\n`
+                + ` ● ${i18next.t('Three range types for episodes are supported: ')}\n`
+                + `    ● ${i18next.t('Single number: <b>1x25;</b> matches episode 25 of season one')}\n`
+                + `    ● ${i18next.t('Normal range: <b>1x25-40;</b> matches episodes 25 through 40 of season one')}\n`
+                + `    ● ${i18next.t('Infinite range: <b>1x25-;</b> matches episodes 25 and upward of season one, and all episodes of later seasons')}`;
 
             episodeFilterTitle = episodeFilterTitle.replace(/<b>/g, '').replace(/<\/b>/g, '');
             $('episodeFilterText').title = episodeFilterTitle;
