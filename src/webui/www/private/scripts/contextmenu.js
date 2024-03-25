@@ -473,13 +473,13 @@ window.qBittorrent.ContextMenu = (function() {
             contextTagList.appendChild(new Element('li', {
                 html: '<a href="javascript:torrentAddTagsFN();">'
                     + '<img src="images/list-add.svg" alt=i18next.t("Add...")/>'
-                    + ' QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]'
+                    + ` ${i18next.t('Add...')}`
                     + '</a>'
             }));
             contextTagList.appendChild(new Element('li', {
                 html: '<a href="javascript:torrentRemoveAllTagsFN();">'
                     + '<img src="images/edit-clear.svg" alt=i18next.t("Remove All")/>'
-                    + ' QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]'
+                    + ` ${i18next.t('Remove All')}`
                     + '</a>'
             }));
 
