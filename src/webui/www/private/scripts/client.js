@@ -128,6 +128,8 @@ let setFilter = function() {};
 let toggleFilterDisplay = function() {};
 
 window.addEventListener("DOMContentLoaded", function() {
+    let isSearchPanelLoaded = false;
+
     const saveColumnSizes = function() {
         const filters_width = $('Filters').getSize().x;
         LocalPreferences.set('filters_width', filters_width);
@@ -1168,6 +1170,16 @@ window.addEventListener("DOMContentLoaded", function() {
         let searchTabInitialized = false;
 
         return () => {
+            // we must wait until the panel is fully loaded before proceeding.
+            // this include's the panel's custom js, which is loaded via MochaUI.Panel's 'require' field.
+            // MochaUI loads these files asynchronously and thus all required libs may not be available immediately
+            if (!isSearchPanelLoaded) {
+                setTimeout(() => {
+                    showSearchTab();
+                }, 100);
+                return;
+            }
+
             if (!searchTabInitialized) {
                 window.qBittorrent.Search.init();
                 searchTabInitialized = true;
@@ -1251,6 +1263,12 @@ window.addEventListener("DOMContentLoaded", function() {
             },
             loadMethod: 'xhr',
             contentURL: 'views/search.html',
+            require: {
+                js: ['scripts/search.js'],
+                onload: () => {
+                    isSearchPanelLoaded = true;
+                },
+            },
             content: '',
             column: 'searchTabColumn',
             height: null
