@@ -306,8 +306,8 @@ window.qBittorrent.ContextMenu = (function() {
             let all_are_f_l_piece_prio = true;
             let there_are_f_l_piece_prio = false;
             let all_are_downloaded = true;
-            let all_are_paused = true;
-            let there_are_paused = false;
+            let all_are_stopped = true;
+            let there_are_stopped = false;
             let all_are_force_start = true;
             let there_are_force_start = false;
             let all_are_super_seeding = true;
@@ -334,10 +334,10 @@ window.qBittorrent.ContextMenu = (function() {
                 else if (data['super_seeding'] !== true)
                     all_are_super_seeding = false;
 
-                if (data['state'] != 'pausedUP' && data['state'] != 'pausedDL')
-                    all_are_paused = false;
+                if (data['state'] != 'stoppedUP' && data['state'] != 'stoppedDL')
+                    all_are_stopped = false;
                 else
-                    there_are_paused = true;
+                    there_are_stopped = true;
 
                 if (data['force_start'] !== true)
                     all_are_force_start = false;
@@ -406,13 +406,13 @@ window.qBittorrent.ContextMenu = (function() {
             }
 
             this.showItem('start');
-            this.showItem('pause');
+            this.showItem('stop');
             this.showItem('forceStart');
-            if (all_are_paused)
-                this.hideItem('pause');
+            if (all_are_stopped)
+                this.hideItem('stop');
             else if (all_are_force_start)
                 this.hideItem('forceStart');
-            else if (!there_are_paused && !there_are_force_start)
+            else if (!there_are_stopped && !there_are_force_start)
                 this.hideItem('start');
 
             if (!all_are_auto_tmm && there_are_auto_tmm) {

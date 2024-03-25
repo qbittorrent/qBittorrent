@@ -45,8 +45,8 @@ public:
 
 signals:
     void tagChanged(const std::optional<Tag> &tag);
-    void actionResumeTorrentsTriggered();
-    void actionPauseTorrentsTriggered();
+    void actionStartTorrentsTriggered();
+    void actionStopTorrentsTriggered();
     void actionDeleteTorrentsTriggered();
 
 private slots:

@@ -38,8 +38,8 @@ const std::optional<Tag> TorrentFilter::AnyTag;
 const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
 const TorrentFilter TorrentFilter::SeedingTorrent(TorrentFilter::Seeding);
 const TorrentFilter TorrentFilter::CompletedTorrent(TorrentFilter::Completed);
-const TorrentFilter TorrentFilter::PausedTorrent(TorrentFilter::Paused);
-const TorrentFilter TorrentFilter::ResumedTorrent(TorrentFilter::Resumed);
+const TorrentFilter TorrentFilter::StoppedTorrent(TorrentFilter::Stopped);
+const TorrentFilter TorrentFilter::RunningTorrent(TorrentFilter::Running);
 const TorrentFilter TorrentFilter::ActiveTorrent(TorrentFilter::Active);
 const TorrentFilter TorrentFilter::InactiveTorrent(TorrentFilter::Inactive);
 const TorrentFilter TorrentFilter::StalledTorrent(TorrentFilter::Stalled);
@@ -90,10 +90,10 @@ bool TorrentFilter::setTypeByName(const QString &filter)
         type = Seeding;
     else if (filter == u"completed")
         type = Completed;
-    else if (filter == u"paused")
-        type = Paused;
-    else if (filter == u"resumed")
-        type = Resumed;
+    else if (filter == u"stopped")
+        type = Stopped;
+    else if (filter == u"running")
+        type = Running;
     else if (filter == u"active")
         type = Active;
     else if (filter == u"inactive")
@@ -167,10 +167,10 @@ bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
         return torrent->isUploading();
     case Completed:
         return torrent->isCompleted();
-    case Paused:
-        return torrent->isPaused();
-    case Resumed:
-        return torrent->isResumed();
+    case Stopped:
+        return torrent->isStopped();
+    case Running:
+        return torrent->isRunning();
     case Active:
         return torrent->isActive();
     case Inactive:

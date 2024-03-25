@@ -140,8 +140,8 @@ namespace
         if (!addTorrentParams.savePath.isEmpty())
             result.append(u"@savePath=" + addTorrentParams.savePath.data());
 
-        if (addTorrentParams.addPaused.has_value())
-            result.append(*addTorrentParams.addPaused ? u"@addPaused=1"_s : u"@addPaused=0"_s);
+        if (addTorrentParams.addStopped.has_value())
+            result.append(*addTorrentParams.addStopped ? u"@addStopped=1"_s : u"@addStopped=0"_s);
 
         if (addTorrentParams.skipChecking)
             result.append(u"@skipChecking"_s);
@@ -180,9 +180,9 @@ namespace
                 continue;
             }
 
-            if (param.startsWith(u"@addPaused="))
+            if (param.startsWith(u"@addStopped="))
             {
-                addTorrentParams.addPaused = (QStringView(param).mid(11).toInt() != 0);
+                addTorrentParams.addStopped = (QStringView(param).mid(11).toInt() != 0);
                 continue;
             }
 

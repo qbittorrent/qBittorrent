@@ -52,8 +52,8 @@ public:
         Downloading,
         Seeding,
         Completed,
-        Resumed,
-        Paused,
+        Running,
+        Stopped,
         Active,
         Inactive,
         Stalled,
@@ -72,8 +72,8 @@ public:
     static const TorrentFilter DownloadingTorrent;
     static const TorrentFilter SeedingTorrent;
     static const TorrentFilter CompletedTorrent;
-    static const TorrentFilter PausedTorrent;
-    static const TorrentFilter ResumedTorrent;
+    static const TorrentFilter StoppedTorrent;
+    static const TorrentFilter RunningTorrent;
     static const TorrentFilter ActiveTorrent;
     static const TorrentFilter InactiveTorrent;
     static const TorrentFilter StalledTorrent;

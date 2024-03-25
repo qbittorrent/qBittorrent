@@ -60,9 +60,9 @@ namespace BitTorrent
         return infoHash().toTorrentID();
     }
 
-    bool Torrent::isResumed() const
+    bool Torrent::isRunning() const
     {
-        return !isPaused();
+        return !isStopped();
     }
 
     qlonglong Torrent::remainingSize() const

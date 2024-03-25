@@ -42,7 +42,7 @@ class AdvancedSettings;
 // actions on double-click on torrents
 enum DoubleClickAction
 {
-    TOGGLE_PAUSE = 0,
+    TOGGLE_STOP = 0,
     OPEN_DEST = 1,
     PREVIEW_FILE = 2,
     NO_ACTION = 3,
@@ -151,7 +151,7 @@ private:
     // Downloads
     bool preAllocateAllFiles() const;
     bool useAdditionDialog() const;
-    bool addTorrentsInPause() const;
+    bool addTorrentsStopped() const;
     Path getTorrentExportDir() const;
     Path getFinishedTorrentExportDir() const;
     // Connection options

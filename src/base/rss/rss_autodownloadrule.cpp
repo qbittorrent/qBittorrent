@@ -468,7 +468,7 @@ QJsonObject AutoDownloadRule::toJsonObject() const
 
         // TODO: The following code is deprecated. Replace with the commented one after several releases in 4.6.x.
         // === BEGIN DEPRECATED CODE === //
-        , {S_ADD_PAUSED, toJsonValue(addTorrentParams.addPaused)}
+        , {S_ADD_PAUSED, toJsonValue(addTorrentParams.addStopped)}
         , {S_CONTENT_LAYOUT, contentLayoutToJsonValue(addTorrentParams.contentLayout)}
         , {S_SAVE_PATH, addTorrentParams.savePath.toString()}
         , {S_ASSIGNED_CATEGORY, addTorrentParams.category}
@@ -525,7 +525,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     {
         addTorrentParams.savePath = Path(jsonObj.value(S_SAVE_PATH).toString());
         addTorrentParams.category = jsonObj.value(S_ASSIGNED_CATEGORY).toString();
-        addTorrentParams.addPaused = toOptionalBool(jsonObj.value(S_ADD_PAUSED));
+        addTorrentParams.addStopped = toOptionalBool(jsonObj.value(S_ADD_PAUSED));
         if (!addTorrentParams.savePath.isEmpty())
             addTorrentParams.useAutoTMM = false;
 
@@ -568,7 +568,7 @@ QVariantHash AutoDownloadRule::toLegacyDict() const
         {u"enabled"_s, isEnabled()},
         {u"category_assigned"_s, addTorrentParams.category},
         {u"use_regex"_s, useRegex()},
-        {u"add_paused"_s, toAddPausedLegacy(addTorrentParams.addPaused)},
+        {u"add_paused"_s, toAddPausedLegacy(addTorrentParams.addStopped)},
         {u"episode_filter"_s, episodeFilter()},
         {u"last_match"_s, lastMatch()},
         {u"ignore_days"_s, ignoreDays()}};
@@ -579,7 +579,7 @@ AutoDownloadRule AutoDownloadRule::fromLegacyDict(const QVariantHash &dict)
     BitTorrent::AddTorrentParams addTorrentParams;
     addTorrentParams.savePath = Path(dict.value(u"save_path"_s).toString());
     addTorrentParams.category = dict.value(u"category_assigned"_s).toString();
-    addTorrentParams.addPaused = addPausedLegacyToOptionalBool(dict.value(u"add_paused"_s).toInt());
+    addTorrentParams.addStopped = addPausedLegacyToOptionalBool(dict.value(u"add_paused"_s).toInt());
     if (!addTorrentParams.savePath.isEmpty())
         addTorrentParams.useAutoTMM = false;
 

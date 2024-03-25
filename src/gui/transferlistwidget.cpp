@@ -293,11 +293,11 @@ void TransferListWidget::torrentDoubleClicked()
 
     switch (action)
     {
-    case TOGGLE_PAUSE:
-        if (torrent->isPaused())
-            torrent->resume();
+    case TOGGLE_STOP:
+        if (torrent->isStopped())
+            torrent->start();
         else
-            torrent->pause();
+            torrent->stop();
         break;
     case PREVIEW_FILE:
         if (torrentContainsPreviewableFiles(torrent))
@@ -376,66 +376,66 @@ void TransferListWidget::setSelectedTorrentsLocation()
     fileDialog->open();
 }
 
-void TransferListWidget::pauseAllTorrents()
+void TransferListWidget::stopAllTorrents()
 {
     if (Preferences::instance()->confirmPauseAndResumeAll())
     {
-        // Show confirmation if user would really like to Pause All
-        const QMessageBox::StandardButton ret = QMessageBox::question(this, tr("Confirm pause")
-                , tr("Would you like to pause all torrents?"), (QMessageBox::Yes | QMessageBox::No));
+        // Show confirmation if user would really like to Stop All
+        const QMessageBox::StandardButton ret = QMessageBox::question(this, tr("Confirm stop all torrents")
+                , tr("Would you like to stop all torrents?"), (QMessageBox::Yes | QMessageBox::No));
 
         if (ret != QMessageBox::Yes)
             return;
     }
 
     for (BitTorrent::Torrent *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
-        torrent->pause();
+        torrent->stop();
 }
 
-void TransferListWidget::resumeAllTorrents()
+void TransferListWidget::startAllTorrents()
 {
     if (Preferences::instance()->confirmPauseAndResumeAll())
     {
-        // Show confirmation if user would really like to Resume All
-        const QMessageBox::StandardButton ret = QMessageBox::question(this, tr("Confirm resume")
-                , tr("Would you like to resume all torrents?"), (QMessageBox::Yes | QMessageBox::No));
+        // Show confirmation if user would really like to Start All
+        const QMessageBox::StandardButton ret = QMessageBox::question(this, tr("Confirm start all torrents")
+                , tr("Would you like to start all torrents?"), (QMessageBox::Yes | QMessageBox::No));
 
         if (ret != QMessageBox::Yes)
             return;
     }
 
     for (BitTorrent::Torrent *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
-        torrent->resume();
+        torrent->start();
 }
 
 void TransferListWidget::startSelectedTorrents()
 {
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
-        torrent->resume();
+        torrent->start();
 }
 
 void TransferListWidget::forceStartSelectedTorrents()
 {
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
-        torrent->resume(BitTorrent::TorrentOperatingMode::Forced);
+        torrent->start(BitTorrent::TorrentOperatingMode::Forced);
 }
 
 void TransferListWidget::startVisibleTorrents()
 {
     for (BitTorrent::Torrent *const torrent : asConst(getVisibleTorrents()))
-        torrent->resume();
+        torrent->start();
 }
 
-void TransferListWidget::pauseSelectedTorrents()
+void TransferListWidget::stopSelectedTorrents()
 {
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
-        torrent->pause();
+        torrent->stop();
 }
 
-void TransferListWidget::pauseVisibleTorrents()
+void TransferListWidget::stopVisibleTorrents()
 {
     for (BitTorrent::Torrent *const torrent : asConst(getVisibleTorrents()))
-        torrent->pause();
+        torrent->stop();
 }
 
 void TransferListWidget::softDeleteSelectedTorrents()
@@ -972,11 +972,11 @@ void TransferListWidget::displayListMenu()
 
     // Create actions
 
-    auto *actionStart = new QAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("&Resume", "Resume/start the torrent"), listMenu);
+    auto *actionStart = new QAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("&Start", "Resume/start the torrent"), listMenu);
     connect(actionStart, &QAction::triggered, this, &TransferListWidget::startSelectedTorrents);
-    auto *actionPause = new QAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("&Pause", "Pause the torrent"), listMenu);
-    connect(actionPause, &QAction::triggered, this, &TransferListWidget::pauseSelectedTorrents);
-    auto *actionForceStart = new QAction(UIThemeManager::instance()->getIcon(u"torrent-start-forced"_s, u"media-playback-start"_s), tr("Force Resu&me", "Force Resume/start the torrent"), listMenu);
+    auto *actionStop = new QAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("Sto&p", "Stop the torrent"), listMenu);
+    connect(actionStop, &QAction::triggered, this, &TransferListWidget::stopSelectedTorrents);
+    auto *actionForceStart = new QAction(UIThemeManager::instance()->getIcon(u"torrent-start-forced"_s, u"media-playback-start"_s), tr("Force Star&t", "Force Resume/start the torrent"), listMenu);
     connect(actionForceStart, &QAction::triggered, this, &TransferListWidget::forceStartSelectedTorrents);
     auto *actionDelete = new QAction(UIThemeManager::instance()->getIcon(u"list-remove"_s), tr("&Remove", "Remove the torrent"), listMenu);
     connect(actionDelete, &QAction::triggered, this, &TransferListWidget::softDeleteSelectedTorrents);
@@ -1029,8 +1029,8 @@ void TransferListWidget::displayListMenu()
     connect(actionExportTorrent, &QAction::triggered, this, &TransferListWidget::exportTorrent);
     // End of actions
 
-    // Enable/disable pause/start action given the DL state
-    bool needsPause = false, needsStart = false, needsForce = false, needsPreview = false;
+    // Enable/disable stop/start action given the DL state
+    bool needsStop = false, needsStart = false, needsForce = false, needsPreview = false;
     bool allSameSuperSeeding = true;
     bool superSeedingMode = false;
     bool allSameSequentialDownloadMode = true, allSamePrioFirstlast = true;
@@ -1048,10 +1048,9 @@ void TransferListWidget::displayListMenu()
 
     for (const QModelIndex &index : selectedIndexes)
     {
-        // Get the file name
-        // Get handle and pause the torrent
         const BitTorrent::Torrent *torrent = m_listModel->torrentHandle(mapToSource(index));
-        if (!torrent) continue;
+        if (!torrent)
+            continue;
 
         if (firstCategory.isEmpty() && first)
             firstCategory = torrent->category();
@@ -1108,11 +1107,11 @@ void TransferListWidget::displayListMenu()
         else
             needsStart = true;
 
-        const bool isPaused = torrent->isPaused();
-        if (isPaused)
+        const bool isStopped = torrent->isStopped();
+        if (isStopped)
             needsStart = true;
         else
-            needsPause = true;
+            needsStop = true;
 
         if (torrent->isErrored() || torrent->hasMissingFiles())
         {
@@ -1136,17 +1135,17 @@ void TransferListWidget::displayListMenu()
         if (rechecking)
         {
             needsStart = true;
-            needsPause = true;
+            needsStop = true;
         }
 
         const bool queued = (BitTorrent::Session::instance()->isQueueingSystemEnabled() && torrent->isQueued());
 
-        if (!isPaused && !rechecking && !queued)
+        if (!isStopped && !rechecking && !queued)
             oneCanForceReannounce = true;
 
         if (oneHasMetadata && oneNotFinished && !allSameSequentialDownloadMode
             && !allSamePrioFirstlast && !allSameSuperSeeding && !allSameCategory
-            && needsStart && needsForce && needsPause && needsPreview && !allSameAutoTMM
+            && needsStart && needsForce && needsStop && needsPreview && !allSameAutoTMM
             && hasInfohashV1 && hasInfohashV2 && oneCanForceReannounce)
         {
             break;
@@ -1155,8 +1154,8 @@ void TransferListWidget::displayListMenu()
 
     if (needsStart)
         listMenu->addAction(actionStart);
-    if (needsPause)
-        listMenu->addAction(actionPause);
+    if (needsStop)
+        listMenu->addAction(actionStop);
     if (needsForce)
         listMenu->addAction(actionForceStart);
     listMenu->addSeparator();
@@ -1268,12 +1267,12 @@ void TransferListWidget::displayListMenu()
         listMenu->addSeparator();
     if (oneHasMetadata)
         listMenu->addAction(actionForceRecheck);
-    // We can not force reannounce torrents that are paused/errored/checking/missing files/queued.
+    // We can not force reannounce torrents that are stopped/errored/checking/missing files/queued.
     // We may already have the tracker list from magnet url. So we can force reannounce torrents without metadata anyway.
     listMenu->addAction(actionForceReannounce);
     actionForceReannounce->setEnabled(oneCanForceReannounce);
     if (!oneCanForceReannounce)
-        actionForceReannounce->setToolTip(tr("Can not force reannounce if torrent is Paused/Queued/Errored/Checking"));
+        actionForceReannounce->setToolTip(tr("Can not force reannounce if torrent is Stopped/Queued/Errored/Checking"));
     listMenu->addSeparator();
     listMenu->addAction(actionOpenDestinationFolder);
     if (BitTorrent::Session::instance()->isQueueingSystemEnabled() && oneNotFinished)

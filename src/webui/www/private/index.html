@@ -64,10 +64,10 @@
                     <li>
                         <a class="returnFalse">QBT_TR(Edit)QBT_TR[CONTEXT=MainWindow]</a>
                         <ul>
-                            <li><a id="resumeLink"><img class="MyMenuIcon" alt="QBT_TR(Resume)QBT_TR[CONTEXT=MainWindow]" src="images/torrent-start.svg" width="16" height="16" />QBT_TR(Resume)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li><a id="pauseLink"><img class="MyMenuIcon" src="images/torrent-stop.svg" alt="QBT_TR(Pause)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" />QBT_TR(Pause)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li><a id="resumeAllLink"><img class="MyMenuIcon" alt="QBT_TR(Resume All)QBT_TR[CONTEXT=MainWindow]" src="images/torrent-start.svg" width="16" height="16" />QBT_TR(Resume All)QBT_TR[CONTEXT=MainWindow]</a></li>
-                            <li><a id="pauseAllLink"><img class="MyMenuIcon" alt="QBT_TR(Pause All)QBT_TR[CONTEXT=MainWindow]" src="images/torrent-stop.svg" width="16" height="16" />QBT_TR(Pause All)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li><a id="startLink"><img class="MyMenuIcon" alt="QBT_TR(Start)QBT_TR[CONTEXT=MainWindow]" src="images/torrent-start.svg" width="16" height="16" />QBT_TR(Start)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li><a id="stopLink"><img class="MyMenuIcon" src="images/torrent-stop.svg" alt="QBT_TR(Stop)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" />QBT_TR(Stop)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li><a id="startAllLink"><img class="MyMenuIcon" alt="QBT_TR(Start All)QBT_TR[CONTEXT=MainWindow]" src="images/torrent-start.svg" width="16" height="16" />QBT_TR(Start All)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li><a id="stopAllLink"><img class="MyMenuIcon" alt="QBT_TR(Stop All)QBT_TR[CONTEXT=MainWindow]" src="images/torrent-stop.svg" width="16" height="16" />QBT_TR(Stop All)QBT_TR[CONTEXT=MainWindow]</a></li>
                             <li class="divider"><a id="deleteLink"><img class="MyMenuIcon" src="images/list-remove.svg" alt="QBT_TR(Remove)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" />QBT_TR(Remove)QBT_TR[CONTEXT=MainWindow]</a></li>
                             <li id="topQueuePosItem" class="divider"><a id="topPrioLink"><img class="MyMenuIcon" src="images/go-top.svg" alt="QBT_TR(Top of Queue)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" />QBT_TR(Top of Queue)QBT_TR[CONTEXT=MainWindow]</a></li>
                             <li id="increaseQueuePosItem"><a id="increasePrioLink"><img class="MyMenuIcon" src="images/go-up.svg" alt="QBT_TR(Move Up Queue)QBT_TR[CONTEXT=MainWindow]" width="16" height="16" />QBT_TR(Move Up Queue)QBT_TR[CONTEXT=MainWindow]</a></li>
@@ -110,8 +110,8 @@
                 <a id="downloadButton"><img class="mochaToolButton" title="QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]" src="images/insert-link.svg" alt="QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]" width="24" height="24" /></a>
                 <a id="uploadButton"><img class="mochaToolButton" title="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" src="images/list-add.svg" alt="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" width="24" height="24" /></a>
                 <a id="deleteButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]" src="images/list-remove.svg" alt="QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24" /></a>
-                <a id="resumeButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Resume)QBT_TR[CONTEXT=TransferListWidget]" src="images/torrent-start.svg" alt="QBT_TR(Resume)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24" /></a>
-                <a id="pauseButton"><img class="mochaToolButton" title="QBT_TR(Pause)QBT_TR[CONTEXT=TransferListWidget]" src="images/torrent-stop.svg" alt="QBT_TR(Pause)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24" /></a>
+                <a id="startButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Start)QBT_TR[CONTEXT=TransferListWidget]" src="images/torrent-start.svg" alt="QBT_TR(Start)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24" /></a>
+                <a id="stopButton"><img class="mochaToolButton" title="QBT_TR(Stop)QBT_TR[CONTEXT=TransferListWidget]" src="images/torrent-stop.svg" alt="QBT_TR(Stop)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24" /></a>
                 <span id="queueingButtons">
                     <a id="topPrioButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Move to the top of the queue)QBT_TR[CONTEXT=MainWindow]" src="images/go-top.svg" alt="QBT_TR(Top of Queue)QBT_TR[CONTEXT=MainWindow]" width="24" height="24" /></a>
                     <a id="increasePrioButton"><img class="mochaToolButton" title="QBT_TR(Move up in the queue)QBT_TR[CONTEXT=MainWindow]" src="images/go-up.svg" alt="QBT_TR(Move Up Queue)QBT_TR[CONTEXT=MainWindow]" width="24" height="24" /></a>
@@ -139,9 +139,9 @@
         </div>
     </div>
     <ul id="torrentsTableMenu" class="contextMenu">
-        <li><a href="#start"><img src="images/torrent-start.svg" alt="QBT_TR(Resume)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Resume)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#pause"><img src="images/torrent-stop.svg" alt="QBT_TR(Pause)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Pause)QBT_TR[CONTEXT=TransferListWidget]</a></li>
-        <li><a href="#forceStart"><img src="images/torrent-start-forced.svg" alt="QBT_TR(Force Resume)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Force Resume)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#start"><img src="images/torrent-start.svg" alt="QBT_TR(Start)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Start)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#stop"><img src="images/torrent-stop.svg" alt="QBT_TR(Stop)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Stop)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+        <li><a href="#forceStart"><img src="images/torrent-start-forced.svg" alt="QBT_TR(Force Start)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Force Start)QBT_TR[CONTEXT=TransferListWidget]</a></li>
         <li class="separator"><a href="#delete"><img src="images/list-remove.svg" alt="QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]</a></li>
         <li class="separator">
             <a href="#setLocation"><img src="images/set-location.svg" alt="QBT_TR(Set location...)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Set location...)QBT_TR[CONTEXT=TransferListWidget]</a>
@@ -201,21 +201,21 @@
         <li><a href="#editCategory"><img src="images/edit-rename.svg" alt="QBT_TR(Edit category...)QBT_TR[CONTEXT=CategoryFilterWidget]" /> QBT_TR(Edit category...)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
         <li><a href="#deleteCategory"><img src="images/list-remove.svg" alt="QBT_TR(Remove category)QBT_TR[CONTEXT=CategoryFilterWidget]" /> QBT_TR(Remove category)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
         <li><a href="#deleteUnusedCategories"><img src="images/list-remove.svg" alt="QBT_TR(Remove unused categories)QBT_TR[CONTEXT=CategoryFilterWidget]" /> QBT_TR(Remove unused categories)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
-        <li class="separator"><a href="#startTorrentsByCategory"><img src="images/torrent-start.svg" alt="QBT_TR(Resume torrents)QBT_TR[CONTEXT=CategoryFilterWidget]" /> QBT_TR(Resume torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
-        <li><a href="#pauseTorrentsByCategory"><img src="images/torrent-stop.svg" alt="QBT_TR(Pause torrents)QBT_TR[CONTEXT=CategoryFilterWidget]" /> QBT_TR(Pause torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li class="separator"><a href="#startTorrentsByCategory"><img src="images/torrent-start.svg" alt="QBT_TR(Start torrents)QBT_TR[CONTEXT=CategoryFilterWidget]" /> QBT_TR(Start torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
+        <li><a href="#stopTorrentsByCategory"><img src="images/torrent-stop.svg" alt="QBT_TR(Stop torrents)QBT_TR[CONTEXT=CategoryFilterWidget]" /> QBT_TR(Stop torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
         <li><a href="#deleteTorrentsByCategory"><img src="images/list-remove.svg" alt="QBT_TR(Remove torrents)QBT_TR[CONTEXT=CategoryFilterWidget]" /> QBT_TR(Remove torrents)QBT_TR[CONTEXT=CategoryFilterWidget]</a></li>
     </ul>
     <ul id="tagsFilterMenu" class="contextMenu">
         <li><a href="#createTag"><img src="images/list-add.svg" alt="QBT_TR(Add tag...)QBT_TR[CONTEXT=TagFilterWidget]" /> QBT_TR(Add tag...)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
         <li><a href="#deleteTag"><img src="images/list-remove.svg" alt="QBT_TR(Remove tag)QBT_TR[CONTEXT=TagFilterWidget]" /> QBT_TR(Remove tag)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
         <li><a href="#deleteUnusedTags"><img src="images/list-remove.svg" alt="QBT_TR(Remove unused tags)QBT_TR[CONTEXT=TagFilterWidget]" /> QBT_TR(Remove unused tags)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
-        <li class="separator"><a href="#startTorrentsByTag"><img src="images/torrent-start.svg" alt="QBT_TR(Resume torrents)QBT_TR[CONTEXT=TagFilterWidget]" /> QBT_TR(Resume torrents)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
-        <li><a href="#pauseTorrentsByTag"><img src="images/torrent-stop.svg" alt="QBT_TR(Pause torrents)QBT_TR[CONTEXT=TagFilterWidget]" /> QBT_TR(Pause torrents)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
+        <li class="separator"><a href="#startTorrentsByTag"><img src="images/torrent-start.svg" alt="QBT_TR(Start torrents)QBT_TR[CONTEXT=TagFilterWidget]" /> QBT_TR(Start torrents)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
+        <li><a href="#stopTorrentsByTag"><img src="images/torrent-stop.svg" alt="QBT_TR(Stop torrents)QBT_TR[CONTEXT=TagFilterWidget]" /> QBT_TR(Stop torrents)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
         <li><a href="#deleteTorrentsByTag"><img src="images/list-remove.svg" alt="QBT_TR(Remove torrents)QBT_TR[CONTEXT=TagFilterWidget]" /> QBT_TR(Remove torrents)QBT_TR[CONTEXT=TagFilterWidget]</a></li>
     </ul>
     <ul id="trackersFilterMenu" class="contextMenu">
-        <li><a href="#resumeTorrentsByTracker"><img src="images/torrent-start.svg" alt="QBT_TR(Resume torrents)QBT_TR[CONTEXT=TrackerFiltersList]" /> QBT_TR(Resume torrents)QBT_TR[CONTEXT=TrackerFiltersList]</a></li>
-        <li><a href="#pauseTorrentsByTracker"><img src="images/torrent-stop.svg" alt="QBT_TR(Pause torrents)QBT_TR[CONTEXT=TrackerFiltersList]" /> QBT_TR(Pause torrents)QBT_TR[CONTEXT=TrackerFiltersList]</a></li>
+        <li><a href="#startTorrentsByTracker"><img src="images/torrent-start.svg" alt="QBT_TR(Start torrents)QBT_TR[CONTEXT=TrackerFiltersList]" /> QBT_TR(Start torrents)QBT_TR[CONTEXT=TrackerFiltersList]</a></li>
+        <li><a href="#stopTorrentsByTracker"><img src="images/torrent-stop.svg" alt="QBT_TR(Stop torrents)QBT_TR[CONTEXT=TrackerFiltersList]" /> QBT_TR(Stop torrents)QBT_TR[CONTEXT=TrackerFiltersList]</a></li>
         <li><a href="#deleteTorrentsByTracker"><img src="images/list-remove.svg" alt="QBT_TR(Remove torrents)QBT_TR[CONTEXT=TrackerFiltersList]" /> QBT_TR(Remove torrents)QBT_TR[CONTEXT=TrackerFiltersList]</a></li>
     </ul>
     <ul id="torrentTrackersMenu" class="contextMenu">

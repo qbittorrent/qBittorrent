@@ -981,15 +981,15 @@ TorrentInfo TorrentImpl::info() const
     return m_torrentInfo;
 }
 
-bool TorrentImpl::isPaused() const
+bool TorrentImpl::isStopped() const
 {
     return m_isStopped;
 }
 
 bool TorrentImpl::isQueued() const
 {
-    // Torrent is Queued if it isn't in Paused state but paused internally
-    return (!isPaused()
+    // Torrent is Queued if it isn't in Stopped state but paused internally
+    return (!isStopped()
             && (m_nativeStatus.flags & lt::torrent_flags::auto_managed)
             && (m_nativeStatus.flags & lt::torrent_flags::paused));
 }
@@ -1009,7 +1009,7 @@ bool TorrentImpl::isDownloading() const
     case TorrentState::ForcedDownloadingMetadata:
     case TorrentState::StalledDownloading:
     case TorrentState::CheckingDownloading:
-    case TorrentState::PausedDownloading:
+    case TorrentState::StoppedDownloading:
     case TorrentState::QueuedDownloading:
     case TorrentState::ForcedDownloading:
         return true;
@@ -1049,7 +1049,7 @@ bool TorrentImpl::isCompleted() const
     case TorrentState::Uploading:
     case TorrentState::StalledUploading:
     case TorrentState::CheckingUploading:
-    case TorrentState::PausedUploading:
+    case TorrentState::StoppedUploading:
     case TorrentState::QueuedUploading:
     case TorrentState::ForcedUploading:
         return true;
@@ -1102,7 +1102,7 @@ bool TorrentImpl::isFinished() const
 
 bool TorrentImpl::isForced() const
 {
-    return (!isPaused() && (m_operatingMode == TorrentOperatingMode::Forced));
+    return (!isStopped() && (m_operatingMode == TorrentOperatingMode::Forced));
 }
 
 bool TorrentImpl::isSequentialDownload() const
@@ -1140,22 +1140,22 @@ void TorrentImpl::updateState()
     }
     else if (!hasMetadata())
     {
-        if (isPaused())
-            m_state = TorrentState::PausedDownloading;
+        if (isStopped())
+            m_state = TorrentState::StoppedDownloading;
         else if (m_session->isQueueingSystemEnabled() && isQueued())
             m_state = TorrentState::QueuedDownloading;
         else
             m_state = isForced() ? TorrentState::ForcedDownloadingMetadata : TorrentState::DownloadingMetadata;
     }
-    else if ((m_nativeStatus.state == lt::torrent_status::checking_files) && !isPaused())
+    else if ((m_nativeStatus.state == lt::torrent_status::checking_files) && !isStopped())
     {
         // If the torrent is not just in the "checking" state, but is being actually checked
         m_state = m_hasFinishedStatus ? TorrentState::CheckingUploading : TorrentState::CheckingDownloading;
     }
     else if (isFinished())
     {
-        if (isPaused())
-            m_state = TorrentState::PausedUploading;
+        if (isStopped())
+            m_state = TorrentState::StoppedUploading;
         else if (m_session->isQueueingSystemEnabled() && isQueued())
             m_state = TorrentState::QueuedUploading;
         else if (isForced())
@@ -1167,8 +1167,8 @@ void TorrentImpl::updateState()
     }
     else
     {
-        if (isPaused())
-            m_state = TorrentState::PausedDownloading;
+        if (isStopped())
+            m_state = TorrentState::StoppedDownloading;
         else if (m_session->isQueueingSystemEnabled() && isQueued())
             m_state = TorrentState::QueuedDownloading;
         else if (isForced())
@@ -1236,7 +1236,7 @@ qlonglong TorrentImpl::finishedTime() const
 
 qlonglong TorrentImpl::eta() const
 {
-    if (isPaused()) return MAX_ETA;
+    if (isStopped()) return MAX_ETA;
 
     const SpeedSampleAvg speedAverage = m_payloadRateMonitor.average();
 
@@ -1499,14 +1499,14 @@ qreal TorrentImpl::realRatio() const
 
 int TorrentImpl::uploadPayloadRate() const
 {
-    // workaround: suppress the speed for paused state
-    return isPaused() ? 0 : m_nativeStatus.upload_payload_rate;
+    // workaround: suppress the speed for Stopped state
+    return isStopped() ? 0 : m_nativeStatus.upload_payload_rate;
 }
 
 int TorrentImpl::downloadPayloadRate() const
 {
-    // workaround: suppress the speed for paused state
-    return isPaused() ? 0 : m_nativeStatus.download_payload_rate;
+    // workaround: suppress the speed for Stopped state
+    return isStopped() ? 0 : m_nativeStatus.download_payload_rate;
 }
 
 qlonglong TorrentImpl::totalPayloadUpload() const
@@ -1597,10 +1597,10 @@ void TorrentImpl::forceRecheck()
     m_nativeStatus.pieces.clear_all();
     m_nativeStatus.num_pieces = 0;
 
-    if (isPaused())
+    if (isStopped())
     {
-        // When "force recheck" is applied on paused torrent, we temporarily resume it
-        resume();
+        // When "force recheck" is applied on Stopped torrent, we start them to perform checking
+        start();
         m_stopCondition = StopCondition::FilesChecked;
     }
 }
@@ -1768,7 +1768,7 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
         p.flags |= lt::torrent_flags::paused;
         p.flags &= ~lt::torrent_flags::auto_managed;
 
-        m_session->handleTorrentPaused(this);
+        m_session->handleTorrentStopped(this);
     }
 
     reload();
@@ -1836,14 +1836,14 @@ void TorrentImpl::reload()
     }
 }
 
-void TorrentImpl::pause()
+void TorrentImpl::stop()
 {
     if (!m_isStopped)
     {
         m_stopCondition = StopCondition::None;
         m_isStopped = true;
         deferredRequestResumeData();
-        m_session->handleTorrentPaused(this);
+        m_session->handleTorrentStopped(this);
     }
 
     if (m_maintenanceJob == MaintenanceJob::None)
@@ -1855,7 +1855,7 @@ void TorrentImpl::pause()
     }
 }
 
-void TorrentImpl::resume(const TorrentOperatingMode mode)
+void TorrentImpl::start(const TorrentOperatingMode mode)
 {
     if (hasError())
     {
@@ -1878,7 +1878,7 @@ void TorrentImpl::resume(const TorrentOperatingMode mode)
     {
         m_isStopped = false;
         deferredRequestResumeData();
-        m_session->handleTorrentResumed(this);
+        m_session->handleTorrentStarted(this);
     }
 
     if (m_maintenanceJob == MaintenanceJob::None)
@@ -1967,7 +1967,7 @@ void TorrentImpl::handleTorrentCheckedAlert([[maybe_unused]] const lt::torrent_c
     }
 
     if (stopCondition() == StopCondition::FilesChecked)
-        pause();
+        stop();
 
     m_statusUpdatedTriggers.enqueue([this]()
     {
@@ -1983,7 +1983,7 @@ void TorrentImpl::handleTorrentCheckedAlert([[maybe_unused]] const lt::torrent_c
             adjustStorageLocation();
             manageActualFilePaths();
 
-            if (!isPaused())
+            if (!isStopped())
             {
                 // torrent is internally paused using NativeTorrentExtension after files checked
                 // so we need to resume it if there is no corresponding "stop condition" set
@@ -2468,7 +2468,7 @@ void TorrentImpl::setStopCondition(const StopCondition stopCondition)
     if (stopCondition == m_stopCondition)
         return;
 
-    if (isPaused())
+    if (isStopped())
         return;
 
     if ((stopCondition == StopCondition::MetadataReceived) && hasMetadata())

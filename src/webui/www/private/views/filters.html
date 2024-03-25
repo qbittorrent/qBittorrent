@@ -7,8 +7,8 @@
         <li id="downloading_filter"><a href="#" onclick="setFilter('downloading');return false;"><img src="images/downloading.svg" alt="Downloading" />QBT_TR(Downloading (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
         <li id="seeding_filter"><a href="#" onclick="setFilter('seeding');return false;"><img src="images/upload.svg" alt="Seeding" />QBT_TR(Seeding (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
         <li id="completed_filter"><a href="#" onclick="setFilter('completed');return false;"><img src="images/checked-completed.svg" alt="Completed" />QBT_TR(Completed (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
-        <li id="resumed_filter"><a href="#" onclick="setFilter('resumed');return false;"><img src="images/torrent-start.svg" alt="Resumed" />QBT_TR(Resumed (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
-        <li id="paused_filter"><a href="#" onclick="setFilter('paused');return false;"><img src="images/stopped.svg" alt="Paused" />QBT_TR(Paused (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="running_filter"><a href="#" onclick="setFilter('running');return false;"><img src="images/torrent-start.svg" alt="Running" />QBT_TR(Running (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="stopped_filter"><a href="#" onclick="setFilter('stopped');return false;"><img src="images/stopped.svg" alt="Stopped" />QBT_TR(Stopped (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
         <li id="active_filter"><a href="#" onclick="setFilter('active');return false;"><img src="images/filter-active.svg" alt="Active" />QBT_TR(Active (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
         <li id="inactive_filter"><a href="#" onclick="setFilter('inactive');return false;"><img src="images/filter-inactive.svg" alt="Inactive" />QBT_TR(Inactive (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
         <li id="stalled_filter"><a href="#" onclick="setFilter('stalled');return false;"><img src="images/filter-stalled.svg" alt="Stalled" />QBT_TR(Stalled (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
@@ -79,8 +79,8 @@
                 startTorrentsByCategory: function(element, ref) {
                     startTorrentsByCategoryFN(Number(element.id));
                 },
-                pauseTorrentsByCategory: function(element, ref) {
-                    pauseTorrentsByCategoryFN(Number(element.id));
+                stopTorrentsByCategory: function(element, ref) {
+                    stopTorrentsByCategoryFN(Number(element.id));
                 },
                 deleteTorrentsByCategory: function(element, ref) {
                     deleteTorrentsByCategoryFN(Number(element.id));
@@ -111,8 +111,8 @@
                 startTorrentsByTag: function(element, ref) {
                     startTorrentsByTagFN(Number(element.id));
                 },
-                pauseTorrentsByTag: function(element, ref) {
-                    pauseTorrentsByTagFN(Number(element.id));
+                stopTorrentsByTag: function(element, ref) {
+                    stopTorrentsByTagFN(Number(element.id));
                 },
                 deleteTorrentsByTag: function(element, ref) {
                     deleteTorrentsByTagFN(Number(element.id));
@@ -131,11 +131,11 @@
             targets: '.trackersFilterContextMenuTarget',
             menu: 'trackersFilterMenu',
             actions: {
-                resumeTorrentsByTracker: function(element, ref) {
-                    resumeTorrentsByTrackerFN(element.id);
+                startTorrentsByTracker: function(element, ref) {
+                    startTorrentsByTrackerFN(element.id);
                 },
-                pauseTorrentsByTracker: function(element, ref) {
-                    pauseTorrentsByTrackerFN(element.id);
+                stopTorrentsByTracker: function(element, ref) {
+                    stopTorrentsByTrackerFN(element.id);
                 },
                 deleteTorrentsByTracker: function(element, ref) {
                     deleteTorrentsByTrackerFN(element.id);

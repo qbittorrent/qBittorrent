@@ -461,7 +461,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxSeedingMinutes"_s), -1, lowerLimited(-1))
     , m_globalMaxInactiveSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxInactiveSeedingMinutes"_s), -1, lowerLimited(-1))
     , m_isAddTorrentToQueueTop(BITTORRENT_SESSION_KEY(u"AddTorrentToTopOfQueue"_s), false)
-    , m_isAddTorrentPaused(BITTORRENT_SESSION_KEY(u"AddTorrentPaused"_s), false)
+    , m_isAddTorrentStopped(BITTORRENT_SESSION_KEY(u"AddTorrentStopped"_s), false)
     , m_torrentStopCondition(BITTORRENT_SESSION_KEY(u"TorrentStopCondition"_s), Torrent::StopCondition::None)
     , m_torrentContentLayout(BITTORRENT_SESSION_KEY(u"TorrentContentLayout"_s), TorrentContentLayout::Original)
     , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY(u"AddExtensionToIncompleteFiles"_s), false)
@@ -1114,14 +1114,14 @@ void SessionImpl::setAddTorrentToQueueTop(bool value)
     m_isAddTorrentToQueueTop = value;
 }
 
-bool SessionImpl::isAddTorrentPaused() const
+bool SessionImpl::isAddTorrentStopped() const
 {
-    return m_isAddTorrentPaused;
+    return m_isAddTorrentStopped;
 }
 
-void SessionImpl::setAddTorrentPaused(const bool value)
+void SessionImpl::setAddTorrentStopped(const bool value)
 {
-    m_isAddTorrentPaused = value;
+    m_isAddTorrentStopped = value;
 }
 
 Torrent::StopCondition SessionImpl::torrentStopCondition() const
@@ -2274,12 +2274,12 @@ void SessionImpl::processShareLimits()
                 LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removing torrent and deleting its content."), torrentName));
                 deleteTorrent(torrentID, DeleteTorrentAndFiles);
             }
-            else if ((shareLimitAction == ShareLimitAction::Stop) && !torrent->isPaused())
+            else if ((shareLimitAction == ShareLimitAction::Stop) && !torrent->isStopped())
             {
-                torrent->pause();
-                LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent paused."), torrentName));
+                torrent->stop();
+                LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent stopped."), torrentName));
             }
-            else if ((shareLimitAction == ShareLimitAction::EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
+            else if ((shareLimitAction == ShareLimitAction::EnableSuperSeeding) && !torrent->isStopped() && !torrent->superSeeding())
             {
                 torrent->setSuperSeeding(true);
                 LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
@@ -2596,7 +2596,7 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
     loadTorrentParams.hasFinishedStatus = addTorrentParams.skipChecking; // do not react on 'torrent_finished_alert' when skipping
     loadTorrentParams.contentLayout = addTorrentParams.contentLayout.value_or(torrentContentLayout());
     loadTorrentParams.operatingMode = (addTorrentParams.addForced ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged);
-    loadTorrentParams.stopped = addTorrentParams.addPaused.value_or(isAddTorrentPaused());
+    loadTorrentParams.stopped = addTorrentParams.addStopped.value_or(isAddTorrentStopped());
     loadTorrentParams.stopCondition = addTorrentParams.stopCondition.value_or(torrentStopCondition());
     loadTorrentParams.addToQueueTop = addTorrentParams.addToQueueTop.value_or(isAddTorrentToQueueTop());
     loadTorrentParams.ratioLimit = addTorrentParams.ratioLimit;
@@ -4896,7 +4896,7 @@ void SessionImpl::handleTorrentMetadataReceived(TorrentImpl *const torrent)
     emit torrentMetadataReceived(torrent);
 }
 
-void SessionImpl::handleTorrentPaused(TorrentImpl *const torrent)
+void SessionImpl::handleTorrentStopped(TorrentImpl *const torrent)
 {
     torrent->resetTrackerEntries();
 
@@ -4907,14 +4907,14 @@ void SessionImpl::handleTorrentPaused(TorrentImpl *const torrent)
         updatedTrackerEntries.emplace(trackerEntry.url, trackerEntry);
     emit trackerEntriesUpdated(torrent, updatedTrackerEntries);
 
-    LogMsg(tr("Torrent paused. Torrent: \"%1\"").arg(torrent->name()));
-    emit torrentPaused(torrent);
+    LogMsg(tr("Torrent stopped. Torrent: \"%1\"").arg(torrent->name()));
+    emit torrentStopped(torrent);
 }
 
-void SessionImpl::handleTorrentResumed(TorrentImpl *const torrent)
+void SessionImpl::handleTorrentStarted(TorrentImpl *const torrent)
 {
     LogMsg(tr("Torrent resumed. Torrent: \"%1\"").arg(torrent->name()));
-    emit torrentResumed(torrent);
+    emit torrentStarted(torrent);
 }
 
 void SessionImpl::handleTorrentChecked(TorrentImpl *const torrent)
@@ -4932,7 +4932,7 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
 
     const bool hasUnfinishedTorrents = std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
     {
-        return !(torrent->isFinished() || torrent->isPaused() || torrent->isErrored());
+        return !(torrent->isFinished() || torrent->isStopped() || torrent->isErrored());
     });
     if (!hasUnfinishedTorrents)
         emit allTorrentsFinished();
@@ -6151,7 +6151,7 @@ void SessionImpl::updateTrackerEntries(lt::torrent_handle torrentHandle, QHash<s
                     , updatedTrackers = std::move(updatedTrackers)]
             {
                 TorrentImpl *torrent = m_torrents.value(torrentHandle.info_hash());
-                if (!torrent || torrent->isPaused())
+                if (!torrent || torrent->isStopped())
                     return;
 
                 QHash<QString, TrackerEntry> updatedTrackerEntries;

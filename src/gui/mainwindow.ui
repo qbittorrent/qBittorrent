@@ -43,9 +43,9 @@
      <string>&amp;Edit</string>
     </property>
     <addaction name="actionStart"/>
-    <addaction name="actionPause"/>
+    <addaction name="actionStop"/>
     <addaction name="actionStartAll"/>
-    <addaction name="actionPauseAll"/>
+    <addaction name="actionStopAll"/>
     <addaction name="separator"/>
     <addaction name="actionDelete"/>
     <addaction name="actionTopQueuePos"/>
@@ -153,7 +153,7 @@
    <addaction name="actionDelete"/>
    <addaction name="separator"/>
    <addaction name="actionStart"/>
-   <addaction name="actionPause"/>
+   <addaction name="actionStop"/>
    <addaction name="actionTopQueuePos"/>
    <addaction name="actionIncreaseQueuePos"/>
    <addaction name="actionDecreaseQueuePos"/>
@@ -188,22 +188,22 @@
   </action>
   <action name="actionStart">
    <property name="text">
-    <string>&amp;Resume</string>
+    <string>Sta&amp;rt</string>
    </property>
   </action>
-  <action name="actionPause">
+  <action name="actionStop">
    <property name="text">
-    <string>&amp;Pause</string>
+    <string>Sto&amp;p</string>
    </property>
   </action>
   <action name="actionStartAll">
    <property name="text">
-    <string>R&amp;esume All</string>
+    <string>Star&amp;t All</string>
    </property>
   </action>
-  <action name="actionPauseAll">
+  <action name="actionStopAll">
    <property name="text">
-    <string>P&amp;ause All</string>
+    <string>&amp;Stop All</string>
    </property>
   </action>
   <action name="actionDelete">

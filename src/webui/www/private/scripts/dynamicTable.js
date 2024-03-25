@@ -981,11 +981,11 @@ window.qBittorrent.DynamicTable = (function() {
                         state = "stalledDL";
                         img_path = "images/stalledDL.svg";
                         break;
-                    case "pausedDL":
+                    case "stoppedDL":
                         state = "torrent-stop";
                         img_path = "images/stopped.svg";
                         break;
-                    case "pausedUP":
+                    case "stoppedUP":
                         state = "checked-completed";
                         img_path = "images/checked-completed.svg";
                         break;
@@ -1075,10 +1075,10 @@ window.qBittorrent.DynamicTable = (function() {
                     case "checkingResumeData":
                         status = "QBT_TR(Checking resume data)QBT_TR[CONTEXT=TransferListDelegate]";
                         break;
-                    case "pausedDL":
-                        status = "QBT_TR(Paused)QBT_TR[CONTEXT=TransferListDelegate]";
+                    case "stoppedDL":
+                        status = "QBT_TR(Stopped)QBT_TR[CONTEXT=TransferListDelegate]";
                         break;
-                    case "pausedUP":
+                    case "stoppedUP":
                         status = "QBT_TR(Completed)QBT_TR[CONTEXT=TransferListDelegate]";
                         break;
                     case "moving":
@@ -1338,12 +1338,12 @@ window.qBittorrent.DynamicTable = (function() {
                     if ((state != 'uploading') && (state.indexOf('UP') === -1))
                         return false;
                     break;
-                case 'paused':
-                    if (state.indexOf('paused') === -1)
+                case 'stopped':
+                    if (state.indexOf('stopped') === -1)
                         return false;
                     break;
-                case 'resumed':
-                    if (state.indexOf('paused') > -1)
+                case 'running':
+                    if (state.indexOf('stopped') > -1)
                         return false;
                     break;
                 case 'stalled':
@@ -1509,10 +1509,10 @@ window.qBittorrent.DynamicTable = (function() {
                 this._this.selectRow(this.rowId);
                 const row = this._this.rows.get(this.rowId);
                 const state = row['full_data'].state;
-                if (state.indexOf('paused') > -1)
+                if (state.indexOf('stopped') > -1)
                     startFN();
                 else
-                    pauseFN();
+                    stopFN();
                 return true;
             });
             tr.addClass("torrentsTableContextMenuTarget");

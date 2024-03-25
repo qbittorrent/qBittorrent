@@ -189,8 +189,8 @@ namespace BitTorrent
         void setPeXEnabled(bool enabled) override;
         bool isAddTorrentToQueueTop() const override;
         void setAddTorrentToQueueTop(bool value) override;
-        bool isAddTorrentPaused() const override;
-        void setAddTorrentPaused(bool value) override;
+        bool isAddTorrentStopped() const override;
+        void setAddTorrentStopped(bool value) override;
         Torrent::StopCondition torrentStopCondition() const override;
         void setTorrentStopCondition(Torrent::StopCondition stopCondition) override;
         TorrentContentLayout torrentContentLayout() const override;
@@ -439,8 +439,8 @@ namespace BitTorrent
         void handleTorrentTagRemoved(TorrentImpl *torrent, const Tag &tag);
         void handleTorrentSavingModeChanged(TorrentImpl *torrent);
         void handleTorrentMetadataReceived(TorrentImpl *torrent);
-        void handleTorrentPaused(TorrentImpl *torrent);
-        void handleTorrentResumed(TorrentImpl *torrent);
+        void handleTorrentStopped(TorrentImpl *torrent);
+        void handleTorrentStarted(TorrentImpl *torrent);
         void handleTorrentChecked(TorrentImpl *torrent);
         void handleTorrentFinished(TorrentImpl *torrent);
         void handleTorrentTrackersAdded(TorrentImpl *torrent, const QVector<TrackerEntry> &newTrackers);
@@ -663,7 +663,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_globalMaxSeedingMinutes;
         CachedSettingValue<int> m_globalMaxInactiveSeedingMinutes;
         CachedSettingValue<bool> m_isAddTorrentToQueueTop;
-        CachedSettingValue<bool> m_isAddTorrentPaused;
+        CachedSettingValue<bool> m_isAddTorrentStopped;
         CachedSettingValue<Torrent::StopCondition> m_torrentStopCondition;
         CachedSettingValue<TorrentContentLayout> m_torrentContentLayout;
         CachedSettingValue<bool> m_isAppendExtensionEnabled;

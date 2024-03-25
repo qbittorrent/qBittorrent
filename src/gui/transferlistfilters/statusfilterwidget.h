@@ -68,8 +68,8 @@ private:
     int m_nbDownloading = 0;
     int m_nbSeeding = 0;
     int m_nbCompleted = 0;
-    int m_nbResumed = 0;
-    int m_nbPaused = 0;
+    int m_nbRunning = 0;
+    int m_nbStopped = 0;
     int m_nbActive = 0;
     int m_nbInactive = 0;
     int m_nbStalled = 0;

@@ -263,8 +263,8 @@ namespace
             }
 
             throw CommandLineParameterError(QCoreApplication::translate("CMD Options", "Parameter '%1' must follow syntax '%1=%2'",
-                                                        "e.g. Parameter '--add-paused' must follow syntax "
-                                                        "'--add-paused=<true|false>'")
+                                                        "e.g. Parameter '--add-stopped' must follow syntax "
+                                                        "'--add-stopped=<true|false>'")
                                             .arg(fullParameter(), u"<true|false>"_s));
         }
 
@@ -318,7 +318,7 @@ namespace
     constexpr const StringOption CONFIGURATION_OPTION {"configuration"};
     constexpr const BoolOption RELATIVE_FASTRESUME {"relative-fastresume"};
     constexpr const StringOption SAVE_PATH_OPTION {"save-path"};
-    constexpr const TriStateBoolOption PAUSED_OPTION {"add-paused", true};
+    constexpr const TriStateBoolOption STOPPED_OPTION {"add-stopped", true};
     constexpr const BoolOption SKIP_HASH_CHECK_OPTION {"skip-hash-check"};
     constexpr const StringOption CATEGORY_OPTION {"category"};
     constexpr const BoolOption SEQUENTIAL_OPTION {"sequential"};
@@ -345,7 +345,7 @@ QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &en
     addTorrentParams.skipChecking = SKIP_HASH_CHECK_OPTION.value(env);
     addTorrentParams.sequential = SEQUENTIAL_OPTION.value(env);
     addTorrentParams.firstLastPiecePriority = FIRST_AND_LAST_OPTION.value(env);
-    addTorrentParams.addPaused = PAUSED_OPTION.value(env);
+    addTorrentParams.addStopped = STOPPED_OPTION.value(env);
 }
 
 QBtCommandLineParameters parseCommandLine(const QStringList &args)
@@ -417,9 +417,9 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
             {
                 result.addTorrentParams.savePath = Path(SAVE_PATH_OPTION.value(arg));
             }
-            else if (arg == PAUSED_OPTION)
+            else if (arg == STOPPED_OPTION)
             {
-                result.addTorrentParams.addPaused = PAUSED_OPTION.value(arg);
+                result.addTorrentParams.addStopped = STOPPED_OPTION.value(arg);
             }
             else if (arg == SKIP_HASH_CHECK_OPTION)
             {
@@ -523,7 +523,7 @@ QString makeUsage(const QString &prgName)
 
         + wrapText(QCoreApplication::translate("CMD Options", "Options when adding new torrents:"), 0) + u'\n'
         + SAVE_PATH_OPTION.usage(QCoreApplication::translate("CMD Options", "path")) + wrapText(QCoreApplication::translate("CMD Options", "Torrent save path")) + u'\n'
-        + PAUSED_OPTION.usage() + wrapText(QCoreApplication::translate("CMD Options", "Add torrents as started or paused")) + u'\n'
+                         + STOPPED_OPTION.usage() + wrapText(QCoreApplication::translate("CMD Options", "Add torrents as running or stopped")) + u'\n'
         + SKIP_HASH_CHECK_OPTION.usage() + wrapText(QCoreApplication::translate("CMD Options", "Skip hash check")) + u'\n'
         + CATEGORY_OPTION.usage(QCoreApplication::translate("CMD Options", "name"))
         + wrapText(QCoreApplication::translate("CMD Options", "Assign torrents to category. If the category doesn't exist, it will be "

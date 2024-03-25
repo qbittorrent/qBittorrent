@@ -276,7 +276,7 @@ void TorrentsController::countAction()
 //   - "force_start": Torrent force start state
 //   - "category": Torrent category
 // GET params:
-//   - filter (string): all, downloading, seeding, completed, paused, resumed, active, inactive, stalled, stalled_uploading, stalled_downloading
+//   - filter (string): all, downloading, seeding, completed, stopped, running, active, inactive, stalled, stalled_uploading, stalled_downloading
 //   - category (string): torrent category for filtering by it (empty string means "uncategorized"; no "category" param presented means "any category")
 //   - tag (string): torrent tag for filtering by it (empty string means "untagged"; no "tag" param presented means "any tag")
 //   - hashes (string): filter by hashes, can contain multiple hashes separated by |
@@ -685,7 +685,7 @@ void TorrentsController::addAction()
     const bool seqDownload = parseBool(params()[u"sequentialDownload"_s]).value_or(false);
     const bool firstLastPiece = parseBool(params()[u"firstLastPiecePrio"_s]).value_or(false);
     const std::optional<bool> addToQueueTop = parseBool(params()[u"addToTopOfQueue"_s]);
-    const std::optional<bool> addPaused = parseBool(params()[u"paused"_s]);
+    const std::optional<bool> addStopped = parseBool(params()[u"stopped"_s]);
     const QString savepath = params()[u"savepath"_s].trimmed();
     const QString downloadPath = params()[u"downloadPath"_s].trimmed();
     const std::optional<bool> useDownloadPath = parseBool(params()[u"useDownloadPath"_s]);
@@ -740,7 +740,7 @@ void TorrentsController::addAction()
         .firstLastPiecePriority = firstLastPiece,
         .addForced = false,
         .addToQueueTop = addToQueueTop,
-        .addPaused = addPaused,
+        .addStopped = addStopped,
         .stopCondition = stopCondition,
         .filePaths = {},
         .filePriorities = {},
@@ -841,7 +841,7 @@ void TorrentsController::editTrackerAction()
 
     torrent->replaceTrackers(trackers);
 
-    if (!torrent->isPaused())
+    if (!torrent->isStopped())
         torrent->forceReannounce();
 }
 
@@ -857,7 +857,7 @@ void TorrentsController::removeTrackersAction()
     const QStringList urls = params()[u"urls"_s].split(u'|');
     torrent->removeTrackers(urls);
 
-    if (!torrent->isPaused())
+    if (!torrent->isStopped())
         torrent->forceReannounce();
 }
 
@@ -899,20 +899,20 @@ void TorrentsController::addPeersAction()
     setResult(results);
 }
 
-void TorrentsController::pauseAction()
+void TorrentsController::stopAction()
 {
     requireParams({u"hashes"_s});
 
     const QStringList hashes = params()[u"hashes"_s].split(u'|');
-    applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent) { torrent->pause(); });
+    applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent) { torrent->stop(); });
 }
 
-void TorrentsController::resumeAction()
+void TorrentsController::startAction()
 {
     requireParams({u"hashes"_s});
 
     const QStringList idStrings = params()[u"hashes"_s].split(u'|');
-    applyToTorrents(idStrings, [](BitTorrent::Torrent *const torrent) { torrent->resume(); });
+    applyToTorrents(idStrings, [](BitTorrent::Torrent *const torrent) { torrent->start(); });
 }
 
 void TorrentsController::filePrioAction()
@@ -1066,7 +1066,7 @@ void TorrentsController::setForceStartAction()
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     applyToTorrents(hashes, [value](BitTorrent::Torrent *const torrent)
     {
-        torrent->resume(value ? BitTorrent::TorrentOperatingMode::Forced : BitTorrent::TorrentOperatingMode::AutoManaged);
+        torrent->start(value ? BitTorrent::TorrentOperatingMode::Forced : BitTorrent::TorrentOperatingMode::AutoManaged);
     });
 }
 

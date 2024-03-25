@@ -314,6 +314,8 @@
         <file>network-connect.svg</file>
         <file>network-server.svg</file>
         <file>object-locked.svg</file>
+        <file>pause-session.svg</file>
+        <file>paused.svg</file>
         <file>peers-add.svg</file>
         <file>peers-remove.svg</file>
         <file>peers.svg</file>

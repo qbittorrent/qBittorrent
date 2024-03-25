@@ -128,7 +128,7 @@ private:
     enum class HideZeroValuesMode
     {
         Never,
-        Paused,
+        Stopped,
         Always
     };
 
@@ -140,7 +140,7 @@ private:
     QIcon m_downloadingIcon;
     QIcon m_errorIcon;
     QIcon m_movingIcon;
-    QIcon m_pausedIcon;
+    QIcon m_stoppedIcon;
     QIcon m_queuedIcon;
     QIcon m_stalledDLIcon;
     QIcon m_stalledUPIcon;

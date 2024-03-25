@@ -705,7 +705,7 @@
                 <td style="text-align: right;"><label for="max_ratio_act">QBT_TR(then)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                 <td>
                     <select id="max_ratio_act">
-                        <option value="0">QBT_TR(Pause torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="0">QBT_TR(Stop torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
                         <option value="1">QBT_TR(Remove torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
                         <option value="3">QBT_TR(Remove torrent and its files)QBT_TR[CONTEXT=OptionsDialog]</option>
                         <option value="2">QBT_TR(Enable super seeding for torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
@@ -2012,7 +2012,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     }
                     $('contentlayout_select').getChildren('option')[index].selected = true;
                     $('addToTopOfQueueCheckbox').setProperty('checked', pref.add_to_top_of_queue);
-                    $('dontstartdownloads_checkbox').setProperty('checked', pref.start_paused_enabled);
+                    $('dontstartdownloads_checkbox').setProperty('checked', pref.add_stopped_enabled);
                     switch (pref.torrent_stop_condition) {
                         case "None":
                             index = 0;
@@ -2232,7 +2232,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $('max_inactive_seeding_time_value').setProperty('value', (pref.max_inactive_seeding_time_enabled ? pref.max_inactive_seeding_time.toInt() : 1440));
                     let maxRatioAct = 0;
                     switch (pref.max_ratio_act.toInt()) {
-                        case 0: // Pause
+                        case 0: // Stop
                         default:
                             maxRatioAct = 0;
                             break;
@@ -2406,7 +2406,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // When adding a torrent
             settings['torrent_content_layout'] = $('contentlayout_select').getSelected()[0].getProperty('value');
             settings['add_to_top_of_queue'] = $('addToTopOfQueueCheckbox').getProperty('checked');
-            settings['start_paused_enabled'] = $('dontstartdownloads_checkbox').getProperty('checked');
+            settings['add_stopped_enabled'] = $('dontstartdownloads_checkbox').getProperty('checked');
             settings['torrent_stop_condition'] = $('stopConditionSelect').getSelected()[0].getProperty('value');
             settings['auto_delete_mode'] = Number($('deletetorrentfileafter_checkbox').getProperty('checked'));
 

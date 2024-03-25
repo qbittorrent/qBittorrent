@@ -54,7 +54,7 @@
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
 
-inline const Utils::Version<3, 2> API_VERSION {2, 10, 4};
+inline const Utils::Version<3, 2> API_VERSION {2, 11, 0};
 
 class QTimer;
 
@@ -177,6 +177,7 @@ private:
         {{u"torrents"_s, u"addPeers"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"addTags"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"addTrackers"_s}, Http::METHOD_POST},
+        {{u"transfer"_s, u"banPeers"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"bottomPrio"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"createCategory"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"createTags"_s}, Http::METHOD_POST},
@@ -187,7 +188,6 @@ private:
         {{u"torrents"_s, u"editTracker"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"filePrio"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"increasePrio"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"pause"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"reannounce"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"recheck"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"removeCategories"_s}, Http::METHOD_POST},
@@ -196,7 +196,6 @@ private:
         {{u"torrents"_s, u"rename"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"renameFile"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"renameFolder"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"resume"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setAutoManagement"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setCategory"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setDownloadLimit"_s}, Http::METHOD_POST},
@@ -208,14 +207,15 @@ private:
         {{u"torrents"_s, u"setSSLParameters"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setSuperSeeding"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setUploadLimit"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"toggleFirstLastPiecePrio"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"toggleSequentialDownload"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"topPrio"_s}, Http::METHOD_POST},
-        {{u"transfer"_s, u"banPeers"_s}, Http::METHOD_POST},
         {{u"transfer"_s, u"setDownloadLimit"_s}, Http::METHOD_POST},
         {{u"transfer"_s, u"setSpeedLimitsMode"_s}, Http::METHOD_POST},
         {{u"transfer"_s, u"setUploadLimit"_s}, Http::METHOD_POST},
+        {{u"torrents"_s, u"start"_s}, Http::METHOD_POST},
+        {{u"torrents"_s, u"stop"_s}, Http::METHOD_POST},
+        {{u"torrents"_s, u"toggleFirstLastPiecePrio"_s}, Http::METHOD_POST},
+        {{u"torrents"_s, u"toggleSequentialDownload"_s}, Http::METHOD_POST},
         {{u"transfer"_s, u"toggleSpeedLimitsMode"_s}, Http::METHOD_POST},
+        {{u"torrents"_s, u"topPrio"_s}, Http::METHOD_POST},
     };
     bool m_isAltUIUsed = false;
     Path m_rootFolder;

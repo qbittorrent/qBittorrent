@@ -46,7 +46,7 @@
 
 namespace
 {
-    const int MIGRATION_VERSION = 7;
+    const int MIGRATION_VERSION = 8;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_s;
 
     void exportWebUIHttpsFiles()
@@ -468,6 +468,16 @@ namespace
 
         settingsStorage->removeValue(oldKey);
     }
+
+    void migrateAddPausedSetting()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+        const auto oldKey = u"BitTorrent/Session/AddTorrentPaused"_s;
+        const auto newKey = u"BitTorrent/Session/AddTorrentStopped"_s;
+
+        settingsStorage->storeValue(newKey, settingsStorage->loadValue<bool>(oldKey));
+        settingsStorage->removeValue(oldKey);
+    }
 }
 
 bool upgrade()
@@ -508,6 +518,9 @@ bool upgrade()
 
         if (version < 7)
             migrateShareLimitActionSettings();
+
+        if (version < 8)
+            migrateAddPausedSetting();
 
         version = MIGRATION_VERSION;
     }

@@ -157,7 +157,7 @@ namespace BitTorrent
 
         TorrentInfo info() const override;
         bool isFinished() const override;
-        bool isPaused() const override;
+        bool isStopped() const override;
         bool isQueued() const override;
         bool isForced() const override;
         bool isChecking() const override;
@@ -222,8 +222,8 @@ namespace BitTorrent
         void setName(const QString &name) override;
         void setSequentialDownload(bool enable) override;
         void setFirstLastPiecePriority(bool enabled) override;
-        void pause() override;
-        void resume(TorrentOperatingMode mode = TorrentOperatingMode::AutoManaged) override;
+        void stop() override;
+        void start(TorrentOperatingMode mode = TorrentOperatingMode::AutoManaged) override;
         void forceReannounce(int index = -1) override;
         void forceDHTAnnounce() override;
         void forceRecheck() override;

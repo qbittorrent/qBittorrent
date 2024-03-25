@@ -70,8 +70,8 @@ namespace
             {BitTorrent::TorrentState::CheckingDownloading, u"TransferList.CheckingDownloading"_s},
             {BitTorrent::TorrentState::CheckingUploading, u"TransferList.CheckingUploading"_s},
             {BitTorrent::TorrentState::CheckingResumeData, u"TransferList.CheckingResumeData"_s},
-            {BitTorrent::TorrentState::PausedDownloading, u"TransferList.PausedDownloading"_s},
-            {BitTorrent::TorrentState::PausedUploading, u"TransferList.PausedUploading"_s},
+            {BitTorrent::TorrentState::StoppedDownloading, u"TransferList.StoppedDownloading"_s},
+            {BitTorrent::TorrentState::StoppedUploading, u"TransferList.StoppedUploading"_s},
             {BitTorrent::TorrentState::Moving, u"TransferList.Moving"_s},
             {BitTorrent::TorrentState::MissingFiles, u"TransferList.MissingFiles"_s},
             {BitTorrent::TorrentState::Error, u"TransferList.Error"_s}
@@ -106,8 +106,8 @@ TransferListModel::TransferListModel(QObject *parent)
           {BitTorrent::TorrentState::CheckingDownloading, tr("Checking", "Torrent local data is being checked")},
           {BitTorrent::TorrentState::CheckingUploading, tr("Checking", "Torrent local data is being checked")},
           {BitTorrent::TorrentState::CheckingResumeData, tr("Checking resume data", "Used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.")},
-          {BitTorrent::TorrentState::PausedDownloading, tr("Paused")},
-          {BitTorrent::TorrentState::PausedUploading, tr("Completed")},
+          {BitTorrent::TorrentState::StoppedDownloading, tr("Stopped")},
+          {BitTorrent::TorrentState::StoppedUploading, tr("Completed")},
           {BitTorrent::TorrentState::Moving, tr("Moving", "Torrent local data are being moved/relocated")},
           {BitTorrent::TorrentState::MissingFiles, tr("Missing Files")},
           {BitTorrent::TorrentState::Error, tr("Errored", "Torrent status, the torrent has an error")}
@@ -134,8 +134,8 @@ TransferListModel::TransferListModel(QObject *parent)
 
     connect(Session::instance(), &Session::torrentFinished, this, &TransferListModel::handleTorrentStatusUpdated);
     connect(Session::instance(), &Session::torrentMetadataReceived, this, &TransferListModel::handleTorrentStatusUpdated);
-    connect(Session::instance(), &Session::torrentResumed, this, &TransferListModel::handleTorrentStatusUpdated);
-    connect(Session::instance(), &Session::torrentPaused, this, &TransferListModel::handleTorrentStatusUpdated);
+    connect(Session::instance(), &Session::torrentStarted, this, &TransferListModel::handleTorrentStatusUpdated);
+    connect(Session::instance(), &Session::torrentStopped, this, &TransferListModel::handleTorrentStatusUpdated);
     connect(Session::instance(), &Session::torrentFinishedChecking, this, &TransferListModel::handleTorrentStatusUpdated);
 }
 
@@ -161,7 +161,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_NAME: return tr("Name", "i.e: torrent name");
             case TR_SIZE: return tr("Size", "i.e: torrent size");
             case TR_PROGRESS: return tr("Progress", "% Done");
-            case TR_STATUS: return tr("Status", "Torrent status (e.g. downloading, seeding, paused)");
+            case TR_STATUS: return tr("Status", "Torrent status (e.g. downloading, seeding, stopped)");
             case TR_SEEDS: return tr("Seeds", "i.e. full sources (often untranslated)");
             case TR_PEERS: return tr("Peers", "i.e. partial sources (often untranslated)");
             case TR_DLSPEED: return tr("Down Speed", "i.e: Download speed");
@@ -180,7 +180,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_AMOUNT_DOWNLOADED_SESSION: return tr("Session Download", "Amount of data downloaded since program open (e.g. in MB)");
             case TR_AMOUNT_UPLOADED_SESSION: return tr("Session Upload", "Amount of data uploaded since program open (e.g. in MB)");
             case TR_AMOUNT_LEFT: return tr("Remaining", "Amount of data left to download (e.g. in MB)");
-            case TR_TIME_ELAPSED: return tr("Time Active", "Time (duration) the torrent is active (not paused)");
+            case TR_TIME_ELAPSED: return tr("Time Active", "Time (duration) the torrent is active (not stopped)");
             case TR_SAVE_PATH: return tr("Save Path", "Torrent save path");
             case TR_DOWNLOAD_PATH: return tr("Incomplete Save Path", "Torrent incomplete save path");
             case TR_COMPLETED: return tr("Completed", "Amount of data completed (e.g. in MB)");
@@ -235,8 +235,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     bool hideValues = false;
     if (m_hideZeroValuesMode == HideZeroValuesMode::Always)
         hideValues = true;
-    else if (m_hideZeroValuesMode == HideZeroValuesMode::Paused)
-        hideValues = (torrent->state() == BitTorrent::TorrentState::PausedDownloading);
+    else if (m_hideZeroValuesMode == HideZeroValuesMode::Stopped)
+        hideValues = (torrent->state() == BitTorrent::TorrentState::StoppedDownloading);
 
     const auto availabilityString = [hideValues](const qreal value) -> QString
     {
@@ -683,7 +683,7 @@ void TransferListModel::configure()
     if (pref->getHideZeroValues())
     {
         if (pref->getHideZeroComboValues() == 1)
-            hideZeroValuesMode = HideZeroValuesMode::Paused;
+            hideZeroValuesMode = HideZeroValuesMode::Stopped;
         else
             hideZeroValuesMode = HideZeroValuesMode::Always;
     }
@@ -705,7 +705,7 @@ void TransferListModel::loadUIThemeResources()
     m_downloadingIcon = themeManager->getIcon(u"downloading"_s);
     m_errorIcon = themeManager->getIcon(u"error"_s);
     m_movingIcon = themeManager->getIcon(u"set-location"_s);
-    m_pausedIcon = themeManager->getIcon(u"stopped"_s, u"media-playback-pause"_s);
+    m_stoppedIcon = themeManager->getIcon(u"stopped"_s, u"media-playback-pause"_s);
     m_queuedIcon = themeManager->getIcon(u"queued"_s);
     m_stalledDLIcon = themeManager->getIcon(u"stalledDL"_s);
     m_stalledUPIcon = themeManager->getIcon(u"stalledUP"_s);
@@ -728,9 +728,9 @@ QIcon TransferListModel::getIconByState(const BitTorrent::TorrentState state) co
     case BitTorrent::TorrentState::Uploading:
     case BitTorrent::TorrentState::ForcedUploading:
         return m_uploadingIcon;
-    case BitTorrent::TorrentState::PausedDownloading:
-        return m_pausedIcon;
-    case BitTorrent::TorrentState::PausedUploading:
+    case BitTorrent::TorrentState::StoppedDownloading:
+        return m_stoppedIcon;
+    case BitTorrent::TorrentState::StoppedUploading:
         return m_completedIcon;
     case BitTorrent::TorrentState::QueuedDownloading:
     case BitTorrent::TorrentState::QueuedUploading:

@@ -227,12 +227,12 @@
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkConfirmPauseAndResumeAll">
+                <widget class="QCheckBox" name="checkConfirmStopAndStartAll">
                  <property name="toolTip">
-                  <string>Shows a confirmation dialog upon pausing/resuming all the torrents</string>
+                  <string>Shows a confirmation dialog upon pausing/starting all the torrents</string>
                  </property>
                  <property name="text">
-                  <string>Confirm &quot;Pause/Resume all&quot; actions</string>
+                  <string>Confirm &quot;Stop/Start all&quot; actions</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>
@@ -267,7 +267,7 @@
                    </item>
                    <item>
                     <property name="text">
-                     <string>Paused torrents only</string>
+                     <string>Stopped torrents only</string>
                     </property>
                    </item>
                   </widget>
@@ -925,12 +925,12 @@
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkStartPaused">
+                <widget class="QCheckBox" name="checkAddStopped">
                  <property name="toolTip">
-                  <string>The torrent will be added to download list in a paused state</string>
+                  <string>The torrent will be added to download list in a stopped state</string>
                  </property>
                  <property name="text">
-                  <string extracomment="The torrent will be added to download list in a paused state">Do not start the download automatically</string>
+                  <string extracomment="The torrent will be added to download list in a stopped state">Do not start the download automatically</string>
                  </property>
                 </widget>
                </item>
@@ -3043,7 +3043,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </property>
                  <item>
                   <property name="text">
-                   <string>Pause torrent</string>
+                   <string>Stop torrent</string>
                   </property>
                  </item>
                  <item>
@@ -3897,7 +3897,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>comboI18n</tabstop>
   <tabstop>checkUseCustomTheme</tabstop>
   <tabstop>customThemeFilePath</tabstop>
-  <tabstop>checkStartPaused</tabstop>
+  <tabstop>checkAddStopped</tabstop>
   <tabstop>stopConditionComboBox</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>
