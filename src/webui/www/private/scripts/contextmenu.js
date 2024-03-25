@@ -438,10 +438,10 @@ window.qBittorrent.ContextMenu = (function() {
             const contextCategoryList = $('contextCategoryList');
             contextCategoryList.getChildren().each(c => c.destroy());
             contextCategoryList.appendChild(new Element('li', {
-                html: '<a href="javascript:torrentNewCategoryFN();"><img src="images/list-add.svg" alt=i18next.t("New...")/> QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]</a>'
+                html: '<a href="javascript:torrentNewCategoryFN();"><img src="images/list-add.svg" class="qbt-translatable" data-i18n="[alt]New..." alt=i18next.t("New...")/> QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]</a>'
             }));
             contextCategoryList.appendChild(new Element('li', {
-                html: '<a href="javascript:torrentSetCategoryFN(0);"><img src="images/edit-clear.svg" alt=i18next.t("Reset")/> QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]</a>'
+                html: '<a href="javascript:torrentSetCategoryFN(0);"><img src="images/edit-clear.svg" class="qbt-translatable" data-i18n="[alt]Reset" alt=i18next.t("Reset")/> QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]</a>'
             }));
 
             const sortedCategories = [];
