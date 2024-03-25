@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>QBT_TR(Torrent Upload/Download Ratio Limiting)QBT_TR[CONTEXT=UpDownRatioDialog]</title>
+    <title class="qbt-translatable" data-i18n="Torrent Upload/Download Ratio Limiting">Torrent Upload/Download Ratio Limiting</title>
     <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
     <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
     <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
@@ -166,23 +166,23 @@
 
 <body>
     <div style="padding: 10px 10px 0px 10px;">
-        <input type="radio" name="shareLimit" id="default" value="default" onchange="shareLimitChanged()" checked style="margin-bottom: 5px;" />QBT_TR(Use global share limit)QBT_TR[CONTEXT=UpDownRatioDialog]<br />
-        <input type="radio" name="shareLimit" value="none" onchange="shareLimitChanged()" style="margin-bottom: 5px;" />QBT_TR(Set no share limit)QBT_TR[CONTEXT=UpDownRatioDialog]<br />
-        <input type="radio" name="shareLimit" value="custom" onchange="shareLimitChanged()" style="margin-bottom: 5px;" />QBT_TR(Set share limit to)QBT_TR[CONTEXT=UpDownRatioDialog]<br />
+        <input type="radio" name="shareLimit" id="default" value="default" onchange="shareLimitChanged()" checked style="margin-bottom: 5px;" / class="qbt-translatable" data-i18n="Use global share limit">Use global share limit<br />
+        <input type="radio" name="shareLimit" value="none" onchange="shareLimitChanged()" style="margin-bottom: 5px;" / class="qbt-translatable" data-i18n="Set no share limit">Set no share limit<br />
+        <input type="radio" name="shareLimit" value="custom" onchange="shareLimitChanged()" style="margin-bottom: 5px;" / class="qbt-translatable" data-i18n="Set share limit to">Set share limit to<br />
 
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <input type="checkbox" id="setRatio" class="shareLimitInput" onclick="enableInputBoxes()" />
-            <label for="setRatio">QBT_TR(ratio)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <label for="setRatio" class="qbt-translatable" data-i18n="ratio">ratio</label>
             <input type="number" id="ratio" value="0.00" step=".01" min="0" max="9999" class="shareLimitInput" />
         </div>
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <input type="checkbox" id="setTotalMinutes" class="shareLimitInput" onclick="enableInputBoxes()" />
-            <label for="setTotalMinutes">QBT_TR(total minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <label for="setTotalMinutes" class="qbt-translatable" data-i18n="total minutes">total minutes</label>
             <input type="number" id="totalMinutes" value="0" step="1" min="0" max="525600" class="shareLimitInput" />
         </div>
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <input type="checkbox" id="setInactiveMinutes" class="shareLimitInput" onclick="enableInputBoxes()" />
-            <label for="setInactiveMinutes">QBT_TR(inactive minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <label for="setInactiveMinutes" class="qbt-translatable" data-i18n="inactive minutes">inactive minutes</label>
             <input type="number" id="inactiveMinutes" value="0" step="1" min="0" max="525600" class="shareLimitInput" />
         </div>
         <div style="text-align: center; padding-top: 10px;">

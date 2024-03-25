@@ -85,20 +85,20 @@
 <div id="logView">
     <div id="logTopBar">
         <div id="logFilterBar">
-            <label for="logLevelSelect">QBT_TR(Log Levels:)QBT_TR[CONTEXT=ExecutionLogWidget]</label>
+            <label for="logLevelSelect" class="qbt-translatable" data-i18n="Log Levels:">Log Levels:</label>
             <select multiple size="1" id="logLevelSelect" class="logLevelSelect" onchange="window.qBittorrent.Log.logLevelChanged()">
-                <option value="1">QBT_TR(Normal Messages)QBT_TR[CONTEXT=ExecutionLogWidget]</option>
-                <option value="2">QBT_TR(Information Messages)QBT_TR[CONTEXT=ExecutionLogWidget]</option>
-                <option value="4">QBT_TR(Warning Messages)QBT_TR[CONTEXT=ExecutionLogWidget]</option>
-                <option value="8">QBT_TR(Critical Messages)QBT_TR[CONTEXT=ExecutionLogWidget]</option>
+                <option value="1" class="qbt-translatable" data-i18n="Normal Messages">Normal Messages</option>
+                <option value="2" class="qbt-translatable" data-i18n="Information Messages">Information Messages</option>
+                <option value="4" class="qbt-translatable" data-i18n="Warning Messages">Warning Messages</option>
+                <option value="8" class="qbt-translatable" data-i18n="Critical Messages">Critical Messages</option>
             </select>
 
             <input type="text" id="filterTextInput" onkeyup="window.qBittorrent.Log.filterTextChanged()" placeholder="QBT_TR(Filter logs)QBT_TR[CONTEXT=ExecutionLogWidget]" autocomplete="off" autocorrect="off" autocapitalize="none" />
-            <button type="button" title="Clear input" onclick="javascript:document.querySelector('#filterTextInput').value='';window.qBittorrent.Log.filterTextChanged();">QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]</button>
+            <button type="button" title="Clear input" onclick="javascript:document.querySelector('#filterTextInput').value='';window.qBittorrent.Log.filterTextChanged();" class="qbt-translatable" data-i18n="Clear">Clear</button>
         </div>
 
         <div id="logFilterSummary">
-            <span>QBT_TR(Results)QBT_TR[CONTEXT=ExecutionLogWidget] (QBT_TR(showing)QBT_TR[CONTEXT=ExecutionLogWidget] <span id="numFilteredLogs">0</span> QBT_TR(out of)QBT_TR[CONTEXT=ExecutionLogWidget] <span id="numTotalLogs">0</span>):</span>
+            <span class="qbt-translatable" data-i18n="Results">Results (QBT_TR(showing)QBT_TR[CONTEXT=ExecutionLogWidget] <span id="numFilteredLogs">0</span> QBT_TR(out of)QBT_TR[CONTEXT=ExecutionLogWidget] <span id="numTotalLogs">0</span>):</span>
         </div>
     </div>
 
@@ -141,8 +141,8 @@
 </div>
 
 <ul id="logTableMenu" class="contextMenu">
-    <li><a href="#" class="copyLogDataToClipboard"><img src="images/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=ExecutionLogWidget]" />QBT_TR(Copy)QBT_TR[CONTEXT=ExecutionLogWidget]</a></li>
-    <li><a href="#Clear"><img src="images/list-remove.svg" alt="QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]" />QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]</a></li>
+    <li><a href="#" class="copyLogDataToClipboard"><img src="images/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=ExecutionLogWidget]" / class="qbt-translatable" data-i18n="Copy">Copy</a></li>
+    <li><a href="#Clear"><img src="images/list-remove.svg" alt="QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]" / class="qbt-translatable" data-i18n="Clear">Clear</a></li>
 </ul>
 
 <script>

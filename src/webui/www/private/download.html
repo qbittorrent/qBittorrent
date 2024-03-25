@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>QBT_TR(Add Torrent Links)QBT_TR[CONTEXT=downloadFromURL]</title>
+    <title class="qbt-translatable" data-i18n="Add Torrent Links">Add Torrent Links</title>
     <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
     <link rel="stylesheet" href="css/Window.css?v=${CACHEID}" type="text/css" />
     <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
@@ -19,23 +19,23 @@
             <br />
             <h2 class="vcenter">QBT_TR(Download Torrents from their URLs or Magnet links)QBT_TR[CONTEXT=HttpServer]</h2>
             <textarea id="urls" rows="10" name="urls"></textarea>
-            <p>QBT_TR(Only one link per line)QBT_TR[CONTEXT=HttpServer]</p>
+            <p class="qbt-translatable" data-i18n="Only one link per line">Only one link per line</p>
             <fieldset class="settings" style="border: 0; text-align: left; margin-top: 6px;">
                 <table style="margin: auto;">
                     <tr>
                         <td>
-                            <label for="autoTMM">QBT_TR(Torrent Management Mode:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                            <label for="autoTMM" class="qbt-translatable" data-i18n="Torrent Management Mode:">Torrent Management Mode:</label>
                         </td>
                         <td>
                             <select id="autoTMM" name="autoTMM" onchange="qBittorrent.Download.changeTMM(this)">
-                                <option selected value="false">QBT_TR(Manual)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
-                                <option value="true">QBT_TR(Automatic)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                                <option selected value="false" class="qbt-translatable" data-i18n="Manual">Manual</option>
+                                <option value="true" class="qbt-translatable" data-i18n="Automatic">Automatic</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label for="savepath">QBT_TR(Save files to location:)QBT_TR[CONTEXT=HttpServer]</label>
+                            <label for="savepath" class="qbt-translatable" data-i18n="Save files to location:">Save files to location:</label>
                         </td>
                         <td>
                             <input type="text" id="savepath" name="savepath" style="width: 16em;" />
@@ -43,7 +43,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="cookie">QBT_TR(Cookie:)QBT_TR[CONTEXT=HttpServer]</label>
+                            <label for="cookie" class="qbt-translatable" data-i18n="Cookie:">Cookie:</label>
                         </td>
                         <td>
                             <input type="text" id="cookie" name="cookie" style="width: 16em;" />
@@ -51,7 +51,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="rename">QBT_TR(Rename torrent)QBT_TR[CONTEXT=HttpServer]</label>
+                            <label for="rename" class="qbt-translatable" data-i18n="Rename torrent">Rename torrent</label>
                         </td>
                         <td>
                             <input type="text" id="rename" name="rename" style="width: 16em;" />
@@ -59,7 +59,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="category">QBT_TR(Category:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                            <label for="category" class="qbt-translatable" data-i18n="Category:">Category:</label>
                         </td>
                         <td>
                             <div class="select-watched-folder-editable">
@@ -72,7 +72,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="startTorrent">QBT_TR(Start torrent)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                            <label for="startTorrent" class="qbt-translatable" data-i18n="Start torrent">Start torrent</label>
                         </td>
                         <td>
                             <input type="hidden" id="startTorrentHidden" name="paused" />
@@ -81,7 +81,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="addToTopOfQueue">QBT_TR(Add to top of queue)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                            <label for="addToTopOfQueue" class="qbt-translatable" data-i18n="Add to top of queue">Add to top of queue</label>
                         </td>
                         <td>
                             <input type="checkbox" id="addToTopOfQueue" name="addToTopOfQueue" value="true" />
@@ -89,19 +89,19 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="stopCondition">QBT_TR(Stop condition:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                            <label for="stopCondition" class="qbt-translatable" data-i18n="Stop condition:">Stop condition:</label>
                         </td>
                         <td>
                             <select id="stopCondition" name="stopCondition">
-                                <option selected value="None">QBT_TR(None)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
-                                <option value="MetadataReceived">QBT_TR(Metadata received)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
-                                <option value="FilesChecked">QBT_TR(Files checked)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                                <option selected value="None" class="qbt-translatable" data-i18n="None">None</option>
+                                <option value="MetadataReceived" class="qbt-translatable" data-i18n="Metadata received">Metadata received</option>
+                                <option value="FilesChecked" class="qbt-translatable" data-i18n="Files checked">Files checked</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label for="skip_checking">QBT_TR(Skip hash check)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                            <label for="skip_checking" class="qbt-translatable" data-i18n="Skip hash check">Skip hash check</label>
                         </td>
                         <td>
                             <input type="checkbox" id="skip_checking" name="skip_checking" value="true" />
@@ -109,19 +109,19 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="contentLayout">QBT_TR(Content layout:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                            <label for="contentLayout" class="qbt-translatable" data-i18n="Content layout:">Content layout:</label>
                         </td>
                         <td>
                             <select id="contentLayout" name="contentLayout">
-                                <option selected value="Original">QBT_TR(Original)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
-                                <option value="Subfolder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
-                                <option value="NoSubfolder">QBT_TR(Don't create subfolder)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                                <option selected value="Original" class="qbt-translatable" data-i18n="Original">Original</option>
+                                <option value="Subfolder" class="qbt-translatable" data-i18n="Create subfolder">Create subfolder</option>
+                                <option value="NoSubfolder" class="qbt-translatable" data-i18n="Don't create subfolder">Don't create subfolder</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label for="sequentialDownload">QBT_TR(Download in sequential order)QBT_TR[CONTEXT=TransferListWidget]</label>
+                            <label for="sequentialDownload" class="qbt-translatable" data-i18n="Download in sequential order">Download in sequential order</label>
                         </td>
                         <td>
                             <input type="checkbox" id="sequentialDownload" name="sequentialDownload" value="true" />
@@ -129,7 +129,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="firstLastPiecePrio">QBT_TR(Download first and last pieces first)QBT_TR[CONTEXT=TransferListWidget]</label>
+                            <label for="firstLastPiecePrio" class="qbt-translatable" data-i18n="Download first and last pieces first">Download first and last pieces first</label>
                         </td>
                         <td>
                             <input type="checkbox" id="firstLastPiecePrio" name="firstLastPiecePrio" value="true" />
@@ -137,7 +137,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="dlLimitText">QBT_TR(Limit download rate)QBT_TR[CONTEXT=HttpServer]</label>
+                            <label for="dlLimitText" class="qbt-translatable" data-i18n="Limit download rate">Limit download rate</label>
                         </td>
                         <td>
                             <input type="hidden" id="dlLimitHidden" name="dlLimit" />
@@ -146,7 +146,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="upLimitText">QBT_TR(Limit upload rate)QBT_TR[CONTEXT=HttpServer]</label>
+                            <label for="upLimitText" class="qbt-translatable" data-i18n="Limit upload rate">Limit upload rate</label>
                         </td>
                         <td>
                             <input type="hidden" id="upLimitHidden" name="upLimit" />
@@ -155,7 +155,7 @@
                     </tr>
                 </table>
                 <div id="submitbutton" style="margin-top: 12px; text-align: center;">
-                    <button type="submit" id="submitButton">QBT_TR(Download)QBT_TR[CONTEXT=downloadFromURL]</button>
+                    <button type="submit" id="submitButton" class="qbt-translatable" data-i18n="Download">Download</button>
                 </div>
             </fieldset>
         </div>

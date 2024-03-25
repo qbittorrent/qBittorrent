@@ -135,7 +135,7 @@
     </div>
     <div id="leftRssDownloaderColumn">
         <div id="topMenuBar">
-            <b id="rulesTableDesc">QBT_TR(Download Rules)QBT_TR[CONTEXT=AutomatedRssDownloader]</b>
+            <b id="rulesTableDesc" class="qbt-translatable" data-i18n="Download Rules">Download Rules</b>
             <button type="button" id="newRuleButton" class="imageButton" onclick="qBittorrent.RssDownloader.addRule()"></button>
             <button type="button" id="deleteRuleButton" class="imageButton" onclick="qBittorrent.RssDownloader.removeSelectedRule()"></button>
         </div>
@@ -161,10 +161,10 @@
     </div>
     <div id="centerRssDownloaderColumn">
         <fieldset class="settings" id="ruleSettings">
-            <legend>QBT_TR(Rule Definition)QBT_TR[CONTEXT=AutomatedRssDownloader]</legend>
+            <legend class="qbt-translatable" data-i18n="Rule Definition">Rule Definition</legend>
             <div class="formRow">
                 <input disabled type="checkbox" id="useRegEx" onclick="qBittorrent.RssDownloader.setElementTitles()" />
-                <label for="useRegEx">QBT_TR(Use Regular Expressions)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                <label for="useRegEx" class="qbt-translatable" data-i18n="Use Regular Expressions">Use Regular Expressions</label>
             </div>
             <table class="fullWidth">
                 <tr>
@@ -195,7 +195,7 @@
             <div class="formRow" title="QBT_TR(Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator))QBT_TR[CONTEXT=AutomatedRssDownloader]">
                 <input disabled type="checkbox" id="useSmartFilter" />
-                <label for="useSmartFilter">QBT_TR(Use Smart Episode Filter)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                <label for="useSmartFilter" class="qbt-translatable" data-i18n="Use Smart Episode Filter">Use Smart Episode Filter</label>
             </div>
 
             <hr>
@@ -223,7 +223,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
             <div class="formRow">
                 <input disabled type="checkbox" id="savetoDifferentDir" />
-                <label for="savetoDifferentDir">QBT_TR(Save to a Different Directory)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                <label for="savetoDifferentDir" class="qbt-translatable" data-i18n="Save to a Different Directory">Save to a Different Directory</label>
             </div>
             <table class="fullWidth">
                 <tr>
@@ -237,12 +237,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             </table>
             <table>
                 <tr>
-                    <td><label for="ignoreDaysValue">QBT_TR(Ignore Subsequent Matches for (0 to Disable))QBT_TR[CONTEXT=AutomatedRssDownloader]</label></td>
-                    <td><input type="number" id="ignoreDaysValue" min="0" />QBT_TR( days)QBT_TR[CONTEXT=AutomatedRssDownloader]</td>
+                    <td><label for="ignoreDaysValue" class="qbt-translatable" data-i18n="Ignore Subsequent Matches for (0 to Disable)">Ignore Subsequent Matches for (0 to Disable)</label></td>
+                    <td><input type="number" id="ignoreDaysValue" min="0" / class="qbt-translatable" data-i18n=" days"> days</td>
                 </tr>
             </table>
             <div id="lastMatchDiv">
-                <span id="lastMatchText">QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]</span>
+                <span id="lastMatchText" class="qbt-translatable" data-i18n="Last Match: Unknown">Last Match: Unknown</span>
             </div>
             <table class="fullWidth">
                 <tr>
@@ -251,9 +251,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     </td>
                     <td class="fullWidth">
                         <select disabled id="addPausedCombobox" class="fullWidth">
-                            <option value="default">QBT_TR(Use global settings)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
-                            <option value="always">QBT_TR(Always)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
-                            <option value="never">QBT_TR(Never)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                            <option value="default" class="qbt-translatable" data-i18n="Use global settings">Use global settings</option>
+                            <option value="always" class="qbt-translatable" data-i18n="Always">Always</option>
+                            <option value="never" class="qbt-translatable" data-i18n="Never">Never</option>
                         </select>
                     </td>
                 </tr>
@@ -265,17 +265,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     </td>
                     <td class="fullWidth">
                         <select disabled id="contentLayoutCombobox" class="fullWidth">
-                            <option value="Default">QBT_TR(Use global settings)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
-                            <option value="Original">QBT_TR(Original)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
-                            <option value="Subfolder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
-                            <option value="NoSubfolder">QBT_TR(Don't create subfolder)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                            <option value="Default" class="qbt-translatable" data-i18n="Use global settings">Use global settings</option>
+                            <option value="Original" class="qbt-translatable" data-i18n="Original">Original</option>
+                            <option value="Subfolder" class="qbt-translatable" data-i18n="Create subfolder">Create subfolder</option>
+                            <option value="NoSubfolder" class="qbt-translatable" data-i18n="Don't create subfolder">Don't create subfolder</option>
                         </select>
                     </td>
                 </tr>
             </table>
         </fieldset>
         <fieldset class="settings" id="rssDownloaderFeeds">
-            <legend>QBT_TR(Apply Rule to Feeds:)QBT_TR[CONTEXT=AutomatedRssDownloader]</legend>
+            <legend class="qbt-translatable" data-i18n="Apply Rule to Feeds:">Apply Rule to Feeds:</legend>
             <div id="rssDownloaderFeedsTable">
                 <div id="rssDownloaderFeedSelectionFixedHeaderDiv" class="dynamicTableFixedHeaderDiv invisible">
                     <table class="dynamicTable unselectable">
@@ -299,7 +299,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         </button>
     </div>
     <div id="rightRssDownloaderColumn">
-        <b id="articleTableDesc">QBT_TR(Matching RSS Articles)QBT_TR[CONTEXT=AutomatedRssDownloader]</b>
+        <b id="articleTableDesc" class="qbt-translatable" data-i18n="Matching RSS Articles">Matching RSS Articles</b>
         <div id="rssDownloaderArticlesTable">
             <div id="rssDownloaderArticlesFixedHeaderDiv" class="dynamicTableFixedHeaderDiv invisible">
                 <table class="dynamicTable unselectable">
