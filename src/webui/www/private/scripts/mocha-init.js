@@ -131,7 +131,7 @@ const initializeWindows = function() {
 
         new MochaUI.Window({
             id: id,
-            title: "QBT_TR(Download from URLs)QBT_TR[CONTEXT=downloadFromURL]",
+            title: i18next.t("Download from URLs"),
             loadMethod: 'iframe',
             contentURL: contentUri.toString(),
             addClass: 'windowFrame', // fixes iframe scrolling on iOS Safari
@@ -154,7 +154,7 @@ const initializeWindows = function() {
         const id = 'preferencesPage';
         new MochaUI.Window({
             id: id,
-            title: "QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]",
+            title: i18next.t("Options"),
             loadMethod: 'xhr',
             toolbar: true,
             contentURL: new URI("views/preferences.html").toString(),
@@ -179,7 +179,7 @@ const initializeWindows = function() {
         const id = 'uploadPage';
         new MochaUI.Window({
             id: id,
-            title: "QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]",
+            title: i18next.t("Upload local torrent"),
             loadMethod: 'iframe',
             contentURL: new URI("upload.html").toString(),
             addClass: 'windowFrame', // fixes iframe scrolling on iOS Safari
@@ -199,7 +199,7 @@ const initializeWindows = function() {
     globalUploadLimitFN = function() {
         new MochaUI.Window({
             id: 'uploadLimitPage',
-            title: "QBT_TR(Global Upload Speed Limit)QBT_TR[CONTEXT=MainWindow]",
+            title: i18next.t("Global Upload Speed Limit"),
             loadMethod: 'iframe',
             contentURL: new URI("uploadlimit.html").setData("hashes", "global").toString(),
             scrollbars: false,
@@ -217,7 +217,7 @@ const initializeWindows = function() {
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'uploadLimitPage',
-                title: "QBT_TR(Torrent Upload Speed Limiting)QBT_TR[CONTEXT=TransferListWidget]",
+                title: i18next.t("Torrent Upload Speed Limiting"),
                 loadMethod: 'iframe',
                 contentURL: new URI("uploadlimit.html").setData("hashes", hashes.join("|")).toString(),
                 scrollbars: false,
@@ -258,7 +258,7 @@ const initializeWindows = function() {
             const orig = torrentsHaveSameShareRatio ? shareRatio : "";
             new MochaUI.Window({
                 id: 'shareRatioPage',
-                title: "QBT_TR(Torrent Upload/Download Ratio Limiting)QBT_TR[CONTEXT=UpDownRatioDialog]",
+                title: i18next.t("Torrent Upload/Download Ratio Limiting"),
                 loadMethod: 'iframe',
                 contentURL: new URI("shareratio.html").setData("hashes", hashes.join("|")).setData("orig", orig).toString(),
                 scrollbars: false,
@@ -332,7 +332,7 @@ const initializeWindows = function() {
     globalDownloadLimitFN = function() {
         new MochaUI.Window({
             id: 'downloadLimitPage',
-            title: "QBT_TR(Global Download Speed Limit)QBT_TR[CONTEXT=MainWindow]",
+            title: i18next.t("Global Download Speed Limit"),
             loadMethod: 'iframe',
             contentURL: new URI("downloadlimit.html").setData("hashes", "global").toString(),
             scrollbars: false,
@@ -349,7 +349,7 @@ const initializeWindows = function() {
         const id = 'statisticspage';
         new MochaUI.Window({
             id: id,
-            title: 'QBT_TR(Statistics)QBT_TR[CONTEXT=StatsDialog]',
+            title: i18next.t('Statistics'),
             loadMethod: 'xhr',
             contentURL: new URI("views/statistics.html").toString(),
             maximizable: false,
@@ -367,7 +367,7 @@ const initializeWindows = function() {
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'downloadLimitPage',
-                title: "QBT_TR(Torrent Download Speed Limiting)QBT_TR[CONTEXT=TransferListWidget]",
+                title: i18next.t("Torrent Download Speed Limiting"),
                 loadMethod: 'iframe',
                 contentURL: new URI("downloadlimit.html").setData("hashes", hashes.join("|")).toString(),
                 scrollbars: false,
@@ -386,7 +386,7 @@ const initializeWindows = function() {
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
-                title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
+                title: i18next.t("Remove torrent(s)"),
                 loadMethod: 'iframe',
                 contentURL: new URI("confirmdeletion.html").setData("hashes", hashes.join("|")).setData("deleteFiles", deleteFiles).toString(),
                 scrollbars: false,
@@ -490,7 +490,7 @@ const initializeWindows = function() {
 
             new MochaUI.Window({
                 id: 'setLocationPage',
-                title: "QBT_TR(Set location)QBT_TR[CONTEXT=TransferListWidget]",
+                title: i18next.t("Set location"),
                 loadMethod: 'iframe',
                 contentURL: new URI("setlocation.html").setData("hashes", hashes.join('|')).setData("path", encodeURIComponent(row.full_data.save_path)).toString(),
                 scrollbars: false,
@@ -512,7 +512,7 @@ const initializeWindows = function() {
             if (row) {
                 new MochaUI.Window({
                     id: 'renamePage',
-                    title: "QBT_TR(Rename)QBT_TR[CONTEXT=TransferListWidget]",
+                    title: i18next.t("Rename"),
                     loadMethod: 'iframe',
                     contentURL: new URI("rename.html").setData("hash", hash).setData("name", row.full_data.name).toString(),
                     scrollbars: false,
@@ -535,7 +535,7 @@ const initializeWindows = function() {
             if (row) {
                 new MochaUI.Window({
                     id: 'multiRenamePage',
-                    title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TransferListWidget]",
+                    title: i18next.t("Renaming"),
                     data: { hash: hash, selectedRows: [] },
                     loadMethod: 'xhr',
                     contentURL: 'rename_files.html',
@@ -558,7 +558,7 @@ const initializeWindows = function() {
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'newCategoryPage',
-                title: "QBT_TR(New Category)QBT_TR[CONTEXT=TransferListWidget]",
+                title: i18next.t("New Category"),
                 loadMethod: 'iframe',
                 contentURL: new URI("newcategory.html").setData("action", action).setData("hashes", hashes.join('|')).toString(),
                 scrollbars: false,
@@ -594,7 +594,7 @@ const initializeWindows = function() {
         const action = "create";
         new MochaUI.Window({
             id: 'newCategoryPage',
-            title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
+            title: i18next.t("New Category"),
             loadMethod: 'iframe',
             contentURL: new URI("newcategory.html").setData("action", action).toString(),
             scrollbars: false,
@@ -613,7 +613,7 @@ const initializeWindows = function() {
         const categoryName = category_list.get(categoryHash).name + "/";
         new MochaUI.Window({
             id: 'newSubcategoryPage',
-            title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
+            title: i18next.t("New Category"),
             loadMethod: 'iframe',
             contentURL: new URI("newcategory.html").setData("action", action).setData("categoryName", categoryName).toString(),
             scrollbars: false,
@@ -632,7 +632,7 @@ const initializeWindows = function() {
         const category = category_list.get(categoryHash);
         new MochaUI.Window({
             id: 'editCategoryPage',
-            title: "QBT_TR(Edit Category)QBT_TR[CONTEXT=TransferListWidget]",
+            title: i18next.t("Edit Category"),
             loadMethod: 'iframe',
             contentURL: new URI('newcategory.html').setData("action", action).setData("categoryName", category.name).setData("savePath", category.savePath).toString(),
             scrollbars: false,
@@ -708,7 +708,7 @@ const initializeWindows = function() {
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
-                title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
+                title: i18next.t("Remove torrent(s)"),
                 loadMethod: 'iframe',
                 contentURL: new URI("confirmdeletion.html").setData("hashes", hashes.join("|")).toString(),
                 scrollbars: false,
@@ -728,7 +728,7 @@ const initializeWindows = function() {
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'newTagPage',
-                title: "QBT_TR(Add Tags)QBT_TR[CONTEXT=TransferListWidget]",
+                title: i18next.t("Add Tags"),
                 loadMethod: 'iframe',
                 contentURL: new URI("newtag.html").setData("action", action).setData("hashes", hashes.join("|")).toString(),
                 scrollbars: false,
@@ -775,7 +775,7 @@ const initializeWindows = function() {
         const action = "create";
         new MochaUI.Window({
             id: 'newTagPage',
-            title: "QBT_TR(New Tag)QBT_TR[CONTEXT=TagFilterWidget]",
+            title: i18next.t("New Tag"),
             loadMethod: 'iframe',
             contentURL: new URI("newtag.html").setData("action", action).toString(),
             scrollbars: false,
@@ -850,7 +850,7 @@ const initializeWindows = function() {
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
-                title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
+                title: i18next.t("Remove torrent(s)"),
                 loadMethod: 'iframe',
                 contentURL: new URI("confirmdeletion.html").setData("hashes", hashes.join("|")).toString(),
                 scrollbars: false,
@@ -936,7 +936,7 @@ const initializeWindows = function() {
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
-                title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
+                title: i18next.t("Remove torrent(s)"),
                 loadMethod: 'iframe',
                 contentURL: new URI("confirmdeletion.html").setData("hashes", hashes.join("|")).toString(),
                 scrollbars: false,
@@ -1050,7 +1050,7 @@ const initializeWindows = function() {
     addClickEvent('pauseAll', (e) => {
         new Event(e).stop();
 
-        if (confirm('QBT_TR(Would you like to pause all torrents?)QBT_TR[CONTEXT=MainWindow]')) {
+        if (confirm(i18next.t('Would you like to pause all torrents?'))) {
             new Request({
                 url: 'api/v2/torrents/pause',
                 method: 'post',
@@ -1065,7 +1065,7 @@ const initializeWindows = function() {
     addClickEvent('resumeAll', (e) => {
         new Event(e).stop();
 
-        if (confirm('QBT_TR(Would you like to resume all torrents?)QBT_TR[CONTEXT=MainWindow]')) {
+        if (confirm(i18next.t('Would you like to resume all torrents?'))) {
             new Request({
                 url: 'api/v2/torrents/resume',
                 method: 'post',
@@ -1122,7 +1122,7 @@ const initializeWindows = function() {
         const id = 'aboutpage';
         new MochaUI.Window({
             id: id,
-            title: 'QBT_TR(About qBittorrent)QBT_TR[CONTEXT=AboutDialog]',
+            title: i18next.t('About qBittorrent'),
             loadMethod: 'xhr',
             contentURL: new URI("views/about.html").toString(),
             require: {
@@ -1152,12 +1152,12 @@ const initializeWindows = function() {
 
     addClickEvent('shutdown', function(e) {
         new Event(e).stop();
-        if (confirm('QBT_TR(Are you sure you want to quit qBittorrent?)QBT_TR[CONTEXT=MainWindow]')) {
+        if (confirm(i18next.t('Are you sure you want to quit qBittorrent?'))) {
             new Request({
                 url: 'api/v2/app/shutdown',
                 method: 'post',
                 onSuccess: function() {
-                    const shutdownMessage = 'QBT_TR(%1 has been shutdown)QBT_TR[CONTEXT=HttpServer]'.replace("%1", window.qBittorrent.Client.mainTitle());
+                    const shutdownMessage = i18next.t('%1 has been shutdown').replace("%1", window.qBittorrent.Client.mainTitle());
                     document.write(`<!doctype html><html lang="${LANG}"><head> <meta charset="UTF-8"> <meta name="color-scheme" content="light dark"> <title>${shutdownMessage}</title> <style>* {font-family: Arial, Helvetica, sans-serif;}</style></head><body> <h1 style="text-align: center;">${shutdownMessage}</h1></body></html>`);
                     document.close();
                     window.stop();

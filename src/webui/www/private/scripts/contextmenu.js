@@ -438,10 +438,10 @@ window.qBittorrent.ContextMenu = (function() {
             const contextCategoryList = $('contextCategoryList');
             contextCategoryList.getChildren().each(c => c.destroy());
             contextCategoryList.appendChild(new Element('li', {
-                html: '<a href="javascript:torrentNewCategoryFN();"><img src="images/list-add.svg" alt="QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]</a>'
+                html: '<a href="javascript:torrentNewCategoryFN();"><img src="images/list-add.svg" alt=i18next.t("New...")/> QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]</a>'
             }));
             contextCategoryList.appendChild(new Element('li', {
-                html: '<a href="javascript:torrentSetCategoryFN(0);"><img src="images/edit-clear.svg" alt="QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]</a>'
+                html: '<a href="javascript:torrentSetCategoryFN(0);"><img src="images/edit-clear.svg" alt=i18next.t("Reset")/> QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]</a>'
             }));
 
             const sortedCategories = [];
@@ -472,13 +472,13 @@ window.qBittorrent.ContextMenu = (function() {
 
             contextTagList.appendChild(new Element('li', {
                 html: '<a href="javascript:torrentAddTagsFN();">'
-                    + '<img src="images/list-add.svg" alt="QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]"/>'
+                    + '<img src="images/list-add.svg" alt=i18next.t("Add...")/>'
                     + ' QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]'
                     + '</a>'
             }));
             contextTagList.appendChild(new Element('li', {
                 html: '<a href="javascript:torrentRemoveAllTagsFN();">'
-                    + '<img src="images/edit-clear.svg" alt="QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]"/>'
+                    + '<img src="images/edit-clear.svg" alt=i18next.t("Remove All")/>'
                     + ' QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]'
                     + '</a>'
             }));

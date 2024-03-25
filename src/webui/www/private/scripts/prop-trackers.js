@@ -79,19 +79,19 @@ window.qBittorrent.PropTrackers = (function() {
                         let status;
                         switch (tracker.status) {
                             case 0:
-                                status = "QBT_TR(Disabled)QBT_TR[CONTEXT=TrackerListWidget]";
+                                status = i18next.t("Disabled");
                                 break;
                             case 1:
-                                status = "QBT_TR(Not contacted yet)QBT_TR[CONTEXT=TrackerListWidget]";
+                                status = i18next.t("Not contacted yet");
                                 break;
                             case 2:
-                                status = "QBT_TR(Working)QBT_TR[CONTEXT=TrackerListWidget]";
+                                status = i18next.t("Working");
                                 break;
                             case 3:
-                                status = "QBT_TR(Updating...)QBT_TR[CONTEXT=TrackerListWidget]";
+                                status = i18next.t("Updating...");
                                 break;
                             case 4:
-                                status = "QBT_TR(Not working)QBT_TR[CONTEXT=TrackerListWidget]";
+                                status = i18next.t("Not working");
                                 break;
                         }
 
@@ -101,9 +101,9 @@ window.qBittorrent.PropTrackers = (function() {
                             url: tracker.url,
                             status: status,
                             peers: tracker.num_peers,
-                            seeds: (tracker.num_seeds >= 0) ? tracker.num_seeds : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
-                            leeches: (tracker.num_leeches >= 0) ? tracker.num_leeches : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
-                            downloaded: (tracker.num_downloaded >= 0) ? tracker.num_downloaded : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
+                            seeds: (tracker.num_seeds >= 0) ? tracker.num_seeds : i18next.t("N/A"),
+                            leeches: (tracker.num_leeches >= 0) ? tracker.num_leeches : i18next.t("N/A"),
+                            downloaded: (tracker.num_downloaded >= 0) ? tracker.num_downloaded : i18next.t("N/A"),
                             message: tracker.msg
                         };
 
@@ -169,7 +169,7 @@ window.qBittorrent.PropTrackers = (function() {
             return;
         new MochaUI.Window({
             id: 'trackersPage',
-            title: "QBT_TR(Add trackers)QBT_TR[CONTEXT=TrackersAdditionDialog]",
+            title: i18next.t("Add trackers"),
             loadMethod: 'iframe',
             contentURL: 'addtrackers.html?hash=' + current_hash,
             scrollbars: true,
@@ -193,7 +193,7 @@ window.qBittorrent.PropTrackers = (function() {
         const trackerUrl = encodeURIComponent(element.childNodes[1].innerText);
         new MochaUI.Window({
             id: 'trackersPage',
-            title: "QBT_TR(Tracker editing)QBT_TR[CONTEXT=TrackerListWidget]",
+            title: i18next.t("Tracker editing"),
             loadMethod: 'iframe',
             contentURL: 'edittracker.html?hash=' + current_hash + '&url=' + trackerUrl,
             scrollbars: true,

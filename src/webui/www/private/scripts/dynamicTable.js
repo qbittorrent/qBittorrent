@@ -911,37 +911,37 @@ window.qBittorrent.DynamicTable = (function() {
         initColumns: function() {
             this.newColumn('priority', '', '#', 30, true);
             this.newColumn('state_icon', 'cursor: default', '', 22, true);
-            this.newColumn('name', '', 'QBT_TR(Name)QBT_TR[CONTEXT=TransferListModel]', 200, true);
-            this.newColumn('size', '', 'QBT_TR(Size)QBT_TR[CONTEXT=TransferListModel]', 100, true);
-            this.newColumn('total_size', '', 'QBT_TR(Total Size)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('progress', '', 'QBT_TR(Done)QBT_TR[CONTEXT=TransferListModel]', 85, true);
-            this.newColumn('status', '', 'QBT_TR(Status)QBT_TR[CONTEXT=TransferListModel]', 100, true);
-            this.newColumn('num_seeds', '', 'QBT_TR(Seeds)QBT_TR[CONTEXT=TransferListModel]', 100, true);
-            this.newColumn('num_leechs', '', 'QBT_TR(Peers)QBT_TR[CONTEXT=TransferListModel]', 100, true);
-            this.newColumn('dlspeed', '', 'QBT_TR(Down Speed)QBT_TR[CONTEXT=TransferListModel]', 100, true);
-            this.newColumn('upspeed', '', 'QBT_TR(Up Speed)QBT_TR[CONTEXT=TransferListModel]', 100, true);
-            this.newColumn('eta', '', 'QBT_TR(ETA)QBT_TR[CONTEXT=TransferListModel]', 100, true);
-            this.newColumn('ratio', '', 'QBT_TR(Ratio)QBT_TR[CONTEXT=TransferListModel]', 100, true);
-            this.newColumn('category', '', 'QBT_TR(Category)QBT_TR[CONTEXT=TransferListModel]', 100, true);
-            this.newColumn('tags', '', 'QBT_TR(Tags)QBT_TR[CONTEXT=TransferListModel]', 100, true);
-            this.newColumn('added_on', '', 'QBT_TR(Added On)QBT_TR[CONTEXT=TransferListModel]', 100, true);
-            this.newColumn('completion_on', '', 'QBT_TR(Completed On)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('tracker', '', 'QBT_TR(Tracker)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('dl_limit', '', 'QBT_TR(Down Limit)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('up_limit', '', 'QBT_TR(Up Limit)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('downloaded', '', 'QBT_TR(Downloaded)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('uploaded', '', 'QBT_TR(Uploaded)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('downloaded_session', '', 'QBT_TR(Session Download)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('uploaded_session', '', 'QBT_TR(Session Upload)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('amount_left', '', 'QBT_TR(Remaining)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('time_active', '', 'QBT_TR(Time Active)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('save_path', '', 'QBT_TR(Save path)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('completed', '', 'QBT_TR(Completed)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('max_ratio', '', 'QBT_TR(Ratio Limit)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('seen_complete', '', 'QBT_TR(Last Seen Complete)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('last_activity', '', 'QBT_TR(Last Activity)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('availability', '', 'QBT_TR(Availability)QBT_TR[CONTEXT=TransferListModel]', 100, false);
-            this.newColumn('reannounce', '', 'QBT_TR(Reannounce In)QBT_TR[CONTEXT=TransferListModel]', 100, false);
+            this.newColumn('name', '', i18next.t('Name'), 200, true);
+            this.newColumn('size', '', i18next.t('Size'), 100, true);
+            this.newColumn('total_size', '', i18next.t('Total Size'), 100, false);
+            this.newColumn('progress', '', i18next.t('Done'), 85, true);
+            this.newColumn('status', '', i18next.t('Status'), 100, true);
+            this.newColumn('num_seeds', '', i18next.t('Seeds'), 100, true);
+            this.newColumn('num_leechs', '', i18next.t('Peers'), 100, true);
+            this.newColumn('dlspeed', '', i18next.t('Down Speed'), 100, true);
+            this.newColumn('upspeed', '', i18next.t('Up Speed'), 100, true);
+            this.newColumn('eta', '', i18next.t('ETA'), 100, true);
+            this.newColumn('ratio', '', i18next.t('Ratio'), 100, true);
+            this.newColumn('category', '', i18next.t('Category'), 100, true);
+            this.newColumn('tags', '', i18next.t('Tags'), 100, true);
+            this.newColumn('added_on', '', i18next.t('Added On'), 100, true);
+            this.newColumn('completion_on', '', i18next.t('Completed On'), 100, false);
+            this.newColumn('tracker', '', i18next.t('Tracker'), 100, false);
+            this.newColumn('dl_limit', '', i18next.t('Down Limit'), 100, false);
+            this.newColumn('up_limit', '', i18next.t('Up Limit'), 100, false);
+            this.newColumn('downloaded', '', i18next.t('Downloaded'), 100, false);
+            this.newColumn('uploaded', '', i18next.t('Uploaded'), 100, false);
+            this.newColumn('downloaded_session', '', i18next.t('Session Download'), 100, false);
+            this.newColumn('uploaded_session', '', i18next.t('Session Upload'), 100, false);
+            this.newColumn('amount_left', '', i18next.t('Remaining'), 100, false);
+            this.newColumn('time_active', '', i18next.t('Time Active'), 100, false);
+            this.newColumn('save_path', '', i18next.t('Save path'), 100, false);
+            this.newColumn('completed', '', i18next.t('Completed'), 100, false);
+            this.newColumn('max_ratio', '', i18next.t('Ratio Limit'), 100, false);
+            this.newColumn('seen_complete', '', i18next.t('Last Seen Complete'), 100, false);
+            this.newColumn('last_activity', '', i18next.t('Last Activity'), 100, false);
+            this.newColumn('availability', '', i18next.t('Availability'), 100, false);
+            this.newColumn('reannounce', '', i18next.t('Reannounce In'), 100, false);
 
             this.columns['state_icon'].onclick = '';
             this.columns['state_icon'].dataProperties[0] = 'state';
@@ -1040,58 +1040,58 @@ window.qBittorrent.DynamicTable = (function() {
                 let status;
                 switch (state) {
                     case "downloading":
-                        status = "QBT_TR(Downloading)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = i18next.t("Downloading");
                         break;
                     case "stalledDL":
-                        status = "QBT_TR(Stalled)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = i18next.t("Stalled");
                         break;
                     case "metaDL":
-                        status = "QBT_TR(Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = i18next.t("Downloading metadata");
                         break;
                     case "forcedMetaDL":
-                        status = "QBT_TR([F] Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = i18next.t("[F] Downloading metadata");
                         break;
                     case "forcedDL":
-                        status = "QBT_TR([F] Downloading)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = i18next.t("[F] Downloading");
                         break;
                     case "uploading":
                     case "stalledUP":
-                        status = "QBT_TR(Seeding)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = i18next.t("Seeding");
                         break;
                     case "forcedUP":
-                        status = "QBT_TR([F] Seeding)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = i18next.t("[F] Seeding");
                         break;
                     case "queuedDL":
                     case "queuedUP":
-                        status = "QBT_TR(Queued)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = i18next.t("Queued");
                         break;
                     case "checkingDL":
                     case "checkingUP":
-                        status = "QBT_TR(Checking)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = i18next.t("Checking");
                         break;
                     case "queuedForChecking":
-                        status = "QBT_TR(Queued for checking)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = i18next.t("Queued for checking");
                         break;
                     case "checkingResumeData":
-                        status = "QBT_TR(Checking resume data)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = i18next.t("Checking resume data");
                         break;
                     case "pausedDL":
-                        status = "QBT_TR(Paused)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = i18next.t("Paused");
                         break;
                     case "pausedUP":
-                        status = "QBT_TR(Completed)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = i18next.t("Completed");
                         break;
                     case "moving":
-                        status = "QBT_TR(Moving)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = i18next.t("Moving");
                         break;
                     case "missingFiles":
-                        status = "QBT_TR(Missing Files)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = i18next.t("Missing Files");
                         break;
                     case "error":
-                        status = "QBT_TR(Errored)QBT_TR[CONTEXT=TransferListDelegate]";
+                        status = i18next.t("Errored");
                         break;
                     default:
-                        status = "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]";
+                        status = i18next.t("Unknown");
                 }
 
                 td.set('text', status);
@@ -1273,7 +1273,7 @@ window.qBittorrent.DynamicTable = (function() {
                 const activeTime = this.getRowValue(row, 0);
                 const seedingTime = this.getRowValue(row, 1);
                 const time = (seedingTime > 0)
-                    ? ('QBT_TR(%1 (seeded for %2))QBT_TR[CONTEXT=TransferListDelegate]'
+                    ? (i18next.t('%1 (seeded for %2)')
                         .replace('%1', window.qBittorrent.Misc.friendlyDuration(activeTime))
                         .replace('%2', window.qBittorrent.Misc.friendlyDuration(seedingTime)))
                     : window.qBittorrent.Misc.friendlyDuration(activeTime);
@@ -1298,7 +1298,7 @@ window.qBittorrent.DynamicTable = (function() {
                     td.set('title', '∞');
                 }
                 else {
-                    const formattedVal = 'QBT_TR(%1 ago)QBT_TR[CONTEXT=TransferListDelegate]'.replace('%1', window.qBittorrent.Misc.friendlyDuration((new Date()) / 1000 - val));
+                    const formattedVal = i18next.t('%1 ago').replace('%1', window.qBittorrent.Misc.friendlyDuration((new Date()) / 1000 - val));
                     td.set('text', formattedVal);
                     td.set('title', formattedVal);
                 }
@@ -1521,20 +1521,20 @@ window.qBittorrent.DynamicTable = (function() {
         Extends: DynamicTable,
 
         initColumns: function() {
-            this.newColumn('country', '', 'QBT_TR(Country/Region)QBT_TR[CONTEXT=PeerListWidget]', 22, true);
-            this.newColumn('ip', '', 'QBT_TR(IP)QBT_TR[CONTEXT=PeerListWidget]', 80, true);
-            this.newColumn('port', '', 'QBT_TR(Port)QBT_TR[CONTEXT=PeerListWidget]', 35, true);
-            this.newColumn('connection', '', 'QBT_TR(Connection)QBT_TR[CONTEXT=PeerListWidget]', 50, true);
-            this.newColumn('flags', '', 'QBT_TR(Flags)QBT_TR[CONTEXT=PeerListWidget]', 50, true);
-            this.newColumn('client', '', 'QBT_TR(Client)QBT_TR[CONTEXT=PeerListWidget]', 140, true);
-            this.newColumn('peer_id_client', '', 'QBT_TR(Peer ID Client)QBT_TR[CONTEXT=PeerListWidget]', 60, false);
-            this.newColumn('progress', '', 'QBT_TR(Progress)QBT_TR[CONTEXT=PeerListWidget]', 50, true);
-            this.newColumn('dl_speed', '', 'QBT_TR(Down Speed)QBT_TR[CONTEXT=PeerListWidget]', 50, true);
-            this.newColumn('up_speed', '', 'QBT_TR(Up Speed)QBT_TR[CONTEXT=PeerListWidget]', 50, true);
-            this.newColumn('downloaded', '', 'QBT_TR(Downloaded)QBT_TR[CONTEXT=PeerListWidget]', 50, true);
-            this.newColumn('uploaded', '', 'QBT_TR(Uploaded)QBT_TR[CONTEXT=PeerListWidget]', 50, true);
-            this.newColumn('relevance', '', 'QBT_TR(Relevance)QBT_TR[CONTEXT=PeerListWidget]', 30, true);
-            this.newColumn('files', '', 'QBT_TR(Files)QBT_TR[CONTEXT=PeerListWidget]', 100, true);
+            this.newColumn('country', '', i18next.t('Country/Region'), 22, true);
+            this.newColumn('ip', '', i18next.t('IP'), 80, true);
+            this.newColumn('port', '', i18next.t('Port'), 35, true);
+            this.newColumn('connection', '', i18next.t('Connection'), 50, true);
+            this.newColumn('flags', '', i18next.t('Flags'), 50, true);
+            this.newColumn('client', '', i18next.t('Client'), 140, true);
+            this.newColumn('peer_id_client', '', i18next.t('Peer ID Client'), 60, false);
+            this.newColumn('progress', '', i18next.t('Progress'), 50, true);
+            this.newColumn('dl_speed', '', i18next.t('Down Speed'), 50, true);
+            this.newColumn('up_speed', '', i18next.t('Up Speed'), 50, true);
+            this.newColumn('downloaded', '', i18next.t('Downloaded'), 50, true);
+            this.newColumn('uploaded', '', i18next.t('Uploaded'), 50, true);
+            this.newColumn('relevance', '', i18next.t('Relevance'), 30, true);
+            this.newColumn('files', '', i18next.t('Files'), 100, true);
 
             this.columns['country'].dataProperties.push('country_code');
             this.columns['flags'].dataProperties.push('flags_desc');
@@ -1645,11 +1645,11 @@ window.qBittorrent.DynamicTable = (function() {
         Extends: DynamicTable,
 
         initColumns: function() {
-            this.newColumn('fileName', '', 'QBT_TR(Name)QBT_TR[CONTEXT=SearchResultsTable]', 500, true);
-            this.newColumn('fileSize', '', 'QBT_TR(Size)QBT_TR[CONTEXT=SearchResultsTable]', 100, true);
-            this.newColumn('nbSeeders', '', 'QBT_TR(Seeders)QBT_TR[CONTEXT=SearchResultsTable]', 100, true);
-            this.newColumn('nbLeechers', '', 'QBT_TR(Leechers)QBT_TR[CONTEXT=SearchResultsTable]', 100, true);
-            this.newColumn('siteUrl', '', 'QBT_TR(Search engine)QBT_TR[CONTEXT=SearchResultsTable]', 250, true);
+            this.newColumn('fileName', '', i18next.t('Name'), 500, true);
+            this.newColumn('fileSize', '', i18next.t('Size'), 100, true);
+            this.newColumn('nbSeeders', '', i18next.t('Seeders'), 100, true);
+            this.newColumn('nbLeechers', '', i18next.t('Leechers'), 100, true);
+            this.newColumn('siteUrl', '', i18next.t('Search engine'), 250, true);
 
             this.initColumnsFunctions();
         },
@@ -1758,10 +1758,10 @@ window.qBittorrent.DynamicTable = (function() {
         Extends: DynamicTable,
 
         initColumns: function() {
-            this.newColumn('fullName', '', 'QBT_TR(Name)QBT_TR[CONTEXT=SearchPluginsTable]', 175, true);
-            this.newColumn('version', '', 'QBT_TR(Version)QBT_TR[CONTEXT=SearchPluginsTable]', 100, true);
-            this.newColumn('url', '', 'QBT_TR(Url)QBT_TR[CONTEXT=SearchPluginsTable]', 175, true);
-            this.newColumn('enabled', '', 'QBT_TR(Enabled)QBT_TR[CONTEXT=SearchPluginsTable]', 100, true);
+            this.newColumn('fullName', '', i18next.t('Name'), 175, true);
+            this.newColumn('version', '', i18next.t('Version'), 100, true);
+            this.newColumn('url', '', i18next.t('Url'), 175, true);
+            this.newColumn('enabled', '', i18next.t('Enabled'), 100, true);
 
             this.initColumnsFunctions();
         },
@@ -1770,14 +1770,14 @@ window.qBittorrent.DynamicTable = (function() {
             this.columns['enabled'].updateTd = function(td, row) {
                 const value = this.getRowValue(row);
                 if (value) {
-                    td.set('text', 'QBT_TR(Yes)QBT_TR[CONTEXT=SearchPluginsTable]');
-                    td.set('title', 'QBT_TR(Yes)QBT_TR[CONTEXT=SearchPluginsTable]');
+                    td.set('text', i18next.t('Yes'));
+                    td.set('title', i18next.t('Yes'));
                     td.getParent("tr").addClass("green");
                     td.getParent("tr").removeClass("red");
                 }
                 else {
-                    td.set('text', 'QBT_TR(No)QBT_TR[CONTEXT=SearchPluginsTable]');
-                    td.set('title', 'QBT_TR(No)QBT_TR[CONTEXT=SearchPluginsTable]');
+                    td.set('text', i18next.t('No'));
+                    td.set('title', i18next.t('No'));
                     td.getParent("tr").addClass("red");
                     td.getParent("tr").removeClass("green");
                 }
@@ -1793,14 +1793,14 @@ window.qBittorrent.DynamicTable = (function() {
         Extends: DynamicTable,
 
         initColumns: function() {
-            this.newColumn('tier', '', 'QBT_TR(Tier)QBT_TR[CONTEXT=TrackerListWidget]', 35, true);
-            this.newColumn('url', '', 'QBT_TR(URL)QBT_TR[CONTEXT=TrackerListWidget]', 250, true);
-            this.newColumn('status', '', 'QBT_TR(Status)QBT_TR[CONTEXT=TrackerListWidget]', 125, true);
-            this.newColumn('peers', '', 'QBT_TR(Peers)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
-            this.newColumn('seeds', '', 'QBT_TR(Seeds)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
-            this.newColumn('leeches', '', 'QBT_TR(Leeches)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
-            this.newColumn('downloaded', '', 'QBT_TR(Times Downloaded)QBT_TR[CONTEXT=TrackerListWidget]', 100, true);
-            this.newColumn('message', '', 'QBT_TR(Message)QBT_TR[CONTEXT=TrackerListWidget]', 250, true);
+            this.newColumn('tier', '', i18next.t('Tier'), 35, true);
+            this.newColumn('url', '', i18next.t('URL'), 250, true);
+            this.newColumn('status', '', i18next.t('Status'), 125, true);
+            this.newColumn('peers', '', i18next.t('Peers'), 75, true);
+            this.newColumn('seeds', '', i18next.t('Seeds'), 75, true);
+            this.newColumn('leeches', '', i18next.t('Leeches'), 75, true);
+            this.newColumn('downloaded', '', i18next.t('Times Downloaded'), 100, true);
+            this.newColumn('message', '', i18next.t('Message'), 250, true);
         },
     });
 
@@ -1875,8 +1875,8 @@ window.qBittorrent.DynamicTable = (function() {
             LocalPreferences.remove('column_' + "original" + '_width_' + this.dynamicTableDivId);
             LocalPreferences.remove('column_' + "renamed" + '_width_' + this.dynamicTableDivId);
             this.newColumn('checked', '', '', 50, true);
-            this.newColumn('original', '', 'QBT_TR(Original)QBT_TR[CONTEXT=TrackerListWidget]', 270, true);
-            this.newColumn('renamed', '', 'QBT_TR(Renamed)QBT_TR[CONTEXT=TrackerListWidget]', 220, true);
+            this.newColumn('original', '', i18next.t('Original'), 270, true);
+            this.newColumn('renamed', '', i18next.t('Renamed'), 220, true);
 
             this.initColumnsFunctions();
         },
@@ -2293,12 +2293,12 @@ window.qBittorrent.DynamicTable = (function() {
 
         initColumns: function() {
             this.newColumn('checked', '', '', 50, true);
-            this.newColumn('name', '', 'QBT_TR(Name)QBT_TR[CONTEXT=TrackerListWidget]', 300, true);
-            this.newColumn('size', '', 'QBT_TR(Total Size)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
-            this.newColumn('progress', '', 'QBT_TR(Progress)QBT_TR[CONTEXT=TrackerListWidget]', 100, true);
-            this.newColumn('priority', '', 'QBT_TR(Download Priority)QBT_TR[CONTEXT=TrackerListWidget]', 150, true);
-            this.newColumn('remaining', '', 'QBT_TR(Remaining)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
-            this.newColumn('availability', '', 'QBT_TR(Availability)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
+            this.newColumn('name', '', i18next.t('Name'), 300, true);
+            this.newColumn('size', '', i18next.t('Total Size'), 75, true);
+            this.newColumn('progress', '', i18next.t('Progress'), 100, true);
+            this.newColumn('priority', '', i18next.t('Download Priority'), 150, true);
+            this.newColumn('remaining', '', i18next.t('Remaining'), 75, true);
+            this.newColumn('availability', '', i18next.t('Availability'), 75, true);
 
             this.initColumnsFunctions();
         },
@@ -2583,7 +2583,7 @@ window.qBittorrent.DynamicTable = (function() {
         Extends: DynamicTable,
         initColumns: function() {
             this.newColumn('state_icon', '', '', 30, true);
-            this.newColumn('name', '', 'QBT_TR(RSS feeds)QBT_TR[CONTEXT=FeedListWidget]', -1, true);
+            this.newColumn('name', '', i18next.t('RSS feeds'), -1, true);
 
             this.columns['state_icon'].dataProperties[0] = '';
 
@@ -2734,7 +2734,7 @@ window.qBittorrent.DynamicTable = (function() {
     const RssArticleTable = new Class({
         Extends: DynamicTable,
         initColumns: function() {
-            this.newColumn('name', '', 'QBT_TR(Torrents: (double-click to download))QBT_TR[CONTEXT=RSSWidget]', -1, true);
+            this.newColumn('name', '', i18next.t('Torrents: (double-click to download)'), -1, true);
         },
         setupHeaderMenu: function() {},
         setupHeaderEvents: function() {},
@@ -3074,10 +3074,10 @@ window.qBittorrent.DynamicTable = (function() {
         },
 
         initColumns: function() {
-            this.newColumn('rowId', '', 'QBT_TR(ID)QBT_TR[CONTEXT=ExecutionLogWidget]', 50, true);
-            this.newColumn('message', '', 'QBT_TR(Message)QBT_TR[CONTEXT=ExecutionLogWidget]', 350, true);
-            this.newColumn('timestamp', '', 'QBT_TR(Timestamp)QBT_TR[CONTEXT=ExecutionLogWidget]', 150, true);
-            this.newColumn('type', '', 'QBT_TR(Log Type)QBT_TR[CONTEXT=ExecutionLogWidget]', 100, true);
+            this.newColumn('rowId', '', i18next.t('ID'), 50, true);
+            this.newColumn('message', '', i18next.t('Message'), 350, true);
+            this.newColumn('timestamp', '', i18next.t('Timestamp'), 150, true);
+            this.newColumn('type', '', i18next.t('Log Type'), 100, true);
             this.initColumnsFunctions();
         },
 
@@ -3092,23 +3092,23 @@ window.qBittorrent.DynamicTable = (function() {
                 let logLevel, addClass;
                 switch (this.getRowValue(row).toInt()) {
                     case 1:
-                        logLevel = 'QBT_TR(Normal)QBT_TR[CONTEXT=ExecutionLogWidget]';
+                        logLevel = i18next.t('Normal');
                         addClass = 'logNormal';
                         break;
                     case 2:
-                        logLevel = 'QBT_TR(Info)QBT_TR[CONTEXT=ExecutionLogWidget]';
+                        logLevel = i18next.t('Info');
                         addClass = 'logInfo';
                         break;
                     case 4:
-                        logLevel = 'QBT_TR(Warning)QBT_TR[CONTEXT=ExecutionLogWidget]';
+                        logLevel = i18next.t('Warning');
                         addClass = 'logWarning';
                         break;
                     case 8:
-                        logLevel = 'QBT_TR(Critical)QBT_TR[CONTEXT=ExecutionLogWidget]';
+                        logLevel = i18next.t('Critical');
                         addClass = 'logCritical';
                         break;
                     default:
-                        logLevel = 'QBT_TR(Unknown)QBT_TR[CONTEXT=ExecutionLogWidget]';
+                        logLevel = i18next.t('Unknown');
                         addClass = 'logUnknown';
                         break;
                 }
@@ -3158,11 +3158,11 @@ window.qBittorrent.DynamicTable = (function() {
         Extends: LogMessageTable,
 
         initColumns: function() {
-            this.newColumn('rowId', '', 'QBT_TR(ID)QBT_TR[CONTEXT=ExecutionLogWidget]', 50, true);
-            this.newColumn('ip', '', 'QBT_TR(IP)QBT_TR[CONTEXT=ExecutionLogWidget]', 150, true);
-            this.newColumn('timestamp', '', 'QBT_TR(Timestamp)QBT_TR[CONTEXT=ExecutionLogWidget]', 150, true);
-            this.newColumn('blocked', '', 'QBT_TR(Status)QBT_TR[CONTEXT=ExecutionLogWidget]', 150, true);
-            this.newColumn('reason', '', 'QBT_TR(Reason)QBT_TR[CONTEXT=ExecutionLogWidget]', 150, true);
+            this.newColumn('rowId', '', i18next.t('ID'), 50, true);
+            this.newColumn('ip', '', i18next.t('IP'), 150, true);
+            this.newColumn('timestamp', '', i18next.t('Timestamp'), 150, true);
+            this.newColumn('blocked', '', i18next.t('Status'), 150, true);
+            this.newColumn('reason', '', i18next.t('Reason'), 150, true);
 
             this.columns['timestamp'].updateTd = function(td, row) {
                 const date = new Date(this.getRowValue(row) * 1000).toLocaleString();
@@ -3172,11 +3172,11 @@ window.qBittorrent.DynamicTable = (function() {
             this.columns['blocked'].updateTd = function(td, row) {
                 let status, addClass;
                 if (this.getRowValue(row)) {
-                    status = 'QBT_TR(Blocked)QBT_TR[CONTEXT=ExecutionLogWidget]';
+                    status = i18next.t('Blocked');
                     addClass = 'peerBlocked';
                 }
                 else {
-                    status = 'QBT_TR(Banned)QBT_TR[CONTEXT=ExecutionLogWidget]';
+                    status = i18next.t('Banned');
                     addClass = 'peerBanned';
                 }
                 td.set({ 'text': status, 'title': status });

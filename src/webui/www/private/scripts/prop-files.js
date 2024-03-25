@@ -185,13 +185,13 @@ window.qBittorrent.PropFiles = (function() {
         select.addClass('combo_priority');
         select.addEvent('change', fileComboboxChanged);
 
-        createPriorityOptionElement(FilePriority.Ignored, (FilePriority.Ignored === selectedPriority), 'QBT_TR(Do not download)QBT_TR[CONTEXT=PropListDelegate]').injectInside(select);
-        createPriorityOptionElement(FilePriority.Normal, (FilePriority.Normal === selectedPriority), 'QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]').injectInside(select);
-        createPriorityOptionElement(FilePriority.High, (FilePriority.High === selectedPriority), 'QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]').injectInside(select);
-        createPriorityOptionElement(FilePriority.Maximum, (FilePriority.Maximum === selectedPriority), 'QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]').injectInside(select);
+        createPriorityOptionElement(FilePriority.Ignored, (FilePriority.Ignored === selectedPriority), i18next.t('Do not download')).injectInside(select);
+        createPriorityOptionElement(FilePriority.Normal, (FilePriority.Normal === selectedPriority), i18next.t('Normal')).injectInside(select);
+        createPriorityOptionElement(FilePriority.High, (FilePriority.High === selectedPriority), i18next.t('High')).injectInside(select);
+        createPriorityOptionElement(FilePriority.Maximum, (FilePriority.Maximum === selectedPriority), i18next.t('Maximum')).injectInside(select);
 
         // "Mixed" priority is for display only; it shouldn't be selectable
-        const mixedPriorityOption = createPriorityOptionElement(FilePriority.Mixed, (FilePriority.Mixed === selectedPriority), 'QBT_TR(Mixed)QBT_TR[CONTEXT=PropListDelegate]');
+        const mixedPriorityOption = createPriorityOptionElement(FilePriority.Mixed, (FilePriority.Mixed === selectedPriority), i18next.t('Mixed'));
         mixedPriorityOption.set('disabled', true);
         mixedPriorityOption.injectInside(select);
 
@@ -550,7 +550,7 @@ window.qBittorrent.PropFiles = (function() {
 
         new MochaUI.Window({
             id: 'renamePage',
-            title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]",
+            title: i18next.t("Renaming"),
             loadMethod: 'iframe',
             contentURL: 'rename_file.html?hash=' + hash + '&isFolder=' + node.isFolder
                 + '&path=' + encodeURIComponent(path),
@@ -567,7 +567,7 @@ window.qBittorrent.PropFiles = (function() {
     const multiFileRename = function(hash) {
         new MochaUI.Window({
             id: 'multiRenamePage',
-            title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]",
+            title: i18next.t("Renaming"),
             data: { hash: hash, selectedRows: torrentFilesTable.selectedRows },
             loadMethod: 'xhr',
             contentURL: 'rename_files.html',

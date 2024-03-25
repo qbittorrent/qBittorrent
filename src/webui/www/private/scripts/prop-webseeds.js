@@ -116,7 +116,7 @@ window.qBittorrent.PropWebseeds = (function() {
             method: 'get',
             noCache: true,
             onFailure: function() {
-                $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
+                $('error_div').set('html', i18next.t('qBittorrent client is not reachable'));
                 clearTimeout(loadWebSeedsDataTimer);
                 loadWebSeedsDataTimer = loadWebSeedsData.delay(20000);
             },

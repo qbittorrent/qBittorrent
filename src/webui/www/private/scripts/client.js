@@ -410,20 +410,20 @@ window.addEventListener("DOMContentLoaded", function() {
     };
 
     const updateFiltersList = function() {
-        updateFilter('all', 'QBT_TR(All (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
-        updateFilter('downloading', 'QBT_TR(Downloading (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
-        updateFilter('seeding', 'QBT_TR(Seeding (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
-        updateFilter('completed', 'QBT_TR(Completed (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
-        updateFilter('resumed', 'QBT_TR(Resumed (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
-        updateFilter('paused', 'QBT_TR(Paused (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
-        updateFilter('active', 'QBT_TR(Active (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
-        updateFilter('inactive', 'QBT_TR(Inactive (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
-        updateFilter('stalled', 'QBT_TR(Stalled (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
-        updateFilter('stalled_uploading', 'QBT_TR(Stalled Uploading (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
-        updateFilter('stalled_downloading', 'QBT_TR(Stalled Downloading (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
-        updateFilter('checking', 'QBT_TR(Checking (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
-        updateFilter('moving', 'QBT_TR(Moving (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
-        updateFilter('errored', 'QBT_TR(Errored (%1))QBT_TR[CONTEXT=StatusFilterWidget]');
+        updateFilter('all', i18next.t('All (%1)'));
+        updateFilter('downloading', i18next.t('Downloading (%1)'));
+        updateFilter('seeding', i18next.t('Seeding (%1)'));
+        updateFilter('completed', i18next.t('Completed (%1)'));
+        updateFilter('resumed', i18next.t('Resumed (%1)'));
+        updateFilter('paused', i18next.t('Paused (%1)'));
+        updateFilter('active', i18next.t('Active (%1)'));
+        updateFilter('inactive', i18next.t('Inactive (%1)'));
+        updateFilter('stalled', i18next.t('Stalled (%1)'));
+        updateFilter('stalled_uploading', i18next.t('Stalled Uploading (%1)'));
+        updateFilter('stalled_downloading', i18next.t('Stalled Downloading (%1)'));
+        updateFilter('checking', i18next.t('Checking (%1)'));
+        updateFilter('moving', i18next.t('Moving (%1)'));
+        updateFilter('errored', i18next.t('Errored (%1)'));
     };
 
     const updateCategoryList = function() {
@@ -462,8 +462,8 @@ window.addEventListener("DOMContentLoaded", function() {
             if (row['full_data'].category.length === 0)
                 uncategorized += 1;
         }
-        categoryList.appendChild(create_link(CATEGORIES_ALL, 'QBT_TR(All)QBT_TR[CONTEXT=CategoryFilterModel]', all));
-        categoryList.appendChild(create_link(CATEGORIES_UNCATEGORIZED, 'QBT_TR(Uncategorized)QBT_TR[CONTEXT=CategoryFilterModel]', uncategorized));
+        categoryList.appendChild(create_link(CATEGORIES_ALL, i18next.t('All'), all));
+        categoryList.appendChild(create_link(CATEGORIES_UNCATEGORIZED, i18next.t('Uncategorized'), uncategorized));
 
         const sortedCategories = [];
         category_list.forEach((category, hash) => sortedCategories.push({
@@ -540,8 +540,8 @@ window.addEventListener("DOMContentLoaded", function() {
             if (Object.hasOwn(torrentsTable.rows, key) && (torrentsTable.rows[key]['full_data'].tags.length === 0))
                 untagged += 1;
         }
-        tagFilterList.appendChild(createLink(TAGS_ALL, 'QBT_TR(All)QBT_TR[CONTEXT=TagFilterModel]', torrentsCount));
-        tagFilterList.appendChild(createLink(TAGS_UNTAGGED, 'QBT_TR(Untagged)QBT_TR[CONTEXT=TagFilterModel]', untagged));
+        tagFilterList.appendChild(createLink(TAGS_ALL, i18next.t('All'), torrentsCount));
+        tagFilterList.appendChild(createLink(TAGS_UNTAGGED, i18next.t('Untagged'), untagged));
 
         const sortedTags = [];
         tagList.forEach((tag, hash) => sortedTags.push({
@@ -613,13 +613,13 @@ window.addEventListener("DOMContentLoaded", function() {
         };
 
         const torrentsCount = torrentsTable.getRowIds().length;
-        trackerFilterList.appendChild(createLink(TRACKERS_ALL, 'QBT_TR(All (%1))QBT_TR[CONTEXT=TrackerFiltersList]', torrentsCount));
+        trackerFilterList.appendChild(createLink(TRACKERS_ALL, i18next.t('All (%1)'), torrentsCount));
         let trackerlessTorrentsCount = 0;
         for (const key in torrentsTable.rows) {
             if (Object.hasOwn(torrentsTable.rows, key) && (torrentsTable.rows[key]['full_data'].trackers_count === 0))
                 trackerlessTorrentsCount += 1;
         }
-        trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, 'QBT_TR(Trackerless (%1))QBT_TR[CONTEXT=TrackerFiltersList]', trackerlessTorrentsCount));
+        trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, i18next.t('Trackerless (%1)'), trackerlessTorrentsCount));
 
         // Sort trackers by hostname
         const sortedList = [];
@@ -687,7 +687,7 @@ window.addEventListener("DOMContentLoaded", function() {
             onFailure: function() {
                 const errorDiv = $('error_div');
                 if (errorDiv)
-                    errorDiv.set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
+                    errorDiv.set('html', i18next.t('qBittorrent client is not reachable'));
                 syncRequestInProgress = false;
                 syncData(2000);
             },
@@ -892,8 +892,8 @@ window.addEventListener("DOMContentLoaded", function() {
                 : '')
             + window.qBittorrent.Client.mainTitle();
 
-        $('freeSpaceOnDisk').set('html', 'QBT_TR(Free space: %1)QBT_TR[CONTEXT=HttpServer]'.replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.free_space_on_disk)));
-        $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]'.replace("%1", serverState.dht_nodes));
+        $('freeSpaceOnDisk').set('html', i18next.t('Free space: %1').replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.free_space_on_disk)));
+        $('DHTNodes').set('html', i18next.t('DHT: %1 nodes').replace("%1", serverState.dht_nodes));
 
         // Statistics dialog
         if (document.getElementById("statisticsContent")) {
@@ -914,18 +914,18 @@ window.addEventListener("DOMContentLoaded", function() {
         switch (serverState.connection_status) {
             case 'connected':
                 $('connectionStatus').src = 'images/connected.svg';
-                $('connectionStatus').alt = 'QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]';
-                $('connectionStatus').title = 'QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]';
+                $('connectionStatus').alt = i18next.t('Connection status: Connected');
+                $('connectionStatus').title = i18next.t('Connection status: Connected');
                 break;
             case 'firewalled':
                 $('connectionStatus').src = 'images/firewalled.svg';
-                $('connectionStatus').alt = 'QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]';
-                $('connectionStatus').title = 'QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]';
+                $('connectionStatus').alt = i18next.t('Connection status: Firewalled');
+                $('connectionStatus').title = i18next.t('Connection status: Firewalled');
                 break;
             default:
                 $('connectionStatus').src = 'images/disconnected.svg';
-                $('connectionStatus').alt = 'QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]';
-                $('connectionStatus').title = 'QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]';
+                $('connectionStatus').alt = i18next.t('Connection status: Disconnected');
+                $('connectionStatus').title = i18next.t('Connection status: Disconnected');
                 break;
         }
 
@@ -967,13 +967,13 @@ window.addEventListener("DOMContentLoaded", function() {
     const updateAltSpeedIcon = function(enabled) {
         if (enabled) {
             $('alternativeSpeedLimits').src = 'images/slow.svg';
-            $('alternativeSpeedLimits').alt = 'QBT_TR(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]';
-            $('alternativeSpeedLimits').title = 'QBT_TR(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]';
+            $('alternativeSpeedLimits').alt = i18next.t('Alternative speed limits: On');
+            $('alternativeSpeedLimits').title = i18next.t('Alternative speed limits: On');
         }
         else {
             $('alternativeSpeedLimits').src = 'images/slow_off.svg';
-            $('alternativeSpeedLimits').alt = 'QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]';
-            $('alternativeSpeedLimits').title = 'QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]';
+            $('alternativeSpeedLimits').alt = i18next.t('Alternative speed limits: Off');
+            $('alternativeSpeedLimits').title = i18next.t('Alternative speed limits: Off');
         }
     };
 
@@ -1029,9 +1029,9 @@ window.addEventListener("DOMContentLoaded", function() {
     const registerMagnetHandler = function() {
         if (typeof navigator.registerProtocolHandler !== 'function') {
             if (window.location.protocol !== 'https:')
-                alert("QBT_TR(To use this feature, the WebUI needs to be accessed over HTTPS)QBT_TR[CONTEXT=MainWindow]");
+                alert(i18next.t("To use this feature, the WebUI needs to be accessed over HTTPS"));
             else
-                alert("QBT_TR(Your browser does not support this feature)QBT_TR[CONTEXT=MainWindow]");
+                alert(i18next.t("Your browser does not support this feature"));
             return;
         }
 
@@ -1497,7 +1497,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 const id = 'uploadPage';
                 new MochaUI.Window({
                     id: id,
-                    title: "QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]",
+                    title: i18next.t("Upload local torrent"),
                     loadMethod: 'iframe',
                     contentURL: new URI("upload.html").toString(),
                     addClass: 'windowFrame', // fixes iframe scrolling on iOS Safari
@@ -1539,7 +1539,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 const contentURI = new URI('download.html').setData("urls", urls.map(encodeURIComponent).join("|"));
                 new MochaUI.Window({
                     id: id,
-                    title: "QBT_TR(Download from URLs)QBT_TR[CONTEXT=downloadFromURL]",
+                    title: i18next.t("Download from URLs"),
                     loadMethod: 'iframe',
                     contentURL: contentURI.toString(),
                     addClass: 'windowFrame', // fixes iframe scrolling on iOS Safari

@@ -58,17 +58,17 @@ window.qBittorrent.Misc = (function() {
      */
     const friendlyUnit = function(value, isSpeed) {
         const units = [
-            "QBT_TR(B)QBT_TR[CONTEXT=misc]",
-            "QBT_TR(KiB)QBT_TR[CONTEXT=misc]",
-            "QBT_TR(MiB)QBT_TR[CONTEXT=misc]",
-            "QBT_TR(GiB)QBT_TR[CONTEXT=misc]",
-            "QBT_TR(TiB)QBT_TR[CONTEXT=misc]",
-            "QBT_TR(PiB)QBT_TR[CONTEXT=misc]",
-            "QBT_TR(EiB)QBT_TR[CONTEXT=misc]"
+            i18next.t("B"),
+            i18next.t("KiB"),
+            i18next.t("MiB"),
+            i18next.t("GiB"),
+            i18next.t("TiB"),
+            i18next.t("PiB"),
+            i18next.t("EiB")
         ];
 
         if ((value === undefined) || (value === null) || (value < 0))
-            return "QBT_TR(Unknown)QBT_TR[CONTEXT=misc]";
+            return i18next.t("Unknown");
 
         let i = 0;
         while (value >= 1024.0 && i < 6) {
@@ -96,7 +96,7 @@ window.qBittorrent.Misc = (function() {
         }
 
         if (isSpeed)
-            ret += "QBT_TR(/s)QBT_TR[CONTEXT=misc]";
+            ret += i18next.t("/s");
         return ret;
     };
 
@@ -109,21 +109,21 @@ window.qBittorrent.Misc = (function() {
         if (seconds === 0)
             return "0";
         if (seconds < 60)
-            return "QBT_TR(< 1m)QBT_TR[CONTEXT=misc]";
+            return i18next.t("< 1m");
         let minutes = seconds / 60;
         if (minutes < 60)
-            return "QBT_TR(%1m)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(minutes));
+            return i18next.t("%1m").replace("%1", parseInt(minutes));
         let hours = minutes / 60;
         minutes = minutes % 60;
         if (hours < 24)
-            return "QBT_TR(%1h %2m)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(hours)).replace("%2", parseInt(minutes));
+            return i18next.t("%1h %2m").replace("%1", parseInt(hours)).replace("%2", parseInt(minutes));
         let days = hours / 24;
         hours = hours % 24;
         if (days < 365)
-            return "QBT_TR(%1d %2h)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(days)).replace("%2", parseInt(hours));
+            return i18next.t("%1d %2h").replace("%1", parseInt(days)).replace("%2", parseInt(hours));
         const years = days / 365;
         days = days % 365;
-        return "QBT_TR(%1y %2d)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(years)).replace("%2", parseInt(days));
+        return i18next.t("%1y %2d").replace("%1", parseInt(years)).replace("%2", parseInt(days));
     };
 
     const friendlyPercentage = function(value) {
