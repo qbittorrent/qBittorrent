@@ -516,16 +516,20 @@ window.qBittorrent.DynamicTable = (function() {
             return LocalPreferences.get('sorted_column_' + this.dynamicTableDivId);
         },
 
-        setSortedColumn: function(column) {
+        /**
+         * @param {string} column name to sort by
+         * @param {string|null} reverse defaults to implementation-specific behavior when not specified. Should only be passed when restoring previous state.
+         */
+        setSortedColumn: function(column, reverse = null) {
             if (column != this.sortedColumn) {
                 const oldColumn = this.sortedColumn;
                 this.sortedColumn = column;
-                this.reverseSort = '0';
+                this.reverseSort = reverse ?? '0';
                 this.setSortedColumnIcon(column, oldColumn, false);
             }
             else {
                 // Toggle sort order
-                this.reverseSort = this.reverseSort === '0' ? '1' : '0';
+                this.reverseSort = reverse ?? (this.reverseSort === '0' ? '1' : '0');
                 this.setSortedColumnIcon(column, null, (this.reverseSort === '1'));
             }
             LocalPreferences.set('sorted_column_' + this.dynamicTableDivId, column);
