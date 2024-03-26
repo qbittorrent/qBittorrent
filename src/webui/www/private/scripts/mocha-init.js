@@ -874,9 +874,16 @@ const initializeWindows = function() {
             case TRACKERS_TRACKERLESS:
                 hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, TAGS_ALL, TRACKERS_TRACKERLESS);
                 break;
-            default:
-                hashes = trackerList.get(trackerHashInt).torrents;
+            default: {
+                const uniqueTorrents = new Set();
+                for (const torrents of trackerList.get(trackerHashInt).trackerTorrentMap.values()) {
+                    for (const torrent of torrents) {
+                        uniqueTorrents.add(torrent);
+                    }
+                }
+                hashes = [...uniqueTorrents];
                 break;
+            }
         }
 
         if (hashes.length > 0) {
@@ -901,9 +908,16 @@ const initializeWindows = function() {
             case TRACKERS_TRACKERLESS:
                 hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, TAGS_ALL, TRACKERS_TRACKERLESS);
                 break;
-            default:
-                hashes = trackerList.get(trackerHashInt).torrents;
+            default: {
+                const uniqueTorrents = new Set();
+                for (const torrents of trackerList.get(trackerHashInt).trackerTorrentMap.values()) {
+                    for (const torrent of torrents) {
+                        uniqueTorrents.add(torrent);
+                    }
+                }
+                hashes = [...uniqueTorrents];
                 break;
+            }
         }
 
         if (hashes.length) {
@@ -928,9 +942,16 @@ const initializeWindows = function() {
             case TRACKERS_TRACKERLESS:
                 hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, TAGS_ALL, TRACKERS_TRACKERLESS);
                 break;
-            default:
-                hashes = trackerList.get(trackerHashInt).torrents;
+            default: {
+                const uniqueTorrents = new Set();
+                for (const torrents of trackerList.get(trackerHashInt).trackerTorrentMap.values()) {
+                    for (const torrent of torrents) {
+                        uniqueTorrents.add(torrent);
+                    }
+                }
+                hashes = [...uniqueTorrents];
                 break;
+            }
         }
 
         if (hashes.length) {
