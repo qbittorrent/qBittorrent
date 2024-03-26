@@ -178,6 +178,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
         setColumnHidden(TransferListModel::TR_INFOHASH_V2, true);
         setColumnHidden(TransferListModel::TR_COMPLETED, true);
         setColumnHidden(TransferListModel::TR_RATIO_LIMIT, true);
+        setColumnHidden(TransferListModel::TR_POPULARITY, true);
         setColumnHidden(TransferListModel::TR_SEEN_COMPLETE_DATE, true);
         setColumnHidden(TransferListModel::TR_LAST_ACTIVITY, true);
         setColumnHidden(TransferListModel::TR_TOTAL_SIZE, true);
@@ -696,6 +697,7 @@ void TransferListWidget::displayColumnHeaderMenu()
             continue;
 
         const auto columnName = m_listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString();
+        const QVariant columnToolTip = m_listModel->headerData(i, Qt::Horizontal, Qt::ToolTipRole);
         QAction *action = menu->addAction(columnName, this, [this, i](const bool checked)
         {
             if (!checked && (visibleColumnsCount() <= 1))
@@ -710,6 +712,8 @@ void TransferListWidget::displayColumnHeaderMenu()
         });
         action->setCheckable(true);
         action->setChecked(!isColumnHidden(i));
+        if (!columnToolTip.isNull())
+            action->setToolTip(columnToolTip.toString());
     }
 
     menu->addSeparator();

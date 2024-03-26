@@ -210,6 +210,7 @@ namespace BitTorrent
         int maxSeedingTime() const override;
         int maxInactiveSeedingTime() const override;
         qreal realRatio() const override;
+        qreal popularity() const override;
         int uploadPayloadRate() const override;
         int downloadPayloadRate() const override;
         qlonglong totalPayloadUpload() const override;

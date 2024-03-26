@@ -295,6 +295,25 @@
                 </property>
                </widget>
               </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="labelPopularity">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip">
+                 <string>Ratio / Time Active (in months), indicates how popular the torrent is</string>
+                </property>
+                <property name="text">
+                 <string>Popularity:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
               <item row="0" column="5">
                <widget class="QLabel" name="labelConnectionsVal">
                 <property name="sizePolicy">
@@ -489,6 +508,22 @@
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::PlainText</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QLabel" name="labelPopularityVal">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip">
+                 <string>Ratio / Time Active (in months), indicates how popular the torrent is</string>
                 </property>
                 <property name="textFormat">
                  <enum>Qt::PlainText</enum>

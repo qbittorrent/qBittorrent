@@ -167,6 +167,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_DLSPEED: return tr("Down Speed", "i.e: Download speed");
             case TR_UPSPEED: return tr("Up Speed", "i.e: Upload speed");
             case TR_RATIO: return tr("Ratio", "Share ratio");
+            case TR_POPULARITY: return tr("Popularity");
             case TR_ETA: return tr("ETA", "i.e: Estimated Time of Arrival / Time left");
             case TR_CATEGORY: return tr("Category");
             case TR_TAGS: return tr("Tags");
@@ -195,6 +196,14 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             default: return {};
             }
         }
+        else if (role == Qt::ToolTipRole)
+        {
+            switch (section)
+            {
+            case TR_POPULARITY: return tr("Ratio / Time Active (in months), indicates how popular the torrent is");
+            default: return {};
+            }
+        }
         else if (role == Qt::TextAlignmentRole)
         {
             switch (section)
@@ -216,6 +225,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_DLLIMIT:
             case TR_RATIO_LIMIT:
             case TR_RATIO:
+            case TR_POPULARITY:
             case TR_QUEUE_POSITION:
             case TR_LAST_ACTIVITY:
             case TR_AVAILABILITY:
@@ -373,6 +383,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return ratioString(torrent->realRatio());
     case TR_RATIO_LIMIT:
         return ratioString(torrent->maxRatio());
+    case TR_POPULARITY:
+        return ratioString(torrent->popularity());
     case TR_CATEGORY:
         return torrent->category();
     case TR_TAGS:
@@ -450,6 +462,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->eta();
     case TR_RATIO:
         return torrent->realRatio();
+    case TR_POPULARITY:
+        return torrent->popularity();
     case TR_CATEGORY:
         return torrent->category();
     case TR_TAGS:
@@ -559,6 +573,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         case TR_DLLIMIT:
         case TR_RATIO_LIMIT:
         case TR_RATIO:
+        case TR_POPULARITY:
         case TR_QUEUE_POSITION:
         case TR_LAST_ACTIVITY:
         case TR_AVAILABILITY:
