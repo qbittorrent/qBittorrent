@@ -1147,8 +1147,11 @@ window.addEventListener("DOMContentLoaded", function() {
     // main window tabs
 
     const showTransfersTab = function() {
-        $("filtersColumn").removeClass("invisible");
-        $("filtersColumn_handle").removeClass("invisible");
+        const showFiltersSidebar = LocalPreferences.get("show_filters_sidebar", "true") === "true";
+        if (showFiltersSidebar) {
+            $("filtersColumn").removeClass("invisible");
+            $("filtersColumn_handle").removeClass("invisible");
+        }
         $("mainColumn").removeClass("invisible");
         $('torrentsFilterToolbar').removeClass("invisible");
 
