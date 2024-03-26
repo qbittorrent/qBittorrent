@@ -95,7 +95,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: "6.5.2"
+          version: "6.6.1"
           archives: qtbase qtsvg qttools
           cache: true
 
