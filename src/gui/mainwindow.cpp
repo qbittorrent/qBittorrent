@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -293,9 +293,6 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     connect(m_ui->actionIncreaseQueuePos, &QAction::triggered, m_transferListWidget, &TransferListWidget::increaseQueuePosSelectedTorrents);
     connect(m_ui->actionDecreaseQueuePos, &QAction::triggered, m_transferListWidget, &TransferListWidget::decreaseQueuePosSelectedTorrents);
     connect(m_ui->actionBottomQueuePos, &QAction::triggered, m_transferListWidget, &TransferListWidget::bottomQueuePosSelectedTorrents);
-#ifndef Q_OS_MACOS
-    connect(m_ui->actionToggleVisibility, &QAction::triggered, this, &MainWindow::toggleVisibility);
-#endif
     connect(m_ui->actionMinimize, &QAction::triggered, this, &MainWindow::minimizeWindow);
     connect(m_ui->actionUseAlternativeSpeedLimits, &QAction::triggered, this, &MainWindow::toggleAlternativeSpeeds);
 
@@ -387,7 +384,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     // Load Window state and sizes
     loadSettings();
 
-    app->desktopIntegration()->setMenu(createDesktopIntegrationMenu());
+    populateDesktopIntegrationMenu();
 #ifndef Q_OS_MACOS
     m_ui->actionLock->setVisible(app->desktopIntegration()->isActive());
     connect(app->desktopIntegration(), &DesktopIntegration::stateChanged, this, [this, app]()
@@ -1326,12 +1323,6 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event)
         event->acceptProposedAction();
 }
 
-/*****************************************************
-*                                                   *
-*                     Torrent                       *
-*                                                   *
-*****************************************************/
-
 // Display a dialog to allow user to add
 // torrents to download list
 void MainWindow::on_actionOpen_triggered()
@@ -1527,33 +1518,23 @@ void MainWindow::reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torren
     }
 }
 
-/*****************************************************
-*                                                   *
-*                      Utils                        *
-*                                                   *
-*****************************************************/
-
 void MainWindow::downloadFromURLList(const QStringList &urlList)
 {
     for (const QString &url : urlList)
         app()->addTorrentManager()->addTorrent(url);
 }
 
-/*****************************************************
-*                                                   *
-*                     Options                       *
-*                                                   *
-*****************************************************/
-
-QMenu *MainWindow::createDesktopIntegrationMenu()
+void MainWindow::populateDesktopIntegrationMenu()
 {
-    auto *menu = new QMenu;
+    auto *menu = app()->desktopIntegration()->menu();
+    menu->clear();
 
 #ifndef Q_OS_MACOS
     connect(menu, &QMenu::aboutToShow, this, [this]()
     {
         m_ui->actionToggleVisibility->setText(isVisible() ? tr("Hide") : tr("Show"));
     });
+    connect(m_ui->actionToggleVisibility, &QAction::triggered, this, &MainWindow::toggleVisibility);
 
     menu->addAction(m_ui->actionToggleVisibility);
     menu->addSeparator();
@@ -1577,8 +1558,6 @@ QMenu *MainWindow::createDesktopIntegrationMenu()
 
     if (m_uiLocked)
         menu->setEnabled(false);
-
-    return menu;
 }
 
 void MainWindow::updateAltSpeedsBtn(const bool alternative)
@@ -1695,12 +1674,6 @@ void MainWindow::on_actionSearchWidget_triggered()
 
     displaySearchTab(m_ui->actionSearchWidget->isChecked());
 }
-
-/*****************************************************
-*                                                   *
-*                 HTTP Downloader                   *
-*                                                   *
-*****************************************************/
 
 // Display an input dialog to prompt user for
 // an url

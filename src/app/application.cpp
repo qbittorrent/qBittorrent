@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -832,7 +832,7 @@ int Application::exec()
     m_desktopIntegration = new DesktopIntegration;
     m_desktopIntegration->setToolTip(tr("Loading torrents..."));
 #ifndef Q_OS_MACOS
-    auto *desktopIntegrationMenu = new QMenu;
+    auto *desktopIntegrationMenu = m_desktopIntegration->menu();
     auto *actionExit = new QAction(tr("E&xit"), desktopIntegrationMenu);
     actionExit->setIcon(UIThemeManager::instance()->getIcon(u"application-exit"_s));
     actionExit->setMenuRole(QAction::QuitRole);
@@ -842,8 +842,6 @@ int Application::exec()
         QApplication::exit();
     });
     desktopIntegrationMenu->addAction(actionExit);
-
-    m_desktopIntegration->setMenu(desktopIntegrationMenu);
 
     const bool isHidden = m_desktopIntegration->isActive() && (startUpWindowState() == WindowState::Hidden);
 #else

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -186,7 +186,7 @@ private slots:
 #endif
 
 private:
-    QMenu *createDesktopIntegrationMenu();
+    void populateDesktopIntegrationMenu();
 #ifdef Q_OS_WIN
     void installPython();
 #endif
