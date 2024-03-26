@@ -390,6 +390,8 @@ public:
     void setRegexAsFilteringPatternForTransferList(bool checked);
     int getToolbarTextPosition() const;
     void setToolbarTextPosition(int position);
+    QString customizeTrackersListUrl() const;
+    void setCustomizeTrackersListUrl(const QString &trackersUrl);
 
     // From old RssSettings class
     bool isRSSWidgetEnabled() const;

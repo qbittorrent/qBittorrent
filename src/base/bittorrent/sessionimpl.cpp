@@ -77,6 +77,7 @@
 #include "base/algorithm.h"
 #include "base/global.h"
 #include "base/logger.h"
+#include "base/net/downloadmanager.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
 #include "base/profile.h"
@@ -457,6 +458,8 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_blockPeersOnPrivilegedPorts(BITTORRENT_SESSION_KEY(u"BlockPeersOnPrivilegedPorts"_s), false)
     , m_isAddTrackersEnabled(BITTORRENT_SESSION_KEY(u"AddTrackersEnabled"_s), false)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY(u"AdditionalTrackers"_s))
+    , m_publicTrackers(BITTORRENT_SESSION_KEY(u"PublicTrackersList"_s))
+    , m_isAutoUpdateTrackersEnabled(BITTORRENT_SESSION_KEY(u"AutoUpdateTrackersEnabled"_s), false)
     , m_globalMaxRatio(BITTORRENT_SESSION_KEY(u"GlobalMaxRatio"_s), -1, [](qreal r) { return r < 0 ? -1. : r;})
     , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxSeedingMinutes"_s), -1, lowerLimited(-1))
     , m_globalMaxInactiveSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxInactiveSeedingMinutes"_s), -1, lowerLimited(-1))
@@ -569,6 +572,7 @@ SessionImpl::SessionImpl(QObject *parent)
 
     updateSeedingLimitTimer();
     populateAdditionalTrackers();
+    populatePublicTrackers();
     if (isExcludedFileNamesEnabled())
         populateExcludedFileNamesRegExpList();
 
@@ -593,6 +597,15 @@ SessionImpl::SessionImpl(QObject *parent)
     enableTracker(isTrackerEnabled());
 
     prepareStartup();
+
+    // Update Tracker
+    m_updateTimer = new QTimer(this);
+    m_updateTimer->setInterval(86400*1000);
+    connect(m_updateTimer, &QTimer::timeout, this, &SessionImpl::updatePublicTracker);
+    if (isAutoUpdateTrackersEnabled()) {
+        updatePublicTracker();
+        m_updateTimer->start();
+    }
 }
 
 SessionImpl::~SessionImpl()
@@ -2218,6 +2231,68 @@ void SessionImpl::populateAdditionalTrackers()
     }
 }
 
+bool SessionImpl::isAutoUpdateTrackersEnabled() const
+{
+    return m_isAutoUpdateTrackersEnabled;
+}
+
+void SessionImpl::setAutoUpdateTrackersEnabled(bool enabled)
+{
+    m_isAutoUpdateTrackersEnabled = enabled;
+
+    if(!enabled) {
+        m_updateTimer->stop();
+    } else {
+        m_updateTimer->start();
+        updatePublicTracker();
+    }
+}
+
+QString SessionImpl::publicTrackers() const
+{
+    return m_publicTrackers;
+}
+
+void SessionImpl::setPublicTrackers(const QString &trackers)
+{
+    if (trackers != publicTrackers()) {
+        m_publicTrackers = trackers;
+        populatePublicTrackers();
+    }
+}
+
+void SessionImpl::updatePublicTracker()
+{
+    Preferences *const pref = Preferences::instance();
+    Net::DownloadManager::instance()->download(Net::DownloadRequest(pref->customizeTrackersListUrl()).userAgent(QStringLiteral("qBittorrent/" QBT_VERSION_2)), Preferences::instance()->useProxyForGeneralPurposes(), this, &SessionImpl::handlePublicTrackerTxtDownloadFinished);
+}
+
+void SessionImpl::handlePublicTrackerTxtDownloadFinished(const Net::DownloadResult &result)
+{
+    if (result.status == Net::DownloadStatus::Success)
+    {
+        setPublicTrackers(QString::fromUtf8(result.data.data()));
+        LogMsg(tr("The public tracker list updated."), Log::INFO);
+    }
+    else
+    {
+        LogMsg(tr("Updating the public tracker list failed: %1").arg(result.errorString, Log::WARNING));
+    }
+}
+
+void SessionImpl::populatePublicTrackers()
+{
+    m_publicTrackerList.clear();
+
+    const QString trackers = publicTrackers();
+    for (QStringView tracker : asConst(QStringView(trackers).split(u'\n')))
+    {
+        tracker = tracker.trimmed();
+        if (!tracker.isEmpty())
+            m_publicTrackerList.append({tracker.toString()});
+    }
+}
+
 void SessionImpl::processShareLimits()
 {
     const auto effectiveLimit = []<typename T>(const T limit, const T useGlobalLimit, const T globalLimit) -> T
@@ -2789,6 +2864,18 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         p.tracker_tiers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
         p.tracker_tiers.resize(p.trackers.size(), 0);
         for (const TrackerEntry &trackerEntry : asConst(m_additionalTrackerList))
+        {
+            p.trackers.push_back(trackerEntry.url.toStdString());
+            p.tracker_tiers.push_back(trackerEntry.tier);
+        }
+    }
+
+    if (isAutoUpdateTrackersEnabled() && !(hasMetadata && p.ti->priv()))
+    {
+        p.trackers.reserve(p.trackers.size() + static_cast<std::size_t>(m_publicTrackerList.size()));
+        p.tracker_tiers.reserve(p.trackers.size() + static_cast<std::size_t>(m_publicTrackerList.size()));
+        p.tracker_tiers.resize(p.trackers.size(), 0);
+        for (const TrackerEntry &trackerEntry : asConst(m_publicTrackerList))
         {
             p.trackers.push_back(trackerEntry.url.toStdString());
             p.tracker_tiers.push_back(trackerEntry.tier);
