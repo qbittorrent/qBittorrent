@@ -35,7 +35,7 @@
 #include <QAbstractItemModel>
 #include <QDateTime>
 
-#include "base/bittorrent/trackerentry.h"
+#include "base/bittorrent/trackerentrystatus.h"
 
 class QTimer;
 
@@ -43,6 +43,7 @@ namespace BitTorrent
 {
     class Session;
     class Torrent;
+    struct TrackerEntry;
 }
 
 class TrackerListModel final : public QAbstractItemModel
@@ -99,14 +100,14 @@ private:
     struct Item;
 
     void populate();
-    std::shared_ptr<Item> createTrackerItem(const BitTorrent::TrackerEntry &trackerEntry);
-    void addTrackerItem(const BitTorrent::TrackerEntry &trackerEntry);
-    void updateTrackerItem(const std::shared_ptr<Item> &item, const BitTorrent::TrackerEntry &trackerEntry);
+    std::shared_ptr<Item> createTrackerItem(const BitTorrent::TrackerEntryStatus &trackerEntryStatus);
+    void addTrackerItem(const BitTorrent::TrackerEntryStatus &trackerEntryStatus);
+    void updateTrackerItem(const std::shared_ptr<Item> &item, const BitTorrent::TrackerEntryStatus &trackerEntryStatus);
     void refreshAnnounceTimes();
     void onTrackersAdded(const QList<BitTorrent::TrackerEntry> &newTrackers);
     void onTrackersRemoved(const QStringList &deletedTrackers);
     void onTrackersChanged();
-    void onTrackersUpdated(const QHash<QString, BitTorrent::TrackerEntry> &updatedTrackers);
+    void onTrackersUpdated(const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers);
 
     BitTorrent::Session *m_btSession = nullptr;
     BitTorrent::Torrent *m_torrent = nullptr;

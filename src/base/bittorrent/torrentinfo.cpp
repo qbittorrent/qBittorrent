@@ -47,7 +47,7 @@
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
 #include "infohash.h"
-#include "trackerentry.h"
+#include "trackerentrystatus.h"
 
 using namespace BitTorrent;
 
@@ -270,13 +270,13 @@ qlonglong TorrentInfo::fileOffset(const int index) const
     return m_nativeInfo->orig_files().file_offset(m_nativeIndexes[index]);
 }
 
-QVector<TrackerEntry> TorrentInfo::trackers() const
+QVector<TrackerEntryStatus> TorrentInfo::trackers() const
 {
     if (!isValid()) return {};
 
     const std::vector<lt::announce_entry> trackers = m_nativeInfo->trackers();
 
-    QVector<TrackerEntry> ret;
+    QVector<TrackerEntryStatus> ret;
     ret.reserve(static_cast<decltype(ret)::size_type>(trackers.size()));
     for (const lt::announce_entry &tracker : trackers)
         ret.append({QString::fromStdString(tracker.url), tracker.tier});

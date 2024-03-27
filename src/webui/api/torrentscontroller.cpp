@@ -49,6 +49,7 @@
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/torrentdescriptor.h"
 #include "base/bittorrent/trackerentry.h"
+#include "base/bittorrent/trackerentrystatus.h"
 #include "base/interfaces/iapplication.h"
 #include "base/global.h"
 #include "base/logger.h"
@@ -194,7 +195,7 @@ namespace
             }
         }
 
-        const int working = static_cast<int>(BitTorrent::TrackerEntryStatus::Working);
+        const int working = static_cast<int>(BitTorrent::TrackerEndpointState::Working);
         const int disabled = 0;
 
         const QString privateMsg {QCoreApplication::translate("TrackerListWidget", "This torrent is private")};
@@ -500,16 +501,16 @@ void TorrentsController::trackersAction()
 
     QJsonArray trackerList = getStickyTrackers(torrent);
 
-    for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers()))
+    for (const BitTorrent::TrackerEntryStatus &tracker : asConst(torrent->trackers()))
     {
-        const bool isNotWorking = (tracker.status == BitTorrent::TrackerEntryStatus::NotWorking)
-                || (tracker.status == BitTorrent::TrackerEntryStatus::TrackerError)
-                || (tracker.status == BitTorrent::TrackerEntryStatus::Unreachable);
+        const bool isNotWorking = (tracker.state == BitTorrent::TrackerEndpointState::NotWorking)
+                || (tracker.state == BitTorrent::TrackerEndpointState::TrackerError)
+                || (tracker.state == BitTorrent::TrackerEndpointState::Unreachable);
         trackerList << QJsonObject
         {
             {KEY_TRACKER_URL, tracker.url},
             {KEY_TRACKER_TIER, tracker.tier},
-            {KEY_TRACKER_STATUS, static_cast<int>((isNotWorking ? BitTorrent::TrackerEntryStatus::NotWorking : tracker.status))},
+            {KEY_TRACKER_STATUS, static_cast<int>((isNotWorking ? BitTorrent::TrackerEndpointState::NotWorking : tracker.state))},
             {KEY_TRACKER_MSG, tracker.message},
             {KEY_TRACKER_PEERS_COUNT, tracker.numPeers},
             {KEY_TRACKER_SEEDS_COUNT, tracker.numSeeds},
@@ -800,7 +801,7 @@ void TorrentsController::addTrackersAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    const QVector<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(params()[u"urls"_s]);
+    const QList<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(params()[u"urls"_s]);
     torrent->addTrackers(entries);
 }
 
@@ -823,23 +824,35 @@ void TorrentsController::editTrackerAction()
     if (!newTrackerUrl.isValid())
         throw APIError(APIErrorType::BadParams, u"New tracker URL is invalid"_s);
 
-    QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+    const QList<BitTorrent::TrackerEntryStatus> currentTrackers = torrent->trackers();
+    QList<BitTorrent::TrackerEntry> entries;
+    entries.reserve(currentTrackers.size());
+
     bool match = false;
-    for (BitTorrent::TrackerEntry &tracker : trackers)
+    for (const BitTorrent::TrackerEntryStatus &tracker : currentTrackers)
     {
         const QUrl trackerUrl {tracker.url};
+
         if (trackerUrl == newTrackerUrl)
             throw APIError(APIErrorType::Conflict, u"New tracker URL already exists"_s);
+
+        BitTorrent::TrackerEntry entry
+        {
+            .url = tracker.url,
+            .tier = tracker.tier
+        };
+
         if (trackerUrl == origTrackerUrl)
         {
             match = true;
-            tracker.url = newTrackerUrl.toString();
+            entry.url = newTrackerUrl.toString();
         }
+        entries.append(entry);
     }
     if (!match)
         throw APIError(APIErrorType::Conflict, u"Tracker not found"_s);
 
-    torrent->replaceTrackers(trackers);
+    torrent->replaceTrackers(entries);
 
     if (!torrent->isStopped())
         torrent->forceReannounce();

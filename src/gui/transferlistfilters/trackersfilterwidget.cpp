@@ -38,6 +38,8 @@
 
 #include "base/algorithm.h"
 #include "base/bittorrent/session.h"
+#include "base/bittorrent/trackerentry.h"
+#include "base/bittorrent/trackerentrystatus.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
@@ -202,16 +204,15 @@ void TrackersFilterWidget::refreshTrackers(const BitTorrent::Torrent *torrent)
         return false;
     });
 
-    const QVector<BitTorrent::TrackerEntry> trackerEntries = torrent->trackers();
-    const bool isTrackerless = trackerEntries.isEmpty();
-    if (isTrackerless)
+    const QVector<BitTorrent::TrackerEntryStatus> trackers = torrent->trackers();
+    if (trackers.isEmpty())
     {
         addItems(NULL_HOST, {torrentID});
     }
     else
     {
-        for (const BitTorrent::TrackerEntry &trackerEntry : trackerEntries)
-            addItems(trackerEntry.url, {torrentID});
+        for (const BitTorrent::TrackerEntryStatus &status : trackers)
+            addItems(status.url, {torrentID});
     }
 
     item(OTHERERROR_ROW)->setText(formatItemText(OTHERERROR_ROW, m_errors.size()));
@@ -380,8 +381,8 @@ void TrackersFilterWidget::setDownloadTrackerFavicon(bool value)
     }
 }
 
-void TrackersFilterWidget::handleTrackerEntriesUpdated(const BitTorrent::Torrent *torrent
-        , const QHash<QString, BitTorrent::TrackerEntry> &updatedTrackerEntries)
+void TrackersFilterWidget::handleTrackerStatusesUpdated(const BitTorrent::Torrent *torrent
+        , const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers)
 {
     const BitTorrent::TorrentID id = torrent->id();
 
@@ -389,51 +390,51 @@ void TrackersFilterWidget::handleTrackerEntriesUpdated(const BitTorrent::Torrent
     auto trackerErrorHashesIt = m_trackerErrors.find(id);
     auto warningHashesIt = m_warnings.find(id);
 
-    for (const BitTorrent::TrackerEntry &trackerEntry : updatedTrackerEntries)
+    for (const BitTorrent::TrackerEntryStatus &trackerEntryStatus : updatedTrackers)
     {
-        if (trackerEntry.status == BitTorrent::TrackerEntryStatus::Working)
+        if (trackerEntryStatus.state == BitTorrent::TrackerEndpointState::Working)
         {
             if (errorHashesIt != m_errors.end())
             {
-                errorHashesIt->remove(trackerEntry.url);
+                errorHashesIt->remove(trackerEntryStatus.url);
             }
 
             if (trackerErrorHashesIt != m_trackerErrors.end())
             {
-                trackerErrorHashesIt->remove(trackerEntry.url);
+                trackerErrorHashesIt->remove(trackerEntryStatus.url);
             }
 
-            const bool hasNoWarningMessages = std::all_of(trackerEntry.endpointEntries.cbegin(), trackerEntry.endpointEntries.cend()
-                , [](const BitTorrent::TrackerEndpointEntry &endpointEntry)
+            const bool hasNoWarningMessages = std::all_of(trackerEntryStatus.endpoints.cbegin(), trackerEntryStatus.endpoints.cend()
+                , [](const BitTorrent::TrackerEndpointStatus &endpointEntry)
             {
-                return endpointEntry.message.isEmpty() || (endpointEntry.status != BitTorrent::TrackerEntryStatus::Working);
+                return endpointEntry.message.isEmpty() || (endpointEntry.state != BitTorrent::TrackerEndpointState::Working);
             });
             if (hasNoWarningMessages)
             {
                 if (warningHashesIt != m_warnings.end())
                 {
-                    warningHashesIt->remove(trackerEntry.url);
+                    warningHashesIt->remove(trackerEntryStatus.url);
                 }
             }
             else
             {
                 if (warningHashesIt == m_warnings.end())
                     warningHashesIt = m_warnings.insert(id, {});
-                warningHashesIt->insert(trackerEntry.url);
+                warningHashesIt->insert(trackerEntryStatus.url);
             }
         }
-        else if ((trackerEntry.status == BitTorrent::TrackerEntryStatus::NotWorking)
-            || (trackerEntry.status == BitTorrent::TrackerEntryStatus::Unreachable))
+        else if ((trackerEntryStatus.state == BitTorrent::TrackerEndpointState::NotWorking)
+            || (trackerEntryStatus.state == BitTorrent::TrackerEndpointState::Unreachable))
         {
             if (errorHashesIt == m_errors.end())
                 errorHashesIt = m_errors.insert(id, {});
-            errorHashesIt->insert(trackerEntry.url);
+            errorHashesIt->insert(trackerEntryStatus.url);
         }
-        else if (trackerEntry.status == BitTorrent::TrackerEntryStatus::TrackerError)
+        else if (trackerEntryStatus.state == BitTorrent::TrackerEndpointState::TrackerError)
         {
             if (trackerErrorHashesIt == m_trackerErrors.end())
                 trackerErrorHashesIt = m_trackerErrors.insert(id, {});
-            trackerErrorHashesIt->insert(trackerEntry.url);
+            trackerErrorHashesIt->insert(trackerEntryStatus.url);
         }
     }
 
@@ -481,10 +482,10 @@ void TrackersFilterWidget::removeTracker(const QString &tracker)
             continue;
 
         QStringList trackersToRemove;
-        for (const BitTorrent::TrackerEntry &trackerEntry : asConst(torrent->trackers()))
+        for (const BitTorrent::TrackerEntryStatus &trackerEntryStatus : asConst(torrent->trackers()))
         {
-            if ((trackerEntry.url == tracker) || (QUrl(trackerEntry.url).host() == tracker))
-                trackersToRemove.append(trackerEntry.url);
+            if ((trackerEntryStatus.url == tracker) || (QUrl(trackerEntryStatus.url).host() == tracker))
+                trackersToRemove.append(trackerEntryStatus.url);
         }
 
         torrent->removeTrackers({trackersToRemove});
@@ -592,8 +593,8 @@ void TrackersFilterWidget::handleTorrentsLoaded(const QVector<BitTorrent::Torren
     for (const BitTorrent::Torrent *torrent : torrents)
     {
         const BitTorrent::TorrentID torrentID = torrent->id();
-        const QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
-        for (const BitTorrent::TrackerEntry &tracker : trackers)
+        const QVector<BitTorrent::TrackerEntryStatus> trackers = torrent->trackers();
+        for (const BitTorrent::TrackerEntryStatus &tracker : trackers)
             torrentsPerTracker[tracker.url].append(torrentID);
 
         // Check for trackerless torrent
@@ -613,8 +614,8 @@ void TrackersFilterWidget::handleTorrentsLoaded(const QVector<BitTorrent::Torren
 void TrackersFilterWidget::torrentAboutToBeDeleted(BitTorrent::Torrent *const torrent)
 {
     const BitTorrent::TorrentID torrentID = torrent->id();
-    const QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
-    for (const BitTorrent::TrackerEntry &tracker : trackers)
+    const QVector<BitTorrent::TrackerEntryStatus> trackers = torrent->trackers();
+    for (const BitTorrent::TrackerEntryStatus &tracker : trackers)
         removeItem(tracker.url, torrentID);
 
     // Check for trackerless torrent

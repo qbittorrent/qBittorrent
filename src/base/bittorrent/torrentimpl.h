@@ -55,7 +55,7 @@
 #include "torrent.h"
 #include "torrentcontentlayout.h"
 #include "torrentinfo.h"
-#include "trackerentry.h"
+#include "trackerentrystatus.h"
 
 namespace BitTorrent
 {
@@ -175,7 +175,7 @@ namespace BitTorrent
         bool hasMissingFiles() const override;
         bool hasError() const override;
         int queuePosition() const override;
-        QVector<TrackerEntry> trackers() const override;
+        QVector<TrackerEntryStatus> trackers() const override;
         QVector<QUrl> urlSeeds() const override;
         QString error() const override;
         qlonglong totalDownload() const override;
@@ -275,8 +275,8 @@ namespace BitTorrent
         void deferredRequestResumeData();
         void handleMoveStorageJobFinished(const Path &path, MoveStorageContext context, bool hasOutstandingJob);
         void fileSearchFinished(const Path &savePath, const PathList &fileNames);
-        TrackerEntry updateTrackerEntry(const lt::announce_entry &announceEntry, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo);
-        void resetTrackerEntries();
+        TrackerEntryStatus updateTrackerEntryStatus(const lt::announce_entry &announceEntry, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo);
+        void resetTrackerEntryStatuses();
 
     private:
         using EventTrigger = std::function<void ()>;
@@ -349,7 +349,7 @@ namespace BitTorrent
 
         MaintenanceJob m_maintenanceJob = MaintenanceJob::None;
 
-        QVector<TrackerEntry> m_trackerEntries;
+        QVector<TrackerEntryStatus> m_trackerEntryStatuses;
         QVector<QUrl> m_urlSeeds;
         FileErrorInfo m_lastFileError;
 
