@@ -74,7 +74,9 @@ TrackersAdditionDialog::~TrackersAdditionDialog()
 
 void TrackersAdditionDialog::onAccepted() const
 {
-    const QVector<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(m_ui->textEditTrackersList->toPlainText());
+    const QVector<BitTorrent::TrackerEntry> trackers = m_torrent->trackers();
+    int maxTier = (trackers.size() > 0 ? trackers.back().tier : -1);  // get maximum tier of current torrent
+    const QVector<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(m_ui->textEditTrackersList->toPlainText(), maxTier + 1);
     m_torrent->addTrackers(entries);
 }
 

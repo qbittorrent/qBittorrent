@@ -78,9 +78,9 @@ void TrackerEntriesDialog::setTrackers(const QVector<BitTorrent::TrackerEntry> &
     m_ui->plainTextEdit->setPlainText(text);
 }
 
-QVector<BitTorrent::TrackerEntry> TrackerEntriesDialog::trackers() const
+QVector<BitTorrent::TrackerEntry> TrackerEntriesDialog::trackers(const int &tierGroupOverride) const
 {
-    return BitTorrent::parseTrackerEntries(m_ui->plainTextEdit->toPlainText());
+    return BitTorrent::parseTrackerEntries(m_ui->plainTextEdit->toPlainText(), tierGroupOverride);
 }
 
 void TrackerEntriesDialog::saveSettings()

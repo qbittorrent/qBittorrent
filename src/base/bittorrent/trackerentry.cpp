@@ -30,21 +30,23 @@
 
 #include <QList>
 
-QList<BitTorrent::TrackerEntry> BitTorrent::parseTrackerEntries(const QStringView str)
+QList<BitTorrent::TrackerEntry> BitTorrent::parseTrackerEntries(const QStringView str, const int defaultTier)
 {
+    Q_ASSERT(defaultTier >= 0);
+    
     const QList<QStringView> trackers = str.split(u'\n');  // keep the empty parts to track tracker tier
 
     QList<BitTorrent::TrackerEntry> entries;
     entries.reserve(trackers.size());
 
-    int trackerTier = 0;
+    int trackerTier = defaultTier;
     for (QStringView tracker : trackers)
     {
         tracker = tracker.trimmed();
 
         if (tracker.isEmpty())
         {
-            if (trackerTier < std::numeric_limits<decltype(trackerTier)>::max())  // prevent overflow
+            if (defaultTier <= 0 && trackerTier < std::numeric_limits<decltype(trackerTier)>::max())  // prevent overflow
                 ++trackerTier;
             continue;
         }
