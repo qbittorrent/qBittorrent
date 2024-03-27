@@ -251,6 +251,7 @@ Application::Application(int &argc, char **argv)
 #if !defined(DISABLE_GUI)
     setDesktopFileName(u"org.qbittorrent.qBittorrent"_s);
     setQuitOnLastWindowClosed(false);
+    setQuitLockEnabled(false);
     QPixmapCache::setCacheLimit(PIXMAP_CACHE_SIZE);
 #endif
 
