@@ -51,7 +51,16 @@ QString Utils::String::fromDouble(const double n, const int precision)
 
 QString Utils::String::wildcardToRegexPattern(const QString &pattern)
 {
-    return QRegularExpression::wildcardToRegularExpression(pattern, QRegularExpression::UnanchoredWildcardConversion);
+    QString wildcard = QRegularExpression::escape(pattern);
+
+    // Replace "\?" (which has been regex-escaped above) with "."
+    wildcard.replace(u"\\?"_s, u"."_s);
+
+    // Replace "\*" (which has been regex-escaped above) with ".*"
+    // Consecutive wildcards are merged to avoid catastrophic backtracking
+    wildcard.replace(QRegularExpression(u"(?:\\\\\\*)+"_s), u".*"_s);
+
+    return wildcard;
 }
 
 QStringList Utils::String::splitCommand(const QString &command)
