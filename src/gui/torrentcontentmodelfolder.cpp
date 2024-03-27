@@ -147,10 +147,19 @@ void TorrentContentModelFolder::recalculateProgress()
         tRemaining += child->remaining();
     }
 
-    if (!isRootItem() && (tSize > 0))
+    if (!isRootItem())
     {
-        m_progress = tProgress / tSize;
-        m_remaining = tRemaining;
+        if (tSize > 0)
+        {
+            m_progress = tProgress / tSize;
+            m_remaining = tRemaining;
+        }
+        else if (tSize == 0)
+        {
+            m_progress = 1.0;
+            m_remaining = 0;
+        }
+
         Q_ASSERT(m_progress <= 1.);
     }
 }
