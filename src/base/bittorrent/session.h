@@ -438,6 +438,8 @@ namespace BitTorrent
         virtual qsizetype torrentsCount() const = 0;
         virtual const SessionStatus &status() const = 0;
         virtual const CacheStatus &cacheStatus() const = 0;
+        virtual QString lastExternalIPv6Address() const = 0;
+        virtual QString lastExternalIPv4Address() const = 0;
         virtual bool isListening() const = 0;
 
         virtual void banIP(const QString &ip) = 0;

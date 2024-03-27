@@ -82,6 +82,8 @@ namespace
 
     // TransferInfo keys
     const QString KEY_TRANSFER_CONNECTION_STATUS = u"connection_status"_s;
+    const QString KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6 = u"last_external_address_v6"_s;
+    const QString KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4 = u"last_external_address_v4"_s;
     const QString KEY_TRANSFER_DHT_NODES = u"dht_nodes"_s;
     const QString KEY_TRANSFER_DLDATA = u"dl_info_data"_s;
     const QString KEY_TRANSFER_DLRATELIMIT = u"dl_rate_limit"_s;
@@ -161,6 +163,8 @@ namespace
         map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime;
         map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes;
 
+        map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6] = session->getLastExternalIPv6Address();
+        map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4] = session->getLastExternalIPv4Address();
         map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes;
         map[KEY_TRANSFER_CONNECTION_STATUS] = session->isListening()
             ? (sessionStatus.hasIncomingConnections ? u"connected"_s : u"firewalled"_s)
@@ -445,6 +449,8 @@ void SyncController::updateFreeDiskSpace(const qint64 freeDiskSpace)
 //  - "total_size": Size including unwanted data
 // Server state map may contain the following keys:
 //  - "connection_status": connection status
+//  - "last_external_address_v6": last external address v6
+//  - "last_external_address_v4": last external address v4
 //  - "dht_nodes": DHT nodes count
 //  - "dl_info_data": bytes downloaded
 //  - "dl_info_speed": download speed

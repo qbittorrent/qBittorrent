@@ -893,6 +893,21 @@ window.addEventListener("DOMContentLoaded", function() {
             + window.qBittorrent.Client.mainTitle();
 
         $('freeSpaceOnDisk').set('html', 'QBT_TR(Free space: %1)QBT_TR[CONTEXT=HttpServer]'.replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.free_space_on_disk)));
+
+        let last_external_address_v4 = serverState.last_external_address_v4;
+        let last_external_address_v6 = serverState.last_external_address_v6;
+        let last_external_addresses = 'QBT_TR(External Address(es): Detecting)QBT_TR[CONTEXT=HttpServer]';
+
+        if (last_external_address_v4 !== "" || last_external_address_v6 !== "")
+        {
+            if (last_external_address_v4 !== "" && last_external_address_v6 !== "")
+                last_external_addresses = 'QBT_TR(External Addresses: %1, %2)QBT_TR[CONTEXT=HttpServer]';
+            else
+                last_external_addresses = 'QBT_TR(External Address: %1%2)QBT_TR[CONTEXT=HttpServer]';
+        }
+
+        $('freeSpaceOnDisk').set('html', 'QBT_TR(Free space: %1)QBT_TR[CONTEXT=HttpServer]'.replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.free_space_on_disk)));
+        $('externalAddresses').set('html', last_external_addresses.replace("%1", last_external_address_v4).replace("%2", last_external_address_v6));
         $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]'.replace("%1", serverState.dht_nodes));
 
         // Statistics dialog
@@ -1092,6 +1107,17 @@ window.addEventListener("DOMContentLoaded", function() {
         showLogViewer = !showLogViewer;
         LocalPreferences.set('show_log_viewer', showLogViewer.toString());
         updateTabDisplay();
+    });
+
+    $('showExternalAddressesInLogViewerLink').addEvent('click', function(e) {
+        showLogViewer = true;
+        LocalPreferences.set('show_log_viewer', showLogViewer.toString());
+        updateTabDisplay();
+        $("logTabLink").click();
+        $("logLevelSelect").options[2].selected = true;
+        window.qBittorrent.Log.logLevelChanged();
+        $("filterTextInput").value = 'QBT_TR(Detected external IP.)QBT_TR[CONTEXT=MainWindow]';
+        window.qBittorrent.Log.filterTextChanged();
     });
 
     const updateTabDisplay = function() {

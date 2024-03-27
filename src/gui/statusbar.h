@@ -50,6 +50,7 @@ public:
 signals:
     void alternativeSpeedsButtonClicked();
     void connectionButtonClicked();
+    void showExternalAddressesButtonClicked();
 
 public slots:
     void showRestartRequired();
@@ -62,10 +63,12 @@ private slots:
 private:
     void updateConnectionStatus();
     void updateDHTNodesNumber();
+    void updateExternalAddressesLabel();
     void updateSpeedLabels();
 
     QPushButton *m_dlSpeedLbl = nullptr;
     QPushButton *m_upSpeedLbl = nullptr;
+    QPushButton *m_lastExternalAddressesLbl = nullptr;
     QLabel *m_DHTLbl = nullptr;
     QPushButton *m_connecStatusLblIcon = nullptr;
     QPushButton *m_altSpeedsBtn = nullptr;

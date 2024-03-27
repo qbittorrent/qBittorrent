@@ -119,6 +119,7 @@ private slots:
     bool unlockUI();
     void notifyOfUpdate(const QString &);
     void showConnectionSettings();
+    void showExternalAddressesInLog();
     void minimizeWindow();
     // Keyboard shortcuts
     void createKeyboardShortcuts();
