@@ -30,9 +30,12 @@
 #pragma once
 
 class QByteArray;
+class QIODevice;
 
 namespace Utils::Gzip
 {
+    bool compress(QIODevice &source, QIODevice &dest, int level = 6);
     QByteArray compress(const QByteArray &data, int level = 6, bool *ok = nullptr);
+    bool decompress(QIODevice &source, QIODevice &dest);
     QByteArray decompress(const QByteArray &data, bool *ok = nullptr);
 }
