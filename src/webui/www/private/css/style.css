@@ -527,8 +527,10 @@ ul.filterList {
     padding-left: 0;
 }
 
-ul.filterList a {
+ul.filterList a,
+ul.filterList span.link {
     color: var(--color-text-default);
+    cursor: pointer;
     display: block;
     overflow: hidden;
     padding: 4px 6px;
