@@ -219,6 +219,8 @@ public:
     void setWebUIHttpsKeyPath(const Path &path);
     bool isAltWebUIEnabled() const;
     void setAltWebUIEnabled(bool enabled);
+    bool isAltWebUIDerivative() const;
+    void setAltWebUIDerivativeStatus(bool derivative);
     Path getWebUIRootFolder() const;
     void setWebUIRootFolder(const Path &path);
 

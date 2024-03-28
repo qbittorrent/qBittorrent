@@ -218,6 +218,7 @@ private:
         {{u"torrents"_s, u"topPrio"_s}, Http::METHOD_POST},
     };
     bool m_isAltUIUsed = false;
+    bool m_isAltUIDerivative = false;
     Path m_rootFolder;
 
     struct TranslatedFile

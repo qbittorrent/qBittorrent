@@ -935,6 +935,19 @@ void Preferences::setAltWebUIEnabled(const bool enabled)
     setValue(u"Preferences/WebUI/AlternativeUIEnabled"_s, enabled);
 }
 
+bool Preferences::isAltWebUIDerivative() const
+{
+    return value(u"Preferences/WebUI/AlternativeUIDerivativeFork"_s, false);
+}
+
+void Preferences::setAltWebUIDerivativeStatus(const bool derivative)
+{
+    if (derivative == isAltWebUIDerivative())
+        return;
+
+    setValue(u"Preferences/WebUI/AlternativeUIDerivativeFork"_s, derivative);
+}
+
 Path Preferences::getWebUIRootFolder() const
 {
     return value<Path>(u"Preferences/WebUI/RootFolder"_s);

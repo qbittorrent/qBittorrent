@@ -403,10 +403,14 @@ void WebApplication::configure()
     const auto *pref = Preferences::instance();
 
     const bool isAltUIUsed = pref->isAltWebUIEnabled();
+    const bool isAltUIDerivative = pref->isAltWebUIDerivative();
+
     const Path rootFolder = (!isAltUIUsed ? Path(WWW_FOLDER) : pref->getWebUIRootFolder());
-    if ((isAltUIUsed != m_isAltUIUsed) || (rootFolder != m_rootFolder))
+    if ((isAltUIUsed != m_isAltUIUsed) || (isAltUIDerivative != m_isAltUIDerivative) || (rootFolder != m_rootFolder))
     {
         m_isAltUIUsed = isAltUIUsed;
+        m_isAltUIDerivative = isAltUIDerivative;
+
         m_rootFolder = rootFolder;
         m_translatedFiles.clear();
         if (!m_isAltUIUsed)
@@ -450,7 +454,7 @@ void WebApplication::configure()
     m_prebuiltHeaders.push_back({Http::HEADER_X_XSS_PROTECTION, u"1; mode=block"_s});
     m_prebuiltHeaders.push_back({Http::HEADER_X_CONTENT_TYPE_OPTIONS, u"nosniff"_s});
 
-    if (!m_isAltUIUsed)
+    if (!m_isAltUIUsed || m_isAltUIDerivative)
     {
         m_prebuiltHeaders.push_back({Http::HEADER_CROSS_ORIGIN_OPENER_POLICY, u"same-origin"_s});
         m_prebuiltHeaders.push_back({Http::HEADER_REFERRER_POLICY, u"same-origin"_s});
@@ -461,7 +465,7 @@ void WebApplication::configure()
         m_prebuiltHeaders.push_back({Http::HEADER_X_FRAME_OPTIONS, u"SAMEORIGIN"_s});
 
     const QString contentSecurityPolicy =
-        (m_isAltUIUsed
+        ((m_isAltUIUsed && !m_isAltUIDerivative)
             ? QString()
             : u"default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none'; form-action 'self';"_s)
         + (isClickjackingProtectionEnabled ? u" frame-ancestors 'self';"_s : QString())
@@ -533,7 +537,7 @@ void WebApplication::sendFile(const Path &path)
     const QDateTime lastModified = Utils::Fs::lastModified(path);
 
     // find translated file in cache
-    if (!m_isAltUIUsed)
+    if (!m_isAltUIUsed || m_isAltUIDerivative)
     {
         if (const auto it = m_translatedFiles.constFind(path);
             (it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified))
@@ -572,7 +576,7 @@ void WebApplication::sendFile(const Path &path)
 
     QByteArray data = readResult.value();
     const QMimeType mimeType = QMimeDatabase().mimeTypeForFileNameAndData(path.data(), data);
-    const bool isTranslatable = !m_isAltUIUsed && mimeType.inherits(u"text/plain"_s);
+    const bool isTranslatable = (!m_isAltUIUsed || m_isAltUIDerivative) && mimeType.inherits(u"text/plain"_s);
 
     if (isTranslatable)
     {
