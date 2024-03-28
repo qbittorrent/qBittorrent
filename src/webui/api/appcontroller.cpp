@@ -36,6 +36,7 @@
 
 #include <QCoreApplication>
 #include <QDebug>
+#include <QDir>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -62,6 +63,7 @@
 #include "base/utils/password.h"
 #include "base/utils/string.h"
 #include "base/version.h"
+#include "apierror.h"
 #include "../webapplication.h"
 
 using namespace std::chrono_literals;
@@ -1127,6 +1129,38 @@ void AppController::defaultSavePathAction()
 void AppController::sendTestEmailAction()
 {
     app()->sendTestEmail();
+}
+
+QDir::Filters parseDirectoryContentMode(const QString &visibility)
+{
+    if (visibility == u"dirs")
+        return QDir::Dirs;
+    if (visibility == u"files")
+        return QDir::Files;
+    if (visibility == u"all")
+        return (QDir::Dirs | QDir::Files);
+    throw APIError(APIErrorType::BadParams, u"Invalid mode, allowed values: all, dirs, files"_s);
+}
+
+void AppController::getDirectoryContentAction()
+{
+    requireParams({u"dirPath"_s});
+
+    const QString dirPath = params().value(u"dirPath"_s);
+    if (dirPath.isEmpty() || dirPath.startsWith(u':'))
+        throw APIError(APIErrorType::BadParams, u"Invalid directory path"_s);
+
+    const QDir dir {dirPath};
+    if (!dir.isAbsolute())
+        throw APIError(APIErrorType::BadParams, u"Invalid directory path"_s);
+    if (!dir.exists())
+        throw APIError(APIErrorType::NotFound, u"Directory does not exist"_s);
+
+    const QString visibility = params().value(u"mode"_s, u"all"_s);
+    QDir::Filters filters = QDir::NoDotAndDotDot | parseDirectoryContentMode(visibility);
+
+    const QStringList dirs = dir.entryList(filters);
+    setResult(QJsonArray::fromStringList(dirs));
 }
 
 void AppController::networkInterfaceListAction()
