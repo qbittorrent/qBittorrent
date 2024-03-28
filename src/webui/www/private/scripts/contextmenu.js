@@ -189,6 +189,10 @@ window.qBittorrent.ContextMenu = (function() {
         },
 
         addTarget: function(t) {
+            // prevent long press from selecting this text
+            t.style.setProperty('user-select', 'none');
+            t.style.setProperty('-webkit-user-select', 'none');
+
             this.targets[this.targets.length] = t;
             this.setupEventListeners(t);
         },
