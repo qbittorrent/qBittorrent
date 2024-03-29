@@ -1435,8 +1435,17 @@ window.qBittorrent.DynamicTable = (function() {
                     break;
                 default: {
                     const tracker = trackerList.get(trackerHashInt);
-                    if (tracker && !tracker.torrents.includes(row['full_data'].rowId))
-                        return false;
+                    if (tracker) {
+                        let found = false;
+                        for (const torrents of tracker.trackerTorrentMap.values()) {
+                            if (torrents.includes(row['full_data'].rowId)) {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                            return false;
+                    }
                     break;
                 }
             }

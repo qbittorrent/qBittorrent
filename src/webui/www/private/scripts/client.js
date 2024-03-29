@@ -116,6 +116,7 @@ let setTagFilter = function() {};
 const TRACKERS_ALL = 1;
 const TRACKERS_TRACKERLESS = 2;
 
+/** @type Map<number, {host: string, trackerTorrentMap: Map<string, string[]>}> **/
 const trackerList = new Map();
 
 let selectedTracker = LocalPreferences.get('selected_tracker', TRACKERS_ALL);
@@ -623,11 +624,20 @@ window.addEventListener("DOMContentLoaded", function() {
 
         // Sort trackers by hostname
         const sortedList = [];
-        trackerList.forEach((tracker, hash) => sortedList.push({
-            trackerHost: getHost(tracker.url),
-            trackerHash: hash,
-            trackerCount: tracker.torrents.length
-        }));
+        trackerList.forEach(({ host, trackerTorrentMap }, hash) => {
+            const uniqueTorrents = new Set();
+            for (const torrents of trackerTorrentMap.values()) {
+                for (const torrent of torrents) {
+                    uniqueTorrents.add(torrent);
+                }
+            }
+
+            sortedList.push({
+                trackerHost: host,
+                trackerHash: hash,
+                trackerCount: uniqueTorrents.size,
+            });
+        });
         sortedList.sort((left, right) => window.qBittorrent.Misc.naturalSortCollator.compare(left.trackerHost, right.trackerHost));
         for (const { trackerHost, trackerHash, trackerCount } of sortedList)
             trackerFilterList.appendChild(createLink(trackerHash, (trackerHost + ' (%1)'), trackerCount));
@@ -760,32 +770,17 @@ window.addEventListener("DOMContentLoaded", function() {
                         updateTags = true;
                     }
                     if (response['trackers']) {
-                        for (const tracker in response['trackers']) {
-                            const torrents = response['trackers'][tracker];
-                            const hash = window.qBittorrent.Client.genHash(getHost(tracker));
+                        for (const [tracker, torrents] of Object.entries(response['trackers'])) {
+                            const host = getHost(tracker);
+                            const hash = window.qBittorrent.Client.genHash(host);
 
-                            // the reason why we need the merge here is because the WebUI api returned trackers may have different url for the same tracker host.
-                            // for example, some private trackers use diff urls for each torrent from the same tracker host.
-                            // then we got the response of `trackers` from qBittorrent api will like:
-                            // {
-                            //     "trackers": {
-                            //         "https://example.com/announce?passkey=identify_info1": ["hash1"],
-                            //         "https://example.com/announce?passkey=identify_info2": ["hash2"],
-                            //         "https://example.com/announce?passkey=identify_info3": ["hash3"]
-                            //     }
-                            // }
-                            // after getHost(), those torrents all belongs to `example.com`
-                            let merged_torrents = torrents;
-                            if (trackerList.has(hash)) {
-                                merged_torrents = trackerList.get(hash).torrents.concat(torrents);
-                                // deduplicate is needed when the webui opens in multi tabs
-                                merged_torrents = merged_torrents.filter((item, pos) => merged_torrents.indexOf(item) === pos);
+                            let trackerListItem = trackerList.get(hash);
+                            if (trackerListItem === undefined) {
+                                trackerListItem = { host: host, trackerTorrentMap: new Map() };
+                                trackerList.set(hash, trackerListItem);
                             }
 
-                            trackerList.set(hash, {
-                                url: tracker,
-                                torrents: merged_torrents
-                            });
+                            trackerListItem.trackerTorrentMap.set(tracker, [...torrents]);
                         }
                         updateTrackers = true;
                     }
@@ -793,7 +788,10 @@ window.addEventListener("DOMContentLoaded", function() {
                         for (let i = 0; i < response['trackers_removed'].length; ++i) {
                             const tracker = response['trackers_removed'][i];
                             const hash = window.qBittorrent.Client.genHash(getHost(tracker));
-                            trackerList.delete(hash);
+                            const trackerListEntry = trackerList.get(hash);
+                            if (trackerListEntry) {
+                                trackerListEntry.trackerTorrentMap.delete(tracker);
+                            }
                         }
                         updateTrackers = true;
                     }
