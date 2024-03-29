@@ -122,8 +122,16 @@ jobs:
           if [ "${{ matrix.qbt_gui }}" = "GUI=OFF" ]; then
             appName="qbittorrent-nox"
           fi
+          # package
           pushd build
-          macdeployqt "$appName.app" -dmg -no-strip
+          PACKAGE_RETRY=0
+          while [ "$PACKAGE_RETRY" -lt "3" ]; do
+            if macdeployqt "$appName.app" -dmg -no-strip; then
+              break
+            fi
+            sleep 5s
+            PACKAGE_RETRY=$((PACKAGE_RETRY + 1))
+          done
           popd
           # prepare upload folder
           mkdir upload
