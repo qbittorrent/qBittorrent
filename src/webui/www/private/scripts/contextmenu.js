@@ -244,18 +244,16 @@ window.qBittorrent.ContextMenu = (function() {
                 lastShownContextMenu.hide();
             this.fx.start(1);
             this.fireEvent('show');
-            this.shown = true;
             lastShownContextMenu = this;
             return this;
         },
 
         //hide the menu
         hide: function(trigger) {
-            if (this.shown) {
+            if (lastShownContextMenu && (lastShownContextMenu.menu.style.visibility !== 'hidden')) {
                 this.fx.start(0);
                 //this.menu.fade('out');
                 this.fireEvent('hide');
-                this.shown = false;
             }
             return this;
         },
