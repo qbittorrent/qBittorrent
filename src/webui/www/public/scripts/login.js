@@ -68,19 +68,24 @@ async function setupI18n() {
 
 function replaceI18nText() {
     const tr = i18next.t; // workaround for warnings from i18next-parser
-    for (const element of document.getElementsByClassName('qbt-translatable')) {
-        const translationKey = element.getAttribute('data-i18n');
-        const translatedValue = tr(translationKey);
-        switch (element.nodeName) {
-            case 'INPUT':
-                element.value = translatedValue;
-                break;
-            case 'LABEL':
-                element.textContent = translatedValue;
-                break;
-            default:
-                console.error(`Unhandled element: ${element}`);
-                break;
+    const re = /^(\[([a-zA-Z0-9_-]+)\])?(.*)$/;
+
+    for (const element of document.querySelectorAll('[data-i18n]')) {
+        const i18nData = element.getAttribute('data-i18n');
+        if (!i18nData) {
+            element.textContent = tr(element.textContent);
+            continue;
+        }
+
+        const translationKeys = i18nData.split(';');
+        for (const key of translationKeys) {
+            const matches = key.match(re);
+            if (matches[2]) {
+                element.setAttribute(matches[2], tr(matches[3]));
+                continue;
+            }
+
+            element.textContent = tr(matches[3]);
         }
     }
 
