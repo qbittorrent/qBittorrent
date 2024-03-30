@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Foydalanuvchi ismi yoki parol noto‘g‘ri.",
-  "Login": "Kirish",
-  "Password": "Parol",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": ""
+  "Invalid Username or Password._HttpServer": "Foydalanuvchi ismi yoki parol noto‘g‘ri.",
+  "Login_HttpServer": "Kirish",
+  "Password_HttpServer": "Parol",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": ""
 }

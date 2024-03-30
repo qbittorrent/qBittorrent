@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "사용자 이름/암호가 올바르지 않습니다.",
-  "Login": "로그인",
-  "Password": "암호",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "사용자 이름"
+  "Invalid Username or Password._HttpServer": "사용자 이름/암호가 올바르지 않습니다.",
+  "Login_HttpServer": "로그인",
+  "Password_HttpServer": "암호",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "사용자 이름"
 }

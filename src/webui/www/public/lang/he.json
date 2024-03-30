@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "שם משתמש או סיסמה בלתי תקפים.",
-  "Login": "היכנס",
-  "Password": "סיסמה",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "שם משתמש"
+  "Invalid Username or Password._HttpServer": "שם משתמש או סיסמה בלתי תקפים.",
+  "Login_HttpServer": "היכנס",
+  "Password_HttpServer": "סיסמה",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "שם משתמש"
 }

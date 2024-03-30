@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Felaktigt användarnamn eller lösenord.",
-  "Login": "Inloggning",
-  "Password": "Lösenord",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Användarnamn"
+  "Invalid Username or Password._HttpServer": "Felaktigt användarnamn eller lösenord.",
+  "Login_HttpServer": "Inloggning",
+  "Password_HttpServer": "Lösenord",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Användarnamn"
 }

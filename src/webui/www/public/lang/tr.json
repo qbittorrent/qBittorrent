@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Geçersiz Kullanıcı Adı veya Parola.",
-  "Login": "Oturum Aç",
-  "Password": "Parola",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Kullanıcı adı"
+  "Invalid Username or Password._HttpServer": "Geçersiz Kullanıcı Adı veya Parola.",
+  "Login_HttpServer": "Oturum Aç",
+  "Password_HttpServer": "Parola",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Kullanıcı adı"
 }

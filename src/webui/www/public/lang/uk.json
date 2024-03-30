@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Неправильний логін або пароль.",
-  "Login": "Логін",
-  "Password": "Пароль",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Ім'я користувача"
+  "Invalid Username or Password._HttpServer": "Неправильний логін або пароль.",
+  "Login_HttpServer": "Логін",
+  "Password_HttpServer": "Пароль",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Ім'я користувача"
 }

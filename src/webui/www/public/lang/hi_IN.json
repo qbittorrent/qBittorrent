@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "यूजरनेम व पासवर्ड अमान्य हैं।",
-  "Login": "लॉगिन",
-  "Password": "पासवर्ड",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "यूजरनेम"
+  "Invalid Username or Password._HttpServer": "यूजरनेम व पासवर्ड अमान्य हैं।",
+  "Login_HttpServer": "लॉगिन",
+  "Password_HttpServer": "पासवर्ड",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "यूजरनेम"
 }

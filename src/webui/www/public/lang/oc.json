@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Nom d'utilizaire o senhal invalid.",
-  "Login": "Identificant",
-  "Password": "Senhal",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": ""
+  "Invalid Username or Password._HttpServer": "Nom d'utilizaire o senhal invalid.",
+  "Login_HttpServer": "Identificant",
+  "Password_HttpServer": "Senhal",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": ""
 }

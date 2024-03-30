@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Erabiltzaile-izen edo Sarhitz baliogabea.",
-  "Login": "Hasi Saioa",
-  "Password": "Sarhitza",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Erabiltzaile-izena"
+  "Invalid Username or Password._HttpServer": "Erabiltzaile-izen edo Sarhitz baliogabea.",
+  "Login_HttpServer": "Hasi Saioa",
+  "Password_HttpServer": "Sarhitza",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Erabiltzaile-izena"
 }

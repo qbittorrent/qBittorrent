@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Nama Pengguna atau Sandi tidak valid.",
-  "Login": "Masuk",
-  "Password": "Sandi",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Nama pengguna"
+  "Invalid Username or Password._HttpServer": "Nama Pengguna atau Sandi tidak valid.",
+  "Login_HttpServer": "Masuk",
+  "Password_HttpServer": "Sandi",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Nama pengguna"
 }

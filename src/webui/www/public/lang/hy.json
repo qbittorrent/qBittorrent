@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "",
-  "Login": "Օգտանուն",
-  "Password": "Գաղտնաբառ",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Մուտքանուն"
+  "Invalid Username or Password._HttpServer": "",
+  "Login_HttpServer": "Օգտանուն",
+  "Password_HttpServer": "Գաղտնաբառ",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Մուտքանուն"
 }

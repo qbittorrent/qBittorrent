@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Neispravno korisničko ime ili lozinka",
-  "Login": "Prijava",
-  "Password": "Lozinka",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Korisničko ime"
+  "Invalid Username or Password._HttpServer": "Neispravno korisničko ime ili lozinka",
+  "Login_HttpServer": "Prijava",
+  "Password_HttpServer": "Lozinka",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Korisničko ime"
 }

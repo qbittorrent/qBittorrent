@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Rangt notandanafn eða lykilorð.",
-  "Login": "Skrá inn",
-  "Password": "Lykilorð",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": ""
+  "Invalid Username or Password._HttpServer": "Rangt notandanafn eða lykilorð.",
+  "Login_HttpServer": "Skrá inn",
+  "Password_HttpServer": "Lykilorð",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": ""
 }

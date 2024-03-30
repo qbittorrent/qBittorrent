@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Malvalida uzantnomo aŭ pasvorto.",
-  "Login": "Ensaluti",
-  "Password": "Pasvorto",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": ""
+  "Invalid Username or Password._HttpServer": "Malvalida uzantnomo aŭ pasvorto.",
+  "Login_HttpServer": "Ensaluti",
+  "Password_HttpServer": "Pasvorto",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": ""
 }

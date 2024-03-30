@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Numele de utilizator sau parola nu sunt valide.",
-  "Login": "Autentifică",
-  "Password": "Parolă",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Nume de utilizator"
+  "Invalid Username or Password._HttpServer": "Numele de utilizator sau parola nu sunt valide.",
+  "Login_HttpServer": "Autentifică",
+  "Password_HttpServer": "Parolă",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Nume de utilizator"
 }

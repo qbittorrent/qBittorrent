@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Хэрэглэгчийн нэр эсвэл нууц үг тохирохгүй байна.",
-  "Login": "Нэвтрэх",
-  "Password": "Нууц үг",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Хэрэглэгчийн нэр"
+  "Invalid Username or Password._HttpServer": "Хэрэглэгчийн нэр эсвэл нууц үг тохирохгүй байна.",
+  "Login_HttpServer": "Нэвтрэх",
+  "Password_HttpServer": "Нууц үг",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Хэрэглэгчийн нэр"
 }

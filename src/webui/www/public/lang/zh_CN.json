@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "无效的用户名或密码。",
-  "Login": "登录",
-  "Password": "密码",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "用户名"
+  "Invalid Username or Password._HttpServer": "无效的用户名或密码。",
+  "Login_HttpServer": "登录",
+  "Password_HttpServer": "密码",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "用户名"
 }

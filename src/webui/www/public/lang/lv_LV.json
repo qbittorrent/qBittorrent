@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Nederīgs lietotājvārds vai parole.",
-  "Login": "Pierakstīties",
-  "Password": "Parole",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Lietotājvārds"
+  "Invalid Username or Password._HttpServer": "Nederīgs lietotājvārds vai parole.",
+  "Login_HttpServer": "Pierakstīties",
+  "Password_HttpServer": "Parole",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Lietotājvārds"
 }

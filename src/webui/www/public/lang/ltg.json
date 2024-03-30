@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Napareizs slāgvuords voi paroļs",
-  "Login": "Dasaslāgt",
-  "Password": "Paroļs",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Lītuotuojs"
+  "Invalid Username or Password._HttpServer": "Napareizs slāgvuords voi paroļs",
+  "Login_HttpServer": "Dasaslāgt",
+  "Password_HttpServer": "Paroļs",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Lītuotuojs"
 }

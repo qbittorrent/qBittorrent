@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Username o password errati.",
-  "Login": "Login",
-  "Password": "Password",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Nome utente"
+  "Invalid Username or Password._HttpServer": "Username o password errati.",
+  "Login_HttpServer": "Login",
+  "Password_HttpServer": "Password",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Nome utente"
 }

@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "ユーザー名またはパスワーが正しくありません。",
-  "Login": "ログイン",
-  "Password": "パスワード",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "ユーザー名"
+  "Invalid Username or Password._HttpServer": "ユーザー名またはパスワーが正しくありません。",
+  "Login_HttpServer": "ログイン",
+  "Password_HttpServer": "パスワード",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "ユーザー名"
 }

@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Érvénytelen felhasználónév vagy Jelszó.",
-  "Login": "Bejelentkezés",
-  "Password": "Jelszó",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Felhasználónév"
+  "Invalid Username or Password._HttpServer": "Érvénytelen felhasználónév vagy Jelszó.",
+  "Login_HttpServer": "Bejelentkezés",
+  "Password_HttpServer": "Jelszó",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Felhasználónév"
 }

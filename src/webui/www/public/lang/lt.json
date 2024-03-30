@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Neteisingas naudotojo vardas ar slaptažodis.",
-  "Login": "Prisijungimas",
-  "Password": "Slaptažodis",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Naudotojo vardas"
+  "Invalid Username or Password._HttpServer": "Neteisingas naudotojo vardas ar slaptažodis.",
+  "Login_HttpServer": "Prisijungimas",
+  "Password_HttpServer": "Slaptažodis",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Naudotojo vardas"
 }

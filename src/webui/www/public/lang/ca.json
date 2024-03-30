@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Nom d'usuari o contrasenya incorrectes.",
-  "Login": "Inicia sessió",
-  "Password": "Contrasenya",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Nom d'usuari"
+  "Invalid Username or Password._HttpServer": "Nom d'usuari o contrasenya incorrectes.",
+  "Login_HttpServer": "Inicia sessió",
+  "Password_HttpServer": "Contrasenya",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Nom d'usuari"
 }

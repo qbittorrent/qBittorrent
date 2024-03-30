@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Nama Pengguna atau Kata Laluan tidak sah.",
-  "Login": "Daftar Masuk",
-  "Password": "Kata Laluan",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Nama pengguna"
+  "Invalid Username or Password._HttpServer": "Nama Pengguna atau Kata Laluan tidak sah.",
+  "Login_HttpServer": "Daftar Masuk",
+  "Password_HttpServer": "Kata Laluan",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Nama pengguna"
 }

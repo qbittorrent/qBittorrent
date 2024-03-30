@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Неважеће корисничко име или шифра.",
-  "Login": "Логовање",
-  "Password": "Шифра",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Корисничко име"
+  "Invalid Username or Password._HttpServer": "Неважеће корисничко име или шифра.",
+  "Login_HttpServer": "Логовање",
+  "Password_HttpServer": "Шифра",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Корисничко име"
 }

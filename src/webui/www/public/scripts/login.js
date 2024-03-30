@@ -104,13 +104,13 @@ function submitLoginForm(event) {
             if ((xhr.status === 200) && (xhr.responseText === "Ok."))
                 location.replace(location);
             else
-                errorMsgElement.textContent = i18next.t('Invalid Username or Password.');
+                errorMsgElement.textContent = i18next.t('Invalid Username or Password.', { context: 'HttpServer' });
         }
     });
     xhr.addEventListener('error', () => {
         errorMsgElement.textContent = (xhr.responseText !== "")
             ? xhr.responseText
-            : i18next.t('Unable to log in, server is probably unreachable.');
+            : i18next.t('Unable to log in, server is probably unreachable.', { context: 'HttpServer' });
     });
 
     const usernameElement = document.getElementById('username');

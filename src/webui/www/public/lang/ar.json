@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "اسم المستخدم أو كلمة السر غير صالحة.",
-  "Login": "ولوج",
-  "Password": "كلمة السر",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "اسم المستخدم"
+  "Invalid Username or Password._HttpServer": "اسم المستخدم أو كلمة السر غير صالحة.",
+  "Login_HttpServer": "ولوج",
+  "Password_HttpServer": "كلمة السر",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "اسم المستخدم"
 }

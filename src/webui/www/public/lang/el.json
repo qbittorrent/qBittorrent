@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Μη έγκυρο Όνομα Χρήστη ή Κωδικός Πρόσβασης.",
-  "Login": "Σύνδεση",
-  "Password": "Κωδικός Πρόσβασης",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Όνομα χρήστη"
+  "Invalid Username or Password._HttpServer": "Μη έγκυρο Όνομα Χρήστη ή Κωδικός Πρόσβασης.",
+  "Login_HttpServer": "Σύνδεση",
+  "Password_HttpServer": "Κωδικός Πρόσβασης",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Όνομα χρήστη"
 }

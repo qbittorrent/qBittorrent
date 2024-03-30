@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Nieprawidłowa nazwa użytkownika lub hasło.",
-  "Login": "Login",
-  "Password": "Hasło",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Nazwa użytkownika"
+  "Invalid Username or Password._HttpServer": "Nieprawidłowa nazwa użytkownika lub hasło.",
+  "Login_HttpServer": "Login",
+  "Password_HttpServer": "Hasło",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Nazwa użytkownika"
 }

@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "O usuario ou o contrasinal son incorrectos.",
-  "Login": "Iniciar sesión",
-  "Password": "Contrasinal",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Nome do usuario"
+  "Invalid Username or Password._HttpServer": "O usuario ou o contrasinal son incorrectos.",
+  "Login_HttpServer": "Iniciar sesión",
+  "Password_HttpServer": "Contrasinal",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Nome do usuario"
 }

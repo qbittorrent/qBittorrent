@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "無效用戶名稱或密碼。",
-  "Login": "登入",
-  "Password": "密碼",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "用戶名"
+  "Invalid Username or Password._HttpServer": "無效用戶名稱或密碼。",
+  "Login_HttpServer": "登入",
+  "Password_HttpServer": "密碼",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "用戶名"
 }

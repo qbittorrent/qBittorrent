@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Virheellinen käyttäjätunnus tai salasana.",
-  "Login": "Kirjaudu",
-  "Password": "Salasana",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Käyttäjänimi"
+  "Invalid Username or Password._HttpServer": "Virheellinen käyttäjätunnus tai salasana.",
+  "Login_HttpServer": "Kirjaudu",
+  "Password_HttpServer": "Salasana",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Käyttäjänimi"
 }

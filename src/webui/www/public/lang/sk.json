@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Nesprávne užívateľské meno alebo heslo.",
-  "Login": "Prihlasovacie meno",
-  "Password": "Heslo",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Meno používateľa"
+  "Invalid Username or Password._HttpServer": "Nesprávne užívateľské meno alebo heslo.",
+  "Login_HttpServer": "Prihlasovacie meno",
+  "Password_HttpServer": "Heslo",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Meno používateľa"
 }

@@ -1,7 +1,7 @@
 {
-  "Invalid Username or Password.": "Ugyldigt brugernavn eller adgangskode.",
-  "Login": "Login",
-  "Password": "Adgangskode",
-  "Unable to log in, server is probably unreachable.": "",
-  "Username": "Brugernavn"
+  "Invalid Username or Password._HttpServer": "Ugyldigt brugernavn eller adgangskode.",
+  "Login_HttpServer": "Login",
+  "Password_HttpServer": "Adgangskode",
+  "Unable to log in, server is probably unreachable._HttpServer": "",
+  "Username_HttpServer": "Brugernavn"
 }
