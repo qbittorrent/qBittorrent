@@ -15,13 +15,15 @@ import sys
 import xml.etree.ElementTree as ET
 
 
-def getTsStrings(ts_file: str, key: str) -> list[str]:
+def getTsStrings(ts_file: str, key: str, jsonContext: str) -> list[str]:
     tr_strings: list[str] = []
+    candidates: list[str] = []
     tree = ET.parse(ts_file)
     root = tree.getroot()
 
-    for context in root.findall('context'):
-        for message in context.findall('message'):
+    for tsContext in root.findall('context'):
+        context = tsContext.find('name').text
+        for message in tsContext.findall('message'):
             source = message.find('source').text
             if key != source:
                 continue
@@ -29,13 +31,19 @@ def getTsStrings(ts_file: str, key: str) -> list[str]:
             translation = message.find('translation').text
             if not translation:
                 continue
+
+            if jsonContext != context:
+                if translation not in candidates:
+                    candidates.append(translation)
+                continue
+
             if translation not in tr_strings:
                 tr_strings.append(translation)
 
-    return tr_strings
+    return tr_strings + candidates
 
 
-def migrate2Json(ts_dir: str, json_dir: str, locale: str) -> None:
+def migrate2Json(ts_dir: str, json_dir: str, locale: str, contextSeparator: str) -> None:
     ts_file: str = f"{ts_dir}/webui_{locale}.ts"
     js_file: str = f"{json_dir}/{locale}.json"
 
@@ -54,16 +62,18 @@ def migrate2Json(ts_dir: str, json_dir: str, locale: str) -> None:
             if not (isinstance(key, str) and isinstance(value, str) and not value):
                 continue
 
-            ts_strings: list[str] = getTsStrings(ts_file, key)
+            keyAndContext: list[str] = key.split(contextSeparator)
+            ts_strings: list[str] = getTsStrings(ts_file, keyAndContext[0], keyAndContext[1] if 1 < len(keyAndContext) else "")
             ts_len: int = len(ts_strings)
             if ts_len == 0:
-                print(f"\tWARNING: Translation for '{key}' not found.")
+                print(f"\tWARNING: Translation for '{keyAndContext[0]}' not found.")
                 continue
 
             if ts_len > 1:
-                print(f"\tWARNING: Multiple translations for '{key}' found.")
+                print(f"\tWARNING: Multiple translations for '{keyAndContext[0]}' found.")
                 continue
 
+            # We want the full key here (context included)
             translations[key] = ts_strings[0]
 
         file.seek(0)
@@ -78,23 +88,28 @@ def main() -> int:
     script_path: str = os.path.dirname(os.path.realpath(__file__))
     ts_dir: str = f"{script_path}/translations"
     json_dir: str = f"{script_path}/public/lang"
+    context_separator: str = "_"
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--ts-dir", default=ts_dir, nargs=1, help=f"directory of WebUI .ts translation files (default: '{ts_dir}')")
     parser.add_argument("--json-dir", default=json_dir, nargs=1, help=f"directory of WebUI .json translation files(default: '{json_dir}')")
+    parser.add_argument("--context-separator", default=context_separator, nargs=1, help=f"context separator for i18next(default: '{context_separator}')")
 
     args = parser.parse_args()
+    ts_dir = args.ts_dirs
+    json_dir = args.json_dir
+    context_separator = args.context_separator
 
-    if not os.path.isdir(args.ts_dir):
-        raise RuntimeError(f"'{args.ts_dir}' isn't a directory")
+    if not os.path.isdir(ts_dir):
+        raise RuntimeError(f"'{ts_dir}' isn't a directory")
 
-    if not os.path.isdir(args.json_dir):
-        raise RuntimeError(f"'{args.json_dir}' isn't a directory")
+    if not os.path.isdir(json_dir):
+        raise RuntimeError(f"'{json_dir}' isn't a directory")
 
     locales: list[str] = glob.glob("*.json", root_dir=json_dir)
     locales = [x.removesuffix(".json") for x in locales if x != "en.json"]
     for locale in locales:
-        migrate2Json(ts_dir, json_dir, locale)
+        migrate2Json(ts_dir, json_dir, locale, context_separator)
 
     print("Done.")
 

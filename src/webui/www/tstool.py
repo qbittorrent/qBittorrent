@@ -29,20 +29,15 @@
 
 import argparse
 import copy
+import json
 import os
 import os.path
 import re
 import sys
 import xml.etree.ElementTree as ET
 
-accepted_exts = [".js", ".html", ".css"]
 
-no_obsolete = False
-www_folder = "."
-ts_folder = os.path.join(www_folder, "translations")
-
-
-def parseSource(filename, sources):
+def parseSource(filename: str, sources: dict[str, set[str]]) -> None:
     print("Parsing %s..." % (os.path.normpath(filename)))
     with open(filename, encoding='utf-8', mode='r') as file:
         regex = re.compile(
@@ -56,7 +51,37 @@ def parseSource(filename, sources):
             sources[context].add(string)
 
 
-def processTranslation(filename, sources):
+def parseJson(www_folder: str, sources: dict[str, set[str]], context_separator: str) -> None:
+    public_en_file: str = f"{www_folder}/public/lang/en.json"
+    private_en_file: str = f"{www_folder}/private/lang/en.json"
+
+    public_en_json: dict[str, str] = {}
+    private_en_json: dict[str, str] = {}
+
+    if os.path.exists(public_en_file):
+        with open(public_en_file, mode="r", encoding='utf-8') as file:
+            public_en_json = json.load(file)
+            if not isinstance(public_en_json, dict):
+                public_en_json = {}
+
+    if os.path.exists(private_en_file):
+        with open(private_en_file, mode="r", encoding='utf-8') as file:
+            private_en_json = json.load(file)
+            if not isinstance(private_en_json, dict):
+                private_en_json = {}
+
+    all_keys: dict[str, str] = public_en_json | private_en_json
+    for keyWithContext in all_keys.keys():
+        parts: tuple[str, str, str] = keyWithContext.partition(context_separator)
+        key: str = parts[0]
+        context: str = parts[2]
+
+        if context not in sources:
+            sources[context] = set()
+        sources[context].add(key)
+
+
+def processTranslation(filename: str, sources: dict[str, set[str]], no_obsolete: bool) -> None:
     print('Processing %s...' % (os.path.normpath(filename)))
 
     try:
@@ -143,43 +168,61 @@ def processTranslation(filename, sources):
         print('\tFailed to write %s!' % (os.path.normpath(filename)))
 
 
-argp = argparse.ArgumentParser(
-    prog='tstool.py', description='Update qBittorrent WebUI translation files.')
-argp.add_argument('--no-obsolete', dest='no_obsolete', action='store_true',
-                  default=no_obsolete,
-                  help='remove obsolete messages (default: mark them as obsolete)')
-argp.add_argument('--www-folder', dest='www_folder', action='store',
-                  default=www_folder,
-                  help='folder with WebUI source files (default: "%s")' % (www_folder))
-argp.add_argument('--ts-folder', dest='ts_folder', action='store',
-                  default=ts_folder,
-                  help='folder with WebUI translation files (default: "%s")' % (ts_folder))
+def main() -> int:
+    accepted_exts = [".js", ".html", ".css"]
+    no_obsolete = False
+    www_folder = "."
+    ts_folder = os.path.join(www_folder, "translations")
+    context_separator: str = "_"
 
-args = argp.parse_args()
-no_obsolete = args.no_obsolete
-www_folder = args.www_folder
-ts_folder = args.ts_folder
+    argp = argparse.ArgumentParser(
+        prog='tstool.py', description='Update qBittorrent WebUI translation files.')
+    argp.add_argument('--no-obsolete', dest='no_obsolete', action='store_true',
+                      default=no_obsolete,
+                      help='remove obsolete messages (default: mark them as obsolete)')
+    argp.add_argument('--www-folder', dest='www_folder', action='store',
+                      default=www_folder,
+                      help='folder with WebUI source files (default: "%s")' % (www_folder))
+    argp.add_argument('--ts-folder', dest='ts_folder', action='store',
+                      default=ts_folder,
+                      help='folder with WebUI translation files (default: "%s")' % (ts_folder))
+    argp.add_argument("--context-separator", default=context_separator, nargs=1,
+                      help=f"context separator for i18next(default: '{context_separator}')")
 
-print("Processing source files...")
-nfiles = 0
-source_ts = {}
-for root, dirs, files in os.walk(www_folder):
-    for file in files:
-        if os.path.splitext(file)[-1] in accepted_exts:
-            parseSource(os.path.join(root, file), source_ts)
-            nfiles += 1
+    args = argp.parse_args()
+    no_obsolete = args.no_obsolete
+    www_folder = args.www_folder
+    ts_folder = args.ts_folder
+    context_separator = args.context_separator
 
-if nfiles == 0:
-    print("No source files found!")
-    sys.exit()
+    print("Processing source files...")
+    nfiles = 0
+    source_ts: dict[str, set[str]] = {}
+    for root, dirs, files in os.walk(www_folder):
+        for file in files:
+            if os.path.splitext(file)[-1] in accepted_exts:
+                parseSource(os.path.join(root, file), source_ts)
+                nfiles += 1
 
-nstrings = sum(len(sublist) for sublist in source_ts)
-print("Found %d strings within %d contexts." % (nstrings, len(source_ts)))
-print("")
+    if nfiles == 0:
+        print("No source files found!")
+        sys.exit()
 
-print("Processing translation files...")
-for entry in os.scandir(ts_folder):
-    if (entry.is_file() and entry.name.startswith('webui_') and entry.name.endswith(".ts")):
-        processTranslation(entry.path, copy.deepcopy(source_ts))
+    parseJson(www_folder, source_ts, context_separator)
 
-print("Done!")
+    nstrings = sum(len(sublist) for sublist in source_ts)
+    print("Found %d strings within %d contexts." % (nstrings, len(source_ts)))
+    print("")
+
+    print("Processing translation files...")
+    for entry in os.scandir(ts_folder):
+        if (entry.is_file() and entry.name.startswith('webui_') and entry.name.endswith(".ts")):
+            processTranslation(entry.path, copy.deepcopy(source_ts), no_obsolete)
+
+    print("Done!")
+
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
