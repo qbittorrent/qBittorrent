@@ -98,11 +98,11 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Retomar torrents</translation>
+        <translation type="vanished">Retomar torrents</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Pausar torrents</translation>
+        <translation type="vanished">Pausar torrents</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -119,6 +119,14 @@
     <message>
         <source>Add subcategory...</source>
         <translation>Adicionar sub-categoria...</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -197,19 +205,19 @@
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="vanished">Nome de usuário ou senha inválidos.</translation>
+        <translation>Nome de usuário ou senha inválidos.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="vanished">Nome de usuário</translation>
+        <translation>Nome de usuário</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="vanished">Senha</translation>
+        <translation>Senha</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="vanished">Login</translation>
+        <translation>Login</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -396,7 +404,11 @@
         <translation>Deseja realmente remover os torrents selecionados da lista de transferências?</translation>
     </message>
     <message>
-        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <source>Unable to log in, server is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Could not contact qBittorrent</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -405,6 +417,10 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -436,7 +452,7 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>Retomar</translation>
+        <translation type="vanished">Retomar</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -456,7 +472,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Retomar Todos</translation>
+        <translation type="vanished">Retomar Todos</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -468,11 +484,11 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pausar</translation>
+        <translation type="vanished">Pausar</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Pausar Todos</translation>
+        <translation type="vanished">Pausar Todos</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -621,11 +637,11 @@
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation>Você gostaria de retomar todos os torrents?</translation>
+        <translation type="vanished">Você gostaria de retomar todos os torrents?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation>Você gostaria de pausar todos os torrents?</translation>
+        <translation type="vanished">Você gostaria de pausar todos os torrents?</translation>
     </message>
     <message>
         <source>Execution Log</source>
@@ -636,7 +652,31 @@
         <translation>Registro</translation>
     </message>
     <message>
+        <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1206,7 +1246,7 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation>Pausar torrent</translation>
+        <translation type="vanished">Pausar torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1821,59 +1861,7 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation>Ativar Mark-of-the-Web (MOTW) para arquivos baixados (é necessário o macOS ou Windows):</translation>
     </message>
     <message>
-        <source> sec</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound quantity:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P inbound quantity:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Hashing threads:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use alternative WebUI</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk cache expiry interval:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound length:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P (Experimental)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Disk IO type (requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>The alternative WebUI files location cannot be blank.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk cache:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Write-through</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>WebUI</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1885,11 +1873,7 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>I2P inbound length:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <source>Write-through</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1897,11 +1881,79 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Send test email</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Same host request delay:</source>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Customize application instance name:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2398,11 +2450,11 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation>Retomado (0)</translation>
+        <translation type="vanished">Retomado (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation>Pausado (0)</translation>
+        <translation type="vanished">Pausado (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -2434,11 +2486,11 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation>Pausado (%1)</translation>
+        <translation type="vanished">Pausado (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation>Retomado (%1)</translation>
+        <translation type="vanished">Retomado (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2491,6 +2543,22 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     <message>
         <source>Moving (0)</source>
         <translation>Movendo (0)</translation>
+    </message>
+    <message>
+        <source>Running (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2784,7 +2852,7 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation>Pausado</translation>
+        <translation type="vanished">Pausado</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2850,6 +2918,10 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <source>[F] Downloading metadata</source>
         <translation>[F] Baixando metadados</translation>
     </message>
+    <message>
+        <source>Stopped</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2891,17 +2963,17 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>Retomar</translation>
+        <translation type="vanished">Retomar</translation>
     </message>
     <message>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation>Forçar Retomada</translation>
+        <translation type="vanished">Forçar Retomada</translation>
     </message>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Pausar</translation>
+        <translation type="vanished">Pausar</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3072,6 +3144,18 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     <message>
         <source>Comment</source>
         <translation>Comentário</translation>
+    </message>
+    <message>
+        <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3318,6 +3402,10 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <source>There aren't any search plugins installed.</source>
         <translation>Não há nenhum plugin de busca instalado.</translation>
     </message>
+    <message>
+        <source>Start a search above.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3447,11 +3535,11 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Pausar torrents</translation>
+        <translation type="vanished">Pausar torrents</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Retomar torrents</translation>
+        <translation type="vanished">Retomar torrents</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -3468,6 +3556,14 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     <message>
         <source>Remove torrents</source>
         <translation>Remover torrents</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3608,6 +3704,22 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     <message>
         <source>Download link</source>
         <translation>Link do download</translation>
+    </message>
+    <message>
+        <source>Search aborted</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search has finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Searching...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3908,7 +4020,7 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation>Adicionar pausado:</translation>
+        <translation type="vanished">Adicionar pausado:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -3968,12 +4080,16 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
         <source>Add Tags:</source>
         <translation>Adicionar tags:</translation>
     </message>
+    <message>
+        <source>Add Stopped:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Resume torrents</source>
-        <translation>Retomar torrents</translation>
+        <translation type="vanished">Retomar torrents</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3985,11 +4101,19 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Pausar torrents</translation>
+        <translation type="vanished">Pausar torrents</translation>
     </message>
     <message>
         <source>Remove torrents</source>
         <translation>Remover torrents</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4136,6 +4260,13 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
     <message>
         <source>Choose a log level...</source>
         <translation>Escolha um nível de registro...</translation>
+    </message>
+</context>
+<context>
+    <name>SearchWidget</name>
+    <message>
+        <source>Close tab</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

@@ -98,11 +98,11 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Genoptag torrents</translation>
+        <translation type="vanished">Genoptag torrents</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Sæt torrents på pause</translation>
+        <translation type="vanished">Sæt torrents på pause</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -119,6 +119,14 @@
     <message>
         <source>Add subcategory...</source>
         <translation>Tilføj underkategori...</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -197,19 +205,19 @@
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="vanished">Ugyldigt brugernavn eller adgangskode.</translation>
+        <translation>Ugyldigt brugernavn eller adgangskode.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="vanished">Brugernavn</translation>
+        <translation>Brugernavn</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="vanished">Adgangskode</translation>
+        <translation>Adgangskode</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="vanished">Login</translation>
+        <translation>Login</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -396,7 +404,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <source>Unable to log in, server is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Could not contact qBittorrent</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -405,6 +417,10 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -436,7 +452,7 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>Genoptag</translation>
+        <translation type="vanished">Genoptag</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -456,7 +472,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Genoptag alle</translation>
+        <translation type="vanished">Genoptag alle</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -468,11 +484,11 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation>Sæt på pause</translation>
+        <translation type="vanished">Sæt på pause</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Sæt alle på pause</translation>
+        <translation type="vanished">Sæt alle på pause</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -620,14 +636,6 @@
         <translation>Fjern</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Eksekveringslog</translation>
     </message>
@@ -636,7 +644,31 @@
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1206,7 +1238,7 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation>Sæt torrent på pause</translation>
+        <translation type="vanished">Sæt torrent på pause</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1773,59 +1805,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source> sec</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound quantity:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P inbound quantity:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Hashing threads:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use alternative WebUI</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk cache expiry interval:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound length:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P (Experimental)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Disk IO type (requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>The alternative WebUI files location cannot be blank.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk cache:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Write-through</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>WebUI</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1837,11 +1817,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source>I2P inbound length:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <source>Write-through</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1849,11 +1825,79 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Send test email</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Same host request delay:</source>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Customize application instance name:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2350,11 +2394,11 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation>Genoptaget (0)</translation>
+        <translation type="vanished">Genoptaget (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation>Sat på pause (0)</translation>
+        <translation type="vanished">Sat på pause (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -2386,11 +2430,11 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation>Sat på pause (%1)</translation>
+        <translation type="vanished">Sat på pause (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation>Genoptaget (%1)</translation>
+        <translation type="vanished">Genoptaget (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2442,6 +2486,22 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Moving (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2736,7 +2796,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Paused</source>
-        <translation>Sat på pause</translation>
+        <translation type="vanished">Sat på pause</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2802,6 +2862,10 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <source>[F] Downloading metadata</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Stopped</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2843,17 +2907,17 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>Genoptag</translation>
+        <translation type="vanished">Genoptag</translation>
     </message>
     <message>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation>Tving genoptag</translation>
+        <translation type="vanished">Tving genoptag</translation>
     </message>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Sæt på pause</translation>
+        <translation type="vanished">Sæt på pause</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3023,6 +3087,18 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3270,6 +3346,10 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <source>There aren't any search plugins installed.</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Start a search above.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3399,11 +3479,11 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Sæt torrents på pause</translation>
+        <translation type="vanished">Sæt torrents på pause</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Genoptag torrents</translation>
+        <translation type="vanished">Genoptag torrents</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -3419,6 +3499,14 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Remove torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3560,6 +3648,22 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     <message>
         <source>Download link</source>
         <translation>Downloadlink</translation>
+    </message>
+    <message>
+        <source>Search aborted</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search has finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Searching...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3860,7 +3964,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation>Tilføj sat på pause:</translation>
+        <translation type="vanished">Tilføj sat på pause:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -3919,12 +4023,16 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <source>Add Tags:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add Stopped:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Resume torrents</source>
-        <translation>Genoptag torrents</translation>
+        <translation type="vanished">Genoptag torrents</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3936,10 +4044,18 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Sæt torrents på pause</translation>
+        <translation type="vanished">Sæt torrents på pause</translation>
     </message>
     <message>
         <source>Remove torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4086,6 +4202,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Choose a log level...</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>SearchWidget</name>
+    <message>
+        <source>Close tab</source>
         <translation type="unfinished" />
     </message>
 </context>

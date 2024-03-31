@@ -98,11 +98,11 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Jätka torrentitega</translation>
+        <translation type="vanished">Jätka torrentitega</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Pausi torrentid</translation>
+        <translation type="vanished">Pausi torrentid</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -119,6 +119,14 @@
     <message>
         <source>Add subcategory...</source>
         <translation>Lisa alamkategooria...</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -197,19 +205,19 @@
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="vanished">Sobimatu Kasutajanimi või Parool</translation>
+        <translation>Sobimatu Kasutajanimi või Parool</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="vanished">Kasutajanimi</translation>
+        <translation>Kasutajanimi</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="vanished">Parool</translation>
+        <translation>Parool</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="vanished">Logi sisse</translation>
+        <translation>Logi sisse</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -396,7 +404,11 @@
         <translation>Kindel, et soovite eemaldada valitud torrentid ülekanneteloendist?</translation>
     </message>
     <message>
-        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <source>Unable to log in, server is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Could not contact qBittorrent</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -405,6 +417,10 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -436,7 +452,7 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>Jätka</translation>
+        <translation type="vanished">Jätka</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -456,7 +472,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Jätka Kõikidega</translation>
+        <translation type="vanished">Jätka Kõikidega</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -468,11 +484,11 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation>Paus</translation>
+        <translation type="vanished">Paus</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Pausi Kõik</translation>
+        <translation type="vanished">Pausi Kõik</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -621,11 +637,11 @@
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation>Kas soovite jätkata kõikide torrentitega?</translation>
+        <translation type="vanished">Kas soovite jätkata kõikide torrentitega?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation>Kas soovite pausile panna kõik torrentid?</translation>
+        <translation type="vanished">Kas soovite pausile panna kõik torrentid?</translation>
     </message>
     <message>
         <source>Execution Log</source>
@@ -636,7 +652,31 @@
         <translation>Logi</translation>
     </message>
     <message>
+        <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1014,11 +1054,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="vanished">Web UI kasutajanimi peab olema vähemalt 3 tähemärki.</translation>
+        <translation type="vanished">Web UI kasutajanimi peab olema minimaalselt 3 tähte pikk.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="vanished">Web UI parool peab olema vähemalt 6 tähemärki.</translation>
+        <translation type="vanished">Web UI parool peab olema minimaalselt 6 tähte pikk.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1206,7 +1246,7 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation>Pausi torrent</translation>
+        <translation type="vanished">Pausi torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1677,10 +1717,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Kasuta proksit RSS jaoks</translation>
     </message>
     <message>
-        <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="vanished">Füüsilise mälu (RAM) kasutamise limiit (määratakse kui libtorrent &amp;gt;= 2.0):</translation>
-    </message>
-    <message>
         <source>Socket send buffer size [0: system default]:</source>
         <translation type="unfinished" />
     </message>
@@ -1734,7 +1770,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation>Algne taastatakse, kui jätta tühjaks</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
@@ -1773,59 +1809,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source> sec</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound quantity:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P inbound quantity:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Hashing threads:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use alternative WebUI</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk cache expiry interval:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound length:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P (Experimental)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Disk IO type (requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>The alternative WebUI files location cannot be blank.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk cache:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Write-through</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>WebUI</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1837,11 +1821,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>I2P inbound length:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <source>Write-through</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1849,11 +1829,79 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Send test email</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Same host request delay:</source>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Customize application instance name:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2198,7 +2246,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Replace All</source>
-        <translation>Asenda Kõik</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Include files</source>
@@ -2349,12 +2397,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Lõpetatud (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Paused (0)</source>
-        <translation>Pausitud (0)</translation>
+        <translation type="vanished">Pausitud (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -2386,11 +2430,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation>Pausitud (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Pausitud (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2443,6 +2483,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Moving (0)</source>
         <translation>Teisaldakse (0)</translation>
+    </message>
+    <message>
+        <source>Running (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2736,7 +2792,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Paused</source>
-        <translation>Pausitud</translation>
+        <translation type="vanished">Pausitud</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2802,6 +2858,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>[F] Downloading metadata</source>
         <translation>[S] Allalaaditakse metadata't</translation>
     </message>
+    <message>
+        <source>Stopped</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2843,17 +2903,17 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>Jätka</translation>
+        <translation type="vanished">Jätka</translation>
     </message>
     <message>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation>Sunni Jätkama</translation>
+        <translation type="vanished">Sunni Jätkama</translation>
     </message>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Paus</translation>
+        <translation type="vanished">Paus</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3019,11 +3079,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming</source>
-        <translation>Ümbernimetatakse</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Comment</source>
         <translation>Kommentaar</translation>
+    </message>
+    <message>
+        <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3270,6 +3342,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>There aren't any search plugins installed.</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Start a search above.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3399,11 +3475,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Pausi torrentid</translation>
+        <translation type="vanished">Pausi torrentid</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Jätka torrentitega</translation>
+        <translation type="vanished">Jätka torrentitega</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -3420,6 +3496,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Remove torrents</source>
         <translation>Eemalda torrentid</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3561,12 +3645,28 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Download link</source>
         <translation>Allalaadimise link</translation>
     </message>
+    <message>
+        <source>Search aborted</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search has finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Searching...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation>Ümbernimetatakse</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>New name:</source>
@@ -3860,7 +3960,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation>Lisa Pausitud:</translation>
+        <translation type="vanished">Lisa Pausitud:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -3920,12 +4020,16 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
         <source>Add Tags:</source>
         <translation>Lisa sildid:</translation>
     </message>
+    <message>
+        <source>Add Stopped:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Resume torrents</source>
-        <translation>Jätka torrentitega</translation>
+        <translation type="vanished">Jätka torrentitega</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3937,11 +4041,19 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Pausi torrentid</translation>
+        <translation type="vanished">Pausi torrentid</translation>
     </message>
     <message>
         <source>Remove torrents</source>
         <translation>Eemalda torrentid</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4088,6 +4200,13 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     <message>
         <source>Choose a log level...</source>
         <translation>Vali logi tase...</translation>
+    </message>
+</context>
+<context>
+    <name>SearchWidget</name>
+    <message>
+        <source>Close tab</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

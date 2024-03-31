@@ -98,11 +98,11 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Torrent'lere devam et</translation>
+        <translation type="vanished">Torrent'lere devam et</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Torrent'leri duraklat</translation>
+        <translation type="vanished">Torrent'leri duraklat</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -119,6 +119,14 @@
     <message>
         <source>Add subcategory...</source>
         <translation>Alt kategori ekle...</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -197,19 +205,19 @@
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="vanished">Geçersiz Kullanıcı Adı veya Parola.</translation>
+        <translation>Geçersiz Kullanıcı Adı veya Parola.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="vanished">Kullanıcı adı</translation>
+        <translation>Kullanıcı adı</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="vanished">Parola</translation>
+        <translation>Parola</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="vanished">Oturum Aç</translation>
+        <translation>Oturum Aç</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -396,7 +404,11 @@
         <translation>Seçilen torrent'leri aktarım listesinden kaldırmak istediğinize emin misiniz?</translation>
     </message>
     <message>
-        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <source>Unable to log in, server is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Could not contact qBittorrent</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -405,6 +417,10 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -436,7 +452,7 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>Devam</translation>
+        <translation type="vanished">Devam</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -456,7 +472,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Tümüne Devam</translation>
+        <translation type="vanished">Tümüne Devam</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -468,11 +484,11 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation>Duraklat</translation>
+        <translation type="vanished">Duraklat</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Tümünü Duraklat</translation>
+        <translation type="vanished">Tümünü Duraklat</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -621,11 +637,11 @@
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation>Tüm torrent'leri devam ettirmek ister misiniz?</translation>
+        <translation type="vanished">Tüm torrent'leri devam ettirmek ister misiniz?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation>Tüm torrent'leri duraklatmak ister misiniz?</translation>
+        <translation type="vanished">Tüm torrent'leri duraklatmak ister misiniz?</translation>
     </message>
     <message>
         <source>Execution Log</source>
@@ -636,7 +652,31 @@
         <translation>Günlük</translation>
     </message>
     <message>
+        <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1206,7 +1246,7 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation>Torrent'i duraklat</translation>
+        <translation type="vanished">Torrent'i duraklat</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1821,59 +1861,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>İndirilen dosyalar için Web İşaretini (MOTW) etkinleştir (macOS veya Windows gerektirir):</translation>
     </message>
     <message>
-        <source> sec</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound quantity:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P inbound quantity:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Hashing threads:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use alternative WebUI</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk cache expiry interval:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound length:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P (Experimental)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Disk IO type (requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>The alternative WebUI files location cannot be blank.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk cache:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Write-through</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>WebUI</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1885,11 +1873,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation type="unfinished" />
     </message>
     <message>
-        <source>I2P inbound length:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <source>Write-through</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1897,11 +1881,79 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Send test email</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Same host request delay:</source>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Customize application instance name:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2398,11 +2450,11 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation>Devam Edildi (0)</translation>
+        <translation type="vanished">Devam Edildi (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation>Duraklatıldı (0)</translation>
+        <translation type="vanished">Duraklatıldı (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -2434,11 +2486,11 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation>Duraklatıldı (%1)</translation>
+        <translation type="vanished">Duraklatıldı (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation>Devam Edildi (%1)</translation>
+        <translation type="vanished">Devam Edildi (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2491,6 +2543,22 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <source>Moving (0)</source>
         <translation>Taşınıyor (0)</translation>
+    </message>
+    <message>
+        <source>Running (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2784,7 +2852,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Paused</source>
-        <translation>Duraklatıldı</translation>
+        <translation type="vanished">Duraklatıldı</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2850,6 +2918,10 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <source>[F] Downloading metadata</source>
         <translation>[F] Üstveri indiriliyor</translation>
     </message>
+    <message>
+        <source>Stopped</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2891,17 +2963,17 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>Devam</translation>
+        <translation type="vanished">Devam</translation>
     </message>
     <message>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation>Devam Etmeye Zorla</translation>
+        <translation type="vanished">Devam Etmeye Zorla</translation>
     </message>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Duraklat</translation>
+        <translation type="vanished">Duraklat</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3072,6 +3144,18 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <source>Comment</source>
         <translation>Açıklama</translation>
+    </message>
+    <message>
+        <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3318,6 +3402,10 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <source>There aren't any search plugins installed.</source>
         <translation>Yüklü herhangi bir arama eklentisi yok.</translation>
     </message>
+    <message>
+        <source>Start a search above.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3447,11 +3535,11 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Torrent'leri duraklat</translation>
+        <translation type="vanished">Torrent'leri duraklat</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Torrent'lere devam et</translation>
+        <translation type="vanished">Torrent'lere devam et</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -3468,6 +3556,14 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <source>Remove torrents</source>
         <translation>Torrent'leri kaldır</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3608,6 +3704,22 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <source>Download link</source>
         <translation>İndirme bağlantısı</translation>
+    </message>
+    <message>
+        <source>Search aborted</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search has finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Searching...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3908,7 +4020,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation>Duraklatıldı Olarak Ekle:</translation>
+        <translation type="vanished">Duraklatıldı Olarak Ekle:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -3968,12 +4080,16 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
         <source>Add Tags:</source>
         <translation>Etiketleri Ekle:</translation>
     </message>
+    <message>
+        <source>Add Stopped:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Resume torrents</source>
-        <translation>Torrent'lere devam et</translation>
+        <translation type="vanished">Torrent'lere devam et</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3985,11 +4101,19 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Torrent'leri duraklat</translation>
+        <translation type="vanished">Torrent'leri duraklat</translation>
     </message>
     <message>
         <source>Remove torrents</source>
         <translation>Torrent'leri kaldır</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4136,6 +4260,13 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
     <message>
         <source>Choose a log level...</source>
         <translation>Bir günlük seviyesi seçin...</translation>
+    </message>
+</context>
+<context>
+    <name>SearchWidget</name>
+    <message>
+        <source>Close tab</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

@@ -98,11 +98,11 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Torrents fortsetzen</translation>
+        <translation type="vanished">Torrents fortsetzen</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Torrents pausieren</translation>
+        <translation type="vanished">Torrents pausieren</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -119,6 +119,14 @@
     <message>
         <source>Add subcategory...</source>
         <translation>Unterkategorie hinzufügen ...</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -197,19 +205,19 @@
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="vanished">Ungültiger Benutzername oder Passwort.</translation>
+        <translation>Ungültiger Benutzername oder Passwort.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="vanished">Benutzername</translation>
+        <translation>Benutzername</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="vanished">Passwort</translation>
+        <translation>Passwort</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="vanished">Anmelden</translation>
+        <translation>Anmelden</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -396,7 +404,11 @@
         <translation>Sollen die gewählten Torrents wirklich aus der Transfer-Liste gelöscht werden?</translation>
     </message>
     <message>
-        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <source>Unable to log in, server is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Could not contact qBittorrent</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -405,6 +417,10 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -436,7 +452,7 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>Fortsetzen</translation>
+        <translation type="vanished">Fortsetzen</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -456,7 +472,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Alle fortsetzen</translation>
+        <translation type="vanished">Alle fortsetzen</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -468,11 +484,11 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pausieren</translation>
+        <translation type="vanished">Pausieren</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Alle anhalten</translation>
+        <translation type="vanished">Alle anhalten</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -621,11 +637,11 @@
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation>Sollen alle Torrents fortgesetzt werden?</translation>
+        <translation type="vanished">Sollen alle Torrents fortgesetzt werden?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation>Sollen alle Torrents angehalten werden?</translation>
+        <translation type="vanished">Sollen alle Torrents angehalten werden?</translation>
     </message>
     <message>
         <source>Execution Log</source>
@@ -636,7 +652,31 @@
         <translation>Log</translation>
     </message>
     <message>
+        <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1206,7 +1246,7 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation>Torrent pausieren</translation>
+        <translation type="vanished">Torrent pausieren</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1823,59 +1863,7 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>Aktiviere 'Mark-of-the-Web' (MOTW) für heruntergeladene Dateien (erfordert macOS oder Windows):</translation>
     </message>
     <message>
-        <source> sec</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound quantity:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P inbound quantity:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Hashing threads:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use alternative WebUI</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk cache expiry interval:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P outbound length:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>I2P (Experimental)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Disk IO type (requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>The alternative WebUI files location cannot be blank.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk cache:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Write-through</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>WebUI</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1887,11 +1875,7 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>I2P inbound length:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <source>Write-through</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1899,11 +1883,79 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source> sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Send test email</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Same host request delay:</source>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Customize application instance name:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2400,11 +2452,11 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation>Fortgesetzt (0)</translation>
+        <translation type="vanished">Fortgesetzt (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation>Pausiert (0)</translation>
+        <translation type="vanished">Pausiert (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -2436,11 +2488,11 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation>Pausiert (%1)</translation>
+        <translation type="vanished">Pausiert (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation>Fortgesetzt (%1)</translation>
+        <translation type="vanished">Fortgesetzt (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2493,6 +2545,22 @@ Platzhalter '*' kann verwendet werden.</translation>
     <message>
         <source>Moving (0)</source>
         <translation>Verschiebe (0)</translation>
+    </message>
+    <message>
+        <source>Running (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2786,7 +2854,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation>Angehalten</translation>
+        <translation type="vanished">Angehalten</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2852,6 +2920,10 @@ Platzhalter '*' kann verwendet werden.</translation>
         <source>[F] Downloading metadata</source>
         <translation>[F] Lade Metadaten</translation>
     </message>
+    <message>
+        <source>Stopped</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2893,17 +2965,17 @@ Platzhalter '*' kann verwendet werden.</translation>
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>Fortsetzen</translation>
+        <translation type="vanished">Fortsetzen</translation>
     </message>
     <message>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation>Fortsetzen erzwingen</translation>
+        <translation type="vanished">Fortsetzen erzwingen</translation>
     </message>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Anhalten</translation>
+        <translation type="vanished">Anhalten</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3074,6 +3146,18 @@ Platzhalter '*' kann verwendet werden.</translation>
     <message>
         <source>Comment</source>
         <translation>Kommentar</translation>
+    </message>
+    <message>
+        <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3320,6 +3404,10 @@ Platzhalter '*' kann verwendet werden.</translation>
         <source>There aren't any search plugins installed.</source>
         <translation>Es sind keine Such-Plugins installiert.</translation>
     </message>
+    <message>
+        <source>Start a search above.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3449,11 +3537,11 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Torrents pausieren</translation>
+        <translation type="vanished">Torrents pausieren</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Torrents fortsetzen</translation>
+        <translation type="vanished">Torrents fortsetzen</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -3470,6 +3558,14 @@ Platzhalter '*' kann verwendet werden.</translation>
     <message>
         <source>Remove torrents</source>
         <translation>Torrents entfernen</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3610,6 +3706,22 @@ Platzhalter '*' kann verwendet werden.</translation>
     <message>
         <source>Download link</source>
         <translation>Download-Link</translation>
+    </message>
+    <message>
+        <source>Search aborted</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search has finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Searching...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3910,7 +4022,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation>Pausiert hinzufügen:</translation>
+        <translation type="vanished">Pausiert hinzufügen:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -3970,12 +4082,16 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
         <source>Add Tags:</source>
         <translation>Schlagwörter hinzufügen:</translation>
     </message>
+    <message>
+        <source>Add Stopped:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Resume torrents</source>
-        <translation>Torrents fortsetzen</translation>
+        <translation type="vanished">Torrents fortsetzen</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3987,11 +4103,19 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Torrents pausieren</translation>
+        <translation type="vanished">Torrents pausieren</translation>
     </message>
     <message>
         <source>Remove torrents</source>
         <translation>Torrents entfernen</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4138,6 +4262,13 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     <message>
         <source>Choose a log level...</source>
         <translation>Wähle ein Log Level...</translation>
+    </message>
+</context>
+<context>
+    <name>SearchWidget</name>
+    <message>
+        <source>Close tab</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>
