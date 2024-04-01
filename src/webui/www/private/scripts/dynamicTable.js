@@ -1400,10 +1400,13 @@ window.qBittorrent.DynamicTable = (function() {
                             return false;
                     }
                     else {
-                        const selectedCategoryName = category_list.get(categoryHash).name + "/";
-                        const torrentCategoryName = row['full_data'].category + "/";
-                        if (!torrentCategoryName.startsWith(selectedCategoryName))
-                            return false;
+                        const selectedCategory = category_list.get(categoryHash);
+                        if (selectedCategory !== undefined) {
+                            const selectedCategoryName = selectedCategory.name + "/";
+                            const torrentCategoryName = row['full_data'].category + "/";
+                            if (!torrentCategoryName.startsWith(selectedCategoryName))
+                                return false;
+                        }
                     }
                     break;
             }
