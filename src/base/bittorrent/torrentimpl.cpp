@@ -1545,6 +1545,15 @@ qlonglong TorrentImpl::nextAnnounce() const
     return lt::total_seconds(m_nativeStatus.next_announce);
 }
 
+qreal TorrentImpl::popularity() const
+{
+    // in order to produce floating-point numbers using `std::chrono::duration_cast`,
+    // we should use `qreal` as `Rep` to define the `months` duration
+    using months = std::chrono::duration<qreal, std::chrono::months::period>;
+    const auto activeMonths = std::chrono::duration_cast<months>(m_nativeStatus.active_duration).count();
+    return (activeMonths > 0) ? (realRatio() / activeMonths) : 0;
+}
+
 void TorrentImpl::setName(const QString &name)
 {
     if (m_name != name)

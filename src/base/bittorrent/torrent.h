@@ -282,6 +282,7 @@ namespace BitTorrent
         virtual int maxSeedingTime() const = 0;
         virtual int maxInactiveSeedingTime() const = 0;
         virtual qreal realRatio() const = 0;
+        virtual qreal popularity() const = 0;
         virtual int uploadPayloadRate() const = 0;
         virtual int downloadPayloadRate() const = 0;
         virtual qlonglong totalPayloadUpload() const = 0;

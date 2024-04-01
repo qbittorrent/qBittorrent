@@ -220,6 +220,7 @@ void PropertiesWidget::clear()
     m_ui->labelConnectionsVal->clear();
     m_ui->labelReannounceInVal->clear();
     m_ui->labelShareRatioVal->clear();
+    m_ui->labelPopularityVal->clear();
     m_ui->listWebSeeds->clear();
     m_ui->labelETAVal->clear();
     m_ui->labelSeedsVal->clear();
@@ -406,6 +407,9 @@ void PropertiesWidget::loadDynamicData()
             // Update ratio info
             const qreal ratio = m_torrent->realRatio();
             m_ui->labelShareRatioVal->setText(ratio > BitTorrent::Torrent::MAX_RATIO ? C_INFINITY : Utils::String::fromDouble(ratio, 2));
+
+            const qreal popularity = m_torrent->popularity();
+            m_ui->labelPopularityVal->setText(popularity > BitTorrent::Torrent::MAX_RATIO ? C_INFINITY : Utils::String::fromDouble(popularity, 2));
 
             m_ui->labelSeedsVal->setText(tr("%1 (%2 total)", "%1 and %2 are numbers, e.g. 3 (10 total)")
                 .arg(QString::number(m_torrent->seedsCount())

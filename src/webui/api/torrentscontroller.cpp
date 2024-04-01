@@ -97,6 +97,7 @@ const QString KEY_PROP_SEEDS_TOTAL = u"seeds_total"_s;
 const QString KEY_PROP_PEERS = u"peers"_s;
 const QString KEY_PROP_PEERS_TOTAL = u"peers_total"_s;
 const QString KEY_PROP_RATIO = u"share_ratio"_s;
+const QString KEY_PROP_POPULARITY = u"popularity"_s;
 const QString KEY_PROP_REANNOUNCE = u"reannounce"_s;
 const QString KEY_PROP_TOTAL_SIZE = u"total_size"_s;
 const QString KEY_PROP_PIECES_NUM = u"pieces_num"_s;
@@ -398,6 +399,7 @@ void TorrentsController::infoAction()
 //   - "peers": Torrent connected peers
 //   - "peers_total": Torrent total number of peers
 //   - "share_ratio": Torrent share ratio
+//   - "popularity": Torrent popularity
 //   - "reannounce": Torrent next reannounce time
 //   - "total_size": Torrent total size
 //   - "pieces_num": Torrent pieces count
@@ -432,6 +434,7 @@ void TorrentsController::propertiesAction()
     const int downloadLimit = torrent->downloadLimit();
     const int uploadLimit = torrent->uploadLimit();
     const qreal ratio = torrent->realRatio();
+    const qreal popularity = torrent->popularity();
 
     const QJsonObject ret
     {
@@ -460,6 +463,7 @@ void TorrentsController::propertiesAction()
         {KEY_PROP_PEERS, torrent->leechsCount()},
         {KEY_PROP_PEERS_TOTAL, torrent->totalLeechersCount()},
         {KEY_PROP_RATIO, ((ratio > BitTorrent::Torrent::MAX_RATIO) ? -1 : ratio)},
+        {KEY_PROP_POPULARITY, ((popularity > BitTorrent::Torrent::MAX_RATIO) ? -1 : popularity)},
         {KEY_PROP_REANNOUNCE, torrent->nextAnnounce()},
         {KEY_PROP_TOTAL_SIZE, torrent->totalSize()},
         {KEY_PROP_PIECES_NUM, torrent->piecesCount()},

@@ -926,6 +926,7 @@ window.qBittorrent.DynamicTable = (function() {
             this.newColumn('upspeed', '', 'QBT_TR(Up Speed)QBT_TR[CONTEXT=TransferListModel]', 100, true);
             this.newColumn('eta', '', 'QBT_TR(ETA)QBT_TR[CONTEXT=TransferListModel]', 100, true);
             this.newColumn('ratio', '', 'QBT_TR(Ratio)QBT_TR[CONTEXT=TransferListModel]', 100, true);
+            this.newColumn('popularity', '', 'QBT_TR(Popularity)QBT_TR[CONTEXT=TransferListModel]', 100, true);
             this.newColumn('category', '', 'QBT_TR(Category)QBT_TR[CONTEXT=TransferListModel]', 100, true);
             this.newColumn('tags', '', 'QBT_TR(Tags)QBT_TR[CONTEXT=TransferListModel]', 100, true);
             this.newColumn('added_on', '', 'QBT_TR(Added On)QBT_TR[CONTEXT=TransferListModel]', 100, true);
@@ -1226,6 +1227,14 @@ window.qBittorrent.DynamicTable = (function() {
                 const string = (ratio === -1) ? '∞' : window.qBittorrent.Misc.toFixedPointString(ratio, 2);
                 td.set('text', string);
                 td.set('title', string);
+            };
+
+            // popularity
+            this.columns['popularity'].updateTd = function(td, row) {
+                const value = this.getRowValue(row);
+                const popularity = (value === -1) ? '∞' : window.qBittorrent.Misc.toFixedPointString(value, 2);
+                td.set('text', popularity);
+                td.set('title', popularity);
             };
 
             // added on
