@@ -45,7 +45,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
-#include "base/bittorrent/trackerentry.h"
+#include "base/bittorrent/trackerentrystatus.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/path.h"
@@ -783,14 +783,14 @@ void TransferListWidget::editTorrentTrackers()
 
     if (!torrents.empty())
     {
-        commonTrackers = torrents[0]->trackers();
+        for (const BitTorrent::TrackerEntryStatus &status : asConst(torrents[0]->trackers()))
+            commonTrackers.append({.url = status.url, .tier = status.tier});
 
         for (const BitTorrent::Torrent *torrent : torrents)
         {
             QSet<BitTorrent::TrackerEntry> trackerSet;
-
-            for (const BitTorrent::TrackerEntry &entry : asConst(torrent->trackers()))
-                trackerSet.insert(entry);
+            for (const BitTorrent::TrackerEntryStatus &status : asConst(torrent->trackers()))
+                trackerSet.insert({.url = status.url, .tier = status.tier});
 
             commonTrackers.erase(std::remove_if(commonTrackers.begin(), commonTrackers.end()
                 , [&trackerSet](const BitTorrent::TrackerEntry &entry) { return !trackerSet.contains(entry); })

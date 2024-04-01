@@ -30,10 +30,8 @@
 #pragma once
 
 #include <QtContainerFwd>
-#include <QHash>
 #include <QWidget>
 
-#include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
 
 class CategoryFilterWidget;
@@ -41,6 +39,12 @@ class StatusFilterWidget;
 class TagFilterWidget;
 class TrackersFilterWidget;
 class TransferListWidget;
+
+namespace BitTorrent
+{
+    class Torrent;
+    struct TrackerEntryStatus;
+}
 
 class TransferListFiltersWidget final : public QWidget
 {
@@ -55,8 +59,8 @@ public slots:
     void addTrackers(const BitTorrent::Torrent *torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
     void removeTrackers(const BitTorrent::Torrent *torrent, const QStringList &trackers);
     void refreshTrackers(const BitTorrent::Torrent *torrent);
-    void trackerEntriesUpdated(const BitTorrent::Torrent *torrent
-            , const QHash<QString, BitTorrent::TrackerEntry> &updatedTrackerEntries);
+    void trackerEntryStatusesUpdated(const BitTorrent::Torrent *torrent
+            , const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers);
 
 private slots:
     void onCategoryFilterStateChanged(bool enabled);

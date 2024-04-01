@@ -38,6 +38,7 @@
 #include "categoryoptions.h"
 #include "sharelimitaction.h"
 #include "trackerentry.h"
+#include "trackerentrystatus.h"
 
 class QString;
 
@@ -490,6 +491,6 @@ namespace BitTorrent
         void trackersRemoved(Torrent *torrent, const QStringList &trackers);
         void trackerSuccess(Torrent *torrent, const QString &tracker);
         void trackerWarning(Torrent *torrent, const QString &tracker);
-        void trackerEntriesUpdated(Torrent *torrent, const QHash<QString, TrackerEntry> &updatedTrackerEntries);
+        void trackerEntryStatusesUpdated(Torrent *torrent, const QHash<QString, TrackerEntryStatus> &updatedTrackers);
     };
 }

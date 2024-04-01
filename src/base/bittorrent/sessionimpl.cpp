@@ -102,6 +102,7 @@
 #include "torrentdescriptor.h"
 #include "torrentimpl.h"
 #include "tracker.h"
+#include "trackerentry.h"
 
 using namespace std::chrono_literals;
 using namespace BitTorrent;
@@ -2214,7 +2215,7 @@ void SessionImpl::populateAdditionalTrackers()
     {
         tracker = tracker.trimmed();
         if (!tracker.isEmpty())
-            m_additionalTrackerList.append({tracker.toString()});
+            m_additionalTrackerList.append({.url = tracker.toString(), .tier = 0});
     }
 }
 
@@ -4898,14 +4899,15 @@ void SessionImpl::handleTorrentMetadataReceived(TorrentImpl *const torrent)
 
 void SessionImpl::handleTorrentStopped(TorrentImpl *const torrent)
 {
-    torrent->resetTrackerEntries();
+    torrent->resetTrackerEntryStatuses();
 
-    const auto &trackerEntries = torrent->trackers();
-    QHash<QString, TrackerEntry> updatedTrackerEntries;
-    updatedTrackerEntries.reserve(trackerEntries.size());
-    for (const auto &trackerEntry : trackerEntries)
-        updatedTrackerEntries.emplace(trackerEntry.url, trackerEntry);
-    emit trackerEntriesUpdated(torrent, updatedTrackerEntries);
+    const QVector<TrackerEntryStatus> trackers = torrent->trackers();
+    QHash<QString, TrackerEntryStatus> updatedTrackers;
+    updatedTrackers.reserve(trackers.size());
+
+    for (const TrackerEntryStatus &status : trackers)
+        updatedTrackers.emplace(status.url, status);
+    emit trackerEntryStatusesUpdated(torrent, updatedTrackers);
 
     LogMsg(tr("Torrent stopped. Torrent: \"%1\"").arg(torrent->name()));
     emit torrentStopped(torrent);
@@ -6041,7 +6043,7 @@ void SessionImpl::handleTrackerAlert(const lt::tracker_alert *a)
     if (!torrent)
         return;
 
-    QMap<int, int> &updateInfo = m_updatedTrackerEntries[torrent->nativeHandle()][std::string(a->tracker_url())][a->local_endpoint];
+    QMap<int, int> &updateInfo = m_updatedTrackerStatuses[torrent->nativeHandle()][std::string(a->tracker_url())][a->local_endpoint];
 
     if (a->type() == lt::tracker_reply_alert::alert_type)
     {
@@ -6105,15 +6107,13 @@ void SessionImpl::handleTorrentConflictAlert(const lt::torrent_conflict_alert *a
 
 void SessionImpl::processTrackerStatuses()
 {
-    if (m_updatedTrackerEntries.isEmpty())
+    if (m_updatedTrackerStatuses.isEmpty())
         return;
 
-    for (auto it = m_updatedTrackerEntries.cbegin(); it != m_updatedTrackerEntries.cend(); ++it)
-    {
-        updateTrackerEntries(it.key(), it.value());
-    }
+    for (auto it = m_updatedTrackerStatuses.cbegin(); it != m_updatedTrackerStatuses.cend(); ++it)
+        updateTrackerEntryStatuses(it.key(), it.value());
 
-    m_updatedTrackerEntries.clear();
+    m_updatedTrackerStatuses.clear();
 }
 
 void SessionImpl::saveStatistics() const
@@ -6140,7 +6140,7 @@ void SessionImpl::loadStatistics()
     m_previouslyUploaded = value[u"AlltimeUL"_s].toLongLong();
 }
 
-void SessionImpl::updateTrackerEntries(lt::torrent_handle torrentHandle, QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>> updatedTrackers)
+void SessionImpl::updateTrackerEntryStatuses(lt::torrent_handle torrentHandle, QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>> updatedTrackers)
 {
     invokeAsync([this, torrentHandle = std::move(torrentHandle), updatedTrackers = std::move(updatedTrackers)]() mutable
     {
@@ -6154,8 +6154,8 @@ void SessionImpl::updateTrackerEntries(lt::torrent_handle torrentHandle, QHash<s
                 if (!torrent || torrent->isStopped())
                     return;
 
-                QHash<QString, TrackerEntry> updatedTrackerEntries;
-                updatedTrackerEntries.reserve(updatedTrackers.size());
+                QHash<QString, TrackerEntryStatus> trackers;
+                trackers.reserve(updatedTrackers.size());
                 for (const lt::announce_entry &announceEntry : nativeTrackers)
                 {
                     const auto updatedTrackersIter = updatedTrackers.find(announceEntry.url);
@@ -6163,12 +6163,12 @@ void SessionImpl::updateTrackerEntries(lt::torrent_handle torrentHandle, QHash<s
                         continue;
 
                     const auto &updateInfo = updatedTrackersIter.value();
-                    TrackerEntry trackerEntry = torrent->updateTrackerEntry(announceEntry, updateInfo);
-                    const QString url = trackerEntry.url;
-                    updatedTrackerEntries.emplace(url, std::move(trackerEntry));
+                    TrackerEntryStatus status = torrent->updateTrackerEntryStatus(announceEntry, updateInfo);
+                    const QString url = status.url;
+                    trackers.emplace(url, std::move(status));
                 }
 
-                emit trackerEntriesUpdated(torrent, updatedTrackerEntries);
+                emit trackerEntryStatusesUpdated(torrent, trackers);
             });
         }
         catch (const std::exception &)

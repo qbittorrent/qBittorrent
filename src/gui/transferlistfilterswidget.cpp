@@ -42,6 +42,7 @@
 #include "base/algorithm.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
+#include "base/bittorrent/trackerentrystatus.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
@@ -191,10 +192,10 @@ void TransferListFiltersWidget::refreshTrackers(const BitTorrent::Torrent *torre
     m_trackersFilterWidget->refreshTrackers(torrent);
 }
 
-void TransferListFiltersWidget::trackerEntriesUpdated(const BitTorrent::Torrent *torrent
-        , const QHash<QString, BitTorrent::TrackerEntry> &updatedTrackerEntries)
+void TransferListFiltersWidget::trackerEntryStatusesUpdated(const BitTorrent::Torrent *torrent
+        , const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers)
 {
-    m_trackersFilterWidget->handleTrackerEntriesUpdated(torrent, updatedTrackerEntries);
+    m_trackersFilterWidget->handleTrackerStatusesUpdated(torrent, updatedTrackers);
 }
 
 void TransferListFiltersWidget::onCategoryFilterStateChanged(bool enabled)
