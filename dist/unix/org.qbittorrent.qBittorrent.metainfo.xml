@@ -33,19 +33,19 @@
   <screenshots>
     <screenshot type="default">
       <caption>Main window (General tab collapsed)</caption>
-      <image height="675" width="1200">https://alexpl.fedorapeople.org/AppData/qbittorrent/screens/qbittorrent_01.png</image>
+      <image>https://raw.githubusercontent.com/qbittorrent/qBittorrent-website/2741f2a90854604e268c6bba9e6859aad0103583/src/img/screenshots/linux/1.webp</image>
     </screenshot>
     <screenshot>
       <caption>Main window (General tab expanded)</caption>
-      <image height="675" width="1200">https://alexpl.fedorapeople.org/AppData/qbittorrent/screens/qbittorrent_03.png</image>
+      <image>https://raw.githubusercontent.com/qbittorrent/qBittorrent-website/2741f2a90854604e268c6bba9e6859aad0103583/src/img/screenshots/linux/2.webp</image>
     </screenshot>
     <screenshot>
       <caption>Options dialog</caption>
-      <image height="675" width="1200">https://alexpl.fedorapeople.org/AppData/qbittorrent/screens/qbittorrent_04.png</image>
+      <image>https://raw.githubusercontent.com/qbittorrent/qBittorrent-website/2741f2a90854604e268c6bba9e6859aad0103583/src/img/screenshots/linux/3.webp</image>
     </screenshot>
     <screenshot>
       <caption>Search engine</caption>
-      <image height="675" width="1200">https://alexpl.fedorapeople.org/AppData/qbittorrent/screens/qbittorrent_02.png</image>
+      <image>https://raw.githubusercontent.com/qbittorrent/qBittorrent-website/2741f2a90854604e268c6bba9e6859aad0103583/src/img/screenshots/linux/4.webp</image>
     </screenshot>
   </screenshots>
   <update_contact>sledgehammer999@qbittorrent.org</update_contact>
