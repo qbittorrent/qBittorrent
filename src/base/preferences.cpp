@@ -1847,7 +1847,7 @@ void Preferences::setToolbarTextPosition(const int position)
 
 QString Preferences::customizeTrackersListUrl() const
 {
-    return value(u"Preferences/Bittorrent/CustomizeTrackersListUrl"_s, u"https://cdn.jsdelivr.net/gh/ngosang/trackerslist/trackers_best.txt"_s);
+    return value(u"Preferences/Bittorrent/CustomizeTrackersListUrl"_s, u"https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt"_s);
 }
 
 void Preferences::setCustomizeTrackersListUrl(const QString &trackersUrl)

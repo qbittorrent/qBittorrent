@@ -110,8 +110,9 @@ private slots:
     void webUIHttpsCertChanged(const Path &path);
     void webUIHttpsKeyChanged(const Path &path);
     void on_registerDNSBtn_clicked();
-    void on_fetchButton_clicked();
+    void on_fetchButton_clicked(const QString &trackersUrl) const;
     void handlePublicTrackersListChanged(const Net::DownloadResult &result);
+    void on_textCustomizeTrackersListURL_textChanged(const QString &text);
 #endif
 
 private:

@@ -1161,7 +1161,13 @@ void OptionsDialog::loadBittorrentTabOptions()
     connect(m_ui->checkEnableAddTrackers, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textTrackers, &QPlainTextEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAutoUpdateTrackers, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->textCustomizeTrackersListUrl, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->textCustomizeTrackersListUrl, &QLineEdit::textChanged, this, [&]{
+        on_textCustomizeTrackersListURL_textChanged(m_ui->textCustomizeTrackersListUrl->text());
+        enableApplyButton();
+    });
+    connect(m_ui->fetchButton, &QAbstractButton::clicked, this, [&]{
+        on_fetchButton_clicked(m_ui->textCustomizeTrackersListUrl->text());
+    });
 }
 
 void OptionsDialog::saveBittorrentTabOptions() const
@@ -2004,10 +2010,14 @@ void OptionsDialog::on_IPSubnetWhitelistButton_clicked()
     dialog->open();
 }
 
-void OptionsDialog::on_fetchButton_clicked()
+void OptionsDialog::on_fetchButton_clicked(const QString &trackersUrl) const
 {
-    Net::DownloadHandler *m_fetchHandler = Net::DownloadManager::instance()->download(Net::DownloadRequest(Preferences::instance()->customizeTrackersListUrl()), Preferences::instance()->useProxyForGeneralPurposes());
-    connect(m_fetchHandler, &Net::DownloadHandler::finished, this, &OptionsDialog::handlePublicTrackersListChanged);
+    auto downloadRequest = Net::DownloadRequest(trackersUrl);
+    Net::DownloadManager::instance()->download(
+            downloadRequest,
+            Preferences::instance()->useProxyForGeneralPurposes(),
+            this,
+            &OptionsDialog::handlePublicTrackersListChanged);
 }
 
 void OptionsDialog::handlePublicTrackersListChanged(const Net::DownloadResult &result)
@@ -2021,4 +2031,10 @@ void OptionsDialog::handlePublicTrackersListChanged(const Net::DownloadResult &r
     else {
         m_ui->textPublicTrackers->setPlainText(u"Refetch failed. Reason: "_s + result.errorString);
     }
+}
+
+void OptionsDialog::on_textCustomizeTrackersListURL_textChanged(const QString &text)
+{
+    m_ui->fetchButton->setEnabled(!text.isEmpty());
+    m_ui->fetchButton->setText(u"Fetch"_s);
 }
