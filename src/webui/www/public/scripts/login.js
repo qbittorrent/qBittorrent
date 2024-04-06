@@ -29,6 +29,16 @@
 'use strict';
 
 async function setupI18n() {
+    // present it to i18next
+    const i18nextOptions = {
+        lng: 'en',
+        fallbackLng: false,
+        load: 'currentOnly',
+        returnEmptyString: false
+    };
+    // Pre-render HTML with default language and don't wait for the network response
+    await i18next.init(i18nextOptions, replaceI18nText);
+
     const languages = (() => {
         const langs = new Set();
         for (const lang of navigator.languages) {
@@ -53,43 +63,35 @@ async function setupI18n() {
         data: (translations.length > 0) ? (await translations[0].result.value.json()) : {}
     };
 
-    // present it to i18next
-    const i18nextOptions = {
-        lng: translation.lang,
-        fallbackLng: false,
-        load: 'currentOnly',
-        resources: {
-            [translation.lang]: { translation: translation.data }
-        },
-        returnEmptyString: false
-    };
-    i18next.init(i18nextOptions, replaceI18nText);
+    i18next.addResources(translation.lang, "translation", translation.data);
+    i18next.changeLanguage(translation.lang, replaceI18nText);
 }
 
 function replaceI18nText() {
     const tr = i18next.t; // workaround for warnings from i18next-parser
-    const re = /^(\[([a-zA-Z0-9_-]+)\])?(.*)$/;
+    const re = /^(\[([a-zA-Z0-9_-]+)\])?(.+?)(_(.+))?$/;
 
     for (const element of document.querySelectorAll('[data-i18n]')) {
-        const i18nData = element.getAttribute('data-i18n');
-        if (!i18nData) {
-            element.textContent = tr(element.textContent);
-            continue;
-        }
+        const translationKeys = element.getAttribute('data-i18n').split(';');
 
-        const translationKeys = i18nData.split(';');
         for (const key of translationKeys) {
             const matches = key.match(re);
             if (matches[2]) {
-                element.setAttribute(matches[2], tr(matches[3]));
+                if (matches[5])
+                    element.setAttribute(matches[2], tr(matches[3], { context: matches[5] }));
+                else
+                    element.setAttribute(matches[2], tr(matches[3]));
                 continue;
             }
 
-            element.textContent = tr(matches[3]);
+            if (matches[5])
+                element.textContent = tr(matches[3], { context: matches[5] });
+            else
+                element.textContent = tr(matches[3]);
         }
     }
 
-    document.documentElement.lang = i18next.language.split('-')[0];
+    document.documentElement.lang = i18next.language;
 }
 
 function submitLoginForm(event) {
