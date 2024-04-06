@@ -31,13 +31,25 @@
 async function setupI18n() {
     const languages = (() => {
         const langs = new Set();
-        for (const lang of navigator.languages) {
-            langs.add(lang.replace('-', '_'));
 
-            const idx = lang.indexOf('-');
-            if (idx > 0)
-                langs.add(lang.slice(0, idx));
+        // list of available languages: https://github.com/qbittorrent/qBittorrent/tree/master/src/webui/www/public/lang
+        const queryLang = new URLSearchParams(window.location.search).get('lang');
+        if (queryLang !== null) {
+            // use the fallback lang if `queryLang` is present but empty
+            // limit the length of the language string to prevent Client-side Request Forgery
+            if ((queryLang.length > 0) && (queryLang.length <= 8))
+                langs.add(queryLang.replace('-', '_'));
         }
+        else {
+            for (const lang of navigator.languages) {
+                langs.add(lang.replace('-', '_'));
+
+                const idx = lang.indexOf('-');
+                if (idx > 0)
+                    langs.add(lang.slice(0, idx));
+            }
+        }
+
         langs.add('en'); // fallback
         return Array.from(langs);
     })();
