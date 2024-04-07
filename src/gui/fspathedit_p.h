@@ -37,7 +37,6 @@
 #include "base/pathfwd.h"
 
 class QAction;
-class QCompleter;
 class QContextMenuEvent;
 class QFileIconProvider;
 class QFileSystemModel;
@@ -141,7 +140,6 @@ namespace Private
         static QString warningText(FileSystemPathValidator::TestResult result);
 
         QFileSystemModel *m_completerModel = nullptr;
-        QCompleter *m_completer = nullptr;
         QAction *m_browseAction = nullptr;
         QAction *m_warningAction = nullptr;
         QFileIconProvider *m_iconProvider = nullptr;

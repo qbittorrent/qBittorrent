@@ -163,6 +163,7 @@ QValidator::State Private::FileSystemPathValidator::validate(QString &input, [[m
 Private::FileLineEdit::FileLineEdit(QWidget *parent)
     : QLineEdit(parent)
 {
+    setCompleter(new QCompleter(this));
     connect(this, &QLineEdit::textChanged, this, &FileLineEdit::validateText);
 }
 
@@ -221,7 +222,7 @@ void Private::FileLineEdit::keyPressEvent(QKeyEvent *e)
 
     if ((e->key() == Qt::Key_Space) && (e->modifiers() == Qt::CTRL))
     {
-        if (!m_completer)
+        if (!m_completerModel)
         {
             m_iconProvider = new QFileIconProvider;
             m_iconProvider->setOptions(QFileIconProvider::DontUseCustomDirectoryIcons);
@@ -234,9 +235,7 @@ void Private::FileLineEdit::keyPressEvent(QKeyEvent *e)
                     | (m_completeDirectoriesOnly ? QDir::Dirs : QDir::AllEntries);
             m_completerModel->setFilter(filters);
 
-            m_completer = new QCompleter(this);
-            m_completer->setModel(m_completerModel);
-            setCompleter(m_completer);
+            completer()->setModel(m_completerModel);
         }
 
         m_completerModel->setRootPath(Path(text()).data());
@@ -260,8 +259,8 @@ void Private::FileLineEdit::contextMenuEvent(QContextMenuEvent *event)
 
 void Private::FileLineEdit::showCompletionPopup()
 {
-    m_completer->setCompletionPrefix(text());
-    m_completer->complete();
+    completer()->setCompletionPrefix(text());
+    completer()->complete();
 }
 
 void Private::FileLineEdit::validateText()
