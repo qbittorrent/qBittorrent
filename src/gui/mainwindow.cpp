@@ -857,6 +857,7 @@ void MainWindow::createKeyboardShortcuts()
     m_ui->actionExit->setShortcut(Qt::CTRL | Qt::Key_Q);
 #ifdef Q_OS_MACOS
     m_ui->actionCloseWindow->setShortcut(QKeySequence::Close);
+    m_ui->actionDelete->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Backspace));
 #else
     m_ui->actionCloseWindow->setVisible(false);
 #endif
