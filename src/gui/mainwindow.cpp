@@ -851,7 +851,13 @@ void MainWindow::createKeyboardShortcuts()
 {
     m_ui->actionCreateTorrent->setShortcut(QKeySequence::New);
     m_ui->actionOpen->setShortcut(QKeySequence::Open);
-    m_ui->actionDelete->setShortcut(QKeySequence::Delete);
+    m_ui->actionDelete->setShortcut(
+#ifdef Q_OS_MACOS
+        Qt::CTRL | Qt::Key_Backspace
+#else
+        QKeySequence::Delete
+#endif
+        );
     m_ui->actionDelete->setShortcutContext(Qt::WidgetShortcut);  // nullify its effect: delete key event is handled by respective widgets, not here
     m_ui->actionDownloadFromURL->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_O);
     m_ui->actionExit->setShortcut(Qt::CTRL | Qt::Key_Q);
