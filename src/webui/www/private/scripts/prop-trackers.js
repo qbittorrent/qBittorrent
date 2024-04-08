@@ -100,7 +100,7 @@ window.qBittorrent.PropTrackers = (function() {
                             tier: (tracker.tier >= 0) ? tracker.tier : "",
                             url: tracker.url,
                             status: status,
-                            peers: tracker.num_peers,
+                            peers: (tracker.num_peers >= 0) ? tracker.num_peers : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
                             seeds: (tracker.num_seeds >= 0) ? tracker.num_seeds : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
                             leeches: (tracker.num_leeches >= 0) ? tracker.num_leeches : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
                             downloaded: (tracker.num_downloaded >= 0) ? tracker.num_downloaded : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
