@@ -316,6 +316,7 @@ void AppController::preferencesAction()
     // Use alternative WebUI
     data[u"alternative_webui_enabled"_s] = pref->isAltWebUIEnabled();
     data[u"alternative_webui_path"_s] = pref->getWebUIRootFolder().toString();
+    data[u"alternative_webui_derivative"_s] = pref->isAltWebUIDerivative();
     // Security
     data[u"web_ui_clickjacking_protection_enabled"_s] = pref->isWebUIClickjackingProtectionEnabled();
     data[u"web_ui_csrf_protection_enabled"_s] = pref->isWebUICSRFProtectionEnabled();
