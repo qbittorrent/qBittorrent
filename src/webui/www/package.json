@@ -10,8 +10,8 @@
     "lint": "eslint private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js && stylelint **/*.css && html-validate private public"
   },
   "devDependencies": {
-    "eslint": "*",
-    "eslint-plugin-html": "*",
+    "eslint": "^8",
+    "eslint-plugin-html": "^8",
     "html-validate": "*",
     "js-beautify": "*",
     "prettier": "*",
