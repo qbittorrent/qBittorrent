@@ -128,11 +128,13 @@ jobs:
           pushd build
           PACKAGE_RETRY=0
           while [ "$PACKAGE_RETRY" -lt "3" ]; do
-            if macdeployqt "$appName.app" -dmg -no-strip; then
+            macdeployqt "$appName.app" -dmg -no-strip
+            if [ -f "$appName.dmg" ]; then
               break
             fi
-            sleep 5s
+            sleep 5
             PACKAGE_RETRY=$((PACKAGE_RETRY + 1))
+            echo "Retry $PACKAGE_RETRY..."
           done
           popd
           # prepare upload folder
