@@ -169,24 +169,30 @@ window.qBittorrent.ContextMenu = (function() {
             }.bind(this));
 
             elem.addEvent('touchstart', function(e) {
-                e.preventDefault();
-                clearTimeout(this.touchstartTimer);
                 this.hide();
-
-                const touchstartEvent = e;
-                this.touchstartTimer = setTimeout(function() {
-                    this.touchstartTimer = -1;
-                    this.triggerMenu(touchstartEvent, elem);
-                }.bind(this), this.options.touchTimer);
+                this.touchStartAt = performance.now();
+                this.touchStartEvent = e;
             }.bind(this));
             elem.addEvent('touchend', function(e) {
-                e.preventDefault();
-                clearTimeout(this.touchstartTimer);
-                this.touchstartTimer = -1;
+                const now = performance.now();
+                const touchStartAt = this.touchStartAt;
+                const touchStartEvent = this.touchStartEvent;
+
+                this.touchStartAt = null;
+                this.touchStartEvent = null;
+
+                const isTargetUnchanged = (Math.abs(e.event.pageX - touchStartEvent.event.pageX) <= 10) && (Math.abs(e.event.pageY - touchStartEvent.event.pageY) <= 10);
+                if (((now - touchStartAt) >= this.options.touchTimer) && isTargetUnchanged) {
+                    this.triggerMenu(touchStartEvent, elem);
+                }
             }.bind(this));
         },
 
         addTarget: function(t) {
+            // prevent long press from selecting this text
+            t.style.setProperty('user-select', 'none');
+            t.style.setProperty('-webkit-user-select', 'none');
+
             this.targets[this.targets.length] = t;
             this.setupEventListeners(t);
         },
@@ -238,18 +244,16 @@ window.qBittorrent.ContextMenu = (function() {
                 lastShownContextMenu.hide();
             this.fx.start(1);
             this.fireEvent('show');
-            this.shown = true;
             lastShownContextMenu = this;
             return this;
         },
 
         //hide the menu
         hide: function(trigger) {
-            if (this.shown) {
+            if (lastShownContextMenu && (lastShownContextMenu.menu.style.visibility !== 'hidden')) {
                 this.fx.start(0);
                 //this.menu.fade('out');
                 this.fireEvent('hide');
-                this.shown = false;
             }
             return this;
         },

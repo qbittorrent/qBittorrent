@@ -775,7 +775,6 @@ window.qBittorrent.DynamicTable = (function() {
                             this._this.deselectAll();
                             this._this.selectRow(this.rowId);
                         }
-                        return false;
                     });
                     tr.addEvent('keydown', function(event) {
                         switch (event.key) {

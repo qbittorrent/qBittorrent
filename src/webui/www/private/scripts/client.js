@@ -442,9 +442,9 @@ window.addEventListener("DOMContentLoaded", function() {
                 margin_left = (category_path.length - 1) * 20;
             }
 
-            const html = `<a href="#" style="margin-left: ${margin_left}px;" onclick="setCategoryFilter(${hash}); return false;">`
+            const html = `<span class="link" href="#" style="margin-left: ${margin_left}px;" onclick="setCategoryFilter(${hash}); return false;">`
                 + '<img src="images/view-categories.svg"/>'
-                + window.qBittorrent.Misc.escapeHtml(display_name) + ' (' + count + ')' + '</a>';
+                + window.qBittorrent.Misc.escapeHtml(display_name) + ' (' + count + ')' + '</span>';
             const el = new Element('li', {
                 id: hash,
                 html: html
@@ -524,9 +524,9 @@ window.addEventListener("DOMContentLoaded", function() {
         tagFilterList.getChildren().each(c => c.destroy());
 
         const createLink = function(hash, text, count) {
-            const html = `<a href="#" onclick="setTagFilter(${hash}); return false;">`
+            const html = `<span class="link" href="#" onclick="setTagFilter(${hash}); return false;">`
                 + '<img src="images/tags.svg"/>'
-                + window.qBittorrent.Misc.escapeHtml(text) + ' (' + count + ')' + '</a>';
+                + window.qBittorrent.Misc.escapeHtml(text) + ' (' + count + ')' + '</span>';
             const el = new Element('li', {
                 id: hash,
                 html: html
@@ -602,9 +602,9 @@ window.addEventListener("DOMContentLoaded", function() {
         trackerFilterList.getChildren().each(c => c.destroy());
 
         const createLink = function(hash, text, count) {
-            const html = '<a href="#" onclick="setTrackerFilter(' + hash + ');return false;">'
+            const html = '<span class="link" href="#" onclick="setTrackerFilter(' + hash + ');return false;">'
                 + '<img src="images/trackers.svg"/>'
-                + window.qBittorrent.Misc.escapeHtml(text.replace("%1", count)) + '</a>';
+                + window.qBittorrent.Misc.escapeHtml(text.replace("%1", count)) + '</span>';
             const el = new Element('li', {
                 id: hash,
                 html: html
