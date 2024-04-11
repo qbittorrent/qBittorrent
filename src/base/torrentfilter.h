@@ -68,6 +68,7 @@ public:
     static const std::optional<QString> AnyCategory;
     static const std::optional<TorrentIDSet> AnyID;
     static const std::optional<Tag> AnyTag;
+    static const std::optional<bool> AnyIsPrivate;
 
     static const TorrentFilter DownloadingTorrent;
     static const TorrentFilter SeedingTorrent;
@@ -85,17 +86,24 @@ public:
 
     TorrentFilter() = default;
     // category & tags: pass empty string for uncategorized / untagged torrents.
-    TorrentFilter(Type type, const std::optional<TorrentIDSet> &idSet = AnyID
-            , const std::optional<QString> &category = AnyCategory, const std::optional<Tag> &tag = AnyTag);
-    TorrentFilter(const QString &filter, const std::optional<TorrentIDSet> &idSet = AnyID
-            , const std::optional<QString> &category = AnyCategory, const std::optional<Tag> &tags = AnyTag);
+    TorrentFilter(Type type,
+              const std::optional<TorrentIDSet> &idSet = AnyID
+            , const std::optional<QString> &category = AnyCategory
+            , const std::optional<Tag> &tag = AnyTag
+            , const std::optional<bool> &isPrivate = AnyIsPrivate);
+    TorrentFilter(const QString &filter,
+              const std::optional<TorrentIDSet> &idSet = AnyID
+            , const std::optional<QString> &category = AnyCategory
+            , const std::optional<Tag> &tags = AnyTag
+            , const std::optional<bool> &isPrivate = AnyIsPrivate);
+
 
     bool setType(Type type);
     bool setTypeByName(const QString &filter);
     bool setTorrentIDSet(const std::optional<TorrentIDSet> &idSet);
     bool setCategory(const std::optional<QString> &category);
     bool setTag(const std::optional<Tag> &tag);
-
+    bool setIsPrivate(const std::optional<bool> &isPrivate);
     bool match(const BitTorrent::Torrent *torrent) const;
 
 private:
@@ -103,9 +111,11 @@ private:
     bool matchHash(const BitTorrent::Torrent *torrent) const;
     bool matchCategory(const BitTorrent::Torrent *torrent) const;
     bool matchTag(const BitTorrent::Torrent *torrent) const;
+    bool matchIsPrivate(const BitTorrent::Torrent *torrent) const;
 
     Type m_type {All};
     std::optional<QString> m_category;
     std::optional<Tag> m_tag;
     std::optional<TorrentIDSet> m_idSet;
+    std::optional<bool> m_isPrivate;
 };

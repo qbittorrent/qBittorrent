@@ -282,10 +282,12 @@ void TorrentsController::countAction()
 //   - category (string): torrent category for filtering by it (empty string means "uncategorized"; no "category" param presented means "any category")
 //   - tag (string): torrent tag for filtering by it (empty string means "untagged"; no "tag" param presented means "any tag")
 //   - hashes (string): filter by hashes, can contain multiple hashes separated by |
+//   - isPrivate (bool): filter torrents that are from private trackers (true) or not (false). Empty means any torrent (no filtering)
 //   - sort (string): name of column for sorting by its value
 //   - reverse (bool): enable reverse sorting
 //   - limit (int): set limit number of torrents returned (if greater than 0, otherwise - unlimited)
 //   - offset (int): set offset (if less than 0 - offset from end)
+
 void TorrentsController::infoAction()
 {
     const QString filter {params()[u"filter"_s]};
@@ -296,6 +298,7 @@ void TorrentsController::infoAction()
     int limit {params()[u"limit"_s].toInt()};
     int offset {params()[u"offset"_s].toInt()};
     const QStringList hashes {params()[u"hashes"_s].split(u'|', Qt::SkipEmptyParts)};
+    const std::optional<bool> isPrivate = parseBool(params()[u"isPrivate"_s]);
 
     std::optional<TorrentIDSet> idSet;
     if (!hashes.isEmpty())
@@ -305,7 +308,7 @@ void TorrentsController::infoAction()
             idSet->insert(BitTorrent::TorrentID::fromString(hash));
     }
 
-    const TorrentFilter torrentFilter {filter, idSet, category, tag};
+    const TorrentFilter torrentFilter {filter, idSet, category, tag, isPrivate};
     QVariantList torrentList;
     for (const BitTorrent::Torrent *torrent : asConst(BitTorrent::Session::instance()->torrents()))
     {
