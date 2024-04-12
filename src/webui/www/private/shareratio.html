@@ -46,8 +46,10 @@
             };
 
             // select default when orig values not passed. using double equals to compare string and int
-            if ((origValues[0] === "") || ((values.ratioLimit == UseGlobalLimit) && (values.seedingTimeLimit == UseGlobalLimit))
-                && (values.inactiveSeedingTimeLimit == UseGlobalLimit)) {
+            if ((origValues[0] === "")
+                || ((values.ratioLimit == UseGlobalLimit)
+                    && (values.seedingTimeLimit == UseGlobalLimit)
+                    && (values.inactiveSeedingTimeLimit == UseGlobalLimit))) {
                 // use default option
                 setSelectedRadioValue('shareLimit', 'default');
             }

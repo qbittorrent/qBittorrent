@@ -1591,10 +1591,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const min = input.getAttribute("min");
             const max = input.getAttribute("max");
 
-            if (min && input.value.toInt() < min.toInt())
+            if (min && (input.value.toInt() < min.toInt()))
                 input.value = min;
 
-            if (max && input.value.toInt() > max.toInt())
+            if (max && (input.value.toInt() > max.toInt()))
                 input.value = max;
         };
 
@@ -2470,7 +2470,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             let max_connec = -1;
             if ($('max_connec_checkbox').getProperty('checked')) {
                 max_connec = $('max_connec_value').getProperty('value').toInt();
-                if (isNaN(max_connec) || max_connec <= 0) {
+                if (isNaN(max_connec) || (max_connec <= 0)) {
                     alert("QBT_TR(Maximum number of connections limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
@@ -2479,7 +2479,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             let max_connec_per_torrent = -1;
             if ($('max_connec_per_torrent_checkbox').getProperty('checked')) {
                 max_connec_per_torrent = $('max_connec_per_torrent_value').getProperty('value').toInt();
-                if (isNaN(max_connec_per_torrent) || max_connec_per_torrent <= 0) {
+                if (isNaN(max_connec_per_torrent) || (max_connec_per_torrent <= 0)) {
                     alert("QBT_TR(Maximum number of connections per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
@@ -2488,7 +2488,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             let max_uploads = -1;
             if ($('max_uploads_checkbox').getProperty('checked')) {
                 max_uploads = $('max_uploads_value').getProperty('value').toInt();
-                if (isNaN(max_uploads) || max_uploads <= 0) {
+                if (isNaN(max_uploads) || (max_uploads <= 0)) {
                     alert("QBT_TR(Global number of upload slots limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
@@ -2497,7 +2497,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             let max_uploads_per_torrent = -1;
             if ($('max_uploads_per_torrent_checkbox').getProperty('checked')) {
                 max_uploads_per_torrent = $('max_uploads_per_torrent_value').getProperty('value').toInt();
-                if (isNaN(max_uploads_per_torrent) || max_uploads_per_torrent <= 0) {
+                if (isNaN(max_uploads_per_torrent) || (max_uploads_per_torrent <= 0)) {
                     alert("QBT_TR(Maximum number of upload slots per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
@@ -2532,14 +2532,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Speed tab
             // Global Rate Limits
             const up_limit = $('up_limit_value').getProperty('value').toInt() * 1024;
-            if (isNaN(up_limit) || up_limit < 0) {
+            if (isNaN(up_limit) || (up_limit < 0)) {
                 alert("QBT_TR(Global upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings['up_limit'] = up_limit;
 
             const dl_limit = $('dl_limit_value').getProperty('value').toInt() * 1024;
-            if (isNaN(dl_limit) || dl_limit < 0) {
+            if (isNaN(dl_limit) || (dl_limit < 0)) {
                 alert("QBT_TR(Global download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
@@ -2547,14 +2547,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             // Alternative Global Rate Limits
             const alt_up_limit = $('alt_up_limit_value').getProperty('value').toInt() * 1024;
-            if (isNaN(alt_up_limit) || alt_up_limit < 0) {
+            if (isNaN(alt_up_limit) || (alt_up_limit < 0)) {
                 alert("QBT_TR(Alternative upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings['alt_up_limit'] = alt_up_limit;
 
             const alt_dl_limit = $('alt_dl_limit_value').getProperty('value').toInt() * 1024;
-            if (isNaN(alt_dl_limit) || alt_dl_limit < 0) {
+            if (isNaN(alt_dl_limit) || (alt_dl_limit < 0)) {
                 alert("QBT_TR(Alternative download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
@@ -2590,19 +2590,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings['queueing_enabled'] = $('queueing_checkbox').getProperty('checked');
             if ($('queueing_checkbox').getProperty('checked')) {
                 const max_active_downloads = $('max_active_dl_value').getProperty('value').toInt();
-                if (isNaN(max_active_downloads) || max_active_downloads < -1) {
+                if (isNaN(max_active_downloads) || (max_active_downloads < -1)) {
                     alert("QBT_TR(Maximum active downloads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings['max_active_downloads'] = max_active_downloads;
                 const max_active_uploads = $('max_active_up_value').getProperty('value').toInt();
-                if (isNaN(max_active_uploads) || max_active_uploads < -1) {
+                if (isNaN(max_active_uploads) || (max_active_uploads < -1)) {
                     alert("QBT_TR(Maximum active uploads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings['max_active_uploads'] = max_active_uploads;
                 const max_active_torrents = $('max_active_to_value').getProperty('value').toInt();
-                if (isNaN(max_active_torrents) || max_active_torrents < -1) {
+                if (isNaN(max_active_torrents) || (max_active_torrents < -1)) {
                     alert("QBT_TR(Maximum active torrents must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
@@ -2686,7 +2686,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings['web_ui_domain_list'] = $('webui_domain_textarea').getProperty('value');
             const web_ui_address = $('webui_address_value').getProperty('value').toString();
             const web_ui_port = $('webui_port_value').getProperty('value').toInt();
-            if (isNaN(web_ui_port) || web_ui_port < 1 || web_ui_port > 65535) {
+            if (isNaN(web_ui_port) || (web_ui_port < 1) || (web_ui_port > 65535)) {
                 alert("QBT_TR(The port used for the WebUI must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }

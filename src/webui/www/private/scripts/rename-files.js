@@ -76,7 +76,7 @@ window.qBittorrent.MultiRename = (function() {
 
                     // Maximum of 250 matches per file
                     ++count;
-                } while (regex.global && count < 250);
+                } while (regex.global && (count < 250));
 
                 return matches;
             };
@@ -182,7 +182,7 @@ window.qBittorrent.MultiRename = (function() {
                         break;
                 }
                 // Ignore rows without a match
-                if (!matches || matches.length == 0) {
+                if (!matches || (matches.length === 0)) {
                     continue;
                 }
 
@@ -219,7 +219,7 @@ window.qBittorrent.MultiRename = (function() {
         },
 
         rename: async function() {
-            if (!this.matchedFiles || this.matchedFiles.length === 0 || !this.hash) {
+            if (!this.matchedFiles || (this.matchedFiles.length === 0) || !this.hash) {
                 this.onRenamed([]);
                 return;
             }

@@ -119,9 +119,9 @@ window.qBittorrent.ContextMenu = (function() {
             // position the menu
             let xPosMenu = e.page.x + this.options.offsets.x;
             let yPosMenu = e.page.y + this.options.offsets.y;
-            if (xPosMenu + this.menu.offsetWidth > document.documentElement.clientWidth)
+            if ((xPosMenu + this.menu.offsetWidth) > document.documentElement.clientWidth)
                 xPosMenu -= this.menu.offsetWidth;
-            if (yPosMenu + this.menu.offsetHeight > document.documentElement.clientHeight)
+            if ((yPosMenu + this.menu.offsetHeight) > document.documentElement.clientHeight)
                 yPosMenu = document.documentElement.clientHeight - this.menu.offsetHeight;
             if (xPosMenu < 0)
                 xPosMenu = 0;
@@ -145,9 +145,9 @@ window.qBittorrent.ContextMenu = (function() {
                 const yPosOrigin = rectParent.bottom;
                 let xPos = xPosOrigin + rectParent.width - 1;
                 let yPos = yPosOrigin - rectParent.height - 1;
-                if (xPos + ul.offsetWidth > document.documentElement.clientWidth)
+                if ((xPos + ul.offsetWidth) > document.documentElement.clientWidth)
                     xPos -= (ul.offsetWidth + rectParent.width - 2);
-                if (yPos + ul.offsetHeight > document.documentElement.clientHeight)
+                if ((yPos + ul.offsetHeight) > document.documentElement.clientHeight)
                     yPos = document.documentElement.clientHeight - ul.offsetHeight;
                 if (xPos < 0)
                     xPos = 0;
@@ -240,7 +240,7 @@ window.qBittorrent.ContextMenu = (function() {
 
         //show menu
         show: function(trigger) {
-            if (lastShownContextMenu && lastShownContextMenu != this)
+            if (lastShownContextMenu && (lastShownContextMenu != this))
                 lastShownContextMenu.hide();
             this.fx.start(1);
             this.fireEvent('show');
@@ -338,7 +338,7 @@ window.qBittorrent.ContextMenu = (function() {
                 else if (data['super_seeding'] !== true)
                     all_are_super_seeding = false;
 
-                if (data['state'] != 'stoppedUP' && data['state'] != 'stoppedDL')
+                if ((data['state'] != 'stoppedUP') && (data['state'] != 'stoppedDL'))
                     all_are_stopped = false;
                 else
                     there_are_stopped = true;
@@ -363,7 +363,7 @@ window.qBittorrent.ContextMenu = (function() {
             // hide renameFiles when more than 1 torrent is selected
             if (selectedRows.length == 1) {
                 const data = torrentsTable.rows.get(selectedRows[0]).full_data;
-                let metadata_downloaded = !(data['state'] == 'metaDL' || data['state'] == 'forcedMetaDL' || data['total_size'] == -1);
+                let metadata_downloaded = !((data['state'] == 'metaDL') || (data['state'] == 'forcedMetaDL') || (data['total_size'] == -1));
 
                 // hide renameFiles when metadata hasn't been downloaded yet
                 metadata_downloaded

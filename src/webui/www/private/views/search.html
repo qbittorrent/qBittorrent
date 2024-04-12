@@ -495,7 +495,7 @@
                 $('searchMaxSizePrefix').set('value', state.sizeFilter.maxUnit);
 
                 const currentSearchPattern = $('searchPattern').getProperty('value').trim();
-                if (state.running && state.searchPattern === currentSearchPattern) {
+                if (state.running && (state.searchPattern === currentSearchPattern)) {
                     // allow search to be stopped
                     $('startSearchButton').set('text', 'QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]');
                     searchPatternChanged = false;
@@ -683,7 +683,7 @@
             const state = searchState.get(currentSearchId);
             const currentSearchPattern = $('searchPattern').getProperty('value').trim();
             // start a new search if pattern has changed, otherwise allow the search to be stopped
-            if (state && state.searchPattern === currentSearchPattern) {
+            if (state && (state.searchPattern === currentSearchPattern)) {
                 searchPatternChanged = false;
                 $('startSearchButton').set('text', 'QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]');
             }

@@ -8,6 +8,14 @@
         "html"
     ],
     "rules": {
+        "no-mixed-operators": [
+            "error",
+            {
+                "groups": [
+                    ["&", "|", "^", "~", "<<", ">>", ">>>", "==", "!=", "===", "!==", ">", ">=", "<", "<=", "&&", "||", "in", "instanceof"]
+                ]
+            }
+        ],
         "no-undef": "off",
         "no-unused-vars": "off",
         "nonblock-statement-body-position": ["error", "below"],

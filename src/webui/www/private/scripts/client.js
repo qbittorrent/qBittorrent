@@ -1567,7 +1567,7 @@ window.addEventListener("DOMContentLoaded", function() {
         defaultEventType: 'keydown',
         events: {
             'ctrl+a': function(event) {
-                if (event.target.nodeName == "INPUT" || event.target.nodeName == "TEXTAREA")
+                if ((event.target.nodeName === "INPUT") || (event.target.nodeName === "TEXTAREA"))
                     return;
                 if (event.target.isContentEditable)
                     return;
@@ -1575,7 +1575,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 event.preventDefault();
             },
             'delete': function(event) {
-                if (event.target.nodeName == "INPUT" || event.target.nodeName == "TEXTAREA")
+                if ((event.target.nodeName === "INPUT") || (event.target.nodeName === "TEXTAREA"))
                     return;
                 if (event.target.isContentEditable)
                     return;
@@ -1583,7 +1583,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 event.preventDefault();
             },
             'shift+delete': (event) => {
-                if (event.target.nodeName == "INPUT" || event.target.nodeName == "TEXTAREA")
+                if ((event.target.nodeName === "INPUT") || (event.target.nodeName === "TEXTAREA"))
                     return;
                 if (event.target.isContentEditable)
                     return;

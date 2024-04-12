@@ -52,7 +52,7 @@ window.qBittorrent.ProgressBar = (function() {
                 'lightbg': 'var(--color-background-default)',
                 'lightfg': 'var(--color-text-default)'
             };
-            if (parameters && $type(parameters) == 'object')
+            if (parameters && ($type(parameters) == 'object'))
                 $extend(vals, parameters);
             if (vals.height < 12)
                 vals.height = 12;
