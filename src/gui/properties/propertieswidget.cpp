@@ -79,7 +79,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     m_contentFilterLine->setPlaceholderText(tr("Filter files..."));
     m_contentFilterLine->setFixedWidth(300);
     connect(m_contentFilterLine, &LineEdit::textChanged, m_ui->filesList, &TorrentContentWidget::setFilterPattern);
-    m_ui->contentFilterLayout->insertWidget(3, m_contentFilterLine);
+    m_ui->contentFilterLayout->insertWidget(6, m_contentFilterLine);
 
     m_ui->filesList->setDoubleClickAction(TorrentContentWidget::DoubleClickAction::Open);
     m_ui->filesList->setOpenByEnterKey(true);
@@ -87,6 +87,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     // SIGNAL/SLOTS
     connect(m_ui->selectAllButton, &QPushButton::clicked, m_ui->filesList, &TorrentContentWidget::checkAll);
     connect(m_ui->selectNoneButton, &QPushButton::clicked, m_ui->filesList, &TorrentContentWidget::checkNone);
+    connect(m_ui->selectMatchButton, &QPushButton::clicked, m_ui->filesList, &TorrentContentWidget::selectMatches);
+    connect(m_ui->checkSelectionButton, &QPushButton::clicked, m_ui->filesList, &TorrentContentWidget::checkSelection);
+    connect(m_ui->uncheckSelectionButton, &QPushButton::clicked, m_ui->filesList, &TorrentContentWidget::uncheckSelection);
     connect(m_ui->listWebSeeds, &QWidget::customContextMenuRequested, this, &PropertiesWidget::displayWebSeedListMenu);
     connect(m_ui->stackedProperties, &QStackedWidget::currentChanged, this, &PropertiesWidget::loadDynamicData);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentSavePathChanged, this, &PropertiesWidget::updateSavePath);

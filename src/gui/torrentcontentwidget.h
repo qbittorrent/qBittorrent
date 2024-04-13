@@ -96,6 +96,9 @@ public:
 
     void checkAll();
     void checkNone();
+    void checkSelection();
+    void uncheckSelection();
+    void selectMatches();
 
 signals:
     void stateChanged();
