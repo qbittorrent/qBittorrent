@@ -639,7 +639,7 @@ window.qBittorrent.DynamicTable = (function() {
             this.deselectAll();
             this.selectedRows = rowIds.slice();
             this.tableBody.getElements('tr').each(function(tr) {
-                if (rowIds.indexOf(tr.rowId) > -1)
+                if (rowIds.includes(tr.rowId))
                     tr.addClass('selected');
             });
         },
@@ -1021,7 +1021,7 @@ window.qBittorrent.DynamicTable = (function() {
 
                 if (td.getChildren('img').length > 0) {
                     const img = td.getChildren('img')[0];
-                    if (img.src.indexOf(img_path) < 0) {
+                    if (!img.src.includes(img_path)) {
                         img.set('src', img_path);
                         img.set('title', state);
                     }
@@ -1335,52 +1335,53 @@ window.qBittorrent.DynamicTable = (function() {
             const state = row['full_data'].state;
             const name = row['full_data'].name.toLowerCase();
             let inactive = false;
-            let r;
 
             switch (filterName) {
                 case 'downloading':
-                    if ((state != 'downloading') && (state.indexOf('DL') === -1))
+                    if ((state !== 'downloading') && !state.includes('DL'))
                         return false;
                     break;
                 case 'seeding':
-                    if ((state != 'uploading') && (state != 'forcedUP') && (state != 'stalledUP') && (state != 'queuedUP') && (state != 'checkingUP'))
+                    if ((state !== 'uploading') && (state !== 'forcedUP') && (state !== 'stalledUP') && (state !== 'queuedUP') && (state !== 'checkingUP'))
                         return false;
                     break;
                 case 'completed':
-                    if ((state != 'uploading') && (state.indexOf('UP') === -1))
+                    if ((state !== 'uploading') && !state.includes('UP'))
                         return false;
                     break;
                 case 'stopped':
-                    if (state.indexOf('stopped') === -1)
+                    if (!state.includes('stopped'))
                         return false;
                     break;
                 case 'running':
-                    if (state.indexOf('stopped') > -1)
+                    if (state.includes('stopped'))
                         return false;
                     break;
                 case 'stalled':
-                    if ((state != 'stalledUP') && (state != 'stalledDL'))
+                    if ((state !== 'stalledUP') && (state !== 'stalledDL'))
                         return false;
                     break;
                 case 'stalled_uploading':
-                    if (state != 'stalledUP')
+                    if (state !== 'stalledUP')
                         return false;
                     break;
                 case 'stalled_downloading':
-                    if (state != 'stalledDL')
+                    if (state !== 'stalledDL')
                         return false;
                     break;
                 case 'inactive':
                     inactive = true;
                     // fallthrough
-                case 'active':
-                    if (state == 'stalledDL')
+                case 'active': {
+                    let r;
+                    if (state === 'stalledDL')
                         r = (row['full_data'].upspeed > 0);
                     else
-                        r = (state == 'metaDL') || (state == 'forcedMetaDL') || (state == 'downloading') || (state == 'forcedDL') || (state == 'uploading') || (state == 'forcedUP');
-                    if (r == inactive)
+                        r = (state === 'metaDL') || (state === 'forcedMetaDL') || (state === 'downloading') || (state === 'forcedDL') || (state === 'uploading') || (state === 'forcedUP');
+                    if (r === inactive)
                         return false;
                     break;
+                }
                 case 'checking':
                     if ((state !== 'checkingUP') && (state !== 'checkingDL') && (state !== 'checkingResumeData'))
                         return false;
@@ -1390,7 +1391,7 @@ window.qBittorrent.DynamicTable = (function() {
                         return false;
                     break;
                 case 'errored':
-                    if ((state != 'error') && (state != 'unknown') && (state != 'missingFiles'))
+                    if ((state !== 'error') && (state !== 'unknown') && (state !== 'missingFiles'))
                         return false;
                     break;
             }
@@ -1533,7 +1534,7 @@ window.qBittorrent.DynamicTable = (function() {
                 this._this.selectRow(this.rowId);
                 const row = this._this.rows.get(this.rowId);
                 const state = row['full_data'].state;
-                if (state.indexOf('stopped') > -1)
+                if (state.includes('stopped'))
                     startFN();
                 else
                     stopFN();
@@ -2095,7 +2096,7 @@ window.qBittorrent.DynamicTable = (function() {
             const that = this;
             this.deselectAll();
             this.tableBody.getElements('tr').each(function(tr) {
-                if (rowIds.indexOf(tr.rowId) > -1) {
+                if (rowIds.includes(tr.rowId)) {
                     const node = that.getNode(tr.rowId);
                     node.checked = 0;
                     node.full_data.checked = 0;
@@ -2704,7 +2705,7 @@ window.qBittorrent.DynamicTable = (function() {
                 }
                 if (td.getChildren('img').length > 0) {
                     const img = td.getChildren('img')[0];
-                    if (img.src.indexOf(img_path) < 0) {
+                    if (!img.src.includes(img_path)) {
                         img.set('src', img_path);
                         img.set('title', status);
                     }
@@ -3159,7 +3160,7 @@ window.qBittorrent.DynamicTable = (function() {
             const logLevels = window.qBittorrent.Log.getSelectedLevels();
             if ((filterTerms.length > 0) || (logLevels.length < 4)) {
                 for (let i = 0; i < rows.length; ++i) {
-                    if (logLevels.indexOf(rows[i].full_data.type.toString()) == -1)
+                    if (!logLevels.includes(rows[i].full_data.type.toString()))
                         continue;
 
                     if ((filterTerms.length > 0) && !window.qBittorrent.Misc.containsAllTerms(rows[i].full_data.message, filterTerms))

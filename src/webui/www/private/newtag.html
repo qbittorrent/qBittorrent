@@ -46,7 +46,7 @@
                 const verifyTagName = function(name) {
                     if ((name === null) || (name === ""))
                         return false;
-                    if (name.indexOf(",") >= 0) {
+                    if (name.includes(",")) {
                         alert("QBT_TR(Invalid tag name)QBT_TR[CONTEXT=TagFilterWidget]");
                         return false;
                     }
