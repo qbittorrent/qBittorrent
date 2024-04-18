@@ -159,7 +159,8 @@ namespace
             delta.setY(0);
         dialogGeometry.translate(delta);
 
-        delta = screenGeometry.topLeft() - dialogGeometry.topLeft();
+        const QPoint frameOffset {10, 40};
+        delta = screenGeometry.topLeft() - dialogGeometry.topLeft() + frameOffset;
         if (delta.x() < 0)
             delta.setX(0);
         if (delta.y() < 0)
