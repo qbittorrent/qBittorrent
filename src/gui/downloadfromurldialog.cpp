@@ -90,11 +90,12 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
             urls << urlString;
     }
 
-    const QString text = urls.join(u'\n')
-        + (!urls.isEmpty() ? u"\n" : u"");
-
-    m_ui->textUrls->setText(text);
-    m_ui->textUrls->moveCursor(QTextCursor::End);
+    if (!urls.isEmpty())
+    {
+        m_ui->textUrls->setText(urls.join(u'\n') + u"\n");
+        m_ui->textUrls->moveCursor(QTextCursor::End);
+        m_ui->buttonBox->setFocus();
+    }
 
     if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
         resize(dialogSize);
