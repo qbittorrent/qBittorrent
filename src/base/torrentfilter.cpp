@@ -156,10 +156,11 @@ bool TorrentFilter::match(const Torrent *const torrent) const
 
 bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
 {
+    const BitTorrent::TorrentState state = torrent->state();
+
     switch (m_type)
     {
     case All:
-    default:
         return true;
     case Downloading:
         return torrent->isDownloading();
@@ -176,20 +177,23 @@ bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
     case Inactive:
         return torrent->isInactive();
     case Stalled:
-        return (torrent->state() ==  BitTorrent::TorrentState::StalledUploading)
-                || (torrent->state() ==  BitTorrent::TorrentState::StalledDownloading);
+        return (state == BitTorrent::TorrentState::StalledUploading)
+                || (state == BitTorrent::TorrentState::StalledDownloading);
     case StalledUploading:
-        return torrent->state() ==  BitTorrent::TorrentState::StalledUploading;
+        return state == BitTorrent::TorrentState::StalledUploading;
     case StalledDownloading:
-        return torrent->state() ==  BitTorrent::TorrentState::StalledDownloading;
+        return state == BitTorrent::TorrentState::StalledDownloading;
     case Checking:
-        return (torrent->state() == BitTorrent::TorrentState::CheckingUploading)
-                || (torrent->state() == BitTorrent::TorrentState::CheckingDownloading)
-                || (torrent->state() == BitTorrent::TorrentState::CheckingResumeData);
+        return (state == BitTorrent::TorrentState::CheckingUploading)
+                || (state == BitTorrent::TorrentState::CheckingDownloading)
+                || (state == BitTorrent::TorrentState::CheckingResumeData);
     case Moving:
         return torrent->isMoving();
     case Errored:
         return torrent->isErrored();
+    default:
+        Q_ASSERT(false);
+        return false;
     }
 }
 
