@@ -47,13 +47,13 @@
 
             // select default when orig values not passed. using double equals to compare string and int
             if ((origValues[0] === "")
-                || ((values.ratioLimit == UseGlobalLimit)
-                    && (values.seedingTimeLimit == UseGlobalLimit)
-                    && (values.inactiveSeedingTimeLimit == UseGlobalLimit))) {
+                || ((values.ratioLimit === UseGlobalLimit)
+                    && (values.seedingTimeLimit === UseGlobalLimit)
+                    && (values.inactiveSeedingTimeLimit === UseGlobalLimit))) {
                 // use default option
                 setSelectedRadioValue('shareLimit', 'default');
             }
-            else if ((values.maxRatio == NoLimit) && (values.maxSeedingTime == NoLimit) && (values.maxInactiveSeedingTime == NoLimit)) {
+            else if ((values.maxRatio === NoLimit) && (values.maxSeedingTime === NoLimit) && (values.maxInactiveSeedingTime === NoLimit)) {
                 setSelectedRadioValue('shareLimit', 'none');
                 // TODO set input boxes to *global* max ratio and seeding time
             }

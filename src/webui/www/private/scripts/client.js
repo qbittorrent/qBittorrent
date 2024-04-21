@@ -211,7 +211,7 @@ window.addEventListener("DOMContentLoaded", function() {
         selected_category = hash;
         LocalPreferences.set('selected_category', selected_category);
         highlightSelectedCategory();
-        if (typeof torrentsTable.tableBody != 'undefined')
+        if (typeof torrentsTable.tableBody !== 'undefined')
             updateMainData();
     };
 
@@ -251,7 +251,7 @@ window.addEventListener("DOMContentLoaded", function() {
         selected_filter = f;
         LocalPreferences.set('selected_filter', f);
         // Reload torrents
-        if (typeof torrentsTable.tableBody != 'undefined')
+        if (typeof torrentsTable.tableBody !== 'undefined')
             updateMainData();
     };
 
@@ -927,7 +927,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 break;
         }
 
-        if (queueing_enabled != serverState.queueing) {
+        if (queueing_enabled !== serverState.queueing) {
             queueing_enabled = serverState.queueing;
             torrentsTable.columns['priority'].force_hide = !queueing_enabled;
             torrentsTable.updateColumn('priority');
@@ -949,12 +949,12 @@ window.addEventListener("DOMContentLoaded", function() {
             }
         }
 
-        if (alternativeSpeedLimits != serverState.use_alt_speed_limits) {
+        if (alternativeSpeedLimits !== serverState.use_alt_speed_limits) {
             alternativeSpeedLimits = serverState.use_alt_speed_limits;
             updateAltSpeedIcon(alternativeSpeedLimits);
         }
 
-        if (useSubcategories != serverState.use_subcategories) {
+        if (useSubcategories !== serverState.use_subcategories) {
             useSubcategories = serverState.use_subcategories;
             updateCategoryList();
         }

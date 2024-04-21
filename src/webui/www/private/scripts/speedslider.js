@@ -44,7 +44,7 @@ MochaUI.extend({
                             maximum = tmp / 1024.0;
                         }
                         else {
-                            if (hashes[0] == "global")
+                            if (hashes[0] === "global")
                                 maximum = 10000;
                             else
                                 maximum = 1000;
@@ -52,7 +52,7 @@ MochaUI.extend({
                     }
                     // Get torrents upload limit
                     // And create slider
-                    if (hashes[0] == 'global') {
+                    if (hashes[0] === 'global') {
                         let up_limit = maximum;
                         if (up_limit < 0)
                             up_limit = 0;
@@ -93,7 +93,7 @@ MochaUI.extend({
                                 if (data) {
                                     let up_limit = data[hashes[0]];
                                     for (const key in data)
-                                        if (up_limit != data[key]) {
+                                        if (up_limit !== data[key]) {
                                             up_limit = 0;
                                             break;
                                         }
@@ -147,7 +147,7 @@ MochaUI.extend({
                             maximum = tmp / 1024.0;
                         }
                         else {
-                            if (hashes[0] == "global")
+                            if (hashes[0] === "global")
                                 maximum = 10000;
                             else
                                 maximum = 1000;
@@ -155,7 +155,7 @@ MochaUI.extend({
                     }
                     // Get torrents download limit
                     // And create slider
-                    if (hashes[0] == 'global') {
+                    if (hashes[0] === 'global') {
                         let dl_limit = maximum;
                         if (dl_limit < 0)
                             dl_limit = 0;
@@ -196,7 +196,7 @@ MochaUI.extend({
                                 if (data) {
                                     let dl_limit = data[hashes[0]];
                                     for (const key in data)
-                                        if (dl_limit != data[key]) {
+                                        if (dl_limit !== data[key]) {
                                             dl_limit = 0;
                                             break;
                                         }

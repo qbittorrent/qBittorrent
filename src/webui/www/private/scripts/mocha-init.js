@@ -506,7 +506,7 @@ const initializeWindows = function() {
 
     renameFN = function() {
         const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length == 1) {
+        if (hashes.length === 1) {
             const hash = hashes[0];
             const row = torrentsTable.rows[hash];
             if (row) {
@@ -529,7 +529,7 @@ const initializeWindows = function() {
 
     renameFilesFN = function() {
         const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length == 1) {
+        if (hashes.length === 1) {
             const hash = hashes[0];
             const row = torrentsTable.rows[hash];
             if (row) {

@@ -112,7 +112,7 @@ window.qBittorrent.DynamicTable = (function() {
                     let n = 2;
 
                     // is panel vertical scrollbar visible or does panel content not fit?
-                    while (((panel.clientWidth != panel.offsetWidth) || (panel.clientHeight != panel.scrollHeight)) && (n > 0)) {
+                    while (((panel.clientWidth !== panel.offsetWidth) || (panel.clientHeight !== panel.scrollHeight)) && (n > 0)) {
                         --n;
                         h -= 0.5;
                         $(this.dynamicTableDivId).style.height = h + 'px';
@@ -136,7 +136,7 @@ window.qBittorrent.DynamicTable = (function() {
                     }
 
                     const panel = tableDiv.getParent('.panel');
-                    if (this.lastPanelHeight != panel.getBoundingClientRect().height) {
+                    if (this.lastPanelHeight !== panel.getBoundingClientRect().height) {
                         this.lastPanelHeight = panel.getBoundingClientRect().height;
                         panel.fireEvent('resize');
                     }
@@ -470,7 +470,7 @@ window.qBittorrent.DynamicTable = (function() {
                 th.setAttribute('style', 'width: ' + this.columns[i].width + 'px;' + this.columns[i].style);
                 th.columnName = this.columns[i].name;
                 th.addClass('column_' + th.columnName);
-                if ((this.columns[i].visible == '0') || this.columns[i].force_hide)
+                if ((this.columns[i].visible === '0') || this.columns[i].force_hide)
                     th.addClass('invisible');
                 else
                     th.removeClass('invisible');
@@ -479,14 +479,14 @@ window.qBittorrent.DynamicTable = (function() {
 
         getColumnPos: function(columnName) {
             for (let i = 0; i < this.columns.length; ++i)
-                if (this.columns[i].name == columnName)
+                if (this.columns[i].name === columnName)
                     return i;
             return -1;
         },
 
         updateColumn: function(columnName) {
             const pos = this.getColumnPos(columnName);
-            const visible = ((this.columns[pos].visible != '0') && !this.columns[pos].force_hide);
+            const visible = ((this.columns[pos].visible !== '0') && !this.columns[pos].force_hide);
             const ths = this.hiddenTableHeader.getElements('th');
             const fths = this.fixedTableHeader.getElements('th');
             const trs = this.tableBody.getElements('tr');
@@ -521,7 +521,7 @@ window.qBittorrent.DynamicTable = (function() {
          * @param {string|null} reverse defaults to implementation-specific behavior when not specified. Should only be passed when restoring previous state.
          */
         setSortedColumn: function(column, reverse = null) {
-            if (column != this.sortedColumn) {
+            if (column !== this.sortedColumn) {
                 const oldColumn = this.sortedColumn;
                 this.sortedColumn = column;
                 this.reverseSort = reverse ?? '0';
@@ -540,7 +540,7 @@ window.qBittorrent.DynamicTable = (function() {
         setSortedColumnIcon: function(newColumn, oldColumn, isReverse) {
             const getCol = function(headerDivId, colName) {
                 const colElem = $$("#" + headerDivId + " .column_" + colName);
-                if (colElem.length == 1)
+                if (colElem.length === 1)
                     return colElem[0];
                 return null;
             };
@@ -623,7 +623,7 @@ window.qBittorrent.DynamicTable = (function() {
             let select = false;
             const that = this;
             this.tableBody.getElements('tr').each(function(tr) {
-                if ((tr.rowId == rowId1) || (tr.rowId == rowId2)) {
+                if ((tr.rowId === rowId1) || (tr.rowId === rowId2)) {
                     select = !select;
                     that.selectedRows.push(tr.rowId);
                 }
@@ -700,7 +700,7 @@ window.qBittorrent.DynamicTable = (function() {
         getTrByRowId: function(rowId) {
             const trs = this.tableBody.getElements('tr');
             for (let i = 0; i < trs.length; ++i)
-                if (trs[i].rowId == rowId)
+                if (trs[i].rowId === rowId)
                     return trs[i];
             return null;
         },
@@ -720,9 +720,9 @@ window.qBittorrent.DynamicTable = (function() {
                 const rowId = rows[rowPos]['rowId'];
                 let tr_found = false;
                 for (let j = rowPos; j < trs.length; ++j)
-                    if (trs[j]['rowId'] == rowId) {
+                    if (trs[j]['rowId'] === rowId) {
                         tr_found = true;
-                        if (rowPos == j)
+                        if (rowPos === j)
                             break;
                         trs[j].inject(trs[rowPos], 'before');
                         const tmpTr = trs[j];
@@ -759,7 +759,7 @@ window.qBittorrent.DynamicTable = (function() {
                             else
                                 this._this.selectRow(this.rowId);
                         }
-                        else if (e.shift && (this._this.selectedRows.length == 1)) {
+                        else if (e.shift && (this._this.selectedRows.length === 1)) {
                             // Shift key was pressed
                             this._this.selectRows(this._this.getSelectedRowId(), this.rowId);
                         }
@@ -791,7 +791,7 @@ window.qBittorrent.DynamicTable = (function() {
 
                     for (let k = 0; k < this.columns.length; ++k) {
                         const td = new Element('td');
-                        if ((this.columns[k].visible == '0') || this.columns[k].force_hide)
+                        if ((this.columns[k].visible === '0') || this.columns[k].force_hide)
                             td.addClass('invisible');
                         td.injectInside(tr);
                     }
@@ -1141,7 +1141,7 @@ window.qBittorrent.DynamicTable = (function() {
             this.columns['progress'].updateTd = function(td, row) {
                 const progress = this.getRowValue(row);
                 let progressFormatted = (progress * 100).round(1);
-                if ((progressFormatted == 100.0) && (progress != 1.0))
+                if ((progressFormatted === 100.0) && (progress !== 1.0))
                     progressFormatted = 99.9;
 
                 if (td.getChildren('div').length > 0) {
@@ -1150,7 +1150,7 @@ window.qBittorrent.DynamicTable = (function() {
                         td.resized = false;
                         div.setWidth(ProgressColumnWidth - 5);
                     }
-                    if (div.getValue() != progressFormatted)
+                    if (div.getValue() !== progressFormatted)
                         div.setValue(progressFormatted);
                 }
                 else {
@@ -1181,7 +1181,7 @@ window.qBittorrent.DynamicTable = (function() {
                 const num_seeds = this.getRowValue(row, 0);
                 const num_complete = this.getRowValue(row, 1);
                 let value = num_seeds;
-                if (num_complete != -1)
+                if (num_complete !== -1)
                     value += ' (' + num_complete + ')';
                 td.set('text', value);
                 td.set('title', value);
@@ -1616,7 +1616,7 @@ window.qBittorrent.DynamicTable = (function() {
                 const b = ip2.split(".");
 
                 for (let i = 0; i < 4; ++i) {
-                    if (a[i] != b[i])
+                    if (a[i] !== b[i])
                         return a[i] - b[i];
                 }
 
@@ -1633,7 +1633,7 @@ window.qBittorrent.DynamicTable = (function() {
             this.columns['progress'].updateTd = function(td, row) {
                 const progress = this.getRowValue(row);
                 let progressFormatted = (progress * 100).round(1);
-                if ((progressFormatted == 100.0) && (progress != 1.0))
+                if ((progressFormatted === 100.0) && (progress !== 1.0))
                     progressFormatted = 99.9;
                 progressFormatted += "%";
                 td.set('text', progressFormatted);
@@ -1901,7 +1901,7 @@ window.qBittorrent.DynamicTable = (function() {
         getSelectedRows: function() {
             const nodes = this.fileTree.toArray();
 
-            return nodes.filter(x => x.checked == 0);
+            return nodes.filter(x => x.checked === 0);
         },
 
         initColumns: function() {
@@ -1952,7 +1952,7 @@ window.qBittorrent.DynamicTable = (function() {
             node.checked = checkState;
             node.full_data.checked = checkState;
             const checkbox = $(`cbRename${rowId}`);
-            checkbox.checked = node.checked == 0;
+            checkbox.checked = node.checked === 0;
             checkbox.state = checkbox.checked ? "checked" : "unchecked";
 
             for (let i = 0; i < node.children.length; ++i) {
@@ -2021,7 +2021,7 @@ window.qBittorrent.DynamicTable = (function() {
                     that.onRowSelectionChange(node);
                     e.stopPropagation();
                 });
-                checkbox.checked = value == 0;
+                checkbox.checked = (value === 0);
                 checkbox.state = checkbox.checked ? "checked" : "unchecked";
                 checkbox.indeterminate = false;
                 td.adopt(treeImg, checkbox);
@@ -3176,7 +3176,7 @@ window.qBittorrent.DynamicTable = (function() {
             filteredRows.sort(function(row1, row2) {
                 const column = this.columns[this.sortedColumn];
                 const res = column.compareRows(row1, row2);
-                return (this.reverseSort == '0') ? res : -res;
+                return (this.reverseSort === '0') ? res : -res;
             }.bind(this));
 
             return filteredRows;
@@ -3239,7 +3239,7 @@ window.qBittorrent.DynamicTable = (function() {
             filteredRows.sort(function(row1, row2) {
                 const column = this.columns[this.sortedColumn];
                 const res = column.compareRows(row1, row2);
-                return (this.reverseSort == '0') ? res : -res;
+                return (this.reverseSort === '0') ? res : -res;
             }.bind(this));
 
             return filteredRows;
