@@ -130,8 +130,8 @@ let toggleFilterDisplay = function() {};
 window.addEventListener("DOMContentLoaded", function() {
     const saveColumnSizes = function() {
         const filters_width = $('Filters').getSize().x;
-        const properties_height_rel = $('propertiesPanel').getSize().y / Window.getSize().y;
         LocalPreferences.set('filters_width', filters_width);
+        const properties_height_rel = $('propertiesPanel').getSize().y / Window.getSize().y;
         LocalPreferences.set('properties_height_rel', properties_height_rel);
     };
 
@@ -149,11 +149,7 @@ window.addEventListener("DOMContentLoaded", function() {
     MochaUI.Desktop.initialize();
 
     const buildTransfersTab = function() {
-        let filt_w = LocalPreferences.get('filters_width');
-        if ($defined(filt_w))
-            filt_w = filt_w.toInt();
-        else
-            filt_w = 120;
+        const filt_w = Number(LocalPreferences.get('filters_width', 120));
         new MochaUI.Column({
             id: 'filtersColumn',
             placement: 'left',
@@ -161,7 +157,6 @@ window.addEventListener("DOMContentLoaded", function() {
             width: filt_w,
             resizeLimit: [1, 300]
         });
-
         new MochaUI.Column({
             id: 'mainColumn',
             placement: 'main'
@@ -1350,7 +1345,7 @@ window.addEventListener("DOMContentLoaded", function() {
         height: null
     });
     let prop_h = LocalPreferences.get('properties_height_rel');
-    if ($defined(prop_h))
+    if (prop_h !== null)
         prop_h = prop_h.toFloat() * Window.getSize().y;
     else
         prop_h = Window.getSize().y / 2.0;
