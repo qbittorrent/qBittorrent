@@ -23,7 +23,7 @@ jobs:
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
-      openssl_root: /usr/local/opt/openssl@3
+      openssl_root: "$(brew --prefix openssl@3)"
       libtorrent_path: "${{ github.workspace }}/../libtorrent"
 
     steps:
