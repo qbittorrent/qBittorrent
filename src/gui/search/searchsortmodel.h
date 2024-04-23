@@ -45,6 +45,7 @@ public:
         SEEDS,
         LEECHES,
         ENGINE_URL,
+        PUB_DATE,
         DL_LINK,
         DESC_LINK,
         NB_SEARCH_COLUMNS
