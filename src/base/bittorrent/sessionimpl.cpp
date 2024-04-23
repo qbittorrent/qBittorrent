@@ -1540,7 +1540,9 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
     context->deleteLater();
     connect(context, &QObject::destroyed, this, [this]
     {
-        m_nativeSession->resume();
+        if (!m_isPaused)
+            m_nativeSession->resume();
+
         if (m_refreshEnqueued)
             m_refreshEnqueued = false;
         else
@@ -3921,6 +3923,35 @@ QStringList SessionImpl::bannedIPs() const
 bool SessionImpl::isRestored() const
 {
     return m_isRestored;
+}
+
+bool SessionImpl::isPaused() const
+{
+    return m_isPaused;
+}
+
+void SessionImpl::pause()
+{
+    if (!m_isPaused)
+    {
+        if (isRestored())
+            m_nativeSession->pause();
+
+        m_isPaused = true;
+        emit paused();
+    }
+}
+
+void SessionImpl::resume()
+{
+    if (m_isPaused)
+    {
+        if (isRestored())
+            m_nativeSession->resume();
+
+        m_isPaused = false;
+        emit resumed();
+    }
 }
 
 int SessionImpl::maxConnectionsPerTorrent() const

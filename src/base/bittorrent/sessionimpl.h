@@ -410,6 +410,10 @@ namespace BitTorrent
 
         bool isRestored() const override;
 
+        bool isPaused() const override;
+        void pause() override;
+        void resume() override;
+
         Torrent *getTorrent(const TorrentID &id) const override;
         Torrent *findTorrent(const InfoHash &infoHash) const override;
         QVector<Torrent *> torrents() const override;
@@ -724,6 +728,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_I2POutboundLength;
 
         bool m_isRestored = false;
+        bool m_isPaused = false;
 
         // Order is important. This needs to be declared after its CachedSettingsValue
         // counterpart, because it uses it for initialization in the constructor

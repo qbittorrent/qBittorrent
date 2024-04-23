@@ -227,19 +227,6 @@
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkConfirmStopAndStartAll">
-                 <property name="toolTip">
-                  <string>Shows a confirmation dialog upon pausing/starting all the torrents</string>
-                 </property>
-                 <property name="text">
-                  <string>Confirm &quot;Stop/Start all&quot; actions</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
                 <widget class="QCheckBox" name="checkAltRowColors">
                  <property name="text">
                   <string extracomment="In table elements, every other row will have a grey background.">Use alternating row colors</string>

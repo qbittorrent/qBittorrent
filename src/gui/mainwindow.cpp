@@ -167,21 +167,33 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     m_ui->actionExit->setIcon(UIThemeManager::instance()->getIcon(u"application-exit"_s));
     m_ui->actionLock->setIcon(UIThemeManager::instance()->getIcon(u"object-locked"_s));
     m_ui->actionOptions->setIcon(UIThemeManager::instance()->getIcon(u"configure"_s, u"preferences-system"_s));
-    m_ui->actionStop->setIcon(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s));
-    m_ui->actionStopAll->setIcon(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s));
     m_ui->actionStart->setIcon(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s));
-    m_ui->actionStartAll->setIcon(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s));
+    m_ui->actionStop->setIcon(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s));
+    m_ui->actionPauseSession->setIcon(UIThemeManager::instance()->getIcon(u"pause-session"_s, u"media-playback-pause"_s));
+    m_ui->actionResumeSession->setIcon(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s));
     m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_s, u"application-exit"_s));
     m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_s, u"preferences-web-browser-cookies"_s));
     m_ui->menuLog->setIcon(UIThemeManager::instance()->getIcon(u"help-contents"_s));
     m_ui->actionCheckForUpdates->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
+
+    m_ui->actionPauseSession->setVisible(!BitTorrent::Session::instance()->isPaused());
+    m_ui->actionResumeSession->setVisible(BitTorrent::Session::instance()->isPaused());
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::paused, this, [this]
+    {
+        m_ui->actionPauseSession->setVisible(false);
+        m_ui->actionResumeSession->setVisible(true);
+    });
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::resumed, this, [this]
+    {
+        m_ui->actionPauseSession->setVisible(true);
+        m_ui->actionResumeSession->setVisible(false);
+    });
 
     auto *lockMenu = new QMenu(m_ui->menuView);
     lockMenu->addAction(tr("&Set Password"), this, &MainWindow::defineUILockPassword);
     lockMenu->addAction(tr("&Clear Password"), this, &MainWindow::clearUILockPassword);
     m_ui->actionLock->setMenu(lockMenu);
 
-    // Creating Bittorrent session
     updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
 
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::speedLimitModeChanged, this, &MainWindow::updateAltSpeedsBtn);
@@ -285,9 +297,9 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 
     // Transfer list slots
     connect(m_ui->actionStart, &QAction::triggered, m_transferListWidget, &TransferListWidget::startSelectedTorrents);
-    connect(m_ui->actionStartAll, &QAction::triggered, m_transferListWidget, &TransferListWidget::startAllTorrents);
     connect(m_ui->actionStop, &QAction::triggered, m_transferListWidget, &TransferListWidget::stopSelectedTorrents);
-    connect(m_ui->actionStopAll, &QAction::triggered, m_transferListWidget, &TransferListWidget::stopAllTorrents);
+    connect(m_ui->actionPauseSession, &QAction::triggered, m_transferListWidget, &TransferListWidget::pauseSession);
+    connect(m_ui->actionResumeSession, &QAction::triggered, m_transferListWidget, &TransferListWidget::resumeSession);
     connect(m_ui->actionDelete, &QAction::triggered, m_transferListWidget, &TransferListWidget::softDeleteSelectedTorrents);
     connect(m_ui->actionTopQueuePos, &QAction::triggered, m_transferListWidget, &TransferListWidget::topQueuePosSelectedTorrents);
     connect(m_ui->actionIncreaseQueuePos, &QAction::triggered, m_transferListWidget, &TransferListWidget::increaseQueuePosSelectedTorrents);
@@ -881,9 +893,9 @@ void MainWindow::createKeyboardShortcuts()
     m_ui->actionOptions->setShortcut(Qt::ALT | Qt::Key_O);
     m_ui->actionStatistics->setShortcut(Qt::CTRL | Qt::Key_I);
     m_ui->actionStart->setShortcut(Qt::CTRL | Qt::Key_S);
-    m_ui->actionStartAll->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_S);
     m_ui->actionStop->setShortcut(Qt::CTRL | Qt::Key_P);
-    m_ui->actionStopAll->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_P);
+    m_ui->actionPauseSession->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_P);
+    m_ui->actionResumeSession->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_S);
     m_ui->actionBottomQueuePos->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_Minus);
     m_ui->actionDecreaseQueuePos->setShortcut(Qt::CTRL | Qt::Key_Minus);
     m_ui->actionIncreaseQueuePos->setShortcut(Qt::CTRL | Qt::Key_Plus);
@@ -1551,8 +1563,8 @@ void MainWindow::populateDesktopIntegrationMenu()
     menu->addAction(m_ui->actionSetGlobalSpeedLimits);
     menu->addSeparator();
 
-    menu->addAction(m_ui->actionStartAll);
-    menu->addAction(m_ui->actionStopAll);
+    menu->addAction(m_ui->actionResumeSession);
+    menu->addAction(m_ui->actionPauseSession);
 
 #ifndef Q_OS_MACOS
     menu->addSeparator();

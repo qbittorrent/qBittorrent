@@ -433,6 +433,10 @@ namespace BitTorrent
 
         virtual bool isRestored() const = 0;
 
+        virtual bool isPaused() const = 0;
+        virtual void pause() = 0;
+        virtual void resume() = 0;
+
         virtual Torrent *getTorrent(const TorrentID &id) const = 0;
         virtual Torrent *findTorrent(const InfoHash &infoHash) const = 0;
         virtual QVector<Torrent *> torrents() const = 0;
@@ -466,6 +470,8 @@ namespace BitTorrent
         void loadTorrentFailed(const QString &error);
         void metadataDownloaded(const TorrentInfo &info);
         void restored();
+        void paused();
+        void resumed();
         void speedLimitModeChanged(bool alternative);
         void statsUpdated();
         void subcategoriesSupportChanged();
