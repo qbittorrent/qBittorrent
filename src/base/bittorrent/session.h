@@ -430,6 +430,8 @@ namespace BitTorrent
         virtual void setResumeDataStorageType(ResumeDataStorageType type) = 0;
         virtual bool isMergeTrackersEnabled() const = 0;
         virtual void setMergeTrackersEnabled(bool enabled) = 0;
+        virtual bool isStartPaused() const = 0;
+        virtual void setStartPaused(bool value) = 0;
 
         virtual bool isRestored() const = 0;
 

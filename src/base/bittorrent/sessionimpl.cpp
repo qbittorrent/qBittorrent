@@ -522,6 +522,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_I2POutboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/OutboundQuantity"_s), 3}
     , m_I2PInboundLength {BITTORRENT_SESSION_KEY(u"I2P/InboundLength"_s), 3}
     , m_I2POutboundLength {BITTORRENT_SESSION_KEY(u"I2P/OutboundLength"_s), 3}
+    , m_startPaused {BITTORRENT_SESSION_KEY(u"StartPaused"_s)}
     , m_seedingLimitTimer {new QTimer(this)}
     , m_resumeDataTimer {new QTimer(this)}
     , m_ioThread {new QThread}
@@ -3913,6 +3914,16 @@ bool SessionImpl::isMergeTrackersEnabled() const
 void SessionImpl::setMergeTrackersEnabled(const bool enabled)
 {
     m_isMergeTrackersEnabled = enabled;
+}
+
+bool SessionImpl::isStartPaused() const
+{
+    return m_startPaused.get(false);
+}
+
+void SessionImpl::setStartPaused(const bool value)
+{
+    m_startPaused = value;
 }
 
 QStringList SessionImpl::bannedIPs() const
