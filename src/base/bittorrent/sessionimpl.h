@@ -731,7 +731,7 @@ namespace BitTorrent
         const bool m_wasPexEnabled = m_isPeXEnabled;
 
         int m_numResumeData = 0;
-        QVector<TrackerEntry> m_additionalTrackerList;
+        QVector<TrackerEntry> m_additionalTrackerEntries;
         QVector<QRegularExpression> m_excludedFileNamesRegExpList;
 
         // Statistics

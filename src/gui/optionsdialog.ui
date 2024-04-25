@@ -3069,7 +3069,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
             <item>
              <widget class="QGroupBox" name="checkEnableAddTrackers">
               <property name="title">
-               <string>A&amp;utomatically add these trackers to new downloads:</string>
+               <string>A&amp;utomatically append these trackers to new downloads:</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
