@@ -204,6 +204,7 @@ private:
     void showFiltersSidebar(bool show);
     void applyTransferListFilter();
     void refreshWindowTitle();
+    void refreshTrayIconTooltip();
 
     Ui::MainWindow *m_ui = nullptr;
 

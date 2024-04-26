@@ -185,12 +185,14 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
         m_ui->actionPauseSession->setVisible(false);
         m_ui->actionResumeSession->setVisible(true);
         refreshWindowTitle();
+        refreshTrayIconTooltip();
     });
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::resumed, this, [this]
     {
         m_ui->actionPauseSession->setVisible(true);
         m_ui->actionResumeSession->setVisible(false);
         refreshWindowTitle();
+        refreshTrayIconTooltip();
     });
 
     auto *lockMenu = new QMenu(m_ui->menuView);
@@ -1515,10 +1517,7 @@ void MainWindow::loadSessionStats()
 #ifdef Q_OS_MACOS
     m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
 #else
-    const auto toolTip = u"%1\n%2"_s.arg(
-        tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(m_downloadRate)
-        , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(m_uploadRate));
-    app()->desktopIntegration()->setToolTip(toolTip); // tray icon
+    refreshTrayIconTooltip();
 #endif  // Q_OS_MACOS
 
     refreshWindowTitle();
@@ -1910,6 +1909,22 @@ void MainWindow::refreshWindowTitle()
         {
             setWindowTitle(m_windowTitle);
         }
+    }
+}
+
+void MainWindow::refreshTrayIconTooltip()
+{
+    const auto *btSession = BitTorrent::Session::instance();
+    if (!btSession->isPaused())
+    {
+        const auto toolTip = u"%1\n%2"_s.arg(
+                tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(m_downloadRate)
+                , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(m_uploadRate));
+        app()->desktopIntegration()->setToolTip(toolTip);
+    }
+    else
+    {
+        app()->desktopIntegration()->setToolTip(tr("Paused"));
     }
 }
 
