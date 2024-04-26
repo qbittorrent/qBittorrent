@@ -4412,6 +4412,9 @@ void SessionImpl::setQueueingSystemEnabled(const bool enabled)
             m_torrentsQueueChanged = true;
         else
             removeTorrentsQueue();
+
+        for (TorrentImpl *torrent : asConst(m_torrents))
+            torrent->handleQueueingModeChanged();
     }
 }
 

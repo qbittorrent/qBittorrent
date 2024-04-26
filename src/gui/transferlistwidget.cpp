@@ -1120,8 +1120,7 @@ void TransferListWidget::displayListMenu()
             needsStop = true;
         }
 
-        const bool queued = (BitTorrent::Session::instance()->isQueueingSystemEnabled() && torrent->isQueued());
-
+        const bool queued = torrent->isQueued();
         if (!isStopped && !rechecking && !queued)
             oneCanForceReannounce = true;
 
