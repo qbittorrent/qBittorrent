@@ -55,6 +55,7 @@ namespace
         PL_LEECHS,
         PL_ENGINE_URL,
         PL_DESC_LINK,
+        PL_PUB_DATE,
         NB_PLUGIN_COLUMNS
     };
 }
@@ -176,7 +177,7 @@ bool SearchHandler::parseSearchResult(const QStringView line, SearchResult &sear
     const QList<QStringView> parts = line.split(u'|');
     const int nbFields = parts.size();
 
-    if (nbFields < (NB_PLUGIN_COLUMNS - 1)) return false; // -1 because desc_link is optional
+    if (nbFields <= PL_ENGINE_URL) return false; // Anything after ENGINE_URL is optional
 
     searchResult = SearchResult();
     searchResult.fileUrl = parts.at(PL_DL_LINK).trimmed().toString(); // download URL
@@ -194,8 +195,16 @@ bool SearchHandler::parseSearchResult(const QStringView line, SearchResult &sear
         searchResult.nbLeechers = -1;
 
     searchResult.siteUrl = parts.at(PL_ENGINE_URL).trimmed().toString(); // Search site URL
-    if (nbFields == NB_PLUGIN_COLUMNS)
+
+    if (nbFields > PL_DESC_LINK)
         searchResult.descrLink = parts.at(PL_DESC_LINK).trimmed().toString(); // Description Link
+
+    if (nbFields > PL_PUB_DATE)
+    {
+        const qint64 secs = parts.at(PL_PUB_DATE).trimmed().toLongLong(&ok);
+        if (ok && (secs > 0))
+            searchResult.pubDate = QDateTime::fromSecsSinceEpoch(secs); // Date
+    }
 
     return true;
 }

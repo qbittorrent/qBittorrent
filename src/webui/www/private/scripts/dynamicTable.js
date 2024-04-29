@@ -1685,6 +1685,7 @@ window.qBittorrent.DynamicTable = (function() {
             this.newColumn('nbSeeders', '', 'QBT_TR(Seeders)QBT_TR[CONTEXT=SearchResultsTable]', 100, true);
             this.newColumn('nbLeechers', '', 'QBT_TR(Leechers)QBT_TR[CONTEXT=SearchResultsTable]', 100, true);
             this.newColumn('siteUrl', '', 'QBT_TR(Search engine)QBT_TR[CONTEXT=SearchResultsTable]', 250, true);
+            this.newColumn('pubDate', '', 'QBT_TR(Published On)QBT_TR[CONTEXT=SearchResultsTable]', 200, true);
 
             this.initColumnsFunctions();
         },
@@ -1701,10 +1702,17 @@ window.qBittorrent.DynamicTable = (function() {
                 td.set('text', formattedValue);
                 td.set('title', formattedValue);
             };
+            const displayDate = function(td, row) {
+                const value = this.getRowValue(row) * 1000;
+                const formattedValue = (isNaN(value) || (value <= 0)) ? "" : (new Date(value).toLocaleString());
+                td.set('text', formattedValue);
+                td.set('title', formattedValue);
+            };
 
             this.columns['fileSize'].updateTd = displaySize;
             this.columns['nbSeeders'].updateTd = displayNum;
             this.columns['nbLeechers'].updateTd = displayNum;
+            this.columns['pubDate'].updateTd = displayDate;
         },
 
         getFilteredAndSortedRows: function() {
