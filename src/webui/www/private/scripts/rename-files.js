@@ -61,13 +61,14 @@ window.qBittorrent.MultiRename = (function() {
                 let matches = [];
                 do {
                     result = regex.exec(str);
+                    if (result === null)
+                        break;
 
-                    if (result == null) { break; }
                     matches.push(result);
 
                     // regex assertions don't modify lastIndex,
                     // so we need to explicitly break out to prevent infinite loop
-                    if (lastIndex == regex.lastIndex) {
+                    if (lastIndex === regex.lastIndex) {
                         break;
                     }
                     else {

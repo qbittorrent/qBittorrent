@@ -106,7 +106,7 @@ window.qBittorrent.PropWebseeds = (function() {
             loadWebSeedsDataTimer = loadWebSeedsData.delay(10000);
             return;
         }
-        if (new_hash != current_hash) {
+        if (new_hash !== current_hash) {
             wsTable.removeAllRows();
             current_hash = new_hash;
         }

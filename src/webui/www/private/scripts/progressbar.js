@@ -44,7 +44,7 @@ window.qBittorrent.ProgressBar = (function() {
         initialize: function(value, parameters) {
             const vals = {
                 'id': 'progressbar_' + (ProgressBars++),
-                'value': $pick(value, 0),
+                'value': [value, 0].pick(),
                 'width': 0,
                 'height': 0,
                 'darkbg': 'var(--color-background-blue)',
@@ -52,8 +52,8 @@ window.qBittorrent.ProgressBar = (function() {
                 'lightbg': 'var(--color-background-default)',
                 'lightfg': 'var(--color-text-default)'
             };
-            if (parameters && ($type(parameters) == 'object'))
-                $extend(vals, parameters);
+            if (parameters && (typeOf(parameters) === 'object'))
+                Object.append(vals, parameters);
             if (vals.height < 12)
                 vals.height = 12;
             const obj = new Element('div', {
@@ -68,7 +68,7 @@ window.qBittorrent.ProgressBar = (function() {
                 }
             });
             obj.vals = vals;
-            obj.vals.value = $pick(value, 0); // Fix by Chris
+            obj.vals.value = [value, 0].pick();
             obj.vals.dark = new Element('div', {
                 'id': vals.id + '_dark',
                 'class': 'progressbar_dark',

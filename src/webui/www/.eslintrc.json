@@ -8,6 +8,7 @@
         "html"
     ],
     "rules": {
+        "eqeqeq": "error",
         "no-mixed-operators": [
             "error",
             {

@@ -1893,7 +1893,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const registerDynDns = function() {
-            if ($('dyndns_select').getProperty('value').toInt() == 1) {
+            if ($('dyndns_select').getProperty('value').toInt() === 1) {
                 window.open("http://www.no-ip.com/services/managed_dns/free_dynamic_dns.html", "NO-IP Registration");
             }
             else {
@@ -1910,7 +1910,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         const time_padding = function(val) {
             let ret = val.toString();
-            if (ret.length == 1)
+            if (ret.length === 1)
                 ret = '0' + ret;
             return ret;
         };
@@ -2041,7 +2041,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $('temppath_checkbox').setProperty('checked', pref.temp_path_enabled);
                     $('temppath_text').setProperty('value', pref.temp_path);
                     updateTempDirEnabled();
-                    if (pref.export_dir != '') {
+                    if (pref.export_dir !== '') {
                         $('exportdir_checkbox').setProperty('checked', true);
                         $('exportdir_text').setProperty('value', pref.export_dir);
                     }
@@ -2050,7 +2050,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         $('exportdir_text').setProperty('value', '');
                     }
                     updateExportDirEnabled();
-                    if (pref.export_dir_fin != '') {
+                    if (pref.export_dir_fin !== '') {
                         $('exportdirfin_checkbox').setProperty('checked', true);
                         $('exportdirfin_text').setProperty('value', pref.export_dir_fin);
                     }

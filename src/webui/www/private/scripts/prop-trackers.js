@@ -57,7 +57,7 @@ window.qBittorrent.PropTrackers = (function() {
             loadTrackersDataTimer = loadTrackersData.delay(10000);
             return;
         }
-        if (new_hash != current_hash) {
+        if (new_hash !== current_hash) {
             torrentTrackersTable.clear();
             current_hash = new_hash;
         }

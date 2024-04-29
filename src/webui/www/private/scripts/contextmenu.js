@@ -240,7 +240,7 @@ window.qBittorrent.ContextMenu = (function() {
 
         //show menu
         show: function(trigger) {
-            if (lastShownContextMenu && (lastShownContextMenu != this))
+            if (lastShownContextMenu && (lastShownContextMenu !== this))
                 lastShownContextMenu.hide();
             this.fx.start(1);
             this.fireEvent('show');
@@ -265,7 +265,7 @@ window.qBittorrent.ContextMenu = (function() {
         },
 
         getItemChecked: function(item) {
-            return '0' != this.menu.getElement('a[href$=' + item + ']').firstChild.style.opacity;
+            return this.menu.getElement('a[href$=' + item + ']').firstChild.style.opacity !== '0';
         },
 
         //hide an item
@@ -333,12 +333,12 @@ window.qBittorrent.ContextMenu = (function() {
                 else
                     there_are_f_l_piece_prio = true;
 
-                if (data['progress'] != 1.0) // not downloaded
+                if (data['progress'] !== 1.0) // not downloaded
                     all_are_downloaded = false;
                 else if (data['super_seeding'] !== true)
                     all_are_super_seeding = false;
 
-                if ((data['state'] != 'stoppedUP') && (data['state'] != 'stoppedDL'))
+                if ((data['state'] !== 'stoppedUP') && (data['state'] !== 'stoppedDL'))
                     all_are_stopped = false;
                 else
                     there_are_stopped = true;
@@ -361,9 +361,9 @@ window.qBittorrent.ContextMenu = (function() {
             });
 
             // hide renameFiles when more than 1 torrent is selected
-            if (selectedRows.length == 1) {
+            if (selectedRows.length === 1) {
                 const data = torrentsTable.rows.get(selectedRows[0]).full_data;
-                let metadata_downloaded = !((data['state'] == 'metaDL') || (data['state'] == 'forcedMetaDL') || (data['total_size'] == -1));
+                let metadata_downloaded = !((data['state'] === 'metaDL') || (data['state'] === 'forcedMetaDL') || (data['total_size'] === -1));
 
                 // hide renameFiles when metadata hasn't been downloaded yet
                 metadata_downloaded
