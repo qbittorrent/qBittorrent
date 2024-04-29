@@ -2,9 +2,11 @@ import Globals from 'globals';
 import Html from 'eslint-plugin-html';
 import Js from '@eslint/js';
 import Stylistic from '@stylistic/eslint-plugin';
+import * as RegexpPlugin from 'eslint-plugin-regexp';
 
 export default [
     Js.configs.recommended,
+    RegexpPlugin.configs["flat/recommended"],
     Stylistic.configs["disable-legacy"],
     {
         files: [
@@ -20,6 +22,7 @@ export default [
         },
         plugins: {
             Html,
+            RegexpPlugin,
             Stylistic
         },
         rules: {
