@@ -107,7 +107,7 @@ def initialize_engines(found_engines):
     for engine_name in found_engines:
         # import engine
         engine = get_engine(engine_name)
-        if engine == None:
+        if engine is None:
             continue
         supported_engines.append(engine_name)
 
