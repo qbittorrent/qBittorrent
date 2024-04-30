@@ -29,6 +29,7 @@
 #include "number.h"
 
 #include <algorithm>
+#include <cstdint>
 #include <limits>
 
 int Utils::Number::clampingAdd(const int num1, const int num2)
