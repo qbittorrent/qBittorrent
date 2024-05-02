@@ -93,5 +93,6 @@ inline const QString KEY_TORRENT_SEEDING_TIME = u"seeding_time"_s;
 inline const QString KEY_TORRENT_AVAILABILITY = u"availability"_s;
 inline const QString KEY_TORRENT_REANNOUNCE = u"reannounce"_s;
 inline const QString KEY_TORRENT_COMMENT = u"comment"_s;
+inline const QString KEY_TORRENT_ISPRIVATE = u"is_private"_s;
 
 QVariantMap serialize(const BitTorrent::Torrent &torrent);
