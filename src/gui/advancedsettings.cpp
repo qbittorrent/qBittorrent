@@ -858,7 +858,7 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxSessionShutdownTimeout.setValue(session->shutdownTimeout());
     m_spinBoxSessionShutdownTimeout.setSuffix(tr(" sec", " seconds"));
     m_spinBoxSessionShutdownTimeout.setSpecialValueText(tr("-1 (unlimited)"));
-    m_spinBoxSessionShutdownTimeout.setToolTip(u"Sets the timeout for the session to be shut down gracefully, at which it will be force terminated.<br>Note that this does not apply to the saving resume data time."_s);
+    m_spinBoxSessionShutdownTimeout.setToolTip(u"Sets the timeout for the session to be shut down gracefully, at which point it will be forcibly terminated.<br>Note that this does not apply to the saving resume data time."_s);
     addRow(SESSION_SHUTDOWN_TIMEOUT, tr("BitTorrent session shutdown timeout [-1: unlimited]"), &m_spinBoxSessionShutdownTimeout);
 
     // Choking algorithm

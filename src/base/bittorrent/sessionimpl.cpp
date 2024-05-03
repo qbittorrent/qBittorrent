@@ -648,7 +648,7 @@ SessionImpl::~SessionImpl()
     connect(sessionTerminateThread, &QThread::finished, sessionTerminateThread, &QObject::deleteLater);
     sessionTerminateThread->start();
     if (sessionTerminateThread->wait(shutdownDeadlineTimer))
-        LogMsg(tr("BitTorrent session finished."));
+        LogMsg(tr("BitTorrent session successfully finished."));
 }
 
 QString SessionImpl::getDHTBootstrapNodes() const
