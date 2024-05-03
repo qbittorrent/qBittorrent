@@ -377,36 +377,14 @@ void TransferListWidget::setSelectedTorrentsLocation()
     fileDialog->open();
 }
 
-void TransferListWidget::stopAllTorrents()
+void TransferListWidget::pauseSession()
 {
-    if (Preferences::instance()->confirmPauseAndResumeAll())
-    {
-        // Show confirmation if user would really like to Stop All
-        const QMessageBox::StandardButton ret = QMessageBox::question(this, tr("Confirm stop all torrents")
-                , tr("Would you like to stop all torrents?"), (QMessageBox::Yes | QMessageBox::No));
-
-        if (ret != QMessageBox::Yes)
-            return;
-    }
-
-    for (BitTorrent::Torrent *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
-        torrent->stop();
+    BitTorrent::Session::instance()->pause();
 }
 
-void TransferListWidget::startAllTorrents()
+void TransferListWidget::resumeSession()
 {
-    if (Preferences::instance()->confirmPauseAndResumeAll())
-    {
-        // Show confirmation if user would really like to Start All
-        const QMessageBox::StandardButton ret = QMessageBox::question(this, tr("Confirm start all torrents")
-                , tr("Would you like to start all torrents?"), (QMessageBox::Yes | QMessageBox::No));
-
-        if (ret != QMessageBox::Yes)
-            return;
-    }
-
-    for (BitTorrent::Torrent *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
-        torrent->start();
+    BitTorrent::Session::instance()->resume();
 }
 
 void TransferListWidget::startSelectedTorrents()
@@ -1142,8 +1120,7 @@ void TransferListWidget::displayListMenu()
             needsStop = true;
         }
 
-        const bool queued = (BitTorrent::Session::instance()->isQueueingSystemEnabled() && torrent->isQueued());
-
+        const bool queued = torrent->isQueued();
         if (!isStopped && !rechecking && !queued)
             oneCanForceReannounce = true;
 

@@ -999,6 +999,9 @@ bool TorrentImpl::isStopped() const
 
 bool TorrentImpl::isQueued() const
 {
+    if (!m_session->isQueueingSystemEnabled())
+        return false;
+
     // Torrent is Queued if it isn't in Stopped state but paused internally
     return (!isStopped()
             && (m_nativeStatus.flags & lt::torrent_flags::auto_managed)
@@ -1153,7 +1156,7 @@ void TorrentImpl::updateState()
     {
         if (isStopped())
             m_state = TorrentState::StoppedDownloading;
-        else if (m_session->isQueueingSystemEnabled() && isQueued())
+        else if (isQueued())
             m_state = TorrentState::QueuedDownloading;
         else
             m_state = isForced() ? TorrentState::ForcedDownloadingMetadata : TorrentState::DownloadingMetadata;
@@ -1167,7 +1170,7 @@ void TorrentImpl::updateState()
     {
         if (isStopped())
             m_state = TorrentState::StoppedUploading;
-        else if (m_session->isQueueingSystemEnabled() && isQueued())
+        else if (isQueued())
             m_state = TorrentState::QueuedUploading;
         else if (isForced())
             m_state = TorrentState::ForcedUploading;
@@ -1180,7 +1183,7 @@ void TorrentImpl::updateState()
     {
         if (isStopped())
             m_state = TorrentState::StoppedDownloading;
-        else if (m_session->isQueueingSystemEnabled() && isQueued())
+        else if (isQueued())
             m_state = TorrentState::QueuedDownloading;
         else if (isForced())
             m_state = TorrentState::ForcedDownloading;
@@ -1961,6 +1964,11 @@ void TorrentImpl::renameFile(const int index, const Path &path)
 void TorrentImpl::handleStateUpdate(const lt::torrent_status &nativeStatus)
 {
     updateStatus(nativeStatus);
+}
+
+void TorrentImpl::handleQueueingModeChanged()
+{
+    updateState();
 }
 
 void TorrentImpl::handleMoveStorageJobFinished(const Path &path, const MoveStorageContext context, const bool hasOutstandingJob)

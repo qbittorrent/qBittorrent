@@ -68,8 +68,8 @@ public slots:
     void removeSelectionTag(const Tag &tag);
     void clearSelectionTags();
     void setSelectedTorrentsLocation();
-    void stopAllTorrents();
-    void startAllTorrents();
+    void pauseSession();
+    void resumeSession();
     void startSelectedTorrents();
     void forceStartSelectedTorrents();
     void startVisibleTorrents();

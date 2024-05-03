@@ -125,17 +125,17 @@ namespace
 
 MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, const QString &titleSuffix)
     : GUIApplicationComponent(app)
-    , m_ui(new Ui::MainWindow)
-    , m_storeExecutionLogEnabled(EXECUTIONLOG_SETTINGS_KEY(u"Enabled"_s))
-    , m_storeDownloadTrackerFavicon(SETTINGS_KEY(u"DownloadTrackerFavicon"_s))
-    , m_storeExecutionLogTypes(EXECUTIONLOG_SETTINGS_KEY(u"Types"_s), Log::MsgType::ALL)
+    , m_ui {new Ui::MainWindow}
+    , m_downloadRate {Utils::Misc::friendlyUnit(0, true)}
+    , m_uploadRate {Utils::Misc::friendlyUnit(0, true)}
+    , m_storeExecutionLogEnabled {EXECUTIONLOG_SETTINGS_KEY(u"Enabled"_s)}
+    , m_storeDownloadTrackerFavicon {SETTINGS_KEY(u"DownloadTrackerFavicon"_s)}
+    , m_storeExecutionLogTypes {EXECUTIONLOG_SETTINGS_KEY(u"Types"_s), Log::MsgType::ALL}
 #ifdef Q_OS_MACOS
-    , m_badger(std::make_unique<MacUtils::Badger>())
+    , m_badger {std::make_unique<MacUtils::Badger>()}
 #endif // Q_OS_MACOS
 {
     m_ui->setupUi(this);
-
-    setTitleSuffix(titleSuffix);
 
     Preferences *const pref = Preferences::instance();
     m_uiLocked = pref->isUILocked();
@@ -144,6 +144,8 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 #ifndef Q_OS_MACOS
     setWindowIcon(UIThemeManager::instance()->getIcon(u"qbittorrent"_s));
 #endif // Q_OS_MACOS
+
+    setTitleSuffix(titleSuffix);
 
 #if (defined(Q_OS_UNIX))
     m_ui->actionOptions->setText(tr("Preferences"));
@@ -167,21 +169,37 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     m_ui->actionExit->setIcon(UIThemeManager::instance()->getIcon(u"application-exit"_s));
     m_ui->actionLock->setIcon(UIThemeManager::instance()->getIcon(u"object-locked"_s));
     m_ui->actionOptions->setIcon(UIThemeManager::instance()->getIcon(u"configure"_s, u"preferences-system"_s));
-    m_ui->actionStop->setIcon(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s));
-    m_ui->actionStopAll->setIcon(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s));
     m_ui->actionStart->setIcon(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s));
-    m_ui->actionStartAll->setIcon(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s));
+    m_ui->actionStop->setIcon(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s));
+    m_ui->actionPauseSession->setIcon(UIThemeManager::instance()->getIcon(u"pause-session"_s, u"media-playback-pause"_s));
+    m_ui->actionResumeSession->setIcon(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s));
     m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_s, u"application-exit"_s));
     m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_s, u"preferences-web-browser-cookies"_s));
     m_ui->menuLog->setIcon(UIThemeManager::instance()->getIcon(u"help-contents"_s));
     m_ui->actionCheckForUpdates->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
+
+    m_ui->actionPauseSession->setVisible(!BitTorrent::Session::instance()->isPaused());
+    m_ui->actionResumeSession->setVisible(BitTorrent::Session::instance()->isPaused());
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::paused, this, [this]
+    {
+        m_ui->actionPauseSession->setVisible(false);
+        m_ui->actionResumeSession->setVisible(true);
+        refreshWindowTitle();
+        refreshTrayIconTooltip();
+    });
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::resumed, this, [this]
+    {
+        m_ui->actionPauseSession->setVisible(true);
+        m_ui->actionResumeSession->setVisible(false);
+        refreshWindowTitle();
+        refreshTrayIconTooltip();
+    });
 
     auto *lockMenu = new QMenu(m_ui->menuView);
     lockMenu->addAction(tr("&Set Password"), this, &MainWindow::defineUILockPassword);
     lockMenu->addAction(tr("&Clear Password"), this, &MainWindow::clearUILockPassword);
     m_ui->actionLock->setMenu(lockMenu);
 
-    // Creating Bittorrent session
     updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
 
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::speedLimitModeChanged, this, &MainWindow::updateAltSpeedsBtn);
@@ -285,9 +303,9 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 
     // Transfer list slots
     connect(m_ui->actionStart, &QAction::triggered, m_transferListWidget, &TransferListWidget::startSelectedTorrents);
-    connect(m_ui->actionStartAll, &QAction::triggered, m_transferListWidget, &TransferListWidget::startAllTorrents);
     connect(m_ui->actionStop, &QAction::triggered, m_transferListWidget, &TransferListWidget::stopSelectedTorrents);
-    connect(m_ui->actionStopAll, &QAction::triggered, m_transferListWidget, &TransferListWidget::stopAllTorrents);
+    connect(m_ui->actionPauseSession, &QAction::triggered, m_transferListWidget, &TransferListWidget::pauseSession);
+    connect(m_ui->actionResumeSession, &QAction::triggered, m_transferListWidget, &TransferListWidget::resumeSession);
     connect(m_ui->actionDelete, &QAction::triggered, m_transferListWidget, &TransferListWidget::softDeleteSelectedTorrents);
     connect(m_ui->actionTopQueuePos, &QAction::triggered, m_transferListWidget, &TransferListWidget::topQueuePosSelectedTorrents);
     connect(m_ui->actionIncreaseQueuePos, &QAction::triggered, m_transferListWidget, &TransferListWidget::increaseQueuePosSelectedTorrents);
@@ -326,7 +344,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     // Configure BT session according to options
     loadPreferences();
 
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated, this, &MainWindow::reloadSessionStats);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated, this, &MainWindow::loadSessionStats);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated, this, &MainWindow::reloadTorrentStats);
 
     // Accept drag 'n drops
@@ -530,7 +548,7 @@ void MainWindow::setTitleSuffix(const QString &suffix)
     m_windowTitle = QStringLiteral("qBittorrent " QBT_VERSION)
         + (!suffix.isEmpty() ? (separator + suffix) : QString());
 
-    setWindowTitle(m_windowTitle);
+    refreshWindowTitle();
 }
 
 void MainWindow::addToolbarContextMenu()
@@ -881,9 +899,9 @@ void MainWindow::createKeyboardShortcuts()
     m_ui->actionOptions->setShortcut(Qt::ALT | Qt::Key_O);
     m_ui->actionStatistics->setShortcut(Qt::CTRL | Qt::Key_I);
     m_ui->actionStart->setShortcut(Qt::CTRL | Qt::Key_S);
-    m_ui->actionStartAll->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_S);
     m_ui->actionStop->setShortcut(Qt::CTRL | Qt::Key_P);
-    m_ui->actionStopAll->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_P);
+    m_ui->actionPauseSession->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_P);
+    m_ui->actionResumeSession->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_S);
     m_ui->actionBottomQueuePos->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_Minus);
     m_ui->actionDecreaseQueuePos->setShortcut(Qt::CTRL | Qt::Key_Minus);
     m_ui->actionIncreaseQueuePos->setShortcut(Qt::CTRL | Qt::Key_Plus);
@@ -1488,28 +1506,21 @@ void MainWindow::loadPreferences()
     qDebug("GUI settings loaded");
 }
 
-void MainWindow::reloadSessionStats()
+void MainWindow::loadSessionStats()
 {
-    const BitTorrent::SessionStatus &status = BitTorrent::Session::instance()->status();
-    const QString downloadRate = Utils::Misc::friendlyUnit(status.payloadDownloadRate, true);
-    const QString uploadRate = Utils::Misc::friendlyUnit(status.payloadUploadRate, true);
+    const auto *btSession = BitTorrent::Session::instance();
+    const BitTorrent::SessionStatus &status = btSession->status();
+    const QString m_downloadRate = Utils::Misc::friendlyUnit(status.payloadDownloadRate, true);
+    const QString m_uploadRate = Utils::Misc::friendlyUnit(status.payloadUploadRate, true);
 
     // update global information
 #ifdef Q_OS_MACOS
     m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
 #else
-    const auto toolTip = u"%1\n%2"_s.arg(
-        tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(downloadRate)
-        , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(uploadRate));
-    app()->desktopIntegration()->setToolTip(toolTip); // tray icon
+    refreshTrayIconTooltip();
 #endif  // Q_OS_MACOS
 
-    if (m_displaySpeedInTitle)
-    {
-        const QString title = tr("[D: %1, U: %2] %3", "D = Download; U = Upload; %3 is the rest of the window title")
-            .arg(downloadRate, uploadRate, m_windowTitle);
-        setWindowTitle(title);
-    }
+    refreshWindowTitle();
 }
 
 void MainWindow::reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torrents)
@@ -1551,8 +1562,8 @@ void MainWindow::populateDesktopIntegrationMenu()
     menu->addAction(m_ui->actionSetGlobalSpeedLimits);
     menu->addSeparator();
 
-    menu->addAction(m_ui->actionStartAll);
-    menu->addAction(m_ui->actionStopAll);
+    menu->addAction(m_ui->actionResumeSession);
+    menu->addAction(m_ui->actionPauseSession);
 
 #ifndef Q_OS_MACOS
     menu->addSeparator();
@@ -1613,10 +1624,7 @@ void MainWindow::on_actionSpeedInTitleBar_triggered()
 {
     m_displaySpeedInTitle = static_cast<QAction *>(sender())->isChecked();
     Preferences::instance()->showSpeedInTitleBar(m_displaySpeedInTitle);
-    if (m_displaySpeedInTitle)
-        reloadSessionStats();
-    else
-        setWindowTitle(m_windowTitle);
+    refreshWindowTitle();
 }
 
 void MainWindow::on_actionRSSReader_triggered()
@@ -1879,6 +1887,45 @@ void MainWindow::updatePowerManagementState() const
 void MainWindow::applyTransferListFilter()
 {
     m_transferListWidget->applyFilter(m_columnFilterEdit->text(), m_columnFilterComboBox->currentData().value<TransferListModel::Column>());
+}
+
+void MainWindow::refreshWindowTitle()
+{
+    const auto *btSession = BitTorrent::Session::instance();
+    if (btSession->isPaused())
+    {
+        const QString title = tr("[PAUSED] %1", "%1 is the rest of the window title").arg(m_windowTitle);
+        setWindowTitle(title);
+    }
+    else
+    {
+        if (m_displaySpeedInTitle)
+        {
+            const QString title = tr("[D: %1, U: %2] %3", "D = Download; U = Upload; %3 is the rest of the window title")
+                    .arg(m_downloadRate, m_uploadRate, m_windowTitle);
+            setWindowTitle(title);
+        }
+        else
+        {
+            setWindowTitle(m_windowTitle);
+        }
+    }
+}
+
+void MainWindow::refreshTrayIconTooltip()
+{
+    const auto *btSession = BitTorrent::Session::instance();
+    if (!btSession->isPaused())
+    {
+        const auto toolTip = u"%1\n%2"_s.arg(
+                tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(m_downloadRate)
+                , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(m_uploadRate));
+        app()->desktopIntegration()->setToolTip(toolTip);
+    }
+    else
+    {
+        app()->desktopIntegration()->setToolTip(tr("Paused"));
+    }
 }
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)

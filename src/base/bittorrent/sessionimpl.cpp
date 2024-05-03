@@ -523,6 +523,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_I2POutboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/OutboundQuantity"_s), 3}
     , m_I2PInboundLength {BITTORRENT_SESSION_KEY(u"I2P/InboundLength"_s), 3}
     , m_I2POutboundLength {BITTORRENT_SESSION_KEY(u"I2P/OutboundLength"_s), 3}
+    , m_startPaused {BITTORRENT_SESSION_KEY(u"StartPaused"_s)}
     , m_seedingLimitTimer {new QTimer(this)}
     , m_resumeDataTimer {new QTimer(this)}
     , m_ioThread {new QThread}
@@ -1541,7 +1542,9 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
     context->deleteLater();
     connect(context, &QObject::destroyed, this, [this]
     {
-        m_nativeSession->resume();
+        if (!m_isPaused)
+            m_nativeSession->resume();
+
         if (m_refreshEnqueued)
             m_refreshEnqueued = false;
         else
@@ -3913,6 +3916,16 @@ void SessionImpl::setMergeTrackersEnabled(const bool enabled)
     m_isMergeTrackersEnabled = enabled;
 }
 
+bool SessionImpl::isStartPaused() const
+{
+    return m_startPaused.get(false);
+}
+
+void SessionImpl::setStartPaused(const bool value)
+{
+    m_startPaused = value;
+}
+
 QStringList SessionImpl::bannedIPs() const
 {
     return m_bannedIPs;
@@ -3921,6 +3934,35 @@ QStringList SessionImpl::bannedIPs() const
 bool SessionImpl::isRestored() const
 {
     return m_isRestored;
+}
+
+bool SessionImpl::isPaused() const
+{
+    return m_isPaused;
+}
+
+void SessionImpl::pause()
+{
+    if (!m_isPaused)
+    {
+        if (isRestored())
+            m_nativeSession->pause();
+
+        m_isPaused = true;
+        emit paused();
+    }
+}
+
+void SessionImpl::resume()
+{
+    if (m_isPaused)
+    {
+        if (isRestored())
+            m_nativeSession->resume();
+
+        m_isPaused = false;
+        emit resumed();
+    }
 }
 
 int SessionImpl::maxConnectionsPerTorrent() const
@@ -4370,6 +4412,9 @@ void SessionImpl::setQueueingSystemEnabled(const bool enabled)
             m_torrentsQueueChanged = true;
         else
             removeTorrentsQueue();
+
+        for (TorrentImpl *torrent : asConst(m_torrents))
+            torrent->handleQueueingModeChanged();
     }
 }
 
