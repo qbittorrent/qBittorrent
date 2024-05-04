@@ -605,7 +605,7 @@ SessionImpl::~SessionImpl()
     m_nativeSession->pause();
 
     const qint64 timeout = (m_shutdownTimeout >= 0) ? (m_shutdownTimeout * 1000) : -1;
-    QDeadlineTimer shutdownDeadlineTimer {timeout};
+    const QDeadlineTimer shutdownDeadlineTimer {timeout};
 
     if (m_torrentsQueueChanged)
     {
@@ -649,6 +649,8 @@ SessionImpl::~SessionImpl()
     sessionTerminateThread->start();
     if (sessionTerminateThread->wait(shutdownDeadlineTimer))
         LogMsg(tr("BitTorrent session successfully finished."));
+    else
+        LogMsg(tr("Session shutdown timed out."));
 }
 
 QString SessionImpl::getDHTBootstrapNodes() const
