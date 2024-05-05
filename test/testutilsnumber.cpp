@@ -1,8 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
- * Copyright (C) 2006-2012  Ishan Arora <ishan@qbittorrent.org>
+ * Copyright (C) 2024  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,29 +26,38 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include <limits>
 
-#include "apicontroller.h"
+#include <QTest>
 
-class AppController : public APIController
+#include "base/utils/number.h"
+
+class TestUtilsNumber final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(AppController)
+    Q_DISABLE_COPY_MOVE(TestUtilsNumber)
 
 public:
-    using APIController::APIController;
+    TestUtilsNumber() = default;
 
 private slots:
-    void webapiVersionAction();
-    void versionAction();
-    void buildInfoAction();
-    void shutdownAction();
-    void preferencesAction();
-    void setPreferencesAction();
-    void defaultSavePathAction();
-    void sendTestEmailAction();
-    void getDirectoryContentAction();
+    void testClampingAdd() const
+    {
+        const int intMin = std::numeric_limits<int>::min();
+        const int intMax = std::numeric_limits<int>::max();
 
-    void networkInterfaceListAction();
-    void networkInterfaceAddressListAction();
+        QCOMPARE(Utils::Number::clampingAdd(1, 2), 3);
+        QCOMPARE(Utils::Number::clampingAdd(-1, -2), -3);
+
+        QCOMPARE(Utils::Number::clampingAdd((intMax - 1), 1), intMax);
+        QCOMPARE(Utils::Number::clampingAdd(intMax, 1), intMax);
+        QCOMPARE(Utils::Number::clampingAdd(intMax, intMax), intMax);
+
+        QCOMPARE(Utils::Number::clampingAdd((intMin + 1), -1), intMin);
+        QCOMPARE(Utils::Number::clampingAdd(intMin, -1), intMin);
+        QCOMPARE(Utils::Number::clampingAdd(intMin, intMin), intMin);
+    }
 };
+
+QTEST_APPLESS_MAIN(TestUtilsNumber)
+#include "testutilsnumber.moc"

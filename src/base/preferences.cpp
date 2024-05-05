@@ -1397,19 +1397,6 @@ void Preferences::setConfirmRemoveAllTags(const bool enabled)
     setValue(u"Preferences/Advanced/confirmRemoveAllTags"_s, enabled);
 }
 
-bool Preferences::confirmPauseAndResumeAll() const
-{
-    return value(u"GUI/ConfirmActions/PauseAndResumeAllTorrents"_s, true);
-}
-
-void Preferences::setConfirmPauseAndResumeAll(const bool enabled)
-{
-    if (enabled == confirmPauseAndResumeAll())
-        return;
-
-    setValue(u"GUI/ConfirmActions/PauseAndResumeAllTorrents"_s, enabled);
-}
-
 bool Preferences::confirmMergeTrackers() const
 {
     return value(u"GUI/ConfirmActions/MergeTrackers"_s, true);

@@ -470,11 +470,11 @@
 
                     // check if rows matches flattened response
                     let match = false;
-                    if (rssFeedTable.rows.getLength() - 1 === flattenedResp.length) {
+                    if ((rssFeedTable.rows.getLength() - 1) === flattenedResp.length) {
                         match = true;
                         for (let i = 0; i < flattenedResp.length; ++i) {
-                            if ((flattenedResp[i].uid ? flattenedResp[i].uid : '') !== rssFeedTable.rows[i + 1].full_data.dataUid
-                                || flattenedResp[i].fullName !== rssFeedTable.rows[i + 1].full_data.dataPath) {
+                            if (((flattenedResp[i].uid ? flattenedResp[i].uid : '') !== rssFeedTable.rows[i + 1].full_data.dataUid)
+                                || (flattenedResp[i].fullName !== rssFeedTable.rows[i + 1].full_data.dataPath)) {
                                 match = false;
                                 break;
                             }
@@ -541,7 +541,7 @@
                                     feedData[r.uid] = r.articles;
 
                                     // if feed that is open changed, reload
-                                    if (openedFeedPath !== undefined && r.fullName.slice(0, openedFeedPath.length) === openedFeedPath)
+                                    if ((openedFeedPath !== undefined) && (r.fullName.slice(0, openedFeedPath.length) === openedFeedPath))
                                         showRssFeed(r.fullName);
                                 }
                                 else {
@@ -565,7 +565,7 @@
                                             .each((row) => row.full_data.unread += readDifference);
 
                                         // if feed that is opened changed update dynamically
-                                        if (openedFeedPath !== undefined && r.fullName.slice(0, openedFeedPath.length) === openedFeedPath) {
+                                        if ((openedFeedPath !== undefined) && (r.fullName.slice(0, openedFeedPath.length) === openedFeedPath)) {
                                             for (let i = 0; i < r.articles.length; ++i) {
                                                 let matchingRow = rssArticleTable.rows.filter((row) => row.full_data.feedUid === r.uid)
                                                     .filter((row) => row.full_data.dataId === r.articles[i].id);
@@ -714,7 +714,7 @@
             rssArticleTable.rows.each((el) => el.full_data.isRead = true);
 
             // find all children and set unread count to 0
-            rssFeedTable.rows.filter((row) => row.full_data.dataPath.slice(0, path.length) === path && path !== row.full_data.dataPath)
+            rssFeedTable.rows.filter((row) => (row.full_data.dataPath.slice(0, path.length) === path) && (path !== row.full_data.dataPath))
                 .each((row) => row.full_data.unread = 0);
 
             // find selected row

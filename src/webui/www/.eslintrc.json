@@ -3,14 +3,27 @@
         "browser": true,
         "es2022": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "eslint:recommended",
+        "plugin:@stylistic/disable-legacy"
+    ],
     "plugins": [
-        "html"
+        "html",
+        "@stylistic"
     ],
     "rules": {
+        "eqeqeq": "error",
         "no-undef": "off",
         "no-unused-vars": "off",
-        "nonblock-statement-body-position": ["error", "below"],
-        "semi": "error"
+        "@stylistic/no-mixed-operators": [
+            "error",
+            {
+                "groups": [
+                    ["&", "|", "^", "~", "<<", ">>", ">>>", "==", "!=", "===", "!==", ">", ">=", "<", "<=", "&&", "||", "in", "instanceof"]
+                ]
+            }
+        ],
+        "@stylistic/nonblock-statement-body-position": ["error", "below"],
+        "@stylistic/semi": "error"
     }
 }

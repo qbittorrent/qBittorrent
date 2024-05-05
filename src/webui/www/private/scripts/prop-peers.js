@@ -94,7 +94,7 @@ window.qBittorrent.PropPeers = (function() {
                     torrentPeersTable.altRow();
 
                     if (response['show_flags']) {
-                        if (show_flags != response['show_flags']) {
+                        if (show_flags !== response['show_flags']) {
                             show_flags = response['show_flags'];
                             torrentPeersTable.columns['country'].force_hide = !show_flags;
                             torrentPeersTable.updateColumn('country');

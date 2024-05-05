@@ -1,4 +1,4 @@
-#VERSION: 1.47
+#VERSION: 1.48
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -26,12 +26,16 @@
 
 
 def prettyPrinter(dictionary):
-    dictionary['size'] = anySizeToBytes(dictionary['size'])
-    outtext = "|".join((dictionary["link"], dictionary["name"].replace("|", " "),
-                        str(dictionary["size"]), str(dictionary["seeds"]),
-                        str(dictionary["leech"]), dictionary["engine_url"]))
-    if 'desc_link' in dictionary:
-        outtext = "|".join((outtext, dictionary["desc_link"]))
+    outtext = "|".join((
+        dictionary["link"],
+        dictionary["name"].replace("|", " "),
+        str(anySizeToBytes(dictionary['size'])),
+        str(dictionary["seeds"]),
+        str(dictionary["leech"]),
+        dictionary["engine_url"],
+        dictionary.get("desc_link", ""),  # Optional
+        str(dictionary.get("pub_date", -1)),  # Optional
+    ))
 
     # fd 1 is stdout
     with open(1, 'w', encoding='utf-8', closefd=False) as utf8stdout:

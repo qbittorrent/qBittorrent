@@ -407,8 +407,14 @@ namespace BitTorrent
         void setResumeDataStorageType(ResumeDataStorageType type) override;
         bool isMergeTrackersEnabled() const override;
         void setMergeTrackersEnabled(bool enabled) override;
+        bool isStartPaused() const override;
+        void setStartPaused(bool value) override;
 
         bool isRestored() const override;
+
+        bool isPaused() const override;
+        void pause() override;
+        void resume() override;
 
         Torrent *getTorrent(const TorrentID &id) const override;
         Torrent *findTorrent(const InfoHash &infoHash) const override;
@@ -722,8 +728,10 @@ namespace BitTorrent
         CachedSettingValue<int> m_I2POutboundQuantity;
         CachedSettingValue<int> m_I2PInboundLength;
         CachedSettingValue<int> m_I2POutboundLength;
+        SettingValue<bool> m_startPaused;
 
         bool m_isRestored = false;
+        bool m_isPaused = isStartPaused();
 
         // Order is important. This needs to be declared after its CachedSettingsValue
         // counterpart, because it uses it for initialization in the constructor
@@ -731,7 +739,7 @@ namespace BitTorrent
         const bool m_wasPexEnabled = m_isPeXEnabled;
 
         int m_numResumeData = 0;
-        QVector<TrackerEntry> m_additionalTrackerList;
+        QVector<TrackerEntry> m_additionalTrackerEntries;
         QVector<QRegularExpression> m_excludedFileNamesRegExpList;
 
         // Statistics

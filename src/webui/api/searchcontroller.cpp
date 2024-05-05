@@ -39,6 +39,7 @@
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/search/searchhandler.h"
+#include "base/utils/datetime.h"
 #include "base/utils/foreignapps.h"
 #include "base/utils/random.h"
 #include "base/utils/string.h"
@@ -301,6 +302,7 @@ int SearchController::generateSearchId() const
  *   - "nbLeechers"
  *   - "siteUrl"
  *   - "descrLink"
+ *   - "pubDate"
  */
 QJsonObject SearchController::getResults(const QList<SearchResult> &searchResults, const bool isSearchActive, const int totalResults) const
 {
@@ -315,7 +317,8 @@ QJsonObject SearchController::getResults(const QList<SearchResult> &searchResult
             {u"nbSeeders"_s, searchResult.nbSeeders},
             {u"nbLeechers"_s, searchResult.nbLeechers},
             {u"siteUrl"_s, searchResult.siteUrl},
-            {u"descrLink"_s, searchResult.descrLink}
+            {u"descrLink"_s, searchResult.descrLink},
+            {u"pubDate"_s, Utils::DateTime::toSecsSinceEpoch(searchResult.pubDate)}
         };
     }
 

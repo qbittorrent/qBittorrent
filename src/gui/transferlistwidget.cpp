@@ -377,36 +377,14 @@ void TransferListWidget::setSelectedTorrentsLocation()
     fileDialog->open();
 }
 
-void TransferListWidget::stopAllTorrents()
+void TransferListWidget::pauseSession()
 {
-    if (Preferences::instance()->confirmPauseAndResumeAll())
-    {
-        // Show confirmation if user would really like to Stop All
-        const QMessageBox::StandardButton ret = QMessageBox::question(this, tr("Confirm stop all torrents")
-                , tr("Would you like to stop all torrents?"), (QMessageBox::Yes | QMessageBox::No));
-
-        if (ret != QMessageBox::Yes)
-            return;
-    }
-
-    for (BitTorrent::Torrent *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
-        torrent->stop();
+    BitTorrent::Session::instance()->pause();
 }
 
-void TransferListWidget::startAllTorrents()
+void TransferListWidget::resumeSession()
 {
-    if (Preferences::instance()->confirmPauseAndResumeAll())
-    {
-        // Show confirmation if user would really like to Start All
-        const QMessageBox::StandardButton ret = QMessageBox::question(this, tr("Confirm start all torrents")
-                , tr("Would you like to start all torrents?"), (QMessageBox::Yes | QMessageBox::No));
-
-        if (ret != QMessageBox::Yes)
-            return;
-    }
-
-    for (BitTorrent::Torrent *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
-        torrent->start();
+    BitTorrent::Session::instance()->resume();
 }
 
 void TransferListWidget::startSelectedTorrents()
@@ -1142,8 +1120,7 @@ void TransferListWidget::displayListMenu()
             needsStop = true;
         }
 
-        const bool queued = (BitTorrent::Session::instance()->isQueueingSystemEnabled() && torrent->isQueued());
-
+        const bool queued = torrent->isQueued();
         if (!isStopped && !rechecking && !queued)
             oneCanForceReannounce = true;
 
@@ -1353,9 +1330,10 @@ void TransferListWidget::applyFilter(const QString &name, const TransferListMode
     m_sortFilterModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
 }
 
-void TransferListWidget::applyStatusFilter(int f)
+void TransferListWidget::applyStatusFilter(const int filterIndex)
 {
-    m_sortFilterModel->setStatusFilter(static_cast<TorrentFilter::Type>(f));
+    const auto filterType = static_cast<TorrentFilter::Type>(filterIndex);
+    m_sortFilterModel->setStatusFilter(((filterType >= TorrentFilter::All) && (filterType < TorrentFilter::_Count)) ? filterType : TorrentFilter::All);
     // Select first item if nothing is selected
     if (selectionModel()->selectedRows(0).empty() && (m_sortFilterModel->rowCount() > 0))
     {

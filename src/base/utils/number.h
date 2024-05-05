@@ -1,8 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
- * Copyright (C) 2006-2012  Ishan Arora <ishan@qbittorrent.org>
+ * Copyright (C) 2024  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,27 +28,8 @@
 
 #pragma once
 
-#include "apicontroller.h"
-
-class AppController : public APIController
+namespace Utils::Number
 {
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(AppController)
-
-public:
-    using APIController::APIController;
-
-private slots:
-    void webapiVersionAction();
-    void versionAction();
-    void buildInfoAction();
-    void shutdownAction();
-    void preferencesAction();
-    void setPreferencesAction();
-    void defaultSavePathAction();
-    void sendTestEmailAction();
-    void getDirectoryContentAction();
-
-    void networkInterfaceListAction();
-    void networkInterfaceAddressListAction();
-};
+    // math addition that the result will never overflow/underflow
+    int clampingAdd(int num1, int num2);
+}

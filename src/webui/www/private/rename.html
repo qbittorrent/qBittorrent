@@ -40,7 +40,7 @@
                 new Event(e).stop();
                 // check field
                 const name = $('rename').value.trim();
-                if (name === null || name === "")
+                if ((name === null) || (name === ""))
                     return false;
 
                 const hash = new URI().getData('hash');

@@ -60,8 +60,8 @@ window.qBittorrent.PiecesBar = (() => {
                 'borderColor': 'var(--color-border-default)'
             };
 
-            if (parameters && ($type(parameters) === 'object'))
-                $extend(vals, parameters);
+            if (parameters && (typeOf(parameters) === 'object'))
+                Object.append(vals, parameters);
             vals.height = Math.max(vals.height, 12);
 
             const obj = new Element('div', {
@@ -73,7 +73,7 @@ window.qBittorrent.PiecesBar = (() => {
                 }
             });
             obj.vals = vals;
-            obj.vals.pieces = $pick(pieces, []);
+            obj.vals.pieces = [pieces, []].pick();
 
             obj.vals.canvas = new Element('canvas', {
                 'id': vals.id + '_canvas',

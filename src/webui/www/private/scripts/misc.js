@@ -71,7 +71,7 @@ window.qBittorrent.Misc = (function() {
             return "QBT_TR(Unknown)QBT_TR[CONTEXT=misc]";
 
         let i = 0;
-        while (value >= 1024.0 && i < 6) {
+        while ((value >= 1024.0) && (i < 6)) {
             value /= 1024.0;
             ++i;
         }
@@ -104,7 +104,7 @@ window.qBittorrent.Misc = (function() {
      * JS counterpart of the function in src/misc.cpp
      */
     const friendlyDuration = function(seconds, maxCap = -1) {
-        if (seconds < 0 || ((seconds >= maxCap) && (maxCap >= 0)))
+        if ((seconds < 0) || ((seconds >= maxCap) && (maxCap >= 0)))
             return "∞";
         if (seconds === 0)
             return "0";

@@ -84,6 +84,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/net.h"
+#include "base/utils/number.h"
 #include "base/utils/random.h"
 #include "base/version.h"
 #include "bandwidthscheduler.h"
@@ -522,6 +523,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_I2POutboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/OutboundQuantity"_s), 3}
     , m_I2PInboundLength {BITTORRENT_SESSION_KEY(u"I2P/InboundLength"_s), 3}
     , m_I2POutboundLength {BITTORRENT_SESSION_KEY(u"I2P/OutboundLength"_s), 3}
+    , m_startPaused {BITTORRENT_SESSION_KEY(u"StartPaused"_s)}
     , m_seedingLimitTimer {new QTimer(this)}
     , m_resumeDataTimer {new QTimer(this)}
     , m_ioThread {new QThread}
@@ -1540,7 +1542,9 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
     context->deleteLater();
     connect(context, &QObject::destroyed, this, [this]
     {
-        m_nativeSession->resume();
+        if (!m_isPaused)
+            m_nativeSession->resume();
+
         if (m_refreshEnqueued)
             m_refreshEnqueued = false;
         else
@@ -2208,15 +2212,7 @@ void SessionImpl::enableBandwidthScheduler()
 
 void SessionImpl::populateAdditionalTrackers()
 {
-    m_additionalTrackerList.clear();
-
-    const QString trackers = additionalTrackers();
-    for (QStringView tracker : asConst(QStringView(trackers).split(u'\n')))
-    {
-        tracker = tracker.trimmed();
-        if (!tracker.isEmpty())
-            m_additionalTrackerList.append({.url = tracker.toString(), .tier = 0});
-    }
+    m_additionalTrackerEntries = parseTrackerEntries(additionalTrackers());
 }
 
 void SessionImpl::processShareLimits()
@@ -2786,13 +2782,16 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
     if (isAddTrackersEnabled() && !(hasMetadata && p.ti->priv()))
     {
-        p.trackers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
-        p.tracker_tiers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
+        const auto maxTierIter = std::max_element(p.tracker_tiers.cbegin(), p.tracker_tiers.cend());
+        const int baseTier = (maxTierIter != p.tracker_tiers.cend()) ? (*maxTierIter + 1) : 0;
+
+        p.trackers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerEntries.size()));
+        p.tracker_tiers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerEntries.size()));
         p.tracker_tiers.resize(p.trackers.size(), 0);
-        for (const TrackerEntry &trackerEntry : asConst(m_additionalTrackerList))
+        for (const TrackerEntry &trackerEntry : asConst(m_additionalTrackerEntries))
         {
-            p.trackers.push_back(trackerEntry.url.toStdString());
-            p.tracker_tiers.push_back(trackerEntry.tier);
+            p.trackers.emplace_back(trackerEntry.url.toStdString());
+            p.tracker_tiers.emplace_back(Utils::Number::clampingAdd(trackerEntry.tier, baseTier));
         }
     }
 
@@ -2955,13 +2954,17 @@ bool SessionImpl::downloadMetadata(const TorrentDescriptor &torrentDescr)
     if (isAddTrackersEnabled())
     {
         // Use "additional trackers" when metadata retrieving (this can help when the DHT nodes are few)
-        p.trackers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
-        p.tracker_tiers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
+
+        const auto maxTierIter = std::max_element(p.tracker_tiers.cbegin(), p.tracker_tiers.cend());
+        const int baseTier = (maxTierIter != p.tracker_tiers.cend()) ? (*maxTierIter + 1) : 0;
+
+        p.trackers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerEntries.size()));
+        p.tracker_tiers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerEntries.size()));
         p.tracker_tiers.resize(p.trackers.size(), 0);
-        for (const TrackerEntry &trackerEntry : asConst(m_additionalTrackerList))
+        for (const TrackerEntry &trackerEntry : asConst(m_additionalTrackerEntries))
         {
-            p.trackers.push_back(trackerEntry.url.toStdString());
-            p.tracker_tiers.push_back(trackerEntry.tier);
+            p.trackers.emplace_back(trackerEntry.url.toStdString());
+            p.tracker_tiers.emplace_back(Utils::Number::clampingAdd(trackerEntry.tier, baseTier));
         }
     }
 
@@ -3762,11 +3765,11 @@ QString SessionImpl::additionalTrackers() const
 
 void SessionImpl::setAdditionalTrackers(const QString &trackers)
 {
-    if (trackers != additionalTrackers())
-    {
-        m_additionalTrackers = trackers;
-        populateAdditionalTrackers();
-    }
+    if (trackers == additionalTrackers())
+        return;
+
+    m_additionalTrackers = trackers;
+    populateAdditionalTrackers();
 }
 
 bool SessionImpl::isIPFilteringEnabled() const
@@ -3913,6 +3916,16 @@ void SessionImpl::setMergeTrackersEnabled(const bool enabled)
     m_isMergeTrackersEnabled = enabled;
 }
 
+bool SessionImpl::isStartPaused() const
+{
+    return m_startPaused.get(false);
+}
+
+void SessionImpl::setStartPaused(const bool value)
+{
+    m_startPaused = value;
+}
+
 QStringList SessionImpl::bannedIPs() const
 {
     return m_bannedIPs;
@@ -3921,6 +3934,35 @@ QStringList SessionImpl::bannedIPs() const
 bool SessionImpl::isRestored() const
 {
     return m_isRestored;
+}
+
+bool SessionImpl::isPaused() const
+{
+    return m_isPaused;
+}
+
+void SessionImpl::pause()
+{
+    if (!m_isPaused)
+    {
+        if (isRestored())
+            m_nativeSession->pause();
+
+        m_isPaused = true;
+        emit paused();
+    }
+}
+
+void SessionImpl::resume()
+{
+    if (m_isPaused)
+    {
+        if (isRestored())
+            m_nativeSession->resume();
+
+        m_isPaused = false;
+        emit resumed();
+    }
 }
 
 int SessionImpl::maxConnectionsPerTorrent() const
@@ -4370,6 +4412,9 @@ void SessionImpl::setQueueingSystemEnabled(const bool enabled)
             m_torrentsQueueChanged = true;
         else
             removeTorrentsQueue();
+
+        for (TorrentImpl *torrent : asConst(m_torrents))
+            torrent->handleQueueingModeChanged();
     }
 }
 
