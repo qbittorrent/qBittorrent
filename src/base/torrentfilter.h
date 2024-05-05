@@ -70,6 +70,7 @@ public:
     static const std::optional<QString> AnyCategory;
     static const std::optional<TorrentIDSet> AnyID;
     static const std::optional<Tag> AnyTag;
+    static const std::optional<isPrivate> None = std::nullopt;
 
     static const TorrentFilter DownloadingTorrent;
     static const TorrentFilter SeedingTorrent;
@@ -88,16 +89,19 @@ public:
     TorrentFilter() = default;
     // category & tags: pass empty string for uncategorized / untagged torrents.
     TorrentFilter(Type type, const std::optional<TorrentIDSet> &idSet = AnyID
-            , const std::optional<QString> &category = AnyCategory, const std::optional<Tag> &tag = AnyTag);
+            , const std::optional<QString> &category = AnyCategory, const std::optional<Tag> &tag = AnyTag
+            , const std::optional<isPrivate> &isPrivate = std::nullopt); 
     TorrentFilter(const QString &filter, const std::optional<TorrentIDSet> &idSet = AnyID
-            , const std::optional<QString> &category = AnyCategory, const std::optional<Tag> &tags = AnyTag);
+            , const std::optional<QString> &category = AnyCategory, const std::optional<Tag> &tags = AnyTag
+            , const std::optional<isPrivate> &isPrivate = std::nullopt);  
+
 
     bool setType(Type type);
     bool setTypeByName(const QString &filter);
     bool setTorrentIDSet(const std::optional<TorrentIDSet> &idSet);
     bool setCategory(const std::optional<QString> &category);
     bool setTag(const std::optional<Tag> &tag);
-
+    bool setisPrivate(const std::optional<isPrivate> &isPrivate);
     bool match(const BitTorrent::Torrent *torrent) const;
 
 private:
@@ -105,9 +109,11 @@ private:
     bool matchHash(const BitTorrent::Torrent *torrent) const;
     bool matchCategory(const BitTorrent::Torrent *torrent) const;
     bool matchTag(const BitTorrent::Torrent *torrent) const;
+    bool matchIsPrivate(const BitTorrent::Torrent *torrent) const;
 
     Type m_type {All};
     std::optional<QString> m_category;
     std::optional<Tag> m_tag;
     std::optional<TorrentIDSet> m_idSet;
+    std::optional<isPrivate> m_isPrivate;  
 };

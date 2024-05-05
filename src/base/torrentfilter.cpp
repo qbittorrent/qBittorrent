@@ -34,6 +34,7 @@
 const std::optional<QString> TorrentFilter::AnyCategory;
 const std::optional<TorrentIDSet> TorrentFilter::AnyID;
 const std::optional<Tag> TorrentFilter::AnyTag;
+const std::optional<isPrivate> TorrentFilter::None = std::nullopt;
 
 const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
 const TorrentFilter TorrentFilter::SeedingTorrent(TorrentFilter::Seeding);
@@ -52,19 +53,22 @@ const TorrentFilter TorrentFilter::ErroredTorrent(TorrentFilter::Errored);
 using BitTorrent::Torrent;
 
 TorrentFilter::TorrentFilter(const Type type, const std::optional<TorrentIDSet> &idSet
-        , const std::optional<QString> &category, const std::optional<Tag> &tag)
+        , const std::optional<QString> &category, const std::optional<Tag> &tag, const std::optional<isPrivate> &isPrivate)
     : m_type {type}
     , m_category {category}
     , m_tag {tag}
     , m_idSet {idSet}
+    , m_isPrivate {isPrivate}
 {
 }
 
+
 TorrentFilter::TorrentFilter(const QString &filter, const std::optional<TorrentIDSet> &idSet
-        , const std::optional<QString> &category, const std::optional<Tag> &tag)
+        , const std::optional<QString> &category, const std::optional<Tag> &tag, bool isPrivate)
     : m_category {category}
     , m_tag {tag}
     , m_idSet {idSet}
+    , m_isPrivate {isPrivate}
 {
     setTypeByName(filter);
 }
@@ -130,6 +134,16 @@ bool TorrentFilter::setCategory(const std::optional<QString> &category)
     if (m_category != category)
     {
         m_category = category;
+        return true;
+    }
+
+    return false;
+}
+
+bool TorrentFilter::setIsPrivate(const std::optional<bool> &isPrivate)
+{
+    if (m_isPrivate != isPrivate)
+    {
         return true;
     }
 
@@ -223,4 +237,12 @@ bool TorrentFilter::matchTag(const BitTorrent::Torrent *const torrent) const
         return torrent->tags().isEmpty();
 
     return torrent->hasTag(*m_tag);
+}
+
+bool TorrentFilter::matchIsPrivate(const BitTorrent::Torrent *const torrent) const
+{
+    if (!m_isPrivate)
+        return true;
+
+    return false
 }
