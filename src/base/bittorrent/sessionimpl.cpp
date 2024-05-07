@@ -58,6 +58,7 @@
 #include <libtorrent/session_status.hpp>
 #include <libtorrent/torrent_info.hpp>
 
+#include <QDeadlineTimer>
 #include <QDebug>
 #include <QDir>
 #include <QHostAddress>
@@ -480,6 +481,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_isBandwidthSchedulerEnabled(BITTORRENT_SESSION_KEY(u"BandwidthSchedulerEnabled"_s), false)
     , m_isPerformanceWarningEnabled(BITTORRENT_SESSION_KEY(u"PerformanceWarning"_s), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY(u"SaveResumeDataInterval"_s), 60)
+    , m_shutdownTimeout(BITTORRENT_SESSION_KEY(u"ShutdownTimeout"_s), -1)
     , m_port(BITTORRENT_SESSION_KEY(u"Port"_s), -1)
     , m_sslEnabled(BITTORRENT_SESSION_KEY(u"SSL/Enabled"_s), false)
     , m_sslPort(BITTORRENT_SESSION_KEY(u"SSL/Port"_s), -1)
@@ -602,6 +604,9 @@ SessionImpl::~SessionImpl()
 {
     m_nativeSession->pause();
 
+    const qint64 timeout = (m_shutdownTimeout >= 0) ? (m_shutdownTimeout * 1000) : -1;
+    const QDeadlineTimer shutdownDeadlineTimer {timeout};
+
     if (m_torrentsQueueChanged)
     {
         m_nativeSession->post_torrent_updates({});
@@ -628,8 +633,24 @@ SessionImpl::~SessionImpl()
     m_asyncWorker->clear();
     m_asyncWorker->waitForDone();
 
-    qDebug("Deleting libtorrent session...");
+    auto *nativeSessionProxy = new lt::session_proxy(m_nativeSession->abort());
     delete m_nativeSession;
+
+    qDebug("Deleting resume data storage...");
+    delete m_resumeDataStorage;
+    LogMsg(tr("Saving resume data completed."));
+
+    auto *sessionTerminateThread = QThread::create([nativeSessionProxy]()
+    {
+        qDebug("Deleting libtorrent session...");
+        delete nativeSessionProxy;
+    });
+    connect(sessionTerminateThread, &QThread::finished, sessionTerminateThread, &QObject::deleteLater);
+    sessionTerminateThread->start();
+    if (sessionTerminateThread->wait(shutdownDeadlineTimer))
+        LogMsg(tr("BitTorrent session successfully finished."));
+    else
+        LogMsg(tr("Session shutdown timed out."));
 }
 
 QString SessionImpl::getDHTBootstrapNodes() const
@@ -3474,6 +3495,16 @@ void SessionImpl::setSaveResumeDataInterval(const int value)
     {
         m_resumeDataTimer->stop();
     }
+}
+
+int SessionImpl::shutdownTimeout() const
+{
+    return m_shutdownTimeout;
+}
+
+void SessionImpl::setShutdownTimeout(const int value)
+{
+    m_shutdownTimeout = value;
 }
 
 int SessionImpl::port() const
