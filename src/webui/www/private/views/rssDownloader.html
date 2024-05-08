@@ -433,6 +433,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 onSuccess: (response) => {
                     const combobox = $("assignCategoryCombobox");
                     for (const cat in response) {
+                        if (!Object.hasOwn(response, cat))
+                            continue;
+
                         const option = document.createElement("option");
                         option.text = option.value = cat;
                         combobox.add(option);
@@ -476,6 +479,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     rssDownloaderRulesTable.clear();
                     let rowCount = 0;
                     for (const rule in response) {
+                        if (!Object.hasOwn(response, rule))
+                            continue;
                         rssDownloaderRulesTable.updateRowData({
                             rowId: rowCount++,
                             checked: response[rule].enabled,
@@ -641,6 +646,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     rssDownloaderArticlesTable.clear();
                     let rowCount = 0;
                     for (const feed in response) {
+                        if (!Object.hasOwn(response, feed))
+                            continue;
                         rssDownloaderArticlesTable.updateRowData({
                             rowId: rowCount++,
                             name: feed,

@@ -27,6 +27,7 @@ export default [
         },
         rules: {
             "eqeqeq": "error",
+            "guard-for-in": "error",
             "no-undef": "off",
             "no-unused-vars": "off",
             "no-var": "error",

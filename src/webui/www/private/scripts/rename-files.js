@@ -199,6 +199,8 @@ window.qBittorrent.MultiRename = (function() {
                     }
                     // Replace named groups
                     for (const namedGroup in match.groups) {
+                        if (!Object.hasOwn(match.groups, namedGroup))
+                            continue;
                         replacement = replaceGroup(replacement, `$${namedGroup}`, match.groups[namedGroup], "\\", false);
                     }
                     // Replace auxiliary variables

@@ -447,6 +447,9 @@
                     const flattenedResp = [];
                     const recFlatten = (current, name = "", depth = 0, fullName = "") => {
                         for (const child in current) {
+                            if (!Object.hasOwn(current, child))
+                                continue;
+
                             const currentFullName = fullName ? (fullName + "\\" + child) : child;
                             if (current[child].uid !== undefined) {
                                 current[child].name = child;
@@ -671,8 +674,11 @@
         };
 
         const refreshAllFeeds = () => {
-            for (const feedEntry in feedData)
+            for (const feedEntry in feedData) {
+                if (!Object.hasOwn(feedData, feedEntry))
+                    continue;
                 refreshFeed(feedEntry);
+            }
         };
 
         const moveItem = (oldPath) => {

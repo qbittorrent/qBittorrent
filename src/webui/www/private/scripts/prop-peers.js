@@ -80,8 +80,10 @@ window.qBittorrent.PropPeers = (function() {
                         syncTorrentPeersLastResponseId = response["rid"];
                     if (response["peers"]) {
                         for (const key in response["peers"]) {
-                            response["peers"][key]["rowId"] = key;
+                            if (!Object.hasOwn(response["peers"], key))
+                                continue;
 
+                            response["peers"][key]["rowId"] = key;
                             torrentPeersTable.updateRowData(response["peers"][key]);
                         }
                     }
