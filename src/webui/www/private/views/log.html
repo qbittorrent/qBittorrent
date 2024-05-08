@@ -240,8 +240,11 @@
         };
 
         const unload = () => {
-            for (const table in tableInfo)
+            for (const table in tableInfo) {
+                if (!Object.hasOwn(tableInfo, table))
+                    continue;
                 resetTableTimer(table);
+            }
         };
 
         const load = () => {

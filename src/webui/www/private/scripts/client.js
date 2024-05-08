@@ -825,6 +825,9 @@ window.addEventListener("DOMContentLoaded", () => {
                     if (response["torrents"]) {
                         let updateTorrentList = false;
                         for (const key in response["torrents"]) {
+                            if (!Object.hasOwn(response["torrents"], key))
+                                continue;
+
                             response["torrents"][key]["hash"] = key;
                             response["torrents"][key]["rowId"] = key;
                             if (response["torrents"][key]["state"])
@@ -853,8 +856,11 @@ window.addEventListener("DOMContentLoaded", () => {
                     torrentsTable.altRow();
                     if (response["server_state"]) {
                         const tmp = response["server_state"];
-                        for (const k in tmp)
+                        for (const k in tmp) {
+                            if (!Object.hasOwn(tmp, k))
+                                continue;
                             serverState[k] = tmp[k];
+                        }
                         processServerState();
                     }
                     updateFiltersList();

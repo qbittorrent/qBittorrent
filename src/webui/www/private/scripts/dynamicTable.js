@@ -672,8 +672,11 @@ window.qBittorrent.DynamicTable = (function() {
                 row = this.rows.get(rowId);
 
             row["data"] = data;
-            for (const x in data)
+            for (const x in data) {
+                if (!Object.hasOwn(data, x))
+                    continue;
                 row["full_data"][x] = data[x];
+            }
         },
 
         getFilteredAndSortedRows: function() {

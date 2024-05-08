@@ -47,6 +47,9 @@ window.qBittorrent.Download = (function() {
                 if (data) {
                     categories = data;
                     for (const i in data) {
+                        if (!Object.hasOwn(data, i))
+                            continue;
+
                         const category = data[i];
                         const option = new Element("option");
                         option.set("value", category.name);
