@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -36,10 +36,10 @@
 #include "base/utils/fs.h"
 #include "searchpluginmanager.h"
 
-SearchDownloadHandler::SearchDownloadHandler(const QString &siteUrl, const QString &url, SearchPluginManager *manager)
-    : QObject {manager}
+SearchDownloadHandler::SearchDownloadHandler(const QString &pluginName, const QString &url, SearchPluginManager *manager)
+    : QObject(manager)
     , m_manager {manager}
-    , m_downloadProcess {new QProcess {this}}
+    , m_downloadProcess {new QProcess(this)}
 {
     m_downloadProcess->setEnvironment(QProcess::systemEnvironment());
     connect(m_downloadProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished)
@@ -48,7 +48,7 @@ SearchDownloadHandler::SearchDownloadHandler(const QString &siteUrl, const QStri
     {
         Utils::ForeignApps::PYTHON_ISOLATE_MODE_FLAG,
         (SearchPluginManager::engineLocation() / Path(u"nova2dl.py"_s)).toString(),
-        siteUrl,
+        pluginName,
         url
     };
     // Launch search
