@@ -582,7 +582,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             rulesList[rule].mustNotContain = $("mustNotContainText").value;
             rulesList[rule].episodeFilter = $("episodeFilterText").value;
             rulesList[rule].smartFilter = $("useSmartFilter").checked;
-            rulesList[rule].ignoreDays = parseInt($("ignoreDaysValue").value);
+            rulesList[rule].ignoreDays = parseInt($("ignoreDaysValue").value, 10);
             rulesList[rule].affectedFeeds = rssDownloaderFeedSelectionTable.rows.filter((row) => row.full_data.checked)
                 .map((row) => row.full_data.url)
                 .getValues();

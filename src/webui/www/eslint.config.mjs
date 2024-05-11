@@ -34,6 +34,7 @@ export default [
             "operator-assignment": "error",
             "prefer-arrow-callback": "error",
             "prefer-const": "error",
+            "radix": "error",
             "Stylistic/no-mixed-operators": [
                 "error",
                 {
