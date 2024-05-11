@@ -120,18 +120,16 @@ window.qBittorrent.ProgressBar = (function() {
         value = parseFloat(value);
         if (isNaN(value))
             value = 0;
-        if (value > 100)
-            value = 100;
-        if (value < 0)
-            value = 0;
+        value = Math.min(Math.max(value, 0), 100);
         this.vals.value = value;
-        this.vals.dark.empty();
-        this.vals.light.empty();
-        this.vals.dark.appendText(value.round(1).toFixed(1) + "%");
-        this.vals.light.appendText(value.round(1).toFixed(1) + "%");
+
+        const displayedValue = `${value.round(1).toFixed(1)}%`;
+        this.vals.dark.textContent = displayedValue;
+        this.vals.light.textContent = displayedValue;
+
         const r = parseInt(this.vals.width * (value / 100));
-        this.vals.dark.setStyle("clip", "rect(0," + r + "px," + this.vals.height + "px,0)");
-        this.vals.light.setStyle("clip", "rect(0," + this.vals.width + "px," + this.vals.height + "px," + r + "px)");
+        this.vals.dark.setStyle("clip", `rect(0, ${r}px, ${this.vals.height}px, 0)`);
+        this.vals.light.setStyle("clip", `rect(0, ${this.vals.width}px, ${this.vals.height}px, ${r}px)`);
     }
 
     function ProgressBar_setWidth(value) {
