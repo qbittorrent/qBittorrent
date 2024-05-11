@@ -28,7 +28,7 @@
                 menu: "multiRenameFilesMenu",
                 actions: {
                     ToggleSelection: function(element, ref) {
-                        const rowId = parseInt(element.get("data-row-id"));
+                        const rowId = parseInt(element.get("data-row-id"), 10);
                         const row = bulkRenameFilesTable.getNode(rowId);
                         const checkState = (row.checked === 1) ? 0 : 1;
                         bulkRenameFilesTable.toggleNodeTreeCheckbox(rowId, checkState);
@@ -128,7 +128,7 @@
             $("include_folders").checked = fileRenamer.includeFolders;
 
             const multirename_fileEnumerationStart = LocalPreferences.get("multirename_fileEnumerationStart", 0);
-            fileRenamer.fileEnumerationStart = parseInt(multirename_fileEnumerationStart);
+            fileRenamer.fileEnumerationStart = parseInt(multirename_fileEnumerationStart, 10);
             $("file_counter").set("value", fileRenamer.fileEnumerationStart);
 
             const multirename_replaceAll = LocalPreferences.get("multirename_replaceAll", false);
