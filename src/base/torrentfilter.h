@@ -101,7 +101,7 @@ public:
     bool setTorrentIDSet(const std::optional<TorrentIDSet> &idSet);
     bool setCategory(const std::optional<QString> &category);
     bool setTag(const std::optional<Tag> &tag);
-    bool setisPrivate(const std::optional<isPrivate> &isPrivate);
+    bool setIsPrivate(const std::optional<isPrivate> &isPrivate);
     bool match(const BitTorrent::Torrent *torrent) const;
 
 private:
