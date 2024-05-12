@@ -1330,9 +1330,10 @@ void TransferListWidget::applyFilter(const QString &name, const TransferListMode
     m_sortFilterModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
 }
 
-void TransferListWidget::applyStatusFilter(int f)
+void TransferListWidget::applyStatusFilter(const int filterIndex)
 {
-    m_sortFilterModel->setStatusFilter(static_cast<TorrentFilter::Type>(f));
+    const auto filterType = static_cast<TorrentFilter::Type>(filterIndex);
+    m_sortFilterModel->setStatusFilter(((filterType >= TorrentFilter::All) && (filterType < TorrentFilter::_Count)) ? filterType : TorrentFilter::All);
     // Select first item if nothing is selected
     if (selectionModel()->selectedRows(0).empty() && (m_sortFilterModel->rowCount() > 0))
     {

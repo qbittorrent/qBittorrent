@@ -95,7 +95,7 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
     connect(pref, &Preferences::changed, this, &StatusFilterWidget::configure);
 
     const int storedRow = pref->getTransSelFilter();
-    if (item((storedRow < count()) ? storedRow : 0)->isHidden())
+    if (item(((storedRow >= 0) && (storedRow < count())) ? storedRow : 0)->isHidden())
         setCurrentRow(TorrentFilter::All, QItemSelectionModel::SelectCurrent);
     else
         setCurrentRow(storedRow, QItemSelectionModel::SelectCurrent);

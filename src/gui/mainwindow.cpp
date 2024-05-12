@@ -781,8 +781,11 @@ void MainWindow::saveSplitterSettings() const
 
 void MainWindow::cleanup()
 {
-    saveSettings();
-    saveSplitterSettings();
+    if (!m_neverShown)
+    {
+        saveSettings();
+        saveSplitterSettings();
+    }
 
     // delete RSSWidget explicitly to avoid crash in
     // handleRSSUnreadCountUpdated() at application shutdown

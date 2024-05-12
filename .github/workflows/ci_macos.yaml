@@ -49,8 +49,10 @@ jobs:
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
         with:
-          store_cache: ${{ startsWith(github.ref, 'refs/heads/') }}
+          store_cache: ${{ github.ref == 'refs/heads/master' }}
           update_packager_index: false
+          ccache_options: |
+            max_size=2G
 
       - name: Install boost
         run: |
@@ -136,8 +138,18 @@ jobs:
           if [ "${{ matrix.qbt_gui }}" = "GUI=OFF" ]; then
             appName="qbittorrent-nox"
           fi
+          # package
           pushd build
-          macdeployqt "$appName.app" -dmg -no-strip
+          PACKAGE_RETRY=0
+          while [ "$PACKAGE_RETRY" -lt "3" ]; do
+            macdeployqt "$appName.app" -dmg -no-strip
+            if [ -f "$appName.dmg" ]; then
+              break
+            fi
+            sleep 5
+            PACKAGE_RETRY=$((PACKAGE_RETRY + 1))
+            echo "Retry $PACKAGE_RETRY..."
+          done
           popd
           # prepare upload folder
           mkdir upload

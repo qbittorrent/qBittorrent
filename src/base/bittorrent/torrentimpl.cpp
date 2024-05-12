@@ -1519,7 +1519,17 @@ void TorrentImpl::forceRecheck()
     // an incorrect one during the interval until the cached state is updated in a regular way.
     m_nativeStatus.state = lt::torrent_status::checking_resume_data;
 
-    m_hasMissingFiles = false;
+    if (m_hasMissingFiles)
+    {
+        m_hasMissingFiles = false;
+        if (!isPaused())
+        {
+            setAutoManaged(m_operatingMode == TorrentOperatingMode::AutoManaged);
+            if (m_operatingMode == TorrentOperatingMode::Forced)
+                m_nativeHandle.resume();
+        }
+    }
+
     m_unchecked = false;
 
     m_completedFiles.fill(false);
