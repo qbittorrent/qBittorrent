@@ -34,7 +34,7 @@
 const std::optional<QString> TorrentFilter::AnyCategory;
 const std::optional<TorrentIDSet> TorrentFilter::AnyID;
 const std::optional<Tag> TorrentFilter::AnyTag;
-const std::optional<isPrivate> TorrentFilter::None = std::nullopt;
+const std::optional<isPrivate> TorrentFilter::AnyIsPrivate;
 
 const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
 const TorrentFilter TorrentFilter::SeedingTorrent(TorrentFilter::Seeding);
@@ -64,7 +64,7 @@ TorrentFilter::TorrentFilter(const Type type, const std::optional<TorrentIDSet> 
 
 
 TorrentFilter::TorrentFilter(const QString &filter, const std::optional<TorrentIDSet> &idSet
-        , const std::optional<QString> &category, const std::optional<Tag> &tag, bool isPrivate)
+        , const std::optional<QString> &category, const std::optional<Tag> &tag, const std::optional<isPrivate> &isPrivate)
     : m_category {category}
     , m_tag {tag}
     , m_idSet {idSet}
@@ -165,7 +165,7 @@ bool TorrentFilter::match(const Torrent *const torrent) const
 {
     if (!torrent) return false;
 
-    return (matchState(torrent) && matchHash(torrent) && matchCategory(torrent) && matchTag(torrent));
+    return (matchState(torrent) && matchHash(torrent) && matchCategory(torrent) && matchTag(torrent) && matchIsPrivate(torrent));
 }
 
 bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
@@ -244,5 +244,6 @@ bool TorrentFilter::matchIsPrivate(const BitTorrent::Torrent *const torrent) con
     if (!m_isPrivate)
         return true;
 
-    return false
+    // Compares the value passed (m_isPrivate; string) and converts it to bool, and compares it with the isPrivate value of the torrent info
+    return (m_isPrivate.compare("true", Qt::CaseInsensitive) == 0) == torrent->isPrivate()
 }

@@ -70,7 +70,7 @@ public:
     static const std::optional<QString> AnyCategory;
     static const std::optional<TorrentIDSet> AnyID;
     static const std::optional<Tag> AnyTag;
-    static const std::optional<isPrivate> None = std::nullopt;
+    static const std::optional<isPrivate> AnyIsPrivate;
 
     static const TorrentFilter DownloadingTorrent;
     static const TorrentFilter SeedingTorrent;
@@ -88,12 +88,16 @@ public:
 
     TorrentFilter() = default;
     // category & tags: pass empty string for uncategorized / untagged torrents.
-    TorrentFilter(Type type, const std::optional<TorrentIDSet> &idSet = AnyID
-            , const std::optional<QString> &category = AnyCategory, const std::optional<Tag> &tag = AnyTag
-            , const std::optional<isPrivate> &isPrivate = std::nullopt);
-    TorrentFilter(const QString &filter, const std::optional<TorrentIDSet> &idSet = AnyID
-            , const std::optional<QString> &category = AnyCategory, const std::optional<Tag> &tags = AnyTag
-            , const std::optional<isPrivate> &isPrivate = std::nullopt);
+    TorrentFilter(Type type, 
+              const std::optional<TorrentIDSet> &idSet = AnyID
+            , const std::optional<QString> &category = AnyCategory
+            , const std::optional<Tag> &tag = AnyTag
+            , const std::optional<isPrivate> &isPrivate = AnyIsPrivate);
+    TorrentFilter(const QString &filter, 
+              const std::optional<TorrentIDSet> &idSet = AnyID
+            , const std::optional<QString> &category = AnyCategory
+            , const std::optional<Tag> &tags = AnyTag
+            , const std::optional<isPrivate> &isPrivate = AnyIsPrivate);
 
 
     bool setType(Type type);
