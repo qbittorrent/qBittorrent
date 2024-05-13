@@ -34,7 +34,6 @@
 const std::optional<QString> TorrentFilter::AnyCategory;
 const std::optional<TorrentIDSet> TorrentFilter::AnyID;
 const std::optional<Tag> TorrentFilter::AnyTag;
-const std::optional<bool> TorrentFilter::AnyIsPrivate;
 
 const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
 const TorrentFilter TorrentFilter::SeedingTorrent(TorrentFilter::Seeding);

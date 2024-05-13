@@ -298,7 +298,7 @@ void TorrentsController::infoAction()
     int limit {params()[u"limit"_s].toInt()};
     int offset {params()[u"offset"_s].toInt()};
     const QStringList hashes {params()[u"hashes"_s].split(u'|', Qt::SkipEmptyParts)};
-    const bool isPrivate {parseBool(params()[u"isPrivate"_s]).value_or(false)};
+    const std::optional<bool> isPrivate = parseBool(params()[u"isPrivate"_s]);
 
     std::optional<TorrentIDSet> idSet;
     if (!hashes.isEmpty())
