@@ -34,7 +34,7 @@
 const std::optional<QString> TorrentFilter::AnyCategory;
 const std::optional<TorrentIDSet> TorrentFilter::AnyID;
 const std::optional<Tag> TorrentFilter::AnyTag;
-const std::optional<QString> TorrentFilter::AnyIsPrivate;
+const std::optional<bool> TorrentFilter::AnyIsPrivate;
 
 const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
 const TorrentFilter TorrentFilter::SeedingTorrent(TorrentFilter::Seeding);
@@ -53,7 +53,7 @@ const TorrentFilter TorrentFilter::ErroredTorrent(TorrentFilter::Errored);
 using BitTorrent::Torrent;
 
 TorrentFilter::TorrentFilter(const Type type, const std::optional<TorrentIDSet> &idSet
-        , const std::optional<QString> &category, const std::optional<Tag> &tag, const std::optional<QString> &isPrivate)
+        , const std::optional<QString> &category, const std::optional<Tag> &tag, const std::optional<bool> &isPrivate)
     : m_type {type}
     , m_category {category}
     , m_tag {tag}
@@ -64,7 +64,7 @@ TorrentFilter::TorrentFilter(const Type type, const std::optional<TorrentIDSet> 
 
 
 TorrentFilter::TorrentFilter(const QString &filter, const std::optional<TorrentIDSet> &idSet
-        , const std::optional<QString> &category, const std::optional<Tag> &tag, const std::optional<QString> &isPrivate)
+        , const std::optional<QString> &category, const std::optional<Tag> &tag, const std::optional<bool> &isPrivate)
     : m_category {category}
     , m_tag {tag}
     , m_idSet {idSet}
@@ -140,17 +140,6 @@ bool TorrentFilter::setCategory(const std::optional<QString> &category)
     return false;
 }
 
-bool TorrentFilter::setIsPrivate(const std::optional<QString> &isPrivate)
-{
-    if (m_isPrivate != isPrivate)
-    {
-        m_isPrivate = isPrivate;
-        return true;
-    }
-
-    return false;
-}
-
 bool TorrentFilter::setTag(const std::optional<Tag> &tag)
 {
     if (m_tag != tag)
@@ -161,6 +150,19 @@ bool TorrentFilter::setTag(const std::optional<Tag> &tag)
 
     return false;
 }
+
+
+bool TorrentFilter::setIsPrivate(const std::optional<bool> &isPrivate)
+{
+    if (m_isPrivate != isPrivate)
+    {
+        m_isPrivate = isPrivate;
+        return true;
+    }
+
+    return false;
+}
+
 
 bool TorrentFilter::match(const Torrent *const torrent) const
 {
@@ -245,9 +247,5 @@ bool TorrentFilter::matchIsPrivate(const BitTorrent::Torrent *const torrent) con
     if (!m_isPrivate)
         return true;
 
-    // Convert "true" to a QString and compare it with the value stored in m_isPrivate, and create
-    bool m_isPrivateBool = QString::fromUtf8("true").compare(m_isPrivate.value(), Qt::CaseInsensitive) == 0;
-
-    // Compare the boolean value derived from the string with the isPrivate value of the torrent info
-    return m_isPrivateBool == torrent->isPrivate();
+    return m_isPrivate == torrent->isPrivate();
 }
