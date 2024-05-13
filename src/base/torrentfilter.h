@@ -70,7 +70,7 @@ public:
     static const std::optional<QString> AnyCategory;
     static const std::optional<TorrentIDSet> AnyID;
     static const std::optional<Tag> AnyTag;
-    static const std::optional<isPrivate> AnyIsPrivate;
+    static const std::optional<QString> AnyIsPrivate;
 
     static const TorrentFilter DownloadingTorrent;
     static const TorrentFilter SeedingTorrent;
@@ -119,5 +119,5 @@ private:
     std::optional<QString> m_category;
     std::optional<Tag> m_tag;
     std::optional<TorrentIDSet> m_idSet;
-    std::optional<isPrivate> m_isPrivate;
+    std::optional<QString> m_isPrivate;
 };
