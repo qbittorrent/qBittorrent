@@ -350,7 +350,7 @@ window.qBittorrent.PropFiles = (function() {
             return;
         }
         let loadedNewTorrent = false;
-        if (new_hash != current_hash) {
+        if (new_hash !== current_hash) {
             torrentFilesTable.clear();
             current_hash = new_hash;
             loadedNewTorrent = true;

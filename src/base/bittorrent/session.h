@@ -256,6 +256,8 @@ namespace BitTorrent
         virtual void setPerformanceWarningEnabled(bool enable) = 0;
         virtual int saveResumeDataInterval() const = 0;
         virtual void setSaveResumeDataInterval(int value) = 0;
+        virtual int shutdownTimeout() const = 0;
+        virtual void setShutdownTimeout(int value) = 0;
         virtual int port() const = 0;
         virtual void setPort(int port) = 0;
         virtual bool isSSLEnabled() const = 0;
@@ -430,8 +432,14 @@ namespace BitTorrent
         virtual void setResumeDataStorageType(ResumeDataStorageType type) = 0;
         virtual bool isMergeTrackersEnabled() const = 0;
         virtual void setMergeTrackersEnabled(bool enabled) = 0;
+        virtual bool isStartPaused() const = 0;
+        virtual void setStartPaused(bool value) = 0;
 
         virtual bool isRestored() const = 0;
+
+        virtual bool isPaused() const = 0;
+        virtual void pause() = 0;
+        virtual void resume() = 0;
 
         virtual Torrent *getTorrent(const TorrentID &id) const = 0;
         virtual Torrent *findTorrent(const InfoHash &infoHash) const = 0;
@@ -466,6 +474,8 @@ namespace BitTorrent
         void loadTorrentFailed(const QString &error);
         void metadataDownloaded(const TorrentInfo &info);
         void restored();
+        void paused();
+        void resumed();
         void speedLimitModeChanged(bool alternative);
         void statsUpdated();
         void subcategoriesSupportChanged();

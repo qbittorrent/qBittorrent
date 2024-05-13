@@ -1,8 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
- * Copyright (C) 2006-2012  Ishan Arora <ishan@qbittorrent.org>
+ * Copyright (C) 2024  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,29 +26,19 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "number.h"
 
-#include "apicontroller.h"
+#include <algorithm>
+#include <cstdint>
+#include <limits>
 
-class AppController : public APIController
+int Utils::Number::clampingAdd(const int num1, const int num2)
 {
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(AppController)
+    static_assert(sizeof(int64_t) > sizeof(int));
 
-public:
-    using APIController::APIController;
-
-private slots:
-    void webapiVersionAction();
-    void versionAction();
-    void buildInfoAction();
-    void shutdownAction();
-    void preferencesAction();
-    void setPreferencesAction();
-    void defaultSavePathAction();
-    void sendTestEmailAction();
-    void getDirectoryContentAction();
-
-    void networkInterfaceListAction();
-    void networkInterfaceAddressListAction();
-};
+    const int64_t intMin = std::numeric_limits<int>::min();
+    const int64_t intMax = std::numeric_limits<int>::max();
+    const int64_t sumResult = static_cast<int64_t>(num1) + num2;
+    const int64_t clampedValue = std::clamp(sumResult, intMin, intMax);
+    return static_cast<int>(clampedValue);
+}

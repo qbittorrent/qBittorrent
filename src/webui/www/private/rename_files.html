@@ -30,7 +30,7 @@
                     ToggleSelection: function(element, ref) {
                         const rowId = parseInt(element.get('data-row-id'));
                         const row = bulkRenameFilesTable.getNode(rowId);
-                        const checkState = row.checked == 1 ? 0 : 1;
+                        const checkState = (row.checked === 1) ? 0 : 1;
                         bulkRenameFilesTable.toggleNodeTreeCheckbox(rowId, checkState);
                         bulkRenameFilesTable.updateGlobalCheckbox();
                         bulkRenameFilesTable.onRowSelectionChange(bulkRenameFilesTable.getSelectedRows());
@@ -285,10 +285,10 @@
         $('renameOptions').addEvent('change', function(e) {
             const combobox = e.target;
             const replaceOperation = combobox.value;
-            if (replaceOperation == "Replace") {
+            if (replaceOperation === "Replace") {
                 fileRenamer.replaceAll = false;
             }
-            else if (replaceOperation == "Replace All") {
+            else if (replaceOperation === "Replace All") {
                 fileRenamer.replaceAll = true;
             }
             else {

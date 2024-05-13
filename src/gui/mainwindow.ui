@@ -44,14 +44,15 @@
     </property>
     <addaction name="actionStart"/>
     <addaction name="actionStop"/>
-    <addaction name="actionStartAll"/>
-    <addaction name="actionStopAll"/>
     <addaction name="separator"/>
     <addaction name="actionDelete"/>
     <addaction name="actionTopQueuePos"/>
     <addaction name="actionIncreaseQueuePos"/>
     <addaction name="actionDecreaseQueuePos"/>
     <addaction name="actionBottomQueuePos"/>
+    <addaction name="separator"/>
+    <addaction name="actionPauseSession"/>
+    <addaction name="actionResumeSession"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -196,14 +197,14 @@
     <string>Sto&amp;p</string>
    </property>
   </action>
-  <action name="actionStartAll">
+  <action name="actionResumeSession">
    <property name="text">
-    <string>Star&amp;t All</string>
+    <string>&amp;Resume Session</string>
    </property>
   </action>
-  <action name="actionStopAll">
+  <action name="actionPauseSession">
    <property name="text">
-    <string>&amp;Stop All</string>
+    <string>Pau&amp;se Session</string>
    </property>
   </action>
   <action name="actionDelete">

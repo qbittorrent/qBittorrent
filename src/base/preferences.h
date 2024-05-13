@@ -305,8 +305,6 @@ public:
     void setConfirmTorrentRecheck(bool enabled);
     bool confirmRemoveAllTags() const;
     void setConfirmRemoveAllTags(bool enabled);
-    bool confirmPauseAndResumeAll() const;
-    void setConfirmPauseAndResumeAll(bool enabled);
     bool confirmMergeTrackers() const;
     void setConfirmMergeTrackers(bool enabled);
     bool confirmRemoveTrackerFromAllTorrents() const;

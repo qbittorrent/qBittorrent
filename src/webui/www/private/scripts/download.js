@@ -66,7 +66,7 @@ window.qBittorrent.Download = (function() {
         $('startTorrent').checked = !pref.add_stopped_enabled;
         $('addToTopOfQueue').checked = pref.add_to_top_of_queue;
 
-        if (pref.auto_tmm_enabled == 1) {
+        if (pref.auto_tmm_enabled === 1) {
             $('autoTMM').selectedIndex = 1;
             $('savepath').disabled = true;
         }
@@ -96,12 +96,12 @@ window.qBittorrent.Download = (function() {
     };
 
     const changeCategorySelect = function(item) {
-        if (item.value == "\\other") {
+        if (item.value === "\\other") {
             item.nextElementSibling.hidden = false;
             item.nextElementSibling.value = "";
             item.nextElementSibling.select();
 
-            if ($('autoTMM').selectedIndex == 1)
+            if ($('autoTMM').selectedIndex === 1)
                 $('savepath').value = defaultSavePath;
         }
         else {
@@ -109,7 +109,7 @@ window.qBittorrent.Download = (function() {
             const text = item.options[item.selectedIndex].textContent;
             item.nextElementSibling.value = text;
 
-            if ($('autoTMM').selectedIndex == 1) {
+            if ($('autoTMM').selectedIndex === 1) {
                 const categoryName = item.value;
                 const category = categories[categoryName];
                 let savePath = defaultSavePath;
@@ -121,7 +121,7 @@ window.qBittorrent.Download = (function() {
     };
 
     const changeTMM = function(item) {
-        if (item.selectedIndex == 1) {
+        if (item.selectedIndex === 1) {
             $('savepath').disabled = true;
 
             const categorySelect = $('categorySelect');

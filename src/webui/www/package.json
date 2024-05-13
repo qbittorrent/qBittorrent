@@ -11,8 +11,10 @@
     "lint": "eslint private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js && stylelint **/*.css && html-validate private public"
   },
   "devDependencies": {
-    "eslint": "^8",
-    "eslint-plugin-html": "^8",
+    "@stylistic/eslint-plugin": "*",
+    "eslint": "*",
+    "eslint-plugin-html": "*",
+    "eslint-plugin-regexp": "*",
     "html-validate": "*",
     "i18next-parser": "*",
     "js-beautify": "*",

@@ -78,7 +78,7 @@ jobs:
       - name: Install boost
         env:
           BOOST_MAJOR_VERSION: "1"
-          BOOST_MINOR_VERSION: "84"
+          BOOST_MINOR_VERSION: "85"
           BOOST_PATCH_VERSION: "0"
         run: |
           $boost_url="https://boostorg.jfrog.io/artifactory/main/release/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/source/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
@@ -95,7 +95,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: "6.5.2"
+          version: "6.7.0"
           archives: qtbase qtsvg qttools
           cache: true
 
@@ -170,7 +170,7 @@ jobs:
           mkdir upload/qBittorrent/plugins/sqldrivers
           copy "${{ env.Qt6_DIR }}/plugins/sqldrivers/qsqlite.dll" upload/qBittorrent/plugins/sqldrivers
           mkdir upload/qBittorrent/plugins/styles
-          copy "${{ env.Qt6_DIR }}/plugins/styles/qwindowsvistastyle.dll" upload/qBittorrent/plugins/styles
+          copy "${{ env.Qt6_DIR }}/plugins/styles/qmodernwindowsstyle.dll" upload/qBittorrent/plugins/styles
           mkdir upload/qBittorrent/plugins/tls
           copy "${{ env.Qt6_DIR }}/plugins/tls/qschannelbackend.dll" upload/qBittorrent/plugins/tls
           # cmake additionals

@@ -1,4 +1,4 @@
-#VERSION: 1.43
+#VERSION: 1.44
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -40,7 +40,7 @@ import urllib.parse
 import urllib.request
 
 # Some sites blocks default python User-agent
-user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0'
+user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0'
 headers = {'User-Agent': user_agent}
 # SOCKS5 Proxy support
 if "sock_proxy" in os.environ and len(os.environ["sock_proxy"].strip()) > 0:

@@ -30,6 +30,7 @@
 #pragma once
 
 #include <QByteArray>
+#include <QDateTime>
 #include <QList>
 #include <QObject>
 #include <QString>
@@ -47,6 +48,7 @@ struct SearchResult
     qlonglong nbLeechers = 0;
     QString siteUrl;
     QString descrLink;
+    QDateTime pubDate;
 };
 
 class SearchPluginManager;

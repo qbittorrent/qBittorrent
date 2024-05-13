@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016 qBittorrent project
+ * Copyright (C) 2016-2024 qBittorrent project
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -105,6 +105,8 @@ namespace
         ENABLE_MARK_OF_THE_WEB,
 #endif // Q_OS_MACOS || Q_OS_WIN
         PYTHON_EXECUTABLE_PATH,
+        START_SESSION_PAUSED,
+        SESSION_SHUTDOWN_TIMEOUT,
 
         // libtorrent section
         LIBTORRENT_HEADER,
@@ -331,6 +333,10 @@ void AdvancedSettings::saveAdvancedSettings() const
 #endif // Q_OS_MACOS || Q_OS_WIN
     // Python executable path
     pref->setPythonExecutablePath(Path(m_pythonExecutablePath.text().trimmed()));
+    // Start session paused
+    session->setStartPaused(m_checkBoxStartSessionPaused.isChecked());
+    // Session shutdown timeout
+    session->setShutdownTimeout(m_spinBoxSessionShutdownTimeout.value());
     // Choking algorithm
     session->setChokingAlgorithm(m_comboBoxChokingAlgorithm.currentData().value<BitTorrent::ChokingAlgorithm>());
     // Seed choking algorithm
@@ -843,6 +849,18 @@ void AdvancedSettings::loadAdvancedSettings()
     m_pythonExecutablePath.setPlaceholderText(tr("(Auto detect if empty)"));
     m_pythonExecutablePath.setText(pref->getPythonExecutablePath().toString());
     addRow(PYTHON_EXECUTABLE_PATH, tr("Python executable path (may require restart)"), &m_pythonExecutablePath);
+    // Start session paused
+    m_checkBoxStartSessionPaused.setChecked(session->isStartPaused());
+    addRow(START_SESSION_PAUSED, tr("Start BitTorrent session in paused state"), &m_checkBoxStartSessionPaused);
+    // Session shutdown timeout
+    m_spinBoxSessionShutdownTimeout.setMinimum(-1);
+    m_spinBoxSessionShutdownTimeout.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxSessionShutdownTimeout.setValue(session->shutdownTimeout());
+    m_spinBoxSessionShutdownTimeout.setSuffix(tr(" sec", " seconds"));
+    m_spinBoxSessionShutdownTimeout.setSpecialValueText(tr("-1 (unlimited)"));
+    m_spinBoxSessionShutdownTimeout.setToolTip(u"Sets the timeout for the session to be shut down gracefully, at which point it will be forcibly terminated.<br>Note that this does not apply to the saving resume data time."_s);
+    addRow(SESSION_SHUTDOWN_TIMEOUT, tr("BitTorrent session shutdown timeout [-1: unlimited]"), &m_spinBoxSessionShutdownTimeout);
+
     // Choking algorithm
     m_comboBoxChokingAlgorithm.addItem(tr("Fixed slots"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::FixedSlots));
     m_comboBoxChokingAlgorithm.addItem(tr("Upload rate based"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::RateBased));
@@ -940,6 +958,7 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
 {
     auto *label = new QLabel(text);
     label->setOpenExternalLinks(true);
+    label->setToolTip(widget->toolTip());
 
     setCellWidget(row, PROPERTY, label);
     setCellWidget(row, VALUE, widget);

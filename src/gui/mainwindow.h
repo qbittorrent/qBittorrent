@@ -127,7 +127,7 @@ private slots:
     void displayRSSTab();
     void displayExecutionLogTab();
     void toggleFocusBetweenLineEdits();
-    void reloadSessionStats();
+    void loadSessionStats();
     void reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torrents);
     void loadPreferences();
     void optionsSaved();
@@ -203,14 +203,19 @@ private:
     void showStatusBar(bool show);
     void showFiltersSidebar(bool show);
     void applyTransferListFilter();
+    void refreshWindowTitle();
+    void refreshTrayIconTooltip();
 
     Ui::MainWindow *m_ui = nullptr;
 
-    QFileSystemWatcher *m_executableWatcher = nullptr;
-    // GUI related
     QString m_windowTitle;
+    QString m_downloadRate;
+    QString m_uploadRate;
     bool m_posInitialized = false;
     bool m_neverShown = true;
+
+    QFileSystemWatcher *m_executableWatcher = nullptr;
+    // GUI related
     QPointer<QTabWidget> m_tabs;
     QPointer<StatusBar> m_statusBar;
     QPointer<OptionsDialog> m_options;

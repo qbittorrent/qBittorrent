@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015 qBittorrent project
+ * Copyright (C) 2015-2024 qBittorrent project
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -73,13 +73,13 @@ private:
              m_spinBoxOutgoingPortsMin, m_spinBoxOutgoingPortsMax, m_spinBoxUPnPLeaseDuration, m_spinBoxPeerToS,
              m_spinBoxListRefresh, m_spinBoxTrackerPort, m_spinBoxSendBufferWatermark, m_spinBoxSendBufferLowWatermark,
              m_spinBoxSendBufferWatermarkFactor, m_spinBoxConnectionSpeed, m_spinBoxSocketSendBufferSize, m_spinBoxSocketReceiveBufferSize, m_spinBoxSocketBacklogSize,
-             m_spinBoxMaxConcurrentHTTPAnnounces, m_spinBoxStopTrackerTimeout,
+             m_spinBoxMaxConcurrentHTTPAnnounces, m_spinBoxStopTrackerTimeout, m_spinBoxSessionShutdownTimeout,
              m_spinBoxSavePathHistoryLength, m_spinBoxPeerTurnover, m_spinBoxPeerTurnoverCutoff, m_spinBoxPeerTurnoverInterval, m_spinBoxRequestQueueSize;
     QCheckBox m_checkBoxOsCache, m_checkBoxRecheckCompleted, m_checkBoxResolveCountries, m_checkBoxResolveHosts,
               m_checkBoxProgramNotifications, m_checkBoxTorrentAddedNotifications, m_checkBoxReannounceWhenAddressChanged, m_checkBoxTrackerFavicon, m_checkBoxTrackerStatus,
               m_checkBoxTrackerPortForwarding, m_checkBoxConfirmTorrentRecheck, m_checkBoxConfirmRemoveAllTags, m_checkBoxAnnounceAllTrackers, m_checkBoxAnnounceAllTiers,
               m_checkBoxMultiConnectionsPerIp, m_checkBoxValidateHTTPSTrackerCertificate, m_checkBoxSSRFMitigation, m_checkBoxBlockPeersOnPrivilegedPorts, m_checkBoxPieceExtentAffinity,
-              m_checkBoxSuggestMode, m_checkBoxSpeedWidgetEnabled, m_checkBoxIDNSupport, m_checkBoxConfirmRemoveTrackerFromAllTorrents;
+              m_checkBoxSuggestMode, m_checkBoxSpeedWidgetEnabled, m_checkBoxIDNSupport, m_checkBoxConfirmRemoveTrackerFromAllTorrents, m_checkBoxStartSessionPaused;
     QComboBox m_comboBoxInterface, m_comboBoxInterfaceAddress, m_comboBoxDiskIOReadMode, m_comboBoxDiskIOWriteMode, m_comboBoxUtpMixedMode, m_comboBoxChokingAlgorithm,
               m_comboBoxSeedChokingAlgorithm, m_comboBoxResumeDataStorage;
     QLineEdit m_lineEditAppInstanceName, m_pythonExecutablePath, m_lineEditAnnounceIP, m_lineEditDHTBootstrapNodes;

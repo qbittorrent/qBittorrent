@@ -164,7 +164,6 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_REANNOUNCE, torrent.nextAnnounce()},
         {KEY_TORRENT_COMMENT, torrent.comment()},
         {KEY_TORRENT_IS_PRIVATE, torrent.isPrivate()},
-
         {KEY_TORRENT_TOTAL_SIZE, torrent.totalSize()}
     };
 }

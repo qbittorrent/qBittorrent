@@ -61,7 +61,9 @@ public:
         StalledDownloading,
         Checking,
         Moving,
-        Errored
+        Errored,
+
+        _Count
     };
 
     // These mean any permutation, including no category / tag.
