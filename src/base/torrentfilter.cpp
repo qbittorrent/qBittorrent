@@ -245,6 +245,9 @@ bool TorrentFilter::matchIsPrivate(const BitTorrent::Torrent *const torrent) con
     if (!m_isPrivate)
         return true;
 
-    // Compares the value passed (m_isPrivate; string) and converts it to bool, and compares it with the isPrivate value of the torrent info
-    return (m_isPrivate.value().compare(QStringLiteral("true"), Qt::CaseInsensitive) == 0) == torrent->isPrivate();
+    // Convert "true" to a QString and compare it with the value stored in m_isPrivate, and create 
+    bool m_isPrivateBool = QString::fromUtf8("true").compare(m_isPrivate.value(), Qt::CaseInsensitive) == 0;
+
+    // Compare the boolean value derived from the string with the isPrivate value of the torrent info
+    return m_isPrivateBool == torrent->isPrivate();
 }
