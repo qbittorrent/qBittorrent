@@ -34,7 +34,7 @@
 const std::optional<QString> TorrentFilter::AnyCategory;
 const std::optional<TorrentIDSet> TorrentFilter::AnyID;
 const std::optional<Tag> TorrentFilter::AnyTag;
-const std::optional<isPrivate> TorrentFilter::AnyIsPrivate;
+const std::optional<QString> TorrentFilter::AnyIsPrivate;
 
 const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
 const TorrentFilter TorrentFilter::SeedingTorrent(TorrentFilter::Seeding);
@@ -53,7 +53,7 @@ const TorrentFilter TorrentFilter::ErroredTorrent(TorrentFilter::Errored);
 using BitTorrent::Torrent;
 
 TorrentFilter::TorrentFilter(const Type type, const std::optional<TorrentIDSet> &idSet
-        , const std::optional<QString> &category, const std::optional<Tag> &tag, const std::optional<isPrivate> &isPrivate)
+        , const std::optional<QString> &category, const std::optional<Tag> &tag, const std::optional<QString> &isPrivate)
     : m_type {type}
     , m_category {category}
     , m_tag {tag}
@@ -64,7 +64,7 @@ TorrentFilter::TorrentFilter(const Type type, const std::optional<TorrentIDSet> 
 
 
 TorrentFilter::TorrentFilter(const QString &filter, const std::optional<TorrentIDSet> &idSet
-        , const std::optional<QString> &category, const std::optional<Tag> &tag, const std::optional<isPrivate> &isPrivate)
+        , const std::optional<QString> &category, const std::optional<Tag> &tag, const std::optional<QString> &isPrivate)
     : m_category {category}
     , m_tag {tag}
     , m_idSet {idSet}
@@ -140,10 +140,11 @@ bool TorrentFilter::setCategory(const std::optional<QString> &category)
     return false;
 }
 
-bool TorrentFilter::setIsPrivate(const std::optional<bool> &isPrivate)
+bool TorrentFilter::setIsPrivate(const std::optional<QString> &isPrivate)
 {
     if (m_isPrivate != isPrivate)
     {
+        m_isPrivate = isPrivate;
         return true;
     }
 

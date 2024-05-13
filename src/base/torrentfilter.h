@@ -92,12 +92,12 @@ public:
               const std::optional<TorrentIDSet> &idSet = AnyID
             , const std::optional<QString> &category = AnyCategory
             , const std::optional<Tag> &tag = AnyTag
-            , const std::optional<isPrivate> &isPrivate = AnyIsPrivate);
+            , const std::optional<QString> &isPrivate = AnyIsPrivate);
     TorrentFilter(const QString &filter,
               const std::optional<TorrentIDSet> &idSet = AnyID
             , const std::optional<QString> &category = AnyCategory
             , const std::optional<Tag> &tags = AnyTag
-            , const std::optional<isPrivate> &isPrivate = AnyIsPrivate);
+            , const std::optional<QString> &isPrivate = AnyIsPrivate);
 
 
     bool setType(Type type);
@@ -105,7 +105,7 @@ public:
     bool setTorrentIDSet(const std::optional<TorrentIDSet> &idSet);
     bool setCategory(const std::optional<QString> &category);
     bool setTag(const std::optional<Tag> &tag);
-    bool setIsPrivate(const std::optional<isPrivate> &isPrivate);
+    bool setIsPrivate(const std::optional<QString> &isPrivate);
     bool match(const BitTorrent::Torrent *torrent) const;
 
 private:
