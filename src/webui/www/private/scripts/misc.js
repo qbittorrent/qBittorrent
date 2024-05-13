@@ -143,7 +143,7 @@ window.qBittorrent.Misc = (function() {
      * JS counterpart of the function in src/misc.cpp
      */
     const parseHtmlLinks = function(text) {
-        const exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])/ig;
+        const exp = /(\b(https?|ftp|file):\/\/[-\w+&@#/%?=~|!:,.;]*[-\w+&@#/%=~|])/gi;
         return text.replace(exp, "<a target='_blank' rel='noopener noreferrer' href='$1'>$1</a>");
     };
 

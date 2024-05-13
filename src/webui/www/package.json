@@ -12,8 +12,9 @@
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "*",
-    "eslint": "^8",
-    "eslint-plugin-html": "^8",
+    "eslint": "*",
+    "eslint-plugin-html": "*",
+    "eslint-plugin-regexp": "*",
     "html-validate": "*",
     "i18next-parser": "*",
     "js-beautify": "*",

@@ -1527,8 +1527,8 @@ window.addEventListener("DOMContentLoaded", function() {
                         return lowercaseStr.startsWith("http:")
                             || lowercaseStr.startsWith("https:")
                             || lowercaseStr.startsWith("magnet:")
-                            || ((str.length === 40) && !(/[^0-9A-Fa-f]/.test(str))) // v1 hex-encoded SHA-1 info-hash
-                            || ((str.length === 32) && !(/[^2-7A-Za-z]/.test(str))); // v1 Base32 encoded SHA-1 info-hash
+                            || ((str.length === 40) && !(/[^0-9A-F]/i.test(str))) // v1 hex-encoded SHA-1 info-hash
+                            || ((str.length === 32) && !(/[^2-7A-Z]/i.test(str))); // v1 Base32 encoded SHA-1 info-hash
                     });
 
                 if (urls.length <= 0)
