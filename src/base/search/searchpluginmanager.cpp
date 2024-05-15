@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -181,6 +181,17 @@ PluginInfo *SearchPluginManager::pluginInfo(const QString &name) const
     return m_plugins.value(name);
 }
 
+QString SearchPluginManager::pluginNameBySiteURL(const QString &siteURL) const
+{
+    for (const PluginInfo *plugin : asConst(m_plugins))
+    {
+        if (plugin->url == siteURL)
+            return plugin->name;
+    }
+
+    return {};
+}
+
 void SearchPluginManager::enablePlugin(const QString &name, const bool enabled)
 {
     PluginInfo *plugin = m_plugins.value(name, nullptr);
@@ -338,9 +349,9 @@ void SearchPluginManager::checkForUpdates()
             , this, &SearchPluginManager::versionInfoDownloadFinished);
 }
 
-SearchDownloadHandler *SearchPluginManager::downloadTorrent(const QString &siteUrl, const QString &url)
+SearchDownloadHandler *SearchPluginManager::downloadTorrent(const QString &pluginName, const QString &url)
 {
-    return new SearchDownloadHandler {siteUrl, url, this};
+    return new SearchDownloadHandler(pluginName, url, this);
 }
 
 SearchHandler *SearchPluginManager::startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins)
