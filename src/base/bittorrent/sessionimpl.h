@@ -548,34 +548,34 @@ namespace BitTorrent
         void updateSeedingLimitTimer();
         void exportTorrentFile(const Torrent *torrent, const Path &folderPath);
 
-        void handleAlert(const lt::alert *a);
-        void handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts);
-        void dispatchTorrentAlert(const lt::torrent_alert *a);
-        void handleStateUpdateAlert(const lt::state_update_alert *p);
-        void handleMetadataReceivedAlert(const lt::metadata_received_alert *p);
-        void handleFileErrorAlert(const lt::file_error_alert *p);
-        void handleTorrentRemovedAlert(const lt::torrent_removed_alert *p);
-        void handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p);
-        void handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *p);
-        void handleTorrentNeedCertAlert(const lt::torrent_need_cert_alert *a);
-        void handlePortmapWarningAlert(const lt::portmap_error_alert *p);
-        void handlePortmapAlert(const lt::portmap_alert *p);
-        void handlePeerBlockedAlert(const lt::peer_blocked_alert *p);
-        void handlePeerBanAlert(const lt::peer_ban_alert *p);
-        void handleUrlSeedAlert(const lt::url_seed_alert *p);
-        void handleListenSucceededAlert(const lt::listen_succeeded_alert *p);
-        void handleListenFailedAlert(const lt::listen_failed_alert *p);
-        void handleExternalIPAlert(const lt::external_ip_alert *p);
-        void handleSessionErrorAlert(const lt::session_error_alert *p) const;
-        void handleSessionStatsAlert(const lt::session_stats_alert *p);
-        void handleAlertsDroppedAlert(const lt::alerts_dropped_alert *p) const;
-        void handleStorageMovedAlert(const lt::storage_moved_alert *p);
-        void handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p);
-        void handleSocks5Alert(const lt::socks5_alert *p) const;
-        void handleI2PAlert(const lt::i2p_alert *p) const;
-        void handleTrackerAlert(const lt::tracker_alert *a);
+        void handleAlert(const lt::alert *alert);
+        void dispatchTorrentAlert(const lt::torrent_alert *alert);
+        void handleAddTorrentAlert(const lt::add_torrent_alert *alert);
+        void handleStateUpdateAlert(const lt::state_update_alert *alert);
+        void handleMetadataReceivedAlert(const lt::metadata_received_alert *alert);
+        void handleFileErrorAlert(const lt::file_error_alert *alert);
+        void handleTorrentRemovedAlert(const lt::torrent_removed_alert *alert);
+        void handleTorrentDeletedAlert(const lt::torrent_deleted_alert *alert);
+        void handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *alert);
+        void handleTorrentNeedCertAlert(const lt::torrent_need_cert_alert *alert);
+        void handlePortmapWarningAlert(const lt::portmap_error_alert *alert);
+        void handlePortmapAlert(const lt::portmap_alert *alert);
+        void handlePeerBlockedAlert(const lt::peer_blocked_alert *alert);
+        void handlePeerBanAlert(const lt::peer_ban_alert *alert);
+        void handleUrlSeedAlert(const lt::url_seed_alert *alert);
+        void handleListenSucceededAlert(const lt::listen_succeeded_alert *alert);
+        void handleListenFailedAlert(const lt::listen_failed_alert *alert);
+        void handleExternalIPAlert(const lt::external_ip_alert *alert);
+        void handleSessionErrorAlert(const lt::session_error_alert *alert) const;
+        void handleSessionStatsAlert(const lt::session_stats_alert *alert);
+        void handleAlertsDroppedAlert(const lt::alerts_dropped_alert *alert) const;
+        void handleStorageMovedAlert(const lt::storage_moved_alert *alert);
+        void handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *alert);
+        void handleSocks5Alert(const lt::socks5_alert *alert) const;
+        void handleI2PAlert(const lt::i2p_alert *alert) const;
+        void handleTrackerAlert(const lt::tracker_alert *alert);
 #ifdef QBT_USES_LIBTORRENT2
-        void handleTorrentConflictAlert(const lt::torrent_conflict_alert *a);
+        void handleTorrentConflictAlert(const lt::torrent_conflict_alert *alert);
 #endif
 
         TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
@@ -776,6 +776,9 @@ namespace BitTorrent
         QHash<TorrentID, TorrentID> m_changedTorrentIDs;
         QMap<QString, CategoryOptions> m_categories;
         TagSet m_tags;
+
+        qsizetype m_receivedAddTorrentAlertsCount = 0;
+        QList<Torrent *> m_loadedTorrents;
 
         // This field holds amounts of peers reported by trackers in their responses to announces
         // (torrent.tracker_name.tracker_local_endpoint.protocol_version.num_peers)
