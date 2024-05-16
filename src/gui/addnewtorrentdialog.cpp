@@ -779,7 +779,7 @@ void AddNewTorrentDialog::accept()
     updateCurrentContext();
     emit torrentAccepted(m_currentContext->torrentDescr, m_currentContext->torrentParams);
 
-    setEnabled(!m_ui->checkBoxNeverShow->isChecked());
+    Preferences::instance()->setAddNewTorrentDialogEnabled(!m_ui->checkBoxNeverShow->isChecked());
 
     QDialog::accept();
 }
