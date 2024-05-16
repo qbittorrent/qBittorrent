@@ -80,7 +80,7 @@
 Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignCenter</set>
+          <set>Qt::AlignmentFlag::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -105,6 +105,9 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
          <property name="tabsClosable">
           <bool>true</bool>
          </property>
+         <property name="movable">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
       </layout>
@@ -116,7 +119,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
      <item>
       <spacer name="spacer2">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
