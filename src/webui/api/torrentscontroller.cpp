@@ -287,7 +287,6 @@ void TorrentsController::countAction()
 //   - reverse (bool): enable reverse sorting
 //   - limit (int): set limit number of torrents returned (if greater than 0, otherwise - unlimited)
 //   - offset (int): set offset (if less than 0 - offset from end)
-
 void TorrentsController::infoAction()
 {
     const QString filter {params()[u"filter"_s]};

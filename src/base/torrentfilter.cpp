@@ -62,7 +62,6 @@ TorrentFilter::TorrentFilter(const Type type, const std::optional<TorrentIDSet> 
 {
 }
 
-
 TorrentFilter::TorrentFilter(const QString &filter, const std::optional<TorrentIDSet> &idSet
         , const std::optional<QString> &category, const std::optional<Tag> &tag, const std::optional<bool> &isPrivate)
     : m_category {category}
@@ -151,7 +150,6 @@ bool TorrentFilter::setTag(const std::optional<Tag> &tag)
     return false;
 }
 
-
 bool TorrentFilter::setIsPrivate(const std::optional<bool> &isPrivate)
 {
     if (m_isPrivate != isPrivate)
@@ -162,7 +160,6 @@ bool TorrentFilter::setIsPrivate(const std::optional<bool> &isPrivate)
 
     return false;
 }
-
 
 bool TorrentFilter::match(const Torrent *const torrent) const
 {
