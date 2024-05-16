@@ -1510,8 +1510,8 @@ void MainWindow::loadSessionStats()
 {
     const auto *btSession = BitTorrent::Session::instance();
     const BitTorrent::SessionStatus &status = btSession->status();
-    const QString m_downloadRate = Utils::Misc::friendlyUnit(status.payloadDownloadRate, true);
-    const QString m_uploadRate = Utils::Misc::friendlyUnit(status.payloadUploadRate, true);
+    m_downloadRate = Utils::Misc::friendlyUnit(status.payloadDownloadRate, true);
+    m_uploadRate = Utils::Misc::friendlyUnit(status.payloadUploadRate, true);
 
     // update global information
 #ifdef Q_OS_MACOS
