@@ -226,13 +226,15 @@ bool GUIAddTorrentManager::processTorrent(const QString &source, const BitTorren
 
     dlg->setAttribute(Qt::WA_DeleteOnClose);
     m_dialogs[infoHash] = dlg;
-    connect(dlg, &QDialog::finished, this, [this, source, infoHash, dlg](int result)
+    connect(dlg, &AddNewTorrentDialog::torrentAccepted, this
+            , [this, source](const BitTorrent::TorrentDescriptor &torrentDescr, const BitTorrent::AddTorrentParams &addTorrentParams)
+    {
+        addTorrentToSession(source, torrentDescr, addTorrentParams);
+    });
+    connect(dlg, &QDialog::finished, this, [this, source, infoHash, dlg]
     {
         if (dlg->isDoNotDeleteTorrentChecked())
             releaseTorrentFileGuard(source);
-
-        if (result == QDialog::Accepted)
-            addTorrentToSession(source, dlg->torrentDescriptor(), dlg->addTorrentParams());
 
         m_dialogs.remove(infoHash);
     });

@@ -33,12 +33,17 @@
 
 #include <QDialog>
 
-#include "base/bittorrent/addtorrentparams.h"
-#include "base/bittorrent/torrentdescriptor.h"
 #include "base/path.h"
 #include "base/settingvalue.h"
 
 class LineEdit;
+
+namespace BitTorrent
+{
+    class TorrentDescriptor;
+    class TorrentInfo;
+    struct AddTorrentParams;
+}
 
 namespace Ui
 {
@@ -55,11 +60,11 @@ public:
             , const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
     ~AddNewTorrentDialog() override;
 
-    BitTorrent::TorrentDescriptor torrentDescriptor() const;
-    BitTorrent::AddTorrentParams addTorrentParams() const;
     bool isDoNotDeleteTorrentChecked() const;
-
     void updateMetadata(const BitTorrent::TorrentInfo &metadata);
+
+signals:
+    void torrentAccepted(const BitTorrent::TorrentDescriptor &torrentDescriptor, const BitTorrent::AddTorrentParams &addTorrentParams);
 
 private slots:
     void updateDiskSpaceLabel();
@@ -75,25 +80,27 @@ private slots:
 
 private:
     class TorrentContentAdaptor;
+    struct Context;
 
+    void showEvent(QShowEvent *event) override;
+
+    void setCurrentContext(std::shared_ptr<Context> context);
+    void updateCurrentContext();
     void populateSavePaths();
     void loadState();
     void saveState();
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = {});
     void setupTreeview();
     void saveTorrentFile();
-    bool hasMetadata() const;
-
-    void showEvent(QShowEvent *event) override;
 
     Ui::AddNewTorrentDialog *m_ui = nullptr;
     std::unique_ptr<TorrentContentAdaptor> m_contentAdaptor;
-    BitTorrent::TorrentDescriptor m_torrentDescr;
-    BitTorrent::AddTorrentParams m_torrentParams;
     int m_savePathIndex = -1;
     int m_downloadPathIndex = -1;
     bool m_useDownloadPath = false;
     LineEdit *m_filterLine = nullptr;
+
+    std::shared_ptr<Context> m_currentContext;
 
     SettingValue<QSize> m_storeDialogSize;
     SettingValue<QString> m_storeDefaultCategory;
