@@ -3092,9 +3092,9 @@ void SessionImpl::saveResumeData()
         const std::vector<lt::alert *> alerts = getPendingAlerts(waitTime);
 
         bool hasWantedAlert = false;
-        for (const lt::alert *a : alerts)
+        for (const lt::alert *alert : alerts)
         {
-            if (const int alertType = a->type();
+            if (const int alertType = alert->type();
                 (alertType == lt::save_resume_data_alert::alert_type) || (alertType == lt::save_resume_data_failed_alert::alert_type)
                 || (alertType == lt::storage_moved_alert::alert_type) || (alertType == lt::storage_moved_failed_alert::alert_type)
                 || (alertType == lt::state_update_alert::alert_type))
@@ -3102,7 +3102,7 @@ void SessionImpl::saveResumeData()
                 hasWantedAlert = true;
             }
 
-            handleAlert(a);
+            handleAlert(alert);
         }
 
         if (hasWantedAlert)
@@ -5369,116 +5369,113 @@ void SessionImpl::setTorrentContentLayout(const TorrentContentLayout value)
     m_torrentContentLayout = value;
 }
 
-// Read alerts sent by the BitTorrent session
+// Read alerts sent by libtorrent session
 void SessionImpl::readAlerts()
 {
     const std::vector<lt::alert *> alerts = getPendingAlerts();
-    handleAddTorrentAlerts(alerts);
+
+    Q_ASSERT(m_loadedTorrents.isEmpty());
+    Q_ASSERT(m_receivedAddTorrentAlertsCount == 0);
+
+    if (!isRestored())
+        m_loadedTorrents.reserve(MAX_PROCESSING_RESUMEDATA_COUNT);
+
     for (const lt::alert *a : alerts)
         handleAlert(a);
+
+    if (m_receivedAddTorrentAlertsCount > 0)
+    {
+        emit addTorrentAlertsReceived(m_receivedAddTorrentAlertsCount);
+        m_receivedAddTorrentAlertsCount = 0;
+
+        if (!m_loadedTorrents.isEmpty())
+        {
+            if (isRestored())
+                m_torrentsQueueChanged = true;
+
+            emit torrentsLoaded(m_loadedTorrents);
+            m_loadedTorrents.clear();
+        }
+    }
 
     processTrackerStatuses();
 }
 
-void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
+void SessionImpl::handleAddTorrentAlert(const lt::add_torrent_alert *alert)
 {
-    QVector<Torrent *> loadedTorrents;
-    if (!isRestored())
-        loadedTorrents.reserve(MAX_PROCESSING_RESUMEDATA_COUNT);
+    ++m_receivedAddTorrentAlertsCount;
 
-    qsizetype alertsCount = 0;
-    for (const lt::alert *a : alerts)
+    if (alert->error)
     {
-        if (a->type() != lt::add_torrent_alert::alert_type)
-            continue;
+        const QString msg = QString::fromStdString(alert->message());
+        LogMsg(tr("Failed to load torrent. Reason: \"%1\"").arg(msg), Log::WARNING);
+        emit loadTorrentFailed(msg);
 
-        ++alertsCount;
-
-        const auto *alert = static_cast<const lt::add_torrent_alert *>(a);
-        if (alert->error)
-        {
-            const QString msg = QString::fromStdString(alert->message());
-            LogMsg(tr("Failed to load torrent. Reason: \"%1\"").arg(msg), Log::WARNING);
-            emit loadTorrentFailed(msg);
-
-            const lt::add_torrent_params &params = alert->params;
-            const bool hasMetadata = (params.ti && params.ti->is_valid());
+        const lt::add_torrent_params &params = alert->params;
+        const bool hasMetadata = (params.ti && params.ti->is_valid());
 
 #ifdef QBT_USES_LIBTORRENT2
-            const InfoHash infoHash {(hasMetadata ? params.ti->info_hashes() : params.info_hashes)};
-            if (infoHash.isHybrid())
-                m_hybridTorrentsByAltID.remove(TorrentID::fromSHA1Hash(infoHash.v1()));
+        const InfoHash infoHash {(hasMetadata ? params.ti->info_hashes() : params.info_hashes)};
+        if (infoHash.isHybrid())
+            m_hybridTorrentsByAltID.remove(TorrentID::fromSHA1Hash(infoHash.v1()));
 #else
-            const InfoHash infoHash {(hasMetadata ? params.ti->info_hash() : params.info_hash)};
+        const InfoHash infoHash {(hasMetadata ? params.ti->info_hash() : params.info_hash)};
 #endif
-            if (const auto loadingTorrentsIter = m_loadingTorrents.find(TorrentID::fromInfoHash(infoHash))
-                    ; loadingTorrentsIter != m_loadingTorrents.end())
-            {
-                emit addTorrentFailed(infoHash, msg);
-                m_loadingTorrents.erase(loadingTorrentsIter);
-            }
-            else if (const auto downloadedMetadataIter = m_downloadedMetadata.find(TorrentID::fromInfoHash(infoHash))
-                     ; downloadedMetadataIter != m_downloadedMetadata.end())
-            {
-                m_downloadedMetadata.erase(downloadedMetadataIter);
-                if (infoHash.isHybrid())
-                {
-                    // index hybrid magnet links by both v1 and v2 info hashes
-                    const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
-                    m_downloadedMetadata.remove(altID);
-                }
-            }
-
-            continue;
-        }
-
-#ifdef QBT_USES_LIBTORRENT2
-        const InfoHash infoHash {alert->handle.info_hashes()};
-#else
-        const InfoHash infoHash {alert->handle.info_hash()};
-#endif
-        const auto torrentID = TorrentID::fromInfoHash(infoHash);
-
-        if (const auto loadingTorrentsIter = m_loadingTorrents.find(torrentID)
+        if (const auto loadingTorrentsIter = m_loadingTorrents.find(TorrentID::fromInfoHash(infoHash))
                 ; loadingTorrentsIter != m_loadingTorrents.end())
         {
-            const LoadTorrentParams params = loadingTorrentsIter.value();
+            emit addTorrentFailed(infoHash, msg);
             m_loadingTorrents.erase(loadingTorrentsIter);
-
-            Torrent *torrent = createTorrent(alert->handle, params);
-            loadedTorrents.append(torrent);
         }
-        else if (const auto downloadedMetadataIter = m_downloadedMetadata.find(torrentID)
-                ; downloadedMetadataIter != m_downloadedMetadata.end())
+        else if (const auto downloadedMetadataIter = m_downloadedMetadata.find(TorrentID::fromInfoHash(infoHash))
+                 ; downloadedMetadataIter != m_downloadedMetadata.end())
         {
-            downloadedMetadataIter.value() = alert->handle;
+            m_downloadedMetadata.erase(downloadedMetadataIter);
             if (infoHash.isHybrid())
             {
                 // index hybrid magnet links by both v1 and v2 info hashes
                 const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
-                m_downloadedMetadata[altID] = alert->handle;
+                m_downloadedMetadata.remove(altID);
             }
         }
+
+        return;
     }
 
-    if (alertsCount > 0)
-    {
-        emit addTorrentAlertsReceived(alertsCount);
+#ifdef QBT_USES_LIBTORRENT2
+    const InfoHash infoHash {alert->handle.info_hashes()};
+#else
+    const InfoHash infoHash {alert->handle.info_hash()};
+#endif
+    const auto torrentID = TorrentID::fromInfoHash(infoHash);
 
-        if (!loadedTorrents.isEmpty())
+    if (const auto loadingTorrentsIter = m_loadingTorrents.find(torrentID)
+            ; loadingTorrentsIter != m_loadingTorrents.end())
+    {
+        const LoadTorrentParams params = loadingTorrentsIter.value();
+        m_loadingTorrents.erase(loadingTorrentsIter);
+
+        Torrent *torrent = createTorrent(alert->handle, params);
+        m_loadedTorrents.append(torrent);
+    }
+    else if (const auto downloadedMetadataIter = m_downloadedMetadata.find(torrentID)
+            ; downloadedMetadataIter != m_downloadedMetadata.end())
+    {
+        downloadedMetadataIter.value() = alert->handle;
+        if (infoHash.isHybrid())
         {
-            if (isRestored())
-                m_torrentsQueueChanged = true;
-            emit torrentsLoaded(loadedTorrents);
+            // index hybrid magnet links by both v1 and v2 info hashes
+            const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
+            m_downloadedMetadata[altID] = alert->handle;
         }
     }
 }
 
-void SessionImpl::handleAlert(const lt::alert *a)
+void SessionImpl::handleAlert(const lt::alert *alert)
 {
     try
     {
-        switch (a->type())
+        switch (alert->type())
         {
 #ifdef QBT_USES_LIBTORRENT2
         case lt::file_prio_alert::alert_type:
@@ -5495,83 +5492,83 @@ void SessionImpl::handleAlert(const lt::alert *a)
         case lt::torrent_checked_alert::alert_type:
         case lt::metadata_received_alert::alert_type:
         case lt::performance_alert::alert_type:
-            dispatchTorrentAlert(static_cast<const lt::torrent_alert *>(a));
+            dispatchTorrentAlert(static_cast<const lt::torrent_alert *>(alert));
             break;
         case lt::state_update_alert::alert_type:
-            handleStateUpdateAlert(static_cast<const lt::state_update_alert *>(a));
+            handleStateUpdateAlert(static_cast<const lt::state_update_alert *>(alert));
             break;
         case lt::session_error_alert::alert_type:
-            handleSessionErrorAlert(static_cast<const lt::session_error_alert *>(a));
+            handleSessionErrorAlert(static_cast<const lt::session_error_alert *>(alert));
             break;
         case lt::session_stats_alert::alert_type:
-            handleSessionStatsAlert(static_cast<const lt::session_stats_alert *>(a));
+            handleSessionStatsAlert(static_cast<const lt::session_stats_alert *>(alert));
             break;
         case lt::tracker_announce_alert::alert_type:
         case lt::tracker_error_alert::alert_type:
         case lt::tracker_reply_alert::alert_type:
         case lt::tracker_warning_alert::alert_type:
-            handleTrackerAlert(static_cast<const lt::tracker_alert *>(a));
+            handleTrackerAlert(static_cast<const lt::tracker_alert *>(alert));
             break;
         case lt::file_error_alert::alert_type:
-            handleFileErrorAlert(static_cast<const lt::file_error_alert *>(a));
+            handleFileErrorAlert(static_cast<const lt::file_error_alert *>(alert));
             break;
         case lt::add_torrent_alert::alert_type:
-            // handled separately
+            handleAddTorrentAlert(static_cast<const lt::add_torrent_alert *>(alert));
             break;
         case lt::torrent_removed_alert::alert_type:
-            handleTorrentRemovedAlert(static_cast<const lt::torrent_removed_alert *>(a));
+            handleTorrentRemovedAlert(static_cast<const lt::torrent_removed_alert *>(alert));
             break;
         case lt::torrent_deleted_alert::alert_type:
-            handleTorrentDeletedAlert(static_cast<const lt::torrent_deleted_alert *>(a));
+            handleTorrentDeletedAlert(static_cast<const lt::torrent_deleted_alert *>(alert));
             break;
         case lt::torrent_delete_failed_alert::alert_type:
-            handleTorrentDeleteFailedAlert(static_cast<const lt::torrent_delete_failed_alert *>(a));
+            handleTorrentDeleteFailedAlert(static_cast<const lt::torrent_delete_failed_alert *>(alert));
             break;
         case lt::torrent_need_cert_alert::alert_type:
-            handleTorrentNeedCertAlert(static_cast<const lt::torrent_need_cert_alert *>(a));
+            handleTorrentNeedCertAlert(static_cast<const lt::torrent_need_cert_alert *>(alert));
             break;
         case lt::portmap_error_alert::alert_type:
-            handlePortmapWarningAlert(static_cast<const lt::portmap_error_alert *>(a));
+            handlePortmapWarningAlert(static_cast<const lt::portmap_error_alert *>(alert));
             break;
         case lt::portmap_alert::alert_type:
-            handlePortmapAlert(static_cast<const lt::portmap_alert *>(a));
+            handlePortmapAlert(static_cast<const lt::portmap_alert *>(alert));
             break;
         case lt::peer_blocked_alert::alert_type:
-            handlePeerBlockedAlert(static_cast<const lt::peer_blocked_alert *>(a));
+            handlePeerBlockedAlert(static_cast<const lt::peer_blocked_alert *>(alert));
             break;
         case lt::peer_ban_alert::alert_type:
-            handlePeerBanAlert(static_cast<const lt::peer_ban_alert *>(a));
+            handlePeerBanAlert(static_cast<const lt::peer_ban_alert *>(alert));
             break;
         case lt::url_seed_alert::alert_type:
-            handleUrlSeedAlert(static_cast<const lt::url_seed_alert *>(a));
+            handleUrlSeedAlert(static_cast<const lt::url_seed_alert *>(alert));
             break;
         case lt::listen_succeeded_alert::alert_type:
-            handleListenSucceededAlert(static_cast<const lt::listen_succeeded_alert *>(a));
+            handleListenSucceededAlert(static_cast<const lt::listen_succeeded_alert *>(alert));
             break;
         case lt::listen_failed_alert::alert_type:
-            handleListenFailedAlert(static_cast<const lt::listen_failed_alert *>(a));
+            handleListenFailedAlert(static_cast<const lt::listen_failed_alert *>(alert));
             break;
         case lt::external_ip_alert::alert_type:
-            handleExternalIPAlert(static_cast<const lt::external_ip_alert *>(a));
+            handleExternalIPAlert(static_cast<const lt::external_ip_alert *>(alert));
             break;
         case lt::alerts_dropped_alert::alert_type:
-            handleAlertsDroppedAlert(static_cast<const lt::alerts_dropped_alert *>(a));
+            handleAlertsDroppedAlert(static_cast<const lt::alerts_dropped_alert *>(alert));
             break;
         case lt::storage_moved_alert::alert_type:
-            handleStorageMovedAlert(static_cast<const lt::storage_moved_alert *>(a));
+            handleStorageMovedAlert(static_cast<const lt::storage_moved_alert *>(alert));
             break;
         case lt::storage_moved_failed_alert::alert_type:
-            handleStorageMovedFailedAlert(static_cast<const lt::storage_moved_failed_alert *>(a));
+            handleStorageMovedFailedAlert(static_cast<const lt::storage_moved_failed_alert *>(alert));
             break;
         case lt::socks5_alert::alert_type:
-            handleSocks5Alert(static_cast<const lt::socks5_alert *>(a));
+            handleSocks5Alert(static_cast<const lt::socks5_alert *>(alert));
             break;
         case lt::i2p_alert::alert_type:
-            handleI2PAlert(static_cast<const lt::i2p_alert *>(a));
+            handleI2PAlert(static_cast<const lt::i2p_alert *>(alert));
             break;
 #ifdef QBT_USES_LIBTORRENT2
         case lt::torrent_conflict_alert::alert_type:
-            handleTorrentConflictAlert(static_cast<const lt::torrent_conflict_alert *>(a));
+            handleTorrentConflictAlert(static_cast<const lt::torrent_conflict_alert *>(alert));
             break;
 #endif
         }
@@ -5582,23 +5579,23 @@ void SessionImpl::handleAlert(const lt::alert *a)
     }
 }
 
-void SessionImpl::dispatchTorrentAlert(const lt::torrent_alert *a)
+void SessionImpl::dispatchTorrentAlert(const lt::torrent_alert *alert)
 {
     // The torrent can be deleted between the time the resume data was requested and
     // the time we received the appropriate alert. We have to decrease `m_numResumeData` anyway,
     // so we do this before checking for an existing torrent.
-    if ((a->type() == lt::save_resume_data_alert::alert_type)
-            || (a->type() == lt::save_resume_data_failed_alert::alert_type))
+    if ((alert->type() == lt::save_resume_data_alert::alert_type)
+            || (alert->type() == lt::save_resume_data_failed_alert::alert_type))
     {
         --m_numResumeData;
     }
 
-    const TorrentID torrentID {a->handle.info_hash()};
+    const TorrentID torrentID {alert->handle.info_hash()};
     TorrentImpl *torrent = m_torrents.value(torrentID);
 #ifdef QBT_USES_LIBTORRENT2
-    if (!torrent && (a->type() == lt::metadata_received_alert::alert_type))
+    if (!torrent && (alert->type() == lt::metadata_received_alert::alert_type))
     {
-        const InfoHash infoHash {a->handle.info_hashes()};
+        const InfoHash infoHash {alert->handle.info_hashes()};
         if (infoHash.isHybrid())
             torrent = m_torrents.value(TorrentID::fromSHA1Hash(infoHash.v1()));
     }
@@ -5606,14 +5603,14 @@ void SessionImpl::dispatchTorrentAlert(const lt::torrent_alert *a)
 
     if (torrent)
     {
-        torrent->handleAlert(a);
+        torrent->handleAlert(alert);
         return;
     }
 
-    switch (a->type())
+    switch (alert->type())
     {
     case lt::metadata_received_alert::alert_type:
-        handleMetadataReceivedAlert(static_cast<const lt::metadata_received_alert *>(a));
+        handleMetadataReceivedAlert(static_cast<const lt::metadata_received_alert *>(alert));
         break;
     }
 }
@@ -5663,12 +5660,12 @@ TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, 
     return torrent;
 }
 
-void SessionImpl::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
+void SessionImpl::handleTorrentRemovedAlert(const lt::torrent_removed_alert *alert)
 {
 #ifdef QBT_USES_LIBTORRENT2
-    const auto id = TorrentID::fromInfoHash(p->info_hashes);
+    const auto id = TorrentID::fromInfoHash(alert->info_hashes);
 #else
-    const auto id = TorrentID::fromInfoHash(p->info_hash);
+    const auto id = TorrentID::fromInfoHash(alert->info_hash);
 #endif
 
     const auto removingTorrentDataIter = m_removingTorrents.find(id);
@@ -5682,12 +5679,12 @@ void SessionImpl::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
     }
 }
 
-void SessionImpl::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
+void SessionImpl::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *alert)
 {
 #ifdef QBT_USES_LIBTORRENT2
-    const auto id = TorrentID::fromInfoHash(p->info_hashes);
+    const auto id = TorrentID::fromInfoHash(alert->info_hashes);
 #else
-    const auto id = TorrentID::fromInfoHash(p->info_hash);
+    const auto id = TorrentID::fromInfoHash(alert->info_hash);
 #endif
 
     const auto removingTorrentDataIter = m_removingTorrents.find(id);
@@ -5703,26 +5700,26 @@ void SessionImpl::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
     m_removingTorrents.erase(removingTorrentDataIter);
 }
 
-void SessionImpl::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *p)
+void SessionImpl::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *alert)
 {
 #ifdef QBT_USES_LIBTORRENT2
-    const auto id = TorrentID::fromInfoHash(p->info_hashes);
+    const auto id = TorrentID::fromInfoHash(alert->info_hashes);
 #else
-    const auto id = TorrentID::fromInfoHash(p->info_hash);
+    const auto id = TorrentID::fromInfoHash(alert->info_hash);
 #endif
 
     const auto removingTorrentDataIter = m_removingTorrents.find(id);
     if (removingTorrentDataIter == m_removingTorrents.end())
         return;
 
-    if (p->error)
+    if (alert->error)
     {
         // libtorrent won't delete the directory if it contains files not listed in the torrent,
         // so we remove the directory ourselves
         Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathToRemove);
 
         LogMsg(tr("Removed torrent but failed to delete its content and/or partfile. Torrent: \"%1\". Error: \"%2\"")
-                .arg(removingTorrentDataIter->name, QString::fromLocal8Bit(p->error.message().c_str()))
+                .arg(removingTorrentDataIter->name, QString::fromLocal8Bit(alert->error.message().c_str()))
             , Log::WARNING);
     }
     else // torrent without metadata, hence no files on disk
@@ -5733,12 +5730,12 @@ void SessionImpl::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed
     m_removingTorrents.erase(removingTorrentDataIter);
 }
 
-void SessionImpl::handleTorrentNeedCertAlert(const lt::torrent_need_cert_alert *a)
+void SessionImpl::handleTorrentNeedCertAlert(const lt::torrent_need_cert_alert *alert)
 {
 #ifdef QBT_USES_LIBTORRENT2
-    const InfoHash infoHash {a->handle.info_hashes()};
+    const InfoHash infoHash {alert->handle.info_hashes()};
 #else
-    const InfoHash infoHash {a->handle.info_hash()};
+    const InfoHash infoHash {alert->handle.info_hash()};
 #endif
     const auto torrentID = TorrentID::fromInfoHash(infoHash);
 
@@ -5748,14 +5745,14 @@ void SessionImpl::handleTorrentNeedCertAlert(const lt::torrent_need_cert_alert *
 
     if (!torrent->applySSLParameters())
     {
-        LogMsg(tr("Torrent is missing SSL parameters. Torrent: \"%1\". Message: \"%2\"").arg(torrent->name(), QString::fromStdString(a->message()))
+        LogMsg(tr("Torrent is missing SSL parameters. Torrent: \"%1\". Message: \"%2\"").arg(torrent->name(), QString::fromStdString(alert->message()))
             , Log::WARNING);
     }
 }
 
-void SessionImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
+void SessionImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert *alert)
 {
-    const TorrentID torrentID {p->handle.info_hash()};
+    const TorrentID torrentID {alert->handle.info_hash()};
 
     bool found = false;
     if (const auto iter = m_downloadedMetadata.find(torrentID); iter != m_downloadedMetadata.end())
@@ -5764,7 +5761,7 @@ void SessionImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert 
         m_downloadedMetadata.erase(iter);
     }
 #ifdef QBT_USES_LIBTORRENT2
-    const InfoHash infoHash {p->handle.info_hashes()};
+    const InfoHash infoHash {alert->handle.info_hashes()};
     if (infoHash.isHybrid())
     {
         const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
@@ -5777,29 +5774,29 @@ void SessionImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert 
 #endif
     if (found)
     {
-        const TorrentInfo metadata {*p->handle.torrent_file()};
-        m_nativeSession->remove_torrent(p->handle, lt::session::delete_files);
+        const TorrentInfo metadata {*alert->handle.torrent_file()};
+        m_nativeSession->remove_torrent(alert->handle, lt::session::delete_files);
 
         emit metadataDownloaded(metadata);
     }
 }
 
-void SessionImpl::handleFileErrorAlert(const lt::file_error_alert *p)
+void SessionImpl::handleFileErrorAlert(const lt::file_error_alert *alert)
 {
-    TorrentImpl *const torrent = m_torrents.value(p->handle.info_hash());
+    TorrentImpl *const torrent = m_torrents.value(alert->handle.info_hash());
     if (!torrent)
         return;
 
-    torrent->handleAlert(p);
+    torrent->handleAlert(alert);
 
     const TorrentID id = torrent->id();
     if (!m_recentErroredTorrents.contains(id))
     {
         m_recentErroredTorrents.insert(id);
 
-        const QString msg = QString::fromStdString(p->message());
+        const QString msg = QString::fromStdString(alert->message());
         LogMsg(tr("File error alert. Torrent: \"%1\". File: \"%2\". Reason: \"%3\"")
-                .arg(torrent->name(), QString::fromUtf8(p->filename()), msg)
+                .arg(torrent->name(), QString::fromUtf8(alert->filename()), msg)
             , Log::WARNING);
         emit fullDiskError(torrent, msg);
     }
@@ -5807,33 +5804,33 @@ void SessionImpl::handleFileErrorAlert(const lt::file_error_alert *p)
     m_recentErroredTorrentsTimer->start();
 }
 
-void SessionImpl::handlePortmapWarningAlert(const lt::portmap_error_alert *p)
+void SessionImpl::handlePortmapWarningAlert(const lt::portmap_error_alert *alert)
 {
-    LogMsg(tr("UPnP/NAT-PMP port mapping failed. Message: \"%1\"").arg(QString::fromStdString(p->message())), Log::WARNING);
+    LogMsg(tr("UPnP/NAT-PMP port mapping failed. Message: \"%1\"").arg(QString::fromStdString(alert->message())), Log::WARNING);
 }
 
-void SessionImpl::handlePortmapAlert(const lt::portmap_alert *p)
+void SessionImpl::handlePortmapAlert(const lt::portmap_alert *alert)
 {
-    qDebug("UPnP Success, msg: %s", p->message().c_str());
-    LogMsg(tr("UPnP/NAT-PMP port mapping succeeded. Message: \"%1\"").arg(QString::fromStdString(p->message())), Log::INFO);
+    qDebug("UPnP Success, msg: %s", alert->message().c_str());
+    LogMsg(tr("UPnP/NAT-PMP port mapping succeeded. Message: \"%1\"").arg(QString::fromStdString(alert->message())), Log::INFO);
 }
 
-void SessionImpl::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
+void SessionImpl::handlePeerBlockedAlert(const lt::peer_blocked_alert *alert)
 {
     QString reason;
-    switch (p->reason)
+    switch (alert->reason)
     {
     case lt::peer_blocked_alert::ip_filter:
         reason = tr("IP filter", "this peer was blocked. Reason: IP filter.");
         break;
     case lt::peer_blocked_alert::port_filter:
-        reason = tr("filtered port (%1)", "this peer was blocked. Reason: filtered port (8899).").arg(QString::number(p->endpoint.port()));
+        reason = tr("filtered port (%1)", "this peer was blocked. Reason: filtered port (8899).").arg(QString::number(alert->endpoint.port()));
         break;
     case lt::peer_blocked_alert::i2p_mixed:
         reason = tr("%1 mixed mode restrictions", "this peer was blocked. Reason: I2P mixed mode restrictions.").arg(u"I2P"_s); // don't translate I2P
         break;
     case lt::peer_blocked_alert::privileged_ports:
-        reason = tr("privileged port (%1)", "this peer was blocked. Reason: privileged port (80).").arg(QString::number(p->endpoint.port()));
+        reason = tr("privileged port (%1)", "this peer was blocked. Reason: privileged port (80).").arg(QString::number(alert->endpoint.port()));
         break;
     case lt::peer_blocked_alert::utp_disabled:
         reason = tr("%1 is disabled", "this peer was blocked. Reason: uTP is disabled.").arg(C_UTP); // don't translate μTP
@@ -5843,56 +5840,56 @@ void SessionImpl::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
         break;
     }
 
-    const QString ip {toString(p->endpoint.address())};
+    const QString ip {toString(alert->endpoint.address())};
     if (!ip.isEmpty())
         Logger::instance()->addPeer(ip, true, reason);
 }
 
-void SessionImpl::handlePeerBanAlert(const lt::peer_ban_alert *p)
+void SessionImpl::handlePeerBanAlert(const lt::peer_ban_alert *alert)
 {
-    const QString ip {toString(p->endpoint.address())};
+    const QString ip {toString(alert->endpoint.address())};
     if (!ip.isEmpty())
         Logger::instance()->addPeer(ip, false);
 }
 
-void SessionImpl::handleUrlSeedAlert(const lt::url_seed_alert *p)
+void SessionImpl::handleUrlSeedAlert(const lt::url_seed_alert *alert)
 {
-    const TorrentImpl *torrent = m_torrents.value(p->handle.info_hash());
+    const TorrentImpl *torrent = m_torrents.value(alert->handle.info_hash());
     if (!torrent)
         return;
 
-    if (p->error)
+    if (alert->error)
     {
         LogMsg(tr("URL seed DNS lookup failed. Torrent: \"%1\". URL: \"%2\". Error: \"%3\"")
-            .arg(torrent->name(), QString::fromUtf8(p->server_url()), QString::fromStdString(p->message()))
+            .arg(torrent->name(), QString::fromUtf8(alert->server_url()), QString::fromStdString(alert->message()))
             , Log::WARNING);
     }
     else
     {
         LogMsg(tr("Received error message from URL seed. Torrent: \"%1\". URL: \"%2\". Message: \"%3\"")
-            .arg(torrent->name(), QString::fromUtf8(p->server_url()), QString::fromUtf8(p->error_message()))
+            .arg(torrent->name(), QString::fromUtf8(alert->server_url()), QString::fromUtf8(alert->error_message()))
             , Log::WARNING);
     }
 }
 
-void SessionImpl::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
+void SessionImpl::handleListenSucceededAlert(const lt::listen_succeeded_alert *alert)
 {
-    const QString proto {toString(p->socket_type)};
+    const QString proto {toString(alert->socket_type)};
     LogMsg(tr("Successfully listening on IP. IP: \"%1\". Port: \"%2/%3\"")
-            .arg(toString(p->address), proto, QString::number(p->port)), Log::INFO);
+            .arg(toString(alert->address), proto, QString::number(alert->port)), Log::INFO);
 }
 
-void SessionImpl::handleListenFailedAlert(const lt::listen_failed_alert *p)
+void SessionImpl::handleListenFailedAlert(const lt::listen_failed_alert *alert)
 {
-    const QString proto {toString(p->socket_type)};
+    const QString proto {toString(alert->socket_type)};
     LogMsg(tr("Failed to listen on IP. IP: \"%1\". Port: \"%2/%3\". Reason: \"%4\"")
-        .arg(toString(p->address), proto, QString::number(p->port)
-            , QString::fromLocal8Bit(p->error.message().c_str())), Log::CRITICAL);
+        .arg(toString(alert->address), proto, QString::number(alert->port)
+            , QString::fromLocal8Bit(alert->error.message().c_str())), Log::CRITICAL);
 }
 
-void SessionImpl::handleExternalIPAlert(const lt::external_ip_alert *p)
+void SessionImpl::handleExternalIPAlert(const lt::external_ip_alert *alert)
 {
-    const QString externalIP {toString(p->external_address)};
+    const QString externalIP {toString(alert->external_address)};
     LogMsg(tr("Detected external IP. IP: \"%1\"")
         .arg(externalIP), Log::INFO);
 
@@ -5904,26 +5901,26 @@ void SessionImpl::handleExternalIPAlert(const lt::external_ip_alert *p)
     }
 }
 
-void SessionImpl::handleSessionErrorAlert(const lt::session_error_alert *p) const
+void SessionImpl::handleSessionErrorAlert(const lt::session_error_alert *alert) const
 {
     LogMsg(tr("BitTorrent session encountered a serious error. Reason: \"%1\"")
-        .arg(QString::fromStdString(p->message())), Log::CRITICAL);
+        .arg(QString::fromStdString(alert->message())), Log::CRITICAL);
 }
 
-void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *p)
+void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *alert)
 {
     if (m_refreshEnqueued)
         m_refreshEnqueued = false;
     else
         enqueueRefresh();
 
-    const int64_t interval = lt::total_microseconds(p->timestamp() - m_statsLastTimestamp);
+    const int64_t interval = lt::total_microseconds(alert->timestamp() - m_statsLastTimestamp);
     if (interval <= 0)
         return;
 
-    m_statsLastTimestamp = p->timestamp();
+    m_statsLastTimestamp = alert->timestamp();
 
-    const auto stats = p->counters();
+    const auto stats = alert->counters();
 
     m_status.hasIncomingConnections = static_cast<bool>(stats[m_metricIndices.net.hasIncomingConnections]);
 
@@ -6006,20 +6003,20 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *p)
     emit statsUpdated();
 }
 
-void SessionImpl::handleAlertsDroppedAlert(const lt::alerts_dropped_alert *p) const
+void SessionImpl::handleAlertsDroppedAlert(const lt::alerts_dropped_alert *alert) const
 {
     LogMsg(tr("Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: \"%1\". Message: \"%2\"")
-        .arg(QString::fromStdString(p->dropped_alerts.to_string()), QString::fromStdString(p->message())), Log::CRITICAL);
+        .arg(QString::fromStdString(alert->dropped_alerts.to_string()), QString::fromStdString(alert->message())), Log::CRITICAL);
 }
 
-void SessionImpl::handleStorageMovedAlert(const lt::storage_moved_alert *p)
+void SessionImpl::handleStorageMovedAlert(const lt::storage_moved_alert *alert)
 {
     Q_ASSERT(!m_moveStorageQueue.isEmpty());
 
     const MoveStorageJob &currentJob = m_moveStorageQueue.first();
-    Q_ASSERT(currentJob.torrentHandle == p->handle);
+    Q_ASSERT(currentJob.torrentHandle == alert->handle);
 
-    const Path newPath {QString::fromUtf8(p->storage_path())};
+    const Path newPath {QString::fromUtf8(alert->storage_path())};
     Q_ASSERT(newPath == currentJob.path);
 
 #ifdef QBT_USES_LIBTORRENT2
@@ -6035,12 +6032,12 @@ void SessionImpl::handleStorageMovedAlert(const lt::storage_moved_alert *p)
     handleMoveTorrentStorageJobFinished(newPath);
 }
 
-void SessionImpl::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p)
+void SessionImpl::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *alert)
 {
     Q_ASSERT(!m_moveStorageQueue.isEmpty());
 
     const MoveStorageJob &currentJob = m_moveStorageQueue.first();
-    Q_ASSERT(currentJob.torrentHandle == p->handle);
+    Q_ASSERT(currentJob.torrentHandle == alert->handle);
 
 #ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(currentJob.torrentHandle.info_hashes());
@@ -6051,20 +6048,20 @@ void SessionImpl::handleStorageMovedFailedAlert(const lt::storage_moved_failed_a
     TorrentImpl *torrent = m_torrents.value(id);
     const QString torrentName = (torrent ? torrent->name() : id.toString());
     const Path currentLocation = (torrent ? torrent->actualStorageLocation()
-            : Path(p->handle.status(lt::torrent_handle::query_save_path).save_path));
-    const QString errorMessage = QString::fromStdString(p->message());
+            : Path(alert->handle.status(lt::torrent_handle::query_save_path).save_path));
+    const QString errorMessage = QString::fromStdString(alert->message());
     LogMsg(tr("Failed to move torrent. Torrent: \"%1\". Source: \"%2\". Destination: \"%3\". Reason: \"%4\"")
            .arg(torrentName, currentLocation.toString(), currentJob.path.toString(), errorMessage), Log::WARNING);
 
     handleMoveTorrentStorageJobFinished(currentLocation);
 }
 
-void SessionImpl::handleStateUpdateAlert(const lt::state_update_alert *p)
+void SessionImpl::handleStateUpdateAlert(const lt::state_update_alert *alert)
 {
     QVector<Torrent *> updatedTorrents;
-    updatedTorrents.reserve(static_cast<decltype(updatedTorrents)::size_type>(p->status.size()));
+    updatedTorrents.reserve(static_cast<decltype(updatedTorrents)::size_type>(alert->status.size()));
 
-    for (const lt::torrent_status &status : p->status)
+    for (const lt::torrent_status &status : alert->status)
     {
 #ifdef QBT_USES_LIBTORRENT2
         const auto id = TorrentID::fromInfoHash(status.info_hashes);
@@ -6091,41 +6088,41 @@ void SessionImpl::handleStateUpdateAlert(const lt::state_update_alert *p)
         enqueueRefresh();
 }
 
-void SessionImpl::handleSocks5Alert(const lt::socks5_alert *p) const
+void SessionImpl::handleSocks5Alert(const lt::socks5_alert *alert) const
 {
-    if (p->error)
+    if (alert->error)
     {
-        const auto addr = p->ip.address();
+        const auto addr = alert->ip.address();
         const QString endpoint = (addr.is_v6() ? u"[%1]:%2"_s : u"%1:%2"_s)
-                .arg(QString::fromStdString(addr.to_string()), QString::number(p->ip.port()));
+                .arg(QString::fromStdString(addr.to_string()), QString::number(alert->ip.port()));
         LogMsg(tr("SOCKS5 proxy error. Address: %1. Message: \"%2\".")
-                .arg(endpoint, QString::fromLocal8Bit(p->error.message().c_str()))
+                .arg(endpoint, QString::fromLocal8Bit(alert->error.message().c_str()))
                 , Log::WARNING);
     }
 }
 
-void SessionImpl::handleI2PAlert(const lt::i2p_alert *p) const
+void SessionImpl::handleI2PAlert(const lt::i2p_alert *alert) const
 {
-    if (p->error)
+    if (alert->error)
     {
         LogMsg(tr("I2P error. Message: \"%1\".")
-            .arg(QString::fromStdString(p->message())), Log::WARNING);
+            .arg(QString::fromStdString(alert->message())), Log::WARNING);
     }
 }
 
-void SessionImpl::handleTrackerAlert(const lt::tracker_alert *a)
+void SessionImpl::handleTrackerAlert(const lt::tracker_alert *alert)
 {
-    TorrentImpl *torrent = m_torrents.value(a->handle.info_hash());
+    TorrentImpl *torrent = m_torrents.value(alert->handle.info_hash());
     if (!torrent)
         return;
 
-    QMap<int, int> &updateInfo = m_updatedTrackerStatuses[torrent->nativeHandle()][std::string(a->tracker_url())][a->local_endpoint];
+    QMap<int, int> &updateInfo = m_updatedTrackerStatuses[torrent->nativeHandle()][std::string(alert->tracker_url())][alert->local_endpoint];
 
-    if (a->type() == lt::tracker_reply_alert::alert_type)
+    if (alert->type() == lt::tracker_reply_alert::alert_type)
     {
-        const int numPeers = static_cast<const lt::tracker_reply_alert *>(a)->num_peers;
+        const int numPeers = static_cast<const lt::tracker_reply_alert *>(alert)->num_peers;
 #ifdef QBT_USES_LIBTORRENT2
-        const int protocolVersionNum = (static_cast<const lt::tracker_reply_alert *>(a)->version == lt::protocol_version::V1) ? 1 : 2;
+        const int protocolVersionNum = (static_cast<const lt::tracker_reply_alert *>(alert)->version == lt::protocol_version::V1) ? 1 : 2;
 #else
         const int protocolVersionNum = 1;
 #endif
@@ -6134,10 +6131,10 @@ void SessionImpl::handleTrackerAlert(const lt::tracker_alert *a)
 }
 
 #ifdef QBT_USES_LIBTORRENT2
-void SessionImpl::handleTorrentConflictAlert(const lt::torrent_conflict_alert *a)
+void SessionImpl::handleTorrentConflictAlert(const lt::torrent_conflict_alert *alert)
 {
-    const auto torrentIDv1 = TorrentID::fromSHA1Hash(a->metadata->info_hashes().v1);
-    const auto torrentIDv2 = TorrentID::fromSHA256Hash(a->metadata->info_hashes().v2);
+    const auto torrentIDv1 = TorrentID::fromSHA1Hash(alert->metadata->info_hashes().v1);
+    const auto torrentIDv2 = TorrentID::fromSHA256Hash(alert->metadata->info_hashes().v2);
     TorrentImpl *torrent1 = m_torrents.value(torrentIDv1);
     TorrentImpl *torrent2 = m_torrents.value(torrentIDv2);
     if (torrent2)
@@ -6147,7 +6144,7 @@ void SessionImpl::handleTorrentConflictAlert(const lt::torrent_conflict_alert *a
         else
             cancelDownloadMetadata(torrentIDv1);
 
-        invokeAsync([torrentHandle = torrent2->nativeHandle(), metadata = a->metadata]
+        invokeAsync([torrentHandle = torrent2->nativeHandle(), metadata = alert->metadata]
         {
             try
             {
@@ -6161,7 +6158,7 @@ void SessionImpl::handleTorrentConflictAlert(const lt::torrent_conflict_alert *a
         if (!torrent2)
             cancelDownloadMetadata(torrentIDv2);
 
-        invokeAsync([torrentHandle = torrent1->nativeHandle(), metadata = a->metadata]
+        invokeAsync([torrentHandle = torrent1->nativeHandle(), metadata = alert->metadata]
         {
             try
             {
@@ -6177,7 +6174,7 @@ void SessionImpl::handleTorrentConflictAlert(const lt::torrent_conflict_alert *a
     }
 
     if (!torrent1 || !torrent2)
-        emit metadataDownloaded(TorrentInfo(*a->metadata));
+        emit metadataDownloaded(TorrentInfo(*alert->metadata));
 }
 #endif
 
