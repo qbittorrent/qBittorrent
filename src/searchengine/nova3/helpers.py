@@ -1,4 +1,4 @@
-#VERSION: 1.44
+#VERSION: 1.45
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -27,6 +27,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+import datetime
 import gzip
 import html.entities
 import io
@@ -39,9 +40,25 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-# Some sites blocks default python User-agent
-user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0'
-headers = {'User-Agent': user_agent}
+
+def getBrowserUserAgent():
+    """ Disguise as browser to circumvent website blocking """
+
+    # Firefox release calendar
+    # https://whattrainisitnow.com/calendar/
+    # https://wiki.mozilla.org/index.php?title=Release_Management/Calendar&redirect=no
+
+    baseDate = datetime.date(2024, 4, 16)
+    baseVersion = 125
+
+    nowDate = datetime.date.today()
+    nowVersion = baseVersion + ((nowDate - baseDate).days // 30)
+
+    return f"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:{nowVersion}.0) Gecko/20100101 Firefox/{nowVersion}.0"
+
+
+headers = {'User-Agent': getBrowserUserAgent()}
+
 # SOCKS5 Proxy support
 if "sock_proxy" in os.environ and len(os.environ["sock_proxy"].strip()) > 0:
     proxy_str = os.environ["sock_proxy"].strip()
