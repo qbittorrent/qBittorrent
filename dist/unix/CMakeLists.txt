@@ -4,8 +4,19 @@ if (SYSTEMD)
         if (NOT SYSTEMD_FOUND)
             message(
                 FATAL_ERROR
-                "Could not locate systemd services install dir."
+                "Could not locate systemd system units install dir."
                 " Either pass the -DSYSTEMD_SERVICES_INSTALL_DIR=/path/to/systemd/services option"
+                " or install systemd pkg-config"
+            )
+        endif()
+    endif()
+    if (NOT SYSTEMD_USER_SERVICES_INSTALL_DIR)
+        find_package(Systemd)
+        if (NOT SYSTEMD_FOUND)
+            message(
+                FATAL_ERROR
+                "Could not locate systemd user units install dir."
+		" Either pass the -DSYSTEMD_USER_SERVICES_INSTALL_DIR=/path/to/systemd/user option"
                 " or install systemd pkg-config"
             )
         endif()
@@ -14,6 +25,11 @@ if (SYSTEMD)
     configure_file(systemd/qbittorrent-nox@.service.in ${CMAKE_CURRENT_BINARY_DIR}/qbittorrent-nox@.service @ONLY)
     install(FILES "${CMAKE_CURRENT_BINARY_DIR}/qbittorrent-nox@.service"
         DESTINATION ${SYSTEMD_SERVICES_INSTALL_DIR}
+        COMPONENT data
+    )
+    configure_file(systemd/qbittorrent-nox.service.in ${CMAKE_CURRENT_BINARY_DIR}/qbittorrent-nox.service @ONLY)
+    install(FILES "${CMAKE_CURRENT_BINARY_DIR}/qbittorrent-nox.service"
+        DESTINATION ${SYSTEMD_USER_SERVICES_INSTALL_DIR}
         COMPONENT data
     )
 endif()

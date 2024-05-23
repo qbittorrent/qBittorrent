@@ -36,7 +36,7 @@ endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     feature_option_dependent(SYSTEMD
-        "Install systemd service file. Target directory is overridable with `SYSTEMD_SERVICES_INSTALL_DIR` variable"
+        "Install systemd unit files. Target directory is overridable with `SYSTEMD_SERVICES_INSTALL_DIR` and `SYSTEMD_USER_SERVICES_INSTALL_DIR` variable"
         OFF "NOT GUI" OFF
     )
 endif()
