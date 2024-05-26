@@ -1,3 +1,14 @@
+Sun May 26th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.5
+    - BUGFIX: Prevent app from being closed when disabling system tray icon (glassez)
+    - BUGFIX: Fix <kbd>Enter</kbd> key behavior in Add new torrent dialog (glassez)
+    - BUGFIX: Prevent invalid status filter index from being used (glassez)
+    - BUGFIX: Add extra offset for dialog frame (glassez)
+    - BUGFIX: Don't overwrite stored layout of main window with incorrect one (glassez)
+    - BUGFIX: Don't forget to resume "missing files" torrent when rechecking (glassez)
+    - WEBUI: Restore ability to use server-side translation by custom WebUI (glassez)
+    - WEBUI: Fix wrong peer number (Chocobo1)
+    - LINUX: Improve AppStream metadata (Chocobo1)
+
 Sun Mar 24th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.4
     - BUGFIX: Correctly adjust "Add New torrent" dialog position in all the cases (glassez)
     - BUGFIX: Change "metadata received" stop condition behavior (glassez)
