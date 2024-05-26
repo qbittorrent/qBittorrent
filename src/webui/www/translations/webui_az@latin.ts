@@ -16,7 +16,7 @@
     </message>
     <message>
         <source>Start torrent</source>
-        <translation>Torrenti başlatmaq</translation>
+        <translation>Torrenti başlat</translation>
     </message>
     <message>
         <source>Skip hash check</source>

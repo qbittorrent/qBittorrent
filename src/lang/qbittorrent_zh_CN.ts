@@ -231,20 +231,20 @@
         <translation>停止条件：</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="363"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="368"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="364"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="369"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="364"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="370"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="365"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="371"/>
         <source>Metadata received</source>
         <translation>已收到元数据</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="366"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="371"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="367"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="372"/>
         <source>Files checked</source>
         <translation>文件已被检查</translation>
     </message>
@@ -359,40 +359,40 @@
         <translation>保存为 .torrent 文件...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="841"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="842"/>
         <source>I/O Error</source>
         <translation>I/O 错误</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="607"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1092"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="608"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1093"/>
         <source>Invalid torrent</source>
         <translation>无效 Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="466"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="467"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
         <translation>不可用</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="467"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="468"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
         <translation>不可用</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1049"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1050"/>
         <source>Not available</source>
         <translation>不可用</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="675"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="676"/>
         <source>Invalid magnet link</source>
         <translation>无效的磁力链接</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="608"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="609"/>
         <source>Failed to load the torrent: %1.
 Error: %2</source>
         <comment>Don&apos;t remove the &apos;
@@ -401,155 +401,155 @@ Error: %2</source>
 错误：%2</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="675"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="676"/>
         <source>This magnet link was not recognized</source>
         <translation>该磁力链接未被识别</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="724"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="725"/>
         <source>Magnet link</source>
         <translation>磁力链接</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="730"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="731"/>
         <source>Retrieving metadata...</source>
         <translation>正在检索元数据...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="351"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="357"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="352"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="358"/>
         <source>Choose save path</source>
         <translation>选择保存路径</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="635"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="642"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="657"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="692"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="699"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="714"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="636"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="643"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="658"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="693"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="700"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="715"/>
         <source>Torrent is already present</source>
         <translation>Torrent 已存在</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="692"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="693"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Trackers haven&apos;t been merged because it is a private torrent.</source>
         <translation>Torrent “%1” 已在下载列表中。Tracker 信息没有合并，因为这是一个私有 Torrent。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="657"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="658"/>
         <source>Torrent is already queued for processing.</source>
         <translation>Torrent 已在队列中等待处理。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="363"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="364"/>
         <source>No stop condition is set.</source>
         <translation>未设置停止条件。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="364"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="365"/>
         <source>Torrent will stop after metadata is received.</source>
         <translation>接收到元数据后，Torrent 将停止。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="366"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="367"/>
         <source>Torrent will stop after files are initially checked.</source>
         <translation>第一次文件检查完成后，Torrent 将停止。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="367"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="368"/>
         <source>This will also download metadata if it wasn&apos;t there initially.</source>
         <translation>如果最开始不存在元数据，勾选此选项也会下载元数据。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="663"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="664"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="731"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="665"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="732"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="733"/>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="714"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="715"/>
         <source>Magnet link is already queued for processing.</source>
         <translation>磁力链接已在队列中等待处理。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="764"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="765"/>
         <source>%1 (Free space on disk: %2)</source>
         <translation>%1（剩余磁盘空间：%2）</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="765"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="766"/>
         <source>Not available</source>
         <comment>This size is unavailable.</comment>
         <translation>不可用</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="828"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="829"/>
         <source>Torrent file (*%1)</source>
         <translation>Torrent 文件 (*%1)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="831"/>
         <source>Save as torrent file</source>
         <translation>另存为 Torrent 文件</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="842"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="843"/>
         <source>Couldn&apos;t export torrent metadata file &apos;%1&apos;. Reason: %2.</source>
         <translation>无法导出 Torrent 元数据文件 “%1”。原因：%2。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1026"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1027"/>
         <source>Cannot create v2 torrent until its data is fully downloaded.</source>
         <translation>在完全下载数据之前无法创建 v2 Torrent。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1114"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1115"/>
         <source>Cannot download &apos;%1&apos;: %2</source>
         <translation>无法下载 “%1”：%2</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="445"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="446"/>
         <source>Filter files...</source>
         <translation>过滤文件...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="365"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="366"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
         <translation>最开始就有元数据的 Torrent 文件被添加后将处在停止状态</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="635"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="636"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Trackers cannot be merged because it is a private torrent.</source>
         <translation>Torrent “%1” 已经在传输列表中。无法合并 Tracker，因为这是一个私有 Torrent。</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="643"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="700"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="644"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="701"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Do you want to merge trackers from new source?</source>
         <translation>Torrent “%1” 已经在传输列表中。你想合并来自新来源的 Tracker 吗？</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1005"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1006"/>
         <source>Parsing metadata...</source>
         <translation>正在解析元数据...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1009"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1010"/>
         <source>Metadata retrieval complete</source>
         <translation>元数据检索完成</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1092"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1093"/>
         <source>Failed to load from URL: %1.
 Error: %2</source>
         <translation>加载 URL 失败：%1。
 错误：%2</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1113"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1114"/>
         <source>Download Error</source>
         <translation>下载错误</translation>
     </message>
@@ -1313,96 +1313,96 @@ Error: %2</source>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="297"/>
+        <location filename="../app/application.cpp" line="298"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>qBittorrent %1 已启动</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="300"/>
+        <location filename="../app/application.cpp" line="301"/>
         <source>Running in portable mode. Auto detected profile folder at: %1</source>
         <translation>当前运行在便携模式下。自动检测配置文件夹于：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="302"/>
+        <location filename="../app/application.cpp" line="303"/>
         <source>Redundant command line flag detected: &quot;%1&quot;. Portable mode implies relative fastresume.</source>
         <translation>检测到冗余的命令行参数：“%1”。便携模式使用基于相对路径的快速恢复文件。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="306"/>
+        <location filename="../app/application.cpp" line="307"/>
         <source>Using config directory: %1</source>
         <translation>使用配置目录：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="653"/>
+        <location filename="../app/application.cpp" line="654"/>
         <source>Torrent name: %1</source>
         <translation>Torrent 名称：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="654"/>
+        <location filename="../app/application.cpp" line="655"/>
         <source>Torrent size: %1</source>
         <translation>Torrent 大小：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="655"/>
+        <location filename="../app/application.cpp" line="656"/>
         <source>Save path: %1</source>
         <translation>保存路径：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="656"/>
+        <location filename="../app/application.cpp" line="657"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>该 Torrent 下载用时为 %1。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="658"/>
+        <location filename="../app/application.cpp" line="659"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>感谢您使用 qBittorrent。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="689"/>
+        <location filename="../app/application.cpp" line="690"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>Torrent：%1，发送邮件提醒</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="567"/>
+        <location filename="../app/application.cpp" line="568"/>
         <source>Running external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
         <translation>运行外部程序。Torrent：“%1”。命令：`%2`</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="568"/>
+        <location filename="../app/application.cpp" line="569"/>
         <source>Failed to run external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
         <translation>运行外部程序失败。Torrent 文件：“%1”。命令：`%2`</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="665"/>
+        <location filename="../app/application.cpp" line="666"/>
         <source>Torrent &quot;%1&quot; has finished downloading</source>
         <translation>Torrent “%1” 已完成下载</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="771"/>
+        <location filename="../app/application.cpp" line="772"/>
         <source>WebUI will be started shortly after internal preparations. Please wait...</source>
         <translation>WebUI 将在内部准备不久后启动。请稍等…</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="793"/>
-        <location filename="../app/application.cpp" line="954"/>
+        <location filename="../app/application.cpp" line="794"/>
+        <location filename="../app/application.cpp" line="955"/>
         <source>Loading torrents...</source>
         <translation>加载 Torrent 中...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="796"/>
+        <location filename="../app/application.cpp" line="797"/>
         <source>E&amp;xit</source>
         <translation>退出(&amp;X)</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="843"/>
+        <location filename="../app/application.cpp" line="844"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O 错误</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="844"/>
+        <location filename="../app/application.cpp" line="845"/>
         <source>An I/O error occurred for torrent &apos;%1&apos;.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
@@ -1411,116 +1411,116 @@ Error: %2</source>
  原因：%2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="850"/>
+        <location filename="../app/application.cpp" line="851"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="850"/>
+        <location filename="../app/application.cpp" line="851"/>
         <source>Failed to add torrent: %1</source>
         <translation>未能添加以下 Torrent：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="856"/>
+        <location filename="../app/application.cpp" line="857"/>
         <source>Torrent added</source>
         <translation>已添加 Torrent</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="856"/>
+        <location filename="../app/application.cpp" line="857"/>
         <source>&apos;%1&apos; was added.</source>
         <comment>e.g: xxx.avi was added.</comment>
         <translation>已添加 “%1”。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="861"/>
+        <location filename="../app/application.cpp" line="862"/>
         <source>Download completed</source>
         <translation>下载完成</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="861"/>
+        <location filename="../app/application.cpp" line="862"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>“%1” 下载完成。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="866"/>
+        <location filename="../app/application.cpp" line="867"/>
         <source>URL download error</source>
         <translation>URL 下载出错</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="867"/>
+        <location filename="../app/application.cpp" line="868"/>
         <source>Couldn&apos;t download file at URL &apos;%1&apos;, reason: %2.</source>
         <translation>无法从 URL “%1” 下载文件，原因：%2。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="885"/>
+        <location filename="../app/application.cpp" line="886"/>
         <source>Torrent file association</source>
         <translation>关联 Torrent 文件</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="886"/>
+        <location filename="../app/application.cpp" line="887"/>
         <source>qBittorrent is not the default application for opening torrent files or Magnet links.
 Do you want to make qBittorrent the default application for these?</source>
         <translation>qBittorrent 不是打开 Torrent 文件或 Magnet 链接的默认应用程序。
 您想将 qBittorrent 设置为打开上述内容的默认应用程序吗？</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="914"/>
+        <location filename="../app/application.cpp" line="915"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="915"/>
+        <location filename="../app/application.cpp" line="916"/>
         <source>To control qBittorrent, access the WebUI at: %1</source>
         <translation>要控制 qBittorrent，请访问下列地址的 WebUI：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="920"/>
+        <location filename="../app/application.cpp" line="921"/>
         <source>The WebUI administrator username is: %1</source>
         <translation>WebUI 管理员用户名是：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="921"/>
+        <location filename="../app/application.cpp" line="922"/>
         <source>The WebUI administrator password was not set. A temporary password is provided for this session: %1</source>
         <translation>未设置 WebUI 管理员密码。为此会话提供了一个临时密码：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="922"/>
+        <location filename="../app/application.cpp" line="923"/>
         <source>You should set your own password in program preferences.</source>
         <translation>你应该在程序首选项中设置你自己的密码</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="954"/>
+        <location filename="../app/application.cpp" line="955"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1089"/>
+        <location filename="../app/application.cpp" line="1090"/>
         <source>Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: &quot;%2&quot;</source>
         <translation>设置物理内存（RAM）使用限制失败。错误代码：%1。错误信息：“%2”</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1124"/>
+        <location filename="../app/application.cpp" line="1125"/>
         <source>Failed to set physical memory (RAM) usage hard limit. Requested size: %1. System hard limit: %2. Error code: %3. Error message: &quot;%4&quot;</source>
         <translation>未能设置硬性物理内存（RAM）用量限制。请求的大小：%1。硬性系统限制：%2。错误码：%3。错误消息：“%4”</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1227"/>
+        <location filename="../app/application.cpp" line="1228"/>
         <source>qBittorrent termination initiated</source>
         <translation>发起了 qBittorrent 终止操作</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1233"/>
+        <location filename="../app/application.cpp" line="1234"/>
         <source>qBittorrent is shutting down...</source>
         <translation>qBittorrent 正在关闭...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1247"/>
+        <location filename="../app/application.cpp" line="1248"/>
         <source>Saving torrent progress...</source>
         <translation>正在保存 Torrent 进度...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1281"/>
+        <location filename="../app/application.cpp" line="1282"/>
         <source>qBittorrent is now ready to exit</source>
         <translation>qBittorrent 现在准备好退出了</translation>
     </message>
@@ -2621,42 +2621,42 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>无法写入文件。原因：“%1”。Torrent 目前处在 “仅上传” 模式。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1564"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1574"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
         <translation>先下载首尾文件块：%1，Torrent：“%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1565"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1575"/>
         <source>On</source>
         <translation>开启</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1565"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1575"/>
         <source>Off</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2079"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2089"/>
         <source>Generate resume data failed. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>生成恢复数据失败。Torrent：“%1”。原因：“%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2090"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2100"/>
         <source>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>恢复 Torrent 失败。文件可能被移动或存储不可访问。Torrent：“%1”。原因：“%2”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2585"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2595"/>
         <source>Missing metadata</source>
         <translation>缺少元数据</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2133"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2143"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
         <translation>文件重命名错误。Torrent：“%1”，文件：“%2”，错误：“%3”</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2195"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2205"/>
         <source>Performance alert: %1. More info: %2</source>
         <translation>性能警报：%1。更多信息：%2</translation>
     </message>
@@ -3716,12 +3716,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="407"/>
         <location filename="../gui/mainwindow.ui" line="441"/>
-        <location filename="../gui/mainwindow.cpp" line="1602"/>
+        <location filename="../gui/mainwindow.cpp" line="1605"/>
         <source>Show</source>
         <translation>显示</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1771"/>
+        <location filename="../gui/mainwindow.cpp" line="1774"/>
         <source>Check for program updates</source>
         <translation>检查程序更新</translation>
     </message>
@@ -3736,8 +3736,8 @@ No further notices will be issued.</source>
         <translation>如果您喜欢 qBittorrent，请捐款！</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1851"/>
-        <location filename="../gui/mainwindow.cpp" line="1853"/>
+        <location filename="../gui/mainwindow.cpp" line="1854"/>
+        <location filename="../gui/mainwindow.cpp" line="1856"/>
         <source>Execution Log</source>
         <translation>执行日志</translation>
     </message>
@@ -3768,14 +3768,14 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="437"/>
-        <location filename="../gui/mainwindow.cpp" line="1260"/>
+        <location filename="../gui/mainwindow.cpp" line="1263"/>
         <source>qBittorrent is minimized to tray</source>
         <translation>qBittorrent 已最小化到任务托盘</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="437"/>
-        <location filename="../gui/mainwindow.cpp" line="1167"/>
-        <location filename="../gui/mainwindow.cpp" line="1260"/>
+        <location filename="../gui/mainwindow.cpp" line="1170"/>
+        <location filename="../gui/mainwindow.cpp" line="1263"/>
         <source>This behavior can be changed in the settings. You won&apos;t be reminded again.</source>
         <translation>该行为可以在设置中改变。你不会再次收到此提醒。</translation>
     </message>
@@ -3806,13 +3806,13 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="621"/>
-        <location filename="../gui/mainwindow.cpp" line="1001"/>
+        <location filename="../gui/mainwindow.cpp" line="1004"/>
         <source>UI lock password</source>
         <translation>锁定用户界面的密码</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="622"/>
-        <location filename="../gui/mainwindow.cpp" line="1002"/>
+        <location filename="../gui/mainwindow.cpp" line="1005"/>
         <source>Please type the UI lock password:</source>
         <translation>请输入用于锁定用户界面的密码：</translation>
     </message>
@@ -3837,148 +3837,148 @@ No further notices will be issued.</source>
         <translation>传输 (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="927"/>
+        <location filename="../gui/mainwindow.cpp" line="930"/>
         <source>Recursive download confirmation</source>
         <translation>确认递归下载</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="934"/>
+        <location filename="../gui/mainwindow.cpp" line="937"/>
         <source>Never</source>
         <translation>从不</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1024"/>
+        <location filename="../gui/mainwindow.cpp" line="1027"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
         <translation>qBittorrent 刚刚被更新，需要重启以使更改生效。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1167"/>
+        <location filename="../gui/mainwindow.cpp" line="1170"/>
         <source>qBittorrent is closed to tray</source>
         <translation>qBittorrent 已关闭到任务托盘</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1187"/>
+        <location filename="../gui/mainwindow.cpp" line="1190"/>
         <source>Some files are currently transferring.</source>
         <translation>一些文件正在传输中。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1187"/>
+        <location filename="../gui/mainwindow.cpp" line="1190"/>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation>您确定要退出 qBittorrent 吗？</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1189"/>
+        <location filename="../gui/mainwindow.cpp" line="1192"/>
         <source>&amp;No</source>
         <translation>否(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1190"/>
+        <location filename="../gui/mainwindow.cpp" line="1193"/>
         <source>&amp;Yes</source>
         <translation>是(&amp;Y)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1191"/>
+        <location filename="../gui/mainwindow.cpp" line="1194"/>
         <source>&amp;Always Yes</source>
         <translation>总是(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1400"/>
+        <location filename="../gui/mainwindow.cpp" line="1403"/>
         <source>Options saved.</source>
         <translation>已保存选项</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1539"/>
+        <location filename="../gui/mainwindow.cpp" line="1542"/>
         <source>%1/s</source>
         <comment>s is a shorthand for seconds</comment>
         <translation>%1/s</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1706"/>
-        <location filename="../gui/mainwindow.cpp" line="1712"/>
+        <location filename="../gui/mainwindow.cpp" line="1709"/>
+        <location filename="../gui/mainwindow.cpp" line="1715"/>
         <source>Missing Python Runtime</source>
         <translation>缺少 Python 运行环境</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1786"/>
+        <location filename="../gui/mainwindow.cpp" line="1789"/>
         <source>qBittorrent Update Available</source>
         <translation>qBittorrent 有可用更新</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1707"/>
+        <location filename="../gui/mainwindow.cpp" line="1710"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>使用搜索引擎需要 Python，但是它似乎未被安装。
 您想现在安装吗？</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1713"/>
+        <location filename="../gui/mainwindow.cpp" line="1716"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
         <translation>使用搜索引擎需要 Python，但是它似乎未被安装。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1725"/>
-        <location filename="../gui/mainwindow.cpp" line="1732"/>
+        <location filename="../gui/mainwindow.cpp" line="1728"/>
+        <location filename="../gui/mainwindow.cpp" line="1735"/>
         <source>Old Python Runtime</source>
         <translation>Python 运行环境过旧</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1783"/>
+        <location filename="../gui/mainwindow.cpp" line="1786"/>
         <source>A new version is available.</source>
         <translation>新版本可用。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1784"/>
+        <location filename="../gui/mainwindow.cpp" line="1787"/>
         <source>Do you want to download %1?</source>
         <translation>您想要下载版本 %1 吗？</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1785"/>
+        <location filename="../gui/mainwindow.cpp" line="1788"/>
         <source>Open changelog...</source>
         <translation>打开更新日志...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1807"/>
+        <location filename="../gui/mainwindow.cpp" line="1810"/>
         <source>No updates available.
 You are already using the latest version.</source>
         <translation>没有可用更新。
 您正在使用的已是最新版本。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1770"/>
+        <location filename="../gui/mainwindow.cpp" line="1773"/>
         <source>&amp;Check for Updates</source>
         <translation>检查更新(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1726"/>
+        <location filename="../gui/mainwindow.cpp" line="1729"/>
         <source>Your Python version (%1) is outdated. Minimum requirement: %2.
 Do you want to install a newer version now?</source>
         <translation>您的 Python 版本（%1）已过时。最低要求：%2。
 您想现在安装较新的版本吗?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1733"/>
+        <location filename="../gui/mainwindow.cpp" line="1736"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: %2.</source>
         <translation>您的 Python 版本（%1）已过时，请更新其至最新版本以继续使用搜索引擎。
 最低要求：%2。</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1960"/>
+        <location filename="../gui/mainwindow.cpp" line="1963"/>
         <source>Checking for Updates...</source>
         <translation>正在检查更新...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1961"/>
+        <location filename="../gui/mainwindow.cpp" line="1964"/>
         <source>Already checking for program updates in the background</source>
         <translation>已经在后台检查程序更新</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1999"/>
+        <location filename="../gui/mainwindow.cpp" line="2002"/>
         <source>Download error</source>
         <translation>下载出错</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2000"/>
+        <location filename="../gui/mainwindow.cpp" line="2003"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>无法下载 Python 安装程序，原因：%1。
@@ -3986,7 +3986,7 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="628"/>
-        <location filename="../gui/mainwindow.cpp" line="1010"/>
+        <location filename="../gui/mainwindow.cpp" line="1013"/>
         <source>Invalid password</source>
         <translation>无效密码</translation>
     </message>
@@ -4013,50 +4013,50 @@ Please install it manually.</source>
         <translation>RSS (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="928"/>
+        <location filename="../gui/mainwindow.cpp" line="931"/>
         <source>The torrent &apos;%1&apos; contains .torrent files, do you want to proceed with their downloads?</source>
         <translation>Torrent “%1” 包含 .torrent 文件，您要继续下载它们的内容吗？</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1010"/>
+        <location filename="../gui/mainwindow.cpp" line="1013"/>
         <source>The password is invalid</source>
         <translation>该密码无效</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1548"/>
+        <location filename="../gui/mainwindow.cpp" line="1551"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>下载速度：%1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1549"/>
+        <location filename="../gui/mainwindow.cpp" line="1552"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>上传速度：%1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1555"/>
+        <location filename="../gui/mainwindow.cpp" line="1558"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[D: %1, U: %2] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1602"/>
+        <location filename="../gui/mainwindow.cpp" line="1605"/>
         <source>Hide</source>
         <translation>隐藏</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1185"/>
+        <location filename="../gui/mainwindow.cpp" line="1188"/>
         <source>Exiting qBittorrent</source>
         <translation>正在退出 qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1366"/>
+        <location filename="../gui/mainwindow.cpp" line="1369"/>
         <source>Open Torrent Files</source>
         <translation>打开 Torrent 文件</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1367"/>
+        <location filename="../gui/mainwindow.cpp" line="1370"/>
         <source>Torrent Files</source>
         <translation>Torrent 文件</translation>
     </message>
@@ -7910,27 +7910,27 @@ Those plugins were disabled.</source>
 <context>
     <name>Private::FileLineEdit</name>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="307"/>
+        <location filename="../gui/fspathedit_p.cpp" line="306"/>
         <source>Path does not exist</source>
         <translation>路径不存在</translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="309"/>
+        <location filename="../gui/fspathedit_p.cpp" line="308"/>
         <source>Path does not point to a directory</source>
         <translation>路径不指向一个目录</translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="311"/>
+        <location filename="../gui/fspathedit_p.cpp" line="310"/>
         <source>Path does not point to a file</source>
         <translation>路径不指向一个文件</translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="313"/>
+        <location filename="../gui/fspathedit_p.cpp" line="312"/>
         <source>Don&apos;t have read permission to path</source>
         <translation>没有读取路径的权限</translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="315"/>
+        <location filename="../gui/fspathedit_p.cpp" line="314"/>
         <source>Don&apos;t have write permission to path</source>
         <translation>没有写入路径的权限</translation>
     </message>
@@ -11882,32 +11882,32 @@ Please choose a different name and try again.</source>
         <translation>自定义 WebUI HTTP 头字段缺少分隔符 “:”：“%1”</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="537"/>
+        <location filename="../webui/webapplication.cpp" line="534"/>
         <source>Web server error. %1</source>
         <translation>Web 服务器错误：%1</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="557"/>
+        <location filename="../webui/webapplication.cpp" line="554"/>
         <source>Web server error. Unknown error.</source>
         <translation>Web 服务器错误：未知错误。</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="783"/>
+        <location filename="../webui/webapplication.cpp" line="780"/>
         <source>WebUI: Origin header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>WebUI: 请求 Header 中 Origin 与 XFH/Host 不匹配！来源 IP: &apos;%1&apos;。Origin: &apos;%2&apos;。XFH/Host: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="795"/>
+        <location filename="../webui/webapplication.cpp" line="792"/>
         <source>WebUI: Referer header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>WebUI: 请求 Header 中 Referer 与 XFH/Host 不匹配！来源 IP: &apos;%1&apos;。Referer: &apos;%2&apos;。XFH/Host: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="814"/>
+        <location filename="../webui/webapplication.cpp" line="811"/>
         <source>WebUI: Invalid Host header, port mismatch. Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
         <translation>WebUI：无效的 Host header，端口不匹配。请求的来源 IP：“%1”。服务器端口：“%2”。收到的 Host header：“%3”</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="835"/>
+        <location filename="../webui/webapplication.cpp" line="832"/>
         <source>WebUI: Invalid Host header. Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
         <translation>WebUI：无效的 Host header。请求的来源 IP：“%1”。收到的 Host header：“%2”</translation>
     </message>

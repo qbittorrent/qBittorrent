@@ -84,17 +84,17 @@
     <message>
         <location filename="../gui/aboutdialog.ui" line="353"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopii al tondujo</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Altnivelan BitTorrent kienton programis per C++, kiu uzas Qt ilaron kaj libtorrent-rasterbar.</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
         <source>Copyright %1 2006-2024 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopirajto %1 2006-2024 La qBittorrent-projekto</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -114,7 +114,7 @@
     <message>
         <location filename="../gui/aboutdialog.cpp" line="108"/>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished"></translation>
+        <translation>La libera IP al la datumbazo de Country Light per DB-IP estas uzis por trovas la landon de samtavolanoj. La datumbazon permesas sub la Creative Commons Atribution 4.0 International License</translation>
     </message>
 </context>
 <context>
@@ -123,39 +123,39 @@
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="42"/>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="68"/>
         <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>La malnova vojo estas nevalida: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="44"/>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="70"/>
         <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>La nova indiko estas nevalida: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="46"/>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="72"/>
         <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Absoluta indiko ne rajtas: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="56"/>
         <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>La dosiero jam ekzistas: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="60"/>
         <source>No such file: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosiero ne ekzistas: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="84"/>
         <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>La dosierujo jam ekzistas: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="88"/>
         <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosierujo ne ekzistas: &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -178,7 +178,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="200"/>
         <source>Set as default category</source>
-        <translation type="unfinished"></translation>
+        <translation>Metu kiel defaŭla kategorio</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="175"/>
@@ -193,7 +193,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="379"/>
         <source>Torrent information</source>
-        <translation type="unfinished"></translation>
+        <translation>Torena informo</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="291"/>
@@ -203,22 +203,22 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="122"/>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzi alian indikon por nekompleta torento</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="209"/>
         <source>Tags:</source>
-        <translation type="unfinished"></translation>
+        <translation>Etikedoj:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="225"/>
         <source>Click [...] button to add/remove tags.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alklaki [...] butonon al aldoni/forigi etikedojn.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="235"/>
         <source>Add/remove tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Aldoni/forigi etikedojn</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="238"/>
@@ -228,30 +228,30 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="258"/>
         <source>Stop condition:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="363"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="368"/>
-        <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Haltigi situacion:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="364"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="370"/>
-        <source>Metadata received</source>
-        <translation type="unfinished"></translation>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="369"/>
+        <source>None</source>
+        <translation>Nenio</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="366"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="365"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="371"/>
+        <source>Metadata received</source>
+        <translation>Ricevis metadatenojn</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="367"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="372"/>
         <source>Files checked</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosierojn ekzamenis</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="284"/>
         <source>Add to top of queue</source>
-        <translation type="unfinished"></translation>
+        <translation>Aldoni al super de la vicoj</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="312"/>
@@ -266,22 +266,22 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="337"/>
         <source>Original</source>
-        <translation type="unfinished"></translation>
+        <translation>Originalo</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="342"/>
         <source>Create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation>Kreii subdosierujon</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="347"/>
         <source>Don&apos;t create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne krei subdosierujon</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="385"/>
         <source>Info hash v1:</source>
-        <translation type="unfinished"></translation>
+        <translation>V1 de Informa Haketaĵo:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="464"/>
@@ -301,17 +301,17 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="74"/>
         <source>Torrent Management Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo de Torenta Administrado</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="81"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished"></translation>
+        <translation>La signifo de aŭtomata modo estas diversaj torentaj ecoj(ek. konserva indiko) decidos per la elektita kategorio.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="85"/>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Mana</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="90"/>
@@ -321,12 +321,12 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="155"/>
         <source>Remember last used save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Memori lastan uzitan konservan indikon</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="315"/>
         <source>Do not delete .torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne forigi .torrent dosieron</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="298"/>
@@ -336,12 +336,12 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="305"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished"></translation>
+        <translation>Elŝuti la unuan kaj la finan pecojn unue</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="485"/>
         <source>Info hash v2:</source>
-        <translation type="unfinished"></translation>
+        <translation>V2 de Informa Haketaĵo:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="508"/>
@@ -356,43 +356,43 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="618"/>
         <source>Save as .torrent file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Konservi kiel .torrent dosiero</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="841"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="842"/>
         <source>I/O Error</source>
         <translation>Eneliga eraro</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="607"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1092"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="608"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1093"/>
         <source>Invalid torrent</source>
         <translation>Malvalida torento</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="466"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="467"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
         <translation>Ne Disponeblas</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="467"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="468"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
         <translation>Ne Disponeblas</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1049"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1050"/>
         <source>Not available</source>
         <translation>Ne disponeblas</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="675"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="676"/>
         <source>Invalid magnet link</source>
         <translation>Malvalida magnet-ligilo</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="608"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="609"/>
         <source>Failed to load the torrent: %1.
 Error: %2</source>
         <comment>Don&apos;t remove the &apos;
@@ -400,154 +400,154 @@ Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="675"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="676"/>
         <source>This magnet link was not recognized</source>
         <translation>Ĉi tiu magnet-ligilo ne estis rekonata</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="724"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="725"/>
         <source>Magnet link</source>
         <translation>Magnet-ligilo</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="730"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="731"/>
         <source>Retrieving metadata...</source>
         <translation>Ricevante metadatenojn...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="351"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="357"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="352"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="358"/>
         <source>Choose save path</source>
         <translation>Elektu la dosierindikon por konservi</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="635"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="642"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="657"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="692"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="699"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="714"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="636"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="643"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="658"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="693"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="700"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="715"/>
         <source>Torrent is already present</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="692"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="693"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Trackers haven&apos;t been merged because it is a private torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="657"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="658"/>
         <source>Torrent is already queued for processing.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="363"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="364"/>
         <source>No stop condition is set.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="364"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="365"/>
         <source>Torrent will stop after metadata is received.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torento haltigos post ricevis metadatenojn.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="366"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="367"/>
         <source>Torrent will stop after files are initially checked.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="367"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="368"/>
         <source>This will also download metadata if it wasn&apos;t there initially.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="663"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="664"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="731"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="665"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="732"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="733"/>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="714"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="715"/>
         <source>Magnet link is already queued for processing.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="764"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="765"/>
         <source>%1 (Free space on disk: %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (Libera spaco de disko: %2)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="765"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="766"/>
         <source>Not available</source>
         <comment>This size is unavailable.</comment>
         <translation>Ne disponeblas</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="828"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="829"/>
         <source>Torrent file (*%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Torenta dosiero (*%1)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="831"/>
         <source>Save as torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>Konservi kiel torrenta dosiero</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="842"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="843"/>
         <source>Couldn&apos;t export torrent metadata file &apos;%1&apos;. Reason: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne povas eksporti torentan metadatenan dosieron &apos;%1&apos;. Kialo: %2.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1026"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1027"/>
         <source>Cannot create v2 torrent until its data is fully downloaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne povas kreii v2 torenton ĝis giajn datumojn tute elŝutis.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1114"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1115"/>
         <source>Cannot download &apos;%1&apos;: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="445"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="446"/>
         <source>Filter files...</source>
         <translation>Filtri dosierojn...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="365"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="366"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torentoj kiu havas metadatenojn komence aldonos kiel haltigis.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="635"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="636"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Trackers cannot be merged because it is a private torrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="643"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="700"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="644"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="701"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Do you want to merge trackers from new source?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1005"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1006"/>
         <source>Parsing metadata...</source>
         <translation>Sintakse analizante metadatenojn...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1009"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1010"/>
         <source>Metadata retrieval complete</source>
         <translation>La ricevo de metadatenoj finiĝis</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1092"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1093"/>
         <source>Failed to load from URL: %1.
 Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="1113"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="1114"/>
         <source>Download Error</source>
         <translation>Elŝuta eraro</translation>
     </message>
@@ -562,12 +562,12 @@ Error: %2</source>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="22"/>
         <source>Torrent Management Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo de Torenta Administrado</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="29"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished"></translation>
+        <translation>La signifo de aŭtomata modo estas diversaj torentaj ecoj(ek. konserva indiko) decidos per la elektita kategorio.</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="51"/>
@@ -582,7 +582,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="74"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzi alian indikon por nekompletaj torentoj:</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="107"/>
@@ -592,17 +592,17 @@ Error: %2</source>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="147"/>
         <source>Tags:</source>
-        <translation type="unfinished"></translation>
+        <translation>Etikedoj:</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="163"/>
         <source>Click [...] button to add/remove tags.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alklaki [...] butonon al aldoni/forigi etikedojn.</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="173"/>
         <source>Add/remove tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Aldoni/forigi etikedojn</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="176"/>
@@ -612,7 +612,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="209"/>
         <source>Start torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Komenci torenton:</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="247"/>
@@ -622,12 +622,12 @@ Error: %2</source>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="285"/>
         <source>Stop condition:</source>
-        <translation type="unfinished"></translation>
+        <translation>Haltigi situacion:</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="323"/>
         <source>Add to top of queue:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aldoni al super de la vicoj:</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="346"/>
@@ -648,7 +648,7 @@ Error: %2</source>
         <location filename="../gui/addtorrentparamswidget.cpp" line="100"/>
         <location filename="../gui/addtorrentparamswidget.cpp" line="104"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Defaŭlto</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="83"/>
@@ -667,7 +667,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="87"/>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Mana</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="88"/>
@@ -677,32 +677,32 @@ Error: %2</source>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="91"/>
         <source>Original</source>
-        <translation type="unfinished"></translation>
+        <translation>Originalo</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="92"/>
         <source>Create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation>Kreii subdosierujon</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="93"/>
         <source>Don&apos;t create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne krei subdosierujon</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="96"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenio</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="97"/>
         <source>Metadata received</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricevis metadatenojn</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="98"/>
         <source>Files checked</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosierojn ekzamenis</translation>
     </message>
 </context>
 <context>
@@ -741,7 +741,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="352"/>
         <source> (disabled)</source>
-        <translation type="unfinished"></translation>
+        <translation>(malebligita)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="354"/>
@@ -752,7 +752,7 @@ Error: %2</source>
         <location filename="../gui/advancedsettings.cpp" line="642"/>
         <source> min</source>
         <comment> minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>min</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="390"/>
@@ -768,17 +768,17 @@ Error: %2</source>
         <location filename="../gui/advancedsettings.cpp" line="435"/>
         <location filename="../gui/advancedsettings.cpp" line="443"/>
         <source>Open documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Malfermi dokumentadon</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="391"/>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Ĉiuj IPv4 adresoj</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="392"/>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Ĉiuj IPv6 adresoj</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="446"/>
@@ -986,7 +986,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="556"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Defaŭlto</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="557"/>
@@ -1311,96 +1311,96 @@ Error: %2</source>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="297"/>
+        <location filename="../app/application.cpp" line="298"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>qBittorrent %1 lanĉiĝis</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="300"/>
+        <location filename="../app/application.cpp" line="301"/>
         <source>Running in portable mode. Auto detected profile folder at: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="302"/>
+        <location filename="../app/application.cpp" line="303"/>
         <source>Redundant command line flag detected: &quot;%1&quot;. Portable mode implies relative fastresume.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="306"/>
+        <location filename="../app/application.cpp" line="307"/>
         <source>Using config directory: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="653"/>
+        <location filename="../app/application.cpp" line="654"/>
         <source>Torrent name: %1</source>
         <translation>Nomo de la torento: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="654"/>
+        <location filename="../app/application.cpp" line="655"/>
         <source>Torrent size: %1</source>
         <translation>Grando de la torento: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="655"/>
+        <location filename="../app/application.cpp" line="656"/>
         <source>Save path: %1</source>
         <translation>Konserva dosierindiko: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="656"/>
+        <location filename="../app/application.cpp" line="657"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>La torento elŝutiĝis en %1.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="658"/>
+        <location filename="../app/application.cpp" line="659"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Dankon pro uzi la qBittorrent-klienton.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="689"/>
+        <location filename="../app/application.cpp" line="690"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="567"/>
+        <location filename="../app/application.cpp" line="568"/>
         <source>Running external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="568"/>
+        <location filename="../app/application.cpp" line="569"/>
         <source>Failed to run external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="665"/>
+        <location filename="../app/application.cpp" line="666"/>
         <source>Torrent &quot;%1&quot; has finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="771"/>
+        <location filename="../app/application.cpp" line="772"/>
         <source>WebUI will be started shortly after internal preparations. Please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="793"/>
-        <location filename="../app/application.cpp" line="954"/>
+        <location filename="../app/application.cpp" line="794"/>
+        <location filename="../app/application.cpp" line="955"/>
         <source>Loading torrents...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="796"/>
+        <location filename="../app/application.cpp" line="797"/>
         <source>E&amp;xit</source>
         <translation>&amp;Ĉesu</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="843"/>
+        <location filename="../app/application.cpp" line="844"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Eneliga eraro</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="844"/>
+        <location filename="../app/application.cpp" line="845"/>
         <source>An I/O error occurred for torrent &apos;%1&apos;.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
@@ -1409,115 +1409,115 @@ Error: %2</source>
 Kial: %2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="850"/>
+        <location filename="../app/application.cpp" line="851"/>
         <source>Error</source>
         <translation>Eraro</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="850"/>
+        <location filename="../app/application.cpp" line="851"/>
         <source>Failed to add torrent: %1</source>
         <translation>Ne eblis aldoni la torenton: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="856"/>
+        <location filename="../app/application.cpp" line="857"/>
         <source>Torrent added</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="856"/>
+        <location filename="../app/application.cpp" line="857"/>
         <source>&apos;%1&apos; was added.</source>
         <comment>e.g: xxx.avi was added.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="861"/>
+        <location filename="../app/application.cpp" line="862"/>
         <source>Download completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="861"/>
+        <location filename="../app/application.cpp" line="862"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>&apos;%1&apos; finiĝis elŝuton.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="866"/>
+        <location filename="../app/application.cpp" line="867"/>
         <source>URL download error</source>
         <translation>URL-elŝuta eraro</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="867"/>
+        <location filename="../app/application.cpp" line="868"/>
         <source>Couldn&apos;t download file at URL &apos;%1&apos;, reason: %2.</source>
         <translation>Ne eblis elŝuti dosieron ĉe URL &apos;%1&apos;, kialo: %2.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="885"/>
+        <location filename="../app/application.cpp" line="886"/>
         <source>Torrent file association</source>
         <translation>Torentdosiera asocio</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="886"/>
+        <location filename="../app/application.cpp" line="887"/>
         <source>qBittorrent is not the default application for opening torrent files or Magnet links.
 Do you want to make qBittorrent the default application for these?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="914"/>
+        <location filename="../app/application.cpp" line="915"/>
         <source>Information</source>
         <translation>Informoj</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="915"/>
+        <location filename="../app/application.cpp" line="916"/>
         <source>To control qBittorrent, access the WebUI at: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="920"/>
+        <location filename="../app/application.cpp" line="921"/>
         <source>The WebUI administrator username is: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="921"/>
+        <location filename="../app/application.cpp" line="922"/>
         <source>The WebUI administrator password was not set. A temporary password is provided for this session: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="922"/>
+        <location filename="../app/application.cpp" line="923"/>
         <source>You should set your own password in program preferences.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="954"/>
+        <location filename="../app/application.cpp" line="955"/>
         <source>Exit</source>
         <translation>Ĉesigi</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1089"/>
+        <location filename="../app/application.cpp" line="1090"/>
         <source>Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1124"/>
+        <location filename="../app/application.cpp" line="1125"/>
         <source>Failed to set physical memory (RAM) usage hard limit. Requested size: %1. System hard limit: %2. Error code: %3. Error message: &quot;%4&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1227"/>
+        <location filename="../app/application.cpp" line="1228"/>
         <source>qBittorrent termination initiated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1233"/>
+        <location filename="../app/application.cpp" line="1234"/>
         <source>qBittorrent is shutting down...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1247"/>
+        <location filename="../app/application.cpp" line="1248"/>
         <source>Saving torrent progress...</source>
         <translation>Konservante la torentan progreson...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="1281"/>
+        <location filename="../app/application.cpp" line="1282"/>
         <source>qBittorrent is now ready to exit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2215,14 +2215,14 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2212"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2255"/>
         <source>Removed torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigis torenton.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2174"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2217"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2260"/>
         <source>Removed torrent and deleted its content.</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigis torenton kaj ĝiajn dosierojn</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2180"/>
@@ -2451,12 +2451,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5748"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5799"/>
         <source>Removed torrent. Torrent: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigis torenton. Torento: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5771"/>
         <source>Removed torrent and deleted its content. Torrent: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigis torenton kaj ĝiajn dosierojn. Torento: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5850"/>
@@ -2525,7 +2525,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5793"/>
         <source>Removed torrent but failed to delete its content and/or partfile. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigis torenton sed malsuksesis forigi ĝiajn dosierojn kaj/aŭ partfile. Torrent: &quot;%1&quot;. Eraro: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5888"/>
@@ -2617,42 +2617,42 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1564"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1574"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1565"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1575"/>
         <source>On</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1565"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1575"/>
         <source>Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2079"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2089"/>
         <source>Generate resume data failed. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2090"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2100"/>
         <source>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2585"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2595"/>
         <source>Missing metadata</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2133"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2143"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2195"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2205"/>
         <source>Performance alert: %1. More info: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2832,7 +2832,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../app/cmdoptions.cpp" line="543"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished"></translation>
+        <translation>Elŝuti la unuan kaj la finan pecojn unue</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="545"/>
@@ -2860,7 +2860,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/transferlistfilters/categoryfiltermodel.cpp" line="254"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorioj</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/categoryfiltermodel.cpp" line="433"/>
@@ -2878,12 +2878,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="112"/>
         <source>Add category...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aldoni kategorion...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="120"/>
         <source>Add subcategory...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aldoni subkategorion...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="124"/>
@@ -2893,12 +2893,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="126"/>
         <source>Remove category</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigi kategorion</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="130"/>
         <source>Remove unused categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigi neuzatajn kategoriojn</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="133"/>
@@ -2913,7 +2913,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="137"/>
         <source>Remove torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigi torentojn</translation>
     </message>
 </context>
 <context>
@@ -2991,7 +2991,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/deletionconfirmationdialog.ui" line="20"/>
         <source>Remove torrent(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigi torento(j)n</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.ui" line="67"/>
@@ -3007,18 +3007,18 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../gui/deletionconfirmationdialog.cpp" line="45"/>
         <source>Are you sure you want to remove &apos;%1&apos; from the transfer list?</source>
         <comment>Are you sure you want to remove &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ĉu vi vere volas forigi &apos;%1&apos; de la transmetlisto?</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.cpp" line="47"/>
         <source>Are you sure you want to remove these %1 torrents from the transfer list?</source>
         <comment>Are you sure you want to remove these 5 torrents from the transfer list?</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ĉu vi vere volas forigi tiujn %1 torentojn de la transmetlisto?</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.cpp" line="58"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigi</translation>
     </message>
 </context>
 <context>
@@ -3469,7 +3469,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="211"/>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Forigi</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="224"/>
@@ -3535,7 +3535,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="402"/>
         <source>&amp;Do nothing</source>
-        <translation type="unfinished"></translation>
+        <translation>Fari &amp;nenion</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="478"/>
@@ -3710,12 +3710,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="407"/>
         <location filename="../gui/mainwindow.ui" line="441"/>
-        <location filename="../gui/mainwindow.cpp" line="1602"/>
+        <location filename="../gui/mainwindow.cpp" line="1605"/>
         <source>Show</source>
         <translation>Montru</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1771"/>
+        <location filename="../gui/mainwindow.cpp" line="1774"/>
         <source>Check for program updates</source>
         <translation>Kontroli programaran ĝisdatigadon</translation>
     </message>
@@ -3730,8 +3730,8 @@ No further notices will be issued.</source>
         <translation>Se qBittorrent plaĉas al vi, bonvolu donaci!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1851"/>
-        <location filename="../gui/mainwindow.cpp" line="1853"/>
+        <location filename="../gui/mainwindow.cpp" line="1854"/>
+        <location filename="../gui/mainwindow.cpp" line="1856"/>
         <source>Execution Log</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3762,14 +3762,14 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="437"/>
-        <location filename="../gui/mainwindow.cpp" line="1260"/>
+        <location filename="../gui/mainwindow.cpp" line="1263"/>
         <source>qBittorrent is minimized to tray</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="437"/>
-        <location filename="../gui/mainwindow.cpp" line="1167"/>
-        <location filename="../gui/mainwindow.cpp" line="1260"/>
+        <location filename="../gui/mainwindow.cpp" line="1170"/>
+        <location filename="../gui/mainwindow.cpp" line="1263"/>
         <source>This behavior can be changed in the settings. You won&apos;t be reminded again.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3800,13 +3800,13 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="621"/>
-        <location filename="../gui/mainwindow.cpp" line="1001"/>
+        <location filename="../gui/mainwindow.cpp" line="1004"/>
         <source>UI lock password</source>
         <translation>UI-ŝlosa pasvorto</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="622"/>
-        <location filename="../gui/mainwindow.cpp" line="1002"/>
+        <location filename="../gui/mainwindow.cpp" line="1005"/>
         <source>Please type the UI lock password:</source>
         <translation>Bonvolu tajpi la UI-ŝlosilan pasvorton:</translation>
     </message>
@@ -3831,153 +3831,153 @@ No further notices will be issued.</source>
         <translation>Transmetoj (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="927"/>
+        <location filename="../gui/mainwindow.cpp" line="930"/>
         <source>Recursive download confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="934"/>
+        <location filename="../gui/mainwindow.cpp" line="937"/>
         <source>Never</source>
         <translation>Neniam</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1024"/>
+        <location filename="../gui/mainwindow.cpp" line="1027"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
         <translation>qBittorrent ĵus ĝisdatiĝis kaj devas relanĉiĝi por la ŝanĝoj efiki.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1167"/>
+        <location filename="../gui/mainwindow.cpp" line="1170"/>
         <source>qBittorrent is closed to tray</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1187"/>
+        <location filename="../gui/mainwindow.cpp" line="1190"/>
         <source>Some files are currently transferring.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1187"/>
+        <location filename="../gui/mainwindow.cpp" line="1190"/>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1189"/>
+        <location filename="../gui/mainwindow.cpp" line="1192"/>
         <source>&amp;No</source>
         <translation>&amp;Ne</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1190"/>
+        <location filename="../gui/mainwindow.cpp" line="1193"/>
         <source>&amp;Yes</source>
         <translation>&amp;Jes</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1191"/>
+        <location filename="../gui/mainwindow.cpp" line="1194"/>
         <source>&amp;Always Yes</source>
         <translation>&amp;Ĉiam Jes</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1400"/>
+        <location filename="../gui/mainwindow.cpp" line="1403"/>
         <source>Options saved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1539"/>
+        <location filename="../gui/mainwindow.cpp" line="1542"/>
         <source>%1/s</source>
         <comment>s is a shorthand for seconds</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1706"/>
-        <location filename="../gui/mainwindow.cpp" line="1712"/>
+        <location filename="../gui/mainwindow.cpp" line="1709"/>
+        <location filename="../gui/mainwindow.cpp" line="1715"/>
         <source>Missing Python Runtime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1786"/>
+        <location filename="../gui/mainwindow.cpp" line="1789"/>
         <source>qBittorrent Update Available</source>
         <translation>Ĝisdatigo por qBittorrent disponeblas</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1707"/>
+        <location filename="../gui/mainwindow.cpp" line="1710"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>Pitono estas bezona por uzi la serĉilon, sed ŝajnas, ke ĝi ne estas instalita.
 Ĉu vi volas instali ĝin nun?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1713"/>
+        <location filename="../gui/mainwindow.cpp" line="1716"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
         <translation>Pitono estas bezona por uzi la serĉilon, sed ŝajnas, ke ĝi ne estas instalita.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1725"/>
-        <location filename="../gui/mainwindow.cpp" line="1732"/>
+        <location filename="../gui/mainwindow.cpp" line="1728"/>
+        <location filename="../gui/mainwindow.cpp" line="1735"/>
         <source>Old Python Runtime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1783"/>
+        <location filename="../gui/mainwindow.cpp" line="1786"/>
         <source>A new version is available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1784"/>
+        <location filename="../gui/mainwindow.cpp" line="1787"/>
         <source>Do you want to download %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1785"/>
+        <location filename="../gui/mainwindow.cpp" line="1788"/>
         <source>Open changelog...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1807"/>
+        <location filename="../gui/mainwindow.cpp" line="1810"/>
         <source>No updates available.
 You are already using the latest version.</source>
         <translation>Neniu ĝisdatigo disponeblas.
 Vi jam uzas la aktualan version.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1770"/>
+        <location filename="../gui/mainwindow.cpp" line="1773"/>
         <source>&amp;Check for Updates</source>
         <translation>&amp;Kontroli ĝisdatigadon</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1726"/>
+        <location filename="../gui/mainwindow.cpp" line="1729"/>
         <source>Your Python version (%1) is outdated. Minimum requirement: %2.
 Do you want to install a newer version now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1733"/>
+        <location filename="../gui/mainwindow.cpp" line="1736"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1960"/>
+        <location filename="../gui/mainwindow.cpp" line="1963"/>
         <source>Checking for Updates...</source>
         <translation>Kontrolante ĝisdatigadon...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1961"/>
+        <location filename="../gui/mainwindow.cpp" line="1964"/>
         <source>Already checking for program updates in the background</source>
         <translation>Jam kontrolante programan ĝisdatigon fone</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1999"/>
+        <location filename="../gui/mainwindow.cpp" line="2002"/>
         <source>Download error</source>
         <translation>Elŝuta eraro</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2000"/>
+        <location filename="../gui/mainwindow.cpp" line="2003"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="628"/>
-        <location filename="../gui/mainwindow.cpp" line="1010"/>
+        <location filename="../gui/mainwindow.cpp" line="1013"/>
         <source>Invalid password</source>
         <translation>Malvalida pasvorto</translation>
     </message>
@@ -4004,50 +4004,50 @@ Please install it manually.</source>
         <translation>RSS (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="928"/>
+        <location filename="../gui/mainwindow.cpp" line="931"/>
         <source>The torrent &apos;%1&apos; contains .torrent files, do you want to proceed with their downloads?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1010"/>
+        <location filename="../gui/mainwindow.cpp" line="1013"/>
         <source>The password is invalid</source>
         <translation>La pasvorto malvalidas</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1548"/>
+        <location filename="../gui/mainwindow.cpp" line="1551"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Elŝutrapido: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1549"/>
+        <location filename="../gui/mainwindow.cpp" line="1552"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Alŝutrapido: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1555"/>
+        <location filename="../gui/mainwindow.cpp" line="1558"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[E: %1, A: %2] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1602"/>
+        <location filename="../gui/mainwindow.cpp" line="1605"/>
         <source>Hide</source>
         <translation>Kaŝi</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1185"/>
+        <location filename="../gui/mainwindow.cpp" line="1188"/>
         <source>Exiting qBittorrent</source>
         <translation>qBittorrent ĉesantas</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1366"/>
+        <location filename="../gui/mainwindow.cpp" line="1369"/>
         <source>Open Torrent Files</source>
         <translation>Malfermi Torentdosierojn</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1367"/>
+        <location filename="../gui/mainwindow.cpp" line="1370"/>
         <source>Torrent Files</source>
         <translation>Torentdosieroj</translation>
     </message>
@@ -5750,17 +5750,17 @@ Please install it manually.</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="857"/>
         <source>Original</source>
-        <translation type="unfinished"></translation>
+        <translation>Originalo</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="862"/>
         <source>Create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation>Kreii subdosierujon</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="867"/>
         <source>Don&apos;t create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne krei subdosierujon</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="890"/>
@@ -5771,7 +5771,7 @@ Please install it manually.</source>
         <location filename="../gui/optionsdialog.ui" line="893"/>
         <source>Add to top of queue</source>
         <extracomment>The torrent will be added to the top of the download queue</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Aldoni al super de la vicoj</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="956"/>
@@ -5796,7 +5796,7 @@ Please install it manually.</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1373"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigi</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1437"/>
@@ -5963,7 +5963,7 @@ Disable encryption: Only connect to peers without protocol encryption</source>
         <location filename="../gui/optionsdialog.ui" line="3127"/>
         <source> min</source>
         <extracomment>minutes</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>min</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2894"/>
@@ -5978,12 +5978,12 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3001"/>
         <source>Remove torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigi torenton</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3006"/>
         <source>Remove torrent and its files</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigi torenton kaj ĝiaj dosierojn</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3011"/>
@@ -6129,7 +6129,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="151"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lingvo:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="524"/>
@@ -6170,7 +6170,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="644"/>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Konserva dosierindiko:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="661"/>
@@ -6220,7 +6220,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="1092"/>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Mana</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1097"/>
@@ -6486,19 +6486,19 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/optionsdialog.ui" line="923"/>
         <location filename="../gui/optionsdialog.cpp" line="517"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenio</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="928"/>
         <location filename="../gui/optionsdialog.cpp" line="518"/>
         <source>Metadata received</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricevis metadatenojn</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="933"/>
         <location filename="../gui/optionsdialog.cpp" line="520"/>
         <source>Files checked</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosierojn ekzamenis</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="972"/>
@@ -6508,7 +6508,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1271"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzi alian indikon por nekompletaj torentoj:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1306"/>
@@ -6758,7 +6758,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.ui" line="2754"/>
         <location filename="../gui/optionsdialog.ui" line="2774"/>
         <source>∞</source>
-        <translation type="unfinished"></translation>
+        <translation>∞</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2217"/>
@@ -7078,7 +7078,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="518"/>
         <source>Torrent will stop after metadata is received.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torento haltigos post ricevis metadatenojn.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="520"/>
@@ -7098,7 +7098,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="626"/>
         <source>%L: Category</source>
-        <translation type="unfinished"></translation>
+        <translation>%L: Kategorio</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="628"/>
@@ -7241,7 +7241,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="519"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torentoj kiu havas metadatenojn komence aldonos kiel haltigis.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="865"/>
@@ -7880,27 +7880,27 @@ Tiuj kromprogramoj malebliĝis.</translation>
 <context>
     <name>Private::FileLineEdit</name>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="307"/>
+        <location filename="../gui/fspathedit_p.cpp" line="306"/>
         <source>Path does not exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="309"/>
+        <location filename="../gui/fspathedit_p.cpp" line="308"/>
         <source>Path does not point to a directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="311"/>
+        <location filename="../gui/fspathedit_p.cpp" line="310"/>
         <source>Path does not point to a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="313"/>
+        <location filename="../gui/fspathedit_p.cpp" line="312"/>
         <source>Don&apos;t have read permission to path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="315"/>
+        <location filename="../gui/fspathedit_p.cpp" line="314"/>
         <source>Don&apos;t have write permission to path</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8677,7 +8677,7 @@ Tiuj kromprogramoj malebliĝis.</translation>
         <location filename="../gui/search/searchjobwidget.ui" line="99"/>
         <location filename="../gui/search/searchjobwidget.ui" line="164"/>
         <source>∞</source>
-        <translation type="unfinished"></translation>
+        <translation>∞</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="128"/>
@@ -9154,7 +9154,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <location filename="../gui/speedlimitdialog.ui" line="117"/>
         <location filename="../gui/speedlimitdialog.ui" line="144"/>
         <source>∞</source>
-        <translation type="unfinished"></translation>
+        <translation>∞</translation>
     </message>
     <message>
         <location filename="../gui/speedlimitdialog.ui" line="50"/>
@@ -9592,7 +9592,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="225"/>
         <source>Remove torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigi torentojn</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="170"/>
@@ -9663,7 +9663,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="116"/>
         <source>Remove tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigi la etikedon</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="120"/>
@@ -9683,22 +9683,22 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="127"/>
         <source>Remove torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigi torentojn</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="171"/>
         <source>New Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Nova Etikedo</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="171"/>
         <source>Tag:</source>
-        <translation type="unfinished"></translation>
+        <translation>Etikedo</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="177"/>
         <source>Invalid tag name</source>
-        <translation type="unfinished"></translation>
+        <translation>Malvalida etikednomo</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="178"/>
@@ -9708,12 +9708,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="193"/>
         <source>Tag exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Etikedo ekzistas</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="193"/>
         <source>Tag name already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Etikeda nomo jam ekzistas.</translation>
     </message>
 </context>
 <context>
@@ -9736,12 +9736,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="72"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzi alian indikon por nekompletaj torentoj:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="83"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Defaŭlto</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="88"/>
@@ -9756,12 +9756,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="124"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Indiko:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="45"/>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Konserva dosierindiko:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="45"/>
@@ -9860,7 +9860,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="197"/>
         <source>Availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Disponeblo</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="197"/>
@@ -10019,7 +10019,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="64"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Indiko:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="91"/>
@@ -10121,7 +10121,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="259"/>
         <source>32 MiB</source>
-        <translation type="unfinished">16 MiB {32 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="267"/>
@@ -10340,7 +10340,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="39"/>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzi alian indikon por nekompleta torento</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="77"/>
@@ -10361,7 +10361,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentoptionsdialog.ui" line="99"/>
         <location filename="../gui/torrentoptionsdialog.ui" line="112"/>
         <source>∞</source>
-        <translation type="unfinished"></translation>
+        <translation>∞</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="102"/>
@@ -10432,7 +10432,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="302"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished"></translation>
+        <translation>Elŝuti la unuan kaj la finan pecojn unue</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="309"/>
@@ -10476,17 +10476,17 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrenttagsdialog.cpp" line="100"/>
         <source>New Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Nova Etikedo</translation>
     </message>
     <message>
         <location filename="../gui/torrenttagsdialog.cpp" line="100"/>
         <source>Tag:</source>
-        <translation type="unfinished"></translation>
+        <translation>Etikedo</translation>
     </message>
     <message>
         <location filename="../gui/torrenttagsdialog.cpp" line="106"/>
         <source>Invalid tag name</source>
-        <translation type="unfinished"></translation>
+        <translation>Malvalida etikednomo</translation>
     </message>
     <message>
         <location filename="../gui/torrenttagsdialog.cpp" line="106"/>
@@ -10496,12 +10496,12 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrenttagsdialog.cpp" line="110"/>
         <source>Tag exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Etikedo ekzistas</translation>
     </message>
     <message>
         <location filename="../gui/torrenttagsdialog.cpp" line="110"/>
         <source>Tag name already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Etikeda nomo jam ekzistas.</translation>
     </message>
 </context>
 <context>
@@ -10817,7 +10817,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.ui" line="49"/>
         <source>Download trackers list</source>
-        <translation type="unfinished"></translation>
+        <translation>Elŝuti spurila listo</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.cpp" line="56"/>
@@ -10904,7 +10904,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="463"/>
         <source>Remove torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigi torentojn</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="500"/>
@@ -10932,7 +10932,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="116"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorioj</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="135"/>
@@ -11099,7 +11099,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="175"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorio</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="176"/>
@@ -11217,7 +11217,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="195"/>
         <source>Availability</source>
         <comment>The number of distributed copies of the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>Disponeblo</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="196"/>
@@ -11365,7 +11365,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="855"/>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished"></translation>
+        <translation>Forigi ĉiujn etikedojn per elektitaj torentoj?</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="870"/>
@@ -11526,7 +11526,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistwidget.cpp" line="1182"/>
         <source>&amp;Remove All</source>
         <comment>Remove all tags</comment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Forigi Ĉiujn</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1264"/>
@@ -11536,7 +11536,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1271"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kopii</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1280"/>
@@ -11557,12 +11557,12 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistwidget.cpp" line="962"/>
         <source>&amp;Remove</source>
         <comment>Remove the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Forigi</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1000"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished"></translation>
+        <translation>Elŝuti la unuan kaj la finan pecojn unue</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1002"/>
@@ -11772,32 +11772,32 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="77"/>
         <source>Watched Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Rigardi Dosierujon</translation>
     </message>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="106"/>
         <source>Watched folder path cannot be empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Indiko de la observita dosierujo ne povas malplena.</translation>
     </message>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="109"/>
         <source>Watched folder path cannot be relative.</source>
-        <translation type="unfinished"></translation>
+        <translation>Indiko de la observita dosierujo ne povas relativa.</translation>
     </message>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="112"/>
         <source>Folder &apos;%1&apos; is already in watch list.</source>
-        <translation type="unfinished"></translation>
+        <translation>La dosierujo &apos;%1&apos; jam estas rigardata.</translation>
     </message>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="116"/>
         <source>Folder &apos;%1&apos; doesn&apos;t exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>La dosierujo &apos;%1&apos; ne ekzistas.</translation>
     </message>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="118"/>
         <source>Folder &apos;%1&apos; isn&apos;t readable.</source>
-        <translation type="unfinished"></translation>
+        <translation>La dosierujo &apos;%1&apos; ne legeblas.</translation>
     </message>
 </context>
 <context>
@@ -11843,32 +11843,32 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="537"/>
+        <location filename="../webui/webapplication.cpp" line="534"/>
         <source>Web server error. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Eraro de retservilo. %1</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="557"/>
+        <location filename="../webui/webapplication.cpp" line="554"/>
         <source>Web server error. Unknown error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Eraro de retservilo. Nekonata eraro.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="783"/>
+        <location filename="../webui/webapplication.cpp" line="780"/>
         <source>WebUI: Origin header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="795"/>
+        <location filename="../webui/webapplication.cpp" line="792"/>
         <source>WebUI: Referer header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="814"/>
+        <location filename="../webui/webapplication.cpp" line="811"/>
         <source>WebUI: Invalid Host header, port mismatch. Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="835"/>
+        <location filename="../webui/webapplication.cpp" line="832"/>
         <source>WebUI: Invalid Host header. Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11937,13 +11937,13 @@ Please choose a different name and try again.</source>
         <location filename="../base/utils/misc.cpp" line="82"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
-        <translation type="unfinished"></translation>
+        <translation>PiB</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="83"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
-        <translation type="unfinished"></translation>
+        <translation>EiB</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="261"/>
@@ -11967,7 +11967,7 @@ Please choose a different name and try again.</source>
         <location filename="../base/utils/misc.cpp" line="390"/>
         <source>%1y %2d</source>
         <comment>e.g: 2years 10days</comment>
-        <translation type="unfinished">%1t %2h {1y?} {2d?}</translation>
+        <translation>%1j %2t</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="269"/>
@@ -11978,7 +11978,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/utils/misc.cpp" line="148"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent malŝaltos la komputilon nun ĉar ĉiuj elŝutojn komplete elŝutis.</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="368"/>

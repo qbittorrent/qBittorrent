@@ -1302,11 +1302,11 @@
     </message>
     <message>
         <source>ban for:</source>
-        <translation>заблокировать на:</translation>
+        <translation>запрещать на:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation>Блокировать клиента после серии сбоёв:</translation>
+        <translation>Запрет клиента при серии сбоёв равной:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
@@ -1434,7 +1434,7 @@
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>Повторить анонс на все трекеры при смене IP/порта:</translation>
+        <translation>Повторять анонс на все трекеры при смене IP/порта:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>

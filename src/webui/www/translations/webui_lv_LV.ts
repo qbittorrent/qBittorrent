@@ -1638,7 +1638,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
+        <translation>Izmantot starpniekserveri tikai BiTtorrent vajadzībām</translation>
     </message>
     <message>
         <source>years</source>
@@ -1658,7 +1658,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
+        <translation>Izmantot starpniekserveri visiem savienojumiem</translation>
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
@@ -1730,7 +1730,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Kad neaktīvais augšupielādes laiks sasniedz</translation>
     </message>
     <message>
         <source>(None)</source>
@@ -1742,11 +1742,11 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>.torrent faila atļautais izmērs:</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Kad kopējais augšupielādes laiks sasniedz</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
@@ -1754,31 +1754,31 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Jauktais režīms</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation>Ja ir ieslēgts "Jauktais režīms", I2P torrentiem ir atļauts iegūt koplietotājus ne tikai caur trakeru saitēm, bet arī no citiem avotiem, nenodrošinot anonimitāti. Tas var būt noderīgi, ja lietotājam anonimitāte nav svarīgāka par nepieciešamību pēc vairāk I2P koplietotājiem.</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P ienākošais daudzums (nepieciešams libtorrent %gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation>I2P (eksperimentālais) (nepieciešams libtorrent %gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P izejošais daudzums (nepieciešams libtorrent %gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P izejošais garums (nepieciešams libtorrent %gt;= 2.0):</translation>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>I2P ienākošais garums (nepieciešams libtorrent %gt;= 2.0):</translation>
     </message>
 </context>
 <context>
@@ -2958,11 +2958,11 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>kopējās minūtes</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>neaktīvās minūtes</translation>
     </message>
 </context>
 <context>
@@ -3826,7 +3826,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Pievienot atzīmes:</translation>
     </message>
 </context>
 <context>

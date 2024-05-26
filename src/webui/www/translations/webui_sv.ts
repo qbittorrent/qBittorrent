@@ -1134,7 +1134,7 @@
     </message>
     <message>
         <source>Upload rate based</source>
-        <translation>Sändning betygbaserad</translation>
+        <translation>Baserat på sändningshastighet</translation>
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>

@@ -56,7 +56,7 @@
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Ստուգված ֆայլեր</translation>
     </message>
     <message>
         <source>Stop condition:</source>
@@ -114,7 +114,7 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Հեռացնել torrent-ները</translation>
     </message>
     <message>
         <source>Add subcategory...</source>
@@ -222,7 +222,7 @@
     <message>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation type="unfinished" />
+        <translation>Վերբեռնել torrent-ներ</translation>
     </message>
     <message>
         <source>Save files to location:</source>
@@ -234,7 +234,7 @@
     </message>
     <message>
         <source>More information</source>
-        <translation type="unfinished" />
+        <translation>Հավելյալ տեղեկություն</translation>
     </message>
     <message>
         <source>Information about certificates</source>
@@ -440,7 +440,7 @@
     </message>
     <message>
         <source>Donate!</source>
-        <translation type="unfinished" />
+        <translation>Նվիրաբերե՜լ</translation>
     </message>
     <message>
         <source>Resume All</source>
@@ -752,7 +752,7 @@
     </message>
     <message>
         <source>TCP and μTP</source>
-        <translation type="unfinished" />
+        <translation>TCP և μTP</translation>
     </message>
     <message>
         <source>Listening Port</source>
@@ -816,7 +816,7 @@
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation>Օգտ. միջնորդը՝ peer միացումների համար</translation>
+        <translation>Օգտվել փոխանորդից՝ ցանցորդային միացումների համար</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -824,7 +824,7 @@
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
-        <translation type="unfinished" />
+        <translation>Ձեռքով արգելափակված IP հասցեներ...</translation>
     </message>
     <message>
         <source>Apply to trackers</source>
@@ -890,15 +890,15 @@
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Միացնել DHT՝ լրացուցիչ peer-եր գտնելու համար</translation>
+        <translation>Կարողացնել DHT-ն (ապակենտրոն ցանց)՝ ավելի շատ ցանցորդներ գտնելու համար</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Միացնել Peer-երի փոխանակումը (PeX)՝ լրացուցիչ peer-եր գտնելու համար</translation>
+        <translation>Կարողացնել ցանցորդների փոխանակումը (PeX)՝ ավելի շատ ցանցորդներ գտնելու համար</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Միացնել Լոկալ Peer-երի բացահայտումը</translation>
+        <translation>Կարողացնել տեղական ցանցորդների բացահայտումը՝ ավելի շատ ցանցորդներ գտնելու համար</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -1298,7 +1298,7 @@
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation>Որոշել ցանցորդի երկրները՝</translation>
     </message>
     <message>
         <source>ban for:</source>
@@ -1486,7 +1486,7 @@
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Լռելայն</translation>
     </message>
     <message>
         <source>POSIX-compliant</source>
@@ -1570,11 +1570,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Run external program</source>
-        <translation type="unfinished" />
+        <translation>Աշխատացնել արտաքին ծրագիր</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Ստուգված ֆայլեր</translation>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
@@ -1837,7 +1837,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation>Մեկընդմիշտ արգելափակել մասնակցին</translation>
+        <translation>Մեկընդմիշտ արգելափակել ցանցորդին</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
@@ -1845,7 +1845,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Copy IP:port</source>
-        <translation type="unfinished" />
+        <translation>Պատհենել IP:մատույց-ը</translation>
     </message>
     <message>
         <source>Country/Region</source>
@@ -1853,7 +1853,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Ավելացնել ցանցորդներ...</translation>
     </message>
     <message>
         <source>Peer ID Client</source>
@@ -1898,7 +1898,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Peers</source>
-        <translation>Peer-եր</translation>
+        <translation>Ցանցորդներ</translation>
     </message>
     <message>
         <source>HTTP Sources</source>
@@ -1934,7 +1934,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Seeds:</source>
-        <translation>Բաժանողներ՝</translation>
+        <translation>Սերմնացաններ՝</translation>
     </message>
     <message>
         <source>Download Speed:</source>
@@ -1946,7 +1946,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Peers:</source>
-        <translation>Մասնակիցներ՝</translation>
+        <translation>Ցանցորդներ՝</translation>
     </message>
     <message>
         <source>Download Limit:</source>
@@ -2086,11 +2086,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation>Ֆայլի անուն</translation>
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation type="unfinished" />
+        <translation>Ֆայլի անուն + հավելում</translation>
     </message>
     <message>
         <source>Enumerate Files</source>
@@ -2110,7 +2110,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation>Փոխարինել</translation>
     </message>
     <message>
         <source>Extension</source>
@@ -2165,7 +2165,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation>Մուտքագրել թղթապանակն այստեղ</translation>
     </message>
 </context>
 <context>
@@ -2199,7 +2199,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Connected peers:</source>
-        <translation>Կապակցված մասնակիցներ՝</translation>
+        <translation>Միացված ցանցորդներ՝</translation>
     </message>
     <message>
         <source>All-time share ratio:</source>
@@ -2350,7 +2350,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>Ստուգվում է (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
@@ -2385,12 +2385,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>Seed-եր</translation>
+        <translation>Սերմնացաններ՝</translation>
     </message>
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation>Peer-եր</translation>
+        <translation>Ցանցորդներ</translation>
     </message>
     <message>
         <source>Down Speed</source>
@@ -2521,7 +2521,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Peers</source>
-        <translation>Peer-եր</translation>
+        <translation>Ցանցորդներ</translation>
     </message>
     <message>
         <source>Message</source>
@@ -2553,7 +2553,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Seeds</source>
-        <translation>Բաժանողներ</translation>
+        <translation>Սերմնացաններ՝</translation>
     </message>
     <message>
         <source>Not working</source>
@@ -3096,7 +3096,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>SearchEngineWidget</name>
     <message>
         <source>Seeds:</source>
-        <translation>Բաժանողներ՝</translation>
+        <translation>Սերմնացաններ՝</translation>
     </message>
     <message>
         <source>All plugins</source>
@@ -3272,7 +3272,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add Peers</source>
-        <translation type="unfinished" />
+        <translation>Ավելացնել ցանցորդներ</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
@@ -3284,7 +3284,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation type="unfinished" />
+        <translation>Ձևաչափ IPv4:մատույց / [IPv6]:մատույց</translation>
     </message>
 </context>
 <context>
@@ -3323,7 +3323,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Հեռացնել torrent-ները</translation>
     </message>
 </context>
 <context>
@@ -3409,7 +3409,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Հեղինակներ</translation>
     </message>
     <message>
         <source>France</source>
@@ -3463,7 +3463,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download link</source>
-        <translation type="unfinished" />
+        <translation>Ներբեռնման հղում</translation>
     </message>
 </context>
 <context>
@@ -3844,7 +3844,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Հեռացնել torrent-ները</translation>
     </message>
 </context>
 <context>
