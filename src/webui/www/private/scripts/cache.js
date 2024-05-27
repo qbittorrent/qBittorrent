@@ -26,7 +26,7 @@
  * exception statement from your version.
  */
 
-'use strict';
+"use strict";
 
 if (window.qBittorrent === undefined)
     window.qBittorrent = {};
@@ -46,7 +46,7 @@ window.qBittorrent.Cache = (() => {
         const keys = Reflect.ownKeys(obj);
         for (const key of keys) {
             const value = obj[key];
-            if ((value && (typeof value === 'object')) || (typeof value === 'function'))
+            if ((value && (typeof value === "object")) || (typeof value === "function"))
                 deepFreeze(value);
         }
         Object.freeze(obj);
@@ -57,8 +57,8 @@ window.qBittorrent.Cache = (() => {
 
         init() {
             new Request.JSON({
-                url: 'api/v2/app/buildInfo',
-                method: 'get',
+                url: "api/v2/app/buildInfo",
+                method: "get",
                 noCache: true,
                 onSuccess: (responseJSON) => {
                     if (!responseJSON)
@@ -84,11 +84,11 @@ window.qBittorrent.Cache = (() => {
         // }
         init(obj = {}) {
             new Request.JSON({
-                url: 'api/v2/app/preferences',
-                method: 'get',
+                url: "api/v2/app/preferences",
+                method: "get",
                 noCache: true,
                 onFailure: (xhr) => {
-                    if (typeof obj.onFailure === 'function')
+                    if (typeof obj.onFailure === "function")
                         obj.onFailure(xhr);
                 },
                 onSuccess: (responseJSON, responseText) => {
@@ -98,7 +98,7 @@ window.qBittorrent.Cache = (() => {
                     deepFreeze(responseJSON);
                     this.#m_store = responseJSON;
 
-                    if (typeof obj.onSuccess === 'function')
+                    if (typeof obj.onSuccess === "function")
                         obj.onSuccess(responseJSON, responseText);
                 }
             }).send();
@@ -114,19 +114,19 @@ window.qBittorrent.Cache = (() => {
         //   onSuccess: () => {}
         // }
         set(obj) {
-            if (typeof obj !== 'object')
-                throw new Error('`obj` is not an object.');
-            if (typeof obj.data !== 'object')
-                throw new Error('`data` is not an object.');
+            if (typeof obj !== "object")
+                throw new Error("`obj` is not an object.");
+            if (typeof obj.data !== "object")
+                throw new Error("`data` is not an object.");
 
             new Request({
-                url: 'api/v2/app/setPreferences',
-                method: 'post',
+                url: "api/v2/app/setPreferences",
+                method: "post",
                 data: {
-                    'json': JSON.stringify(obj.data)
+                    "json": JSON.stringify(obj.data)
                 },
                 onFailure: (xhr) => {
-                    if (typeof obj.onFailure === 'function')
+                    if (typeof obj.onFailure === "function")
                         obj.onFailure(xhr);
                 },
                 onSuccess: (responseText, responseXML) => {
@@ -140,7 +140,7 @@ window.qBittorrent.Cache = (() => {
                     }
                     deepFreeze(this.#m_store);
 
-                    if (typeof obj.onSuccess === 'function')
+                    if (typeof obj.onSuccess === "function")
                         obj.onSuccess(responseText, responseXML);
                 }
             }).send();
@@ -148,12 +148,12 @@ window.qBittorrent.Cache = (() => {
     }
 
     class QbtVersionCache {
-        #m_store = '';
+        #m_store = "";
 
         init() {
             new Request({
-                url: 'api/v2/app/version',
-                method: 'get',
+                url: "api/v2/app/version",
+                method: "get",
                 noCache: true,
                 onSuccess: (responseText) => {
                     if (!responseText)

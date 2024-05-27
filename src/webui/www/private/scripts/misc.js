@@ -26,7 +26,7 @@
  * exception statement from your version.
  */
 
-'use strict';
+"use strict";
 
 if (window.qBittorrent === undefined) {
     window.qBittorrent = {};
@@ -152,7 +152,7 @@ window.qBittorrent.Misc = (function() {
             valid: false
         };
 
-        if (typeof versionString !== 'string')
+        if (typeof versionString !== "string")
             return failure;
 
         const tryToNumber = (str) => {
@@ -160,7 +160,7 @@ window.qBittorrent.Misc = (function() {
             return (isNaN(num) ? str : num);
         };
 
-        const ver = versionString.split('.', 4).map(val => tryToNumber(val));
+        const ver = versionString.split(".", 4).map(val => tryToNumber(val));
         return {
             valid: true,
             major: ver[0],
@@ -171,7 +171,7 @@ window.qBittorrent.Misc = (function() {
     };
 
     const escapeHtml = function(str) {
-        const div = document.createElement('div');
+        const div = document.createElement("div");
         div.appendChild(document.createTextNode(str));
         const escapedString = div.innerHTML;
         div.remove();
@@ -179,7 +179,7 @@ window.qBittorrent.Misc = (function() {
     };
 
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#parameters
-    const naturalSortCollator = new Intl.Collator(undefined, { numeric: true, usage: 'sort' });
+    const naturalSortCollator = new Intl.Collator(undefined, { numeric: true, usage: "sort" });
 
     const safeTrim = function(value) {
         try {
@@ -207,8 +207,8 @@ window.qBittorrent.Misc = (function() {
     const containsAllTerms = function(text, terms) {
         const textToSearch = text.toLowerCase();
         return terms.every(function(term) {
-            const isTermRequired = (term[0] === '+');
-            const isTermExcluded = (term[0] === '-');
+            const isTermRequired = (term[0] === "+");
+            const isTermExcluded = (term[0] === "-");
             if (isTermRequired || isTermExcluded) {
                 // ignore lonely +/-
                 if (term.length === 1)

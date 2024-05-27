@@ -26,31 +26,31 @@
  * exception statement from your version.
  */
 
-'use strict';
+"use strict";
 
 async function setupI18n() {
     const languages = (() => {
         const langs = new Set();
 
         // list of available languages: https://github.com/qbittorrent/qBittorrent/tree/master/src/webui/www/public/lang
-        const queryLang = new URLSearchParams(window.location.search).get('lang');
+        const queryLang = new URLSearchParams(window.location.search).get("lang");
         if (queryLang !== null) {
             // use the fallback lang if `queryLang` is present but empty
             // limit the length of the language string to prevent Client-side Request Forgery
             if ((queryLang.length > 0) && (queryLang.length <= 8))
-                langs.add(queryLang.replace('-', '_'));
+                langs.add(queryLang.replace("-", "_"));
         }
         else {
             for (const lang of navigator.languages) {
-                langs.add(lang.replace('-', '_'));
+                langs.add(lang.replace("-", "_"));
 
-                const idx = lang.indexOf('-');
+                const idx = lang.indexOf("-");
                 if (idx > 0)
                     langs.add(lang.slice(0, idx));
             }
         }
 
-        langs.add('en'); // fallback
+        langs.add("en"); // fallback
         return Array.from(langs);
     })();
 
@@ -61,7 +61,7 @@ async function setupI18n() {
         .map((value, idx) => ({ lang: languages[idx], result: value }))
         .filter(v => (v.result.value.status === 200));
     const translation = {
-        lang: (translations.length > 0) ? translations[0].lang.replace('_', '-') : undefined,
+        lang: (translations.length > 0) ? translations[0].lang.replace("_", "-") : undefined,
         data: (translations.length > 0) ? (await translations[0].result.value.json()) : {}
     };
 
@@ -69,7 +69,7 @@ async function setupI18n() {
     const i18nextOptions = {
         lng: translation.lang,
         fallbackLng: false,
-        load: 'currentOnly',
+        load: "currentOnly",
         resources: {
             [translation.lang]: { translation: translation.data }
         },
@@ -80,14 +80,14 @@ async function setupI18n() {
 
 function replaceI18nText() {
     const tr = i18next.t; // workaround for warnings from i18next-parser
-    for (const element of document.getElementsByClassName('qbt-translatable')) {
-        const translationKey = element.getAttribute('data-i18n');
+    for (const element of document.getElementsByClassName("qbt-translatable")) {
+        const translationKey = element.getAttribute("data-i18n");
         const translatedValue = tr(translationKey);
         switch (element.nodeName) {
-            case 'INPUT':
+            case "INPUT":
                 element.value = translatedValue;
                 break;
-            case 'LABEL':
+            case "LABEL":
                 element.textContent = translatedValue;
                 break;
             default:
@@ -96,43 +96,43 @@ function replaceI18nText() {
         }
     }
 
-    document.documentElement.lang = i18next.language.split('-')[0];
+    document.documentElement.lang = i18next.language.split("-")[0];
 }
 
 function submitLoginForm(event) {
     event.preventDefault();
-    const errorMsgElement = document.getElementById('error_msg');
+    const errorMsgElement = document.getElementById("error_msg");
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'api/v2/auth/login', true);
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    xhr.addEventListener('readystatechange', () => {
+    xhr.open("POST", "api/v2/auth/login", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+    xhr.addEventListener("readystatechange", () => {
         if (xhr.readyState === 4) { // DONE state
             if ((xhr.status === 200) && (xhr.responseText === "Ok."))
                 location.replace(location);
             else
-                errorMsgElement.textContent = i18next.t('Invalid Username or Password.');
+                errorMsgElement.textContent = i18next.t("Invalid Username or Password.");
         }
     });
-    xhr.addEventListener('error', () => {
+    xhr.addEventListener("error", () => {
         errorMsgElement.textContent = (xhr.responseText !== "")
             ? xhr.responseText
-            : i18next.t('Unable to log in, server is probably unreachable.');
+            : i18next.t("Unable to log in, server is probably unreachable.");
     });
 
-    const usernameElement = document.getElementById('username');
-    const passwordElement = document.getElementById('password');
+    const usernameElement = document.getElementById("username");
+    const passwordElement = document.getElementById("password");
     const queryString = "username=" + encodeURIComponent(usernameElement.value) + "&password=" + encodeURIComponent(passwordElement.value);
     xhr.send(queryString);
 
     // clear the field
-    passwordElement.value = '';
+    passwordElement.value = "";
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('loginform');
-    loginForm.setAttribute('method', 'POST');
-    loginForm.addEventListener('submit', submitLoginForm);
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.getElementById("loginform");
+    loginForm.setAttribute("method", "POST");
+    loginForm.addEventListener("submit", submitLoginForm);
 
     setupI18n();
 });

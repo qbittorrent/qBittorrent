@@ -27,7 +27,7 @@
 </div>
 
 <script>
-    'use strict';
+    "use strict";
 
     if (window.qBittorrent === undefined) {
         window.qBittorrent = {};
@@ -42,9 +42,9 @@
 
         const init = function() {
             new Keyboard({
-                defaultEventType: 'keydown',
+                defaultEventType: "keydown",
                 events: {
-                    'Enter': function(e) {
+                    "Enter": function(e) {
                         // accept enter key as a click
                         new Event(e).stop();
 
@@ -52,25 +52,25 @@
                         if ((elem.id === "newPluginPath") || (elem.id === "newPluginOk"))
                             newPluginOk();
                         else if (elem.id === "newPluginCancel")
-                            window.qBittorrent.SearchPlugins.closeSearchWindow('installSearchPlugin');
+                            window.qBittorrent.SearchPlugins.closeSearchWindow("installSearchPlugin");
                     }
                 }
             }).activate();
 
-            $('newPluginPath').select();
+            $("newPluginPath").select();
         };
 
         const newPluginOk = function() {
             const path = $("newPluginPath").get("value").trim();
             if (path)
                 new Request({
-                    url: 'api/v2/search/installPlugin',
-                    method: 'post',
+                    url: "api/v2/search/installPlugin",
+                    method: "post",
                     data: {
                         sources: path,
                     },
                     onRequest: function() {
-                        window.qBittorrent.SearchPlugins.closeSearchWindow('installSearchPlugin');
+                        window.qBittorrent.SearchPlugins.closeSearchWindow("installSearchPlugin");
                     }
                 }).send();
         };
