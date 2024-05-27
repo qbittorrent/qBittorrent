@@ -1342,7 +1342,7 @@ window.addEventListener("DOMContentLoaded", function() {
         });
     };
 
-    var addLogPanel = function() {
+    const addLogPanel = function() {
         new MochaUI.Panel({
             id: "LogPanel",
             title: "Log",

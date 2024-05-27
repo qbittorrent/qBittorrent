@@ -58,7 +58,7 @@ window.qBittorrent.MultiRename = (function() {
                 let count = 0;
                 let lastIndex = 0;
                 regex.lastIndex = 0;
-                let matches = [];
+                const matches = [];
                 do {
                     result = regex.exec(str);
                     if (result === null)
@@ -193,17 +193,17 @@ window.qBittorrent.MultiRename = (function() {
                     let replacement = this._inner_replacement;
                     // Replace numerical groups
                     for (let g = 0; g < match.length; ++g) {
-                        let group = match[g];
+                        const group = match[g];
                         if (!group) { continue; }
                         replacement = replaceGroup(replacement, `$${g}`, group, "\\", false);
                     }
                     // Replace named groups
-                    for (let namedGroup in match.groups) {
+                    for (const namedGroup in match.groups) {
                         replacement = replaceGroup(replacement, `$${namedGroup}`, match.groups[namedGroup], "\\", false);
                     }
                     // Replace auxiliary variables
                     for (let v = "dddddddd"; v !== ""; v = v.substring(1)) {
-                        let fileCount = fileEnumeration.toString().padStart(v.length, "0");
+                        const fileCount = fileEnumeration.toString().padStart(v.length, "0");
                         replacement = replaceGroup(replacement, `$${v}`, fileCount, "\\", false);
                     }
                     // Remove empty $ variable
@@ -225,7 +225,7 @@ window.qBittorrent.MultiRename = (function() {
                 return;
             }
 
-            let replaced = [];
+            const replaced = [];
             const _inner_rename = async function(i) {
                 const match = this.matchedFiles[i];
                 const newName = match.renamed;
@@ -242,7 +242,7 @@ window.qBittorrent.MultiRename = (function() {
                 const newPath = parentPath
                     ? parentPath + window.qBittorrent.Filesystem.PathSeparator + newName
                     : newName;
-                let renameRequest = new Request({
+                const renameRequest = new Request({
                     url: isFolder ? "api/v2/torrents/renameFolder" : "api/v2/torrents/renameFile",
                     method: "post",
                     data: {

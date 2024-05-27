@@ -29,6 +29,8 @@ export default [
             "eqeqeq": "error",
             "no-undef": "off",
             "no-unused-vars": "off",
+            "no-var": "error",
+            "prefer-const": "error",
             "Stylistic/no-mixed-operators": [
                 "error",
                 {

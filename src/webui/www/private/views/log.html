@@ -167,7 +167,7 @@
         };
 
         let currentSelectedTab = "main";
-        let tableInfo = {
+        const tableInfo = {
             main: {
                 instance: new window.qBittorrent.DynamicTable.LogMessageTable(),
                 progress: false,
@@ -240,7 +240,7 @@
         };
 
         const unload = () => {
-            for (let table in tableInfo)
+            for (const table in tableInfo)
                 resetTableTimer(table);
         };
 
@@ -419,7 +419,7 @@
 
         new ClipboardJS(".copyLogDataToClipboard", {
             text: function() {
-                let msg = [];
+                const msg = [];
                 tableInfo[currentSelectedTab].instance.selectedRowsIds().each(function(rowId) {
                     msg.push(tableInfo[currentSelectedTab].instance.rows.get(rowId).full_data[(currentSelectedTab === "main") ? "message" : "ip"]);
                 });

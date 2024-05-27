@@ -123,7 +123,7 @@ const initializeWindows = function() {
 
     showDownloadPage = function(urls) {
         const id = "downloadPage";
-        let contentUri = new URI("download.html");
+        const contentUri = new URI("download.html");
 
         if (urls && (urls.length > 0)) {
             contentUri.setData("urls", urls.map(encodeURIComponent).join("|"));
