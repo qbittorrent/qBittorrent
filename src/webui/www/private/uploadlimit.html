@@ -25,17 +25,17 @@
     </div>
 
     <script>
-        'use strict';
+        "use strict";
 
-        const hashes = new URI().getData('hashes').split('|');
+        const hashes = new URI().getData("hashes").split("|");
         const setUpLimit = function() {
             const limit = $("uplimitUpdatevalue").value.toInt() * 1024;
             if (hashes[0] === "global") {
                 new Request({
-                    url: 'api/v2/transfer/setUploadLimit',
-                    method: 'post',
+                    url: "api/v2/transfer/setUploadLimit",
+                    method: "post",
                     data: {
-                        'limit': limit
+                        "limit": limit
                     },
                     onComplete: function() {
                         window.parent.updateMainData();
@@ -45,11 +45,11 @@
             }
             else {
                 new Request({
-                    url: 'api/v2/torrents/setUploadLimit',
-                    method: 'post',
+                    url: "api/v2/torrents/setUploadLimit",
+                    method: "post",
                     data: {
-                        'hashes': hashes.join('|'),
-                        'limit': limit
+                        "hashes": hashes.join("|"),
+                        "limit": limit
                     },
                     onComplete: function() {
                         window.parent.qBittorrent.Client.closeWindows();
@@ -59,24 +59,24 @@
         };
 
         new Keyboard({
-            defaultEventType: 'keydown',
+            defaultEventType: "keydown",
             events: {
-                'Enter': function(event) {
-                    $('applyButton').click();
+                "Enter": function(event) {
+                    $("applyButton").click();
                     event.preventDefault();
                 },
-                'Escape': function(event) {
+                "Escape": function(event) {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 },
-                'Esc': function(event) {
+                "Esc": function(event) {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 }
             }
         }).activate();
 
-        $('uplimitUpdatevalue').focus();
+        $("uplimitUpdatevalue").focus();
 
         MochaUI.addUpLimitSlider(hashes);
     </script>
