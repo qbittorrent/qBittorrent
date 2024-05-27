@@ -114,15 +114,15 @@ window.qBittorrent.Misc = (function() {
         if (minutes < 60)
             return "QBT_TR(%1m)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(minutes));
         let hours = minutes / 60;
-        minutes = minutes % 60;
+        minutes %= 60;
         if (hours < 24)
             return "QBT_TR(%1h %2m)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(hours)).replace("%2", parseInt(minutes));
         let days = hours / 24;
-        hours = hours % 24;
+        hours %= 24;
         if (days < 365)
             return "QBT_TR(%1d %2h)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(days)).replace("%2", parseInt(hours));
         const years = days / 365;
-        days = days % 365;
+        days %= 365;
         return "QBT_TR(%1y %2d)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(years)).replace("%2", parseInt(days));
     };
 
