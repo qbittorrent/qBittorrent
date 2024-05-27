@@ -1691,5 +1691,6 @@ window.addEventListener("load", () => {
         default:
             console.error(`Unexpected 'selected_tab' value: ${previouslyUsedTab}`);
             $("transfersTabLink").click();
+            break;
     };
 });
