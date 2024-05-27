@@ -135,7 +135,7 @@ window.qBittorrent.Download = (function() {
         }
     };
 
-    $(window).addEventListener("load", function() {
+    $(window).addEventListener("load", () => {
         getPreferences();
         getCategories();
     });

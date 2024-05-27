@@ -21,7 +21,7 @@
                 icon.style.fill = "var(--color-border-default)";
         }
 
-        window.addEvent("domready", function() {
+        window.addEvent("domready", () => {
             new Request({
                 url: "images/object-locked.svg",
                 method: "get",
@@ -41,12 +41,12 @@
             let prefDeleteContentFiles = prefCache.delete_torrent_content_files;
 
             $("deleteFromDiskCB").checked ||= prefDeleteContentFiles;
-            $("deleteFromDiskCB").addEvent("click", function(e) {
+            $("deleteFromDiskCB").addEvent("click", (e) => {
                 setRememberBtnEnabled($("deleteFromDiskCB").checked !== prefDeleteContentFiles);
             });
 
             // Set current "Delete files" choice as the default
-            $("rememberBtn").addEvent("click", function(e) {
+            $("rememberBtn").addEvent("click", (e) => {
                 window.parent.qBittorrent.Cache.preferences.set({
                     data: {
                         "delete_torrent_content_files": $("deleteFromDiskCB").checked
@@ -60,11 +60,11 @@
 
             const hashes = new URI().getData("hashes").split("|");
             $("cancelBtn").focus();
-            $("cancelBtn").addEvent("click", function(e) {
+            $("cancelBtn").addEvent("click", (e) => {
                 new Event(e).stop();
                 window.parent.qBittorrent.Client.closeWindows();
             });
-            $("confirmBtn").addEvent("click", function(e) {
+            $("confirmBtn").addEvent("click", (e) => {
                 parent.torrentsTable.deselectAll();
                 new Event(e).stop();
                 const cmd = "api/v2/torrents/delete";

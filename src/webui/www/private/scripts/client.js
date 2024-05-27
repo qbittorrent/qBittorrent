@@ -156,7 +156,7 @@ let selected_filter = LocalPreferences.get("selected_filter", "all");
 let setFilter = function() {};
 let toggleFilterDisplay = function() {};
 
-window.addEventListener("DOMContentLoaded", function() {
+window.addEventListener("DOMContentLoaded", () => {
     let isSearchPanelLoaded = false;
     let isLogPanelLoaded = false;
 
@@ -167,7 +167,7 @@ window.addEventListener("DOMContentLoaded", function() {
         LocalPreferences.set("properties_height_rel", properties_height_rel);
     };
 
-    window.addEvent("resize", function() {
+    window.addEvent("resize", () => {
         // only save sizes if the columns are visible
         if (!$("mainColumn").hasClass("invisible"))
             saveColumnSizes.delay(200); // Resizing might takes some time.
@@ -771,7 +771,7 @@ window.addEventListener("DOMContentLoaded", function() {
                         update_categories = true;
                     }
                     if (response["categories_removed"]) {
-                        response["categories_removed"].each(function(category) {
+                        response["categories_removed"].each((category) => {
                             const categoryHash = window.qBittorrent.Client.genHash(category);
                             category_list.delete(categoryHash);
                         });
@@ -842,7 +842,7 @@ window.addEventListener("DOMContentLoaded", function() {
                             setupCopyEventHandler();
                     }
                     if (response["torrents_removed"])
-                        response["torrents_removed"].each(function(hash) {
+                        response["torrents_removed"].each((hash) => {
                             torrentsTable.removeRow(hash);
                             removeTorrentFromCategoryList(hash);
                             update_categories = true; // Always to update All category
@@ -1002,7 +1002,7 @@ window.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    $("alternativeSpeedLimits").addEvent("click", function() {
+    $("alternativeSpeedLimits").addEvent("click", () => {
         // Change icon immediately to give some feedback
         updateAltSpeedIcon(!alternativeSpeedLimits);
 
@@ -1023,7 +1023,7 @@ window.addEventListener("DOMContentLoaded", function() {
     $("DlInfos").addEvent("click", globalDownloadLimitFN);
     $("UpInfos").addEvent("click", globalUploadLimitFN);
 
-    $("showTopToolbarLink").addEvent("click", function(e) {
+    $("showTopToolbarLink").addEvent("click", (e) => {
         showTopToolbar = !showTopToolbar;
         LocalPreferences.set("show_top_toolbar", showTopToolbar.toString());
         if (showTopToolbar) {
@@ -1037,7 +1037,7 @@ window.addEventListener("DOMContentLoaded", function() {
         MochaUI.Desktop.setDesktopSize();
     });
 
-    $("showStatusBarLink").addEvent("click", function(e) {
+    $("showStatusBarLink").addEvent("click", (e) => {
         showStatusBar = !showStatusBar;
         LocalPreferences.set("show_status_bar", showStatusBar.toString());
         if (showStatusBar) {
@@ -1071,11 +1071,11 @@ window.addEventListener("DOMContentLoaded", function() {
         navigator.registerProtocolHandler("magnet", templateUrl,
             "qBittorrent WebUI magnet handler");
     };
-    $("registerMagnetHandlerLink").addEvent("click", function(e) {
+    $("registerMagnetHandlerLink").addEvent("click", (e) => {
         registerMagnetHandler();
     });
 
-    $("showFiltersSidebarLink").addEvent("click", function(e) {
+    $("showFiltersSidebarLink").addEvent("click", (e) => {
         showFiltersSidebar = !showFiltersSidebar;
         LocalPreferences.set("show_filters_sidebar", showFiltersSidebar.toString());
         if (showFiltersSidebar) {
@@ -1091,7 +1091,7 @@ window.addEventListener("DOMContentLoaded", function() {
         MochaUI.Desktop.setDesktopSize();
     });
 
-    $("speedInBrowserTitleBarLink").addEvent("click", function(e) {
+    $("speedInBrowserTitleBarLink").addEvent("click", (e) => {
         speedInTitle = !speedInTitle;
         LocalPreferences.set("speed_in_browser_title_bar", speedInTitle.toString());
         if (speedInTitle)
@@ -1101,19 +1101,19 @@ window.addEventListener("DOMContentLoaded", function() {
         processServerState();
     });
 
-    $("showSearchEngineLink").addEvent("click", function(e) {
+    $("showSearchEngineLink").addEvent("click", (e) => {
         window.qBittorrent.Client.showSearchEngine(!window.qBittorrent.Client.isShowSearchEngine());
         LocalPreferences.set("show_search_engine", window.qBittorrent.Client.isShowSearchEngine().toString());
         updateTabDisplay();
     });
 
-    $("showRssReaderLink").addEvent("click", function(e) {
+    $("showRssReaderLink").addEvent("click", (e) => {
         window.qBittorrent.Client.showRssReader(!window.qBittorrent.Client.isShowRssReader());
         LocalPreferences.set("show_rss_reader", window.qBittorrent.Client.isShowRssReader().toString());
         updateTabDisplay();
     });
 
-    $("showLogViewerLink").addEvent("click", function(e) {
+    $("showLogViewerLink").addEvent("click", (e) => {
         window.qBittorrent.Client.showLogViewer(!window.qBittorrent.Client.isShowLogViewer());
         LocalPreferences.set("show_log_viewer", window.qBittorrent.Client.isShowLogViewer().toString());
         updateTabDisplay();
@@ -1366,11 +1366,11 @@ window.addEventListener("DOMContentLoaded", function() {
             tabsOnload: function() {
                 MochaUI.initializeTabs("panelTabs");
 
-                $("logMessageLink").addEvent("click", function(e) {
+                $("logMessageLink").addEvent("click", (e) => {
                     window.qBittorrent.Log.setCurrentTab("main");
                 });
 
-                $("logPeerLink").addEvent("click", function(e) {
+                $("logPeerLink").addEvent("click", (e) => {
                     window.qBittorrent.Log.setCurrentTab("peer");
                 });
             },
@@ -1500,7 +1500,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 LocalPreferences.set("selected_tab", this.id);
             });
 
-            $("propertiesPanel_collapseToggle").addEvent("click", function(e) {
+            $("propertiesPanel_collapseToggle").addEvent("click", (e) => {
                 updatePropertiesPanel();
             });
         },

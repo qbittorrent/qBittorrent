@@ -109,14 +109,14 @@ const initializeWindows = function() {
     };
 
     function addClickEvent(el, fn) {
-        ["Link", "Button"].each(function(item) {
+        ["Link", "Button"].each((item) => {
             if ($(el + item)) {
                 $(el + item).addEvent("click", fn);
             }
         });
     }
 
-    addClickEvent("download", function(e) {
+    addClickEvent("download", (e) => {
         new Event(e).stop();
         showDownloadPage();
     });
@@ -149,7 +149,7 @@ const initializeWindows = function() {
         updateMainData();
     };
 
-    addClickEvent("preferences", function(e) {
+    addClickEvent("preferences", (e) => {
         new Event(e).stop();
         const id = "preferencesPage";
         new MochaUI.Window({
@@ -174,7 +174,7 @@ const initializeWindows = function() {
         });
     });
 
-    addClickEvent("upload", function(e) {
+    addClickEvent("upload", (e) => {
         new Event(e).stop();
         const id = "uploadPage";
         new MochaUI.Window({
@@ -400,7 +400,7 @@ const initializeWindows = function() {
         }
     };
 
-    addClickEvent("delete", function(e) {
+    addClickEvent("delete", (e) => {
         new Event(e).stop();
         deleteFN();
     });
@@ -437,7 +437,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             let enable = false;
-            hashes.each(function(hash, index) {
+            hashes.each((hash, index) => {
                 const row = torrentsTable.rows[hash];
                 if (!row.full_data.auto_tmm)
                     enable = true;
@@ -1098,12 +1098,12 @@ const initializeWindows = function() {
         }
     });
 
-    ["stop", "start", "recheck"].each(function(item) {
-        addClickEvent(item, function(e) {
+    ["stop", "start", "recheck"].each((item) => {
+        addClickEvent(item, (e) => {
             new Event(e).stop();
             const hashes = torrentsTable.selectedRowsIds();
             if (hashes.length) {
-                hashes.each(function(hash, index) {
+                hashes.each((hash, index) => {
                     new Request({
                         url: "api/v2/torrents/" + item,
                         method: "post",
@@ -1117,8 +1117,8 @@ const initializeWindows = function() {
         });
     });
 
-    ["decreasePrio", "increasePrio", "topPrio", "bottomPrio"].each(function(item) {
-        addClickEvent(item, function(e) {
+    ["decreasePrio", "increasePrio", "topPrio", "bottomPrio"].each((item) => {
+        addClickEvent(item, (e) => {
             new Event(e).stop();
             setQueuePositionFN(item);
         });
@@ -1138,7 +1138,7 @@ const initializeWindows = function() {
         }
     };
 
-    addClickEvent("about", function(e) {
+    addClickEvent("about", (e) => {
         new Event(e).stop();
         const id = "aboutpage";
         new MochaUI.Window({
@@ -1160,7 +1160,7 @@ const initializeWindows = function() {
         });
     });
 
-    addClickEvent("logout", function(e) {
+    addClickEvent("logout", (e) => {
         new Event(e).stop();
         new Request({
             url: "api/v2/auth/logout",
@@ -1171,7 +1171,7 @@ const initializeWindows = function() {
         }).send();
     });
 
-    addClickEvent("shutdown", function(e) {
+    addClickEvent("shutdown", (e) => {
         new Event(e).stop();
         if (confirm("QBT_TR(Are you sure you want to quit qBittorrent?)QBT_TR[CONTEXT=MainWindow]")) {
             new Request({
@@ -1189,8 +1189,8 @@ const initializeWindows = function() {
     });
 
     // Deactivate menu header links
-    $$("a.returnFalse").each(function(el) {
-        el.addEvent("click", function(e) {
+    $$("a.returnFalse").each((el) => {
+        el.addEvent("click", (e) => {
             new Event(e).stop();
         });
     });

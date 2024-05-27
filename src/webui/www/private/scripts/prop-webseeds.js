@@ -58,9 +58,9 @@ window.qBittorrent.PropWebseeds = (function() {
         },
 
         removeAllRows: function() {
-            this.rows.each(function(tr, url) {
+            this.rows.each((tr, url) => {
                 this.removeRow(url);
-            }.bind(this));
+            });
         },
 
         updateRow: function(tr, row) {
@@ -124,7 +124,7 @@ window.qBittorrent.PropWebseeds = (function() {
                 $("error_div").set("html", "");
                 if (webseeds) {
                     // Update WebSeeds data
-                    webseeds.each(function(webseed) {
+                    webseeds.each((webseed) => {
                         const row = [];
                         row.length = 1;
                         row[0] = webseed.url;

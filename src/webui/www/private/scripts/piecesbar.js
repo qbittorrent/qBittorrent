@@ -266,7 +266,7 @@ window.qBittorrent.PiecesBar = (() => {
         if (!obj)
             return;
         if (!obj.parentNode)
-            return setTimeout(function() { checkForParent(id); }, 1);
+            return setTimeout(() => { checkForParent(id); }, 1);
 
         obj.refresh();
     }

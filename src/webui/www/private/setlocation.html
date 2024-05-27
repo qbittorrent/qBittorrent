@@ -29,7 +29,7 @@
             }
         }).activate();
 
-        window.addEvent("domready", function() {
+        window.addEvent("domready", () => {
             const path = new URI().getData("path");
 
             // set text field to current value
@@ -37,7 +37,7 @@
                 $("setLocation").value = decodeURIComponent(path);
 
             $("setLocation").focus();
-            $("setLocationButton").addEvent("click", function(e) {
+            $("setLocationButton").addEvent("click", (e) => {
                 new Event(e).stop();
                 // check field
                 const location = $("setLocation").value.trim();

@@ -82,7 +82,7 @@ window.qBittorrent.PropFiles = (function() {
 
         const getChildFiles = function(node) {
             if (node.isFolder) {
-                node.children.each(function(child) {
+                node.children.each((child) => {
                     getChildFiles(child);
                 });
             }
@@ -92,7 +92,7 @@ window.qBittorrent.PropFiles = (function() {
             }
         };
 
-        node.children.each(function(child) {
+        node.children.each((child) => {
             getChildFiles(child);
         });
 
@@ -229,7 +229,7 @@ window.qBittorrent.PropFiles = (function() {
         if (checkbox.state === "checked") {
             setCheckboxUnchecked(checkbox);
             // set file priority for all checked to Ignored
-            torrentFilesTable.getFilteredAndSortedRows().forEach(function(row) {
+            torrentFilesTable.getFilteredAndSortedRows().forEach((row) => {
                 const rowId = row.rowId;
                 const fileId = row.full_data.fileId;
                 const isChecked = (row.full_data.checked === TriState.Checked);
@@ -244,7 +244,7 @@ window.qBittorrent.PropFiles = (function() {
             setCheckboxChecked(checkbox);
             priority = FilePriority.Normal;
             // set file priority for all unchecked to Normal
-            torrentFilesTable.getFilteredAndSortedRows().forEach(function(row) {
+            torrentFilesTable.getFilteredAndSortedRows().forEach((row) => {
                 const rowId = row.rowId;
                 const fileId = row.full_data.fileId;
                 const isUnchecked = (row.full_data.checked === TriState.Unchecked);
@@ -324,7 +324,7 @@ window.qBittorrent.PropFiles = (function() {
         }).send();
 
         const ignore = (priority === FilePriority.Ignored);
-        ids.forEach(function(_id) {
+        ids.forEach((_id) => {
             torrentFilesTable.setIgnored(_id, ignore);
 
             const combobox = $("comboPrio" + _id);
@@ -388,7 +388,7 @@ window.qBittorrent.PropFiles = (function() {
     const handleNewTorrentFiles = function(files) {
         is_seed = (files.length > 0) ? files[0].is_seed : true;
 
-        const rows = files.map(function(file, index) {
+        const rows = files.map((file, index) => {
             let progress = (file.progress * 100).round(1);
             if ((progress === 100) && (file.progress < 1))
                 progress = 99.9;
@@ -421,12 +421,12 @@ window.qBittorrent.PropFiles = (function() {
 
         const rootNode = new window.qBittorrent.FileTree.FolderNode();
 
-        rows.forEach(function(row) {
+        rows.forEach((row) => {
             const pathItems = row.fileName.split(window.qBittorrent.Filesystem.PathSeparator);
 
             pathItems.pop(); // remove last item (i.e. file name)
             let parent = rootNode;
-            pathItems.forEach(function(folderName) {
+            pathItems.forEach((folderName) => {
                 if (folderName === ".unwanted")
                     return;
 
@@ -474,7 +474,7 @@ window.qBittorrent.PropFiles = (function() {
             parent.addChild(childNode);
 
             ++rowId;
-        }.bind(this));
+        });
 
         torrentFilesTable.populateTable(rootNode);
         torrentFilesTable.updateTable(false);
@@ -516,7 +516,7 @@ window.qBittorrent.PropFiles = (function() {
 
         const rowIds = [];
         const fileIds = [];
-        selectedRows.forEach(function(rowId) {
+        selectedRows.forEach((rowId) => {
             const elem = $("comboPrio" + rowId);
             rowIds.push(rowId);
             fileIds.push(elem.get("data-file-id"));
@@ -526,10 +526,10 @@ window.qBittorrent.PropFiles = (function() {
         const uniqueFileIds = {};
         for (let i = 0; i < rowIds.length; ++i) {
             const rows = getAllChildren(rowIds[i], fileIds[i]);
-            rows.rowIds.forEach(function(rowId) {
+            rows.rowIds.forEach((rowId) => {
                 uniqueRowIds[rowId] = true;
             });
-            rows.fileIds.forEach(function(fileId) {
+            rows.fileIds.forEach((fileId) => {
                 uniqueFileIds[fileId] = true;
             });
         }
@@ -721,8 +721,8 @@ window.qBittorrent.PropFiles = (function() {
 
     const expandAllNodes = function() {
         const root = torrentFilesTable.getRoot();
-        root.children.each(function(node) {
-            node.children.each(function(child) {
+        root.children.each((node) => {
+            node.children.each((child) => {
                 _collapseNode(child, false, true, false);
             });
         });
@@ -731,8 +731,8 @@ window.qBittorrent.PropFiles = (function() {
 
     const collapseAllNodes = function() {
         const root = torrentFilesTable.getRoot();
-        root.children.each(function(node) {
-            node.children.each(function(child) {
+        root.children.each((node) => {
+            node.children.each((child) => {
                 _collapseNode(child, true, true, false);
             });
         });
@@ -757,7 +757,7 @@ window.qBittorrent.PropFiles = (function() {
         if (!isChildNode || applyToChildren || !canSkipNode)
             _updateNodeState(node, shouldCollapse);
 
-        node.children.each(function(child) {
+        node.children.each((child) => {
             _hideNode(child, shouldCollapse);
 
             if (!child.isFolder)

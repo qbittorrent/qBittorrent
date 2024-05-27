@@ -29,7 +29,7 @@
             }
         }).activate();
 
-        window.addEvent("domready", function() {
+        window.addEvent("domready", () => {
             const uriAction = window.qBittorrent.Misc.safeTrim(new URI().getData("action"));
             const uriHashes = window.qBittorrent.Misc.safeTrim(new URI().getData("hashes"));
 
@@ -38,7 +38,7 @@
 
             $("tagName").focus();
 
-            $("tagNameButton").addEvent("click", function(e) {
+            $("tagNameButton").addEvent("click", (e) => {
                 new Event(e).stop();
 
                 const tagName = $("tagName").value.trim();

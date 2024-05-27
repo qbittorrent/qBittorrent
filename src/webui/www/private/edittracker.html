@@ -10,7 +10,7 @@
     <script>
         "use strict";
 
-        window.addEvent("domready", function() {
+        window.addEvent("domready", () => {
             new Keyboard({
                 defaultEventType: "keydown",
                 events: {
@@ -36,7 +36,7 @@
             $("trackerUrl").value = currentUrl;
             $("trackerUrl").focus();
 
-            $("editTrackerButton").addEvent("click", function(e) {
+            $("editTrackerButton").addEvent("click", (e) => {
                 new Event(e).stop();
                 const hash = new URI().getData("hash");
                 new Request({

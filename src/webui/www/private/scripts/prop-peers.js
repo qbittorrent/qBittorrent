@@ -86,7 +86,7 @@ window.qBittorrent.PropPeers = (function() {
                         }
                     }
                     if (response["peers_removed"]) {
-                        response["peers_removed"].each(function(hash) {
+                        response["peers_removed"].each((hash) => {
                             torrentPeersTable.removeRow(hash);
                         });
                     }

@@ -30,6 +30,7 @@ export default [
             "no-undef": "off",
             "no-unused-vars": "off",
             "no-var": "error",
+            "prefer-arrow-callback": "error",
             "prefer-const": "error",
             "Stylistic/no-mixed-operators": [
                 "error",
