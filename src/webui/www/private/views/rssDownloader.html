@@ -350,9 +350,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             };
         };
 
-        let rssDownloaderRulesTable = new window.qBittorrent.DynamicTable.RssDownloaderRulesTable();
-        let rssDownloaderFeedSelectionTable = new window.qBittorrent.DynamicTable.RssDownloaderFeedSelectionTable();
-        let rssDownloaderArticlesTable = new window.qBittorrent.DynamicTable.RssDownloaderArticlesTable();
+        const rssDownloaderRulesTable = new window.qBittorrent.DynamicTable.RssDownloaderRulesTable();
+        const rssDownloaderFeedSelectionTable = new window.qBittorrent.DynamicTable.RssDownloaderFeedSelectionTable();
+        const rssDownloaderArticlesTable = new window.qBittorrent.DynamicTable.RssDownloaderArticlesTable();
 
         let rulesList = {};
         let feedList = [];
@@ -383,7 +383,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 $("rssDownloaderFeedsTable").style.height = "100%";
             }
             else {
-                let outsideTableHeight = ($("rssDownloaderFeedsTable").getBoundingClientRect().top - $("rssDownloaderFeeds").getBoundingClientRect().top) - 10;
+                const outsideTableHeight = ($("rssDownloaderFeedsTable").getBoundingClientRect().top - $("rssDownloaderFeeds").getBoundingClientRect().top) - 10;
                 $("rssDownloaderFeedsTable").style.height = "calc(100% - " + outsideTableHeight + "px)";
             }
 
@@ -431,9 +431,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 method: "get",
                 noCache: true,
                 onSuccess: (response) => {
-                    let combobox = $("assignCategoryCombobox");
-                    for (let cat in response) {
-                        let option = document.createElement("option");
+                    const combobox = $("assignCategoryCombobox");
+                    for (const cat in response) {
+                        const option = document.createElement("option");
                         option.text = option.value = cat;
                         combobox.add(option);
                     }
@@ -449,8 +449,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 },
                 onSuccess: (response) => {
                     feedList = [];
-                    let flatten = (root) => {
-                        for (let child in root) {
+                    const flatten = (root) => {
+                        for (const child in root) {
                             if (root[child].uid !== undefined)
                                 feedList.push({ name: child, url: root[child].url });
                             else
@@ -475,7 +475,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 onSuccess: (response) => {
                     rssDownloaderRulesTable.clear();
                     let rowCount = 0;
-                    for (let rule in response) {
+                    for (const rule in response) {
                         rssDownloaderRulesTable.updateRowData({
                             rowId: rowCount++,
                             checked: response[rule].enabled,
@@ -569,8 +569,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         };
 
         const saveSettings = () => {
-            let lastSelectedRow = rssDownloaderRulesTable.selectedRows[rssDownloaderRulesTable.selectedRows.length - 1];
-            let rule = rssDownloaderRulesTable.rows[lastSelectedRow].full_data.name;
+            const lastSelectedRow = rssDownloaderRulesTable.selectedRows[rssDownloaderRulesTable.selectedRows.length - 1];
+            const rule = rssDownloaderRulesTable.rows[lastSelectedRow].full_data.name;
 
             rulesList[rule].useRegex = $("useRegEx").checked;
             rulesList[rule].mustContain = $("mustContainText").value;
@@ -640,7 +640,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 onSuccess: (response) => {
                     rssDownloaderArticlesTable.clear();
                     let rowCount = 0;
-                    for (let feed in response) {
+                    for (const feed in response) {
                         rssDownloaderArticlesTable.updateRowData({
                             rowId: rowCount++,
                             name: feed,
@@ -728,8 +728,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
                 // calculate days since last match
                 if (rulesList[ruleName].lastMatch !== "") {
-                    let timeDiffInMs = new Date().getTime() - new Date(rulesList[ruleName].lastMatch).getTime();
-                    let daysAgo = Math.floor(timeDiffInMs / (1000 * 60 * 60 * 24)).toString();
+                    const timeDiffInMs = new Date().getTime() - new Date(rulesList[ruleName].lastMatch).getTime();
+                    const daysAgo = Math.floor(timeDiffInMs / (1000 * 60 * 60 * 24)).toString();
                     $("lastMatchText").textContent = " QBT_TR(Last Match: %1 days ago)QBT_TR[CONTEXT=AutomatedRssDownloader]".replace("%1", daysAgo);
                 }
                 else {
@@ -776,7 +776,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     + " ● QBT_TR(| is used as OR operator)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n"
                     + "QBT_TR(If word order is important use * instead of whitespace.)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n";
             }
-            let secondPart = "QBT_TR(An expression with an empty %1 clause (e.g. %2))QBT_TR[CONTEXT=AutomatedRssDownloader]"
+            const secondPart = "QBT_TR(An expression with an empty %1 clause (e.g. %2))QBT_TR[CONTEXT=AutomatedRssDownloader]"
                 .replace("%1", "|").replace("%2", "expr|");
 
             $("mustContainText").title = mainPart + secondPart + "QBT_TR( will match all articles.)QBT_TR[CONTEXT=AutomatedRssDownloader]";

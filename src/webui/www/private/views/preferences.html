@@ -1972,7 +1972,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const updateWebuiLocaleSelect = (selected) => {
-            let languages = [];
+            const languages = [];
             for (let i = 0; i < $("locale_select").options.length; i++)
                 languages.push($("locale_select").options[i].value);
 

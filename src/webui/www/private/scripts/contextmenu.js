@@ -363,7 +363,7 @@ window.qBittorrent.ContextMenu = (function() {
             // hide renameFiles when more than 1 torrent is selected
             if (selectedRows.length === 1) {
                 const data = torrentsTable.rows.get(selectedRows[0]).full_data;
-                let metadata_downloaded = !((data["state"] === "metaDL") || (data["state"] === "forcedMetaDL") || (data["total_size"] === -1));
+                const metadata_downloaded = !((data["state"] === "metaDL") || (data["state"] === "forcedMetaDL") || (data["total_size"] === -1));
 
                 // hide renameFiles when metadata hasn't been downloaded yet
                 metadata_downloaded
@@ -562,7 +562,7 @@ window.qBittorrent.ContextMenu = (function() {
     const RssFeedContextMenu = new Class({
         Extends: ContextMenu,
         updateMenuItems: function() {
-            let selectedRows = window.qBittorrent.Rss.rssFeedTable.selectedRowsIds();
+            const selectedRows = window.qBittorrent.Rss.rssFeedTable.selectedRowsIds();
             this.menu.getElement("a[href$=newSubscription]").parentNode.addClass("separator");
             switch (selectedRows.length) {
                 case 0:
@@ -660,7 +660,7 @@ window.qBittorrent.ContextMenu = (function() {
             });
         },
         updateMenuItems: function() {
-            let selectedRows = window.qBittorrent.RssDownloader.rssDownloaderRulesTable.selectedRowsIds();
+            const selectedRows = window.qBittorrent.RssDownloader.rssDownloaderRulesTable.selectedRowsIds();
             this.showItem("addRule");
             switch (selectedRows.length) {
                 case 0:

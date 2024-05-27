@@ -814,7 +814,7 @@ window.qBittorrent.DynamicTable = (function() {
                 }
             }
 
-            let rowPos = rows.length;
+            const rowPos = rows.length;
 
             while ((rowPos < trs.length) && (trs.length > 0)) {
                 trs.pop().destroy();
@@ -1935,7 +1935,7 @@ window.qBittorrent.DynamicTable = (function() {
                 const node = this.getNode(i);
 
                 if (checkbox.checked || checkbox.indeterminate) {
-                    let cb = checkboxes[i];
+                    const cb = checkboxes[i];
                     cb.checked = true;
                     cb.indeterminate = false;
                     cb.state = "checked";
@@ -1943,7 +1943,7 @@ window.qBittorrent.DynamicTable = (function() {
                     node.full_data.checked = node.checked;
                 }
                 else {
-                    let cb = checkboxes[i];
+                    const cb = checkboxes[i];
                     cb.checked = false;
                     cb.indeterminate = false;
                     cb.state = "unchecked";
@@ -2635,7 +2635,7 @@ window.qBittorrent.DynamicTable = (function() {
             this.columns["name"].updateTd = function(td, row) {
                 const name = this.getRowValue(row, 0);
                 const unreadCount = this.getRowValue(row, 1);
-                let value = name + " (" + unreadCount + ")";
+                const value = name + " (" + unreadCount + ")";
                 td.set("text", value);
                 td.set("title", value);
             };
@@ -2679,7 +2679,7 @@ window.qBittorrent.DynamicTable = (function() {
             }
             row["data"] = {};
             tds[0].style.overflow = "visible";
-            let indentation = row.full_data.indentation;
+            const indentation = row.full_data.indentation;
             tds[0].style.paddingLeft = (indentation * 32 + 4) + "px";
             tds[1].style.paddingLeft = (indentation * 32 + 4) + "px";
         },

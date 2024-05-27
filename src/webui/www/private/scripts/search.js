@@ -435,7 +435,7 @@ window.qBittorrent.Search = (function() {
         const isSearchRunning = state && state.running;
         if (!isSearchRunning || searchPatternChanged) {
             const pattern = $("searchPattern").getProperty("value").trim();
-            let category = $("categorySelect").getProperty("value");
+            const category = $("categorySelect").getProperty("value");
             const plugins = $("pluginsSelect").getProperty("value");
 
             if (!pattern || !category || !plugins)
