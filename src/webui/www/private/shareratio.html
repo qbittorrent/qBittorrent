@@ -32,7 +32,7 @@
             }
         }).activate();
 
-        window.addEvent("domready", function() {
+        window.addEvent("domready", () => {
             const hashesList = new URI().getData("hashes").split("|");
             const origValues = new URI().getData("orig").split("|");
 
@@ -76,7 +76,7 @@
             shareLimitChanged();
 
             $("default").focus();
-            $("save").addEvent("click", function(e) {
+            $("save").addEvent("click", (e) => {
                 new Event(e).stop();
 
                 if (!isFormValid()) {

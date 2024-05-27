@@ -188,12 +188,12 @@
 
         const setupSearchPluginTableEvents = function(enable) {
             if (enable)
-                $$(".searchPluginsTableRow").each(function(target) {
+                $$(".searchPluginsTableRow").each((target) => {
                     target.addEventListener("dblclick", enablePlugin, false);
                     target.addEventListener("contextmenu", updateSearchPluginsTableContextMenuOffset, true);
                 });
             else
-                $$(".searchPluginsTableRow").each(function(target) {
+                $$(".searchPluginsTableRow").each((target) => {
                     target.removeEventListener("dblclick", enablePlugin, false);
                     target.removeEventListener("contextmenu", updateSearchPluginsTableContextMenuOffset, true);
                 });

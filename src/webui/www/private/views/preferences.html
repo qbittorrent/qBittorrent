@@ -1935,7 +1935,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         ifaces.push({ name: default_iface_name || default_iface, value: default_iface });
 
                     $("networkInterface").options.add(new Option("QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]", ""));
-                    ifaces.forEach(function(item, index) {
+                    ifaces.forEach((item, index) => {
                         $("networkInterface").options.add(new Option(item.name, item.value));
                     });
                     $("networkInterface").setProperty("value", default_iface);
@@ -1963,7 +1963,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("optionalIPAddressToBind").options.add(new Option("QBT_TR(All addresses)QBT_TR[CONTEXT=OptionDialog]", ""));
                     $("optionalIPAddressToBind").options.add(new Option("QBT_TR(All IPv4 addresses)QBT_TR[CONTEXT=OptionDialog]", "0.0.0.0"));
                     $("optionalIPAddressToBind").options.add(new Option("QBT_TR(All IPv6 addresses)QBT_TR[CONTEXT=OptionDialog]", "::"));
-                    addresses.forEach(function(item, index) {
+                    addresses.forEach((item, index) => {
                         $("optionalIPAddressToBind").options.add(new Option(item, item));
                     });
                     $("optionalIPAddressToBind").setProperty("value", default_addr);

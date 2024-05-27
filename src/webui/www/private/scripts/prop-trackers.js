@@ -75,7 +75,7 @@ window.qBittorrent.PropTrackers = (function() {
                 torrentTrackersTable.clear();
 
                 if (trackers) {
-                    trackers.each(function(tracker) {
+                    trackers.each((tracker) => {
                         let status;
                         switch (tracker.status) {
                             case 0:
@@ -147,7 +147,7 @@ window.qBittorrent.PropTrackers = (function() {
         },
         onShow: function() {
             const selectedTrackers = torrentTrackersTable.selectedRowsIds();
-            const containsStaticTracker = selectedTrackers.some(function(tracker) {
+            const containsStaticTracker = selectedTrackers.some((tracker) => {
                 return (tracker.indexOf("** [") === 0);
             });
 

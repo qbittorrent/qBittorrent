@@ -154,7 +154,7 @@
 
         let submitted = false;
 
-        $("uploadForm").addEventListener("submit", function() {
+        $("uploadForm").addEventListener("submit", () => {
             $("startTorrentHidden").value = $("startTorrent").checked ? "false" : "true";
 
             $("dlLimitHidden").value = $("dlLimitText").value.toInt() * 1024;
@@ -164,7 +164,7 @@
             submitted = true;
         });
 
-        $("upload_frame").addEventListener("load", function() {
+        $("upload_frame").addEventListener("load", () => {
             if (submitted)
                 window.parent.qBittorrent.Client.closeWindows();
         });

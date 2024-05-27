@@ -29,14 +29,14 @@
             }
         }).activate();
 
-        window.addEvent("domready", function() {
+        window.addEvent("domready", () => {
             const name = new URI().getData("name");
             // set text field to current value
             if (name)
                 $("rename").value = name;
 
             $("rename").focus();
-            $("renameButton").addEvent("click", function(e) {
+            $("renameButton").addEvent("click", (e) => {
                 new Event(e).stop();
                 // check field
                 const name = $("rename").value.trim();

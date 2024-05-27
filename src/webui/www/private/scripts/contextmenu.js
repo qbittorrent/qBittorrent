@@ -161,19 +161,19 @@ window.qBittorrent.ContextMenu = (function() {
         },
 
         setupEventListeners: function(elem) {
-            elem.addEvent("contextmenu", function(e) {
+            elem.addEvent("contextmenu", (e) => {
                 this.triggerMenu(e, elem);
-            }.bind(this));
-            elem.addEvent("click", function(e) {
+            });
+            elem.addEvent("click", (e) => {
                 this.hide();
-            }.bind(this));
+            });
 
-            elem.addEvent("touchstart", function(e) {
+            elem.addEvent("touchstart", (e) => {
                 this.hide();
                 this.touchStartAt = performance.now();
                 this.touchStartEvent = e;
-            }.bind(this));
-            elem.addEvent("touchend", function(e) {
+            });
+            elem.addEvent("touchend", (e) => {
                 const now = performance.now();
                 const touchStartAt = this.touchStartAt;
                 const touchStartEvent = this.touchStartEvent;
@@ -185,7 +185,7 @@ window.qBittorrent.ContextMenu = (function() {
                 if (((now - touchStartAt) >= this.options.touchTimer) && isTargetUnchanged) {
                     this.triggerMenu(touchStartEvent, elem);
                 }
-            }.bind(this));
+            });
         },
 
         addTarget: function(t) {
@@ -215,25 +215,25 @@ window.qBittorrent.ContextMenu = (function() {
         //get things started
         startListener: function() {
             /* all elements */
-            this.targets.each(function(el) {
+            this.targets.each((el) => {
                 this.setupEventListeners(el);
-            }.bind(this), this);
+            }, this);
 
             /* menu items */
             this.menu.getElements("a").each(function(item) {
-                item.addEvent("click", function(e) {
+                item.addEvent("click", (e) => {
                     e.preventDefault();
                     if (!item.hasClass("disabled")) {
                         this.execute(item.get("href").split("#")[1], $(this.options.element));
                         this.fireEvent("click", [item, e]);
                     }
-                }.bind(this));
+                });
             }, this);
 
             //hide on body click
-            $(document.body).addEvent("click", function() {
+            $(document.body).addEvent("click", () => {
                 this.hide();
-            }.bind(this));
+            });
         },
 
         updateMenuItems: function() {},

@@ -57,7 +57,7 @@
             checkboxHeader = new Element("input");
             checkboxHeader.set("type", "checkbox");
             checkboxHeader.set("id", "rootMultiRename_cb");
-            checkboxHeader.addEvent("click", function(e) {
+            checkboxHeader.addEvent("click", (e) => {
                 bulkRenameFilesTable.toggleGlobalCheckbox();
                 fileRenamer.selectedFiles = bulkRenameFilesTable.getSelectedRows();
                 fileRenamer.update();
@@ -145,7 +145,7 @@
         };
 
         // Setup Search Events that control renaming
-        $("multiRenameSearch").addEvent("input", function(e) {
+        $("multiRenameSearch").addEvent("input", (e) => {
             const sanitized = e.target.value.replace(/\n/g, "");
             $("multiRenameSearch").set("value", sanitized);
 
@@ -154,17 +154,17 @@
             LocalPreferences.set("multirename_search", sanitized);
             fileRenamer.setSearch(sanitized);
         });
-        $("use_regex_search").addEvent("change", function(e) {
+        $("use_regex_search").addEvent("change", (e) => {
             fileRenamer.useRegex = e.target.checked;
             LocalPreferences.set("multirename_useRegex", e.target.checked);
             fileRenamer.update();
         });
-        $("match_all_occurrences").addEvent("change", function(e) {
+        $("match_all_occurrences").addEvent("change", (e) => {
             fileRenamer.matchAllOccurrences = e.target.checked;
             LocalPreferences.set("multirename_matchAllOccurrences", e.target.checked);
             fileRenamer.update();
         });
-        $("case_sensitive").addEvent("change", function(e) {
+        $("case_sensitive").addEvent("change", (e) => {
             fileRenamer.caseSensitive = e.target.checked;
             LocalPreferences.set("multirename_caseSensitive", e.target.checked);
             fileRenamer.update();
@@ -177,7 +177,7 @@
             // Clear renamed column
             document
                 .querySelectorAll("span[id^='filesTablefileRenamed']")
-                .forEach(function(span) {
+                .forEach((span) => {
                     span.set("text", "");
                 });
 
@@ -192,7 +192,7 @@
         };
 
         // Setup Replace Events that control renaming
-        $("multiRenameReplace").addEvent("input", function(e) {
+        $("multiRenameReplace").addEvent("input", (e) => {
             const sanitized = e.target.value.replace(/\n/g, "");
             $("multiRenameReplace").set("value", sanitized);
 
@@ -201,22 +201,22 @@
             LocalPreferences.set("multirename_replace", sanitized);
             fileRenamer.setReplacement(sanitized);
         });
-        $("applies_to_option").addEvent("change", function(e) {
+        $("applies_to_option").addEvent("change", (e) => {
             fileRenamer.appliesTo = e.target.value;
             LocalPreferences.set("multirename_appliesTo", e.target.value);
             fileRenamer.update();
         });
-        $("include_files").addEvent("change", function(e) {
+        $("include_files").addEvent("change", (e) => {
             fileRenamer.includeFiles = e.target.checked;
             LocalPreferences.set("multirename_includeFiles", e.target.checked);
             fileRenamer.update();
         });
-        $("include_folders").addEvent("change", function(e) {
+        $("include_folders").addEvent("change", (e) => {
             fileRenamer.includeFolders = e.target.checked;
             LocalPreferences.set("multirename_includeFolders", e.target.checked);
             fileRenamer.update();
         });
-        $("file_counter").addEvent("input", function(e) {
+        $("file_counter").addEvent("input", (e) => {
             let value = e.target.valueAsNumber;
             if (!value) { value = 0; }
             if (value < 0) { value = 0; }
@@ -228,7 +228,7 @@
         });
 
         // Setup Rename Operation Events
-        $("renameButton").addEvent("click", function(e) {
+        $("renameButton").addEvent("click", (e) => {
             // Disable Search Options
             $("multiRenameSearch").disabled = true;
             $("use_regex_search").disabled = true;
@@ -282,7 +282,7 @@
                 $("rename_error").set("text", `QBT_TR(Rename failed: file or folder already exists)QBT_TR[CONTEXT=PropertiesWidget] \`${row.renamed}\``);
             }
         };
-        $("renameOptions").addEvent("change", function(e) {
+        $("renameOptions").addEvent("change", (e) => {
             const combobox = e.target;
             const replaceOperation = combobox.value;
             if (replaceOperation === "Replace") {
@@ -297,7 +297,7 @@
             LocalPreferences.set("multirename_replaceAll", fileRenamer.replaceAll);
             $("renameButton").set("value", replaceOperation);
         });
-        $("closeButton").addEvent("click", function() {
+        $("closeButton").addEvent("click", () => {
             window.parent.qBittorrent.Client.closeWindows();
             event.preventDefault();
         });
@@ -308,7 +308,7 @@
         };
 
         const handleTorrentFiles = function(files, selectedRows) {
-            const rows = files.map(function(file, index) {
+            const rows = files.map((file, index) => {
 
                 const row = {
                     fileId: index,
@@ -330,12 +330,12 @@
             const rootNode = new window.qBittorrent.FileTree.FolderNode();
             rootNode.autoCheckFolders = false;
 
-            rows.forEach(function(row) {
+            rows.forEach((row) => {
                 const pathItems = row.path.split(window.qBittorrent.Filesystem.PathSeparator);
 
                 pathItems.pop(); // remove last item (i.e. file name)
                 let parent = rootNode;
-                pathItems.forEach(function(folderName) {
+                pathItems.forEach((folderName) => {
                     if (folderName === ".unwanted") {
                         return;
                     }

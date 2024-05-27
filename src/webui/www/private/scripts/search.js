@@ -450,14 +450,14 @@ window.qBittorrent.Search = (function() {
     };
 
     const openSearchTorrentDescriptionUrl = function() {
-        searchResultsTable.selectedRowsIds().each(function(rowId) {
+        searchResultsTable.selectedRowsIds().each((rowId) => {
             window.open(searchResultsTable.rows.get(rowId).full_data.descrLink, "_blank");
         });
     };
 
     const copySearchTorrentName = function() {
         const names = [];
-        searchResultsTable.selectedRowsIds().each(function(rowId) {
+        searchResultsTable.selectedRowsIds().each((rowId) => {
             names.push(searchResultsTable.rows.get(rowId).full_data.fileName);
         });
         return names.join("\n");
@@ -465,7 +465,7 @@ window.qBittorrent.Search = (function() {
 
     const copySearchTorrentDownloadLink = function() {
         const urls = [];
-        searchResultsTable.selectedRowsIds().each(function(rowId) {
+        searchResultsTable.selectedRowsIds().each((rowId) => {
             urls.push(searchResultsTable.rows.get(rowId).full_data.fileUrl);
         });
         return urls.join("\n");
@@ -473,7 +473,7 @@ window.qBittorrent.Search = (function() {
 
     const copySearchTorrentDescriptionUrl = function() {
         const urls = [];
-        searchResultsTable.selectedRowsIds().each(function(rowId) {
+        searchResultsTable.selectedRowsIds().each((rowId) => {
             urls.push(searchResultsTable.rows.get(rowId).full_data.descrLink);
         });
         return urls.join("\n");
@@ -481,7 +481,7 @@ window.qBittorrent.Search = (function() {
 
     const downloadSearchTorrent = function() {
         const urls = [];
-        searchResultsTable.selectedRowsIds().each(function(rowId) {
+        searchResultsTable.selectedRowsIds().each((rowId) => {
             urls.push(searchResultsTable.rows.get(rowId).full_data.fileUrl);
         });
 
@@ -579,7 +579,7 @@ window.qBittorrent.Search = (function() {
     const getSearchCategories = function() {
         const populateCategorySelect = function(categories) {
             const categoryHtml = [];
-            categories.each(function(category) {
+            categories.each((category) => {
                 const option = new Element("option");
                 option.set("value", category.id);
                 option.set("html", category.name);
@@ -633,7 +633,7 @@ window.qBittorrent.Search = (function() {
                 if (response !== prevSearchPluginsResponse) {
                     prevSearchPluginsResponse = response;
                     searchPlugins.length = 0;
-                    response.forEach(function(plugin) {
+                    response.forEach((plugin) => {
                         searchPlugins.push(plugin);
                     });
 
@@ -655,7 +655,7 @@ window.qBittorrent.Search = (function() {
                             return window.qBittorrent.Misc.naturalSortCollator.compare(leftName, rightName);
                         });
 
-                        allPlugins.each(function(plugin) {
+                        allPlugins.each((plugin) => {
                             if (plugin.enabled === true)
                                 pluginsHtml.push("<option value='" + window.qBittorrent.Misc.escapeHtml(plugin.name) + "'>" + window.qBittorrent.Misc.escapeHtml(plugin.fullName) + "</option>");
                         });
@@ -744,11 +744,11 @@ window.qBittorrent.Search = (function() {
 
     const setupSearchTableEvents = function(enable) {
         if (enable)
-            $$(".searchTableRow").each(function(target) {
+            $$(".searchTableRow").each((target) => {
                 target.addEventListener("dblclick", downloadSearchTorrent, false);
             });
         else
-            $$(".searchTableRow").each(function(target) {
+            $$(".searchTableRow").each((target) => {
                 target.removeEventListener("dblclick", downloadSearchTorrent, false);
             });
     };

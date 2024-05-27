@@ -167,7 +167,7 @@
 
         const encodedUrls = new URI().getData("urls");
         if (encodedUrls) {
-            const urls = encodedUrls.split("|").map(function(url) {
+            const urls = encodedUrls.split("|").map((url) => {
                 return decodeURIComponent(url);
             });
 
@@ -177,7 +177,7 @@
 
         let submitted = false;
 
-        $("downloadForm").addEventListener("submit", function() {
+        $("downloadForm").addEventListener("submit", () => {
             $("startTorrentHidden").value = $("startTorrent").checked ? "false" : "true";
 
             $("dlLimitHidden").value = $("dlLimitText").value.toInt() * 1024;
@@ -187,7 +187,7 @@
             submitted = true;
         });
 
-        $("download_frame").addEventListener("load", function() {
+        $("download_frame").addEventListener("load", () => {
             if (submitted)
                 window.parent.qBittorrent.Client.closeWindows();
         });

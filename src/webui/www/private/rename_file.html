@@ -30,7 +30,7 @@
             }
         }).activate();
 
-        window.addEvent("domready", function() {
+        window.addEvent("domready", () => {
             const hash = new URI().getData("hash");
             const oldPath = new URI().getData("path");
             const isFolder = ((new URI().getData("isFolder")) === "true");
@@ -41,7 +41,7 @@
             if (!isFolder)
                 $("rename").setSelectionRange(0, oldName.lastIndexOf("."));
 
-            $("renameButton").addEvent("click", function(e) {
+            $("renameButton").addEvent("click", (e) => {
                 new Event(e).stop();
                 // check field
                 const newName = $("rename").value.trim();

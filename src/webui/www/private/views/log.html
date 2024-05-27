@@ -217,7 +217,7 @@
                 menu: "logTableMenu",
                 actions: {
                     Clear: () => {
-                        tableInfo[currentSelectedTab].instance.selectedRowsIds().forEach(function(rowId) {
+                        tableInfo[currentSelectedTab].instance.selectedRowsIds().forEach((rowId) => {
                             tableInfo[currentSelectedTab].instance.removeRow(rowId);
                         });
 
@@ -420,7 +420,7 @@
         new ClipboardJS(".copyLogDataToClipboard", {
             text: function() {
                 const msg = [];
-                tableInfo[currentSelectedTab].instance.selectedRowsIds().each(function(rowId) {
+                tableInfo[currentSelectedTab].instance.selectedRowsIds().each((rowId) => {
                     msg.push(tableInfo[currentSelectedTab].instance.rows.get(rowId).full_data[(currentSelectedTab === "main") ? "message" : "ip"]);
                 });
 

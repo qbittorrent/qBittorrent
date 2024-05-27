@@ -206,7 +206,7 @@ window.qBittorrent.Misc = (function() {
      */
     const containsAllTerms = function(text, terms) {
         const textToSearch = text.toLowerCase();
-        return terms.every(function(term) {
+        return terms.every((term) => {
             const isTermRequired = (term[0] === "+");
             const isTermExcluded = (term[0] === "-");
             if (isTermRequired || isTermExcluded) {
