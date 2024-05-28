@@ -488,7 +488,7 @@ QVariant TrackerListModel::headerData(const int section, const Qt::Orientation o
         switch (section)
         {
         case COL_URL:
-            return tr("URL/Announce endpoint");
+            return tr("URL/Announce Endpoint");
         case COL_TIER:
             return tr("Tier");
         case COL_PROTOCOL:
@@ -506,9 +506,9 @@ QVariant TrackerListModel::headerData(const int section, const Qt::Orientation o
         case COL_MSG:
             return tr("Message");
         case COL_NEXT_ANNOUNCE:
-            return tr("Next announce");
+            return tr("Next Announce");
         case COL_MIN_ANNOUNCE:
-            return tr("Min announce");
+            return tr("Min Announce");
         default:
             return {};
         }
