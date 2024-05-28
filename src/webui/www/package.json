@@ -7,8 +7,8 @@
   },
   "scripts": {
     "extract_translation": "i18next -c public/i18next-parser.config.mjs public/index.html public/scripts/login.js",
-    "format": "js-beautify -r private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js && prettier --write **.css",
-    "lint": "eslint private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js && stylelint **/*.css && html-validate private public"
+    "format": "js-beautify -r *.mjs private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js && prettier --write **.css",
+    "lint": "eslint *.mjs private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js && stylelint **/*.css && html-validate private public"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "*",

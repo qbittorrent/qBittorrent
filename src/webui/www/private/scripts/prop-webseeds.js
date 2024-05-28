@@ -26,7 +26,7 @@
  * exception statement from your version.
  */
 
-'use strict';
+"use strict";
 
 if (window.qBittorrent === undefined) {
     window.qBittorrent = {};
@@ -58,15 +58,15 @@ window.qBittorrent.PropWebseeds = (function() {
         },
 
         removeAllRows: function() {
-            this.rows.each(function(tr, url) {
+            this.rows.each((tr, url) => {
                 this.removeRow(url);
-            }.bind(this));
+            });
         },
 
         updateRow: function(tr, row) {
-            const tds = tr.getElements('td');
+            const tds = tr.getElements("td");
             for (let i = 0; i < row.length; ++i) {
-                tds[i].set('html', row[i]);
+                tds[i].set("html", row[i]);
             }
             return true;
         },
@@ -79,11 +79,11 @@ window.qBittorrent.PropWebseeds = (function() {
                 return;
             }
             //this.removeRow(id);
-            const tr = new Element('tr');
+            const tr = new Element("tr");
             this.rows.set(url, tr);
             for (let i = 0; i < row.length; ++i) {
-                const td = new Element('td');
-                td.set('html', row[i]);
+                const td = new Element("td");
+                td.set("html", row[i]);
                 td.injectInside(tr);
             }
             tr.injectInside(this.table);
@@ -94,8 +94,8 @@ window.qBittorrent.PropWebseeds = (function() {
 
     let loadWebSeedsDataTimer;
     const loadWebSeedsData = function() {
-        if ($('prop_webseeds').hasClass('invisible')
-            || $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
+        if ($("prop_webseeds").hasClass("invisible")
+            || $("propertiesPanel_collapseToggle").hasClass("panel-expand")) {
             // Tab changed, don't do anything
             return;
         }
@@ -110,21 +110,21 @@ window.qBittorrent.PropWebseeds = (function() {
             wsTable.removeAllRows();
             current_hash = new_hash;
         }
-        const url = new URI('api/v2/torrents/webseeds?hash=' + current_hash);
+        const url = new URI("api/v2/torrents/webseeds?hash=" + current_hash);
         new Request.JSON({
             url: url,
-            method: 'get',
+            method: "get",
             noCache: true,
             onFailure: function() {
-                $('error_div').set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
+                $("error_div").set("html", "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]");
                 clearTimeout(loadWebSeedsDataTimer);
                 loadWebSeedsDataTimer = loadWebSeedsData.delay(20000);
             },
             onSuccess: function(webseeds) {
-                $('error_div').set('html', '');
+                $("error_div").set("html", "");
                 if (webseeds) {
                     // Update WebSeeds data
-                    webseeds.each(function(webseed) {
+                    webseeds.each((webseed) => {
                         const row = [];
                         row.length = 1;
                         row[0] = webseed.url;
@@ -146,7 +146,7 @@ window.qBittorrent.PropWebseeds = (function() {
     };
 
     const wsTable = new webseedsDynTable();
-    wsTable.setup($('webseedsTable'));
+    wsTable.setup($("webseedsTable"));
 
     return exports();
 })();

@@ -328,7 +328,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 </ul>
 
 <script>
-    'use strict';
+    "use strict";
 
     if (window.qBittorrent === undefined) {
         window.qBittorrent = {};
@@ -350,9 +350,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             };
         };
 
-        let rssDownloaderRulesTable = new window.qBittorrent.DynamicTable.RssDownloaderRulesTable();
-        let rssDownloaderFeedSelectionTable = new window.qBittorrent.DynamicTable.RssDownloaderFeedSelectionTable();
-        let rssDownloaderArticlesTable = new window.qBittorrent.DynamicTable.RssDownloaderArticlesTable();
+        const rssDownloaderRulesTable = new window.qBittorrent.DynamicTable.RssDownloaderRulesTable();
+        const rssDownloaderFeedSelectionTable = new window.qBittorrent.DynamicTable.RssDownloaderFeedSelectionTable();
+        const rssDownloaderArticlesTable = new window.qBittorrent.DynamicTable.RssDownloaderArticlesTable();
 
         let rulesList = {};
         let feedList = [];
@@ -361,35 +361,35 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             const pref = window.parent.qBittorrent.Cache.preferences.get();
 
             if (!pref.rss_auto_downloading_enabled)
-                $('rssDownloaderDisabled').removeClass('invisible');
+                $("rssDownloaderDisabled").removeClass("invisible");
 
             // recalculate height
-            const warningHeight = $('rssDownloaderDisabled').getBoundingClientRect().height;
+            const warningHeight = $("rssDownloaderDisabled").getBoundingClientRect().height;
 
-            $('leftRssDownloaderColumn').style.height = 'calc(100% - ' + warningHeight + 'px)';
-            $('centerRssDownloaderColumn').style.height = 'calc(100% - ' + warningHeight + 'px)';
-            $('rightRssDownloaderColumn').style.height = 'calc(100% - ' + warningHeight + 'px)';
+            $("leftRssDownloaderColumn").style.height = "calc(100% - " + warningHeight + "px)";
+            $("centerRssDownloaderColumn").style.height = "calc(100% - " + warningHeight + "px)";
+            $("rightRssDownloaderColumn").style.height = "calc(100% - " + warningHeight + "px)";
 
-            $('rulesTable').style.height = 'calc(100% - ' + $('rulesTableDesc').getBoundingClientRect().height + 'px)';
-            $('rssDownloaderArticlesTable').style.height = 'calc(100% - ' + $('articleTableDesc').getBoundingClientRect().height + 'px)';
+            $("rulesTable").style.height = "calc(100% - " + $("rulesTableDesc").getBoundingClientRect().height + "px)";
+            $("rssDownloaderArticlesTable").style.height = "calc(100% - " + $("articleTableDesc").getBoundingClientRect().height + "px)";
 
-            const centerRowNotTableHeight = $('saveButton').getBoundingClientRect().height
-                + $('ruleSettings').getBoundingClientRect().height + 15;
+            const centerRowNotTableHeight = $("saveButton").getBoundingClientRect().height
+                + $("ruleSettings").getBoundingClientRect().height + 15;
 
-            $('rssDownloaderFeeds').style.height = 'calc(100% - ' + centerRowNotTableHeight + 'px)';
+            $("rssDownloaderFeeds").style.height = "calc(100% - " + centerRowNotTableHeight + "px)";
 
             // firefox calculates the height of the table inside fieldset differently and thus doesn't need the offset
-            if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-                $('rssDownloaderFeedsTable').style.height = '100%';
+            if (navigator.userAgent.toLowerCase().indexOf("firefox") > -1) {
+                $("rssDownloaderFeedsTable").style.height = "100%";
             }
             else {
-                let outsideTableHeight = ($('rssDownloaderFeedsTable').getBoundingClientRect().top - $('rssDownloaderFeeds').getBoundingClientRect().top) - 10;
-                $('rssDownloaderFeedsTable').style.height = 'calc(100% - ' + outsideTableHeight + 'px)';
+                const outsideTableHeight = ($("rssDownloaderFeedsTable").getBoundingClientRect().top - $("rssDownloaderFeeds").getBoundingClientRect().top) - 10;
+                $("rssDownloaderFeedsTable").style.height = "calc(100% - " + outsideTableHeight + "px)";
             }
 
             const rssDownloaderRuleContextMenu = new window.qBittorrent.ContextMenu.RssDownloaderRuleContextMenu({
-                targets: '',
-                menu: 'rssDownloaderRuleMenu',
+                targets: "",
+                menu: "rssDownloaderRuleMenu",
                 actions: {
                     addRule: addRule,
                     deleteRule: removeSelectedRule,
@@ -406,34 +406,37 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     y: -4
                 }
             });
-            rssDownloaderRulesTable.setup('rssDownloaderRuleTableDiv', 'rssDownloaderRuleFixedHeaderDiv', rssDownloaderRuleContextMenu);
-            rssDownloaderFeedSelectionTable.setup('rssDownloaderFeedSelectionTableDiv', 'rssDownloaderFeedSelectionFixedHeaderDiv');
-            rssDownloaderArticlesTable.setup('rssDownloaderArticlesTableDiv', 'rssDownloaderArticlesFixedHeaderDiv');
+            rssDownloaderRulesTable.setup("rssDownloaderRuleTableDiv", "rssDownloaderRuleFixedHeaderDiv", rssDownloaderRuleContextMenu);
+            rssDownloaderFeedSelectionTable.setup("rssDownloaderFeedSelectionTableDiv", "rssDownloaderFeedSelectionFixedHeaderDiv");
+            rssDownloaderArticlesTable.setup("rssDownloaderArticlesTableDiv", "rssDownloaderArticlesFixedHeaderDiv");
 
-            rssDownloaderRuleContextMenu.addTarget($('rulesTable'));
+            rssDownloaderRuleContextMenu.addTarget($("rulesTable"));
             // deselect feed when clicking on empty part of table
-            $('rulesTable').addEventListener('click', (e) => {
+            $("rulesTable").addEventListener("click", (e) => {
                 rssDownloaderRulesTable.deselectAll();
                 rssDownloaderRulesTable.deselectRow();
-                showRule('');
+                showRule("");
             });
-            $('rulesTable').addEventListener('contextmenu', (e) => {
-                if (e.toElement.nodeName === 'DIV') {
+            $("rulesTable").addEventListener("contextmenu", (e) => {
+                if (e.toElement.nodeName === "DIV") {
                     rssDownloaderRulesTable.deselectAll();
                     rssDownloaderRulesTable.deselectRow();
                     rssDownloaderRuleContextMenu.updateMenuItems();
-                    showRule('');
+                    showRule("");
                 }
             });
             // get all categories and add to combobox
             new Request.JSON({
-                url: 'api/v2/torrents/categories',
-                method: 'get',
+                url: "api/v2/torrents/categories",
+                method: "get",
                 noCache: true,
                 onSuccess: (response) => {
-                    let combobox = $('assignCategoryCombobox');
-                    for (let cat in response) {
-                        let option = document.createElement('option');
+                    const combobox = $("assignCategoryCombobox");
+                    for (const cat in response) {
+                        if (!Object.hasOwn(response, cat))
+                            continue;
+
+                        const option = document.createElement("option");
                         option.text = option.value = cat;
                         combobox.add(option);
                     }
@@ -441,16 +444,16 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             }).send();
             // get all rss feed
             new Request.JSON({
-                url: 'api/v2/rss/items',
-                method: 'get',
+                url: "api/v2/rss/items",
+                method: "get",
                 noCache: true,
                 data: {
                     withData: false
                 },
                 onSuccess: (response) => {
                     feedList = [];
-                    let flatten = (root) => {
-                        for (let child in root) {
+                    const flatten = (root) => {
+                        for (const child in root) {
                             if (root[child].uid !== undefined)
                                 feedList.push({ name: child, url: root[child].url });
                             else
@@ -460,8 +463,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     flatten(response);
                 }
             }).send();
-            $('savetoDifferentDir').addEvent('click', () => {
-                $('saveToText').disabled = !$('savetoDifferentDir').checked;
+            $("savetoDifferentDir").addEvent("click", () => {
+                $("saveToText").disabled = !$("savetoDifferentDir").checked;
             });
             updateRulesList();
         };
@@ -469,13 +472,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const updateRulesList = () => {
             // get all rules
             new Request.JSON({
-                url: 'api/v2/rss/rules',
-                method: 'get',
+                url: "api/v2/rss/rules",
+                method: "get",
                 noCache: true,
                 onSuccess: (response) => {
                     rssDownloaderRulesTable.clear();
                     let rowCount = 0;
-                    for (let rule in response) {
+                    for (const rule in response) {
+                        if (!Object.hasOwn(response, rule))
+                            continue;
                         rssDownloaderRulesTable.updateRowData({
                             rowId: rowCount++,
                             checked: response[rule].enabled,
@@ -491,8 +496,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const modifyRuleState = (rule, setting, newState, callback = () => {}) => {
             rulesList[rule][setting] = newState;
             new Request({
-                url: 'api/v2/rss/setRule',
-                method: 'post',
+                url: "api/v2/rss/setRule",
+                method: "post",
                 data: {
                     ruleName: rule,
                     ruleDef: JSON.stringify(rulesList[rule])
@@ -505,10 +510,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
         const addRule = () => {
             new MochaUI.Window({
-                id: 'newRulePage',
-                title: 'QBT_TR(New rule name)QBT_TR[CONTEXT=AutomatedRssDownloader]',
-                loadMethod: 'iframe',
-                contentURL: 'newrule.html',
+                id: "newRulePage",
+                title: "QBT_TR(New rule name)QBT_TR[CONTEXT=AutomatedRssDownloader]",
+                loadMethod: "iframe",
+                contentURL: "newrule.html",
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -519,10 +524,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
         const renameRule = (rule) => {
             new MochaUI.Window({
-                id: 'renameRulePage',
-                title: 'QBT_TR(Rule renaming)QBT_TR[CONTEXT=AutomatedRssDownloader]',
-                loadMethod: 'iframe',
-                contentURL: 'rename_rule.html?rule=' + encodeURIComponent(rule),
+                id: "renameRulePage",
+                title: "QBT_TR(Rule renaming)QBT_TR[CONTEXT=AutomatedRssDownloader]",
+                loadMethod: "iframe",
+                contentURL: "rename_rule.html?rule=" + encodeURIComponent(rule),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -541,10 +546,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const removeRules = (rules) => {
             const encodedRules = rules.map((rule) => encodeURIComponent(rule));
             new MochaUI.Window({
-                id: 'removeRulePage',
-                title: 'QBT_TR(Rule deletion confirmation)QBT_TR[CONTEXT=AutomatedRssDownloader]',
-                loadMethod: 'iframe',
-                contentURL: 'confirmruledeletion.html?rules=' + encodeURIComponent(encodedRules.join('|')),
+                id: "removeRulePage",
+                title: "QBT_TR(Rule deletion confirmation)QBT_TR[CONTEXT=AutomatedRssDownloader]",
+                loadMethod: "iframe",
+                contentURL: "confirmruledeletion.html?rules=" + encodeURIComponent(encodedRules.join("|")),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -556,10 +561,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const clearDownloadedEpisodes = (rules) => {
             const encodedRules = rules.map((rule) => encodeURIComponent(rule));
             new MochaUI.Window({
-                id: 'clearRulesPage',
-                title: 'QBT_TR(New rule name)QBT_TR[CONTEXT=AutomatedRssDownloader]',
-                loadMethod: 'iframe',
-                contentURL: 'confirmruleclear.html?rules=' + encodeURIComponent(encodedRules.join('|')),
+                id: "clearRulesPage",
+                title: "QBT_TR(New rule name)QBT_TR[CONTEXT=AutomatedRssDownloader]",
+                loadMethod: "iframe",
+                contentURL: "confirmruleclear.html?rules=" + encodeURIComponent(encodedRules.join("|")),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -569,56 +574,56 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         };
 
         const saveSettings = () => {
-            let lastSelectedRow = rssDownloaderRulesTable.selectedRows[rssDownloaderRulesTable.selectedRows.length - 1];
-            let rule = rssDownloaderRulesTable.rows[lastSelectedRow].full_data.name;
+            const lastSelectedRow = rssDownloaderRulesTable.selectedRows[rssDownloaderRulesTable.selectedRows.length - 1];
+            const rule = rssDownloaderRulesTable.rows[lastSelectedRow].full_data.name;
 
-            rulesList[rule].useRegex = $('useRegEx').checked;
-            rulesList[rule].mustContain = $('mustContainText').value;
-            rulesList[rule].mustNotContain = $('mustNotContainText').value;
-            rulesList[rule].episodeFilter = $('episodeFilterText').value;
-            rulesList[rule].smartFilter = $('useSmartFilter').checked;
-            rulesList[rule].ignoreDays = parseInt($('ignoreDaysValue').value);
+            rulesList[rule].useRegex = $("useRegEx").checked;
+            rulesList[rule].mustContain = $("mustContainText").value;
+            rulesList[rule].mustNotContain = $("mustNotContainText").value;
+            rulesList[rule].episodeFilter = $("episodeFilterText").value;
+            rulesList[rule].smartFilter = $("useSmartFilter").checked;
+            rulesList[rule].ignoreDays = parseInt($("ignoreDaysValue").value, 10);
             rulesList[rule].affectedFeeds = rssDownloaderFeedSelectionTable.rows.filter((row) => row.full_data.checked)
                 .map((row) => row.full_data.url)
                 .getValues();
 
-            rulesList[rule].torrentParams.category = $('assignCategoryCombobox').value;
-            rulesList[rule].torrentParams.tags = $('ruleAddTags').value.split(',');
-            if ($('savetoDifferentDir').checked) {
-                rulesList[rule].torrentParams.save_path = $('saveToText').value;
+            rulesList[rule].torrentParams.category = $("assignCategoryCombobox").value;
+            rulesList[rule].torrentParams.tags = $("ruleAddTags").value.split(",");
+            if ($("savetoDifferentDir").checked) {
+                rulesList[rule].torrentParams.save_path = $("saveToText").value;
                 rulesList[rule].torrentParams.use_auto_tmm = false;
             }
 
-            switch ($('addStoppedCombobox').value) {
-                case 'default':
+            switch ($("addStoppedCombobox").value) {
+                case "default":
                     rulesList[rule].torrentParams.stopped = null;
                     break;
-                case 'always':
+                case "always":
                     rulesList[rule].torrentParams.stopped = true;
                     break;
-                case 'never':
+                case "never":
                     rulesList[rule].torrentParams.stopped = false;
                     break;
             }
 
-            switch ($('contentLayoutCombobox').value) {
-                case 'Default':
+            switch ($("contentLayoutCombobox").value) {
+                case "Default":
                     rulesList[rule].torrentParams.content_layout = null;
                     break;
-                case 'Original':
-                    rulesList[rule].torrentParams.content_layout = 'Original';
+                case "Original":
+                    rulesList[rule].torrentParams.content_layout = "Original";
                     break;
-                case 'Subfolder':
-                    rulesList[rule].torrentParams.content_layout = 'Subfolder';
+                case "Subfolder":
+                    rulesList[rule].torrentParams.content_layout = "Subfolder";
                     break;
-                case 'NoSubfolder':
-                    rulesList[rule].torrentParams.content_layout = 'NoSubfolder';
+                case "NoSubfolder":
+                    rulesList[rule].torrentParams.content_layout = "NoSubfolder";
                     break;
             }
 
             new Request({
-                url: 'api/v2/rss/setRule',
-                method: 'post',
+                url: "api/v2/rss/setRule",
+                method: "post",
                 data: {
                     ruleName: rule,
                     ruleDef: JSON.stringify(rulesList[rule])
@@ -631,8 +636,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
         const updateMatchingArticles = (ruleName) => {
             new Request.JSON({
-                url: 'api/v2/rss/matchingArticles',
-                method: 'get',
+                url: "api/v2/rss/matchingArticles",
+                method: "get",
                 noCache: true,
                 data: {
                     ruleName: ruleName
@@ -640,7 +645,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 onSuccess: (response) => {
                     rssDownloaderArticlesTable.clear();
                     let rowCount = 0;
-                    for (let feed in response) {
+                    for (const feed in response) {
+                        if (!Object.hasOwn(response, feed))
+                            continue;
                         rssDownloaderArticlesTable.updateRowData({
                             rowId: rowCount++,
                             name: feed,
@@ -660,91 +667,91 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         };
 
         const showRule = (ruleName) => {
-            if (ruleName === '') {
+            if (ruleName === "") {
                 // disable all
-                $('saveButton').disabled = true;
-                $('useRegEx').disabled = true;
-                $('mustContainText').disabled = true;
-                $('mustNotContainText').disabled = true;
-                $('episodeFilterText').disabled = true;
-                $('useSmartFilter').disabled = true;
-                $('assignCategoryCombobox').disabled = true;
-                $('ruleAddTags').disabled = true;
-                $('savetoDifferentDir').disabled = true;
-                $('saveToText').disabled = true;
-                $('ignoreDaysValue').disabled = true;
-                $('addStoppedCombobox').disabled = true;
-                $('contentLayoutCombobox').disabled = true;
+                $("saveButton").disabled = true;
+                $("useRegEx").disabled = true;
+                $("mustContainText").disabled = true;
+                $("mustNotContainText").disabled = true;
+                $("episodeFilterText").disabled = true;
+                $("useSmartFilter").disabled = true;
+                $("assignCategoryCombobox").disabled = true;
+                $("ruleAddTags").disabled = true;
+                $("savetoDifferentDir").disabled = true;
+                $("saveToText").disabled = true;
+                $("ignoreDaysValue").disabled = true;
+                $("addStoppedCombobox").disabled = true;
+                $("contentLayoutCombobox").disabled = true;
 
                 // reset all boxes
-                $('useRegEx').checked = false;
-                $('mustContainText').value = '';
-                $('mustNotContainText').value = '';
-                $('episodeFilterText').value = '';
-                $('useSmartFilter').checked = false;
-                $('assignCategoryCombobox').value = 'default';
-                $('ruleAddTags').value = '';
-                $('savetoDifferentDir').checked = false;
-                $('saveToText').value = '';
-                $('ignoreDaysValue').value = 0;
-                $('lastMatchText').textContent = 'QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]';
-                $('addStoppedCombobox').value = 'default';
-                $('contentLayoutCombobox').value = 'Default';
+                $("useRegEx").checked = false;
+                $("mustContainText").value = "";
+                $("mustNotContainText").value = "";
+                $("episodeFilterText").value = "";
+                $("useSmartFilter").checked = false;
+                $("assignCategoryCombobox").value = "default";
+                $("ruleAddTags").value = "";
+                $("savetoDifferentDir").checked = false;
+                $("saveToText").value = "";
+                $("ignoreDaysValue").value = 0;
+                $("lastMatchText").textContent = "QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]";
+                $("addStoppedCombobox").value = "default";
+                $("contentLayoutCombobox").value = "Default";
                 rssDownloaderFeedSelectionTable.clear();
                 rssDownloaderArticlesTable.clear();
 
-                $('mustContainText').title = '';
-                $('mustNotContainText').title = '';
-                $('episodeFilterText').title = '';
+                $("mustContainText").title = "";
+                $("mustNotContainText").title = "";
+                $("episodeFilterText").title = "";
             }
             else {
                 // enable all
-                $('saveButton').disabled = false;
-                $('useRegEx').disabled = false;
-                $('mustContainText').disabled = false;
-                $('mustNotContainText').disabled = false;
-                $('episodeFilterText').disabled = false;
-                $('useSmartFilter').disabled = false;
-                $('assignCategoryCombobox').disabled = false;
-                $('ruleAddTags').disabled = false;
-                $('savetoDifferentDir').disabled = false;
-                $('ignoreDaysValue').disabled = false;
-                $('addStoppedCombobox').disabled = false;
-                $('contentLayoutCombobox').disabled = false;
+                $("saveButton").disabled = false;
+                $("useRegEx").disabled = false;
+                $("mustContainText").disabled = false;
+                $("mustNotContainText").disabled = false;
+                $("episodeFilterText").disabled = false;
+                $("useSmartFilter").disabled = false;
+                $("assignCategoryCombobox").disabled = false;
+                $("ruleAddTags").disabled = false;
+                $("savetoDifferentDir").disabled = false;
+                $("ignoreDaysValue").disabled = false;
+                $("addStoppedCombobox").disabled = false;
+                $("contentLayoutCombobox").disabled = false;
 
                 // load rule settings
-                $('useRegEx').checked = rulesList[ruleName].useRegex;
-                $('mustContainText').value = rulesList[ruleName].mustContain;
-                $('mustNotContainText').value = rulesList[ruleName].mustNotContain;
-                $('episodeFilterText').value = rulesList[ruleName].episodeFilter;
-                $('useSmartFilter').checked = rulesList[ruleName].smartFilter;
+                $("useRegEx").checked = rulesList[ruleName].useRegex;
+                $("mustContainText").value = rulesList[ruleName].mustContain;
+                $("mustNotContainText").value = rulesList[ruleName].mustNotContain;
+                $("episodeFilterText").value = rulesList[ruleName].episodeFilter;
+                $("useSmartFilter").checked = rulesList[ruleName].smartFilter;
 
-                $('assignCategoryCombobox').value = rulesList[ruleName].torrentParams.category ? rulesList[ruleName].torrentParams.category : 'default';
-                $('ruleAddTags').value = rulesList[ruleName].torrentParams.tags.join(',');
-                $('savetoDifferentDir').checked = rulesList[ruleName].torrentParams.save_path !== '';
-                $('saveToText').disabled = !$('savetoDifferentDir').checked;
-                $('saveToText').value = rulesList[ruleName].torrentParams.save_path;
-                $('ignoreDaysValue').value = rulesList[ruleName].ignoreDays;
+                $("assignCategoryCombobox").value = rulesList[ruleName].torrentParams.category ? rulesList[ruleName].torrentParams.category : "default";
+                $("ruleAddTags").value = rulesList[ruleName].torrentParams.tags.join(",");
+                $("savetoDifferentDir").checked = rulesList[ruleName].torrentParams.save_path !== "";
+                $("saveToText").disabled = !$("savetoDifferentDir").checked;
+                $("saveToText").value = rulesList[ruleName].torrentParams.save_path;
+                $("ignoreDaysValue").value = rulesList[ruleName].ignoreDays;
 
                 // calculate days since last match
-                if (rulesList[ruleName].lastMatch !== '') {
-                    let timeDiffInMs = new Date().getTime() - new Date(rulesList[ruleName].lastMatch).getTime();
-                    let daysAgo = Math.floor(timeDiffInMs / (1000 * 60 * 60 * 24)).toString();
-                    $('lastMatchText').textContent = ' QBT_TR(Last Match: %1 days ago)QBT_TR[CONTEXT=AutomatedRssDownloader]'.replace('%1', daysAgo);
+                if (rulesList[ruleName].lastMatch !== "") {
+                    const timeDiffInMs = new Date().getTime() - new Date(rulesList[ruleName].lastMatch).getTime();
+                    const daysAgo = Math.floor(timeDiffInMs / (1000 * 60 * 60 * 24)).toString();
+                    $("lastMatchText").textContent = " QBT_TR(Last Match: %1 days ago)QBT_TR[CONTEXT=AutomatedRssDownloader]".replace("%1", daysAgo);
                 }
                 else {
-                    $('lastMatchText').textContent = 'QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]';
+                    $("lastMatchText").textContent = "QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]";
                 }
 
                 if (rulesList[ruleName].torrentParams.stopped === null)
-                    $('addStoppedCombobox').value = 'default';
+                    $("addStoppedCombobox").value = "default";
                 else
-                    $('addStoppedCombobox').value = rulesList[ruleName].torrentParams.stopped ? 'always' : 'never';
+                    $("addStoppedCombobox").value = rulesList[ruleName].torrentParams.stopped ? "always" : "never";
 
                 if (rulesList[ruleName].torrentParams.content_layout === null)
-                    $('contentLayoutCombobox').value = 'Default';
+                    $("contentLayoutCombobox").value = "Default";
                 else
-                    $('contentLayoutCombobox').value = rulesList[ruleName].torrentParams.content_layout;
+                    $("contentLayoutCombobox").value = rulesList[ruleName].torrentParams.content_layout;
 
                 setElementTitles();
 
@@ -765,38 +772,38 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
         const setElementTitles = () => {
             let mainPart;
-            if ($('useRegEx').checked) {
-                mainPart = 'QBT_TR(Regex mode: use Perl-compatible regular expressions)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n';
+            if ($("useRegEx").checked) {
+                mainPart = "QBT_TR(Regex mode: use Perl-compatible regular expressions)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n";
             }
             else {
-                mainPart = 'QBT_TR(Wildcard mode: you can use)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n'
-                    + ' ● QBT_TR(? to match any single character)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                    + ' ● QBT_TR(* to match zero or more of any characters)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                    + ' ● QBT_TR(Whitespaces count as AND operators (all words, any order))QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                    + ' ● QBT_TR(| is used as OR operator)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n'
-                    + 'QBT_TR(If word order is important use * instead of whitespace.)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n';
+                mainPart = "QBT_TR(Wildcard mode: you can use)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n"
+                    + " ● QBT_TR(? to match any single character)QBT_TR[CONTEXT=AutomatedRssDownloader]\n"
+                    + " ● QBT_TR(* to match zero or more of any characters)QBT_TR[CONTEXT=AutomatedRssDownloader]\n"
+                    + " ● QBT_TR(Whitespaces count as AND operators (all words, any order))QBT_TR[CONTEXT=AutomatedRssDownloader]\n"
+                    + " ● QBT_TR(| is used as OR operator)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n"
+                    + "QBT_TR(If word order is important use * instead of whitespace.)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n";
             }
-            let secondPart = 'QBT_TR(An expression with an empty %1 clause (e.g. %2))QBT_TR[CONTEXT=AutomatedRssDownloader]'
-                .replace('%1', '|').replace('%2', 'expr|');
+            const secondPart = "QBT_TR(An expression with an empty %1 clause (e.g. %2))QBT_TR[CONTEXT=AutomatedRssDownloader]"
+                .replace("%1", "|").replace("%2", "expr|");
 
-            $('mustContainText').title = mainPart + secondPart + 'QBT_TR( will match all articles.)QBT_TR[CONTEXT=AutomatedRssDownloader]';
-            $('mustNotContainText').title = mainPart + secondPart + 'QBT_TR( will exclude all articles.)QBT_TR[CONTEXT=AutomatedRssDownloader]';
+            $("mustContainText").title = mainPart + secondPart + "QBT_TR( will match all articles.)QBT_TR[CONTEXT=AutomatedRssDownloader]";
+            $("mustNotContainText").title = mainPart + secondPart + "QBT_TR( will exclude all articles.)QBT_TR[CONTEXT=AutomatedRssDownloader]";
 
-            let episodeFilterTitle = 'QBT_TR(Matches articles based on episode filter.)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n'
-                + 'QBT_TR(Example: )QBT_TR[CONTEXT=AutomatedRssDownloader]'
-                + '1x2;8-15;5;30-;'
-                + 'QBT_TR( will match 2, 5, 8 through 15, 30 and onward episodes of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n'
-                + 'QBT_TR(Episode filter rules: )QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n'
-                + ' ● QBT_TR(Season number is a mandatory non-zero value)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                + ' ● QBT_TR(Episode number is a mandatory positive value)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                + ' ● QBT_TR(Filter must end with semicolon)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                + ' ● QBT_TR(Three range types for episodes are supported: )QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                + '    ● QBT_TR(Single number: <b>1x25;</b> matches episode 25 of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                + '    ● QBT_TR(Normal range: <b>1x25-40;</b> matches episodes 25 through 40 of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
-                + '    ● QBT_TR(Infinite range: <b>1x25-;</b> matches episodes 25 and upward of season one, and all episodes of later seasons)QBT_TR[CONTEXT=AutomatedRssDownloader]';
+            let episodeFilterTitle = "QBT_TR(Matches articles based on episode filter.)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n"
+                + "QBT_TR(Example: )QBT_TR[CONTEXT=AutomatedRssDownloader]"
+                + "1x2;8-15;5;30-;"
+                + "QBT_TR( will match 2, 5, 8 through 15, 30 and onward episodes of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n"
+                + "QBT_TR(Episode filter rules: )QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n"
+                + " ● QBT_TR(Season number is a mandatory non-zero value)QBT_TR[CONTEXT=AutomatedRssDownloader]\n"
+                + " ● QBT_TR(Episode number is a mandatory positive value)QBT_TR[CONTEXT=AutomatedRssDownloader]\n"
+                + " ● QBT_TR(Filter must end with semicolon)QBT_TR[CONTEXT=AutomatedRssDownloader]\n"
+                + " ● QBT_TR(Three range types for episodes are supported: )QBT_TR[CONTEXT=AutomatedRssDownloader]\n"
+                + "    ● QBT_TR(Single number: <b>1x25;</b> matches episode 25 of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n"
+                + "    ● QBT_TR(Normal range: <b>1x25-40;</b> matches episodes 25 through 40 of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n"
+                + "    ● QBT_TR(Infinite range: <b>1x25-;</b> matches episodes 25 and upward of season one, and all episodes of later seasons)QBT_TR[CONTEXT=AutomatedRssDownloader]";
 
-            episodeFilterTitle = episodeFilterTitle.replace(/<b>/g, '').replace(/<\/b>/g, '');
-            $('episodeFilterText').title = episodeFilterTitle;
+            episodeFilterTitle = episodeFilterTitle.replace(/<b>/g, "").replace(/<\/b>/g, "");
+            $("episodeFilterText").title = episodeFilterTitle;
         };
 
         initRssDownloader();

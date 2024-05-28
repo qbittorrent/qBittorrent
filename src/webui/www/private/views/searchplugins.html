@@ -77,7 +77,7 @@
 </ul>
 
 <script>
-    'use strict';
+    "use strict";
 
     if (window.qBittorrent === undefined) {
         window.qBittorrent = {};
@@ -101,15 +101,15 @@
         const initSearchPlugins = function() {
             searchPluginsTable = new window.qBittorrent.DynamicTable.SearchPluginsTable();
             searchPluginsTableContextMenu = new window.qBittorrent.ContextMenu.SearchPluginsTableContextMenu({
-                targets: '.searchPluginsTableRow',
-                menu: 'searchPluginsTableMenu',
+                targets: ".searchPluginsTableRow",
+                menu: "searchPluginsTableMenu",
                 actions: {
                     Enabled: enablePlugin,
                     Uninstall: uninstallPlugin
                 },
                 offsets: calculateContextMenuOffsets()
             });
-            searchPluginsTable.setup('searchPluginsTableDiv', 'searchPluginsTableFixedHeaderDiv', searchPluginsTableContextMenu);
+            searchPluginsTable.setup("searchPluginsTableDiv", "searchPluginsTableFixedHeaderDiv", searchPluginsTableContextMenu);
             updateTable();
         };
 
@@ -119,10 +119,10 @@
 
         const installPlugin = function(path) {
             new MochaUI.Window({
-                id: 'installSearchPlugin',
+                id: "installSearchPlugin",
                 title: "QBT_TR(Install plugin)QBT_TR[CONTEXT=PluginSourceDlg]",
-                loadMethod: 'xhr',
-                contentURL: 'views/installsearchplugin.html',
+                loadMethod: "xhr",
+                contentURL: "views/installsearchplugin.html",
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -134,11 +134,11 @@
         };
 
         const uninstallPlugin = function() {
-            const plugins = searchPluginsTable.selectedRowsIds().join('|');
-            const url = new URI('api/v2/search/uninstallPlugin');
+            const plugins = searchPluginsTable.selectedRowsIds().join("|");
+            const url = new URI("api/v2/search/uninstallPlugin");
             new Request({
                 url: url,
-                method: 'post',
+                method: "post",
                 data: {
                     names: plugins,
                 }
@@ -151,22 +151,22 @@
             if (plugins && plugins.length)
                 enable = !window.qBittorrent.Search.getPlugin(plugins[0]).enabled;
 
-            const url = new URI('api/v2/search/enablePlugin');
+            const url = new URI("api/v2/search/enablePlugin");
             new Request({
                 url: url,
-                method: 'post',
+                method: "post",
                 data: {
-                    names: plugins.join('|'),
+                    names: plugins.join("|"),
                     enable: enable
                 }
             }).send();
         };
 
         const checkForUpdates = function() {
-            const url = new URI('api/v2/search/updatePlugins');
+            const url = new URI("api/v2/search/updatePlugins");
             new Request({
                 url: url,
-                method: 'post'
+                method: "post"
             }).send();
         };
 
@@ -188,14 +188,14 @@
 
         const setupSearchPluginTableEvents = function(enable) {
             if (enable)
-                $$(".searchPluginsTableRow").each(function(target) {
-                    target.addEventListener('dblclick', enablePlugin, false);
-                    target.addEventListener('contextmenu', updateSearchPluginsTableContextMenuOffset, true);
+                $$(".searchPluginsTableRow").each((target) => {
+                    target.addEventListener("dblclick", enablePlugin, false);
+                    target.addEventListener("contextmenu", updateSearchPluginsTableContextMenuOffset, true);
                 });
             else
-                $$(".searchPluginsTableRow").each(function(target) {
-                    target.removeEventListener('dblclick', enablePlugin, false);
-                    target.removeEventListener('contextmenu', updateSearchPluginsTableContextMenuOffset, true);
+                $$(".searchPluginsTableRow").each((target) => {
+                    target.removeEventListener("dblclick", enablePlugin, false);
+                    target.removeEventListener("contextmenu", updateSearchPluginsTableContextMenuOffset, true);
                 });
         };
 

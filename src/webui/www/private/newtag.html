@@ -9,39 +9,39 @@
     <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
     <script>
-        'use strict';
+        "use strict";
 
         new Keyboard({
-            defaultEventType: 'keydown',
+            defaultEventType: "keydown",
             events: {
-                'Enter': function(event) {
-                    $('tagNameButton').click();
+                "Enter": function(event) {
+                    $("tagNameButton").click();
                     event.preventDefault();
                 },
-                'Escape': function(event) {
+                "Escape": function(event) {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 },
-                'Esc': function(event) {
+                "Esc": function(event) {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 }
             }
         }).activate();
 
-        window.addEvent('domready', function() {
-            const uriAction = window.qBittorrent.Misc.safeTrim(new URI().getData('action'));
-            const uriHashes = window.qBittorrent.Misc.safeTrim(new URI().getData('hashes'));
+        window.addEvent("domready", () => {
+            const uriAction = window.qBittorrent.Misc.safeTrim(new URI().getData("action"));
+            const uriHashes = window.qBittorrent.Misc.safeTrim(new URI().getData("hashes"));
 
-            if (uriAction === 'create')
-                $('legendText').innerText = 'QBT_TR(Tag:)QBT_TR[CONTEXT=TagFilterWidget]';
+            if (uriAction === "create")
+                $("legendText").innerText = "QBT_TR(Tag:)QBT_TR[CONTEXT=TagFilterWidget]";
 
-            $('tagName').focus();
+            $("tagName").focus();
 
-            $('tagNameButton').addEvent('click', function(e) {
+            $("tagNameButton").addEvent("click", (e) => {
                 new Event(e).stop();
 
-                const tagName = $('tagName').value.trim();
+                const tagName = $("tagName").value.trim();
 
                 const verifyTagName = function(name) {
                     if ((name === null) || (name === ""))
@@ -59,8 +59,8 @@
                             return;
 
                         new Request({
-                            url: 'api/v2/torrents/addTags',
-                            method: 'post',
+                            url: "api/v2/torrents/addTags",
+                            method: "post",
                             data: {
                                 hashes: uriHashes,
                                 tags: tagName,
@@ -76,8 +76,8 @@
                             return;
 
                         new Request({
-                            url: 'api/v2/torrents/createTags',
-                            method: 'post',
+                            url: "api/v2/torrents/createTags",
+                            method: "post",
                             data: {
                                 tags: tagName,
                             },

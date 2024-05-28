@@ -26,7 +26,7 @@
  * exception statement from your version.
  */
 
-'use strict';
+"use strict";
 
 if (window.qBittorrent === undefined) {
     window.qBittorrent = {};
@@ -43,60 +43,60 @@ window.qBittorrent.ProgressBar = (function() {
     const ProgressBar = new Class({
         initialize: function(value, parameters) {
             const vals = {
-                'id': 'progressbar_' + (ProgressBars++),
-                'value': [value, 0].pick(),
-                'width': 0,
-                'height': 0,
-                'darkbg': 'var(--color-background-blue)',
-                'darkfg': 'var(--color-text-white)',
-                'lightbg': 'var(--color-background-default)',
-                'lightfg': 'var(--color-text-default)'
+                "id": "progressbar_" + (ProgressBars++),
+                "value": [value, 0].pick(),
+                "width": 0,
+                "height": 0,
+                "darkbg": "var(--color-background-blue)",
+                "darkfg": "var(--color-text-white)",
+                "lightbg": "var(--color-background-default)",
+                "lightfg": "var(--color-text-default)"
             };
-            if (parameters && (typeOf(parameters) === 'object'))
+            if (parameters && (typeOf(parameters) === "object"))
                 Object.append(vals, parameters);
             if (vals.height < 12)
                 vals.height = 12;
-            const obj = new Element('div', {
-                'id': vals.id,
-                'class': 'progressbar_wrapper',
-                'styles': {
-                    'border': '1px solid var(--color-border-default)',
-                    'width': vals.width,
-                    'height': vals.height,
-                    'position': 'relative',
-                    'margin': '0 auto'
+            const obj = new Element("div", {
+                "id": vals.id,
+                "class": "progressbar_wrapper",
+                "styles": {
+                    "border": "1px solid var(--color-border-default)",
+                    "width": vals.width,
+                    "height": vals.height,
+                    "position": "relative",
+                    "margin": "0 auto"
                 }
             });
             obj.vals = vals;
             obj.vals.value = [value, 0].pick();
-            obj.vals.dark = new Element('div', {
-                'id': vals.id + '_dark',
-                'class': 'progressbar_dark',
-                'styles': {
-                    'width': vals.width,
-                    'height': vals.height,
-                    'background': vals.darkbg,
-                    'color': vals.darkfg,
-                    'position': 'absolute',
-                    'text-align': 'center',
-                    'left': 0,
-                    'top': 0,
-                    'line-height': vals.height
+            obj.vals.dark = new Element("div", {
+                "id": vals.id + "_dark",
+                "class": "progressbar_dark",
+                "styles": {
+                    "width": vals.width,
+                    "height": vals.height,
+                    "background": vals.darkbg,
+                    "color": vals.darkfg,
+                    "position": "absolute",
+                    "text-align": "center",
+                    "left": 0,
+                    "top": 0,
+                    "line-height": vals.height
                 }
             });
-            obj.vals.light = new Element('div', {
-                'id': vals.id + '_light',
-                'class': 'progressbar_light',
-                'styles': {
-                    'width': vals.width,
-                    'height': vals.height,
-                    'background': vals.lightbg,
-                    'color': vals.lightfg,
-                    'position': 'absolute',
-                    'text-align': 'center',
-                    'left': 0,
-                    'top': 0,
-                    'line-height': vals.height
+            obj.vals.light = new Element("div", {
+                "id": vals.id + "_light",
+                "class": "progressbar_light",
+                "styles": {
+                    "width": vals.width,
+                    "height": vals.height,
+                    "background": vals.lightbg,
+                    "color": vals.lightfg,
+                    "position": "absolute",
+                    "text-align": "center",
+                    "left": 0,
+                    "top": 0,
+                    "line-height": vals.height
                 }
             });
             obj.appendChild(obj.vals.dark);
@@ -120,26 +120,24 @@ window.qBittorrent.ProgressBar = (function() {
         value = parseFloat(value);
         if (isNaN(value))
             value = 0;
-        if (value > 100)
-            value = 100;
-        if (value < 0)
-            value = 0;
+        value = Math.min(Math.max(value, 0), 100);
         this.vals.value = value;
-        this.vals.dark.empty();
-        this.vals.light.empty();
-        this.vals.dark.appendText(value.round(1).toFixed(1) + '%');
-        this.vals.light.appendText(value.round(1).toFixed(1) + '%');
-        const r = parseInt(this.vals.width * (value / 100));
-        this.vals.dark.setStyle('clip', 'rect(0,' + r + 'px,' + this.vals.height + 'px,0)');
-        this.vals.light.setStyle('clip', 'rect(0,' + this.vals.width + 'px,' + this.vals.height + 'px,' + r + 'px)');
+
+        const displayedValue = `${value.round(1).toFixed(1)}%`;
+        this.vals.dark.textContent = displayedValue;
+        this.vals.light.textContent = displayedValue;
+
+        const r = parseInt((this.vals.width * (value / 100)), 10);
+        this.vals.dark.setStyle("clip", `rect(0, ${r}px, ${this.vals.height}px, 0)`);
+        this.vals.light.setStyle("clip", `rect(0, ${this.vals.width}px, ${this.vals.height}px, ${r}px)`);
     }
 
     function ProgressBar_setWidth(value) {
         if (this.vals.width !== value) {
             this.vals.width = value;
-            this.setStyle('width', value);
-            this.vals.dark.setStyle('width', value);
-            this.vals.light.setStyle('width', value);
+            this.setStyle("width", value);
+            this.vals.dark.setStyle("width", value);
+            this.vals.light.setStyle("width", value);
             this.setValue(this.vals.value);
         }
     }
@@ -150,10 +148,10 @@ window.qBittorrent.ProgressBar = (function() {
             return;
         if (!obj.parentNode)
             return setTimeout('ProgressBar_checkForParent("' + id + '")', 1);
-        obj.setStyle('width', '100%');
+        obj.setStyle("width", "100%");
         const w = obj.offsetWidth;
-        obj.vals.dark.setStyle('width', w);
-        obj.vals.light.setStyle('width', w);
+        obj.vals.dark.setStyle("width", w);
+        obj.vals.light.setStyle("width", w);
         obj.vals.width = w;
         obj.setValue(obj.vals.value);
     }

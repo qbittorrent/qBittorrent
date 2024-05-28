@@ -26,7 +26,7 @@
  * exception statement from your version.
  */
 
-'use strict';
+"use strict";
 
 if (window.qBittorrent === undefined) {
     window.qBittorrent = {};
@@ -81,9 +81,9 @@ window.qBittorrent.FileTree = (function() {
                 this.nodeMap[node.rowId] = node;
             }
 
-            node.children.each(function(child) {
+            node.children.each((child) => {
                 this.generateNodeMap(child);
-            }.bind(this));
+            });
         },
 
         getNode: function(rowId) {
@@ -101,17 +101,17 @@ window.qBittorrent.FileTree = (function() {
          */
         toArray: function() {
             const nodes = [];
-            this.root.children.each(function(node) {
+            this.root.children.each((node) => {
                 this._getArrayOfNodes(node, nodes);
-            }.bind(this));
+            });
             return nodes;
         },
 
         _getArrayOfNodes: function(node, array) {
             array.push(node);
-            node.children.each(function(child) {
+            node.children.each((child) => {
                 this._getArrayOfNodes(child, array);
-            }.bind(this));
+            });
         }
     });
 
@@ -161,7 +161,7 @@ window.qBittorrent.FileTree = (function() {
 
             let isFirstFile = true;
 
-            this.children.each(function(node) {
+            this.children.each((node) => {
                 if (node.isFolder)
                     node.calculateSize();
 
@@ -185,7 +185,7 @@ window.qBittorrent.FileTree = (function() {
                     progress += (node.progress * node.size);
                     availability += (node.availability * node.size);
                 }
-            }.bind(this));
+            });
 
             this.size = size;
             this.remaining = remaining;

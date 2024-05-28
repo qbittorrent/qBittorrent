@@ -163,31 +163,31 @@
     <div id="download_spinner" class="mochaSpinner"></div>
 
     <script>
-        'use strict';
+        "use strict";
 
-        const encodedUrls = new URI().getData('urls');
+        const encodedUrls = new URI().getData("urls");
         if (encodedUrls) {
-            const urls = encodedUrls.split('|').map(function(url) {
+            const urls = encodedUrls.split("|").map((url) => {
                 return decodeURIComponent(url);
             });
 
             if (urls.length)
-                $('urls').set('value', urls.join("\n"));
+                $("urls").set("value", urls.join("\n"));
         }
 
         let submitted = false;
 
-        $('downloadForm').addEventListener("submit", function() {
-            $('startTorrentHidden').value = $('startTorrent').checked ? 'false' : 'true';
+        $("downloadForm").addEventListener("submit", () => {
+            $("startTorrentHidden").value = $("startTorrent").checked ? "false" : "true";
 
-            $('dlLimitHidden').value = $('dlLimitText').value.toInt() * 1024;
-            $('upLimitHidden').value = $('upLimitText').value.toInt() * 1024;
+            $("dlLimitHidden").value = $("dlLimitText").value.toInt() * 1024;
+            $("upLimitHidden").value = $("upLimitText").value.toInt() * 1024;
 
-            $('download_spinner').style.display = "block";
+            $("download_spinner").style.display = "block";
             submitted = true;
         });
 
-        $('download_frame').addEventListener("load", function() {
+        $("download_frame").addEventListener("load", () => {
             if (submitted)
                 window.parent.qBittorrent.Client.closeWindows();
         });
