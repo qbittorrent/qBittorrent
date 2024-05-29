@@ -37,6 +37,7 @@
 #include <QCoreApplication>
 #include <QDebug>
 #include <QDir>
+#include <QDirIterator>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -1159,8 +1160,11 @@ void AppController::getDirectoryContentAction()
         throw APIError(APIErrorType::BadParams, tr("Invalid mode, allowed values: %1").arg(u"all, dirs, files"_s));
     };
 
-    const QStringList dirs = dir.entryList(QDir::NoDotAndDotDot | parseDirectoryContentMode(visibility));
-    setResult(QJsonArray::fromStringList(dirs));
+    QJsonArray ret;
+    QDirIterator it {dirPath, (QDir::NoDotAndDotDot | parseDirectoryContentMode(visibility))};
+    while (it.hasNext())
+        ret.append(it.next());
+    setResult(ret);
 }
 
 void AppController::networkInterfaceListAction()
