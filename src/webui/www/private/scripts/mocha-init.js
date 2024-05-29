@@ -266,7 +266,7 @@ const initializeWindows = function() {
                 paddingVertical: 0,
                 paddingHorizontal: 0,
                 width: 424,
-                height: 175
+                height: 200
             });
         }
     };
