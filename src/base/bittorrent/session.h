@@ -425,7 +425,7 @@ namespace BitTorrent
         virtual void setExcludedFileNamesEnabled(bool enabled) = 0;
         virtual QStringList excludedFileNames() const = 0;
         virtual void setExcludedFileNames(const QStringList &newList) = 0;
-        virtual bool isFilenameExcluded(const QString &fileName) const = 0;
+        virtual void applyFilenameFilter(const PathList &files, QList<BitTorrent::DownloadPriority> &priorities) = 0;
         virtual QStringList bannedIPs() const = 0;
         virtual void setBannedIPs(const QStringList &newList) = 0;
         virtual ResumeDataStorageType resumeDataStorageType() const = 0;
