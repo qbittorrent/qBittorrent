@@ -740,16 +740,15 @@ void WebApplication::sessionStart()
     connect(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, syncController, &SyncController::updateFreeDiskSpace);
     m_currentSession->registerAPIController(u"sync"_s, syncController);
 
-    QNetworkCookie cookie {m_sessionCookieName.toLatin1(), m_currentSession->id().toUtf8()};
+    QNetworkCookie cookie {m_sessionCookieName.toLatin1(), m_currentSession->id().toLatin1()};
     cookie.setHttpOnly(true);
     cookie.setSecure(m_isSecureCookieEnabled && m_isHttpsEnabled);
     cookie.setPath(u"/"_s);
-    QByteArray cookieRawForm = cookie.toRawForm();
     if (m_isCSRFProtectionEnabled)
-        cookieRawForm.append("; SameSite=Strict");
+        cookie.setSameSitePolicy(QNetworkCookie::SameSite::Strict);
     else if (cookie.isSecure())
-        cookieRawForm.append("; SameSite=None");
-    setHeader({Http::HEADER_SET_COOKIE, QString::fromLatin1(cookieRawForm)});
+        cookie.setSameSitePolicy(QNetworkCookie::SameSite::None);
+    setHeader({Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm())});
 }
 
 void WebApplication::sessionEnd()
