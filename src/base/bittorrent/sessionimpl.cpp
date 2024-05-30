@@ -3870,7 +3870,7 @@ void SessionImpl::populateExcludedFileNamesRegExpList()
 
     for (const QString &str : excludedNames)
     {
-        const QString pattern = QRegularExpression::anchoredPattern(QRegularExpression::wildcardToRegularExpression(str));
+        const QString pattern = QRegularExpression::wildcardToRegularExpression(str);
         const QRegularExpression re {pattern, QRegularExpression::CaseInsensitiveOption};
         m_excludedFileNamesRegExpList.append(re);
     }
@@ -3881,11 +3881,18 @@ void SessionImpl::applyFilenameFilter(const PathList &files, QList<DownloadPrior
     if (!isExcludedFileNamesEnabled())
         return;
 
-    const auto isFilenameExcluded = [patterns = m_excludedFileNamesRegExpList](const QString &fileName)
+    const auto isFilenameExcluded = [patterns = m_excludedFileNamesRegExpList](const Path &fileName)
     {
         return std::any_of(patterns.begin(), patterns.end(), [&fileName](const QRegularExpression &re)
         {
-            return re.match(fileName).hasMatch();
+            Path path = fileName;
+            while (!re.match(path.filename()).hasMatch())
+            {
+                path = path.parentPath();
+                if (path.isEmpty())
+                    return false;
+            }
+            return true;
         });
     };
 
@@ -3895,7 +3902,7 @@ void SessionImpl::applyFilenameFilter(const PathList &files, QList<DownloadPrior
         if (priorities[i] == BitTorrent::DownloadPriority::Ignored)
             continue;
 
-        if (isFilenameExcluded(files.at(i).filename()))
+        if (isFilenameExcluded(files.at(i)))
             priorities[i] = BitTorrent::DownloadPriority::Ignored;
     }
 }
