@@ -411,7 +411,7 @@ void PeerListWidget::loadPeers(const BitTorrent::Torrent *torrent)
             return;
 
         // Remove I2P peers since they will be completely reloaded.
-        for (QStandardItem *item : asConst(m_I2PPeerItems))
+        for (const QStandardItem *item : asConst(m_I2PPeerItems))
             m_listModel->removeRow(item->row());
         m_I2PPeerItems.clear();
 
@@ -466,10 +466,14 @@ void PeerListWidget::loadPeers(const BitTorrent::Torrent *torrent)
         {
             QStandardItem *item = m_peerItems.take(peerEndpoint);
 
-            QSet<QStandardItem *> &items = m_itemsByIP[peerEndpoint.address.ip];
-            items.remove(item);
-            if (items.isEmpty())
-                m_itemsByIP.remove(peerEndpoint.address.ip);
+            const auto items = m_itemsByIP.find(peerEndpoint.address.ip);
+            Q_ASSERT(items != m_itemsByIP.end());
+            if (items == m_itemsByIP.end()) [[unlikely]]
+                continue;
+
+            items->remove(item);
+            if (items->isEmpty())
+                m_itemsByIP.erase(items);
 
             m_listModel->removeRow(item->row());
         }
