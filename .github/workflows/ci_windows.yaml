@@ -93,7 +93,7 @@ jobs:
           move "${{ github.workspace }}/../boost_*" "${{ env.boost_path }}"
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: "6.7.0"
           archives: qtbase qtsvg qttools
@@ -153,26 +153,26 @@ jobs:
           copy build/qbittorrent.pdb upload/qBittorrent
           copy dist/windows/qt.conf upload/qBittorrent
           # runtimes
-          copy "${{ env.Qt6_DIR }}/bin/Qt6Core.dll" upload/qBittorrent
-          copy "${{ env.Qt6_DIR }}/bin/Qt6Gui.dll" upload/qBittorrent
-          copy "${{ env.Qt6_DIR }}/bin/Qt6Network.dll" upload/qBittorrent
-          copy "${{ env.Qt6_DIR }}/bin/Qt6Sql.dll" upload/qBittorrent
-          copy "${{ env.Qt6_DIR }}/bin/Qt6Svg.dll" upload/qBittorrent
-          copy "${{ env.Qt6_DIR }}/bin/Qt6Widgets.dll" upload/qBittorrent
-          copy "${{ env.Qt6_DIR }}/bin/Qt6Xml.dll" upload/qBittorrent
+          copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Core.dll" upload/qBittorrent
+          copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Gui.dll" upload/qBittorrent
+          copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Network.dll" upload/qBittorrent
+          copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Sql.dll" upload/qBittorrent
+          copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Svg.dll" upload/qBittorrent
+          copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Widgets.dll" upload/qBittorrent
+          copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Xml.dll" upload/qBittorrent
           mkdir upload/qBittorrent/plugins/iconengines
-          copy "${{ env.Qt6_DIR }}/plugins/iconengines/qsvgicon.dll" upload/qBittorrent/plugins/iconengines
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/iconengines/qsvgicon.dll" upload/qBittorrent/plugins/iconengines
           mkdir upload/qBittorrent/plugins/imageformats
-          copy "${{ env.Qt6_DIR }}/plugins/imageformats/qico.dll" upload/qBittorrent/plugins/imageformats
-          copy "${{ env.Qt6_DIR }}/plugins/imageformats/qsvg.dll" upload/qBittorrent/plugins/imageformats
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qico.dll" upload/qBittorrent/plugins/imageformats
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qsvg.dll" upload/qBittorrent/plugins/imageformats
           mkdir upload/qBittorrent/plugins/platforms
-          copy "${{ env.Qt6_DIR }}/plugins/platforms/qwindows.dll" upload/qBittorrent/plugins/platforms
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/platforms/qwindows.dll" upload/qBittorrent/plugins/platforms
           mkdir upload/qBittorrent/plugins/sqldrivers
-          copy "${{ env.Qt6_DIR }}/plugins/sqldrivers/qsqlite.dll" upload/qBittorrent/plugins/sqldrivers
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/sqldrivers/qsqlite.dll" upload/qBittorrent/plugins/sqldrivers
           mkdir upload/qBittorrent/plugins/styles
-          copy "${{ env.Qt6_DIR }}/plugins/styles/qmodernwindowsstyle.dll" upload/qBittorrent/plugins/styles
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/styles/qmodernwindowsstyle.dll" upload/qBittorrent/plugins/styles
           mkdir upload/qBittorrent/plugins/tls
-          copy "${{ env.Qt6_DIR }}/plugins/tls/qschannelbackend.dll" upload/qBittorrent/plugins/tls
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/tls/qschannelbackend.dll" upload/qBittorrent/plugins/tls
           # cmake additionals
           mkdir upload/cmake
           copy build/compile_commands.json upload/cmake
