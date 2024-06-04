@@ -1,4 +1,5 @@
 .vscode/
+.idea/
 src/gui/geoip/GeoIP.dat
 src/gui/geoip/GeoIP.dat.gz
 src/qbittorrent
