@@ -97,7 +97,7 @@ public:
               , const std::optional<TorrentIDSet> &idSet = AnyID
             , const std::optional<QString> &category = AnyCategory
             , const std::optional<Tag> &tags = AnyTag
-            , const std::optional<bool> &isPrivate = AnyIsPrivate);
+            , std::optional<bool> isPrivate = AnyIsPrivate);
 
 
     bool setType(Type type);
