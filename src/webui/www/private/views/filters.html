@@ -42,7 +42,7 @@
 </div>
 
 <script>
-    'use strict';
+    "use strict";
 
     if (window.qBittorrent === undefined) {
         window.qBittorrent = {};
@@ -58,8 +58,8 @@
         };
 
         const categoriesFilterContextMenu = new window.qBittorrent.ContextMenu.CategoriesFilterContextMenu({
-            targets: '.categoriesFilterContextMenuTarget',
-            menu: 'categoriesFilterMenu',
+            targets: ".categoriesFilterContextMenuTarget",
+            menu: "categoriesFilterMenu",
             actions: {
                 createCategory: function(element, ref) {
                     createCategoryFN();
@@ -96,8 +96,8 @@
         });
 
         const tagsFilterContextMenu = new window.qBittorrent.ContextMenu.TagsFilterContextMenu({
-            targets: '.tagsFilterContextMenuTarget',
-            menu: 'tagsFilterMenu',
+            targets: ".tagsFilterContextMenuTarget",
+            menu: "tagsFilterMenu",
             actions: {
                 createTag: function(element, ref) {
                     createTagFN();
@@ -128,8 +128,8 @@
         });
 
         const trackersFilterContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
-            targets: '.trackersFilterContextMenuTarget',
-            menu: 'trackersFilterMenu',
+            targets: ".trackersFilterContextMenuTarget",
+            menu: "trackersFilterMenu",
             actions: {
                 startTorrentsByTracker: function(element, ref) {
                     startTorrentsByTrackerFN(element.id);
@@ -150,17 +150,17 @@
             }
         });
 
-        if (LocalPreferences.get('filter_status_collapsed') === "true")
-            toggleFilterDisplay('status');
+        if (LocalPreferences.get("filter_status_collapsed") === "true")
+            toggleFilterDisplay("status");
 
-        if (LocalPreferences.get('filter_category_collapsed') === "true")
-            toggleFilterDisplay('category');
+        if (LocalPreferences.get("filter_category_collapsed") === "true")
+            toggleFilterDisplay("category");
 
-        if (LocalPreferences.get('filter_tag_collapsed') === "true")
-            toggleFilterDisplay('tag');
+        if (LocalPreferences.get("filter_tag_collapsed") === "true")
+            toggleFilterDisplay("tag");
 
-        if (LocalPreferences.get('filter_tracker_collapsed') === "true")
-            toggleFilterDisplay('tracker');
+        if (LocalPreferences.get("filter_tracker_collapsed") === "true")
+            toggleFilterDisplay("tracker");
 
         return exports();
     })();

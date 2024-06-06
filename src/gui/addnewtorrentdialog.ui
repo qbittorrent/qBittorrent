@@ -76,7 +76,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="comboTTM">
+              <widget class="QComboBox" name="comboTMM">
                <property name="toolTip">
                 <string>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</string>
                </property>

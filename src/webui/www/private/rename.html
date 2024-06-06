@@ -9,45 +9,45 @@
     <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
     <script>
-        'use strict';
+        "use strict";
 
         new Keyboard({
-            defaultEventType: 'keydown',
+            defaultEventType: "keydown",
             events: {
-                'Enter': function(event) {
-                    $('renameButton').click();
+                "Enter": function(event) {
+                    $("renameButton").click();
                     event.preventDefault();
                 },
-                'Escape': function(event) {
+                "Escape": function(event) {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 },
-                'Esc': function(event) {
+                "Esc": function(event) {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 }
             }
         }).activate();
 
-        window.addEvent('domready', function() {
-            const name = new URI().getData('name');
+        window.addEvent("domready", () => {
+            const name = new URI().getData("name");
             // set text field to current value
             if (name)
-                $('rename').value = name;
+                $("rename").value = name;
 
-            $('rename').focus();
-            $('renameButton').addEvent('click', function(e) {
+            $("rename").focus();
+            $("renameButton").addEvent("click", (e) => {
                 new Event(e).stop();
                 // check field
-                const name = $('rename').value.trim();
+                const name = $("rename").value.trim();
                 if ((name === null) || (name === ""))
                     return false;
 
-                const hash = new URI().getData('hash');
+                const hash = new URI().getData("hash");
                 if (hash) {
                     new Request({
-                        url: 'api/v2/torrents/rename',
-                        method: 'post',
+                        url: "api/v2/torrents/rename",
+                        method: "post",
                         data: {
                             hash: hash,
                             name: name

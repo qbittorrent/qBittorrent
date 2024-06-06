@@ -841,18 +841,18 @@
 </div>
 
 <script>
-    'use strict';
+    "use strict";
 
     (() => {
         const qbtVersion = window.parent.qBittorrent.Cache.qbtVersion.get();
         const buildInfo = window.parent.qBittorrent.Cache.buildInfo.get();
 
-        $('qbittorrentVersion').innerText = `qBittorrent ${qbtVersion} QBT_TR(WebUI)QBT_TR[CONTEXT=OptionsDialog]`;
-        $('qtVersion').textContent = buildInfo.qt;
-        $('libtorrentVersion').textContent = buildInfo.libtorrent;
-        $('boostVersion').textContent = buildInfo.boost;
-        $('opensslVersion').textContent = buildInfo.openssl;
-        $('zlibVersion').textContent = buildInfo.zlib;
-        $('qbittorrentVersion').textContent += ` (${buildInfo.bitness}-bit)`;
+        $("qbittorrentVersion").innerText = `qBittorrent ${qbtVersion} QBT_TR(WebUI)QBT_TR[CONTEXT=OptionsDialog]`;
+        $("qtVersion").textContent = buildInfo.qt;
+        $("libtorrentVersion").textContent = buildInfo.libtorrent;
+        $("boostVersion").textContent = buildInfo.boost;
+        $("opensslVersion").textContent = buildInfo.openssl;
+        $("zlibVersion").textContent = buildInfo.zlib;
+        $("qbittorrentVersion").textContent += ` (${buildInfo.bitness}-bit)`;
     })();
 </script>

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 if (window.qBittorrent === undefined) {
     window.qBittorrent = {};
@@ -19,7 +19,7 @@ window.qBittorrent.MultiRename = (function() {
     };
 
     const RenameFiles = new Class({
-        hash: '',
+        hash: "",
         selectedFiles: [],
         matchedFiles: [],
 
@@ -58,7 +58,7 @@ window.qBittorrent.MultiRename = (function() {
                 let count = 0;
                 let lastIndex = 0;
                 regex.lastIndex = 0;
-                let matches = [];
+                const matches = [];
                 do {
                     result = regex.exec(str);
                     if (result === null)
@@ -86,7 +86,7 @@ window.qBittorrent.MultiRename = (function() {
                 return input.substring(0, start) + replacement + input.substring(end);
             };
             const replaceGroup = (input, search, replacement, escape, stripEscape = true) => {
-                let result = '';
+                let result = "";
                 let i = 0;
                 while (i < input.length) {
                     // Check if the current index contains the escape string
@@ -135,7 +135,7 @@ window.qBittorrent.MultiRename = (function() {
 
             // Setup regex search
             const regexEscapeExp = new RegExp(/[/\-\\^$*+?.()|[\]{}]/g);
-            const standardSearch = new RegExp(this._inner_search.replace(regexEscapeExp, '\\$&'), regexFlags);
+            const standardSearch = new RegExp(this._inner_search.replace(regexEscapeExp, "\\$&"), regexFlags);
             let regexSearch;
             try {
                 regexSearch = new RegExp(this._inner_search, regexFlags);
@@ -193,23 +193,25 @@ window.qBittorrent.MultiRename = (function() {
                     let replacement = this._inner_replacement;
                     // Replace numerical groups
                     for (let g = 0; g < match.length; ++g) {
-                        let group = match[g];
+                        const group = match[g];
                         if (!group) { continue; }
-                        replacement = replaceGroup(replacement, `$${g}`, group, '\\', false);
+                        replacement = replaceGroup(replacement, `$${g}`, group, "\\", false);
                     }
                     // Replace named groups
-                    for (let namedGroup in match.groups) {
-                        replacement = replaceGroup(replacement, `$${namedGroup}`, match.groups[namedGroup], '\\', false);
+                    for (const namedGroup in match.groups) {
+                        if (!Object.hasOwn(match.groups, namedGroup))
+                            continue;
+                        replacement = replaceGroup(replacement, `$${namedGroup}`, match.groups[namedGroup], "\\", false);
                     }
                     // Replace auxiliary variables
-                    for (let v = 'dddddddd'; v !== ''; v = v.substring(1)) {
-                        let fileCount = fileEnumeration.toString().padStart(v.length, '0');
-                        replacement = replaceGroup(replacement, `$${v}`, fileCount, '\\', false);
+                    for (let v = "dddddddd"; v !== ""; v = v.substring(1)) {
+                        const fileCount = fileEnumeration.toString().padStart(v.length, "0");
+                        replacement = replaceGroup(replacement, `$${v}`, fileCount, "\\", false);
                     }
                     // Remove empty $ variable
-                    replacement = replaceGroup(replacement, '$', '', '\\');
+                    replacement = replaceGroup(replacement, "$", "", "\\");
                     const wholeMatch = match[0];
-                    const index = match['index'];
+                    const index = match["index"];
                     renamed = replaceBetween(renamed, index + offset, index + offset + wholeMatch.length, replacement);
                 }
 
@@ -225,7 +227,7 @@ window.qBittorrent.MultiRename = (function() {
                 return;
             }
 
-            let replaced = [];
+            const replaced = [];
             const _inner_rename = async function(i) {
                 const match = this.matchedFiles[i];
                 const newName = match.renamed;
@@ -242,9 +244,9 @@ window.qBittorrent.MultiRename = (function() {
                 const newPath = parentPath
                     ? parentPath + window.qBittorrent.Filesystem.PathSeparator + newName
                     : newName;
-                let renameRequest = new Request({
-                    url: isFolder ? 'api/v2/torrents/renameFolder' : 'api/v2/torrents/renameFile',
-                    method: 'post',
+                const renameRequest = new Request({
+                    url: isFolder ? "api/v2/torrents/renameFolder" : "api/v2/torrents/renameFile",
+                    method: "post",
                     data: {
                         hash: this.hash,
                         oldPath: oldPath,

@@ -150,27 +150,27 @@
     <div id="upload_spinner" class="mochaSpinner"></div>
 
     <script>
-        'use strict';
+        "use strict";
 
         let submitted = false;
 
-        $('uploadForm').addEventListener("submit", function() {
-            $('startTorrentHidden').value = $('startTorrent').checked ? 'false' : 'true';
+        $("uploadForm").addEventListener("submit", () => {
+            $("startTorrentHidden").value = $("startTorrent").checked ? "false" : "true";
 
-            $('dlLimitHidden').value = $('dlLimitText').value.toInt() * 1024;
-            $('upLimitHidden').value = $('upLimitText').value.toInt() * 1024;
+            $("dlLimitHidden").value = $("dlLimitText").value.toInt() * 1024;
+            $("upLimitHidden").value = $("upLimitText").value.toInt() * 1024;
 
-            $('upload_spinner').style.display = "block";
+            $("upload_spinner").style.display = "block";
             submitted = true;
         });
 
-        $('upload_frame').addEventListener("load", function() {
+        $("upload_frame").addEventListener("load", () => {
             if (submitted)
                 window.parent.qBittorrent.Client.closeWindows();
         });
 
-        if ((Browser.platform === 'ios') || ((Browser.platform === 'mac') && (navigator.maxTouchPoints > 1))) {
-            $('fileselect').accept = ".torrent";
+        if ((Browser.platform === "ios") || ((Browser.platform === "mac") && (navigator.maxTouchPoints > 1))) {
+            $("fileselect").accept = ".torrent";
         }
     </script>
 </body>

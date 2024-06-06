@@ -26,7 +26,7 @@
  * exception statement from your version.
  */
 
-'use strict';
+"use strict";
 
 if (window.qBittorrent === undefined) {
     window.qBittorrent = {};
@@ -45,8 +45,8 @@ window.qBittorrent.PropTrackers = (function() {
     let loadTrackersDataTimer;
 
     const loadTrackersData = function() {
-        if ($('prop_trackers').hasClass('invisible')
-            || $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
+        if ($("prop_trackers").hasClass("invisible")
+            || $("propertiesPanel_collapseToggle").hasClass("panel-expand")) {
             // Tab changed, don't do anything
             return;
         }
@@ -61,10 +61,10 @@ window.qBittorrent.PropTrackers = (function() {
             torrentTrackersTable.clear();
             current_hash = new_hash;
         }
-        const url = new URI('api/v2/torrents/trackers?hash=' + current_hash);
+        const url = new URI("api/v2/torrents/trackers?hash=" + current_hash);
         new Request.JSON({
             url: url,
-            method: 'get',
+            method: "get",
             noCache: true,
             onComplete: function() {
                 clearTimeout(loadTrackersDataTimer);
@@ -75,7 +75,7 @@ window.qBittorrent.PropTrackers = (function() {
                 torrentTrackersTable.clear();
 
                 if (trackers) {
-                    trackers.each(function(tracker) {
+                    trackers.each((tracker) => {
                         let status;
                         switch (tracker.status) {
                             case 0:
@@ -126,8 +126,8 @@ window.qBittorrent.PropTrackers = (function() {
     };
 
     const torrentTrackersContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
-        targets: '#torrentTrackersTableDiv',
-        menu: 'torrentTrackersMenu',
+        targets: "#torrentTrackersTableDiv",
+        menu: "torrentTrackersMenu",
         actions: {
             AddTracker: function(element, ref) {
                 addTrackerFN();
@@ -147,19 +147,19 @@ window.qBittorrent.PropTrackers = (function() {
         },
         onShow: function() {
             const selectedTrackers = torrentTrackersTable.selectedRowsIds();
-            const containsStaticTracker = selectedTrackers.some(function(tracker) {
+            const containsStaticTracker = selectedTrackers.some((tracker) => {
                 return (tracker.indexOf("** [") === 0);
             });
 
             if (containsStaticTracker || (selectedTrackers.length === 0)) {
-                this.hideItem('EditTracker');
-                this.hideItem('RemoveTracker');
-                this.hideItem('CopyTrackerUrl');
+                this.hideItem("EditTracker");
+                this.hideItem("RemoveTracker");
+                this.hideItem("CopyTrackerUrl");
             }
             else {
-                this.showItem('EditTracker');
-                this.showItem('RemoveTracker');
-                this.showItem('CopyTrackerUrl');
+                this.showItem("EditTracker");
+                this.showItem("RemoveTracker");
+                this.showItem("CopyTrackerUrl");
             }
         }
     });
@@ -168,10 +168,10 @@ window.qBittorrent.PropTrackers = (function() {
         if (current_hash.length === 0)
             return;
         new MochaUI.Window({
-            id: 'trackersPage',
+            id: "trackersPage",
             title: "QBT_TR(Add trackers)QBT_TR[CONTEXT=TrackersAdditionDialog]",
-            loadMethod: 'iframe',
-            contentURL: 'addtrackers.html?hash=' + current_hash,
+            loadMethod: "iframe",
+            contentURL: "addtrackers.html?hash=" + current_hash,
             scrollbars: true,
             resizable: false,
             maximizable: false,
@@ -192,10 +192,10 @@ window.qBittorrent.PropTrackers = (function() {
 
         const trackerUrl = encodeURIComponent(element.childNodes[1].innerText);
         new MochaUI.Window({
-            id: 'trackersPage',
+            id: "trackersPage",
             title: "QBT_TR(Tracker editing)QBT_TR[CONTEXT=TrackerListWidget]",
-            loadMethod: 'iframe',
-            contentURL: 'edittracker.html?hash=' + current_hash + '&url=' + trackerUrl,
+            loadMethod: "iframe",
+            contentURL: "edittracker.html?hash=" + current_hash + "&url=" + trackerUrl,
             scrollbars: true,
             resizable: false,
             maximizable: false,
@@ -216,8 +216,8 @@ window.qBittorrent.PropTrackers = (function() {
 
         const selectedTrackers = torrentTrackersTable.selectedRowsIds();
         new Request({
-            url: 'api/v2/torrents/removeTrackers',
-            method: 'post',
+            url: "api/v2/torrents/removeTrackers",
+            method: "post",
             data: {
                 hash: current_hash,
                 urls: selectedTrackers.join("|")
@@ -228,13 +228,13 @@ window.qBittorrent.PropTrackers = (function() {
         }).send();
     };
 
-    new ClipboardJS('#CopyTrackerUrl', {
+    new ClipboardJS("#CopyTrackerUrl", {
         text: function(trigger) {
             return torrentTrackersTable.selectedRowsIds().join("\n");
         }
     });
 
-    torrentTrackersTable.setup('torrentTrackersTableDiv', 'torrentTrackersTableFixedHeaderDiv', torrentTrackersContextMenu);
+    torrentTrackersTable.setup("torrentTrackersTableDiv", "torrentTrackersTableFixedHeaderDiv", torrentTrackersContextMenu);
 
     return exports();
 })();

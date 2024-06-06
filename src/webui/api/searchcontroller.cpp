@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2018  Thomas Piccirello <thomas.piccirello@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -36,8 +37,11 @@
 #include <QList>
 #include <QSharedPointer>
 
+#include "base/addtorrentmanager.h"
 #include "base/global.h"
+#include "base/interfaces/iapplication.h"
 #include "base/logger.h"
+#include "base/search/searchdownloadhandler.h"
 #include "base/search/searchhandler.h"
 #include "base/utils/datetime.h"
 #include "base/utils/foreignapps.h"
@@ -213,6 +217,29 @@ void SearchController::deleteAction()
     m_searchHandlers.erase(iter);
 }
 
+void SearchController::downloadTorrentAction()
+{
+    requireParams({u"torrentUrl"_s, u"pluginName"_s});
+
+    const QString torrentUrl = params()[u"torrentUrl"_s];
+    const QString pluginName = params()[u"pluginName"_s];
+
+    if (torrentUrl.startsWith(u"magnet:", Qt::CaseInsensitive))
+    {
+        app()->addTorrentManager()->addTorrent(torrentUrl);
+    }
+    else
+    {
+        SearchDownloadHandler *downloadHandler = SearchPluginManager::instance()->downloadTorrent(pluginName, torrentUrl);
+        connect(downloadHandler, &SearchDownloadHandler::downloadFinished
+                , this, [this, downloadHandler](const QString &source)
+        {
+            app()->addTorrentManager()->addTorrent(source);
+            downloadHandler->deleteLater();
+        });
+    }
+}
+
 void SearchController::pluginsAction()
 {
     const QStringList allPlugins = SearchPluginManager::instance()->allPlugins();
@@ -300,6 +327,7 @@ int SearchController::generateSearchId() const
  *   - "fileSize"
  *   - "nbSeeders"
  *   - "nbLeechers"
+ *   - "engineName"
  *   - "siteUrl"
  *   - "descrLink"
  *   - "pubDate"
@@ -316,6 +344,7 @@ QJsonObject SearchController::getResults(const QList<SearchResult> &searchResult
             {u"fileSize"_s, searchResult.fileSize},
             {u"nbSeeders"_s, searchResult.nbSeeders},
             {u"nbLeechers"_s, searchResult.nbLeechers},
+            {u"engineName"_s, searchResult.engineName},
             {u"siteUrl"_s, searchResult.siteUrl},
             {u"descrLink"_s, searchResult.descrLink},
             {u"pubDate"_s, Utils::DateTime::toSecsSinceEpoch(searchResult.pubDate)}

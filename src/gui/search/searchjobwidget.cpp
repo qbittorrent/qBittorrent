@@ -70,7 +70,8 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, IGUIApplication *
     m_searchListModel->setHeaderData(SearchSortModel::SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
     m_searchListModel->setHeaderData(SearchSortModel::SEEDS, Qt::Horizontal, tr("Seeders", "i.e: Number of full sources"));
     m_searchListModel->setHeaderData(SearchSortModel::LEECHES, Qt::Horizontal, tr("Leechers", "i.e: Number of partial sources"));
-    m_searchListModel->setHeaderData(SearchSortModel::ENGINE_URL, Qt::Horizontal, tr("Search engine"));
+    m_searchListModel->setHeaderData(SearchSortModel::ENGINE_NAME, Qt::Horizontal, tr("Engine"));
+    m_searchListModel->setHeaderData(SearchSortModel::ENGINE_URL, Qt::Horizontal, tr("Engine URL"));
     m_searchListModel->setHeaderData(SearchSortModel::PUB_DATE, Qt::Horizontal, tr("Published On"));
     // Set columns text alignment
     m_searchListModel->setHeaderData(SearchSortModel::SIZE, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
@@ -269,8 +270,8 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex, const AddTorr
 {
     const QString torrentUrl = m_proxyModel->data(
                 m_proxyModel->index(rowIndex.row(), SearchSortModel::DL_LINK)).toString();
-    const QString siteUrl = m_proxyModel->data(
-                m_proxyModel->index(rowIndex.row(), SearchSortModel::ENGINE_URL)).toString();
+    const QString engineName = m_proxyModel->data(
+                m_proxyModel->index(rowIndex.row(), SearchSortModel::ENGINE_NAME)).toString();
 
     if (torrentUrl.startsWith(u"magnet:", Qt::CaseInsensitive))
     {
@@ -278,7 +279,7 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex, const AddTorr
     }
     else
     {
-        SearchDownloadHandler *downloadHandler = m_searchHandler->manager()->downloadTorrent(siteUrl, torrentUrl);
+        SearchDownloadHandler *downloadHandler = m_searchHandler->manager()->downloadTorrent(engineName, torrentUrl);
         connect(downloadHandler, &SearchDownloadHandler::downloadFinished
             , this, [this, option](const QString &source) { addTorrentToSession(source, option); });
         connect(downloadHandler, &SearchDownloadHandler::downloadFinished, downloadHandler, &SearchDownloadHandler::deleteLater);
@@ -516,7 +517,7 @@ void SearchJobWidget::appendSearchResults(const QVector<SearchResult> &results)
         m_searchListModel->insertRow(row);
 
         const auto setModelData = [this, row] (const int column, const QString &displayData
-                                               , const QVariant &underlyingData, const Qt::Alignment textAlignmentData = {})
+                , const QVariant &underlyingData, const Qt::Alignment textAlignmentData = {})
         {
             const QMap<int, QVariant> data =
             {
@@ -529,6 +530,7 @@ void SearchJobWidget::appendSearchResults(const QVector<SearchResult> &results)
 
         setModelData(SearchSortModel::NAME, result.fileName, result.fileName);
         setModelData(SearchSortModel::DL_LINK, result.fileUrl, result.fileUrl);
+        setModelData(SearchSortModel::ENGINE_NAME, result.engineName, result.engineName);
         setModelData(SearchSortModel::ENGINE_URL, result.siteUrl, result.siteUrl);
         setModelData(SearchSortModel::DESC_LINK, result.descrLink, result.descrLink);
         setModelData(SearchSortModel::SIZE, Utils::Misc::friendlyUnit(result.fileSize), result.fileSize, (Qt::AlignRight | Qt::AlignVCenter));

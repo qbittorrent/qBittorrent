@@ -32,6 +32,7 @@
 
 #include <algorithm>
 
+#include <QByteArray>
 #include <QDateTime>
 #include <QDebug>
 #include <QNetworkAccessManager>
@@ -54,8 +55,27 @@ using namespace std::chrono_literals;
 
 namespace
 {
-    // Disguise as Firefox to avoid web server banning
-    const char DEFAULT_USER_AGENT[] = "Mozilla/5.0 (X11; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0";
+    // Disguise as browser to circumvent website blocking
+    QByteArray getBrowserUserAgent()
+    {
+        // Firefox release calendar
+        // https://whattrainisitnow.com/calendar/
+        // https://wiki.mozilla.org/index.php?title=Release_Management/Calendar&redirect=no
+
+        static QByteArray ret;
+        if (ret.isEmpty())
+        {
+            const std::chrono::time_point baseDate = std::chrono::sys_days(2024y / 04 / 16);
+            const int baseVersion = 125;
+
+            const std::chrono::time_point nowDate = std::chrono::system_clock::now();
+            const int nowVersion = baseVersion + std::chrono::duration_cast<std::chrono::months>(nowDate - baseDate).count();
+
+            QByteArray userAgentTemplate = QByteArrayLiteral("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:%1.0) Gecko/20100101 Firefox/%1.0");
+            ret = userAgentTemplate.replace("%1", QByteArray::number(nowVersion));
+        }
+        return ret;
+    }
 }
 
 class Net::DownloadManager::NetworkCookieJar final : public QNetworkCookieJar
@@ -292,7 +312,7 @@ void Net::DownloadManager::processRequest(DownloadHandlerImpl *downloadHandler)
     QNetworkRequest request {downloadRequest.url()};
 
     if (downloadRequest.userAgent().isEmpty())
-        request.setRawHeader("User-Agent", DEFAULT_USER_AGENT);
+        request.setRawHeader("User-Agent", getBrowserUserAgent());
     else
         request.setRawHeader("User-Agent", downloadRequest.userAgent().toUtf8());
 

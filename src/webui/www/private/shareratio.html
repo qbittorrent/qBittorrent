@@ -9,40 +9,40 @@
     <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
     <script>
-        'use strict';
+        "use strict";
 
         const UseGlobalLimit = -2;
         const NoLimit = -1;
 
         new Keyboard({
-            defaultEventType: 'keydown',
+            defaultEventType: "keydown",
             events: {
-                'Enter': function(event) {
-                    $('save').click();
+                "Enter": function(event) {
+                    $("save").click();
                     event.preventDefault();
                 },
-                'Escape': function(event) {
+                "Escape": function(event) {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 },
-                'Esc': function(event) {
+                "Esc": function(event) {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 }
             }
         }).activate();
 
-        window.addEvent('domready', function() {
-            const hashesList = new URI().getData('hashes').split('|');
-            const origValues = new URI().getData('orig').split('|');
+        window.addEvent("domready", () => {
+            const hashesList = new URI().getData("hashes").split("|");
+            const origValues = new URI().getData("orig").split("|");
 
             const values = {
                 ratioLimit: window.qBittorrent.Misc.friendlyFloat(origValues[0], 2),
-                seedingTimeLimit: parseInt(origValues[1]),
-                inactiveSeedingTimeLimit: parseInt(origValues[2]),
+                seedingTimeLimit: parseInt(origValues[1], 10),
+                inactiveSeedingTimeLimit: parseInt(origValues[2], 10),
                 maxRatio: window.qBittorrent.Misc.friendlyFloat(origValues[3], 2),
-                maxSeedingTime: parseInt(origValues[4]),
-                maxInactiveSeedingTime: parseInt(origValues[5])
+                maxSeedingTime: parseInt(origValues[4], 10),
+                maxInactiveSeedingTime: parseInt(origValues[5], 10)
             };
 
             // select default when orig values not passed. using double equals to compare string and int
@@ -51,63 +51,63 @@
                     && (values.seedingTimeLimit === UseGlobalLimit)
                     && (values.inactiveSeedingTimeLimit === UseGlobalLimit))) {
                 // use default option
-                setSelectedRadioValue('shareLimit', 'default');
+                setSelectedRadioValue("shareLimit", "default");
             }
             else if ((values.maxRatio === NoLimit) && (values.maxSeedingTime === NoLimit) && (values.maxInactiveSeedingTime === NoLimit)) {
-                setSelectedRadioValue('shareLimit', 'none');
+                setSelectedRadioValue("shareLimit", "none");
                 // TODO set input boxes to *global* max ratio and seeding time
             }
             else {
-                setSelectedRadioValue('shareLimit', 'custom');
+                setSelectedRadioValue("shareLimit", "custom");
                 if (values.ratioLimit >= 0) {
-                    $('setRatio').set('checked', true);
-                    $('ratio').set('value', values.ratioLimit);
+                    $("setRatio").set("checked", true);
+                    $("ratio").set("value", values.ratioLimit);
                 }
                 if (values.seedingTimeLimit >= 0) {
-                    $('setTotalMinutes').set('checked', true);
-                    $('totalMinutes').set('value', values.seedingTimeLimit);
+                    $("setTotalMinutes").set("checked", true);
+                    $("totalMinutes").set("value", values.seedingTimeLimit);
                 }
                 if (values.inactiveSeedingTimeLimit >= 0) {
-                    $('setInactiveMinutes').set('checked', true);
-                    $('inactiveMinutes').set('value', values.inactiveSeedingTimeLimit);
+                    $("setInactiveMinutes").set("checked", true);
+                    $("inactiveMinutes").set("value", values.inactiveSeedingTimeLimit);
                 }
             }
 
             shareLimitChanged();
 
-            $('default').focus();
-            $('save').addEvent('click', function(e) {
+            $("default").focus();
+            $("save").addEvent("click", (e) => {
                 new Event(e).stop();
 
                 if (!isFormValid()) {
                     return false;
                 }
 
-                const shareLimit = getSelectedRadioValue('shareLimit');
+                const shareLimit = getSelectedRadioValue("shareLimit");
                 let ratioLimitValue = 0.00;
                 let seedingTimeLimitValue = 0;
                 let inactiveSeedingTimeLimitValue = 0;
 
-                if (shareLimit === 'default') {
+                if (shareLimit === "default") {
                     ratioLimitValue = seedingTimeLimitValue = inactiveSeedingTimeLimitValue = UseGlobalLimit;
                 }
-                else if (shareLimit === 'none') {
+                else if (shareLimit === "none") {
                     ratioLimitValue = seedingTimeLimitValue = inactiveSeedingTimeLimitValue = NoLimit;
                 }
-                else if (shareLimit === 'custom') {
-                    ratioLimitValue = $('setRatio').get('checked') ? $('ratio').get('value') : -1;
-                    seedingTimeLimitValue = $('setTotalMinutes').get('checked') ? $('totalMinutes').get('value') : -1;
-                    inactiveSeedingTimeLimitValue = $('setInactiveMinutes').get('checked') ? $('inactiveMinutes').get('value') : -1;
+                else if (shareLimit === "custom") {
+                    ratioLimitValue = $("setRatio").get("checked") ? $("ratio").get("value") : -1;
+                    seedingTimeLimitValue = $("setTotalMinutes").get("checked") ? $("totalMinutes").get("value") : -1;
+                    inactiveSeedingTimeLimitValue = $("setInactiveMinutes").get("checked") ? $("inactiveMinutes").get("value") : -1;
                 }
                 else {
                     return false;
                 }
 
                 new Request({
-                    url: 'api/v2/torrents/setShareLimits',
-                    method: 'post',
+                    url: "api/v2/torrents/setShareLimits",
+                    method: "post",
                     data: {
-                        hashes: hashesList.join('|'),
+                        hashes: hashesList.join("|"),
                         ratioLimit: ratioLimitValue,
                         seedingTimeLimit: seedingTimeLimitValue,
                         inactiveSeedingTimeLimit: inactiveSeedingTimeLimitValue
@@ -125,7 +125,7 @@
             for (let i = 0; i < radios.length; ++i) {
                 const radio = radios[i];
                 if (radio.checked) {
-                    return (radio).get('value');
+                    return (radio).get("value");
                 }
             }
         }
@@ -141,27 +141,27 @@
         }
 
         function shareLimitChanged() {
-            const customShareLimit = getSelectedRadioValue('shareLimit') === 'custom';
-            $('setRatio').set('disabled', !customShareLimit);
-            $('setTotalMinutes').set('disabled', !customShareLimit);
-            $('setInactiveMinutes').set('disabled', !customShareLimit);
+            const customShareLimit = getSelectedRadioValue("shareLimit") === "custom";
+            $("setRatio").set("disabled", !customShareLimit);
+            $("setTotalMinutes").set("disabled", !customShareLimit);
+            $("setInactiveMinutes").set("disabled", !customShareLimit);
 
             enableInputBoxes();
 
-            $('save').set('disabled', !isFormValid());
+            $("save").set("disabled", !isFormValid());
         }
 
         function enableInputBoxes() {
-            $('ratio').set('disabled', ($('setRatio').get('disabled') || !$('setRatio').get('checked')));
-            $('totalMinutes').set('disabled', ($('setTotalMinutes').get('disabled') || !$('setTotalMinutes').get('checked')));
-            $('inactiveMinutes').set('disabled', ($('setInactiveMinutes').get('disabled') || !$('setInactiveMinutes').get('checked')));
+            $("ratio").set("disabled", ($("setRatio").get("disabled") || !$("setRatio").get("checked")));
+            $("totalMinutes").set("disabled", ($("setTotalMinutes").get("disabled") || !$("setTotalMinutes").get("checked")));
+            $("inactiveMinutes").set("disabled", ($("setInactiveMinutes").get("disabled") || !$("setInactiveMinutes").get("checked")));
 
-            $('save').set('disabled', !isFormValid());
+            $("save").set("disabled", !isFormValid());
         }
 
         function isFormValid() {
-            return !((getSelectedRadioValue('shareLimit') === 'custom') && !$('setRatio').get('checked')
-                && !$('setTotalMinutes').get('checked') && !$('setInactiveMinutes').get('checked'));
+            return !((getSelectedRadioValue("shareLimit") === "custom") && !$("setRatio").get("checked")
+                && !$("setTotalMinutes").get("checked") && !$("setInactiveMinutes").get("checked"));
         }
     </script>
 </head>
