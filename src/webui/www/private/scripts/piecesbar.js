@@ -28,9 +28,8 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined) {
+if (window.qBittorrent === undefined)
     window.qBittorrent = {};
-}
 
 window.qBittorrent.PiecesBar = (() => {
     const exports = () => {
@@ -136,13 +135,10 @@ window.qBittorrent.PiecesBar = (() => {
         let maxStatus = 0;
 
         for (const status of pieces) {
-            if (status > maxStatus) {
+            if (status > maxStatus)
                 maxStatus = status;
-            }
-
-            if (status < minStatus) {
+            if (status < minStatus)
                 minStatus = status;
-            }
         }
 
         // if no progress then don't do anything
@@ -220,15 +216,13 @@ window.qBittorrent.PiecesBar = (() => {
             statusValues[STATUS_DOWNLOADING] = Math.min(statusValues[STATUS_DOWNLOADING], 1);
             statusValues[STATUS_DOWNLOADED] = Math.min(statusValues[STATUS_DOWNLOADED], 1);
 
-            if (!lastValue) {
+            if (!lastValue)
                 lastValue = statusValues;
-            }
 
             // group contiguous colors together and draw as a single rectangle
             if ((lastValue[STATUS_DOWNLOADING] === statusValues[STATUS_DOWNLOADING])
-                && (lastValue[STATUS_DOWNLOADED] === statusValues[STATUS_DOWNLOADED])) {
+                && (lastValue[STATUS_DOWNLOADED] === statusValues[STATUS_DOWNLOADED]))
                 continue;
-            }
 
             const rectangleWidth = x - rectangleStart;
             this._drawStatus(ctx, rectangleStart, rectangleWidth, lastValue);

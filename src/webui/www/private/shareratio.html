@@ -79,9 +79,8 @@
             $("save").addEvent("click", (e) => {
                 new Event(e).stop();
 
-                if (!isFormValid()) {
+                if (!isFormValid())
                     return false;
-                }
 
                 const shareLimit = getSelectedRadioValue("shareLimit");
                 let ratioLimitValue = 0.00;
@@ -124,9 +123,8 @@
 
             for (let i = 0; i < radios.length; ++i) {
                 const radio = radios[i];
-                if (radio.checked) {
+                if (radio.checked)
                     return (radio).get("value");
-                }
             }
         }
 

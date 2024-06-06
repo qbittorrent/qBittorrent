@@ -14,9 +14,8 @@
     <script>
         "use strict";
 
-        if (window.parent.qBittorrent !== undefined) {
+        if (window.parent.qBittorrent !== undefined)
             window.qBittorrent = window.parent.qBittorrent;
-        }
         window.qBittorrent = window.parent.qBittorrent;
 
         const TriState = window.qBittorrent.FileTree.TriState;
@@ -51,9 +50,8 @@
         const tableHeaders = $$("#bulkRenameFilesTableFixedHeaderDiv .dynamicTableHeader th");
         let checkboxHeader;
         if (tableHeaders.length > 0) {
-            if (checkboxHeader) {
+            if (checkboxHeader)
                 checkboxHeader.remove();
-            }
             checkboxHeader = new Element("input");
             checkboxHeader.set("type", "checkbox");
             checkboxHeader.set("id", "rootMultiRename_cb");
@@ -218,9 +216,12 @@
         });
         $("file_counter").addEvent("input", (e) => {
             let value = e.target.valueAsNumber;
-            if (!value) { value = 0; }
-            if (value < 0) { value = 0; }
-            if (value > 99999999) { value = 99999999; }
+            if (!value)
+                value = 0;
+            if (value < 0)
+                value = 0;
+            if (value > 99999999)
+                value = 99999999;
             fileRenamer.fileEnumerationStart = value;
             $("file_counter").set("value", value);
             LocalPreferences.set("multirename_fileEnumerationStart", value);
@@ -265,9 +266,8 @@
 
             // Recreate table
             let selectedRows = bulkRenameFilesTable.getSelectedRows().map(row => row.rowId.toString());
-            for (const renamedRow of rows) {
+            for (const renamedRow of rows)
                 selectedRows = selectedRows.filter(selectedRow => selectedRow !== renamedRow.rowId.toString());
-            }
             bulkRenameFilesTable.clear();
 
             // Adjust file enumeration count by 1 when replacing single files to prevent naming conflicts
@@ -278,22 +278,18 @@
             setupTable(selectedRows);
         };
         fileRenamer.onRenameError = function(err, row) {
-            if (err.xhr.status === 409) {
+            if (err.xhr.status === 409)
                 $("rename_error").set("text", `QBT_TR(Rename failed: file or folder already exists)QBT_TR[CONTEXT=PropertiesWidget] \`${row.renamed}\``);
-            }
         };
         $("renameOptions").addEvent("change", (e) => {
             const combobox = e.target;
             const replaceOperation = combobox.value;
-            if (replaceOperation === "Replace") {
+            if (replaceOperation === "Replace")
                 fileRenamer.replaceAll = false;
-            }
-            else if (replaceOperation === "Replace All") {
+            else if (replaceOperation === "Replace All")
                 fileRenamer.replaceAll = true;
-            }
-            else {
+            else
                 fileRenamer.replaceAll = false;
-            }
             LocalPreferences.set("multirename_replaceAll", fileRenamer.replaceAll);
             $("renameButton").set("value", replaceOperation);
         });
@@ -336,9 +332,8 @@
                 pathItems.pop(); // remove last item (i.e. file name)
                 let parent = rootNode;
                 pathItems.forEach((folderName) => {
-                    if (folderName === ".unwanted") {
+                    if (folderName === ".unwanted")
                         return;
-                    }
 
                     let folderNode = null;
                     if (parent.children !== null) {
@@ -387,9 +382,9 @@
             bulkRenameFilesTable.updateTable(false);
             bulkRenameFilesTable.altRow();
 
-            if (selectedRows !== undefined) {
+            if (selectedRows !== undefined)
                 bulkRenameFilesTable.reselectRows(selectedRows);
-            }
+
             fileRenamer.selectedFiles = bulkRenameFilesTable.getSelectedRows();
             fileRenamer.update();
         };
@@ -400,12 +395,10 @@
                 noCache: true,
                 method: "get",
                 onSuccess: function(files) {
-                    if (files.length === 0) {
+                    if (files.length === 0)
                         bulkRenameFilesTable.clear();
-                    }
-                    else {
+                    else
                         handleTorrentFiles(files, selectedRows);
-                    }
                 }
             }).send();
         };

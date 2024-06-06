@@ -169,9 +169,8 @@
                 window.parent.qBittorrent.Client.closeWindows();
         });
 
-        if ((Browser.platform === "ios") || ((Browser.platform === "mac") && (navigator.maxTouchPoints > 1))) {
+        if ((Browser.platform === "ios") || ((Browser.platform === "mac") && (navigator.maxTouchPoints > 1)))
             $("fileselect").accept = ".torrent";
-        }
     </script>
 </body>
 

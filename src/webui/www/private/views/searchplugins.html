@@ -79,9 +79,8 @@
 <script>
     "use strict";
 
-    if (window.qBittorrent === undefined) {
+    if (window.qBittorrent === undefined)
         window.qBittorrent = {};
-    }
 
     window.qBittorrent.SearchPlugins = (function() {
         const exports = function() {
@@ -187,16 +186,18 @@
         };
 
         const setupSearchPluginTableEvents = function(enable) {
-            if (enable)
+            if (enable) {
                 $$(".searchPluginsTableRow").each((target) => {
                     target.addEventListener("dblclick", enablePlugin, false);
                     target.addEventListener("contextmenu", updateSearchPluginsTableContextMenuOffset, true);
                 });
-            else
+            }
+            else {
                 $$(".searchPluginsTableRow").each((target) => {
                     target.removeEventListener("dblclick", enablePlugin, false);
                     target.removeEventListener("contextmenu", updateSearchPluginsTableContextMenuOffset, true);
                 });
+            }
         };
 
         const updateTable = function() {

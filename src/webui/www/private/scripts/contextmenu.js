@@ -28,9 +28,8 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined) {
+if (window.qBittorrent === undefined)
     window.qBittorrent = {};
-}
 
 window.qBittorrent.ContextMenu = (function() {
     const exports = function() {
@@ -82,12 +81,10 @@ window.qBittorrent.ContextMenu = (function() {
                 property: "opacity",
                 duration: this.options.fadeSpeed,
                 onComplete: function() {
-                    if (this.getStyle("opacity")) {
+                    if (this.getStyle("opacity"))
                         this.setStyle("visibility", "visible");
-                    }
-                    else {
+                    else
                         this.setStyle("visibility", "hidden");
-                    }
                 }.bind(this.menu)
             });
 
@@ -182,9 +179,8 @@ window.qBittorrent.ContextMenu = (function() {
                 this.touchStartEvent = null;
 
                 const isTargetUnchanged = (Math.abs(e.event.pageX - touchStartEvent.event.pageX) <= 10) && (Math.abs(e.event.pageY - touchStartEvent.event.pageY) <= 10);
-                if (((now - touchStartAt) >= this.options.touchTimer) && isTargetUnchanged) {
+                if (((now - touchStartAt) >= this.options.touchTimer) && isTargetUnchanged)
                     this.triggerMenu(touchStartEvent, elem);
-                }
             });
         },
 
@@ -202,9 +198,8 @@ window.qBittorrent.ContextMenu = (function() {
                 return;
 
             //prevent default, if told to
-            if (this.options.stopEvent) {
+            if (this.options.stopEvent)
                 e.stop();
-            }
             //record this as the trigger
             this.options.element = $(el);
             this.adjustMenuPosition(e);
@@ -294,9 +289,8 @@ window.qBittorrent.ContextMenu = (function() {
 
         //execute an action
         execute: function(action, element) {
-            if (this.options.actions[action]) {
+            if (this.options.actions[action])
                 this.options.actions[action](element, this, action);
-            }
             return this;
         }
     });
@@ -515,12 +509,10 @@ window.qBittorrent.ContextMenu = (function() {
             if ((id !== CATEGORIES_ALL) && (id !== CATEGORIES_UNCATEGORIZED)) {
                 this.showItem("editCategory");
                 this.showItem("deleteCategory");
-                if (useSubcategories) {
+                if (useSubcategories)
                     this.showItem("createSubcategory");
-                }
-                else {
+                else
                     this.hideItem("createSubcategory");
-                }
             }
             else {
                 this.hideItem("editCategory");
@@ -547,9 +539,10 @@ window.qBittorrent.ContextMenu = (function() {
         updateMenuItems: function() {
             const enabledColumnIndex = function(text) {
                 const columns = $("searchPluginsTableFixedHeaderRow").getChildren("th");
-                for (let i = 0; i < columns.length; ++i)
+                for (let i = 0; i < columns.length; ++i) {
                     if (columns[i].get("html") === "Enabled")
                         return i;
+                }
             };
 
             this.showItem("Enabled");

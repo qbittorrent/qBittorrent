@@ -63,9 +63,8 @@
                         window.parent.qBittorrent.Client.closeWindows();
                     },
                     onFailure: (response) => {
-                        if (response.status === 409) {
+                        if (response.status === 409)
                             alert(response.responseText);
-                        }
                         $("renameButton").disabled = false;
                     }
                 }).send();
