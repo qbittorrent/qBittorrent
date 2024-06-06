@@ -148,9 +148,8 @@
 <script>
     "use strict";
 
-    if (window.qBittorrent === undefined) {
+    if (window.qBittorrent === undefined)
         window.qBittorrent = {};
-    }
 
     window.qBittorrent.Log = (() => {
         const exports = () => {
@@ -190,12 +189,10 @@
 
         const init = () => {
             $("logLevelSelect").getElements("option").each((x) => {
-                if (selectedLogLevels.indexOf(x.value.toString()) !== -1) {
+                if (selectedLogLevels.indexOf(x.value.toString()) !== -1)
                     x.selected = true;
-                }
-                else {
+                else
                     x.selected = false;
-                }
             });
 
             selectBox = new vanillaSelectBox("#logLevelSelect", {
@@ -330,9 +327,9 @@
             logFilterTimer = -1;
             load();
 
-            if (tableInfo[currentSelectedTab].instance.filterText !== getFilterText()) {
+            if (tableInfo[currentSelectedTab].instance.filterText !== getFilterText())
                 tableInfo[currentSelectedTab].instance.updateTable();
-            }
+
             updateLabelCount();
         };
 

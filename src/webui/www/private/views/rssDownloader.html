@@ -330,9 +330,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <script>
     "use strict";
 
-    if (window.qBittorrent === undefined) {
+    if (window.qBittorrent === undefined)
         window.qBittorrent = {};
-    }
 
     window.qBittorrent.RssDownloader = (() => {
         const exports = () => {

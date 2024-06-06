@@ -92,11 +92,12 @@ MochaUI.extend({
                             onSuccess: function(data) {
                                 if (data) {
                                     let up_limit = data[hashes[0]];
-                                    for (const key in data)
+                                    for (const key in data) {
                                         if (up_limit !== data[key]) {
                                             up_limit = 0;
                                             break;
                                         }
+                                    }
                                     if (up_limit < 0)
                                         up_limit = 0;
                                     new Slider($("uplimitSliderarea"), $("uplimitSliderknob"), {
@@ -195,11 +196,12 @@ MochaUI.extend({
                             onSuccess: function(data) {
                                 if (data) {
                                     let dl_limit = data[hashes[0]];
-                                    for (const key in data)
+                                    for (const key in data) {
                                         if (dl_limit !== data[key]) {
                                             dl_limit = 0;
                                             break;
                                         }
+                                    }
                                     if (dl_limit < 0)
                                         dl_limit = 0;
                                     new Slider($("dllimitSliderarea"), $("dllimitSliderknob"), {

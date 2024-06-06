@@ -23,9 +23,8 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined) {
+if (window.qBittorrent === undefined)
     window.qBittorrent = {};
-}
 
 window.qBittorrent.Download = (function() {
     const exports = function() {
@@ -77,25 +76,19 @@ window.qBittorrent.Download = (function() {
             $("autoTMM").selectedIndex = 0;
         }
 
-        if (pref.torrent_stop_condition === "MetadataReceived") {
+        if (pref.torrent_stop_condition === "MetadataReceived")
             $("stopCondition").selectedIndex = 1;
-        }
-        else if (pref.torrent_stop_condition === "FilesChecked") {
+        else if (pref.torrent_stop_condition === "FilesChecked")
             $("stopCondition").selectedIndex = 2;
-        }
-        else {
+        else
             $("stopCondition").selectedIndex = 0;
-        }
 
-        if (pref.torrent_content_layout === "Subfolder") {
+        if (pref.torrent_content_layout === "Subfolder")
             $("contentLayout").selectedIndex = 1;
-        }
-        else if (pref.torrent_content_layout === "NoSubfolder") {
+        else if (pref.torrent_content_layout === "NoSubfolder")
             $("contentLayout").selectedIndex = 2;
-        }
-        else {
+        else
             $("contentLayout").selectedIndex = 0;
-        }
     };
 
     const changeCategorySelect = function(item) {

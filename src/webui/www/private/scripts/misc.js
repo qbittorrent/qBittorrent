@@ -28,9 +28,8 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined) {
+if (window.qBittorrent === undefined)
     window.qBittorrent = {};
-}
 
 window.qBittorrent.Misc = (function() {
     const exports = function() {
@@ -86,8 +85,9 @@ window.qBittorrent.Misc = (function() {
         }
 
         let ret;
-        if (i === 0)
+        if (i === 0) {
             ret = value + " " + units[i];
+        }
         else {
             const precision = friendlyUnitPrecision(i);
             const offset = Math.pow(10, precision);

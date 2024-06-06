@@ -110,9 +110,8 @@ const initializeWindows = function() {
 
     function addClickEvent(el, fn) {
         ["Link", "Button"].each((item) => {
-            if ($(el + item)) {
+            if ($(el + item))
                 $(el + item).addEvent("click", fn);
-            }
         });
     }
 
@@ -125,9 +124,8 @@ const initializeWindows = function() {
         const id = "downloadPage";
         const contentUri = new URI("download.html");
 
-        if (urls && (urls.length > 0)) {
+        if (urls && (urls.length > 0))
             contentUri.setData("urls", urls.map(encodeURIComponent).join("|"));
-        }
 
         new MochaUI.Window({
             id: id,
@@ -877,9 +875,8 @@ const initializeWindows = function() {
             default: {
                 const uniqueTorrents = new Set();
                 for (const torrents of trackerList.get(trackerHashInt).trackerTorrentMap.values()) {
-                    for (const torrent of torrents) {
+                    for (const torrent of torrents)
                         uniqueTorrents.add(torrent);
-                    }
                 }
                 hashes = [...uniqueTorrents];
                 break;
@@ -911,9 +908,8 @@ const initializeWindows = function() {
             default: {
                 const uniqueTorrents = new Set();
                 for (const torrents of trackerList.get(trackerHashInt).trackerTorrentMap.values()) {
-                    for (const torrent of torrents) {
+                    for (const torrent of torrents)
                         uniqueTorrents.add(torrent);
-                    }
                 }
                 hashes = [...uniqueTorrents];
                 break;
@@ -945,9 +941,8 @@ const initializeWindows = function() {
             default: {
                 const uniqueTorrents = new Set();
                 for (const torrents of trackerList.get(trackerHashInt).trackerTorrentMap.values()) {
-                    for (const torrent of torrents) {
+                    for (const torrent of torrents)
                         uniqueTorrents.add(torrent);
-                    }
                 }
                 hashes = [...uniqueTorrents];
                 break;

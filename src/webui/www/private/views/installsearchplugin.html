@@ -29,9 +29,8 @@
 <script>
     "use strict";
 
-    if (window.qBittorrent === undefined) {
+    if (window.qBittorrent === undefined)
         window.qBittorrent = {};
-    }
 
     window.qBittorrent.InstallSearchPlugin = (function() {
         const exports = function() {
@@ -62,7 +61,7 @@
 
         const newPluginOk = function() {
             const path = $("newPluginPath").get("value").trim();
-            if (path)
+            if (path) {
                 new Request({
                     url: "api/v2/search/installPlugin",
                     method: "post",
@@ -73,6 +72,7 @@
                         window.qBittorrent.SearchPlugins.closeSearchWindow("installSearchPlugin");
                     }
                 }).send();
+            }
         };
 
         init();

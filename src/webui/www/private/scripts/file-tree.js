@@ -28,9 +28,8 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined) {
+if (window.qBittorrent === undefined)
     window.qBittorrent = {};
-}
 
 window.qBittorrent.FileTree = (function() {
     const exports = function() {
@@ -77,9 +76,8 @@ window.qBittorrent.FileTree = (function() {
 
         generateNodeMap: function(node) {
             // don't store root node in map
-            if (node.root !== null) {
+            if (node.root !== null)
                 this.nodeMap[node.rowId] = node;
-            }
 
             node.children.each((child) => {
                 this.generateNodeMap(child);

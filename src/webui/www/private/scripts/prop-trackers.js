@@ -28,9 +28,8 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined) {
+if (window.qBittorrent === undefined)
     window.qBittorrent = {};
-}
 
 window.qBittorrent.PropTrackers = (function() {
     const exports = function() {
