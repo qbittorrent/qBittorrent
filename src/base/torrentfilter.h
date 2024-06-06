@@ -92,7 +92,7 @@ public:
               , const std::optional<TorrentIDSet> &idSet = AnyID
             , const std::optional<QString> &category = AnyCategory
             , const std::optional<Tag> &tag = AnyTag
-            , const std::optional<bool> &isPrivate = AnyIsPrivate);
+            , std::optional<bool> isPrivate = AnyIsPrivate);
     TorrentFilter(const QString &filter
               , const std::optional<TorrentIDSet> &idSet = AnyID
             , const std::optional<QString> &category = AnyCategory
