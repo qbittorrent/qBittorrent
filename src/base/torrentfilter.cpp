@@ -53,7 +53,7 @@ const TorrentFilter TorrentFilter::ErroredTorrent(TorrentFilter::Errored);
 using BitTorrent::Torrent;
 
 TorrentFilter::TorrentFilter(const Type type, const std::optional<TorrentIDSet> &idSet
-        , const std::optional<QString> &category, const std::optional<Tag> &tag, const std::optional<bool> &isPrivate)
+        , const std::optional<QString> &category, const std::optional<Tag> &tag, const std::optional<bool> isPrivate)
     : m_type {type}
     , m_category {category}
     , m_tag {tag}
