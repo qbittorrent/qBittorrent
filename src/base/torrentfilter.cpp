@@ -150,7 +150,7 @@ bool TorrentFilter::setTag(const std::optional<Tag> &tag)
     return false;
 }
 
-bool TorrentFilter::setIsPrivate(const std::optional<bool> &isPrivate)
+bool TorrentFilter::setIsPrivate(const std::optional<bool> isPrivate)
 {
     if (m_isPrivate != isPrivate)
     {
