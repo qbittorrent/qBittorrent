@@ -1,4 +1,4 @@
-#VERSION: 1.48
+#VERSION: 1.49
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -24,8 +24,25 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+import re
+from collections.abc import Mapping
+from typing import Any
 
-def prettyPrinter(dictionary):
+# TODO: enable this when using Python >= 3.8
+#SearchResults = TypedDict('SearchResults', {
+#    'link': str,
+#    'name': str,
+#    'size': str,
+#    'seeds': int,
+#    'leech': int,
+#    'engine_url': str,
+#    'desc_link': str,  # Optional
+#    'pub_date': int  # Optional
+#})
+SearchResults = Mapping[str, Any]
+
+
+def prettyPrinter(dictionary: SearchResults) -> None:
     outtext = "|".join((
         dictionary["link"],
         dictionary["name"].replace("|", " "),
@@ -34,7 +51,7 @@ def prettyPrinter(dictionary):
         str(dictionary["leech"]),
         dictionary["engine_url"],
         dictionary.get("desc_link", ""),  # Optional
-        str(dictionary.get("pub_date", -1)),  # Optional
+        str(dictionary.get("pub_date", -1))  # Optional
     ))
 
     # fd 1 is stdout
@@ -42,30 +59,24 @@ def prettyPrinter(dictionary):
         print(outtext, file=utf8stdout)
 
 
-def anySizeToBytes(size_string):
+sizeUnitRegex: re.Pattern[str] = re.compile(r"^(?P<size>\d*\.?\d+) *(?P<unit>[a-z]+)?", re.IGNORECASE)
+
+
+def anySizeToBytes(size_string: str) -> int:
     """
     Convert a string like '1 KB' to '1024' (bytes)
     """
-    # separate integer from unit
-    try:
-        size, unit = size_string.split()
-    except Exception:
-        try:
-            size = size_string.strip()
-            unit = ''.join([c for c in size if c.isalpha()])
-            if len(unit) > 0:
-                size = size[:-len(unit)]
-        except Exception:
-            return -1
-    if len(size) == 0:
-        return -1
-    size = float(size)
-    if len(unit) == 0:
-        return int(size)
-    short_unit = unit.upper()[0]
 
-    # convert
-    units_dict = {'T': 40, 'G': 30, 'M': 20, 'K': 10}
-    if short_unit in units_dict:
-        size = size * 2**units_dict[short_unit]
-    return int(size)
+    match = sizeUnitRegex.match(size_string.strip())
+    if match is None:
+        return -1
+
+    size = float(match.group('size'))  # need to match decimals
+    unit = match.group('unit')
+
+    if unit is not None:
+        units_exponents = {'T': 40, 'G': 30, 'M': 20, 'K': 10}
+        exponent = units_exponents.get(unit[0].upper(), 0)
+        size *= 2**exponent
+
+    return round(size)
