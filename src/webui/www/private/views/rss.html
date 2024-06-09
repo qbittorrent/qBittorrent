@@ -376,7 +376,7 @@
                         }));
                 }
             }
-            //filter read articles if "Unread" feed is selected
+            // filter read articles if "Unread" feed is selected
             if (path === "")
                 visibleArticles = visibleArticles.filter((a) => !a.isRead);
 
@@ -427,7 +427,7 @@
                 $("rssDetailsView").append(torrentDescription);
                 document.getElementById("rssDescription").srcdoc = '<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /></head><body>' + article.description + "</body></html>";
 
-                //calculate height to fill screen
+                // calculate height to fill screen
                 document.getElementById("rssDescription").style.height =
                     "calc(100% - " + document.getElementById("rssTorrentDetailsName").offsetHeight + "px - "
                     + document.getElementById("rssTorrentDetailsDate").offsetHeight + "px - 5px)";

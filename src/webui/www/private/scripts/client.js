@@ -172,7 +172,7 @@ window.addEventListener("DOMContentLoaded", () => {
             saveColumnSizes.delay(200); // Resizing might takes some time.
     });
 
-    /*MochaUI.Desktop = new MochaUI.Desktop();
+    /* MochaUI.Desktop = new MochaUI.Desktop();
     MochaUI.Desktop.desktop.setStyles({
         'background': '#fff',
         'visibility': 'visible'
