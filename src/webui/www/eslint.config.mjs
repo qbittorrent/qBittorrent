@@ -53,7 +53,8 @@ export default [
                     "allowTemplateLiterals": true
                 }
             ],
-            "Stylistic/semi": "error"
+            "Stylistic/semi": "error",
+            "Stylistic/spaced-comment": ["error", "always", { "exceptions": ["*"] }]
         }
     }
 ];

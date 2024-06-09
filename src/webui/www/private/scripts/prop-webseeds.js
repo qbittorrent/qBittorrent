@@ -76,7 +76,7 @@ window.qBittorrent.PropWebseeds = (function() {
                 this.updateRow(tableRow, row);
                 return;
             }
-            //this.removeRow(id);
+            // this.removeRow(id);
             const tr = new Element("tr");
             this.rows.set(url, tr);
             for (let i = 0; i < row.length; ++i) {

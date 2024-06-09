@@ -3126,7 +3126,7 @@ window.qBittorrent.DynamicTable = (function() {
             };
 
             this.columns["type"].updateTd = function(td, row) {
-                //Type of the message: Log::NORMAL: 1, Log::INFO: 2, Log::WARNING: 4, Log::CRITICAL: 8
+                // Type of the message: Log::NORMAL: 1, Log::INFO: 2, Log::WARNING: 4, Log::CRITICAL: 8
                 let logLevel, addClass;
                 switch (this.getRowValue(row).toInt()) {
                     case 1:

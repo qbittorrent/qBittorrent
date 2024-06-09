@@ -47,10 +47,10 @@ window.qBittorrent.ContextMenu = (function() {
 
     let lastShownContextMenu = null;
     const ContextMenu = new Class({
-        //implements
+        // implements
         Implements: [Options, Events],
 
-        //options
+        // options
         options: {
             actions: {},
             menu: "menu_id",
@@ -67,16 +67,16 @@ window.qBittorrent.ContextMenu = (function() {
             touchTimer: 600
         },
 
-        //initialization
+        // initialization
         initialize: function(options) {
-            //set options
+            // set options
             this.setOptions(options);
 
-            //option diffs menu
+            // option diffs menu
             this.menu = $(this.options.menu);
             this.targets = $$(this.options.targets);
 
-            //fx
+            // fx
             this.fx = new Fx.Tween(this.menu, {
                 property: "opacity",
                 duration: this.options.fadeSpeed,
@@ -88,10 +88,10 @@ window.qBittorrent.ContextMenu = (function() {
                 }.bind(this.menu)
             });
 
-            //hide and begin the listener
+            // hide and begin the listener
             this.hide().startListener();
 
-            //hide the menu
+            // hide the menu
             this.menu.setStyles({
                 "position": "absolute",
                 "top": "-900000px",
@@ -197,17 +197,17 @@ window.qBittorrent.ContextMenu = (function() {
             if (this.options.disabled)
                 return;
 
-            //prevent default, if told to
+            // prevent default, if told to
             if (this.options.stopEvent)
                 e.stop();
-            //record this as the trigger
+            // record this as the trigger
             this.options.element = $(el);
             this.adjustMenuPosition(e);
-            //show the menu
+            // show the menu
             this.show();
         },
 
-        //get things started
+        // get things started
         startListener: function() {
             /* all elements */
             this.targets.each((el) => {
@@ -225,7 +225,7 @@ window.qBittorrent.ContextMenu = (function() {
                 });
             }, this);
 
-            //hide on body click
+            // hide on body click
             $(document.body).addEvent("click", () => {
                 this.hide();
             });
@@ -233,7 +233,7 @@ window.qBittorrent.ContextMenu = (function() {
 
         updateMenuItems: function() {},
 
-        //show menu
+        // show menu
         show: function(trigger) {
             if (lastShownContextMenu && (lastShownContextMenu !== this))
                 lastShownContextMenu.hide();
@@ -243,11 +243,11 @@ window.qBittorrent.ContextMenu = (function() {
             return this;
         },
 
-        //hide the menu
+        // hide the menu
         hide: function(trigger) {
             if (lastShownContextMenu && (lastShownContextMenu.menu.style.visibility !== "hidden")) {
                 this.fx.start(0);
-                //this.menu.fade('out');
+                // this.menu.fade('out');
                 this.fireEvent("hide");
             }
             return this;
@@ -263,31 +263,31 @@ window.qBittorrent.ContextMenu = (function() {
             return this.menu.getElement("a[href$=" + item + "]").firstChild.style.opacity !== "0";
         },
 
-        //hide an item
+        // hide an item
         hideItem: function(item) {
             this.menu.getElement("a[href$=" + item + "]").parentNode.addClass("invisible");
             return this;
         },
 
-        //show an item
+        // show an item
         showItem: function(item) {
             this.menu.getElement("a[href$=" + item + "]").parentNode.removeClass("invisible");
             return this;
         },
 
-        //disable the entire menu
+        // disable the entire menu
         disable: function() {
             this.options.disabled = true;
             return this;
         },
 
-        //enable the entire menu
+        // enable the entire menu
         enable: function() {
             this.options.disabled = false;
             return this;
         },
 
-        //execute an action
+        // execute an action
         execute: function(action, element) {
             if (this.options.actions[action])
                 this.options.actions[action](element, this, action);
