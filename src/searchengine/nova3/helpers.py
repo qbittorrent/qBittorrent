@@ -1,4 +1,4 @@
-#VERSION: 1.45
+#VERSION: 1.46
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -87,9 +87,9 @@ def htmlentitydecode(s):
     return re.sub(r'&#x(\w+);', lambda x: chr(int(x.group(1), 16)), t)
 
 
-def retrieve_url(url):
+def retrieve_url(url, custom_headers={}):
     """ Return the content of the url page as a string """
-    req = urllib.request.Request(url, headers=headers)
+    req = urllib.request.Request(url, headers={**headers, **custom_headers})
     try:
         response = urllib.request.urlopen(req)
     except urllib.error.URLError as errno:
