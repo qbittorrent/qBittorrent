@@ -181,6 +181,11 @@ public:
         return (m_filePaths.isEmpty() ? m_torrentInfo.filePath(index) : m_filePaths.at(index));
     }
 
+    PathList filePaths() const
+    {
+        return (m_filePaths.isEmpty() ? m_torrentInfo.filePaths() : m_filePaths);
+    }
+
     void renameFile(const int index, const Path &newFilePath) override
     {
         Q_ASSERT((index >= 0) && (index < filesCount()));
@@ -886,15 +891,7 @@ void AddNewTorrentDialog::setupTreeview()
     {
         // Check file name blacklist for torrents that are manually added
         QVector<BitTorrent::DownloadPriority> priorities = m_contentAdaptor->filePriorities();
-        for (int i = 0; i < priorities.size(); ++i)
-        {
-            if (priorities[i] == BitTorrent::DownloadPriority::Ignored)
-                continue;
-
-            if (BitTorrent::Session::instance()->isFilenameExcluded(torrentInfo.filePath(i).filename()))
-                priorities[i] = BitTorrent::DownloadPriority::Ignored;
-        }
-
+        BitTorrent::Session::instance()->applyFilenameFilter(m_contentAdaptor->filePaths(), priorities);
         m_contentAdaptor->prioritizeFiles(priorities);
     }
 
