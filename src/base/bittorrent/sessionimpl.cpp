@@ -2769,26 +2769,22 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         Q_ASSERT(p.file_priorities.empty());
         Q_ASSERT(addTorrentParams.filePriorities.isEmpty() || (addTorrentParams.filePriorities.size() == nativeIndexes.size()));
 
+        QList<DownloadPriority> filePriorities = addTorrentParams.filePriorities;
+
+        if (filePriorities.isEmpty() && isExcludedFileNamesEnabled())
+        {
+            // Check file name blacklist when priorities are not explicitly set
+            applyFilenameFilter(filePaths, filePriorities);
+        }
+
         const int internalFilesCount = torrentInfo.nativeInfo()->files().num_files(); // including .pad files
         // Use qBittorrent default priority rather than libtorrent's (4)
         p.file_priorities = std::vector(internalFilesCount, LT::toNative(DownloadPriority::Normal));
 
-        if (addTorrentParams.filePriorities.isEmpty())
+        if (!filePriorities.isEmpty())
         {
-            if (isExcludedFileNamesEnabled())
-            {
-                // Check file name blacklist when priorities are not explicitly set
-                for (int i = 0; i < filePaths.size(); ++i)
-                {
-                    if (isFilenameExcluded(filePaths.at(i).filename()))
-                        p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = lt::dont_download;
-                }
-            }
-        }
-        else
-        {
-            for (int i = 0; i < addTorrentParams.filePriorities.size(); ++i)
-                p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = LT::toNative(addTorrentParams.filePriorities[i]);
+            for (int i = 0; i < filePriorities.size(); ++i)
+                p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = LT::toNative(filePriorities[i]);
         }
 
         Q_ASSERT(p.ti);
@@ -3874,21 +3870,41 @@ void SessionImpl::populateExcludedFileNamesRegExpList()
 
     for (const QString &str : excludedNames)
     {
-        const QString pattern = QRegularExpression::anchoredPattern(QRegularExpression::wildcardToRegularExpression(str));
+        const QString pattern = QRegularExpression::wildcardToRegularExpression(str);
         const QRegularExpression re {pattern, QRegularExpression::CaseInsensitiveOption};
         m_excludedFileNamesRegExpList.append(re);
     }
 }
 
-bool SessionImpl::isFilenameExcluded(const QString &fileName) const
+void SessionImpl::applyFilenameFilter(const PathList &files, QList<DownloadPriority> &priorities)
 {
     if (!isExcludedFileNamesEnabled())
-        return false;
+        return;
 
-    return std::any_of(m_excludedFileNamesRegExpList.begin(), m_excludedFileNamesRegExpList.end(), [&fileName](const QRegularExpression &re)
+    const auto isFilenameExcluded = [patterns = m_excludedFileNamesRegExpList](const Path &fileName)
     {
-        return re.match(fileName).hasMatch();
-    });
+        return std::any_of(patterns.begin(), patterns.end(), [&fileName](const QRegularExpression &re)
+        {
+            Path path = fileName;
+            while (!re.match(path.filename()).hasMatch())
+            {
+                path = path.parentPath();
+                if (path.isEmpty())
+                    return false;
+            }
+            return true;
+        });
+    };
+
+    priorities.resize(files.count(), DownloadPriority::Normal);
+    for (int i = 0; i < priorities.size(); ++i)
+    {
+        if (priorities[i] == BitTorrent::DownloadPriority::Ignored)
+            continue;
+
+        if (isFilenameExcluded(files.at(i)))
+            priorities[i] = BitTorrent::DownloadPriority::Ignored;
+    }
 }
 
 void SessionImpl::setBannedIPs(const QStringList &newList)
