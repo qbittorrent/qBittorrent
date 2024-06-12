@@ -550,7 +550,14 @@ SessionImpl::SessionImpl(QObject *parent)
         , this, [this]() { m_recentErroredTorrents.clear(); });
 
     m_seedingLimitTimer->setInterval(10s);
-    connect(m_seedingLimitTimer, &QTimer::timeout, this, &SessionImpl::processShareLimits);
+    connect(m_seedingLimitTimer, &QTimer::timeout, this, [this]
+    {
+        // We shouldn't iterate over `m_torrents` in the loop below
+        // since `deleteTorrent()` modifies it indirectly
+        const QHash<TorrentID, TorrentImpl *> torrents {m_torrents};
+        for (TorrentImpl *torrent : torrents)
+            processTorrentShareLimits(torrent);
+    });
 
     initializeNativeSession();
     configureComponents();
@@ -2236,72 +2243,66 @@ void SessionImpl::populateAdditionalTrackers()
     m_additionalTrackerEntries = parseTrackerEntries(additionalTrackers());
 }
 
-void SessionImpl::processShareLimits()
+void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
 {
+    if (!torrent->isFinished() || torrent->isForced())
+        return;
+
     const auto effectiveLimit = []<typename T>(const T limit, const T useGlobalLimit, const T globalLimit) -> T
     {
         return (limit == useGlobalLimit) ? globalLimit : limit;
     };
 
-    // We shouldn't iterate over `m_torrents` in the loop below
-    // since `deleteTorrent()` modifies it indirectly
-    const QHash<TorrentID, TorrentImpl *> torrents {m_torrents};
-    for (const auto &[torrentID, torrent] : torrents.asKeyValueRange())
+    const qreal ratioLimit = effectiveLimit(torrent->ratioLimit(), Torrent::USE_GLOBAL_RATIO, globalMaxRatio());
+    const int seedingTimeLimit = effectiveLimit(torrent->seedingTimeLimit(), Torrent::USE_GLOBAL_SEEDING_TIME, globalMaxSeedingMinutes());
+    const int inactiveSeedingTimeLimit = effectiveLimit(torrent->inactiveSeedingTimeLimit(), Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME, globalMaxInactiveSeedingMinutes());
+
+    bool reached = false;
+    QString description;
+
+    if (const qreal ratio = torrent->realRatio();
+            (ratioLimit >= 0) && (ratio <= Torrent::MAX_RATIO) && (ratio >= ratioLimit))
     {
-        if (!torrent->isFinished() || torrent->isForced())
-            continue;
+        reached = true;
+        description = tr("Torrent reached the share ratio limit.");
+    }
+    else if (const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
+            (seedingTimeLimit >= 0) && (seedingTimeInMinutes <= Torrent::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= seedingTimeLimit))
+    {
+        reached = true;
+        description = tr("Torrent reached the seeding time limit.");
+    }
+    else if (const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
+            (inactiveSeedingTimeLimit >= 0) && (inactiveSeedingTimeInMinutes <= Torrent::MAX_INACTIVE_SEEDING_TIME) && (inactiveSeedingTimeInMinutes >= inactiveSeedingTimeLimit))
+    {
+        reached = true;
+        description = tr("Torrent reached the inactive seeding time limit.");
+    }
 
-        const qreal ratioLimit = effectiveLimit(torrent->ratioLimit(), Torrent::USE_GLOBAL_RATIO, globalMaxRatio());
-        const int seedingTimeLimit = effectiveLimit(torrent->seedingTimeLimit(), Torrent::USE_GLOBAL_SEEDING_TIME, globalMaxSeedingMinutes());
-        const int inactiveSeedingTimeLimit = effectiveLimit(torrent->inactiveSeedingTimeLimit(), Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME, globalMaxInactiveSeedingMinutes());
+    if (reached)
+    {
+        const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
+        const ShareLimitAction shareLimitAction = (torrent->shareLimitAction() == ShareLimitAction::Default) ? m_shareLimitAction : torrent->shareLimitAction();
 
-        bool reached = false;
-        QString description;
-
-        if (const qreal ratio = torrent->realRatio();
-                (ratioLimit >= 0) && (ratio <= Torrent::MAX_RATIO) && (ratio >= ratioLimit))
+        if (shareLimitAction == ShareLimitAction::Remove)
         {
-            reached = true;
-            description = tr("Torrent reached the share ratio limit.");
+            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removing torrent."), torrentName));
+            deleteTorrent(torrent->id());
         }
-        else if (const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
-                (seedingTimeLimit >= 0) && (seedingTimeInMinutes <= Torrent::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= seedingTimeLimit))
+        else if (shareLimitAction == ShareLimitAction::RemoveWithContent)
         {
-            reached = true;
-            description = tr("Torrent reached the seeding time limit.");
+            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removing torrent and deleting its content."), torrentName));
+            deleteTorrent(torrent->id(), DeleteTorrentAndFiles);
         }
-        else if (const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
-                (inactiveSeedingTimeLimit >= 0) && (inactiveSeedingTimeInMinutes <= Torrent::MAX_INACTIVE_SEEDING_TIME) && (inactiveSeedingTimeInMinutes >= inactiveSeedingTimeLimit))
+        else if ((shareLimitAction == ShareLimitAction::Stop) && !torrent->isStopped())
         {
-            reached = true;
-            description = tr("Torrent reached the inactive seeding time limit.");
+            torrent->stop();
+            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent stopped."), torrentName));
         }
-
-        if (reached)
+        else if ((shareLimitAction == ShareLimitAction::EnableSuperSeeding) && !torrent->isStopped() && !torrent->superSeeding())
         {
-            const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
-            const ShareLimitAction shareLimitAction = (torrent->shareLimitAction() == ShareLimitAction::Default) ? m_shareLimitAction : torrent->shareLimitAction();
-
-            if (shareLimitAction == ShareLimitAction::Remove)
-            {
-                LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removing torrent."), torrentName));
-                deleteTorrent(torrentID);
-            }
-            else if (shareLimitAction == ShareLimitAction::RemoveWithContent)
-            {
-                LogMsg(u"%1 %2 %3"_s.arg(description, tr("Removing torrent and deleting its content."), torrentName));
-                deleteTorrent(torrentID, DeleteTorrentAndFiles);
-            }
-            else if ((shareLimitAction == ShareLimitAction::Stop) && !torrent->isStopped())
-            {
-                torrent->stop();
-                LogMsg(u"%1 %2 %3"_s.arg(description, tr("Torrent stopped."), torrentName));
-            }
-            else if ((shareLimitAction == ShareLimitAction::EnableSuperSeeding) && !torrent->isStopped() && !torrent->superSeeding())
-            {
-                torrent->setSuperSeeding(true);
-                LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
-            }
+            torrent->setSuperSeeding(true);
+            LogMsg(u"%1 %2 %3"_s.arg(description, tr("Super seeding enabled."), torrentName));
         }
     }
 }
@@ -4906,7 +4907,7 @@ void SessionImpl::updateSeedingLimitTimer()
     if ((globalMaxRatio() == Torrent::NO_RATIO_LIMIT) && !hasPerTorrentRatioLimit()
         && (globalMaxSeedingMinutes() == Torrent::NO_SEEDING_TIME_LIMIT) && !hasPerTorrentSeedingTimeLimit()
         && (globalMaxInactiveSeedingMinutes() == Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT) && !hasPerTorrentInactiveSeedingTimeLimit())
-        {
+    {
         if (m_seedingLimitTimer->isActive())
             m_seedingLimitTimer->stop();
     }
@@ -5018,18 +5019,7 @@ void SessionImpl::handleTorrentChecked(TorrentImpl *const torrent)
 
 void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
 {
-    LogMsg(tr("Torrent download finished. Torrent: \"%1\"").arg(torrent->name()));
-    emit torrentFinished(torrent);
-
-    if (const Path exportPath = finishedTorrentExportDirectory(); !exportPath.isEmpty())
-        exportTorrentFile(torrent, exportPath);
-
-    const bool hasUnfinishedTorrents = std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
-    {
-        return !(torrent->isFinished() || torrent->isStopped() || torrent->isErrored());
-    });
-    if (!hasUnfinishedTorrents)
-        emit allTorrentsFinished();
+    m_pendingFinishedTorrents.append(torrent);
 }
 
 void SessionImpl::handleTorrentResumeDataReady(TorrentImpl *const torrent, const LoadTorrentParams &data)
@@ -6094,6 +6084,29 @@ void SessionImpl::handleStateUpdateAlert(const lt::state_update_alert *alert)
 
     if (!updatedTorrents.isEmpty())
         emit torrentsUpdated(updatedTorrents);
+
+    if (!m_pendingFinishedTorrents.isEmpty())
+    {
+        for (TorrentImpl *torrent : m_pendingFinishedTorrents)
+        {
+            LogMsg(tr("Torrent download finished. Torrent: \"%1\"").arg(torrent->name()));
+            emit torrentFinished(torrent);
+
+            if (const Path exportPath = finishedTorrentExportDirectory(); !exportPath.isEmpty())
+                exportTorrentFile(torrent, exportPath);
+
+            processTorrentShareLimits(torrent);
+        }
+
+        m_pendingFinishedTorrents.clear();
+
+        const bool hasUnfinishedTorrents = std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
+        {
+            return !(torrent->isFinished() || torrent->isStopped() || torrent->isErrored());
+        });
+        if (!hasUnfinishedTorrents)
+            emit allTorrentsFinished();
+    }
 
     if (m_needSaveTorrentsQueue)
         saveTorrentsQueue();
