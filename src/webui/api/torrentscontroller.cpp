@@ -111,7 +111,7 @@ const QString KEY_PROP_CREATION_DATE = u"creation_date"_s;
 const QString KEY_PROP_SAVE_PATH = u"save_path"_s;
 const QString KEY_PROP_DOWNLOAD_PATH = u"download_path"_s;
 const QString KEY_PROP_COMMENT = u"comment"_s;
-const QString KEY_PROP_IS_PRIVATE = u"is_private"_s;
+const QString KEY_PROP_PRIVATE = u"private"_s;
 const QString KEY_PROP_SSL_CERTIFICATE = u"ssl_certificate"_s;
 const QString KEY_PROP_SSL_PRIVATEKEY = u"ssl_private_key"_s;
 const QString KEY_PROP_SSL_DHPARAMS = u"ssl_dh_params"_s;
@@ -282,7 +282,7 @@ void TorrentsController::countAction()
 //   - category (string): torrent category for filtering by it (empty string means "uncategorized"; no "category" param presented means "any category")
 //   - tag (string): torrent tag for filtering by it (empty string means "untagged"; no "tag" param presented means "any tag")
 //   - hashes (string): filter by hashes, can contain multiple hashes separated by |
-//   - isPrivate (bool): filter torrents that are from private trackers (true) or not (false). Empty means any torrent (no filtering)
+//   - private (bool): filter torrents that are from private trackers (true) or not (false). Empty means any torrent (no filtering)
 //   - sort (string): name of column for sorting by its value
 //   - reverse (bool): enable reverse sorting
 //   - limit (int): set limit number of torrents returned (if greater than 0, otherwise - unlimited)
@@ -297,7 +297,7 @@ void TorrentsController::infoAction()
     int limit {params()[u"limit"_s].toInt()};
     int offset {params()[u"offset"_s].toInt()};
     const QStringList hashes {params()[u"hashes"_s].split(u'|', Qt::SkipEmptyParts)};
-    const std::optional<bool> isPrivate = parseBool(params()[u"isPrivate"_s]);
+    const std::optional<bool> isPrivate = parseBool(params()[u"private"_s]);
 
     std::optional<TorrentIDSet> idSet;
     if (!hashes.isEmpty())
@@ -472,7 +472,7 @@ void TorrentsController::propertiesAction()
         {KEY_PROP_PIECE_SIZE, torrent->pieceLength()},
         {KEY_PROP_PIECES_HAVE, torrent->piecesHave()},
         {KEY_PROP_CREATED_BY, torrent->creator()},
-        {KEY_PROP_IS_PRIVATE, torrent->isPrivate()},
+        {KEY_PROP_PRIVATE, torrent->isPrivate()},
         {KEY_PROP_ADDITION_DATE, Utils::DateTime::toSecsSinceEpoch(torrent->addedTime())},
         {KEY_PROP_LAST_SEEN, Utils::DateTime::toSecsSinceEpoch(torrent->lastSeenComplete())},
         {KEY_PROP_COMPLETION_DATE, Utils::DateTime::toSecsSinceEpoch(torrent->completedTime())},

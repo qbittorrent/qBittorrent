@@ -70,7 +70,6 @@ public:
     static const std::optional<QString> AnyCategory;
     static const std::optional<TorrentIDSet> AnyID;
     static const std::optional<Tag> AnyTag;
-    static const std::optional<bool> AnyIsPrivate;
 
     static const TorrentFilter DownloadingTorrent;
     static const TorrentFilter SeedingTorrent;
@@ -92,12 +91,12 @@ public:
               , const std::optional<TorrentIDSet> &idSet = AnyID
             , const std::optional<QString> &category = AnyCategory
             , const std::optional<Tag> &tag = AnyTag
-            , std::optional<bool> isPrivate = AnyIsPrivate);
+            , std::optional<bool> isPrivate = {});
     TorrentFilter(const QString &filter
               , const std::optional<TorrentIDSet> &idSet = AnyID
             , const std::optional<QString> &category = AnyCategory
             , const std::optional<Tag> &tags = AnyTag
-            , std::optional<bool> isPrivate = AnyIsPrivate);
+            , std::optional<bool> isPrivate = {});
 
 
     bool setType(Type type);
