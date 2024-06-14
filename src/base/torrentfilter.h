@@ -104,7 +104,7 @@ public:
     bool setTorrentIDSet(const std::optional<TorrentIDSet> &idSet);
     bool setCategory(const std::optional<QString> &category);
     bool setTag(const std::optional<Tag> &tag);
-    bool setIsPrivate(std::optional<bool> isPrivate);
+    bool setPrivate(std::optional<bool> isPrivate);
 
     bool match(const BitTorrent::Torrent *torrent) const;
 
@@ -113,11 +113,11 @@ private:
     bool matchHash(const BitTorrent::Torrent *torrent) const;
     bool matchCategory(const BitTorrent::Torrent *torrent) const;
     bool matchTag(const BitTorrent::Torrent *torrent) const;
-    bool matchIsPrivate(const BitTorrent::Torrent *torrent) const;
+    bool matchPrivate(const BitTorrent::Torrent *torrent) const;
 
     Type m_type {All};
     std::optional<QString> m_category;
     std::optional<Tag> m_tag;
     std::optional<TorrentIDSet> m_idSet;
-    std::optional<bool> m_isPrivate;
+    std::optional<bool> m_private;
 };

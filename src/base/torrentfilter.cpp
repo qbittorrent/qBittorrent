@@ -57,7 +57,7 @@ TorrentFilter::TorrentFilter(const Type type, const std::optional<TorrentIDSet> 
     , m_category {category}
     , m_tag {tag}
     , m_idSet {idSet}
-    , m_isPrivate {isPrivate}
+    , m_private {isPrivate}
 {
 }
 
@@ -66,7 +66,7 @@ TorrentFilter::TorrentFilter(const QString &filter, const std::optional<TorrentI
     : m_category {category}
     , m_tag {tag}
     , m_idSet {idSet}
-    , m_isPrivate {isPrivate}
+    , m_private {isPrivate}
 {
     setTypeByName(filter);
 }
@@ -149,11 +149,11 @@ bool TorrentFilter::setTag(const std::optional<Tag> &tag)
     return false;
 }
 
-bool TorrentFilter::setIsPrivate(const std::optional<bool> isPrivate)
+bool TorrentFilter::setPrivate(const std::optional<bool> isPrivate)
 {
-    if (m_isPrivate != isPrivate)
+    if (m_private != isPrivate)
     {
-        m_isPrivate = isPrivate;
+        m_private = isPrivate;
         return true;
     }
 
@@ -164,7 +164,7 @@ bool TorrentFilter::match(const Torrent *const torrent) const
 {
     if (!torrent) return false;
 
-    return (matchState(torrent) && matchHash(torrent) && matchCategory(torrent) && matchTag(torrent) && matchIsPrivate(torrent));
+    return (matchState(torrent) && matchHash(torrent) && matchCategory(torrent) && matchTag(torrent) && matchPrivate(torrent));
 }
 
 bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
@@ -238,10 +238,10 @@ bool TorrentFilter::matchTag(const BitTorrent::Torrent *const torrent) const
     return torrent->hasTag(*m_tag);
 }
 
-bool TorrentFilter::matchIsPrivate(const BitTorrent::Torrent *const torrent) const
+bool TorrentFilter::matchPrivate(const BitTorrent::Torrent *const torrent) const
 {
-    if (!m_isPrivate)
+    if (!m_private)
         return true;
 
-    return m_isPrivate == torrent->isPrivate();
+    return m_private == torrent->isPrivate();
 }
