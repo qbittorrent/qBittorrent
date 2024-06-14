@@ -111,6 +111,7 @@ const QString KEY_PROP_CREATION_DATE = u"creation_date"_s;
 const QString KEY_PROP_SAVE_PATH = u"save_path"_s;
 const QString KEY_PROP_DOWNLOAD_PATH = u"download_path"_s;
 const QString KEY_PROP_COMMENT = u"comment"_s;
+const QString KEY_PROP_IS_PRIVATE = u"is_private"_s; // deprecated, "private" should be used instead
 const QString KEY_PROP_PRIVATE = u"private"_s;
 const QString KEY_PROP_SSL_CERTIFICATE = u"ssl_certificate"_s;
 const QString KEY_PROP_SSL_PRIVATEKEY = u"ssl_private_key"_s;
@@ -472,6 +473,7 @@ void TorrentsController::propertiesAction()
         {KEY_PROP_PIECE_SIZE, torrent->pieceLength()},
         {KEY_PROP_PIECES_HAVE, torrent->piecesHave()},
         {KEY_PROP_CREATED_BY, torrent->creator()},
+        {KEY_PROP_IS_PRIVATE, torrent->isPrivate()}, // used for maintaining backward compatibility
         {KEY_PROP_PRIVATE, torrent->isPrivate()},
         {KEY_PROP_ADDITION_DATE, Utils::DateTime::toSecsSinceEpoch(torrent->addedTime())},
         {KEY_PROP_LAST_SEEN, Utils::DateTime::toSecsSinceEpoch(torrent->lastSeenComplete())},
