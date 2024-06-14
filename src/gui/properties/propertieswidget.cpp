@@ -210,6 +210,7 @@ void PropertiesWidget::clear()
     m_ui->labelSavePathVal->clear();
     m_ui->labelCreatedOnVal->clear();
     m_ui->labelTotalPiecesVal->clear();
+    m_ui->labelPrivateVal->clear();
     m_ui->labelInfohash1Val->clear();
     m_ui->labelInfohash2Val->clear();
     m_ui->labelCommentVal->clear();
@@ -335,7 +336,14 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
         m_ui->labelCommentVal->setText(Utils::Misc::parseHtmlLinks(m_torrent->comment().toHtmlEscaped()));
 
         m_ui->labelCreatedByVal->setText(m_torrent->creator());
+
+        m_ui->labelPrivateVal->setText(m_torrent->isPrivate() ? tr("Yes") : tr("No"));
     }
+    else
+    {
+        m_ui->labelPrivateVal->setText(tr("N/A"));
+    }
+
     // Load dynamic data
     loadDynamicData();
 }
