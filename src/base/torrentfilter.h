@@ -88,12 +88,12 @@ public:
     TorrentFilter() = default;
     // category & tags: pass empty string for uncategorized / untagged torrents.
     TorrentFilter(Type type
-              , const std::optional<TorrentIDSet> &idSet = AnyID
+            , const std::optional<TorrentIDSet> &idSet = AnyID
             , const std::optional<QString> &category = AnyCategory
             , const std::optional<Tag> &tag = AnyTag
             , std::optional<bool> isPrivate = {});
     TorrentFilter(const QString &filter
-              , const std::optional<TorrentIDSet> &idSet = AnyID
+            , const std::optional<TorrentIDSet> &idSet = AnyID
             , const std::optional<QString> &category = AnyCategory
             , const std::optional<Tag> &tags = AnyTag
             , std::optional<bool> isPrivate = {});
