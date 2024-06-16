@@ -28,77 +28,6 @@
 
 'use strict';
 
-async function setupI18n() {
-    const languages = (() => {
-        const langs = new Set();
-
-        // list of available languages: https://github.com/qbittorrent/qBittorrent/tree/master/src/webui/www/public/lang
-        const queryLang = new URLSearchParams(window.location.search).get('lang');
-        if (queryLang !== null) {
-            // use the fallback lang if `queryLang` is present but empty
-            // limit the length of the language string to prevent Client-side Request Forgery
-            if ((queryLang.length > 0) && (queryLang.length <= 8))
-                langs.add(queryLang.replace('-', '_'));
-        }
-        else {
-            for (const lang of navigator.languages) {
-                langs.add(lang.replace('-', '_'));
-
-                const idx = lang.indexOf('-');
-                if (idx > 0)
-                    langs.add(lang.slice(0, idx));
-            }
-        }
-
-        langs.add('en'); // fallback
-        return Array.from(langs);
-    })();
-
-    // it is faster to fetch all translation files at once than one by one
-    const fetches = languages.map(lang => fetch(`lang/${lang}.json`));
-    const fetchResults = await Promise.allSettled(fetches);
-    const translations = fetchResults
-        .map((value, idx) => ({ lang: languages[idx], result: value }))
-        .filter(v => (v.result.value.status === 200));
-    const translation = {
-        lang: (translations.length > 0) ? translations[0].lang.replace('_', '-') : undefined,
-        data: (translations.length > 0) ? (await translations[0].result.value.json()) : {}
-    };
-
-    // present it to i18next
-    const i18nextOptions = {
-        lng: translation.lang,
-        fallbackLng: false,
-        load: 'currentOnly',
-        resources: {
-            [translation.lang]: { translation: translation.data }
-        },
-        returnEmptyString: false
-    };
-    i18next.init(i18nextOptions, replaceI18nText);
-}
-
-function replaceI18nText() {
-    const tr = i18next.t; // workaround for warnings from i18next-parser
-    for (const element of document.getElementsByClassName('qbt-translatable')) {
-        const translationKey = element.getAttribute('data-i18n');
-        const translatedValue = tr(translationKey);
-        switch (element.nodeName) {
-            case 'INPUT':
-                element.value = translatedValue;
-                break;
-            case 'LABEL':
-                element.textContent = translatedValue;
-                break;
-            default:
-                console.error(`Unhandled element: ${element}`);
-                break;
-        }
-    }
-
-    document.documentElement.lang = i18next.language.split('-')[0];
-}
-
 function submitLoginForm(event) {
     event.preventDefault();
     const errorMsgElement = document.getElementById('error_msg');
@@ -133,6 +62,4 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginform');
     loginForm.setAttribute('method', 'POST');
     loginForm.addEventListener('submit', submitLoginForm);
-
-    setupI18n();
 });
