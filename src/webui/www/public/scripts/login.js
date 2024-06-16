@@ -111,13 +111,13 @@ function submitLoginForm(event) {
             if ((xhr.status === 200) && (xhr.responseText === "Ok."))
                 location.replace(location);
             else
-                errorMsgElement.textContent = i18next.t('Invalid Username or Password.');
+                errorMsgElement.textContent = 'QBT_TR(Invalid Username or Password.)QBT_TR[CONTEXT=HttpServer]';
         }
     });
     xhr.addEventListener('error', () => {
         errorMsgElement.textContent = (xhr.responseText !== "")
             ? xhr.responseText
-            : i18next.t('Unable to log in, server is probably unreachable.');
+            : 'QBT_TR(Unable to log in, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]';
     });
 
     const usernameElement = document.getElementById('username');
