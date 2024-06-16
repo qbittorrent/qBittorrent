@@ -98,11 +98,11 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Wznów torrenty</translation>
+        <translation type="vanished">Wznów torrenty</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Wstrzymaj torrenty</translation>
+        <translation type="vanished">Wstrzymaj torrenty</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -119,6 +119,14 @@
     <message>
         <source>Add subcategory...</source>
         <translation>Dodaj podkategorię...</translation>
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -193,23 +201,23 @@
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Nie można się zalogować, qBittorrent jest prawdopodobnie nieosiągalny.</translation>
+        <translation>Nie można się zalogować, qBittorrent jest prawdopodobnie nieosiągalny.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="vanished">Nieprawidłowa nazwa użytkownika lub hasło.</translation>
+        <translation>Nieprawidłowa nazwa użytkownika lub hasło.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="vanished">Nazwa użytkownika</translation>
+        <translation>Nazwa użytkownika</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="vanished">Hasło</translation>
+        <translation>Hasło</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="vanished">Login</translation>
+        <translation>Login</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -407,6 +415,10 @@
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Could not contact qBittorrent</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -436,7 +448,7 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>Wznów</translation>
+        <translation type="vanished">Wznów</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -456,7 +468,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Wznów wszystkie</translation>
+        <translation type="vanished">Wznów wszystkie</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -468,11 +480,11 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation>Wstrzymaj</translation>
+        <translation type="vanished">Wstrzymaj</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Wstrzymaj wszystkie</translation>
+        <translation type="vanished">Wstrzymaj wszystkie</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -621,11 +633,11 @@
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation>Czy chcesz wznowić wszystkie torrenty?</translation>
+        <translation type="vanished">Czy chcesz wznowić wszystkie torrenty?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation>Czy chcesz wstrzymać wszystkie torrenty?</translation>
+        <translation type="vanished">Czy chcesz wstrzymać wszystkie torrenty?</translation>
     </message>
     <message>
         <source>Execution Log</source>
@@ -637,6 +649,30 @@
     </message>
     <message>
         <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -692,7 +728,7 @@
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation>Automatycznie dodaj te trackery do nowych pobierań:</translation>
+        <translation type="vanished">Automatycznie dodaj te trackery do nowych pobierań:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1206,7 +1242,7 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation>Wstrzymaj torrent</translation>
+        <translation type="vanished">Wstrzymaj torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1904,6 +1940,22 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <source>Customize application instance name:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Send test email</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Automatically append these trackers to new downloads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2268,6 +2320,14 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <source>Match all occurrences</source>
         <translation>Dopasuj wszystkie wystąpienia</translation>
     </message>
+    <message>
+        <source>Popularity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2398,11 +2458,11 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation>Wznowione (0)</translation>
+        <translation type="vanished">Wznowione (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation>Wstrzymane (0)</translation>
+        <translation type="vanished">Wstrzymane (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -2434,11 +2494,11 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation>Wstrzymane (%1)</translation>
+        <translation type="vanished">Wstrzymane (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation>Wznowione (%1)</translation>
+        <translation type="vanished">Wznowione (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2492,6 +2552,22 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <source>Moving (0)</source>
         <translation>Przenoszenie (0)</translation>
     </message>
+    <message>
+        <source>Running (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2511,7 +2587,7 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     <message>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation>Ukończono</translation>
+        <translation type="vanished">Ukończono</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2647,6 +2723,14 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     <message>
         <source>Reannounce In</source>
         <translation>Rozgłoszenie za</translation>
+    </message>
+    <message>
+        <source>Popularity</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2784,7 +2868,7 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Paused</source>
-        <translation>Wstrzymano</translation>
+        <translation type="vanished">Wstrzymano</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2850,6 +2934,10 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <source>[F] Downloading metadata</source>
         <translation>[W] Pobieranie metadanych</translation>
     </message>
+    <message>
+        <source>Stopped</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2891,17 +2979,17 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>Wznów</translation>
+        <translation type="vanished">Wznów</translation>
     </message>
     <message>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation>Wymuś wznowienie</translation>
+        <translation type="vanished">Wymuś wznowienie</translation>
     </message>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Wstrzymaj</translation>
+        <translation type="vanished">Wstrzymaj</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3072,6 +3160,18 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     <message>
         <source>Comment</source>
         <translation>Komentarz</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3318,6 +3418,10 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <source>There aren't any search plugins installed.</source>
         <translation>Nie ma zainstalowanych żadnych wtyczek wyszukiwania.</translation>
     </message>
+    <message>
+        <source>Start a search above.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3379,6 +3483,10 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     <message>
         <source>Seeders</source>
         <translation>Seedujący</translation>
+    </message>
+    <message>
+        <source>Published On</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3447,11 +3555,11 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Wstrzymaj torrenty</translation>
+        <translation type="vanished">Wstrzymaj torrenty</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Wznów torrenty</translation>
+        <translation type="vanished">Wznów torrenty</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -3468,6 +3576,14 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     <message>
         <source>Remove torrents</source>
         <translation>Usuń torrenty</translation>
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3608,6 +3724,22 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     <message>
         <source>Download link</source>
         <translation>Odnośnik pobierania</translation>
+    </message>
+    <message>
+        <source>Searching...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search has finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search aborted</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3908,7 +4040,7 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation>Dodaj wstrzymane:</translation>
+        <translation type="vanished">Dodaj wstrzymane:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -3968,12 +4100,16 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
         <source>Add Tags:</source>
         <translation>Dodaj znaczniki:</translation>
     </message>
+    <message>
+        <source>Add Stopped:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Resume torrents</source>
-        <translation>Wznów torrenty</translation>
+        <translation type="vanished">Wznów torrenty</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3985,11 +4121,19 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Wstrzymaj torrenty</translation>
+        <translation type="vanished">Wstrzymaj torrenty</translation>
     </message>
     <message>
         <source>Remove torrents</source>
         <translation>Usuń torrenty</translation>
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4136,6 +4280,13 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
     <message>
         <source>Choose a log level...</source>
         <translation>Wybierz poziom dziennika...</translation>
+    </message>
+</context>
+<context>
+    <name>SearchWidget</name>
+    <message>
+        <source>Close tab</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

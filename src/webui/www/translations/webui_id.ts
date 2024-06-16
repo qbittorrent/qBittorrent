@@ -98,11 +98,11 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Lanjutkan torrent</translation>
+        <translation type="vanished">Lanjutkan torrent</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Jeda torrent</translation>
+        <translation type="vanished">Jeda torrent</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -119,6 +119,14 @@
     <message>
         <source>Add subcategory...</source>
         <translation>Tambah subkategori...</translation>
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -193,23 +201,23 @@
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Tidak bisa masuk, qBittorrent mungkin tidak terjangkau.</translation>
+        <translation>Tidak bisa masuk, qBittorrent mungkin tidak terjangkau.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="vanished">Nama Pengguna atau Sandi tidak valid.</translation>
+        <translation>Nama Pengguna atau Sandi tidak valid.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="vanished">Nama pengguna</translation>
+        <translation>Nama pengguna</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="vanished">Sandi</translation>
+        <translation>Sandi</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="vanished">Masuk</translation>
+        <translation>Masuk</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -407,6 +415,10 @@
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Could not contact qBittorrent</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -436,7 +448,7 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>Lanjutkan</translation>
+        <translation type="vanished">Lanjutkan</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -456,7 +468,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Lanjutkan Semua</translation>
+        <translation type="vanished">Lanjutkan Semua</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -468,11 +480,11 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation>Tangguhkan</translation>
+        <translation type="vanished">Tangguhkan</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Jeda Semua</translation>
+        <translation type="vanished">Jeda Semua</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -621,11 +633,11 @@
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation>Ingin lanjutkan semua torrents?</translation>
+        <translation type="vanished">Ingin lanjutkan semua torrents?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation>Ingin tunda semua torrents?</translation>
+        <translation type="vanished">Ingin tunda semua torrents?</translation>
     </message>
     <message>
         <source>Execution Log</source>
@@ -637,6 +649,30 @@
     </message>
     <message>
         <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -692,7 +728,7 @@
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation>Otomatis tambahkan tracker berikut ke unduhan baru:</translation>
+        <translation type="vanished">Otomatis tambahkan tracker berikut ke unduhan baru:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1206,7 +1242,7 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation>Jeda torrent</translation>
+        <translation type="vanished">Jeda torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1856,6 +1892,22 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
         <source>Customize application instance name:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Send test email</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Automatically append these trackers to new downloads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2220,6 +2272,14 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
         <source>Match all occurrences</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Popularity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2350,11 +2410,11 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation>Dilanjutkan (0)</translation>
+        <translation type="vanished">Dilanjutkan (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation>Ditangguhkan (0)</translation>
+        <translation type="vanished">Ditangguhkan (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -2386,11 +2446,11 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation>Ditangguhkan (%1)</translation>
+        <translation type="vanished">Ditangguhkan (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation>Dilanjutkan (%1)</translation>
+        <translation type="vanished">Dilanjutkan (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2444,6 +2504,22 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
         <source>Moving (0)</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Running (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2463,7 +2539,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     <message>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation>Selesai</translation>
+        <translation type="vanished">Selesai</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2599,6 +2675,14 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     <message>
         <source>Reannounce In</source>
         <translation>Umumkan ulang di</translation>
+    </message>
+    <message>
+        <source>Popularity</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2736,7 +2820,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Paused</source>
-        <translation>Ditangguhkan</translation>
+        <translation type="vanished">Ditangguhkan</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2802,6 +2886,10 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
         <source>[F] Downloading metadata</source>
         <translation>[F] Mengunduh metadata</translation>
     </message>
+    <message>
+        <source>Stopped</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2843,17 +2931,17 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>Lanjutkan</translation>
+        <translation type="vanished">Lanjutkan</translation>
     </message>
     <message>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation>Paksa Lanjutkan</translation>
+        <translation type="vanished">Paksa Lanjutkan</translation>
     </message>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Tangguhkan</translation>
+        <translation type="vanished">Tangguhkan</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3023,6 +3111,18 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3270,6 +3370,10 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
         <source>There aren't any search plugins installed.</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Start a search above.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3331,6 +3435,10 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     <message>
         <source>Seeders</source>
         <translation>Benih</translation>
+    </message>
+    <message>
+        <source>Published On</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3399,11 +3507,11 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Jeda torrent</translation>
+        <translation type="vanished">Jeda torrent</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Lanjutkan torrent</translation>
+        <translation type="vanished">Lanjutkan torrent</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -3420,6 +3528,14 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     <message>
         <source>Remove torrents</source>
         <translation>Hilangkan Torrent</translation>
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3560,6 +3676,22 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     <message>
         <source>Download link</source>
         <translation>Tautan unduhan</translation>
+    </message>
+    <message>
+        <source>Searching...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search has finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search aborted</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3860,7 +3992,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation>Tambah Jeda:</translation>
+        <translation type="vanished">Tambah Jeda:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -3919,12 +4051,16 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <source>Add Tags:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add Stopped:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Resume torrents</source>
-        <translation>Lanjutkan torrent</translation>
+        <translation type="vanished">Lanjutkan torrent</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3936,11 +4072,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Tangguhkan torrent</translation>
+        <translation type="vanished">Tangguhkan torrent</translation>
     </message>
     <message>
         <source>Remove torrents</source>
         <translation>Hilangkan Torrent</translation>
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4087,6 +4231,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Choose a log level...</source>
         <translation>Pilih level log...</translation>
+    </message>
+</context>
+<context>
+    <name>SearchWidget</name>
+    <message>
+        <source>Close tab</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

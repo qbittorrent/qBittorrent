@@ -98,11 +98,11 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Berrekin torrentak</translation>
+        <translation type="vanished">Berrekin torrentak</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Pausatu torrentak</translation>
+        <translation type="vanished">Pausatu torrentak</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -119,6 +119,14 @@
     <message>
         <source>Add subcategory...</source>
         <translation>Gehitu azpikategoria...</translation>
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -193,23 +201,23 @@
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Ezinezkoa saioa hastea, qBittorrent zihurrenik eskuraezina dago.</translation>
+        <translation>Ezinezkoa saioa hastea, qBittorrent zihurrenik eskuraezina dago.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="vanished">Erabiltzaile-izen edo Sarhitz baliogabea.</translation>
+        <translation>Erabiltzaile-izen edo Sarhitz baliogabea.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="vanished">Erabiltzaile-izena</translation>
+        <translation>Erabiltzaile-izena</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="vanished">Sarhitza</translation>
+        <translation>Sarhitza</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="vanished">Hasi Saioa</translation>
+        <translation>Hasi Saioa</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -407,6 +415,10 @@
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Could not contact qBittorrent</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -436,7 +448,7 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>Berrekin</translation>
+        <translation type="vanished">Berrekin</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -456,7 +468,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Berrekin Denak</translation>
+        <translation type="vanished">Berrekin Denak</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -468,11 +480,11 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pausatu</translation>
+        <translation type="vanished">Pausatu</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Pasatu Denak</translation>
+        <translation type="vanished">Pasatu Denak</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -620,14 +632,6 @@
         <translation>Kendu</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Ekintza Oharra</translation>
     </message>
@@ -637,6 +641,30 @@
     </message>
     <message>
         <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -692,7 +720,7 @@
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation>Berezgaitasunez gehitu aztarnari hauek jeitsiera berriei:</translation>
+        <translation type="vanished">Berezgaitasunez gehitu aztarnari hauek jeitsiera berriei:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1206,7 +1234,7 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation>Pausatu torrenta</translation>
+        <translation type="vanished">Pausatu torrenta</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1856,6 +1884,22 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
         <source>Customize application instance name:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Send test email</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Automatically append these trackers to new downloads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2220,6 +2264,14 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
         <source>Match all occurrences</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Popularity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2350,11 +2402,11 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation>Berrekinda (0)</translation>
+        <translation type="vanished">Berrekinda (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation>Pausatuta (0)</translation>
+        <translation type="vanished">Pausatuta (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -2386,11 +2438,11 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation>Pausatuta (%1)</translation>
+        <translation type="vanished">Pausatuta (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation>Berrekinda (%1)</translation>
+        <translation type="vanished">Berrekinda (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2444,6 +2496,22 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
         <source>Moving (0)</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Running (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2463,7 +2531,7 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     <message>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation>Eginda</translation>
+        <translation type="vanished">Eginda</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2598,6 +2666,14 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Reannounce In</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Popularity</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Progress</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2736,7 +2812,7 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Paused</source>
-        <translation>Pausatuta</translation>
+        <translation type="vanished">Pausatuta</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2802,6 +2878,10 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
         <source>[F] Downloading metadata</source>
         <translation>[F] Metadatuak deskargatzen</translation>
     </message>
+    <message>
+        <source>Stopped</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2843,17 +2923,17 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>Berrekin</translation>
+        <translation type="vanished">Berrekin</translation>
     </message>
     <message>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation>Behartu Berrekitea</translation>
+        <translation type="vanished">Behartu Berrekitea</translation>
     </message>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Pausatu</translation>
+        <translation type="vanished">Pausatu</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3023,6 +3103,18 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3270,6 +3362,10 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
         <source>There aren't any search plugins installed.</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Start a search above.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3331,6 +3427,10 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     <message>
         <source>Seeders</source>
         <translation>Emaleak</translation>
+    </message>
+    <message>
+        <source>Published On</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3399,11 +3499,11 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Pausatu torrentak</translation>
+        <translation type="vanished">Pausatu torrentak</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Berrekin torrentak</translation>
+        <translation type="vanished">Berrekin torrentak</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -3419,6 +3519,14 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Remove torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3560,6 +3668,22 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     <message>
         <source>Download link</source>
         <translation>Deskarga esteka</translation>
+    </message>
+    <message>
+        <source>Searching...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search has finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search aborted</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3860,7 +3984,7 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation>Gehitu pausatuta:</translation>
+        <translation type="vanished">Gehitu pausatuta:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -3920,12 +4044,16 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
         <source>Add Tags:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add Stopped:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Resume torrents</source>
-        <translation>Berrekin torrentak</translation>
+        <translation type="vanished">Berrekin torrentak</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3937,10 +4065,18 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Pausatu torrentak</translation>
+        <translation type="vanished">Pausatu torrentak</translation>
     </message>
     <message>
         <source>Remove torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4087,6 +4223,13 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Choose a log level...</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>SearchWidget</name>
+    <message>
+        <source>Close tab</source>
         <translation type="unfinished" />
     </message>
 </context>
