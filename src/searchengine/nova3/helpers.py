@@ -1,4 +1,4 @@
-#VERSION: 1.46
+#VERSION: 1.47
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -39,9 +39,11 @@ import tempfile
 import urllib.error
 import urllib.parse
 import urllib.request
+from collections.abc import Mapping
+from typing import Any, Dict, Optional
 
 
-def getBrowserUserAgent():
+def getBrowserUserAgent() -> str:
     """ Disguise as browser to circumvent website blocking """
 
     # Firefox release calendar
@@ -57,7 +59,7 @@ def getBrowserUserAgent():
     return f"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:{nowVersion}.0) Gecko/20100101 Firefox/{nowVersion}.0"
 
 
-headers = {'User-Agent': getBrowserUserAgent()}
+headers: Dict[str, Any] = {'User-Agent': getBrowserUserAgent()}
 
 # SOCKS5 Proxy support
 if "sock_proxy" in os.environ and len(os.environ["sock_proxy"].strip()) > 0:
@@ -67,13 +69,13 @@ if "sock_proxy" in os.environ and len(os.environ["sock_proxy"].strip()) > 0:
     if m is not None:
         socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, m.group('host'),
                               int(m.group('port')), True, m.group('username'), m.group('password'))
-        socket.socket = socks.socksocket
+        socket.socket = socks.socksocket  # type: ignore[misc]
 
 
-def htmlentitydecode(s):
+def htmlentitydecode(s: str) -> str:
     # First convert alpha entities (such as &eacute;)
     # (Inspired from http://mail.python.org/pipermail/python-list/2007-June/443813.html)
-    def entity2char(m):
+    def entity2char(m: re.Match[str]) -> str:
         entity = m.group(1)
         if entity in html.entities.name2codepoint:
             return chr(html.entities.name2codepoint[entity])
@@ -87,7 +89,7 @@ def htmlentitydecode(s):
     return re.sub(r'&#x(\w+);', lambda x: chr(int(x.group(1), 16)), t)
 
 
-def retrieve_url(url, custom_headers={}):
+def retrieve_url(url: str, custom_headers: Mapping[str, Any] = {}) -> str:
     """ Return the content of the url page as a string """
     req = urllib.request.Request(url, headers={**headers, **custom_headers})
     try:
@@ -95,7 +97,7 @@ def retrieve_url(url, custom_headers={}):
     except urllib.error.URLError as errno:
         print(" ".join(("Connection error:", str(errno.reason))))
         return ""
-    dat = response.read()
+    dat: bytes = response.read()
     # Check if it is gzipped
     if dat[:2] == b'\x1f\x8b':
         # Data is gzip encoded, decode it
@@ -109,16 +111,15 @@ def retrieve_url(url, custom_headers={}):
         ignore, charset = info['Content-Type'].split('charset=')
     except Exception:
         pass
-    dat = dat.decode(charset, 'replace')
-    dat = htmlentitydecode(dat)
-    # return dat.encode('utf-8', 'replace')
-    return dat
+    datStr = dat.decode(charset, 'replace')
+    datStr = htmlentitydecode(datStr)
+    return datStr
 
 
-def download_file(url, referer=None):
+def download_file(url: str, referer: Optional[str] = None) -> str:
     """ Download file at url and write it to a file, return the path to the file and the url """
-    file, path = tempfile.mkstemp()
-    file = os.fdopen(file, "wb")
+    fileHandle, path = tempfile.mkstemp()
+    file = os.fdopen(fileHandle, "wb")
     # Download url
     req = urllib.request.Request(url, headers=headers)
     if referer is not None:
