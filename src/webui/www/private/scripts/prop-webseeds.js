@@ -28,9 +28,8 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined) {
+if (window.qBittorrent === undefined)
     window.qBittorrent = {};
-}
 
 window.qBittorrent.PropWebseeds = (function() {
     const exports = function() {
@@ -65,9 +64,8 @@ window.qBittorrent.PropWebseeds = (function() {
 
         updateRow: function(tr, row) {
             const tds = tr.getElements("td");
-            for (let i = 0; i < row.length; ++i) {
+            for (let i = 0; i < row.length; ++i)
                 tds[i].set("html", row[i]);
-            }
             return true;
         },
 
@@ -78,7 +76,7 @@ window.qBittorrent.PropWebseeds = (function() {
                 this.updateRow(tableRow, row);
                 return;
             }
-            //this.removeRow(id);
+            // this.removeRow(id);
             const tr = new Element("tr");
             this.rows.set(url, tr);
             for (let i = 0; i < row.length; ++i) {

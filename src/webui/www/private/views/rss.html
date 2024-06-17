@@ -158,9 +158,8 @@
 <script>
     "use strict";
 
-    if (window.qBittorrent === undefined) {
+    if (window.qBittorrent === undefined)
         window.qBittorrent = {};
-    }
 
     const serverSyncRssDataInterval = 1500;
 
@@ -369,14 +368,15 @@
 
             let visibleArticles = [];
             for (const feedEntry in feedData) {
-                if (childFeeds.has(feedEntry))
+                if (childFeeds.has(feedEntry)) {
                     visibleArticles.append(feedData[feedEntry]
                         .map((a) => {
                             a.feedUid = feedEntry;
                             return a;
                         }));
+                }
             }
-            //filter read articles if "Unread" feed is selected
+            // filter read articles if "Unread" feed is selected
             if (path === "")
                 visibleArticles = visibleArticles.filter((a) => !a.isRead);
 
@@ -427,7 +427,7 @@
                 $("rssDetailsView").append(torrentDescription);
                 document.getElementById("rssDescription").srcdoc = '<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /></head><body>' + article.description + "</body></html>";
 
-                //calculate height to fill screen
+                // calculate height to fill screen
                 document.getElementById("rssDescription").style.height =
                     "calc(100% - " + document.getElementById("rssTorrentDetailsName").offsetHeight + "px - "
                     + document.getElementById("rssTorrentDetailsDate").offsetHeight + "px - 5px)";
@@ -712,9 +712,10 @@
 
         const markItemAsRead = (path) => {
             // feed data mark as read
-            for (const feedID in feedData)
+            for (const feedID in feedData) {
                 if (pathByFeedId.get(feedID).slice(0, path.length) === path)
                     feedData[feedID].each((el) => el.isRead = true);
+            }
 
             // mark rows as read
             rssArticleTable.rows.each((el) => el.full_data.isRead = true);

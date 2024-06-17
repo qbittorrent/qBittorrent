@@ -28,9 +28,8 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined) {
+if (window.qBittorrent === undefined)
     window.qBittorrent = {};
-}
 
 window.qBittorrent.PropGeneral = (function() {
     const exports = function() {
@@ -233,12 +232,11 @@ window.qBittorrent.PropGeneral = (function() {
             onSuccess: function(data) {
                 $("error_div").set("html", "");
 
-                if (data) {
+                if (data)
                     piecesBar.setPieces(data);
-                }
-                else {
+                else
                     clearData();
-                }
+
                 clearTimeout(loadTorrentDataTimer);
                 loadTorrentDataTimer = loadTorrentData.delay(5000);
             }

@@ -1,8 +1,7 @@
 "use strict";
 
-if (window.qBittorrent === undefined) {
+if (window.qBittorrent === undefined)
     window.qBittorrent = {};
-}
 
 window.qBittorrent.MultiRename = (function() {
     const exports = function() {
@@ -68,12 +67,10 @@ window.qBittorrent.MultiRename = (function() {
 
                     // regex assertions don't modify lastIndex,
                     // so we need to explicitly break out to prevent infinite loop
-                    if (lastIndex === regex.lastIndex) {
+                    if (lastIndex === regex.lastIndex)
                         break;
-                    }
-                    else {
+                    else
                         lastIndex = regex.lastIndex;
-                    }
 
                     // Maximum of 250 matches per file
                     ++count;
@@ -124,14 +121,15 @@ window.qBittorrent.MultiRename = (function() {
             this.matchedFiles = [];
 
             // Ignore empty searches
-            if (!this._inner_search) {
+            if (!this._inner_search)
                 return;
-            }
 
             // Setup regex flags
             let regexFlags = "";
-            if (this.matchAllOccurrences) { regexFlags += "g"; }
-            if (!this.caseSensitive) { regexFlags += "i"; }
+            if (this.matchAllOccurrences)
+                regexFlags += "g";
+            if (!this.caseSensitive)
+                regexFlags += "i";
 
             // Setup regex search
             const regexEscapeExp = new RegExp(/[/\-\\^$*+?.()|[\]{}]/g);
@@ -153,17 +151,17 @@ window.qBittorrent.MultiRename = (function() {
                 const row = this.selectedFiles[i];
 
                 // Ignore files
-                if (!row.isFolder && !this.includeFiles) {
+                if (!row.isFolder && !this.includeFiles)
                     continue;
-                }
+
                 // Ignore folders
-                else if (row.isFolder && !this.includeFolders) {
+                else if (row.isFolder && !this.includeFolders)
                     continue;
-                }
 
                 // Get file extension and reappend the "." (only when the file has an extension)
                 let fileExtension = window.qBittorrent.Filesystem.fileExtension(row.original);
-                if (fileExtension) { fileExtension = "." + fileExtension; }
+                if (fileExtension)
+                    fileExtension = "." + fileExtension;
 
                 const fileNameWithoutExt = row.original.slice(0, row.original.lastIndexOf(fileExtension));
 
@@ -183,9 +181,8 @@ window.qBittorrent.MultiRename = (function() {
                         break;
                 }
                 // Ignore rows without a match
-                if (!matches || (matches.length === 0)) {
+                if (!matches || (matches.length === 0))
                     continue;
-                }
 
                 let renamed = row.original;
                 for (let i = matches.length - 1; i >= 0; --i) {
@@ -194,7 +191,8 @@ window.qBittorrent.MultiRename = (function() {
                     // Replace numerical groups
                     for (let g = 0; g < match.length; ++g) {
                         const group = match[g];
-                        if (!group) { continue; }
+                        if (!group)
+                            continue;
                         replacement = replaceGroup(replacement, `$${g}`, group, "\\", false);
                     }
                     // Replace named groups
@@ -266,9 +264,8 @@ window.qBittorrent.MultiRename = (function() {
             if (this.replaceAll) {
                 // matchedFiles are in DFS order so we rename in reverse
                 // in order to prevent unwanted folder creation
-                for (let i = replacements - 1; i >= 0; --i) {
+                for (let i = replacements - 1; i >= 0; --i)
                     await _inner_rename(i);
-                }
             }
             else {
                 // single replacements go linearly top-down because the

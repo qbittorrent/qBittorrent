@@ -28,9 +28,8 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined) {
+if (window.qBittorrent === undefined)
     window.qBittorrent = {};
-}
 
 window.qBittorrent.PropFiles = (function() {
     const exports = function() {
@@ -496,16 +495,14 @@ window.qBittorrent.PropFiles = (function() {
 
     const expandFolder = function(id) {
         const node = torrentFilesTable.getNode(id);
-        if (node.isFolder) {
+        if (node.isFolder)
             expandNode(node);
-        }
     };
 
     const collapseFolder = function(id) {
         const node = torrentFilesTable.getNode(id);
-        if (node.isFolder) {
+        if (node.isFolder)
             collapseNode(node);
-        }
     };
 
     const filesPriorityMenuClicked = function(priority) {
@@ -590,12 +587,10 @@ window.qBittorrent.PropFiles = (function() {
                 if (!hash)
                     return;
 
-                if (torrentFilesTable.selectedRowsIds().length > 1) {
+                if (torrentFilesTable.selectedRowsIds().length > 1)
                     multiFileRename(hash);
-                }
-                else {
+                else
                     singleFileRename(hash);
-                }
             },
 
             FilePrioIgnore: function(element, ref) {

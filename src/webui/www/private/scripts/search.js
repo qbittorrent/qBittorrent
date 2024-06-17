@@ -23,9 +23,8 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined) {
+if (window.qBittorrent === undefined)
     window.qBittorrent = {};
-}
 
 window.qBittorrent.Search = (function() {
     const exports = function() {
@@ -145,9 +144,8 @@ window.qBittorrent.Search = (function() {
 
         // restore search tabs
         const searchJobs = JSON.parse(LocalPreferences.get("search_jobs", "[]"));
-        for (const { id, pattern } of searchJobs) {
+        for (const { id, pattern } of searchJobs)
             createSearchTab(id, pattern);
-        }
     };
 
     const numSearchTabs = function() {
@@ -226,9 +224,8 @@ window.qBittorrent.Search = (function() {
         const currentSearchId = getSelectedSearchId();
         const state = searchState.get(currentSearchId);
         // don't bother sending a stop request if already stopped
-        if (state && state.running) {
+        if (state && state.running)
             stopSearch(searchId);
-        }
 
         tab.destroy();
 
@@ -310,9 +307,8 @@ window.qBittorrent.Search = (function() {
         // restore table rows
         searchResultsTable.clear();
         if (state) {
-            for (const row of state.rows) {
+            for (const row of state.rows)
                 searchResultsTable.updateRowData(row);
-            }
 
             rowsToSelect = state.selectedRowIds;
 
@@ -352,9 +348,8 @@ window.qBittorrent.Search = (function() {
         searchResultsTable.altRow();
 
         // must reselect rows after calling updateTable
-        if (rowsToSelect.length > 0) {
+        if (rowsToSelect.length > 0)
             searchResultsTable.reselectRows(rowsToSelect);
-        }
 
         $("numSearchResultsVisible").set("html", searchResultsTable.getFilteredAndSortedRows().length);
         $("numSearchResultsTotal").set("html", searchResultsTable.getRowIds().length);
@@ -494,7 +489,7 @@ window.qBittorrent.Search = (function() {
 
     const manageSearchPlugins = function() {
         const id = "searchPlugins";
-        if (!$(id))
+        if (!$(id)) {
             new MochaUI.Window({
                 id: id,
                 title: "QBT_TR(Search plugins)QBT_TR[CONTEXT=PluginSelectDlg]",
@@ -516,6 +511,7 @@ window.qBittorrent.Search = (function() {
                     clearTimeout(loadSearchPluginsTimer);
                 }
             });
+        }
     };
 
     const loadSearchPlugins = function() {
@@ -552,17 +548,19 @@ window.qBittorrent.Search = (function() {
     };
 
     const reselectCategory = function() {
-        for (let i = 0; i < $("categorySelect").options.length; ++i)
+        for (let i = 0; i < $("categorySelect").options.length; ++i) {
             if ($("categorySelect").options[i].get("value") === selectedCategory)
                 $("categorySelect").options[i].selected = true;
+        }
 
         categorySelected();
     };
 
     const reselectPlugin = function() {
-        for (let i = 0; i < $("pluginsSelect").options.length; ++i)
+        for (let i = 0; i < $("pluginsSelect").options.length; ++i) {
             if ($("pluginsSelect").options[i].get("value") === selectedPlugin)
                 $("pluginsSelect").options[i].selected = true;
+        }
 
         pluginSelected();
     };
@@ -606,9 +604,8 @@ window.qBittorrent.Search = (function() {
                 if ((selectedPlugin === "enabled") && !plugin.enabled)
                     continue;
                 for (const category of plugin.supportedCategories) {
-                    if (uniqueCategories[category.id] === undefined) {
+                    if (uniqueCategories[category.id] === undefined)
                         uniqueCategories[category.id] = category;
-                    }
                 }
             }
             // we must sort the ids to maintain consistent order.
@@ -644,9 +641,8 @@ window.qBittorrent.Search = (function() {
                     const searchPluginsEmpty = (searchPlugins.length === 0);
                     if (!searchPluginsEmpty) {
                         $("searchResultsNoPlugins").style.display = "none";
-                        if (numSearchTabs() === 0) {
+                        if (numSearchTabs() === 0)
                             $("searchResultsNoSearches").style.display = "block";
-                        }
 
                         // sort plugins alphabetically
                         const allPlugins = searchPlugins.sort((left, right) => {
@@ -681,9 +677,10 @@ window.qBittorrent.Search = (function() {
     };
 
     const getPlugin = function(name) {
-        for (let i = 0; i < searchPlugins.length; ++i)
+        for (let i = 0; i < searchPlugins.length; ++i) {
             if (searchPlugins[i].name === name)
                 return searchPlugins[i];
+        }
 
         return null;
     };
@@ -743,14 +740,16 @@ window.qBittorrent.Search = (function() {
     };
 
     const setupSearchTableEvents = function(enable) {
-        if (enable)
+        if (enable) {
             $$(".searchTableRow").each((target) => {
                 target.addEventListener("dblclick", downloadSearchTorrent, false);
             });
-        else
+        }
+        else {
             $$(".searchTableRow").each((target) => {
                 target.removeEventListener("dblclick", downloadSearchTorrent, false);
             });
+        }
     };
 
     const loadSearchResultsData = function(searchId) {
@@ -819,9 +818,8 @@ window.qBittorrent.Search = (function() {
 
                     // only update table if this search is currently being displayed
                     if (searchId === getSelectedSearchId()) {
-                        for (const row of newRows) {
+                        for (const row of newRows)
                             searchResultsTable.updateRowData(row);
-                        }
 
                         $("numSearchResultsVisible").set("html", searchResultsTable.getFilteredAndSortedRows().length);
                         $("numSearchResultsTotal").set("html", searchResultsTable.getRowIds().length);

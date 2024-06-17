@@ -26,6 +26,7 @@ export default [
             Stylistic
         },
         rules: {
+            "curly": ["error", "multi-or-nest", "consistent"],
             "eqeqeq": "error",
             "guard-for-in": "error",
             "no-undef": "off",
@@ -52,7 +53,8 @@ export default [
                     "allowTemplateLiterals": true
                 }
             ],
-            "Stylistic/semi": "error"
+            "Stylistic/semi": "error",
+            "Stylistic/spaced-comment": ["error", "always", { "exceptions": ["*"] }]
         }
     }
 ];

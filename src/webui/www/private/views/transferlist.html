@@ -18,9 +18,8 @@
 <script>
     "use strict";
 
-    if (window.qBittorrent === undefined) {
+    if (window.qBittorrent === undefined)
         window.qBittorrent = {};
-    }
 
     window.qBittorrent.TransferList = (function() {
         const exports = function() {
@@ -29,7 +28,7 @@
             };
         };
 
-        //create a context menu
+        // create a context menu
         const contextMenu = new window.qBittorrent.ContextMenu.TorrentsTableContextMenu({
             targets: ".torrentsTableContextMenuTarget",
             menu: "torrentsTableMenu",

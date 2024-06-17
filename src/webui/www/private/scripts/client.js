@@ -25,9 +25,8 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined) {
+if (window.qBittorrent === undefined)
     window.qBittorrent = {};
-}
 
 window.qBittorrent.Client = (() => {
     const exports = () => {
@@ -173,7 +172,7 @@ window.addEventListener("DOMContentLoaded", () => {
             saveColumnSizes.delay(200); // Resizing might takes some time.
     });
 
-    /*MochaUI.Desktop = new MochaUI.Desktop();
+    /* MochaUI.Desktop = new MochaUI.Desktop();
     MochaUI.Desktop.desktop.setStyles({
         'background': '#fff',
         'visibility': 'visible'
@@ -519,9 +518,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
             if (useSubcategories) {
                 for (let j = (i + 1);
-                    ((j < sortedCategories.length) && sortedCategories[j].categoryName.startsWith(categoryName + "/")); ++j) {
+                    ((j < sortedCategories.length) && sortedCategories[j].categoryName.startsWith(categoryName + "/")); ++j)
                     categoryCount += sortedCategories[j].categoryCount;
-                }
             }
 
             categoryList.appendChild(create_link(categoryHash, categoryName, categoryCount));
@@ -600,9 +598,8 @@ window.addEventListener("DOMContentLoaded", () => {
         // We want the hostname.
         // If failed to parse the domain, original input should be returned
 
-        if (!/^(?:https?|udp):/i.test(url)) {
+        if (!/^(?:https?|udp):/i.test(url))
             return url;
-        }
 
         try {
             // hack: URL can not get hostname from udp protocol
@@ -610,9 +607,8 @@ window.addEventListener("DOMContentLoaded", () => {
             // host: "example.com:8443"
             // hostname: "example.com"
             const host = parsedUrl.hostname;
-            if (!host) {
+            if (!host)
                 return url;
-            }
 
             return host;
         }
@@ -654,9 +650,8 @@ window.addEventListener("DOMContentLoaded", () => {
         trackerList.forEach(({ host, trackerTorrentMap }, hash) => {
             const uniqueTorrents = new Set();
             for (const torrents of trackerTorrentMap.values()) {
-                for (const torrent of torrents) {
+                for (const torrent of torrents)
                     uniqueTorrents.add(torrent);
-                }
             }
 
             sortedList.push({
@@ -745,9 +740,8 @@ window.addEventListener("DOMContentLoaded", () => {
                         category_list.clear();
                         tagList.clear();
                     }
-                    if (response["rid"]) {
+                    if (response["rid"])
                         syncMainDataLastResponseId = response["rid"];
-                    }
                     if (response["categories"]) {
                         for (const key in response["categories"]) {
                             if (!Object.hasOwn(response["categories"], key))
@@ -816,9 +810,8 @@ window.addEventListener("DOMContentLoaded", () => {
                             const tracker = response["trackers_removed"][i];
                             const hash = window.qBittorrent.Client.genHash(getHost(tracker));
                             const trackerListEntry = trackerList.get(hash);
-                            if (trackerListEntry) {
+                            if (trackerListEntry)
                                 trackerListEntry.trackerTorrentMap.delete(tracker);
-                            }
                         }
                         updateTrackers = true;
                     }
@@ -844,7 +837,7 @@ window.addEventListener("DOMContentLoaded", () => {
                         if (updateTorrentList)
                             setupCopyEventHandler();
                     }
-                    if (response["torrents_removed"])
+                    if (response["torrents_removed"]) {
                         response["torrents_removed"].each((hash) => {
                             torrentsTable.removeRow(hash);
                             removeTorrentFromCategoryList(hash);
@@ -852,6 +845,7 @@ window.addEventListener("DOMContentLoaded", () => {
                             removeTorrentFromTagList(hash);
                             updateTags = true; // Always to update All tag
                         });
+                    }
                     torrentsTable.updateTable(full_update);
                     torrentsTable.altRow();
                     if (response["server_state"]) {

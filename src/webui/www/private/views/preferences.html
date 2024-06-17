@@ -1537,9 +1537,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 <script>
     "use strict";
 
-    if (window.qBittorrent === undefined) {
+    if (window.qBittorrent === undefined)
         window.qBittorrent = {};
-    }
 
     window.qBittorrent.Preferences = (function() {
         const exports = function() {
@@ -1893,12 +1892,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const registerDynDns = function() {
-            if ($("dyndns_select").getProperty("value").toInt() === 1) {
+            if ($("dyndns_select").getProperty("value").toInt() === 1)
                 window.open("http://www.no-ip.com/services/managed_dns/free_dynamic_dns.html", "NO-IP Registration");
-            }
-            else {
+            else
                 window.open("https://www.dyndns.com/account/services/hosts/add.html", "DynDNS Registration");
-            }
         };
 
         const generateRandomPort = function() {
