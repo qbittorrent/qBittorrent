@@ -200,6 +200,42 @@ void TorrentContentWidget::checkNone()
         model()->setData(model()->index(i, TorrentContentModelItem::COL_NAME), Qt::Unchecked, Qt::CheckStateRole);
 }
 
+void TorrentContentWidget::checkSelection()
+{
+    const QModelIndexList selection = selectionModel()->selectedIndexes();
+
+    for (const QModelIndex &index : selection)
+        model()->setData(index, Qt::Checked, Qt::CheckStateRole);
+}
+
+void TorrentContentWidget::uncheckSelection()
+{
+    const QModelIndexList selection = selectionModel()->selectedIndexes();
+
+    for (const QModelIndex &index : selection)
+        model()->setData(index, Qt::Unchecked, Qt::CheckStateRole);
+}
+
+void TorrentContentWidget::selectMatches()
+{
+    std::function<void(const QModelIndex &index, const QSortFilterProxyModel *model)> iterModel;
+    iterModel = [this, &iterModel](const QModelIndex &index, const QSortFilterProxyModel *model)
+    {
+        // Select current item if it matches the filter pattern
+        if (model->data(index).toString().contains(model->filterRegularExpression()))
+            selectionModel()->select(index, QItemSelectionModel::Select);
+
+        // Check current items children
+        if (!model->hasChildren(index))
+            return;
+        for (int i = 0; i < model->rowCount(index); ++i)
+            iterModel(model->index(i, 0, index), model);
+    };
+
+    // Select all matching items for root item
+    iterModel(m_filterModel->index(0, 0), m_filterModel);
+}
+
 void TorrentContentWidget::keyPressEvent(QKeyEvent *event)
 {
     if ((event->key() != Qt::Key_Space) && (event->key() != Qt::Key_Select))

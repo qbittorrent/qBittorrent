@@ -1102,6 +1102,27 @@
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="checkSelectionButton">
+           <property name="text">
+            <string>Select Selected</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="uncheckSelectionButton">
+           <property name="text">
+            <string>Deselect Selected</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="selectMatchButton">
+           <property name="text">
+            <string>Select Matches</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="horizontalSpacer">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
