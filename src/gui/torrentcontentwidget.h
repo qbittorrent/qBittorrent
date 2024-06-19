@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2014  Ivan Sorokin <vanyacpp@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -33,6 +33,7 @@
 
 #include "base/bittorrent/downloadpriority.h"
 #include "base/pathfwd.h"
+#include "filterpatternformat.h"
 
 class QShortcut;
 
@@ -92,7 +93,7 @@ public:
     int getFileIndex(const QModelIndex &index) const;
     Path getItemPath(const QModelIndex &index) const;
 
-    void setFilterPattern(const QString &patternText);
+    void setFilterPattern(const QString &patternText, FilterPatternFormat format = FilterPatternFormat::Wildcards);
 
     void checkAll();
     void checkNone();

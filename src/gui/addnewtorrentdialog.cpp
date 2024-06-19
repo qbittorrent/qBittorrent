@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -64,6 +64,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
+#include "filterpatternformatmenu.h"
 #include "lineedit.h"
 #include "torrenttagsdialog.h"
 
@@ -295,6 +296,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
     , m_storeRememberLastSavePath {SETTINGS_KEY(u"RememberLastSavePath"_s)}
     , m_storeTreeHeaderState {u"GUI/Qt6/" SETTINGS_KEY(u"TreeHeaderState"_s)}
     , m_storeSplitterState {u"GUI/Qt6/" SETTINGS_KEY(u"SplitterState"_s)}
+    , m_storeFilterPatternFormat {u"GUI/" SETTINGS_KEY(u"FilterPatternFormat"_s)}
 {
     m_ui->setupUi(this);
 
@@ -321,6 +323,8 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
     // Torrent content filtering
     m_filterLine->setPlaceholderText(tr("Filter files..."));
     m_filterLine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    m_filterLine->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(m_filterLine, &QWidget::customContextMenuRequested, this, &AddNewTorrentDialog::showContentFilterContextMenu);
     m_ui->contentFilterLayout->insertWidget(3, m_filterLine);
     const auto *focusSearchHotkey = new QShortcut(QKeySequence::Find, this);
     connect(focusSearchHotkey, &QShortcut::activated, this, [this]()
@@ -365,7 +369,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
         });
         dlg->open();
     });
-    connect(m_filterLine, &LineEdit::textChanged, m_ui->contentTreeView, &TorrentContentWidget::setFilterPattern);
+    connect(m_filterLine, &LineEdit::textChanged, this, &AddNewTorrentDialog::setContentFilterPattern);
     connect(m_ui->buttonSelectAll, &QPushButton::clicked, m_ui->contentTreeView, &TorrentContentWidget::checkAll);
     connect(m_ui->buttonSelectNone, &QPushButton::clicked, m_ui->contentTreeView, &TorrentContentWidget::checkNone);
     connect(Preferences::instance(), &Preferences::changed, []
@@ -694,6 +698,28 @@ void AddNewTorrentDialog::saveTorrentFile()
         QMessageBox::critical(this, tr("I/O Error")
                 , tr("Couldn't export torrent metadata file '%1'. Reason: %2.").arg(path.toString(), result.error()));
     }
+}
+
+void AddNewTorrentDialog::showContentFilterContextMenu()
+{
+    QMenu *menu = m_filterLine->createStandardContextMenu();
+
+    auto *formatMenu = new FilterPatternFormatMenu(m_storeFilterPatternFormat.get(FilterPatternFormat::Wildcards), menu);
+    connect(formatMenu, &FilterPatternFormatMenu::patternFormatChanged, this, [this](const FilterPatternFormat format)
+    {
+        m_storeFilterPatternFormat = format;
+        setContentFilterPattern();
+    });
+
+    menu->addSeparator();
+    menu->addMenu(formatMenu);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+    menu->popup(QCursor::pos());
+}
+
+void AddNewTorrentDialog::setContentFilterPattern()
+{
+    m_ui->contentTreeView->setFilterPattern(m_filterLine->text(), m_storeFilterPatternFormat.get(FilterPatternFormat::Wildcards));
 }
 
 void AddNewTorrentDialog::populateSavePaths()

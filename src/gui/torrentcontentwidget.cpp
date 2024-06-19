@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2014  Ivan Sorokin <vanyacpp@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -173,10 +173,20 @@ Path TorrentContentWidget::getItemPath(const QModelIndex &index) const
     return path;
 }
 
-void TorrentContentWidget::setFilterPattern(const QString &patternText)
+void TorrentContentWidget::setFilterPattern(const QString &patternText, const FilterPatternFormat format)
 {
-    const QString pattern = Utils::String::wildcardToRegexPattern(patternText);
-    m_filterModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
+    if (format == FilterPatternFormat::PlainText)
+    {
+        m_filterModel->setFilterFixedString(patternText);
+        m_filterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    }
+    else
+    {
+        const QString pattern = ((format == FilterPatternFormat::Regex)
+                ? patternText : Utils::String::wildcardToRegexPattern(patternText));
+        m_filterModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
+    }
+
     if (patternText.isEmpty())
     {
         collapseAll();
