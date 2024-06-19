@@ -149,7 +149,6 @@ void TorrentContentModelFolder::recalculateProgress()
 
     if (!isRootItem())
     {
-        Q_ASSERT(tSize >= 0);
         if (tSize > 0)
         {
             m_progress = tProgress / tSize;
