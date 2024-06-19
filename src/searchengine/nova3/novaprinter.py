@@ -1,4 +1,4 @@
-#VERSION: 1.50
+#VERSION: 1.51
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -25,21 +25,18 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import re
-from collections.abc import Mapping
-from typing import Any, Union
+from typing import TypedDict, Union
 
-# TODO: enable the following when using Python >= 3.8
-#SearchResults = TypedDict('SearchResults', {
-#    'link': str,
-#    'name': str,
-#    'size': Union[float, int, str],
-#    'seeds': int,
-#    'leech': int,
-#    'engine_url': str,
-#    'desc_link': str,  # Optional  # TODO: use `NotRequired[str]` when using Python >= 3.11
-#    'pub_date': int  # Optional  # TODO: use `NotRequired[int]` when using Python >= 3.11
-#})
-SearchResults = Mapping[str, Any]
+SearchResults = TypedDict('SearchResults', {
+    'link': str,
+    'name': str,
+    'size': Union[float, int, str],  # TODO: use `float | int | str` when using Python >= 3.10
+    'seeds': int,
+    'leech': int,
+    'engine_url': str,
+    'desc_link': str,  # Optional  # TODO: use `NotRequired[str]` when using Python >= 3.11
+    'pub_date': int  # Optional  # TODO: use `NotRequired[int]` when using Python >= 3.11
+})
 
 
 def prettyPrinter(dictionary: SearchResults) -> None:
@@ -62,6 +59,7 @@ def prettyPrinter(dictionary: SearchResults) -> None:
 sizeUnitRegex: re.Pattern[str] = re.compile(r"^(?P<size>\d*\.?\d+) *(?P<unit>[a-z]+)?", re.IGNORECASE)
 
 
+# TODO: use `float | int | str` when using Python >= 3.10
 def anySizeToBytes(size_string: Union[float, int, str]) -> int:
     """
     Convert a string like '1 KB' to '1024' (bytes)
