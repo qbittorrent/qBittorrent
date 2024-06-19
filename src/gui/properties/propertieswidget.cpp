@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -52,6 +52,7 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "gui/autoexpandabledialog.h"
+#include "gui/filterpatternformatmenu.h"
 #include "gui/lineedit.h"
 #include "gui/trackerlist/trackerlistwidget.h"
 #include "gui/uithememanager.h"
@@ -66,6 +67,7 @@
 PropertiesWidget::PropertiesWidget(QWidget *parent)
     : QWidget(parent)
     , m_ui {new Ui::PropertiesWidget}
+    , m_storeFilterPatternFormat {u"GUI/PropertiesWidget/FilterPatternFormat"_s}
 {
     m_ui->setupUi(this);
 #ifndef Q_OS_MACOS
@@ -78,7 +80,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     m_contentFilterLine = new LineEdit(this);
     m_contentFilterLine->setPlaceholderText(tr("Filter files..."));
     m_contentFilterLine->setFixedWidth(300);
-    connect(m_contentFilterLine, &LineEdit::textChanged, m_ui->filesList, &TorrentContentWidget::setFilterPattern);
+    m_contentFilterLine->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(m_contentFilterLine, &QWidget::customContextMenuRequested, this, &PropertiesWidget::showContentFilterContextMenu);
+    connect(m_contentFilterLine, &LineEdit::textChanged, this, &PropertiesWidget::setContentFilterPattern);
     m_ui->contentFilterLayout->insertWidget(3, m_contentFilterLine);
 
     m_ui->filesList->setDoubleClickAction(TorrentContentWidget::DoubleClickAction::Open);
@@ -272,6 +276,28 @@ void PropertiesWidget::updateSavePath(BitTorrent::Torrent *const torrent)
 {
     if (torrent == m_torrent)
         m_ui->labelSavePathVal->setText(m_torrent->savePath().toString());
+}
+
+void PropertiesWidget::showContentFilterContextMenu()
+{
+    QMenu *menu = m_contentFilterLine->createStandardContextMenu();
+
+    auto *formatMenu = new FilterPatternFormatMenu(m_storeFilterPatternFormat.get(FilterPatternFormat::Wildcards), menu);
+    connect(formatMenu, &FilterPatternFormatMenu::patternFormatChanged, this, [this](const FilterPatternFormat format)
+    {
+        m_storeFilterPatternFormat = format;
+        setContentFilterPattern();
+    });
+
+    menu->addSeparator();
+    menu->addMenu(formatMenu);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+    menu->popup(QCursor::pos());
+}
+
+void PropertiesWidget::setContentFilterPattern()
+{
+    m_ui->filesList->setFilterPattern(m_contentFilterLine->text(), m_storeFilterPatternFormat.get(FilterPatternFormat::Wildcards));
 }
 
 void PropertiesWidget::updateTorrentInfos(BitTorrent::Torrent *const torrent)
