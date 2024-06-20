@@ -44,6 +44,7 @@ Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObj
     , m_requestHandler(requestHandler)
 {
     m_socket->setParent(this);
+    connect(m_socket, &QAbstractSocket::disconnected, this, &Connection::closed);
 
     // reserve common size for requests, don't use the max allowed size which is too big for
     // memory constrained platforms
@@ -60,11 +61,6 @@ Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObj
     {
         m_idleTimer.start();
     });
-}
-
-Connection::~Connection()
-{
-    m_socket->close();
 }
 
 void Connection::read()
@@ -180,11 +176,6 @@ bool Connection::hasExpired(const qint64 timeout) const
     return (m_socket->bytesAvailable() == 0)
         && (m_socket->bytesToWrite() == 0)
         && m_idleTimer.hasExpired(timeout);
-}
-
-bool Connection::isClosed() const
-{
-    return (m_socket->state() == QAbstractSocket::UnconnectedState);
 }
 
 bool Connection::acceptsGzipEncoding(QString codings)
