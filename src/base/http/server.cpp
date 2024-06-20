@@ -32,7 +32,10 @@
 
 #include <algorithm>
 #include <chrono>
+#include <memory>
+#include <new>
 
+#include <QtLogging>
 #include <QNetworkProxy>
 #include <QSslCipher>
 #include <QSslConfiguration>
@@ -40,7 +43,6 @@
 #include <QStringList>
 #include <QTimer>
 
-#include "base/algorithm.h"
 #include "base/global.h"
 #include "base/utils/net.h"
 #include "base/utils/sslkey.h"
@@ -113,32 +115,38 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
 
 void Server::incomingConnection(const qintptr socketDescriptor)
 {
-    if (m_connections.size() >= CONNECTIONS_LIMIT) return;
-
-    QTcpSocket *serverSocket = nullptr;
-    if (m_https)
-        serverSocket = new QSslSocket(this);
-    else
-        serverSocket = new QTcpSocket(this);
-
+    std::unique_ptr<QTcpSocket> serverSocket = m_https ? std::make_unique<QSslSocket>(this) : std::make_unique<QTcpSocket>(this);
     if (!serverSocket->setSocketDescriptor(socketDescriptor))
+        return;
+
+    if (m_connections.size() >= CONNECTIONS_LIMIT)
     {
-        delete serverSocket;
+        qWarning("Too many connections. Exceeded CONNECTIONS_LIMIT (%d). Connection closed.", CONNECTIONS_LIMIT);
         return;
     }
 
-    if (m_https)
+    try
     {
-        static_cast<QSslSocket *>(serverSocket)->setProtocol(QSsl::SecureProtocols);
-        static_cast<QSslSocket *>(serverSocket)->setPrivateKey(m_key);
-        static_cast<QSslSocket *>(serverSocket)->setLocalCertificateChain(m_certificates);
-        static_cast<QSslSocket *>(serverSocket)->setPeerVerifyMode(QSslSocket::VerifyNone);
-        static_cast<QSslSocket *>(serverSocket)->startServerEncryption();
-    }
+        if (m_https)
+        {
+            auto *sslSocket = static_cast<QSslSocket *>(serverSocket.get());
+            sslSocket->setProtocol(QSsl::SecureProtocols);
+            sslSocket->setPrivateKey(m_key);
+            sslSocket->setLocalCertificateChain(m_certificates);
+            sslSocket->setPeerVerifyMode(QSslSocket::VerifyNone);
+            sslSocket->startServerEncryption();
+        }
 
-    auto *c = new Connection(serverSocket, m_requestHandler, this);
-    m_connections.insert(c);
-    connect(serverSocket, &QAbstractSocket::disconnected, this, [c, this]() { removeConnection(c); });
+        auto *connection = new Connection(serverSocket.release(), m_requestHandler, this);
+        m_connections.insert(connection);
+        connect(connection, &Connection::closed, this, [this, connection] { removeConnection(connection); });
+    }
+    catch (const std::bad_alloc &exception)
+    {
+        // drop the connection instead of throwing exception and crash
+        qWarning("Failed to allocate memory for HTTP connection. Connection closed.");
+        return;
+    }
 }
 
 void Server::removeConnection(Connection *connection)
