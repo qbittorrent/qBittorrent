@@ -1,4 +1,4 @@
-#VERSION: 1.49
+#VERSION: 1.50
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -26,18 +26,18 @@
 
 import re
 from collections.abc import Mapping
-from typing import Any
+from typing import Any, Union
 
-# TODO: enable this when using Python >= 3.8
+# TODO: enable the following when using Python >= 3.8
 #SearchResults = TypedDict('SearchResults', {
 #    'link': str,
 #    'name': str,
-#    'size': str,
+#    'size': Union[float, int, str],
 #    'seeds': int,
 #    'leech': int,
 #    'engine_url': str,
-#    'desc_link': str,  # Optional
-#    'pub_date': int  # Optional
+#    'desc_link': str,  # Optional  # TODO: use `NotRequired[str]` when using Python >= 3.11
+#    'pub_date': int  # Optional  # TODO: use `NotRequired[int]` when using Python >= 3.11
 #})
 SearchResults = Mapping[str, Any]
 
@@ -62,10 +62,18 @@ def prettyPrinter(dictionary: SearchResults) -> None:
 sizeUnitRegex: re.Pattern[str] = re.compile(r"^(?P<size>\d*\.?\d+) *(?P<unit>[a-z]+)?", re.IGNORECASE)
 
 
-def anySizeToBytes(size_string: str) -> int:
+def anySizeToBytes(size_string: Union[float, int, str]) -> int:
     """
     Convert a string like '1 KB' to '1024' (bytes)
+
+    The canonical type for `size_string` is `str`. However numeric types are also accepted in order to
+    accommodate poorly written plugins.
     """
+
+    if isinstance(size_string, int):
+        return size_string
+    if isinstance(size_string, float):
+        return round(size_string)
 
     match = sizeUnitRegex.match(size_string.strip())
     if match is None:
