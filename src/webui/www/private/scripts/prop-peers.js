@@ -70,7 +70,7 @@ window.qBittorrent.PropPeers = (function() {
                 loadTorrentPeersTimer = loadTorrentPeersData.delay(window.qBittorrent.Client.getSyncMainDataInterval());
             },
             onSuccess: function(response) {
-                $("error_div").set("html", "");
+                $("error_div").textContent = "";
                 if (response) {
                     const full_update = (response["full_update"] === true);
                     if (full_update)

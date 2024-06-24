@@ -106,8 +106,8 @@ window.qBittorrent.PropFiles = (function() {
 
         const checkbox = e.target;
         const priority = checkbox.checked ? FilePriority.Normal : FilePriority.Ignored;
-        const id = checkbox.get("data-id");
-        const fileId = checkbox.get("data-file-id");
+        const id = checkbox.getAttribute("data-id");
+        const fileId = checkbox.getAttribute("data-file-id");
 
         const rows = getAllChildren(id, fileId);
 
@@ -118,8 +118,8 @@ window.qBittorrent.PropFiles = (function() {
     const fileComboboxChanged = function(e) {
         const combobox = e.target;
         const priority = combobox.value;
-        const id = combobox.get("data-id");
-        const fileId = combobox.get("data-file-id");
+        const id = combobox.getAttribute("data-id");
+        const fileId = combobox.getAttribute("data-file-id");
 
         const rows = getAllChildren(id, fileId);
 
@@ -133,11 +133,11 @@ window.qBittorrent.PropFiles = (function() {
 
     const createDownloadCheckbox = function(id, fileId, checked) {
         const checkbox = new Element("input");
-        checkbox.set("type", "checkbox");
-        checkbox.set("id", "cbPrio" + id);
-        checkbox.set("data-id", id);
-        checkbox.set("data-file-id", fileId);
-        checkbox.set("class", "DownloadedCB");
+        checkbox.type = "checkbox";
+        checkbox.id = "cbPrio" + id;
+        checkbox.setAttribute("data-id", id);
+        checkbox.setAttribute("data-file-id", fileId);
+        checkbox.className = "DownloadedCB";
         checkbox.addEvent("click", fileCheckboxClicked);
 
         updateCheckbox(checkbox, checked);
@@ -169,8 +169,8 @@ window.qBittorrent.PropFiles = (function() {
 
     const createPriorityOptionElement = function(priority, selected, html) {
         const elem = new Element("option");
-        elem.set("value", priority.toString());
-        elem.set("html", html);
+        elem.value = priority.toString();
+        elem.innerHTML = html;
         if (selected)
             elem.selected = true;
         return elem;
@@ -178,9 +178,9 @@ window.qBittorrent.PropFiles = (function() {
 
     const createPriorityCombo = function(id, fileId, selectedPriority) {
         const select = new Element("select");
-        select.set("id", "comboPrio" + id);
-        select.set("data-id", id);
-        select.set("data-file-id", fileId);
+        select.id = "comboPrio" + id;
+        select.setAttribute("data-id", id);
+        select.setAttribute("data-file-id", fileId);
         select.addClass("combo_priority");
         select.addEvent("change", fileComboboxChanged);
 
@@ -191,7 +191,7 @@ window.qBittorrent.PropFiles = (function() {
 
         // "Mixed" priority is for display only; it shouldn't be selectable
         const mixedPriorityOption = createPriorityOptionElement(FilePriority.Mixed, (FilePriority.Mixed === selectedPriority), "QBT_TR(Mixed)QBT_TR[CONTEXT=PropListDelegate]");
-        mixedPriorityOption.set("disabled", true);
+        mixedPriorityOption.disabled = true;
         mixedPriorityOption.injectInside(select);
 
         return select;
@@ -483,9 +483,9 @@ window.qBittorrent.PropFiles = (function() {
     };
 
     const collapseIconClicked = function(event) {
-        const id = event.get("data-id");
+        const id = event.getAttribute("data-id");
         const node = torrentFilesTable.getNode(id);
-        const isCollapsed = (event.parentElement.get("data-collapsed") === "true");
+        const isCollapsed = (event.parentElement.getAttribute("data-collapsed") === "true");
 
         if (isCollapsed)
             expandNode(node);
@@ -515,7 +515,7 @@ window.qBittorrent.PropFiles = (function() {
         selectedRows.forEach((rowId) => {
             const elem = $("comboPrio" + rowId);
             rowIds.push(rowId);
-            fileIds.push(elem.get("data-file-id"));
+            fileIds.push(elem.getAttribute("data-file-id"));
         });
 
         const uniqueRowIds = {};
@@ -623,8 +623,8 @@ window.qBittorrent.PropFiles = (function() {
     const tableHeaders = $$("#torrentFilesTableFixedHeaderDiv .dynamicTableHeader th");
     if (tableHeaders.length > 0) {
         const checkbox = new Element("input");
-        checkbox.set("type", "checkbox");
-        checkbox.set("id", "tristate_cb");
+        checkbox.type = "checkbox";
+        checkbox.id = "tristate_cb";
         checkbox.addEvent("click", switchCheckboxState);
 
         const checkboxTH = tableHeaders[0];
@@ -640,7 +640,7 @@ window.qBittorrent.PropFiles = (function() {
     $("torrentFilesFilterInput").addEvent("input", () => {
         clearTimeout(torrentFilesFilterInputTimer);
 
-        const value = $("torrentFilesFilterInput").get("value");
+        const value = $("torrentFilesFilterInput").value;
         torrentFilesTable.setFilter(value);
 
         torrentFilesFilterInputTimer = setTimeout(() => {
@@ -684,7 +684,7 @@ window.qBittorrent.PropFiles = (function() {
         const td = span.parentElement;
 
         // store collapsed state
-        td.set("data-collapsed", isCollapsed);
+        td.setAttribute("data-collapsed", isCollapsed);
 
         // rotate the collapse icon
         const collapseIcon = td.getElementsByClassName("filesTableCollapseIcon")[0];
@@ -700,7 +700,7 @@ window.qBittorrent.PropFiles = (function() {
             return true;
 
         const td = span.parentElement;
-        return (td.get("data-collapsed") === "true");
+        return td.getAttribute("data-collapsed") === "true";
     };
 
     const expandNode = function(node) {

@@ -65,7 +65,7 @@ window.qBittorrent.PropWebseeds = (function() {
         updateRow: function(tr, row) {
             const tds = tr.getElements("td");
             for (let i = 0; i < row.length; ++i)
-                tds[i].set("html", row[i]);
+                tds[i].innerHTML = row[i];
             return true;
         },
 
@@ -81,7 +81,7 @@ window.qBittorrent.PropWebseeds = (function() {
             this.rows.set(url, tr);
             for (let i = 0; i < row.length; ++i) {
                 const td = new Element("td");
-                td.set("html", row[i]);
+                td.innerHTML = row[i];
                 td.injectInside(tr);
             }
             tr.injectInside(this.table);
@@ -114,12 +114,12 @@ window.qBittorrent.PropWebseeds = (function() {
             method: "get",
             noCache: true,
             onFailure: function() {
-                $("error_div").set("html", "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]");
+                $("error_div").textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                 clearTimeout(loadWebSeedsDataTimer);
                 loadWebSeedsDataTimer = loadWebSeedsData.delay(20000);
             },
             onSuccess: function(webseeds) {
-                $("error_div").set("html", "");
+                $("error_div").textContent = "";
                 if (webseeds) {
                     // Update WebSeeds data
                     webseeds.each((webseed) => {

@@ -719,12 +719,12 @@ window.addEventListener("DOMContentLoaded", () => {
             onFailure: function() {
                 const errorDiv = $("error_div");
                 if (errorDiv)
-                    errorDiv.set("html", "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]");
+                    errorDiv.textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                 syncRequestInProgress = false;
                 syncData(2000);
             },
             onSuccess: function(response) {
-                $("error_div").set("html", "");
+                $("error_div").textContent = "";
                 if (response) {
                     clearTimeout(torrentsFilterInputTimer);
                     torrentsFilterInputTimer = -1;
@@ -903,12 +903,12 @@ window.addEventListener("DOMContentLoaded", () => {
         if (serverState.dl_rate_limit > 0)
             transfer_info += " [" + window.qBittorrent.Misc.friendlyUnit(serverState.dl_rate_limit, true) + "]";
         transfer_info += " (" + window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_data, false) + ")";
-        $("DlInfos").set("html", transfer_info);
+        $("DlInfos").textContent = transfer_info;
         transfer_info = window.qBittorrent.Misc.friendlyUnit(serverState.up_info_speed, true);
         if (serverState.up_rate_limit > 0)
             transfer_info += " [" + window.qBittorrent.Misc.friendlyUnit(serverState.up_rate_limit, true) + "]";
         transfer_info += " (" + window.qBittorrent.Misc.friendlyUnit(serverState.up_info_data, false) + ")";
-        $("UpInfos").set("html", transfer_info);
+        $("UpInfos").textContent = transfer_info;
 
         document.title = (speedInTitle
                 ? (`QBT_TR([D: %1, U: %2])QBT_TR[CONTEXT=MainWindow] `
@@ -917,23 +917,23 @@ window.addEventListener("DOMContentLoaded", () => {
                 : "")
             + window.qBittorrent.Client.mainTitle();
 
-        $("freeSpaceOnDisk").set("html", "QBT_TR(Free space: %1)QBT_TR[CONTEXT=HttpServer]".replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.free_space_on_disk)));
-        $("DHTNodes").set("html", "QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]".replace("%1", serverState.dht_nodes));
+        $("freeSpaceOnDisk").textContent = "QBT_TR(Free space: %1)QBT_TR[CONTEXT=HttpServer]".replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.free_space_on_disk));
+        $("DHTNodes").textContent = "QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]".replace("%1", serverState.dht_nodes);
 
         // Statistics dialog
         if (document.getElementById("statisticsContent")) {
-            $("AlltimeDL").set("html", window.qBittorrent.Misc.friendlyUnit(serverState.alltime_dl, false));
-            $("AlltimeUL").set("html", window.qBittorrent.Misc.friendlyUnit(serverState.alltime_ul, false));
-            $("TotalWastedSession").set("html", window.qBittorrent.Misc.friendlyUnit(serverState.total_wasted_session, false));
-            $("GlobalRatio").set("html", serverState.global_ratio);
-            $("TotalPeerConnections").set("html", serverState.total_peer_connections);
-            $("ReadCacheHits").set("html", serverState.read_cache_hits + "%");
-            $("TotalBuffersSize").set("html", window.qBittorrent.Misc.friendlyUnit(serverState.total_buffers_size, false));
-            $("WriteCacheOverload").set("html", serverState.write_cache_overload + "%");
-            $("ReadCacheOverload").set("html", serverState.read_cache_overload + "%");
-            $("QueuedIOJobs").set("html", serverState.queued_io_jobs);
-            $("AverageTimeInQueue").set("html", serverState.average_time_queue + " ms");
-            $("TotalQueuedSize").set("html", window.qBittorrent.Misc.friendlyUnit(serverState.total_queued_size, false));
+            $("AlltimeDL").textContent = window.qBittorrent.Misc.friendlyUnit(serverState.alltime_dl, false);
+            $("AlltimeUL").textContent = window.qBittorrent.Misc.friendlyUnit(serverState.alltime_ul, false);
+            $("TotalWastedSession").textContent = window.qBittorrent.Misc.friendlyUnit(serverState.total_wasted_session, false);
+            $("GlobalRatio").textContent = serverState.global_ratio;
+            $("TotalPeerConnections").textContent = serverState.total_peer_connections;
+            $("ReadCacheHits").textContent = serverState.read_cache_hits + "%";
+            $("TotalBuffersSize").textContent = window.qBittorrent.Misc.friendlyUnit(serverState.total_buffers_size, false);
+            $("WriteCacheOverload").textContent = serverState.write_cache_overload + "%";
+            $("ReadCacheOverload").textContent = serverState.read_cache_overload + "%";
+            $("QueuedIOJobs").textContent = serverState.queued_io_jobs;
+            $("AverageTimeInQueue").textContent = serverState.average_time_queue + " ms";
+            $("TotalQueuedSize").textContent = window.qBittorrent.Misc.friendlyUnit(serverState.total_queued_size, false);
         }
 
         switch (serverState.connection_status) {
