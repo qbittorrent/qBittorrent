@@ -611,7 +611,7 @@ SessionImpl::~SessionImpl()
 {
     m_nativeSession->pause();
 
-    const qint64 timeout = (m_shutdownTimeout >= 0) ? (m_shutdownTimeout * 1000) : -1;
+    const auto timeout = (m_shutdownTimeout >= 0) ? (static_cast<qint64>(m_shutdownTimeout) * 1000) : -1;
     const QDeadlineTimer shutdownDeadlineTimer {timeout};
 
     if (m_torrentsQueueChanged)
