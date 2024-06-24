@@ -90,7 +90,7 @@ window.qBittorrent.Search = (function() {
 
     const init = function() {
         // load "Search in" preference from local storage
-        $("searchInTorrentName").set("value", (LocalPreferences.get("search_in_filter") === "names") ? "names" : "everywhere");
+        $("searchInTorrentName").value = (LocalPreferences.get("search_in_filter") === "names") ? "names" : "everywhere";
         const searchResultsTableContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
             targets: ".searchTableRow",
             menu: "searchResultsTableMenu",
@@ -114,7 +114,7 @@ window.qBittorrent.Search = (function() {
             searchInNameFilterTimer = setTimeout(() => {
                 searchInNameFilterTimer = -1;
 
-                const value = $("searchInNameFilter").get("value");
+                const value = $("searchInNameFilter").value;
                 searchText.filterPattern = value;
                 searchFilterChanged();
             }, window.qBittorrent.Misc.FILTER_INPUT_DELAY);
@@ -189,7 +189,7 @@ window.qBittorrent.Search = (function() {
         // reinitialize tabs
         $("searchTabs").getElements("li").removeEvents("click");
         $("searchTabs").getElements("li").addEvent("click", function(e) {
-            $("startSearchButton").set("text", "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]");
+            $("startSearchButton").textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
             setActiveTab(this);
         });
 
@@ -248,8 +248,8 @@ window.qBittorrent.Search = (function() {
             resetSearchState();
             resetFilters();
 
-            $("numSearchResultsVisible").set("html", 0);
-            $("numSearchResultsTotal").set("html", 0);
+            $("numSearchResultsVisible").textContent = 0;
+            $("numSearchResultsTotal").textContent = 0;
             $("searchResultsNoSearches").style.display = "block";
             $("searchResultsFilters").style.display = "none";
             $("searchResultsTableContainer").style.display = "none";
@@ -257,7 +257,7 @@ window.qBittorrent.Search = (function() {
         }
         else if (isTabSelected && newTabToSelect) {
             setActiveTab(newTabToSelect);
-            $("startSearchButton").set("text", "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]");
+            $("startSearchButton").textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
         }
     };
 
@@ -315,32 +315,32 @@ window.qBittorrent.Search = (function() {
             // restore filters
             searchText.pattern = state.searchPattern;
             searchText.filterPattern = state.filterPattern;
-            $("searchInNameFilter").set("value", state.filterPattern);
+            $("searchInNameFilter").value = state.filterPattern;
 
             searchSeedsFilter.min = state.seedsFilter.min;
             searchSeedsFilter.max = state.seedsFilter.max;
-            $("searchMinSeedsFilter").set("value", state.seedsFilter.min);
-            $("searchMaxSeedsFilter").set("value", state.seedsFilter.max);
+            $("searchMinSeedsFilter").value = state.seedsFilter.min;
+            $("searchMaxSeedsFilter").value = state.seedsFilter.max;
 
             searchSizeFilter.min = state.sizeFilter.min;
             searchSizeFilter.minUnit = state.sizeFilter.minUnit;
             searchSizeFilter.max = state.sizeFilter.max;
             searchSizeFilter.maxUnit = state.sizeFilter.maxUnit;
-            $("searchMinSizeFilter").set("value", state.sizeFilter.min);
-            $("searchMinSizePrefix").set("value", state.sizeFilter.minUnit);
-            $("searchMaxSizeFilter").set("value", state.sizeFilter.max);
-            $("searchMaxSizePrefix").set("value", state.sizeFilter.maxUnit);
+            $("searchMinSizeFilter").value = state.sizeFilter.min;
+            $("searchMinSizePrefix").value = state.sizeFilter.minUnit;
+            $("searchMaxSizeFilter").value = state.sizeFilter.max;
+            $("searchMaxSizePrefix").value = state.sizeFilter.maxUnit;
 
-            const currentSearchPattern = $("searchPattern").getProperty("value").trim();
+            const currentSearchPattern = $("searchPattern").value.trim();
             if (state.running && (state.searchPattern === currentSearchPattern)) {
                 // allow search to be stopped
-                $("startSearchButton").set("text", "QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]");
+                $("startSearchButton").textContent = "QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]";
                 searchPatternChanged = false;
             }
 
             searchResultsTable.setSortedColumn(state.sort.column, state.sort.reverse);
 
-            $("searchInTorrentName").set("value", state.searchIn);
+            $("searchInTorrentName").value = state.searchIn;
         }
 
         // must restore all filters before calling updateTable
@@ -351,8 +351,8 @@ window.qBittorrent.Search = (function() {
         if (rowsToSelect.length > 0)
             searchResultsTable.reselectRows(rowsToSelect);
 
-        $("numSearchResultsVisible").set("html", searchResultsTable.getFilteredAndSortedRows().length);
-        $("numSearchResultsTotal").set("html", searchResultsTable.getRowIds().length);
+        $("numSearchResultsVisible").textContent = searchResultsTable.getFilteredAndSortedRows().length;
+        $("numSearchResultsTotal").textContent = searchResultsTable.getRowIds().length;
 
         setupSearchTableEvents(true);
     };
@@ -373,9 +373,9 @@ window.qBittorrent.Search = (function() {
         const searchTab = $(`${searchTabIdPrefix}${searchId}`);
         if (searchTab) {
             const statusIcon = searchTab.getElement(".statusIcon");
-            statusIcon.set("alt", text);
-            statusIcon.set("title", text);
-            statusIcon.set("src", image);
+            statusIcon.alt = text;
+            statusIcon.title = text;
+            statusIcon.src = image;
         }
     };
 
@@ -392,7 +392,7 @@ window.qBittorrent.Search = (function() {
                 plugins: plugins
             },
             onSuccess: function(response) {
-                $("startSearchButton").set("text", "QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]");
+                $("startSearchButton").textContent = "QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]";
                 const searchId = response.id;
                 createSearchTab(searchId, pattern);
 
@@ -429,9 +429,9 @@ window.qBittorrent.Search = (function() {
         const state = searchState.get(currentSearchId);
         const isSearchRunning = state && state.running;
         if (!isSearchRunning || searchPatternChanged) {
-            const pattern = $("searchPattern").getProperty("value").trim();
-            const category = $("categorySelect").getProperty("value");
-            const plugins = $("pluginsSelect").getProperty("value");
+            const pattern = $("searchPattern").value.trim();
+            const category = $("categorySelect").value;
+            const plugins = $("pluginsSelect").value;
 
             if (!pattern || !category || !plugins)
                 return;
@@ -522,24 +522,24 @@ window.qBittorrent.Search = (function() {
     const onSearchPatternChanged = function() {
         const currentSearchId = getSelectedSearchId();
         const state = searchState.get(currentSearchId);
-        const currentSearchPattern = $("searchPattern").getProperty("value").trim();
+        const currentSearchPattern = $("searchPattern").value.trim();
         // start a new search if pattern has changed, otherwise allow the search to be stopped
         if (state && (state.searchPattern === currentSearchPattern)) {
             searchPatternChanged = false;
-            $("startSearchButton").set("text", "QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]");
+            $("startSearchButton").textContent = "QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]";
         }
         else {
             searchPatternChanged = true;
-            $("startSearchButton").set("text", "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]");
+            $("startSearchButton").textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
         }
     };
 
     const categorySelected = function() {
-        selectedCategory = $("categorySelect").get("value");
+        selectedCategory = $("categorySelect").value;
     };
 
     const pluginSelected = function() {
-        selectedPlugin = $("pluginsSelect").get("value");
+        selectedPlugin = $("pluginsSelect").value;
 
         if (selectedPlugin !== prevSelectedPlugin) {
             prevSelectedPlugin = selectedPlugin;
@@ -566,7 +566,7 @@ window.qBittorrent.Search = (function() {
     };
 
     const resetSearchState = function(searchId) {
-        $("startSearchButton").set("text", "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]");
+        $("startSearchButton").textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
         const state = searchState.get(searchId);
         if (state) {
             state.running = false;
@@ -579,8 +579,8 @@ window.qBittorrent.Search = (function() {
             const categoryHtml = [];
             categories.each((category) => {
                 const option = new Element("option");
-                option.set("value", category.id);
-                option.set("html", category.name);
+                option.value = category.id;
+                option.textContent = category.name;
                 categoryHtml.push(option.outerHTML);
             });
 
@@ -588,15 +588,15 @@ window.qBittorrent.Search = (function() {
             if (categoryHtml.length > 1) {
                 // add separator
                 const option = new Element("option");
-                option.set("disabled", true);
-                option.set("html", "──────────");
+                option.disabled = true;
+                option.textContent = "──────────";
                 categoryHtml.splice(1, 0, option.outerHTML);
             }
 
-            $("categorySelect").set("html", categoryHtml.join(""));
+            $("categorySelect").innerHTML = categoryHtml.join("");
         };
 
-        const selectedPlugin = $("pluginsSelect").get("value");
+        const selectedPlugin = $("pluginsSelect").value;
 
         if ((selectedPlugin === "all") || (selectedPlugin === "enabled")) {
             const uniqueCategories = {};
@@ -660,12 +660,12 @@ window.qBittorrent.Search = (function() {
                             pluginsHtml.splice(2, 0, "<option disabled>──────────</option>");
                     }
 
-                    $("pluginsSelect").set("html", pluginsHtml.join(""));
+                    $("pluginsSelect").innerHTML = pluginsHtml.join("");
 
-                    $("searchPattern").setProperty("disabled", searchPluginsEmpty);
-                    $("categorySelect").setProperty("disabled", searchPluginsEmpty);
-                    $("pluginsSelect").setProperty("disabled", searchPluginsEmpty);
-                    $("startSearchButton").setProperty("disabled", searchPluginsEmpty);
+                    $("searchPattern").disabled = searchPluginsEmpty;
+                    $("categorySelect").disabled = searchPluginsEmpty;
+                    $("pluginsSelect").disabled = searchPluginsEmpty;
+                    $("startSearchButton").disabled = searchPluginsEmpty;
 
                     if (window.qBittorrent.SearchPlugins !== undefined)
                         window.qBittorrent.SearchPlugins.updateTable();
@@ -687,25 +687,25 @@ window.qBittorrent.Search = (function() {
 
     const resetFilters = function() {
         searchText.filterPattern = "";
-        $("searchInNameFilter").set("value", "");
+        $("searchInNameFilter").value = "";
 
         searchSeedsFilter.min = 0;
         searchSeedsFilter.max = 0;
-        $("searchMinSeedsFilter").set("value", searchSeedsFilter.min);
-        $("searchMaxSeedsFilter").set("value", searchSeedsFilter.max);
+        $("searchMinSeedsFilter").value = searchSeedsFilter.min;
+        $("searchMaxSeedsFilter").value = searchSeedsFilter.max;
 
         searchSizeFilter.min = 0.00;
         searchSizeFilter.minUnit = 2; // B = 0, KiB = 1, MiB = 2, GiB = 3, TiB = 4, PiB = 5, EiB = 6
         searchSizeFilter.max = 0.00;
         searchSizeFilter.maxUnit = 3;
-        $("searchMinSizeFilter").set("value", searchSizeFilter.min);
-        $("searchMinSizePrefix").set("value", searchSizeFilter.minUnit);
-        $("searchMaxSizeFilter").set("value", searchSizeFilter.max);
-        $("searchMaxSizePrefix").set("value", searchSizeFilter.maxUnit);
+        $("searchMinSizeFilter").value = searchSizeFilter.min;
+        $("searchMinSizePrefix").value = searchSizeFilter.minUnit;
+        $("searchMaxSizeFilter").value = searchSizeFilter.max;
+        $("searchMaxSizePrefix").value = searchSizeFilter.maxUnit;
     };
 
     const getSearchInTorrentName = function() {
-        return $("searchInTorrentName").get("value") === "names" ? "names" : "everywhere";
+        return ($("searchInTorrentName").value === "names") ? "names" : "everywhere";
     };
 
     const searchInTorrentName = function() {
@@ -714,29 +714,29 @@ window.qBittorrent.Search = (function() {
     };
 
     const searchSeedsFilterChanged = function() {
-        searchSeedsFilter.min = $("searchMinSeedsFilter").get("value");
-        searchSeedsFilter.max = $("searchMaxSeedsFilter").get("value");
+        searchSeedsFilter.min = $("searchMinSeedsFilter").value;
+        searchSeedsFilter.max = $("searchMaxSeedsFilter").value;
 
         searchFilterChanged();
     };
 
     const searchSizeFilterChanged = function() {
-        searchSizeFilter.min = $("searchMinSizeFilter").get("value");
-        searchSizeFilter.minUnit = $("searchMinSizePrefix").get("value");
-        searchSizeFilter.max = $("searchMaxSizeFilter").get("value");
-        searchSizeFilter.maxUnit = $("searchMaxSizePrefix").get("value");
+        searchSizeFilter.min = $("searchMinSizeFilter").value;
+        searchSizeFilter.minUnit = $("searchMinSizePrefix").value;
+        searchSizeFilter.max = $("searchMaxSizeFilter").value;
+        searchSizeFilter.maxUnit = $("searchMaxSizePrefix").value;
 
         searchFilterChanged();
     };
 
     const searchSizeFilterPrefixChanged = function() {
-        if ((Number($("searchMinSizeFilter").get("value")) !== 0) || (Number($("searchMaxSizeFilter").get("value")) !== 0))
+        if ((Number($("searchMinSizeFilter").value) !== 0) || (Number($("searchMaxSizeFilter").value) !== 0))
             searchSizeFilterChanged();
     };
 
     const searchFilterChanged = function() {
         searchResultsTable.updateTable();
-        $("numSearchResultsVisible").set("html", searchResultsTable.getFilteredAndSortedRows().length);
+        $("numSearchResultsVisible").textContent = searchResultsTable.getFilteredAndSortedRows().length;
     };
 
     const setupSearchTableEvents = function(enable) {
@@ -778,7 +778,7 @@ window.qBittorrent.Search = (function() {
                 }
             },
             onSuccess: function(response) {
-                $("error_div").set("html", "");
+                $("error_div").textContent = "";
 
                 const state = searchState.get(searchId);
                 // check if user stopped the search prior to receiving the response
@@ -821,8 +821,8 @@ window.qBittorrent.Search = (function() {
                         for (const row of newRows)
                             searchResultsTable.updateRowData(row);
 
-                        $("numSearchResultsVisible").set("html", searchResultsTable.getFilteredAndSortedRows().length);
-                        $("numSearchResultsTotal").set("html", searchResultsTable.getRowIds().length);
+                        $("numSearchResultsVisible").textContent = searchResultsTable.getFilteredAndSortedRows().length;
+                        $("numSearchResultsTotal").textContent = searchResultsTable.getRowIds().length;
 
                         searchResultsTable.updateTable();
                         searchResultsTable.altRow();

@@ -68,7 +68,7 @@
                 parent.torrentsTable.deselectAll();
                 new Event(e).stop();
                 const cmd = "api/v2/torrents/delete";
-                const deleteFiles = $("deleteFromDiskCB").get("checked");
+                const deleteFiles = $("deleteFromDiskCB").checked;
                 new Request({
                     url: cmd,
                     method: "post",

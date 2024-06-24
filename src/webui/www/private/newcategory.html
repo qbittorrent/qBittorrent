@@ -40,13 +40,13 @@
                 if (!uriCategoryName)
                     return false;
 
-                $("categoryName").set("disabled", true);
-                $("categoryName").set("value", window.qBittorrent.Misc.escapeHtml(uriCategoryName));
-                $("savePath").set("value", window.qBittorrent.Misc.escapeHtml(uriSavePath));
+                $("categoryName").disabled = true;
+                $("categoryName").value = window.qBittorrent.Misc.escapeHtml(uriCategoryName);
+                $("savePath").value = window.qBittorrent.Misc.escapeHtml(uriSavePath);
                 $("savePath").focus();
             }
             else if (uriAction === "createSubcategory") {
-                $("categoryName").set("value", window.qBittorrent.Misc.escapeHtml(uriCategoryName));
+                $("categoryName").value = window.qBittorrent.Misc.escapeHtml(uriCategoryName);
                 $("categoryName").focus();
             }
             else {
