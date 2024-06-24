@@ -53,7 +53,7 @@ window.qBittorrent.Search = (function() {
     const searchPlugins = [];
     let prevSearchPluginsResponse;
     let selectedCategory = "QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]";
-    let selectedPlugin = "all";
+    let selectedPlugin = "enabled";
     let prevSelectedPlugin;
     // whether the current search pattern differs from the pattern that the active search was performed with
     let searchPatternChanged = false;
