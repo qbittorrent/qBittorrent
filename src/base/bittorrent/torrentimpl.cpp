@@ -77,6 +77,10 @@
 #include "base/utils/os.h"
 #endif // Q_OS_MACOS || Q_OS_WIN
 
+#ifndef QBT_USES_LIBTORRENT2
+#include "customstorage.h"
+#endif
+
 using namespace BitTorrent;
 
 namespace
@@ -1860,6 +1864,9 @@ void TorrentImpl::reload()
 
         auto *const extensionData = new ExtensionData;
         p.userdata = LTClientData(extensionData);
+#ifndef QBT_USES_LIBTORRENT2
+        p.storage = customStorageConstructor;
+#endif
         m_nativeHandle = m_nativeSession->add_torrent(p);
 
         m_nativeStatus = extensionData->status;

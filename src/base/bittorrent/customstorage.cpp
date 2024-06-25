@@ -240,11 +240,11 @@ void CustomDiskIOThread::handleCompleteFiles(lt::storage_index_t storage, const 
 
 lt::storage_interface *customStorageConstructor(const lt::storage_params &params, lt::file_pool &pool)
 {
-    return new CustomStorage {params, pool};
+    return new CustomStorage(params, pool);
 }
 
 CustomStorage::CustomStorage(const lt::storage_params &params, lt::file_pool &filePool)
-    : lt::default_storage {params, filePool}
+    : lt::default_storage(params, filePool)
     , m_savePath {params.path}
 {
 }
