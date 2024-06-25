@@ -98,11 +98,11 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Пусти торенте</translation>
+        <translation type="vanished">Пусти торенте</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Паузирај торенте</translation>
+        <translation type="vanished">Паузирај торенте</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -119,6 +119,14 @@
     <message>
         <source>Add subcategory...</source>
         <translation>Додај поткатегорију...</translation>
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -189,23 +197,23 @@
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Није могуће улоговати се, qBittorrent је вероватно недоступан.</translation>
+        <translation>Није могуће улоговати се, qBittorrent је вероватно недоступан.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="vanished">Неважеће корисничко име или шифра.</translation>
+        <translation>Неважеће корисничко име или шифра.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="vanished">Корисничко име</translation>
+        <translation>Корисничко име</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="vanished">Шифра</translation>
+        <translation>Шифра</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="vanished">Логовање</translation>
+        <translation>Логовање</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -399,6 +407,10 @@
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Could not contact qBittorrent</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -428,7 +440,7 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>Настави</translation>
+        <translation type="vanished">Настави</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -448,7 +460,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Настави Све</translation>
+        <translation type="vanished">Настави Све</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -460,11 +472,11 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation>Пауза</translation>
+        <translation type="vanished">Пауза</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Паузирај све</translation>
+        <translation type="vanished">Паузирај све</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -613,11 +625,11 @@
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation>Желите ли да наставите све торенте?</translation>
+        <translation type="vanished">Желите ли да наставите све торенте?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation>Желите ли да паузирате све торенте?</translation>
+        <translation type="vanished">Желите ли да паузирате све торенте?</translation>
     </message>
     <message>
         <source>Execution Log</source>
@@ -629,6 +641,30 @@
     </message>
     <message>
         <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -684,7 +720,7 @@
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation>Аутоматски додај ове трекере новим преузимањима</translation>
+        <translation type="vanished">Аутоматски додај ове трекере новим преузимањима</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1198,7 +1234,7 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation>Паузирај торент</translation>
+        <translation type="vanished">Паузирај торент</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1844,6 +1880,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Customize application instance name:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Send test email</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Automatically append these trackers to new downloads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2208,6 +2260,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Match all occurrences</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Popularity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2338,11 +2398,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation>Настављено (0)</translation>
+        <translation type="vanished">Настављено (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation>Паузирано (0)</translation>
+        <translation type="vanished">Паузирано (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -2374,11 +2434,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation>Паузирано (%1)</translation>
+        <translation type="vanished">Паузирано (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation>Настављено (%1)</translation>
+        <translation type="vanished">Настављено (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2432,6 +2492,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Moving (0)</source>
         <translation>Премештање (0)</translation>
     </message>
+    <message>
+        <source>Running (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2451,7 +2527,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation>Урађено</translation>
+        <translation type="vanished">Урађено</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2586,6 +2662,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Reannounce In</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Popularity</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Progress</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2724,7 +2808,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Paused</source>
-        <translation>Паузиран</translation>
+        <translation type="vanished">Паузиран</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2790,6 +2874,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>[F] Downloading metadata</source>
         <translation>[F] Преузимање метаподатака</translation>
     </message>
+    <message>
+        <source>Stopped</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2831,17 +2919,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>Настави</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="unfinished" />
+        <translation type="vanished">Настави</translation>
     </message>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Пауза</translation>
+        <translation type="vanished">Пауза</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3011,6 +3094,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3258,6 +3353,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>There aren't any search plugins installed.</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Start a search above.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3319,6 +3418,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Seeders</source>
         <translation>Донори</translation>
+    </message>
+    <message>
+        <source>Published On</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3387,11 +3490,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Паузирај торенте</translation>
+        <translation type="vanished">Паузирај торенте</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Настави торенте</translation>
+        <translation type="vanished">Настави торенте</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -3408,6 +3511,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Remove torrents</source>
         <translation>Уклони торенте</translation>
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3548,6 +3659,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download link</source>
         <translation>Веза за преузимање</translation>
+    </message>
+    <message>
+        <source>Searching...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search has finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search aborted</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3848,7 +3975,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation>Додај паузирано:</translation>
+        <translation type="vanished">Додај паузирано:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -3908,12 +4035,16 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <source>Add Tags:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add Stopped:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Resume torrents</source>
-        <translation>Пусти торенте</translation>
+        <translation type="vanished">Пусти торенте</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3925,11 +4056,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Паузирај торенте</translation>
+        <translation type="vanished">Паузирај торенте</translation>
     </message>
     <message>
         <source>Remove torrents</source>
         <translation>Уклони торенте</translation>
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4075,6 +4214,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Choose a log level...</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>SearchWidget</name>
+    <message>
+        <source>Close tab</source>
         <translation type="unfinished" />
     </message>
 </context>

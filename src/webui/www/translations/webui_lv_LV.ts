@@ -98,11 +98,11 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Atsākt torrentus</translation>
+        <translation type="vanished">Atsākt torrentus</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Apturēt torrentus</translation>
+        <translation type="vanished">Apturēt torrentus</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -119,6 +119,14 @@
     <message>
         <source>Add subcategory...</source>
         <translation>Pievienot apakškategoriju...</translation>
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -193,23 +201,23 @@
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Neizdevās pierakstīties, qBittorrent droši vien nav sasniedzams.</translation>
+        <translation>Neizdevās pierakstīties, qBittorrent droši vien nav sasniedzams.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="vanished">Nederīgs lietotājvārds vai parole.</translation>
+        <translation>Nederīgs lietotājvārds vai parole.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="vanished">Lietotājvārds</translation>
+        <translation>Lietotājvārds</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="vanished">Parole</translation>
+        <translation>Parole</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="vanished">Pierakstīties</translation>
+        <translation>Pierakstīties</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -407,6 +415,10 @@
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Could not contact qBittorrent</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -436,7 +448,7 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>Atsākt</translation>
+        <translation type="vanished">Atsākt</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -456,7 +468,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Atsākt visus</translation>
+        <translation type="vanished">Atsākt visus</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -468,11 +480,11 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation>Apturēt</translation>
+        <translation type="vanished">Apturēt</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Apturēt visus</translation>
+        <translation type="vanished">Apturēt visus</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -621,11 +633,11 @@
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation>Vai vēlies atsākt visus torrentus?</translation>
+        <translation type="vanished">Vai vēlies atsākt visus torrentus?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation>Vai vēlies apturēt visus torrentus?</translation>
+        <translation type="vanished">Vai vēlies apturēt visus torrentus?</translation>
     </message>
     <message>
         <source>Execution Log</source>
@@ -637,6 +649,30 @@
     </message>
     <message>
         <source>[D: %1, U: %2]</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -692,7 +728,7 @@
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation>Automātiski pievienot šos trakerus jaunajiem torrentiem:</translation>
+        <translation type="vanished">Automātiski pievienot šos trakerus jaunajiem torrentiem:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1206,7 +1242,7 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation>Apturēt torrentu</translation>
+        <translation type="vanished">Apturēt torrentu</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1884,6 +1920,22 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <source>Customize application instance name:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Send test email</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Automatically append these trackers to new downloads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2248,6 +2300,14 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <source>Match all occurrences</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Popularity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2378,11 +2438,11 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation>Atsākti (0)</translation>
+        <translation type="vanished">Atsākti (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation>Apturēti (0)</translation>
+        <translation type="vanished">Apturēti (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -2414,11 +2474,11 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation>Apturēti (%1)</translation>
+        <translation type="vanished">Apturēti (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation>Atsākti (%1)</translation>
+        <translation type="vanished">Atsākti (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2472,6 +2532,22 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <source>Moving (0)</source>
         <translation>Pārvieto (0)</translation>
     </message>
+    <message>
+        <source>Running (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2491,7 +2567,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     <message>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation>Pabeigti</translation>
+        <translation type="vanished">Pabeigti</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2626,6 +2702,14 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Reannounce In</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Popularity</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Progress</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2764,7 +2848,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Paused</source>
-        <translation>Apturēts</translation>
+        <translation type="vanished">Apturēts</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2830,6 +2914,10 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <source>[F] Downloading metadata</source>
         <translation>[P] Lejupielādē metadatus</translation>
     </message>
+    <message>
+        <source>Stopped</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2871,17 +2959,17 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>Atsākt</translation>
+        <translation type="vanished">Atsākt</translation>
     </message>
     <message>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation>Piespiedu atsākšana</translation>
+        <translation type="vanished">Piespiedu atsākšana</translation>
     </message>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Apturēt</translation>
+        <translation type="vanished">Apturēt</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3051,6 +3139,18 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Comment</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3298,6 +3398,10 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
         <source>There aren't any search plugins installed.</source>
         <translation>Nav instalēts neviens meklēšanas spraudnis.</translation>
     </message>
+    <message>
+        <source>Start a search above.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3359,6 +3463,10 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     <message>
         <source>Seeders</source>
         <translation>Devēji</translation>
+    </message>
+    <message>
+        <source>Published On</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3427,11 +3535,11 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Apturēt torrentus</translation>
+        <translation type="vanished">Apturēt torrentus</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Atsākt torrentus</translation>
+        <translation type="vanished">Atsākt torrentus</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -3448,6 +3556,14 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     <message>
         <source>Remove torrents</source>
         <translation>Dzēst torrentus</translation>
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3588,6 +3704,22 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     <message>
         <source>Download link</source>
         <translation>Lejupielādes adresi</translation>
+    </message>
+    <message>
+        <source>Searching...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search has finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search aborted</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3888,7 +4020,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation>Pievienot apstādinātu:</translation>
+        <translation type="vanished">Pievienot apstādinātu:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -3948,12 +4080,16 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
         <source>Add Tags:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add Stopped:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Resume torrents</source>
-        <translation>Atsākt torrentus</translation>
+        <translation type="vanished">Atsākt torrentus</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3965,11 +4101,19 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Apturēt torrentus</translation>
+        <translation type="vanished">Apturēt torrentus</translation>
     </message>
     <message>
         <source>Remove torrents</source>
         <translation>Dzēst torrentus</translation>
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4115,6 +4259,13 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Choose a log level...</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>SearchWidget</name>
+    <message>
+        <source>Close tab</source>
         <translation type="unfinished" />
     </message>
 </context>
