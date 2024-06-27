@@ -252,7 +252,7 @@ bool Utils::ForeignApps::PythonInfo::isValid() const
 
 bool Utils::ForeignApps::PythonInfo::isSupportedVersion() const
 {
-    return (version >= Version {3, 7, 0});
+    return (version >= Version {3, 9, 0});
 }
 
 PythonInfo Utils::ForeignApps::pythonInfo()
