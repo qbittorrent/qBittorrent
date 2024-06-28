@@ -1187,7 +1187,7 @@ window.addEventListener("DOMContentLoaded", () => {
         hideRssTab();
         hideLogTab();
 
-        LocalPreferences.set("selected_tab", "transfers");
+        LocalPreferences.set("selected_window_tab", "transfers");
     };
 
     const hideTransfersTab = function() {
@@ -1223,7 +1223,7 @@ window.addEventListener("DOMContentLoaded", () => {
             hideRssTab();
             hideLogTab();
 
-            LocalPreferences.set("selected_tab", "search");
+            LocalPreferences.set("selected_window_tab", "search");
         };
     })();
 
@@ -1250,7 +1250,7 @@ window.addEventListener("DOMContentLoaded", () => {
             hideSearchTab();
             hideLogTab();
 
-            LocalPreferences.set("selected_tab", "rss");
+            LocalPreferences.set("selected_window_tab", "rss");
         };
     })();
 
@@ -1288,7 +1288,7 @@ window.addEventListener("DOMContentLoaded", () => {
             hideSearchTab();
             hideRssTab();
 
-            LocalPreferences.set("selected_tab", "log");
+            LocalPreferences.set("selected_window_tab", "log");
         };
     })();
 
@@ -1665,7 +1665,7 @@ window.addEventListener("load", () => {
     window.qBittorrent.Cache.qbtVersion.init();
 
     // switch to previously used tab
-    const previouslyUsedTab = LocalPreferences.get("selected_tab", "transfers");
+    const previouslyUsedTab = LocalPreferences.get("selected_window_tab", "transfers");
     switch (previouslyUsedTab) {
         case "search":
             if (window.qBittorrent.Client.isShowSearchEngine())
@@ -1683,7 +1683,7 @@ window.addEventListener("load", () => {
             $("transfersTabLink").click();
             break;
         default:
-            console.error(`Unexpected 'selected_tab' value: ${previouslyUsedTab}`);
+            console.error(`Unexpected 'selected_window_tab' value: ${previouslyUsedTab}`);
             $("transfersTabLink").click();
             break;
     };
