@@ -79,7 +79,7 @@
       </item>
       <item>
        <property name="text">
-        <string>Web UI</string>
+        <string>WebUI</string>
        </property>
       </item>
       <item>
@@ -294,7 +294,7 @@
                     </property>
                     <item>
                      <property name="text">
-                      <string>Start / Stop Torrent</string>
+                      <string>Start / stop torrent</string>
                      </property>
                     </item>
                     <item>
@@ -309,7 +309,7 @@
                     </item>
                     <item>
                      <property name="text">
-                      <string>Show torrent options</string>
+                      <string>Open torrent options dialog</string>
                      </property>
                     </item>
                     <item>
@@ -330,7 +330,7 @@
                    <widget class="QComboBox" name="actionTorrentFnOnDblClBox">
                     <item>
                      <property name="text">
-                      <string>Start / Stop Torrent</string>
+                      <string>Start / stop torrent</string>
                      </property>
                     </item>
                     <item>
@@ -345,7 +345,7 @@
                     </item>
                     <item>
                      <property name="text">
-                      <string>Show torrent options</string>
+                      <string>Open torrent options dialog</string>
                      </property>
                     </item>
                     <item>
@@ -638,7 +638,7 @@
             <item>
              <widget class="QGroupBox" name="checkFileLog">
               <property name="title">
-               <string>&amp;Log file</string>
+               <string>&amp;Log Files</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -1555,14 +1555,14 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                </item>
                <item>
                 <widget class="QPushButton" name="sendTestEmail">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="text">
-                   <string>Send test email</string>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Send test email</string>
                  </property>
                 </widget>
                </item>
@@ -1578,7 +1578,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <item>
                 <widget class="QGroupBox" name="groupBoxRunOnAdded">
                  <property name="title">
-                  <string>Run on torrent added</string>
+                  <string>Run on torrent added:</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -1596,7 +1596,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <item>
                 <widget class="QGroupBox" name="groupBoxRunOnFinished">
                  <property name="title">
-                  <string>Run on torrent finished</string>
+                  <string>Run on torrent finished:</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>

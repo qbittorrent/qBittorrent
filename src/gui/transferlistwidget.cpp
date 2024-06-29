@@ -755,7 +755,7 @@ void TransferListWidget::askNewCategoryForSelection()
 
 void TransferListWidget::askAddTagsForSelection()
 {
-    const TagSet tags = askTagsForSelection(tr("Add Tags"));
+    const TagSet tags = askTagsForSelection(tr("Add tags"));
     for (const Tag &tag : tags)
         addSelectionTag(tag);
 }

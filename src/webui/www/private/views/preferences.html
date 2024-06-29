@@ -1,7 +1,7 @@
 <div id="BehaviorTab" class="PrefTab">
     <fieldset class="settings">
         <legend>QBT_TR(Language)QBT_TR[CONTEXT=OptionsDialog]</legend>
-        <label for="locale_select">QBT_TR(User Interface Language:)QBT_TR[CONTEXT=OptionsDialog]</label>
+        <label for="locale_select">QBT_TR(User interface language:)QBT_TR[CONTEXT=OptionsDialog]</label>
         <select id="locale_select">
             ${LANGUAGE_OPTIONS}
         </select>
@@ -21,7 +21,7 @@
                         <td><label for="dblclickDownloadSelect">QBT_TR(Downloading torrents:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                         <td>
                             <select id="dblclickDownloadSelect">
-                                <option value="1" selected>QBT_TR(Start / Stop Torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
+                                <option value="1" selected>QBT_TR(Start / stop torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
                                 <option value="0">QBT_TR(No action)QBT_TR[CONTEXT=OptionsDialog]</option>
                             </select>
                         </td>
@@ -30,7 +30,7 @@
                         <td><label for="dblclickCompleteSelect">QBT_TR(Completed torrents:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                         <td>
                             <select id="dblclickCompleteSelect">
-                                <option value="1" selected>QBT_TR(Start / Stop Torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
+                                <option value="1" selected>QBT_TR(Start / stop torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
                                 <option value="0">QBT_TR(No action)QBT_TR[CONTEXT=OptionsDialog]</option>
                             </select>
                         </td>
@@ -43,7 +43,7 @@
     <fieldset class="settings">
         <legend>
             <input type="checkbox" id="filelog_checkbox" onclick="qBittorrent.Preferences.updateFileLogEnabled();">
-            <label for="filelog_checkbox">QBT_TR(Log file)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label for="filelog_checkbox">QBT_TR(Log Files)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
         <div class="formRow">
             <label for="filelog_save_path_input">QBT_TR(Save path:)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -317,12 +317,12 @@
         </legend>
         <div class="formRow">
             <input type="checkbox" id="autorunOnTorrentAddedCheckbox" onclick="qBittorrent.Preferences.updateAutoRunOnTorrentAdded();">
-            <label id="autorunOnTorrentAddedLabel" for="autorunOnTorrentAddedCheckbox">QBT_TR(Run external program on torrent added)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label id="autorunOnTorrentAddedLabel" for="autorunOnTorrentAddedCheckbox">QBT_TR(Run on torrent added:)QBT_TR[CONTEXT=OptionsDialog]</label>
             <input type="text" id="autorunOnTorrentAddedProgram" aria-labelledby="autorunOnTorrentAddedLabel" style="width: 400px;">
         </div>
         <div class="formRow">
             <input type="checkbox" id="autorun_checkbox" onclick="qBittorrent.Preferences.updateAutoRun();">
-            <label id="autorunLabel" for="autorun_checkbox">QBT_TR(Run external program on torrent finished)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label id="autorunLabel" for="autorun_checkbox">QBT_TR(Run on torrent finished:)QBT_TR[CONTEXT=OptionsDialog]</label>
             <input type="text" id="autorunProg_txt" aria-labelledby="autorunLabel" style="width: 400px;">
         </div>
         <div style="font-style: italic;">QBT_TR(Supported parameters (case sensitive):)QBT_TR[CONTEXT=OptionsDialog]

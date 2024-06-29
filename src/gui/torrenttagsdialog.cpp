@@ -97,7 +97,7 @@ void TorrentTagsDialog::addNewTag()
     while (!done)
     {
         bool ok = false;
-        tag = Tag(AutoExpandableDialog::getText(this, tr("New Tag")
+        tag = Tag(AutoExpandableDialog::getText(this, tr("Add tag")
                 , tr("Tag:"), QLineEdit::Normal, tag.toString(), &ok));
         if (!ok || tag.isEmpty())
             break;

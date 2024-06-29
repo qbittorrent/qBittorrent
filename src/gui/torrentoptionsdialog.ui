@@ -83,7 +83,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Torrent speed limits</string>
+      <string>Torrent Speed Limits</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="1" column="0">
@@ -153,7 +153,7 @@
    <item>
     <widget class="QGroupBox" name="torrentShareLimitsBox">
      <property name="title">
-      <string>Torrent share limits</string>
+      <string>Torrent Share Limits</string>
      </property>
      <layout class="QVBoxLayout" name="torrentShareLimitsBoxLayout">
       <item>
@@ -252,7 +252,4 @@
  </customwidgets>
  <resources/>
  <connections/>
- <buttongroups>
-  <buttongroup name="buttonGroup"/>
- </buttongroups>
 </ui>

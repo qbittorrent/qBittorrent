@@ -164,7 +164,7 @@ Tag TagFilterWidget::askTagName()
     while (invalid)
     {
         invalid = false;
-        tag = Tag(AutoExpandableDialog::getText(this, tr("New Tag"), tr("Tag:")
+        tag = Tag(AutoExpandableDialog::getText(this, tr("Add tag"), tr("Tag:")
                 , QLineEdit::Normal, tag.toString(), &ok));
         if (ok && !tag.isEmpty())
         {

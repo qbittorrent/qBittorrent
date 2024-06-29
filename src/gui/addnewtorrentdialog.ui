@@ -164,7 +164,7 @@
            <item>
             <widget class="QGroupBox" name="groupBoxSettings">
              <property name="title">
-              <string>Torrent settings</string>
+              <string>Torrent options</string>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_3">
               <item>
