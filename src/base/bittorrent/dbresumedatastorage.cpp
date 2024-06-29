@@ -74,6 +74,10 @@ namespace
 
     const QString META_VERSION = u"version"_s;
 
+    // The maximum allowable percentage of consecutive pages,
+    // after which the database will be vacuumed.
+    const double SPF_THRESHOLD = 0.8;
+
     using namespace BitTorrent;
 
     class Job
@@ -292,6 +296,53 @@ namespace
 
         return resumeData;
     }
+
+    bool isDBStatAvailable(QSqlDatabase &db)
+    {
+        QSqlQuery query {db};
+        if (!query.exec(u"PRAGMA module_list;"_qs))
+            return false;
+
+        while (query.next())
+        {
+            if (query.value(0).toString() == u"dbstat")
+                return true;
+        }
+
+        return false;
+    }
+
+    double getSequentialPagesFraction(QSqlDatabase &db)
+    {
+        QSqlQuery query {db};
+
+        if (!db.transaction())
+            throw RuntimeError(db.lastError().text());
+
+        double result = 0;
+        try
+        {
+            if (!query.exec(u"CREATE TEMP TABLE s (rowid INTEGER PRIMARY KEY, pageno INT);"_qs))
+                throw RuntimeError(query.lastError().text());
+            if (!query.exec(u"INSERT INTO s (pageno) SELECT pageno FROM dbstat ORDER BY path;"_qs))
+                throw RuntimeError(query.lastError().text());
+            if (!query.exec(u"SELECT sum(s1.pageno + 1 == s2.pageno) * 1.0 / count(*) FROM s AS s1, s AS s2 WHERE s1.rowid + 1 = s2.rowid;"_qs))
+                throw RuntimeError(query.lastError().text());
+
+            if (query.next())
+                result = query.value(0).toDouble();
+
+            if (!query.exec(u"DROP TABLE s;"_qs))
+                throw RuntimeError(query.lastError().text());
+        }
+        catch (const RuntimeError &)
+        {
+            db.rollback();
+            throw;
+        }
+
+        return result;
+    }
 }
 
 namespace BitTorrent
@@ -325,7 +376,6 @@ namespace BitTorrent
 
 BitTorrent::DBResumeDataStorage::DBResumeDataStorage(const Path &dbPath, QObject *parent)
     : ResumeDataStorage(dbPath, parent)
-    , m_ioThread {new QThread}
 {
     const bool needCreateDB = !dbPath.exists();
 
@@ -333,6 +383,19 @@ BitTorrent::DBResumeDataStorage::DBResumeDataStorage(const Path &dbPath, QObject
     db.setDatabaseName(dbPath.data());
     if (!db.open())
         throw RuntimeError(db.lastError().text());
+
+    m_isDBStatAvailable = isDBStatAvailable(db);
+    if (m_isDBStatAvailable)
+    {
+        LogMsg(tr("SQLite DBSTAT module is available. Database optimization will be performed "
+                    "automatically based on the value of page fragmentation.")
+               , Log::INFO);
+    }
+    else
+    {
+        LogMsg(tr("SQLite DBSTAT module isn't available. No database optimization will be performed automatically.")
+               , Log::WARNING);
+    }
 
     if (needCreateDB)
     {
@@ -453,6 +516,26 @@ void BitTorrent::DBResumeDataStorage::doLoadAll() const
         {
             const auto torrentID = TorrentID::fromString(query.value(DB_COLUMN_TORRENT_ID.name).toString());
             onResumeDataLoaded(torrentID, parseQueryResultRow(query));
+        }
+
+        if (m_isDBStatAvailable)
+        {
+            try
+            {
+                const double sequentialPagesFraction = getSequentialPagesFraction(db);
+                LogMsg(tr("SQLite sequential pages fraction: %1").arg(sequentialPagesFraction));
+                if (sequentialPagesFraction <= SPF_THRESHOLD)
+                {
+                    if (!query.exec(u"VACUUM"_qs))
+                        throw RuntimeError(query.lastError().text());
+
+                    LogMsg(tr("Resume data storage is successfully optimized."));
+                }
+            }
+            catch (const RuntimeError &err)
+            {
+                LogMsg(tr("Couldn't optimize resume data storage. Reason: %1").arg(err.message()), Log::CRITICAL);
+            }
         }
     }
 
