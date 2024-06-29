@@ -9,47 +9,47 @@
     <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
     <script>
-        'use strict';
+        "use strict";
 
         new Keyboard({
-            defaultEventType: 'keydown',
+            defaultEventType: "keydown",
             events: {
-                'Enter': function(event) {
-                    $('setLocationButton').click();
+                "Enter": function(event) {
+                    $("setLocationButton").click();
                     event.preventDefault();
                 },
-                'Escape': function(event) {
+                "Escape": function(event) {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 },
-                'Esc': function(event) {
+                "Esc": function(event) {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 }
             }
         }).activate();
 
-        window.addEvent('domready', function() {
-            const path = new URI().getData('path');
+        window.addEvent("domready", () => {
+            const path = new URI().getData("path");
 
             // set text field to current value
             if (path)
-                $('setLocation').value = decodeURIComponent(path);
+                $("setLocation").value = decodeURIComponent(path);
 
-            $('setLocation').focus();
-            $('setLocationButton').addEvent('click', function(e) {
+            $("setLocation").focus();
+            $("setLocationButton").addEvent("click", (e) => {
                 new Event(e).stop();
                 // check field
-                const location = $('setLocation').value.trim();
+                const location = $("setLocation").value.trim();
                 if ((location === null) || (location === "")) {
-                    $('error_div').set('text', 'QBT_TR(Save path is empty)QBT_TR[CONTEXT=TorrentsController]');
+                    $("error_div").set("text", "QBT_TR(Save path is empty)QBT_TR[CONTEXT=TorrentsController]");
                     return false;
                 }
 
-                const hashesList = new URI().getData('hashes');
+                const hashesList = new URI().getData("hashes");
                 new Request({
-                    url: 'api/v2/torrents/setLocation',
-                    method: 'post',
+                    url: "api/v2/torrents/setLocation",
+                    method: "post",
                     data: {
                         hashes: hashesList,
                         location: location
@@ -58,7 +58,7 @@
                         window.parent.qBittorrent.Client.closeWindows();
                     },
                     onFailure: function(xhr) {
-                        $('error_div').set('text', xhr.response);
+                        $("error_div").set("text", xhr.response);
                     }
                 }).send();
             });

@@ -9,57 +9,57 @@
     <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
     <script>
-        'use strict';
+        "use strict";
 
         new Keyboard({
-            defaultEventType: 'keydown',
+            defaultEventType: "keydown",
             events: {
-                'Enter': (event) => {
-                    $('renameButton').click();
+                "Enter": (event) => {
+                    $("renameButton").click();
                     event.preventDefault();
                 },
-                'Escape': (event) => {
-                    window.parent.MochaUI.closeWindow(window.parent.$('renameRulePage'));
+                "Escape": (event) => {
+                    window.parent.MochaUI.closeWindow(window.parent.$("renameRulePage"));
                     event.preventDefault();
                 },
-                'Esc': (event) => {
-                    window.parent.MochaUI.closeWindow(window.parent.$('renameRulePage'));
+                "Esc": (event) => {
+                    window.parent.MochaUI.closeWindow(window.parent.$("renameRulePage"));
                     event.preventDefault();
                 }
             }
         }).activate();
-        window.addEvent('domready', () => {
-            const oldName = new URI().getData('rule');
+        window.addEvent("domready", () => {
+            const oldName = new URI().getData("rule");
 
-            $('rename').value = oldName;
-            $('rename').focus();
-            $('rename').setSelectionRange(0, oldName.length);
+            $("rename").value = oldName;
+            $("rename").focus();
+            $("rename").setSelectionRange(0, oldName.length);
 
-            $('renameButton').addEvent('click', (e) => {
+            $("renameButton").addEvent("click", (e) => {
                 new Event(e).stop();
                 // check field
-                const newName = $('rename').value.trim();
-                if (newName === '') {
-                    alert('QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]');
+                const newName = $("rename").value.trim();
+                if (newName === "") {
+                    alert("QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
 
                 if (newName === oldName) {
-                    alert('QBT_TR(Name is unchanged)QBT_TR[CONTEXT=HttpServer]');
+                    alert("QBT_TR(Name is unchanged)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
 
-                $('renameButton').disabled = true;
+                $("renameButton").disabled = true;
                 new Request({
-                    url: 'api/v2/rss/renameRule',
-                    method: 'post',
+                    url: "api/v2/rss/renameRule",
+                    method: "post",
                     data: {
                         ruleName: oldName,
                         newRuleName: newName
                     },
                     onSuccess: (response) => {
                         window.parent.qBittorrent.RssDownloader.updateRulesList();
-                        window.parent.MochaUI.closeWindow(window.parent.$('renameRulePage'));
+                        window.parent.MochaUI.closeWindow(window.parent.$("renameRulePage"));
                     }
                 }).send();
             });

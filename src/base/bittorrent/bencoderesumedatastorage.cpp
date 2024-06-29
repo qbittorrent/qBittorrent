@@ -40,7 +40,6 @@
 #include <QRegularExpression>
 #include <QThread>
 
-#include "base/algorithm.h"
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"

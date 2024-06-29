@@ -16,11 +16,10 @@
 </div>
 
 <script>
-    'use strict';
+    "use strict";
 
-    if (window.qBittorrent === undefined) {
+    if (window.qBittorrent === undefined)
         window.qBittorrent = {};
-    }
 
     window.qBittorrent.TransferList = (function() {
         const exports = function() {
@@ -29,10 +28,10 @@
             };
         };
 
-        //create a context menu
+        // create a context menu
         const contextMenu = new window.qBittorrent.ContextMenu.TorrentsTableContextMenu({
-            targets: '.torrentsTableContextMenuTarget',
-            menu: 'torrentsTableMenu',
+            targets: ".torrentsTableContextMenuTarget",
+            menu: "torrentsTableMenu",
             actions: {
                 start: function(element, ref) {
                     startFN();
@@ -59,16 +58,16 @@
                     renameFilesFN();
                 },
                 queueTop: function(element, ref) {
-                    setQueuePositionFN('topPrio');
+                    setQueuePositionFN("topPrio");
                 },
                 queueUp: function(element, ref) {
-                    setQueuePositionFN('increasePrio');
+                    setQueuePositionFN("increasePrio");
                 },
                 queueDown: function(element, ref) {
-                    setQueuePositionFN('decreasePrio');
+                    setQueuePositionFN("decreasePrio");
                 },
                 queueBottom: function(element, ref) {
-                    setQueuePositionFN('bottomPrio');
+                    setQueuePositionFN("bottomPrio");
                 },
 
                 downloadLimit: function(element, ref) {
@@ -99,7 +98,7 @@
                 },
 
                 superSeeding: function(element, ref) {
-                    setSuperSeedingFN(!ref.getItemChecked('superSeeding'));
+                    setSuperSeedingFN(!ref.getItemChecked("superSeeding"));
                 },
 
                 exportTorrent: function(element, ref) {
@@ -112,7 +111,7 @@
             },
         });
 
-        torrentsTable.setup('torrentsTableDiv', 'torrentsTableFixedHeaderDiv', contextMenu);
+        torrentsTable.setup("torrentsTableDiv", "torrentsTableFixedHeaderDiv", contextMenu);
 
         return exports();
     })();

@@ -8,44 +8,44 @@
     <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
     <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script>
-        'use strict';
+        "use strict";
 
-        window.addEvent('domready', function() {
+        window.addEvent("domready", () => {
             new Keyboard({
-                defaultEventType: 'keydown',
+                defaultEventType: "keydown",
                 events: {
-                    'Enter': function(event) {
-                        $('editTrackerButton').click();
+                    "Enter": function(event) {
+                        $("editTrackerButton").click();
                         event.preventDefault();
                     },
-                    'Escape': function(event) {
+                    "Escape": function(event) {
                         window.parent.qBittorrent.Client.closeWindows();
                         event.preventDefault();
                     },
-                    'Esc': function(event) {
+                    "Esc": function(event) {
                         window.parent.qBittorrent.Client.closeWindows();
                         event.preventDefault();
                     }
                 }
             }).activate();
 
-            const currentUrl = new URI().getData('url');
+            const currentUrl = new URI().getData("url");
             if (!currentUrl)
                 return false;
 
-            $('trackerUrl').value = currentUrl;
-            $('trackerUrl').focus();
+            $("trackerUrl").value = currentUrl;
+            $("trackerUrl").focus();
 
-            $('editTrackerButton').addEvent('click', function(e) {
+            $("editTrackerButton").addEvent("click", (e) => {
                 new Event(e).stop();
-                const hash = new URI().getData('hash');
+                const hash = new URI().getData("hash");
                 new Request({
-                    url: 'api/v2/torrents/editTracker',
-                    method: 'post',
+                    url: "api/v2/torrents/editTracker",
+                    method: "post",
                     data: {
                         hash: hash,
                         origUrl: currentUrl,
-                        newUrl: $('trackerUrl').value
+                        newUrl: $("trackerUrl").value
                     },
                     onComplete: function() {
                         window.parent.qBittorrent.Client.closeWindows();

@@ -1,8 +1,8 @@
-import Globals from 'globals';
-import Html from 'eslint-plugin-html';
-import Js from '@eslint/js';
-import Stylistic from '@stylistic/eslint-plugin';
-import * as RegexpPlugin from 'eslint-plugin-regexp';
+import Globals from "globals";
+import Html from "eslint-plugin-html";
+import Js from "@eslint/js";
+import Stylistic from "@stylistic/eslint-plugin";
+import * as RegexpPlugin from "eslint-plugin-regexp";
 
 export default [
     Js.configs.recommended,
@@ -26,9 +26,16 @@ export default [
             Stylistic
         },
         rules: {
+            "curly": ["error", "multi-or-nest", "consistent"],
             "eqeqeq": "error",
+            "guard-for-in": "error",
             "no-undef": "off",
             "no-unused-vars": "off",
+            "no-var": "error",
+            "operator-assignment": "error",
+            "prefer-arrow-callback": "error",
+            "prefer-const": "error",
+            "radix": "error",
             "Stylistic/no-mixed-operators": [
                 "error",
                 {
@@ -38,7 +45,16 @@ export default [
                 }
             ],
             "Stylistic/nonblock-statement-body-position": ["error", "below"],
-            "Stylistic/semi": "error"
+            "Stylistic/quotes": [
+                "error",
+                "double",
+                {
+                    "avoidEscape": true,
+                    "allowTemplateLiterals": true
+                }
+            ],
+            "Stylistic/semi": "error",
+            "Stylistic/spaced-comment": ["error", "always", { "exceptions": ["*"] }]
         }
     }
 ];

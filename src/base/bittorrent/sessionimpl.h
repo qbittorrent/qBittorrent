@@ -402,7 +402,7 @@ namespace BitTorrent
         void setExcludedFileNamesEnabled(bool enabled) override;
         QStringList excludedFileNames() const override;
         void setExcludedFileNames(const QStringList &excludedFileNames) override;
-        bool isFilenameExcluded(const QString &fileName) const override;
+        void applyFilenameFilter(const PathList &files, QList<BitTorrent::DownloadPriority> &priorities) override;
         QStringList bannedIPs() const override;
         void setBannedIPs(const QStringList &newList) override;
         ResumeDataStorageType resumeDataStorageType() const override;
@@ -487,7 +487,6 @@ namespace BitTorrent
         void configureDeferred();
         void readAlerts();
         void enqueueRefresh();
-        void processShareLimits();
         void generateResumeData();
         void handleIPFilterParsed(int ruleCount);
         void handleIPFilterError();
@@ -536,6 +535,7 @@ namespace BitTorrent
         void enableIPFilter();
         void disableIPFilter();
         void processTrackerStatuses();
+        void processTorrentShareLimits(TorrentImpl *torrent);
         void populateExcludedFileNamesRegExpList();
         void prepareStartup();
         void handleLoadedResumeData(ResumeSessionContext *context);
@@ -598,14 +598,6 @@ namespace BitTorrent
         void loadStatistics();
 
         void updateTrackerEntryStatuses(lt::torrent_handle torrentHandle, QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>> updatedTrackers);
-
-        // BitTorrent
-        lt::session *m_nativeSession = nullptr;
-        NativeSessionExtension *m_nativeSessionExtension = nullptr;
-
-        bool m_deferredConfigureScheduled = false;
-        bool m_IPFilteringConfigured = false;
-        mutable bool m_listenInterfaceConfigured = false;
 
         CachedSettingValue<QString> m_DHTBootstrapNodes;
         CachedSettingValue<bool> m_isDHTEnabled;
@@ -733,6 +725,13 @@ namespace BitTorrent
         CachedSettingValue<int> m_I2POutboundLength;
         SettingValue<bool> m_startPaused;
 
+        lt::session *m_nativeSession = nullptr;
+        NativeSessionExtension *m_nativeSessionExtension = nullptr;
+
+        bool m_deferredConfigureScheduled = false;
+        bool m_IPFilteringConfigured = false;
+        mutable bool m_listenInterfaceConfigured = false;
+
         bool m_isRestored = false;
         bool m_isPaused = isStartPaused();
 
@@ -808,6 +807,8 @@ namespace BitTorrent
 
         QTimer *m_wakeupCheckTimer = nullptr;
         QDateTime m_wakeupCheckTimestamp;
+
+        QList<TorrentImpl *> m_pendingFinishedTorrents;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();

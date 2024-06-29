@@ -9,45 +9,45 @@
     <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
     <script>
-        'use strict';
+        "use strict";
 
         new Keyboard({
-            defaultEventType: 'keydown',
+            defaultEventType: "keydown",
             events: {
-                'Enter': (event) => {
-                    $('submitButton').click();
+                "Enter": (event) => {
+                    $("submitButton").click();
                     event.preventDefault();
                 },
-                'Escape': (event) => {
+                "Escape": (event) => {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 },
-                'Esc': (event) => {
+                "Esc": (event) => {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 }
             }
         }).activate();
-        window.addEvent('domready', () => {
-            $('feedURL').focus();
-            const path = new URI().getData('path');
-            $('submitButton').addEvent('click', (e) => {
+        window.addEvent("domready", () => {
+            $("feedURL").focus();
+            const path = new URI().getData("path");
+            $("submitButton").addEvent("click", (e) => {
                 new Event(e).stop();
                 // check field
-                const feedURL = $('feedURL').value.trim();
-                if (feedURL === '') {
-                    alert('QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]');
+                const feedURL = $("feedURL").value.trim();
+                if (feedURL === "") {
+                    alert("QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
 
-                $('submitButton').disabled = true;
+                $("submitButton").disabled = true;
 
                 new Request({
-                    url: 'api/v2/rss/addFeed',
-                    method: 'post',
+                    url: "api/v2/rss/addFeed",
+                    method: "post",
                     data: {
                         url: feedURL,
-                        path: path ? (path + '\\' + feedURL) : ''
+                        path: path ? (path + "\\" + feedURL) : ""
                     },
                     onSuccess: (response) => {
                         window.parent.qBittorrent.Rss.updateRssFeedList();
@@ -56,7 +56,7 @@
                     onFailure: (response) => {
                         if (response.status === 409)
                             alert(response.responseText);
-                        $('submitButton').disabled = false;
+                        $("submitButton").disabled = false;
                     }
                 }).send();
             });

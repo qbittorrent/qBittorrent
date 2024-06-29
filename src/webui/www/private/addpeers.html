@@ -8,42 +8,42 @@
     <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
     <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script>
-        'use strict';
+        "use strict";
 
         new Keyboard({
-            defaultEventType: 'keydown',
+            defaultEventType: "keydown",
             events: {
-                'Escape': function(event) {
+                "Escape": function(event) {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 },
-                'Esc': function(event) {
+                "Esc": function(event) {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 }
             }
         }).activate();
 
-        window.addEvent('domready', function() {
-            const hash = new URI().getData('hash');
+        window.addEvent("domready", () => {
+            const hash = new URI().getData("hash");
             if (!hash)
                 return false;
 
-            $('peers').focus();
+            $("peers").focus();
 
-            $('addPeersOk').addEvent('click', function(e) {
+            $("addPeersOk").addEvent("click", (e) => {
                 new Event(e).stop();
 
-                const peers = $('peers').get('value').trim().split(/[\r\n]+/);
+                const peers = $("peers").get("value").trim().split(/[\r\n]+/);
                 if (peers.length === 0)
                     return;
 
                 new Request({
-                    url: 'api/v2/torrents/addPeers',
-                    method: 'post',
+                    url: "api/v2/torrents/addPeers",
+                    method: "post",
                     data: {
                         hashes: hash,
-                        peers: peers.join('|')
+                        peers: peers.join("|")
                     },
                     onFailure: function() {
                         alert("QBT_TR(Unable to add peers. Please ensure you are adhering to the IP:port format.)QBT_TR[CONTEXT=HttpServer]");

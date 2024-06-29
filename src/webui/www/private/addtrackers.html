@@ -8,33 +8,33 @@
     <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
     <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script>
-        'use strict';
+        "use strict";
 
-        window.addEvent('domready', function() {
+        window.addEvent("domready", () => {
             new Keyboard({
-                defaultEventType: 'keydown',
+                defaultEventType: "keydown",
                 events: {
-                    'Escape': function(event) {
+                    "Escape": function(event) {
                         window.parent.qBittorrent.Client.closeWindows();
                         event.preventDefault();
                     },
-                    'Esc': function(event) {
+                    "Esc": function(event) {
                         window.parent.qBittorrent.Client.closeWindows();
                         event.preventDefault();
                     }
                 }
             }).activate();
 
-            $('trackersUrls').focus();
-            $('addTrackersButton').addEvent('click', function(e) {
+            $("trackersUrls").focus();
+            $("addTrackersButton").addEvent("click", (e) => {
                 new Event(e).stop();
-                const hash = new URI().getData('hash');
+                const hash = new URI().getData("hash");
                 new Request({
-                    url: 'api/v2/torrents/addTrackers',
-                    method: 'post',
+                    url: "api/v2/torrents/addTrackers",
+                    method: "post",
                     data: {
                         hash: hash,
-                        urls: $('trackersUrls').value
+                        urls: $("trackersUrls").value
                     },
                     onComplete: function() {
                         window.parent.qBittorrent.Client.closeWindows();

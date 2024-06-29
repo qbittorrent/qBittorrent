@@ -1,4 +1,4 @@
-#VERSION: 1.45
+#VERSION: 1.46
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -37,17 +37,21 @@ import importlib
 import pathlib
 import sys
 import urllib.parse
+from collections.abc import Iterable, Iterator, Sequence
+from enum import Enum
 from glob import glob
 from multiprocessing import Pool, cpu_count
 from os import path
+from typing import Dict, List, Optional, Set, Tuple, Type
 
-THREADED = True
+THREADED: bool = True
 try:
-    MAX_THREADS = cpu_count()
+    MAX_THREADS: int = cpu_count()
 except NotImplementedError:
     MAX_THREADS = 1
 
-CATEGORIES = {'all', 'movies', 'tv', 'music', 'games', 'anime', 'software', 'pictures', 'books'}
+Category = Enum('Category', ['all', 'movies', 'tv', 'music', 'games', 'anime', 'software', 'pictures', 'books'])
+
 
 ################################################################################
 # Every engine should have a "search" method taking
@@ -58,11 +62,29 @@ CATEGORIES = {'all', 'movies', 'tv', 'music', 'games', 'anime', 'software', 'pic
 ################################################################################
 
 
+EngineName = str
+
+
+class Engine:
+    url: str
+    name: EngineName
+    supported_categories: Dict[str, str]
+
+    def __init__(self) -> None:
+        pass
+
+    def search(self, what: str, cat: str = Category.all.name) -> None:
+        pass
+
+    def download_torrent(self, info: str) -> None:
+        pass
+
+
 # global state
-engine_dict = dict()
+engine_dict: Dict[EngineName, Optional[Type[Engine]]] = {}
 
 
-def list_engines():
+def list_engines() -> List[EngineName]:
     """ List all engines,
         including broken engines that fail on import
 
@@ -81,10 +103,10 @@ def list_engines():
     return found_engines
 
 
-def get_engine(engine_name):
-    #global engine_dict
+def get_engine(engine_name: EngineName) -> Optional[Type[Engine]]:
     if engine_name in engine_dict:
         return engine_dict[engine_name]
+
     # when import fails, engine is None
     engine = None
     try:
@@ -97,35 +119,37 @@ def get_engine(engine_name):
     return engine
 
 
-def initialize_engines(found_engines):
+def initialize_engines(found_engines: Iterable[EngineName]) -> Set[EngineName]:
     """ Import available engines
 
-        Return list of available engines
+        Return set of available engines
     """
-    supported_engines = []
+    supported_engines = set()
 
     for engine_name in found_engines:
         # import engine
         engine = get_engine(engine_name)
         if engine is None:
             continue
-        supported_engines.append(engine_name)
+        supported_engines.add(engine_name)
 
     return supported_engines
 
 
-def engines_to_xml(supported_engines):
+def engines_to_xml(supported_engines: Iterable[EngineName]) -> Iterator[str]:
     """ Generates xml for supported engines """
     tab = " " * 4
 
     for engine_name in supported_engines:
         search_engine = get_engine(engine_name)
+        if search_engine is None:
+            continue
 
         supported_categories = ""
         if hasattr(search_engine, "supported_categories"):
             supported_categories = " ".join((key
                                              for key in search_engine.supported_categories.keys()
-                                             if key != "all"))
+                                             if key != Category.all.name))
 
         yield "".join((tab, "<", engine_name, ">\n",
                        tab, tab, "<name>", search_engine.name, "</name>\n",
@@ -134,7 +158,7 @@ def engines_to_xml(supported_engines):
                        tab, "</", engine_name, ">\n"))
 
 
-def displayCapabilities(supported_engines):
+def displayCapabilities(supported_engines: Iterable[EngineName]) -> None:
     """
     Display capabilities in XML format
     <capabilities>
@@ -151,21 +175,24 @@ def displayCapabilities(supported_engines):
     print(xml)
 
 
-def run_search(engine_list):
+def run_search(engine_list: Tuple[Optional[Type[Engine]], str, Category]) -> bool:
     """ Run search in engine
 
-        @param engine_list List with engine, query and category
+        @param engine_list Tuple with engine, query and category
 
         @retval False if any exceptions occurred
         @retval True  otherwise
     """
-    engine, what, cat = engine_list
+    engine_class, what, cat = engine_list
+    if engine_class is None:
+        return False
+
     try:
-        engine = engine()
+        engine = engine_class()
         # avoid exceptions due to invalid category
         if hasattr(engine, 'supported_categories'):
-            if cat in engine.supported_categories:
-                engine.search(what, cat)
+            if cat.name in engine.supported_categories:
+                engine.search(what, cat.name)
         else:
             engine.search(what)
 
@@ -174,7 +201,7 @@ def run_search(engine_list):
         return False
 
 
-def main(args):
+def main(args: Sequence[str]) -> None:
     # qbt tend to run this script in 'isolate mode' so append the current path manually
     current_path = str(pathlib.Path(__file__).parent.resolve())
     if current_path not in sys.path:
@@ -182,7 +209,7 @@ def main(args):
 
     found_engines = list_engines()
 
-    def show_usage():
+    def show_usage() -> None:
         print("./nova2.py all|engine1[,engine2]* <category> <keywords>", file=sys.stderr)
         print("found engines: " + ','.join(found_engines), file=sys.stderr)
         print("to list available engines: ./nova2.py --capabilities [--names]", file=sys.stderr)
@@ -190,7 +217,6 @@ def main(args):
     if not args:
         show_usage()
         sys.exit(1)
-
     elif args[0] == "--capabilities":
         supported_engines = initialize_engines(found_engines)
         if "--names" in args:
@@ -198,14 +224,14 @@ def main(args):
             return
         displayCapabilities(supported_engines)
         return
-
     elif len(args) < 3:
         show_usage()
         sys.exit(1)
 
     cat = args[1].lower()
-
-    if cat not in CATEGORIES:
+    try:
+        category = Category[cat]
+    except KeyError:
         print(" - ".join(('Invalid category', cat)), file=sys.stderr)
         sys.exit(1)
 
@@ -223,16 +249,18 @@ def main(args):
         engines_list = initialize_engines(found_engines)
     else:
         # discard not-found engines
-        engines_list = [engine for engine in engines_list if engine in found_engines]
+        engines_list = {engine for engine in engines_list if engine in found_engines}
 
     what = urllib.parse.quote(' '.join(args[2:]))
+    params = ((get_engine(engine_name), what, category) for engine_name in engines_list)
+
     if THREADED:
         # child process spawning is controlled min(number of searches, number of cpu)
         with Pool(min(len(engines_list), MAX_THREADS)) as pool:
-            pool.map(run_search, ([get_engine(engine_name), what, cat] for engine_name in engines_list))
+            pool.map(run_search, params)
     else:
         # py3 note: map is needed to be evaluated for content to be executed
-        all(map(run_search, ([get_engine(engine_name), what, cat] for engine_name in engines_list)))
+        all(map(run_search, params))
 
 
 if __name__ == "__main__":

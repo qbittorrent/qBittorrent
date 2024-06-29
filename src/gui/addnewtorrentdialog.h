@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -35,6 +35,7 @@
 
 #include "base/path.h"
 #include "base/settingvalue.h"
+#include "filterpatternformat.h"
 
 class LineEdit;
 
@@ -92,6 +93,8 @@ private:
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = {});
     void setupTreeview();
     void saveTorrentFile();
+    void showContentFilterContextMenu();
+    void setContentFilterPattern();
 
     Ui::AddNewTorrentDialog *m_ui = nullptr;
     std::unique_ptr<TorrentContentAdaptor> m_contentAdaptor;
@@ -107,4 +110,5 @@ private:
     SettingValue<bool> m_storeRememberLastSavePath;
     SettingValue<QByteArray> m_storeTreeHeaderState;
     SettingValue<QByteArray> m_storeSplitterState;
+    SettingValue<FilterPatternFormat> m_storeFilterPatternFormat;
 };

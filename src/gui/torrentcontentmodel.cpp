@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -37,17 +37,12 @@
 #include <QPointer>
 #include <QScopeGuard>
 
-#if defined(Q_OS_WIN)
-#include <windows.h>
-#include <shellapi.h>
-#else
-#include <QMimeDatabase>
-#include <QMimeType>
-#endif
-
-#if defined Q_OS_WIN || defined Q_OS_MACOS
+#if defined(Q_OS_MACOS)
 #define QBT_PIXMAP_CACHE_FOR_FILE_ICONS
 #include <QPixmapCache>
+#elif !defined(Q_OS_WIN)
+#include <QMimeDatabase>
+#include <QMimeType>
 #endif
 
 #include "base/bittorrent/downloadpriority.h"
@@ -116,27 +111,8 @@ namespace
     };
 #endif // QBT_PIXMAP_CACHE_FOR_FILE_ICONS
 
-#if defined(Q_OS_WIN)
-    // See QTBUG-25319 for explanation why this is required
-    class WinShellFileIconProvider final : public CachingFileIconProvider
-    {
-        QPixmap pixmapForExtension(const QString &ext) const override
-        {
-            const std::wstring extWStr = QString(u'.' + ext).toStdWString();
-
-            SHFILEINFOW sfi {};
-            const HRESULT hr = ::SHGetFileInfoW(extWStr.c_str(),
-                FILE_ATTRIBUTE_NORMAL, &sfi, sizeof(sfi), (SHGFI_ICON | SHGFI_USEFILEATTRIBUTES));
-            if (FAILED(hr))
-                return {};
-
-            const auto iconPixmap = QPixmap::fromImage(QImage::fromHICON(sfi.hIcon));
-            ::DestroyIcon(sfi.hIcon);
-            return iconPixmap;
-        }
-    };
-#elif defined(Q_OS_MACOS)
-    // There is a similar bug on macOS, to be reported to Qt
+#if defined(Q_OS_MACOS)
+    // There is a bug on macOS, to be reported to Qt
     // https://github.com/qbittorrent/qBittorrent/pull/6156#issuecomment-316302615
     class MacFileIconProvider final : public CachingFileIconProvider
     {
@@ -145,7 +121,7 @@ namespace
             return MacUtils::pixmapForExtension(ext, QSize(32, 32));
         }
     };
-#else
+#elif !defined(Q_OS_WIN)
     /**
      * @brief Tests whether QFileIconProvider actually works
      *
@@ -189,7 +165,7 @@ TorrentContentModel::TorrentContentModel(QObject *parent)
     : QAbstractItemModel(parent)
     , m_rootItem(new TorrentContentModelFolder(QVector<QString>({ tr("Name"), tr("Total Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
 #if defined(Q_OS_WIN)
-    , m_fileIconProvider {new WinShellFileIconProvider}
+    , m_fileIconProvider {new QFileIconProvider}
 #elif defined(Q_OS_MACOS)
     , m_fileIconProvider {new MacFileIconProvider}
 #else

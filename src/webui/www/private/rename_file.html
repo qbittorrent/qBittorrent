@@ -10,60 +10,60 @@
     <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
     <script src="scripts/filesystem.js?v=${CACHEID}"></script>
     <script>
-        'use strict';
+        "use strict";
 
         new Keyboard({
-            defaultEventType: 'keydown',
+            defaultEventType: "keydown",
             events: {
-                'Enter': function(event) {
-                    $('renameButton').click();
+                "Enter": function(event) {
+                    $("renameButton").click();
                     event.preventDefault();
                 },
-                'Escape': function(event) {
+                "Escape": function(event) {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 },
-                'Esc': function(event) {
+                "Esc": function(event) {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 }
             }
         }).activate();
 
-        window.addEvent('domready', function() {
-            const hash = new URI().getData('hash');
-            const oldPath = new URI().getData('path');
-            const isFolder = ((new URI().getData('isFolder')) === 'true');
+        window.addEvent("domready", () => {
+            const hash = new URI().getData("hash");
+            const oldPath = new URI().getData("path");
+            const isFolder = ((new URI().getData("isFolder")) === "true");
 
             const oldName = window.qBittorrent.Filesystem.fileName(oldPath);
-            $('rename').value = oldName;
-            $('rename').focus();
+            $("rename").value = oldName;
+            $("rename").focus();
             if (!isFolder)
-                $('rename').setSelectionRange(0, oldName.lastIndexOf('.'));
+                $("rename").setSelectionRange(0, oldName.lastIndexOf("."));
 
-            $('renameButton').addEvent('click', function(e) {
+            $("renameButton").addEvent("click", (e) => {
                 new Event(e).stop();
                 // check field
-                const newName = $('rename').value.trim();
-                if (newName === '') {
-                    alert('QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]');
+                const newName = $("rename").value.trim();
+                if (newName === "") {
+                    alert("QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
 
                 if (newName === oldName) {
-                    alert('QBT_TR(Name is unchanged)QBT_TR[CONTEXT=HttpServer]');
+                    alert("QBT_TR(Name is unchanged)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
 
-                $('renameButton').disabled = true;
+                $("renameButton").disabled = true;
 
                 const parentPath = window.qBittorrent.Filesystem.folderName(oldPath);
                 const newPath = parentPath
                     ? parentPath + window.qBittorrent.Filesystem.PathSeparator + newName
                     : newName;
                 new Request({
-                    url: isFolder ? 'api/v2/torrents/renameFolder' : 'api/v2/torrents/renameFile',
-                    method: 'post',
+                    url: isFolder ? "api/v2/torrents/renameFolder" : "api/v2/torrents/renameFile",
+                    method: "post",
                     data: {
                         hash: hash,
                         oldPath: oldPath,
@@ -73,8 +73,8 @@
                         window.parent.qBittorrent.Client.closeWindows();
                     },
                     onFailure: function() {
-                        alert('QBT_TR(Failed to update name)QBT_TR[CONTEXT=HttpServer]');
-                        $('renameButton').disabled = false;
+                        alert("QBT_TR(Failed to update name)QBT_TR[CONTEXT=HttpServer]");
+                        $("renameButton").disabled = false;
                     }
                 }).send();
             });

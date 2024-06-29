@@ -8,23 +8,23 @@
     <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
     <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script>
-        'use strict';
+        "use strict";
 
-        window.addEvent('domready', () => {
-            const rules = new URI().getData('rules').split('|');
+        window.addEvent("domready", () => {
+            const rules = new URI().getData("rules").split("|");
 
-            $('cancelBtn').focus();
-            $('cancelBtn').addEvent('click', (e) => {
+            $("cancelBtn").focus();
+            $("cancelBtn").addEvent("click", (e) => {
                 new Event(e).stop();
-                window.parent.MochaUI.closeWindow(window.parent.$('removeRulePage'));
+                window.parent.MochaUI.closeWindow(window.parent.$("removeRulePage"));
             });
-            $('confirmBtn').addEvent('click', (e) => {
+            $("confirmBtn").addEvent("click", (e) => {
                 new Event(e).stop();
                 let completionCount = 0;
                 rules.forEach((rule) => {
                     new Request({
-                        url: 'api/v2/rss/removeRule',
-                        method: 'post',
+                        url: "api/v2/rss/removeRule",
+                        method: "post",
                         data: {
                             ruleName: decodeURIComponent(rule)
                         },
@@ -32,7 +32,7 @@
                             ++completionCount;
                             if (completionCount === rules.length) {
                                 window.parent.qBittorrent.RssDownloader.updateRulesList();
-                                window.parent.MochaUI.closeWindow(window.parent.$('removeRulePage'));
+                                window.parent.MochaUI.closeWindow(window.parent.$("removeRulePage"));
                             }
                         }
                     }).send();

@@ -1791,12 +1791,13 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
         const Path filePath = actualFilePath.removedExtension(QB_EXT);
         m_filePaths.append(filePath);
 
-        lt::download_priority_t &nativePriority = p.file_priorities[LT::toUnderlyingType(nativeIndex)];
-        if ((nativePriority != lt::dont_download) && m_session->isFilenameExcluded(filePath.filename()))
-            nativePriority = lt::dont_download;
-        const auto priority = LT::fromNative(nativePriority);
-        m_filePriorities.append(priority);
+        m_filePriorities.append(LT::fromNative(p.file_priorities[LT::toUnderlyingType(nativeIndex)]));
     }
+
+    m_session->applyFilenameFilter(fileNames, m_filePriorities);
+    for (int i = 0; i < m_filePriorities.size(); ++i)
+        p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = LT::toNative(m_filePriorities[i]);
+
     p.save_path = savePath.toString().toStdString();
     p.ti = metadata;
 

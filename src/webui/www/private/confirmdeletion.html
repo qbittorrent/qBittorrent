@@ -8,73 +8,73 @@
     <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
     <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script>
-        'use strict';
+        "use strict";
 
         function setRememberBtnEnabled(enable) {
-            const btn = $('rememberBtn');
+            const btn = $("rememberBtn");
             btn.disabled = !enable;
 
-            const icon = btn.getElementsByTagName('path')[0];
+            const icon = btn.getElementsByTagName("path")[0];
             if (enable)
-                icon.style.removeProperty('fill');
+                icon.style.removeProperty("fill");
             else
                 icon.style.fill = "var(--color-border-default)";
         }
 
-        window.addEvent('domready', function() {
+        window.addEvent("domready", () => {
             new Request({
-                url: 'images/object-locked.svg',
-                method: 'get',
+                url: "images/object-locked.svg",
+                method: "get",
                 onSuccess: function(text, xml) {
                     const newIcon = xml.childNodes[0];
-                    newIcon.style.height = '24px';
-                    newIcon.style.width = '24px';
-                    $('rememberBtn').appendChild(newIcon);
+                    newIcon.style.height = "24px";
+                    newIcon.style.width = "24px";
+                    $("rememberBtn").appendChild(newIcon);
                     setRememberBtnEnabled(false);
                 }
             }).send();
 
-            const isDeletingFiles = (new URI().getData('deleteFiles') === "true");
-            $('deleteFromDiskCB').checked = isDeletingFiles;
+            const isDeletingFiles = (new URI().getData("deleteFiles") === "true");
+            $("deleteFromDiskCB").checked = isDeletingFiles;
 
             const prefCache = window.parent.qBittorrent.Cache.preferences.get();
             let prefDeleteContentFiles = prefCache.delete_torrent_content_files;
 
-            $('deleteFromDiskCB').checked ||= prefDeleteContentFiles;
-            $('deleteFromDiskCB').addEvent('click', function(e) {
-                setRememberBtnEnabled($('deleteFromDiskCB').checked !== prefDeleteContentFiles);
+            $("deleteFromDiskCB").checked ||= prefDeleteContentFiles;
+            $("deleteFromDiskCB").addEvent("click", (e) => {
+                setRememberBtnEnabled($("deleteFromDiskCB").checked !== prefDeleteContentFiles);
             });
 
             // Set current "Delete files" choice as the default
-            $('rememberBtn').addEvent('click', function(e) {
+            $("rememberBtn").addEvent("click", (e) => {
                 window.parent.qBittorrent.Cache.preferences.set({
                     data: {
-                        'delete_torrent_content_files': $('deleteFromDiskCB').checked
+                        "delete_torrent_content_files": $("deleteFromDiskCB").checked
                     },
                     onSuccess: function() {
-                        prefDeleteContentFiles = $('deleteFromDiskCB').checked;
+                        prefDeleteContentFiles = $("deleteFromDiskCB").checked;
                         setRememberBtnEnabled(false);
                     }
                 });
             });
 
-            const hashes = new URI().getData('hashes').split('|');
-            $('cancelBtn').focus();
-            $('cancelBtn').addEvent('click', function(e) {
+            const hashes = new URI().getData("hashes").split("|");
+            $("cancelBtn").focus();
+            $("cancelBtn").addEvent("click", (e) => {
                 new Event(e).stop();
                 window.parent.qBittorrent.Client.closeWindows();
             });
-            $('confirmBtn').addEvent('click', function(e) {
+            $("confirmBtn").addEvent("click", (e) => {
                 parent.torrentsTable.deselectAll();
                 new Event(e).stop();
-                const cmd = 'api/v2/torrents/delete';
-                const deleteFiles = $('deleteFromDiskCB').get('checked');
+                const cmd = "api/v2/torrents/delete";
+                const deleteFiles = $("deleteFromDiskCB").get("checked");
                 new Request({
                     url: cmd,
-                    method: 'post',
+                    method: "post",
                     data: {
-                        'hashes': hashes.join('|'),
-                        'deleteFiles': deleteFiles
+                        "hashes": hashes.join("|"),
+                        "deleteFiles": deleteFiles
                     },
                     onComplete: function() {
                         window.parent.qBittorrent.Client.closeWindows();

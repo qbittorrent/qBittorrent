@@ -9,54 +9,54 @@
     <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
     <script>
-        'use strict';
+        "use strict";
 
         new Keyboard({
-            defaultEventType: 'keydown',
+            defaultEventType: "keydown",
             events: {
-                'Enter': function(event) {
-                    $('categoryNameButton').click();
+                "Enter": function(event) {
+                    $("categoryNameButton").click();
                     event.preventDefault();
                 },
-                'Escape': function(event) {
+                "Escape": function(event) {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 },
-                'Esc': function(event) {
+                "Esc": function(event) {
                     window.parent.qBittorrent.Client.closeWindows();
                     event.preventDefault();
                 }
             }
         }).activate();
 
-        window.addEvent('domready', function() {
-            const uriAction = window.qBittorrent.Misc.safeTrim(new URI().getData('action'));
-            const uriHashes = window.qBittorrent.Misc.safeTrim(new URI().getData('hashes'));
-            const uriCategoryName = window.qBittorrent.Misc.safeTrim(new URI().getData('categoryName'));
-            const uriSavePath = window.qBittorrent.Misc.safeTrim(new URI().getData('savePath'));
+        window.addEvent("domready", () => {
+            const uriAction = window.qBittorrent.Misc.safeTrim(new URI().getData("action"));
+            const uriHashes = window.qBittorrent.Misc.safeTrim(new URI().getData("hashes"));
+            const uriCategoryName = window.qBittorrent.Misc.safeTrim(new URI().getData("categoryName"));
+            const uriSavePath = window.qBittorrent.Misc.safeTrim(new URI().getData("savePath"));
 
             if (uriAction === "edit") {
                 if (!uriCategoryName)
                     return false;
 
-                $('categoryName').set('disabled', true);
-                $('categoryName').set('value', window.qBittorrent.Misc.escapeHtml(uriCategoryName));
-                $('savePath').set('value', window.qBittorrent.Misc.escapeHtml(uriSavePath));
-                $('savePath').focus();
+                $("categoryName").set("disabled", true);
+                $("categoryName").set("value", window.qBittorrent.Misc.escapeHtml(uriCategoryName));
+                $("savePath").set("value", window.qBittorrent.Misc.escapeHtml(uriSavePath));
+                $("savePath").focus();
             }
             else if (uriAction === "createSubcategory") {
-                $('categoryName').set('value', window.qBittorrent.Misc.escapeHtml(uriCategoryName));
-                $('categoryName').focus();
+                $("categoryName").set("value", window.qBittorrent.Misc.escapeHtml(uriCategoryName));
+                $("categoryName").focus();
             }
             else {
-                $('categoryName').focus();
+                $("categoryName").focus();
             }
 
-            $('categoryNameButton').addEvent('click', function(e) {
+            $("categoryNameButton").addEvent("click", (e) => {
                 new Event(e).stop();
 
-                const savePath = $('savePath').value.trim();
-                const categoryName = $('categoryName').value.trim();
+                const savePath = $("savePath").value.trim();
+                const categoryName = $("categoryName").value.trim();
 
                 const verifyCategoryName = function(name) {
                     if ((name === null) || (name === ""))
@@ -74,16 +74,16 @@
                             return;
 
                         new Request({
-                            url: 'api/v2/torrents/createCategory',
-                            method: 'post',
+                            url: "api/v2/torrents/createCategory",
+                            method: "post",
                             data: {
                                 category: categoryName,
                                 savePath: savePath
                             },
                             onSuccess: function() {
                                 new Request({
-                                    url: 'api/v2/torrents/setCategory',
-                                    method: 'post',
+                                    url: "api/v2/torrents/setCategory",
+                                    method: "post",
                                     data: {
                                         hashes: uriHashes,
                                         category: categoryName
@@ -104,8 +104,8 @@
                             return;
 
                         new Request({
-                            url: 'api/v2/torrents/createCategory',
-                            method: 'post',
+                            url: "api/v2/torrents/createCategory",
+                            method: "post",
                             data: {
                                 category: categoryName,
                                 savePath: savePath
@@ -117,8 +117,8 @@
                         break;
                     case "edit":
                         new Request({
-                            url: 'api/v2/torrents/editCategory',
-                            method: 'post',
+                            url: "api/v2/torrents/editCategory",
+                            method: "post",
                             data: {
                                 category: uriCategoryName, // category name can't be changed
                                 savePath: savePath
