@@ -130,7 +130,7 @@ bool Path::isRelative() const
 
 bool Path::exists() const
 {
-    return !isEmpty() && QFileInfo::exists(m_pathStr);
+    return !isValid() && QFileInfo::exists(m_pathStr);
 }
 
 Path Path::rootItem() const
