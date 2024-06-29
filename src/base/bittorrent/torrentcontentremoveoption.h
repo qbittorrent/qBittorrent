@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,30 +28,23 @@
 
 #pragma once
 
-#include <QDialog>
+#include <QMetaEnum>
 
-#include "ui_deletionconfirmationdialog.h"
-
-namespace Ui
+namespace BitTorrent
 {
-    class DeletionConfirmationDialog;
+    // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
+    // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
+    // https://www.kdab.com/new-qt-5-8-meta-object-support-namespaces/#comment-143779
+    inline namespace TorrentContentRemoveOptionNS
+    {
+        Q_NAMESPACE
+
+        enum class TorrentContentRemoveOption
+        {
+            Delete,
+            MoveToTrash
+        };
+
+        Q_ENUM_NS(TorrentContentRemoveOption)
+    }
 }
-
-class DeletionConfirmationDialog final : public QDialog
-{
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(DeletionConfirmationDialog)
-
-public:
-    DeletionConfirmationDialog(QWidget *parent, int size, const QString &name, bool defaultDeleteFiles);
-    ~DeletionConfirmationDialog() override;
-
-    bool isRemoveContentSelected() const;
-
-private slots:
-    void updateRememberButtonState();
-    void on_rememberBtn_clicked();
-
-private:
-    Ui::DeletionConfirmationDialog *m_ui = nullptr;
-};

@@ -986,6 +986,21 @@ PathList TorrentImpl::filePaths() const
     return m_filePaths;
 }
 
+PathList TorrentImpl::actualFilePaths() const
+{
+    if (!hasMetadata())
+        return {};
+
+    PathList paths;
+    paths.reserve(filesCount());
+
+    const lt::file_storage files = nativeTorrentInfo()->files();
+    for (const lt::file_index_t &nativeIndex : asConst(m_torrentInfo.nativeIndexes()))
+        paths.emplaceBack(files.file_path(nativeIndex));
+
+    return paths;
+}
+
 QVector<DownloadPriority> TorrentImpl::filePriorities() const
 {
     return m_filePriorities;

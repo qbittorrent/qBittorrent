@@ -38,6 +38,8 @@ add_library(qbt_base STATIC
     bittorrent/torrent.h
     bittorrent/torrentcontenthandler.h
     bittorrent/torrentcontentlayout.h
+    bittorrent/torrentcontentremoveoption.h
+    bittorrent/torrentcontentremover.h
     bittorrent/torrentcreationmanager.h
     bittorrent/torrentcreationtask.h
     bittorrent/torrentcreator.h
@@ -145,6 +147,7 @@ add_library(qbt_base STATIC
     bittorrent/sslparameters.cpp
     bittorrent/torrent.cpp
     bittorrent/torrentcontenthandler.cpp
+    bittorrent/torrentcontentremover.cpp
     bittorrent/torrentcreationmanager.cpp
     bittorrent/torrentcreationtask.cpp
     bittorrent/torrentcreator.cpp

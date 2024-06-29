@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -30,6 +31,7 @@
 
 #include <QPushButton>
 
+#include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/preferences.h"
 #include "uithememanager.h"
@@ -53,8 +55,8 @@ DeletionConfirmationDialog::DeletionConfirmationDialog(QWidget *parent, const in
     m_ui->rememberBtn->setIcon(UIThemeManager::instance()->getIcon(u"object-locked"_s));
     m_ui->rememberBtn->setIconSize(Utils::Gui::mediumIconSize());
 
-    m_ui->checkPermDelete->setChecked(defaultDeleteFiles || Preferences::instance()->deleteTorrentFilesAsDefault());
-    connect(m_ui->checkPermDelete, &QCheckBox::clicked, this, &DeletionConfirmationDialog::updateRememberButtonState);
+    m_ui->checkRemoveContent->setChecked(defaultDeleteFiles || Preferences::instance()->removeTorrentContent());
+    connect(m_ui->checkRemoveContent, &QCheckBox::clicked, this, &DeletionConfirmationDialog::updateRememberButtonState);
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Remove"));
     m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setFocus();
 
@@ -67,18 +69,18 @@ DeletionConfirmationDialog::~DeletionConfirmationDialog()
     delete m_ui;
 }
 
-bool DeletionConfirmationDialog::isDeleteFileSelected() const
+bool DeletionConfirmationDialog::isRemoveContentSelected() const
 {
-    return m_ui->checkPermDelete->isChecked();
+    return m_ui->checkRemoveContent->isChecked();
 }
 
 void DeletionConfirmationDialog::updateRememberButtonState()
 {
-    m_ui->rememberBtn->setEnabled(m_ui->checkPermDelete->isChecked() != Preferences::instance()->deleteTorrentFilesAsDefault());
+    m_ui->rememberBtn->setEnabled(m_ui->checkRemoveContent->isChecked() != Preferences::instance()->removeTorrentContent());
 }
 
 void DeletionConfirmationDialog::on_rememberBtn_clicked()
 {
-    Preferences::instance()->setDeleteTorrentFilesAsDefault(m_ui->checkPermDelete->isChecked());
+    Preferences::instance()->setRemoveTorrentContent(m_ui->checkRemoveContent->isChecked());
     m_ui->rememberBtn->setEnabled(false);
 }
