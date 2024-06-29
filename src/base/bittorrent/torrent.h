@@ -228,6 +228,7 @@ namespace BitTorrent
         virtual void setShareLimitAction(ShareLimitAction action) = 0;
 
         virtual PathList filePaths() const = 0;
+        virtual PathList actualFilePaths() const = 0;
 
         virtual TorrentInfo info() const = 0;
         virtual bool isFinished() const = 0;
