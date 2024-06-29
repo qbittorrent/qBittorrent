@@ -56,6 +56,19 @@
 #include "gui/macutilities.h"
 #endif
 
+namespace
+{
+    QList<QPersistentModelIndex> toPersistentIndexes(const QModelIndexList &indexes)
+    {
+        QList<QPersistentModelIndex> persistentIndexes;
+        persistentIndexes.reserve(indexes.size());
+        for (const QModelIndex &index : indexes)
+            persistentIndexes.append(index);
+
+        return persistentIndexes;
+    }
+}
+
 TorrentContentWidget::TorrentContentWidget(QWidget *parent)
     : QTreeView(parent)
 {
@@ -219,9 +232,9 @@ void TorrentContentWidget::keyPressEvent(QKeyEvent *event)
 
     const Qt::CheckState state = (static_cast<Qt::CheckState>(value.toInt()) == Qt::Checked)
                                  ? Qt::Unchecked : Qt::Checked;
-    const QModelIndexList selection = selectionModel()->selectedRows(TorrentContentModelItem::COL_NAME);
+    const QList<QPersistentModelIndex> selection = toPersistentIndexes(selectionModel()->selectedRows(TorrentContentModelItem::COL_NAME));
 
-    for (const QModelIndex &index : selection)
+    for (const QPersistentModelIndex &index : selection)
         model()->setData(index, state, Qt::CheckStateRole);
 }
 
@@ -248,10 +261,10 @@ void TorrentContentWidget::renameSelectedFile()
 
 void TorrentContentWidget::applyPriorities(const BitTorrent::DownloadPriority priority)
 {
-    const QModelIndexList selectedRows = selectionModel()->selectedRows(0);
-    for (const QModelIndex &index : selectedRows)
+    const QList<QPersistentModelIndex> selectedRows = toPersistentIndexes(selectionModel()->selectedRows(Priority));
+    for (const QPersistentModelIndex &index : selectedRows)
     {
-        model()->setData(index.sibling(index.row(), Priority), static_cast<int>(priority));
+        model()->setData(index, static_cast<int>(priority));
     }
 }
 
@@ -261,7 +274,7 @@ void TorrentContentWidget::applyPrioritiesByOrder()
     // a download priority that will apply to each item. The number of groups depends on how
     // many "download priority" are available to be assigned
 
-    const QModelIndexList selectedRows = selectionModel()->selectedRows(0);
+    const QList<QPersistentModelIndex> selectedRows = toPersistentIndexes(selectionModel()->selectedRows(Priority));
 
     const qsizetype priorityGroups = 3;
     const auto priorityGroupSize = std::max<qsizetype>((selectedRows.length() / priorityGroups), 1);
@@ -283,8 +296,8 @@ void TorrentContentWidget::applyPrioritiesByOrder()
             break;
         }
 
-        const QModelIndex &index = selectedRows[i];
-        model()->setData(index.sibling(index.row(), Priority), static_cast<int>(priority));
+        const QPersistentModelIndex &index = selectedRows[i];
+        model()->setData(index, static_cast<int>(priority));
     }
 }
 
