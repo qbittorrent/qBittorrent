@@ -79,13 +79,12 @@
 <script>
     "use strict";
 
-    if (window.qBittorrent === undefined)
-        window.qBittorrent = {};
-
-    window.qBittorrent.SearchPlugins = (function() {
-        const exports = function() {
+    window.qBittorrent ??= {};
+    window.qBittorrent.SearchPlugins ??= (() => {
+        const exports = () => {
             return {
                 closeSearchWindow: closeSearchWindow,
+                setup: setup,
                 installPlugin: installPlugin,
                 checkForUpdates: checkForUpdates,
                 updateTable: updateTable
@@ -97,7 +96,7 @@
         let prevOffsetLeft;
         let prevOffsetTop;
 
-        const initSearchPlugins = function() {
+        const setup = function() {
             searchPluginsTable = new window.qBittorrent.DynamicTable.SearchPluginsTable();
             searchPluginsTableContextMenu = new window.qBittorrent.ContextMenu.SearchPluginsTableContextMenu({
                 targets: ".searchPluginsTableRow",
@@ -230,10 +229,9 @@
             setupSearchPluginTableEvents(true);
         };
 
-        initSearchPlugins();
-
         return exports();
     })();
-
     Object.freeze(window.qBittorrent.SearchPlugins);
+
+    window.qBittorrent.SearchPlugins.setup();
 </script>

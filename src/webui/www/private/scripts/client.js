@@ -25,10 +25,8 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined)
-    window.qBittorrent = {};
-
-window.qBittorrent.Client = (() => {
+window.qBittorrent ??= {};
+window.qBittorrent.Client ??= (() => {
     const exports = () => {
         return {
             closeWindows: closeWindows,

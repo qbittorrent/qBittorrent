@@ -18,12 +18,11 @@
 <script>
     "use strict";
 
-    if (window.qBittorrent === undefined)
-        window.qBittorrent = {};
-
-    window.qBittorrent.TransferList = (function() {
-        const exports = function() {
+    window.qBittorrent ??= {};
+    window.qBittorrent.TransferList ??= (() => {
+        const exports = () => {
             return {
+                setup: setup,
                 contextMenu: contextMenu,
             };
         };
@@ -111,10 +110,13 @@
             },
         });
 
-        torrentsTable.setup("torrentsTableDiv", "torrentsTableFixedHeaderDiv", contextMenu);
+        const setup = () => {
+            torrentsTable.setup("torrentsTableDiv", "torrentsTableFixedHeaderDiv", contextMenu);
+        };
 
         return exports();
     })();
-
     Object.freeze(window.qBittorrent.TransferList);
+
+    window.qBittorrent.TransferList.setup();
 </script>

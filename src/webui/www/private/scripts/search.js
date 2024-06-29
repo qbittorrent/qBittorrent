@@ -23,11 +23,9 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined)
-    window.qBittorrent = {};
-
-window.qBittorrent.Search = (function() {
-    const exports = function() {
+window.qBittorrent ??= {};
+window.qBittorrent.Search ??= (() => {
+    const exports = () => {
         return {
             startStopSearch: startStopSearch,
             manageSearchPlugins: manageSearchPlugins,
@@ -866,5 +864,4 @@ window.qBittorrent.Search = (function() {
 
     return exports();
 })();
-
 Object.freeze(window.qBittorrent.Search);

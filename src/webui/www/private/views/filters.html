@@ -44,11 +44,9 @@
 <script>
     "use strict";
 
-    if (window.qBittorrent === undefined)
-        window.qBittorrent = {};
-
-    window.qBittorrent.Filters = (function() {
-        const exports = function() {
+    window.qBittorrent ??= {};
+    window.qBittorrent.Filters ??= (() => {
+        const exports = () => {
             return {
                 categoriesFilterContextMenu: categoriesFilterContextMenu,
                 tagsFilterContextMenu: tagsFilterContextMenu,
@@ -163,6 +161,5 @@
 
         return exports();
     })();
-
     Object.freeze(window.qBittorrent.Filters);
 </script>

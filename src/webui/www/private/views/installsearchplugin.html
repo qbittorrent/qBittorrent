@@ -29,17 +29,16 @@
 <script>
     "use strict";
 
-    if (window.qBittorrent === undefined)
-        window.qBittorrent = {};
-
-    window.qBittorrent.InstallSearchPlugin = (function() {
-        const exports = function() {
+    window.qBittorrent ??= {};
+    window.qBittorrent.InstallSearchPlugin ??= (() => {
+        const exports = () => {
             return {
+                setup: setup,
                 newPluginOk: newPluginOk
             };
         };
 
-        const init = function() {
+        const setup = function() {
             new Keyboard({
                 defaultEventType: "keydown",
                 events: {
@@ -75,10 +74,9 @@
             }
         };
 
-        init();
-
         return exports();
     })();
-
     Object.freeze(window.qBittorrent.InstallSearchPlugin);
+
+    window.qBittorrent.InstallSearchPlugin.setup();
 </script>

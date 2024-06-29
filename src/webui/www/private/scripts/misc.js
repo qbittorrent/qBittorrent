@@ -28,11 +28,9 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined)
-    window.qBittorrent = {};
-
-window.qBittorrent.Misc = (function() {
-    const exports = function() {
+window.qBittorrent ??= {};
+window.qBittorrent.Misc ??= (() => {
+    const exports = () => {
         return {
             friendlyUnit: friendlyUnit,
             friendlyDuration: friendlyDuration,
@@ -230,5 +228,4 @@ window.qBittorrent.Misc = (function() {
 
     return exports();
 })();
-
 Object.freeze(window.qBittorrent.Misc);

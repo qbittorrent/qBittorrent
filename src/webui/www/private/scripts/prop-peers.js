@@ -28,11 +28,9 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined)
-    window.qBittorrent = {};
-
-window.qBittorrent.PropPeers = (function() {
-    const exports = function() {
+window.qBittorrent ??= {};
+window.qBittorrent.PropPeers ??= (() => {
+    const exports = () => {
         return {
             updateData: updateData
         };
@@ -182,5 +180,4 @@ window.qBittorrent.PropPeers = (function() {
 
     return exports();
 })();
-
 Object.freeze(window.qBittorrent.PropPeers);

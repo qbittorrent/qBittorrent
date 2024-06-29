@@ -1572,12 +1572,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 <script>
     "use strict";
 
-    if (window.qBittorrent === undefined)
-        window.qBittorrent = {};
-
-    window.qBittorrent.Preferences = (function() {
-        const exports = function() {
+    window.qBittorrent ??= {};
+    window.qBittorrent.Preferences ??= (() => {
+        const exports = () => {
             return {
+                setup: setup,
                 numberInputLimiter: numberInputLimiter,
                 updateFileLogEnabled: updateFileLogEnabled,
                 updateFileLogBackupEnabled: updateFileLogBackupEnabled,
@@ -1654,7 +1653,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         // Downloads tab
-        const watchedFoldersTable = new HtmlTable($("watched_folders_tab"));
+        let watchedFoldersTable;
 
         const updateTempDirEnabled = function() {
             const isTempDirEnabled = $("temppath_checkbox").checked;
@@ -2886,44 +2885,49 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             });
         };
 
-        // hide entries
-        const buildInfo = window.qBittorrent.Cache.buildInfo.get();
+        const setup = () => {
+            watchedFoldersTable = new HtmlTable($("watched_folders_tab"));
 
-        const libtorrentVersion = window.qBittorrent.Misc.parseVersion(buildInfo.libtorrent);
-        if (libtorrentVersion.valid) {
-            if (libtorrentVersion.major >= 2) {
-                $("rowDiskCache").style.display = "none";
-                $("rowDiskCacheExpiryInterval").style.display = "none";
-                $("rowCoalesceReadsAndWrites").style.display = "none";
+            const buildInfo = window.qBittorrent.Cache.buildInfo.get();
+
+            // hide entries
+            const libtorrentVersion = window.qBittorrent.Misc.parseVersion(buildInfo.libtorrent);
+            if (libtorrentVersion.valid) {
+                if (libtorrentVersion.major >= 2) {
+                    $("rowDiskCache").style.display = "none";
+                    $("rowDiskCacheExpiryInterval").style.display = "none";
+                    $("rowCoalesceReadsAndWrites").style.display = "none";
+                }
+                else {
+                    $("fieldsetI2p").style.display = "none";
+                    $("rowMemoryWorkingSetLimit").style.display = "none";
+                    $("rowHashingThreads").style.display = "none";
+                    $("rowDiskIOType").style.display = "none";
+                    $("rowI2pInboundQuantity").style.display = "none";
+                    $("rowI2pOutboundQuantity").style.display = "none";
+                    $("rowI2pInboundLength").style.display = "none";
+                    $("rowI2pOutboundLength").style.display = "none";
+                }
+
+                if (!((libtorrentVersion.major >= 2) && (libtorrentVersion.minor >= 0) && (libtorrentVersion.fix >= 6)))
+                    $("diskIOWriteModeWriteThrough").style.display = "none";
             }
-            else {
-                $("fieldsetI2p").style.display = "none";
-                $("rowMemoryWorkingSetLimit").style.display = "none";
-                $("rowHashingThreads").style.display = "none";
-                $("rowDiskIOType").style.display = "none";
-                $("rowI2pInboundQuantity").style.display = "none";
-                $("rowI2pOutboundQuantity").style.display = "none";
-                $("rowI2pInboundLength").style.display = "none";
-                $("rowI2pOutboundLength").style.display = "none";
-            }
 
-            if (!((libtorrentVersion.major >= 2) && (libtorrentVersion.minor >= 0) && (libtorrentVersion.fix >= 6)))
-                $("diskIOWriteModeWriteThrough").style.display = "none";
-        }
+            if ((buildInfo.platform !== "macos") && (buildInfo.platform !== "windows"))
+                $("rowMarkOfTheWeb").style.display = "none";
 
-        if ((buildInfo.platform !== "macos") && (buildInfo.platform !== "windows"))
-            $("rowMarkOfTheWeb").style.display = "none";
+            $("networkInterface").addEvent("change", function() {
+                updateInterfaceAddresses($(this).value, "");
+            });
 
-        $("networkInterface").addEvent("change", function() {
-            updateInterfaceAddresses($(this).value, "");
-        });
+            loadPreferences();
 
-        loadPreferences();
+            window.qBittorrent.pathAutofill.attachPathAutofill();
+        };
 
         return exports();
     })();
-
     Object.freeze(window.qBittorrent.Preferences);
 
-    window.qBittorrent.pathAutofill.attachPathAutofill();
+    window.qBittorrent.Preferences.setup();
 </script>
