@@ -98,6 +98,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     m_ui->mainSplitter->setCollapsible(0, false);
     m_ui->mainSplitter->setCollapsible(1, false);
     m_ui->mainSplitter->setCollapsible(2, true); // Only the preview list is collapsible
+    m_ui->listFeeds->setHeaderHidden(true);
 
     connect(m_ui->checkRegex, &QAbstractButton::toggled, this, &AutomatedRssDownloader::updateFieldsToolTips);
     connect(m_ui->ruleList, &QWidget::customContextMenuRequested, this, &AutomatedRssDownloader::displayRulesListMenu);
@@ -136,7 +137,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     connect(m_ui->spinIgnorePeriod, qOverload<int>(&QSpinBox::valueChanged)
             , this, &AutomatedRssDownloader::handleRuleDefinitionChanged);
 
-    connect(m_ui->listFeeds, &QListWidget::itemChanged, this, &AutomatedRssDownloader::handleFeedCheckStateChange);
+    connect(m_ui->listFeeds, &QTreeWidget::itemChanged, this, &AutomatedRssDownloader::handleFeedCheckStateChange);
 
     connect(m_ui->ruleList, &QListWidget::itemSelectionChanged, this, &AutomatedRssDownloader::updateRuleDefinitionBox);
     connect(m_ui->ruleList, &QListWidget::itemChanged, this, &AutomatedRssDownloader::handleRuleCheckStateChange);
@@ -204,15 +205,82 @@ void AutomatedRssDownloader::createRuleItem(const RSS::AutoDownloadRule &rule)
 void AutomatedRssDownloader::loadFeedList()
 {
     const QSignalBlocker feedListSignalBlocker(m_ui->listFeeds);
-
-    for (const auto *feed : asConst(RSS::Session::instance()->feeds()))
-    {
-        QListWidgetItem *item = new QListWidgetItem(feed->name(), m_ui->listFeeds);
-        item->setData(Qt::UserRole, feed->url());
-        item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsAutoTristate);
-    }
+    QTreeWidgetItem *rssRoot = createFeedTreeItem(RSS::Session::instance()->rootFolder(), nullptr);
+    loadFeedTree(rssRoot, RSS::Session::instance()->rootFolder());
 
     updateFeedList();
+}
+
+QTreeWidgetItem * AutomatedRssDownloader::createFeedTreeItem(const RSS::Item *rssItem, QTreeWidgetItem *parentItem)
+{
+    auto *item = new QTreeWidgetItem;
+    item->setData(0, Qt::UserRole, QVariant::fromValue(rssItem));
+    item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsAutoTristate);
+    item->setCheckState(0, Qt::Unchecked); // Init state for folders as we don't manually set them later
+
+    QIcon icon;
+    if(auto feed = qobject_cast<const RSS::Feed *>(rssItem))
+    {
+        const QPixmap pixmap{feed->iconPath().data()};
+        if(!pixmap.isNull())
+            icon = {pixmap};
+        else
+            icon = UIThemeManager::instance()->getIcon(u"application-rss"_qs);
+    }
+    else
+    {
+        icon = UIThemeManager::instance()->getIcon(u"directory"_qs);
+    }
+    item->setData(0, Qt::DecorationRole, icon);
+
+    if(!parentItem)
+    {
+        item->setData(0, Qt::DisplayRole, u"/"_qs);
+        m_ui->listFeeds->addTopLevelItem(item);
+        item->setExpanded(true);
+    }
+    else
+    {
+        item->setData(0, Qt::DisplayRole, rssItem->name());
+        parentItem->addChild(item);
+    }
+    return item;
+}
+
+void AutomatedRssDownloader::loadFeedTree(QTreeWidgetItem *parent, const RSS::Folder *rssParent)
+{
+    for (const auto *rssItem : asConst(rssParent->items()))
+    {
+        QTreeWidgetItem *item = createFeedTreeItem(rssItem, parent);
+
+        // Recursive call if this is a folder.
+        if (const auto *folder = qobject_cast<const RSS::Folder *>(rssItem))
+            loadFeedTree(item, folder);
+    }
+}
+
+QList<QTreeWidgetItem *> AutomatedRssDownloader::getAllFeedTreeItems(QTreeWidgetItem *parent) const
+{
+    QList<QTreeWidgetItem *> feedItems;
+    int nbChildren = (parent ? parent->childCount() : m_ui->listFeeds->topLevelItemCount());
+    for (int i = 0; i < nbChildren; ++i)
+    {
+        QTreeWidgetItem *item (parent ? parent->child(i) : m_ui->listFeeds->topLevelItem(i));
+        if (qobject_cast<RSS::Feed *>(item->data(0, Qt::UserRole).value<RSS::Item *>()))
+            feedItems << item;
+        else
+            feedItems << getAllFeedTreeItems(item);
+    }
+    return feedItems;
+}
+
+void AutomatedRssDownloader::sortTreeRecursively(QTreeWidgetItem *item)
+{
+    for (int i = 0; i < item->childCount(); i++) {
+        QTreeWidgetItem *child = item->child(i);
+        sortTreeRecursively(child);
+    }
+    item->sortChildren(0, Qt::AscendingOrder);
 }
 
 void AutomatedRssDownloader::updateFeedList()
@@ -228,33 +296,37 @@ void AutomatedRssDownloader::updateFeedList()
 
     bool enable = !selection.isEmpty();
 
-    for (int i = 0; i < m_ui->listFeeds->count(); ++i)
+    for (int i = 0; i < m_ui->listFeeds->topLevelItemCount(); ++i)
+        m_ui->listFeeds->topLevelItem(i)->setHidden(!enable);
+
+    for (QTreeWidgetItem* item: asConst(getAllFeedTreeItems()))
     {
-        QListWidgetItem *item = m_ui->listFeeds->item(i);
-        const QString feedURL = item->data(Qt::UserRole).toString();
-        item->setHidden(!enable);
-
-        bool allEnabled = true;
-        bool anyEnabled = false;
-
-        for (const QListWidgetItem *ruleItem : asConst(selection))
+        if (auto rssItem = qobject_cast<const RSS::Feed *>(item->data(0, Qt::UserRole).value<RSS::Item *>()))
         {
-            const auto rule = RSS::AutoDownloader::instance()->ruleByName(ruleItem->text());
-            if (rule.feedURLs().contains(feedURL))
-                anyEnabled = true;
-            else
-                allEnabled = false;
-        }
+            const QString feedURL = rssItem->url();
+            item->setHidden(!enable);
 
-        if (anyEnabled && allEnabled)
-            item->setCheckState(Qt::Checked);
-        else if (anyEnabled)
-            item->setCheckState(Qt::PartiallyChecked);
-        else
-            item->setCheckState(Qt::Unchecked);
+            bool allEnabled = true;
+            bool anyEnabled = false;
+
+            for (const QListWidgetItem *ruleItem : asConst(selection))
+            {
+                const auto rule = RSS::AutoDownloader::instance()->ruleByName(ruleItem->text());
+                if (rule.feedURLs().contains(feedURL))
+                    anyEnabled = true;
+                else
+                    allEnabled = false;
+            }
+            if (anyEnabled && allEnabled)
+                item->setCheckState(0, Qt::Checked);
+            else if (anyEnabled)
+                item->setCheckState(0, Qt::PartiallyChecked);
+            else
+                item->setCheckState(0, Qt::Unchecked);
+        }
     }
 
-    m_ui->listFeeds->sortItems();
+    sortTreeRecursively(m_ui->listFeeds->invisibleRootItem());
     m_ui->lblListFeeds->setEnabled(enable);
     m_ui->listFeeds->setEnabled(enable);
 }
@@ -569,25 +641,30 @@ void AutomatedRssDownloader::clearSelectedRuleDownloadedEpisodeList()
     }
 }
 
-void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feedItem)
+void AutomatedRssDownloader::handleFeedCheckStateChange(QTreeWidgetItem *feedItem, int column)
 {
-    const QString feedURL = feedItem->data(Qt::UserRole).toString();
-    for (QListWidgetItem *ruleItem : asConst(m_ui->ruleList->selectedItems()))
+    Q_ASSERT(column == 0);
+    const RSS::Item *rssItem = feedItem->data(0, Qt::UserRole).value<const RSS::Item *>();
+    if (auto *feed = qobject_cast<const RSS::Feed *>(rssItem))
     {
-        RSS::AutoDownloadRule rule = (ruleItem == m_currentRuleItem
-                                       ? m_currentRule
-                                       : RSS::AutoDownloader::instance()->ruleByName(ruleItem->text()));
-        QStringList affectedFeeds = rule.feedURLs();
-        if ((feedItem->checkState() == Qt::Checked) && !affectedFeeds.contains(feedURL))
-            affectedFeeds << feedURL;
-        else if ((feedItem->checkState() == Qt::Unchecked) && affectedFeeds.contains(feedURL))
-            affectedFeeds.removeOne(feedURL);
+        const QString feedURL = feed->url();
+        for (QListWidgetItem *ruleItem : asConst(m_ui->ruleList->selectedItems()))
+        {
+            RSS::AutoDownloadRule rule = (ruleItem == m_currentRuleItem
+                                        ? m_currentRule
+                                        : RSS::AutoDownloader::instance()->ruleByName(ruleItem->text()));
+            QStringList affectedFeeds = rule.feedURLs();
+            if ((feedItem->checkState(0) == Qt::Checked) && !affectedFeeds.contains(feedURL))
+                affectedFeeds << feedURL;
+            else if ((feedItem->checkState(0) == Qt::Unchecked) && affectedFeeds.contains(feedURL))
+                affectedFeeds.removeOne(feedURL);
 
-        rule.setFeedURLs(affectedFeeds);
-        if (ruleItem != m_currentRuleItem)
-            RSS::AutoDownloader::instance()->setRule(rule);
-        else
-            m_currentRule = rule;
+            rule.setFeedURLs(affectedFeeds);
+            if (ruleItem != m_currentRuleItem)
+                RSS::AutoDownloader::instance()->setRule(rule);
+            else
+                m_currentRule = rule;
+        }
     }
 
     handleRuleDefinitionChanged();
