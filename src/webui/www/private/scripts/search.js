@@ -26,8 +26,9 @@
 if (window.qBittorrent === undefined)
     window.qBittorrent = {};
 
-window.qBittorrent.Search = (function() {
-    const exports = function() {
+if (window.qBittorrent.Search === undefined) {
+window.qBittorrent.Search = (() => {
+    const exports = () => {
         return {
             startStopSearch: startStopSearch,
             manageSearchPlugins: manageSearchPlugins,
@@ -868,3 +869,4 @@ window.qBittorrent.Search = (function() {
 })();
 
 Object.freeze(window.qBittorrent.Search);
+};

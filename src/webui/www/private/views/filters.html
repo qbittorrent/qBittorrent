@@ -47,10 +47,12 @@
     if (window.qBittorrent === undefined)
         window.qBittorrent = {};
 
-    window.qBittorrent.Filters = (function() {
-        const exports = function() {
+    if (window.qBittorrent.Filters === undefined) {
+    window.qBittorrent.Filters = (() => {
+        const exports = () => {
             return {
                 categoriesFilterContextMenu: categoriesFilterContextMenu,
+                init: init,
                 tagsFilterContextMenu: tagsFilterContextMenu,
                 trackersFilterContextMenu: trackersFilterContextMenu
             };
@@ -149,20 +151,25 @@
             }
         });
 
-        if (LocalPreferences.get("filter_status_collapsed") === "true")
-            toggleFilterDisplay("status");
+        const init = () => {
+            if (LocalPreferences.get("filter_status_collapsed") === "true")
+                toggleFilterDisplay("status");
 
-        if (LocalPreferences.get("filter_category_collapsed") === "true")
-            toggleFilterDisplay("category");
+            if (LocalPreferences.get("filter_category_collapsed") === "true")
+                toggleFilterDisplay("category");
 
-        if (LocalPreferences.get("filter_tag_collapsed") === "true")
-            toggleFilterDisplay("tag");
+            if (LocalPreferences.get("filter_tag_collapsed") === "true")
+                toggleFilterDisplay("tag");
 
-        if (LocalPreferences.get("filter_tracker_collapsed") === "true")
-            toggleFilterDisplay("tracker");
+            if (LocalPreferences.get("filter_tracker_collapsed") === "true")
+                toggleFilterDisplay("tracker");
+        };
 
         return exports();
     })();
 
     Object.freeze(window.qBittorrent.Filters);
+    };
+
+    window.qBittorrent.Filters.init();
 </script>

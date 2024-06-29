@@ -32,9 +32,11 @@
     if (window.qBittorrent === undefined)
         window.qBittorrent = {};
 
-    window.qBittorrent.InstallSearchPlugin = (function() {
-        const exports = function() {
+    if (window.qBittorrent.InstallSearchPlugin === undefined) {
+    window.qBittorrent.InstallSearchPlugin = (() => {
+        const exports = () => {
             return {
+                init: init,
                 newPluginOk: newPluginOk
             };
         };
@@ -75,10 +77,11 @@
             }
         };
 
-        init();
-
         return exports();
     })();
 
     Object.freeze(window.qBittorrent.InstallSearchPlugin);
+    };
+
+    window.qBittorrent.InstallSearchPlugin.init();
 </script>

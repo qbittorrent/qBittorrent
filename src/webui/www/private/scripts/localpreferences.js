@@ -31,8 +31,9 @@
 if (window.qBittorrent === undefined)
     window.qBittorrent = {};
 
-window.qBittorrent.LocalPreferences = (function() {
-    const exports = function() {
+if (window.qBittorrent.LocalPreferences === undefined) {
+window.qBittorrent.LocalPreferences = (() => {
+    const exports = () => {
         return {
             LocalPreferencesClass: LocalPreferencesClass
         };
@@ -69,3 +70,4 @@ window.qBittorrent.LocalPreferences = (function() {
 })();
 
 Object.freeze(window.qBittorrent.LocalPreferences);
+};

@@ -31,6 +31,7 @@
 if (window.qBittorrent === undefined)
     window.qBittorrent = {};
 
+if (window.qBittorrent.Cache === undefined) {
 window.qBittorrent.Cache = (() => {
     const exports = () => {
         return {
@@ -172,3 +173,4 @@ window.qBittorrent.Cache = (() => {
 })();
 
 Object.freeze(window.qBittorrent.Cache);
+};

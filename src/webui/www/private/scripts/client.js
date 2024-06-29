@@ -28,6 +28,7 @@
 if (window.qBittorrent === undefined)
     window.qBittorrent = {};
 
+if (window.qBittorrent.Client === undefined) {
 window.qBittorrent.Client = (() => {
     const exports = () => {
         return {
@@ -107,7 +108,9 @@ window.qBittorrent.Client = (() => {
 
     return exports();
 })();
+
 Object.freeze(window.qBittorrent.Client);
+};
 
 // TODO: move global functions/variables into some namespace/scope
 

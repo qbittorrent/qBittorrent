@@ -31,8 +31,9 @@
 if (window.qBittorrent === undefined)
     window.qBittorrent = {};
 
-window.qBittorrent.PropTrackers = (function() {
-    const exports = function() {
+if (window.qBittorrent.PropTrackers === undefined) {
+window.qBittorrent.PropTrackers = (() => {
+    const exports = () => {
         return {
             updateData: updateData
         };
@@ -239,3 +240,4 @@ window.qBittorrent.PropTrackers = (function() {
 })();
 
 Object.freeze(window.qBittorrent.PropTrackers);
+};
