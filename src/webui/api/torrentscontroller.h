@@ -28,6 +28,8 @@
 
 #pragma once
 
+#include "base/bittorrent/torrent.h"
+#include "base/bittorrent/torrentinfo.h"
 #include "apicontroller.h"
 
 class TorrentsController : public APIController
@@ -37,6 +39,8 @@ class TorrentsController : public APIController
 
 public:
     using APIController::APIController;
+
+    explicit TorrentsController(IApplication *app, QObject *parent = nullptr);
 
 private slots:
     void countAction();
@@ -91,4 +95,10 @@ private slots:
     void exportAction();
     void SSLParametersAction();
     void setSSLParametersAction();
+    void metadataAction();
+
+private:
+    void onMetadataDownloaded(const BitTorrent::TorrentInfo &metadata);
+
+    QHash<BitTorrent::InfoHash, BitTorrent::TorrentInfo> m_torrentMetadata;
 };

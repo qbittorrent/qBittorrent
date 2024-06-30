@@ -63,10 +63,10 @@ protected:
     const DataMap &data() const;
     void requireParams(const QVector<QString> &requiredParams) const;
 
-    void setResult(const QString &result, const int statusCode = 200);
-    void setResult(const QJsonArray &result, const int statusCode = 200);
-    void setResult(const QJsonObject &result, const int statusCode = 200);
-    void setResult(const QByteArray &result, const QString &mimeType = {}, const QString &filename = {}, const int statusCode = 200);
+    void setResult(const QString &result, int statusCode = 200);
+    void setResult(const QJsonArray &result, int statusCode = 200);
+    void setResult(const QJsonObject &result, int statusCode = 200);
+    void setResult(const QByteArray &result, const QString &mimeType = {}, const QString &filename = {}, int statusCode = 200);
 
 private:
     StringMap m_params;
