@@ -8,6 +8,7 @@
     <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
     <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script src="scripts/pathAutofill.js?v=${CACHEID}"></script>
     <script>
         "use strict";
 
@@ -60,13 +61,15 @@
                 }).send();
             });
         });
+
+        window.qBittorrent.pathAutofill.attachPathAutofill();
     </script>
 </head>
 
 <body>
     <div style="padding: 10px 10px 0px 10px;">
         <p style="font-weight: bold;">QBT_TR(Folder name:)QBT_TR[CONTEXT=RSSWidget]</p>
-        <input type="text" id="folderName" style="width: 320px;" />
+        <input type="text" id="folderName" class="pathDirectory" style="width: 320px;" />
         <div style="text-align: center; padding-top: 10px;">
             <input type="button" value="QBT_TR(OK)QBT_TR[CONTEXT=HttpServer]" id="submitButton" />
         </div>

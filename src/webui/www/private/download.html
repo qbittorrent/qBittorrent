@@ -10,6 +10,7 @@
     <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script src="scripts/download.js?v=${CACHEID}"></script>
     <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script src="scripts/pathAutofill.js?v=${CACHEID}"></script>
 </head>
 
 <body>
@@ -38,7 +39,7 @@
                             <label for="savepath">QBT_TR(Save files to location:)QBT_TR[CONTEXT=HttpServer]</label>
                         </td>
                         <td>
-                            <input type="text" id="savepath" name="savepath" style="width: 16em;" />
+                            <input type="text" id="savepath" name="savepath" class="pathDirectory" style="width: 16em;" />
                         </td>
                     </tr>
                     <tr>
@@ -191,6 +192,8 @@
             if (submitted)
                 window.parent.qBittorrent.Client.closeWindows();
         });
+
+        window.qBittorrent.pathAutofill.attachPathAutofill();
     </script>
 </body>
 
