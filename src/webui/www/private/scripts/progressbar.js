@@ -31,8 +31,9 @@
 if (window.qBittorrent === undefined)
     window.qBittorrent = {};
 
-window.qBittorrent.ProgressBar = (function() {
-    const exports = function() {
+if (window.qBittorrent.ProgressBar === undefined) {
+window.qBittorrent.ProgressBar = (() => {
+    const exports = () => {
         return {
             ProgressBar: ProgressBar
         };
@@ -159,3 +160,4 @@ window.qBittorrent.ProgressBar = (function() {
 })();
 
 Object.freeze(window.qBittorrent.ProgressBar);
+};

@@ -31,8 +31,9 @@
 if (window.qBittorrent === undefined)
     window.qBittorrent = {};
 
-window.qBittorrent.PropWebseeds = (function() {
-    const exports = function() {
+if (window.qBittorrent.PropWebseeds === undefined) {
+window.qBittorrent.PropWebseeds = (() => {
+    const exports = () => {
         return {
             updateData: updateData
         };
@@ -150,3 +151,4 @@ window.qBittorrent.PropWebseeds = (function() {
 })();
 
 Object.freeze(window.qBittorrent.PropWebseeds);
+};

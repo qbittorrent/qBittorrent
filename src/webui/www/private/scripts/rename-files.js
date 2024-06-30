@@ -3,8 +3,9 @@
 if (window.qBittorrent === undefined)
     window.qBittorrent = {};
 
-window.qBittorrent.MultiRename = (function() {
-    const exports = function() {
+if (window.qBittorrent.MultiRename === undefined) {
+window.qBittorrent.MultiRename = (() => {
+    const exports = () => {
         return {
             AppliesTo: AppliesTo,
             RenameFiles: RenameFiles
@@ -284,3 +285,4 @@ window.qBittorrent.MultiRename = (function() {
 })();
 
 Object.freeze(window.qBittorrent.MultiRename);
+};

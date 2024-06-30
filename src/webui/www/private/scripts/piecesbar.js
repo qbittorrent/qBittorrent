@@ -31,6 +31,7 @@
 if (window.qBittorrent === undefined)
     window.qBittorrent = {};
 
+if (window.qBittorrent.PiecesBar === undefined) {
 window.qBittorrent.PiecesBar = (() => {
     const exports = () => {
         return {
@@ -269,3 +270,4 @@ window.qBittorrent.PiecesBar = (() => {
 })();
 
 Object.freeze(window.qBittorrent.PiecesBar);
+};

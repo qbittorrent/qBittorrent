@@ -31,8 +31,9 @@
 if (window.qBittorrent === undefined)
     window.qBittorrent = {};
 
-window.qBittorrent.FileTree = (function() {
-    const exports = function() {
+if (window.qBittorrent.FileTree === undefined) {
+window.qBittorrent.FileTree = (() => {
+    const exports = () => {
         return {
             FilePriority: FilePriority,
             TriState: TriState,
@@ -198,3 +199,4 @@ window.qBittorrent.FileTree = (function() {
 })();
 
 Object.freeze(window.qBittorrent.FileTree);
+};

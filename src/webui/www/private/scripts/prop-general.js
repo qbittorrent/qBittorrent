@@ -31,8 +31,9 @@
 if (window.qBittorrent === undefined)
     window.qBittorrent = {};
 
-window.qBittorrent.PropGeneral = (function() {
-    const exports = function() {
+if (window.qBittorrent.PropGeneral === undefined) {
+window.qBittorrent.PropGeneral = (() => {
+    const exports = () => {
         return {
             updateData: updateData
         };
@@ -252,3 +253,4 @@ window.qBittorrent.PropGeneral = (function() {
 })();
 
 Object.freeze(window.qBittorrent.PropGeneral);
+};

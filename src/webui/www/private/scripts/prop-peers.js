@@ -31,8 +31,9 @@
 if (window.qBittorrent === undefined)
     window.qBittorrent = {};
 
-window.qBittorrent.PropPeers = (function() {
-    const exports = function() {
+if (window.qBittorrent.PropPeers === undefined) {
+window.qBittorrent.PropPeers = (() => {
+    const exports = () => {
         return {
             updateData: updateData
         };
@@ -184,3 +185,4 @@ window.qBittorrent.PropPeers = (function() {
 })();
 
 Object.freeze(window.qBittorrent.PropPeers);
+};

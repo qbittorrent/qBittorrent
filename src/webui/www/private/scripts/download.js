@@ -26,8 +26,9 @@
 if (window.qBittorrent === undefined)
     window.qBittorrent = {};
 
-window.qBittorrent.Download = (function() {
-    const exports = function() {
+if (window.qBittorrent.Download === undefined) {
+window.qBittorrent.Download = (() => {
+    const exports = () => {
         return {
             changeCategorySelect: changeCategorySelect,
             changeTMM: changeTMM
@@ -140,3 +141,4 @@ window.qBittorrent.Download = (function() {
 })();
 
 Object.freeze(window.qBittorrent.Download);
+};

@@ -21,9 +21,11 @@
     if (window.qBittorrent === undefined)
         window.qBittorrent = {};
 
-    window.qBittorrent.TransferList = (function() {
-        const exports = function() {
+    if (window.qBittorrent.TransferList === undefined) {
+    window.qBittorrent.TransferList = (() => {
+        const exports = () => {
             return {
+                init: init,
                 contextMenu: contextMenu,
             };
         };
@@ -111,10 +113,15 @@
             },
         });
 
-        torrentsTable.setup("torrentsTableDiv", "torrentsTableFixedHeaderDiv", contextMenu);
+        const init = () => {
+            torrentsTable.setup("torrentsTableDiv", "torrentsTableFixedHeaderDiv", contextMenu);
+        };
 
         return exports();
     })();
 
     Object.freeze(window.qBittorrent.TransferList);
+    };
+
+    window.qBittorrent.TransferList.init();
 </script>

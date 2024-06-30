@@ -33,8 +33,9 @@
 if (window.qBittorrent === undefined)
     window.qBittorrent = {};
 
-window.qBittorrent.Filesystem = (function() {
-    const exports = function() {
+if (window.qBittorrent.Filesystem === undefined) {
+window.qBittorrent.Filesystem = (() => {
+    const exports = () => {
         return {
             PathSeparator: PathSeparator,
             fileExtension: fileExtension,
@@ -73,3 +74,4 @@ window.qBittorrent.Filesystem = (function() {
 })();
 
 Object.freeze(window.qBittorrent.Filesystem);
+};
