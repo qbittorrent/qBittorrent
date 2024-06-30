@@ -14,7 +14,7 @@
         </legend>
         <div class="formRow">
             <label for="filelog_save_path_input">QBT_TR(Save path:)QBT_TR[CONTEXT=OptionsDialog]</label>
-            <input type="text" id="filelog_save_path_input" />
+            <input type="text" id="filelog_save_path_input" class="pathDirectory" />
         </div>
         <table>
             <tr>
@@ -151,7 +151,7 @@
                     <label for="savepath_text">QBT_TR(Default Save Path:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
-                    <input type="text" id="savepath_text" autocorrect="off" autocapitalize="none" />
+                    <input type="text" id="savepath_text" class="pathDirectory" autocorrect="off" autocapitalize="none" />
                 </td>
             </tr>
             <tr>
@@ -160,7 +160,7 @@
                     <label for="temppath_checkbox">QBT_TR(Keep incomplete torrents in:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
-                    <input type="text" id="temppath_text" autocorrect="off" autocapitalize="none" />
+                    <input type="text" id="temppath_text" class="pathDirectory" autocorrect="off" autocapitalize="none" />
                 </td>
             </tr>
             <tr>
@@ -169,7 +169,7 @@
                     <label for="exportdir_checkbox">QBT_TR(Copy .torrent files to:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
-                    <input type="text" id="exportdir_text" autocorrect="off" autocapitalize="none" />
+                    <input type="text" id="exportdir_text" class="pathDirectory" autocorrect="off" autocapitalize="none" />
                 </td>
             </tr>
             <tr>
@@ -178,7 +178,7 @@
                     <label for="exportdirfin_checkbox">QBT_TR(Copy .torrent files for finished downloads to:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
-                    <input type="text" id="exportdirfin_text" autocorrect="off" autocapitalize="none" />
+                    <input type="text" id="exportdirfin_text" class="pathDirectory" autocorrect="off" autocapitalize="none" />
                 </td>
             </tr>
         </table>
@@ -810,7 +810,7 @@
                         <label for="ssl_cert_text">QBT_TR(Certificate:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="ssl_cert_text" style="width: 30em;" />
+                        <input type="text" id="ssl_cert_text" class="pathFile" style="width: 30em;" />
                     </td>
                 </tr>
                 <tr>
@@ -818,7 +818,7 @@
                         <label for="ssl_key_text">QBT_TR(Key:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="ssl_key_text" style="width: 30em;" />
+                        <input type="text" id="ssl_key_text" class="pathFile" style="width: 30em;" />
                     </td>
                 </tr>
             </table>
@@ -880,7 +880,7 @@
             </legend>
             <div class="formRow">
                 <label for="webui_files_location_textarea">QBT_TR(Files location:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                <input type="text" id="webui_files_location_textarea" />
+                <input type="text" id="webui_files_location_textarea" class="pathDirectory" />
             </div>
         </fieldset>
 
@@ -1115,7 +1115,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <label for="pythonExecutablePath">QBT_TR(Python executable path (may require restart):)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
-                    <input type="text" id="pythonExecutablePath" placeholder="QBT_TR((Auto detect if empty))QBT_TR[CONTEXT=OptionsDialog]" style="width: 15em;" />
+                    <input type="text" id="pythonExecutablePath" class="pathFile" placeholder="QBT_TR((Auto detect if empty))QBT_TR[CONTEXT=OptionsDialog]" style="width: 15em;" />
                 </td>
             </tr>
         </table>
@@ -2883,4 +2883,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
     })();
 
     Object.freeze(window.qBittorrent.Preferences);
+
+    window.qBittorrent.pathAutofill.attachPathAutofill();
 </script>
