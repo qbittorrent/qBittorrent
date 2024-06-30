@@ -381,6 +381,17 @@ void WebApplication::doProcessRequest()
             print(result.data.toString(), Http::CONTENT_TYPE_TXT);
             break;
         }
+
+        switch (result.status)
+        {
+        case APIStatus::Async:
+            status(202);
+            break;
+        case APIStatus::Ok:
+        default:
+            status(200);
+            break;
+        }
     }
     catch (const APIError &error)
     {
