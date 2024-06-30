@@ -36,12 +36,14 @@
 #include <QMetaObject>
 
 #include "apierror.h"
+#include "apistatus.h"
 
 void APIResult::clear()
 {
     data.clear();
     mimeType.clear();
     filename.clear();
+    status = APIStatus::Ok;
 }
 
 APIController::APIController(IApplication *app, QObject *parent)
@@ -104,4 +106,9 @@ void APIController::setResult(const QByteArray &result, const QString &mimeType,
     m_result.data = result;
     m_result.mimeType = mimeType;
     m_result.filename = filename;
+}
+
+void APIController::setStatus(const APIStatus status)
+{
+    m_result.status = status;
 }
