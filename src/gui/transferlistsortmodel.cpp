@@ -46,16 +46,6 @@ namespace
         return (left < right) ? -1 : 1;
     }
 
-    int customCompare(const QDateTime &left, const QDateTime &right)
-    {
-        const bool isLeftValid = left.isValid();
-        const bool isRightValid = right.isValid();
-
-        if (isLeftValid == isRightValid)
-            return threeWayCompare(left, right);
-        return isLeftValid ? -1 : 1;
-    }
-
     int customCompare(const TagSet &left, const TagSet &right, const Utils::Compare::NaturalCompare<Qt::CaseInsensitive> &compare)
     {
         for (auto leftIter = left.cbegin(), rightIter = right.cbegin();
@@ -69,13 +59,25 @@ namespace
         return threeWayCompare(left.size(), right.size());
     }
 
+    // consider negative values as invalid
     template <typename T>
-    int customCompare(const T left, const T right)
+        requires std::is_arithmetic_v<T>
+    bool isValid(const T value)
     {
-        static_assert(std::is_arithmetic_v<T>);
+        return (value >= 0);
+    }
 
-        const bool isLeftValid = (left >= 0);
-        const bool isRightValid = (right >= 0);
+    template <typename T>
+    bool isValid(const T &value)
+    {
+        return value.isValid();
+    }
+
+    template <typename T>
+    int customCompare(const T &left, const T &right)
+    {
+        const bool isLeftValid = isValid(left);
+        const bool isRightValid = isValid(right);
 
         if (isLeftValid && isRightValid)
             return threeWayCompare(left, right);
@@ -199,7 +201,6 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
     case TransferListModel::TR_POPULARITY:
         return customCompare(leftValue.toReal(), rightValue.toReal());
 
-    case TransferListModel::TR_PRIVATE:
     case TransferListModel::TR_STATUS:
         return threeWayCompare(leftValue.toInt(), rightValue.toInt());
 
@@ -208,6 +209,7 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
     case TransferListModel::TR_SEEN_COMPLETE_DATE:
         return customCompare(leftValue.toDateTime(), rightValue.toDateTime());
 
+    case TransferListModel::TR_PRIVATE:
     case TransferListModel::TR_DLLIMIT:
     case TransferListModel::TR_DLSPEED:
     case TransferListModel::TR_QUEUE_POSITION:
