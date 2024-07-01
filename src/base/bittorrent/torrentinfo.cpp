@@ -270,13 +270,13 @@ qlonglong TorrentInfo::fileOffset(const int index) const
     return m_nativeInfo->orig_files().file_offset(m_nativeIndexes[index]);
 }
 
-QVector<TrackerEntry> TorrentInfo::trackers() const
+QList<TrackerEntry> TorrentInfo::trackers() const
 {
     if (!isValid()) return {};
 
     const std::vector<lt::announce_entry> trackers = m_nativeInfo->trackers();
 
-    QVector<TrackerEntry> ret;
+    QList<TrackerEntry> ret;
     ret.reserve(static_cast<decltype(ret)::size_type>(trackers.size()));
     for (const lt::announce_entry &tracker : trackers)
         ret.append({.url = QString::fromStdString(tracker.url), .tier = tracker.tier});
@@ -284,13 +284,13 @@ QVector<TrackerEntry> TorrentInfo::trackers() const
     return ret;
 }
 
-QVector<QUrl> TorrentInfo::urlSeeds() const
+QList<QUrl> TorrentInfo::urlSeeds() const
 {
     if (!isValid()) return {};
 
     const std::vector<lt::web_seed_entry> &nativeWebSeeds = m_nativeInfo->web_seeds();
 
-    QVector<QUrl> urlSeeds;
+    QList<QUrl> urlSeeds;
     urlSeeds.reserve(static_cast<decltype(urlSeeds)::size_type>(nativeWebSeeds.size()));
 
     for (const lt::web_seed_entry &webSeed : nativeWebSeeds)
@@ -320,7 +320,7 @@ QByteArray TorrentInfo::metadata() const
 PathList TorrentInfo::filesForPiece(const int pieceIndex) const
 {
     // no checks here because fileIndicesForPiece() will return an empty list
-    const QVector<int> fileIndices = fileIndicesForPiece(pieceIndex);
+    const QList<int> fileIndices = fileIndicesForPiece(pieceIndex);
 
     PathList res;
     res.reserve(fileIndices.size());
@@ -330,14 +330,14 @@ PathList TorrentInfo::filesForPiece(const int pieceIndex) const
     return res;
 }
 
-QVector<int> TorrentInfo::fileIndicesForPiece(const int pieceIndex) const
+QList<int> TorrentInfo::fileIndicesForPiece(const int pieceIndex) const
 {
     if (!isValid() || (pieceIndex < 0) || (pieceIndex >= piecesCount()))
         return {};
 
     const std::vector<lt::file_slice> files = m_nativeInfo->map_block(
                 lt::piece_index_t {pieceIndex}, 0, m_nativeInfo->piece_size(lt::piece_index_t {pieceIndex}));
-    QVector<int> res;
+    QList<int> res;
     res.reserve(static_cast<decltype(res)::size_type>(files.size()));
     for (const lt::file_slice &fileSlice : files)
     {
@@ -349,13 +349,13 @@ QVector<int> TorrentInfo::fileIndicesForPiece(const int pieceIndex) const
     return res;
 }
 
-QVector<QByteArray> TorrentInfo::pieceHashes() const
+QList<QByteArray> TorrentInfo::pieceHashes() const
 {
     if (!isValid())
         return {};
 
     const int count = piecesCount();
-    QVector<QByteArray> hashes;
+    QList<QByteArray> hashes;
     hashes.reserve(count);
 
     for (int i = 0; i < count; ++i)
@@ -450,7 +450,7 @@ std::shared_ptr<lt::torrent_info> TorrentInfo::nativeInfo() const
     return std::make_shared<lt::torrent_info>(*m_nativeInfo);
 }
 
-QVector<lt::file_index_t> TorrentInfo::nativeIndexes() const
+QList<lt::file_index_t> TorrentInfo::nativeIndexes() const
 {
     return m_nativeIndexes;
 }

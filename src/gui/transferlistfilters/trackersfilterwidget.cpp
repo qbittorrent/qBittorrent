@@ -155,7 +155,7 @@ TrackersFilterWidget::~TrackersFilterWidget()
         Utils::Fs::removeFile(iconPath);
 }
 
-void TrackersFilterWidget::addTrackers(const BitTorrent::Torrent *torrent, const QVector<BitTorrent::TrackerEntry> &trackers)
+void TrackersFilterWidget::addTrackers(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers)
 {
     const BitTorrent::TorrentID torrentID = torrent->id();
 
@@ -204,7 +204,7 @@ void TrackersFilterWidget::refreshTrackers(const BitTorrent::Torrent *torrent)
         return false;
     });
 
-    const QVector<BitTorrent::TrackerEntryStatus> trackers = torrent->trackers();
+    const QList<BitTorrent::TrackerEntryStatus> trackers = torrent->trackers();
     if (trackers.isEmpty())
     {
         addItems(NULL_HOST, {torrentID});
@@ -228,7 +228,7 @@ void TrackersFilterWidget::refreshTrackers(const BitTorrent::Torrent *torrent)
     updateGeometry();
 }
 
-void TrackersFilterWidget::addItems(const QString &trackerURL, const QVector<BitTorrent::TorrentID> &torrents)
+void TrackersFilterWidget::addItems(const QString &trackerURL, const QList<BitTorrent::TorrentID> &torrents)
 {
     const QString host = getHost(trackerURL);
     auto trackersIt = m_trackers.find(host);
@@ -587,13 +587,13 @@ void TrackersFilterWidget::applyFilter(const int row)
         transferList()->applyTrackerFilter(getTorrentIDs(row));
 }
 
-void TrackersFilterWidget::handleTorrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents)
+void TrackersFilterWidget::handleTorrentsLoaded(const QList<BitTorrent::Torrent *> &torrents)
 {
-    QHash<QString, QVector<BitTorrent::TorrentID>> torrentsPerTracker;
+    QHash<QString, QList<BitTorrent::TorrentID>> torrentsPerTracker;
     for (const BitTorrent::Torrent *torrent : torrents)
     {
         const BitTorrent::TorrentID torrentID = torrent->id();
-        const QVector<BitTorrent::TrackerEntryStatus> trackers = torrent->trackers();
+        const QList<BitTorrent::TrackerEntryStatus> trackers = torrent->trackers();
         for (const BitTorrent::TrackerEntryStatus &tracker : trackers)
             torrentsPerTracker[tracker.url].append(torrentID);
 
@@ -614,7 +614,7 @@ void TrackersFilterWidget::handleTorrentsLoaded(const QVector<BitTorrent::Torren
 void TrackersFilterWidget::torrentAboutToBeDeleted(BitTorrent::Torrent *const torrent)
 {
     const BitTorrent::TorrentID torrentID = torrent->id();
-    const QVector<BitTorrent::TrackerEntryStatus> trackers = torrent->trackers();
+    const QList<BitTorrent::TrackerEntryStatus> trackers = torrent->trackers();
     for (const BitTorrent::TrackerEntryStatus &tracker : trackers)
         removeItem(tracker.url, torrentID);
 

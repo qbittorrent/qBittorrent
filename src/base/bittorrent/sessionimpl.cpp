@@ -1306,7 +1306,7 @@ void SessionImpl::prepareStartup()
         context->startupStorage = m_resumeDataStorage;
 
     connect(context->startupStorage, &ResumeDataStorage::loadStarted, context
-            , [this, context](const QVector<TorrentID> &torrents)
+            , [this, context](const QList<TorrentID> &torrents)
     {
         context->totalResumeDataCount = torrents.size();
 #ifdef QBT_USES_LIBTORRENT2
@@ -2491,7 +2491,7 @@ bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
     return true;
 }
 
-void SessionImpl::increaseTorrentsQueuePos(const QVector<TorrentID> &ids)
+void SessionImpl::increaseTorrentsQueuePos(const QList<TorrentID> &ids)
 {
     using ElementType = std::pair<int, const TorrentImpl *>;
     std::priority_queue<ElementType
@@ -2518,7 +2518,7 @@ void SessionImpl::increaseTorrentsQueuePos(const QVector<TorrentID> &ids)
     m_torrentsQueueChanged = true;
 }
 
-void SessionImpl::decreaseTorrentsQueuePos(const QVector<TorrentID> &ids)
+void SessionImpl::decreaseTorrentsQueuePos(const QList<TorrentID> &ids)
 {
     using ElementType = std::pair<int, const TorrentImpl *>;
     std::priority_queue<ElementType> torrentQueue;
@@ -2546,7 +2546,7 @@ void SessionImpl::decreaseTorrentsQueuePos(const QVector<TorrentID> &ids)
     m_torrentsQueueChanged = true;
 }
 
-void SessionImpl::topTorrentsQueuePos(const QVector<TorrentID> &ids)
+void SessionImpl::topTorrentsQueuePos(const QList<TorrentID> &ids)
 {
     using ElementType = std::pair<int, const TorrentImpl *>;
     std::priority_queue<ElementType> torrentQueue;
@@ -2571,7 +2571,7 @@ void SessionImpl::topTorrentsQueuePos(const QVector<TorrentID> &ids)
     m_torrentsQueueChanged = true;
 }
 
-void SessionImpl::bottomTorrentsQueuePos(const QVector<TorrentID> &ids)
+void SessionImpl::bottomTorrentsQueuePos(const QList<TorrentID> &ids)
 {
     using ElementType = std::pair<int, const TorrentImpl *>;
     std::priority_queue<ElementType
@@ -2607,9 +2607,9 @@ void SessionImpl::handleTorrentResumeDataRequested(const TorrentImpl *torrent)
     ++m_numResumeData;
 }
 
-QVector<Torrent *> SessionImpl::torrents() const
+QList<Torrent *> SessionImpl::torrents() const
 {
-    QVector<Torrent *> result;
+    QList<Torrent *> result;
     result.reserve(m_torrents.size());
     for (TorrentImpl *torrent : asConst(m_torrents))
         result << torrent;
@@ -3133,7 +3133,7 @@ void SessionImpl::saveResumeData()
 
 void SessionImpl::saveTorrentsQueue()
 {
-    QVector<TorrentID> queue;
+    QList<TorrentID> queue;
     for (const TorrentImpl *torrent : asConst(m_torrents))
     {
         if (const int queuePos = torrent->queuePosition(); queuePos >= 0)
@@ -4985,7 +4985,7 @@ void SessionImpl::handleTorrentSavingModeChanged(TorrentImpl *const torrent)
     emit torrentSavingModeChanged(torrent);
 }
 
-void SessionImpl::handleTorrentTrackersAdded(TorrentImpl *const torrent, const QVector<TrackerEntry> &newTrackers)
+void SessionImpl::handleTorrentTrackersAdded(TorrentImpl *const torrent, const QList<TrackerEntry> &newTrackers)
 {
     for (const TrackerEntry &newTracker : newTrackers)
         LogMsg(tr("Added tracker to torrent. Torrent: \"%1\". Tracker: \"%2\"").arg(torrent->name(), newTracker.url));
@@ -5004,13 +5004,13 @@ void SessionImpl::handleTorrentTrackersChanged(TorrentImpl *const torrent)
     emit trackersChanged(torrent);
 }
 
-void SessionImpl::handleTorrentUrlSeedsAdded(TorrentImpl *const torrent, const QVector<QUrl> &newUrlSeeds)
+void SessionImpl::handleTorrentUrlSeedsAdded(TorrentImpl *const torrent, const QList<QUrl> &newUrlSeeds)
 {
     for (const QUrl &newUrlSeed : newUrlSeeds)
         LogMsg(tr("Added URL seed to torrent. Torrent: \"%1\". URL: \"%2\"").arg(torrent->name(), newUrlSeed.toString()));
 }
 
-void SessionImpl::handleTorrentUrlSeedsRemoved(TorrentImpl *const torrent, const QVector<QUrl> &urlSeeds)
+void SessionImpl::handleTorrentUrlSeedsRemoved(TorrentImpl *const torrent, const QList<QUrl> &urlSeeds)
 {
     for (const QUrl &urlSeed : urlSeeds)
         LogMsg(tr("Removed URL seed from torrent. Torrent: \"%1\". URL: \"%2\"").arg(torrent->name(), urlSeed.toString()));
@@ -5028,7 +5028,7 @@ void SessionImpl::handleTorrentStopped(TorrentImpl *const torrent)
 {
     torrent->resetTrackerEntryStatuses();
 
-    const QVector<TrackerEntryStatus> trackers = torrent->trackers();
+    const QList<TrackerEntryStatus> trackers = torrent->trackers();
     QHash<QString, TrackerEntryStatus> updatedTrackers;
     updatedTrackers.reserve(trackers.size());
 
@@ -6056,7 +6056,7 @@ void SessionImpl::handleStorageMovedFailedAlert(const lt::storage_moved_failed_a
 
 void SessionImpl::handleStateUpdateAlert(const lt::state_update_alert *alert)
 {
-    QVector<Torrent *> updatedTorrents;
+    QList<Torrent *> updatedTorrents;
     updatedTorrents.reserve(static_cast<decltype(updatedTorrents)::size_type>(alert->status.size()));
 
     for (const lt::torrent_status &status : alert->status)

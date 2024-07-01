@@ -52,8 +52,8 @@ public:
     explicit TrackerEntriesDialog(QWidget *parent);
     ~TrackerEntriesDialog() override;
 
-    void setTrackers(const QVector<BitTorrent::TrackerEntry> &trackers);
-    QVector<BitTorrent::TrackerEntry> trackers() const;
+    void setTrackers(const QList<BitTorrent::TrackerEntry> &trackers);
+    QList<BitTorrent::TrackerEntry> trackers() const;
 
 private:
     void saveSettings();

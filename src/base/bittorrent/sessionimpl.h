@@ -40,10 +40,10 @@
 #include <QDateTime>
 #include <QElapsedTimer>
 #include <QHash>
+#include <QList>
 #include <QMap>
 #include <QPointer>
 #include <QSet>
-#include <QVector>
 
 #include "base/path.h"
 #include "base/settingvalue.h"
@@ -423,7 +423,7 @@ namespace BitTorrent
 
         Torrent *getTorrent(const TorrentID &id) const override;
         Torrent *findTorrent(const InfoHash &infoHash) const override;
-        QVector<Torrent *> torrents() const override;
+        QList<Torrent *> torrents() const override;
         qsizetype torrentsCount() const override;
         const SessionStatus &status() const override;
         const CacheStatus &cacheStatus() const override;
@@ -437,10 +437,10 @@ namespace BitTorrent
         bool downloadMetadata(const TorrentDescriptor &torrentDescr) override;
         bool cancelDownloadMetadata(const TorrentID &id) override;
 
-        void increaseTorrentsQueuePos(const QVector<TorrentID> &ids) override;
-        void decreaseTorrentsQueuePos(const QVector<TorrentID> &ids) override;
-        void topTorrentsQueuePos(const QVector<TorrentID> &ids) override;
-        void bottomTorrentsQueuePos(const QVector<TorrentID> &ids) override;
+        void increaseTorrentsQueuePos(const QList<TorrentID> &ids) override;
+        void decreaseTorrentsQueuePos(const QList<TorrentID> &ids) override;
+        void topTorrentsQueuePos(const QList<TorrentID> &ids) override;
+        void bottomTorrentsQueuePos(const QList<TorrentID> &ids) override;
 
         // Torrent interface
         void handleTorrentResumeDataRequested(const TorrentImpl *torrent);
@@ -456,11 +456,11 @@ namespace BitTorrent
         void handleTorrentStarted(TorrentImpl *torrent);
         void handleTorrentChecked(TorrentImpl *torrent);
         void handleTorrentFinished(TorrentImpl *torrent);
-        void handleTorrentTrackersAdded(TorrentImpl *torrent, const QVector<TrackerEntry> &newTrackers);
+        void handleTorrentTrackersAdded(TorrentImpl *torrent, const QList<TrackerEntry> &newTrackers);
         void handleTorrentTrackersRemoved(TorrentImpl *torrent, const QStringList &deletedTrackers);
         void handleTorrentTrackersChanged(TorrentImpl *torrent);
-        void handleTorrentUrlSeedsAdded(TorrentImpl *torrent, const QVector<QUrl> &newUrlSeeds);
-        void handleTorrentUrlSeedsRemoved(TorrentImpl *torrent, const QVector<QUrl> &urlSeeds);
+        void handleTorrentUrlSeedsAdded(TorrentImpl *torrent, const QList<QUrl> &newUrlSeeds);
+        void handleTorrentUrlSeedsRemoved(TorrentImpl *torrent, const QList<QUrl> &urlSeeds);
         void handleTorrentResumeDataReady(TorrentImpl *torrent, const LoadTorrentParams &data);
         void handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoHash &prevInfoHash);
         void handleTorrentStorageMovingStateChanged(TorrentImpl *torrent);
@@ -749,8 +749,8 @@ namespace BitTorrent
         const bool m_wasPexEnabled = m_isPeXEnabled;
 
         int m_numResumeData = 0;
-        QVector<TrackerEntry> m_additionalTrackerEntries;
-        QVector<QRegularExpression> m_excludedFileNamesRegExpList;
+        QList<TrackerEntry> m_additionalTrackerEntries;
+        QList<QRegularExpression> m_excludedFileNamesRegExpList;
 
         // Statistics
         mutable QElapsedTimer m_statisticsLastUpdateTimer;

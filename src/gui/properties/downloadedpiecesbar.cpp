@@ -32,7 +32,7 @@
 #include <cmath>
 
 #include <QDebug>
-#include <QVector>
+#include <QList>
 
 #include "base/global.h"
 
@@ -51,9 +51,9 @@ DownloadedPiecesBar::DownloadedPiecesBar(QWidget *parent)
 {
 }
 
-QVector<float> DownloadedPiecesBar::bitfieldToFloatVector(const QBitArray &vecin, int reqSize)
+QList<float> DownloadedPiecesBar::bitfieldToFloatVector(const QBitArray &vecin, int reqSize)
 {
-    QVector<float> result(reqSize, 0.0);
+    QList<float> result(reqSize, 0.0);
     if (vecin.isEmpty()) return result;
 
     const float ratio = vecin.size() / static_cast<float>(reqSize);
@@ -145,8 +145,8 @@ bool DownloadedPiecesBar::updateImage(QImage &image)
         return true;
     }
 
-    QVector<float> scaledPieces = bitfieldToFloatVector(m_pieces, image2.width());
-    QVector<float> scaledPiecesDl = bitfieldToFloatVector(m_downloadedPieces, image2.width());
+    QList<float> scaledPieces = bitfieldToFloatVector(m_pieces, image2.width());
+    QList<float> scaledPiecesDl = bitfieldToFloatVector(m_downloadedPieces, image2.width());
 
     // filling image
     for (int x = 0; x < scaledPieces.size(); ++x)

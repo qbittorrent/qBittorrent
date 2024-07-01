@@ -673,11 +673,11 @@ void Preferences::setWebUIAuthSubnetWhitelistEnabled(const bool enabled)
     setValue(u"Preferences/WebUI/AuthSubnetWhitelistEnabled"_s, enabled);
 }
 
-QVector<Utils::Net::Subnet> Preferences::getWebUIAuthSubnetWhitelist() const
+QList<Utils::Net::Subnet> Preferences::getWebUIAuthSubnetWhitelist() const
 {
     const auto subnets = value<QStringList>(u"Preferences/WebUI/AuthSubnetWhitelist"_s);
 
-    QVector<Utils::Net::Subnet> ret;
+    QList<Utils::Net::Subnet> ret;
     ret.reserve(subnets.size());
 
     for (const QString &rawSubnet : subnets)

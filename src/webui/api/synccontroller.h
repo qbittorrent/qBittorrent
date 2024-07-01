@@ -77,7 +77,7 @@ private:
     void onTorrentSavingModeChanged(BitTorrent::Torrent *torrent);
     void onTorrentTagAdded(BitTorrent::Torrent *torrent, const Tag &tag);
     void onTorrentTagRemoved(BitTorrent::Torrent *torrent, const Tag &tag);
-    void onTorrentsUpdated(const QVector<BitTorrent::Torrent *> &torrents);
+    void onTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents);
     void onTorrentTrackersChanged(BitTorrent::Torrent *torrent);
 
     qint64 m_freeDiskSpace = 0;

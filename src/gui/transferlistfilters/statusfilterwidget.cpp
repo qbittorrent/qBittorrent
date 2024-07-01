@@ -86,7 +86,7 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
     errored->setData(Qt::DisplayRole, tr("Errored (0)"));
     errored->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"error"_s));
 
-    const QVector<BitTorrent::Torrent *> torrents = BitTorrent::Session::instance()->torrents();
+    const QList<BitTorrent::Torrent *> torrents = BitTorrent::Session::instance()->torrents();
     update(torrents);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated
             , this, &StatusFilterWidget::update);
@@ -199,7 +199,7 @@ void StatusFilterWidget::hideZeroItems()
         setCurrentRow(TorrentFilter::All, QItemSelectionModel::SelectCurrent);
 }
 
-void StatusFilterWidget::update(const QVector<BitTorrent::Torrent *> &torrents)
+void StatusFilterWidget::update(const QList<BitTorrent::Torrent *> &torrents)
 {
     for (const BitTorrent::Torrent *torrent : torrents)
         updateTorrentStatus(torrent);
@@ -233,7 +233,7 @@ void StatusFilterWidget::applyFilter(int row)
     transferList()->applyStatusFilter(row);
 }
 
-void StatusFilterWidget::handleTorrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents)
+void StatusFilterWidget::handleTorrentsLoaded(const QList<BitTorrent::Torrent *> &torrents)
 {
     for (const BitTorrent::Torrent *torrent : torrents)
         updateTorrentStatus(torrent);

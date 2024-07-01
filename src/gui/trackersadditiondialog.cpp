@@ -29,10 +29,10 @@
 
 #include "trackersadditiondialog.h"
 
+#include <QList>
 #include <QMessageBox>
 #include <QSize>
 #include <QStringView>
-#include <QVector>
 
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
@@ -76,10 +76,10 @@ TrackersAdditionDialog::~TrackersAdditionDialog()
 
 void TrackersAdditionDialog::onAccepted() const
 {
-    const QVector<BitTorrent::TrackerEntryStatus> currentTrackers = m_torrent->trackers();
+    const QList<BitTorrent::TrackerEntryStatus> currentTrackers = m_torrent->trackers();
     const int baseTier = !currentTrackers.isEmpty() ? (currentTrackers.last().tier + 1) : 0;
 
-    QVector<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(m_ui->textEditTrackersList->toPlainText());
+    QList<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(m_ui->textEditTrackersList->toPlainText());
     for (BitTorrent::TrackerEntry &entry : entries)
         entry.tier = Utils::Number::clampingAdd(entry.tier, baseTier);
 

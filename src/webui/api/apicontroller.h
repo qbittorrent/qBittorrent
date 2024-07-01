@@ -60,7 +60,7 @@ public:
 protected:
     const StringMap &params() const;
     const DataMap &data() const;
-    void requireParams(const QVector<QString> &requiredParams) const;
+    void requireParams(const QList<QString> &requiredParams) const;
 
     void setResult(const QString &result);
     void setResult(const QJsonArray &result);

@@ -29,7 +29,7 @@
 #include "transfercontroller.h"
 
 #include <QJsonObject>
-#include <QVector>
+#include <QList>
 
 #include "base/bittorrent/peeraddress.h"
 #include "base/bittorrent/peerinfo.h"

@@ -471,7 +471,7 @@ void PropertiesWidget::loadDynamicData()
                 {
                     // Pieces availability
                     showPiecesAvailability(true);
-                    m_torrent->fetchPieceAvailability([this, torrent = TorrentPtr(m_torrent)](const QVector<int> &pieceAvailability)
+                    m_torrent->fetchPieceAvailability([this, torrent = TorrentPtr(m_torrent)](const QList<int> &pieceAvailability)
                     {
                         if (torrent == m_torrent)
                             m_piecesAvailability->setAvailability(pieceAvailability);
@@ -517,7 +517,7 @@ void PropertiesWidget::loadUrlSeeds()
         return;
 
     using TorrentPtr = QPointer<BitTorrent::Torrent>;
-    m_torrent->fetchURLSeeds([this, torrent = TorrentPtr(m_torrent)](const QVector<QUrl> &urlSeeds)
+    m_torrent->fetchURLSeeds([this, torrent = TorrentPtr(m_torrent)](const QList<QUrl> &urlSeeds)
     {
         if (torrent != m_torrent)
             return;
@@ -620,7 +620,7 @@ void PropertiesWidget::deleteSelectedUrlSeeds()
     const QList<QListWidgetItem *> selectedItems = m_ui->listWebSeeds->selectedItems();
     if (selectedItems.isEmpty()) return;
 
-    QVector<QUrl> urlSeeds;
+    QList<QUrl> urlSeeds;
     urlSeeds.reserve(selectedItems.size());
 
     for (const QListWidgetItem *item : selectedItems)

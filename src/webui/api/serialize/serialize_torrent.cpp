@@ -29,7 +29,7 @@
 #include "serialize_torrent.h"
 
 #include <QDateTime>
-#include <QVector>
+#include <QList>
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrent.h"

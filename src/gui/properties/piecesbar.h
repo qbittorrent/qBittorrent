@@ -70,7 +70,7 @@ protected:
     QColor borderColor() const;
     QColor pieceColor() const;
     QColor colorBoxBorderColor() const;
-    const QVector<QRgb> &pieceColors() const;
+    const QList<QRgb> &pieceColors() const;
 
     // mix two colors by light model, ratio <0, 1>
     static QRgb mixTwoColors(QRgb rgb1, QRgb rgb2, float ratio);
@@ -91,7 +91,7 @@ private:
     const BitTorrent::Torrent *m_torrent = nullptr;
     QImage m_image;
     // buffered 256 levels gradient from bg_color to piece_color
-    QVector<QRgb> m_pieceColors;
+    QList<QRgb> m_pieceColors;
     bool m_hovered = false;
     QRect m_highlightedRegion; // part of the bar can be highlighted; this rectangle is in the same frame as m_image
 };

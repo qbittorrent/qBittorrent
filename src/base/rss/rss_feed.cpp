@@ -39,8 +39,8 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
+#include <QList>
 #include <QUrl>
-#include <QVector>
 
 #include "base/asyncfilestorage.h"
 #include "base/global.h"
@@ -301,7 +301,7 @@ void Feed::store()
     m_dirty = false;
     m_savingTimer.stop();
 
-    QVector<QVariantHash> articlesData;
+    QList<QVariantHash> articlesData;
     articlesData.reserve(m_articles.size());
 
     for (Article *article :asConst(m_articles))
@@ -395,7 +395,7 @@ int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
         return 0;
 
     QDateTime dummyPubDate {QDateTime::currentDateTime()};
-    QVector<QVariantHash> newArticles;
+    QList<QVariantHash> newArticles;
     newArticles.reserve(loadedArticles.size());
     for (QVariantHash article : loadedArticles)
     {
@@ -516,7 +516,7 @@ void Feed::handleArticleRead(Article *article)
     storeDeferred();
 }
 
-void Feed::handleArticleLoadFinished(QVector<QVariantHash> articles)
+void Feed::handleArticleLoadFinished(QList<QVariantHash> articles)
 {
     Q_ASSERT(m_articles.isEmpty());
     Q_ASSERT(m_unreadCount == 0);

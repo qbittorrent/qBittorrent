@@ -35,6 +35,7 @@
 #include <QColor>
 #include <QDebug>
 #include <QHeaderView>
+#include <QList>
 #include <QLocale>
 #include <QMenu>
 #include <QMessageBox>
@@ -42,7 +43,6 @@
 #include <QStringList>
 #include <QTreeWidgetItem>
 #include <QUrl>
-#include <QVector>
 #include <QWheelEvent>
 
 #include "base/bittorrent/session.h"

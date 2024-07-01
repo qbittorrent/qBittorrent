@@ -36,12 +36,12 @@
 #include <QElapsedTimer>
 #include <QHash>
 #include <QHostAddress>
+#include <QList>
 #include <QMap>
 #include <QObject>
 #include <QRegularExpression>
 #include <QSet>
 #include <QTranslator>
-#include <QVector>
 
 #include "base/applicationcomponent.h"
 #include "base/global.h"
@@ -234,7 +234,7 @@ private:
     AuthController *m_authController = nullptr;
     bool m_isLocalAuthEnabled = false;
     bool m_isAuthSubnetWhitelistEnabled = false;
-    QVector<Utils::Net::Subnet> m_authSubnetWhitelist;
+    QList<Utils::Net::Subnet> m_authSubnetWhitelist;
     int m_sessionTimeout = 0;
     QString m_sessionCookieName;
 
@@ -247,10 +247,10 @@ private:
 
     // Reverse proxy
     bool m_isReverseProxySupportEnabled = false;
-    QVector<Utils::Net::Subnet> m_trustedReverseProxyList;
+    QList<Utils::Net::Subnet> m_trustedReverseProxyList;
     QHostAddress m_clientAddress;
 
-    QVector<Http::Header> m_prebuiltHeaders;
+    QList<Http::Header> m_prebuiltHeaders;
 
     Utils::Thread::UniquePtr m_workerThread;
     FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
