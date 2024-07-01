@@ -84,24 +84,28 @@ void APIController::requireParams(const QVector<QString> &requiredParams) const
         throw APIError(APIErrorType::BadParams);
 }
 
-void APIController::setResult(const QString &result)
+void APIController::setResult(const QString &result, const int statusCode)
 {
     m_result.data = result;
+    m_result.statusCode = statusCode;
 }
 
-void APIController::setResult(const QJsonArray &result)
+void APIController::setResult(const QJsonArray &result, const int statusCode)
 {
     m_result.data = QJsonDocument(result);
+    m_result.statusCode = statusCode;
 }
 
-void APIController::setResult(const QJsonObject &result)
+void APIController::setResult(const QJsonObject &result, const int statusCode)
 {
     m_result.data = QJsonDocument(result);
+    m_result.statusCode = statusCode;
 }
 
-void APIController::setResult(const QByteArray &result, const QString &mimeType, const QString &filename)
+void APIController::setResult(const QByteArray &result, const QString &mimeType, const QString &filename, const int statusCode)
 {
     m_result.data = result;
     m_result.mimeType = mimeType;
     m_result.filename = filename;
+    m_result.statusCode = statusCode;
 }

@@ -31,6 +31,7 @@
 #include <functional>
 
 #include <QBitArray>
+#include <QHash>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QList>
@@ -126,6 +127,11 @@ const QString KEY_FILE_PRIORITY = u"priority"_s;
 const QString KEY_FILE_IS_SEED = u"is_seed"_s;
 const QString KEY_FILE_PIECE_RANGE = u"piece_range"_s;
 const QString KEY_FILE_AVAILABILITY = u"availability"_s;
+
+// Metadata keys
+const QString KEY_METADATA_TRACKERS = u"trackers"_s;
+const QString KEY_METADATA_FILES = u"files"_s;
+const QString KEY_METADATA_WEBSEEDS = u"webseeds"_s;
 
 namespace
 {
@@ -250,6 +256,63 @@ namespace
             idList << BitTorrent::TorrentID::fromString(hash);
         return idList;
     }
+
+    QJsonObject serializeTorrentMetadata(const BitTorrent::TorrentInfo &metadata, const QVector<BitTorrent::TrackerEntry> &trackers)
+    {
+        QJsonArray trackersArr;
+        for (const auto &tracker : trackers)
+        {
+            trackersArr << QJsonObject
+            {
+                {KEY_TRACKER_URL, tracker.url},
+                {KEY_TRACKER_TIER, tracker.tier}
+            };
+        }
+
+        QJsonArray files;
+        for (int fileIndex = 0; fileIndex < metadata.filesCount(); ++fileIndex)
+        {
+            files << QJsonObject
+            {
+                {KEY_FILE_INDEX, fileIndex},
+                {KEY_FILE_NAME, metadata.filePath(fileIndex).toString()},
+                {KEY_FILE_SIZE, metadata.fileSize(fileIndex)}
+            };
+        }
+
+        QJsonArray webseeds;
+        for (const QUrl &webseed : metadata.urlSeeds())
+        {
+            webseeds << QJsonObject
+            {
+                {KEY_WEBSEED_URL, webseed.toString()}
+            };
+        }
+
+        // based on torrent_info https://www.libtorrent.org/reference-Torrent_Info.html#torrent_info
+        return QJsonObject {
+            {KEY_TORRENT_INFOHASHV1, metadata.infoHash().v1().toString()},
+            {KEY_TORRENT_INFOHASHV2, metadata.infoHash().v2().toString()},
+            {KEY_TORRENT_NAME, metadata.name()},
+            {KEY_TORRENT_ID, metadata.infoHash().toTorrentID().toString()},
+            {KEY_METADATA_TRACKERS, trackersArr},
+            {KEY_PROP_TOTAL_SIZE, metadata.totalSize()},
+            {KEY_PROP_PIECES_NUM, metadata.piecesCount()},
+            {KEY_PROP_PIECE_SIZE, metadata.pieceLength()},
+            {KEY_PROP_CREATED_BY, metadata.creator()},
+            {KEY_PROP_PRIVATE, metadata.isPrivate()},
+            {KEY_PROP_CREATION_DATE, Utils::DateTime::toSecsSinceEpoch(metadata.creationDate())},
+            {KEY_PROP_COMMENT, metadata.comment()},
+            {KEY_METADATA_FILES, files},
+            {KEY_METADATA_WEBSEEDS, webseeds}
+        };
+    }
+}
+
+TorrentsController::TorrentsController(IApplication *app, QObject *parent)
+    : APIController(app, parent)
+{
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataDownloaded, this, &TorrentsController::onMetadataDownloaded);
 }
 
 void TorrentsController::countAction()
@@ -1522,4 +1585,79 @@ void TorrentsController::setSSLParametersAction()
         throw APIError(APIErrorType::BadData);
 
     torrent->setSSLParameters(sslParams);
+}
+
+void TorrentsController::metadataAction()
+{
+    const QString source {params()[u"source"_s]};
+
+    if (Net::DownloadManager::hasSupportedScheme(source))
+        throw APIError(APIErrorType::BadParams, tr("Source must be magnet URI or info hash"));
+
+    if (const auto parseResult = BitTorrent::TorrentDescriptor::parse(source))
+    {
+        auto *session = BitTorrent::Session::instance();
+        const BitTorrent::TorrentDescriptor &torrentDescr = parseResult.value();
+        const BitTorrent::InfoHash &infoHash = torrentDescr.infoHash();
+
+        const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
+        // torrent has already been added and has metadata
+        if (torrent && torrent->info().isValid())
+        {
+            // the TorrentInfo returned by Torrent::info() contains an empty list of trackers
+            // we must fetch the trackers directly via Torrent::trackers()
+            QVector<BitTorrent::TrackerEntry> trackers;
+            for (const BitTorrent::TrackerEntryStatus &tracker : torrent->trackers())
+                trackers << BitTorrent::TrackerEntry
+                {
+                    .url = tracker.url,
+                    .tier = tracker.tier
+                };
+
+            setResult(serializeTorrentMetadata(torrent->info(), trackers));
+            return;
+        }
+
+        const auto iter = m_torrentMetadata.find(infoHash);
+
+        // metadata has already been downloaded
+        if (iter != m_torrentMetadata.end() && iter.value().isValid())
+        {
+            const BitTorrent::TorrentInfo &metadata = iter.value();
+            setResult(serializeTorrentMetadata(metadata, metadata.trackers()));
+            return;
+        }
+
+        if (!session->isKnownTorrent(infoHash) && iter == m_torrentMetadata.end())
+        {
+            qDebug("Fetching metadata for %s", qUtf8Printable(infoHash.toTorrentID().toString()));
+            if (!session->downloadMetadata(torrentDescr))
+                throw APIError(APIErrorType::BadParams, tr("Unable to download metadata"));
+
+            m_torrentMetadata.insert(infoHash, BitTorrent::TorrentInfo());
+        }
+
+        setResult(QJsonObject {}, 202);
+        return;
+    }
+
+    throw APIError(APIErrorType::BadParams, tr("Unable to parse torrent"));
+}
+
+void TorrentsController::onMetadataDownloaded(const BitTorrent::TorrentInfo &metadata)
+{
+    const auto iter = m_torrentMetadata.find(metadata.infoHash());
+    // only process if a lookup was explicitly initiated via API
+    if (iter != m_torrentMetadata.end())
+    {
+        Q_ASSERT(metadata.isValid());
+        if (!metadata.isValid()) [[unlikely]]
+        {
+            // reattempt the download on the next request
+            m_torrentMetadata.remove(metadata.infoHash());
+            return;
+        }
+
+        m_torrentMetadata.insert(metadata.infoHash(), metadata);
+    }
 }

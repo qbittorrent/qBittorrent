@@ -43,6 +43,7 @@ struct APIResult
     QVariant data;
     QString mimeType;
     QString filename;
+    int statusCode;
 
     void clear();
 };
@@ -62,10 +63,10 @@ protected:
     const DataMap &data() const;
     void requireParams(const QVector<QString> &requiredParams) const;
 
-    void setResult(const QString &result);
-    void setResult(const QJsonArray &result);
-    void setResult(const QJsonObject &result);
-    void setResult(const QByteArray &result, const QString &mimeType = {}, const QString &filename = {});
+    void setResult(const QString &result, int statusCode = 200);
+    void setResult(const QJsonArray &result, int statusCode = 200);
+    void setResult(const QJsonObject &result, int statusCode = 200);
+    void setResult(const QByteArray &result, const QString &mimeType = {}, const QString &filename = {}, int statusCode = 200);
 
 private:
     StringMap m_params;

@@ -356,6 +356,8 @@ void WebApplication::doProcessRequest()
     try
     {
         const APIResult result = controller->run(action, m_params, data);
+        status(result.statusCode);
+
         switch (result.data.userType())
         {
         case QMetaType::QJsonDocument:
