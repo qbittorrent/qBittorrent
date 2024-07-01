@@ -34,7 +34,7 @@
             $("addPeersOk").addEvent("click", (e) => {
                 new Event(e).stop();
 
-                const peers = $("peers").get("value").trim().split(/[\r\n]+/);
+                const peers = $("peers").value.trim().split(/[\r\n]+/);
                 if (peers.length === 0)
                     return;
 

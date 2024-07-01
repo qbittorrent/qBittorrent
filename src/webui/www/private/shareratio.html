@@ -60,16 +60,16 @@
             else {
                 setSelectedRadioValue("shareLimit", "custom");
                 if (values.ratioLimit >= 0) {
-                    $("setRatio").set("checked", true);
-                    $("ratio").set("value", values.ratioLimit);
+                    $("setRatio").checked = true;
+                    $("ratio").value = values.ratioLimit;
                 }
                 if (values.seedingTimeLimit >= 0) {
-                    $("setTotalMinutes").set("checked", true);
-                    $("totalMinutes").set("value", values.seedingTimeLimit);
+                    $("setTotalMinutes").checked = true;
+                    $("totalMinutes").value = values.seedingTimeLimit;
                 }
                 if (values.inactiveSeedingTimeLimit >= 0) {
-                    $("setInactiveMinutes").set("checked", true);
-                    $("inactiveMinutes").set("value", values.inactiveSeedingTimeLimit);
+                    $("setInactiveMinutes").checked = true;
+                    $("inactiveMinutes").value = values.inactiveSeedingTimeLimit;
                 }
             }
 
@@ -94,9 +94,9 @@
                     ratioLimitValue = seedingTimeLimitValue = inactiveSeedingTimeLimitValue = NoLimit;
                 }
                 else if (shareLimit === "custom") {
-                    ratioLimitValue = $("setRatio").get("checked") ? $("ratio").get("value") : -1;
-                    seedingTimeLimitValue = $("setTotalMinutes").get("checked") ? $("totalMinutes").get("value") : -1;
-                    inactiveSeedingTimeLimitValue = $("setInactiveMinutes").get("checked") ? $("inactiveMinutes").get("value") : -1;
+                    ratioLimitValue = $("setRatio").checked ? $("ratio").value : -1;
+                    seedingTimeLimitValue = $("setTotalMinutes").checked ? $("totalMinutes").value : -1;
+                    inactiveSeedingTimeLimitValue = $("setInactiveMinutes").checked ? $("inactiveMinutes").value : -1;
                 }
                 else {
                     return false;
@@ -124,7 +124,7 @@
             for (let i = 0; i < radios.length; ++i) {
                 const radio = radios[i];
                 if (radio.checked)
-                    return (radio).get("value");
+                    return radio.value;
             }
         }
 
@@ -140,26 +140,26 @@
 
         function shareLimitChanged() {
             const customShareLimit = getSelectedRadioValue("shareLimit") === "custom";
-            $("setRatio").set("disabled", !customShareLimit);
-            $("setTotalMinutes").set("disabled", !customShareLimit);
-            $("setInactiveMinutes").set("disabled", !customShareLimit);
+            $("setRatio").disabled = !customShareLimit;
+            $("setTotalMinutes").disabled = !customShareLimit;
+            $("setInactiveMinutes").disabled = !customShareLimit;
 
             enableInputBoxes();
 
-            $("save").set("disabled", !isFormValid());
+            $("save").disabled = !isFormValid();
         }
 
         function enableInputBoxes() {
-            $("ratio").set("disabled", ($("setRatio").get("disabled") || !$("setRatio").get("checked")));
-            $("totalMinutes").set("disabled", ($("setTotalMinutes").get("disabled") || !$("setTotalMinutes").get("checked")));
-            $("inactiveMinutes").set("disabled", ($("setInactiveMinutes").get("disabled") || !$("setInactiveMinutes").get("checked")));
+            $("ratio").disabled = $("setRatio").disabled || !$("setRatio").checked;
+            $("totalMinutes").disabled = $("setTotalMinutes").disabled || !$("setTotalMinutes").checked;
+            $("inactiveMinutes").disabled = $("setInactiveMinutes").disabled || !$("setInactiveMinutes").checked;
 
-            $("save").set("disabled", !isFormValid());
+            $("save").disabled = !isFormValid();
         }
 
         function isFormValid() {
-            return !((getSelectedRadioValue("shareLimit") === "custom") && !$("setRatio").get("checked")
-                && !$("setTotalMinutes").get("checked") && !$("setInactiveMinutes").get("checked"));
+            return !((getSelectedRadioValue("shareLimit") === "custom") && !$("setRatio").checked
+                && !$("setTotalMinutes").checked && !$("setInactiveMinutes").checked);
         }
     </script>
 </head>
