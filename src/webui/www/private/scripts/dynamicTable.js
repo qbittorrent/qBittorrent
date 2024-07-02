@@ -1536,6 +1536,20 @@ window.qBittorrent.DynamicTable = (function() {
                 this._this.selectRow(this.rowId);
                 const row = this._this.rows.get(this.rowId);
                 const state = row["full_data"].state;
+
+                const prefKey =
+                    (state !== "uploading")
+                    && (state !== "stoppedUP")
+                    && (state !== "forcedUP")
+                    && (state !== "stalledUP")
+                    && (state !== "queuedUP")
+                    && (state !== "checkingUP")
+                    ? "dblclick_download"
+                    : "dblclick_complete";
+
+                if (LocalPreferences.get(prefKey, "1") !== "1")
+                    return true;
+
                 if (state.includes("stopped"))
                     startFN();
                 else
