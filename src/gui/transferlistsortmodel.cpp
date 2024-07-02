@@ -61,15 +61,12 @@ namespace
 
     // consider negative values as invalid
     template <typename T>
-    std::enable_if_t<std::is_arithmetic_v<T>, bool> isValid(const T value)
+    bool isValid(const T &value)
     {
-        return (value >= 0);
-    }
-
-    template <typename T>
-    std::enable_if_t<!std::is_arithmetic_v<T>, bool> isValid(const T &value)
-    {
-        return value.isValid();
+        if constexpr (std::is_arithmetic_v<T>)
+            return (value >= 0); // consider negative values as invalid
+        else
+            return value.isValid();
     }
 
     template <typename T>
