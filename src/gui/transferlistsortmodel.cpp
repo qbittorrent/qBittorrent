@@ -29,6 +29,7 @@
 #include "transferlistsortmodel.h"
 
 #include <type_traits>
+#include <concepts>
 
 #include <QDateTime>
 
@@ -59,14 +60,21 @@ namespace
         return threeWayCompare(left.size(), right.size());
     }
 
-    // consider negative values as invalid
     template <typename T>
+    concept Validateable = requires (T t) { {t.isValid()} -> std::same_as<bool>; };
+
+    template <Validateable T>
     bool isValid(const T &value)
     {
-        if constexpr (std::is_arithmetic_v<T>)
-            return (value >= 0); // consider negative values as invalid
-        else
-            return value.isValid();
+        return value.isValid();
+    }
+
+    // consider negative values as invalid
+    template <typename T>
+        requires std::is_arithmetic_v<T>
+    bool isValid(const T value)
+    {
+        return (value >= 0);
     }
 
     template <typename T>
