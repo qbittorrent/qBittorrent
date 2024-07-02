@@ -350,7 +350,7 @@ void CategoryFilterModel::categoryRemoved(const QString &categoryName)
     }
 }
 
-void CategoryFilterModel::torrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents)
+void CategoryFilterModel::torrentsLoaded(const QList<BitTorrent::Torrent *> &torrents)
 {
     for (const BitTorrent::Torrent *torrent : torrents)
     {

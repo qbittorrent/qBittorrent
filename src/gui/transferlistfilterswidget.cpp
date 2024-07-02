@@ -176,7 +176,7 @@ void TransferListFiltersWidget::setDownloadTrackerFavicon(bool value)
     m_trackersFilterWidget->setDownloadTrackerFavicon(value);
 }
 
-void TransferListFiltersWidget::addTrackers(const BitTorrent::Torrent *torrent, const QVector<BitTorrent::TrackerEntry> &trackers)
+void TransferListFiltersWidget::addTrackers(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers)
 {
     m_trackersFilterWidget->addTrackers(torrent, trackers);
 }

@@ -108,10 +108,10 @@ public:
     BitTorrent::Torrent *torrentHandle(const QModelIndex &index) const;
 
 private slots:
-    void addTorrents(const QVector<BitTorrent::Torrent *> &torrents);
+    void addTorrents(const QList<BitTorrent::Torrent *> &torrents);
     void handleTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent);
     void handleTorrentStatusUpdated(BitTorrent::Torrent *torrent);
-    void handleTorrentsUpdated(const QVector<BitTorrent::Torrent *> &torrents);
+    void handleTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents);
 
 private:
     void configure();

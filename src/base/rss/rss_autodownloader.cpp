@@ -35,11 +35,11 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
+#include <QList>
 #include <QThread>
 #include <QTimer>
 #include <QUrl>
 #include <QVariant>
-#include <QVector>
 
 #include "base/addtorrentmanager.h"
 #include "base/asyncfilestorage.h"
@@ -68,7 +68,7 @@ const QString RULES_FILE_NAME = u"download_rules.json"_s;
 
 namespace
 {
-    QVector<RSS::AutoDownloadRule> rulesFromJSON(const QByteArray &jsonData)
+    QList<RSS::AutoDownloadRule> rulesFromJSON(const QByteArray &jsonData)
     {
         QJsonParseError jsonError;
         const QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonData, &jsonError);
@@ -79,7 +79,7 @@ namespace
             throw RSS::ParsingError(RSS::AutoDownloader::tr("Invalid data format."));
 
         const QJsonObject jsonObj {jsonDoc.object()};
-        QVector<RSS::AutoDownloadRule> rules;
+        QList<RSS::AutoDownloadRule> rules;
         for (auto it = jsonObj.begin(); it != jsonObj.end(); ++it)
         {
             const QJsonValue jsonVal {it.value()};

@@ -30,7 +30,7 @@
 
 #include <QJsonArray>
 #include <QJsonObject>
-#include <QVector>
+#include <QList>
 
 #include "base/global.h"
 #include "base/logger.h"

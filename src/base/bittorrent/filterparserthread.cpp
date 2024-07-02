@@ -133,7 +133,7 @@ int FilterParserThread::parseDATFilterFile()
         return ruleCount;
     }
 
-    std::vector<char> buffer(BUFFER_SIZE, 0); // seems a bit faster than QVector
+    std::vector<char> buffer(BUFFER_SIZE, 0); // seems a bit faster than QList
     qint64 bytesRead = 0;
     int offset = 0;
     int start = 0;
@@ -297,7 +297,7 @@ int FilterParserThread::parseP2PFilterFile()
         return ruleCount;
     }
 
-    std::vector<char> buffer(BUFFER_SIZE, 0); // seems a bit faster than QVector
+    std::vector<char> buffer(BUFFER_SIZE, 0); // seems a bit faster than QList
     qint64 bytesRead = 0;
     int offset = 0;
     int start = 0;

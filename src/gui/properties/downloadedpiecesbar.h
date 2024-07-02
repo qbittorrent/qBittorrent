@@ -51,7 +51,7 @@ public:
 
 private:
     // scale bitfield vector to float vector
-    QVector<float> bitfieldToFloatVector(const QBitArray &vecin, int reqSize);
+    QList<float> bitfieldToFloatVector(const QBitArray &vecin, int reqSize);
     bool updateImage(QImage &image) override;
     QString simpleToolTipText() const override;
 

@@ -606,12 +606,12 @@ Path TorrentImpl::makeUserPath(const Path &path) const
     return userPath;
 }
 
-QVector<TrackerEntryStatus> TorrentImpl::trackers() const
+QList<TrackerEntryStatus> TorrentImpl::trackers() const
 {
     return m_trackerEntryStatuses;
 }
 
-void TorrentImpl::addTrackers(QVector<TrackerEntry> trackers)
+void TorrentImpl::addTrackers(QList<TrackerEntry> trackers)
 {
     trackers.removeIf([](const TrackerEntry &trackerEntry) { return trackerEntry.url.isEmpty(); });
 
@@ -624,7 +624,7 @@ void TorrentImpl::addTrackers(QVector<TrackerEntry> trackers)
     if (newTrackerSet.isEmpty())
         return;
 
-    trackers = QVector<TrackerEntry>(newTrackerSet.cbegin(), newTrackerSet.cend());
+    trackers = QList<TrackerEntry>(newTrackerSet.cbegin(), newTrackerSet.cend());
     for (const TrackerEntry &tracker : asConst(trackers))
     {
         m_nativeHandle.add_tracker(makeNativeAnnounceEntry(tracker.url, tracker.tier));
@@ -660,13 +660,13 @@ void TorrentImpl::removeTrackers(const QStringList &trackers)
     }
 }
 
-void TorrentImpl::replaceTrackers(QVector<TrackerEntry> trackers)
+void TorrentImpl::replaceTrackers(QList<TrackerEntry> trackers)
 {
     trackers.removeIf([](const TrackerEntry &trackerEntry) { return trackerEntry.url.isEmpty(); });
 
     // Filter out duplicate trackers
     const auto uniqueTrackers = QSet<TrackerEntry>(trackers.cbegin(), trackers.cend());
-    trackers = QVector<TrackerEntry>(uniqueTrackers.cbegin(), uniqueTrackers.cend());
+    trackers = QList<TrackerEntry>(uniqueTrackers.cbegin(), uniqueTrackers.cend());
     std::sort(trackers.begin(), trackers.end()
         , [](const TrackerEntry &left, const TrackerEntry &right) { return left.tier < right.tier; });
 
@@ -691,12 +691,12 @@ void TorrentImpl::replaceTrackers(QVector<TrackerEntry> trackers)
     m_session->handleTorrentTrackersChanged(this);
 }
 
-QVector<QUrl> TorrentImpl::urlSeeds() const
+QList<QUrl> TorrentImpl::urlSeeds() const
 {
     return m_urlSeeds;
 }
 
-void TorrentImpl::addUrlSeeds(const QVector<QUrl> &urlSeeds)
+void TorrentImpl::addUrlSeeds(const QList<QUrl> &urlSeeds)
 {
     m_session->invokeAsync([urlSeeds, session = m_session
                            , nativeHandle = m_nativeHandle
@@ -705,12 +705,12 @@ void TorrentImpl::addUrlSeeds(const QVector<QUrl> &urlSeeds)
         try
         {
             const std::set<std::string> nativeSeeds = nativeHandle.url_seeds();
-            QVector<QUrl> currentSeeds;
+            QList<QUrl> currentSeeds;
             currentSeeds.reserve(static_cast<decltype(currentSeeds)::size_type>(nativeSeeds.size()));
             for (const std::string &urlSeed : nativeSeeds)
                 currentSeeds.append(QString::fromStdString(urlSeed));
 
-            QVector<QUrl> addedUrlSeeds;
+            QList<QUrl> addedUrlSeeds;
             addedUrlSeeds.reserve(urlSeeds.size());
 
             for (const QUrl &url : urlSeeds)
@@ -740,7 +740,7 @@ void TorrentImpl::addUrlSeeds(const QVector<QUrl> &urlSeeds)
     });
 }
 
-void TorrentImpl::removeUrlSeeds(const QVector<QUrl> &urlSeeds)
+void TorrentImpl::removeUrlSeeds(const QList<QUrl> &urlSeeds)
 {
     m_session->invokeAsync([urlSeeds, session = m_session
                            , nativeHandle = m_nativeHandle
@@ -749,12 +749,12 @@ void TorrentImpl::removeUrlSeeds(const QVector<QUrl> &urlSeeds)
         try
         {
             const std::set<std::string> nativeSeeds = nativeHandle.url_seeds();
-            QVector<QUrl> currentSeeds;
+            QList<QUrl> currentSeeds;
             currentSeeds.reserve(static_cast<decltype(currentSeeds)::size_type>(nativeSeeds.size()));
             for (const std::string &urlSeed : nativeSeeds)
                 currentSeeds.append(QString::fromStdString(urlSeed));
 
-            QVector<QUrl> removedUrlSeeds;
+            QList<QUrl> removedUrlSeeds;
             removedUrlSeeds.reserve(urlSeeds.size());
 
             for (const QUrl &url : urlSeeds)
@@ -966,7 +966,7 @@ Path TorrentImpl::filePath(const int index) const
 
 Path TorrentImpl::actualFilePath(const int index) const
 {
-    const QVector<lt::file_index_t> nativeIndexes = m_torrentInfo.nativeIndexes();
+    const QList<lt::file_index_t> nativeIndexes = m_torrentInfo.nativeIndexes();
 
     Q_ASSERT(index >= 0);
     Q_ASSERT(index < nativeIndexes.size());
@@ -1001,7 +1001,7 @@ PathList TorrentImpl::actualFilePaths() const
     return paths;
 }
 
-QVector<DownloadPriority> TorrentImpl::filePriorities() const
+QList<DownloadPriority> TorrentImpl::filePriorities() const
 {
     return m_filePriorities;
 }
@@ -1317,7 +1317,7 @@ qlonglong TorrentImpl::eta() const
     return (wantedSize() - completedSize()) / speedAverage.download;
 }
 
-QVector<qreal> TorrentImpl::filesProgress() const
+QList<qreal> TorrentImpl::filesProgress() const
 {
     if (!hasMetadata())
         return {};
@@ -1328,9 +1328,9 @@ QVector<qreal> TorrentImpl::filesProgress() const
         return {};
 
     if (m_completedFiles.count(true) == count)
-        return QVector<qreal>(count, 1);
+        return QList<qreal>(count, 1);
 
-    QVector<qreal> result;
+    QList<qreal> result;
     result.reserve(count);
     for (int i = 0; i < count; ++i)
     {
@@ -1445,12 +1445,12 @@ bool TorrentImpl::isLSDDisabled() const
     return static_cast<bool>(m_nativeStatus.flags & lt::torrent_flags::disable_lsd);
 }
 
-QVector<PeerInfo> TorrentImpl::peers() const
+QList<PeerInfo> TorrentImpl::peers() const
 {
     std::vector<lt::peer_info> nativePeers;
     m_nativeHandle.get_peer_info(nativePeers);
 
-    QVector<PeerInfo> peers;
+    QList<PeerInfo> peers;
     peers.reserve(static_cast<decltype(peers)::size_type>(nativePeers.size()));
 
     for (const lt::peer_info &peer : nativePeers)
@@ -1477,7 +1477,7 @@ QBitArray TorrentImpl::downloadingPieces() const
     return result;
 }
 
-QVector<int> TorrentImpl::pieceAvailability() const
+QList<int> TorrentImpl::pieceAvailability() const
 {
     std::vector<int> avail;
     m_nativeHandle.piece_availability(avail);
@@ -2113,7 +2113,7 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
         // URL seed list have been changed by libtorrent for some reason, so we need to update cached one.
         // Unfortunately, URL seed list containing in "resume data" is generated according to different rules
         // than the list we usually cache, so we have to request it from the appropriate source.
-        fetchURLSeeds([this](const QVector<QUrl> &urlSeeds) { m_urlSeeds = urlSeeds; });
+        fetchURLSeeds([this](const QList<QUrl> &urlSeeds) { m_urlSeeds = urlSeeds; });
     }
 
     if ((m_maintenanceJob == MaintenanceJob::HandleMetadata) && p->params.ti)
@@ -2490,7 +2490,7 @@ void TorrentImpl::adjustStorageLocation()
 
 void TorrentImpl::doRenameFile(const int index, const Path &path)
 {
-    const QVector<lt::file_index_t> nativeIndexes = m_torrentInfo.nativeIndexes();
+    const QList<lt::file_index_t> nativeIndexes = m_torrentInfo.nativeIndexes();
 
     Q_ASSERT(index >= 0);
     Q_ASSERT(index < nativeIndexes.size());
@@ -2872,15 +2872,15 @@ nonstd::expected<void, QString> TorrentImpl::exportToFile(const Path &path) cons
     return {};
 }
 
-void TorrentImpl::fetchPeerInfo(std::function<void (QVector<PeerInfo>)> resultHandler) const
+void TorrentImpl::fetchPeerInfo(std::function<void (QList<PeerInfo>)> resultHandler) const
 {
-    invokeAsync([nativeHandle = m_nativeHandle, allPieces = pieces()]() -> QVector<PeerInfo>
+    invokeAsync([nativeHandle = m_nativeHandle, allPieces = pieces()]() -> QList<PeerInfo>
     {
         try
         {
             std::vector<lt::peer_info> nativePeers;
             nativeHandle.get_peer_info(nativePeers);
-            QVector<PeerInfo> peers;
+            QList<PeerInfo> peers;
             peers.reserve(static_cast<decltype(peers)::size_type>(nativePeers.size()));
             for (const lt::peer_info &peer : nativePeers)
                 peers.append(PeerInfo(peer, allPieces));
@@ -2893,14 +2893,14 @@ void TorrentImpl::fetchPeerInfo(std::function<void (QVector<PeerInfo>)> resultHa
     , std::move(resultHandler));
 }
 
-void TorrentImpl::fetchURLSeeds(std::function<void (QVector<QUrl>)> resultHandler) const
+void TorrentImpl::fetchURLSeeds(std::function<void (QList<QUrl>)> resultHandler) const
 {
-    invokeAsync([nativeHandle = m_nativeHandle]() -> QVector<QUrl>
+    invokeAsync([nativeHandle = m_nativeHandle]() -> QList<QUrl>
     {
         try
         {
             const std::set<std::string> currentSeeds = nativeHandle.url_seeds();
-            QVector<QUrl> urlSeeds;
+            QList<QUrl> urlSeeds;
             urlSeeds.reserve(static_cast<decltype(urlSeeds)::size_type>(currentSeeds.size()));
             for (const std::string &urlSeed : currentSeeds)
                 urlSeeds.append(QString::fromStdString(urlSeed));
@@ -2913,15 +2913,15 @@ void TorrentImpl::fetchURLSeeds(std::function<void (QVector<QUrl>)> resultHandle
     , std::move(resultHandler));
 }
 
-void TorrentImpl::fetchPieceAvailability(std::function<void (QVector<int>)> resultHandler) const
+void TorrentImpl::fetchPieceAvailability(std::function<void (QList<int>)> resultHandler) const
 {
-    invokeAsync([nativeHandle = m_nativeHandle]() -> QVector<int>
+    invokeAsync([nativeHandle = m_nativeHandle]() -> QList<int>
     {
         try
         {
             std::vector<int> piecesAvailability;
             nativeHandle.piece_availability(piecesAvailability);
-            return QVector<int>(piecesAvailability.cbegin(), piecesAvailability.cend());
+            return QList<int>(piecesAvailability.cbegin(), piecesAvailability.cend());
         }
         catch (const std::exception &) {}
 
@@ -2955,9 +2955,9 @@ void TorrentImpl::fetchDownloadingPieces(std::function<void (QBitArray)> resultH
     , std::move(resultHandler));
 }
 
-void TorrentImpl::fetchAvailableFileFractions(std::function<void (QVector<qreal>)> resultHandler) const
+void TorrentImpl::fetchAvailableFileFractions(std::function<void (QList<qreal>)> resultHandler) const
 {
-    invokeAsync([nativeHandle = m_nativeHandle, torrentInfo = m_torrentInfo]() -> QVector<qreal>
+    invokeAsync([nativeHandle = m_nativeHandle, torrentInfo = m_torrentInfo]() -> QList<qreal>
     {
         if (!torrentInfo.isValid() || (torrentInfo.filesCount() <= 0))
             return {};
@@ -2969,9 +2969,9 @@ void TorrentImpl::fetchAvailableFileFractions(std::function<void (QVector<qreal>
             const int filesCount = torrentInfo.filesCount();
             // libtorrent returns empty array for seeding only torrents
             if (piecesAvailability.empty())
-                return QVector<qreal>(filesCount, -1);
+                return QList<qreal>(filesCount, -1);
 
-            QVector<qreal> result;
+            QList<qreal> result;
             result.reserve(filesCount);
             for (int i = 0; i < filesCount; ++i)
             {
@@ -2995,7 +2995,7 @@ void TorrentImpl::fetchAvailableFileFractions(std::function<void (QVector<qreal>
     , std::move(resultHandler));
 }
 
-void TorrentImpl::prioritizeFiles(const QVector<DownloadPriority> &priorities)
+void TorrentImpl::prioritizeFiles(const QList<DownloadPriority> &priorities)
 {
     if (!hasMetadata())
         return;
@@ -3004,7 +3004,7 @@ void TorrentImpl::prioritizeFiles(const QVector<DownloadPriority> &priorities)
 
     // Reset 'm_hasSeedStatus' if needed in order to react again to
     // 'torrent_finished_alert' and eg show tray notifications
-    const QVector<DownloadPriority> oldPriorities = filePriorities();
+    const QList<DownloadPriority> oldPriorities = filePriorities();
     for (int i = 0; i < oldPriorities.size(); ++i)
     {
         if ((oldPriorities[i] == DownloadPriority::Ignored)
@@ -3032,18 +3032,18 @@ void TorrentImpl::prioritizeFiles(const QVector<DownloadPriority> &priorities)
     manageActualFilePaths();
 }
 
-QVector<qreal> TorrentImpl::availableFileFractions() const
+QList<qreal> TorrentImpl::availableFileFractions() const
 {
     Q_ASSERT(hasMetadata());
 
     const int filesCount = this->filesCount();
     if (filesCount <= 0) return {};
 
-    const QVector<int> piecesAvailability = pieceAvailability();
+    const QList<int> piecesAvailability = pieceAvailability();
     // libtorrent returns empty array for seeding only torrents
-    if (piecesAvailability.empty()) return QVector<qreal>(filesCount, -1);
+    if (piecesAvailability.empty()) return QList<qreal>(filesCount, -1);
 
-    QVector<qreal> res;
+    QList<qreal> res;
     res.reserve(filesCount);
     for (int i = 0; i < filesCount; ++i)
     {

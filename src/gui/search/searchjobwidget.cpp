@@ -508,7 +508,7 @@ void SearchJobWidget::searchFailed()
     setStatus(Status::Error);
 }
 
-void SearchJobWidget::appendSearchResults(const QVector<SearchResult> &results)
+void SearchJobWidget::appendSearchResults(const QList<SearchResult> &results)
 {
     for (const SearchResult &result : results)
     {

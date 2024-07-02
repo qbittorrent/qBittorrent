@@ -34,8 +34,8 @@
 #include <openssl/evp.h>
 
 #include <QByteArray>
+#include <QList>
 #include <QString>
-#include <QVector>
 
 #include "base/global.h"
 #include "bytearray.h"

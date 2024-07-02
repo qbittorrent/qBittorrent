@@ -75,7 +75,7 @@ public:
 signals:
     void searchFinished(bool cancelled = false);
     void searchFailed();
-    void newSearchResults(const QVector<SearchResult> &results);
+    void newSearchResults(const QList<SearchResult> &results);
 
 private:
     void readSearchOutput();

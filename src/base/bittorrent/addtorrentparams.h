@@ -30,9 +30,9 @@
 
 #include <optional>
 
+#include <QList>
 #include <QMetaType>
 #include <QString>
-#include <QVector>
 
 #include "base/path.h"
 #include "base/tagset.h"
@@ -62,7 +62,7 @@ namespace BitTorrent
         std::optional<bool> addStopped;
         std::optional<Torrent::StopCondition> stopCondition;
         PathList filePaths; // used if TorrentInfo is set
-        QVector<DownloadPriority> filePriorities; // used if TorrentInfo is set
+        QList<DownloadPriority> filePriorities; // used if TorrentInfo is set
         bool skipChecking = false;
         std::optional<BitTorrent::TorrentContentLayout> contentLayout;
         std::optional<bool> useAutoTMM;

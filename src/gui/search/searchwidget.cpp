@@ -40,13 +40,13 @@
 
 #include <QDebug>
 #include <QEvent>
+#include <QList>
 #include <QMessageBox>
 #include <QMenu>
 #include <QMouseEvent>
 #include <QObject>
 #include <QRegularExpression>
 #include <QShortcut>
-#include <QVector>
 
 #include "base/global.h"
 #include "base/search/searchhandler.h"
@@ -184,7 +184,7 @@ void SearchWidget::fillCatCombobox()
     m_ui->comboCategory->addItem(SearchPluginManager::categoryFullName(u"all"_s), u"all"_s);
 
     using QStrPair = std::pair<QString, QString>;
-    QVector<QStrPair> tmpList;
+    QList<QStrPair> tmpList;
     for (const QString &cat : asConst(SearchPluginManager::instance()->getPluginCategories(selectedPlugin())))
         tmpList << std::make_pair(SearchPluginManager::categoryFullName(cat), cat);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
@@ -207,7 +207,7 @@ void SearchWidget::fillPluginComboBox()
     m_ui->selectPlugin->addItem(tr("Select..."), u"multi"_s);
 
     using QStrPair = std::pair<QString, QString>;
-    QVector<QStrPair> tmpList;
+    QList<QStrPair> tmpList;
     for (const QString &name : asConst(SearchPluginManager::instance()->enabledPlugins()))
         tmpList << std::make_pair(SearchPluginManager::instance()->pluginFullName(name), name);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );

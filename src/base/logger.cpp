@@ -31,14 +31,14 @@
 #include <algorithm>
 
 #include <QDateTime>
-#include <QVector>
+#include <QList>
 
 namespace
 {
     template <typename T>
-    QVector<T> loadFromBuffer(const boost::circular_buffer_space_optimized<T> &src, const int offset = 0)
+    QList<T> loadFromBuffer(const boost::circular_buffer_space_optimized<T> &src, const int offset = 0)
     {
-        QVector<T> ret;
+        QList<T> ret;
         ret.reserve(static_cast<typename decltype(ret)::size_type>(src.size()) - offset);
         std::copy((src.begin() + offset), src.end(), std::back_inserter(ret));
         return ret;
@@ -90,7 +90,7 @@ void Logger::addPeer(const QString &ip, const bool blocked, const QString &reaso
     emit newLogPeer(msg);
 }
 
-QVector<Log::Msg> Logger::getMessages(const int lastKnownId) const
+QList<Log::Msg> Logger::getMessages(const int lastKnownId) const
 {
     const QReadLocker locker(&m_lock);
 
@@ -106,7 +106,7 @@ QVector<Log::Msg> Logger::getMessages(const int lastKnownId) const
     return loadFromBuffer(m_messages, (size - diff));
 }
 
-QVector<Log::Peer> Logger::getPeers(const int lastKnownId) const
+QList<Log::Peer> Logger::getPeers(const int lastKnownId) const
 {
     const QReadLocker locker(&m_lock);
 

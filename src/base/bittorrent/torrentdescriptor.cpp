@@ -204,9 +204,9 @@ void BitTorrent::TorrentDescriptor::setTorrentInfo(TorrentInfo torrentInfo)
     }
 }
 
-QVector<BitTorrent::TrackerEntry> BitTorrent::TorrentDescriptor::trackers() const
+QList<BitTorrent::TrackerEntry> BitTorrent::TorrentDescriptor::trackers() const
 {
-    QVector<TrackerEntry> ret;
+    QList<TrackerEntry> ret;
     ret.reserve(static_cast<decltype(ret)::size_type>(m_ltAddTorrentParams.trackers.size()));
     std::size_t i = 0;
     for (const std::string &tracker : m_ltAddTorrentParams.trackers)
@@ -215,9 +215,9 @@ QVector<BitTorrent::TrackerEntry> BitTorrent::TorrentDescriptor::trackers() cons
     return ret;
 }
 
-QVector<QUrl> BitTorrent::TorrentDescriptor::urlSeeds() const
+QList<QUrl> BitTorrent::TorrentDescriptor::urlSeeds() const
 {
-    QVector<QUrl> urlSeeds;
+    QList<QUrl> urlSeeds;
     urlSeeds.reserve(static_cast<decltype(urlSeeds)::size_type>(m_ltAddTorrentParams.url_seeds.size()));
 
     for (const std::string &nativeURLSeed : m_ltAddTorrentParams.url_seeds)

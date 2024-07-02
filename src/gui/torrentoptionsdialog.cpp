@@ -58,7 +58,7 @@ namespace
     }
 }
 
-TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::Torrent *> &torrents)
+TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorrent::Torrent *> &torrents)
     : QDialog {parent}
     , m_ui {new Ui::TorrentOptionsDialog}
     , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}

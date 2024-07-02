@@ -249,8 +249,8 @@ namespace BitTorrent
         virtual bool hasMissingFiles() const = 0;
         virtual bool hasError() const = 0;
         virtual int queuePosition() const = 0;
-        virtual QVector<TrackerEntryStatus> trackers() const = 0;
-        virtual QVector<QUrl> urlSeeds() const = 0;
+        virtual QList<TrackerEntryStatus> trackers() const = 0;
+        virtual QList<QUrl> urlSeeds() const = 0;
         virtual QString error() const = 0;
         virtual qlonglong totalDownload() const = 0;
         virtual qlonglong totalUpload() const = 0;
@@ -274,10 +274,10 @@ namespace BitTorrent
         virtual bool isDHTDisabled() const = 0;
         virtual bool isPEXDisabled() const = 0;
         virtual bool isLSDDisabled() const = 0;
-        virtual QVector<PeerInfo> peers() const = 0;
+        virtual QList<PeerInfo> peers() const = 0;
         virtual QBitArray pieces() const = 0;
         virtual QBitArray downloadingPieces() const = 0;
-        virtual QVector<int> pieceAvailability() const = 0;
+        virtual QList<int> pieceAvailability() const = 0;
         virtual qreal distributedCopies() const = 0;
         virtual qreal maxRatio() const = 0;
         virtual int maxSeedingTime() const = 0;
@@ -306,11 +306,11 @@ namespace BitTorrent
         virtual void setDHTDisabled(bool disable) = 0;
         virtual void setPEXDisabled(bool disable) = 0;
         virtual void setLSDDisabled(bool disable) = 0;
-        virtual void addTrackers(QVector<TrackerEntry> trackers) = 0;
+        virtual void addTrackers(QList<TrackerEntry> trackers) = 0;
         virtual void removeTrackers(const QStringList &trackers) = 0;
-        virtual void replaceTrackers(QVector<TrackerEntry> trackers) = 0;
-        virtual void addUrlSeeds(const QVector<QUrl> &urlSeeds) = 0;
-        virtual void removeUrlSeeds(const QVector<QUrl> &urlSeeds) = 0;
+        virtual void replaceTrackers(QList<TrackerEntry> trackers) = 0;
+        virtual void addUrlSeeds(const QList<QUrl> &urlSeeds) = 0;
+        virtual void removeUrlSeeds(const QList<QUrl> &urlSeeds) = 0;
         virtual bool connectPeer(const PeerAddress &peerAddress) = 0;
         virtual void clearPeers() = 0;
         virtual void setMetadata(const TorrentInfo &torrentInfo) = 0;
@@ -324,9 +324,9 @@ namespace BitTorrent
         virtual nonstd::expected<QByteArray, QString> exportToBuffer() const = 0;
         virtual nonstd::expected<void, QString> exportToFile(const Path &path) const = 0;
 
-        virtual void fetchPeerInfo(std::function<void (QVector<PeerInfo>)> resultHandler) const = 0;
-        virtual void fetchURLSeeds(std::function<void (QVector<QUrl>)> resultHandler) const = 0;
-        virtual void fetchPieceAvailability(std::function<void (QVector<int>)> resultHandler) const = 0;
+        virtual void fetchPeerInfo(std::function<void (QList<PeerInfo>)> resultHandler) const = 0;
+        virtual void fetchURLSeeds(std::function<void (QList<QUrl>)> resultHandler) const = 0;
+        virtual void fetchPieceAvailability(std::function<void (QList<int>)> resultHandler) const = 0;
         virtual void fetchDownloadingPieces(std::function<void (QBitArray)> resultHandler) const = 0;
 
         TorrentID id() const;

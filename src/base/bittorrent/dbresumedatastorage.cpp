@@ -41,6 +41,7 @@
 
 #include <QByteArray>
 #include <QDebug>
+#include <QList>
 #include <QMutex>
 #include <QSet>
 #include <QSqlDatabase>
@@ -48,7 +49,6 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QThread>
-#include <QVector>
 #include <QWaitCondition>
 
 #include "base/exceptions.h"
@@ -107,11 +107,11 @@ namespace
     class StoreQueueJob final : public Job
     {
     public:
-        explicit StoreQueueJob(const QVector<TorrentID> &queue);
+        explicit StoreQueueJob(const QList<TorrentID> &queue);
         void perform(QSqlDatabase db) override;
 
     private:
-        const QVector<TorrentID> m_queue;
+        const QList<TorrentID> m_queue;
     };
 
     struct Column
@@ -168,7 +168,7 @@ namespace
         return u"CREATE TABLE %1 (%2)"_s.arg(quoted(tableName), items.join(u','));
     }
 
-    std::pair<QString, QString> joinColumns(const QVector<Column> &columns)
+    std::pair<QString, QString> joinColumns(const QList<Column> &columns)
     {
         int namesSize = columns.size();
         int valuesSize = columns.size();
@@ -193,21 +193,21 @@ namespace
         return std::make_pair(names, values);
     }
 
-    QString makeInsertStatement(const QString &tableName, const QVector<Column> &columns)
+    QString makeInsertStatement(const QString &tableName, const QList<Column> &columns)
     {
         const auto [names, values] = joinColumns(columns);
         return u"INSERT INTO %1 (%2) VALUES (%3)"_s
                 .arg(quoted(tableName), names, values);
     }
 
-    QString makeUpdateStatement(const QString &tableName, const QVector<Column> &columns)
+    QString makeUpdateStatement(const QString &tableName, const QList<Column> &columns)
     {
         const auto [names, values] = joinColumns(columns);
         return u"UPDATE %1 SET (%2) = (%3)"_s
                 .arg(quoted(tableName), names, values);
     }
 
-    QString makeOnConflictUpdateStatement(const Column &constraint, const QVector<Column> &columns)
+    QString makeOnConflictUpdateStatement(const Column &constraint, const QList<Column> &columns)
     {
         const auto [names, values] = joinColumns(columns);
         return u" ON CONFLICT (%1) DO UPDATE SET (%2) = (%3)"_s
@@ -308,7 +308,7 @@ namespace BitTorrent
 
         void store(const TorrentID &id, const LoadTorrentParams &resumeData);
         void remove(const TorrentID &id);
-        void storeQueue(const QVector<TorrentID> &queue);
+        void storeQueue(const QList<TorrentID> &queue);
 
     private:
         void addJob(std::unique_ptr<Job> job);
@@ -356,7 +356,7 @@ BitTorrent::DBResumeDataStorage::~DBResumeDataStorage()
     QSqlDatabase::removeDatabase(DB_CONNECTION_NAME);
 }
 
-QVector<BitTorrent::TorrentID> BitTorrent::DBResumeDataStorage::registeredTorrents() const
+QList<BitTorrent::TorrentID> BitTorrent::DBResumeDataStorage::registeredTorrents() const
 {
     const auto selectTorrentIDStatement = u"SELECT %1 FROM %2 ORDER BY %3;"_s
             .arg(quoted(DB_COLUMN_TORRENT_ID.name), quoted(DB_TABLE_TORRENTS), quoted(DB_COLUMN_QUEUE_POSITION.name));
@@ -367,7 +367,7 @@ QVector<BitTorrent::TorrentID> BitTorrent::DBResumeDataStorage::registeredTorren
     if (!query.exec(selectTorrentIDStatement))
         throw RuntimeError(query.lastError().text());
 
-    QVector<TorrentID> registeredTorrents;
+    QList<TorrentID> registeredTorrents;
     registeredTorrents.reserve(query.size());
     while (query.next())
         registeredTorrents.append(BitTorrent::TorrentID::fromString(query.value(0).toString()));
@@ -413,7 +413,7 @@ void BitTorrent::DBResumeDataStorage::remove(const BitTorrent::TorrentID &id) co
     m_asyncWorker->remove(id);
 }
 
-void BitTorrent::DBResumeDataStorage::storeQueue(const QVector<TorrentID> &queue) const
+void BitTorrent::DBResumeDataStorage::storeQueue(const QList<TorrentID> &queue) const
 {
     m_asyncWorker->storeQueue(queue);
 }
@@ -438,7 +438,7 @@ void BitTorrent::DBResumeDataStorage::doLoadAll() const
         if (!query.exec(selectTorrentIDStatement))
             throw RuntimeError(query.lastError().text());
 
-        QVector<TorrentID> registeredTorrents;
+        QList<TorrentID> registeredTorrents;
         registeredTorrents.reserve(query.size());
         while (query.next())
             registeredTorrents.append(TorrentID::fromString(query.value(0).toString()));
@@ -747,7 +747,7 @@ void BitTorrent::DBResumeDataStorage::Worker::remove(const TorrentID &id)
     addJob(std::make_unique<RemoveJob>(id));
 }
 
-void BitTorrent::DBResumeDataStorage::Worker::storeQueue(const QVector<TorrentID> &queue)
+void BitTorrent::DBResumeDataStorage::Worker::storeQueue(const QList<TorrentID> &queue)
 {
     addJob(std::make_unique<StoreQueueJob>(queue));
 }
@@ -797,7 +797,7 @@ namespace
             }
         }
 
-        QVector<Column> columns {
+        QList<Column> columns {
             DB_COLUMN_TORRENT_ID,
             DB_COLUMN_NAME,
             DB_COLUMN_CATEGORY,
@@ -929,7 +929,7 @@ namespace
         }
     }
 
-    StoreQueueJob::StoreQueueJob(const QVector<TorrentID> &queue)
+    StoreQueueJob::StoreQueueJob(const QList<TorrentID> &queue)
         : m_queue {queue}
     {
     }

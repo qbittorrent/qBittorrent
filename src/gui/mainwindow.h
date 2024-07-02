@@ -128,7 +128,7 @@ private slots:
     void displayExecutionLogTab();
     void toggleFocusBetweenLineEdits();
     void loadSessionStats();
-    void reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torrents);
+    void reloadTorrentStats(const QList<BitTorrent::Torrent *> &torrents);
     void loadPreferences();
     void optionsSaved();
     void toggleAlternativeSpeeds();

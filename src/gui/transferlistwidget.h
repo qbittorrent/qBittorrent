@@ -124,14 +124,14 @@ private:
     QModelIndexList mapToSource(const QModelIndexList &indexes) const;
     QModelIndex mapFromSource(const QModelIndex &index) const;
     bool loadSettings();
-    QVector<BitTorrent::Torrent *> getSelectedTorrents() const;
+    QList<BitTorrent::Torrent *> getSelectedTorrents() const;
     void askAddTagsForSelection();
     void editTorrentTrackers();
     void exportTorrent();
     void confirmRemoveAllTagsForSelection();
     TagSet askTagsForSelection(const QString &dialogTitle);
     void applyToSelectedTorrents(const std::function<void (BitTorrent::Torrent *const)> &fn);
-    QVector<BitTorrent::Torrent *> getVisibleTorrents() const;
+    QList<BitTorrent::Torrent *> getVisibleTorrents() const;
     int visibleColumnsCount() const;
 
     TransferListModel *m_listModel = nullptr;

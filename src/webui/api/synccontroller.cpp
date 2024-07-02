@@ -732,7 +732,7 @@ void SyncController::torrentPeersAction()
     QVariantMap data;
     QVariantHash peers;
 
-    const QVector<BitTorrent::PeerInfo> peersList = torrent->peers();
+    const QList<BitTorrent::PeerInfo> peersList = torrent->peers();
 
     bool resolvePeerCountries = Preferences::instance()->resolvePeerCountries();
 
@@ -912,7 +912,7 @@ void SyncController::onTorrentTagRemoved(BitTorrent::Torrent *torrent, [[maybe_u
     m_updatedTorrents.insert(torrent->id());
 }
 
-void SyncController::onTorrentsUpdated(const QVector<BitTorrent::Torrent *> &torrents)
+void SyncController::onTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents)
 {
     for (const BitTorrent::Torrent *torrent : torrents)
         m_updatedTorrents.insert(torrent->id());
@@ -922,7 +922,7 @@ void SyncController::onTorrentTrackersChanged(BitTorrent::Torrent *torrent)
 {
     using namespace BitTorrent;
 
-    const QVector<TrackerEntryStatus> trackers = torrent->trackers();
+    const QList<TrackerEntryStatus> trackers = torrent->trackers();
 
     QSet<QString> currentTrackers;
     currentTrackers.reserve(trackers.size());

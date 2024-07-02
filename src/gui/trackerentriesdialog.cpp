@@ -31,7 +31,7 @@
 #include <algorithm>
 
 #include <QHash>
-#include <QVector>
+#include <QList>
 
 #include "base/bittorrent/trackerentry.h"
 #include "ui_trackerentriesdialog.h"
@@ -59,7 +59,7 @@ TrackerEntriesDialog::~TrackerEntriesDialog()
     delete m_ui;
 }
 
-void TrackerEntriesDialog::setTrackers(const QVector<BitTorrent::TrackerEntry> &trackers)
+void TrackerEntriesDialog::setTrackers(const QList<BitTorrent::TrackerEntry> &trackers)
 {
     int maxTier = -1;
     QHash<int, QString> tiers;  // <tier, tracker URLs>
@@ -78,7 +78,7 @@ void TrackerEntriesDialog::setTrackers(const QVector<BitTorrent::TrackerEntry> &
     m_ui->plainTextEdit->setPlainText(text);
 }
 
-QVector<BitTorrent::TrackerEntry> TrackerEntriesDialog::trackers() const
+QList<BitTorrent::TrackerEntry> TrackerEntriesDialog::trackers() const
 {
     return BitTorrent::parseTrackerEntries(m_ui->plainTextEdit->toPlainText());
 }

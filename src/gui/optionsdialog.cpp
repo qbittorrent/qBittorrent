@@ -1179,7 +1179,7 @@ void OptionsDialog::saveBittorrentTabOptions() const
     session->setGlobalMaxRatio(getMaxRatio());
     session->setGlobalMaxSeedingMinutes(getMaxSeedingMinutes());
     session->setGlobalMaxInactiveSeedingMinutes(getMaxInactiveSeedingMinutes());
-    const QVector<BitTorrent::ShareLimitAction> actIndex =
+    const QList<BitTorrent::ShareLimitAction> actIndex =
     {
         BitTorrent::ShareLimitAction::Stop,
         BitTorrent::ShareLimitAction::Remove,

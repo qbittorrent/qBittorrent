@@ -102,7 +102,7 @@ namespace RSS
         void handleDownloadFinished(const Net::DownloadResult &result);
         void handleParsingFinished(const Private::ParsingResult &result);
         void handleArticleRead(Article *article);
-        void handleArticleLoadFinished(QVector<QVariantHash> articles);
+        void handleArticleLoadFinished(QList<QVariantHash> articles);
 
     private:
         void timerEvent(QTimerEvent *event) override;

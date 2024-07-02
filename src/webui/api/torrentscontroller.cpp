@@ -242,9 +242,9 @@ namespace
         return {dht, pex, lsd};
     }
 
-    QVector<BitTorrent::TorrentID> toTorrentIDs(const QStringList &idStrings)
+    QList<BitTorrent::TorrentID> toTorrentIDs(const QStringList &idStrings)
     {
-        QVector<BitTorrent::TorrentID> idList;
+        QList<BitTorrent::TorrentID> idList;
         idList.reserve(idStrings.size());
         for (const QString &hash : idStrings)
             idList << BitTorrent::TorrentID::fromString(hash);
@@ -576,7 +576,7 @@ void TorrentsController::filesAction()
         throw APIError(APIErrorType::NotFound);
 
     const int filesCount = torrent->filesCount();
-    QVector<int> fileIndexes;
+    QList<int> fileIndexes;
     const auto idxIt = params().constFind(u"indexes"_s);
     if (idxIt != params().cend())
     {
@@ -604,9 +604,9 @@ void TorrentsController::filesAction()
     QJsonArray fileList;
     if (torrent->hasMetadata())
     {
-        const QVector<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
-        const QVector<qreal> fp = torrent->filesProgress();
-        const QVector<qreal> fileAvailability = torrent->availableFileFractions();
+        const QList<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
+        const QList<qreal> fp = torrent->filesProgress();
+        const QList<qreal> fileAvailability = torrent->availableFileFractions();
         const BitTorrent::TorrentInfo info = torrent->info();
         for (const int index : asConst(fileIndexes))
         {
@@ -648,7 +648,7 @@ void TorrentsController::pieceHashesAction()
     QJsonArray pieceHashes;
     if (torrent->hasMetadata())
     {
-        const QVector<QByteArray> hashes = torrent->info().pieceHashes();
+        const QList<QByteArray> hashes = torrent->info().pieceHashes();
         for (const QByteArray &hash : hashes)
             pieceHashes.append(QString::fromLatin1(hash.toHex()));
     }
@@ -889,7 +889,7 @@ void TorrentsController::addPeersAction()
     const QStringList hashes = params()[u"hashes"_s].split(u'|');
     const QStringList peers = params()[u"peers"_s].split(u'|');
 
-    QVector<BitTorrent::PeerAddress> peerList;
+    QList<BitTorrent::PeerAddress> peerList;
     peerList.reserve(peers.size());
     for (const QString &peer : peers)
     {
@@ -956,7 +956,7 @@ void TorrentsController::filePrioAction()
         throw APIError(APIErrorType::Conflict, tr("Torrent's metadata has not yet downloaded"));
 
     const int filesCount = torrent->filesCount();
-    QVector<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
+    QList<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
     bool priorityChanged = false;
     for (const QString &fileID : params()[u"id"_s].split(u'|'))
     {

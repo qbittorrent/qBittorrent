@@ -254,7 +254,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 #endif
         tr("Transfers"));
     // Filter types
-    const QVector<TransferListModel::Column> filterTypes = {TransferListModel::Column::TR_NAME, TransferListModel::Column::TR_SAVE_PATH};
+    const QList<TransferListModel::Column> filterTypes = {TransferListModel::Column::TR_NAME, TransferListModel::Column::TR_SAVE_PATH};
     for (const TransferListModel::Column type : filterTypes)
     {
         const QString typeName = m_transferListWidget->getSourceModel()->headerData(type, Qt::Horizontal, Qt::DisplayRole).value<QString>();
@@ -1172,7 +1172,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     }
 #endif // Q_OS_MACOS
 
-    const QVector<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
+    const QList<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
     const bool hasActiveTorrents = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [](BitTorrent::Torrent *torrent)
     {
         return torrent->isActive();
@@ -1523,7 +1523,7 @@ void MainWindow::loadSessionStats()
     refreshWindowTitle();
 }
 
-void MainWindow::reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torrents)
+void MainWindow::reloadTorrentStats(const QList<BitTorrent::Torrent *> &torrents)
 {
     if (currentTabWidget() == m_transferListWidget)
     {
@@ -1868,7 +1868,7 @@ void MainWindow::updatePowerManagementState() const
     const bool preventFromSuspendWhenDownloading = pref->preventFromSuspendWhenDownloading();
     const bool preventFromSuspendWhenSeeding = pref->preventFromSuspendWhenSeeding();
 
-    const QVector<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
+    const QList<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
     const bool inhibitSuspend = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [&](const BitTorrent::Torrent *torrent)
     {
         if (preventFromSuspendWhenDownloading && (!torrent->isFinished() && !torrent->isStopped() && !torrent->isErrored() && torrent->hasMetadata()))

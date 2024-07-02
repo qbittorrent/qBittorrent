@@ -32,8 +32,8 @@
 
 #include <QDateTime>
 #include <QDir>
+#include <QList>
 #include <QTextStream>
-#include <QVector>
 
 #include "base/global.h"
 #include "base/logger.h"

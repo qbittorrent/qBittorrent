@@ -60,8 +60,8 @@ namespace BitTorrent
         QDateTime creationDate() const;
         QString creator() const;
         QString comment() const;
-        QVector<TrackerEntry> trackers() const;
-        QVector<QUrl> urlSeeds() const;
+        QList<TrackerEntry> trackers() const;
+        QList<QUrl> urlSeeds() const;
         const std::optional<TorrentInfo> &info() const;
 
         void setTorrentInfo(TorrentInfo torrentInfo);

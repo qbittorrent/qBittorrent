@@ -611,7 +611,7 @@ bool TransferListModel::setData(const QModelIndex &index, const QVariant &value,
     return true;
 }
 
-void TransferListModel::addTorrents(const QVector<BitTorrent::Torrent *> &torrents)
+void TransferListModel::addTorrents(const QList<BitTorrent::Torrent *> &torrents)
 {
     qsizetype row = m_torrentList.size();
     const qsizetype total = row + torrents.size();
@@ -669,7 +669,7 @@ void TransferListModel::handleTorrentStatusUpdated(BitTorrent::Torrent *const to
     emit dataChanged(index(row, 0), index(row, columnCount() - 1));
 }
 
-void TransferListModel::handleTorrentsUpdated(const QVector<BitTorrent::Torrent *> &torrents)
+void TransferListModel::handleTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents)
 {
     const int columns = (columnCount() - 1);
 

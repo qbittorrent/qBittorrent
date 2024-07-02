@@ -31,10 +31,10 @@
 
 #include <chrono>
 
+#include <QList>
 #include <QMetaObject>
 #include <QProcess>
 #include <QTimer>
-#include <QVector>
 
 #include "base/global.h"
 #include "base/path.h"
@@ -145,7 +145,7 @@ void SearchHandler::readSearchOutput()
         lines.prepend(m_searchResultLineTruncated + lines.takeFirst());
     m_searchResultLineTruncated = lines.takeLast().trimmed();
 
-    QVector<SearchResult> searchResultList;
+    QList<SearchResult> searchResultList;
     searchResultList.reserve(lines.size());
 
     for (const QByteArray &line : asConst(lines))
