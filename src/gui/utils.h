@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2017  Mike Tzou
  *
  * This program is free software; you can redistribute it and/or
@@ -34,7 +35,10 @@ class QIcon;
 class QPixmap;
 class QPoint;
 class QSize;
+class QString;
 class QWidget;
+
+class Tag;
 
 namespace Utils::Gui
 {
@@ -51,4 +55,7 @@ namespace Utils::Gui
 
     void openPath(const Path &path);
     void openFolderSelect(const Path &path);
+
+    QString tagToWidgetText(const Tag &tag);
+    Tag widgetTextToTag(const QString &text);
 }
