@@ -62,7 +62,7 @@ public:
 private slots:
     void categoryAdded(const QString &categoryName);
     void categoryRemoved(const QString &categoryName);
-    void torrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents);
+    void torrentsLoaded(const QList<BitTorrent::Torrent *> &torrents);
     void torrentAboutToBeRemoved(BitTorrent::Torrent *torrent);
     void torrentCategoryChanged(BitTorrent::Torrent *torrent, const QString &oldCategory);
     void subcategoriesSupportChanged();

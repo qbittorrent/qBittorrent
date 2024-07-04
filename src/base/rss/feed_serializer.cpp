@@ -34,14 +34,14 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QVector>
+#include <QList>
 
 #include "base/logger.h"
 #include "base/path.h"
 #include "base/utils/io.h"
 #include "rss_article.h"
 
-const int ARTICLEDATALIST_TYPEID = qRegisterMetaType<QVector<QVariantHash>>();
+const int ARTICLEDATALIST_TYPEID = qRegisterMetaType<QList<QVariantHash>>();
 
 void RSS::Private::FeedSerializer::load(const Path &dataFileName, const QString &url)
 {
@@ -61,7 +61,7 @@ void RSS::Private::FeedSerializer::load(const Path &dataFileName, const QString 
     emit loadingFinished(loadArticles(readResult.value(), url));
 }
 
-void RSS::Private::FeedSerializer::store(const Path &dataFileName, const QVector<QVariantHash> &articlesData)
+void RSS::Private::FeedSerializer::store(const Path &dataFileName, const QList<QVariantHash> &articlesData)
 {
     QJsonArray arr;
     for (const QVariantHash &data : articlesData)
@@ -81,7 +81,7 @@ void RSS::Private::FeedSerializer::store(const Path &dataFileName, const QVector
     }
 }
 
-QVector<QVariantHash> RSS::Private::FeedSerializer::loadArticles(const QByteArray &data, const QString &url)
+QList<QVariantHash> RSS::Private::FeedSerializer::loadArticles(const QByteArray &data, const QString &url)
 {
     QJsonParseError jsonError;
     const QJsonDocument jsonDoc = QJsonDocument::fromJson(data, &jsonError);
@@ -98,7 +98,7 @@ QVector<QVariantHash> RSS::Private::FeedSerializer::loadArticles(const QByteArra
         return {};
     }
 
-    QVector<QVariantHash> result;
+    QList<QVariantHash> result;
     const QJsonArray jsonArr = jsonDoc.array();
     result.reserve(jsonArr.size());
     for (int i = 0; i < jsonArr.size(); ++i)

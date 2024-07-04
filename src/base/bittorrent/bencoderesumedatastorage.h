@@ -29,7 +29,7 @@
 #pragma once
 
 #include <QDir>
-#include <QVector>
+#include <QList>
 
 #include "base/pathfwd.h"
 #include "base/utils/thread.h"
@@ -49,18 +49,18 @@ namespace BitTorrent
     public:
         explicit BencodeResumeDataStorage(const Path &path, QObject *parent = nullptr);
 
-        QVector<TorrentID> registeredTorrents() const override;
+        QList<TorrentID> registeredTorrents() const override;
         LoadResumeDataResult load(const TorrentID &id) const override;
         void store(const TorrentID &id, const LoadTorrentParams &resumeData) const override;
         void remove(const TorrentID &id) const override;
-        void storeQueue(const QVector<TorrentID> &queue) const override;
+        void storeQueue(const QList<TorrentID> &queue) const override;
 
     private:
         void doLoadAll() const override;
         void loadQueue(const Path &queueFilename);
         LoadResumeDataResult loadTorrentResumeData(const QByteArray &data, const QByteArray &metadata) const;
 
-        QVector<TorrentID> m_registeredTorrents;
+        QList<TorrentID> m_registeredTorrents;
         Utils::Thread::UniquePtr m_ioThread;
 
         class Worker;

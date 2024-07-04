@@ -58,7 +58,7 @@ class TorrentOptionsDialog final : public QDialog
     Q_DISABLE_COPY_MOVE(TorrentOptionsDialog)
 
 public:
-    explicit TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::Torrent *> &torrents);
+    explicit TorrentOptionsDialog(QWidget *parent, const QList<BitTorrent::Torrent *> &torrents);
     ~TorrentOptionsDialog() override;
 
 public slots:
@@ -73,7 +73,7 @@ private slots:
     void handleDownSpeedLimitChanged();
 
 private:
-    QVector<BitTorrent::TorrentID> m_torrentIDs;
+    QList<BitTorrent::TorrentID> m_torrentIDs;
     Ui::TorrentOptionsDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;
     QStringList m_categories;

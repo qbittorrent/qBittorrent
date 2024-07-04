@@ -33,7 +33,6 @@
 #include <QSslCertificate>
 #include <QSslKey>
 #include <QString>
-#include <QVector>
 
 #include "base/global.h"
 
@@ -62,7 +61,7 @@ namespace Utils
                     || (addr == QHostAddress(u"::ffff:127.0.0.1"_s));
         }
 
-        bool isIPInSubnets(const QHostAddress &addr, const QVector<Subnet> &subnets)
+        bool isIPInSubnets(const QHostAddress &addr, const QList<Subnet> &subnets)
         {
             QHostAddress protocolEquivalentAddress;
             bool addrConversionOk = false;

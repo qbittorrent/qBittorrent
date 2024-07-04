@@ -30,8 +30,8 @@
 #pragma once
 
 #include <QHostAddress>
+#include <QList>
 #include <QString>
-#include <QVector>
 
 #include "base/global.h"
 
@@ -109,7 +109,7 @@ namespace Http
         HeaderMap headers;
         QHash<QString, QByteArray> query;
         QHash<QString, QString> posts;
-        QVector<UploadedFile> files;
+        QList<UploadedFile> files;
     };
 
     struct ResponseStatus

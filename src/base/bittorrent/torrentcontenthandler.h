@@ -44,18 +44,18 @@ namespace BitTorrent
         virtual bool hasMetadata() const = 0;
         virtual Path actualStorageLocation() const = 0;
         virtual Path actualFilePath(int fileIndex) const = 0;
-        virtual QVector<DownloadPriority> filePriorities() const = 0;
-        virtual QVector<qreal> filesProgress() const = 0;
+        virtual QList<DownloadPriority> filePriorities() const = 0;
+        virtual QList<qreal> filesProgress() const = 0;
         /**
          * @brief fraction of file pieces that are available at least from one peer
          *
          * This is not the same as torrrent availability, it is just a fraction of pieces
          * that can be downloaded right now. It varies between 0 to 1.
          */
-        virtual QVector<qreal> availableFileFractions() const = 0;
-        virtual void fetchAvailableFileFractions(std::function<void (QVector<qreal>)> resultHandler) const = 0;
+        virtual QList<qreal> availableFileFractions() const = 0;
+        virtual void fetchAvailableFileFractions(std::function<void (QList<qreal>)> resultHandler) const = 0;
 
-        virtual void prioritizeFiles(const QVector<DownloadPriority> &priorities) = 0;
+        virtual void prioritizeFiles(const QList<DownloadPriority> &priorities) = 0;
         virtual void flushCache() const = 0;
     };
 }

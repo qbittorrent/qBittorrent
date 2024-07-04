@@ -81,7 +81,7 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
     m_ui->previewList->setItemDelegate(listDelegate);
 
     // Fill list in
-    const QVector<qreal> fp = torrent->filesProgress();
+    const QList<qreal> fp = torrent->filesProgress();
     for (int i = 0; i < torrent->filesCount(); ++i)
     {
         const Path filePath = torrent->filePath(i);

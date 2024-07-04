@@ -64,7 +64,7 @@ private slots:
     void tagRemoved(const Tag &tag);
     void torrentTagAdded(BitTorrent::Torrent *torrent, const Tag &tag);
     void torrentTagRemoved(BitTorrent::Torrent *, const Tag &tag);
-    void torrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents);
+    void torrentsLoaded(const QList<BitTorrent::Torrent *> &torrents);
     void torrentAboutToBeRemoved(BitTorrent::Torrent *torrent);
 
 private:
@@ -74,7 +74,7 @@ private:
     bool isValidRow(int row) const;
     int findRow(const Tag &tag) const;
     TagModelItem *findItem(const Tag &tag);
-    QVector<TagModelItem *> findItems(const TagSet &tags);
+    QList<TagModelItem *> findItems(const TagSet &tags);
     TagModelItem *allTagsItem();
     TagModelItem *untaggedItem();
 

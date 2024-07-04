@@ -32,8 +32,8 @@
 
 #include <QHash>
 #include <QJsonDocument>
+#include <QList>
 #include <QMetaObject>
-#include <QVector>
 
 #include "apierror.h"
 
@@ -72,7 +72,7 @@ const DataMap &APIController::data() const
     return m_data;
 }
 
-void APIController::requireParams(const QVector<QString> &requiredParams) const
+void APIController::requireParams(const QList<QString> &requiredParams) const
 {
     const bool hasAllRequiredParams = std::all_of(requiredParams.cbegin(), requiredParams.cend()
         , [this](const QString &requiredParam)

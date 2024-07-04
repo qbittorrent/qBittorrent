@@ -105,7 +105,7 @@ private:
     void onItemDoubleClicked(const QModelIndex &index);
     void searchFinished(bool cancelled);
     void searchFailed();
-    void appendSearchResults(const QVector<SearchResult> &results);
+    void appendSearchResults(const QList<SearchResult> &results);
     void updateResultsCount();
     void setStatus(Status value);
     void downloadTorrent(const QModelIndex &rowIndex, AddTorrentOption option = AddTorrentOption::Default);

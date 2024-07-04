@@ -30,7 +30,7 @@
 #include "tagfiltermodel.h"
 
 #include <QIcon>
-#include <QVector>
+#include <QList>
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
@@ -236,13 +236,13 @@ void TagFilterModel::torrentTagRemoved(BitTorrent::Torrent *const torrent, const
     emit dataChanged(i, i);
 }
 
-void TagFilterModel::torrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents)
+void TagFilterModel::torrentsLoaded(const QList<BitTorrent::Torrent *> &torrents)
 {
     for (const BitTorrent::Torrent *torrent : torrents)
     {
         allTagsItem()->increaseTorrentsCount();
 
-        const QVector<TagModelItem *> items = findItems(torrent->tags());
+        const QList<TagModelItem *> items = findItems(torrent->tags());
         if (items.isEmpty())
             untaggedItem()->increaseTorrentsCount();
 
@@ -339,9 +339,9 @@ TagModelItem *TagFilterModel::findItem(const Tag &tag)
     return &m_tagItems[row];
 }
 
-QVector<TagModelItem *> TagFilterModel::findItems(const TagSet &tags)
+QList<TagModelItem *> TagFilterModel::findItems(const TagSet &tags)
 {
-    QVector<TagModelItem *> items;
+    QList<TagModelItem *> items;
     items.reserve(tags.count());
     for (const Tag &tag : tags)
     {

@@ -31,10 +31,10 @@
 
 #include <cmath>
 
+#include <QList>
 #include <QLocale>
 #include <QRegularExpression>
 #include <QStringList>
-#include <QVector>
 
 // to send numbers instead of strings with suffixes
 QString Utils::String::fromDouble(const double n, const int precision)

@@ -30,12 +30,12 @@
 
 #include <utility>
 
+#include <QList>
 #include <QMetaObject>
 #include <QMutexLocker>
 #include <QThread>
-#include <QVector>
 
-const int TORRENTIDLIST_TYPEID = qRegisterMetaType<QVector<BitTorrent::TorrentID>>();
+const int TORRENTIDLIST_TYPEID = qRegisterMetaType<QList<BitTorrent::TorrentID>>();
 
 BitTorrent::ResumeDataStorage::ResumeDataStorage(const Path &path, QObject *parent)
     : QObject(parent)

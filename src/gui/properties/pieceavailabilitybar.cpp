@@ -40,9 +40,9 @@ PieceAvailabilityBar::PieceAvailabilityBar(QWidget *parent)
 {
 }
 
-QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin, int reqSize)
+QList<float> PieceAvailabilityBar::intToFloatVector(const QList<int> &vecin, int reqSize)
 {
-    QVector<float> result(reqSize, 0.0);
+    QList<float> result(reqSize, 0.0);
     if (vecin.isEmpty()) return result;
 
     const float ratio = static_cast<float>(vecin.size()) / reqSize;
@@ -142,7 +142,7 @@ bool PieceAvailabilityBar::updateImage(QImage &image)
         return true;
     }
 
-    QVector<float> scaledPieces = intToFloatVector(m_pieces, image2.width());
+    QList<float> scaledPieces = intToFloatVector(m_pieces, image2.width());
 
     // filling image
     for (int x = 0; x < scaledPieces.size(); ++x)
@@ -154,7 +154,7 @@ bool PieceAvailabilityBar::updateImage(QImage &image)
     return true;
 }
 
-void PieceAvailabilityBar::setAvailability(const QVector<int> &avail)
+void PieceAvailabilityBar::setAvailability(const QList<int> &avail)
 {
     m_pieces = avail;
 
