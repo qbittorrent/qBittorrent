@@ -30,7 +30,6 @@
 
 #include <QCheckBox>
 #include <QMessageBox>
-#include <QMetaObject>
 #include <QPushButton>
 #include <QSet>
 
