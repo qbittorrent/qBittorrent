@@ -15,6 +15,8 @@ add_library(qbt_webui STATIC
     api/transfercontroller.h
     api/serialize/serialize_torrent.h
     freediskspacechecker.h
+    torrentmetadatacache.h
+    torrentsourcecache.h
     webapplication.h
     webui.h
 
@@ -32,6 +34,8 @@ add_library(qbt_webui STATIC
     api/transfercontroller.cpp
     api/serialize/serialize_torrent.cpp
     freediskspacechecker.cpp
+    torrentmetadatacache.cpp
+    torrentsourcecache.cpp
     webapplication.cpp
     webui.cpp
 )
