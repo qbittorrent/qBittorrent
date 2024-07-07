@@ -28,6 +28,7 @@
 
 #include "transferlistsortmodel.h"
 
+#include <concepts>
 #include <type_traits>
 
 #include <QDateTime>
@@ -46,16 +47,6 @@ namespace
         return (left < right) ? -1 : 1;
     }
 
-    int customCompare(const QDateTime &left, const QDateTime &right)
-    {
-        const bool isLeftValid = left.isValid();
-        const bool isRightValid = right.isValid();
-
-        if (isLeftValid == isRightValid)
-            return threeWayCompare(left, right);
-        return isLeftValid ? -1 : 1;
-    }
-
     int customCompare(const TagSet &left, const TagSet &right, const Utils::Compare::NaturalCompare<Qt::CaseInsensitive> &compare)
     {
         for (auto leftIter = left.cbegin(), rightIter = right.cbegin();
@@ -70,12 +61,27 @@ namespace
     }
 
     template <typename T>
-    int customCompare(const T left, const T right)
-    {
-        static_assert(std::is_arithmetic_v<T>);
+    concept Validateable = requires (T t) { {t.isValid()} -> std::same_as<bool>; };
 
-        const bool isLeftValid = (left >= 0);
-        const bool isRightValid = (right >= 0);
+    template <Validateable T>
+    bool isValid(const T &value)
+    {
+        return value.isValid();
+    }
+
+    // consider negative values as invalid
+    template <typename T>
+        requires std::is_arithmetic_v<T>
+    bool isValid(const T value)
+    {
+        return (value >= 0);
+    }
+
+    template <typename T>
+    int customCompare(const T &left, const T &right)
+    {
+        const bool isLeftValid = isValid(left);
+        const bool isRightValid = isValid(right);
 
         if (isLeftValid && isRightValid)
             return threeWayCompare(left, right);
@@ -209,6 +215,7 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
 
     case TransferListModel::TR_DLLIMIT:
     case TransferListModel::TR_DLSPEED:
+    case TransferListModel::TR_PRIVATE:
     case TransferListModel::TR_QUEUE_POSITION:
     case TransferListModel::TR_UPLIMIT:
     case TransferListModel::TR_UPSPEED:

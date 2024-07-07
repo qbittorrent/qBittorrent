@@ -948,6 +948,7 @@ window.qBittorrent.DynamicTable = (function() {
             this.newColumn("last_activity", "", "QBT_TR(Last Activity)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("availability", "", "QBT_TR(Availability)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("reannounce", "", "QBT_TR(Reannounce In)QBT_TR[CONTEXT=TransferListModel]", 100, false);
+            this.newColumn("private", "", "QBT_TR(Private)QBT_TR[CONTEXT=TransferListModel]", 100, false);
 
             this.columns["state_icon"].onclick = "";
             this.columns["state_icon"].dataProperties[0] = "state";
@@ -1330,6 +1331,19 @@ window.qBittorrent.DynamicTable = (function() {
                 const time = window.qBittorrent.Misc.friendlyDuration(this.getRowValue(row));
                 td.set("text", time);
                 td.set("title", time);
+            };
+
+            // private
+            this.columns["private"].updateTd = function(td, row) {
+                const hasMetadata = row["full_data"].has_metadata;
+                const isPrivate = this.getRowValue(row);
+                const string = hasMetadata
+                    ? (isPrivate
+                        ? "QBT_TR(Yes)QBT_TR[CONTEXT=PropertiesWidget]"
+                        : "QBT_TR(No)QBT_TR[CONTEXT=PropertiesWidget]")
+                    : "QBT_TR(N/A)QBT_TR[CONTEXT=PropertiesWidget]";
+                td.set("text", string);
+                td.set("title", string);
             };
         },
 

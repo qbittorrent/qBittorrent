@@ -116,6 +116,8 @@ const QString KEY_PROP_PRIVATE = u"private"_s;
 const QString KEY_PROP_SSL_CERTIFICATE = u"ssl_certificate"_s;
 const QString KEY_PROP_SSL_PRIVATEKEY = u"ssl_private_key"_s;
 const QString KEY_PROP_SSL_DHPARAMS = u"ssl_dh_params"_s;
+const QString KEY_PROP_HAS_METADATA = u"has_metadata"_s;
+
 
 // File keys
 const QString KEY_FILE_INDEX = u"index"_s;
@@ -438,6 +440,8 @@ void TorrentsController::propertiesAction()
     const int uploadLimit = torrent->uploadLimit();
     const qreal ratio = torrent->realRatio();
     const qreal popularity = torrent->popularity();
+    const bool hasMetadata = torrent->hasMetadata();
+    const bool isPrivate = torrent->isPrivate();
 
     const QJsonObject ret
     {
@@ -474,14 +478,15 @@ void TorrentsController::propertiesAction()
         {KEY_PROP_PIECES_HAVE, torrent->piecesHave()},
         {KEY_PROP_CREATED_BY, torrent->creator()},
         {KEY_PROP_IS_PRIVATE, torrent->isPrivate()}, // used for maintaining backward compatibility
-        {KEY_PROP_PRIVATE, torrent->isPrivate()},
+        {KEY_PROP_PRIVATE, (hasMetadata ? isPrivate : QJsonValue())},
         {KEY_PROP_ADDITION_DATE, Utils::DateTime::toSecsSinceEpoch(torrent->addedTime())},
         {KEY_PROP_LAST_SEEN, Utils::DateTime::toSecsSinceEpoch(torrent->lastSeenComplete())},
         {KEY_PROP_COMPLETION_DATE, Utils::DateTime::toSecsSinceEpoch(torrent->completedTime())},
         {KEY_PROP_CREATION_DATE, Utils::DateTime::toSecsSinceEpoch(torrent->creationDate())},
         {KEY_PROP_SAVE_PATH, torrent->savePath().toString()},
         {KEY_PROP_DOWNLOAD_PATH, torrent->downloadPath().toString()},
-        {KEY_PROP_COMMENT, torrent->comment()}
+        {KEY_PROP_COMMENT, torrent->comment()},
+        {KEY_PROP_HAS_METADATA, torrent->hasMetadata()}
     };
 
     setResult(ret);
