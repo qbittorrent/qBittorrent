@@ -86,6 +86,7 @@ public:
         TR_INFOHASH_V1,
         TR_INFOHASH_V2,
         TR_REANNOUNCE,
+        TR_PRIVATE,
 
         NB_COLUMNS
     };
