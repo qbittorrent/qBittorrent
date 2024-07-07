@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -37,6 +37,7 @@
 #include "base/global.h"
 #include "autoexpandabledialog.h"
 #include "flowlayout.h"
+#include "utils.h"
 
 #include "ui_torrenttagsdialog.h"
 
@@ -55,7 +56,7 @@ TorrentTagsDialog::TorrentTagsDialog(const TagSet &initialTags, QWidget *parent)
     auto *tagsLayout = new FlowLayout(m_ui->scrollArea);
     for (const Tag &tag : asConst(initialTags.united(BitTorrent::Session::instance()->tags())))
     {
-        auto *tagWidget = new QCheckBox(tag.toString());
+        auto *tagWidget = new QCheckBox(Utils::Gui::tagToWidgetText(tag));
         if (initialTags.contains(tag))
             tagWidget->setChecked(true);
         tagsLayout->addWidget(tagWidget);
@@ -83,7 +84,7 @@ TagSet TorrentTagsDialog::tags() const
     {
         const auto *tagWidget = static_cast<QCheckBox *>(layout->itemAt(i)->widget());
         if (tagWidget->isChecked())
-            tags.insert(Tag(tagWidget->text()));
+            tags.insert(Utils::Gui::widgetTextToTag(tagWidget->text()));
     }
 
     return tags;
@@ -113,7 +114,7 @@ void TorrentTagsDialog::addNewTag()
         {
             auto *layout = m_ui->scrollArea->layout();
             auto *btn = layout->takeAt(layout->count() - 1);
-            auto *tagWidget = new QCheckBox(tag.toString());
+            auto *tagWidget = new QCheckBox(Utils::Gui::tagToWidgetText(tag));
             tagWidget->setChecked(true);
             layout->addWidget(tagWidget);
             layout->addItem(btn);
