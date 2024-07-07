@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2017  Mike Tzou
  *
  * This program is free software; you can redistribute it and/or
@@ -217,4 +218,30 @@ void Utils::Gui::openFolderSelect(const Path &path)
 #else
     openPath(path.parentPath());
 #endif
+}
+
+QString Utils::Gui::tagToWidgetText(const QString &tag)
+{
+    return QString(tag).replace(u'&', u"&&"_s);
+}
+
+QString Utils::Gui::widgetTextToTag(const QString &text)
+{
+    // replace pairs of '&' with single '&' and remove non-paired occurrences of '&'
+    QString cleanedText;
+    cleanedText.reserve(text.size());
+    bool amp = false;
+    for (const QChar c : text)
+    {
+        if (c == u'&')
+        {
+            amp = !amp;
+            if (amp)
+                continue;
+        }
+
+        cleanedText.append(c);
+    }
+
+    return cleanedText;
 }
