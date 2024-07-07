@@ -28,6 +28,9 @@
 
 #pragma once
 
+#include "base/bittorrent/torrentdescriptor.h"
+#include "base/bittorrent/torrentinfo.h"
+#include "base/net/downloadmanager.h"
 #include "apicontroller.h"
 
 class TorrentsController : public APIController
@@ -37,6 +40,8 @@ class TorrentsController : public APIController
 
 public:
     using APIController::APIController;
+
+    explicit TorrentsController(IApplication *app, QObject *parent = nullptr);
 
 private slots:
     void countAction();
@@ -91,4 +96,14 @@ private slots:
     void exportAction();
     void SSLParametersAction();
     void setSSLParametersAction();
+    void metadataAction();
+    void fileMetadataAction();
+
+private:
+    void onMetadataDownloaded(const BitTorrent::TorrentInfo &info);
+    void onDownloadFinished(const Net::DownloadResult &result);
+    bool isMetadataDownloaded(const BitTorrent::InfoHash &hash);
+
+    QHash<QString, BitTorrent::InfoHash> m_torrentSource;
+    QHash<BitTorrent::InfoHash, BitTorrent::TorrentDescriptor> m_torrentMetadata;
 };
