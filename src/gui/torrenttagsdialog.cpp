@@ -53,7 +53,7 @@ TorrentTagsDialog::TorrentTagsDialog(const TagSet &initialTags, QWidget *parent)
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
-    auto *tagsLayout = new FlowLayout(m_ui->scrollArea);
+    auto *tagsLayout = new FlowLayout(m_ui->scrollArea->widget());
     for (const Tag &tag : asConst(initialTags.united(BitTorrent::Session::instance()->tags())))
     {
         auto *tagWidget = new QCheckBox(Utils::Gui::tagToWidgetText(tag));
@@ -79,7 +79,7 @@ TorrentTagsDialog::~TorrentTagsDialog()
 TagSet TorrentTagsDialog::tags() const
 {
     TagSet tags;
-    auto *layout = m_ui->scrollArea->layout();
+    auto *layout = m_ui->scrollArea->widget()->layout();
     for (int i = 0; i < (layout->count() - 1); ++i)
     {
         const auto *tagWidget = static_cast<QCheckBox *>(layout->itemAt(i)->widget());
@@ -112,7 +112,7 @@ void TorrentTagsDialog::addNewTag()
         }
         else
         {
-            auto *layout = m_ui->scrollArea->layout();
+            auto *layout = m_ui->scrollArea->widget()->layout();
             auto *btn = layout->takeAt(layout->count() - 1);
             auto *tagWidget = new QCheckBox(Utils::Gui::tagToWidgetText(tag));
             tagWidget->setChecked(true);
