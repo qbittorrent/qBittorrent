@@ -36,7 +36,6 @@
 #include <QMetaObject>
 
 #include "apierror.h"
-#include "apistatus.h"
 
 void APIResult::clear()
 {
