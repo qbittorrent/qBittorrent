@@ -28,7 +28,19 @@
 
 #pragma once
 
+#include "webui/torrentmetadatacache.h"
+#include "webui/torrentsourcecache.h"
 #include "apicontroller.h"
+
+namespace BitTorrent
+{
+    class TorrentInfo;
+}
+
+namespace Net
+{
+    class DownloadResult;
+}
 
 class TorrentsController : public APIController
 {
@@ -36,7 +48,7 @@ class TorrentsController : public APIController
     Q_DISABLE_COPY_MOVE(TorrentsController)
 
 public:
-    using APIController::APIController;
+    explicit TorrentsController(IApplication *app, QObject *parent = nullptr);
 
 private slots:
     void countAction();
@@ -94,4 +106,13 @@ private slots:
     void exportAction();
     void SSLParametersAction();
     void setSSLParametersAction();
+    void fetchMetadataAction();
+    void parseMetadataAction();
+
+private:
+    void onDownloadFinished(const Net::DownloadResult &result);
+    void onMetadataDownloaded(const BitTorrent::TorrentInfo &info);
+
+    TorrentSourceCache m_torrentSourceCache;
+    TorrentMetadataCache m_torrentMetadataCache;
 };
