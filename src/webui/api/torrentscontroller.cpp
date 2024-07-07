@@ -905,7 +905,7 @@ void TorrentsController::pieceStatesAction()
 
 void TorrentsController::addAction()
 {
-    const QString urls = params()[u"urls"_s];
+    const QStringList urls = params()[u"urls"_s].split(u'\n', Qt::SkipEmptyParts);
 
     const bool skipChecking = parseBool(params()[u"skip_checking"_s]).value_or(false);
     const bool seqDownload = parseBool(params()[u"sequentialDownload"_s]).value_or(false);
@@ -936,7 +936,27 @@ void TorrentsController::addAction()
             ? Utils::String::toEnum(contentLayoutParam, BitTorrent::TorrentContentLayout::Original)
             : std::optional<BitTorrent::TorrentContentLayout> {});
 
-    const BitTorrent::AddTorrentParams addTorrentParams
+    QList<BitTorrent::DownloadPriority> filePriorities;
+    const QStringList filePrioritiesParam = params()[u"filePriorities"_s].split(u',', Qt::SkipEmptyParts);
+    if (!filePrioritiesParam.isEmpty())
+    {
+        filePriorities.reserve(filePrioritiesParam.size());
+        for (const QString &priorityStr : filePrioritiesParam)
+        {
+            bool ok = false;
+            const auto priority = static_cast<BitTorrent::DownloadPriority>(priorityStr.toInt(&ok));
+            if (!ok)
+                throw APIError(APIErrorType::BadParams, tr("Priority must be an integer"));
+            if (!BitTorrent::isValidDownloadPriority(priority))
+                throw APIError(APIErrorType::BadParams, tr("Priority is not valid"));
+
+            filePriorities << priority;
+        }
+    }
+    if ((urls.size() > 1) && !filePriorities.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("You cannot specify filePriorities when adding multiple torrents"));
+
+    BitTorrent::AddTorrentParams addTorrentParams
     {
         // TODO: Check if destination actually exists
         .name = torrentName,
@@ -970,16 +990,47 @@ void TorrentsController::addAction()
         }
     };
 
+
     bool partialSuccess = false;
-    for (QString url : asConst(urls.split(u'\n')))
+    for (QString url : urls)
     {
         url = url.trimmed();
         if (!url.isEmpty())
         {
+            auto iter = m_torrentSource.constFind(url);
+            if (iter == m_torrentSource.constEnd())
+                iter = m_torrentSource.constFind(FILE_SOURCE_PREFIX + url);
+
+            // check whether metadata has already been fetched for this url
+            if ((iter != m_torrentSource.constEnd()) && isMetadataDownloaded(iter.value()))
+            {
+                const BitTorrent::InfoHash &hash = iter.value();
+                const BitTorrent::TorrentDescriptor torrentDescr = m_torrentMetadata[hash];
+                if ((urls.size() == 1) && !filePriorities.isEmpty())
+                {
+                    const BitTorrent::TorrentInfo &info = torrentDescr.info().value();
+                    if (filePriorities.size() != info.filesCount())
+                        throw APIError(APIErrorType::BadParams, tr("Length of filePriorities must equal number of files in torrent"));
+
+                    addTorrentParams.filePriorities = filePriorities;
+                }
+
+                partialSuccess |= BitTorrent::Session::instance()->addTorrent(torrentDescr, addTorrentParams);
+
+                m_torrentSource.remove(url);
+                m_torrentMetadata.remove(hash);
+
+                continue;
+            }
+
+            if (!filePriorities.isEmpty())
+                throw APIError(APIErrorType::BadParams, tr("filePriorities may only be specified when metadata has already been fetched"));
+
             partialSuccess |= app()->addTorrentManager()->addTorrent(url, addTorrentParams);
         }
     }
 
+    // process uploaded .torrent files
     const DataMap &torrents = data();
     for (auto it = torrents.constBegin(); it != torrents.constEnd(); ++it)
     {
