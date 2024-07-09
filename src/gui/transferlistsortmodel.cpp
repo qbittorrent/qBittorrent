@@ -215,11 +215,13 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
 
     case TransferListModel::TR_DLLIMIT:
     case TransferListModel::TR_DLSPEED:
-    case TransferListModel::TR_PRIVATE:
     case TransferListModel::TR_QUEUE_POSITION:
     case TransferListModel::TR_UPLIMIT:
     case TransferListModel::TR_UPSPEED:
         return customCompare(leftValue.toInt(), rightValue.toInt());
+
+    case TransferListModel::TR_PRIVATE:
+        return customCompare(leftValue, rightValue);
 
     case TransferListModel::TR_PEERS:
     case TransferListModel::TR_SEEDS:
