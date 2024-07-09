@@ -44,6 +44,9 @@ private slots:
     void propertiesAction();
     void trackersAction();
     void webseedsAction();
+    void addWebSeedsAction();
+    void editWebSeedAction();
+    void removeWebSeedsAction();
     void filesAction();
     void pieceHashesAction();
     void pieceStatesAction();
