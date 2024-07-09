@@ -94,7 +94,7 @@
     </message>
     <message>
         <source>Remove unused categories</source>
-        <translation>Eliminar categorías sin utilizar</translation>
+        <translation>Eliminar categorías sin usar</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -169,11 +169,11 @@
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>El número máximo de puestos de subida por torrent debe ser mayor que 0 o estar inhabilitado.</translation>
+        <translation>El número máximo de espacios de subida por torrent debe ser mayor que 0 o estar inhabilitado.</translation>
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Error al guardar las preferencias del programa, imposible conectar a qBittorrent.</translation>
+        <translation>Imposible guardar las preferencias del programa, qBittorrent probablemente no esté disponible.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -181,11 +181,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>El limite de ratio debe estar entre 0 y 9998</translation>
+        <translation>El límite de ratio de compartición debe estar entre 0 y 9998</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>El limite de tiempo de sembrado debe estar entre 0 y 525600 minutos.</translation>
+        <translation>El límite de tiempo de sembrado debe estar entre 0 y 525600 minutos.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -234,7 +234,7 @@
     </message>
     <message>
         <source>More information</source>
-        <translation>Más Información</translation>
+        <translation>Más información</translation>
     </message>
     <message>
         <source>Information about certificates</source>
@@ -250,7 +250,7 @@
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation>Tasa límite de bajada...</translation>
+        <translation>Tasa límite de bajada</translation>
     </message>
     <message>
         <source>Rename torrent</source>
@@ -293,7 +293,7 @@
     </message>
     <message>
         <source>Logout</source>
-        <translation>Salir</translation>
+        <translation>Cerrar sesión</translation>
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
@@ -313,11 +313,11 @@
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation>El máximo número de puestos de subida debe ser mayor que 0 o estar inhabilitado.</translation>
+        <translation>El número máximo de espacios de subida debe ser mayor que 0 o estar inhabilitado.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation>Nombre de categoría invalido:\nPor favor no use caracteres especiales para el nombre de la categoría.</translation>
+        <translation>Nombre de categoría inválido:\nPor favor no use caracteres especiales para el nombre de la categoría.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
@@ -357,7 +357,7 @@
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation>Registrese para manejar vínculos magnéticos... </translation>
+        <translation>Regístrese para manejar enlaces magnéticos... </translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation type="vanished">¡Es necesario JavaScript! Debes habilitar JavaScript para que la Web UI funcione correctamente.</translation>
+        <translation type="vanished">¡Es necesario JavaScript! Debes habilitar JavaScript para que la interfaz Web funcione correctamente.</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -397,15 +397,15 @@
     </message>
     <message>
         <source>The port used for the WebUI must be between 1 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>El puerto utilizado por la interfaz Web debe estar comprendido entre 1 y 65535.</translation>
     </message>
     <message>
         <source>%1 has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>%1 ha sido cerrado</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
-        <translation type="unfinished" />
+        <translation>¡Es necesario JavaScript! Debes habilitar JavaScript para que la interfaz Web funcione correctamente.</translation>
     </message>
 </context>
 <context>
@@ -452,7 +452,7 @@
     </message>
     <message>
         <source>Donate!</source>
-        <translation>Donar!</translation>
+        <translation>¡Donar!</translation>
     </message>
     <message>
         <source>Resume All</source>
@@ -637,7 +637,7 @@
     </message>
     <message>
         <source>[D: %1, U: %2]</source>
-        <translation type="unfinished" />
+        <translation>[B: %1, S: %2]</translation>
     </message>
 </context>
 <context>
@@ -700,7 +700,7 @@
     </message>
     <message>
         <source>IP address:</source>
-        <translation>Direcciones IP:</translation>
+        <translation>Dirección IP:</translation>
     </message>
     <message>
         <source>Server domains:</source>
@@ -724,11 +724,11 @@
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation>Mantener torrents incompletos en:</translation>
+        <translation>Guardar torrents incompletos en:</translation>
     </message>
     <message>
         <source>Copy .torrent files to:</source>
-        <translation>Copiar archivos .torrent en:</translation>
+        <translation>Copiar archivos .torrent a:</translation>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
@@ -780,7 +780,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>Usar reenvío de puertos UPnP / NAT-PMP de mi router</translation>
+        <translation>Usar redirección de puertos UPnP / NAT-PMP de mi router</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -848,7 +848,7 @@
     </message>
     <message>
         <source>Global Rate Limits</source>
-        <translation>Limites globales de velocidad</translation>
+        <translation>Límites globales de velocidad</translation>
     </message>
     <message>
         <source>Upload:</source>
@@ -914,7 +914,7 @@
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Habilitar busqueda local de pares para encontrar más pares</translation>
+        <translation>Habilitar búsqueda local de pares para encontrar más pares</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -986,7 +986,7 @@
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation>%F: Ruta del contenido (misma ruta que la raíz para torrents muilti-archivo)</translation>
+        <translation>%F: Ruta del contenido (misma ruta que la raíz para torrents multi-archivo)</translation>
     </message>
     <message>
         <source>%R: Root path (first torrent subdirectory path)</source>
@@ -998,7 +998,7 @@
     </message>
     <message>
         <source>%C: Number of files</source>
-        <translation>%C: Cantidad de archivos</translation>
+        <translation>%C: Número de archivos</translation>
     </message>
     <message>
         <source>%Z: Torrent size (bytes)</source>
@@ -1014,11 +1014,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="vanished">El nombre de usuario de la interfaz Web debe ser de al menos 3 caracteres.</translation>
+        <translation type="vanished">El nombre de usuario de la interfaz Web debe tener al menos 3 caracteres.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="vanished">La contraseña de Interfaz de Usuario Web debe ser de al menos 6 caracteres.</translation>
+        <translation type="vanished">La contraseña de usuario de la interfaz Web debe tener al menos 6 caracteres.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1066,7 +1066,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation type="vanished">La ubicación de los archivos de la Interfaz de Usuario Web alternativa no puede estar vacía.</translation>
+        <translation type="vanished">La ubicación alternativa de los archivos de la interfaz Web no puede estar vacía.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1102,7 +1102,7 @@
     </message>
     <message>
         <source>Enable Host header validation</source>
-        <translation>Habilitar la validación del encabezado del Host</translation>
+        <translation>Habilitar la validación de cabecera Host</translation>
     </message>
     <message>
         <source>Security</source>
@@ -1178,7 +1178,7 @@
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation>Cuando la tasa alcance</translation>
+        <translation>Cuando el ratio de compartición alcance</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1230,7 +1230,7 @@
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation>Permitir el cifrado</translation>
+        <translation>Permitir cifrado</translation>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
@@ -1274,7 +1274,7 @@
     </message>
     <message>
         <source>Upload choking algorithm:</source>
-        <translation>Subir algoritmo atascado:</translation>
+        <translation>Algoritmo de bloqueo de subidas:</translation>
     </message>
     <message>
         <source>Seeding Limits</source>
@@ -1310,11 +1310,11 @@
     </message>
     <message>
         <source>Session timeout:</source>
-        <translation>Hora de término de la sesión:</translation>
+        <translation>Hora de finalización de la sesión:</translation>
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation>Resolver pares de paises:</translation>
+        <translation>Resolver países de los pares:</translation>
     </message>
     <message>
         <source>ban for:</source>
@@ -1334,7 +1334,7 @@
     </message>
     <message>
         <source>Add custom HTTP headers</source>
-        <translation>Añadir encabezados HTTP personalizados</translation>
+        <translation>Añadir cabeceras HTTP personalizadas</translation>
     </message>
     <message>
         <source>Filters:</source>
@@ -1430,7 +1430,7 @@
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation>No crear subcarpetas</translation>
+        <translation>No crear subcarpeta</translation>
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
@@ -1462,11 +1462,11 @@
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation>%J: Informacion hash v2</translation>
+        <translation>%J: Información hash v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation>%I: Informacion hash v1</translation>
+        <translation>%I: Información hash v1</translation>
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
@@ -1494,7 +1494,7 @@
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation>Máximo de torrents de comprobación activos:</translation>
+        <translation>Máximo de torrents siendo comprobados a la vez:</translation>
     </message>
     <message>
         <source>Memory mapped files</source>
@@ -1568,9 +1568,9 @@ you should put in domain names used by WebUI server.
 Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Lista blanca para filtrar valores de cabeceras de hosts HTTP.
 Para defenderse de ataques DNS rebinding,
-no debería utilizar nombres de dominio utilizados por el servidor de la interfaz Web.
+debería utilizar nombres de dominio utilizados por el servidor de la interfaz Web.
 
-Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translation>
+Use ';' para dividir múltiples entradas. Puede usar el comodín '*'.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1582,7 +1582,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>Especifique IP de proxy inverso (o subredes, por ejemplo, 0.0.0.0/24) para usar la dirección de cliente reenviada (encabezado X-Reenviado-para encabezado). Usar ';' para dividir varias entradas.</translation>
+        <translation>Especifique IP de proxy inverso (o subredes, por ejemplo, 0.0.0.0/24) para usar la dirección de cliente reenviada (cabecera HTTP X-Forwarded-For). Use ';' para dividir varias entradas.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1734,7 +1734,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="vanished">Hilos de hasing (requiere libtorrent &amp;gt;= 2.0):</translation>
+        <translation type="vanished">Hilos de hashing (requiere libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
@@ -1762,7 +1762,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
-        <translation>Ruta del ejecutable de Python (puede requerir reinicio)</translation>
+        <translation>Ruta del ejecutable de Python (puede requerir reinicio):</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
@@ -1798,7 +1798,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation>Cuando el tiempo de siembra inactiva alcanza</translation>
+        <translation>Cuando el tiempo de siembra inactiva alcance</translation>
     </message>
     <message>
         <source>Mixed mode</source>
@@ -1810,99 +1810,99 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>(Auto detect if empty)</source>
-        <translation>(Auto detectar si está vacío)</translation>
+        <translation>(Detectar automáticamente si está vacío)</translation>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation>Mantén los archivos no seleccionados en la carpeta ".unwanted"</translation>
+        <translation>Mantener los archivos no seleccionados en la carpeta ".unwanted"</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation>Habilite la Marca de la Web (MOTW) para archivos descargados (requiere MacOS o Windows):</translation>
+        <translation>Habilitar la Marca de la Web (MOTW) para archivos descargados (requiere MacOS o Windows):</translation>
     </message>
     <message>
         <source> sec</source>
-        <translation type="unfinished" />
+        <translation> seg</translation>
     </message>
     <message>
         <source>I2P outbound quantity:</source>
-        <translation type="unfinished" />
+        <translation>Cantidad saliente I2P:</translation>
     </message>
     <message>
         <source>I2P inbound quantity:</source>
-        <translation type="unfinished" />
+        <translation>Cantidad entrante I2P:</translation>
     </message>
     <message>
         <source>Hashing threads:</source>
-        <translation type="unfinished" />
+        <translation>Hilos de hashing:</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
+        <translation>Límite de uso de la memoria física (RAM)</translation>
     </message>
     <message>
         <source>Use alternative WebUI</source>
-        <translation type="unfinished" />
+        <translation>Usar la interfaz Web alternativa</translation>
     </message>
     <message>
         <source>Disk cache expiry interval:</source>
-        <translation type="unfinished" />
+        <translation>Intervalo de caducidad de la caché del disco:</translation>
     </message>
     <message>
         <source>I2P outbound length:</source>
-        <translation type="unfinished" />
+        <translation>Longitud saliente I2P:</translation>
     </message>
     <message>
         <source>I2P (Experimental)</source>
-        <translation type="unfinished" />
+        <translation>I2P (Experimental)</translation>
     </message>
     <message>
         <source>Disk IO type (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Tipo de E/S del disco (requiere reiniciar):</translation>
     </message>
     <message>
         <source>The alternative WebUI files location cannot be blank.</source>
-        <translation type="unfinished" />
+        <translation>La localización de los archivos de la interfaz Web alternativa no puede estar en blanco:</translation>
     </message>
     <message>
         <source>Disk cache:</source>
-        <translation type="unfinished" />
+        <translation>Caché del disco:</translation>
     </message>
     <message>
         <source>Write-through</source>
-        <translation type="unfinished" />
+        <translation>Escritura directa (Write-through)</translation>
     </message>
     <message>
         <source>WebUI</source>
-        <translation type="unfinished" />
+        <translation>Interfaz Web</translation>
     </message>
     <message>
         <source>The WebUI password must be at least 6 characters long.</source>
-        <translation type="unfinished" />
+        <translation>La contraseña de usuario de la inferfaz Web debe tener al menos 6 caracteres.</translation>
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes:</source>
-        <translation type="unfinished" />
+        <translation>Combinar lecturas y escrituras:</translation>
     </message>
     <message>
         <source>I2P inbound length:</source>
-        <translation type="unfinished" />
+        <translation>Longitud entrante I2P:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="unfinished" />
+        <translation>Añade el texto al título de la ventana para ayudar a distinguir instancias de qBittorrent</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
-        <translation type="unfinished" />
+        <translation>El nombre de usuario de la interfaz Web debe tener al menos 3 caracteres.</translation>
     </message>
     <message>
         <source>Same host request delay:</source>
-        <translation type="unfinished" />
+        <translation>Retraso para peticiones de un mismo host:</translation>
     </message>
     <message>
         <source>Customize application instance name:</source>
-        <translation type="unfinished" />
+        <translation>Personalizar el nombre de la instancia de la aplicación:</translation>
     </message>
 </context>
 <context>
@@ -1917,7 +1917,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Flags</source>
-        <translation>Banderas</translation>
+        <translation>Flags</translation>
     </message>
     <message>
         <source>Connection</source>
@@ -1969,11 +1969,11 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation>¿Seguro que quieres prohibir permanentemente a los pares seleccionados?</translation>
+        <translation>¿Seguro que quieres vetar permanentemente a los pares seleccionados?</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
-        <translation>Copiar IP: puerto</translation>
+        <translation>Copiar IP:puerto</translation>
     </message>
     <message>
         <source>Country/Region</source>
@@ -1981,11 +1981,11 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Add peers...</source>
-        <translation>Añadir pares</translation>
+        <translation>Añadir pares...</translation>
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation>Cliente de identificación de pares</translation>
+        <translation>Identificador del cliente del par</translation>
     </message>
 </context>
 <context>
@@ -2106,11 +2106,11 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Reannounce In:</source>
-        <translation>Anunciar en:</translation>
+        <translation>Volver a anunciar en:</translation>
     </message>
     <message>
         <source>Last Seen Complete:</source>
-        <translation>Ultima vez visto completo:</translation>
+        <translation>Última vez visto completo:</translation>
     </message>
     <message>
         <source>Total Size:</source>
@@ -2166,7 +2166,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     <message>
         <source>%1 (%2 avg.)</source>
         <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
-        <translation>%1 (%2 prom.)</translation>
+        <translation>%1 (%2 de media)</translation>
     </message>
     <message>
         <source>Download limit:</source>
@@ -2194,11 +2194,11 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation>Informacion Hash v2:</translation>
+        <translation>Información Hash v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation>Informacion Hash v1:</translation>
+        <translation>Información Hash v1:</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2242,7 +2242,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Extension</source>
-        <translation>Extension</translation>
+        <translation>Extensión</translation>
     </message>
     <message>
         <source>Replace All</source>
@@ -2273,7 +2273,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     <name>ScanFoldersModel</name>
     <message>
         <source>Monitored Folder</source>
-        <translation>Carpeta Monitoreada</translation>
+        <translation>Carpeta Monitorizada</translation>
     </message>
     <message>
         <source>Override Save Location</source>
@@ -2281,7 +2281,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Monitored folder</source>
-        <translation>Carpeta Monitoreada</translation>
+        <translation>Carpeta Monitorizada</translation>
     </message>
     <message>
         <source>Default save location</source>
@@ -2331,11 +2331,11 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>All-time share ratio:</source>
-        <translation>Ratio de comparticíon:</translation>
+        <translation>Ratio de compartición:</translation>
     </message>
     <message>
         <source>All-time download:</source>
-        <translation>Total bajado:</translation>
+        <translation>Total descargado:</translation>
     </message>
     <message>
         <source>Session waste:</source>
@@ -2355,7 +2355,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Queued I/O jobs:</source>
-        <translation>Trabajos de I/O en cola:</translation>
+        <translation>Trabajos de E/S en cola:</translation>
     </message>
     <message>
         <source>Write cache overload:</source>
@@ -2559,12 +2559,12 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     <message>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation>Agregado</translation>
+        <translation>Agregado el</translation>
     </message>
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Completado</translation>
+        <translation>Completado el</translation>
     </message>
     <message>
         <source>Tracker</source>
@@ -2628,7 +2628,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     <message>
         <source>Last Seen Complete</source>
         <comment>Indicates the time when the torrent was last seen complete/whole</comment>
-        <translation>Visto Completo</translation>
+        <translation>Última vez visto completo</translation>
     </message>
     <message>
         <source>Last Activity</source>
@@ -2713,7 +2713,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Leeches</source>
-        <translation>Pares</translation>
+        <translation>Pares (Leeches)</translation>
     </message>
     <message>
         <source>Remove tracker</source>
@@ -3043,11 +3043,11 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation>Informacion hash v1</translation>
+        <translation>Información hash v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation>Informacion hash v2</translation>
+        <translation>Información hash v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
@@ -3194,7 +3194,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     <message>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
-        <translation>&lt;1m</translation>
+        <translation>&lt; 1m</translation>
     </message>
     <message>
         <source>%1m</source>
@@ -3203,7 +3203,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation>%1y %2d</translation>
+        <translation>%1a %2d</translation>
     </message>
 </context>
 <context>
@@ -3233,7 +3233,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -3264,7 +3264,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>All categories</source>
-        <translation>Todas</translation>
+        <translation>Todas las categorías</translation>
     </message>
     <message>
         <source>Search in:</source>
@@ -3347,7 +3347,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
-        <translation>Advertencia: Asegúrese de cumplir con las leyes de copyright de su país cuando descarga torrents de estos motores de búsqueda. </translation>
+        <translation>Advertencia: Asegúrese de cumplir con las leyes de copyright de su país cuando descarga torrents de estos motores de búsqueda.</translation>
     </message>
     <message>
         <source>Check for updates</source>
@@ -3424,7 +3424,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -3485,7 +3485,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation>Localizador de rastreadores:</translation>
+        <translation>Bug Tracker:</translation>
     </message>
     <message>
         <source>About</source>
@@ -3625,7 +3625,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     <name>RSSWidget</name>
     <message>
         <source>Date: </source>
-        <translation>Fecha:</translation>
+        <translation>Fecha: </translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
@@ -3701,7 +3701,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation>¡La obtención de feeds RSS está deshabilitada ahora! Puede habilitarlo en la configuración de la aplicación.</translation>
+        <translation>¡La obtención de feeds RSS está deshabilitada ahora! Puede habilitarla en la configuración de la aplicación.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
@@ -3744,7 +3744,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation>¡La descarga automática de torrents RSS está deshabilitada ahora! Puede habilitarlo en la configuración de la aplicación.</translation>
+        <translation>¡La descarga automática de torrents RSS está deshabilitada ahora! Puede habilitarla en la configuración de la aplicación.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
@@ -3756,7 +3756,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Use Regular Expressions</source>
-        <translation>Usar expresiones regulares</translation>
+        <translation>Usar expresiones regulares (regex)</translation>
     </message>
     <message>
         <source>New rule name</source>
@@ -3764,7 +3764,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Filter must end with semicolon</source>
-        <translation>El filtro debe terminar con punto y coma</translation>
+        <translation>El filtro debe terminar con punto y coma (;)</translation>
     </message>
     <message>
         <source>? to match any single character</source>
@@ -3800,7 +3800,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Example: </source>
-        <translation>Ejemplo:</translation>
+        <translation>Ejemplo: </translation>
     </message>
     <message>
         <source>Add new rule...</source>
@@ -3816,7 +3816,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
-        <translation>Rango infinito: &lt;b&gt;1x25-;&lt;/b&gt; coincide con los 25 episodios y posteriores de la temporada uno, y todos los episodios de temporadas posteriores</translation>
+        <translation>Rango infinito: &lt;b&gt;1x25-;&lt;/b&gt; coincide con el episodio 25 y posteriores de la temporada uno, y todos los episodios de temporadas posteriores</translation>
     </message>
     <message>
         <source>Save to a Different Directory</source>
@@ -3864,7 +3864,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation> coincidirá con 2, 5, 8 a 15, 30 y episodios posteriores de la primera temporada</translation>
+        <translation> coincidirá con los episodios 2, 5, del 8 al 15, y del 30 en adelante de la primera temporada</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
@@ -3896,7 +3896,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source> days</source>
-        <translation>días</translation>
+        <translation> días</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
@@ -3920,7 +3920,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source> will exclude all articles.</source>
-        <translation>excluirá todos los artículos.</translation>
+        <translation> excluirá todos los artículos.</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -3940,13 +3940,13 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
-        <translation>Borrar episodios descargados</translation>
+        <translation>Borrar episodios descargados...</translation>
     </message>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation>Filtro de episodio inteligente comprobará el número de episodio para evitar la descarga de duplicados.
-Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha también son compatibles, como separador)</translation>
+        <translation>El Filtro de Episodio Inteligente comprobará el número de episodio para evitar la descarga de duplicados.
+Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha también soportan - como separador)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -3966,7 +3966,7 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation>Añadir etiquetas</translation>
+        <translation>Añadir etiquetas:</translation>
     </message>
 </context>
 <context>
@@ -4103,7 +4103,7 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     </message>
     <message>
         <source>Banned</source>
-        <translation>Prohibido</translation>
+        <translation>Vetado</translation>
     </message>
     <message>
         <source>Normal Messages</source>
@@ -4131,7 +4131,7 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     </message>
     <message>
         <source>Info</source>
-        <translation>Informacion</translation>
+        <translation>Información</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
