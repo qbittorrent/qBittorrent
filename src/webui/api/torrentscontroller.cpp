@@ -135,6 +135,8 @@ namespace
     using Utils::String::parseInt;
     using Utils::String::parseDouble;
 
+    const QSet<QString> SUPPORTED_WEB_SEED_SCHEMES {u"http"_s, u"https"_s, u"ftp"_s};
+
     void applyToTorrents(const QStringList &idList, const std::function<void (BitTorrent::Torrent *torrent)> &func)
     {
         if ((idList.size() == 1) && (idList[0] == u"all"))
@@ -251,6 +253,20 @@ namespace
         for (const QString &hash : idStrings)
             idList << BitTorrent::TorrentID::fromString(hash);
         return idList;
+    }
+
+    nonstd::expected<QUrl, QString> validateWebSeedUrl(const QString &urlStr)
+    {
+        const QString normalizedUrlStr = QUrl::fromPercentEncoding(urlStr.toLatin1());
+
+        const QUrl url {normalizedUrlStr, QUrl::StrictMode};
+        if (!url.isValid())
+            return nonstd::make_unexpected(TorrentsController::tr("\"%1\" is not a valid URL").arg(normalizedUrlStr));
+
+        if (!SUPPORTED_WEB_SEED_SCHEMES.contains(url.scheme()))
+            return nonstd::make_unexpected(TorrentsController::tr("URL scheme must be one of [%1]").arg(SUPPORTED_WEB_SEED_SCHEMES.values().join(u", ")));
+
+        return url;
     }
 }
 
@@ -558,6 +574,84 @@ void TorrentsController::webseedsAction()
     }
 
     setResult(webSeedList);
+}
+
+void TorrentsController::addWebSeedsAction()
+{
+    requireParams({u"hash"_s, u"urls"_s});
+    const QStringList paramUrls = params()[u"urls"_s].split(u'|', Qt::SkipEmptyParts);
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    QList<QUrl> urls;
+    urls.reserve(paramUrls.size());
+    for (const QString &urlStr : paramUrls)
+    {
+        const auto result = validateWebSeedUrl(urlStr);
+        if (!result)
+            throw APIError(APIErrorType::BadParams, result.error());
+        urls << result.value();
+    }
+
+    torrent->addUrlSeeds(urls);
+}
+
+void TorrentsController::editWebSeedAction()
+{
+    requireParams({u"hash"_s, u"origUrl"_s, u"newUrl"_s});
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
+    const QString origUrlStr = params()[u"origUrl"_s];
+    const QString newUrlStr = params()[u"newUrl"_s];
+
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    const auto origUrlResult = validateWebSeedUrl(origUrlStr);
+    if (!origUrlResult)
+        throw APIError(APIErrorType::BadParams, origUrlResult.error());
+    const QUrl origUrl = origUrlResult.value();
+
+    const auto newUrlResult = validateWebSeedUrl(newUrlStr);
+    if (!newUrlResult)
+        throw APIError(APIErrorType::BadParams, newUrlResult.error());
+    const QUrl newUrl = newUrlResult.value();
+
+    if (newUrl != origUrl)
+    {
+        if (!torrent->urlSeeds().contains(origUrl))
+            throw APIError(APIErrorType::Conflict, tr("\"%1\" is not an existing URL").arg(origUrl.toString()));
+
+        torrent->removeUrlSeeds({origUrl});
+        torrent->addUrlSeeds({newUrl});
+    }
+}
+
+void TorrentsController::removeWebSeedsAction()
+{
+    requireParams({u"hash"_s, u"urls"_s});
+    const QStringList paramUrls = params()[u"urls"_s].split(u'|', Qt::SkipEmptyParts);
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    QList<QUrl> urls;
+    urls.reserve(paramUrls.size());
+    for (const QString &urlStr : paramUrls)
+    {
+        const auto result = validateWebSeedUrl(urlStr);
+        if (!result)
+            throw APIError(APIErrorType::BadParams, result.error());
+        urls << result.value();
+    }
+
+    torrent->removeUrlSeeds(urls);
 }
 
 // Returns the files in a torrent in JSON format.
