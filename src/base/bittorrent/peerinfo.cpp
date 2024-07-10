@@ -367,6 +367,10 @@ void PeerInfo::determineFlags()
     if (useUTPSocket())
         updateFlags(u'P', C_UTP);
 
+    // h = Peer is using NAT hole punching
+    if (isHolepunched())
+        updateFlags(u'h', tr("Peer is using NAT hole punching"));
+
     m_flags.chop(1);
     m_flagsDescription.chop(1);
 }
