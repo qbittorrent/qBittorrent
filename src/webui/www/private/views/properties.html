@@ -146,14 +146,21 @@
 
 <div id="propWebSeeds" class="propertiesTabContent invisible unselectable">
     <div id="webseeds">
-        <table class="dynamicTable" style="width: 100%">
-            <thead>
-                <tr>
-                    <th scope="col">QBT_TR(URL)QBT_TR[CONTEXT=TrackerListWidget]</th>
-                </tr>
-            </thead>
-            <tbody id="webseedsTable"></tbody>
-        </table>
+        <div id="torrentWebseedsTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+            <table class="dynamicTable" style="position:relative;">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+            </table>
+        </div>
+        <div id="torrentWebseedsTableDiv" class="dynamicTableDiv">
+            <table class="dynamicTable">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 </div>
 
