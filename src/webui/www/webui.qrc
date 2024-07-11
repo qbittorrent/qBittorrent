@@ -2,6 +2,7 @@
     <qresource prefix="/www">
         <file>private/addpeers.html</file>
         <file>private/addtrackers.html</file>
+        <file>private/addwebseeds.html</file>
         <file>private/confirmfeeddeletion.html</file>
         <file>private/confirmruleclear.html</file>
         <file>private/confirmruledeletion.html</file>
@@ -17,6 +18,7 @@
         <file>private/download.html</file>
         <file>private/downloadlimit.html</file>
         <file>private/edittracker.html</file>
+        <file>private/editwebseed.html</file>
         <file>private/images/3-state-checkbox.gif</file>
         <file>private/images/application-exit.svg</file>
         <file>private/images/application-rss.svg</file>

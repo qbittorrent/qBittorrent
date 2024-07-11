@@ -94,7 +94,123 @@ window.qBittorrent.PropWebseeds ??= (() => {
         loadWebSeedsData();
     };
 
-    torrentWebseedsTable.setup("torrentWebseedsTableDiv", "torrentWebseedsTableFixedHeaderDiv");
+    const torrentWebseedsContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
+        targets: "#torrentWebseedsTableDiv",
+        menu: "torrentWebseedsMenu",
+        actions: {
+            AddWebSeeds: function(element, ref) {
+                addWebseedFN();
+            },
+            EditWebSeed: function(element, ref) {
+                // only allow editing of one row
+                element.firstChild.click();
+                editWebSeedFN(element);
+            },
+            RemoveWebSeed: function(element, ref) {
+                removeWebSeedFN(element);
+            }
+        },
+        offsets: {
+            x: -15,
+            y: 2
+        },
+        onShow: function() {
+            const selectedWebseeds = torrentWebseedsTable.selectedRowsIds();
+
+            if (selectedWebseeds.length === 0) {
+                this.hideItem("EditWebSeed");
+                this.hideItem("RemoveWebSeed");
+                this.hideItem("CopyWebseedUrl");
+            }
+            else {
+                if (selectedWebseeds.length === 1)
+                    this.showItem("EditWebSeed");
+                else
+                    this.hideItem("EditWebSeed");
+
+                this.showItem("RemoveWebSeed");
+                this.showItem("CopyWebseedUrl");
+            }
+        }
+    });
+
+    const addWebseedFN = function() {
+        if (current_hash.length === 0)
+            return;
+
+        new MochaUI.Window({
+            id: "webseedsPage",
+            title: "QBT_TR(Add web seeds)QBT_TR[CONTEXT=HttpServer]",
+            loadMethod: "iframe",
+            contentURL: "addwebseeds.html?hash=" + current_hash,
+            scrollbars: true,
+            resizable: false,
+            maximizable: false,
+            closable: true,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 500,
+            height: 250,
+            onCloseComplete: function() {
+                updateData();
+            }
+        });
+    };
+
+    const editWebSeedFN = function(element) {
+        if (current_hash.length === 0)
+            return;
+
+        const selectedWebseeds = torrentWebseedsTable.selectedRowsIds();
+        if (selectedWebseeds.length > 1)
+            return;
+
+        const webseedUrl = selectedWebseeds[0];
+
+        new MochaUI.Window({
+            id: "webseedsPage",
+            title: "QBT_TR(Web seed editing)QBT_TR[CONTEXT=PropertiesWidget]",
+            loadMethod: "iframe",
+            contentURL: "editwebseed.html?hash=" + current_hash + "&url=" + encodeURIComponent(webseedUrl),
+            scrollbars: true,
+            resizable: false,
+            maximizable: false,
+            closable: true,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 500,
+            height: 150,
+            onCloseComplete: function() {
+                updateData();
+            }
+        });
+    };
+
+    const removeWebSeedFN = function(element) {
+        if (current_hash.length === 0)
+            return;
+
+        const selectedWebseeds = torrentWebseedsTable.selectedRowsIds();
+        new Request({
+            url: "api/v2/torrents/removeWebSeeds",
+            method: "post",
+            data: {
+                hash: current_hash,
+                urls: selectedWebseeds.map(webseed => encodeURIComponent(webseed)).join("|")
+            },
+            onSuccess: function() {
+                updateData();
+            }
+        }).send();
+    };
+
+    new ClipboardJS("#CopyWebseedUrl", {
+        text: function(trigger) {
+            return torrentWebseedsTable.selectedRowsIds().join("\n");
+        }
+    });
+
+    torrentWebseedsTable.setup("torrentWebseedsTableDiv", "torrentWebseedsTableFixedHeaderDiv", torrentWebseedsContextMenu);
 
     return exports();
 })();
