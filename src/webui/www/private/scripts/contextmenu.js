@@ -36,6 +36,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             TorrentsTableContextMenu: TorrentsTableContextMenu,
             CategoriesFilterContextMenu: CategoriesFilterContextMenu,
             TagsFilterContextMenu: TagsFilterContextMenu,
+            TrackersFilterContextMenu: TrackersFilterContextMenu,
             SearchPluginsTableContextMenu: SearchPluginsTableContextMenu,
             RssFeedContextMenu: RssFeedContextMenu,
             RssArticleContextMenu: RssArticleContextMenu,
@@ -528,6 +529,17 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.showItem("deleteTag");
             else
                 this.hideItem("deleteTag");
+        }
+    });
+
+    const TrackersFilterContextMenu = new Class({
+        Extends: ContextMenu,
+        updateMenuItems: function() {
+            const id = Number(this.options.element.id);
+            if ((id !== TRACKERS_ALL) && (id !== TRACKERS_TRACKERLESS))
+                this.showItem("deleteTracker");
+            else
+                this.hideItem("deleteTracker");
         }
     });
 

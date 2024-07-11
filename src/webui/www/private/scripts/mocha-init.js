@@ -85,6 +85,7 @@ let deleteTorrentsByTagFN = function() {};
 let startTorrentsByTrackerFN = function() {};
 let stopTorrentsByTrackerFN = function() {};
 let deleteTorrentsByTrackerFN = function() {};
+let deleteTrackerFN = function() {};
 let copyNameFN = function() {};
 let copyInfohashFN = function(policy) {};
 let copyMagnetLinkFN = function() {};
@@ -967,6 +968,33 @@ const initializeWindows = function() {
                 }
             });
         }
+    };
+
+    deleteTrackerFN = function(trackerHash) {
+        const trackerHashInt = Number.parseInt(trackerHash, 10);
+        if ((trackerHashInt === TRACKERS_ALL) || (trackerHashInt === TRACKERS_TRACKERLESS))
+            return;
+
+        const tracker = trackerList.get(trackerHashInt);
+        const host = tracker.host;
+        const urls = [...tracker.trackerTorrentMap.keys()];
+
+        new MochaUI.Window({
+            id: "confirmDeletionPage",
+            title: "QBT_TR(Remove tracker)QBT_TR[CONTEXT=confirmDeletionDlg]",
+            loadMethod: "iframe",
+            contentURL: new URI("confirmtrackerdeletion.html").setData("host", host).setData("urls", urls.map(encodeURIComponent).join("|")).toString(),
+            scrollbars: false,
+            resizable: true,
+            maximizable: false,
+            padding: 10,
+            width: 424,
+            height: 100,
+            onCloseComplete: function() {
+                updateMainData();
+                setTrackerFilter(TRACKERS_ALL);
+            }
+        });
     };
 
     copyNameFN = function() {
