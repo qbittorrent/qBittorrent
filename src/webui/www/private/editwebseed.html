@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>QBT_TR(Edit web seed)QBT_TR[CONTEXT=HttpServer]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
+    <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
+    <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
+    <script>
+        "use strict";
+
+        window.addEventListener("DOMContentLoaded", () => {
+            new Keyboard({
+                defaultEventType: "keydown",
+                events: {
+                    "Enter": function(event) {
+                        $("editWebSeedButton").click();
+                        event.preventDefault();
+                    },
+                    "Escape": function(event) {
+                        window.parent.qBittorrent.Client.closeWindows();
+                        event.preventDefault();
+                    },
+                    "Esc": function(event) {
+                        window.parent.qBittorrent.Client.closeWindows();
+                        event.preventDefault();
+                    }
+                }
+            }).activate();
+
+            const origUrl = new URI().getData("url");
+            $("url").value = decodeURIComponent(origUrl);
+            $("url").focus();
+
+            $("editWebSeedButton").addEvent("click", (e) => {
+                e.stopPropagation();
+                const hash = new URI().getData("hash");
+                new Request({
+                    url: "api/v2/torrents/editWebSeed",
+                    method: "post",
+                    data: {
+                        hash: hash,
+                        origUrl: origUrl,
+                        newUrl: encodeURIComponent($("url").value.trim()),
+                    },
+                    onComplete: function() {
+                        window.parent.qBittorrent.Client.closeWindows();
+                    }
+                }).send();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <br>
+        <label for="url">QBT_TR(Web seed URL:)QBT_TR[CONTEXT=PropertiesWidget]</label>
+        <div style="text-align: center; padding-top: 10px;">
+            <input type="text" id="url" style="width: 90%;">
+        </div>
+        <br>
+        <input type="button" value="QBT_TR(Edit)QBT_TR[CONTEXT=HttpServer]" id="editWebSeedButton">
+    </div>
+</body>
+
+</html>
