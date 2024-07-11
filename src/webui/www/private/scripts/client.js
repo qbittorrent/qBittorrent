@@ -643,6 +643,12 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, "QBT_TR(Trackerless (%1))QBT_TR[CONTEXT=TrackerFiltersList]", trackerlessTorrentsCount));
 
+        // Remove unused trackers
+        for (const [key, { trackerTorrentMap }] of trackerList) {
+            if (trackerTorrentMap.size === 0)
+                trackerList.delete(key);
+        }
+
         // Sort trackers by hostname
         const sortedList = [];
         trackerList.forEach(({ host, trackerTorrentMap }, hash) => {
