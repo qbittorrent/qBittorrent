@@ -60,7 +60,7 @@
         };
 
         const newPluginOk = function() {
-            const path = $("newPluginPath").get("value").trim();
+            const path = $("newPluginPath").value.trim();
             if (path) {
                 new Request({
                     url: "api/v2/search/installPlugin",

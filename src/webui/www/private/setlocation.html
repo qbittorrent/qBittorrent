@@ -42,7 +42,7 @@
                 // check field
                 const location = $("setLocation").value.trim();
                 if ((location === null) || (location === "")) {
-                    $("error_div").set("text", "QBT_TR(Save path is empty)QBT_TR[CONTEXT=TorrentsController]");
+                    $("error_div").textContent = "QBT_TR(Save path is empty)QBT_TR[CONTEXT=TorrentsController]";
                     return false;
                 }
 
@@ -58,7 +58,7 @@
                         window.parent.qBittorrent.Client.closeWindows();
                     },
                     onFailure: function(xhr) {
-                        $("error_div").set("text", xhr.response);
+                        $("error_div").textContent = xhr.response;
                     }
                 }).send();
             });

@@ -131,7 +131,7 @@ function submitLoginForm(event) {
 
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("loginform");
-    loginForm.setAttribute("method", "POST");
+    loginForm.method = "POST";
     loginForm.addEventListener("submit", submitLoginForm);
 
     setupI18n();
