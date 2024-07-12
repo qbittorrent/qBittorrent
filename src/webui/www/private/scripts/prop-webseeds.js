@@ -28,11 +28,9 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined)
-    window.qBittorrent = {};
-
-window.qBittorrent.PropWebseeds = (function() {
-    const exports = function() {
+window.qBittorrent ??= {};
+window.qBittorrent.PropWebseeds ??= (() => {
+    const exports = () => {
         return {
             updateData: updateData
         };
@@ -148,5 +146,4 @@ window.qBittorrent.PropWebseeds = (function() {
 
     return exports();
 })();
-
 Object.freeze(window.qBittorrent.PropWebseeds);

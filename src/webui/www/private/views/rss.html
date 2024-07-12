@@ -158,12 +158,8 @@
 <script>
     "use strict";
 
-    if (window.qBittorrent === undefined)
-        window.qBittorrent = {};
-
-    const serverSyncRssDataInterval = 1500;
-
-    window.qBittorrent.Rss = (() => {
+    window.qBittorrent ??= {};
+    window.qBittorrent.Rss ??= (() => {
         const exports = () => {
             return {
                 init: init,
@@ -181,6 +177,7 @@
             };
         };
 
+        const serverSyncRssDataInterval = 1500;
         let feedData = {};
         let pathByFeedId = new Map();
         let feedRefreshTimer;
@@ -828,6 +825,5 @@
 
         return exports();
     })();
-
     Object.freeze(window.qBittorrent.Rss);
 </script>

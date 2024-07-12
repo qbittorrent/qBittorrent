@@ -33,11 +33,9 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined)
-    window.qBittorrent = {};
-
-window.qBittorrent.DynamicTable = (function() {
-    const exports = function() {
+window.qBittorrent ??= {};
+window.qBittorrent.DynamicTable ??= (() => {
+    const exports = () => {
         return {
             TorrentsTable: TorrentsTable,
             TorrentPeersTable: TorrentPeersTable,
@@ -3279,7 +3277,6 @@ window.qBittorrent.DynamicTable = (function() {
 
     return exports();
 })();
-
 Object.freeze(window.qBittorrent.DynamicTable);
 
 /*************************************************************/

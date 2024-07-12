@@ -148,10 +148,8 @@
 <script>
     "use strict";
 
-    if (window.qBittorrent === undefined)
-        window.qBittorrent = {};
-
-    window.qBittorrent.Log = (() => {
+    window.qBittorrent ??= {};
+    window.qBittorrent.Log ??= (() => {
         const exports = () => {
             return {
                 init: init,
@@ -430,6 +428,5 @@
 
         return exports();
     })();
-
     Object.freeze(window.qBittorrent.Log);
 </script>

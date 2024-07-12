@@ -28,11 +28,9 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined)
-    window.qBittorrent = {};
-
-window.qBittorrent.ContextMenu = (function() {
-    const exports = function() {
+window.qBittorrent ??= {};
+window.qBittorrent.ContextMenu ??= (() => {
+    const exports = () => {
         return {
             ContextMenu: ContextMenu,
             TorrentsTableContextMenu: TorrentsTableContextMenu,
@@ -680,5 +678,4 @@ window.qBittorrent.ContextMenu = (function() {
 
     return exports();
 })();
-
 Object.freeze(window.qBittorrent.ContextMenu);

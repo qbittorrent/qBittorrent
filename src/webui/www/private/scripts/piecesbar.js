@@ -28,10 +28,8 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined)
-    window.qBittorrent = {};
-
-window.qBittorrent.PiecesBar = (() => {
+window.qBittorrent ??= {};
+window.qBittorrent.PiecesBar ??= (() => {
     const exports = () => {
         return {
             PiecesBar: PiecesBar
@@ -267,5 +265,4 @@ window.qBittorrent.PiecesBar = (() => {
 
     return exports();
 })();
-
 Object.freeze(window.qBittorrent.PiecesBar);

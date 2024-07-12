@@ -28,11 +28,9 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined)
-    window.qBittorrent = {};
-
-window.qBittorrent.PropFiles = (function() {
-    const exports = function() {
+window.qBittorrent ??= {};
+window.qBittorrent.PropFiles ??= (() => {
+    const exports = () => {
         return {
             normalizePriority: normalizePriority,
             isDownloadCheckboxExists: isDownloadCheckboxExists,
@@ -769,5 +767,4 @@ window.qBittorrent.PropFiles = (function() {
 
     return exports();
 })();
-
 Object.freeze(window.qBittorrent.PropFiles);

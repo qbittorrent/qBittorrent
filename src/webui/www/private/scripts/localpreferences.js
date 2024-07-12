@@ -28,11 +28,9 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined)
-    window.qBittorrent = {};
-
-window.qBittorrent.LocalPreferences = (function() {
-    const exports = function() {
+window.qBittorrent ??= {};
+window.qBittorrent.LocalPreferences ??= (() => {
+    const exports = () => {
         return {
             LocalPreferencesClass: LocalPreferencesClass
         };
@@ -67,5 +65,4 @@ window.qBittorrent.LocalPreferences = (function() {
 
     return exports();
 })();
-
 Object.freeze(window.qBittorrent.LocalPreferences);

@@ -28,10 +28,8 @@
 
 "use strict";
 
-if (window.qBittorrent === undefined)
-    window.qBittorrent = {};
-
-window.qBittorrent.Cache = (() => {
+window.qBittorrent ??= {};
+window.qBittorrent.Cache ??= (() => {
     const exports = () => {
         return {
             buildInfo: new BuildInfoCache(),
@@ -170,5 +168,4 @@ window.qBittorrent.Cache = (() => {
 
     return exports();
 })();
-
 Object.freeze(window.qBittorrent.Cache);
