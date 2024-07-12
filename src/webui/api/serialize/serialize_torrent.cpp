@@ -135,6 +135,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_SAVE_PATH, torrent.savePath().toString()},
         {KEY_TORRENT_DOWNLOAD_PATH, torrent.downloadPath().toString()},
         {KEY_TORRENT_CONTENT_PATH, torrent.contentPath().toString()},
+        {KEY_TORRENT_ROOT_PATH, torrent.rootPath().toString()},
         {KEY_TORRENT_ADDED_ON, Utils::DateTime::toSecsSinceEpoch(torrent.addedTime())},
         {KEY_TORRENT_COMPLETION_ON, Utils::DateTime::toSecsSinceEpoch(torrent.completedTime())},
         {KEY_TORRENT_TRACKER, torrent.currentTracker()},
