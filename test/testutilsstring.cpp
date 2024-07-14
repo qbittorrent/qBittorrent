@@ -28,6 +28,7 @@
 
 #include <QList>
 #include <QObject>
+#include <QRegularExpression>
 #include <QTest>
 
 #include "base/global.h"
@@ -89,6 +90,57 @@ private slots:
         QCOMPARE(Utils::String::splitCommand(u" app a b c  "_s), QStringList({u"app"_s, u"a"_s, u"b"_s, u"c"_s}));
         QCOMPARE(Utils::String::splitCommand(u"   cmd.exe /d --arg2 \"arg3\" \"\" arg5 \"\"arg6 \"arg7 "_s)
             , QStringList({u"cmd.exe"_s, u"/d"_s, u"--arg2"_s, u"\"arg3\""_s, u"\"\""_s, u"arg5"_s, u"\"\"arg6"_s, u"\"arg7 "_s}));
+    }
+
+    void testparseFilter() const
+    {
+        QRegularExpression re0(Utils::String::parseFilter(u""_s), QRegularExpression::CaseInsensitiveOption);
+        QVERIFY(u""_s.contains(re0));
+        QVERIFY(u"a"_s.contains(re0));
+
+        QRegularExpression re1(Utils::String::parseFilter(u"a"_s), QRegularExpression::CaseInsensitiveOption);
+        QVERIFY(u"a"_s.contains(re1));
+        QVERIFY(u"bab"_s.contains(re1));
+        QVERIFY(!u"b"_s.contains(re1));
+
+        QRegularExpression re2(Utils::String::parseFilter(u"a b"_s), QRegularExpression::CaseInsensitiveOption);
+        QVERIFY(!u"a"_s.contains(re2));
+        QVERIFY(!u"b"_s.contains(re2));
+        QVERIFY(u"a c b"_s.contains(re2));
+        QVERIFY(u"b a"_s.contains(re2));
+
+        QRegularExpression re3(Utils::String::parseFilter(u"a -b"_s), QRegularExpression::CaseInsensitiveOption);
+        QVERIFY(u"a"_s.contains(re3));
+        QVERIFY(!u"a b"_s.contains(re3));
+
+        QRegularExpression re4(Utils::String::parseFilter(uR"(a "b c")"_s), QRegularExpression::CaseInsensitiveOption);
+        QVERIFY(!u"a c b"_s.contains(re4));
+        QVERIFY(u"a b c"_s.contains(re4));
+
+        QRegularExpression re5(Utils::String::parseFilter(uR"(a -"b c")"_s), QRegularExpression::CaseInsensitiveOption);
+        QVERIFY(!u"a b c"_s.contains(re5));
+        QVERIFY(u"a c b"_s.contains(re5));
+
+        QRegularExpression re6(Utils::String::parseFilter(uR"(a "b -c")"_s), QRegularExpression::CaseInsensitiveOption);
+        QVERIFY(u"a b -c"_s.contains(re6));
+        QVERIFY(!u"a b c"_s.contains(re6));
+
+        QRegularExpression re7(Utils::String::parseFilter(uR"(a-b)"_s), QRegularExpression::CaseInsensitiveOption);
+        QVERIFY(u"a-b"_s.contains(re7));
+        QVERIFY(!u"a b"_s.contains(re7));
+        QVERIFY(!u"a"_s.contains(re7));
+
+        QRegularExpression re8(Utils::String::parseFilter(uR"(.)"_s), QRegularExpression::CaseInsensitiveOption);
+        QVERIFY(u"."_s.contains(re8));
+        QVERIFY(!u"a"_s.contains(re8));
+
+        QRegularExpression re9(Utils::String::parseFilter(uR"(*)"_s), QRegularExpression::CaseInsensitiveOption);
+        QVERIFY(u"*"_s.contains(re9));
+        QVERIFY(!u"a"_s.contains(re9));
+
+        QRegularExpression re10(Utils::String::parseFilter(u"\"a"_s), QRegularExpression::CaseInsensitiveOption);
+        QVERIFY(u"a"_s.contains(re10));
+        QVERIFY(!u"b"_s.contains(re10));
     }
 };
 

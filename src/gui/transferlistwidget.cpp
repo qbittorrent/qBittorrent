@@ -1328,7 +1328,7 @@ void TransferListWidget::applyFilter(const QString &name, const TransferListMode
 {
     m_sortFilterModel->setFilterKeyColumn(type);
     const QString pattern = (Preferences::instance()->getRegexAsFilteringPatternForTransferList()
-                ? name : Utils::String::wildcardToRegexPattern(name));
+                ? name : Utils::String::parseFilter(name));
     m_sortFilterModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
 }
 

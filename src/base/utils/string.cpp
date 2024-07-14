@@ -54,6 +54,67 @@ QString Utils::String::wildcardToRegexPattern(const QString &pattern)
     return QRegularExpression::wildcardToRegularExpression(pattern, QRegularExpression::UnanchoredWildcardConversion);
 }
 
+// namespace? private?
+void toLookaheadRegex(QString &name, bool isPositive) {
+    name = QRegularExpression::escape(name);
+
+    if(isPositive)
+        name.prepend(u"(?=.*").append(u")");
+    else
+        name.prepend(u"(?!.*").append(u")");
+}
+
+QString Utils::String::parseFilter(const QString &filter)
+{
+    QString ret;
+    ret.reserve(256);
+
+    ret.prepend(u"\\A"); // Start matching at beginning
+
+    bool inQuotes = false;
+    bool excluded = false;
+    QString tmp;
+    for (const QChar c : filter)
+    {
+        if (c == u'"') // What about patterns without spaces between quotes, like `bla""bla`
+        {
+            inQuotes = !inQuotes;
+            continue; // Don't inlude quotes in pattern
+        }
+        else if (!inQuotes) // ` ` and `-` are left alone inside quotes
+        {
+            if (c == u' ')
+            {
+                if (!tmp.isEmpty())
+                {
+                    toLookaheadRegex(tmp, !excluded);
+                    excluded = false;
+
+                    ret.append(tmp);
+                    tmp.clear();
+                }
+
+                continue;
+            }
+            else if (c == u'-' && tmp.isEmpty()) // only exclude when `-` is at start of word
+            {
+                excluded = true;
+                continue;
+            }
+        }
+
+        tmp.append(c);
+    }
+
+    if (!tmp.isEmpty())
+    {
+        toLookaheadRegex(tmp, !excluded);
+        ret.append(tmp);
+    }
+
+    return ret;
+}
+
 QStringList Utils::String::splitCommand(const QString &command)
 {
     QStringList ret;
