@@ -66,7 +66,7 @@ window.qBittorrent.Download ??= (() => {
         $("startTorrent").checked = !pref.add_stopped_enabled;
         $("addToTopOfQueue").checked = pref.add_to_top_of_queue;
 
-        if (pref.auto_tmm_enabled === 1) {
+        if (pref.auto_tmm_enabled) {
             $("autoTMM").selectedIndex = 1;
             $("savepath").disabled = true;
         }
