@@ -5,7 +5,6 @@
   "rules": {
     "long-title": "off",
     "no-inline-style": "off",
-    "prefer-button": "off",
-    "wcag/h71": "off"
+    "prefer-button": "off"
   }
 }
