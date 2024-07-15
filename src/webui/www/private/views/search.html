@@ -78,7 +78,7 @@
 <div id="searchResults">
     <div style="overflow: hidden; height: 60px;">
         <div style="margin: 20px 0 10px 0; height: 30px;">
-            <input type="text" id="searchPattern" class="searchInputField" placeholder="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocomplete="off" autocapitalize="none" oninput="qBittorrent.Search.onSearchPatternChanged()" />
+            <input type="text" id="searchPattern" class="searchInputField" placeholder="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocomplete="off" autocapitalize="none" oninput="qBittorrent.Search.onSearchPatternChanged()">
             <select id="categorySelect" class="searchInputField" onchange="qBittorrent.Search.categorySelected()"></select>
             <select id="pluginsSelect" class="searchInputField" onchange="qBittorrent.Search.pluginSelected()"></select>
             <button type="button" id="startSearchButton" class="searchInputField" onclick="qBittorrent.Search.startStopSearch()">QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]</button>
@@ -91,7 +91,7 @@
                 <tr>
                     <td>
                         QBT_TR(There aren't any search plugins installed.)QBT_TR[CONTEXT=SearchEngineWidget]
-                        <br />
+                        <br>
                         QBT_TR(Click the "Search plugins..." button at the bottom right of the window to install some.)QBT_TR[CONTEXT=SearchEngineWidget]
                     </td>
                 </tr>
@@ -119,7 +119,7 @@
     </div>
 
     <div id="searchResultsFilters" style="padding-top: 10px; display: none">
-        <input type="text" id="searchInNameFilter" placeholder="QBT_TR(Filter)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocapitalize="none" />
+        <input type="text" id="searchInNameFilter" placeholder="QBT_TR(Filter)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocapitalize="none">
 
         <span>QBT_TR(Results)QBT_TR[CONTEXT=SearchEngineWidget] (QBT_TR(showing)QBT_TR[CONTEXT=SearchEngineWidget] <span id="numSearchResultsVisible" class="numSearchResults">0</span> QBT_TR(out of)QBT_TR[CONTEXT=SearchEngineWidget] <span id="numSearchResultsTotal" class="numSearchResults">0</span>):</span>
 
@@ -188,14 +188,14 @@
 </div>
 
 <ul id="searchResultsTableMenu" class="contextMenu">
-    <li><a href="#Download"><img src="images/downloading.svg" alt="QBT_TR(Download)QBT_TR[CONTEXT=SearchJobWidget]" /> QBT_TR(Download)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
-    <li class="separator"><a href="#OpenDescriptionUrl"><img src="images/application-url.svg" alt="QBT_TR(Open description page)QBT_TR[CONTEXT=SearchJobWidget]" /> QBT_TR(Open description page)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+    <li><a href="#Download"><img src="images/downloading.svg" alt="QBT_TR(Download)QBT_TR[CONTEXT=SearchJobWidget]"> QBT_TR(Download)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+    <li class="separator"><a href="#OpenDescriptionUrl"><img src="images/application-url.svg" alt="QBT_TR(Open description page)QBT_TR[CONTEXT=SearchJobWidget]"> QBT_TR(Open description page)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
     <li>
-        <a href="#" class="arrow-right"><img src="images/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=SearchJobWidget]" /> QBT_TR(Copy)QBT_TR[CONTEXT=SearchJobWidget]</a>
+        <a href="#" class="arrow-right"><img src="images/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=SearchJobWidget]"> QBT_TR(Copy)QBT_TR[CONTEXT=SearchJobWidget]</a>
         <ul>
-            <li><a href="#" id="copySearchTorrentName" class="copySearchDataToClipboard"><img src="images/name.svg" alt="QBT_TR(Name)QBT_TR[CONTEXT=SearchJobWidget]" /> QBT_TR(Name)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
-            <li><a href="#" id="copySearchTorrentDownloadLink" class="copySearchDataToClipboard"><img src="images/insert-link.svg" alt="QBT_TR(Download link)QBT_TR[CONTEXT=SearchJobWidget]" /> QBT_TR(Download link)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
-            <li><a href="#" id="copySearchTorrentDescriptionUrl" class="copySearchDataToClipboard"><img src="images/application-url.svg" alt="QBT_TR(Description page URL)QBT_TR[CONTEXT=SearchJobWidget]" /> QBT_TR(Description page URL)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+            <li><a href="#" id="copySearchTorrentName" class="copySearchDataToClipboard"><img src="images/name.svg" alt="QBT_TR(Name)QBT_TR[CONTEXT=SearchJobWidget]"> QBT_TR(Name)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+            <li><a href="#" id="copySearchTorrentDownloadLink" class="copySearchDataToClipboard"><img src="images/insert-link.svg" alt="QBT_TR(Download link)QBT_TR[CONTEXT=SearchJobWidget]"> QBT_TR(Download link)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+            <li><a href="#" id="copySearchTorrentDescriptionUrl" class="copySearchDataToClipboard"><img src="images/application-url.svg" alt="QBT_TR(Description page URL)QBT_TR[CONTEXT=SearchJobWidget]"> QBT_TR(Description page URL)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
         </ul>
     </li>
 </ul>
