@@ -34,7 +34,7 @@
             const uriHashes = window.qBittorrent.Misc.safeTrim(new URI().getData("hashes"));
 
             if (uriAction === "create")
-                $("legendText").innerText = "QBT_TR(Tag:)QBT_TR[CONTEXT=TagFilterWidget]";
+                $("legendText").textContent = "QBT_TR(Tag:)QBT_TR[CONTEXT=TagFilterWidget]";
 
             $("tagName").focus();
 

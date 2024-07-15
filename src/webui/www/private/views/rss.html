@@ -401,7 +401,7 @@
             if (article) {
                 $("rssDetailsView").append((() => {
                     const torrentName = document.createElement("p");
-                    torrentName.innerText = article.title;
+                    torrentName.textContent = article.title;
                     torrentName.id = "rssTorrentDetailsName";
                     return torrentName;
                 })());
@@ -410,11 +410,11 @@
                     torrentDate.id = "rssTorrentDetailsDate";
 
                     const torrentDateDesc = document.createElement("b");
-                    torrentDateDesc.innerText = "QBT_TR(Date: )QBT_TR[CONTEXT=RSSWidget]";
+                    torrentDateDesc.textContent = "QBT_TR(Date: )QBT_TR[CONTEXT=RSSWidget]";
                     torrentDate.append(torrentDateDesc);
 
                     const torrentDateData = document.createElement("span");
-                    torrentDateData.innerText = new Date(article.date).toLocaleString();
+                    torrentDateData.textContent = new Date(article.date).toLocaleString();
                     torrentDate.append(torrentDateData);
 
                     return torrentDate;
