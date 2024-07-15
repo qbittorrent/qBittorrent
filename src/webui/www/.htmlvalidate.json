@@ -3,7 +3,6 @@
     "html-validate:recommended"
   ],
   "rules": {
-    "empty-heading": "off",
     "long-title": "off",
     "no-conditional-comment": "off",
     "no-inline-style": "off",
