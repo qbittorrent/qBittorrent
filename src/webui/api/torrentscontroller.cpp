@@ -882,9 +882,6 @@ void TorrentsController::removeTrackersAction()
 
     const QStringList urls = params()[u"urls"_s].split(u'|');
     torrent->removeTrackers(urls);
-
-    if (!torrent->isStopped())
-        torrent->forceReannounce();
 }
 
 void TorrentsController::addPeersAction()
