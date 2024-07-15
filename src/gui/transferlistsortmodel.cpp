@@ -28,7 +28,6 @@
 
 #include "transferlistsortmodel.h"
 
-#include <concepts>
 #include <type_traits>
 
 #include <QDateTime>
@@ -47,11 +46,21 @@ namespace
         return (left < right) ? -1 : 1;
     }
 
+    int customCompare(const QDateTime &left, const QDateTime &right)
+    {
+        const bool isLeftValid = left.isValid();
+        const bool isRightValid = right.isValid();
+
+        if (isLeftValid == isRightValid)
+            return threeWayCompare(left, right);
+        return isLeftValid ? -1 : 1;
+    }
+
     int customCompare(const TagSet &left, const TagSet &right, const Utils::Compare::NaturalCompare<Qt::CaseInsensitive> &compare)
     {
         for (auto leftIter = left.cbegin(), rightIter = right.cbegin();
-                (leftIter != left.cend()) && (rightIter != right.cend());
-                ++leftIter, ++rightIter)
+             (leftIter != left.cend()) && (rightIter != right.cend());
+             ++leftIter, ++rightIter)
         {
             const int result = compare(leftIter->toString(), rightIter->toString());
             if (result != 0)
@@ -61,33 +70,29 @@ namespace
     }
 
     template <typename T>
-    concept Validateable = requires (T t) { {t.isValid()} -> std::same_as<bool>; };
-
-    template <Validateable T>
-    bool isValid(const T &value)
+    int customCompare(const T left, const T right)
     {
-        return value.isValid();
-    }
+        static_assert(std::is_arithmetic_v<T>);
 
-    // consider negative values as invalid
-    template <typename T>
-        requires std::is_arithmetic_v<T>
-    bool isValid(const T value)
-    {
-        return (value >= 0);
-    }
-
-    template <typename T>
-    int customCompare(const T &left, const T &right)
-    {
-        const bool isLeftValid = isValid(left);
-        const bool isRightValid = isValid(right);
+        const bool isLeftValid = (left >= 0);
+        const bool isRightValid = (right >= 0);
 
         if (isLeftValid && isRightValid)
             return threeWayCompare(left, right);
         if (!isLeftValid && !isRightValid)
             return 0;
         return isLeftValid ? -1 : 1;
+    }
+
+    int compareAsBool(const QVariant &left, const QVariant &right)
+    {
+        const bool leftValid = left.isValid();
+        const bool rightValid = right.isValid();
+        if (leftValid && rightValid)
+            return threeWayCompare(left.toBool(), right.toBool());
+        if (!leftValid && !rightValid)
+            return 0;
+        return leftValid ? -1 : 1;
     }
 
     int adjustSubSortColumn(const int column)
@@ -215,11 +220,13 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
 
     case TransferListModel::TR_DLLIMIT:
     case TransferListModel::TR_DLSPEED:
-    case TransferListModel::TR_PRIVATE:
     case TransferListModel::TR_QUEUE_POSITION:
     case TransferListModel::TR_UPLIMIT:
     case TransferListModel::TR_UPSPEED:
         return customCompare(leftValue.toInt(), rightValue.toInt());
+
+    case TransferListModel::TR_PRIVATE:
+        return compareAsBool(leftValue, rightValue);
 
     case TransferListModel::TR_PEERS:
     case TransferListModel::TR_SEEDS:
