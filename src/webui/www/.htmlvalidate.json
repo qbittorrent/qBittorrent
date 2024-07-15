@@ -4,7 +4,6 @@
   ],
   "rules": {
     "long-title": "off",
-    "no-conditional-comment": "off",
     "no-inline-style": "off",
     "prefer-button": "off",
     "text-content": "off",
