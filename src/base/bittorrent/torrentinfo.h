@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -34,7 +34,6 @@
 #include <QCoreApplication>
 #include <QList>
 
-#include "base/3rdparty/expected.hpp"
 #include "base/indexrange.h"
 #include "base/pathfwd.h"
 
@@ -50,26 +49,17 @@ namespace BitTorrent
 
     class TorrentInfo
     {
-        Q_DECLARE_TR_FUNCTIONS(TorrentInfo)
-
     public:
         TorrentInfo() = default;
         TorrentInfo(const TorrentInfo &other) = default;
 
         explicit TorrentInfo(const lt::torrent_info &nativeInfo);
 
-        static nonstd::expected<TorrentInfo, QString> load(const QByteArray &data) noexcept;
-        static nonstd::expected<TorrentInfo, QString> loadFromFile(const Path &path) noexcept;
-        nonstd::expected<void, QString> saveToFile(const Path &path) const;
-
         TorrentInfo &operator=(const TorrentInfo &other);
 
         bool isValid() const;
         InfoHash infoHash() const;
         QString name() const;
-        QDateTime creationDate() const;
-        QString creator() const;
-        QString comment() const;
         bool isPrivate() const;
         qlonglong totalSize() const;
         int filesCount() const;
@@ -80,9 +70,6 @@ namespace BitTorrent
         PathList filePaths() const;
         qlonglong fileSize(int index) const;
         qlonglong fileOffset(int index) const;
-        QList<TrackerEntry> trackers() const;
-        QList<QUrl> urlSeeds() const;
-        QByteArray metadata() const;
         PathList filesForPiece(int pieceIndex) const;
         QList<int> fileIndicesForPiece(int pieceIndex) const;
         QList<QByteArray> pieceHashes() const;
@@ -92,6 +79,8 @@ namespace BitTorrent
         // the given file extends (maybe partially).
         PieceRange filePieces(const Path &filePath) const;
         PieceRange filePieces(int fileIndex) const;
+
+        QByteArray rawData() const;
 
         bool matchesInfoHash(const InfoHash &otherInfoHash) const;
 

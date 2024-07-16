@@ -897,11 +897,11 @@ void AddNewTorrentDialog::setupTreeview()
     // Set dialog title
     setWindowTitle(torrentDescr.name());
 
-    const auto &torrentInfo = *torrentDescr.info();
-
     // Set torrent information
-    m_ui->labelCommentData->setText(Utils::Misc::parseHtmlLinks(torrentInfo.comment().toHtmlEscaped()));
-    m_ui->labelDateData->setText(!torrentInfo.creationDate().isNull() ? QLocale().toString(torrentInfo.creationDate(), QLocale::ShortFormat) : tr("Not available"));
+    m_ui->labelCommentData->setText(Utils::Misc::parseHtmlLinks(torrentDescr.comment().toHtmlEscaped()));
+    m_ui->labelDateData->setText(!torrentDescr.creationDate().isNull() ? QLocale().toString(torrentDescr.creationDate(), QLocale::ShortFormat) : tr("Not available"));
+
+    const auto &torrentInfo = *torrentDescr.info();
 
     BitTorrent::AddTorrentParams &addTorrentParams = m_currentContext->torrentParams;
     if (addTorrentParams.filePaths.isEmpty())

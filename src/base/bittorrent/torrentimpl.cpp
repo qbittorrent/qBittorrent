@@ -403,17 +403,27 @@ QString TorrentImpl::name() const
 
 QDateTime TorrentImpl::creationDate() const
 {
-    return m_torrentInfo.creationDate();
+    if (!hasMetadata())
+        return {};
+
+    const std::time_t date = nativeTorrentInfo()->creation_date();
+    return ((date != 0) ? QDateTime::fromSecsSinceEpoch(date) : QDateTime());
 }
 
 QString TorrentImpl::creator() const
 {
-    return m_torrentInfo.creator();
+    if (!hasMetadata())
+        return {};
+
+    return QString::fromStdString(nativeTorrentInfo()->creator());
 }
 
 QString TorrentImpl::comment() const
 {
-    return m_torrentInfo.comment();
+    if (!hasMetadata())
+        return {};
+
+    return QString::fromStdString(nativeTorrentInfo()->comment());
 }
 
 bool TorrentImpl::isPrivate() const
