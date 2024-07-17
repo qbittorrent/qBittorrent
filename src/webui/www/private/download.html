@@ -18,9 +18,9 @@
     <form action="api/v2/torrents/add" enctype="multipart/form-data" method="post" id="downloadForm" style="text-align: center;" target="download_frame" autocorrect="off" autocapitalize="none">
         <div style="text-align: center;">
             <br>
-            <h2 class="vcenter">QBT_TR(Download Torrents from their URLs or Magnet links)QBT_TR[CONTEXT=HttpServer]</h2>
+            <h2><label for="urls">QBT_TR(Add torrent links)QBT_TR[CONTEXT=AddNewTorrentDialog]</label></h2>
             <textarea id="urls" rows="10" name="urls"></textarea>
-            <p>QBT_TR(Only one link per line)QBT_TR[CONTEXT=HttpServer]</p>
+            <p><i>QBT_TR(One link per line (HTTP links, Magnet links and info-hashes are supported))QBT_TR[CONTEXT=AddNewTorrentDialog]</i></p>
             <fieldset class="settings" style="border: 0; text-align: left; margin-top: 6px;">
                 <legend>QBT_TR(Torrent options)QBT_TR[CONTEXT=AddNewTorrentDialog]</legend>
                 <table style="margin: auto;">
@@ -62,14 +62,14 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="category">QBT_TR(Category:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                                <label id="categoryLabel" for="categorySelect">QBT_TR(Category:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
                             </td>
                             <td>
                                 <div class="select-watched-folder-editable">
                                     <select id="categorySelect" onchange="qBittorrent.Download.changeCategorySelect(this)">
                                         <option selected value="\other"></option>
                                     </select>
-                                    <input name="category" type="text">
+                                    <input type="text" name="category" aria-labelledby="categoryLabel">
                                 </div>
                             </td>
                         </tr>

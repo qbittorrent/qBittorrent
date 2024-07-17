@@ -78,9 +78,9 @@
 <div id="searchResults">
     <div style="overflow: hidden; height: 60px;">
         <div style="margin: 20px 0 10px 0; height: 30px;">
-            <input type="text" id="searchPattern" class="searchInputField" placeholder="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocomplete="off" autocapitalize="none" oninput="qBittorrent.Search.onSearchPatternChanged()">
-            <select id="categorySelect" class="searchInputField" onchange="qBittorrent.Search.categorySelected()"></select>
-            <select id="pluginsSelect" class="searchInputField" onchange="qBittorrent.Search.pluginSelected()"></select>
+            <input type="text" id="searchPattern" class="searchInputField" placeholder="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" aria-label="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocomplete="off" autocapitalize="none" oninput="qBittorrent.Search.onSearchPatternChanged()">
+            <select id="categorySelect" class="searchInputField" aria-label="QBT_TR(Select category)QBT_TR[CONTEXT=SearchEngineWidget]" onchange="qBittorrent.Search.categorySelected()"></select>
+            <select id="pluginsSelect" class="searchInputField" aria-label="QBT_TR(Select plugins)QBT_TR[CONTEXT=SearchEngineWidget]" onchange="qBittorrent.Search.pluginSelected()"></select>
             <button type="button" id="startSearchButton" class="searchInputField" onclick="qBittorrent.Search.startStopSearch()">QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]</button>
         </div>
     </div>
