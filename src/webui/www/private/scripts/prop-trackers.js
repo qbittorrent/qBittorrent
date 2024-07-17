@@ -187,7 +187,7 @@ window.qBittorrent.PropTrackers ??= (() => {
         if (current_hash.length === 0)
             return;
 
-        const trackerUrl = encodeURIComponent(element.childNodes[1].innerText);
+        const trackerUrl = encodeURIComponent(element.childNodes[1].textContent);
         new MochaUI.Window({
             id: "trackersPage",
             title: "QBT_TR(Tracker editing)QBT_TR[CONTEXT=TrackerListWidget]",

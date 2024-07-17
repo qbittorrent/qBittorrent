@@ -138,21 +138,21 @@
 </div>
 
 <ul id="rssFeedMenu" class="contextMenu">
-    <li><a href="#update"><img src="images/view-refresh.svg" alt="QBT_TR(Update)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(Update)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li><a href="#markRead"><img src="images/task-complete.svg" alt="QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li class="separator"><a href="#rename"><img src="images/edit-rename.svg" alt="QBT_TR(Rename...)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(Rename...)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li><a href="#delete"><img src="images/edit-clear.svg" alt="QBT_TR(Delete)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(Delete)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#update"><img src="images/view-refresh.svg" alt="QBT_TR(Update)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Update)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#markRead"><img src="images/task-complete.svg" alt="QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li class="separator"><a href="#rename"><img src="images/edit-rename.svg" alt="QBT_TR(Rename...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Rename...)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#delete"><img src="images/edit-clear.svg" alt="QBT_TR(Delete)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Delete)QBT_TR[CONTEXT=RSSWidget]</a></li>
 
-    <li class="separator"><a href="#newSubscription"><img src="images/list-add.svg" alt="QBT_TR(New subscription...)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(New subscription...)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li><a href="#newFolder"><img src="images/folder-new.svg" alt="QBT_TR(New folder...)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(New folder...)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li class="separator"><a href="#updateAll"><img src="images/view-refresh.svg" alt="QBT_TR(Update all feeds)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(Update all feeds)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li class="separator"><a href="#newSubscription"><img src="images/list-add.svg" alt="QBT_TR(New subscription...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(New subscription...)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#newFolder"><img src="images/folder-new.svg" alt="QBT_TR(New folder...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(New folder...)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li class="separator"><a href="#updateAll"><img src="images/view-refresh.svg" alt="QBT_TR(Update all feeds)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Update all feeds)QBT_TR[CONTEXT=RSSWidget]</a></li>
 
-    <li class="separator"><a href="#copyFeedURL" id="CopyFeedURL"><img src="images/edit-copy.svg" alt="QBT_TR(Copy feed URL)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(Copy feed URL)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li class="separator"><a href="#copyFeedURL" id="CopyFeedURL"><img src="images/edit-copy.svg" alt="QBT_TR(Copy feed URL)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Copy feed URL)QBT_TR[CONTEXT=RSSWidget]</a></li>
 </ul>
 
 <ul id="rssArticleMenu" class="contextMenu">
-    <li><a href="#Download"><img src="images/downloading.svg" alt="QBT_TR(Download torrent)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(Download torrent)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li><a href="#OpenNews"><img src="images/application-url.svg" alt="QBT_TR(Open news URL)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(Open news URL)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#Download"><img src="images/downloading.svg" alt="QBT_TR(Download torrent)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Download torrent)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#OpenNews"><img src="images/application-url.svg" alt="QBT_TR(Open news URL)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Open news URL)QBT_TR[CONTEXT=RSSWidget]</a></li>
 </ul>
 
 <script>
@@ -401,7 +401,7 @@
             if (article) {
                 $("rssDetailsView").append((() => {
                     const torrentName = document.createElement("p");
-                    torrentName.innerText = article.title;
+                    torrentName.textContent = article.title;
                     torrentName.id = "rssTorrentDetailsName";
                     return torrentName;
                 })());
@@ -410,11 +410,11 @@
                     torrentDate.id = "rssTorrentDetailsDate";
 
                     const torrentDateDesc = document.createElement("b");
-                    torrentDateDesc.innerText = "QBT_TR(Date: )QBT_TR[CONTEXT=RSSWidget]";
+                    torrentDateDesc.textContent = "QBT_TR(Date: )QBT_TR[CONTEXT=RSSWidget]";
                     torrentDate.append(torrentDateDesc);
 
                     const torrentDateData = document.createElement("span");
-                    torrentDateData.innerText = new Date(article.date).toLocaleString();
+                    torrentDateData.textContent = new Date(article.date).toLocaleString();
                     torrentDate.append(torrentDateData);
 
                     return torrentDate;
@@ -422,7 +422,7 @@
                 // Place in iframe with sandbox attribute to prevent js execution
                 const torrentDescription = document.createRange().createContextualFragment('<iframe sandbox id="rssDescription"></iframe>');
                 $("rssDetailsView").append(torrentDescription);
-                document.getElementById("rssDescription").srcdoc = '<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /></head><body>' + article.description + "</body></html>";
+                document.getElementById("rssDescription").srcdoc = '<html><head><link rel="stylesheet" type="text/css" href="css/style.css"></head><body>' + article.description + "</body></html>";
 
                 // calculate height to fill screen
                 document.getElementById("rssDescription").style.height =

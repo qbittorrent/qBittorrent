@@ -136,8 +136,8 @@
     <div id="leftRssDownloaderColumn">
         <div id="topMenuBar">
             <b id="rulesTableDesc">QBT_TR(Download Rules)QBT_TR[CONTEXT=AutomatedRssDownloader]</b>
-            <button type="button" id="newRuleButton" class="imageButton" onclick="qBittorrent.RssDownloader.addRule()"></button>
-            <button type="button" id="deleteRuleButton" class="imageButton" onclick="qBittorrent.RssDownloader.removeSelectedRule()"></button>
+            <button type="button" id="newRuleButton" aria-label="QBT_TR(Add rule)QBT_TR[CONTEXT=AutomatedRssDownloader]" class="imageButton" onclick="qBittorrent.RssDownloader.addRule()"></button>
+            <button type="button" id="deleteRuleButton" aria-label="QBT_TR(Remove rule)QBT_TR[CONTEXT=AutomatedRssDownloader]" class="imageButton" onclick="qBittorrent.RssDownloader.removeSelectedRule()"></button>
         </div>
         <div id="rulesTable">
             <div id="rulesSelectionCheckBoxList">
@@ -163,115 +163,127 @@
         <fieldset class="settings" id="ruleSettings">
             <legend>QBT_TR(Rule Definition)QBT_TR[CONTEXT=AutomatedRssDownloader]</legend>
             <div class="formRow">
-                <input disabled type="checkbox" id="useRegEx" onclick="qBittorrent.RssDownloader.setElementTitles()" />
+                <input disabled type="checkbox" id="useRegEx" onclick="qBittorrent.RssDownloader.setElementTitles()">
                 <label for="useRegEx">QBT_TR(Use Regular Expressions)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
             </div>
             <table class="fullWidth">
-                <tr>
-                    <td>
-                        <label for="mustContainText" class="noWrap">QBT_TR(Must Contain:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
-                    </td>
-                    <td class="fullWidth">
-                        <input disabled type="text" id="mustContainText" class="fullWidth" autocorrect="off" autocapitalize="none" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="mustNotContainText" class="noWrap">QBT_TR(Must Not Contain:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
-                    </td>
-                    <td class="fullWidth">
-                        <input disabled type="text" id="mustNotContainText" class="fullWidth" autocorrect="off" autocapitalize="none" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="episodeFilterText" class="noWrap">QBT_TR(Episode Filter:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
-                    </td>
-                    <td class="fullWidth">
-                        <input disabled type="text" id="episodeFilterText" class="fullWidth" autocorrect="off" autocapitalize="none" />
-                    </td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="mustContainText" class="noWrap">QBT_TR(Must Contain:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                        </td>
+                        <td class="fullWidth">
+                            <input disabled type="text" id="mustContainText" class="fullWidth" autocorrect="off" autocapitalize="none">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="mustNotContainText" class="noWrap">QBT_TR(Must Not Contain:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                        </td>
+                        <td class="fullWidth">
+                            <input disabled type="text" id="mustNotContainText" class="fullWidth" autocorrect="off" autocapitalize="none">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="episodeFilterText" class="noWrap">QBT_TR(Episode Filter:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                        </td>
+                        <td class="fullWidth">
+                            <input disabled type="text" id="episodeFilterText" class="fullWidth" autocorrect="off" autocapitalize="none">
+                        </td>
+                    </tr>
+                </tbody>
             </table>
             <div class="formRow" title="QBT_TR(Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator))QBT_TR[CONTEXT=AutomatedRssDownloader]">
-                <input disabled type="checkbox" id="useSmartFilter" />
+                <input disabled type="checkbox" id="useSmartFilter">
                 <label for="useSmartFilter">QBT_TR(Use Smart Episode Filter)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
             </div>
 
             <hr>
 
             <table class="fullWidth">
-                <tr>
-                    <td>
-                        <label class="noWrap">QBT_TR(Assign Category:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
-                    </td>
-                    <td class="fullWidth">
-                        <select disabled id="assignCategoryCombobox" class="fullWidth">
-                            <option value=""></option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label class="noWrap">QBT_TR(Add Tags:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
-                    </td>
-                    <td class="fullWidth">
-                        <input type="text" id="ruleAddTags" class="fullWidth" autocapitalize="none" autocorrect="off" />
-                    </td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label class="noWrap">QBT_TR(Assign Category:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                        </td>
+                        <td class="fullWidth">
+                            <select disabled id="assignCategoryCombobox" class="fullWidth">
+                                <option value=""></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="noWrap">QBT_TR(Add Tags:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                        </td>
+                        <td class="fullWidth">
+                            <input type="text" id="ruleAddTags" class="fullWidth" autocapitalize="none" autocorrect="off">
+                        </td>
+                    </tr>
+                </tbody>
             </table>
 
             <div class="formRow">
-                <input disabled type="checkbox" id="savetoDifferentDir" />
+                <input disabled type="checkbox" id="savetoDifferentDir">
                 <label for="savetoDifferentDir">QBT_TR(Save to a Different Directory)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
             </div>
             <table class="fullWidth">
-                <tr>
-                    <td>
-                        <label class="noWrap" for="saveToText">QBT_TR(Save to:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
-                    </td>
-                    <td class="fullWidth">
-                        <input disabled type="text" class="fullWidth" id="saveToText" autocorrect="off" autocapitalize="none" />
-                    </td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label class="noWrap" for="saveToText">QBT_TR(Save to:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                        </td>
+                        <td class="fullWidth">
+                            <input disabled type="text" class="fullWidth" id="saveToText" autocorrect="off" autocapitalize="none">
+                        </td>
+                    </tr>
+                </tbody>
             </table>
             <table>
-                <tr>
-                    <td><label for="ignoreDaysValue">QBT_TR(Ignore Subsequent Matches for (0 to Disable))QBT_TR[CONTEXT=AutomatedRssDownloader]</label></td>
-                    <td><input type="number" id="ignoreDaysValue" min="0" />QBT_TR( days)QBT_TR[CONTEXT=AutomatedRssDownloader]</td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td><label for="ignoreDaysValue">QBT_TR(Ignore Subsequent Matches for (0 to Disable))QBT_TR[CONTEXT=AutomatedRssDownloader]</label></td>
+                        <td><input type="number" id="ignoreDaysValue" min="0">QBT_TR( days)QBT_TR[CONTEXT=AutomatedRssDownloader]</td>
+                    </tr>
+                </tbody>
             </table>
             <div id="lastMatchDiv">
                 <span id="lastMatchText">QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]</span>
             </div>
             <table class="fullWidth">
-                <tr>
-                    <td>
-                        <label class="noWrap">QBT_TR(Add Stopped:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
-                    </td>
-                    <td class="fullWidth">
-                        <select disabled id="addStoppedCombobox" class="fullWidth">
-                            <option value="default">QBT_TR(Use global settings)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
-                            <option value="always">QBT_TR(Always)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
-                            <option value="never">QBT_TR(Never)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
-                        </select>
-                    </td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label class="noWrap">QBT_TR(Add Stopped:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                        </td>
+                        <td class="fullWidth">
+                            <select disabled id="addStoppedCombobox" class="fullWidth">
+                                <option value="default">QBT_TR(Use global settings)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                                <option value="always">QBT_TR(Always)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                                <option value="never">QBT_TR(Never)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
             <table class="fullWidth">
-                <tr>
-                    <td>
-                        <label class="noWrap">QBT_TR(Torrent content layout:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
-                    </td>
-                    <td class="fullWidth">
-                        <select disabled id="contentLayoutCombobox" class="fullWidth">
-                            <option value="Default">QBT_TR(Use global settings)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
-                            <option value="Original">QBT_TR(Original)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
-                            <option value="Subfolder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
-                            <option value="NoSubfolder">QBT_TR(Don't create subfolder)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
-                        </select>
-                    </td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label class="noWrap">QBT_TR(Torrent content layout:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                        </td>
+                        <td class="fullWidth">
+                            <select disabled id="contentLayoutCombobox" class="fullWidth">
+                                <option value="Default">QBT_TR(Use global settings)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                                <option value="Original">QBT_TR(Original)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                                <option value="Subfolder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                                <option value="NoSubfolder">QBT_TR(Don't create subfolder)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </fieldset>
         <fieldset class="settings" id="rssDownloaderFeeds">
@@ -321,10 +333,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 </div>
 
 <ul id="rssDownloaderRuleMenu" class="contextMenu">
-    <li><a href="#addRule"><img src="images/list-add.svg" alt="QBT_TR(Add new rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]" /> QBT_TR(Add new rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
-    <li><a href="#deleteRule"><img src="images/edit-clear.svg" alt="QBT_TR(Delete rule)QBT_TR[CONTEXT=AutomatedRssDownloader]" /> QBT_TR(Delete rule)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
-    <li class="separator"><a href="#renameRule"><img src="images/edit-rename.svg" alt="QBT_TR(Rename rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]" /> QBT_TR(Rename rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
-    <li class="separator"><a href="#clearDownloadedEpisodes"><img src="images/edit-clear.svg" alt="QBT_TR(Clear downloaded episodes...)QBT_TR[CONTEXT=AutomatedRssDownloader]" /> QBT_TR(Clear downloaded episodes...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
+    <li><a href="#addRule"><img src="images/list-add.svg" alt="QBT_TR(Add new rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Add new rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
+    <li><a href="#deleteRule"><img src="images/edit-clear.svg" alt="QBT_TR(Delete rule)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Delete rule)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
+    <li class="separator"><a href="#renameRule"><img src="images/edit-rename.svg" alt="QBT_TR(Rename rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Rename rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
+    <li class="separator"><a href="#clearDownloadedEpisodes"><img src="images/edit-clear.svg" alt="QBT_TR(Clear downloaded episodes...)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Clear downloaded episodes...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
 </ul>
 
 <script>
