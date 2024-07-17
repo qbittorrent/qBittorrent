@@ -18,7 +18,7 @@ qBittorrent - A BitTorrent client in C++ / Qt
   - CMake >= 3.16
       * Compile-time only
 
-  - Python >= 3.7.0
+  - Python >= 3.9.0
       * Optional, run-time only
       * Used by the bundled search engine
 

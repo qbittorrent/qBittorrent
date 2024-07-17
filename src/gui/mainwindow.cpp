@@ -1667,14 +1667,14 @@ void MainWindow::on_actionSearchWidget_triggered()
 #ifdef Q_OS_WIN
             const QMessageBox::StandardButton buttonPressed = QMessageBox::question(this, tr("Old Python Runtime")
                 , tr("Your Python version (%1) is outdated. Minimum requirement: %2.\nDo you want to install a newer version now?")
-                    .arg(pyInfo.version.toString(), u"3.7.0")
+                    .arg(pyInfo.version.toString(), u"3.9.0")
                 , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
             if (buttonPressed == QMessageBox::Yes)
                 installPython();
 #else
             QMessageBox::information(this, tr("Old Python Runtime")
                 , tr("Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.\nMinimum requirement: %2.")
-                .arg(pyInfo.version.toString(), u"3.7.0"));
+                .arg(pyInfo.version.toString(), u"3.9.0"));
 #endif
             return;
         }
@@ -1953,7 +1953,7 @@ void MainWindow::installPython()
 {
     setCursor(QCursor(Qt::WaitCursor));
     // Download python
-    const auto installerURL = u"https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe"_s;
+    const auto installerURL = u"https://www.python.org/ftp/python/3.12.4/python-3.12.4-amd64.exe"_s;
     Net::DownloadManager::instance()->download(
             Net::DownloadRequest(installerURL).saveToFile(true)
             , Preferences::instance()->useProxyForGeneralPurposes()

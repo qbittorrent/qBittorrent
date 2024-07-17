@@ -50,7 +50,7 @@ jobs:
       - name: Setup python (search engine)
         uses: actions/setup-python@v5
         with:
-          python-version: '3.7'
+          python-version: '3.9'
 
       - name: Install tools (search engine)
         run: pip install bandit mypy pycodestyle pyflakes pyright
