@@ -37,7 +37,6 @@
 
 #include "base/3rdparty/expected.hpp"
 #include "base/path.h"
-#include "torrentdescriptor.h"
 #include "torrentinfo.h"
 
 class QByteArray;
