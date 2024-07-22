@@ -367,14 +367,14 @@ QString SearchPluginManager::categoryFullName(const QString &categoryName)
     const QHash<QString, QString> categoryTable
     {
         {u"all"_s, tr("All categories")},
-        {u"movies"_s, tr("Movies")},
-        {u"tv"_s, tr("TV shows")},
-        {u"music"_s, tr("Music")},
-        {u"games"_s, tr("Games")},
         {u"anime"_s, tr("Anime")},
-        {u"software"_s, tr("Software")},
+        {u"books"_s, tr("Books")},
+        {u"games"_s, tr("Games")},
+        {u"movies"_s, tr("Movies")},
+        {u"music"_s, tr("Music")},
         {u"pictures"_s, tr("Pictures")},
-        {u"books"_s, tr("Books")}
+        {u"software"_s, tr("Software")},
+        {u"tv"_s, tr("TV shows")}
     };
     return categoryTable.value(categoryName);
 }

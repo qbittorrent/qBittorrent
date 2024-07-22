@@ -1,4 +1,4 @@
-#VERSION: 1.47
+#VERSION: 1.48
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -35,12 +35,12 @@ import os
 import re
 import socket
 import socks
+import sys
 import tempfile
 import urllib.error
-import urllib.parse
 import urllib.request
 from collections.abc import Mapping
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 
 def getBrowserUserAgent() -> str:
@@ -59,7 +59,7 @@ def getBrowserUserAgent() -> str:
     return f"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:{nowVersion}.0) Gecko/20100101 Firefox/{nowVersion}.0"
 
 
-headers: Dict[str, Any] = {'User-Agent': getBrowserUserAgent()}
+headers: dict[str, Any] = {'User-Agent': getBrowserUserAgent()}
 
 # SOCKS5 Proxy support
 if "sock_proxy" in os.environ and len(os.environ["sock_proxy"].strip()) > 0:
@@ -91,51 +91,52 @@ def htmlentitydecode(s: str) -> str:
 
 def retrieve_url(url: str, custom_headers: Mapping[str, Any] = {}) -> str:
     """ Return the content of the url page as a string """
-    req = urllib.request.Request(url, headers={**headers, **custom_headers})
+
+    request = urllib.request.Request(url, headers={**headers, **custom_headers})
     try:
-        response = urllib.request.urlopen(req)
+        response = urllib.request.urlopen(request)
     except urllib.error.URLError as errno:
-        print(" ".join(("Connection error:", str(errno.reason))))
+        print(f"Connection error: {errno.reason}", file=sys.stderr)
         return ""
-    dat: bytes = response.read()
+    data: bytes = response.read()
+
     # Check if it is gzipped
-    if dat[:2] == b'\x1f\x8b':
+    if data[:2] == b'\x1f\x8b':
         # Data is gzip encoded, decode it
-        compressedstream = io.BytesIO(dat)
-        gzipper = gzip.GzipFile(fileobj=compressedstream)
-        extracted_data = gzipper.read()
-        dat = extracted_data
-    info = response.info()
+        with io.BytesIO(data) as compressedStream, gzip.GzipFile(fileobj=compressedStream) as gzipper:
+            data = gzipper.read()
+
     charset = 'utf-8'
     try:
-        ignore, charset = info['Content-Type'].split('charset=')
-    except Exception:
+        charset = response.getheader('Content-Type', '').split('charset=', 1)[1]
+    except IndexError:
         pass
-    datStr = dat.decode(charset, 'replace')
-    datStr = htmlentitydecode(datStr)
-    return datStr
+
+    dataStr = data.decode(charset, 'replace')
+    dataStr = htmlentitydecode(dataStr)
+    return dataStr
 
 
 def download_file(url: str, referer: Optional[str] = None) -> str:
     """ Download file at url and write it to a file, return the path to the file and the url """
-    fileHandle, path = tempfile.mkstemp()
-    file = os.fdopen(fileHandle, "wb")
+
     # Download url
-    req = urllib.request.Request(url, headers=headers)
+    request = urllib.request.Request(url, headers=headers)
     if referer is not None:
-        req.add_header('referer', referer)
-    response = urllib.request.urlopen(req)
-    dat = response.read()
+        request.add_header('referer', referer)
+    response = urllib.request.urlopen(request)
+    data = response.read()
+
     # Check if it is gzipped
-    if dat[:2] == b'\x1f\x8b':
+    if data[:2] == b'\x1f\x8b':
         # Data is gzip encoded, decode it
-        compressedstream = io.BytesIO(dat)
-        gzipper = gzip.GzipFile(fileobj=compressedstream)
-        extracted_data = gzipper.read()
-        dat = extracted_data
+        with io.BytesIO(data) as compressedStream, gzip.GzipFile(fileobj=compressedStream) as gzipper:
+            data = gzipper.read()
 
     # Write it to a file
-    file.write(dat)
-    file.close()
+    fileHandle, path = tempfile.mkstemp()
+    with os.fdopen(fileHandle, "wb") as file:
+        file.write(data)
+
     # return file path
-    return (path + " " + url)
+    return f"{path} {url}"
