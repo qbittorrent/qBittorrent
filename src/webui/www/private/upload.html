@@ -15,7 +15,7 @@
     <iframe id="upload_frame" name="upload_frame" class="invisible" title="" src="about:blank"></iframe>
     <form action="api/v2/torrents/add" enctype="multipart/form-data" method="post" id="uploadForm" style="text-align: center;" target="upload_frame" autocorrect="off" autocapitalize="none">
         <div style="margin-top: 25px; display: inline-block; border: 1px solid lightgrey; border-radius: 4px;">
-            <input type="file" id="fileselect" accept=".torrent, application/x-bittorrent" name="fileselect[]" multiple>
+            <input type="file" id="fileselect" accept=".torrent, application/x-bittorrent" name="fileselect[]" multiple aria-label="QBT_TR(Select .torrent files)QBT_TR[CONTEXT=AddNewTorrentDialog]">
         </div>
         <fieldset class="settings" style="border: 0; text-align: left; margin-top: 12px;">
             <legend>QBT_TR(Torrent options)QBT_TR[CONTEXT=AddNewTorrentDialog]</legend>
@@ -50,14 +50,14 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="category">QBT_TR(Category:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                            <label id="categoryLabel" for="categorySelect">QBT_TR(Category:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
                         </td>
                         <td>
                             <div class="select-watched-folder-editable">
                                 <select id="categorySelect" onchange="qBittorrent.Download.changeCategorySelect(this)">
                                     <option selected value="\other"></option>
                                 </select>
-                                <input name="category" type="text">
+                                <input type="text" name="category" aria-labelledby="categoryLabel">
                             </div>
                         </td>
                     </tr>

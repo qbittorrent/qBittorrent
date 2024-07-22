@@ -168,13 +168,13 @@ window.qBittorrent.Misc ??= (() => {
         };
     };
 
-    const escapeHtml = function(str) {
+    const escapeHtml = (() => {
         const div = document.createElement("div");
-        div.appendChild(document.createTextNode(str));
-        const escapedString = div.innerHTML;
-        div.remove();
-        return escapedString;
-    };
+        return (str) => {
+            div.textContent = str;
+            return div.innerHTML;
+        };
+    })();
 
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#parameters
     const naturalSortCollator = new Intl.Collator(undefined, { numeric: true, usage: "sort" });

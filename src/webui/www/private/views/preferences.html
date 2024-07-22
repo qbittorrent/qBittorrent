@@ -46,15 +46,15 @@
             <tbody>
                 <tr>
                     <td><input type="checkbox" id="filelog_backup_checkbox" onclick="qBittorrent.Preferences.updateFileLogBackupEnabled();"></td>
-                    <td><label for="filelog_backup_checkbox">QBT_TR(Backup the log file after:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                    <td><input id="filelog_max_size_input" type="number" min="1" max="1024000" value="65" onchange="qBittorrent.Preferences.numberInputLimiter(this);">QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]</td>
+                    <td><label id="filelogMaxSizeLabel" for="filelog_backup_checkbox">QBT_TR(Backup the log file after:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td><input id="filelog_max_size_input" type="number" min="1" max="1024000" value="65" onchange="qBittorrent.Preferences.numberInputLimiter(this);" aria-labelledby="filelogMaxSizeLabel">QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]</td>
                 </tr>
                 <tr>
                     <td><input type="checkbox" id="filelog_delete_old_checkbox" onclick="qBittorrent.Preferences.updateFileLogDeleteEnabled();"></td>
-                    <td><label for="filelog_delete_old_checkbox">QBT_TR(Delete backup logs older than:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td><label id="filelogDeleteOldLabel" for="filelog_delete_old_checkbox">QBT_TR(Delete backup logs older than:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                     <td>
-                        <input type="number" min="1" max="365" value="6" id="filelog_age_input" onchange="qBittorrent.Preferences.numberInputLimiter(this);">
-                        <select id="filelog_age_type_select">
+                        <input type="number" min="1" max="365" value="6" id="filelog_age_input" onchange="qBittorrent.Preferences.numberInputLimiter(this);" aria-labelledby="filelogDeleteOldLabel">
+                        <select id="filelog_age_type_select" aria-labelledby="filelogDeleteOldLabel">
                             <option value="0">QBT_TR(days)QBT_TR[CONTEXT=OptionsDialog]</option>
                             <option value="1" selected>QBT_TR(months)QBT_TR[CONTEXT=OptionsDialog]</option>
                             <option value="2">QBT_TR(years)QBT_TR[CONTEXT=OptionsDialog]</option>
@@ -127,7 +127,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <label>QBT_TR(Default Torrent Management Mode:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label for="default_tmm_combobox">QBT_TR(Default Torrent Management Mode:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
                         <select id="default_tmm_combobox">
@@ -138,7 +138,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label>QBT_TR(When Torrent Category changed:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label for="torrent_changed_tmm_combobox">QBT_TR(When Torrent Category changed:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
                         <select id="torrent_changed_tmm_combobox">
@@ -149,7 +149,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label>QBT_TR(When Default Save Path changed:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label for="save_path_changed_tmm_combobox">QBT_TR(When Default Save Path changed:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
                         <select id="save_path_changed_tmm_combobox">
@@ -160,7 +160,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label>QBT_TR(When Category Save Path changed:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label for="category_changed_tmm_combobox">QBT_TR(When Category Save Path changed:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
                         <select id="category_changed_tmm_combobox">
@@ -188,28 +188,28 @@
                 <tr>
                     <td>
                         <input type="checkbox" id="temppath_checkbox" onclick="qBittorrent.Preferences.updateTempDirEnabled();">
-                        <label for="temppath_checkbox">QBT_TR(Keep incomplete torrents in:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label id="tempPathLabel" for="temppath_checkbox">QBT_TR(Keep incomplete torrents in:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="temppath_text" class="pathDirectory" autocorrect="off" autocapitalize="none">
+                        <input type="text" id="temppath_text" class="pathDirectory" autocorrect="off" autocapitalize="none" aria-labelledby="tempPathLabel">
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <input type="checkbox" id="exportdir_checkbox" onclick="qBittorrent.Preferences.updateExportDirEnabled();">
-                        <label for="exportdir_checkbox">QBT_TR(Copy .torrent files to:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label id="exportDirLabel" for="exportdir_checkbox">QBT_TR(Copy .torrent files to:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="exportdir_text" class="pathDirectory" autocorrect="off" autocapitalize="none">
+                        <input type="text" id="exportdir_text" class="pathDirectory" autocorrect="off" autocapitalize="none" aria-labelledby="exportDirLabel">
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <input type="checkbox" id="exportdirfin_checkbox" onclick="qBittorrent.Preferences.updateExportDirFinEnabled();">
-                        <label for="exportdirfin_checkbox">QBT_TR(Copy .torrent files for finished downloads to:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label id="exportDirFinLabel" for="exportdirfin_checkbox">QBT_TR(Copy .torrent files for finished downloads to:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="exportdirfin_text" class="pathDirectory" autocorrect="off" autocapitalize="none">
+                        <input type="text" id="exportdirfin_text" class="pathDirectory" autocorrect="off" autocapitalize="none" aria-labelledby="exportDirFinLabel">
                     </td>
                 </tr>
             </tbody>
@@ -232,9 +232,9 @@
     <fieldset class="settings">
         <legend>
             <input type="checkbox" id="excludedFileNamesCheckbox" onclick="qBittorrent.Preferences.updateExcludedFileNamesEnabled();">
-            <label for="excludedFileNamesCheckbox">QBT_TR(Excluded file names)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label id="excludedFileNamesLabel" for="excludedFileNamesCheckbox">QBT_TR(Excluded file names)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
-        <textarea id="excludedFileNamesTextarea" rows="6" cols="70"></textarea>
+        <textarea id="excludedFileNamesTextarea" rows="6" cols="70" aria-labelledby="excludedFileNamesLabel"></textarea>
     </fieldset>
 
     <fieldset class="settings">
@@ -310,13 +310,13 @@
         </legend>
         <div class="formRow">
             <input type="checkbox" id="autorunOnTorrentAddedCheckbox" onclick="qBittorrent.Preferences.updateAutoRunOnTorrentAdded();">
-            <label for="autorunOnTorrentAddedCheckbox">QBT_TR(Run external program on torrent added)QBT_TR[CONTEXT=OptionsDialog]</label>
-            <input type="text" id="autorunOnTorrentAddedProgram" style="width: 400px;">
+            <label id="autorunOnTorrentAddedLabel" for="autorunOnTorrentAddedCheckbox">QBT_TR(Run external program on torrent added)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="text" id="autorunOnTorrentAddedProgram" aria-labelledby="autorunOnTorrentAddedLabel" style="width: 400px;">
         </div>
         <div class="formRow">
             <input type="checkbox" id="autorun_checkbox" onclick="qBittorrent.Preferences.updateAutoRun();">
-            <label for="autorun_checkbox">QBT_TR(Run external program on torrent finished)QBT_TR[CONTEXT=OptionsDialog]</label>
-            <input type="text" id="autorunProg_txt" style="width: 400px;">
+            <label id="autorunLabel" for="autorun_checkbox">QBT_TR(Run external program on torrent finished)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="text" id="autorunProg_txt" aria-labelledby="autorunLabel" style="width: 400px;">
         </div>
         <div style="font-style: italic;">QBT_TR(Supported parameters (case sensitive):)QBT_TR[CONTEXT=OptionsDialog]
             <ul>
@@ -340,7 +340,7 @@
 
 <div id="ConnectionTab" class="PrefTab invisible">
     <div class="formRow">
-        <label>QBT_TR(Peer connection protocol:)QBT_TR[CONTEXT=OptionsDialog]</label>
+        <label for="enable_protocol_combobox">QBT_TR(Peer connection protocol:)QBT_TR[CONTEXT=OptionsDialog]</label>
         <select id="enable_protocol_combobox">
             <option value="0" selected>QBT_TR(TCP and μTP)QBT_TR[CONTEXT=OptionsDialog]</option>
             <option value="1">TCP</option>
@@ -367,30 +367,30 @@
                 <tr>
                     <td>
                         <input type="checkbox" id="max_connec_checkbox" onclick="qBittorrent.Preferences.updateMaxConnecEnabled();">
-                        <label for="max_connec_checkbox">QBT_TR(Global maximum number of connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label id="maxConnectionsLabel" for="max_connec_checkbox">QBT_TR(Global maximum number of connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
-                    <td><input type="text" id="max_connec_value" style="width: 4em;"></td>
+                    <td><input type="text" id="max_connec_value" aria-labelledby="maxConnectionsLabel" style="width: 4em;"></td>
                 </tr>
                 <tr>
                     <td>
                         <input type="checkbox" id="max_connec_per_torrent_checkbox" onclick="qBittorrent.Preferences.updateMaxConnecPerTorrentEnabled();">
-                        <label for="max_connec_per_torrent_checkbox">QBT_TR(Maximum number of connections per torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label id="maxConnectionsPerTorrentLabel" for="max_connec_per_torrent_checkbox">QBT_TR(Maximum number of connections per torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
-                    <td><input type="text" id="max_connec_per_torrent_value" style="width: 4em;"></td>
+                    <td><input type="text" id="max_connec_per_torrent_value" aria-labelledby="maxConnectionsPerTorrentLabel" style="width: 4em;"></td>
                 </tr>
                 <tr>
                     <td>
                         <input type="checkbox" id="max_uploads_checkbox" onclick="qBittorrent.Preferences.updateMaxUploadsEnabled();">
-                        <label for="max_uploads_checkbox">QBT_TR(Global maximum number of upload slots:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label id="maxUploadsLabel" for="max_uploads_checkbox">QBT_TR(Global maximum number of upload slots:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
-                    <td><input type="text" id="max_uploads_value" style="width: 4em;"></td>
+                    <td><input type="text" id="max_uploads_value" aria-labelledby="maxUploadsLabel" style="width: 4em;"></td>
                 </tr>
                 <tr>
                     <td>
                         <input type="checkbox" id="max_uploads_per_torrent_checkbox" onclick="qBittorrent.Preferences.updateMaxUploadsPerTorrentEnabled();">
-                        <label for="max_uploads_per_torrent_checkbox">QBT_TR(Maximum number of upload slots per torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label id="maxUploadsPerTorrentLabel" for="max_uploads_per_torrent_checkbox">QBT_TR(Maximum number of upload slots per torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
-                    <td><input type="text" id="max_uploads_per_torrent_value" style="width: 4em;"></td>
+                    <td><input type="text" id="max_uploads_per_torrent_value" aria-labelledby="maxUploadsPerTorrentLabel" style="width: 4em;"></td>
                 </tr>
             </tbody>
         </table>
@@ -518,8 +518,8 @@
         </legend>
         <div class="formRow">
             <input type="checkbox" id="ipfilter_text_checkbox" onclick="qBittorrent.Preferences.updateFilterSettings();">
-            <label for="ipfilter_text_checkbox">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR[CONTEXT=OptionsDialog]</label>
-            <input type="text" id="ipfilter_text">
+            <label id="ipfilterTextLabel" for="ipfilter_text_checkbox">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="text" id="ipfilter_text" aria-labelledby="ipfilterTextLabel">
         </div>
         <div class="formRow">
             <input type="checkbox" id="ipfilter_trackers_checkbox">
@@ -527,8 +527,8 @@
         </div>
         <div class="formRow">
             <fieldset class="settings">
-                <legend>QBT_TR(Manually banned IP addresses...)QBT_TR[CONTEXT=OptionsDialog]</legend>
-                <textarea id="banned_IPs_textarea" rows="5" cols="70"></textarea>
+                <legend id="manuallyBannedIPAddressesLabel">QBT_TR(Manually banned IP addresses...)QBT_TR[CONTEXT=OptionsDialog]</legend>
+                <textarea id="banned_IPs_textarea" aria-labelledby="manuallyBannedIPAddressesLabel" rows="5" cols="70"></textarea>
             </fieldset>
         </div>
     </fieldset>
@@ -580,13 +580,13 @@
                 <label for="limitSchedulingCheckbox">QBT_TR(Schedule the use of alternative rate limits)QBT_TR[CONTEXT=OptionsDialog]</label>
             </legend>
             <div class="formRow">
-                QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]
-                <input type="text" id="schedule_from_hour" style="width: 1.5em;">:<input type="text" id="schedule_from_min" style="width: 1.5em;">
-                QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]
-                <input type="text" id="schedule_to_hour" style="width: 1.5em;">:<input type="text" id="schedule_to_min" style="width: 1.5em;">
+                <label id="scheduleFromHourLabel">QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <input type="text" id="schedule_from_hour" aria-labelledby="scheduleFromHourLabel" style="width: 1.5em;">:<input type="text" id="schedule_from_min" aria-labelledby="scheduleFromHourLabel" style="width: 1.5em;">
+                <label id="scheduleToHourLabel">QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <input type="text" id="schedule_to_hour" aria-labelledby="scheduleToHourLabel" style="width: 1.5em;">:<input type="text" id="schedule_to_min" aria-labelledby="scheduleToHourLabel" style="width: 1.5em;">
             </div>
             <div class="formRow">
-                QBT_TR(When:)QBT_TR[CONTEXT=OptionsDialog]
+                <label for="schedule_freq_select">QBT_TR(When:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 <select id="schedule_freq_select">
                     <option value="0">QBT_TR(Every day)QBT_TR[CONTEXT=OptionsDialog]</option>
                     <option value="1">QBT_TR(Weekdays)QBT_TR[CONTEXT=OptionsDialog]</option>
@@ -730,28 +730,28 @@
                 <tr>
                     <td>
                         <input type="checkbox" id="max_ratio_checkbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();">
-                        <label for="max_ratio_checkbox">QBT_TR(When ratio reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label id="maxRatioLabel" for="max_ratio_checkbox">QBT_TR(When ratio reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="max_ratio_value" style="width: 4em;">
+                        <input type="text" id="max_ratio_value" style="width: 4em;" aria-labelledby="maxRatioLabel">
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <input type="checkbox" id="max_seeding_time_checkbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();">
-                        <label for="max_seeding_time_checkbox">QBT_TR(When total seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label id="maxSeedingTimeLabel" for="max_seeding_time_checkbox">QBT_TR(When total seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="max_seeding_time_value" style="width: 4em;">QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
+                        <input type="text" id="max_seeding_time_value" style="width: 4em;" aria-labelledby="maxSeedingTimeLabel">QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <input type="checkbox" id="max_inactive_seeding_time_checkbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();">
-                        <label for="max_inactive_seeding_time_checkbox">QBT_TR(When inactive seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label id="maxInactiveSeedingTimeLabel" for="max_inactive_seeding_time_checkbox">QBT_TR(When inactive seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="max_inactive_seeding_time_value" style="width: 4em;">QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
+                        <input type="text" id="max_inactive_seeding_time_value" style="width: 4em;" aria-labelledby="maxInactiveSeedingTimeLabel">QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
                     </td>
                 </tr>
                 <tr>
@@ -772,9 +772,9 @@
     <fieldset class="settings">
         <legend>
             <input type="checkbox" id="add_trackers_checkbox" onclick="qBittorrent.Preferences.updateAddTrackersEnabled();">
-            <label for="add_trackers_checkbox">QBT_TR(Automatically append these trackers to new downloads:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label id="addTrackersLabel" for="add_trackers_checkbox">QBT_TR(Automatically append these trackers to new downloads:)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
-        <textarea id="add_trackers_textarea" rows="5" cols="70"></textarea>
+        <textarea id="add_trackers_textarea" rows="5" cols="70" aria-labelledby="addTrackersLabel"></textarea>
     </fieldset>
 </div>
 
@@ -913,10 +913,10 @@
             </div>
             <div class="formRow">
                 <input type="checkbox" id="bypass_auth_subnet_whitelist_checkbox" onclick="qBittorrent.Preferences.updateBypasssAuthSettings();">
-                <label for="bypass_auth_subnet_whitelist_checkbox">QBT_TR(Bypass authentication for clients in whitelisted IP subnets)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <label id="bypassAuthSubnetWhitelistLabel" for="bypass_auth_subnet_whitelist_checkbox">QBT_TR(Bypass authentication for clients in whitelisted IP subnets)QBT_TR[CONTEXT=OptionsDialog]</label>
             </div>
             <div class="formRow" style="padding-left: 30px; padding-top: 5px;">
-                <textarea id="bypass_auth_subnet_whitelist_textarea" rows="5" cols="48" placeholder="QBT_TR(Example: 172.17.32.0/24, fdff:ffff:c8::/40)QBT_TR[CONTEXT=OptionsDialog]"></textarea>
+                <textarea id="bypass_auth_subnet_whitelist_textarea" rows="5" cols="48" placeholder="QBT_TR(Example: 172.17.32.0/24, fdff:ffff:c8::/40)QBT_TR[CONTEXT=OptionsDialog]" aria-labelledby="bypassAuthSubnetWhitelistLabel"></textarea>
             </div>
             <table>
                 <tbody>
@@ -992,9 +992,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         <fieldset class="settings">
             <legend>
                 <input type="checkbox" id="webUIUseCustomHTTPHeadersCheckbox" onclick="qBittorrent.Preferences.updateWebUICustomHTTPHeadersSettings();">
-                <label for="webUIUseCustomHTTPHeadersCheckbox">QBT_TR(Add custom HTTP headers)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <label id="webUIUseCustomHTTPHeadersLabel" for="webUIUseCustomHTTPHeadersCheckbox">QBT_TR(Add custom HTTP headers)QBT_TR[CONTEXT=OptionsDialog]</label>
             </legend>
-            <textarea id="webUICustomHTTPHeadersTextarea" placeholder="QBT_TR(Header: value pairs, one per line)QBT_TR[CONTEXT=OptionsDialog]" style="width: 90%;"></textarea>
+            <textarea id="webUICustomHTTPHeadersTextarea" placeholder="QBT_TR(Header: value pairs, one per line)QBT_TR[CONTEXT=OptionsDialog]" aria-labelledby="webUIUseCustomHTTPHeadersLabel" style="width: 90%;"></textarea>
         </fieldset>
 
         <fieldset class="settings">
@@ -1013,9 +1013,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
     <fieldset class="settings">
         <legend>
             <input type="checkbox" id="use_dyndns_checkbox" onclick="qBittorrent.Preferences.updateDynDnsSettings();">
-            <label for="use_dyndns_checkbox">QBT_TR(Update my dynamic domain name)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label id="UseDyndnsLabel" for="use_dyndns_checkbox">QBT_TR(Update my dynamic domain name)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
-        <select id="dyndns_select">
+        <select id="dyndns_select" aria-labelledby="UseDyndnsLabel">
             <option value="0">DynDNS</option>
             <option value="1">NO-IP</option>
         </select>
