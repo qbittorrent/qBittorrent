@@ -104,7 +104,7 @@ window.qBittorrent.ProgressBar ??= (() => {
             if (vals.width)
                 obj.setValue(vals.value);
             else
-                setTimeout('ProgressBar_checkForParent("' + obj.id + '")', 1);
+                setTimeout('ProgressBar_checkForParent("' + obj.id + '")');
             return obj;
         }
     });
@@ -144,7 +144,7 @@ window.qBittorrent.ProgressBar ??= (() => {
         if (!obj)
             return;
         if (!obj.parentNode)
-            return setTimeout('ProgressBar_checkForParent("' + id + '")', 1);
+            return setTimeout('ProgressBar_checkForParent("' + id + '")', 100);
         obj.setStyle("width", "100%");
         const w = obj.offsetWidth;
         obj.vals.dark.setStyle("width", w);
