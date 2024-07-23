@@ -91,54 +91,43 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         setupCommonEvents: function() {
-            const scrollFn = function() {
-                $(this.dynamicTableFixedHeaderDivId).getElements("table")[0].style.left = -$(this.dynamicTableDivId).scrollLeft + "px";
-            }.bind(this);
+            const tableDiv = $(this.dynamicTableDivId);
+            const tableFixedHeaderDiv = $(this.dynamicTableFixedHeaderDivId);
 
-            $(this.dynamicTableDivId).addEvent("scroll", scrollFn);
+            tableDiv.addEventListener("scroll", () => {
+                tableFixedHeaderDiv.getElements("table")[0].style.left = `${-tableDiv.scrollLeft}px`;
+            });
 
             // if the table exists within a panel
-            if ($(this.dynamicTableDivId).getParent(".panel")) {
-                const resizeFn = function() {
-                    const panel = $(this.dynamicTableDivId).getParent(".panel");
-                    let h = panel.getBoundingClientRect().height - $(this.dynamicTableFixedHeaderDivId).getBoundingClientRect().height;
-                    $(this.dynamicTableDivId).style.height = h + "px";
+            const parentPanel = tableDiv.getParent(".panel");
+            if (parentPanel) {
+                const resizeFn = (entries) => {
+                    const panel = entries[0].target;
+                    let h = panel.getBoundingClientRect().height - tableFixedHeaderDiv.getBoundingClientRect().height;
+                    tableDiv.style.height = `${h}px`;
 
                     // Workaround due to inaccurate calculation of elements heights by browser
-
                     let n = 2;
 
                     // is panel vertical scrollbar visible or does panel content not fit?
                     while (((panel.clientWidth !== panel.offsetWidth) || (panel.clientHeight !== panel.scrollHeight)) && (n > 0)) {
                         --n;
                         h -= 0.5;
-                        $(this.dynamicTableDivId).style.height = h + "px";
+                        tableDiv.style.height = `${h}px`;
                     }
+                };
 
-                    this.lastPanelHeight = panel.getBoundingClientRect().height;
-                }.bind(this);
+                this.resizeDebounceTimer = -1;
+                const resizeDebouncer = (entries) => {
+                    clearTimeout(this.resizeDebounceTimer);
+                    this.resizeDebounceTimer = setTimeout(() => {
+                        resizeFn(entries);
+                        resizeDebounceTimer = -1;
+                    }, 100);
+                };
 
-                $(this.dynamicTableDivId).getParent(".panel").addEvent("resize", resizeFn);
-
-                this.lastPanelHeight = 0;
-
-                // Workaround. Resize event is called not always (for example it isn't called when browser window changes it's size)
-
-                const checkResizeFn = function() {
-                    const tableDiv = $(this.dynamicTableDivId);
-
-                    // dynamicTableDivId is not visible on the UI
-                    if (!tableDiv)
-                        return;
-
-                    const panel = tableDiv.getParent(".panel");
-                    if (this.lastPanelHeight !== panel.getBoundingClientRect().height) {
-                        this.lastPanelHeight = panel.getBoundingClientRect().height;
-                        panel.fireEvent("resize");
-                    }
-                }.bind(this);
-
-                setInterval(checkResizeFn, 500);
+                const resizeObserver = new ResizeObserver(resizeDebouncer);
+                resizeObserver.observe(parentPanel, { box: "border-box" });
             }
         },
 
