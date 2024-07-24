@@ -383,8 +383,10 @@ void WebApplication::doProcessRequest()
             }
             break;
         case QMetaType::QString:
-        default:
             print(result.data.toString(), Http::CONTENT_TYPE_TXT);
+            break;
+        default:
+            status(204);
             break;
         }
     }
