@@ -10,16 +10,19 @@
     <script>
         "use strict";
 
-        window.addEvent("domready", () => {
+        window.addEventListener("DOMContentLoaded", () => {
             const rules = new URI().getData("rules").split("|");
 
             $("cancelBtn").focus();
-            $("cancelBtn").addEvent("click", (e) => {
-                new Event(e).stop();
+            $("cancelBtn").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 window.parent.MochaUI.closeWindow(window.parent.$("removeRulePage"));
             });
-            $("confirmBtn").addEvent("click", (e) => {
-                new Event(e).stop();
+            $("confirmBtn").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
                 let completionCount = 0;
                 rules.forEach((rule) => {
                     new Request({

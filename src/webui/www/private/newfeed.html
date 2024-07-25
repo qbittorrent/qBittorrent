@@ -28,11 +28,13 @@
                 }
             }
         }).activate();
-        window.addEvent("domready", () => {
+        window.addEventListener("DOMContentLoaded", () => {
             $("feedURL").focus();
             const path = new URI().getData("path");
-            $("submitButton").addEvent("click", (e) => {
-                new Event(e).stop();
+            $("submitButton").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
                 // check field
                 const feedURL = $("feedURL").value.trim();
                 if (feedURL === "") {

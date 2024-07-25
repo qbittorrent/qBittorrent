@@ -107,7 +107,7 @@ window.qBittorrent.Search ??= (() => {
 
         // listen for changes to searchInNameFilter
         let searchInNameFilterTimer = -1;
-        $("searchInNameFilter").addEvent("input", () => {
+        $("searchInNameFilter").addEventListener("input", () => {
             clearTimeout(searchInNameFilterTimer);
             searchInNameFilterTimer = setTimeout(() => {
                 searchInNameFilterTimer = -1;
@@ -123,7 +123,8 @@ window.qBittorrent.Search ??= (() => {
             events: {
                 "Enter": function(e) {
                     // accept enter key as a click
-                    new Event(e).stop();
+                    e.preventDefault();
+                    e.stopPropagation();
 
                     const elem = e.event.srcElement;
                     if (elem.className.contains("searchInputField")) {
@@ -159,6 +160,7 @@ window.qBittorrent.Search ??= (() => {
         const tabElem = new Element("a", {
             text: pattern,
         });
+
         const closeTabElem = new Element("img", {
             alt: "QBT_TR(Close tab)QBT_TR[CONTEXT=SearchWidget]",
             title: "QBT_TR(Close tab)QBT_TR[CONTEXT=SearchWidget]",
@@ -166,15 +168,22 @@ window.qBittorrent.Search ??= (() => {
             width: "8",
             height: "8",
             style: "padding-right: 7px; margin-bottom: -1px; margin-left: -5px",
-            onclick: "qBittorrent.Search.closeSearchTab(this)",
+            onclick: "qBittorrent.Search.closeSearchTab(event, this);",
         });
         closeTabElem.inject(tabElem, "top");
+
         tabElem.appendChild(getStatusIconElement("QBT_TR(Searching...)QBT_TR[CONTEXT=SearchJobWidget]", "images/queued.svg"));
-        $("searchTabs").appendChild(new Element("li", {
+
+        const liElement = new Element("li", {
             id: newTabId,
             class: "selected",
             html: tabElem.outerHTML,
-        }));
+        });
+        liElement.addEventListener("click", (e) => {
+            setActiveTab(liElement);
+            $("startSearchButton").textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
+        });
+        $("searchTabs").appendChild(liElement);
 
         // unhide the results elements
         if (numSearchTabs() >= 1) {
@@ -184,15 +193,8 @@ window.qBittorrent.Search ??= (() => {
             $("searchTabsToolbar").style.display = "block";
         }
 
-        // reinitialize tabs
-        $("searchTabs").getElements("li").removeEvents("click");
-        $("searchTabs").getElements("li").addEvent("click", function(e) {
-            $("startSearchButton").textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
-            setActiveTab(this);
-        });
-
         // select new tab
-        setActiveTab($(newTabId));
+        setActiveTab(liElement);
 
         searchResultsTable.clear();
         resetFilters();
@@ -213,11 +215,13 @@ window.qBittorrent.Search ??= (() => {
         updateSearchResultsData(searchId);
     };
 
-    const closeSearchTab = function(el) {
+    const closeSearchTab = function(e, el) {
+        e.stopPropagation();
+
         const tab = el.parentElement.parentElement;
         const searchId = getSearchIdFromTab(tab);
         const isTabSelected = tab.hasClass("selected");
-        const newTabToSelect = isTabSelected ? tab.nextSibling || tab.previousSibling : null;
+        const newTabToSelect = isTabSelected ? (tab.nextSibling || tab.previousSibling) : null;
 
         const currentSearchId = getSelectedSearchId();
         const state = searchState.get(currentSearchId);
@@ -388,7 +392,7 @@ window.qBittorrent.Search ??= (() => {
                 category: category,
                 plugins: plugins
             },
-            onSuccess: function(response) {
+            onSuccess: (response) => {
                 $("startSearchButton").textContent = "QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]";
                 const searchId = response.id;
                 createSearchTab(searchId, pattern);

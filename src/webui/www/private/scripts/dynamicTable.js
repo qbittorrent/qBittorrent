@@ -151,7 +151,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             const mouseMoveFn = function(e) {
                 const brect = e.target.getBoundingClientRect();
-                const mouseXRelative = e.event.clientX - brect.left;
+                const mouseXRelative = e.clientX - brect.left;
                 if (this.currentHeaderAction === "") {
                     if ((brect.width - mouseXRelative) < 5) {
                         this.resizeTh = e.target;
@@ -201,7 +201,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     });
                 }
                 this.lastHoverTh = e.target;
-                this.lastClientX = e.event.clientX;
+                this.lastClientX = e.clientX;
             }.bind(this);
 
             const mouseOutFn = function(e) {
@@ -280,9 +280,9 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             for (let i = 0; i < ths.length; ++i) {
                 const th = ths[i];
-                th.addEvent("mousemove", mouseMoveFn);
-                th.addEvent("mouseout", mouseOutFn);
-                th.addEvent("touchend", onTouch);
+                th.addEventListener("mousemove", mouseMoveFn);
+                th.addEventListener("mouseout", mouseOutFn);
+                th.addEventListener("touchend", onTouch);
                 th.makeResizable({
                     modifiers: {
                         x: "",
@@ -728,15 +728,17 @@ window.qBittorrent.DynamicTable ??= (() => {
                     tr["rowId"] = rowId;
 
                     tr._this = this;
-                    tr.addEvent("contextmenu", function(e) {
+                    tr.addEventListener("contextmenu", function(e) {
                         if (!this._this.isRowSelected(this.rowId)) {
                             this._this.deselectAll();
                             this._this.selectRow(this.rowId);
                         }
                         return true;
                     });
-                    tr.addEvent("click", function(e) {
-                        e.stop();
+                    tr.addEventListener("click", function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
                         if (e.control || e.meta) {
                             // CTRL/CMD ⌘ key was pressed
                             if (this._this.isRowSelected(this.rowId))
@@ -755,13 +757,13 @@ window.qBittorrent.DynamicTable ??= (() => {
                         }
                         return false;
                     });
-                    tr.addEvent("touchstart", function(e) {
+                    tr.addEventListener("touchstart", function(e) {
                         if (!this._this.isRowSelected(this.rowId)) {
                             this._this.deselectAll();
                             this._this.selectRow(this.rowId);
                         }
                     });
-                    tr.addEvent("keydown", function(event) {
+                    tr.addEventListener("keydown", function(event) {
                         switch (event.key) {
                             case "up":
                                 this._this.selectPreviousRow();
@@ -1523,8 +1525,10 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         setupTr: function(tr) {
-            tr.addEvent("dblclick", function(e) {
-                e.stop();
+            tr.addEventListener("dblclick", function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
                 this._this.deselectAll();
                 this._this.selectRow(this.rowId);
                 const row = this._this.rows.get(this.rowId);
@@ -2030,7 +2034,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 checkbox.id = "cbRename" + id;
                 checkbox.setAttribute("data-id", id);
                 checkbox.className = "RenamingCB";
-                checkbox.addEvent("click", (e) => {
+                checkbox.addEventListener("click", (e) => {
                     const node = that.getNode(id);
                     node.checked = e.target.checked ? 0 : 1;
                     node.full_data.checked = node.checked;
@@ -2248,7 +2252,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         setupTr: function(tr) {
-            tr.addEvent("keydown", function(event) {
+            tr.addEventListener("keydown", function(event) {
                 switch (event.key) {
                     case "left":
                         qBittorrent.PropFiles.collapseFolder(this._this.getSelectedRowId());
@@ -2578,7 +2582,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         setupTr: function(tr) {
-            tr.addEvent("keydown", function(event) {
+            tr.addEventListener("keydown", function(event) {
                 switch (event.key) {
                     case "left":
                         qBittorrent.PropFiles.collapseFolder(this._this.getSelectedRowId());
@@ -2630,7 +2634,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             window.qBittorrent.Rss.showRssFeed(path);
         },
         setupTr: function(tr) {
-            tr.addEvent("dblclick", function(e) {
+            tr.addEventListener("dblclick", function(e) {
                 if (this.rowId !== 0) {
                     window.qBittorrent.Rss.moveItem(this._this.rows.get(this.rowId).full_data.dataPath);
                     return true;
@@ -2738,7 +2742,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 $(this.dynamicTableFixedHeaderDivId).getElements("table")[0].style.left = -$(this.dynamicTableDivId).scrollLeft + "px";
             }.bind(this);
 
-            $(this.dynamicTableDivId).addEvent("scroll", scrollFn);
+            $(this.dynamicTableDivId).addEventListener("scroll", scrollFn);
         }
     });
 
@@ -2771,7 +2775,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             window.qBittorrent.Rss.showDetails(feedUid, articleId);
         },
         setupTr: function(tr) {
-            tr.addEvent("dblclick", function(e) {
+            tr.addEventListener("dblclick", function(e) {
                 showDownloadPage([this._this.rows.get(this.rowId).full_data.torrentURL]);
                 return true;
             });
@@ -2833,7 +2837,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 $(this.dynamicTableFixedHeaderDivId).getElements("table")[0].style.left = -$(this.dynamicTableDivId).scrollLeft + "px";
             }.bind(this);
 
-            $(this.dynamicTableDivId).addEvent("scroll", scrollFn);
+            $(this.dynamicTableDivId).addEventListener("scroll", scrollFn);
         }
     });
 
@@ -2850,7 +2854,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     checkbox.id = "cbRssDlRule" + row.rowId;
                     checkbox.checked = row.full_data.checked;
 
-                    checkbox.addEvent("click", function(e) {
+                    checkbox.addEventListener("click", function(e) {
                         window.qBittorrent.RssDownloader.rssDownloaderRulesTable.updateRowData({
                             rowId: row.rowId,
                             checked: this.checked
@@ -2872,7 +2876,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             return this.rows.getValues();
         },
         setupTr: function(tr) {
-            tr.addEvent("dblclick", function(e) {
+            tr.addEventListener("dblclick", function(e) {
                 window.qBittorrent.RssDownloader.renameRule(this._this.rows.get(this.rowId).full_data.name);
                 return true;
             });
@@ -2943,7 +2947,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     checkbox.id = "cbRssDlFeed" + row.rowId;
                     checkbox.checked = row.full_data.checked;
 
-                    checkbox.addEvent("click", function(e) {
+                    checkbox.addEventListener("click", function(e) {
                         window.qBittorrent.RssDownloader.rssDownloaderFeedSelectionTable.updateRowData({
                             rowId: row.rowId,
                             checked: this.checked

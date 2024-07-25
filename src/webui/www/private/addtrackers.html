@@ -10,7 +10,7 @@
     <script>
         "use strict";
 
-        window.addEvent("domready", () => {
+        window.addEventListener("DOMContentLoaded", () => {
             new Keyboard({
                 defaultEventType: "keydown",
                 events: {
@@ -26,8 +26,10 @@
             }).activate();
 
             $("trackersUrls").focus();
-            $("addTrackersButton").addEvent("click", (e) => {
-                new Event(e).stop();
+            $("addTrackersButton").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
                 const hash = new URI().getData("hash");
                 new Request({
                     url: "api/v2/torrents/addTrackers",

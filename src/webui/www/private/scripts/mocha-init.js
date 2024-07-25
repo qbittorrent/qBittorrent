@@ -111,12 +111,13 @@ const initializeWindows = function() {
     function addClickEvent(el, fn) {
         ["Link", "Button"].each((item) => {
             if ($(el + item))
-                $(el + item).addEvent("click", fn);
+                $(el + item).addEventListener("click", fn);
         });
     }
 
     addClickEvent("download", (e) => {
-        new Event(e).stop();
+        e.preventDefault();
+        e.stopPropagation();
         showDownloadPage();
     });
 
@@ -148,7 +149,9 @@ const initializeWindows = function() {
     };
 
     addClickEvent("preferences", (e) => {
-        new Event(e).stop();
+        e.preventDefault();
+        e.stopPropagation();
+
         const id = "preferencesPage";
         new MochaUI.Window({
             id: id,
@@ -173,7 +176,9 @@ const initializeWindows = function() {
     });
 
     addClickEvent("upload", (e) => {
-        new Event(e).stop();
+        e.preventDefault();
+        e.stopPropagation();
+
         const id = "uploadPage";
         new MochaUI.Window({
             id: id,
@@ -399,7 +404,8 @@ const initializeWindows = function() {
     };
 
     addClickEvent("delete", (e) => {
-        new Event(e).stop();
+        e.preventDefault();
+        e.stopPropagation();
         deleteFN();
     });
 
@@ -1064,7 +1070,8 @@ const initializeWindows = function() {
     };
 
     addClickEvent("stopAll", (e) => {
-        new Event(e).stop();
+        e.preventDefault();
+        e.stopPropagation();
 
         if (confirm("QBT_TR(Would you like to stop all torrents?)QBT_TR[CONTEXT=MainWindow]")) {
             new Request({
@@ -1079,7 +1086,8 @@ const initializeWindows = function() {
     });
 
     addClickEvent("startAll", (e) => {
-        new Event(e).stop();
+        e.preventDefault();
+        e.stopPropagation();
 
         if (confirm("QBT_TR(Would you like to start all torrents?)QBT_TR[CONTEXT=MainWindow]")) {
             new Request({
@@ -1095,7 +1103,9 @@ const initializeWindows = function() {
 
     ["stop", "start", "recheck"].each((item) => {
         addClickEvent(item, (e) => {
-            new Event(e).stop();
+            e.preventDefault();
+            e.stopPropagation();
+
             const hashes = torrentsTable.selectedRowsIds();
             if (hashes.length) {
                 hashes.each((hash, index) => {
@@ -1114,7 +1124,8 @@ const initializeWindows = function() {
 
     ["decreasePrio", "increasePrio", "topPrio", "bottomPrio"].each((item) => {
         addClickEvent(item, (e) => {
-            new Event(e).stop();
+            e.preventDefault();
+            e.stopPropagation();
             setQueuePositionFN(item);
         });
     });
@@ -1134,7 +1145,9 @@ const initializeWindows = function() {
     };
 
     addClickEvent("about", (e) => {
-        new Event(e).stop();
+        e.preventDefault();
+        e.stopPropagation();
+
         const id = "aboutpage";
         new MochaUI.Window({
             id: id,
@@ -1156,7 +1169,9 @@ const initializeWindows = function() {
     });
 
     addClickEvent("logout", (e) => {
-        new Event(e).stop();
+        e.preventDefault();
+        e.stopPropagation();
+
         new Request({
             url: "api/v2/auth/logout",
             method: "post",
@@ -1167,7 +1182,9 @@ const initializeWindows = function() {
     });
 
     addClickEvent("shutdown", (e) => {
-        new Event(e).stop();
+        e.preventDefault();
+        e.stopPropagation();
+
         if (confirm("QBT_TR(Are you sure you want to quit qBittorrent?)QBT_TR[CONTEXT=MainWindow]")) {
             new Request({
                 url: "api/v2/app/shutdown",
@@ -1185,8 +1202,9 @@ const initializeWindows = function() {
 
     // Deactivate menu header links
     $$("a.returnFalse").each((el) => {
-        el.addEvent("click", (e) => {
-            new Event(e).stop();
+        el.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
         });
     });
 };
