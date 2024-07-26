@@ -42,6 +42,7 @@ jobs:
             brew install \
               cmake ninja \
               openssl@3 zlib
+            echo "SDKROOT=$(xcrun --sdk macosx --show-sdk-path)" >> $GITHUB_ENV # workaround
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
