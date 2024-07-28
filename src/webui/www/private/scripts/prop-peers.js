@@ -90,7 +90,6 @@ window.qBittorrent.PropPeers ??= (() => {
                         });
                     }
                     torrentPeersTable.updateTable(full_update);
-                    torrentPeersTable.altRow();
 
                     if (response["show_flags"]) {
                         if (show_flags !== response["show_flags"]) {

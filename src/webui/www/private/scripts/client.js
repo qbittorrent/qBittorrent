@@ -845,7 +845,6 @@ window.addEventListener("DOMContentLoaded", () => {
                         });
                     }
                     torrentsTable.updateTable(full_update);
-                    torrentsTable.altRow();
                     if (response["server_state"]) {
                         const tmp = response["server_state"];
                         for (const k in tmp) {

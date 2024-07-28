@@ -108,7 +108,6 @@ window.qBittorrent.PropTrackers ??= (() => {
                     });
 
                     torrentTrackersTable.updateTable(false);
-                    torrentTrackersTable.altRow();
 
                     if (selectedTrackers.length > 0)
                         torrentTrackersTable.reselectRows(selectedTrackers);

@@ -474,7 +474,6 @@ window.qBittorrent.PropFiles ??= (() => {
 
         torrentFilesTable.populateTable(rootNode);
         torrentFilesTable.updateTable(false);
-        torrentFilesTable.altRow();
 
         if (selectedFiles.length > 0)
             torrentFilesTable.reselectRows(selectedFiles);
@@ -703,12 +702,10 @@ window.qBittorrent.PropFiles ??= (() => {
 
     const expandNode = function(node) {
         _collapseNode(node, false, false, false);
-        torrentFilesTable.altRow();
     };
 
     const collapseNode = function(node) {
         _collapseNode(node, true, false, false);
-        torrentFilesTable.altRow();
     };
 
     const expandAllNodes = function() {
@@ -718,7 +715,6 @@ window.qBittorrent.PropFiles ??= (() => {
                 _collapseNode(child, false, true, false);
             });
         });
-        torrentFilesTable.altRow();
     };
 
     const collapseAllNodes = function() {
@@ -728,7 +724,6 @@ window.qBittorrent.PropFiles ??= (() => {
                 _collapseNode(child, true, true, false);
             });
         });
-        torrentFilesTable.altRow();
     };
 
     /**

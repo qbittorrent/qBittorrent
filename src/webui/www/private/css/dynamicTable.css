@@ -6,9 +6,7 @@
     v 0.4
 
 **************************************************************/
-
-.dynamicTable tbody tr:nth-child(even),
-.dynamicTable tbody tr.alt {
+.altRowColors tbody tr:nth-child(odd of :not(.invisible)) {
     background-color: var(--color-background-default);
 }
 
@@ -16,12 +14,12 @@
     padding: 4px 2px;
 }
 
-.dynamicTable tbody tr.selected {
+.dynamicTableDiv table.dynamicTable tbody tr.selected {
     background-color: var(--color-background-blue);
     color: var(--color-text-white);
 }
 
-.dynamicTable tbody tr:hover {
+.dynamicTableDiv table.dynamicTable tbody tr:hover {
     background-color: var(--color-background-hover);
     color: var(--color-text-white);
 }
