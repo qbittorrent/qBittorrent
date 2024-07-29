@@ -122,7 +122,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     clearTimeout(this.resizeDebounceTimer);
                     this.resizeDebounceTimer = setTimeout(() => {
                         resizeFn(entries);
-                        resizeDebounceTimer = -1;
+                        this.resizeDebounceTimer = -1;
                     }, 100);
                 };
 
