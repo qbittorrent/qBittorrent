@@ -306,6 +306,8 @@ window.qBittorrent.PropFiles ??= (() => {
             return;
 
         clearTimeout(loadTorrentFilesDataTimer);
+        loadTorrentFilesDataTimer = -1;
+
         new Request({
             url: "api/v2/torrents/filePrio",
             method: "post",
@@ -331,7 +333,7 @@ window.qBittorrent.PropFiles ??= (() => {
         torrentFilesTable.updateTable(false);
     };
 
-    let loadTorrentFilesDataTimer;
+    let loadTorrentFilesDataTimer = -1;
     const loadTorrentFilesData = function() {
         if ($("prop_files").hasClass("invisible")
             || $("propertiesPanel_collapseToggle").hasClass("panel-expand")) {
@@ -378,6 +380,7 @@ window.qBittorrent.PropFiles ??= (() => {
 
     const updateData = function() {
         clearTimeout(loadTorrentFilesDataTimer);
+        loadTorrentFilesDataTimer = -1;
         loadTorrentFilesData();
     };
 

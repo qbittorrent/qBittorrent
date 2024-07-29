@@ -37,7 +37,7 @@ window.qBittorrent.PropPeers ??= (() => {
     };
 
     const torrentPeersTable = new window.qBittorrent.DynamicTable.TorrentPeersTable();
-    let loadTorrentPeersTimer;
+    let loadTorrentPeersTimer = -1;
     let syncTorrentPeersLastResponseId = 0;
     let show_flags = true;
 
@@ -109,6 +109,7 @@ window.qBittorrent.PropPeers ??= (() => {
 
     const updateData = function() {
         clearTimeout(loadTorrentPeersTimer);
+        loadTorrentPeersTimer = -1;
         loadTorrentPeersData();
     };
 

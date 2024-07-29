@@ -88,7 +88,7 @@ window.qBittorrent.PiecesBar ??= (() => {
             if (vals.width > 0)
                 obj.setPieces(vals.pieces);
             else
-                setTimeout(() => { checkForParent(obj.id); }, 1);
+                setTimeout(() => { checkForParent(obj.id); });
 
             return obj;
         }
@@ -258,7 +258,7 @@ window.qBittorrent.PiecesBar ??= (() => {
         if (!obj)
             return;
         if (!obj.parentNode)
-            return setTimeout(() => { checkForParent(id); }, 1);
+            return setTimeout(() => { checkForParent(id); }, 100);
 
         obj.refresh();
     }

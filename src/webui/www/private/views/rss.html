@@ -180,7 +180,7 @@
         const serverSyncRssDataInterval = 1500;
         let feedData = {};
         let pathByFeedId = new Map();
-        let feedRefreshTimer;
+        let feedRefreshTimer = -1;
         const rssFeedTable = new window.qBittorrent.DynamicTable.RssFeedTable();
         const rssArticleTable = new window.qBittorrent.DynamicTable.RssArticleTable();
 
@@ -293,11 +293,15 @@
         };
 
         const unload = () => {
-            clearInterval(feedRefreshTimer);
+            clearTimeout(feedRefreshTimer);
+            feedRefreshTimer = -1;
         };
 
         const load = () => {
-            feedRefreshTimer = setInterval(updateRssFeedList, serverSyncRssDataInterval);
+            feedRefreshTimer = setTimeout(() => {
+                updateRssFeedList();
+                load();
+            }, serverSyncRssDataInterval);
         };
 
         const addRSSFeed = () => {
