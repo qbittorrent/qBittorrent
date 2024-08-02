@@ -37,16 +37,11 @@
 #include "addtorrentparams.h"
 #include "categoryoptions.h"
 #include "sharelimitaction.h"
+#include "torrentcontentremoveoption.h"
 #include "trackerentry.h"
 #include "trackerentrystatus.h"
 
 class QString;
-
-enum DeleteOption
-{
-    DeleteTorrent,
-    DeleteTorrentAndFiles
-};
 
 namespace BitTorrent
 {
@@ -57,6 +52,12 @@ namespace BitTorrent
     class TorrentInfo;
     struct CacheStatus;
     struct SessionStatus;
+
+    enum class TorrentRemoveOption
+    {
+        KeepContent,
+        RemoveContent
+    };
 
     // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
     // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
@@ -425,7 +426,7 @@ namespace BitTorrent
         virtual void setExcludedFileNamesEnabled(bool enabled) = 0;
         virtual QStringList excludedFileNames() const = 0;
         virtual void setExcludedFileNames(const QStringList &newList) = 0;
-        virtual bool isFilenameExcluded(const QString &fileName) const = 0;
+        virtual void applyFilenameFilter(const PathList &files, QList<BitTorrent::DownloadPriority> &priorities) = 0;
         virtual QStringList bannedIPs() const = 0;
         virtual void setBannedIPs(const QStringList &newList) = 0;
         virtual ResumeDataStorageType resumeDataStorageType() const = 0;
@@ -434,6 +435,8 @@ namespace BitTorrent
         virtual void setMergeTrackersEnabled(bool enabled) = 0;
         virtual bool isStartPaused() const = 0;
         virtual void setStartPaused(bool value) = 0;
+        virtual TorrentContentRemoveOption torrentContentRemoveOption() const = 0;
+        virtual void setTorrentContentRemoveOption(TorrentContentRemoveOption option) = 0;
 
         virtual bool isRestored() const = 0;
 
@@ -453,7 +456,7 @@ namespace BitTorrent
 
         virtual bool isKnownTorrent(const InfoHash &infoHash) const = 0;
         virtual bool addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params = {}) = 0;
-        virtual bool deleteTorrent(const TorrentID &id, DeleteOption deleteOption = DeleteOption::DeleteTorrent) = 0;
+        virtual bool removeTorrent(const TorrentID &id, TorrentRemoveOption deleteOption = TorrentRemoveOption::KeepContent) = 0;
         virtual bool downloadMetadata(const TorrentDescriptor &torrentDescr) = 0;
         virtual bool cancelDownloadMetadata(const TorrentID &id) = 0;
 

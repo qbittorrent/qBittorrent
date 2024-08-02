@@ -26,40 +26,40 @@
  * exception statement from your version.
  */
 
-'use strict';
+"use strict";
 
 function submitLoginForm(event) {
     event.preventDefault();
-    const errorMsgElement = document.getElementById('error_msg');
+    const errorMsgElement = document.getElementById("error_msg");
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'api/v2/auth/login', true);
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    xhr.addEventListener('readystatechange', () => {
+    xhr.open("POST", "api/v2/auth/login", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+    xhr.addEventListener("readystatechange", () => {
         if (xhr.readyState === 4) { // DONE state
             if ((xhr.status === 200) && (xhr.responseText === "Ok."))
                 location.replace(location);
             else
-                errorMsgElement.textContent = 'QBT_TR(Invalid Username or Password.)QBT_TR[CONTEXT=HttpServer]';
+                errorMsgElement.textContent = "QBT_TR(Invalid Username or Password.)QBT_TR[CONTEXT=HttpServer]";
         }
     });
-    xhr.addEventListener('error', () => {
+    xhr.addEventListener("error", () => {
         errorMsgElement.textContent = (xhr.responseText !== "")
             ? xhr.responseText
-            : 'QBT_TR(Unable to log in, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]';
+            : "QBT_TR(Unable to log in, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]";
     });
 
-    const usernameElement = document.getElementById('username');
-    const passwordElement = document.getElementById('password');
+    const usernameElement = document.getElementById("username");
+    const passwordElement = document.getElementById("password");
     const queryString = "username=" + encodeURIComponent(usernameElement.value) + "&password=" + encodeURIComponent(passwordElement.value);
     xhr.send(queryString);
 
     // clear the field
-    passwordElement.value = '';
+    passwordElement.value = "";
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('loginform');
-    loginForm.setAttribute('method', 'POST');
-    loginForm.addEventListener('submit', submitLoginForm);
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.getElementById("loginform");
+    loginForm.setAttribute("method", "POST");
+    loginForm.addEventListener("submit", submitLoginForm);
 });

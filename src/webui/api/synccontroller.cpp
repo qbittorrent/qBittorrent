@@ -222,6 +222,7 @@ namespace
             case QMetaType::UInt:
             case QMetaType::QDateTime:
             case QMetaType::Nullptr:
+            case QMetaType::UnknownType:
                 if (prevData[key] != value)
                     syncData[key] = value;
                 break;

@@ -66,6 +66,7 @@ inline const QString KEY_TORRENT_FORCE_START = u"force_start"_s;
 inline const QString KEY_TORRENT_SAVE_PATH = u"save_path"_s;
 inline const QString KEY_TORRENT_DOWNLOAD_PATH = u"download_path"_s;
 inline const QString KEY_TORRENT_CONTENT_PATH = u"content_path"_s;
+inline const QString KEY_TORRENT_ROOT_PATH = u"root_path"_s;
 inline const QString KEY_TORRENT_ADDED_ON = u"added_on"_s;
 inline const QString KEY_TORRENT_COMPLETION_ON = u"completion_on"_s;
 inline const QString KEY_TORRENT_TRACKER = u"tracker"_s;
@@ -93,6 +94,7 @@ inline const QString KEY_TORRENT_SEEDING_TIME = u"seeding_time"_s;
 inline const QString KEY_TORRENT_AVAILABILITY = u"availability"_s;
 inline const QString KEY_TORRENT_REANNOUNCE = u"reannounce"_s;
 inline const QString KEY_TORRENT_COMMENT = u"comment"_s;
-inline const QString KEY_TORRENT_ISPRIVATE = u"is_private"_s;
+inline const QString KEY_TORRENT_PRIVATE = u"private"_s;
+inline const QString KEY_TORRENT_HAS_METADATA = u"has_metadata"_s;
 
 QVariantMap serialize(const BitTorrent::Torrent &torrent);

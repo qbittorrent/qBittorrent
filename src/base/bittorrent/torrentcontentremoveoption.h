@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,40 +26,25 @@
  * exception statement from your version.
  */
 
-
 #pragma once
 
-#include <QElapsedTimer>
-#include <QObject>
+#include <QMetaEnum>
 
-class QTcpSocket;
-
-namespace Http
+namespace BitTorrent
 {
-    class IRequestHandler;
-    struct Response;
-
-    class Connection : public QObject
+    // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
+    // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
+    // https://www.kdab.com/new-qt-5-8-meta-object-support-namespaces/#comment-143779
+    inline namespace TorrentContentRemoveOptionNS
     {
-        Q_OBJECT
-        Q_DISABLE_COPY_MOVE(Connection)
+        Q_NAMESPACE
 
-    public:
-        Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = nullptr);
+        enum class TorrentContentRemoveOption
+        {
+            Delete,
+            MoveToTrash
+        };
 
-        bool hasExpired(qint64 timeout) const;
-
-    signals:
-        void closed();
-
-    private:
-        static bool acceptsGzipEncoding(QString codings);
-        void read();
-        void sendResponse(const Response &response) const;
-
-        QTcpSocket *m_socket = nullptr;
-        IRequestHandler *m_requestHandler = nullptr;
-        QByteArray m_receivedData;
-        QElapsedTimer m_idleTimer;
-    };
+        Q_ENUM_NS(TorrentContentRemoveOption)
+    }
 }

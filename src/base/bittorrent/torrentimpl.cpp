@@ -77,6 +77,10 @@
 #include "base/utils/os.h"
 #endif // Q_OS_MACOS || Q_OS_WIN
 
+#ifndef QBT_USES_LIBTORRENT2
+#include "customstorage.h"
+#endif
+
 using namespace BitTorrent;
 
 namespace
@@ -982,6 +986,21 @@ PathList TorrentImpl::filePaths() const
     return m_filePaths;
 }
 
+PathList TorrentImpl::actualFilePaths() const
+{
+    if (!hasMetadata())
+        return {};
+
+    PathList paths;
+    paths.reserve(filesCount());
+
+    const lt::file_storage files = nativeTorrentInfo()->files();
+    for (const lt::file_index_t &nativeIndex : asConst(m_torrentInfo.nativeIndexes()))
+        paths.emplaceBack(files.file_path(nativeIndex));
+
+    return paths;
+}
+
 QVector<DownloadPriority> TorrentImpl::filePriorities() const
 {
     return m_filePriorities;
@@ -1447,11 +1466,13 @@ QBitArray TorrentImpl::pieces() const
 
 QBitArray TorrentImpl::downloadingPieces() const
 {
-    QBitArray result(piecesCount());
+    if (!hasMetadata())
+        return {};
 
     std::vector<lt::partial_piece_info> queue;
     m_nativeHandle.get_download_queue(queue);
 
+    QBitArray result {piecesCount()};
     for (const lt::partial_piece_info &info : queue)
         result.setBit(LT::toUnderlyingType(info.piece_index));
 
@@ -1791,12 +1812,13 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
         const Path filePath = actualFilePath.removedExtension(QB_EXT);
         m_filePaths.append(filePath);
 
-        lt::download_priority_t &nativePriority = p.file_priorities[LT::toUnderlyingType(nativeIndex)];
-        if ((nativePriority != lt::dont_download) && m_session->isFilenameExcluded(filePath.filename()))
-            nativePriority = lt::dont_download;
-        const auto priority = LT::fromNative(nativePriority);
-        m_filePriorities.append(priority);
+        m_filePriorities.append(LT::fromNative(p.file_priorities[LT::toUnderlyingType(nativeIndex)]));
     }
+
+    m_session->applyFilenameFilter(fileNames, m_filePriorities);
+    for (int i = 0; i < m_filePriorities.size(); ++i)
+        p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = LT::toNative(m_filePriorities[i]);
+
     p.save_path = savePath.toString().toStdString();
     p.ti = metadata;
 
@@ -1859,6 +1881,9 @@ void TorrentImpl::reload()
 
         auto *const extensionData = new ExtensionData;
         p.userdata = LTClientData(extensionData);
+#ifndef QBT_USES_LIBTORRENT2
+        p.storage = customStorageConstructor;
+#endif
         m_nativeHandle = m_nativeSession->add_torrent(p);
 
         m_nativeStatus = extensionData->status;

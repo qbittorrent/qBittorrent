@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -29,8 +29,6 @@
 
 #include "fs.h"
 
-#include <cerrno>
-#include <cstring>
 #include <filesystem>
 
 #if defined(Q_OS_WIN)
@@ -52,6 +50,7 @@
 #include <unistd.h>
 #endif
 
+#include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
 #include <QDir>
@@ -311,19 +310,41 @@ bool Utils::Fs::renameFile(const Path &from, const Path &to)
  *
  * This function will try to fix the file permissions before removing it.
  */
-bool Utils::Fs::removeFile(const Path &path)
+nonstd::expected<void, QString> Utils::Fs::removeFile(const Path &path)
 {
-    if (QFile::remove(path.data()))
-        return true;
-
     QFile file {path.data()};
+    if (file.remove())
+        return {};
+
     if (!file.exists())
-        return true;
+        return {};
 
     // Make sure we have read/write permissions
     file.setPermissions(file.permissions() | QFile::ReadOwner | QFile::WriteOwner | QFile::ReadUser | QFile::WriteUser);
-    return file.remove();
+    if (file.remove())
+        return {};
+
+    return nonstd::make_unexpected(file.errorString());
 }
+
+nonstd::expected<void, QString> Utils::Fs::moveFileToTrash(const Path &path)
+{
+    QFile file {path.data()};
+    if (file.moveToTrash())
+        return {};
+
+    if (!file.exists())
+        return {};
+
+    // Make sure we have read/write permissions
+    file.setPermissions(file.permissions() | QFile::ReadOwner | QFile::WriteOwner | QFile::ReadUser | QFile::WriteUser);
+    if (file.moveToTrash())
+        return {};
+
+    const QString errorMessage = file.errorString();
+    return nonstd::make_unexpected(!errorMessage.isEmpty() ? errorMessage : QCoreApplication::translate("fs", "Unknown error"));
+}
+
 
 bool Utils::Fs::isReadable(const Path &path)
 {

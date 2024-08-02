@@ -488,11 +488,11 @@ QVariant TrackerListModel::headerData(const int section, const Qt::Orientation o
         switch (section)
         {
         case COL_URL:
-            return tr("URL/Announce endpoint");
+            return tr("URL/Announce Endpoint");
         case COL_TIER:
             return tr("Tier");
         case COL_PROTOCOL:
-            return tr("Protocol");
+            return tr("BT Protocol");
         case COL_STATUS:
             return tr("Status");
         case COL_PEERS:
@@ -506,9 +506,9 @@ QVariant TrackerListModel::headerData(const int section, const Qt::Orientation o
         case COL_MSG:
             return tr("Message");
         case COL_NEXT_ANNOUNCE:
-            return tr("Next announce");
+            return tr("Next Announce");
         case COL_MIN_ANNOUNCE:
-            return tr("Min announce");
+            return tr("Min Announce");
         default:
             return {};
         }
@@ -585,7 +585,7 @@ QVariant TrackerListModel::data(const QModelIndex &index, const int role) const
         case COL_TIER:
             return (isEndpoint || (index.row() < STICKY_ROW_COUNT)) ? QString() : QString::number(itemPtr->tier);
         case COL_PROTOCOL:
-            return isEndpoint ? tr("v%1").arg(itemPtr->btVersion) : QString();
+            return isEndpoint ? (u'v' + QString::number(itemPtr->btVersion)) : QString();
         case COL_STATUS:
             if (isEndpoint)
                 return toString(itemPtr->status);

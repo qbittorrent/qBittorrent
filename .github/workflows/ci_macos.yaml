@@ -23,7 +23,6 @@ jobs:
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
-      openssl_root: "$(brew --prefix openssl@3)"
       libtorrent_path: "${{ github.workspace }}/../libtorrent"
 
     steps:
@@ -70,7 +69,7 @@ jobs:
           mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: ${{ matrix.qt_version }}
           archives: qtbase qtdeclarative qtsvg qttools
@@ -94,8 +93,7 @@ jobs:
             -DCMAKE_CXX_STANDARD=17 \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DBOOST_ROOT="${{ env.boost_path }}" \
-            -Ddeprecated-functions=OFF \
-            -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}"
+            -Ddeprecated-functions=OFF
           cmake --build build
           sudo cmake --install build
 
@@ -109,7 +107,6 @@ jobs:
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DBOOST_ROOT="${{ env.boost_path }}" \
-            -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
             -DTESTING=ON \
             -DVERBOSE_CONFIGURE=ON \
             -D${{ matrix.qbt_gui }}

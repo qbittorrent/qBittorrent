@@ -135,6 +135,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_SAVE_PATH, torrent.savePath().toString()},
         {KEY_TORRENT_DOWNLOAD_PATH, torrent.downloadPath().toString()},
         {KEY_TORRENT_CONTENT_PATH, torrent.contentPath().toString()},
+        {KEY_TORRENT_ROOT_PATH, torrent.rootPath().toString()},
         {KEY_TORRENT_ADDED_ON, Utils::DateTime::toSecsSinceEpoch(torrent.addedTime())},
         {KEY_TORRENT_COMPLETION_ON, Utils::DateTime::toSecsSinceEpoch(torrent.completedTime())},
         {KEY_TORRENT_TRACKER, torrent.currentTracker()},
@@ -163,8 +164,8 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_AVAILABILITY, torrent.distributedCopies()},
         {KEY_TORRENT_REANNOUNCE, torrent.nextAnnounce()},
         {KEY_TORRENT_COMMENT, torrent.comment()},
-        {KEY_TORRENT_ISPRIVATE, torrent.isPrivate()},
-
-        {KEY_TORRENT_TOTAL_SIZE, torrent.totalSize()}
+        {KEY_TORRENT_PRIVATE, (torrent.hasMetadata() ? torrent.isPrivate() : QVariant())},
+        {KEY_TORRENT_TOTAL_SIZE, torrent.totalSize()},
+        {KEY_TORRENT_HAS_METADATA, torrent.hasMetadata()}
     };
 }

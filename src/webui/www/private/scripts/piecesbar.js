@@ -26,11 +26,10 @@
  * exception statement from your version.
  */
 
-'use strict';
+"use strict";
 
-if (window.qBittorrent === undefined) {
+if (window.qBittorrent === undefined)
     window.qBittorrent = {};
-}
 
 window.qBittorrent.PiecesBar = (() => {
     const exports = () => {
@@ -51,35 +50,35 @@ window.qBittorrent.PiecesBar = (() => {
     const PiecesBar = new Class({
         initialize(pieces, parameters) {
             const vals = {
-                'id': 'piecesbar_' + (piecesBarUniqueId++),
-                'width': 0,
-                'height': 0,
-                'downloadingColor': 'hsl(110deg 94% 27%)', // @TODO palette vars not supported for this value, apply average
-                'haveColor': 'hsl(210deg 55% 55%)', // @TODO palette vars not supported for this value, apply average
-                'borderSize': 1,
-                'borderColor': 'var(--color-border-default)'
+                "id": "piecesbar_" + (piecesBarUniqueId++),
+                "width": 0,
+                "height": 0,
+                "downloadingColor": "hsl(110deg 94% 27%)", // @TODO palette vars not supported for this value, apply average
+                "haveColor": "hsl(210deg 55% 55%)", // @TODO palette vars not supported for this value, apply average
+                "borderSize": 1,
+                "borderColor": "var(--color-border-default)"
             };
 
-            if (parameters && (typeOf(parameters) === 'object'))
+            if (parameters && (typeOf(parameters) === "object"))
                 Object.append(vals, parameters);
             vals.height = Math.max(vals.height, 12);
 
-            const obj = new Element('div', {
-                'id': vals.id,
-                'class': 'piecesbarWrapper',
-                'styles': {
-                    'border': vals.borderSize.toString() + 'px solid ' + vals.borderColor,
-                    'height': vals.height.toString() + 'px',
+            const obj = new Element("div", {
+                "id": vals.id,
+                "class": "piecesbarWrapper",
+                "styles": {
+                    "border": vals.borderSize.toString() + "px solid " + vals.borderColor,
+                    "height": vals.height.toString() + "px",
                 }
             });
             obj.vals = vals;
             obj.vals.pieces = [pieces, []].pick();
 
-            obj.vals.canvas = new Element('canvas', {
-                'id': vals.id + '_canvas',
-                'class': 'piecesbarCanvas',
-                'width': (vals.width - (2 * vals.borderSize)).toString(),
-                'height': '1' // will stretch vertically to take up the height of the parent
+            obj.vals.canvas = new Element("canvas", {
+                "id": vals.id + "_canvas",
+                "class": "piecesbarCanvas",
+                "width": (vals.width - (2 * vals.borderSize)).toString(),
+                "height": "1" // will stretch vertically to take up the height of the parent
             });
             obj.appendChild(obj.vals.canvas);
 
@@ -124,7 +123,7 @@ window.qBittorrent.PiecesBar = (() => {
         this.vals.canvas.width = width - (2 * this.vals.borderSize);
 
         const canvas = this.vals.canvas;
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext("2d");
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         const imageWidth = canvas.width;
@@ -136,13 +135,10 @@ window.qBittorrent.PiecesBar = (() => {
         let maxStatus = 0;
 
         for (const status of pieces) {
-            if (status > maxStatus) {
+            if (status > maxStatus)
                 maxStatus = status;
-            }
-
-            if (status < minStatus) {
+            if (status < minStatus)
                 minStatus = status;
-            }
         }
 
         // if no progress then don't do anything
@@ -220,15 +216,13 @@ window.qBittorrent.PiecesBar = (() => {
             statusValues[STATUS_DOWNLOADING] = Math.min(statusValues[STATUS_DOWNLOADING], 1);
             statusValues[STATUS_DOWNLOADED] = Math.min(statusValues[STATUS_DOWNLOADED], 1);
 
-            if (!lastValue) {
+            if (!lastValue)
                 lastValue = statusValues;
-            }
 
             // group contiguous colors together and draw as a single rectangle
             if ((lastValue[STATUS_DOWNLOADING] === statusValues[STATUS_DOWNLOADING])
-                && (lastValue[STATUS_DOWNLOADED] === statusValues[STATUS_DOWNLOADED])) {
+                && (lastValue[STATUS_DOWNLOADED] === statusValues[STATUS_DOWNLOADED]))
                 continue;
-            }
 
             const rectangleWidth = x - rectangleStart;
             this._drawStatus(ctx, rectangleStart, rectangleWidth, lastValue);
@@ -246,7 +240,7 @@ window.qBittorrent.PiecesBar = (() => {
 
     function drawStatus(ctx, start, width, statusValues) {
         // mix the colors by using transparency and a composite mode
-        ctx.globalCompositeOperation = 'lighten';
+        ctx.globalCompositeOperation = "lighten";
 
         if (statusValues[STATUS_DOWNLOADING]) {
             ctx.globalAlpha = statusValues[STATUS_DOWNLOADING];
@@ -266,7 +260,7 @@ window.qBittorrent.PiecesBar = (() => {
         if (!obj)
             return;
         if (!obj.parentNode)
-            return setTimeout(function() { checkForParent(id); }, 1);
+            return setTimeout(() => { checkForParent(id); }, 1);
 
         obj.refresh();
     }

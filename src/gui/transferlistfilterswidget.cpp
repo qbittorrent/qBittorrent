@@ -39,7 +39,6 @@
 #include <QUrl>
 #include <QVBoxLayout>
 
-#include "base/algorithm.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentrystatus.h"

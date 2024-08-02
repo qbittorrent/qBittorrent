@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,40 +26,20 @@
  * exception statement from your version.
  */
 
-
 #pragma once
 
-#include <QElapsedTimer>
-#include <QObject>
+#include <QMenu>
 
-class QTcpSocket;
+#include "filterpatternformat.h"
 
-namespace Http
+class FilterPatternFormatMenu final : public QMenu
 {
-    class IRequestHandler;
-    struct Response;
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(FilterPatternFormatMenu)
 
-    class Connection : public QObject
-    {
-        Q_OBJECT
-        Q_DISABLE_COPY_MOVE(Connection)
+public:
+    explicit FilterPatternFormatMenu(FilterPatternFormat format, QWidget *parent = nullptr);
 
-    public:
-        Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = nullptr);
-
-        bool hasExpired(qint64 timeout) const;
-
-    signals:
-        void closed();
-
-    private:
-        static bool acceptsGzipEncoding(QString codings);
-        void read();
-        void sendResponse(const Response &response) const;
-
-        QTcpSocket *m_socket = nullptr;
-        IRequestHandler *m_requestHandler = nullptr;
-        QByteArray m_receivedData;
-        QElapsedTimer m_idleTimer;
-    };
-}
+signals:
+    void patternFormatChanged(FilterPatternFormat format);
+};

@@ -53,13 +53,23 @@ jobs:
           python-version: '3.7'
 
       - name: Install tools (search engine)
-        run: pip install bandit pycodestyle pyflakes
+        run: pip install bandit mypy pycodestyle pyflakes pyright
 
       - name: Gather files (search engine)
         run: |
           export "PY_FILES=$(find . -type f -name '*.py' -path '*searchengine*' ! -name 'socks.py' -printf '%p ')"
           echo $PY_FILES
           echo "PY_FILES=$PY_FILES" >> "$GITHUB_ENV"
+
+      - name: Check typings  (search engine)
+        run: |
+          MYPYPATH="src/searchengine/nova3" \
+          mypy \
+            --follow-imports skip \
+            --strict \
+            $PY_FILES
+          pyright \
+            $PY_FILES
 
       - name: Lint code (search engine)
         run: |

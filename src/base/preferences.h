@@ -105,8 +105,8 @@ public:
     void setUseCustomUITheme(bool use);
     Path customUIThemePath() const;
     void setCustomUIThemePath(const Path &path);
-    bool deleteTorrentFilesAsDefault() const;
-    void setDeleteTorrentFilesAsDefault(bool del);
+    bool removeTorrentContent() const;
+    void setRemoveTorrentContent(bool remove);
     bool confirmOnExit() const;
     void setConfirmOnExit(bool confirm);
     bool speedInTitleBar() const;

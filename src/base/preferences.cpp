@@ -134,17 +134,17 @@ void Preferences::setCustomUIThemePath(const Path &path)
     setValue(u"Preferences/General/CustomUIThemePath"_s, path);
 }
 
-bool Preferences::deleteTorrentFilesAsDefault() const
+bool Preferences::removeTorrentContent() const
 {
     return value(u"Preferences/General/DeleteTorrentsFilesAsDefault"_s, false);
 }
 
-void Preferences::setDeleteTorrentFilesAsDefault(const bool del)
+void Preferences::setRemoveTorrentContent(const bool remove)
 {
-    if (del == deleteTorrentFilesAsDefault())
+    if (remove == removeTorrentContent())
         return;
 
-    setValue(u"Preferences/General/DeleteTorrentsFilesAsDefault"_s, del);
+    setValue(u"Preferences/General/DeleteTorrentsFilesAsDefault"_s, remove);
 }
 
 bool Preferences::confirmOnExit() const

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -116,9 +116,10 @@ namespace
     void removeTorrents(const QVector<BitTorrent::Torrent *> &torrents, const bool isDeleteFileSelected)
     {
         auto *session = BitTorrent::Session::instance();
-        const DeleteOption deleteOption = isDeleteFileSelected ? DeleteTorrentAndFiles : DeleteTorrent;
+        const BitTorrent::TorrentRemoveOption removeOption = isDeleteFileSelected
+                ? BitTorrent::TorrentRemoveOption::RemoveContent : BitTorrent::TorrentRemoveOption::KeepContent;
         for (const BitTorrent::Torrent *torrent : torrents)
-            session->deleteTorrent(torrent->id(), deleteOption);
+            session->removeTorrent(torrent->id(), removeOption);
     }
 }
 
@@ -183,6 +184,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
         setColumnHidden(TransferListModel::TR_LAST_ACTIVITY, true);
         setColumnHidden(TransferListModel::TR_TOTAL_SIZE, true);
         setColumnHidden(TransferListModel::TR_REANNOUNCE, true);
+        setColumnHidden(TransferListModel::TR_PRIVATE, true);
     }
 
     //Ensure that at least one column is visible at all times
@@ -442,7 +444,7 @@ void TransferListWidget::deleteSelectedTorrents(const bool deleteLocalFiles)
         {
             // Some torrents might be removed when waiting for user input, so refetch the torrent list
             // NOTE: this will only work when dialog is modal
-            removeTorrents(getSelectedTorrents(), dialog->isDeleteFileSelected());
+            removeTorrents(getSelectedTorrents(), dialog->isRemoveContentSelected());
         });
         dialog->open();
     }
@@ -465,7 +467,7 @@ void TransferListWidget::deleteVisibleTorrents()
         {
             // Some torrents might be removed when waiting for user input, so refetch the torrent list
             // NOTE: this will only work when dialog is modal
-            removeTorrents(getVisibleTorrents(), dialog->isDeleteFileSelected());
+            removeTorrents(getVisibleTorrents(), dialog->isRemoveContentSelected());
         });
         dialog->open();
     }
@@ -1190,7 +1192,7 @@ void TransferListWidget::displayListMenu()
     const TagSet tags = BitTorrent::Session::instance()->tags();
     for (const Tag &tag : asConst(tags))
     {
-        auto *action = new TriStateAction(tag.toString(), tagsMenu);
+        auto *action = new TriStateAction(Utils::Gui::tagToWidgetText(tag), tagsMenu);
         action->setCloseOnInteraction(false);
 
         const Qt::CheckState initialState = tagsInAll.contains(tag) ? Qt::Checked

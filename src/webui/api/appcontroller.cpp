@@ -37,6 +37,7 @@
 #include <QCoreApplication>
 #include <QDebug>
 #include <QDir>
+#include <QDirIterator>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -135,7 +136,7 @@ void AppController::preferencesAction()
     data[u"file_log_age"_s] = app()->fileLoggerAge();
     data[u"file_log_age_type"_s] = app()->fileLoggerAgeType();
     // Delete torrent contents files on torrent removal
-    data[u"delete_torrent_content_files"_s] = pref->deleteTorrentFilesAsDefault();
+    data[u"delete_torrent_content_files"_s] = pref->removeTorrentContent();
 
     // Downloads
     // When adding a torrent
@@ -349,6 +350,8 @@ void AppController::preferencesAction()
     // qBitorrent preferences
     // Resume data storage type
     data[u"resume_data_storage_type"_s] = Utils::String::fromEnum(session->resumeDataStorageType());
+    // Torrent content removing mode
+    data[u"torrent_content_remove_option"_s] = Utils::String::fromEnum(session->torrentContentRemoveOption());
     // Physical memory (RAM) usage limit
     data[u"memory_working_set_limit"_s] = app()->memoryWorkingSetLimit();
     // Current network interface
@@ -518,7 +521,7 @@ void AppController::setPreferencesAction()
         app()->setFileLoggerAgeType(it.value().toInt());
     // Delete torrent content files on torrent removal
     if (hasKey(u"delete_torrent_content_files"_s))
-        pref->setDeleteTorrentFilesAsDefault(it.value().toBool());
+        pref->setRemoveTorrentContent(it.value().toBool());
 
     // Downloads
     // When adding a torrent
@@ -930,6 +933,9 @@ void AppController::setPreferencesAction()
     // Resume data storage type
     if (hasKey(u"resume_data_storage_type"_s))
         session->setResumeDataStorageType(Utils::String::toEnum(it.value().toString(), BitTorrent::ResumeDataStorageType::Legacy));
+    // Torrent content removing mode
+    if (hasKey(u"torrent_content_remove_option"_s))
+        session->setTorrentContentRemoveOption(Utils::String::toEnum(it.value().toString(), BitTorrent::TorrentContentRemoveOption::MoveToTrash));
     // Physical memory (RAM) usage limit
     if (hasKey(u"memory_working_set_limit"_s))
         app()->setMemoryWorkingSetLimit(it.value().toInt());
@@ -1159,8 +1165,11 @@ void AppController::getDirectoryContentAction()
         throw APIError(APIErrorType::BadParams, tr("Invalid mode, allowed values: %1").arg(u"all, dirs, files"_s));
     };
 
-    const QStringList dirs = dir.entryList(QDir::NoDotAndDotDot | parseDirectoryContentMode(visibility));
-    setResult(QJsonArray::fromStringList(dirs));
+    QJsonArray ret;
+    QDirIterator it {dirPath, (QDir::NoDotAndDotDot | parseDirectoryContentMode(visibility))};
+    while (it.hasNext())
+        ret.append(it.next());
+    setResult(ret);
 }
 
 void AppController::networkInterfaceListAction()

@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,40 +26,36 @@
  * exception statement from your version.
  */
 
+#include "torrentcontentremover.h"
 
-#pragma once
+#include "base/utils/fs.h"
 
-#include <QElapsedTimer>
-#include <QObject>
-
-class QTcpSocket;
-
-namespace Http
+void BitTorrent::TorrentContentRemover::performJob(const QString &torrentName, const Path &basePath
+        , const PathList &fileNames, const TorrentContentRemoveOption option)
 {
-    class IRequestHandler;
-    struct Response;
+    QString errorMessage;
 
-    class Connection : public QObject
+    if (!fileNames.isEmpty())
     {
-        Q_OBJECT
-        Q_DISABLE_COPY_MOVE(Connection)
+        const auto removeFileFn = [&option](const Path &filePath)
+        {
+            return ((option == TorrentContentRemoveOption::MoveToTrash)
+                    ? Utils::Fs::moveFileToTrash : Utils::Fs::removeFile)(filePath);
+        };
 
-    public:
-        Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = nullptr);
+        for (const Path &fileName : fileNames)
+        {
+            if (const auto result = removeFileFn(basePath / fileName)
+                    ; !result && errorMessage.isEmpty())
+            {
+                errorMessage = result.error();
+            }
+        }
 
-        bool hasExpired(qint64 timeout) const;
+        const Path rootPath = Path::findRootFolder(fileNames);
+        if (!rootPath.isEmpty())
+            Utils::Fs::smartRemoveEmptyFolderTree(basePath / rootPath);
+    }
 
-    signals:
-        void closed();
-
-    private:
-        static bool acceptsGzipEncoding(QString codings);
-        void read();
-        void sendResponse(const Response &response) const;
-
-        QTcpSocket *m_socket = nullptr;
-        IRequestHandler *m_requestHandler = nullptr;
-        QByteArray m_receivedData;
-        QElapsedTimer m_idleTimer;
-    };
+    emit jobFinished(torrentName, errorMessage);
 }

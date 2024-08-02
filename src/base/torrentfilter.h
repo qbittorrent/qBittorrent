@@ -87,16 +87,24 @@ public:
 
     TorrentFilter() = default;
     // category & tags: pass empty string for uncategorized / untagged torrents.
-    TorrentFilter(Type type, const std::optional<TorrentIDSet> &idSet = AnyID
-            , const std::optional<QString> &category = AnyCategory, const std::optional<Tag> &tag = AnyTag);
-    TorrentFilter(const QString &filter, const std::optional<TorrentIDSet> &idSet = AnyID
-            , const std::optional<QString> &category = AnyCategory, const std::optional<Tag> &tags = AnyTag);
+    TorrentFilter(Type type
+            , const std::optional<TorrentIDSet> &idSet = AnyID
+            , const std::optional<QString> &category = AnyCategory
+            , const std::optional<Tag> &tag = AnyTag
+            , std::optional<bool> isPrivate = {});
+    TorrentFilter(const QString &filter
+            , const std::optional<TorrentIDSet> &idSet = AnyID
+            , const std::optional<QString> &category = AnyCategory
+            , const std::optional<Tag> &tags = AnyTag
+            , std::optional<bool> isPrivate = {});
+
 
     bool setType(Type type);
     bool setTypeByName(const QString &filter);
     bool setTorrentIDSet(const std::optional<TorrentIDSet> &idSet);
     bool setCategory(const std::optional<QString> &category);
     bool setTag(const std::optional<Tag> &tag);
+    bool setPrivate(std::optional<bool> isPrivate);
 
     bool match(const BitTorrent::Torrent *torrent) const;
 
@@ -105,9 +113,11 @@ private:
     bool matchHash(const BitTorrent::Torrent *torrent) const;
     bool matchCategory(const BitTorrent::Torrent *torrent) const;
     bool matchTag(const BitTorrent::Torrent *torrent) const;
+    bool matchPrivate(const BitTorrent::Torrent *torrent) const;
 
     Type m_type {All};
     std::optional<QString> m_category;
     std::optional<Tag> m_tag;
     std::optional<TorrentIDSet> m_idSet;
+    std::optional<bool> m_private;
 };

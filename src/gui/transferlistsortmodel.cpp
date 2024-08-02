@@ -59,8 +59,8 @@ namespace
     int customCompare(const TagSet &left, const TagSet &right, const Utils::Compare::NaturalCompare<Qt::CaseInsensitive> &compare)
     {
         for (auto leftIter = left.cbegin(), rightIter = right.cbegin();
-                (leftIter != left.cend()) && (rightIter != right.cend());
-                ++leftIter, ++rightIter)
+             (leftIter != left.cend()) && (rightIter != right.cend());
+             ++leftIter, ++rightIter)
         {
             const int result = compare(leftIter->toString(), rightIter->toString());
             if (result != 0)
@@ -82,6 +82,17 @@ namespace
         if (!isLeftValid && !isRightValid)
             return 0;
         return isLeftValid ? -1 : 1;
+    }
+
+    int compareAsBool(const QVariant &left, const QVariant &right)
+    {
+        const bool leftValid = left.isValid();
+        const bool rightValid = right.isValid();
+        if (leftValid && rightValid)
+            return threeWayCompare(left.toBool(), right.toBool());
+        if (!leftValid && !rightValid)
+            return 0;
+        return leftValid ? -1 : 1;
     }
 
     int adjustSubSortColumn(const int column)
@@ -213,6 +224,9 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
     case TransferListModel::TR_UPLIMIT:
     case TransferListModel::TR_UPSPEED:
         return customCompare(leftValue.toInt(), rightValue.toInt());
+
+    case TransferListModel::TR_PRIVATE:
+        return compareAsBool(leftValue, rightValue);
 
     case TransferListModel::TR_PEERS:
     case TransferListModel::TR_SEEDS:

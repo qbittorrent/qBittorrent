@@ -26,13 +26,12 @@
  * exception statement from your version.
  */
 
-'use strict';
+"use strict";
 
 // This file is the JavaScript implementation of base/utils/fs.cpp
 
-if (window.qBittorrent === undefined) {
+if (window.qBittorrent === undefined)
     window.qBittorrent = {};
-}
 
 window.qBittorrent.Filesystem = (function() {
     const exports = function() {
@@ -44,15 +43,15 @@ window.qBittorrent.Filesystem = (function() {
         };
     };
 
-    const PathSeparator = '/';
+    const PathSeparator = "/";
 
     /**
      * Returns the file extension part of a file name.
      */
     const fileExtension = function(filename) {
-        const pointIndex = filename.lastIndexOf('.');
+        const pointIndex = filename.lastIndexOf(".");
         if (pointIndex === -1)
-            return '';
+            return "";
         return filename.substring(pointIndex + 1);
     };
 
@@ -66,7 +65,7 @@ window.qBittorrent.Filesystem = (function() {
     const folderName = function(filepath) {
         const slashIndex = filepath.lastIndexOf(PathSeparator);
         if (slashIndex === -1)
-            return '';
+            return "";
         return filepath.substring(0, slashIndex);
     };
 
