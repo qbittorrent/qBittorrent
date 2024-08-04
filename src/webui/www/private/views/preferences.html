@@ -8,29 +8,36 @@
     </fieldset>
 
     <fieldset class="settings">
-        <legend>QBT_TR(Action on double-click)QBT_TR[CONTEXT=OptionsDialog]</legend>
-        <table>
-            <tbody>
-                <tr>
-                    <td><label for="dblclickDownloadSelect">QBT_TR(Downloading torrents:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                    <td>
-                        <select id="dblclickDownloadSelect">
-                            <option value="1" selected>QBT_TR(Start / Stop Torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
-                            <option value="0">QBT_TR(No action)QBT_TR[CONTEXT=OptionsDialog]</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="dblclickCompleteSelect">QBT_TR(Completed torrents:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                    <td>
-                        <select id="dblclickCompleteSelect">
-                            <option value="1" selected>QBT_TR(Start / Stop Torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
-                            <option value="0">QBT_TR(No action)QBT_TR[CONTEXT=OptionsDialog]</option>
-                        </select>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <legend>QBT_TR(Transfer list)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow" style="margin-bottom: 3px;">
+            <input type="checkbox" id="useAltRowColorsInput">
+            <label for="useAltRowColorsInput">QBT_TR(Use alternating row colors)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <fieldset class="settings">
+            <legend>QBT_TR(Action on double-click)QBT_TR[CONTEXT=OptionsDialog]</legend>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label for="dblclickDownloadSelect">QBT_TR(Downloading torrents:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                        <td>
+                            <select id="dblclickDownloadSelect">
+                                <option value="1" selected>QBT_TR(Start / Stop Torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
+                                <option value="0">QBT_TR(No action)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="dblclickCompleteSelect">QBT_TR(Completed torrents:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                        <td>
+                            <select id="dblclickCompleteSelect">
+                                <option value="1" selected>QBT_TR(Start / Stop Torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
+                                <option value="0">QBT_TR(No action)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
     </fieldset>
 
     <fieldset class="settings">
@@ -2070,6 +2077,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Behavior tab
                     $("dblclickDownloadSelect").value = LocalPreferences.get("dblclick_download", "1");
                     $("dblclickCompleteSelect").value = LocalPreferences.get("dblclick_complete", "1");
+                    document.getElementById("useAltRowColorsInput").checked = (LocalPreferences.get("use_alt_row_colors", "true") === "true");
                     $("filelog_checkbox").checked = pref.file_log_enabled;
                     $("filelog_save_path_input").value = pref.file_log_path;
                     $("filelog_backup_checkbox").checked = pref.file_log_backup_enabled;
@@ -2480,6 +2488,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Behavior tab
             LocalPreferences.set("dblclick_download", $("dblclickDownloadSelect").value);
             LocalPreferences.set("dblclick_complete", $("dblclickCompleteSelect").value);
+            LocalPreferences.set("use_alt_row_colors", document.getElementById("useAltRowColorsInput").checked.toString());
             settings["file_log_enabled"] = $("filelog_checkbox").checked;
             settings["file_log_path"] = $("filelog_save_path_input").value;
             settings["file_log_backup_enabled"] = $("filelog_backup_checkbox").checked;

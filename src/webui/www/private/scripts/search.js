@@ -343,7 +343,6 @@ window.qBittorrent.Search ??= (() => {
 
         // must restore all filters before calling updateTable
         searchResultsTable.updateTable();
-        searchResultsTable.altRow();
 
         // must reselect rows after calling updateTable
         if (rowsToSelect.length > 0)
@@ -825,7 +824,6 @@ window.qBittorrent.Search ??= (() => {
                         $("numSearchResultsTotal").textContent = searchResultsTable.getRowIds().length;
 
                         searchResultsTable.updateTable();
-                        searchResultsTable.altRow();
                     }
 
                     setupSearchTableEvents(true);

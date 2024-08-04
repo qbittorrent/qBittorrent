@@ -88,6 +88,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.setupHeaderEvents();
             this.setupHeaderMenu();
             this.setSortedColumnIcon(this.sortedColumn, null, (this.reverseSort === "1"));
+            this.setupAltRow();
         },
 
         setupCommonEvents: function() {
@@ -555,17 +556,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             return this.selectedRows.contains(rowId);
         },
 
-        altRow: function() {
-            if (!MUI.ieLegacySupport)
-                return;
-
-            const trs = this.tableBody.getElements("tr");
-            trs.each((el, i) => {
-                if (i % 2)
-                    el.addClass("alt");
-                else
-                    el.removeClass("alt");
-            });
+        setupAltRow: function() {
+            const useAltRowColors = (LocalPreferences.get("use_alt_row_colors", "true") === "true");
+            if (useAltRowColors)
+                document.getElementById(this.dynamicTableDivId).classList.add("altRowColors");
         },
 
         selectAll: function() {
@@ -2134,25 +2128,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.updateGlobalCheckbox();
         },
 
-        altRow: function() {
-            let addClass = false;
-            const trs = this.tableBody.getElements("tr");
-            trs.each((tr) => {
-                if (tr.hasClass("invisible"))
-                    return;
-
-                if (addClass) {
-                    tr.addClass("alt");
-                    tr.removeClass("nonAlt");
-                }
-                else {
-                    tr.removeClass("alt");
-                    tr.addClass("nonAlt");
-                }
-                addClass = !addClass;
-            });
-        },
-
         _sortNodesByColumn: function(nodes, column) {
             nodes.sort((row1, row2) => {
                 // list folders before files when sorting by name
@@ -2481,25 +2456,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             // remaining, availability
             this.columns["remaining"].updateTd = displaySize;
             this.columns["availability"].updateTd = displayPercentage;
-        },
-
-        altRow: function() {
-            let addClass = false;
-            const trs = this.tableBody.getElements("tr");
-            trs.each((tr) => {
-                if (tr.hasClass("invisible"))
-                    return;
-
-                if (addClass) {
-                    tr.addClass("alt");
-                    tr.removeClass("nonAlt");
-                }
-                else {
-                    tr.removeClass("alt");
-                    tr.addClass("nonAlt");
-                }
-                addClass = !addClass;
-            });
         },
 
         _sortNodesByColumn: function(nodes, column) {
