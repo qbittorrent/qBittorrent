@@ -737,6 +737,7 @@ window.addEventListener("DOMContentLoaded", () => {
                         torrentsTable.clear();
                         category_list.clear();
                         tagList.clear();
+                        trackerList.clear();
                     }
                     if (response["rid"])
                         syncMainDataLastResponseId = response["rid"];
