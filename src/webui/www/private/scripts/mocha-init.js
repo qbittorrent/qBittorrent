@@ -726,7 +726,7 @@ const initializeWindows = function() {
         if (hashes.length) {
             new MochaUI.Window({
                 id: "newTagPage",
-                title: "QBT_TR(Add Tags)QBT_TR[CONTEXT=TransferListWidget]",
+                title: "QBT_TR(Add tags)QBT_TR[CONTEXT=TransferListWidget]",
                 loadMethod: "iframe",
                 contentURL: new URI("newtag.html").setData("action", action).setData("hashes", hashes.join("|")).toString(),
                 scrollbars: false,
