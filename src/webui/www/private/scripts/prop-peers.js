@@ -123,6 +123,7 @@ window.qBittorrent.PropPeers ??= (() => {
 
                 new MochaUI.Window({
                     id: "addPeersPage",
+                    icon: "images/qbittorrent-tray.svg",
                     title: "QBT_TR(Add Peers)QBT_TR[CONTEXT=PeersAdditionDialog]",
                     loadMethod: "iframe",
                     contentURL: "addpeers.html?hash=" + hash,

@@ -493,6 +493,7 @@ window.qBittorrent.Search ??= (() => {
             new MochaUI.Window({
                 id: id,
                 title: "QBT_TR(Search plugins)QBT_TR[CONTEXT=PluginSelectDlg]",
+                icon: "images/qbittorrent-tray.svg",
                 loadMethod: "xhr",
                 contentURL: "views/searchplugins.html",
                 scrollbars: false,

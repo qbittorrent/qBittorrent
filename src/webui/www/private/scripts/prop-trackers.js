@@ -166,6 +166,7 @@ window.qBittorrent.PropTrackers ??= (() => {
             return;
         new MochaUI.Window({
             id: "trackersPage",
+            icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(Add trackers)QBT_TR[CONTEXT=TrackersAdditionDialog]",
             loadMethod: "iframe",
             contentURL: "addtrackers.html?hash=" + current_hash,
@@ -190,6 +191,7 @@ window.qBittorrent.PropTrackers ??= (() => {
         const trackerUrl = encodeURIComponent(element.childNodes[1].textContent);
         new MochaUI.Window({
             id: "trackersPage",
+            icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(Tracker editing)QBT_TR[CONTEXT=TrackerListWidget]",
             loadMethod: "iframe",
             contentURL: "edittracker.html?hash=" + current_hash + "&url=" + trackerUrl,
