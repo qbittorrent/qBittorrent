@@ -2975,7 +2975,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if ((buildInfo.platform !== "macos") && (buildInfo.platform !== "windows"))
                 $("rowMarkOfTheWeb").style.display = "none";
 
-            $("networkInterface").addEvent("change", function() {
+            $("networkInterface").addEventListener("change", function() {
                 updateInterfaceAddresses($(this).value, "");
             });
 

@@ -29,19 +29,21 @@
             }
         }).activate();
 
-        window.addEvent("domready", () => {
+        window.addEventListener("DOMContentLoaded", () => {
             const name = new URI().getData("name");
             // set text field to current value
             if (name)
                 $("rename").value = name;
 
             $("rename").focus();
-            $("renameButton").addEvent("click", (e) => {
-                new Event(e).stop();
+            $("renameButton").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
                 // check field
                 const name = $("rename").value.trim();
                 if ((name === null) || (name === ""))
-                    return false;
+                    return;
 
                 const hash = new URI().getData("hash");
                 if (hash) {

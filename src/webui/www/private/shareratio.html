@@ -32,7 +32,7 @@
             }
         }).activate();
 
-        window.addEvent("domready", () => {
+        window.addEventListener("DOMContentLoaded", () => {
             const hashesList = new URI().getData("hashes").split("|");
             const origValues = new URI().getData("orig").split("|");
 
@@ -76,11 +76,12 @@
             shareLimitChanged();
 
             $("default").focus();
-            $("save").addEvent("click", (e) => {
-                new Event(e).stop();
+            $("save").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
 
                 if (!isFormValid())
-                    return false;
+                    return;
 
                 const shareLimit = getSelectedRadioValue("shareLimit");
                 let ratioLimitValue = 0.00;
@@ -99,7 +100,7 @@
                     inactiveSeedingTimeLimitValue = $("setInactiveMinutes").checked ? $("inactiveMinutes").value : -1;
                 }
                 else {
-                    return false;
+                    return;
                 }
 
                 new Request({

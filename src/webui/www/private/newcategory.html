@@ -30,7 +30,7 @@
             }
         }).activate();
 
-        window.addEvent("domready", () => {
+        window.addEventListener("DOMContentLoaded", () => {
             const uriAction = window.qBittorrent.Misc.safeTrim(new URI().getData("action"));
             const uriHashes = window.qBittorrent.Misc.safeTrim(new URI().getData("hashes"));
             const uriCategoryName = window.qBittorrent.Misc.safeTrim(new URI().getData("categoryName"));
@@ -38,7 +38,7 @@
 
             if (uriAction === "edit") {
                 if (!uriCategoryName)
-                    return false;
+                    return;
 
                 $("categoryName").disabled = true;
                 $("categoryName").value = window.qBittorrent.Misc.escapeHtml(uriCategoryName);
@@ -53,8 +53,9 @@
                 $("categoryName").focus();
             }
 
-            $("categoryNameButton").addEvent("click", (e) => {
-                new Event(e).stop();
+            $("categoryNameButton").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
 
                 const savePath = $("savePath").value.trim();
                 const categoryName = $("categoryName").value.trim();

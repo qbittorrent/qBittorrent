@@ -10,7 +10,7 @@
     <script>
         "use strict";
 
-        window.addEvent("domready", () => {
+        window.addEventListener("DOMContentLoaded", () => {
             new Keyboard({
                 defaultEventType: "keydown",
                 events: {
@@ -31,13 +31,15 @@
 
             const currentUrl = new URI().getData("url");
             if (!currentUrl)
-                return false;
+                return;
 
             $("trackerUrl").value = currentUrl;
             $("trackerUrl").focus();
 
-            $("editTrackerButton").addEvent("click", (e) => {
-                new Event(e).stop();
+            $("editTrackerButton").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
                 const hash = new URI().getData("hash");
                 new Request({
                     url: "api/v2/torrents/editTracker",

@@ -28,15 +28,17 @@
                 }
             }
         }).activate();
-        window.addEvent("domready", () => {
+        window.addEventListener("DOMContentLoaded", () => {
             const oldPath = new URI().getData("oldPath");
 
             $("rename").value = oldPath;
             $("rename").focus();
             $("rename").setSelectionRange(0, oldPath.length);
 
-            $("renameButton").addEvent("click", (e) => {
-                new Event(e).stop();
+            $("renameButton").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
                 // check field
                 const newPath = $("rename").value.trim();
                 if (newPath === "") {

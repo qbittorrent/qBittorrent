@@ -28,10 +28,12 @@
                 }
             }
         }).activate();
-        window.addEvent("domready", () => {
+        window.addEventListener("DOMContentLoaded", () => {
             $("name").focus();
-            $("submitButton").addEvent("click", (e) => {
-                new Event(e).stop();
+            $("submitButton").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
                 // check field
                 const name = $("name").value.trim();
                 if (name === "") {

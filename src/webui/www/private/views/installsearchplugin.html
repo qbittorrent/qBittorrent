@@ -43,7 +43,8 @@
                 events: {
                     "Enter": function(e) {
                         // accept enter key as a click
-                        new Event(e).stop();
+                        e.preventDefault();
+                        e.stopPropagation();
 
                         const elem = e.event.srcElement;
                         if ((elem.id === "newPluginPath") || (elem.id === "newPluginOk"))

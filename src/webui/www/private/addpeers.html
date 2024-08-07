@@ -24,15 +24,16 @@
             }
         }).activate();
 
-        window.addEvent("domready", () => {
+        window.addEventListener("DOMContentLoaded", () => {
             const hash = new URI().getData("hash");
             if (!hash)
-                return false;
+                return;
 
             $("peers").focus();
 
-            $("addPeersOk").addEvent("click", (e) => {
-                new Event(e).stop();
+            $("addPeersOk").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
 
                 const peers = $("peers").value.trim().split(/[\r\n]+/);
                 if (peers.length === 0)

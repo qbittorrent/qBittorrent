@@ -136,7 +136,7 @@ window.qBittorrent.PropFiles ??= (() => {
         checkbox.setAttribute("data-id", id);
         checkbox.setAttribute("data-file-id", fileId);
         checkbox.className = "DownloadedCB";
-        checkbox.addEvent("click", fileCheckboxClicked);
+        checkbox.addEventListener("click", fileCheckboxClicked);
 
         updateCheckbox(checkbox, checked);
         return checkbox;
@@ -180,7 +180,7 @@ window.qBittorrent.PropFiles ??= (() => {
         select.setAttribute("data-id", id);
         select.setAttribute("data-file-id", fileId);
         select.addClass("combo_priority");
-        select.addEvent("change", fileComboboxChanged);
+        select.addEventListener("change", fileComboboxChanged);
 
         createPriorityOptionElement(FilePriority.Ignored, (FilePriority.Ignored === selectedPriority), "QBT_TR(Do not download)QBT_TR[CONTEXT=PropListDelegate]").injectInside(select);
         createPriorityOptionElement(FilePriority.Normal, (FilePriority.Normal === selectedPriority), "QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]").injectInside(select);
@@ -625,7 +625,7 @@ window.qBittorrent.PropFiles ??= (() => {
         const checkbox = new Element("input");
         checkbox.type = "checkbox";
         checkbox.id = "tristate_cb";
-        checkbox.addEvent("click", switchCheckboxState);
+        checkbox.addEventListener("click", switchCheckboxState);
 
         const checkboxTH = tableHeaders[0];
         checkbox.injectInside(checkboxTH);
@@ -637,7 +637,7 @@ window.qBittorrent.PropFiles ??= (() => {
 
     // listen for changes to torrentFilesFilterInput
     let torrentFilesFilterInputTimer = -1;
-    $("torrentFilesFilterInput").addEvent("input", () => {
+    $("torrentFilesFilterInput").addEventListener("input", () => {
         clearTimeout(torrentFilesFilterInputTimer);
 
         const value = $("torrentFilesFilterInput").value;
