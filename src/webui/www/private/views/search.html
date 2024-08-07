@@ -59,6 +59,16 @@
         margin-left: 10px;
     }
 
+    #manageSearchPlugins,
+    #startSearchButton {
+        padding: 4px 6px;
+    }
+
+    #startSearchButton img,
+    #manageSearchPlugins img {
+        margin: 0 5px -3px 0;
+    }
+
     @media (min-width: 1060px) {
         #searchResultsGranularFilters {
             display: inline-block;
@@ -81,7 +91,9 @@
             <input type="text" id="searchPattern" class="searchInputField" placeholder="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" aria-label="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocomplete="off" autocapitalize="none" oninput="qBittorrent.Search.onSearchPatternChanged()">
             <select id="categorySelect" class="searchInputField" aria-label="QBT_TR(Select category)QBT_TR[CONTEXT=SearchEngineWidget]" onchange="qBittorrent.Search.categorySelected()"></select>
             <select id="pluginsSelect" class="searchInputField" aria-label="QBT_TR(Select plugins)QBT_TR[CONTEXT=SearchEngineWidget]" onchange="qBittorrent.Search.pluginSelected()"></select>
-            <button type="button" id="startSearchButton" class="searchInputField" onclick="qBittorrent.Search.startStopSearch()">QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]</button>
+            <button type="button" id="startSearchButton" class="searchInputField" onclick="qBittorrent.Search.startStopSearch()">
+                <img src="images/edit-find.svg" alt="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" width="16" height="16">QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]
+            </button>
         </div>
     </div>
 
@@ -183,7 +195,9 @@
     </div>
 
     <div style="height: 30px; padding-top: 10px;">
-        <button type="button" id="manageSearchPlugins" onclick="qBittorrent.Search.manageSearchPlugins()">QBT_TR(Search plugins...)QBT_TR[CONTEXT=SearchEngineWidget]</button>
+        <button type="button" id="manageSearchPlugins" onclick="qBittorrent.Search.manageSearchPlugins()">
+            <img alt="QBT_TR(Search plugins...)QBT_TR[CONTEXT=SearchEngineWidget]" src="images/plugins.svg" width="16" height="16">QBT_TR(Search plugins...)QBT_TR[CONTEXT=SearchEngineWidget]
+        </button>
     </div>
 </div>
 

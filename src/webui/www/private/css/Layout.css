@@ -120,6 +120,10 @@ body {
     color: var(--color-text-white);
 }
 
+#desktopNavbar a:hover img {
+    filter: var(--color-icon-hover);
+}
+
 #desktopNavbar ul li a.arrow-right,
 #desktopNavbar ul li a:hover.arrow-right {
     background-image: url("../images/arrow-right.gif");
