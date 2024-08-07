@@ -2259,6 +2259,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  <property name="value">
                   <number>100</number>
                  </property>
+                 <property name="stepType">
+                  <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+                 </property>
                 </widget>
                </item>
                <item row="1" column="2">
@@ -2274,6 +2277,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                  <property name="value">
                   <number>100</number>
+                 </property>
+                 <property name="stepType">
+                  <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
                  </property>
                 </widget>
                </item>
@@ -2329,6 +2335,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                  <property name="value">
                   <number>10</number>
+                 </property>
+                 <property name="stepType">
+                  <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
                  </property>
                 </widget>
                </item>
@@ -2465,6 +2474,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                  <property name="value">
                   <number>10</number>
+                 </property>
+                 <property name="stepType">
+                  <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
                  </property>
                 </widget>
                </item>
@@ -2854,6 +2866,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                     <property name="value">
                      <number>2</number>
                     </property>
+                    <property name="stepType">
+                     <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+                    </property>
                    </widget>
                   </item>
                   <item row="1" column="1">
@@ -2866,6 +2881,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                     </property>
                     <property name="value">
                      <number>2</number>
+                    </property>
+                    <property name="stepType">
+                     <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
                     </property>
                    </widget>
                   </item>
