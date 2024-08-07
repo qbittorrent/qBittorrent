@@ -306,6 +306,15 @@ a.propButton img {
     top: 3px;
 }
 
+#contextCategoryList img {
+    border: 1px solid transparent;
+    padding: 1px;
+}
+
+#contextCategoryList img.highlightedCategoryIcon {
+    background-color: hsl(213deg 94% 86%);
+}
+
 /* Sliders */
 
 .slider {

@@ -565,7 +565,10 @@ const initializeWindows = function() {
                 paddingVertical: 0,
                 paddingHorizontal: 0,
                 width: 400,
-                height: 150
+                height: 150,
+                onCloseComplete: function() {
+                    updateMainData();
+                }
             });
         }
     };
@@ -584,6 +587,9 @@ const initializeWindows = function() {
             data: {
                 hashes: hashes.join("|"),
                 category: categoryName
+            },
+            onSuccess: function() {
+                updateMainData();
             }
         }).send();
     };

@@ -310,6 +310,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             let all_are_auto_tmm = true;
             let there_are_auto_tmm = false;
             const tagCount = new Map();
+            const categoryCount = new Map();
 
             const selectedRows = torrentsTable.selectedRowsIds();
             selectedRows.forEach((item, index) => {
@@ -350,6 +351,10 @@ window.qBittorrent.ContextMenu ??= (() => {
                     const count = tagCount.get(tag);
                     tagCount.set(tag, ((count !== undefined) ? (count + 1) : 1));
                 }
+
+                const torrentCategory = data["category"];
+                const count = categoryCount.get(torrentCategory);
+                categoryCount.set(torrentCategory, ((count !== undefined) ? (count + 1) : 1));
             });
 
             // hide renameFiles when more than 1 torrent is selected
@@ -428,16 +433,24 @@ window.qBittorrent.ContextMenu ??= (() => {
                 checkbox.indeterminate = (hasCount ? isLesser : false);
                 checkbox.checked = (hasCount ? !isLesser : false);
             });
+
+            const contextCategoryList = document.getElementById("contextCategoryList");
+            category_list.forEach((category, categoryHash) => {
+                const categoryIcon = contextCategoryList.querySelector(`a[href$="(${categoryHash});"] img`);
+                const count = categoryCount.get(category.name);
+                const isEqual = ((count !== undefined) && (count === selectedRows.length));
+                categoryIcon.classList.toggle("highlightedCategoryIcon", isEqual);
+            });
         },
 
         updateCategoriesSubMenu: function(categoryList) {
             const contextCategoryList = $("contextCategoryList");
             contextCategoryList.getChildren().each(c => c.destroy());
             contextCategoryList.appendChild(new Element("li", {
-                html: '<a href="javascript:torrentNewCategoryFN();"><img src="images/list-add.svg" alt="QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]</a>'
+                html: '<a href="javascript:torrentNewCategoryFN();"><img src="images/list-add.svg" alt="QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]"/>QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]</a>'
             }));
             contextCategoryList.appendChild(new Element("li", {
-                html: '<a href="javascript:torrentSetCategoryFN(0);"><img src="images/edit-clear.svg" alt="QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]</a>'
+                html: '<a href="javascript:torrentSetCategoryFN(0);"><img src="images/edit-clear.svg" alt="QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]"/>QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]</a>'
             }));
 
             const sortedCategories = [];
