@@ -121,12 +121,20 @@
                 </span>
                 <a id="preferencesButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]" src="images/configure.svg" alt="QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]" width="24" height="24"></a>
                 <div id="mainWindowTabs" class="toolbarTabs">
-                    <ul id="mainWindowTabsList" class="tab-menu">
-                        <li id="transfersTabLink" class="selected"><a class="tab">QBT_TR(Transfers)QBT_TR[CONTEXT=MainWindow]</a></li>
-                        <li id="searchTabLink"><a class="tab">QBT_TR(Search)QBT_TR[CONTEXT=MainWindow]</a></li>
-                        <li id="rssTabLink"><a class="tab">QBT_TR(RSS)QBT_TR[CONTEXT=MainWindow]</a></li>
-                        <li id="logTabLink"><a class="tab">QBT_TR(Execution Log)QBT_TR[CONTEXT=MainWindow]</a></li>
-                    </ul>
+                    <menu id="mainWindowTabsList" class="tab-menu">
+                        <li id="transfersTabLink" class="selected">
+                            <a><img alt="QBT_TR(Transfers)QBT_TR[CONTEXT=MainWindow]" src="images/filter-all.svg" width="16" height="16">QBT_TR(Transfers)QBT_TR[CONTEXT=MainWindow]</a>
+                        </li>
+                        <li id="searchTabLink">
+                            <a><img alt="QBT_TR(Search)QBT_TR[CONTEXT=MainWindow]" src="images/edit-find.svg" width="16" height="16">QBT_TR(Search)QBT_TR[CONTEXT=MainWindow]</a>
+                        </li>
+                        <li id="rssTabLink">
+                            <a><img alt="QBT_TR(RSS)QBT_TR[CONTEXT=MainWindow]" src="images/application-rss.svg" width="16" height="16">QBT_TR(RSS)QBT_TR[CONTEXT=MainWindow]</a>
+                        </li>
+                        <li id="logTabLink">
+                            <a><img alt="QBT_TR(Execution Log)QBT_TR[CONTEXT=MainWindow]" src="images/help-contents.svg" width="16" height="16">QBT_TR(Execution Log)QBT_TR[CONTEXT=MainWindow]</a>
+                        </li>
+                    </menu>
                     <div class="clear"></div>
                 </div>
                 <div id="torrentsFilterToolbar">
