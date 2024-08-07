@@ -521,6 +521,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const addRule = () => {
             new MochaUI.Window({
                 id: "newRulePage",
+                icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(New rule name)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "iframe",
                 contentURL: "newrule.html",
@@ -535,6 +536,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const renameRule = (rule) => {
             new MochaUI.Window({
                 id: "renameRulePage",
+                icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Rule renaming)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "iframe",
                 contentURL: "rename_rule.html?rule=" + encodeURIComponent(rule),
@@ -557,6 +559,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             const encodedRules = rules.map((rule) => encodeURIComponent(rule));
             new MochaUI.Window({
                 id: "removeRulePage",
+                icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Rule deletion confirmation)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "iframe",
                 contentURL: "confirmruledeletion.html?rules=" + encodeURIComponent(encodedRules.join("|")),
@@ -572,6 +575,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             const encodedRules = rules.map((rule) => encodeURIComponent(rule));
             new MochaUI.Window({
                 id: "clearRulesPage",
+                icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(New rule name)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "iframe",
                 contentURL: "confirmruleclear.html?rules=" + encodeURIComponent(encodedRules.join("|")),

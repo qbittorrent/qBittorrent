@@ -320,6 +320,7 @@
 
             new MochaUI.Window({
                 id: "newFeed",
+                icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
                 contentURL: "newfeed.html?path=" + encodeURIComponent(path),
@@ -347,6 +348,7 @@
 
             new MochaUI.Window({
                 id: "newFolder",
+                icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please choose a folder name)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
                 contentURL: "newfolder.html?path=" + encodeURIComponent(path),
@@ -685,6 +687,7 @@
         const moveItem = (oldPath) => {
             new MochaUI.Window({
                 id: "renamePage",
+                icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please choose a new name for this RSS feed)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
                 contentURL: "rename_feed.html?oldPath=" + encodeURIComponent(oldPath),
@@ -700,6 +703,7 @@
             const encodedPaths = paths.map((path) => encodeURIComponent(path));
             new MochaUI.Window({
                 id: "confirmFeedDeletionPage",
+                icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
                 contentURL: "confirmfeeddeletion.html?paths=" + encodeURIComponent(encodedPaths.join("|")),
@@ -811,6 +815,7 @@
             const id = "rssdownloaderpage";
             new MochaUI.Window({
                 id: id,
+                icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Rss Downloader)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "xhr",
                 contentURL: "views/rssDownloader.html",
