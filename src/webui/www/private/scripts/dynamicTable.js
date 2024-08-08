@@ -1507,11 +1507,13 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if (useRegex) {
                     try {
                         filterTerms = new RegExp(filterText);
-                    } catch (e) {
+                    }
+                    catch (e) {
                         console.error(`Invalid regex pattern: ${filterText}`);
                         return filteredRows;
                     }
-                } else {
+                }
+                else {
                     filterTerms = filterText.split(" ");
                 }
             }
