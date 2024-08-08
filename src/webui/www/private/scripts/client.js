@@ -1523,9 +1523,8 @@ window.addEventListener("DOMContentLoaded", () => {
             torrentsTable.updateTable();
         }, window.qBittorrent.Misc.FILTER_INPUT_DELAY);
     });
-    $("torrentsFilterRegexBox").addEventListener("change", () => {
-        torrentsTable.updateTable();
-    });
+
+    document.getElementById("torrentsFilterToolbar").addEventListener("change", (e) => { torrentsTable.updateTable(); });
 
     $("transfersTabLink").addEventListener("click", showTransfersTab);
     $("searchTabLink").addEventListener("click", showSearchTab);
