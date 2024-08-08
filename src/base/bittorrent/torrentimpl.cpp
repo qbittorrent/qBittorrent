@@ -470,6 +470,8 @@ Path TorrentImpl::savePath() const
 void TorrentImpl::setSavePath(const Path &path)
 {
     Q_ASSERT(!isAutoTMMEnabled());
+    if (isAutoTMMEnabled()) [[unlikely]]
+        return;
 
     const Path basePath = m_session->useCategoryPathsInManualMode()
             ? m_session->categorySavePath(category()) : m_session->savePath();
@@ -497,6 +499,8 @@ Path TorrentImpl::downloadPath() const
 void TorrentImpl::setDownloadPath(const Path &path)
 {
     Q_ASSERT(!isAutoTMMEnabled());
+    if (isAutoTMMEnabled()) [[unlikely]]
+        return;
 
     const Path basePath = m_session->useCategoryPathsInManualMode()
             ? m_session->categoryDownloadPath(category()) : m_session->downloadPath();
@@ -1968,8 +1972,17 @@ void TorrentImpl::moveStorage(const Path &newPath, const MoveStorageContext cont
 {
     if (!hasMetadata())
     {
-        m_savePath = newPath;
-        m_session->handleTorrentSavePathChanged(this);
+        if (context == MoveStorageContext::ChangeSavePath)
+        {
+            m_savePath = newPath;
+            m_session->handleTorrentSavePathChanged(this);
+        }
+        else if (context == MoveStorageContext::ChangeDownloadPath)
+        {
+            m_downloadPath = newPath;
+            m_session->handleTorrentSavePathChanged(this);
+        }
+
         return;
     }
 
