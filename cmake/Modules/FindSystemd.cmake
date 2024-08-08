@@ -21,6 +21,17 @@ elseif (NOT SYSTEMD_FOUND AND SYSTEMD_SERVICES_INSTALL_DIR)
         defined, but we can't find systemd using pkg-config")
 endif()
 
+if (SYSTEMD_FOUND AND "${SYSTEMD_USER_SERVICES_INSTALL_DIR}" STREQUAL "")
+    execute_process(COMMAND ${PKG_CONFIG_EXECUTABLE}
+        --variable=systemduserunitdir systemd
+	OUTPUT_VARIABLE SYSTEMD_USER_SERVICES_INSTALL_DIR)
+    string(REGEX REPLACE "[ \t\n]+" "" SYSTEMD_USER_SERVICES_INSTALL_DIR
+        "${SYSTEMD_USER_SERVICES_INSTALL_DIR}")
+elseif (NOT SYSTEMD_FOUND AND SYSTEMD_USER_SERVICES_INSTALL_DIR)
+    message (FATAL_ERROR "Variable SYSTEMD_USER_SERVICES_INSTALL_DIR is\
+        defined, but we can't find systemd using pkg-config")
+endif()
+
 if (SYSTEMD_FOUND)
-    message(STATUS "systemd services install dir: ${SYSTEMD_SERVICES_INSTALL_DIR}")
+    message(STATUS "systemd system units install dir: ${SYSTEMD_SERVICES_INSTALL_DIR}; systemd user units install dir: ${SYSTEMD_USER_SERVICES_INSTALL_DIR}")
 endif()
