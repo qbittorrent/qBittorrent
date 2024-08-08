@@ -235,10 +235,7 @@ void StatusFilterWidget::applyFilter(int row)
 
 void StatusFilterWidget::handleTorrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents)
 {
-    for (const BitTorrent::Torrent *torrent : torrents)
-        updateTorrentStatus(torrent);
-
-    updateTexts();
+    update(torrents);
 }
 
 void StatusFilterWidget::torrentAboutToBeDeleted(BitTorrent::Torrent *const torrent)
@@ -273,6 +270,12 @@ void StatusFilterWidget::torrentAboutToBeDeleted(BitTorrent::Torrent *const torr
     m_nbStalled = m_nbStalledUploading + m_nbStalledDownloading;
 
     updateTexts();
+
+    if (Preferences::instance()->getHideZeroStatusFilters())
+    {
+        hideZeroItems();
+        updateGeometry();
+    }
 }
 
 void StatusFilterWidget::configure()
