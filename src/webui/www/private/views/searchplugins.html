@@ -182,16 +182,18 @@
         };
 
         const setupSearchPluginTableEvents = function(enable) {
+            const clickHandler = (e) => { enablePlugin(); };
+            const menuHandler = (e) => { updateSearchPluginsTableContextMenuOffset(); };
             if (enable) {
                 $$(".searchPluginsTableRow").each((target) => {
-                    target.addEventListener("dblclick", enablePlugin, false);
-                    target.addEventListener("contextmenu", updateSearchPluginsTableContextMenuOffset, true);
+                    target.addEventListener("dblclick", clickHandler);
+                    target.addEventListener("contextmenu", menuHandler, true);
                 });
             }
             else {
                 $$(".searchPluginsTableRow").each((target) => {
-                    target.removeEventListener("dblclick", enablePlugin, false);
-                    target.removeEventListener("contextmenu", updateSearchPluginsTableContextMenuOffset, true);
+                    target.removeEventListener("dblclick", clickHandler);
+                    target.removeEventListener("contextmenu", menuHandler, true);
                 });
             }
         };

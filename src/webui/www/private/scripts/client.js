@@ -1059,8 +1059,8 @@ window.addEventListener("DOMContentLoaded", () => {
         }).send();
     });
 
-    $("DlInfos").addEventListener("click", globalDownloadLimitFN);
-    $("UpInfos").addEventListener("click", globalUploadLimitFN);
+    $("DlInfos").addEventListener("click", () => { globalDownloadLimitFN(); });
+    $("UpInfos").addEventListener("click", () => { globalUploadLimitFN(); });
 
     $("showTopToolbarLink").addEventListener("click", (e) => {
         showTopToolbar = !showTopToolbar;
@@ -1206,7 +1206,7 @@ window.addEventListener("DOMContentLoaded", () => {
             $("mainWindowTabs").addClass("invisible");
     };
 
-    $("StatisticsLink").addEventListener("click", StatisticsLinkFN);
+    $("StatisticsLink").addEventListener("click", () => { StatisticsLinkFN(); });
 
     // main window tabs
 
@@ -1567,10 +1567,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("torrentsFilterToolbar").addEventListener("change", (e) => { torrentsTable.updateTable(); });
 
-    $("transfersTabLink").addEventListener("click", showTransfersTab);
-    $("searchTabLink").addEventListener("click", showSearchTab);
-    $("rssTabLink").addEventListener("click", showRssTab);
-    $("logTabLink").addEventListener("click", showLogTab);
+    $("transfersTabLink").addEventListener("click", () => { showTransfersTab(); });
+    $("searchTabLink").addEventListener("click", () => { showSearchTab(); });
+    $("rssTabLink").addEventListener("click", () => { showRssTab(); });
+    $("logTabLink").addEventListener("click", () => { showLogTab(); });
     updateTabDisplay();
 
     const registerDragAndDrop = () => {

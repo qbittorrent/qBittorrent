@@ -753,14 +753,15 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const setupSearchTableEvents = function(enable) {
+        const clickHandler = (e) => { downloadSearchTorrent(); };
         if (enable) {
             $$(".searchTableRow").each((target) => {
-                target.addEventListener("dblclick", downloadSearchTorrent, false);
+                target.addEventListener("dblclick", clickHandler);
             });
         }
         else {
             $$(".searchTableRow").each((target) => {
-                target.removeEventListener("dblclick", downloadSearchTorrent, false);
+                target.removeEventListener("dblclick", clickHandler);
             });
         }
     };

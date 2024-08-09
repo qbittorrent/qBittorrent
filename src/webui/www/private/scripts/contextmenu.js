@@ -440,7 +440,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             const createMenuItem = (text, imgURL, clickFn) => {
                 const anchor = document.createElement("a");
                 anchor.textContent = text;
-                anchor.addEventListener("click", clickFn);
+                anchor.addEventListener("click", () => { clickFn(); });
 
                 const img = document.createElement("img");
                 img.src = imgURL;
@@ -495,7 +495,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             const createMenuItem = (text, imgURL, clickFn) => {
                 const anchor = document.createElement("a");
                 anchor.textContent = text;
-                anchor.addEventListener("click", clickFn);
+                anchor.addEventListener("click", () => { clickFn(); });
 
                 const img = document.createElement("img");
                 img.src = imgURL;
