@@ -837,9 +837,9 @@
                 maximizable: false,
                 width: loadWindowWidth(id, 800),
                 height: loadWindowHeight(id, 650),
-                onResize: () => {
+                onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                     saveWindowSize(id);
-                },
+                }),
                 resizeLimit: {
                     "x": [800, 2500],
                     "y": [500, 2000]

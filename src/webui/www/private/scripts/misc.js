@@ -32,6 +32,7 @@ window.qBittorrent ??= {};
 window.qBittorrent.Misc ??= (() => {
     const exports = () => {
         return {
+            createDebounceHandler: createDebounceHandler,
             friendlyUnit: friendlyUnit,
             friendlyDuration: friendlyDuration,
             friendlyPercentage: friendlyPercentage,
@@ -47,6 +48,18 @@ window.qBittorrent.Misc ??= (() => {
             // variables
             FILTER_INPUT_DELAY: 400,
             MAX_ETA: 8640000
+        };
+    };
+
+    const createDebounceHandler = (delay, func) => {
+        let timer = -1;
+        return (...params) => {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                func(...params);
+
+                timer = -1;
+            }, delay);
         };
     };
 

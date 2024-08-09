@@ -502,9 +502,9 @@ window.qBittorrent.Search ??= (() => {
                 paddingHorizontal: 0,
                 width: loadWindowWidth(id, 600),
                 height: loadWindowHeight(id, 360),
-                onResize: function() {
+                onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                     saveWindowSize(id);
-                },
+                }),
                 onBeforeBuild: function() {
                     loadSearchPlugins();
                 },

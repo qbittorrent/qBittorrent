@@ -142,9 +142,9 @@ const initializeWindows = function() {
             paddingHorizontal: 0,
             width: loadWindowWidth(id, 500),
             height: loadWindowHeight(id, 600),
-            onResize: function() {
+            onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveWindowSize(id);
-            }
+            })
         });
         updateMainData();
     };
@@ -171,9 +171,9 @@ const initializeWindows = function() {
             paddingHorizontal: 0,
             width: loadWindowWidth(id, 700),
             height: loadWindowHeight(id, 600),
-            onResize: function() {
+            onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveWindowSize(id);
-            }
+            })
         });
     });
 
@@ -195,9 +195,9 @@ const initializeWindows = function() {
             paddingHorizontal: 0,
             width: loadWindowWidth(id, 500),
             height: loadWindowHeight(id, 460),
-            onResize: function() {
+            onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveWindowSize(id);
-            }
+            })
         });
         updateMainData();
     });
@@ -367,9 +367,9 @@ const initializeWindows = function() {
             padding: 10,
             width: loadWindowWidth(id, 275),
             height: loadWindowHeight(id, 370),
-            onResize: function() {
+            onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveWindowSize(id);
-            }
+            })
         });
     };
 
@@ -1191,9 +1191,9 @@ const initializeWindows = function() {
             padding: 10,
             width: loadWindowWidth(id, 550),
             height: loadWindowHeight(id, 360),
-            onResize: function() {
+            onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveWindowSize(id);
-            }
+            })
         });
     });
 

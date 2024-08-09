@@ -119,14 +119,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                     }
                 };
 
-                this.resizeDebounceTimer = -1;
-                const resizeDebouncer = (entries) => {
-                    clearTimeout(this.resizeDebounceTimer);
-                    this.resizeDebounceTimer = setTimeout(() => {
-                        resizeFn(entries);
-                        this.resizeDebounceTimer = -1;
-                    }, 100);
-                };
+                const resizeDebouncer = window.qBittorrent.Misc.createDebounceHandler(100, (entries) => {
+                    resizeFn(entries);
+                });
 
                 const resizeObserver = new ResizeObserver(resizeDebouncer);
                 resizeObserver.observe(parentPanel, { box: "border-box" });
