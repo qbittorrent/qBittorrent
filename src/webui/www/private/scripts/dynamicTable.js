@@ -50,7 +50,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             RssArticleTable: RssArticleTable,
             RssDownloaderRulesTable: RssDownloaderRulesTable,
             RssDownloaderFeedSelectionTable: RssDownloaderFeedSelectionTable,
-            RssDownloaderArticlesTable: RssDownloaderArticlesTable
+            RssDownloaderArticlesTable: RssDownloaderArticlesTable,
+            TorrentWebseedsTable: TorrentWebseedsTable
         };
     };
 
@@ -3239,6 +3240,14 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             return filteredRows;
         }
+    });
+
+    const TorrentWebseedsTable = new Class({
+        Extends: DynamicTable,
+
+        initColumns: function() {
+            this.newColumn("url", "", "QBT_TR(URL)QBT_TR[CONTEXT=HttpServer]", 500, true);
+        },
     });
 
     return exports();
