@@ -174,7 +174,6 @@ window.qBittorrent.ContextMenu ??= (() => {
         addTarget: function(t) {
             // prevent long press from selecting this text
             t.style.userSelect = "none";
-            t.style["-webkit-user-select"] = "none";
 
             this.targets[this.targets.length] = t;
             this.setupEventListeners(t);
