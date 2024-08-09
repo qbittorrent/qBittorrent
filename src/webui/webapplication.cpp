@@ -356,6 +356,17 @@ void WebApplication::doProcessRequest()
     try
     {
         const APIResult result = controller->run(action, m_params, data);
+        switch (result.status)
+        {
+        case APIStatus::Async:
+            status(202);
+            break;
+        case APIStatus::Ok:
+        default:
+            status(200);
+            break;
+        }
+
         switch (result.data.userType())
         {
         case QMetaType::QJsonDocument:
@@ -372,8 +383,10 @@ void WebApplication::doProcessRequest()
             }
             break;
         case QMetaType::QString:
-        default:
             print(result.data.toString(), Http::CONTENT_TYPE_TXT);
+            break;
+        default:
+            status(204);
             break;
         }
     }
