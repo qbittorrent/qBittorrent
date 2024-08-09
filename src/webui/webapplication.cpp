@@ -265,10 +265,6 @@ void WebApplication::translateDocument(QString &data) const
             // it should fallback to `sourceText`
             QString translation = loadedText.isEmpty() ? sourceText : loadedText;
 
-            // Use HTML code for quotes to prevent issues with JS
-            translation.replace(u'\'', u"&#39;"_s);
-            translation.replace(u'\"', u"&#34;"_s);
-
             data.replace(i, regexMatch.capturedLength(), translation);
             i += translation.length();
         }
