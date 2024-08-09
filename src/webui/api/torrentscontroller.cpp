@@ -873,15 +873,48 @@ void TorrentsController::editTrackerAction()
 
 void TorrentsController::removeTrackersAction()
 {
-    requireParams({u"hash"_s, u"urls"_s});
+    requireParams({u"urls"_s});
 
-    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
-    if (!torrent)
-        throw APIError(APIErrorType::NotFound);
+    const QString hashParam = params()[u"hash"_s];
+    const QStringList urlsParam = params()[u"urls"_s].split(u'|', Qt::SkipEmptyParts);
 
-    const QStringList urls = params()[u"urls"_s].split(u'|');
-    torrent->removeTrackers(urls);
+    // remove trackers from specified torrent
+    if (!hashParam.isEmpty())
+    {
+        const auto id = BitTorrent::TorrentID::fromString(hashParam);
+        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+        if (!torrent)
+            throw APIError(APIErrorType::NotFound);
+
+        torrent->removeTrackers(urlsParam);
+    }
+    // remove trackers from all torrents
+    else
+    {
+        QStringList urls;
+        urls.reserve(urlsParam.size());
+        for (const QString &urlStr : urlsParam)
+            urls << QUrl::fromPercentEncoding(urlStr.toLatin1());
+
+        for (BitTorrent::Torrent *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
+        {
+            const QList<BitTorrent::TrackerEntryStatus> trackers = torrent->trackers();
+            QStringList trackersToRemove;
+            trackersToRemove.reserve(trackers.size());
+            for (const BitTorrent::TrackerEntryStatus &trackerEntryStatus : trackers)
+            {
+                const QString host = QUrl(trackerEntryStatus.url).host();
+                for (const QString &url : urls)
+                {
+                    if ((trackerEntryStatus.url == url) || (host == url))
+                        trackersToRemove.append(trackerEntryStatus.url);
+                }
+            }
+
+            if (!trackersToRemove.isEmpty())
+                torrent->removeTrackers(trackersToRemove);
+        }
+    }
 }
 
 void TorrentsController::addPeersAction()
