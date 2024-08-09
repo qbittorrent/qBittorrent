@@ -947,6 +947,9 @@ window.qBittorrent.DynamicTable = (function() {
             this.newColumn("seen_complete", "", "QBT_TR(Last Seen Complete)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("last_activity", "", "QBT_TR(Last Activity)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("availability", "", "QBT_TR(Availability)QBT_TR[CONTEXT=TransferListModel]", 100, false);
+            this.newColumn("download_path", "", "QBT_TR(Incomplete Save Path)QBT_TR[CONTEXT=TransferListModel]", 100, false);
+            this.newColumn("infohash_v1", "", "QBT_TR(Info Hash v1)QBT_TR[CONTEXT=TransferListModel]", 100, false);
+            this.newColumn("infohash_v2", "", "QBT_TR(Info Hash v2)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("reannounce", "", "QBT_TR(Reannounce In)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("private", "", "QBT_TR(Private)QBT_TR[CONTEXT=TransferListModel]", 100, false);
 
@@ -1324,6 +1327,22 @@ window.qBittorrent.DynamicTable = (function() {
                 const value = window.qBittorrent.Misc.toFixedPointString(this.getRowValue(row), 3);
                 td.set("text", value);
                 td.set("title", value);
+            };
+
+            // infohash_v1
+            this.columns["infohash_v1"].updateTd = function(td, row) {
+                const sourceInfohashV1 = this.getRowValue(row);
+                const infohashV1 = (sourceInfohashV1 !== "") ? sourceInfohashV1 : "QBT_TR(N/A)QBT_TR[CONTEXT=TransferListDelegate]";
+                td.textContent = infohashV1;
+                td.title = infohashV1;
+            };
+
+            // infohash_v2
+            this.columns["infohash_v2"].updateTd = function(td, row) {
+                const sourceInfohashV2 = this.getRowValue(row);
+                const infohashV2 = (sourceInfohashV2 !== "") ? sourceInfohashV2 : "QBT_TR(N/A)QBT_TR[CONTEXT=TransferListDelegate]";
+                td.textContent = infohashV2;
+                td.title = infohashV2;
             };
 
             // reannounce
