@@ -119,6 +119,7 @@ let queueing_enabled = true;
 let serverSyncMainDataInterval = 1500;
 let customSyncMainDataInterval = null;
 let useSubcategories = true;
+const useAutoHideZeroStatusFilters = LocalPreferences.get("hide_zero_status_filters", "false") === "true";
 
 /* Categories filter */
 const CATEGORIES_ALL = 1;
@@ -431,7 +432,14 @@ window.addEventListener("DOMContentLoaded", () => {
     };
 
     const updateFilter = function(filter, filterTitle) {
-        $(filter + "_filter").firstChild.childNodes[1].nodeValue = filterTitle.replace("%1", torrentsTable.getFilteredTorrentsNumber(filter, CATEGORIES_ALL, TAGS_ALL, TRACKERS_ALL));
+        const filterEl = document.getElementById(`${filter}_filter`);
+        const filterTorrentCount = torrentsTable.getFilteredTorrentsNumber(filter, CATEGORIES_ALL, TAGS_ALL, TRACKERS_ALL);
+        if (useAutoHideZeroStatusFilters) {
+            const hideFilter = (filterTorrentCount === 0) && (filter !== "all");
+            if (filterEl.classList.toggle("invisible", hideFilter))
+                return;
+        }
+        filterEl.firstElementChild.lastChild.nodeValue = filterTitle.replace("%1", filterTorrentCount);
     };
 
     const updateFiltersList = function() {

@@ -38,6 +38,10 @@
                 </tbody>
             </table>
         </fieldset>
+        <div class="formRow" style="margin-bottom: 3px;">
+            <input type="checkbox" id="hideZeroFiltersCheckbox">
+            <label for="hideZeroFiltersCheckbox">QBT_TR(Auto hide zero status filters)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -2075,6 +2079,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             window.parent.qBittorrent.Cache.preferences.init({
                 onSuccess: (pref) => {
                     // Behavior tab
+                    document.getElementById("hideZeroFiltersCheckbox").checked = (LocalPreferences.get("hide_zero_status_filters", "false") === "true");
                     $("dblclickDownloadSelect").value = LocalPreferences.get("dblclick_download", "1");
                     $("dblclickCompleteSelect").value = LocalPreferences.get("dblclick_complete", "1");
                     document.getElementById("useAltRowColorsInput").checked = (LocalPreferences.get("use_alt_row_colors", "true") === "true");
@@ -2486,6 +2491,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Validate form data
 
             // Behavior tab
+            LocalPreferences.set("hide_zero_status_filters", document.getElementById("hideZeroFiltersCheckbox").checked.toString());
             LocalPreferences.set("dblclick_download", $("dblclickDownloadSelect").value);
             LocalPreferences.set("dblclick_complete", $("dblclickCompleteSelect").value);
             LocalPreferences.set("use_alt_row_colors", document.getElementById("useAltRowColorsInput").checked.toString());
