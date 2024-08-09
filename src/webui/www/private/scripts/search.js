@@ -174,16 +174,15 @@ window.qBittorrent.Search ??= (() => {
 
         tabElem.appendChild(getStatusIconElement("QBT_TR(Searching...)QBT_TR[CONTEXT=SearchJobWidget]", "images/queued.svg"));
 
-        const liElement = new Element("li", {
-            id: newTabId,
-            class: "selected",
-            html: tabElem.outerHTML,
-        });
-        liElement.addEventListener("click", (e) => {
-            setActiveTab(liElement);
+        const listItem = document.createElement("li");
+        listItem.id = newTabId;
+        listItem.classList.add("selected");
+        listItem.addEventListener("click", (e) => {
+            setActiveTab(listItem);
             $("startSearchButton").textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
         });
-        $("searchTabs").appendChild(liElement);
+        listItem.appendChild(tabElem);
+        $("searchTabs").appendChild(listItem);
 
         // unhide the results elements
         if (numSearchTabs() >= 1) {
@@ -194,7 +193,7 @@ window.qBittorrent.Search ??= (() => {
         }
 
         // select new tab
-        setActiveTab(liElement);
+        setActiveTab(listItem);
 
         searchResultsTable.clear();
         resetFilters();
@@ -577,26 +576,27 @@ window.qBittorrent.Search ??= (() => {
         }
     };
 
-    const getSearchCategories = function() {
-        const populateCategorySelect = function(categories) {
-            const categoryHtml = [];
-            categories.each((category) => {
-                const option = new Element("option");
+    const getSearchCategories = () => {
+        const populateCategorySelect = (categories) => {
+            const categoryOptions = [];
+
+            for (const category of categories) {
+                const option = document.createElement("option");
                 option.value = category.id;
                 option.textContent = category.name;
-                categoryHtml.push(option.outerHTML);
-            });
+                categoryOptions.push(option);
+            };
 
             // first category is "All Categories"
-            if (categoryHtml.length > 1) {
+            if (categoryOptions.length > 1) {
                 // add separator
-                const option = new Element("option");
+                const option = document.createElement("option");
                 option.disabled = true;
                 option.textContent = "──────────";
-                categoryHtml.splice(1, 0, option.outerHTML);
+                categoryOptions.splice(1, 0, option);
             }
 
-            $("categorySelect").innerHTML = categoryHtml.join("");
+            $("categorySelect").replaceChildren(...categoryOptions);
         };
 
         const selectedPlugin = $("pluginsSelect").value;
@@ -629,7 +629,16 @@ window.qBittorrent.Search ??= (() => {
             url: new URI("api/v2/search/plugins"),
             method: "get",
             noCache: true,
-            onSuccess: function(response) {
+            onSuccess: (response) => {
+                const createOption = (text, value, disabled = false) => {
+                    const option = document.createElement("option");
+                    if (value !== undefined)
+                        option.value = value;
+                    option.textContent = text;
+                    option.disabled = disabled;
+                    return option;
+                };
+
                 if (response !== prevSearchPluginsResponse) {
                     prevSearchPluginsResponse = response;
                     searchPlugins.length = 0;
@@ -637,9 +646,9 @@ window.qBittorrent.Search ??= (() => {
                         searchPlugins.push(plugin);
                     });
 
-                    const pluginsHtml = [];
-                    pluginsHtml.push('<option value="enabled">QBT_TR(Only enabled)QBT_TR[CONTEXT=SearchEngineWidget]</option>');
-                    pluginsHtml.push('<option value="all">QBT_TR(All plugins)QBT_TR[CONTEXT=SearchEngineWidget]</option>');
+                    const pluginOptions = [];
+                    pluginOptions.push(createOption("QBT_TR(Only enabled)QBT_TR[CONTEXT=SearchEngineWidget]", "enabled"));
+                    pluginOptions.push(createOption("QBT_TR(All plugins)QBT_TR[CONTEXT=SearchEngineWidget]", "all"));
 
                     const searchPluginsEmpty = (searchPlugins.length === 0);
                     if (!searchPluginsEmpty) {
@@ -656,14 +665,14 @@ window.qBittorrent.Search ??= (() => {
 
                         allPlugins.each((plugin) => {
                             if (plugin.enabled === true)
-                                pluginsHtml.push("<option value='" + window.qBittorrent.Misc.escapeHtml(plugin.name) + "'>" + window.qBittorrent.Misc.escapeHtml(plugin.fullName) + "</option>");
+                                pluginOptions.push(createOption(plugin.fullName, plugin.name));
                         });
 
-                        if (pluginsHtml.length > 2)
-                            pluginsHtml.splice(2, 0, "<option disabled>──────────</option>");
+                        if (pluginOptions.length > 2)
+                            pluginOptions.splice(2, 0, createOption("──────────", undefined, true));
                     }
 
-                    $("pluginsSelect").innerHTML = pluginsHtml.join("");
+                    $("pluginsSelect").replaceChildren(...pluginOptions);
 
                     $("searchPattern").disabled = searchPluginsEmpty;
                     $("categorySelect").disabled = searchPluginsEmpty;

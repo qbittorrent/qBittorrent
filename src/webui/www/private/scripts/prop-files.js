@@ -165,32 +165,31 @@ window.qBittorrent.PropFiles ??= (() => {
         return ($("comboPrio" + id) !== null);
     };
 
-    const createPriorityOptionElement = function(priority, selected, html) {
-        const elem = new Element("option");
-        elem.value = priority.toString();
-        elem.innerHTML = html;
-        if (selected)
-            elem.selected = true;
-        return elem;
-    };
+    const createPriorityCombo = (id, fileId, selectedPriority) => {
+        const createOption = (priority, isSelected, text) => {
+            const option = document.createElement("option");
+            option.value = priority.toString();
+            option.selected = isSelected;
+            option.textContent = text;
+            return option;
+        };
 
-    const createPriorityCombo = function(id, fileId, selectedPriority) {
-        const select = new Element("select");
+        const select = document.createElement("select");
         select.id = "comboPrio" + id;
         select.setAttribute("data-id", id);
         select.setAttribute("data-file-id", fileId);
         select.addClass("combo_priority");
         select.addEventListener("change", fileComboboxChanged);
 
-        createPriorityOptionElement(FilePriority.Ignored, (FilePriority.Ignored === selectedPriority), "QBT_TR(Do not download)QBT_TR[CONTEXT=PropListDelegate]").injectInside(select);
-        createPriorityOptionElement(FilePriority.Normal, (FilePriority.Normal === selectedPriority), "QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]").injectInside(select);
-        createPriorityOptionElement(FilePriority.High, (FilePriority.High === selectedPriority), "QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]").injectInside(select);
-        createPriorityOptionElement(FilePriority.Maximum, (FilePriority.Maximum === selectedPriority), "QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]").injectInside(select);
+        select.appendChild(createOption(FilePriority.Ignored, (FilePriority.Ignored === selectedPriority), "QBT_TR(Do not download)QBT_TR[CONTEXT=PropListDelegate]"));
+        select.appendChild(createOption(FilePriority.Normal, (FilePriority.Normal === selectedPriority), "QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]"));
+        select.appendChild(createOption(FilePriority.High, (FilePriority.High === selectedPriority), "QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]"));
+        select.appendChild(createOption(FilePriority.Maximum, (FilePriority.Maximum === selectedPriority), "QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]"));
 
         // "Mixed" priority is for display only; it shouldn't be selectable
-        const mixedPriorityOption = createPriorityOptionElement(FilePriority.Mixed, (FilePriority.Mixed === selectedPriority), "QBT_TR(Mixed)QBT_TR[CONTEXT=PropListDelegate]");
+        const mixedPriorityOption = createOption(FilePriority.Mixed, (FilePriority.Mixed === selectedPriority), "QBT_TR(Mixed)QBT_TR[CONTEXT=PropListDelegate]");
         mixedPriorityOption.disabled = true;
-        mixedPriorityOption.injectInside(select);
+        select.appendChild(mixedPriorityOption);
 
         return select;
     };

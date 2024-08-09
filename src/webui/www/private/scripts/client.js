@@ -474,15 +474,26 @@ window.addEventListener("DOMContentLoaded", () => {
                 margin_left = (category_path.length - 1) * 20;
             }
 
-            const html = `<span class="link" href="#" style="margin-left: ${margin_left}px;" onclick="setCategoryFilter(${hash}); return false;">`
-                + '<img src="images/view-categories.svg"/>'
-                + window.qBittorrent.Misc.escapeHtml(display_name) + " (" + count + ")" + "</span>";
-            const el = new Element("li", {
-                id: hash,
-                html: html
+            const span = document.createElement("span");
+            span.classList.add("link");
+            span.href = "#";
+            span.style.marginLeft = `${margin_left}px`;
+            span.textContent = `${display_name} (${count})`;
+            span.addEventListener("click", (event) => {
+                event.preventDefault();
+                setCategoryFilter(hash);
             });
-            window.qBittorrent.Filters.categoriesFilterContextMenu.addTarget(el);
-            return el;
+
+            const img = document.createElement("img");
+            img.src = "images/view-categories.svg";
+            span.prepend(img);
+
+            const listItem = document.createElement("li");
+            listItem.id = hash;
+            listItem.appendChild(span);
+
+            window.qBittorrent.Filters.categoriesFilterContextMenu.addTarget(listItem);
+            return listItem;
         };
 
         const all = torrentsTable.getRowIds().length;
@@ -555,15 +566,25 @@ window.addEventListener("DOMContentLoaded", () => {
         tagFilterList.getChildren().each(c => c.destroy());
 
         const createLink = function(hash, text, count) {
-            const html = `<span class="link" href="#" onclick="setTagFilter(${hash}); return false;">`
-                + '<img src="images/tags.svg"/>'
-                + window.qBittorrent.Misc.escapeHtml(text) + " (" + count + ")" + "</span>";
-            const el = new Element("li", {
-                id: hash,
-                html: html
+            const span = document.createElement("span");
+            span.classList.add("link");
+            span.href = "#";
+            span.textContent = `${text} (${count})`;
+            span.addEventListener("click", (event) => {
+                event.preventDefault();
+                setTagFilter(hash);
             });
-            window.qBittorrent.Filters.tagsFilterContextMenu.addTarget(el);
-            return el;
+
+            const img = document.createElement("img");
+            img.src = "images/tags.svg";
+            span.prepend(img);
+
+            const listItem = document.createElement("li");
+            listItem.id = hash;
+            listItem.appendChild(span);
+
+            window.qBittorrent.Filters.tagsFilterContextMenu.addTarget(listItem);
+            return listItem;
         };
 
         const torrentsCount = torrentsTable.getRowIds().length;
@@ -631,15 +652,25 @@ window.addEventListener("DOMContentLoaded", () => {
         trackerFilterList.getChildren().each(c => c.destroy());
 
         const createLink = function(hash, text, count) {
-            const html = '<span class="link" href="#" onclick="setTrackerFilter(' + hash + ');return false;">'
-                + '<img src="images/trackers.svg"/>'
-                + window.qBittorrent.Misc.escapeHtml(text.replace("%1", count)) + "</span>";
-            const el = new Element("li", {
-                id: hash,
-                html: html
+            const span = document.createElement("span");
+            span.classList.add("link");
+            span.href = "#";
+            span.textContent = text.replace("%1", count);
+            span.addEventListener("click", (event) => {
+                event.preventDefault();
+                setTrackerFilter(hash);
             });
-            window.qBittorrent.Filters.trackersFilterContextMenu.addTarget(el);
-            return el;
+
+            const img = document.createElement("img");
+            img.src = "images/trackers.svg";
+            span.prepend(img);
+
+            const listItem = document.createElement("li");
+            listItem.id = hash;
+            listItem.appendChild(span);
+
+            window.qBittorrent.Filters.trackersFilterContextMenu.addTarget(listItem);
+            return listItem;
         };
 
         const torrentsCount = torrentsTable.getRowIds().length;

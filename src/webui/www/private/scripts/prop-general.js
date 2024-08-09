@@ -67,7 +67,7 @@ window.qBittorrent.PropGeneral ??= (() => {
         $("torrent_hash_v1").textContent = "";
         $("torrent_hash_v2").textContent = "";
         $("save_path").textContent = "";
-        $("comment").innerHTML = "";
+        $("comment").textContent = "";
         $("private").textContent = "";
         piecesBar.clear();
     };

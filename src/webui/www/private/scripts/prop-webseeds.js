@@ -63,7 +63,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
         updateRow: function(tr, row) {
             const tds = tr.getElements("td");
             for (let i = 0; i < row.length; ++i)
-                tds[i].innerHTML = row[i];
+                tds[i].textContent = row[i];
             return true;
         },
 
@@ -78,9 +78,9 @@ window.qBittorrent.PropWebseeds ??= (() => {
             const tr = new Element("tr");
             this.rows.set(url, tr);
             for (let i = 0; i < row.length; ++i) {
-                const td = new Element("td");
-                td.innerHTML = row[i];
-                td.injectInside(tr);
+                const td = document.createElement("td");
+                td.textContent = row[i];
+                tr.appendChild(td);
             }
             tr.injectInside(this.table);
         },
