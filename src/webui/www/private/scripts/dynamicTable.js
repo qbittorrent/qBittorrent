@@ -1499,7 +1499,6 @@ window.qBittorrent.DynamicTable ??= (() => {
         getFilteredAndSortedRows: function() {
             const filteredRows = [];
 
-            const rows = this.rows.getValues();
             const useRegex = $("torrentsFilterRegexBox").checked;
             const filterText = $("torrentsFilterInput").value.trim().toLowerCase();
             let filterTerms;
@@ -1512,6 +1511,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return filteredRows;
             }
 
+            const rows = this.rows.getValues();
             for (let i = 0; i < rows.length; ++i) {
                 if (this.applyFilter(rows[i], selected_filter, selected_category, selectedTag, selectedTracker, filterTerms)) {
                     filteredRows.push(rows[i]);
