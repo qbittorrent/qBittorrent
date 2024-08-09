@@ -1502,20 +1502,14 @@ window.qBittorrent.DynamicTable ??= (() => {
             const rows = this.rows.getValues();
             const useRegex = $("torrentsFilterRegexBox").checked;
             const filterText = $("torrentsFilterInput").value.trim().toLowerCase();
-            let filterTerms = null;
-            if (filterText.length > 0) {
-                if (useRegex) {
-                    try {
-                        filterTerms = new RegExp(filterText);
-                    }
-                    catch (e) {
-                        console.error(`Invalid regex pattern: ${filterText}`);
-                        return filteredRows;
-                    }
-                }
-                else {
-                    filterTerms = filterText.split(" ");
-                }
+            let filterTerms;
+            try {
+                filterTerms = (filterText.length > 0)
+                    ? (useRegex ? new RegExp(filterText) : filterText.split(" "))
+                    : null;
+            }
+            catch (e) { // SyntaxError: Invalid regex pattern
+                return filteredRows;
             }
 
             for (let i = 0; i < rows.length; ++i) {
