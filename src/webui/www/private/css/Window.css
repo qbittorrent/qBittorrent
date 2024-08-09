@@ -54,6 +54,7 @@ Required by:
 }
 
 .mochaTitlebar h3 {
+    background-size: 16px !important; /* override mocha titlebar logo inline style */
     font-size: 12px;
     font-weight: bold;
     line-height: 15px;

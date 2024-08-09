@@ -52,6 +52,11 @@ tr.dynamicTableHeader {
     white-space: nowrap;
 }
 
+.dynamicTable tr.selected img,
+.dynamicTable tr:hover img {
+    filter: var(--color-icon-hover);
+}
+
 .dynamicTable td {
     padding: 4px 2px;
     white-space: nowrap;
