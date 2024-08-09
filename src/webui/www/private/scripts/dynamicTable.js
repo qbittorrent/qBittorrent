@@ -95,8 +95,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             const tableDiv = $(this.dynamicTableDivId);
             const tableFixedHeaderDiv = $(this.dynamicTableFixedHeaderDivId);
 
+            const tableElement = tableFixedHeaderDiv.querySelector("table");
             tableDiv.addEventListener("scroll", () => {
-                tableFixedHeaderDiv.getElements("table")[0].style.left = `${-tableDiv.scrollLeft}px`;
+                tableElement.style.left = `${-tableDiv.scrollLeft}px`;
             });
 
             // if the table exists within a panel
@@ -2764,13 +2765,6 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this.hiddenTableHeader.appendChild(new Element("th"));
             this.fixedTableHeader.appendChild(new Element("th"));
-        },
-        setupCommonEvents: function() {
-            const scrollFn = function() {
-                $(this.dynamicTableFixedHeaderDivId).getElements("table")[0].style.left = -$(this.dynamicTableDivId).scrollLeft + "px";
-            }.bind(this);
-
-            $(this.dynamicTableDivId).addEventListener("scroll", scrollFn);
         }
     });
 
@@ -2859,13 +2853,6 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this.hiddenTableHeader.appendChild(new Element("th"));
             this.fixedTableHeader.appendChild(new Element("th"));
-        },
-        setupCommonEvents: function() {
-            const scrollFn = function() {
-                $(this.dynamicTableFixedHeaderDivId).getElements("table")[0].style.left = -$(this.dynamicTableDivId).scrollLeft + "px";
-            }.bind(this);
-
-            $(this.dynamicTableDivId).addEventListener("scroll", scrollFn);
         }
     });
 
