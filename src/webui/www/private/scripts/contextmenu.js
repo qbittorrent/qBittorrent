@@ -156,7 +156,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.hide();
                 this.touchStartAt = performance.now();
                 this.touchStartEvent = e;
-            });
+            }, { passive: true });
             elem.addEventListener("touchend", (e) => {
                 const now = performance.now();
                 const touchStartAt = this.touchStartAt;
@@ -168,7 +168,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 const isTargetUnchanged = (Math.abs(e.event.pageX - touchStartEvent.event.pageX) <= 10) && (Math.abs(e.event.pageY - touchStartEvent.event.pageY) <= 10);
                 if (((now - touchStartAt) >= this.options.touchTimer) && isTargetUnchanged)
                     this.triggerMenu(touchStartEvent, elem);
-            });
+            }, { passive: true });
         },
 
         addTarget: function(t) {

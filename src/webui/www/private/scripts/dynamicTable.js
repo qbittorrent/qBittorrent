@@ -274,7 +274,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const th = ths[i];
                 th.addEventListener("mousemove", mouseMoveFn);
                 th.addEventListener("mouseout", mouseOutFn);
-                th.addEventListener("touchend", onTouch);
+                th.addEventListener("touchend", onTouch, { passive: true });
                 th.makeResizable({
                     modifiers: {
                         x: "",
@@ -762,7 +762,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                             this._this.deselectAll();
                             this._this.selectRow(this.rowId);
                         }
-                    });
+                    }, { passive: true });
                     tr.addEventListener("keydown", function(event) {
                         switch (event.key) {
                             case "up":
