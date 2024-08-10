@@ -228,7 +228,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             const onDrag = function(el, event) {
                 if (this.currentHeaderAction === "resize") {
-                    let width = this.startWidth + (event.page.x - this.dragStartX);
+                    let width = this.startWidth + (event.event.pageX - this.dragStartX);
                     if (width < 16)
                         width = 16;
                     this.columns[this.resizeTh.columnName].width = width;
@@ -747,14 +747,14 @@ window.qBittorrent.DynamicTable ??= (() => {
                         e.preventDefault();
                         e.stopPropagation();
 
-                        if (e.control || e.meta) {
+                        if (e.ctrlKey || e.metaKey) {
                             // CTRL/CMD ⌘ key was pressed
                             if (this._this.isRowSelected(this.rowId))
                                 this._this.deselectRow(this.rowId);
                             else
                                 this._this.selectRow(this.rowId);
                         }
-                        else if (e.shift && (this._this.selectedRows.length === 1)) {
+                        else if (e.shiftKey && (this._this.selectedRows.length === 1)) {
                             // Shift key was pressed
                             this._this.selectRows(this._this.getSelectedRowId(), this.rowId);
                         }
