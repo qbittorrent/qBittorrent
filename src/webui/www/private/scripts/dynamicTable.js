@@ -333,10 +333,18 @@ window.qBittorrent.DynamicTable ??= (() => {
             });
 
             const createLi = function(columnName, text) {
-                const html = '<a href="#' + columnName + '" ><img src="images/checked-completed.svg"/>' + window.qBittorrent.Misc.escapeHtml(text) + "</a>";
-                return new Element("li", {
-                    html: html
-                });
+                const anchor = document.createElement("a");
+                anchor.href = `#${columnName}`;
+                anchor.textContent = text;
+
+                const img = document.createElement("img");
+                img.src = "images/checked-completed.svg";
+                anchor.prepend(img);
+
+                const listItem = document.createElement("li");
+                listItem.appendChild(anchor);
+
+                return listItem;
             };
 
             const actions = {};
@@ -2095,8 +2103,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                             },
                             id: dirImgId
                         });
-                        const html = dirImg.outerHTML + span.outerHTML;
-                        td.innerHTML = html;
+                        td.replaceChildren(dirImg, span);
                     }
                 }
                 else { // is file
@@ -2108,7 +2115,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                             "margin-left": ((node.depth + 1) * 20)
                         }
                     });
-                    td.innerHTML = span.outerHTML;
+                    td.replaceChildren(span);
                 }
             };
 
@@ -2122,7 +2129,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     text: value,
                     id: fileNameRenamedId,
                 });
-                td.innerHTML = span.outerHTML;
+                td.replaceChildren(span);
             };
         },
 
@@ -2428,8 +2435,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                             },
                             id: dirImgId
                         });
-                        const html = collapseIcon.outerHTML + dirImg.outerHTML + span.outerHTML;
-                        td.innerHTML = html;
+                        td.replaceChildren(collapseIcon, dirImg, span);
                     }
                 }
                 else {
@@ -2441,7 +2447,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                             "margin-left": ((node.depth + 1) * 20)
                         }
                     });
-                    td.innerHTML = span.outerHTML;
+                    td.replaceChildren(span);
                 }
             };
 
