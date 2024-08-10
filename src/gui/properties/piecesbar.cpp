@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2016  Eugene Shalygin
  * Copyright (C) 2006  Christophe Dumez
  *
@@ -41,6 +42,7 @@
 #include "base/indexrange.h"
 #include "base/path.h"
 #include "base/utils/misc.h"
+#include "gui/uithememanager.h"
 
 namespace
 {
@@ -114,10 +116,16 @@ namespace
 }
 
 PiecesBar::PiecesBar(QWidget *parent)
-    : QWidget {parent}
+    : QWidget(parent)
 {
-    updatePieceColors();
     setMouseTracking(true);
+
+    updateColorsImpl();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, [this]
+    {
+        updateColors();
+        redraw();
+    });
 }
 
 void PiecesBar::setTorrent(const BitTorrent::Torrent *torrent)
@@ -154,7 +162,7 @@ void PiecesBar::leaveEvent(QEvent *e)
 {
     m_hovered = false;
     m_highlightedRegion = {};
-    requestImageUpdate();
+    redraw();
     base::leaveEvent(e);
 }
 
@@ -178,7 +186,10 @@ void PiecesBar::paintEvent(QPaintEvent *)
     else
     {
         if (m_image.width() != imageRect.width())
-            updateImage(m_image);
+        {
+            if (const QImage image = renderImage(); !image.isNull())
+                m_image = image;
+        }
         painter.drawImage(imageRect, m_image);
     }
 
@@ -196,30 +207,33 @@ void PiecesBar::paintEvent(QPaintEvent *)
     painter.drawPath(border);
 }
 
-void PiecesBar::requestImageUpdate()
+void PiecesBar::redraw()
 {
-    if (updateImage(m_image))
+    if (const QImage image = renderImage(); !image.isNull())
+    {
+        m_image = image;
         update();
+    }
 }
 
 QColor PiecesBar::backgroundColor() const
 {
-    return palette().color(QPalette::Base);
+    return palette().color(QPalette::Active, QPalette::Base);
 }
 
 QColor PiecesBar::borderColor() const
 {
-    return palette().color(QPalette::Dark);
+    return palette().color(QPalette::Active, QPalette::Dark);
 }
 
 QColor PiecesBar::pieceColor() const
 {
-    return palette().color(QPalette::Highlight);
+    return palette().color(QPalette::Active, QPalette::Highlight);
 }
 
 QColor PiecesBar::colorBoxBorderColor() const
 {
-    return palette().color(QPalette::ToolTipText);
+    return palette().color(QPalette::Active, QPalette::ToolTipText);
 }
 
 const QList<QRgb> &PiecesBar::pieceColors() const
@@ -325,12 +339,17 @@ void PiecesBar::highlightFile(int imagePos)
     }
 }
 
-void PiecesBar::updatePieceColors()
+void PiecesBar::updateColors()
+{
+    updateColorsImpl();
+}
+
+void PiecesBar::updateColorsImpl()
 {
     m_pieceColors = QList<QRgb>(256);
     for (int i = 0; i < 256; ++i)
     {
-        float ratio = (i / 255.0);
+        const float ratio = (i / 255.0);
         m_pieceColors[i] = mixTwoColors(backgroundColor().rgb(), pieceColor().rgb(), ratio);
     }
 }
