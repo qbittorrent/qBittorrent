@@ -1357,7 +1357,6 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         applyFilter: function(row, filterName, categoryHash, tagHash, trackerHash, filterTerms) {
             const state = row["full_data"].state;
-            const name = row["full_data"].name.toLowerCase();
             let inactive = false;
 
             switch (filterName) {
@@ -1487,12 +1486,14 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
 
             if ((filterTerms !== undefined) && (filterTerms !== null)) {
+                const filterBy = document.getElementById("torrentsFilterSelect").value;
+                const textToSearch = row["full_data"][filterBy].toLowerCase();
                 if (filterTerms instanceof RegExp) {
-                    if (!filterTerms.test(name))
+                    if (!filterTerms.test(textToSearch))
                         return false;
                 }
                 else {
-                    if ((filterTerms.length > 0) && !window.qBittorrent.Misc.containsAllTerms(name, filterTerms))
+                    if ((filterTerms.length > 0) && !window.qBittorrent.Misc.containsAllTerms(textToSearch, filterTerms))
                         return false;
                 }
             }

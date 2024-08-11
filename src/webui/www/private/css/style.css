@@ -449,6 +449,10 @@ a.propButton img {
     width: 26px;
 }
 
+#torrentsFilterSelect {
+    padding: 2px 4px;
+}
+
 #torrentFilesFilterToolbar {
     float: right;
     margin-right: 30px;
