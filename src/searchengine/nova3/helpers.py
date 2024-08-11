@@ -92,7 +92,7 @@ def htmlentitydecode(s: str) -> str:
 def retrieve_url(url: str, custom_headers: Mapping[str, Any] = {}, post_data: Optional[bytes] = None) -> str:
     """ Return the content of the url page as a string """
 
-    request = urllib.request.Request(url, headers={**headers, **custom_headers}, data=post_data)
+    request = urllib.request.Request(url, request_data, {**headers, **custom_headers})
     try:
         response = urllib.request.urlopen(request)
     except urllib.error.URLError as errno:
