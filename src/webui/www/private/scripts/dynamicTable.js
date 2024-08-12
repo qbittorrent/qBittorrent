@@ -137,16 +137,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.canResize = false;
 
             const resetElementBorderStyle = function(el, side) {
-                if ((side === "left") || (side !== "right")) {
-                    el.setStyle("border-left-style", "");
-                    el.setStyle("border-left-color", "");
-                    el.setStyle("border-left-width", "");
-                }
-                if ((side === "right") || (side !== "left")) {
-                    el.setStyle("border-right-style", "");
-                    el.setStyle("border-right-color", "");
-                    el.setStyle("border-right-width", "");
-                }
+                if ((side === "left") || (side !== "right"))
+                    el.style.borderLeft = "";
+                if ((side === "right") || (side !== "left"))
+                    el.style.borderRight = "";
             };
 
             const mouseMoveFn = function(e) {
@@ -190,11 +184,13 @@ window.qBittorrent.DynamicTable ??= (() => {
                             changeBorderSide = "left";
                     }
 
-                    borderChangeElement.setStyle("border-" + changeBorderSide + "-style", "solid");
-                    borderChangeElement.setStyle("border-" + changeBorderSide + "-color", "#e60");
-                    borderChangeElement.setStyle("border-" + changeBorderSide + "-width", "initial");
+                    const borderStyle = "initial solid #e60";
+                    if (changeBorderSide === "left")
+                        borderChangeElement.style.borderLeft = borderStyle;
+                    else
+                        borderChangeElement.style.borderRight = borderStyle;
 
-                    resetElementBorderStyle(borderChangeElement, changeBorderSide === "right" ? "left" : "right");
+                    resetElementBorderStyle(borderChangeElement, ((changeBorderSide === "right") ? "left" : "right"));
 
                     borderChangeElement.getSiblings('[class=""]').each((el) => {
                         resetElementBorderStyle(el);
@@ -218,11 +214,11 @@ window.qBittorrent.DynamicTable ??= (() => {
             const onStart = function(el, event) {
                 if (this.canResize) {
                     this.currentHeaderAction = "resize";
-                    this.startWidth = this.resizeTh.getStyle("width").toFloat();
+                    this.startWidth = parseInt(this.resizeTh.style.width, 10);
                 }
                 else {
                     this.currentHeaderAction = "drag";
-                    el.setStyle("background-color", "#C1D5E7");
+                    el.style.backgroundColor = "#C1D5E7";
                 }
             }.bind(this);
 
@@ -238,7 +234,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             const onComplete = function(el, event) {
                 resetElementBorderStyle(this.lastHoverTh);
-                el.setStyle("background-color", "");
+                el.style.backgroundColor = "";
                 if (this.currentHeaderAction === "resize")
                     LocalPreferences.set("column_" + this.resizeTh.columnName + "_width_" + this.dynamicTableDivId, this.columns[this.resizeTh.columnName].width);
                 if ((this.currentHeaderAction === "drag") && (el !== this.lastHoverTh)) {
@@ -855,7 +851,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         selectNextRow: function() {
-            const visibleRows = $(this.dynamicTableDivId).getElements("tbody tr").filter(e => e.getStyle("display") !== "none");
+            const visibleRows = $(this.dynamicTableDivId).getElements("tbody tr").filter(e => e.style.display !== "none");
             const selectedRowId = this.getSelectedRowId();
 
             let selectedIndex = -1;
@@ -877,7 +873,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         selectPreviousRow: function() {
-            const visibleRows = $(this.dynamicTableDivId).getElements("tbody tr").filter(e => e.getStyle("display") !== "none");
+            const visibleRows = $(this.dynamicTableDivId).getElements("tbody tr").filter(e => e.style.display !== "none");
             const selectedRowId = this.getSelectedRowId();
 
             let selectedIndex = -1;

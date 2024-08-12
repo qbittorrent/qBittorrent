@@ -78,23 +78,18 @@ window.qBittorrent.ContextMenu ??= (() => {
             this.fx = new Fx.Tween(this.menu, {
                 property: "opacity",
                 duration: this.options.fadeSpeed,
-                onComplete: function() {
-                    if (this.getStyle("opacity"))
-                        this.setStyle("visibility", "visible");
-                    else
-                        this.setStyle("visibility", "hidden");
-                }.bind(this.menu)
+                onComplete: () => {
+                    this.menu.style.visibility = (getComputedStyle(this.menu).opacity > 0) ? "visible" : "hidden";
+                }
             });
 
             // hide and begin the listener
             this.hide().startListener();
 
             // hide the menu
-            this.menu.setStyles({
-                "position": "absolute",
-                "top": "-900000px",
-                "display": "block"
-            });
+            this.menu.style.position = "absolute";
+            this.menu.style.top = "-900000px";
+            this.menu.style.display = "block";
         },
 
         adjustMenuPosition: function(e) {
@@ -103,13 +98,11 @@ window.qBittorrent.ContextMenu ??= (() => {
             const scrollableMenuMaxHeight = document.documentElement.clientHeight * 0.75;
 
             if (this.menu.hasClass("scrollableMenu"))
-                this.menu.setStyle("max-height", scrollableMenuMaxHeight);
+                this.menu.style.maxHeight = `${scrollableMenuMaxHeight}px`;
 
             // draw the menu off-screen to know the menu dimensions
-            this.menu.setStyles({
-                left: "-999em",
-                top: "-999em"
-            });
+            this.menu.style.left = "-999em";
+            this.menu.style.top = "-999em";
 
             // position the menu
             let xPosMenu = e.pageX + this.options.offsets.x;
@@ -122,19 +115,17 @@ window.qBittorrent.ContextMenu ??= (() => {
                 xPosMenu = 0;
             if (yPosMenu < 0)
                 yPosMenu = 0;
-            this.menu.setStyles({
-                left: xPosMenu,
-                top: yPosMenu,
-                position: "absolute",
-                "z-index": "2000"
-            });
+            this.menu.style.left = `${xPosMenu}px`;
+            this.menu.style.top = `${yPosMenu}px`;
+            this.menu.style.position = "absolute";
+            this.menu.style.zIndex = "2000";
 
             // position the sub-menu
             const uls = this.menu.getElementsByTagName("ul");
             for (let i = 0; i < uls.length; ++i) {
                 const ul = uls[i];
                 if (ul.hasClass("scrollableMenu"))
-                    ul.setStyle("max-height", scrollableMenuMaxHeight);
+                    ul.style.maxHeight = `${scrollableMenuMaxHeight}px`;
                 const rectParent = ul.parentNode.getBoundingClientRect();
                 const xPosOrigin = rectParent.left;
                 const yPosOrigin = rectParent.bottom;
@@ -148,10 +139,8 @@ window.qBittorrent.ContextMenu ??= (() => {
                     xPos = 0;
                 if (yPos < 0)
                     yPos = 0;
-                ul.setStyles({
-                    "margin-left": xPos - xPosOrigin,
-                    "margin-top": yPos - yPosOrigin
-                });
+                ul.style.marginLeft = `${xPos - xPosOrigin}px`;
+                ul.style.marginTop = `${yPos - yPosOrigin}px`;
             }
         },
 
@@ -185,7 +174,6 @@ window.qBittorrent.ContextMenu ??= (() => {
         addTarget: function(t) {
             // prevent long press from selecting this text
             t.style.userSelect = "none";
-            t.style["-webkit-user-select"] = "none";
 
             this.targets[this.targets.length] = t;
             this.setupEventListeners(t);
@@ -686,10 +674,8 @@ window.qBittorrent.ContextMenu ??= (() => {
             this.updateMenuItems();
 
             // draw the menu off-screen to know the menu dimensions
-            this.menu.setStyles({
-                left: "-999em",
-                top: "-999em"
-            });
+            this.menu.style.left = "-999em";
+            this.menu.style.top = "-999em";
             // position the menu
             let xPosMenu = e.pageX + this.options.offsets.x - $("rssdownloaderpage").offsetLeft;
             let yPosMenu = e.pageY + this.options.offsets.y - $("rssdownloaderpage").offsetTop;
@@ -700,12 +686,10 @@ window.qBittorrent.ContextMenu ??= (() => {
             xPosMenu = Math.max(xPosMenu, 0);
             yPosMenu = Math.max(yPosMenu, 0);
 
-            this.menu.setStyles({
-                left: xPosMenu,
-                top: yPosMenu,
-                position: "absolute",
-                "z-index": "2000"
-            });
+            this.menu.style.left = `${xPosMenu}px`;
+            this.menu.style.top = `${yPosMenu}px`;
+            this.menu.style.position = "absolute";
+            this.menu.style.zIndex = "2000";
         },
         updateMenuItems: function() {
             const selectedRows = window.qBittorrent.RssDownloader.rssDownloaderRulesTable.selectedRowsIds();

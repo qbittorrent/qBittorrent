@@ -172,10 +172,8 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     /* MochaUI.Desktop = new MochaUI.Desktop();
-    MochaUI.Desktop.desktop.setStyles({
-        'background': '#fff',
-        'visibility': 'visible'
-    });*/
+    MochaUI.Desktop.desktop.style.background = "#fff";
+    MochaUI.Desktop.desktop.style.visibility = "visible"; */
     MochaUI.Desktop.initialize();
 
     const buildTransfersTab = function() {

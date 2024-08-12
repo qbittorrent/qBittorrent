@@ -125,16 +125,16 @@ window.qBittorrent.ProgressBar ??= (() => {
         this.vals.light.textContent = displayedValue;
 
         const r = parseInt((this.vals.width * (value / 100)), 10);
-        this.vals.dark.setStyle("clip", `rect(0, ${r}px, ${this.vals.height}px, 0)`);
-        this.vals.light.setStyle("clip", `rect(0, ${this.vals.width}px, ${this.vals.height}px, ${r}px)`);
+        this.vals.dark.style.clipPath = `inset(0 calc(100% - ${r}px) 0 0)`;
+        this.vals.light.style.clipPath = `inset(0 0 0 ${r}px)`;
     }
 
     function ProgressBar_setWidth(value) {
         if (this.vals.width !== value) {
             this.vals.width = value;
-            this.setStyle("width", value);
-            this.vals.dark.setStyle("width", value);
-            this.vals.light.setStyle("width", value);
+            this.style.width = `${value}px`;
+            this.vals.dark.style.width = `${value}px`;
+            this.vals.light.style.width = `${value}px`;
             this.setValue(this.vals.value);
         }
     }
@@ -145,10 +145,10 @@ window.qBittorrent.ProgressBar ??= (() => {
             return;
         if (!obj.parentNode)
             return setTimeout('ProgressBar_checkForParent("' + id + '")', 100);
-        obj.setStyle("width", "100%");
+        obj.style.width = "100%";
         const w = obj.offsetWidth;
-        obj.vals.dark.setStyle("width", w);
-        obj.vals.light.setStyle("width", w);
+        obj.vals.dark.style.width = `${w}px`;
+        obj.vals.light.style.width = `${w}px`;
         obj.vals.width = w;
         obj.setValue(obj.vals.value);
     }

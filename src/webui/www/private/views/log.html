@@ -228,8 +228,8 @@
             tableInfo["main"].instance.setup("logMessageTableDiv", "logMessageTableFixedHeaderDiv", logTableContextMenu);
             tableInfo["peer"].instance.setup("logPeerTableDiv", "logPeerTableFixedHeaderDiv", logTableContextMenu);
 
-            MUI.Panels.instances.LogPanel.contentEl.setStyle("height", "100%");
-            $("logView").setStyle("height", "inherit");
+            MUI.Panels.instances.LogPanel.contentEl.style.height = "100%";
+            $("logView").style.height = "inherit";
 
             load();
         };
