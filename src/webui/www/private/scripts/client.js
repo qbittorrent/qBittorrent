@@ -475,6 +475,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
             const listItem = document.createElement("li");
             listItem.id = hash;
+            listItem.classList.toggle("selectedFilter", hash === selectedCategory);
             listItem.appendChild(span);
 
             window.qBittorrent.Filters.categoriesFilterContextMenu.addTarget(listItem);
@@ -526,8 +527,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
             categoryList.appendChild(create_link(categoryHash, categoryName, categoryCount));
         }
-
-        highlightSelectedCategory();
     };
 
     const highlightSelectedCategory = function() {
@@ -562,6 +561,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
             const listItem = document.createElement("li");
             listItem.id = hash;
+            listItem.classList.toggle("selectedFilter", hash === selectedTag);
             listItem.appendChild(span);
 
             window.qBittorrent.Filters.tagsFilterContextMenu.addTarget(listItem);
@@ -587,8 +587,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
         for (const { tagName, tagHash, tagSize } of sortedTags)
             tagFilterList.appendChild(createLink(tagHash, tagName, tagSize));
-
-        highlightSelectedTag();
     };
 
     const highlightSelectedTag = function() {
@@ -647,6 +645,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
             const listItem = document.createElement("li");
             listItem.id = hash;
+            listItem.classList.toggle("selectedFilter", hash === selectedTracker);
             listItem.appendChild(span);
 
             window.qBittorrent.Filters.trackersFilterContextMenu.addTarget(listItem);
@@ -680,8 +679,6 @@ window.addEventListener("DOMContentLoaded", () => {
         sortedList.sort((left, right) => window.qBittorrent.Misc.naturalSortCollator.compare(left.trackerHost, right.trackerHost));
         for (const { trackerHost, trackerHash, trackerCount } of sortedList)
             trackerFilterList.appendChild(createLink(trackerHash, (trackerHost + " (%1)"), trackerCount));
-
-        highlightSelectedTracker();
     };
 
     const highlightSelectedTracker = function() {
