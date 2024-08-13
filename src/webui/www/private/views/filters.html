@@ -1,5 +1,5 @@
 <div class="filterWrapper">
-    <span class="filterTitle" onclick="toggleFilterDisplay('status');">
+    <span class="filterTitle">
         <img src="images/go-down.svg" alt="QBT_TR(Collapse/expand)QBT_TR[CONTEXT=TransferListFiltersWidget]">QBT_TR(Status)QBT_TR[CONTEXT=TransferListFiltersWidget]
     </span>
     <ul class="filterList" id="statusFilterList">
@@ -20,21 +20,21 @@
     </ul>
 </div>
 <div class="filterWrapper">
-    <span class="filterTitle" onclick="toggleFilterDisplay('category');">
+    <span class="filterTitle">
         <img src="images/go-down.svg" alt="QBT_TR(Collapse/expand)QBT_TR[CONTEXT=TransferListFiltersWidget]">QBT_TR(Categories)QBT_TR[CONTEXT=TransferListFiltersWidget]
     </span>
     <ul class="filterList" id="categoryFilterList">
     </ul>
 </div>
 <div class="filterWrapper">
-    <span class="filterTitle" onclick="toggleFilterDisplay('tag');">
+    <span class="filterTitle">
         <img src="images/go-down.svg" alt="QBT_TR(Collapse/expand)QBT_TR[CONTEXT=TransferListFiltersWidget]">QBT_TR(Tags)QBT_TR[CONTEXT=TransferListFiltersWidget]
     </span>
     <ul class="filterList" id="tagFilterList">
     </ul>
 </div>
 <div class="filterWrapper">
-    <span class="filterTitle" onclick="toggleFilterDisplay('tracker');">
+    <span class="filterTitle">
         <img src="images/go-down.svg" alt="QBT_TR(Collapse/expand)QBT_TR[CONTEXT=TransferListFiltersWidget]">QBT_TR(Trackers)QBT_TR[CONTEXT=TransferListFiltersWidget]
     </span>
     <ul class="filterList" id="trackerFilterList">
@@ -148,16 +148,16 @@
         });
 
         if (LocalPreferences.get("filter_status_collapsed") === "true")
-            toggleFilterDisplay("status");
+            toggleFilterDisplay("statusFilterList");
 
         if (LocalPreferences.get("filter_category_collapsed") === "true")
-            toggleFilterDisplay("category");
+            toggleFilterDisplay("categoryFilterList");
 
         if (LocalPreferences.get("filter_tag_collapsed") === "true")
-            toggleFilterDisplay("tag");
+            toggleFilterDisplay("tagFilterList");
 
         if (LocalPreferences.get("filter_tracker_collapsed") === "true")
-            toggleFilterDisplay("tracker");
+            toggleFilterDisplay("trackerFilterList");
 
         document.getElementById("Filters_pad").addEventListener("click", (event) => {
             const filterItem = event.target.closest("li");
@@ -180,6 +180,16 @@
                     setTrackerFilter(filterItemID);
                     break;
             }
+            event.stopImmediatePropagation();
+        });
+
+        document.getElementById("Filters_pad").addEventListener("click", (event) => {
+            const filterTitle = event.target.closest(".filterTitle");
+            if (!filterTitle)
+                return;
+
+            const filterList = filterTitle.nextElementSibling.id;
+            toggleFilterDisplay(filterList);
         });
 
         return exports();

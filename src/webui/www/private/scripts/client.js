@@ -258,14 +258,12 @@ window.addEventListener("DOMContentLoaded", () => {
         updateMainData();
     };
 
-    toggleFilterDisplay = function(filter) {
-        const element = filter + "FilterList";
-        LocalPreferences.set("filter_" + filter + "_collapsed", !$(element).hasClass("invisible"));
-        $(element).toggleClass("invisible");
-        const parent = $(element).getParent(".filterWrapper");
-        const toggleIcon = $(parent).getChildren(".filterTitle img");
-        if (toggleIcon)
-            toggleIcon[0].toggleClass("rotate");
+    toggleFilterDisplay = function(filterListID) {
+        const filterList = document.getElementById(filterListID);
+        const filterTitle = filterList.previousElementSibling;
+        const toggleIcon = filterTitle.firstElementChild;
+        toggleIcon.classList.toggle("rotate");
+        LocalPreferences.set(`filter_${filterListID.replace("FilterList", "")}_collapsed`, filterList.classList.toggle("invisible").toString());
     };
 
     new MochaUI.Panel({
