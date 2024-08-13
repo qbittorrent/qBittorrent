@@ -238,23 +238,23 @@ window.addEventListener("DOMContentLoaded", () => {
     };
 
     setCategoryFilter = function(hash) {
-        selectedCategory = hash;
+        selectedCategory = Number(hash);
         highlightSelectedCategory();
-        LocalPreferences.set("selected_category", selectedCategory.toString());
+        LocalPreferences.set("selected_category", hash);
         updateMainData();
     };
 
     setTagFilter = function(hash) {
-        selectedTag = hash;
+        selectedTag = Number(hash);
         highlightSelectedTag();
-        LocalPreferences.set("selected_tag", selectedTag.toString());
+        LocalPreferences.set("selected_tag", hash);
         updateMainData();
     };
 
     setTrackerFilter = function(hash) {
-        selectedTracker = hash;
+        selectedTracker = Number(hash);
         highlightSelectedTracker();
-        LocalPreferences.set("selected_tracker", selectedTracker.toString());
+        LocalPreferences.set("selected_tracker", hash);
         updateMainData();
     };
 
@@ -461,13 +461,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
             const span = document.createElement("span");
             span.classList.add("link");
-            span.href = "#";
             span.style.marginLeft = `${margin_left}px`;
             span.textContent = `${display_name} (${count})`;
-            span.addEventListener("click", (event) => {
-                event.preventDefault();
-                setCategoryFilter(hash);
-            });
 
             const img = document.createElement("img");
             img.src = "images/view-categories.svg";
@@ -550,12 +545,7 @@ window.addEventListener("DOMContentLoaded", () => {
         const createLink = function(hash, text, count) {
             const span = document.createElement("span");
             span.classList.add("link");
-            span.href = "#";
             span.textContent = `${text} (${count})`;
-            span.addEventListener("click", (event) => {
-                event.preventDefault();
-                setTagFilter(hash);
-            });
 
             const img = document.createElement("img");
             img.src = "images/tags.svg";
@@ -636,12 +626,7 @@ window.addEventListener("DOMContentLoaded", () => {
         const createLink = function(hash, text, count) {
             const span = document.createElement("span");
             span.classList.add("link");
-            span.href = "#";
             span.textContent = text.replace("%1", count);
-            span.addEventListener("click", (event) => {
-                event.preventDefault();
-                setTrackerFilter(hash);
-            });
 
             const img = document.createElement("img");
             img.src = "images/trackers.svg";

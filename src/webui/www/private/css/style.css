@@ -545,7 +545,6 @@ ul.filterList .selectedFilter img {
     filter: var(--color-icon-hover);
 }
 
-ul.filterList a,
 ul.filterList span.link {
     align-items: center;
     color: inherit;
