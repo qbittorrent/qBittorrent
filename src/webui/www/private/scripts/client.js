@@ -476,9 +476,9 @@ window.addEventListener("DOMContentLoaded", () => {
             const listItem = document.createElement("li");
             listItem.id = hash;
             listItem.classList.toggle("selectedFilter", hash === selectedCategory);
+            listItem.classList.add("categoriesFilterContextMenuTarget");
             listItem.appendChild(span);
 
-            window.qBittorrent.Filters.categoriesFilterContextMenu.addTarget(listItem);
             return listItem;
         };
 
@@ -527,6 +527,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
             categoryList.appendChild(create_link(categoryHash, categoryName, categoryCount));
         }
+
+        window.qBittorrent.Filters.categoriesFilterContextMenu.searchAndAddTargets();
     };
 
     const highlightSelectedCategory = function() {
@@ -562,9 +564,9 @@ window.addEventListener("DOMContentLoaded", () => {
             const listItem = document.createElement("li");
             listItem.id = hash;
             listItem.classList.toggle("selectedFilter", hash === selectedTag);
+            listItem.classList.add("tagsFilterContextMenuTarget");
             listItem.appendChild(span);
 
-            window.qBittorrent.Filters.tagsFilterContextMenu.addTarget(listItem);
             return listItem;
         };
 
@@ -587,6 +589,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
         for (const { tagName, tagHash, tagSize } of sortedTags)
             tagFilterList.appendChild(createLink(tagHash, tagName, tagSize));
+
+        window.qBittorrent.Filters.tagsFilterContextMenu.searchAndAddTargets();
     };
 
     const highlightSelectedTag = function() {
@@ -646,9 +650,9 @@ window.addEventListener("DOMContentLoaded", () => {
             const listItem = document.createElement("li");
             listItem.id = hash;
             listItem.classList.toggle("selectedFilter", hash === selectedTracker);
+            listItem.classList.add("trackersFilterContextMenuTarget");
             listItem.appendChild(span);
 
-            window.qBittorrent.Filters.trackersFilterContextMenu.addTarget(listItem);
             return listItem;
         };
 
@@ -679,6 +683,8 @@ window.addEventListener("DOMContentLoaded", () => {
         sortedList.sort((left, right) => window.qBittorrent.Misc.naturalSortCollator.compare(left.trackerHost, right.trackerHost));
         for (const { trackerHost, trackerHash, trackerCount } of sortedList)
             trackerFilterList.appendChild(createLink(trackerHash, (trackerHost + " (%1)"), trackerCount));
+
+        window.qBittorrent.Filters.trackersFilterContextMenu.searchAndAddTargets();
     };
 
     const highlightSelectedTracker = function() {
