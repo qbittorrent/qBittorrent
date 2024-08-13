@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -46,7 +47,7 @@ public:
     void clear() override;
 
 private:
-    bool updateImage(QImage &image) override;
+    QImage renderImage() override;
     QString simpleToolTipText() const override;
 
     // last used int vector, uses to better resize redraw

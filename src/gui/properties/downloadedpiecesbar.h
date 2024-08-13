@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -52,11 +53,13 @@ public:
 private:
     // scale bitfield vector to float vector
     QList<float> bitfieldToFloatVector(const QBitArray &vecin, int reqSize);
-    bool updateImage(QImage &image) override;
+    QImage renderImage() override;
     QString simpleToolTipText() const override;
+    void updateColors() override;
+    void updateColorsImpl();
 
     // incomplete piece color
-    const QColor m_dlPieceColor;
+    QColor m_dlPieceColor;
     // last used bitfields, uses to better resize redraw
     // TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster
     QBitArray m_pieces;
