@@ -373,7 +373,7 @@ void TorrentCreatorDialog::loadSettings()
 #ifdef QBT_USES_LIBTORRENT2
     m_ui->comboTorrentFormat->setCurrentIndex(m_storeTorrentFormat.get(1));
 #else
-    m_ui->checkOptimizeAlignment->setChecked(m_storeOptimizeAlignment.get(true));
+    m_ui->checkOptimizeAlignment->setChecked(m_storeOptimizeAlignment.get(false));
     m_ui->spinPaddedFileSizeLimit->setValue(m_paddedFileSizeLimit.get(-1));
 #endif
 
