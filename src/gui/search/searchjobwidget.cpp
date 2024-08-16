@@ -56,6 +56,11 @@ namespace
     {
         LinkVisitedRole = Qt::UserRole + 100
     };
+
+    QColor visitedRowColor()
+    {
+        return QApplication::palette().color(QPalette::Disabled, QPalette::WindowText);
+    }
 }
 
 SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, IGUIApplication *app, QWidget *parent)
@@ -198,7 +203,7 @@ void SearchJobWidget::setRowVisited(const int row)
     m_proxyModel->setDynamicSortFilter(false);
 
     m_proxyModel->setData(m_proxyModel->index(row, 0), true, LinkVisitedRole);
-    setRowColor(row, QApplication::palette().color(QPalette::LinkVisited));
+    setRowColor(row, visitedRowColor());
 
     m_proxyModel->setDynamicSortFilter(true);
 }
@@ -212,7 +217,7 @@ void SearchJobWidget::onUIThemeChanged()
         const QVariant userData = m_proxyModel->data(m_proxyModel->index(row, 0), LinkVisitedRole);
         const bool isVisited = userData.toBool();
         if (isVisited)
-            setRowColor(row, QApplication::palette().color(QPalette::LinkVisited));
+            setRowColor(row, visitedRowColor());
     }
 
     m_proxyModel->setDynamicSortFilter(true);
