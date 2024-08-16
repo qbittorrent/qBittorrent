@@ -37,7 +37,7 @@ jobs:
       - name: Install boost
         env:
           BOOST_MAJOR_VERSION: "1"
-          BOOST_MINOR_VERSION: "85"
+          BOOST_MINOR_VERSION: "86"
           BOOST_PATCH_VERSION: "0"
         run: |
           boost_url="https://boostorg.jfrog.io/artifactory/main/release/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/source/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
