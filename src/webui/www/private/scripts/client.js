@@ -736,9 +736,13 @@ window.addEventListener("DOMContentLoaded", () => {
                     const full_update = (response["full_update"] === true);
                     if (full_update) {
                         torrentsTableSelectedRows = torrentsTable.selectedRowsIds();
+                        update_categories = true;
+                        updateTags = true;
+                        updateTrackers = true;
                         torrentsTable.clear();
                         category_list.clear();
                         tagList.clear();
+                        trackerList.clear();
                     }
                     if (response["rid"])
                         syncMainDataLastResponseId = response["rid"];
