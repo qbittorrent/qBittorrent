@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -1191,7 +1192,7 @@ void TransferListWidget::displayListMenu()
 
     for (const QString &tag : asConst(tags))
     {
-        auto *action = new TriStateAction(tag, tagsMenu);
+        auto *action = new TriStateAction(Utils::Gui::tagToWidgetText(tag), tagsMenu);
         action->setCloseOnInteraction(false);
 
         const Qt::CheckState initialState = tagsInAll.contains(tag) ? Qt::Checked

@@ -425,6 +425,8 @@ Path TorrentImpl::savePath() const
 void TorrentImpl::setSavePath(const Path &path)
 {
     Q_ASSERT(!isAutoTMMEnabled());
+    if (Q_UNLIKELY(isAutoTMMEnabled()))
+        return;
 
     const Path basePath = m_session->useCategoryPathsInManualMode()
             ? m_session->categorySavePath(category()) : m_session->savePath();
@@ -452,6 +454,8 @@ Path TorrentImpl::downloadPath() const
 void TorrentImpl::setDownloadPath(const Path &path)
 {
     Q_ASSERT(!isAutoTMMEnabled());
+    if (Q_UNLIKELY(isAutoTMMEnabled()))
+        return;
 
     const Path basePath = m_session->useCategoryPathsInManualMode()
             ? m_session->categoryDownloadPath(category()) : m_session->downloadPath();
@@ -1364,11 +1368,13 @@ QBitArray TorrentImpl::pieces() const
 
 QBitArray TorrentImpl::downloadingPieces() const
 {
-    QBitArray result(piecesCount());
+    if (!hasMetadata())
+        return {};
 
     std::vector<lt::partial_piece_info> queue;
     m_nativeHandle.get_download_queue(queue);
 
+    QBitArray result {piecesCount()};
     for (const lt::partial_piece_info &info : queue)
         result.setBit(LT::toUnderlyingType(info.piece_index));
 
@@ -1821,8 +1827,17 @@ void TorrentImpl::moveStorage(const Path &newPath, const MoveStorageContext cont
 {
     if (!hasMetadata())
     {
-        m_savePath = newPath;
-        m_session->handleTorrentSavePathChanged(this);
+        if (context == MoveStorageContext::ChangeSavePath)
+        {
+            m_savePath = newPath;
+            m_session->handleTorrentSavePathChanged(this);
+        }
+        else if (context == MoveStorageContext::ChangeDownloadPath)
+        {
+            m_downloadPath = newPath;
+            m_session->handleTorrentSavePathChanged(this);
+        }
+
         return;
     }
 

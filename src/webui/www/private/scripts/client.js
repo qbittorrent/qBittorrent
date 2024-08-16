@@ -670,6 +670,7 @@ window.addEvent('load', function() {
                         torrentsTable.clear();
                         category_list = {};
                         tagList = {};
+                        trackerList.clear();
                     }
                     if (response['rid']) {
                         syncMainDataLastResponseId = response['rid'];
