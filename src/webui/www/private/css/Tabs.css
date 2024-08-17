@@ -36,14 +36,21 @@ Required by:
     float: left;
 }
 
+.tab-menu .selected img,
+.tab-menu li:hover img {
+    filter: var(--color-icon-hover);
+}
+
 .tab-menu li a {
+    align-items: center;
     background-color: var(--color-background-default);
     border-radius: 5px 5px 0 0;
     color: var(--color-text-default);
-    display: block;
+    display: flex;
     font-weight: normal;
-    margin-left: 8px;
-    padding: 5px 16px;
+    gap: 5px;
+    margin-left: 6px;
+    padding: 5px 8px;
     text-align: center;
 }
 
@@ -55,5 +62,4 @@ Required by:
 .tab-menu li.selected a {
     background-color: var(--color-background-blue);
     color: var(--color-text-white);
-    font-weight: bold;
 }

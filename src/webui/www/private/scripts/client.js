@@ -1603,6 +1603,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 const id = "uploadPage";
                 new MochaUI.Window({
                     id: id,
+                    icon: "images/qbittorrent-tray.svg",
                     title: "QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]",
                     loadMethod: "iframe",
                     contentURL: new URI("upload.html").toString(),
@@ -1645,6 +1646,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 const contentURI = new URI("download.html").setData("urls", urls.map(encodeURIComponent).join("|"));
                 new MochaUI.Window({
                     id: id,
+                    icon: "images/qbittorrent-tray.svg",
                     title: "QBT_TR(Download from URLs)QBT_TR[CONTEXT=downloadFromURL]",
                     loadMethod: "iframe",
                     contentURL: contentURI.toString(),

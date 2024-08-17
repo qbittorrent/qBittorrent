@@ -323,6 +323,7 @@
         <file>private/images/help-about.svg</file>
         <file>private/images/help-contents.svg</file>
         <file>private/images/insert-link.svg</file>
+        <file>private/images/ip-blocked.svg</file>
         <file>private/images/knob.gif</file>
         <file>private/images/L.gif</file>
         <file>private/images/list-add.svg</file>
@@ -332,11 +333,19 @@
         <file>private/images/mail-inbox.svg</file>
         <file>private/images/mascot.png</file>
         <file>private/images/name.svg</file>
+        <file>private/images/network-connect.svg</file>
+        <file>private/images/network-server.svg</file>
         <file>private/images/object-locked.svg</file>
         <file>private/images/pause-session.svg</file>
         <file>private/images/paused.svg</file>
         <file>private/images/peers-add.svg</file>
         <file>private/images/peers-remove.svg</file>
+        <file>private/images/peers.svg</file>
+        <file>private/images/plugins.svg</file>
+        <file>private/images/preferences-advanced.svg</file>
+        <file>private/images/preferences-bittorrent.svg</file>
+        <file>private/images/preferences-desktop.svg</file>
+        <file>private/images/preferences-webui.svg</file>
         <file>private/images/queued.svg</file>
         <file>private/images/ratio.svg</file>
         <file>private/images/reannounce.svg</file>

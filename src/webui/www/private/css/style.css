@@ -195,10 +195,6 @@ hr {
     color: var(--color-text-white) !important;
 }
 
-.selectedFilter a {
-    color: var(--color-text-white) !important;
-}
-
 #properties {
     background-color: var(--color-background-default);
 }
@@ -239,10 +235,12 @@ a.propButton img {
 }
 
 .contextMenu li a {
+    align-items: center;
     color: var(--color-text-default);
-    display: block;
+    display: flex;
     font-family: Tahoma, Arial, sans-serif;
     font-size: 12px;
+    gap: 7px;
     padding: 5px 20px 5px 5px;
     text-decoration: none;
     white-space: nowrap;
@@ -251,6 +249,10 @@ a.propButton img {
 .contextMenu li a:hover {
     background-color: var(--color-background-hover);
     color: var(--color-text-white);
+}
+
+.contextMenu li a:hover img {
+    filter: var(--color-icon-hover);
 }
 
 .contextMenu li a.disabled {
@@ -296,8 +298,6 @@ a.propButton img {
 
 .contextMenu li img {
     height: 16px;
-    margin-bottom: -4px;
-    margin-right: 0.5em; /* return missed padding */
     width: 16px;
 }
 
@@ -540,23 +540,29 @@ ul.filterList {
     padding-left: 0;
 }
 
+ul.filterList li:hover img,
+ul.filterList .selectedFilter img {
+    filter: var(--color-icon-hover);
+}
+
 ul.filterList a,
 ul.filterList span.link {
-    color: var(--color-text-default);
+    align-items: center;
+    color: inherit;
     cursor: pointer;
-    display: block;
+    display: flex;
     overflow: hidden;
     padding: 4px 6px;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-ul.filterList li:hover {
-    background-color: var(--color-background-hover);
-    color: var(--color-text-white);
+ul.filterList li {
+    color: var(--color-text-default);
 }
 
-ul.filterList li:hover a {
+ul.filterList li:hover {
+    background-color: var(--color-background-hover);
     color: var(--color-text-white);
 }
 

@@ -72,6 +72,14 @@
         height: 30px;
     }
 
+    #rssButtonBar button {
+        padding: 4px 6px;
+    }
+
+    #rssButtonBar button img {
+        margin: 0 5px -3px 0;
+    }
+
     #rssContentView table {
         width: 100%;
     }
@@ -89,11 +97,18 @@
             QBT_TR(Fetching of RSS feeds is disabled now! You can enable it in application settings.)QBT_TR[CONTEXT=RSSWidget]
         </div>
         <div id="rssButtonBar">
-            <button type="button" id="newSubscriptionButton" onclick="qBittorrent.Rss.addRSSFeed()">QBT_TR(New subscription)QBT_TR[CONTEXT=RSSWidget]</button>
-            <button type="button" id="markReadButton" onclick="qBittorrent.Rss.markSelectedAsRead()">QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]</button>
-            <button type="button" id="updateAllButton" onclick="qBittorrent.Rss.refreshAllFeeds()">QBT_TR(Update all)QBT_TR[CONTEXT=RSSWidget]</button>
-
-            <button type="button" id="rssDownloaderButton" class="alignRight" onclick="qBittorrent.Rss.openRssDownloader()">QBT_TR(RSS Downloader...)QBT_TR[CONTEXT=RSSWidget]</button>
+            <button type="button" id="newSubscriptionButton" onclick="qBittorrent.Rss.addRSSFeed()">
+                <img alt="QBT_TR(New subscription)QBT_TR[CONTEXT=RSSWidget]" src="images/list-add.svg" width="16" height="16">QBT_TR(New subscription)QBT_TR[CONTEXT=RSSWidget]
+            </button>
+            <button type="button" id="markReadButton" onclick="qBittorrent.Rss.markSelectedAsRead()">
+                <img alt="QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]" src="images/task-complete.svg" width="16" height="16">QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]
+            </button>
+            <button type="button" id="updateAllButton" onclick="qBittorrent.Rss.refreshAllFeeds()">
+                <img alt="QBT_TR(Update all)QBT_TR[CONTEXT=RSSWidget]" src="images/view-refresh.svg" width="16" height="16">QBT_TR(Update all)QBT_TR[CONTEXT=RSSWidget]
+            </button>
+            <button type="button" id="rssDownloaderButton" class="alignRight" onclick="qBittorrent.Rss.openRssDownloader()">
+                <img alt="QBT_TR(RSS Downloader...)QBT_TR[CONTEXT=RSSWidget]" src="images/downloading.svg" width="16" height="16">QBT_TR(RSS Downloader...)QBT_TR[CONTEXT=RSSWidget]
+            </button>
         </div>
     </div>
     <div id="rssContentView">
@@ -320,6 +335,7 @@
 
             new MochaUI.Window({
                 id: "newFeed",
+                icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
                 contentURL: "newfeed.html?path=" + encodeURIComponent(path),
@@ -347,6 +363,7 @@
 
             new MochaUI.Window({
                 id: "newFolder",
+                icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please choose a folder name)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
                 contentURL: "newfolder.html?path=" + encodeURIComponent(path),
@@ -685,6 +702,7 @@
         const moveItem = (oldPath) => {
             new MochaUI.Window({
                 id: "renamePage",
+                icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please choose a new name for this RSS feed)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
                 contentURL: "rename_feed.html?oldPath=" + encodeURIComponent(oldPath),
@@ -700,6 +718,7 @@
             const encodedPaths = paths.map((path) => encodeURIComponent(path));
             new MochaUI.Window({
                 id: "confirmFeedDeletionPage",
+                icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
                 contentURL: "confirmfeeddeletion.html?paths=" + encodeURIComponent(encodedPaths.join("|")),
@@ -811,6 +830,7 @@
             const id = "rssdownloaderpage";
             new MochaUI.Window({
                 id: id,
+                icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Rss Downloader)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "xhr",
                 contentURL: "views/rssDownloader.html",

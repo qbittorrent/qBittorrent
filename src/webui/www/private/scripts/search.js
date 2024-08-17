@@ -128,7 +128,7 @@ window.qBittorrent.Search ??= (() => {
 
                     const elem = e.event.srcElement;
                     if (elem.className.contains("searchInputField")) {
-                        $("startSearchButton").click();
+                        document.getElementById("startSearchButton").click();
                         return;
                     }
 
@@ -179,7 +179,7 @@ window.qBittorrent.Search ??= (() => {
         listItem.classList.add("selected");
         listItem.addEventListener("click", (e) => {
             setActiveTab(listItem);
-            $("startSearchButton").textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
+            document.getElementById("startSearchButton").lastChild.textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
         });
         listItem.appendChild(tabElem);
         $("searchTabs").appendChild(listItem);
@@ -258,7 +258,7 @@ window.qBittorrent.Search ??= (() => {
         }
         else if (isTabSelected && newTabToSelect) {
             setActiveTab(newTabToSelect);
-            $("startSearchButton").textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
+            document.getElementById("startSearchButton").lastChild.textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
         }
     };
 
@@ -335,7 +335,7 @@ window.qBittorrent.Search ??= (() => {
             const currentSearchPattern = $("searchPattern").value.trim();
             if (state.running && (state.searchPattern === currentSearchPattern)) {
                 // allow search to be stopped
-                $("startSearchButton").textContent = "QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]";
+                document.getElementById("startSearchButton").lastChild.textContent = "QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]";
                 searchPatternChanged = false;
             }
 
@@ -392,7 +392,7 @@ window.qBittorrent.Search ??= (() => {
                 plugins: plugins
             },
             onSuccess: (response) => {
-                $("startSearchButton").textContent = "QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]";
+                document.getElementById("startSearchButton").lastChild.textContent = "QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]";
                 const searchId = response.id;
                 createSearchTab(searchId, pattern);
 
@@ -493,6 +493,7 @@ window.qBittorrent.Search ??= (() => {
             new MochaUI.Window({
                 id: id,
                 title: "QBT_TR(Search plugins)QBT_TR[CONTEXT=PluginSelectDlg]",
+                icon: "images/qbittorrent-tray.svg",
                 loadMethod: "xhr",
                 contentURL: "views/searchplugins.html",
                 scrollbars: false,
@@ -527,11 +528,11 @@ window.qBittorrent.Search ??= (() => {
         // start a new search if pattern has changed, otherwise allow the search to be stopped
         if (state && (state.searchPattern === currentSearchPattern)) {
             searchPatternChanged = false;
-            $("startSearchButton").textContent = "QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]";
+            document.getElementById("startSearchButton").lastChild.textContent = "QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]";
         }
         else {
             searchPatternChanged = true;
-            $("startSearchButton").textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
+            document.getElementById("startSearchButton").lastChild.textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
         }
     };
 
@@ -567,7 +568,7 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const resetSearchState = function(searchId) {
-        $("startSearchButton").textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
+        document.getElementById("startSearchButton").lastChild.textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
         const state = searchState.get(searchId);
         if (state) {
             state.running = false;
@@ -677,7 +678,7 @@ window.qBittorrent.Search ??= (() => {
                     $("searchPattern").disabled = searchPluginsEmpty;
                     $("categorySelect").disabled = searchPluginsEmpty;
                     $("pluginsSelect").disabled = searchPluginsEmpty;
-                    $("startSearchButton").disabled = searchPluginsEmpty;
+                    document.getElementById("startSearchButton").disabled = searchPluginsEmpty;
 
                     if (window.qBittorrent.SearchPlugins !== undefined)
                         window.qBittorrent.SearchPlugins.updateTable();
