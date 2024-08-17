@@ -21,17 +21,16 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - FEATURE: Focus on Download button if torrent link retrieved from the clipboard (glassez) 7310eec74e6694342e9934ecc524df38d0064bb5
     - FEATURE: Add ability to pause/resume entire BitTorrent session (glassez) 8ef7d3ec9a56e7445948c37a282629ca5ed551ab
     - FEATURE: Add an option to set BitTorrent session shutdown timeout (glassez) 2b728b3bc0c525905ef4c6086bc45027eb2150fd
-    - FEATURE: Apply filename filter to subfolder names as well (glassez) d89f289f82fb6ff4305841c7d4c7899ffe12f896
+    - FEATURE: Apply "Excluded file names" to folder names as well (glassez) d89f289f82fb6ff4305841c7d4c7899ffe12f896
     - FEATURE: Allow to use regular expression to filter torrent content (glassez) 9894f654cf9f9e5ece5e83b55b709c70e398dd02
     - BUGFIX: Display error message when unrecoverable error occurred (glassez)
     - BUGFIX: Update size of selected files when selection is changed (glassez)
     - BUGFIX: Normalize tags by trimming leading/trailing whitespace (glassez)
     - BUGFIX: Correctly handle share limits in torrent options dialog (glassez)
     - BUGFIX: Adjust tracker tier when adding additional trackers (Chocobo1) 321d7e5b17b6e4cacf713b4f4409364a5e65873e
-    - BUGFIX: Fix inconsistent naming between (Done/Progress) column (luzpaz) d3315f7cc7f31b1578cf72f07b175a80c204dac9
+    - BUGFIX: Fix inconsistent naming between `Done/Progress` column (luzpaz) d3315f7cc7f31b1578cf72f07b175a80c204dac9
     - BUGFIX: Sanitize peer client names (Hanabishi) 2c47f09d7a797c1ea886879749b71198e449e701
     - BUGFIX: Apply share limits when torrent downloading is finished (glassez) 65d143d4c411e045b3cd1cf847dee831290af799
-    - BUGFIX: Revise Protocol column (Chocobo1) 1c49e0973c94b32bf3bfe52845b6b9572c997ef2
     - BUGFIX: Show download progress for folders with zero byte size as 100 instead of 0 (vikas_c) 9317c25ecb73c5b0e46fd0656252eef766053682
     - WEBUI: Improve WebUI responsiveness (Chocobo1)
     - WEBUI: Do not exit the app when WebUI has failed to start (Hanabishi)
@@ -53,10 +52,10 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - WEBAPI: Fix wrong timestamp values (Chocobo1)
     - WEBAPI: Send binary data with filename and mime type specified (glassez)
     - WEBAPI: Expose API for the torrent creator (glassez, Radu Carpa)
-    - WEBAPI: API for listing directory content (Paweł Kotiuk) a1af077889de587d8c71968a380abc9eb4aea47f
-    - WEBAPI: Provide "isPrivate" flag via "torrents/info" endpoint (ManiMatter) 05416458db79e050f8500e1d543148ce4cf2ecdb
+    - WEBAPI: Provide endpoint for listing directory content (Paweł Kotiuk) a1af077889de587d8c71968a380abc9eb4aea47f
+    - WEBAPI: Provide "private" flag via "torrents/info" endpoint (ManiMatter) 05416458db79e050f8500e1d543148ce4cf2ecdb
     - WEBAPI: Add a way to download .torrent file using search plugin (glassez) 4d8713ce110d80f995212fb7a779fe16504fb91d
-    - WEBAPI: Add "private" filter for 'info' endpoint (ManiMatter) 914728d9a102ee8aa44eb46c413ecb668728709c
+    - WEBAPI: Add "private" filter for 'torrents/info' endpoint (ManiMatter) 914728d9a102ee8aa44eb46c413ecb668728709c
     - RSS: Show RSS feed title in HTML browser (Jay)
     - RSS: Allow to set delay between requests to the same host (jNullj)
     - SEARCH: Allow users to specify Python executable path (Chocobo1)
@@ -65,6 +64,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - SEARCH: Allow to rearrange search tabs (glassez) 00ca209ab9b083cdabf5cbb9484b3b6f2f47de00
     - WINDOWS: Use Fusion style on Windows 10+. It has better compatibility with dark mode (glassez)
     - WINDOWS: Allow to set qBittorrent as default program (glassez)
+    - WINDOWS: Don't access "Favorites" folder unexpectedly (glassez) c36100fa8532e267d1da122a640faedc278b2d7b
     - LINUX: Add support for systemd power management (Chocobo1)
     - LINUX: Add support for localized man pages (Victor Chernyakin)
     - LINUX: Specify a locale if none is set (Chocobo1)
