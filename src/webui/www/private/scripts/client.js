@@ -448,6 +448,8 @@ window.addEventListener("DOMContentLoaded", () => {
             return;
         categoryList.getChildren().each(c => c.destroy());
 
+        const categoryItemTemplate = document.getElementById("categoryFilterItem");
+
         const create_link = function(hash, text, count) {
             let display_name = text;
             let margin_left = 0;
@@ -457,22 +459,15 @@ window.addEventListener("DOMContentLoaded", () => {
                 margin_left = (category_path.length - 1) * 20;
             }
 
-            const span = document.createElement("span");
-            span.classList.add("link");
+            const categoryFilterItem = categoryItemTemplate.content.cloneNode(true).firstElementChild;
+            categoryFilterItem.id = hash;
+            categoryFilterItem.classList.toggle("selectedFilter", hash === selectedCategory);
+
+            const span = categoryFilterItem.firstElementChild;
             span.style.marginLeft = `${margin_left}px`;
-            span.textContent = `${display_name} (${count})`;
+            span.lastChild.textContent = `${display_name} (${count})`;
 
-            const img = document.createElement("img");
-            img.src = "images/view-categories.svg";
-            span.prepend(img);
-
-            const listItem = document.createElement("li");
-            listItem.id = hash;
-            listItem.classList.toggle("selectedFilter", hash === selectedCategory);
-            listItem.classList.add("categoriesFilterContextMenuTarget");
-            listItem.appendChild(span);
-
-            return listItem;
+            return categoryFilterItem;
         };
 
         const all = torrentsTable.getRowIds().length;
@@ -540,22 +535,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
         tagFilterList.getChildren().each(c => c.destroy());
 
+        const tagItemTemplate = document.getElementById("tagFilterItem");
+
         const createLink = function(hash, text, count) {
-            const span = document.createElement("span");
-            span.classList.add("link");
-            span.textContent = `${text} (${count})`;
+            const tagFilterItem = tagItemTemplate.content.cloneNode(true).firstElementChild;
+            tagFilterItem.id = hash;
+            tagFilterItem.classList.toggle("selectedFilter", hash === selectedTag);
 
-            const img = document.createElement("img");
-            img.src = "images/tags.svg";
-            span.prepend(img);
+            const span = tagFilterItem.firstElementChild;
+            span.lastChild.textContent = `${text} (${count})`;
 
-            const listItem = document.createElement("li");
-            listItem.id = hash;
-            listItem.classList.toggle("selectedFilter", hash === selectedTag);
-            listItem.classList.add("tagsFilterContextMenuTarget");
-            listItem.appendChild(span);
-
-            return listItem;
+            return tagFilterItem;
         };
 
         const torrentsCount = torrentsTable.getRowIds().length;
@@ -621,22 +611,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
         trackerFilterList.getChildren().each(c => c.destroy());
 
+        const trackerItemTemplate = document.getElementById("trackerFilterItem");
+
         const createLink = function(hash, text, count) {
-            const span = document.createElement("span");
-            span.classList.add("link");
-            span.textContent = text.replace("%1", count);
+            const trackerFilterItem = trackerItemTemplate.content.cloneNode(true).firstElementChild;
+            trackerFilterItem.id = hash;
+            trackerFilterItem.classList.toggle("selectedFilter", hash === selectedTracker);
 
-            const img = document.createElement("img");
-            img.src = "images/trackers.svg";
-            span.prepend(img);
+            const span = trackerFilterItem.firstElementChild;
+            span.lastChild.textContent = text.replace("%1", count);
 
-            const listItem = document.createElement("li");
-            listItem.id = hash;
-            listItem.classList.toggle("selectedFilter", hash === selectedTracker);
-            listItem.classList.add("trackersFilterContextMenuTarget");
-            listItem.appendChild(span);
-
-            return listItem;
+            return trackerFilterItem;
         };
 
         const torrentsCount = torrentsTable.getRowIds().length;

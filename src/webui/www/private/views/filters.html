@@ -41,6 +41,28 @@
     </ul>
 </div>
 
+<template id="categoryFilterItem">
+    <li class="categoriesFilterContextMenuTarget">
+        <span class="link">
+            <img src="images/view-categories.svg" alt="">
+        </span>
+    </li>
+</template>
+<template id="tagFilterItem">
+    <li class="tagsFilterContextMenuTarget">
+        <span class="link">
+            <img src="images/tags.svg" alt="">
+        </span>
+    </li>
+</template>
+<template id="trackerFilterItem">
+    <li class="trackersFilterContextMenuTarget">
+        <span class="link">
+            <img src="images/trackers.svg" alt="">
+        </span>
+    </li>
+</template>
+
 <script>
     "use strict";
 
@@ -88,7 +110,7 @@
                 y: 2
             },
             onShow: function() {
-                this.options.element.firstChild.click();
+                this.options.element.click();
             }
         });
 
@@ -120,7 +142,7 @@
                 y: 2
             },
             onShow: function() {
-                this.options.element.firstChild.click();
+                this.options.element.click();
             }
         });
 
@@ -143,7 +165,7 @@
                 y: 2
             },
             onShow: function() {
-                this.options.element.firstChild.click();
+                this.options.element.click();
             }
         });
 
