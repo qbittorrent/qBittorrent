@@ -23,6 +23,9 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - FEATURE: Add an option to set BitTorrent session shutdown timeout (glassez) 2b728b3bc0c525905ef4c6086bc45027eb2150fd
     - FEATURE: Apply "Excluded file names" to folder names as well (glassez) d89f289f82fb6ff4305841c7d4c7899ffe12f896
     - FEATURE: Allow to use regular expression to filter torrent content (glassez) 9894f654cf9f9e5ece5e83b55b709c70e398dd02
+    - FEATURE: Allow to move content files to Trash instead of deleting them (glassez) 4149609e785f744c00856d8b4f006b7bc8e14387
+    - FEATURE: Add ability to display torrent "privateness" in UI (ManiMatter) 4d490c84e7b08c87b10b9ba082409832f50084b6
+    - FEATURE: Add a flag in `Peers` tab denoting a connection using NAT hole punching (stalkerok) 63689cf76312303c4323dc1ec16e662444b83b76
     - BUGFIX: Display error message when unrecoverable error occurred (glassez)
     - BUGFIX: Update size of selected files when selection is changed (glassez)
     - BUGFIX: Normalize tags by trimming leading/trailing whitespace (glassez)
@@ -49,6 +52,8 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - WEBUI: Restore previously used tab on load (Thomas Piccirello) 6d073771ca03bf7289c09d1a4418d341f709a874
     - WEBUI: Increase default height of 'Share ratio limit' dialog (thalieht) 455a04b68e12ea9b75fedb9e8abee428dec3d3d0
     - WEBUI: Use enabled search plugins by default (Thomas Piccirello) 9d87a813b2df6fa1c18a116f1760b47a507a50a1
+    - WEBUI: Add columns `Incomplete Save Path`, `Info Hash v1`, `Info Hash v2` (thalieht) cebc72d3cf2efae93f0ac19874fa273837a896d1
+    - WEBUI: Always create generic filter items (skomerko) 978fbbdc0d13d94afec10204bc0df30671acc8fd
     - WEBAPI: Fix wrong timestamp values (Chocobo1)
     - WEBAPI: Send binary data with filename and mime type specified (glassez)
     - WEBAPI: Expose API for the torrent creator (glassez, Radu Carpa)
@@ -56,6 +61,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - WEBAPI: Provide "private" flag via "torrents/info" endpoint (ManiMatter) 05416458db79e050f8500e1d543148ce4cf2ecdb
     - WEBAPI: Add a way to download .torrent file using search plugin (glassez) 4d8713ce110d80f995212fb7a779fe16504fb91d
     - WEBAPI: Add "private" filter for 'torrents/info' endpoint (ManiMatter) 914728d9a102ee8aa44eb46c413ecb668728709c
+    - WEBAPI: Add root_path to torrent/info result (David Newhall) 09ed0d6b6681adba7632b418b814e6440f31dcc1
     - RSS: Show RSS feed title in HTML browser (Jay)
     - RSS: Allow to set delay between requests to the same host (jNullj)
     - SEARCH: Allow users to specify Python executable path (Chocobo1)
