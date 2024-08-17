@@ -90,7 +90,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
 
     let loadWebSeedsDataTimer = -1;
     const loadWebSeedsData = function() {
-        if ($("prop_webseeds").hasClass("invisible")
+        if ($("propWebSeeds").hasClass("invisible")
             || $("propertiesPanel_collapseToggle").hasClass("panel-expand")) {
             // Tab changed, don't do anything
             return;

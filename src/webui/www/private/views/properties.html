@@ -1,4 +1,4 @@
-<div id="prop_general" class="propertiesTabContent">
+<div id="propGeneral" class="propertiesTabContent invisible unselectable">
     <table style="width: 100%; padding: 0 3px">
         <tbody>
             <tr>
@@ -104,7 +104,7 @@
     </fieldset>
 </div>
 
-<div id="prop_trackers" class="propertiesTabContent invisible unselectable">
+<div id="propTrackers" class="propertiesTabContent invisible unselectable">
     <div id="trackers">
         <div id="torrentTrackersTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
             <table class="dynamicTable" style="position:relative;">
@@ -124,7 +124,7 @@
     </div>
 </div>
 
-<div id="prop_peers" class="propertiesTabContent invisible unselectable">
+<div id="propPeers" class="propertiesTabContent invisible unselectable">
     <div>
         <div id="torrentPeersTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
             <table class="dynamicTable" style="position:relative;">
@@ -144,7 +144,7 @@
     </div>
 </div>
 
-<div id="prop_webseeds" class="propertiesTabContent invisible unselectable">
+<div id="propWebSeeds" class="propertiesTabContent invisible unselectable">
     <div id="webseeds">
         <table class="dynamicTable" style="width: 100%">
             <thead>
@@ -157,7 +157,7 @@
     </div>
 </div>
 
-<div id="prop_files" class="propertiesTabContent invisible unselectable">
+<div id="propFiles" class="propertiesTabContent invisible unselectable">
     <div id="torrentFiles">
         <div id="torrentFilesTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
             <table class="dynamicTable" style="position:relative;">
@@ -176,13 +176,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    "use strict";
-
-    (function() {
-        const selectedTab = $(LocalPreferences.get("selected_tab", "PropGeneralLink"));
-        if (selectedTab)
-            selectedTab.click();
-    })();
-</script>

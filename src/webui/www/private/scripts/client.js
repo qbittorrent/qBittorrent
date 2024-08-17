@@ -1460,7 +1460,6 @@ window.addEventListener("DOMContentLoaded", () => {
     new MochaUI.Panel({
         id: "propertiesPanel",
         title: "Panel",
-        header: true,
         padding: {
             top: 0,
             right: 0,
@@ -1469,91 +1468,78 @@ window.addEventListener("DOMContentLoaded", () => {
         },
         contentURL: "views/properties.html",
         require: {
-            css: ["css/Tabs.css", "css/dynamicTable.css"],
             js: ["scripts/prop-general.js", "scripts/prop-trackers.js", "scripts/prop-peers.js", "scripts/prop-webseeds.js", "scripts/prop-files.js"],
+            onload: function() {
+                updatePropertiesPanel = function() {
+                    switch (LocalPreferences.get("selected_properties_tab")) {
+                        case "propGeneralLink":
+                            window.qBittorrent.PropGeneral.updateData();
+                            break;
+                        case "propTrackersLink":
+                            window.qBittorrent.PropTrackers.updateData();
+                            break;
+                        case "propPeersLink":
+                            window.qBittorrent.PropPeers.updateData();
+                            break;
+                        case "propWebSeedsLink":
+                            window.qBittorrent.PropWebseeds.updateData();
+                            break;
+                        case "propFilesLink":
+                            window.qBittorrent.PropFiles.updateData();
+                            break;
+                    }
+                };
+            }
         },
         tabsURL: "views/propertiesToolbar.html",
-        tabsOnload: function() {
-            MochaUI.initializeTabs("propertiesTabs");
+        tabsOnload: function() {}, // must be included, otherwise panel won't load properly
+        onContentLoaded: function() {
+            this.panelHeaderCollapseBoxEl.classList.add("invisible");
 
-            updatePropertiesPanel = function() {
-                if (!$("prop_general").hasClass("invisible")) {
-                    if (window.qBittorrent.PropGeneral !== undefined)
-                        window.qBittorrent.PropGeneral.updateData();
-                }
-                else if (!$("prop_trackers").hasClass("invisible")) {
-                    if (window.qBittorrent.PropTrackers !== undefined)
-                        window.qBittorrent.PropTrackers.updateData();
-                }
-                else if (!$("prop_peers").hasClass("invisible")) {
-                    if (window.qBittorrent.PropPeers !== undefined)
-                        window.qBittorrent.PropPeers.updateData();
-                }
-                else if (!$("prop_webseeds").hasClass("invisible")) {
-                    if (window.qBittorrent.PropWebseeds !== undefined)
-                        window.qBittorrent.PropWebseeds.updateData();
-                }
-                else if (!$("prop_files").hasClass("invisible")) {
-                    if (window.qBittorrent.PropFiles !== undefined)
-                        window.qBittorrent.PropFiles.updateData();
-                }
+            const togglePropertiesPanel = () => {
+                this.collapseToggleEl.click();
+                LocalPreferences.set("properties_panel_collapsed", this.isCollapsed.toString());
             };
 
-            $("PropGeneralLink").addEventListener("click", function(e) {
-                $$(".propertiesTabContent").addClass("invisible");
-                $("prop_general").removeClass("invisible");
-                hideFilesFilter();
-                updatePropertiesPanel();
-                LocalPreferences.set("selected_tab", this.id);
-            });
+            const selectTab = (tabID) => {
+                const isAlreadySelected = this.panelHeaderEl.getElementById(tabID).classList.contains("selected");
+                if (!isAlreadySelected) {
+                    for (const tab of this.panelHeaderEl.getElementById("propertiesTabs").children)
+                        tab.classList.toggle("selected", tab.id === tabID);
 
-            $("PropTrackersLink").addEventListener("click", function(e) {
-                $$(".propertiesTabContent").addClass("invisible");
-                $("prop_trackers").removeClass("invisible");
-                hideFilesFilter();
-                updatePropertiesPanel();
-                LocalPreferences.set("selected_tab", this.id);
-            });
+                    const tabContentID = tabID.replace("Link", "");
+                    for (const tabContent of this.contentEl.children)
+                        tabContent.classList.toggle("invisible", tabContent.id !== tabContentID);
 
-            $("PropPeersLink").addEventListener("click", function(e) {
-                $$(".propertiesTabContent").addClass("invisible");
-                $("prop_peers").removeClass("invisible");
-                hideFilesFilter();
-                updatePropertiesPanel();
-                LocalPreferences.set("selected_tab", this.id);
-            });
+                    LocalPreferences.set("selected_properties_tab", tabID);
+                }
 
-            $("PropWebSeedsLink").addEventListener("click", function(e) {
-                $$(".propertiesTabContent").addClass("invisible");
-                $("prop_webseeds").removeClass("invisible");
-                hideFilesFilter();
-                updatePropertiesPanel();
-                LocalPreferences.set("selected_tab", this.id);
-            });
+                if (isAlreadySelected || this.isCollapsed)
+                    togglePropertiesPanel();
+            };
 
-            $("PropFilesLink").addEventListener("click", function(e) {
-                $$(".propertiesTabContent").addClass("invisible");
-                $("prop_files").removeClass("invisible");
-                showFilesFilter();
-                updatePropertiesPanel();
-                LocalPreferences.set("selected_tab", this.id);
-            });
+            const lastUsedTab = LocalPreferences.get("selected_properties_tab", "propGeneralLink");
+            selectTab(lastUsedTab);
 
-            $("propertiesPanel_collapseToggle").addEventListener("click", (e) => {
+            const startCollapsed = LocalPreferences.get("properties_panel_collapsed", "false") === "true";
+            if (startCollapsed)
+                togglePropertiesPanel();
+
+            this.panelHeaderContentEl.addEventListener("click", (e) => {
+                const selectedTab = e.target.closest("li");
+                if (!selectedTab)
+                    return;
+
+                selectTab(selectedTab.id);
                 updatePropertiesPanel();
+
+                const showFilesFilter = (selectedTab.id === "propFilesLink") && !this.isCollapsed;
+                document.getElementById("torrentFilesFilterToolbar").classList.toggle("invisible", !showFilesFilter);
             });
         },
         column: "mainColumn",
         height: prop_h
     });
-
-    const showFilesFilter = function() {
-        $("torrentFilesFilterToolbar").removeClass("invisible");
-    };
-
-    const hideFilesFilter = function() {
-        $("torrentFilesFilterToolbar").addClass("invisible");
-    };
 
     // listen for changes to torrentsFilterInput
     let torrentsFilterInputTimer = -1;
