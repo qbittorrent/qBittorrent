@@ -186,6 +186,8 @@
             if (!filterItem)
                 return;
 
+            event.stopImmediatePropagation();
+
             const { id: filterItemID } = filterItem;
             const { id: filterListID } = filterItem.closest("ul[id]");
             switch (filterListID) {
@@ -201,8 +203,10 @@
                 case "trackerFilterList":
                     setTrackerFilter(filterItemID);
                     break;
+                default:
+                    console.error(`Unexpected filterListID: ${filterListID}`);
+                    break;
             }
-            event.stopImmediatePropagation();
         });
 
         document.getElementById("Filters_pad").addEventListener("click", (event) => {

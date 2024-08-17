@@ -233,29 +233,29 @@ window.addEventListener("DOMContentLoaded", () => {
     setStatusFilter = function(name) {
         selectedStatus = name;
         highlightSelectedStatus();
-        LocalPreferences.set("selected_filter", name);
         updateMainData();
+        LocalPreferences.set("selected_filter", name);
     };
 
     setCategoryFilter = function(hash) {
         selectedCategory = Number(hash);
         highlightSelectedCategory();
-        LocalPreferences.set("selected_category", hash);
         updateMainData();
+        LocalPreferences.set("selected_category", hash);
     };
 
     setTagFilter = function(hash) {
         selectedTag = Number(hash);
         highlightSelectedTag();
-        LocalPreferences.set("selected_tag", hash);
         updateMainData();
+        LocalPreferences.set("selected_tag", hash);
     };
 
     setTrackerFilter = function(hash) {
         selectedTracker = Number(hash);
         highlightSelectedTracker();
-        LocalPreferences.set("selected_tracker", hash);
         updateMainData();
+        LocalPreferences.set("selected_tracker", hash);
     };
 
     toggleFilterDisplay = function(filterListID) {
@@ -439,7 +439,7 @@ window.addEventListener("DOMContentLoaded", () => {
         const statusFilter = document.getElementById("statusFilterList");
         const filterID = `${selectedStatus}_filter`;
         for (const status of statusFilter.children)
-            status.classList.toggle("selectedFilter", status.id === filterID);
+            status.classList.toggle("selectedFilter", (status.id === filterID));
     };
 
     const updateCategoryList = function() {
@@ -525,7 +525,7 @@ window.addEventListener("DOMContentLoaded", () => {
             return;
 
         for (const category of categoryList.children)
-            category.classList.toggle("selectedFilter", Number(category.id) === selectedCategory);
+            category.classList.toggle("selectedFilter", (Number(category.id) === selectedCategory));
     };
 
     const updateTagList = function() {
@@ -577,7 +577,7 @@ window.addEventListener("DOMContentLoaded", () => {
             return;
 
         for (const tag of tagFilterList.children)
-            tag.classList.toggle("selectedFilter", Number(tag.id) === selectedTag);
+            tag.classList.toggle("selectedFilter", (Number(tag.id) === selectedTag));
     };
 
     // getHost emulate the GUI version `QString getHost(const QString &url)`
@@ -661,7 +661,7 @@ window.addEventListener("DOMContentLoaded", () => {
             return;
 
         for (const tracker of trackerFilterList.children)
-            tracker.classList.toggle("selectedFilter", Number(tracker.id) === selectedTracker);
+            tracker.classList.toggle("selectedFilter", (Number(tracker.id) === selectedTracker));
     };
 
     const setupCopyEventHandler = (function() {
