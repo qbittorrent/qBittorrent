@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pl">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pl">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Utwórz podfolder</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Nie twórz podfolderu</translation>
     </message>
     <message>
@@ -993,8 +991,8 @@
         <translation>%T: Bieżący tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Wskazówka: otocz parametr cudzysłowem, aby uniknąć odcięcia tekstu (np. "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Wskazówka: otocz parametr cudzysłowem, aby uniknąć odcięcia tekstu (np. &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1413,7 +1411,7 @@
         <translation>Pierwotny</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Nie twórz podfolderu</translation>
     </message>
     <message>
@@ -1549,12 +1547,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use ';' to split multiple entries. Can use wildcard '*'.</source>
+Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
         <translation>Biała lista filtrowania wartości nagłówka hosta HTTP.
 Aby uchronić się przed atakiem ponownego wiązania DNS,
 należy wpisać nazwy domen używane przez serwer interfejsu WWW.
 
-Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</translation>
+Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika &apos;*&apos;.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1565,8 +1563,8 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <translation>Certyfikat HTTPS nie powinien być pusty</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>Określ adresy IP zwrotnego serwera proxy (lub podsieci, np. 0.0.0.0/24), aby używać przekazywanego adresu klienta (nagłówek X-Forwarded-For). Użyj ';' do dzielenia wielu wpisów.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
+        <translation>Określ adresy IP zwrotnego serwera proxy (lub podsieci, np. 0.0.0.0/24), aby używać przekazywanego adresu klienta (nagłówek X-Forwarded-For). Użyj &apos;;&apos; do dzielenia wielu wpisów.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -3171,11 +3169,11 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <translation>pokazywanie</translation>
     </message>
     <message>
-        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>Kliknij przycisk "Wtyczki wyszukiwania..." w prawym dolnym rogu okna, aby je zainstalować.</translation>
+        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
+        <translation>Kliknij przycisk &quot;Wtyczki wyszukiwania...&quot; w prawym dolnym rogu okna, aby je zainstalować.</translation>
     </message>
     <message>
-        <source>There aren't any search plugins installed.</source>
+        <source>There aren&apos;t any search plugins installed.</source>
         <translation>Nie ma zainstalowanych żadnych wtyczek wyszukiwania.</translation>
     </message>
 </context>
@@ -3206,7 +3204,7 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <translation>Włączone</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Ostrzeżenie: upewnij się, że przestrzegasz praw autorskich swojego kraju podczas pobierania torrentów z każdej z tych wyszukiwarek.</translation>
     </message>
     <message>
@@ -3821,7 +3819,7 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
         <translation>Pierwotny</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Nie twórz podfolderu</translation>
     </message>
     <message>

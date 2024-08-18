@@ -518,7 +518,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="366"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
-        <translation type="unfinished"></translation>
+        <translation>Торэнты, якія адпачатку ўтрымліваюць метаданыя, будуць дададзеныя як спыненыя.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="636"/>
@@ -1145,7 +1145,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="803"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Прымацаваць акно дадання торэнта да галоўнага</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="815"/>
@@ -2032,7 +2032,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="488"/>
         <source>Couldn&apos;t enable Write-Ahead Logging (WAL) journaling mode. Error: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не ўдалося ўключыць рэжым папераджальнай журналізацыі. Памылка: %1.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="654"/>
@@ -2042,7 +2042,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="658"/>
         <source>WAL mode is probably unsupported due to filesystem limitations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Рэжым папераджальнай журналізацыі, імаверна, не падтрымліваецца праз абмежаванні файлавай сістэмы.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="707"/>
@@ -2250,7 +2250,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2250"/>
         <source>Torrent reached the inactive seeding time limit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Торэнт дасягнуў абмежавання часу неактыўнасці раздачы.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2290"/>
@@ -2271,17 +2271,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2760"/>
         <source>Detected an attempt to add a duplicate torrent. Merging of trackers is disabled. Torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Выяўленая спроба паўторнага дадання існуючага торэнта. Аб&apos;яднанне трэкераў адключана. Торэнт: %1.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2767"/>
         <source>Detected an attempt to add a duplicate torrent. Trackers cannot be merged because it is a private torrent. Torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Выяўленая спроба паўторнага дадання існуючага торэнта. Трэкеры нельга аб&apos;яднаць, бо торэнт прыватны. Торэнт: %1.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2788"/>
         <source>Detected an attempt to add a duplicate torrent. Trackers are merged from new source. Torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Выяўленая спроба паўторнага дадання існуючага торэнта. Трэкеры аб&apos;яднаныя з новай крыніцы. Торэнт: %1.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2995"/>
@@ -2487,13 +2487,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5879"/>
         <source>filtered port (%1)</source>
         <comment>this peer was blocked. Reason: filtered port (8899).</comment>
-        <translation type="unfinished"></translation>
+        <translation>адфільтраваны порт (%1)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5885"/>
         <source>privileged port (%1)</source>
         <comment>this peer was blocked. Reason: privileged port (80).</comment>
-        <translation type="unfinished"></translation>
+        <translation>прывілеяваны порт (%1)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5958"/>
@@ -2601,62 +2601,62 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentImpl</name>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="737"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="741"/>
         <source>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</source>
         <translation>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="742"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="746"/>
         <source>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</source>
         <translation>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="786"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="790"/>
         <source>Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.</source>
         <translation>Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1141"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1145"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1574"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1580"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
         <translation>Спачатку пампаваць першую і апошнюю часткі: %1, торэнт: &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1575"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1581"/>
         <source>On</source>
         <translation>Укл.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1575"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1581"/>
         <source>Off</source>
         <translation>Выкл.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2089"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2104"/>
         <source>Generate resume data failed. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Generate resume data failed. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2100"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2115"/>
         <source>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2595"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2610"/>
         <source>Missing metadata</source>
         <translation>Missing metadata</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2143"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2158"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
         <translation>Не ўдалося перайменаваць файл. Торэнт: «%1», файл: «%2», прычына: «%3»</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2205"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2220"/>
         <source>Performance alert: %1. More info: %2</source>
         <translation>Performance alert: %1. More info: %2</translation>
     </message>
@@ -4091,7 +4091,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="226"/>
         <source>Dynamic DNS error: %1 was returned by the service, please submit a bug report at https://bugs.qbittorrent.org.</source>
-        <translation type="unfinished"></translation>
+        <translation>Памылка дынамічнага DNS: служба вярнула %1. Паведамьце пра памылку на https://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="234"/>
@@ -5845,12 +5845,12 @@ Please install it manually.</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1993"/>
         <source>If checked, hostname lookups are done via the proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Калі пазначана, пошук назвы хоста выконваецца праз проксі</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1996"/>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Выконваць пошук назвы хоста праз проксі</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2056"/>
@@ -7198,7 +7198,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1233"/>
         <source>WebUI configuration failed. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не ўдалася канфігурацыя WebUI. Прычына: %1</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1770"/>
@@ -7271,7 +7271,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="519"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
-        <translation type="unfinished"></translation>
+        <translation>Торэнты, якія адпачатку ўтрымліваюць метаданыя, будуць дададзеныя як спыненыя.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="865"/>
@@ -7286,7 +7286,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1908"/>
         <source>The alternative WebUI files location cannot be blank.</source>
-        <translation type="unfinished"></translation>
+        <translation>Размяшчэнне файлаў альтэрнатыўнага вэб-інтэрфейса не можа быць пустым.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1945"/>
@@ -9942,98 +9942,98 @@ Please choose a different name and try again.</source>
 <context>
     <name>TorrentContentWidget</name>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="72"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="85"/>
         <source>Rename error</source>
         <translation>Памылка перайменавання</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="241"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="254"/>
         <source>Renaming</source>
         <translation>Перайменаванне</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="241"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="254"/>
         <source>New name:</source>
         <translation>Новая назва:</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="324"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="337"/>
         <source>Column visibility</source>
         <translation>Адлюстраванне слупкоў</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="347"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="360"/>
         <source>Resize columns</source>
         <translation>Змяніць памер калонак</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="357"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="370"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
         <translation>Змяніць памер усіх несхаваных калонак да памеру іх змесціва</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="377"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="390"/>
         <source>Open</source>
         <translation>Адкрыць</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="379"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="392"/>
         <source>Open containing folder</source>
         <translation>Open containing folder</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="382"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="395"/>
         <source>Rename...</source>
         <translation>Перайменаваць...</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="386"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="399"/>
         <source>Priority</source>
         <translation>Прыярытэт</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="388"/>
-        <location filename="../gui/torrentcontentwidget.cpp" line="409"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="401"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="422"/>
         <source>Do not download</source>
         <translation>Не спампоўваць</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="392"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="405"/>
         <source>Normal</source>
         <translation>Звычайны</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="396"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="409"/>
         <source>High</source>
         <translation>Высокі</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="400"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="413"/>
         <source>Maximum</source>
         <translation>Максімальны</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="405"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="418"/>
         <source>By shown file order</source>
         <translation>Па паказаным парадку файлаў</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="413"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="426"/>
         <source>Normal priority</source>
         <translation>Нармальны прыярытэт</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="417"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="430"/>
         <source>High priority</source>
         <translation>Высокі прыярытэт</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="421"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="434"/>
         <source>Maximum priority</source>
         <translation>Максімальны прыярытэт</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="426"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="439"/>
         <source>Priority by shown file order</source>
         <translation>Прыярытэт па паказаным парадку файлаў</translation>
     </message>
@@ -10508,32 +10508,32 @@ Please choose a different name and try again.</source>
         <translation>Тэгі торэнта</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="100"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="101"/>
         <source>New Tag</source>
         <translation>Новы тэг</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="100"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="101"/>
         <source>Tag:</source>
         <translation>Тэг:</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="106"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="107"/>
         <source>Invalid tag name</source>
         <translation>Няправільная назва тэга</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="106"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="107"/>
         <source>Tag name &apos;%1&apos; is invalid.</source>
         <translation>Недапушчальная назва тэга «%1».</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="110"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="111"/>
         <source>Tag exists</source>
         <translation>Тэг існуе</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="110"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="111"/>
         <source>Tag name already exists.</source>
         <translation>Назва тэга ўжо існуе.</translation>
     </message>
@@ -11292,334 +11292,334 @@ Please choose a different name and try again.</source>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="676"/>
+        <location filename="../gui/transferlistwidget.cpp" line="677"/>
         <source>Column visibility</source>
         <translation>Адлюстраванне калонак</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="645"/>
+        <location filename="../gui/transferlistwidget.cpp" line="646"/>
         <source>Recheck confirmation</source>
         <translation>Пацвярджэнне пераправеркі</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="645"/>
+        <location filename="../gui/transferlistwidget.cpp" line="646"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
         <translation>Сапраўды хочаце пераправерыць выбраныя торэнты?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="915"/>
+        <location filename="../gui/transferlistwidget.cpp" line="916"/>
         <source>Rename</source>
         <translation>Перайменаваць</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="915"/>
+        <location filename="../gui/transferlistwidget.cpp" line="916"/>
         <source>New name:</source>
         <translation>Новая назва:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="352"/>
+        <location filename="../gui/transferlistwidget.cpp" line="353"/>
         <source>Choose save path</source>
         <translation>Пазначце шлях захавання</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="382"/>
+        <location filename="../gui/transferlistwidget.cpp" line="383"/>
         <source>Confirm pause</source>
         <translation>Пацвердзіць прыпыненне</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="383"/>
+        <location filename="../gui/transferlistwidget.cpp" line="384"/>
         <source>Would you like to pause all torrents?</source>
         <translation>Сапраўды прыпыніць усе торэнты?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="398"/>
+        <location filename="../gui/transferlistwidget.cpp" line="399"/>
         <source>Confirm resume</source>
         <translation>Пацвердзіць узнаўленне</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="399"/>
+        <location filename="../gui/transferlistwidget.cpp" line="400"/>
         <source>Would you like to resume all torrents?</source>
         <translation>Сапраўды ўзнавіць усе торэнты?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="625"/>
+        <location filename="../gui/transferlistwidget.cpp" line="626"/>
         <source>Unable to preview</source>
         <translation>Немагчыма праглядзець</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="625"/>
+        <location filename="../gui/transferlistwidget.cpp" line="626"/>
         <source>The selected torrent &quot;%1&quot; does not contain previewable files</source>
         <translation>Выбраны торэнт «%1» не змяшчае файлаў, якія можна праглядаць</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="702"/>
+        <location filename="../gui/transferlistwidget.cpp" line="703"/>
         <source>Resize columns</source>
         <translation>Змяніць памер калонак</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="711"/>
+        <location filename="../gui/transferlistwidget.cpp" line="712"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
         <translation>Змяніць памер усіх несхаваных калонак да памеру іх змесціва</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="741"/>
+        <location filename="../gui/transferlistwidget.cpp" line="742"/>
         <source>Enable automatic torrent management</source>
         <translation>Уключыць аўтаматычнае кіраванне торэнтамі</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="742"/>
+        <location filename="../gui/transferlistwidget.cpp" line="743"/>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
         <translation>Сапраўды хочаце ўключыць аўтаматычнае кіраванне для выбраных торэнтаў? Яны могуць перамясціцца.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="760"/>
+        <location filename="../gui/transferlistwidget.cpp" line="761"/>
         <source>Add Tags</source>
         <translation>Дадаць тэгі</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="805"/>
+        <location filename="../gui/transferlistwidget.cpp" line="806"/>
         <source>Choose folder to save exported .torrent files</source>
         <translation>Выберыце папку, каб захаваць экспартаваныя файлы .torrent</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="819"/>
+        <location filename="../gui/transferlistwidget.cpp" line="820"/>
         <source>Export .torrent file failed. Torrent: &quot;%1&quot;. Save path: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Не ўдалося экспартаваць файл .torrent. торэнт: «%1». Шлях захавання: «%2». Прычына: «%3»</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="828"/>
+        <location filename="../gui/transferlistwidget.cpp" line="829"/>
         <source>A file with the same name already exists</source>
         <translation>Файл з такім імем ужо існуе</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="844"/>
+        <location filename="../gui/transferlistwidget.cpp" line="845"/>
         <source>Export .torrent file error</source>
         <translation>Памылка экспартавання файла .torrent</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="855"/>
+        <location filename="../gui/transferlistwidget.cpp" line="856"/>
         <source>Remove All Tags</source>
         <translation>Выдаліць усе тэгі</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="855"/>
+        <location filename="../gui/transferlistwidget.cpp" line="856"/>
         <source>Remove all tags from selected torrents?</source>
         <translation>Выдаліць усе тэгі для выбраных торэнтаў?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="870"/>
+        <location filename="../gui/transferlistwidget.cpp" line="871"/>
         <source>Comma-separated tags:</source>
         <translation>Тэгі, падзеленыя коскай:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="879"/>
+        <location filename="../gui/transferlistwidget.cpp" line="880"/>
         <source>Invalid tag</source>
         <translation>Недапушчальны тэг</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="880"/>
+        <location filename="../gui/transferlistwidget.cpp" line="881"/>
         <source>Tag name: &apos;%1&apos; is invalid</source>
         <translation>Імя тэга: %1&apos; недапушчальна</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="956"/>
+        <location filename="../gui/transferlistwidget.cpp" line="957"/>
         <source>&amp;Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>&amp;Узнавіць</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="958"/>
+        <location filename="../gui/transferlistwidget.cpp" line="959"/>
         <source>&amp;Pause</source>
         <comment>Pause the torrent</comment>
         <translation>&amp;Спыніць</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="960"/>
+        <location filename="../gui/transferlistwidget.cpp" line="961"/>
         <source>Force Resu&amp;me</source>
         <comment>Force Resume/start the torrent</comment>
         <translation>Узнавіць &amp;прымусова</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="964"/>
+        <location filename="../gui/transferlistwidget.cpp" line="965"/>
         <source>Pre&amp;view file...</source>
         <translation>&amp;Перадпрагляд файла...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="966"/>
+        <location filename="../gui/transferlistwidget.cpp" line="967"/>
         <source>Torrent &amp;options...</source>
         <translation>&amp;Параметры торэнта...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="968"/>
+        <location filename="../gui/transferlistwidget.cpp" line="969"/>
         <source>Open destination &amp;folder</source>
         <translation>Адкрыць папку &amp;прызначэння</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="970"/>
+        <location filename="../gui/transferlistwidget.cpp" line="971"/>
         <source>Move &amp;up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Перамясціць &amp;вышэй</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="972"/>
+        <location filename="../gui/transferlistwidget.cpp" line="973"/>
         <source>Move &amp;down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Перамясціць &amp;ніжэй</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="974"/>
+        <location filename="../gui/transferlistwidget.cpp" line="975"/>
         <source>Move to &amp;top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>У самы в&amp;ерх</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="976"/>
+        <location filename="../gui/transferlistwidget.cpp" line="977"/>
         <source>Move to &amp;bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>У самы н&amp;із</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="978"/>
+        <location filename="../gui/transferlistwidget.cpp" line="979"/>
         <source>Set loc&amp;ation...</source>
         <translation>Задаць раз&amp;мяшчэнне...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="980"/>
+        <location filename="../gui/transferlistwidget.cpp" line="981"/>
         <source>Force rec&amp;heck</source>
         <translation>Пера&amp;праверыць прымусова</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="982"/>
+        <location filename="../gui/transferlistwidget.cpp" line="983"/>
         <source>Force r&amp;eannounce</source>
         <translation>Пера&amp;анансаваць прымусова</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="984"/>
+        <location filename="../gui/transferlistwidget.cpp" line="985"/>
         <source>&amp;Magnet link</source>
         <translation>Magnet-&amp;спасылка</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="986"/>
+        <location filename="../gui/transferlistwidget.cpp" line="987"/>
         <source>Torrent &amp;ID</source>
         <translation>ID &amp;торэнта</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="988"/>
+        <location filename="../gui/transferlistwidget.cpp" line="989"/>
         <source>&amp;Name</source>
         <translation>&amp;Назва</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="990"/>
+        <location filename="../gui/transferlistwidget.cpp" line="991"/>
         <source>Info &amp;hash v1</source>
         <translation>Інфармацыйны &amp;хэш v1</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="992"/>
+        <location filename="../gui/transferlistwidget.cpp" line="993"/>
         <source>Info h&amp;ash v2</source>
         <translation>Інфармацыйны &amp;хэш v2</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="996"/>
+        <location filename="../gui/transferlistwidget.cpp" line="997"/>
         <source>Re&amp;name...</source>
         <translation>Пера&amp;йменаваць...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1005"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1006"/>
         <source>Edit trac&amp;kers...</source>
         <translation>Рэдагаваць трэ&amp;керы...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1007"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1008"/>
         <source>E&amp;xport .torrent...</source>
         <translation>Э&amp;кспартаваць .torrent</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1153"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1154"/>
         <source>Categor&amp;y</source>
         <translation>Катэгор&amp;ыя</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1155"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1156"/>
         <source>&amp;New...</source>
         <comment>New category...</comment>
         <translation>&amp;Новая...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1157"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1158"/>
         <source>&amp;Reset</source>
         <comment>Reset category</comment>
         <translation>&amp;Скінуць</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1178"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1179"/>
         <source>Ta&amp;gs</source>
         <translation>Тэ&amp;гі</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1180"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1181"/>
         <source>&amp;Add...</source>
         <comment>Add / assign multiple tags...</comment>
         <translation>&amp;Дадаць...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1182"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1183"/>
         <source>&amp;Remove All</source>
         <comment>Remove all tags</comment>
         <translation>&amp;Выдаліць усе</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1264"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1265"/>
         <source>&amp;Queue</source>
         <translation>&amp;Чарга</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1271"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1272"/>
         <source>&amp;Copy</source>
         <translation>&amp;Капіяваць</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1280"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1281"/>
         <source>Exported torrent is not necessarily the same as the imported</source>
         <translation>Экспартаваны торэнт не павінен абавязкова супадаць з імпартаваным</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="998"/>
+        <location filename="../gui/transferlistwidget.cpp" line="999"/>
         <source>Download in sequential order</source>
         <translation>Спампоўваць паслядоўна</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="845"/>
+        <location filename="../gui/transferlistwidget.cpp" line="846"/>
         <source>Errors occurred when exporting .torrent files. Check execution log for details.</source>
         <translation>Адбылася памылка пры экспартаванні файлаў .torrent. Праверце журнал выканання праграмы, каб паглядзець звесткі.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="962"/>
+        <location filename="../gui/transferlistwidget.cpp" line="963"/>
         <source>&amp;Remove</source>
         <comment>Remove the torrent</comment>
         <translation>&amp;Remove</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1000"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1001"/>
         <source>Download first and last pieces first</source>
         <translation>Спачатку пампаваць першую і апошнюю часткі</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1002"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1003"/>
         <source>Automatic Torrent Management</source>
         <translation>Аўтаматычнае кіраванне</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1003"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1004"/>
         <source>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</source>
         <translation>Аўтаматычны рэжым азначае, што розныя уласцівасці торэнта (напр. шлях захавання) будзе вызначацца адпаведнай катэгорыяй</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1257"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1258"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
-        <translation type="unfinished"></translation>
+        <translation>Нельга прымусова пераанансаваць, калі торэнт спынены, у чарзе або правяраецца</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="994"/>
+        <location filename="../gui/transferlistwidget.cpp" line="995"/>
         <source>Super seeding mode</source>
         <translation>Рэжым суперраздачы</translation>
     </message>
@@ -11671,7 +11671,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="252"/>
         <source>The UI Theme changes could not be fully applied. The details can be found in the Log.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не ўдалося цалкам ужыць змены тэмы абалонкі. Падрабязнасці можна знайсці ў журнале.</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="336"/>
@@ -11747,7 +11747,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="80"/>
         <source>Python detected, executable name: &apos;%1&apos;, version: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Python знойдзены, імя выконвальнага файла: «%1», версія: %2</translation>
     </message>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="270"/>
@@ -11770,7 +11770,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/utils/io.cpp" line="102"/>
         <source>File size exceeds data size limit. File: &quot;%1&quot;. File size: %2. Array limit: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Памер файла перавышае абмежаванне памеру даных. Файл: «%1». Памер файла: %2. Абмежаванне масіва: %3</translation>
     </message>
     <message>
         <location filename="../base/utils/io.cpp" line="112"/>
@@ -11793,7 +11793,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="22"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Will watch the folder and all its subfolders. In Manual torrent management mode it will also add subfolder name to the selected Save path.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Будуць назірацца папкі і ўсе ейныя палпапкі. У ручным рэжыме кіравання торэнтамі будзе таксама дадавацца імя падпапкі да выбранага шляху захавання.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="25"/>
@@ -11859,27 +11859,27 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../webui/webapplication.cpp" line="400"/>
         <source>Using built-in WebUI.</source>
-        <translation type="unfinished"></translation>
+        <translation>Выкарыстоўваецца ўбудаваны вэб-інтэрфейс.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="402"/>
         <source>Using custom WebUI. Location: &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Выкарыстоўваецца уласны вэб-інтэрфейс. Месцазнаходжанне: «%1».</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="414"/>
         <source>WebUI translation for selected locale (%1) has been successfully loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пераклад вэб-інтэрфейса для выбранай мовы (%1) паспяхова загружаны.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="419"/>
         <source>Couldn&apos;t load WebUI translation for selected locale (%1).</source>
-        <translation type="unfinished"></translation>
+        <translation>Не ўдалося загрузіць пераклад вэб-інтэрфейсу для выбранай мовы (%1).</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="470"/>
         <source>Missing &apos;:&apos; separator in WebUI custom HTTP header: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Прапушчаны раздзяляльнік «:» ва ўласным загалоўку HTTP вэб-інтэрфейса: «%1»</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="534"/>
@@ -11894,12 +11894,12 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../webui/webapplication.cpp" line="780"/>
         <source>WebUI: Origin header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Вэб-інтэрфейс: Арыгінальны і мэтавы загалоўкі не супадаюць! IP крыніцы: «%1». Загаловак крыніцы: «%2». Мэтавая крыніца: «%3»</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="792"/>
         <source>WebUI: Referer header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Вэб-інтэрфейс: Спасылачны і мэтавы загалоўкі не супадаюць! IP крыніцы: «%1». Загаловак спасылкі: «%2». Мэтавая крыніца: «%3»</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="811"/>
@@ -11932,7 +11932,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../webui/webui.cpp" line="128"/>
         <source>WebUI: Now listening on IP: %1, port: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Вэб-інтэрфейс: Зараз праслухоўваецца IP: %1, порт: %2</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="132"/>

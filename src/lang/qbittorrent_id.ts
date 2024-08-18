@@ -518,7 +518,7 @@ Galat: %2</translation>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="366"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent yang dilengkapi metadata akan ditambahkan dan ditandai sebagai dihentikan.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="636"/>
@@ -855,7 +855,7 @@ Galat: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="521"/>
         <source>Outstanding memory when checking torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Memori berlebih saat melakukan pengecekan torrent</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="537"/>
@@ -914,17 +914,17 @@ Galat: %2</translation>
         <location filename="../gui/advancedsettings.cpp" line="644"/>
         <source>Save resume data interval [0: disabled]</source>
         <comment>How often the fastresume file is saved.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Interval menyimpan data yang perlu dilanjutkan [0: dimatikan]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="656"/>
         <source>Outgoing ports (Min) [0: disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Port keluar (minimum) [0: dimatikan]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="664"/>
         <source>Outgoing ports (Max) [0: disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Port keluar (maksimum) [0: dimatikan]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="672"/>
@@ -944,7 +944,7 @@ Galat: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="782"/>
         <source>Notification timeout [0: infinite, -1: system default]</source>
-        <translation type="unfinished"></translation>
+        <translation>Batas waktu durasi pemberitahuan [0: tak terbatas, -1: default sistem]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="872"/>
@@ -993,7 +993,7 @@ Galat: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="557"/>
         <source>Memory mapped files</source>
-        <translation type="unfinished"></translation>
+        <translation>Berkas yang dipetakan pada memori</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="558"/>
@@ -1003,7 +1003,7 @@ Galat: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="560"/>
         <source>Disk IO type (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipe IO diska (perlu mulai ulang)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="564"/>
@@ -1014,7 +1014,7 @@ Galat: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="567"/>
         <source>Disk IO read mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode baca IO diska</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="573"/>
@@ -1024,7 +1024,7 @@ Galat: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="576"/>
         <source>Disk IO write mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode tulis IO diska</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="596"/>
@@ -1055,22 +1055,22 @@ Galat: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="622"/>
         <source>Socket send buffer size [0: system default]</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukuran buffer keluar socket [0: default sistem]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="630"/>
         <source>Socket receive buffer size [0: system default]</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukuran buffer masuk socket [0: default sistem]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="636"/>
         <source>Socket backlog size</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukuran backlog socket</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="650"/>
         <source>.torrent file size limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Batas ukuran file .torrent</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="679"/>
@@ -1120,7 +1120,7 @@ Galat: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="720"/>
         <source>Refresh interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Interval penyegaran</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="726"/>
@@ -1130,7 +1130,7 @@ Galat: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="753"/>
         <source>IP address reported to trackers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alamat IP yang dilaporkan ke pelacak (perlu mulai ulang)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="786"/>
@@ -2599,62 +2599,62 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentImpl</name>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="737"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="741"/>
         <source>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</source>
         <translation>Gagal menambahkan rekanan &quot;%1&quot; ke torrent &quot;%2&quot;. Alasan: %3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="742"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="746"/>
         <source>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</source>
         <translation>Rekanan &quot;%1&quot; ditambahkan ke torrent &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="786"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="790"/>
         <source>Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1141"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1145"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1574"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1580"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
         <translation>Unduh bagian awal dan akhir terlebih dahulu: %1, torrent: &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1575"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1581"/>
         <source>On</source>
         <translation>Aktif</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1575"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1581"/>
         <source>Off</source>
         <translation>Nonaktif</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2089"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2104"/>
         <source>Generate resume data failed. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2100"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2115"/>
         <source>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2595"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2610"/>
         <source>Missing metadata</source>
         <translation>Metadata tidak ditemukan</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2143"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2158"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
         <translation>Gagal mengubah nama berkas. Torrent: &quot;%1&quot;, berkas: &quot;%2&quot;, alasan: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2205"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2220"/>
         <source>Performance alert: %1. More info: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7254,7 +7254,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="519"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent yang dilengkapi metadata akan ditambahkan dan ditandai sebagai dihentikan.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="865"/>
@@ -9556,7 +9556,7 @@ Klik tombol &quot;Temukan plugin&quot; tepat dibawah bagian jendela untuk memasa
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="83"/>
         <source>Moving (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Memindahkan (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="86"/>
@@ -9591,7 +9591,7 @@ Klik tombol &quot;Temukan plugin&quot; tepat dibawah bagian jendela untuk memasa
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="178"/>
         <source>Moving (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Memindahkan (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="221"/>
@@ -9925,98 +9925,98 @@ Mohon memilih nama lain dan coba lagi.</translation>
 <context>
     <name>TorrentContentWidget</name>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="72"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="85"/>
         <source>Rename error</source>
         <translation>Galat rubah nama</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="241"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="254"/>
         <source>Renaming</source>
         <translation>Mengganti nama</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="241"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="254"/>
         <source>New name:</source>
         <translation>Nama baru:</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="324"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="337"/>
         <source>Column visibility</source>
         <translation>Keterlihatan kolom</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="347"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="360"/>
         <source>Resize columns</source>
         <translation>Ubah ukuran kolom</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="357"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="370"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
         <translation>Ubah ukuran semua kolom yang tidak disembunyikan sesuai ukuran konten kolom</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="377"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="390"/>
         <source>Open</source>
         <translation>Buka</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="379"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="392"/>
         <source>Open containing folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Buka folder isi</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="382"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="395"/>
         <source>Rename...</source>
         <translation>Ubah nama...</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="386"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="399"/>
         <source>Priority</source>
         <translation>Prioritas</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="388"/>
-        <location filename="../gui/torrentcontentwidget.cpp" line="409"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="401"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="422"/>
         <source>Do not download</source>
         <translation>Jangan mengunduh</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="392"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="405"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="396"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="409"/>
         <source>High</source>
         <translation>Tinggi</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="400"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="413"/>
         <source>Maximum</source>
         <translation>Maksimum</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="405"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="418"/>
         <source>By shown file order</source>
         <translation>Tampikan dalam urutan berkas</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="413"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="426"/>
         <source>Normal priority</source>
         <translation>Prioritas normal</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="417"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="430"/>
         <source>High priority</source>
         <translation>Prioritas tinggi</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="421"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="434"/>
         <source>Maximum priority</source>
         <translation>Prioritas maksimum</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="426"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="439"/>
         <source>Priority by shown file order</source>
         <translation>Prioritaskan tampilan urutan berkas</translation>
     </message>
@@ -10491,32 +10491,32 @@ Mohon memilih nama lain dan coba lagi.</translation>
         <translation>Penanda Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="100"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="101"/>
         <source>New Tag</source>
         <translation>Tag Baru</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="100"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="101"/>
         <source>Tag:</source>
         <translation>Tag:</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="106"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="107"/>
         <source>Invalid tag name</source>
         <translation>Nama tag tidak valid</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="106"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="107"/>
         <source>Tag name &apos;%1&apos; is invalid.</source>
         <translation>Nama penanda &apos;%1&apos; tidak valid</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="110"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="111"/>
         <source>Tag exists</source>
         <translation>Tag sudah ada</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="110"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="111"/>
         <source>Tag name already exists.</source>
         <translation>Nama tag sudah ada.</translation>
     </message>
@@ -11240,13 +11240,13 @@ Mohon memilih nama lain dan coba lagi.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="196"/>
         <source>Info Hash v1</source>
         <comment>i.e: torrent info hash v1</comment>
-        <translation type="unfinished"></translation>
+        <translation>Informasi Hash v1</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="197"/>
         <source>Info Hash v2</source>
         <comment>i.e: torrent info hash v2</comment>
-        <translation type="unfinished"></translation>
+        <translation>Informasi Hash v2</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="249"/>
@@ -11270,334 +11270,334 @@ Mohon memilih nama lain dan coba lagi.</translation>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="676"/>
+        <location filename="../gui/transferlistwidget.cpp" line="677"/>
         <source>Column visibility</source>
         <translation>Keterlihatan kolom</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="645"/>
+        <location filename="../gui/transferlistwidget.cpp" line="646"/>
         <source>Recheck confirmation</source>
         <translation>Komfirmasi pemeriksaan ulang</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="645"/>
+        <location filename="../gui/transferlistwidget.cpp" line="646"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
         <translation>Apakah Anda yakin ingin memeriksa ulang torrent yang dipilih?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="915"/>
+        <location filename="../gui/transferlistwidget.cpp" line="916"/>
         <source>Rename</source>
         <translation>Ubah nama</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="915"/>
+        <location filename="../gui/transferlistwidget.cpp" line="916"/>
         <source>New name:</source>
         <translation>Nama baru:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="352"/>
+        <location filename="../gui/transferlistwidget.cpp" line="353"/>
         <source>Choose save path</source>
         <translation>Pilih jalur penyimpanan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="382"/>
+        <location filename="../gui/transferlistwidget.cpp" line="383"/>
         <source>Confirm pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="383"/>
+        <location filename="../gui/transferlistwidget.cpp" line="384"/>
         <source>Would you like to pause all torrents?</source>
         <translation>Ingin tunda semua torrents?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="398"/>
+        <location filename="../gui/transferlistwidget.cpp" line="399"/>
         <source>Confirm resume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="399"/>
+        <location filename="../gui/transferlistwidget.cpp" line="400"/>
         <source>Would you like to resume all torrents?</source>
         <translation>Ingin lanjutkan semua torrents?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="625"/>
+        <location filename="../gui/transferlistwidget.cpp" line="626"/>
         <source>Unable to preview</source>
         <translation>Tidak dapat melihat pratinjau</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="625"/>
+        <location filename="../gui/transferlistwidget.cpp" line="626"/>
         <source>The selected torrent &quot;%1&quot; does not contain previewable files</source>
         <translation>Torrent &quot;%1&quot; berisi berkas yang tidak bisa ditinjau</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="702"/>
+        <location filename="../gui/transferlistwidget.cpp" line="703"/>
         <source>Resize columns</source>
         <translation>Ubah ukuran kolom</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="711"/>
+        <location filename="../gui/transferlistwidget.cpp" line="712"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
         <translation>Ubah ukuran semua kolom yang tidak disembunyikan sesuai ukuran konten kolom</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="741"/>
+        <location filename="../gui/transferlistwidget.cpp" line="742"/>
         <source>Enable automatic torrent management</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="742"/>
+        <location filename="../gui/transferlistwidget.cpp" line="743"/>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="760"/>
+        <location filename="../gui/transferlistwidget.cpp" line="761"/>
         <source>Add Tags</source>
         <translation>Tambah Tag</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="805"/>
+        <location filename="../gui/transferlistwidget.cpp" line="806"/>
         <source>Choose folder to save exported .torrent files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="819"/>
+        <location filename="../gui/transferlistwidget.cpp" line="820"/>
         <source>Export .torrent file failed. Torrent: &quot;%1&quot;. Save path: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="828"/>
+        <location filename="../gui/transferlistwidget.cpp" line="829"/>
         <source>A file with the same name already exists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="844"/>
+        <location filename="../gui/transferlistwidget.cpp" line="845"/>
         <source>Export .torrent file error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="855"/>
+        <location filename="../gui/transferlistwidget.cpp" line="856"/>
         <source>Remove All Tags</source>
         <translation>Buang Semua Tag</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="855"/>
+        <location filename="../gui/transferlistwidget.cpp" line="856"/>
         <source>Remove all tags from selected torrents?</source>
         <translation>Buang semua tag dari torrent yang dipilih?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="870"/>
+        <location filename="../gui/transferlistwidget.cpp" line="871"/>
         <source>Comma-separated tags:</source>
         <translation>Koma-pemisah tag:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="879"/>
+        <location filename="../gui/transferlistwidget.cpp" line="880"/>
         <source>Invalid tag</source>
         <translation>Kesalahan tag</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="880"/>
+        <location filename="../gui/transferlistwidget.cpp" line="881"/>
         <source>Tag name: &apos;%1&apos; is invalid</source>
         <translation>Nama tag: &apos;%1&apos; tidak valid</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="956"/>
+        <location filename="../gui/transferlistwidget.cpp" line="957"/>
         <source>&amp;Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>&amp;Lanjutkan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="958"/>
+        <location filename="../gui/transferlistwidget.cpp" line="959"/>
         <source>&amp;Pause</source>
         <comment>Pause the torrent</comment>
         <translation>Tang&amp;guhkan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="960"/>
+        <location filename="../gui/transferlistwidget.cpp" line="961"/>
         <source>Force Resu&amp;me</source>
         <comment>Force Resume/start the torrent</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="964"/>
+        <location filename="../gui/transferlistwidget.cpp" line="965"/>
         <source>Pre&amp;view file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="966"/>
+        <location filename="../gui/transferlistwidget.cpp" line="967"/>
         <source>Torrent &amp;options...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="968"/>
+        <location filename="../gui/transferlistwidget.cpp" line="969"/>
         <source>Open destination &amp;folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="970"/>
+        <location filename="../gui/transferlistwidget.cpp" line="971"/>
         <source>Move &amp;up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Pindah %atas</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="972"/>
+        <location filename="../gui/transferlistwidget.cpp" line="973"/>
         <source>Move &amp;down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Pindah &amp;bawah</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="974"/>
+        <location filename="../gui/transferlistwidget.cpp" line="975"/>
         <source>Move to &amp;top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="976"/>
+        <location filename="../gui/transferlistwidget.cpp" line="977"/>
         <source>Move to &amp;bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="978"/>
+        <location filename="../gui/transferlistwidget.cpp" line="979"/>
         <source>Set loc&amp;ation...</source>
-        <translation type="unfinished"></translation>
+        <translation>Atur lok&amp;asi...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="980"/>
+        <location filename="../gui/transferlistwidget.cpp" line="981"/>
         <source>Force rec&amp;heck</source>
-        <translation type="unfinished"></translation>
+        <translation>Paksa &amp;periksa ulang</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="982"/>
+        <location filename="../gui/transferlistwidget.cpp" line="983"/>
         <source>Force r&amp;eannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Paksa r&amp;announce</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="984"/>
+        <location filename="../gui/transferlistwidget.cpp" line="985"/>
         <source>&amp;Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Tautan &amp;Magnet</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="986"/>
+        <location filename="../gui/transferlistwidget.cpp" line="987"/>
         <source>Torrent &amp;ID</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ID Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="988"/>
+        <location filename="../gui/transferlistwidget.cpp" line="989"/>
         <source>&amp;Name</source>
         <translation>&amp;Nama</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="990"/>
+        <location filename="../gui/transferlistwidget.cpp" line="991"/>
         <source>Info &amp;hash v1</source>
         <translation>Info &amp;hash v1</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="992"/>
+        <location filename="../gui/transferlistwidget.cpp" line="993"/>
         <source>Info h&amp;ash v2</source>
         <translation>Info &amp;hash v2</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="996"/>
+        <location filename="../gui/transferlistwidget.cpp" line="997"/>
         <source>Re&amp;name...</source>
-        <translation type="unfinished"></translation>
+        <translation>Na&amp;mai ulang...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1005"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1006"/>
         <source>Edit trac&amp;kers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sunting &amp;pelacak...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1007"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1008"/>
         <source>E&amp;xport .torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Eks&amp;por .torrent...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1153"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1154"/>
         <source>Categor&amp;y</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategor&amp;i</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1155"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1156"/>
         <source>&amp;New...</source>
         <comment>New category...</comment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Baru...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1157"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1158"/>
         <source>&amp;Reset</source>
         <comment>Reset category</comment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kembalikan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1178"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1179"/>
         <source>Ta&amp;gs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1180"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1181"/>
         <source>&amp;Add...</source>
         <comment>Add / assign multiple tags...</comment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tambahkan...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1182"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1183"/>
         <source>&amp;Remove All</source>
         <comment>Remove all tags</comment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hapus Semua</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1264"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1265"/>
         <source>&amp;Queue</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Antrian</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1271"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1272"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Salin</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1280"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1281"/>
         <source>Exported torrent is not necessarily the same as the imported</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="998"/>
+        <location filename="../gui/transferlistwidget.cpp" line="999"/>
         <source>Download in sequential order</source>
         <translation>Unduh berurutan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="845"/>
+        <location filename="../gui/transferlistwidget.cpp" line="846"/>
         <source>Errors occurred when exporting .torrent files. Check execution log for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kesalahan tidak diketahui ketika mengekspor file .torrent. Periksa log eksekusi untuk lebih detail.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="962"/>
+        <location filename="../gui/transferlistwidget.cpp" line="963"/>
         <source>&amp;Remove</source>
         <comment>Remove the torrent</comment>
         <translation>&amp;Hapus</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1000"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1001"/>
         <source>Download first and last pieces first</source>
         <translation>Unduh bagian-bagian pertama dan akhir terlebih dahulu</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1002"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1003"/>
         <source>Automatic Torrent Management</source>
         <translation>Manajemen Torrent Otomatis</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1003"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1004"/>
         <source>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</source>
         <translation>Mode otomatis berarti berbagai properti torrent (misal tempat penyimpanan) akan ditentukan dengan kategori terkait</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1257"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1258"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="994"/>
+        <location filename="../gui/transferlistwidget.cpp" line="995"/>
         <source>Super seeding mode</source>
         <translation>Mode pembibitan super</translation>
     </message>
@@ -11654,7 +11654,7 @@ Mohon memilih nama lain dan coba lagi.</translation>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="336"/>
         <source>Couldn&apos;t save UI Theme configuration. Reason: %1</source>
-        <translation>Gagal menyimpan perubahan Tema UI. Reason: %1</translation>
+        <translation>Gagal menyimpan perubahan Tema UI. Alasan: %1</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="367"/>
@@ -11673,7 +11673,7 @@ Mohon memilih nama lain dan coba lagi.</translation>
     <message>
         <location filename="../gui/uithememanager.cpp" line="82"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Gagal memuat tema UI dari file: &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
@@ -11766,7 +11766,7 @@ Mohon memilih nama lain dan coba lagi.</translation>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="14"/>
         <source>Watched Folder Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opsi Folder yang Sudah Dilihat</translation>
     </message>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="22"/>
@@ -11837,12 +11837,12 @@ Mohon memilih nama lain dan coba lagi.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="400"/>
         <source>Using built-in WebUI.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gunakan built-in WebUI.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="402"/>
         <source>Using custom WebUI. Location: &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gunakan WebUI kustom. Lokasi &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="414"/>
@@ -11995,7 +11995,7 @@ Mohon memilih nama lain dan coba lagi.</translation>
     <message>
         <location filename="../base/utils/misc.cpp" line="148"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation>qBittorrent akan mematikan komputer sekarang karena semua unduhan telah komplet.</translation>
+        <translation>qBittorrent akan mematikan komputer sekarang karena semua unduhan sudah selesai.</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="368"/>

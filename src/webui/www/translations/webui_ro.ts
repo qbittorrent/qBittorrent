@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ro">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ro">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Creează subdosar</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Nu crea subdosar</translation>
     </message>
     <message>
@@ -313,7 +311,7 @@
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
@@ -345,7 +343,7 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
@@ -993,8 +991,8 @@
         <translation>%T: Urmăritor actual</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Sfat: Încapsulați parametrul între ghilimele (englezești) pentru a evita ca textul să fie tăiat la spațiu (de ex., "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Sfat: Încapsulați parametrul între ghilimele (englezești) pentru a evita ca textul să fie tăiat la spațiu (de ex., &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1154,7 +1152,7 @@
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Anti-leech</source>
@@ -1170,7 +1168,7 @@
     </message>
     <message>
         <source>File pool size:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Any interface</source>
@@ -1178,7 +1176,7 @@
     </message>
     <message>
         <source>Always announce to all tiers:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Embedded tracker port:</source>
@@ -1202,7 +1200,7 @@
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>libtorrent Section</source>
@@ -1218,7 +1216,7 @@
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
@@ -1230,7 +1228,7 @@
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>s</source>
@@ -1238,7 +1236,7 @@
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
@@ -1282,15 +1280,15 @@
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Session timeout:</source>
@@ -1314,7 +1312,7 @@
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add custom HTTP headers</source>
@@ -1330,7 +1328,7 @@
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
@@ -1362,7 +1360,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
@@ -1374,7 +1372,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
@@ -1382,7 +1380,7 @@
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
@@ -1394,7 +1392,7 @@
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Peer connection protocol:</source>
@@ -1413,7 +1411,7 @@
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Nu crea subdosar</translation>
     </message>
     <message>
@@ -1446,11 +1444,11 @@
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
@@ -1462,7 +1460,7 @@
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disk queue size:</source>
@@ -1478,7 +1476,7 @@
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Memory mapped files</source>
@@ -1502,7 +1500,7 @@
     </message>
     <message>
         <source>Disk IO read mode:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disable OS cache</source>
@@ -1510,11 +1508,11 @@
     </message>
     <message>
         <source>Disk IO write mode:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
@@ -1549,8 +1547,8 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use ';' to split multiple entries. Can use wildcard '*'.</source>
-        <translation type="unfinished" />
+Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1561,8 +1559,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Certificatele HTTPS trebuie să nu fie goale</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation type="unfinished" />
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1634,7 +1632,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>years</source>
@@ -1650,43 +1648,43 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use Subcategories</source>
@@ -1694,7 +1692,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1702,31 +1700,31 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>(None)</source>
@@ -1734,47 +1732,47 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1857,7 +1855,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2086,59 +2084,59 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Toggle Selection</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Replacement Input</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Extension</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Include files</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Include folders</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Search Files</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2617,7 +2615,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renamed</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Original</source>
@@ -2731,7 +2729,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2923,7 +2921,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Rename Files...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Renaming</source>
@@ -2954,11 +2952,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3167,11 +3165,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>se arată</translation>
     </message>
     <message>
-        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
         <translation>Apăsați butonul „Extensii de căutare…” în colțul din dreapta-jos a ferestrei pentru a instala câteva.</translation>
     </message>
     <message>
-        <source>There aren't any search plugins installed.</source>
+        <source>There aren&apos;t any search plugins installed.</source>
         <translation>Nu sunt instalate extensii de căutare.</translation>
     </message>
 </context>
@@ -3202,7 +3200,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Activat</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Atenție: Asigurați-vă că respectați legislația cu privire la drepturile de autor a țării dumneavoastră atunci când descărcați torente de pe oricare din aceste motoare de căutare.</translation>
     </message>
     <message>
@@ -3817,12 +3815,12 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Nu creea subdosar</translation>
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3915,7 +3913,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Filter logs</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Blocked IPs</source>
@@ -3931,11 +3929,11 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Timestamp</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Clear All</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Message</source>
@@ -3943,15 +3941,15 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Reason</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>item</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>IP</source>
@@ -3959,7 +3957,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Banned</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Normal Messages</source>
@@ -3967,7 +3965,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Critical</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Critical Messages</source>
@@ -3979,7 +3977,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>items</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Results</source>
@@ -3987,11 +3985,11 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

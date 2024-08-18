@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="es">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="es">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Crear subcarpeta</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>No crear subcarpeta</translation>
     </message>
     <message>
@@ -993,8 +991,8 @@
         <translation>%T: Tracker actual</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Consejo: Encapsula el parámetro con comillas para evitar que el texto sea cortado en un espacio (ej: "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Consejo: Encapsula el parámetro con comillas para evitar que el texto sea cortado en un espacio (ej: &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1413,7 +1411,7 @@
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>No crear subcarpetas</translation>
     </message>
     <message>
@@ -1549,12 +1547,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use ';' to split multiple entries. Can use wildcard '*'.</source>
+Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
         <translation>Lista blanca para filtrar valores de cabeceras de hosts HTTP.
 Para defenderse de ataques DNS rebinding,
 no debería utilizar nombres de dominio utilizados por el servidor de la interfaz Web.
 
-Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translation>
+Use &apos;;&apos; para dividir múltiples entradas. Puede usar el comodin &apos;*&apos;.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1565,8 +1563,8 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
         <translation>El certificado HTTPS no debe estar vacío</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>Especifique IP de proxy inverso (o subredes, por ejemplo, 0.0.0.0/24) para usar la dirección de cliente reenviada (encabezado X-Reenviado-para encabezado). Usar ';' para dividir varias entradas.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
+        <translation>Especifique IP de proxy inverso (o subredes, por ejemplo, 0.0.0.0/24) para usar la dirección de cliente reenviada (encabezado X-Reenviado-para encabezado). Usar &apos;;&apos; para dividir varias entradas.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -3171,11 +3169,11 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
         <translation>mostrando</translation>
     </message>
     <message>
-        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>Haga clic en el botón "Buscar complementos..." en la parte inferior derecha de la ventana para instalar algunos.</translation>
+        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
+        <translation>Haga clic en el botón &quot;Buscar complementos...&quot; en la parte inferior derecha de la ventana para instalar algunos.</translation>
     </message>
     <message>
-        <source>There aren't any search plugins installed.</source>
+        <source>There aren&apos;t any search plugins installed.</source>
         <translation>No hay complementos de búsqueda instalados.</translation>
     </message>
 </context>
@@ -3206,7 +3204,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
         <translation>Habilitado</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Advertencia: Asegúrese de cumplir con las leyes de copyright de su país cuando descarga torrents de estos motores de búsqueda. </translation>
     </message>
     <message>
@@ -3821,7 +3819,7 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>No crear subcarpeta</translation>
     </message>
     <message>

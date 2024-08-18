@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ko">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ko">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>하위폴더 만들기</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>하위폴더 만들지 않기</translation>
     </message>
     <message>
@@ -993,8 +991,8 @@
         <translation>%T: 현재 트래커</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>팁: 텍스트가 공백때문에 잘리지 않게 하려면 변수를 따옴표로 감싸세요 (예, "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>팁: 텍스트가 공백때문에 잘리지 않게 하려면 변수를 따옴표로 감싸세요 (예, &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1413,7 +1411,7 @@
         <translation>원본</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>하위폴더 만들지 않기</translation>
     </message>
     <message>
@@ -1549,12 +1547,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use ';' to split multiple entries. Can use wildcard '*'.</source>
+Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
         <translation>HTTP 호스트 헤더 필터링에 대한 허용 목록입니다.
 DNS 재결합 공격을 방어하기 위해
 웹 UI 서버가 사용하는 도메인 이름을 넣어야 합니다.
 
-';'를 사용해서 항목을 구분하며 와일드카드 '*'를 사용할 수 있습니다.</translation>
+&apos;;&apos;를 사용해서 항목을 구분하며 와일드카드 &apos;*&apos;를 사용할 수 있습니다.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1565,8 +1563,8 @@ DNS 재결합 공격을 방어하기 위해
         <translation>HTTPS 인증서는 비워둘 수 없습니다</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>전달된 클라이언트 주소(X-Forwarded-헤더의 경우)를 사용하려면 역방향 프록시 IP(또는 서브넷, 예: 0.0.0.0/24)를 지정합니다. 여러 항목을 분할하려면 ';'를 사용하십시오.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
+        <translation>전달된 클라이언트 주소(X-Forwarded-헤더의 경우)를 사용하려면 역방향 프록시 IP(또는 서브넷, 예: 0.0.0.0/24)를 지정합니다. 여러 항목을 분할하려면 &apos;;&apos;를 사용하십시오.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1758,7 +1756,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation>"혼합 모드"인 경우 활성화되면 I2P 토렌트는 트래커가 아닌 다른 소스에서 피어를 가져오고 익명화를 제공하지 않고 일반 IP에 연결할 수도 있습니다. 이는 사용자가 I2P의 익명화에 관심이 없지만 여전히 I2P 피어에 연결할 수 있기를 원하는 경우 유용할 수 있습니다.</translation>
+        <translation>&quot;혼합 모드&quot;인 경우 활성화되면 I2P 토렌트는 트래커가 아닌 다른 소스에서 피어를 가져오고 익명화를 제공하지 않고 일반 IP에 연결할 수도 있습니다. 이는 사용자가 I2P의 익명화에 관심이 없지만 여전히 I2P 피어에 연결할 수 있기를 원하는 경우 유용할 수 있습니다.</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
@@ -3171,11 +3169,11 @@ DNS 재결합 공격을 방어하기 위해
         <translation>표시</translation>
     </message>
     <message>
-        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>일부를 설치하려면 창의 오른쪽 하단에 있는 "플러그인 검색..." 버튼을 클릭하십시오.</translation>
+        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
+        <translation>일부를 설치하려면 창의 오른쪽 하단에 있는 &quot;플러그인 검색...&quot; 버튼을 클릭하십시오.</translation>
     </message>
     <message>
-        <source>There aren't any search plugins installed.</source>
+        <source>There aren&apos;t any search plugins installed.</source>
         <translation>설치된 검색 플러그인이 없습니다.</translation>
     </message>
 </context>
@@ -3206,7 +3204,7 @@ DNS 재결합 공격을 방어하기 위해
         <translation>활성화됨</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>경고: 검색 엔진으로 토렌트를 내려받기할 때는 해당 국가의 저작권법을 준수해야 합니다.</translation>
     </message>
     <message>
@@ -3821,7 +3819,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>원본</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>하위폴더 만들지 않기</translation>
     </message>
     <message>

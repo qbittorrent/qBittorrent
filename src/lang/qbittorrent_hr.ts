@@ -203,7 +203,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="122"/>
         <source>Use another path for incomplete torrent</source>
-        <translation>Koristite drugu putanju za nepotpuni torrent</translation>
+        <translation>Koristi drugu putanju za nepotpuni torrent</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="209"/>
@@ -213,7 +213,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="225"/>
         <source>Click [...] button to add/remove tags.</source>
-        <translation>Kliknite na [...] za dodavanje/uklanjanje oznaka.</translation>
+        <translation>Klikni na [...] za dodavanje/uklanjanje oznaka.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="235"/>
@@ -418,7 +418,7 @@ Error: %2</source>
         <location filename="../gui/addnewtorrentdialog.cpp" line="352"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="358"/>
         <source>Choose save path</source>
-        <translation>Izaberite putanju spremanja</translation>
+        <translation>Izaberi putanju spremanja</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="636"/>
@@ -476,7 +476,7 @@ Error: %2</source>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="765"/>
         <source>%1 (Free space on disk: %2)</source>
-        <translation>%1 (Slobodni prostor na disku: %2)</translation>
+        <translation>%1 (Slobodan prostor na disku: %2)</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="766"/>
@@ -583,7 +583,7 @@ Pogreška: %2</translation>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="74"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation>Koristite drugu putanju za nepotpune torrente:</translation>
+        <translation>Koristi drugu putanju za nepotpune torrente:</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="107"/>
@@ -598,7 +598,7 @@ Pogreška: %2</translation>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="163"/>
         <source>Click [...] button to add/remove tags.</source>
-        <translation>Kliknite na [...] za dodavanje/uklanjanje oznaka.</translation>
+        <translation>Klikni na [...] za dodavanje/uklanjanje oznaka.</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="173"/>
@@ -894,7 +894,7 @@ Pogreška: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="586"/>
         <source>Use piece extent affinity</source>
-        <translation>Koristite komade srodnosti opsega</translation>
+        <translation>Koristi komade srodnosti opsega</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="589"/>
@@ -1094,12 +1094,12 @@ Pogreška: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="695"/>
         <source>Allow multiple connections from the same IP address</source>
-        <translation>Dopustite više veza s iste IP adrese</translation>
+        <translation>Dopusti više veza s iste IP adrese</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="700"/>
         <source>Validate HTTPS tracker certificates</source>
-        <translation>Potvrdite certifikate HTTPS trackera</translation>
+        <translation>Potvrdi certifikate HTTPS trackera</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="705"/>
@@ -1134,17 +1134,17 @@ Pogreška: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="786"/>
         <source>Reannounce to all trackers when IP or port changed</source>
-        <translation>Ponovno najavite svim trackerima kada se IP ili port promijeni</translation>
+        <translation>Ponovno najavi svim trackerima kada se IP ili port promijeni</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="800"/>
         <source>Enable icons in menus</source>
-        <translation>Omogućite ikone u izbornicima</translation>
+        <translation>Omogući ikone u izbornicima</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="803"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation>Priložite dijalog &quot;Dodaj novi torrent&quot; u glavni prozor</translation>
+        <translation>Priloži dijalog &quot;Dodaj novi torrent&quot; u glavni prozor</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="815"/>
@@ -1573,7 +1573,7 @@ Do you want to make qBittorrent the default application for these?</source>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="257"/>
         <source>Use Smart Episode Filter</source>
-        <translation>Koristite pametni filter epizoda</translation>
+        <translation>Koristi pametni filter epizoda</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="181"/>
@@ -1721,7 +1721,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="311"/>
         <source>Last Match: %1 days ago</source>
-        <translation>Posljednje podudaranje: prije %1 dan(a)</translation>
+        <translation>Posljednje podudaranje: prije %1 dan-a</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="313"/>
@@ -1736,7 +1736,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="380"/>
         <source>Please type the name of the new download rule.</source>
-        <translation>Upišite naziv novog pravila preuzimanja.</translation>
+        <translation>Upiši naziv novog pravila preuzimanja.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="386"/>
@@ -1833,7 +1833,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="539"/>
         <source>Please type the new rule name</source>
-        <translation>Upišite naziv novog pravila</translation>
+        <translation>Upiši naziv novog pravila</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="567"/>
@@ -2597,62 +2597,62 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentImpl</name>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="737"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="741"/>
         <source>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</source>
         <translation>Nije uspjelo dodavanje peera &quot;%1&quot; u torrent &quot;%2&quot;. Razlog: %3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="742"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="746"/>
         <source>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</source>
         <translation>Peer &quot;%1&quot; dodan je torrentu &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="786"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="790"/>
         <source>Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.</source>
         <translation>Otkriveni su neočekivani podaci. Torrent: %1. Podaci: total_wanted=%2 total_wanted_done=%3.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1141"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1145"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation>Nije moguće pisati u datoteku. Razlog: &quot;%1&quot;. Torrent je sada u načinu rada &quot;samo slanje&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1574"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1580"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
-        <translation>Prvo preuzmite prvi i zadnji dio: %1, torrent: &apos;%2&apos;</translation>
+        <translation>Prvo preuzmi prvi i zadnji dio: %1, torrent: &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1575"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1581"/>
         <source>On</source>
         <translation>Uklj</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1575"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1581"/>
         <source>Off</source>
         <translation>Isklj</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2089"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2104"/>
         <source>Generate resume data failed. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Generiranje podataka nastavka nije uspjelo. Torrent: &quot;%1&quot;. Razlog: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2100"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2115"/>
         <source>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Vraćanje torrenta nije uspjelo. Datoteke su vjerojatno premještene ili pohrana nije dostupna. Torrent: &quot;%1&quot;. Razlog: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2595"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2610"/>
         <source>Missing metadata</source>
         <translation>Nedostaju metapodaci</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2143"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2158"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
         <translation>Preimenovanje datoteke nije uspjelo. Torrent: &quot;%1&quot;, datoteka: &quot;%2&quot;, razlog: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2205"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2220"/>
         <source>Performance alert: %1. More info: %2</source>
         <translation>Upozorenje o performansama: %1. Više informacija: %2</translation>
     </message>
@@ -2740,12 +2740,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../app/cmdoptions.cpp" line="512"/>
         <source>Change the WebUI port</source>
-        <translation>Promijenite WebUI port</translation>
+        <translation>Promijeni WebUI port</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="515"/>
         <source>Change the torrenting port</source>
-        <translation>Promijenite port za torrentiranje</translation>
+        <translation>Promijeni port za torrentiranje</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="518"/>
@@ -2755,7 +2755,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../app/cmdoptions.cpp" line="520"/>
         <source>Run in daemon-mode (background)</source>
-        <translation>Pokreni u pozadinskom načinu</translation>
+        <translation>Pokretanje u daemon-načinu (u pozadini)</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="523"/>
@@ -2766,7 +2766,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../app/cmdoptions.cpp" line="524"/>
         <source>Store configuration files in &lt;dir&gt;</source>
-        <translation>Pohranite konfiguracijske datoteke u &lt;dir&gt;</translation>
+        <translation>Pohrani konfiguracijske datoteke u &lt;dir&gt;</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="525"/>
@@ -2777,7 +2777,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../app/cmdoptions.cpp" line="526"/>
         <source>Store configuration files in directories qBittorrent_&lt;name&gt;</source>
-        <translation>Pohranite konfiguracijske datoteke u direktorije qBittorrent_&lt;name&gt;</translation>
+        <translation>Pohrani konfiguracijske datoteke u direktorije qBittorrent_&lt;name&gt;</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="528"/>
@@ -2822,12 +2822,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../app/cmdoptions.cpp" line="539"/>
         <source>Assign torrents to category. If the category doesn&apos;t exist, it will be created.</source>
-        <translation>Dodijelite torrente kategoriji. Ako kategorija ne postoji, bit će stvorena.</translation>
+        <translation>Dodijeli torrente kategoriji. Ako kategorija ne postoji, bit će stvorena.</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="541"/>
         <source>Download files in sequential order</source>
-        <translation>Preuzmite datoteke redoslijedom</translation>
+        <translation>Preuzmi datoteke redoslijedom</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="543"/>
@@ -2837,12 +2837,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../app/cmdoptions.cpp" line="545"/>
         <source>Specify whether the &quot;Add New Torrent&quot; dialog opens when adding a torrent.</source>
-        <translation>Odredite hoće li se prilikom dodavanja torrenta otvoriti dijaloški okvir &quot;Dodaj novi torrent&quot;.</translation>
+        <translation>Odredite hoće li se prilikom dodavanja torrenta otvoriti dijaloški okvir &quot;Dodaj novi Torrent&quot;.</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="549"/>
         <source>Option values may be supplied via environment variables. For option named &apos;parameter-name&apos;, environment variable name is &apos;QBT_PARAMETER_NAME&apos; (in upper case, &apos;-&apos; replaced with &apos;_&apos;). To pass flag values, set the variable to &apos;1&apos; or &apos;TRUE&apos;. For example, to disable the splash screen: </source>
-        <translation>Vrijednosti opcija mogu se dostaviti putem varijabli okoline. Za opciju pod nazivom &apos;naziv-parametra&apos;, naziv varijable okruženja je &apos;QBT_PARAMETER_NAME&apos; (u velikim slovima, &apos;-&apos; zamijenjeno s &apos;_&apos;). Za prijenos vrijednosti zastavice postavite varijablu na &apos;1&apos; ili &apos;TRUE&apos;. Na primjer, da biste onemogućili početni ekran:</translation>
+        <translation>Vrijednosti opcija mogu se dostaviti pomoću varijabli okoline. Za opciju pod nazivom &apos;naziv-parametra&apos;, naziv varijable okruženja je &apos;QBT_PARAMETER_NAME&apos; (u velikim slovima, &apos;-&apos; zamijenjeno s &apos;_&apos;). Za prijenos vrijednosti zastavice postavite varijablu na &apos;1&apos; ili &apos;TRUE&apos;. Na primjer, da biste onemogućili početni ekran:</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="554"/>
@@ -2898,7 +2898,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="130"/>
         <source>Remove unused categories</source>
-        <translation>Uklonite kategorije koje se ne koriste</translation>
+        <translation>Ukloni kategorije koje se ne koriste</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="133"/>
@@ -3001,7 +3001,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/deletionconfirmationdialog.ui" line="91"/>
         <source>Also permanently delete the files</source>
-        <translation>Također trajno izbrišite datoteke</translation>
+        <translation>Također trajno izbriši datoteke</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.cpp" line="45"/>
@@ -3389,7 +3389,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../app/main.cpp" line="354"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
-        <translation>qBittorrent je program za dijeljenje datoteka. Kada pokrenete torrent, njegovi će podaci biti dostupni drugima putem prijenosa. Svaki sadržaj koji dijelite isključivo je vaša odgovornost.</translation>
+        <translation>qBittorrent je program za dijeljenje datoteka. Kada pokrenete torrent, njegovi će podaci biti dostupni drugima pomoću prijenosa. Svaki sadržaj koji dijelite isključivo je vaša odgovornost.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="355"/>
@@ -3597,7 +3597,7 @@ Više neće biti obavijesti o ovome.</translation>
     <message>
         <location filename="../gui/mainwindow.ui" line="242"/>
         <source>Move to the bottom of the queue</source>
-        <translation>Pomaknite na dno reda čekanja</translation>
+        <translation>Pomakni na dno reda čekanja</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="250"/>
@@ -3607,27 +3607,27 @@ Više neće biti obavijesti o ovome.</translation>
     <message>
         <location filename="../gui/mainwindow.ui" line="253"/>
         <source>Move to the top of the queue</source>
-        <translation>Pomaknite na vrh reda čekanja</translation>
+        <translation>Pomakni na vrh reda čekanja</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="261"/>
         <source>Move Down Queue</source>
-        <translation>Pomaknite dolje u redu čekanja</translation>
+        <translation>Pomakni dolje u redu čekanja</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="264"/>
         <source>Move down in the queue</source>
-        <translation>Pomaknite dolje u redu čekanja</translation>
+        <translation>Pomakni dolje u redu čekanja</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="272"/>
         <source>Move Up Queue</source>
-        <translation>Pomaknite gore u redu čekanja</translation>
+        <translation>Pomakni gore u redu čekanja</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="275"/>
         <source>Move up in the queue</source>
-        <translation>Pomaknite gore u redu čekanja</translation>
+        <translation>Pomakni gore u redu čekanja</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="370"/>
@@ -4448,7 +4448,7 @@ Instalirajte ručno.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="191"/>
         <source>Cocos (Keeling) Islands</source>
-        <translation>Kokosov otok</translation>
+        <translation>Kokosovi (Keelingovi) otoci</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="192"/>
@@ -4608,7 +4608,7 @@ Instalirajte ručno.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="224"/>
         <source>Falkland Islands (Malvinas)</source>
-        <translation>Falklandski otoci</translation>
+        <translation>Falklandski otoci (Malvini)</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="225"/>
@@ -5634,7 +5634,7 @@ Instalirajte ručno.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="216"/>
         <source>Customize UI Theme...</source>
-        <translation>Prilagodite temu korisničkog sučelja...</translation>
+        <translation>Prilagodi temu korisničkog sučelja...</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="226"/>
@@ -5654,7 +5654,7 @@ Instalirajte ručno.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="248"/>
         <source>Confirm &quot;Pause/Resume all&quot; actions</source>
-        <translation>Potvrdite radnje &quot;Pauziraj/nastavi sve&quot;.</translation>
+        <translation>Potvrdi radnje &quot;Pauziraj/nastavi sve&quot;.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="258"/>
@@ -5753,7 +5753,7 @@ Instalirajte ručno.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="857"/>
         <source>Original</source>
-        <translation>Original</translation>
+        <translation>Izvornik</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="862"/>
@@ -5839,12 +5839,12 @@ Instalirajte ručno.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1993"/>
         <source>If checked, hostname lookups are done via the proxy</source>
-        <translation>Ako je označeno, traženje naziva hosta vrši se putem proxyja</translation>
+        <translation>Ako je označeno, traženje naziva hosta vrši se pomoću proxyja</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1996"/>
         <source>Perform hostname lookup via proxy</source>
-        <translation>Izvršite traženje naziva hosta putem proxyja</translation>
+        <translation>Izvršite traženje naziva hosta pomoću proxyja</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2056"/>
@@ -5918,7 +5918,7 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2680"/>
         <source>Maximum active checking torrents:</source>
-        <translation>Najviše aktivnih torrenta:</translation>
+        <translation>Najveći broj aktivnih torrenta:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2715"/>
@@ -6096,7 +6096,7 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Možete koristiti zamjenski 
     <message>
         <location filename="../gui/optionsdialog.ui" line="3332"/>
         <source>&amp;Use HTTPS instead of HTTP</source>
-        <translation>&amp;Koristite HTTPS umjesto HTTP-a</translation>
+        <translation>&amp;Koristi HTTPS umjesto HTTP-a</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3420"/>
@@ -6202,7 +6202,7 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Možete koristiti zamjenski 
     <message>
         <location filename="../gui/optionsdialog.ui" line="1000"/>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation>Također izbrišite .torrent datoteke čije je dodavanje otkazano</translation>
+        <translation>Također izbriši .torrent datoteke čije je dodavanje otkazano</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1003"/>
@@ -6253,18 +6253,18 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Možete koristiti zamjenski 
         <location filename="../gui/optionsdialog.ui" line="1171"/>
         <location filename="../gui/optionsdialog.ui" line="1212"/>
         <source>Relocate affected torrents</source>
-        <translation>Premjestite pogođene torrente</translation>
+        <translation>Premjesti pogođene torrente</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1176"/>
         <location filename="../gui/optionsdialog.ui" line="1217"/>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>Prebacite pogođene torrente u ručni način rada</translation>
+        <translation>Prebaci pogođene torrente u ručni način rada</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1242"/>
         <source>Use Subcategories</source>
-        <translation>Koristite potkategorije</translation>
+        <translation>Koristi potkategorije</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1261"/>
@@ -6299,7 +6299,7 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Možete koristiti zamjenski 
     <message>
         <location filename="../gui/optionsdialog.ui" line="1294"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>Kopirajte .torrent datoteke za završena preuzimanja u:</translation>
+        <translation>Kopiraj .torrent datoteke za završena preuzimanja u:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1043"/>
@@ -6309,7 +6309,7 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Možete koristiti zamjenski 
     <message>
         <location filename="../gui/optionsdialog.ui" line="187"/>
         <source>Use custom UI Theme</source>
-        <translation>Koristite prilagođenu temu korisničkog sučelja</translation>
+        <translation>Koristi prilagođenu temu korisničkog sučelja</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="196"/>
@@ -6330,7 +6330,7 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Možete koristiti zamjenski 
         <location filename="../gui/optionsdialog.ui" line="333"/>
         <location filename="../gui/optionsdialog.ui" line="369"/>
         <source>Preview file, otherwise open destination folder</source>
-        <translation>Pregledajte datoteku, ili otvorite odredišnu mapu</translation>
+        <translation>Pregledaj datoteku, ili otvori odredišnu mapu</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="338"/>
@@ -6357,7 +6357,7 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Možete koristiti zamjenski 
         <location filename="../gui/optionsdialog.ui" line="515"/>
         <source>Close qBittorrent to notification area</source>
         <extracomment>The systray icon will still be visible when closing the main window</extracomment>
-        <translation>Zatvorite qBittorrent u područje obavijesti</translation>
+        <translation>Zatvori qBittorrent u područje obavijesti</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="537"/>
@@ -6416,7 +6416,7 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Možete koristiti zamjenski 
         <location filename="../gui/optionsdialog.ui" line="903"/>
         <source>Do not start the download automatically</source>
         <extracomment>The torrent will be added to download list in a paused state</extracomment>
-        <translation>Nemojte automatski pokretati preuzimanje</translation>
+        <translation>Ne pokreći automatsko preuzimanje</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="985"/>
@@ -6463,7 +6463,7 @@ Ručno: različita svojstva torrenta (npr. put spremanja) moraju se dodijeliti r
     <message>
         <location filename="../gui/optionsdialog.ui" line="1252"/>
         <source>Use Category paths in Manual Mode</source>
-        <translation>Koristite putanje kategorija u ručnom načinu rada</translation>
+        <translation>Koristi putanje kategorija u ručnom načinu rada</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1249"/>
@@ -6473,7 +6473,7 @@ Ručno: različita svojstva torrenta (npr. put spremanja) moraju se dodijeliti r
     <message>
         <location filename="../gui/optionsdialog.ui" line="209"/>
         <source>Use icons from system theme</source>
-        <translation>Koristite ikone iz teme sustava</translation>
+        <translation>Koristi ikone iz teme sustava</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="438"/>
@@ -6516,7 +6516,7 @@ Ručno: različita svojstva torrenta (npr. put spremanja) moraju se dodijeliti r
     <message>
         <location filename="../gui/optionsdialog.ui" line="1271"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation>Koristite drugu putanju za nepotpune torrente:</translation>
+        <translation>Koristi drugu putanju za nepotpune torrente:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1306"/>
@@ -6614,7 +6614,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; ali ne 
     <message>
         <location filename="../gui/optionsdialog.ui" line="1538"/>
         <source>Run external program</source>
-        <translation>Pokrenite vanjski program</translation>
+        <translation>Pokreni vanjski program</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1544"/>
@@ -6732,7 +6732,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; ali ne 
     <message>
         <location filename="../gui/optionsdialog.ui" line="2071"/>
         <source>Use proxy for peer connections</source>
-        <translation>Koristite proxy za peer veze</translation>
+        <translation>Koristi proxy za peer veze</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2006"/>
@@ -7063,12 +7063,12 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; ali ne 
     <message>
         <location filename="../gui/optionsdialog.cpp" line="237"/>
         <source>Select qBittorrent UI Theme file</source>
-        <translation>Odaberite datoteku teme korisničkog sučelja za qBittorrent</translation>
+        <translation>Odaberi datoteku teme korisničkog sučelja za qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1230"/>
         <source>Choose Alternative UI files location</source>
-        <translation>Odaberite lokaciju alternativnih datoteka korisničkog sučelja</translation>
+        <translation>Odaberi lokaciju alternativnih datoteka korisničkog sučelja</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="624"/>
@@ -7193,7 +7193,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; ali ne 
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1770"/>
         <source>Select folder to monitor</source>
-        <translation>Odaberite mapu za praćenje</translation>
+        <translation>Odaberi mapu za praćenje</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1792"/>
@@ -7224,7 +7224,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; ali ne 
     <message>
         <location filename="../gui/optionsdialog.cpp" line="547"/>
         <source>When these options are enabled, qBittorrent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
-        <translation>Kada su ove opcije omogućene, qBittorrent će &lt;strong&gt;izbrisati&lt;/strong&gt; .torrent datoteke nakon što su uspješno (prva opcija) ili ne (druga opcija) dodane u njegov red čekanja za preuzimanje. Ovo će se primijeniti &lt;strong&gt;ne samo&lt;/strong&gt; na datoteke otvorene putem radnje izbornika &quot;Dodaj torrent&quot;, već i na one otvorene putem &lt;strong&gt;povezivanja vrste datoteke&lt;/strong&gt;</translation>
+        <translation>Kada su ove opcije omogućene, qBittorrent će &lt;strong&gt;izbrisati&lt;/strong&gt; .torrent datoteke nakon što su uspješno (prva opcija) ili ne (druga opcija) dodane u njegov red čekanja za preuzimanje. Ovo će se primijeniti &lt;strong&gt;ne samo&lt;/strong&gt; na datoteke otvorene pomoću radnje izbornika &quot;Dodaj torrent&quot;, već i na one otvorene pomoću &lt;strong&gt;povezivanja vrste datoteke&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="238"/>
@@ -8205,18 +8205,18 @@ Ti dodaci su onemogućeni.</translation>
         <location filename="../gui/properties/propertieswidget.cpp" line="572"/>
         <source>New URL seed</source>
         <comment>New HTTP source</comment>
-        <translation>Novi seed URL</translation>
+        <translation>Novi URL seeda</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="573"/>
         <source>New URL seed:</source>
-        <translation>Novi seed URL:</translation>
+        <translation>Novi URL seeda:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="579"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="632"/>
         <source>This URL seed is already in the list.</source>
-        <translation> Ovaj URL seed je već u listi.</translation>
+        <translation> Ovaj URL seeda je već u listi.</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="624"/>
@@ -8226,7 +8226,7 @@ Ti dodaci su onemogućeni.</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="625"/>
         <source>Web seed URL:</source>
-        <translation>URL web seeda:</translation>
+        <translation>Web URL seeda:</translation>
     </message>
 </context>
 <context>
@@ -8442,7 +8442,7 @@ Ti dodaci su onemogućeni.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="43"/>
         <source>New subscription</source>
-        <translation>Nova preplata</translation>
+        <translation>Nova pretplata</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="50"/>
@@ -9933,98 +9933,98 @@ Odaberite drugo ime i pokušajte ponovno.</translation>
 <context>
     <name>TorrentContentWidget</name>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="72"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="85"/>
         <source>Rename error</source>
         <translation>Pogreška preimenovanja</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="241"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="254"/>
         <source>Renaming</source>
         <translation>Preimenovanje</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="241"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="254"/>
         <source>New name:</source>
         <translation>Novi naziv:</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="324"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="337"/>
         <source>Column visibility</source>
         <translation>Vidljivost stupca</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="347"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="360"/>
         <source>Resize columns</source>
         <translation>Promjena veličine stupaca</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="357"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="370"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
         <translation>Promijenite veličinu svih neskrivenih stupaca na veličinu njihovog sadržaja</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="377"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="390"/>
         <source>Open</source>
         <translation>Otvori</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="379"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="392"/>
         <source>Open containing folder</source>
         <translation>Otvori mapu koja sadrži</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="382"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="395"/>
         <source>Rename...</source>
         <translation>Preimenuj...</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="386"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="399"/>
         <source>Priority</source>
         <translation>Prioritet</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="388"/>
-        <location filename="../gui/torrentcontentwidget.cpp" line="409"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="401"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="422"/>
         <source>Do not download</source>
         <translation>Ne preuzimaj</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="392"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="405"/>
         <source>Normal</source>
         <translation>Normalno</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="396"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="409"/>
         <source>High</source>
         <translation>Visoko</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="400"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="413"/>
         <source>Maximum</source>
         <translation>Maksimalno</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="405"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="418"/>
         <source>By shown file order</source>
         <translation>Po prikazanom redoslijedu datoteka</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="413"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="426"/>
         <source>Normal priority</source>
         <translation>Normalan prioritet</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="417"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="430"/>
         <source>High priority</source>
         <translation>Visok prioritet</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="421"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="434"/>
         <source>Maximum priority</source>
         <translation>Najviši prioritet</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentwidget.cpp" line="426"/>
+        <location filename="../gui/torrentcontentwidget.cpp" line="439"/>
         <source>Priority by shown file order</source>
         <translation>Prioritet prema prikazanom redoslijedu datoteka</translation>
     </message>
@@ -10499,32 +10499,32 @@ Odaberite drugo ime i pokušajte ponovno.</translation>
         <translation>Torrent oznake</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="100"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="101"/>
         <source>New Tag</source>
         <translation>Nova oznaka</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="100"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="101"/>
         <source>Tag:</source>
         <translation>Oznaka:</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="106"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="107"/>
         <source>Invalid tag name</source>
         <translation>Nevažeći naziv oznake</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="106"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="107"/>
         <source>Tag name &apos;%1&apos; is invalid.</source>
         <translation>Naziv oznake &apos;%1&apos; nije valjan.</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="110"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="111"/>
         <source>Tag exists</source>
         <translation>Oznaka postoji</translation>
     </message>
     <message>
-        <location filename="../gui/torrenttagsdialog.cpp" line="110"/>
+        <location filename="../gui/torrenttagsdialog.cpp" line="111"/>
         <source>Tag name already exists.</source>
         <translation>Naziv oznake već postoji.</translation>
     </message>
@@ -11283,334 +11283,334 @@ Odaberite drugo ime i pokušajte ponovno.</translation>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="676"/>
+        <location filename="../gui/transferlistwidget.cpp" line="677"/>
         <source>Column visibility</source>
         <translation>Vidljivost stupca</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="645"/>
+        <location filename="../gui/transferlistwidget.cpp" line="646"/>
         <source>Recheck confirmation</source>
         <translation>Ponovno provjeri potvrđivanje</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="645"/>
+        <location filename="../gui/transferlistwidget.cpp" line="646"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
         <translation>Jeste li sigurni da želite ponovno provjeriti odabrani/e torrent(e)?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="915"/>
+        <location filename="../gui/transferlistwidget.cpp" line="916"/>
         <source>Rename</source>
         <translation>Preimenovanje</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="915"/>
+        <location filename="../gui/transferlistwidget.cpp" line="916"/>
         <source>New name:</source>
         <translation>Novi naziv:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="352"/>
+        <location filename="../gui/transferlistwidget.cpp" line="353"/>
         <source>Choose save path</source>
         <translation>Izaberi putanju spremanja</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="382"/>
+        <location filename="../gui/transferlistwidget.cpp" line="383"/>
         <source>Confirm pause</source>
         <translation>Potvrdite pauzu</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="383"/>
+        <location filename="../gui/transferlistwidget.cpp" line="384"/>
         <source>Would you like to pause all torrents?</source>
         <translation>Želite li pauzirati sve torrente?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="398"/>
+        <location filename="../gui/transferlistwidget.cpp" line="399"/>
         <source>Confirm resume</source>
         <translation>Potvrdite nastavak</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="399"/>
+        <location filename="../gui/transferlistwidget.cpp" line="400"/>
         <source>Would you like to resume all torrents?</source>
         <translation>Želite li nastaviti sa svim torrentima?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="625"/>
+        <location filename="../gui/transferlistwidget.cpp" line="626"/>
         <source>Unable to preview</source>
         <translation>Pregled nije moguć</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="625"/>
+        <location filename="../gui/transferlistwidget.cpp" line="626"/>
         <source>The selected torrent &quot;%1&quot; does not contain previewable files</source>
         <translation>Odabrani torrent &quot;%1&quot; ne sadrži datoteke koje se mogu pregledati</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="702"/>
+        <location filename="../gui/transferlistwidget.cpp" line="703"/>
         <source>Resize columns</source>
         <translation>Promjena veličine stupaca</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="711"/>
+        <location filename="../gui/transferlistwidget.cpp" line="712"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
         <translation>Promjena veličine svih neskrivenih stupaca na veličinu njihovog sadržaja</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="741"/>
+        <location filename="../gui/transferlistwidget.cpp" line="742"/>
         <source>Enable automatic torrent management</source>
         <translation>Omogući automatsko upravljanje torrentima</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="742"/>
+        <location filename="../gui/transferlistwidget.cpp" line="743"/>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
         <translation>Jeste li sigurni da želite omogućiti automatsko upravljanje torrentima za odabrani torrent(e)? Mogu biti premješteni.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="760"/>
+        <location filename="../gui/transferlistwidget.cpp" line="761"/>
         <source>Add Tags</source>
         <translation>Dodaj oznake</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="805"/>
+        <location filename="../gui/transferlistwidget.cpp" line="806"/>
         <source>Choose folder to save exported .torrent files</source>
         <translation>Odaberite mapu za spremanje izvezenih .torrent datoteka</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="819"/>
+        <location filename="../gui/transferlistwidget.cpp" line="820"/>
         <source>Export .torrent file failed. Torrent: &quot;%1&quot;. Save path: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Izvoz .torrent datoteke nije uspio. Torrent: &quot;%1&quot;. Putanja spremanja: &quot;%2&quot;. Razlog: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="828"/>
+        <location filename="../gui/transferlistwidget.cpp" line="829"/>
         <source>A file with the same name already exists</source>
         <translation>Datoteka s istim nazivom već postoji</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="844"/>
+        <location filename="../gui/transferlistwidget.cpp" line="845"/>
         <source>Export .torrent file error</source>
         <translation>Pogreška izvoza .torrent datoteke</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="855"/>
+        <location filename="../gui/transferlistwidget.cpp" line="856"/>
         <source>Remove All Tags</source>
         <translation>Ukloni sve oznake</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="855"/>
+        <location filename="../gui/transferlistwidget.cpp" line="856"/>
         <source>Remove all tags from selected torrents?</source>
         <translation>Ukloniti sve oznake s odabranih torrenta?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="870"/>
+        <location filename="../gui/transferlistwidget.cpp" line="871"/>
         <source>Comma-separated tags:</source>
         <translation>Oznake odvojene zarezima:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="879"/>
+        <location filename="../gui/transferlistwidget.cpp" line="880"/>
         <source>Invalid tag</source>
         <translation>Nevažeća oznaka</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="880"/>
+        <location filename="../gui/transferlistwidget.cpp" line="881"/>
         <source>Tag name: &apos;%1&apos; is invalid</source>
         <translation>Naziv oznake: &apos;%1&apos; nije valjan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="956"/>
+        <location filename="../gui/transferlistwidget.cpp" line="957"/>
         <source>&amp;Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Nastavi</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="958"/>
+        <location filename="../gui/transferlistwidget.cpp" line="959"/>
         <source>&amp;Pause</source>
         <comment>Pause the torrent</comment>
         <translation>&amp;Pauziraj</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="960"/>
+        <location filename="../gui/transferlistwidget.cpp" line="961"/>
         <source>Force Resu&amp;me</source>
         <comment>Force Resume/start the torrent</comment>
         <translation>Pri&amp;sili nastavak</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="964"/>
+        <location filename="../gui/transferlistwidget.cpp" line="965"/>
         <source>Pre&amp;view file...</source>
         <translation>Pre&amp;gled datoteke...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="966"/>
+        <location filename="../gui/transferlistwidget.cpp" line="967"/>
         <source>Torrent &amp;options...</source>
         <translation>&amp;Opcije torrenta...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="968"/>
+        <location filename="../gui/transferlistwidget.cpp" line="969"/>
         <source>Open destination &amp;folder</source>
         <translation>Otvori odredišnu &amp;mapu</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="970"/>
+        <location filename="../gui/transferlistwidget.cpp" line="971"/>
         <source>Move &amp;up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Pomakni g&amp;ore</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="972"/>
+        <location filename="../gui/transferlistwidget.cpp" line="973"/>
         <source>Move &amp;down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Pomakni &amp;dolje</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="974"/>
+        <location filename="../gui/transferlistwidget.cpp" line="975"/>
         <source>Move to &amp;top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>Pomakni na &amp;vrh</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="976"/>
+        <location filename="../gui/transferlistwidget.cpp" line="977"/>
         <source>Move to &amp;bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>Pomakni na &amp;dno</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="978"/>
+        <location filename="../gui/transferlistwidget.cpp" line="979"/>
         <source>Set loc&amp;ation...</source>
         <translation>Postavi &amp;lokaciju...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="980"/>
+        <location filename="../gui/transferlistwidget.cpp" line="981"/>
         <source>Force rec&amp;heck</source>
         <translation>Prisili ponovnu prov&amp;jeru</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="982"/>
+        <location filename="../gui/transferlistwidget.cpp" line="983"/>
         <source>Force r&amp;eannounce</source>
         <translation>Prisili ponovne &amp;oglase</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="984"/>
+        <location filename="../gui/transferlistwidget.cpp" line="985"/>
         <source>&amp;Magnet link</source>
         <translation>&amp;Magnet link</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="986"/>
+        <location filename="../gui/transferlistwidget.cpp" line="987"/>
         <source>Torrent &amp;ID</source>
         <translation>Torrent &amp;ID</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="988"/>
+        <location filename="../gui/transferlistwidget.cpp" line="989"/>
         <source>&amp;Name</source>
         <translation>&amp;Naziv</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="990"/>
+        <location filename="../gui/transferlistwidget.cpp" line="991"/>
         <source>Info &amp;hash v1</source>
         <translation>Info &amp;hash v1</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="992"/>
+        <location filename="../gui/transferlistwidget.cpp" line="993"/>
         <source>Info h&amp;ash v2</source>
         <translation>Info h&amp;ash v2</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="996"/>
+        <location filename="../gui/transferlistwidget.cpp" line="997"/>
         <source>Re&amp;name...</source>
         <translation>Preime&amp;nuj...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1005"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1006"/>
         <source>Edit trac&amp;kers...</source>
         <translation>Uredi trac&amp;kere</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1007"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1008"/>
         <source>E&amp;xport .torrent...</source>
         <translation>Uve&amp;zi .torrent...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1153"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1154"/>
         <source>Categor&amp;y</source>
         <translation>Kategor&amp;ija</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1155"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1156"/>
         <source>&amp;New...</source>
         <comment>New category...</comment>
         <translation>&amp;Novi</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1157"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1158"/>
         <source>&amp;Reset</source>
         <comment>Reset category</comment>
         <translation>&amp;Poništi</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1178"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1179"/>
         <source>Ta&amp;gs</source>
         <translation>Ozna&amp;ke</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1180"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1181"/>
         <source>&amp;Add...</source>
         <comment>Add / assign multiple tags...</comment>
         <translation>Dod&amp;aj</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1182"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1183"/>
         <source>&amp;Remove All</source>
         <comment>Remove all tags</comment>
         <translation>&amp;Ukloni sve</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1264"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1265"/>
         <source>&amp;Queue</source>
         <translation>&amp;Red čekanja</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1271"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1272"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopiraj</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1280"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1281"/>
         <source>Exported torrent is not necessarily the same as the imported</source>
         <translation>Izvezeni torrent nije nužno isti kao uvezeni</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="998"/>
+        <location filename="../gui/transferlistwidget.cpp" line="999"/>
         <source>Download in sequential order</source>
         <translation>Preuzmi u sekvencijskom poretku</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="845"/>
+        <location filename="../gui/transferlistwidget.cpp" line="846"/>
         <source>Errors occurred when exporting .torrent files. Check execution log for details.</source>
         <translation>Došlo je do pogreške prilikom izvoza .torrent datoteka. Za detalje provjerite zapisnik izvršenja.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="962"/>
+        <location filename="../gui/transferlistwidget.cpp" line="963"/>
         <source>&amp;Remove</source>
         <comment>Remove the torrent</comment>
         <translation>Uk&amp;loni</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1000"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1001"/>
         <source>Download first and last pieces first</source>
         <translation>Preuzmi prve i zadnje dijelove prije drugih.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1002"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1003"/>
         <source>Automatic Torrent Management</source>
         <translation>Automatsko upravljanje torrentima</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1003"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1004"/>
         <source>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</source>
         <translation>Automatski način rada znači da će različita svojstva torrenta (npr. putanja spremanja) biti određena pridruženom kategorijom</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1257"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1258"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation>Ne može se prisilno ponovno najaviti ako je torrent pauziran/u redu čekanja/pogreška/provjera</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="994"/>
+        <location filename="../gui/transferlistwidget.cpp" line="995"/>
         <source>Super seeding mode</source>
         <translation>Način superseedanja</translation>
     </message>
@@ -11986,7 +11986,7 @@ Odaberite drugo ime i pokušajte ponovno.</translation>
         <location filename="../base/utils/misc.cpp" line="378"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1s %2m</translation>
+        <translation>%1h %2m</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="385"/>

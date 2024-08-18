@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="id">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="id">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Buat subfolder</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Jangan buat subfolder</translation>
     </message>
     <message>
@@ -325,7 +323,7 @@
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Edit</source>
@@ -345,7 +343,7 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
@@ -361,7 +359,7 @@
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
@@ -385,7 +383,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Original author</source>
@@ -393,7 +391,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -621,7 +619,7 @@
     </message>
     <message>
         <source>Log</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -993,8 +991,8 @@
         <translation>%T: Pelacak saat ini</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Tip: Merangkum parameter dengan tanda kutipan untuk menghindari teks terpotong di ruang putih (m.s., "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Tip: Merangkum parameter dengan tanda kutipan untuk menghindari teks terpotong di ruang putih (m.s., &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1022,7 +1020,7 @@
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Download rate threshold:</source>
@@ -1086,7 +1084,7 @@
     </message>
     <message>
         <source>Enable Host header validation</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Security</source>
@@ -1094,7 +1092,7 @@
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>seconds</source>
@@ -1130,7 +1128,7 @@
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Upload rate based</source>
@@ -1138,11 +1136,11 @@
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Socket backlog size:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
@@ -1154,7 +1152,7 @@
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Anti-leech</source>
@@ -1166,7 +1164,7 @@
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>File pool size:</source>
@@ -1178,11 +1176,11 @@
     </message>
     <message>
         <source>Always announce to all tiers:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Embedded tracker port:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Fastest upload</source>
@@ -1202,7 +1200,7 @@
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>libtorrent Section</source>
@@ -1210,7 +1208,7 @@
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Allow encryption</source>
@@ -1218,11 +1216,11 @@
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove torrent</source>
@@ -1230,15 +1228,15 @@
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
@@ -1258,7 +1256,7 @@
     </message>
     <message>
         <source>Upload choking algorithm:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Seeding Limits</source>
@@ -1274,7 +1272,7 @@
     </message>
     <message>
         <source>Upload slots behavior:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>MiB</source>
@@ -1282,15 +1280,15 @@
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Session timeout:</source>
@@ -1298,7 +1296,7 @@
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>ban for:</source>
@@ -1314,7 +1312,7 @@
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add custom HTTP headers</source>
@@ -1330,7 +1328,7 @@
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
@@ -1362,7 +1360,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
@@ -1374,15 +1372,15 @@
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
@@ -1390,11 +1388,11 @@
     </message>
     <message>
         <source>RSS Smart Episode Filter</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Peer connection protocol:</source>
@@ -1413,16 +1411,16 @@
         <translation>Asli</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Jangan buat subfolder</translation>
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Random</source>
@@ -1434,7 +1432,7 @@
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1442,7 +1440,7 @@
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%J: Info hash v2</source>
@@ -1454,19 +1452,19 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log performance warnings</source>
@@ -1474,15 +1472,15 @@
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation type="unfinished" />
+        <translation>Berkas yang dipetakan pada memori</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1490,7 +1488,7 @@
     </message>
     <message>
         <source>POSIX-compliant</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>This option is less effective on Linux</source>
@@ -1498,11 +1496,11 @@
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disk IO read mode:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disable OS cache</source>
@@ -1510,15 +1508,15 @@
     </message>
     <message>
         <source>Disk IO write mode:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable OS cache</source>
@@ -1526,11 +1524,11 @@
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Excluded file names</source>
@@ -1538,35 +1536,35 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Run external program on torrent finished</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Whitelist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use ';' to split multiple entries. Can use wildcard '*'.</source>
+Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
         <translation>Daftar putih untuk menyaring Nilai Kepala judul HTTP Host.
 Untuk melindungi dari serangan balik DNS,
 Anda dapat mengisi nama domain menggunakan Antarmuka Web server.
 
-Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</translation>
+Gunakan &apos;;&apos; untuk memisahkan banyak kata. Dapat menggunakan wildcard &apos;*&apos;.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation type="unfinished" />
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1574,7 +1572,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Run external program</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Files checked</source>
@@ -1582,11 +1580,11 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Metadata received</source>
@@ -1594,7 +1592,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Torrent stop condition:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>None</source>
@@ -1610,7 +1608,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Fastresume files</source>
@@ -1638,7 +1636,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>years</source>
@@ -1654,43 +1652,43 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use Subcategories</source>
@@ -1698,7 +1696,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1706,27 +1704,27 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
@@ -1738,11 +1736,11 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>When total seeding time reaches</source>
@@ -1750,7 +1748,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Mixed mode</source>
@@ -1758,27 +1756,27 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2098,23 +2096,23 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Toggle Selection</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Replacement Input</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Extension</source>
@@ -2122,27 +2120,27 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Include files</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Include folders</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Search Files</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2621,7 +2619,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Renamed</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Original</source>
@@ -2735,7 +2733,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2919,7 +2917,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Export .torrent</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove</source>
@@ -2927,7 +2925,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Rename Files...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Renaming</source>
@@ -2976,7 +2974,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Remove torrent(s)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2991,7 +2989,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3081,19 +3079,19 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Plugin path:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>URL or local directory</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Install plugin</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3132,7 +3130,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Filter</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Torrent names only</source>
@@ -3144,7 +3142,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Everywhere</source>
@@ -3156,7 +3154,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>to</source>
@@ -3168,15 +3166,15 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation type="unfinished" />
+        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>There aren't any search plugins installed.</source>
-        <translation type="unfinished" />
+        <source>There aren&apos;t any search plugins installed.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3187,11 +3185,11 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Install new plugin</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Close</source>
@@ -3206,7 +3204,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
         <translation>Diaktifkan</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Peringatan: Pastikan untuk menaati hukum yang berlaku di negara Anda saat mengunduh torrent dari semua mesin pencari ini.</translation>
     </message>
     <message>
@@ -3284,7 +3282,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -3421,11 +3419,11 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3740,7 +3738,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Rss Downloader</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
@@ -3805,7 +3803,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -3820,12 +3818,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Asli</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Jangan buat subfolder</translation>
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3870,7 +3868,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Blocked</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unknown</source>
@@ -3882,7 +3880,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Copy</source>
@@ -3894,11 +3892,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log Type</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Clear</source>
@@ -3918,7 +3916,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Filter logs</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Blocked IPs</source>
@@ -3926,7 +3924,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Status</source>
@@ -3934,11 +3932,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Timestamp</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Clear All</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Message</source>
@@ -3946,15 +3944,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Reason</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>item</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>IP</source>

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="nl">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="nl">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Submap aanmaken</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Geen submap aanmaken</translation>
     </message>
     <message>
@@ -297,7 +295,7 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>Torrents downloaden via hun URL's of magneetkoppelingen</translation>
+        <translation>Torrents downloaden via hun URL&apos;s of magneetkoppelingen</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
@@ -993,8 +991,8 @@
         <translation>%T: huidige tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Tip: omring de parameter met aanhalingstekens om te vermijden dat tekst afgekapt wordt bij witruimte (bijvoorbeeld: "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Tip: omring de parameter met aanhalingstekens om te vermijden dat tekst afgekapt wordt bij witruimte (bijvoorbeeld: &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1413,7 +1411,7 @@
         <translation>Oorspronkelijk</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Geen submap aanmaken</translation>
     </message>
     <message>
@@ -1438,7 +1436,7 @@
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation>Lijst van vertrouwde proxy's:</translation>
+        <translation>Lijst van vertrouwde proxy&apos;s:</translation>
     </message>
     <message>
         <source>Enable reverse proxy support</source>
@@ -1549,12 +1547,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use ';' to split multiple entries. Can use wildcard '*'.</source>
+Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
         <translation>Whitelist voor filteren van HTTP-host header-waarden.
 Om te verdedigen tegen een DNS-rebinding-aanval
 zet u er domeinnamen in die gebruikt worden door de WebUI-server.
 
-Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</translation>
+Gebruik &apos;;&apos; om meerdere items te splitsen. Jokerteken &apos;*&apos; kan gebruikt worden.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1565,8 +1563,8 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>HTTPS-certificaat mag niet leeg zijn</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>Geef reverse proxy IP's (of subnets, bijvoorbeeld 0.0.0.0/24) op om forwarded client adres te gebruiken (X-Forwarded-For header). Gebruik ';' om meerdere items te splitsen.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
+        <translation>Geef reverse proxy IP&apos;s (of subnets, bijvoorbeeld 0.0.0.0/24) op om forwarded client adres te gebruiken (X-Forwarded-For header). Gebruik &apos;;&apos; om meerdere items te splitsen.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1758,7 +1756,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation>Als &amp;quot;gemengde modus&amp;quot; is ingeschakeld, kunnen I2P-torrents ook peers krijgen van andere bronnen dan de tracker, en verbinding maken met gewone IP's, zonder enige anonimisering. Dit kan nuttig zijn als de gebruiker niet geïnteresseerd is in de anonimisering van I2P, maar toch wil kunnen verbinden met I2P-peers.</translation>
+        <translation>Als &amp;quot;gemengde modus&amp;quot; is ingeschakeld, kunnen I2P-torrents ook peers krijgen van andere bronnen dan de tracker, en verbinding maken met gewone IP&apos;s, zonder enige anonimisering. Dit kan nuttig zijn als de gebruiker niet geïnteresseerd is in de anonimisering van I2P, maar toch wil kunnen verbinden met I2P-peers.</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
@@ -2983,7 +2981,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation>Downloaden uit URL's</translation>
+        <translation>Downloaden uit URL&apos;s</translation>
     </message>
     <message>
         <source>Download</source>
@@ -3171,11 +3169,11 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>weergeven van</translation>
     </message>
     <message>
-        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>Klik op de knop "zoekplugins..." rechtsonder in het venster om er enkele te installeren.</translation>
+        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
+        <translation>Klik op de knop &quot;zoekplugins...&quot; rechtsonder in het venster om er enkele te installeren.</translation>
     </message>
     <message>
-        <source>There aren't any search plugins installed.</source>
+        <source>There aren&apos;t any search plugins installed.</source>
         <translation>Er zijn geen zoekplugins geïnstalleerd.</translation>
     </message>
 </context>
@@ -3206,7 +3204,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>Ingeschakeld</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Waarschuwing: verzeker u ervan dat u voldoet aan de wetten op auteursrecht in uw land wanneer u torrents downloadt via een van deze zoekmachines.</translation>
     </message>
     <message>
@@ -3744,7 +3742,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation>Seizoensnummer is een verplichte "geen nul"-waarde</translation>
+        <translation>Seizoensnummer is een verplichte &quot;geen nul&quot;-waarde</translation>
     </message>
     <message>
         <source>Never</source>
@@ -3821,7 +3819,7 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
         <translation>Oorspronkelijk</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Geen submap aanmaken</translation>
     </message>
     <message>
@@ -3923,7 +3921,7 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>Geblokkeerde IP's</translation>
+        <translation>Geblokkeerde IP&apos;s</translation>
     </message>
     <message>
         <source>out of</source>
