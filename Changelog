@@ -60,8 +60,8 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - WEBAPI: Provide endpoint for listing directory content (Paweł Kotiuk) a1af077889de587d8c71968a380abc9eb4aea47f
     - WEBAPI: Provide "private" flag via "torrents/info" endpoint (ManiMatter) 05416458db79e050f8500e1d543148ce4cf2ecdb
     - WEBAPI: Add a way to download .torrent file using search plugin (glassez) 4d8713ce110d80f995212fb7a779fe16504fb91d
-    - WEBAPI: Add "private" filter for 'torrents/info' endpoint (ManiMatter) 914728d9a102ee8aa44eb46c413ecb668728709c
-    - WEBAPI: Add root_path to torrent/info result (David Newhall) 09ed0d6b6681adba7632b418b814e6440f31dcc1
+    - WEBAPI: Add "private" filter for "torrents/info" endpoint (ManiMatter) 914728d9a102ee8aa44eb46c413ecb668728709c
+    - WEBAPI: Add root_path to "torrents/info" result (David Newhall) 09ed0d6b6681adba7632b418b814e6440f31dcc1
     - RSS: Show RSS feed title in HTML browser (Jay)
     - RSS: Allow to set delay between requests to the same host (jNullj)
     - SEARCH: Allow users to specify Python executable path (Chocobo1)
