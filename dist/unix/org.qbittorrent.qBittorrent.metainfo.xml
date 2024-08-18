@@ -62,6 +62,6 @@
   <url type="contribute">https://github.com/qbittorrent/qBittorrent/blob/master/CONTRIBUTING.md</url>
   <content_rating type="oars-1.1"/>
   <releases>
-    <release version="4.6.5" date="2024-05-26"/>
+    <release version="4.6.6" date="2024-08-18"/>
   </releases>
 </component>
