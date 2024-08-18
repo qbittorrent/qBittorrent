@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icons-uy" viewBox="0 0 640 480">
   <path fill="#fff" d="M0 0h640v480H0z"/>
   <path fill="#0038a8" d="M266 53.3h374v53.4H266zm0 106.7h374v53.3H266zM0 266.7h640V320H0zm0 106.6h640v53.4H0z"/>
-  <g fill="#fcd116" stroke="#000" stroke-miterlimit="20" stroke-width=".6" transform="translate(133.3 133.3) scale(2.93333)">
+  <g fill="#fcd116" stroke="#000" stroke-miterlimit="20" stroke-width=".6" transform="translate(133.3 133.3)scale(2.93333)">
     <g id="uy-c">
       <g id="uy-b">
         <g id="uy-a">
@@ -16,7 +16,7 @@
     <use xlink:href="#uy-c" width="100%" height="100%" transform="scale(-1)"/>
     <circle r="11"/>
   </g>
-  <g transform="translate(133.3 133.3) scale(.29333)">
+  <g transform="translate(133.3 133.3)scale(.29333)">
     <g id="uy-d">
       <path d="M81-44c-7 8-11-6-36-6S16-35 12-38s21-21 29-22 31 7 40 16m-29 9c7 6 1 19-6 19S26-28 32-36"/>
       <path d="M19-26c1-12 11-14 27-14s23 12 29 15c-7 0-13-10-29-10s-16 0-27 10m3 2c4-6 9 6 20 6s17-3 24-8-10 12-21 12-26-6-23-10"/>

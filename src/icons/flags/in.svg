@@ -11,7 +11,7 @@
         <g id="in-b">
           <g id="in-a" fill="#008">
             <circle r=".9" transform="rotate(7.5 -8.8 133.5)"/>
-            <path d="M0 17.5.6 7 0 2l-.6 5L0 17.5z"/>
+            <path d="M0 17.5.6 7 0 2l-.6 5z"/>
           </g>
           <use xlink:href="#in-a" width="100%" height="100%" transform="rotate(15)"/>
         </g>
