@@ -231,31 +231,31 @@ window.addEventListener("DOMContentLoaded", () => {
     MochaUI.initializeTabs("mainWindowTabsList");
 
     setStatusFilter = function(name) {
+        LocalPreferences.set("selected_filter", name);
         selectedStatus = name;
         highlightSelectedStatus();
         updateMainData();
-        LocalPreferences.set("selected_filter", name);
     };
 
     setCategoryFilter = function(hash) {
+        LocalPreferences.set("selected_category", hash);
         selectedCategory = Number(hash);
         highlightSelectedCategory();
         updateMainData();
-        LocalPreferences.set("selected_category", hash);
     };
 
     setTagFilter = function(hash) {
+        LocalPreferences.set("selected_tag", hash);
         selectedTag = Number(hash);
         highlightSelectedTag();
         updateMainData();
-        LocalPreferences.set("selected_tag", hash);
     };
 
     setTrackerFilter = function(hash) {
+        LocalPreferences.set("selected_tracker", hash);
         selectedTracker = Number(hash);
         highlightSelectedTracker();
         updateMainData();
-        LocalPreferences.set("selected_tracker", hash);
     };
 
     toggleFilterDisplay = function(filterListID) {
