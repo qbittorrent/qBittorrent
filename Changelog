@@ -1,3 +1,13 @@
+Sun Aug 18th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.6
+    - BUGFIX: Fix handling of tags containing '&' character (glassez)
+    - BUGFIX: Show scroll bar in Torrent Tags dialog (glassez)
+    - BUGFIX: Apply bulk changes to correct content widget items (glassez)
+    - BUGFIX: Hide zero status filters when torrents are removed (glassez)
+    - BUGFIX: Fix `Incomplete Save Path` cannot be changed for torrents without metadata (glassez)
+    - WEBUI: Correctly apply changed "save path" of RSS rules (glassez)
+    - WEBUI: Clear tracker list on full update (skomerko)
+    - OTHER: Update User-Agent string for internal downloader and search engines (cayenne17)
+
 Sun May 26th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.5
     - BUGFIX: Prevent app from being closed when disabling system tray icon (glassez)
     - BUGFIX: Fix <kbd>Enter</kbd> key behavior in Add new torrent dialog (glassez)
