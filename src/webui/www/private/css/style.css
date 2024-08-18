@@ -720,3 +720,66 @@ td.statusBarSeparator {
     background-color: var(--color-background-hover);
     color: var(--color-text-white);
 }
+
+/* Confirm deletion dialog */
+
+#confirmDeletionPage * {
+    box-sizing: border-box;
+}
+
+#confirmDeletionPage_content {
+    display: flex !important; /* override for default mocha inline style */
+    flex-direction: column;
+    height: 100%;
+}
+
+#confirmDeletionPage_content > :last-child {
+    align-self: flex-end;
+}
+
+#confirmDeletionDialog {
+    margin: auto 0;
+}
+
+#rememberBtn {
+    background: url("../images/object-locked.svg") center center / 24px
+        no-repeat var(--color-background-popup);
+    height: 38px;
+    padding: 4px 6px;
+    width: 38px;
+}
+
+#rememberBtn.disabled {
+    filter: grayscale(100%);
+}
+
+#deleteFromDiskCB {
+    margin: 0 2px 0 0;
+    vertical-align: -1px;
+}
+
+#deleteTorrentMessage {
+    overflow-wrap: anywhere;
+}
+
+.confirmDeletionGrid {
+    align-items: center;
+    display: grid;
+    gap: 3px 4px;
+    grid-template-columns: max-content 1fr;
+    margin-bottom: 10px;
+}
+
+.deletionGridItem {
+    padding: 3px;
+}
+
+.deletionGridItem:first-child {
+    justify-self: center;
+}
+
+.confirmDialogWarning {
+    background: url("../images/dialog-warning.svg") center center no-repeat;
+    height: 38px;
+    width: 38px;
+}

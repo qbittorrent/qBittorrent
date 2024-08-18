@@ -661,6 +661,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
         },
 
+        getRow: function(rowId) {
+            return this.rows.get(rowId);
+        },
+
         getFilteredAndSortedRows: function() {
             const filteredRows = [];
 
