@@ -396,6 +396,8 @@ const initializeWindows = function() {
     deleteFN = function(forceDeleteFiles = false) {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length > 0) {
+            window.qBittorrent.Client.closeWindow("confirmDeletionPage");
+
             new MochaUI.Window({
                 id: "confirmDeletionPage",
                 icon: "images/qbittorrent-tray.svg",
@@ -743,6 +745,8 @@ const initializeWindows = function() {
     deleteTorrentsByCategoryFN = function(categoryHash) {
         const hashes = torrentsTable.getFilteredTorrentsHashes("all", categoryHash, TAGS_ALL, TRACKERS_ALL);
         if (hashes.length > 0) {
+            window.qBittorrent.Client.closeWindow("confirmDeletionPage");
+
             new MochaUI.Window({
                 id: "confirmDeletionPage",
                 icon: "images/qbittorrent-tray.svg",
@@ -895,6 +899,8 @@ const initializeWindows = function() {
     deleteTorrentsByTagFN = function(tagHash) {
         const hashes = torrentsTable.getFilteredTorrentsHashes("all", CATEGORIES_ALL, tagHash, TRACKERS_ALL);
         if (hashes.length > 0) {
+            window.qBittorrent.Client.closeWindow("confirmDeletionPage");
+
             new MochaUI.Window({
                 id: "confirmDeletionPage",
                 icon: "images/qbittorrent-tray.svg",
@@ -1007,6 +1013,8 @@ const initializeWindows = function() {
         }
 
         if (hashes.length > 0) {
+            window.qBittorrent.Client.closeWindow("confirmDeletionPage");
+
             new MochaUI.Window({
                 id: "confirmDeletionPage",
                 icon: "images/qbittorrent-tray.svg",
