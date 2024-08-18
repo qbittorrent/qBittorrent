@@ -186,6 +186,10 @@
             <input type="checkbox" id="use_subcategories_checkbox">
             <label for="use_subcategories_checkbox">QBT_TR(Use Subcategories)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
+        <div class="formRow">
+            <input type="checkbox" id="categoryPathsManualModeCheckbox" title="QBT_TR(Resolve relative Save Path against appropriate Category path instead of Default one)QBT_TR[CONTEXT=OptionsDialog]">
+            <label for="categoryPathsManualModeCheckbox">QBT_TR(Use Category paths in Manual Mode)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
         <table>
             <tbody>
                 <tr>
@@ -2133,6 +2137,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("save_path_changed_tmm_combobox").value = pref.save_path_changed_tmm_enabled;
                     $("category_changed_tmm_combobox").value = pref.category_changed_tmm_enabled;
                     $("use_subcategories_checkbox").checked = pref.use_subcategories;
+                    document.getElementById("categoryPathsManualModeCheckbox").checked = pref.use_category_paths_in_manual_mode;
                     $("savepath_text").value = pref.save_path;
                     $("temppath_checkbox").checked = pref.temp_path_enabled;
                     $("temppath_text").value = pref.temp_path;
@@ -2521,6 +2526,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["save_path_changed_tmm_enabled"] = ($("save_path_changed_tmm_combobox").value === "true");
             settings["category_changed_tmm_enabled"] = ($("category_changed_tmm_combobox").value === "true");
             settings["use_subcategories"] = $("use_subcategories_checkbox").checked;
+            settings["use_category_paths_in_manual_mode"] = document.getElementById("categoryPathsManualModeCheckbox").checked;
             settings["save_path"] = $("savepath_text").value;
             settings["temp_path_enabled"] = $("temppath_checkbox").checked;
             settings["temp_path"] = $("temppath_text").value;
