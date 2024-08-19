@@ -95,8 +95,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             const tableDiv = $(this.dynamicTableDivId);
             const tableFixedHeaderDiv = $(this.dynamicTableFixedHeaderDivId);
 
+            const tableElement = tableFixedHeaderDiv.querySelector("table");
             tableDiv.addEventListener("scroll", () => {
-                tableFixedHeaderDiv.getElements("table")[0].style.left = `${-tableDiv.scrollLeft}px`;
+                tableElement.style.left = `${-tableDiv.scrollLeft}px`;
             });
 
             // if the table exists within a panel
@@ -118,14 +119,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                     }
                 };
 
-                this.resizeDebounceTimer = -1;
-                const resizeDebouncer = (entries) => {
-                    clearTimeout(this.resizeDebounceTimer);
-                    this.resizeDebounceTimer = setTimeout(() => {
-                        resizeFn(entries);
-                        this.resizeDebounceTimer = -1;
-                    }, 100);
-                };
+                const resizeDebouncer = window.qBittorrent.Misc.createDebounceHandler(100, (entries) => {
+                    resizeFn(entries);
+                });
 
                 const resizeObserver = new ResizeObserver(resizeDebouncer);
                 resizeObserver.observe(parentPanel, { box: "border-box" });
@@ -278,7 +274,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const th = ths[i];
                 th.addEventListener("mousemove", mouseMoveFn);
                 th.addEventListener("mouseout", mouseOutFn);
-                th.addEventListener("touchend", onTouch);
+                th.addEventListener("touchend", onTouch, { passive: true });
                 th.makeResizable({
                     modifiers: {
                         x: "",
@@ -766,7 +762,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                             this._this.deselectAll();
                             this._this.selectRow(this.rowId);
                         }
-                    });
+                    }, { passive: true });
                     tr.addEventListener("keydown", function(event) {
                         switch (event.key) {
                             case "up":
@@ -2764,13 +2760,6 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this.hiddenTableHeader.appendChild(new Element("th"));
             this.fixedTableHeader.appendChild(new Element("th"));
-        },
-        setupCommonEvents: function() {
-            const scrollFn = function() {
-                $(this.dynamicTableFixedHeaderDivId).getElements("table")[0].style.left = -$(this.dynamicTableDivId).scrollLeft + "px";
-            }.bind(this);
-
-            $(this.dynamicTableDivId).addEventListener("scroll", scrollFn);
         }
     });
 
@@ -2859,13 +2848,6 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this.hiddenTableHeader.appendChild(new Element("th"));
             this.fixedTableHeader.appendChild(new Element("th"));
-        },
-        setupCommonEvents: function() {
-            const scrollFn = function() {
-                $(this.dynamicTableFixedHeaderDivId).getElements("table")[0].style.left = -$(this.dynamicTableDivId).scrollLeft + "px";
-            }.bind(this);
-
-            $(this.dynamicTableDivId).addEventListener("scroll", scrollFn);
         }
     });
 

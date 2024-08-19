@@ -165,11 +165,11 @@ window.addEventListener("DOMContentLoaded", () => {
         LocalPreferences.set("properties_height_rel", properties_height_rel);
     };
 
-    window.addEventListener("resize", () => {
+    window.addEventListener("resize", window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
         // only save sizes if the columns are visible
         if (!$("mainColumn").hasClass("invisible"))
-            saveColumnSizes.delay(200); // Resizing might takes some time.
-    });
+            saveColumnSizes();
+    }));
 
     /* MochaUI.Desktop = new MochaUI.Desktop();
     MochaUI.Desktop.desktop.style.background = "#fff";
@@ -181,7 +181,9 @@ window.addEventListener("DOMContentLoaded", () => {
         new MochaUI.Column({
             id: "filtersColumn",
             placement: "left",
-            onResize: saveColumnSizes,
+            onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
+                saveColumnSizes();
+            }),
             width: filt_w,
             resizeLimit: [1, 300]
         });
@@ -1059,8 +1061,8 @@ window.addEventListener("DOMContentLoaded", () => {
         }).send();
     });
 
-    $("DlInfos").addEventListener("click", globalDownloadLimitFN);
-    $("UpInfos").addEventListener("click", globalUploadLimitFN);
+    $("DlInfos").addEventListener("click", () => { globalDownloadLimitFN(); });
+    $("UpInfos").addEventListener("click", () => { globalUploadLimitFN(); });
 
     $("showTopToolbarLink").addEventListener("click", (e) => {
         showTopToolbar = !showTopToolbar;
@@ -1206,7 +1208,7 @@ window.addEventListener("DOMContentLoaded", () => {
             $("mainWindowTabs").addClass("invisible");
     };
 
-    $("StatisticsLink").addEventListener("click", StatisticsLinkFN);
+    $("StatisticsLink").addEventListener("click", () => { StatisticsLinkFN(); });
 
     // main window tabs
 
@@ -1449,7 +1451,9 @@ window.addEventListener("DOMContentLoaded", () => {
             updateMainData();
         },
         column: "mainColumn",
-        onResize: saveColumnSizes,
+        onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
+            saveColumnSizes();
+        }),
         height: null
     });
     let prop_h = LocalPreferences.get("properties_height_rel");
@@ -1567,10 +1571,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("torrentsFilterToolbar").addEventListener("change", (e) => { torrentsTable.updateTable(); });
 
-    $("transfersTabLink").addEventListener("click", showTransfersTab);
-    $("searchTabLink").addEventListener("click", showSearchTab);
-    $("rssTabLink").addEventListener("click", showRssTab);
-    $("logTabLink").addEventListener("click", showLogTab);
+    $("transfersTabLink").addEventListener("click", () => { showTransfersTab(); });
+    $("searchTabLink").addEventListener("click", () => { showSearchTab(); });
+    $("rssTabLink").addEventListener("click", () => { showRssTab(); });
+    $("logTabLink").addEventListener("click", () => { showLogTab(); });
     updateTabDisplay();
 
     const registerDragAndDrop = () => {
@@ -1614,9 +1618,9 @@ window.addEventListener("DOMContentLoaded", () => {
                     paddingHorizontal: 0,
                     width: loadWindowWidth(id, 500),
                     height: loadWindowHeight(id, 460),
-                    onResize: () => {
+                    onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                         saveWindowSize(id);
-                    },
+                    }),
                     onContentLoaded: () => {
                         const fileInput = $(`${id}_iframe`).contentDocument.getElementById("fileselect");
                         fileInput.files = droppedFiles;
@@ -1658,9 +1662,9 @@ window.addEventListener("DOMContentLoaded", () => {
                     paddingHorizontal: 0,
                     width: loadWindowWidth(id, 500),
                     height: loadWindowHeight(id, 600),
-                    onResize: () => {
+                    onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                         saveWindowSize(id);
-                    }
+                    })
                 });
             }
         });

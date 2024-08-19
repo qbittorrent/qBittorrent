@@ -502,9 +502,9 @@ window.qBittorrent.Search ??= (() => {
                 paddingHorizontal: 0,
                 width: loadWindowWidth(id, 600),
                 height: loadWindowHeight(id, 360),
-                onResize: function() {
+                onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                     saveWindowSize(id);
-                },
+                }),
                 onBeforeBuild: function() {
                     loadSearchPlugins();
                 },
@@ -753,14 +753,15 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const setupSearchTableEvents = function(enable) {
+        const clickHandler = (e) => { downloadSearchTorrent(); };
         if (enable) {
             $$(".searchTableRow").each((target) => {
-                target.addEventListener("dblclick", downloadSearchTorrent, false);
+                target.addEventListener("dblclick", clickHandler);
             });
         }
         else {
             $$(".searchTableRow").each((target) => {
-                target.removeEventListener("dblclick", downloadSearchTorrent, false);
+                target.removeEventListener("dblclick", clickHandler);
             });
         }
     };
