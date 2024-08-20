@@ -27,7 +27,6 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-import datetime
 import gzip
 import html.entities
 import io
@@ -40,6 +39,7 @@ import tempfile
 import urllib.error
 import urllib.request
 from collections.abc import Mapping
+from datetime import date, datetime, timedelta
 from typing import Any, Optional
 
 
@@ -50,10 +50,10 @@ def getBrowserUserAgent() -> str:
     # https://whattrainisitnow.com/calendar/
     # https://wiki.mozilla.org/index.php?title=Release_Management/Calendar&redirect=no
 
-    baseDate = datetime.date(2024, 4, 16)
+    baseDate = date(2024, 4, 16)
     baseVersion = 125
 
-    nowDate = datetime.date.today()
+    nowDate = date.today()
     nowVersion = baseVersion + ((nowDate - baseDate).days // 30)
 
     return f"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:{nowVersion}.0) Gecko/20100101 Firefox/{nowVersion}.0"
@@ -140,3 +140,50 @@ def download_file(url: str, referer: Optional[str] = None) -> str:
 
     # return file path
     return f"{path} {url}"
+
+
+def parse_date(date_string: str, fallback_format: Optional[str] = None) -> int:
+    """ Try to parse a date by detecting unambiguous formats or falling back to provided format """
+
+    date_string = re.sub(r"\s+", " ", date_string).strip().lower()
+    today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+    months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+    date_parsers = {
+        r"today": lambda m: today,
+        r"yesterday": lambda m: today - timedelta(days=1),
+        r"last week": lambda m: today - timedelta(days=7),
+        r"last month": lambda m: today - timedelta(days=30),
+        r"last year": lambda m: today - timedelta(days=365),
+        r"(\d+) (day)s?": lambda m: today - timedelta(days=int(m[1])),
+        r"(\d+) (week)s?": lambda m: today - timedelta(days=int(m[1]) * 7),
+        r"(\d+) (mo|month)s?": lambda m: today - timedelta(days=int(m[1]) * 30),
+        r"(\d+) (yr|year)s?": lambda m: today - timedelta(days=int(m[1]) * 365),
+        r"(\d\d\d\d)[-/.](\d\d)[-/.](\d\d) (\d\d):(\d\d)": lambda m: datetime(
+            int(m[1]), int(m[2]), int(m[3]), int(m[4]), int(m[5])
+        ),
+        r"(\d\d\d\d)[-/.](\d\d)[-/.](\d\d)": lambda m: datetime(
+            int(m[1]), int(m[2]), int(m[3])
+        ),
+        rf"(\d+) ({'|'.join(months)})\w*,? (\d\d\d\d)": lambda m: datetime(
+            int(m[3]), int(months.index(m[2]) + 1), int(m[1])
+        ),
+        rf"({'|'.join(months)})\w* (\d+),? (\d\d\d\d)": lambda m: datetime(
+            int(m[3]), int(months.index(m[1]) + 1), int(m[2])
+        ),
+    }
+
+    for pattern, calc in date_parsers.items():
+        try:
+            m = re.match(pattern, date_string)
+            if m:
+                return int(calc(m).timestamp())
+        except Exception:
+            pass
+
+    if fallback_format is not None:
+        try:
+            return int(datetime.strptime(date_string, fallback_format).timestamp())
+        except Exception:
+            pass
+
+    return -1
