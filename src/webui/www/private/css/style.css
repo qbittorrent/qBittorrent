@@ -251,7 +251,7 @@ a.propButton img {
     color: var(--color-text-white);
 }
 
-.contextMenu li a:hover img {
+.contextMenu li a:hover img:not(.highlightedCategoryIcon) {
     filter: var(--color-icon-hover);
 }
 

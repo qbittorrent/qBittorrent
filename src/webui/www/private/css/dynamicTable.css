@@ -52,8 +52,7 @@ tr.dynamicTableHeader {
     white-space: nowrap;
 }
 
-.dynamicTable tr.selected img,
-.dynamicTable tr:hover img {
+.dynamicTable tr:is(:hover, .selected) img:not(.flags) {
     filter: var(--color-icon-hover);
 }
 
