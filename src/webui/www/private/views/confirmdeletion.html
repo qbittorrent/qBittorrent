@@ -38,7 +38,7 @@
             forceDeleteFiles = false,
             filterList = null
         } = window.MUI.Windows.instances["confirmDeletionPage"].options.data;
-        let { delete_torrent_content_files: prefDeleteContentFiles } = window.qBittorrent.Cache.preferences.get();
+        let prefDeleteContentFiles = window.qBittorrent.Cache.preferences.get().delete_torrent_content_files;
         deleteCB.checked = forceDeleteFiles || prefDeleteContentFiles;
 
         let deleteMessage;
