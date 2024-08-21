@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -49,6 +49,19 @@
 #include "gui/uithememanager.h"
 #include "searchsortmodel.h"
 #include "ui_searchjobwidget.h"
+
+namespace
+{
+    enum DataRole
+    {
+        LinkVisitedRole = Qt::UserRole + 100
+    };
+
+    QColor visitedRowColor()
+    {
+        return QApplication::palette().color(QPalette::Disabled, QPalette::WindowText);
+    }
+}
 
 SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, IGUIApplication *app, QWidget *parent)
     : GUIApplicationComponent(app, parent)
@@ -158,6 +171,8 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, IGUIApplication *
     connect(this, &QObject::destroyed, searchHandler, &QObject::deleteLater);
 
     setStatusTip(statusText(m_status));
+
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &SearchJobWidget::onUIThemeChanged);
 }
 
 SearchJobWidget::~SearchJobWidget()
@@ -179,9 +194,31 @@ QHeaderView *SearchJobWidget::header() const
 // Set the color of a row in data model
 void SearchJobWidget::setRowColor(int row, const QColor &color)
 {
-    m_proxyModel->setDynamicSortFilter(false);
     for (int i = 0; i < m_proxyModel->columnCount(); ++i)
         m_proxyModel->setData(m_proxyModel->index(row, i), color, Qt::ForegroundRole);
+}
+
+void SearchJobWidget::setRowVisited(const int row)
+{
+    m_proxyModel->setDynamicSortFilter(false);
+
+    m_proxyModel->setData(m_proxyModel->index(row, 0), true, LinkVisitedRole);
+    setRowColor(row, visitedRowColor());
+
+    m_proxyModel->setDynamicSortFilter(true);
+}
+
+void SearchJobWidget::onUIThemeChanged()
+{
+    m_proxyModel->setDynamicSortFilter(false);
+
+    for (int row = 0; row < m_proxyModel->rowCount(); ++row)
+    {
+        const QVariant userData = m_proxyModel->data(m_proxyModel->index(row, 0), LinkVisitedRole);
+        const bool isVisited = userData.toBool();
+        if (isVisited)
+            setRowColor(row, visitedRowColor());
+    }
 
     m_proxyModel->setDynamicSortFilter(true);
 }
@@ -284,7 +321,8 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex, const AddTorr
             , this, [this, option](const QString &source) { addTorrentToSession(source, option); });
         connect(downloadHandler, &SearchDownloadHandler::downloadFinished, downloadHandler, &SearchDownloadHandler::deleteLater);
     }
-    setRowColor(rowIndex.row(), QApplication::palette().color(QPalette::LinkVisited));
+
+    setRowVisited(rowIndex.row());
 }
 
 void SearchJobWidget::addTorrentToSession(const QString &source, const AddTorrentOption option)
