@@ -3434,7 +3434,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                    <widget class="QLabel" name="lblSslKeyStatus"/>
                   </item>
                   <item row="2" column="0" colspan="3">
-                   <widget class="QLabel" name="lblWebUIInfo">
+                   <widget class="QLabel" name="lblWebUICertInfo">
                     <property name="text">
                      <string>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</string>
                     </property>
@@ -3616,7 +3616,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                <item>
                 <widget class="QGroupBox" name="groupAltWebUI">
                  <property name="title">
-                  <string>Use alternative Web UI</string>
+                  <string>Use alternative WebUI</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -3624,16 +3624,30 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                  <property name="checked">
                   <bool>false</bool>
                  </property>
-                 <layout class="QHBoxLayout" name="horizontalLayout_5">
+                 <layout class="QVBoxLayout" name="verticalLayout_41">
                   <item>
-                   <widget class="QLabel" name="labelWebUIRootFolder">
-                    <property name="text">
-                     <string>Files location:</string>
-                    </property>
-                   </widget>
+                   <layout class="QHBoxLayout" name="horizontalLayout_5">
+                    <item>
+                     <widget class="QLabel" name="labelWebUIRootFolder">
+                      <property name="text">
+                       <string>Files location:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="FileSystemPathLineEdit" name="textWebUIRootFolder" native="true"/>
+                    </item>
+                   </layout>
                   </item>
                   <item>
-                   <widget class="FileSystemPathLineEdit" name="textWebUIRootFolder" native="true"/>
+                   <widget class="QLabel" name="lblAltWebUIList">
+                    <property name="text">
+                     <string>&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/List-of-known-alternate-WebUIs&quot;&gt;List of alternative WebUI&lt;/a&gt;</string>
+                    </property>
+                    <property name="openExternalLinks">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </widget>
