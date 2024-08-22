@@ -76,10 +76,18 @@
         </table>
     </fieldset>
 
-    <div class="formRow">
+    <div class="formRow" style="margin-bottom: 5px;">
         <input type="checkbox" id="performanceWarning">
         <label for="performanceWarning">QBT_TR(Log performance warnings)QBT_TR[CONTEXT=OptionsDialog]</label>
     </div>
+
+    <fieldset class="settings">
+        <legend title="QBT_TR(Following settings are WebUI only)QBT_TR[CONTEXT=OptionsDialog]">QBT_TR(Custom WebUI settings)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow" style="margin-bottom: 3px;">
+            <input type="checkbox" id="displayFullURLTrackerColumn">
+            <label for="displayFullURLTrackerColumn">QBT_TR(Display full announce URL in the Tracker column)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+    </fieldset>
 </div>
 
 <div id="DownloadsTab" class="PrefTab invisible">
@@ -2082,6 +2090,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             window.parent.qBittorrent.Cache.preferences.init({
                 onSuccess: (pref) => {
                     // Behavior tab
+                    document.getElementById("displayFullURLTrackerColumn").checked = (LocalPreferences.get("full_url_tracker_column", "false") === "true");
                     document.getElementById("hideZeroFiltersCheckbox").checked = (LocalPreferences.get("hide_zero_status_filters", "false") === "true");
                     $("dblclickDownloadSelect").value = LocalPreferences.get("dblclick_download", "1");
                     $("dblclickCompleteSelect").value = LocalPreferences.get("dblclick_complete", "1");
@@ -2494,6 +2503,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Validate form data
 
             // Behavior tab
+            LocalPreferences.set("full_url_tracker_column", document.getElementById("displayFullURLTrackerColumn").checked.toString());
             LocalPreferences.set("hide_zero_status_filters", document.getElementById("hideZeroFiltersCheckbox").checked.toString());
             LocalPreferences.set("dblclick_download", $("dblclickDownloadSelect").value);
             LocalPreferences.set("dblclick_complete", $("dblclickCompleteSelect").value);

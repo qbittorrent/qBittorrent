@@ -31,6 +31,7 @@ window.qBittorrent.Client ??= (() => {
         return {
             closeWindows: closeWindows,
             genHash: genHash,
+            getHost: getHost,
             getSyncMainDataInterval: getSyncMainDataInterval,
             isStopped: isStopped,
             stop: stop,
@@ -56,6 +57,30 @@ window.qBittorrent.Client ??= (() => {
         for (let i = 0; i < string.length; ++i)
             hash = ((Math.imul(hash, 31) + string.charCodeAt(i)) | 0);
         return hash;
+    };
+
+    // getHost emulate the GUI version `QString getHost(const QString &url)`
+    const getHost = function(url) {
+        // We want the hostname.
+        // If failed to parse the domain, original input should be returned
+
+        if (!/^(?:https?|udp):/i.test(url))
+            return url;
+
+        try {
+            // hack: URL can not get hostname from udp protocol
+            const parsedUrl = new URL(url.replace(/^udp:/i, "https:"));
+            // host: "example.com:8443"
+            // hostname: "example.com"
+            const host = parsedUrl.hostname;
+            if (!host)
+                return url;
+
+            return host;
+        }
+        catch (error) {
+            return url;
+        }
     };
 
     const getSyncMainDataInterval = function() {
@@ -120,6 +145,7 @@ let serverSyncMainDataInterval = 1500;
 let customSyncMainDataInterval = null;
 let useSubcategories = true;
 const useAutoHideZeroStatusFilters = LocalPreferences.get("hide_zero_status_filters", "false") === "true";
+const displayFullURLTrackerColumn = LocalPreferences.get("full_url_tracker_column", "false") === "true";
 
 /* Categories filter */
 const CATEGORIES_ALL = 1;
@@ -620,30 +646,6 @@ window.addEventListener("DOMContentLoaded", () => {
             children[i].className = (Number(children[i].id) === selectedTag) ? "selectedFilter" : "";
     };
 
-    // getHost emulate the GUI version `QString getHost(const QString &url)`
-    const getHost = function(url) {
-        // We want the hostname.
-        // If failed to parse the domain, original input should be returned
-
-        if (!/^(?:https?|udp):/i.test(url))
-            return url;
-
-        try {
-            // hack: URL can not get hostname from udp protocol
-            const parsedUrl = new URL(url.replace(/^udp:/i, "https:"));
-            // host: "example.com:8443"
-            // hostname: "example.com"
-            const host = parsedUrl.hostname;
-            if (!host)
-                return url;
-
-            return host;
-        }
-        catch (error) {
-            return url;
-        }
-    };
-
     const updateTrackerList = function() {
         const trackerFilterList = $("trackerFilterList");
         if (trackerFilterList === null)
@@ -833,7 +835,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     }
                     if (response["trackers"]) {
                         for (const [tracker, torrents] of Object.entries(response["trackers"])) {
-                            const host = getHost(tracker);
+                            const host = window.qBittorrent.Client.getHost(tracker);
                             const hash = window.qBittorrent.Client.genHash(host);
 
                             let trackerListItem = trackerList.get(hash);
@@ -849,7 +851,8 @@ window.addEventListener("DOMContentLoaded", () => {
                     if (response["trackers_removed"]) {
                         for (let i = 0; i < response["trackers_removed"].length; ++i) {
                             const tracker = response["trackers_removed"][i];
-                            const hash = window.qBittorrent.Client.genHash(getHost(tracker));
+                            const host = window.qBittorrent.Client.getHost(tracker);
+                            const hash = window.qBittorrent.Client.genHash(host);
                             const trackerListEntry = trackerList.get(hash);
                             if (trackerListEntry)
                                 trackerListEntry.trackerTorrentMap.delete(tracker);

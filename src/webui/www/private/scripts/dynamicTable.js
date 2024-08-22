@@ -1244,6 +1244,14 @@ window.qBittorrent.DynamicTable ??= (() => {
                 }
             };
 
+            // tracker
+            this.columns["tracker"].updateTd = function(td, row) {
+                const value = this.getRowValue(row);
+                const tracker = displayFullURLTrackerColumn ? value : window.qBittorrent.Client.getHost(value);
+                td.textContent = tracker;
+                td.title = value;
+            };
+
             //  dl_limit, up_limit
             this.columns["dl_limit"].updateTd = function(td, row) {
                 const speed = this.getRowValue(row);
