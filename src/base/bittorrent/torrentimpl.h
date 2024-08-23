@@ -230,6 +230,7 @@ namespace BitTorrent
         void forceDHTAnnounce() override;
         void forceRecheck() override;
         void renameFile(int index, const Path &path) override;
+        // void removeFile(int index) override;
         void prioritizeFiles(const QList<DownloadPriority> &priorities) override;
         void setUploadLimit(int limit) override;
         void setDownloadLimit(int limit) override;
@@ -315,6 +316,7 @@ namespace BitTorrent
         Path makeUserPath(const Path &path) const;
         void adjustStorageLocation();
         void doRenameFile(int index, const Path &path);
+        // void doRemoveFile(int index, const Path &path);
         void moveStorage(const Path &newPath, MoveStorageContext context);
         void manageActualFilePaths();
         void applyFirstLastPiecePriority(bool enabled);

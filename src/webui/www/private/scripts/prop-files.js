@@ -300,6 +300,28 @@ window.qBittorrent.PropFiles ??= (() => {
         return true;
     };
 
+    const removeFile = function(ids, fileIds) {
+        if (current_hash === "")
+            return;
+
+        clearTimeout(loadTorrentFilesDataTimer);
+        loadTorrentFilesDataTimer = -1;
+
+        new Request({
+            url: "api/v2/torrents/removeFile",
+            method: "post",
+            data: {
+                "hash": current_hash,
+                "id": fileIds.join("|")
+            },
+            onComplete: function() {
+                loadTorrentFilesDataTimer = loadTorrentFilesData.delay(1000);
+            }
+        }).send();
+        torrentFilesTable.updateTable(false);
+    };
+
+
     const setFilePriority = function(ids, fileIds, priority) {
         if (current_hash === "")
             return;
@@ -545,7 +567,7 @@ window.qBittorrent.PropFiles ??= (() => {
 
         new MochaUI.Window({
             id: "renamePage",
-            icon: "images/qbittorrent-tray.svg",
+            icon: "images/qbittorrent-  y.svg",
             title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]",
             loadMethod: "iframe",
             contentURL: "rename_file.html?hash=" + hash + "&isFolder=" + node.isFolder

@@ -1073,6 +1073,41 @@ void TorrentsController::filePrioAction()
         torrent->prioritizeFiles(priorities);
 }
 
+void TorrentsController::removeFileAction()
+{
+    requireParams({u"hash"_s, u"id"_s});
+
+    const auto torrentId = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
+    bool ok = false;
+
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(torrentId);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+    if (!torrent->hasMetadata())
+        throw APIError(APIErrorType::Conflict, tr("Torrent's metadata has not yet downloaded"));
+
+    const int filesCount = torrent->filesCount();
+    for (const QString &fileID : params()[u"id"_s].split(u'|'))
+    {
+        const int fileId = fileID.toInt(&ok);
+        if (!ok)
+            throw APIError(APIErrorType::BadParams, tr("File IDs must be integers"));
+        if ((fileId < 0) || (fileId >= filesCount))
+            throw APIError(APIErrorType::Conflict, tr("File ID is not valid"));
+
+        try 
+        {
+            throw APIError(APIErrorType::Conflict, tr("Debugging: The below command is not working"));
+            // torrent->removeFile(fileId); 
+        }
+        catch (const RuntimeError &error)
+        {
+            throw APIError(APIErrorType::Conflict, error.message());
+        }
+
+    }
+}
+
 void TorrentsController::uploadLimitAction()
 {
     requireParams({u"hashes"_s});

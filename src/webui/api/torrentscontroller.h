@@ -72,6 +72,7 @@ private slots:
     void removeTrackersAction();
     void addPeersAction();
     void filePrioAction();
+    void removeFileAction();
     void uploadLimitAction();
     void downloadLimitAction();
     void setUploadLimitAction();
