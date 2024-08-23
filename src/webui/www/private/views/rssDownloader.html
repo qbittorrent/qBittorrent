@@ -750,7 +750,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 }
 
                 if ((rulesList[ruleName].torrentParams.stopped === undefined) || (rulesList[ruleName].torrentParams.stopped === null))
-                    $("addStoppedCombobox").value = "default";
+                    $("addPausedCombobox").value = "default";
                 else
                     $('addPausedCombobox').value = rulesList[ruleName].torrentParams.stopped ? 'always' : 'never';
 
