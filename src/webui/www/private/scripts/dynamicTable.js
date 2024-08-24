@@ -1247,7 +1247,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             // tracker
             this.columns["tracker"].updateTd = function(td, row) {
                 const value = this.getRowValue(row);
-                const tracker = displayFullURLTrackerColumn ? value : window.qBittorrent.Client.getHost(value);
+                const tracker = displayFullURLTrackerColumn ? value : window.qBittorrent.Misc.getHost(value);
                 td.textContent = tracker;
                 td.title = value;
             };
@@ -1428,7 +1428,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     break; // do nothing
                 default:
                     if (!useSubcategories) {
-                        if (categoryHash !== window.qBittorrent.Client.genHash(row["full_data"].category))
+                        if (categoryHash !== window.qBittorrent.Misc.genHash(row["full_data"].category))
                             return false;
                     }
                     else {
@@ -1453,7 +1453,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     break; // do nothing
 
                 default: {
-                    const tagHashes = row["full_data"].tags.split(", ").map(tag => window.qBittorrent.Client.genHash(tag));
+                    const tagHashes = row["full_data"].tags.split(", ").map(tag => window.qBittorrent.Misc.genHash(tag));
                     if (!tagHashes.contains(tagHash))
                         return false;
                     break;
