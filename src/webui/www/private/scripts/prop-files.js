@@ -567,7 +567,7 @@ window.qBittorrent.PropFiles ??= (() => {
 
         new MochaUI.Window({
             id: "renamePage",
-            icon: "images/qbittorrent-  y.svg",
+            icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]",
             loadMethod: "iframe",
             contentURL: "rename_file.html?hash=" + hash + "&isFolder=" + node.isFolder
