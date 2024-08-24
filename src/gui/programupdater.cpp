@@ -29,6 +29,9 @@
 
 #include "programupdater.h"
 
+#include <libtorrent/version.hpp>
+
+#include <QtCore/qconfig.h>
 #include <QtGlobal>
 
 #if defined(Q_OS_WIN)
@@ -71,6 +74,22 @@ namespace
         }
         return (newVersion > currentVersion);
     }
+
+    QString buildVariant()
+    {
+#if defined(Q_OS_MACOS)
+        const auto BASE_OS = u"Mac OS X"_s;
+#elif defined(Q_OS_WIN)
+        const auto BASE_OS = (::IsWindows7OrGreater() && QSysInfo::currentCpuArchitecture().endsWith(u"64"))
+            ? u"Windows x64"_s
+            : u"Windows"_s;
+#endif
+
+        if constexpr ((QT_VERSION_MAJOR == 6) && (LIBTORRENT_VERSION_MAJOR == 1))
+            return BASE_OS;
+
+        return u"%1 (qt%2 lt%3%4)"_s.arg(BASE_OS, QString::number(QT_VERSION_MAJOR), QString::number(LIBTORRENT_VERSION_MAJOR), QString::number(LIBTORRENT_VERSION_MINOR));
+    }
 }
 
 void ProgramUpdater::checkForUpdates() const
@@ -107,14 +126,7 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
             : QString {};
     };
 
-#ifdef Q_OS_MACOS
-    const QString OS_TYPE = u"Mac OS X"_s;
-#elif defined(Q_OS_WIN)
-    const QString OS_TYPE = (::IsWindows7OrGreater() && QSysInfo::currentCpuArchitecture().endsWith(u"64"))
-        ? u"Windows x64"_s
-        : u"Windows"_s;
-#endif
-
+    const QString variant = buildVariant();
     bool inItem = false;
     QString version;
     QString updateLink;
@@ -140,7 +152,7 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
         {
             if (inItem && (xml.name() == u"item"))
             {
-                if (type.compare(OS_TYPE, Qt::CaseInsensitive) == 0)
+                if (type.compare(variant, Qt::CaseInsensitive) == 0)
                 {
                     qDebug("The last update available is %s", qUtf8Printable(version));
                     if (!version.isEmpty())
