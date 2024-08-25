@@ -29,6 +29,7 @@ window.qBittorrent ??= {};
 window.qBittorrent.Client ??= (() => {
     const exports = () => {
         return {
+            closeWindow: closeWindow,
             closeWindows: closeWindows,
             genHash: genHash,
             getSyncMainDataInterval: getSyncMainDataInterval,
@@ -42,6 +43,13 @@ window.qBittorrent.Client ??= (() => {
             isShowRssReader: isShowRssReader,
             isShowLogViewer: isShowLogViewer
         };
+    };
+
+    const closeWindow = function(windowID) {
+        const window = document.getElementById(windowID);
+        if (!window)
+            return;
+        MochaUI.closeWindow(window);
     };
 
     const closeWindows = function() {

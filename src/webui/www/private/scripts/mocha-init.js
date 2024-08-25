@@ -393,23 +393,35 @@ const initializeWindows = function() {
         }
     };
 
-    deleteFN = function(deleteFiles = false) {
+    deleteFN = function(forceDeleteFiles = false) {
         const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length) {
+        if (hashes.length > 0) {
+            window.qBittorrent.Client.closeWindow("confirmDeletionPage");
+
             new MochaUI.Window({
                 id: "confirmDeletionPage",
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
-                loadMethod: "iframe",
-                contentURL: new URI("confirmdeletion.html").setData("hashes", hashes.join("|")).setData("deleteFiles", deleteFiles).toString(),
-                scrollbars: false,
-                resizable: true,
+                data: {
+                    hashes: hashes,
+                    forceDeleteFiles: forceDeleteFiles
+                },
+                loadMethod: "xhr",
+                contentURL: "views/confirmdeletion.html",
                 maximizable: false,
-                padding: 10,
-                width: 424,
-                height: 160
+                collapsible: false,
+                padding: {
+                    left: 5,
+                    right: 10,
+                    top: 15,
+                    bottom: 15
+                },
+                width: 480,
+                onContentLoaded: function(w) {
+                    MochaUI.resizeWindow(w, { centered: true });
+                    MochaUI.centerWindow(w);
+                }
             });
-            updateMainData();
         }
     };
 
@@ -732,21 +744,30 @@ const initializeWindows = function() {
 
     deleteTorrentsByCategoryFN = function(categoryHash) {
         const hashes = torrentsTable.getFilteredTorrentsHashes("all", categoryHash, TAGS_ALL, TRACKERS_ALL);
-        if (hashes.length) {
+        if (hashes.length > 0) {
+            window.qBittorrent.Client.closeWindow("confirmDeletionPage");
+
             new MochaUI.Window({
                 id: "confirmDeletionPage",
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
-                loadMethod: "iframe",
-                contentURL: new URI("confirmdeletion.html").setData("hashes", hashes.join("|")).toString(),
-                scrollbars: false,
-                resizable: true,
+                data: { hashes: hashes },
+                loadMethod: "xhr",
+                contentURL: "views/confirmdeletion.html",
                 maximizable: false,
-                padding: 10,
-                width: 424,
-                height: 160
+                collapsible: false,
+                padding: {
+                    left: 5,
+                    right: 10,
+                    top: 15,
+                    bottom: 15
+                },
+                width: 480,
+                onContentLoaded: function(w) {
+                    MochaUI.resizeWindow(w, { centered: true });
+                    MochaUI.centerWindow(w);
+                }
             });
-            updateMainData();
         }
     };
 
@@ -877,21 +898,30 @@ const initializeWindows = function() {
 
     deleteTorrentsByTagFN = function(tagHash) {
         const hashes = torrentsTable.getFilteredTorrentsHashes("all", CATEGORIES_ALL, tagHash, TRACKERS_ALL);
-        if (hashes.length) {
+        if (hashes.length > 0) {
+            window.qBittorrent.Client.closeWindow("confirmDeletionPage");
+
             new MochaUI.Window({
                 id: "confirmDeletionPage",
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
-                loadMethod: "iframe",
-                contentURL: new URI("confirmdeletion.html").setData("hashes", hashes.join("|")).toString(),
-                scrollbars: false,
-                resizable: true,
+                data: { hashes: hashes },
+                loadMethod: "xhr",
+                contentURL: "views/confirmdeletion.html",
                 maximizable: false,
-                padding: 10,
-                width: 424,
-                height: 160
+                collapsible: false,
+                padding: {
+                    left: 5,
+                    right: 10,
+                    top: 15,
+                    bottom: 15
+                },
+                width: 480,
+                onContentLoaded: function(w) {
+                    MochaUI.resizeWindow(w, { centered: true });
+                    MochaUI.centerWindow(w);
+                }
             });
-            updateMainData();
         }
     };
 
@@ -982,22 +1012,31 @@ const initializeWindows = function() {
             }
         }
 
-        if (hashes.length) {
+        if (hashes.length > 0) {
+            window.qBittorrent.Client.closeWindow("confirmDeletionPage");
+
             new MochaUI.Window({
                 id: "confirmDeletionPage",
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
-                loadMethod: "iframe",
-                contentURL: new URI("confirmdeletion.html").setData("hashes", hashes.join("|")).toString(),
-                scrollbars: false,
-                resizable: true,
+                data: {
+                    hashes: hashes,
+                    filterList: "tracker"
+                },
+                loadMethod: "xhr",
+                contentURL: "views/confirmdeletion.html",
                 maximizable: false,
-                padding: 10,
-                width: 424,
-                height: 160,
-                onCloseComplete: function() {
-                    updateMainData();
-                    setTrackerFilter(TRACKERS_ALL);
+                collapsible: false,
+                padding: {
+                    left: 5,
+                    right: 10,
+                    top: 15,
+                    bottom: 15
+                },
+                width: 480,
+                onContentLoaded: function(w) {
+                    MochaUI.resizeWindow(w, { centered: true });
+                    MochaUI.centerWindow(w);
                 }
             });
         }
