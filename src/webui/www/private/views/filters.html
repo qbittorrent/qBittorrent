@@ -1,45 +1,67 @@
 <div class="filterWrapper">
-    <span class="filterTitle" onclick="toggleFilterDisplay('status');">
+    <span class="filterTitle">
         <img src="images/go-down.svg" alt="QBT_TR(Collapse/expand)QBT_TR[CONTEXT=TransferListFiltersWidget]">QBT_TR(Status)QBT_TR[CONTEXT=TransferListFiltersWidget]
     </span>
     <ul class="filterList" id="statusFilterList">
-        <li id="all_filter"><a href="#" onclick="setFilter('all');return false;"><img src="images/filter-all.svg" alt="All">QBT_TR(All (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
-        <li id="downloading_filter"><a href="#" onclick="setFilter('downloading');return false;"><img src="images/downloading.svg" alt="Downloading">QBT_TR(Downloading (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
-        <li id="seeding_filter"><a href="#" onclick="setFilter('seeding');return false;"><img src="images/upload.svg" alt="Seeding">QBT_TR(Seeding (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
-        <li id="completed_filter"><a href="#" onclick="setFilter('completed');return false;"><img src="images/checked-completed.svg" alt="Completed">QBT_TR(Completed (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
-        <li id="running_filter"><a href="#" onclick="setFilter('running');return false;"><img src="images/torrent-start.svg" alt="Running">QBT_TR(Running (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
-        <li id="stopped_filter"><a href="#" onclick="setFilter('stopped');return false;"><img src="images/stopped.svg" alt="Stopped">QBT_TR(Stopped (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
-        <li id="active_filter"><a href="#" onclick="setFilter('active');return false;"><img src="images/filter-active.svg" alt="Active">QBT_TR(Active (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
-        <li id="inactive_filter"><a href="#" onclick="setFilter('inactive');return false;"><img src="images/filter-inactive.svg" alt="Inactive">QBT_TR(Inactive (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
-        <li id="stalled_filter"><a href="#" onclick="setFilter('stalled');return false;"><img src="images/filter-stalled.svg" alt="Stalled">QBT_TR(Stalled (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
-        <li id="stalled_uploading_filter"><a href="#" onclick="setFilter('stalled_uploading');return false;"><img src="images/stalledUP.svg" alt="Stalled Uploading">QBT_TR(Stalled Uploading (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
-        <li id="stalled_downloading_filter"><a href="#" onclick="setFilter('stalled_downloading');return false;"><img src="images/stalledDL.svg" alt="Stalled Downloading">QBT_TR(Stalled Downloading (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
-        <li id="checking_filter"><a href="#" onclick="setFilter('checking'); return false;"><img src="images/force-recheck.svg" alt="Checking">QBT_TR(Checking (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
-        <li id="moving_filter"><a href="#" onclick="setFilter('moving'); return false;"><img src="images/set-location.svg" alt="Moving">QBT_TR(Moving (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
-        <li id="errored_filter"><a href="#" onclick="setFilter('errored');return false;"><img src="images/error.svg" alt="Errored">QBT_TR(Errored (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="all_filter"><span class="link"><img src="images/filter-all.svg" alt="All">QBT_TR(All (0))QBT_TR[CONTEXT=StatusFilterWidget]</span></li>
+        <li id="downloading_filter"><span class="link"><img src="images/downloading.svg" alt="Downloading">QBT_TR(Downloading (0))QBT_TR[CONTEXT=StatusFilterWidget]</span></li>
+        <li id="seeding_filter"><span class="link"><img src="images/upload.svg" alt="Seeding">QBT_TR(Seeding (0))QBT_TR[CONTEXT=StatusFilterWidget]</span></li>
+        <li id="completed_filter"><span class="link"><img src="images/checked-completed.svg" alt="Completed">QBT_TR(Completed (0))QBT_TR[CONTEXT=StatusFilterWidget]</span></li>
+        <li id="running_filter"><span class="link"><img src="images/torrent-start.svg" alt="Running">QBT_TR(Running (0))QBT_TR[CONTEXT=StatusFilterWidget]</span></li>
+        <li id="stopped_filter"><span class="link"><img src="images/stopped.svg" alt="Stopped">QBT_TR(Stopped (0))QBT_TR[CONTEXT=StatusFilterWidget]</span></li>
+        <li id="active_filter"><span class="link"><img src="images/filter-active.svg" alt="Active">QBT_TR(Active (0))QBT_TR[CONTEXT=StatusFilterWidget]</span></li>
+        <li id="inactive_filter"><span class="link"><img src="images/filter-inactive.svg" alt="Inactive">QBT_TR(Inactive (0))QBT_TR[CONTEXT=StatusFilterWidget]</span></li>
+        <li id="stalled_filter"><span class="link"><img src="images/filter-stalled.svg" alt="Stalled">QBT_TR(Stalled (0))QBT_TR[CONTEXT=StatusFilterWidget]</span></li>
+        <li id="stalled_uploading_filter"><span class="link"><img src="images/stalledUP.svg" alt="Stalled Uploading">QBT_TR(Stalled Uploading (0))QBT_TR[CONTEXT=StatusFilterWidget]</span></li>
+        <li id="stalled_downloading_filter"><span class="link"><img src="images/stalledDL.svg" alt="Stalled Downloading">QBT_TR(Stalled Downloading (0))QBT_TR[CONTEXT=StatusFilterWidget]</span></li>
+        <li id="checking_filter"><span class="link"><img src="images/force-recheck.svg" alt="Checking">QBT_TR(Checking (0))QBT_TR[CONTEXT=StatusFilterWidget]</span></li>
+        <li id="moving_filter"><span class="link"><img src="images/set-location.svg" alt="Moving">QBT_TR(Moving (0))QBT_TR[CONTEXT=StatusFilterWidget]</span></li>
+        <li id="errored_filter"><span class="link"><img src="images/error.svg" alt="Errored">QBT_TR(Errored (0))QBT_TR[CONTEXT=StatusFilterWidget]</span></li>
     </ul>
 </div>
 <div class="filterWrapper">
-    <span class="filterTitle" onclick="toggleFilterDisplay('category');">
+    <span class="filterTitle">
         <img src="images/go-down.svg" alt="QBT_TR(Collapse/expand)QBT_TR[CONTEXT=TransferListFiltersWidget]">QBT_TR(Categories)QBT_TR[CONTEXT=TransferListFiltersWidget]
     </span>
     <ul class="filterList" id="categoryFilterList">
     </ul>
 </div>
 <div class="filterWrapper">
-    <span class="filterTitle" onclick="toggleFilterDisplay('tag');">
+    <span class="filterTitle">
         <img src="images/go-down.svg" alt="QBT_TR(Collapse/expand)QBT_TR[CONTEXT=TransferListFiltersWidget]">QBT_TR(Tags)QBT_TR[CONTEXT=TransferListFiltersWidget]
     </span>
     <ul class="filterList" id="tagFilterList">
     </ul>
 </div>
 <div class="filterWrapper">
-    <span class="filterTitle" onclick="toggleFilterDisplay('tracker');">
+    <span class="filterTitle">
         <img src="images/go-down.svg" alt="QBT_TR(Collapse/expand)QBT_TR[CONTEXT=TransferListFiltersWidget]">QBT_TR(Trackers)QBT_TR[CONTEXT=TransferListFiltersWidget]
     </span>
     <ul class="filterList" id="trackerFilterList">
     </ul>
 </div>
+
+<template id="categoryFilterItem">
+    <li class="categoriesFilterContextMenuTarget">
+        <span class="link">
+            <img src="images/view-categories.svg" alt="">
+        </span>
+    </li>
+</template>
+<template id="tagFilterItem">
+    <li class="tagsFilterContextMenuTarget">
+        <span class="link">
+            <img src="images/tags.svg" alt="">
+        </span>
+    </li>
+</template>
+<template id="trackerFilterItem">
+    <li class="trackersFilterContextMenuTarget">
+        <span class="link">
+            <img src="images/trackers.svg" alt="">
+        </span>
+    </li>
+</template>
 
 <script>
     "use strict";
@@ -88,7 +110,7 @@
                 y: 2
             },
             onShow: function() {
-                this.options.element.firstChild.click();
+                this.options.element.click();
             }
         });
 
@@ -120,7 +142,7 @@
                 y: 2
             },
             onShow: function() {
-                this.options.element.firstChild.click();
+                this.options.element.click();
             }
         });
 
@@ -143,21 +165,58 @@
                 y: 2
             },
             onShow: function() {
-                this.options.element.firstChild.click();
+                this.options.element.click();
             }
         });
 
         if (LocalPreferences.get("filter_status_collapsed") === "true")
-            toggleFilterDisplay("status");
+            toggleFilterDisplay("statusFilterList");
 
         if (LocalPreferences.get("filter_category_collapsed") === "true")
-            toggleFilterDisplay("category");
+            toggleFilterDisplay("categoryFilterList");
 
         if (LocalPreferences.get("filter_tag_collapsed") === "true")
-            toggleFilterDisplay("tag");
+            toggleFilterDisplay("tagFilterList");
 
         if (LocalPreferences.get("filter_tracker_collapsed") === "true")
-            toggleFilterDisplay("tracker");
+            toggleFilterDisplay("trackerFilterList");
+
+        document.getElementById("Filters_pad").addEventListener("click", (event) => {
+            const filterItem = event.target.closest("li");
+            if (!filterItem)
+                return;
+
+            event.stopImmediatePropagation();
+
+            const { id: filterItemID } = filterItem;
+            const { id: filterListID } = filterItem.closest("ul[id]");
+            switch (filterListID) {
+                case "statusFilterList":
+                    setStatusFilter(filterItemID.replace("_filter", ""));
+                    break;
+                case "categoryFilterList":
+                    setCategoryFilter(filterItemID);
+                    break;
+                case "tagFilterList":
+                    setTagFilter(filterItemID);
+                    break;
+                case "trackerFilterList":
+                    setTrackerFilter(filterItemID);
+                    break;
+                default:
+                    console.error(`Unexpected filterListID: ${filterListID}`);
+                    break;
+            }
+        });
+
+        document.getElementById("Filters_pad").addEventListener("click", (event) => {
+            const filterTitle = event.target.closest(".filterTitle");
+            if (!filterTitle)
+                return;
+
+            const filterList = filterTitle.nextElementSibling.id;
+            toggleFilterDisplay(filterList);
+        });
 
         return exports();
     })();

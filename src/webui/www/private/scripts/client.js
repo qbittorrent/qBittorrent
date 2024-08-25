@@ -135,7 +135,7 @@ const CATEGORIES_UNCATEGORIZED = 2;
 
 const category_list = new Map();
 
-let selected_category = Number(LocalPreferences.get("selected_category", CATEGORIES_ALL));
+let selectedCategory = Number(LocalPreferences.get("selected_category", CATEGORIES_ALL));
 let setCategoryFilter = function() {};
 
 /* Tags filter */
@@ -154,12 +154,12 @@ const TRACKERS_TRACKERLESS = 2;
 /** @type Map<number, {host: string, trackerTorrentMap: Map<string, string[]>}> **/
 const trackerList = new Map();
 
-let selectedTracker = LocalPreferences.get("selected_tracker", TRACKERS_ALL);
+let selectedTracker = Number(LocalPreferences.get("selected_tracker", TRACKERS_ALL));
 let setTrackerFilter = function() {};
 
 /* All filters */
-let selected_filter = LocalPreferences.get("selected_filter", "all");
-let setFilter = function() {};
+let selectedStatus = LocalPreferences.get("selected_filter", "all");
+let setStatusFilter = function() {};
 let toggleFilterDisplay = function() {};
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -240,62 +240,40 @@ window.addEventListener("DOMContentLoaded", () => {
     buildLogTab();
     MochaUI.initializeTabs("mainWindowTabsList");
 
+    setStatusFilter = function(name) {
+        LocalPreferences.set("selected_filter", name);
+        selectedStatus = name;
+        highlightSelectedStatus();
+        updateMainData();
+    };
+
     setCategoryFilter = function(hash) {
-        selected_category = hash;
-        LocalPreferences.set("selected_category", selected_category);
+        LocalPreferences.set("selected_category", hash);
+        selectedCategory = Number(hash);
         highlightSelectedCategory();
-        if (typeof torrentsTable.tableBody !== "undefined")
-            updateMainData();
+        updateMainData();
     };
 
     setTagFilter = function(hash) {
-        selectedTag = hash;
-        LocalPreferences.set("selected_tag", selectedTag);
+        LocalPreferences.set("selected_tag", hash);
+        selectedTag = Number(hash);
         highlightSelectedTag();
-        if (torrentsTable.tableBody !== undefined)
-            updateMainData();
+        updateMainData();
     };
 
     setTrackerFilter = function(hash) {
-        selectedTracker = hash.toString();
-        LocalPreferences.set("selected_tracker", selectedTracker);
+        LocalPreferences.set("selected_tracker", hash);
+        selectedTracker = Number(hash);
         highlightSelectedTracker();
-        if (torrentsTable.tableBody !== undefined)
-            updateMainData();
+        updateMainData();
     };
 
-    setFilter = function(f) {
-        // Visually Select the right filter
-        $("all_filter").removeClass("selectedFilter");
-        $("downloading_filter").removeClass("selectedFilter");
-        $("seeding_filter").removeClass("selectedFilter");
-        $("completed_filter").removeClass("selectedFilter");
-        $("stopped_filter").removeClass("selectedFilter");
-        $("running_filter").removeClass("selectedFilter");
-        $("active_filter").removeClass("selectedFilter");
-        $("inactive_filter").removeClass("selectedFilter");
-        $("stalled_filter").removeClass("selectedFilter");
-        $("stalled_uploading_filter").removeClass("selectedFilter");
-        $("stalled_downloading_filter").removeClass("selectedFilter");
-        $("checking_filter").removeClass("selectedFilter");
-        $("moving_filter").removeClass("selectedFilter");
-        $("errored_filter").removeClass("selectedFilter");
-        $(f + "_filter").addClass("selectedFilter");
-        selected_filter = f;
-        LocalPreferences.set("selected_filter", f);
-        // Reload torrents
-        if (typeof torrentsTable.tableBody !== "undefined")
-            updateMainData();
-    };
-
-    toggleFilterDisplay = function(filter) {
-        const element = filter + "FilterList";
-        LocalPreferences.set("filter_" + filter + "_collapsed", !$(element).hasClass("invisible"));
-        $(element).toggleClass("invisible");
-        const parent = $(element).getParent(".filterWrapper");
-        const toggleIcon = $(parent).getChildren(".filterTitle img");
-        if (toggleIcon)
-            toggleIcon[0].toggleClass("rotate");
+    toggleFilterDisplay = function(filterListID) {
+        const filterList = document.getElementById(filterListID);
+        const filterTitle = filterList.previousElementSibling;
+        const toggleIcon = filterTitle.firstElementChild;
+        toggleIcon.classList.toggle("rotate");
+        LocalPreferences.set(`filter_${filterListID.replace("FilterList", "")}_collapsed`, filterList.classList.toggle("invisible").toString());
     };
 
     new MochaUI.Panel({
@@ -311,7 +289,7 @@ window.addEventListener("DOMContentLoaded", () => {
         loadMethod: "xhr",
         contentURL: "views/filters.html",
         onContentLoaded: function() {
-            setFilter(selected_filter);
+            highlightSelectedStatus();
         },
         column: "filtersColumn",
         height: 300
@@ -467,11 +445,20 @@ window.addEventListener("DOMContentLoaded", () => {
         updateFilter("errored", "QBT_TR(Errored (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
     };
 
+    const highlightSelectedStatus = function() {
+        const statusFilter = document.getElementById("statusFilterList");
+        const filterID = `${selectedStatus}_filter`;
+        for (const status of statusFilter.children)
+            status.classList.toggle("selectedFilter", (status.id === filterID));
+    };
+
     const updateCategoryList = function() {
         const categoryList = $("categoryFilterList");
         if (!categoryList)
             return;
         categoryList.getChildren().each(c => c.destroy());
+
+        const categoryItemTemplate = document.getElementById("categoryFilterItem");
 
         const create_link = function(hash, text, count) {
             let display_name = text;
@@ -482,26 +469,15 @@ window.addEventListener("DOMContentLoaded", () => {
                 margin_left = (category_path.length - 1) * 20;
             }
 
-            const span = document.createElement("span");
-            span.classList.add("link");
-            span.href = "#";
+            const categoryFilterItem = categoryItemTemplate.content.cloneNode(true).firstElementChild;
+            categoryFilterItem.id = hash;
+            categoryFilterItem.classList.toggle("selectedFilter", hash === selectedCategory);
+
+            const span = categoryFilterItem.firstElementChild;
             span.style.marginLeft = `${margin_left}px`;
-            span.textContent = `${display_name} (${count})`;
-            span.addEventListener("click", (event) => {
-                event.preventDefault();
-                setCategoryFilter(hash);
-            });
+            span.lastChild.textContent = `${display_name} (${count})`;
 
-            const img = document.createElement("img");
-            img.src = "images/view-categories.svg";
-            span.prepend(img);
-
-            const listItem = document.createElement("li");
-            listItem.id = hash;
-            listItem.appendChild(span);
-
-            window.qBittorrent.Filters.categoriesFilterContextMenu.addTarget(listItem);
-            return listItem;
+            return categoryFilterItem;
         };
 
         const all = torrentsTable.getRowIds().length;
@@ -550,20 +526,16 @@ window.addEventListener("DOMContentLoaded", () => {
             categoryList.appendChild(create_link(categoryHash, categoryName, categoryCount));
         }
 
-        highlightSelectedCategory();
+        window.qBittorrent.Filters.categoriesFilterContextMenu.searchAndAddTargets();
     };
 
     const highlightSelectedCategory = function() {
-        const categoryList = $("categoryFilterList");
+        const categoryList = document.getElementById("categoryFilterList");
         if (!categoryList)
             return;
-        const children = categoryList.childNodes;
-        for (let i = 0; i < children.length; ++i) {
-            if (Number(children[i].id) === selected_category)
-                children[i].className = "selectedFilter";
-            else
-                children[i].className = "";
-        }
+
+        for (const category of categoryList.children)
+            category.classList.toggle("selectedFilter", (Number(category.id) === selectedCategory));
     };
 
     const updateTagList = function() {
@@ -573,26 +545,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
         tagFilterList.getChildren().each(c => c.destroy());
 
+        const tagItemTemplate = document.getElementById("tagFilterItem");
+
         const createLink = function(hash, text, count) {
-            const span = document.createElement("span");
-            span.classList.add("link");
-            span.href = "#";
-            span.textContent = `${text} (${count})`;
-            span.addEventListener("click", (event) => {
-                event.preventDefault();
-                setTagFilter(hash);
-            });
+            const tagFilterItem = tagItemTemplate.content.cloneNode(true).firstElementChild;
+            tagFilterItem.id = hash;
+            tagFilterItem.classList.toggle("selectedFilter", hash === selectedTag);
 
-            const img = document.createElement("img");
-            img.src = "images/tags.svg";
-            span.prepend(img);
+            const span = tagFilterItem.firstElementChild;
+            span.lastChild.textContent = `${text} (${count})`;
 
-            const listItem = document.createElement("li");
-            listItem.id = hash;
-            listItem.appendChild(span);
-
-            window.qBittorrent.Filters.tagsFilterContextMenu.addTarget(listItem);
-            return listItem;
+            return tagFilterItem;
         };
 
         const torrentsCount = torrentsTable.getRowIds().length;
@@ -615,17 +578,16 @@ window.addEventListener("DOMContentLoaded", () => {
         for (const { tagName, tagHash, tagSize } of sortedTags)
             tagFilterList.appendChild(createLink(tagHash, tagName, tagSize));
 
-        highlightSelectedTag();
+        window.qBittorrent.Filters.tagsFilterContextMenu.searchAndAddTargets();
     };
 
     const highlightSelectedTag = function() {
-        const tagFilterList = $("tagFilterList");
+        const tagFilterList = document.getElementById("tagFilterList");
         if (!tagFilterList)
             return;
 
-        const children = tagFilterList.childNodes;
-        for (let i = 0; i < children.length; ++i)
-            children[i].className = (Number(children[i].id) === selectedTag) ? "selectedFilter" : "";
+        for (const tag of tagFilterList.children)
+            tag.classList.toggle("selectedFilter", (Number(tag.id) === selectedTag));
     };
 
     // getHost emulate the GUI version `QString getHost(const QString &url)`
@@ -659,26 +621,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
         trackerFilterList.getChildren().each(c => c.destroy());
 
+        const trackerItemTemplate = document.getElementById("trackerFilterItem");
+
         const createLink = function(hash, text, count) {
-            const span = document.createElement("span");
-            span.classList.add("link");
-            span.href = "#";
-            span.textContent = text.replace("%1", count);
-            span.addEventListener("click", (event) => {
-                event.preventDefault();
-                setTrackerFilter(hash);
-            });
+            const trackerFilterItem = trackerItemTemplate.content.cloneNode(true).firstElementChild;
+            trackerFilterItem.id = hash;
+            trackerFilterItem.classList.toggle("selectedFilter", hash === selectedTracker);
 
-            const img = document.createElement("img");
-            img.src = "images/trackers.svg";
-            span.prepend(img);
+            const span = trackerFilterItem.firstElementChild;
+            span.lastChild.textContent = text.replace("%1", count);
 
-            const listItem = document.createElement("li");
-            listItem.id = hash;
-            listItem.appendChild(span);
-
-            window.qBittorrent.Filters.trackersFilterContextMenu.addTarget(listItem);
-            return listItem;
+            return trackerFilterItem;
         };
 
         const torrentsCount = torrentsTable.getRowIds().length;
@@ -709,17 +662,16 @@ window.addEventListener("DOMContentLoaded", () => {
         for (const { trackerHost, trackerHash, trackerCount } of sortedList)
             trackerFilterList.appendChild(createLink(trackerHash, (trackerHost + " (%1)"), trackerCount));
 
-        highlightSelectedTracker();
+        window.qBittorrent.Filters.trackersFilterContextMenu.searchAndAddTargets();
     };
 
     const highlightSelectedTracker = function() {
-        const trackerFilterList = $("trackerFilterList");
+        const trackerFilterList = document.getElementById("trackerFilterList");
         if (!trackerFilterList)
             return;
 
-        const children = trackerFilterList.childNodes;
-        for (const child of children)
-            child.className = (child.id === selectedTracker) ? "selectedFilter" : "";
+        for (const tracker of trackerFilterList.children)
+            tracker.classList.toggle("selectedFilter", (Number(tracker.id) === selectedTracker));
     };
 
     const setupCopyEventHandler = (function() {

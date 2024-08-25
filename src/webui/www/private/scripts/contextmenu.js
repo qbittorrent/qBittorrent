@@ -179,6 +179,10 @@ window.qBittorrent.ContextMenu ??= (() => {
             this.setupEventListeners(t);
         },
 
+        searchAndAddTargets: function() {
+            document.querySelectorAll(this.options.targets).forEach((target) => { this.addTarget(target); });
+        },
+
         triggerMenu: function(e, el) {
             if (this.options.disabled)
                 return;
