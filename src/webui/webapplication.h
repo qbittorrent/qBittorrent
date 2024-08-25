@@ -128,9 +128,11 @@ private:
     bool isAuthNeeded();
     bool isPublicAPI(const QString &scope, const QString &action) const;
 
+    bool isOriginTrustworthy() const;
     bool isCrossSiteRequest(const Http::Request &request) const;
     bool validateHostHeader(const QStringList &domains) const;
 
+    // reverse proxy
     QHostAddress resolveClientAddress() const;
 
     // Persistent data

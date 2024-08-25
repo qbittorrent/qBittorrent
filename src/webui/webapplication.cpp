@@ -744,7 +744,7 @@ void WebApplication::sessionStart()
 
     QNetworkCookie cookie {m_sessionCookieName.toLatin1(), m_currentSession->id().toLatin1()};
     cookie.setHttpOnly(true);
-    cookie.setSecure(m_isSecureCookieEnabled && m_isHttpsEnabled);
+    cookie.setSecure(m_isSecureCookieEnabled && isOriginTrustworthy());  // [rfc6265] 4.1.2.5. The Secure Attribute
     cookie.setPath(u"/"_s);
     if (m_isCSRFProtectionEnabled)
         cookie.setSameSitePolicy(QNetworkCookie::SameSite::Strict);
@@ -765,6 +765,27 @@ void WebApplication::sessionEnd()
     m_currentSession = nullptr;
 
     setHeader({Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm())});
+}
+
+bool WebApplication::isOriginTrustworthy() const
+{
+    // https://w3c.github.io/webappsec-secure-contexts/#is-origin-trustworthy
+
+    if (m_isReverseProxySupportEnabled)
+    {
+        const QString forwardedProto = request().headers.value(Http::HEADER_X_FORWARDED_PROTO);
+        if (forwardedProto.compare(u"https", Qt::CaseInsensitive) == 0)
+            return true;
+    }
+
+    if (m_isHttpsEnabled)
+        return true;
+
+    // client is on localhost
+    if (env().clientAddress.isLoopback())
+        return true;
+
+    return false;
 }
 
 bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
