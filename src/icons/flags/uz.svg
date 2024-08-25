@@ -5,7 +5,7 @@
   <path fill="#fff" d="M0 163.2h640v153.6H0z"/>
   <circle cx="134.4" cy="76.8" r="57.6" fill="#fff"/>
   <circle cx="153.6" cy="76.8" r="57.6" fill="#0099b5"/>
-  <g fill="#fff" transform="matrix(1.92 0 0 1.92 261.1 122.9)">
+  <g fill="#fff" transform="translate(261.1 122.9)scale(1.92)">
     <g id="uz-e">
       <g id="uz-d">
         <g id="uz-c">
