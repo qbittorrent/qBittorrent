@@ -196,30 +196,6 @@
         <translation>Omejitev časa sejanja mora biti med 0 525600 minut.</translation>
     </message>
     <message>
-        <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation type="vanished">Vrata uporabljena za spletni vmesnik morajo biti med 1 in 65535.</translation>
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Prijava ni mogoča, qBittorrent je verjetno nedosegljiv.</translation>
-    </message>
-    <message>
-        <source>Invalid Username or Password.</source>
-        <translation>Neveljavno uporabniško ime ali geslo.</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Uporabniško ime</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Geslo</translation>
-    </message>
-    <message>
-        <source>Login</source>
-        <translation>Prijava</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Uveljavi</translation>
     </message>
@@ -368,10 +344,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation type="vanished">Zahtevan JavaScript! Za uspešno delovanje spletnega uporabniškega vmesnika (Web UI) je potrebno omogočiti JavaScript.</translation>
-    </message>
-    <message>
         <source>Name cannot be empty</source>
         <translation>Ime ne sme biti prazno</translation>
     </message>
@@ -412,7 +384,27 @@
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Login</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Could not contact qBittorrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Password</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -513,11 +505,6 @@
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation>Ali ste prepričani, da želite zapreti qBittorrent?</translation>
-    </message>
-    <message>
-        <source>[D: %1, U: %2] qBittorrent %3</source>
-        <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation type="vanished">[Pr: %1, Po: %2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -648,7 +635,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Would you like to start all torrents?</source>
+        <source>Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start All</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -660,15 +651,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Start All</source>
+        <source>Would you like to start all torrents?</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -693,10 +680,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Web UI</source>
-        <translation type="vanished">Spletni vmesnik</translation>
     </message>
     <message>
         <source>Language</source>
@@ -1045,14 +1028,6 @@
         <translation>Namig: Postavi parameter med narekovaje da se izogneš prelomu teksta na presledku (npr., "%N")</translation>
     </message>
     <message>
-        <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="vanished">Uporabniško ime za spletni vmesnik mora vsebovati vsaj 3 znake.</translation>
-    </message>
-    <message>
-        <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="vanished">Geslo za spletni vmesnik mora vsebovati vsaj 6 znakov.</translation>
-    </message>
-    <message>
         <source>minutes</source>
         <translation>minut</translation>
     </message>
@@ -1087,10 +1062,6 @@
     <message>
         <source>Automatic</source>
         <translation>Samodejni</translation>
-    </message>
-    <message>
-        <source>Use alternative Web UI</source>
-        <translation type="vanished">Uporabi alternativni spletni vmesnik</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1286,7 +1257,7 @@
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation type="unfinished" />
+        <translation>Soležniki sorazmerno (duši TCP)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
@@ -1526,7 +1497,7 @@
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation type="unfinished" />
+        <translation>Datoteke, preslikane v pomnilnik</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1542,7 +1513,7 @@
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation type="unfinished" />
+        <translation>Nadzira interni interval posodobitve stanja, kar bo vplivalo na posodobitve uporabniškega vmesnika</translation>
     </message>
     <message>
         <source>Disk IO read mode:</source>
@@ -1658,7 +1629,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>Hitro nadaljevanje datotek</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
@@ -1790,7 +1761,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>(Auto detect if empty)</source>
-        <translation type="unfinished" />
+        <translation>(Samodejno zazna, če je prazno)</translation>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
@@ -1802,7 +1773,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source> sec</source>
-        <translation type="unfinished" />
+        <translation>sec</translation>
     </message>
     <message>
         <source>I2P outbound quantity:</source>
@@ -1850,7 +1821,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Write-through</source>
-        <translation type="unfinished" />
+        <translation>Prepiši</translation>
     </message>
     <message>
         <source>WebUI</source>
@@ -1870,7 +1841,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="unfinished" />
+        <translation>Naslovu okna doda besedilo, ki pomaga razlikovati primerke qBittorent</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -1885,11 +1856,11 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>Move files to trash (if possible)</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <source>Stop torrent</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1897,7 +1868,19 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop torrent</source>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent content removing mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Delete files permanently</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Send test email</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2265,11 +2248,23 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Popularity:</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Private:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2497,11 +2492,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation>Premikanje (0)</translation>
     </message>
     <message>
-        <source>Running (%1)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (0)</source>
+        <source>Running (0)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2509,7 +2500,11 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Running (0)</source>
+        <source>Stopped (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (%1)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2673,7 +2668,23 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Info Hash v1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Progress</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info Hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Incomplete Save Path</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Private</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2880,6 +2891,10 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Stopped</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>N/A</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3106,15 +3121,15 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Stop</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Force Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3156,11 +3171,15 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     <name>confirmDeletionDlg</name>
     <message>
         <source>Also permanently delete the files</source>
-        <translation>Trajno izbriši tudi datoteke</translation>
+        <translation type="vanished">Trajno izbriši tudi datoteke</translation>
     </message>
     <message>
         <source>Remove torrent(s)</source>
         <translation>Odstrani torrent(e)</translation>
+    </message>
+    <message>
+        <source>Also remove the content files</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3670,7 +3689,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation>Povezava za prejem</translation>
     </message>
     <message>
-        <source>Searching...</source>
+        <source>An error occurred during search...</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -3678,11 +3697,11 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation type="unfinished" />
     </message>
     <message>
-        <source>An error occurred during search...</source>
+        <source>Search aborted</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Search aborted</source>
+        <source>Searching...</source>
         <translation type="unfinished" />
     </message>
 </context>

@@ -56,7 +56,7 @@
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Ստուգված ֆայլեր</translation>
     </message>
     <message>
         <source>Stop condition:</source>
@@ -114,7 +114,7 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Հեռացնել torrent-ները</translation>
     </message>
     <message>
         <source>Add subcategory...</source>
@@ -196,18 +196,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Username</source>
-        <translation>Մուտքանուն</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Գաղտնաբառ</translation>
-    </message>
-    <message>
-        <source>Login</source>
-        <translation>Օգտանուն</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Գործադրել</translation>
     </message>
@@ -218,7 +206,7 @@
     <message>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation type="unfinished" />
+        <translation>Վերբեռնել torrent-ներ</translation>
     </message>
     <message>
         <source>Save files to location:</source>
@@ -230,7 +218,7 @@
     </message>
     <message>
         <source>More information</source>
-        <translation type="unfinished" />
+        <translation>Հավելյալ տեղեկություն</translation>
     </message>
     <message>
         <source>Information about certificates</source>
@@ -396,7 +384,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <source>Login</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Username</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -405,6 +397,14 @@
     </message>
     <message>
         <source>Invalid Username or Password.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Password</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -452,7 +452,7 @@
     </message>
     <message>
         <source>Donate!</source>
-        <translation type="unfinished" />
+        <translation>Նվիրաբերե՜լ</translation>
     </message>
     <message>
         <source>Resume All</source>
@@ -505,11 +505,6 @@
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation>Վստա՞հ եք, որ ուզում եք փակել qBittorrent-ը:</translation>
-    </message>
-    <message>
-        <source>[D: %1, U: %2] qBittorrent %3</source>
-        <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation type="vanished">[Ներբեռ.՝ %1, Վերբեռ.՝ %2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -632,7 +627,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Would you like to start all torrents?</source>
+        <source>Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start All</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -644,15 +643,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Start All</source>
+        <source>Would you like to start all torrents?</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -677,10 +672,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Web UI</source>
-        <translation type="vanished">Վեբ միջերես</translation>
     </message>
     <message>
         <source>Language</source>
@@ -780,7 +771,7 @@
     </message>
     <message>
         <source>TCP and μTP</source>
-        <translation type="unfinished" />
+        <translation>TCP և μTP</translation>
     </message>
     <message>
         <source>Listening Port</source>
@@ -844,7 +835,7 @@
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation>Օգտ. միջնորդը՝ peer միացումների համար</translation>
+        <translation>Օգտվել փոխանորդից՝ ցանցորդային միացումների համար</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -852,7 +843,7 @@
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
-        <translation type="unfinished" />
+        <translation>Ձեռքով արգելափակված IP հասցեներ...</translation>
     </message>
     <message>
         <source>Apply to trackers</source>
@@ -918,15 +909,15 @@
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Միացնել DHT՝ լրացուցիչ peer-եր գտնելու համար</translation>
+        <translation>Կարողացնել DHT-ն (ապակենտրոն ցանց)՝ ավելի շատ ցանցորդներ գտնելու համար</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Միացնել Peer-երի փոխանակումը (PeX)՝ լրացուցիչ peer-եր գտնելու համար</translation>
+        <translation>Կարողացնել ցանցորդների փոխանակումը (PeX)՝ ավելի շատ ցանցորդներ գտնելու համար</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Միացնել Լոկալ Peer-երի բացահայտումը</translation>
+        <translation>Կարողացնել տեղական ցանցորդների բացահայտումը՝ ավելի շատ ցանցորդներ գտնելու համար</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -1023,10 +1014,6 @@
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="vanished">Web UI-ի օգտագործողի անունը պետք է պարունակի գոնե 3 նիշ։</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1314,7 +1301,7 @@
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation>Որոշել ցանցորդի երկրները՝</translation>
     </message>
     <message>
         <source>ban for:</source>
@@ -1502,7 +1489,7 @@
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Լռելայն</translation>
     </message>
     <message>
         <source>POSIX-compliant</source>
@@ -1586,11 +1573,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Run external program</source>
-        <translation type="unfinished" />
+        <translation>Աշխատացնել արտաքին ծրագիր</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Ստուգված ֆայլեր</translation>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
@@ -1770,7 +1757,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source> sec</source>
-        <translation type="unfinished" />
+        <translation>վ</translation>
     </message>
     <message>
         <source>I2P outbound quantity:</source>
@@ -1853,11 +1840,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>Move files to trash (if possible)</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <source>Stop torrent</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1865,7 +1852,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop torrent</source>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent content removing mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Delete files permanently</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Send test email</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1937,7 +1936,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Copy IP:port</source>
-        <translation type="unfinished" />
+        <translation>Պատհենել IP:մատույց-ը</translation>
     </message>
     <message>
         <source>Country/Region</source>
@@ -1945,7 +1944,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Ավելացնել ցանցորդներ...</translation>
     </message>
     <message>
         <source>Peer ID Client</source>
@@ -1990,7 +1989,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Peers</source>
-        <translation>Peer-եր</translation>
+        <translation>Ցանցորդներ</translation>
     </message>
     <message>
         <source>HTTP Sources</source>
@@ -2026,7 +2025,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Seeds:</source>
-        <translation>Բաժանողներ՝</translation>
+        <translation>Սերմնացաններ՝</translation>
     </message>
     <message>
         <source>Download Speed:</source>
@@ -2038,7 +2037,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Peers:</source>
-        <translation>Մասնակիցներ՝</translation>
+        <translation>Ցանցորդներ՝</translation>
     </message>
     <message>
         <source>Download Limit:</source>
@@ -2178,11 +2177,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation>Ֆայլի անուն</translation>
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation type="unfinished" />
+        <translation>Ֆայլի անուն + հավելում</translation>
     </message>
     <message>
         <source>Enumerate Files</source>
@@ -2202,7 +2201,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation>Փոխարինել</translation>
     </message>
     <message>
         <source>Extension</source>
@@ -2233,11 +2232,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Popularity:</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Private:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2265,7 +2276,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation>Մուտքագրել թղթապանակն այստեղ</translation>
     </message>
 </context>
 <context>
@@ -2299,7 +2310,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Connected peers:</source>
-        <translation>Կապակցված մասնակիցներ՝</translation>
+        <translation>Միացված ցանցորդներ՝</translation>
     </message>
     <message>
         <source>All-time share ratio:</source>
@@ -2450,7 +2461,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>Ստուգվում է (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
@@ -2458,18 +2469,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>Տեղափոխվում է (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Running (%1)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (0)</source>
+        <source>Running (0)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2477,7 +2484,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Running (0)</source>
+        <source>Stopped (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (%1)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2509,12 +2520,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>Seed-եր</translation>
+        <translation>Սերմնացաններ՝</translation>
     </message>
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation>Peer-եր</translation>
+        <translation>Ցանցորդներ</translation>
     </message>
     <message>
         <source>Down Speed</source>
@@ -2641,7 +2652,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Info Hash v1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Progress</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info Hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Incomplete Save Path</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Private</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2657,7 +2684,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Peers</source>
-        <translation>Peer-եր</translation>
+        <translation>Ցանցորդներ</translation>
     </message>
     <message>
         <source>Message</source>
@@ -2689,7 +2716,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Seeds</source>
-        <translation>Բաժանողներ</translation>
+        <translation>Սերմնացաններ՝</translation>
     </message>
     <message>
         <source>Not working</source>
@@ -2848,6 +2875,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stopped</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>N/A</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3074,15 +3105,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Stop</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Force Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3123,11 +3154,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Also permanently delete the files</source>
+        <source>Remove torrent(s)</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Remove torrent(s)</source>
+        <source>Also remove the content files</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3252,7 +3283,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>SearchEngineWidget</name>
     <message>
         <source>Seeds:</source>
-        <translation>Բաժանողներ՝</translation>
+        <translation>Սերմնացաններ՝</translation>
     </message>
     <message>
         <source>All plugins</source>
@@ -3436,7 +3467,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add Peers</source>
-        <translation type="unfinished" />
+        <translation>Ավելացնել ցանցորդներ</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
@@ -3448,7 +3479,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation type="unfinished" />
+        <translation>Ձևաչափ IPv4:մատույց / [IPv6]:մատույց</translation>
     </message>
 </context>
 <context>
@@ -3487,7 +3518,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Հեռացնել torrent-ները</translation>
     </message>
     <message>
         <source>Start torrents</source>
@@ -3581,7 +3612,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Հեղինակներ</translation>
     </message>
     <message>
         <source>France</source>
@@ -3635,10 +3666,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download link</source>
-        <translation type="unfinished" />
+        <translation>Ներբեռնման հղում</translation>
     </message>
     <message>
-        <source>Searching...</source>
+        <source>An error occurred during search...</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -3646,11 +3677,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>An error occurred during search...</source>
+        <source>Search aborted</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Search aborted</source>
+        <source>Searching...</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4032,7 +4063,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Հեռացնել torrent-ները</translation>
     </message>
     <message>
         <source>Start torrents</source>
