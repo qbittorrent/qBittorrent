@@ -1625,29 +1625,16 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const country = this.getRowValue(row, 0);
                 const country_code = this.getRowValue(row, 1);
 
-                if (!country_code) {
-                    if (td.getChildren("img").length > 0)
-                        td.getChildren("img")[0].destroy();
-                    return;
+                let { firstElementChild: span } = td;
+                if (span === null) {
+                    span = document.createElement("span");
+                    span.classList.add("flags");
+                    td.append(span);
                 }
 
-                const img_path = "images/flags/" + country_code + ".svg";
-
-                if (td.getChildren("img").length > 0) {
-                    const img = td.getChildren("img")[0];
-                    img.src = img_path;
-                    img.className = "flags";
-                    img.alt = country;
-                    img.title = country;
-                }
-                else {
-                    td.adopt(new Element("img", {
-                        "src": img_path,
-                        "class": "flags",
-                        "alt": country,
-                        "title": country
-                    }));
-                }
+                span.style.backgroundImage = `url('images/flags/${!country_code ? "xx" : country_code}.svg')`;
+                span.textContent = country;
+                td.title = country;
             };
 
             // ip

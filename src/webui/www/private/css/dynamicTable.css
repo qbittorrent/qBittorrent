@@ -79,9 +79,10 @@ tr.dynamicTableHeader {
     background-image: url("../images/go-down.svg");
 }
 
-.dynamicTable td img.flags {
-    height: 1.25em;
-    vertical-align: middle;
+.dynamicTable span.flags {
+    background: left center / contain no-repeat;
+    margin-left: 2px;
+    padding-left: 25px;
 }
 
 .dynamicTableFixedHeaderDiv {
