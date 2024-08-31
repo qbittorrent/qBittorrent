@@ -1625,7 +1625,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const country = this.getRowValue(row, 0);
                 const country_code = this.getRowValue(row, 1);
 
-                let { firstElementChild: span } = td;
+                let span = td.firstElementChild;
                 if (span === null) {
                     span = document.createElement("span");
                     span.classList.add("flags");
