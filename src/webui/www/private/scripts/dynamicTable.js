@@ -1632,7 +1632,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.append(span);
                 }
 
-                span.style.backgroundImage = `url('images/flags/${!country_code ? "xx" : country_code}.svg')`;
+                span.style.backgroundImage = `url('images/flags/${country_code ?? "xx"}.svg')`;
                 span.textContent = country;
                 td.title = country;
             };
