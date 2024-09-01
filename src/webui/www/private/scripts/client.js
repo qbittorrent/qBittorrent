@@ -31,7 +31,6 @@ window.qBittorrent.Client ??= (() => {
         return {
             closeWindow: closeWindow,
             closeWindows: closeWindows,
-            genHash: genHash,
             getSyncMainDataInterval: getSyncMainDataInterval,
             isStopped: isStopped,
             stop: stop,
@@ -54,16 +53,6 @@ window.qBittorrent.Client ??= (() => {
 
     const closeWindows = function() {
         MochaUI.closeAll();
-    };
-
-    const genHash = function(string) {
-        // origins:
-        // https://stackoverflow.com/a/8831937
-        // https://gist.github.com/hyamamoto/fd435505d29ebfa3d9716fd2be8d42f0
-        let hash = 0;
-        for (let i = 0; i < string.length; ++i)
-            hash = ((Math.imul(hash, 31) + string.charCodeAt(i)) | 0);
-        return hash;
     };
 
     const getSyncMainDataInterval = function() {
@@ -128,6 +117,7 @@ let serverSyncMainDataInterval = 1500;
 let customSyncMainDataInterval = null;
 let useSubcategories = true;
 const useAutoHideZeroStatusFilters = LocalPreferences.get("hide_zero_status_filters", "false") === "true";
+const displayFullURLTrackerColumn = LocalPreferences.get("full_url_tracker_column", "false") === "true";
 
 /* Categories filter */
 const CATEGORIES_ALL = 1;
@@ -357,7 +347,7 @@ window.addEventListener("DOMContentLoaded", () => {
             return true;
         }
 
-        const categoryHash = window.qBittorrent.Client.genHash(category);
+        const categoryHash = window.qBittorrent.Misc.genHash(category);
         if (!category_list.has(categoryHash)) { // This should not happen
             category_list.set(categoryHash, {
                 name: category,
@@ -400,7 +390,7 @@ window.addEventListener("DOMContentLoaded", () => {
         const tags = torrent["tags"].split(",");
         let added = false;
         for (let i = 0; i < tags.length; ++i) {
-            const tagHash = window.qBittorrent.Client.genHash(tags[i].trim());
+            const tagHash = window.qBittorrent.Misc.genHash(tags[i].trim());
             if (!tagList.has(tagHash)) { // This should not happen
                 tagList.set(tagHash, {
                     name: tags,
@@ -590,30 +580,6 @@ window.addEventListener("DOMContentLoaded", () => {
             tag.classList.toggle("selectedFilter", (Number(tag.id) === selectedTag));
     };
 
-    // getHost emulate the GUI version `QString getHost(const QString &url)`
-    const getHost = function(url) {
-        // We want the hostname.
-        // If failed to parse the domain, original input should be returned
-
-        if (!/^(?:https?|udp):/i.test(url))
-            return url;
-
-        try {
-            // hack: URL can not get hostname from udp protocol
-            const parsedUrl = new URL(url.replace(/^udp:/i, "https:"));
-            // host: "example.com:8443"
-            // hostname: "example.com"
-            const host = parsedUrl.hostname;
-            if (!host)
-                return url;
-
-            return host;
-        }
-        catch (error) {
-            return url;
-        }
-    };
-
     const updateTrackerList = function() {
         const trackerFilterList = $("trackerFilterList");
         if (trackerFilterList === null)
@@ -749,7 +715,7 @@ window.addEventListener("DOMContentLoaded", () => {
                                 continue;
 
                             const responseCategory = response["categories"][key];
-                            const categoryHash = window.qBittorrent.Client.genHash(key);
+                            const categoryHash = window.qBittorrent.Misc.genHash(key);
                             const category = category_list.get(categoryHash);
                             if (category !== undefined) {
                                 // only the save path can change for existing categories
@@ -767,14 +733,14 @@ window.addEventListener("DOMContentLoaded", () => {
                     }
                     if (response["categories_removed"]) {
                         response["categories_removed"].each((category) => {
-                            const categoryHash = window.qBittorrent.Client.genHash(category);
+                            const categoryHash = window.qBittorrent.Misc.genHash(category);
                             category_list.delete(categoryHash);
                         });
                         update_categories = true;
                     }
                     if (response["tags"]) {
                         for (const tag of response["tags"]) {
-                            const tagHash = window.qBittorrent.Client.genHash(tag);
+                            const tagHash = window.qBittorrent.Misc.genHash(tag);
                             if (!tagList.has(tagHash)) {
                                 tagList.set(tagHash, {
                                     name: tag,
@@ -786,15 +752,15 @@ window.addEventListener("DOMContentLoaded", () => {
                     }
                     if (response["tags_removed"]) {
                         for (let i = 0; i < response["tags_removed"].length; ++i) {
-                            const tagHash = window.qBittorrent.Client.genHash(response["tags_removed"][i]);
+                            const tagHash = window.qBittorrent.Misc.genHash(response["tags_removed"][i]);
                             tagList.delete(tagHash);
                         }
                         updateTags = true;
                     }
                     if (response["trackers"]) {
                         for (const [tracker, torrents] of Object.entries(response["trackers"])) {
-                            const host = getHost(tracker);
-                            const hash = window.qBittorrent.Client.genHash(host);
+                            const host = window.qBittorrent.Misc.getHost(tracker);
+                            const hash = window.qBittorrent.Misc.genHash(host);
 
                             let trackerListItem = trackerList.get(hash);
                             if (trackerListItem === undefined) {
@@ -809,7 +775,8 @@ window.addEventListener("DOMContentLoaded", () => {
                     if (response["trackers_removed"]) {
                         for (let i = 0; i < response["trackers_removed"].length; ++i) {
                             const tracker = response["trackers_removed"][i];
-                            const hash = window.qBittorrent.Client.genHash(getHost(tracker));
+                            const host = window.qBittorrent.Misc.getHost(tracker);
+                            const hash = window.qBittorrent.Misc.genHash(host);
                             const trackerListEntry = trackerList.get(hash);
                             if (trackerListEntry)
                                 trackerListEntry.trackerTorrentMap.delete(tracker);
