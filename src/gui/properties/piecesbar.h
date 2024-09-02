@@ -68,7 +68,9 @@ protected:
     QColor backgroundColor() const;
     QColor borderColor() const;
     QColor pieceColor() const;
+    QColor highlightedPieceColor() const;
     QColor colorBoxBorderColor() const;
+
     const QVector<QRgb> &pieceColors() const;
 
     // mix two colors by light model, ratio <0, 1>
