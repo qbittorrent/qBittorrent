@@ -872,16 +872,14 @@ QHostAddress WebApplication::resolveClientAddress() const
 
         if (!remoteIpList.isEmpty())
         {
-            QHostAddress clientAddress;
-
             for (const QString &remoteIp : remoteIpList)
             {
-                if (clientAddress.setAddress(remoteIp) && clientAddress.isGlobal())
+                const QHostAddress clientAddress {remoteIp};
+                if (clientAddress.isGlobal())
                     return clientAddress;
             }
 
-            if (clientAddress.setAddress(remoteIpList[0]))
-                return clientAddress;
+            return QHostAddress(remoteIpList[0]);
         }
     }
 
