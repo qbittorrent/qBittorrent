@@ -195,10 +195,8 @@ void PiecesBar::paintEvent(QPaintEvent *)
 
     if (!m_highlightedRegion.isNull())
     {
-        QColor highlightColor {this->palette().color(QPalette::Active, QPalette::Highlight)};
-        highlightColor.setAlphaF(0.35f);
         QRect targetHighlightRect {m_highlightedRegion.adjusted(borderWidth, borderWidth, borderWidth, height() - 2 * borderWidth)};
-        painter.fillRect(targetHighlightRect, highlightColor);
+        painter.fillRect(targetHighlightRect, highlightedPieceColor());
     }
 
     QPainterPath border;
@@ -229,6 +227,13 @@ QColor PiecesBar::borderColor() const
 QColor PiecesBar::pieceColor() const
 {
     return palette().color(QPalette::Active, QPalette::Highlight);
+}
+
+QColor PiecesBar::highlightedPieceColor() const
+{
+    QColor col = palette().color(QPalette::Highlight).darker();
+    col.setAlphaF(0.35);
+    return col;
 }
 
 QColor PiecesBar::colorBoxBorderColor() const
