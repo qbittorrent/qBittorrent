@@ -442,31 +442,45 @@ window.addEventListener("DOMContentLoaded", () => {
     };
 
     const updateCategoryList = function() {
-        const categoryList = $("categoryFilterList");
+        const categoryList = document.getElementById("categoryFilterList");
         if (!categoryList)
             return;
         categoryList.getChildren().each(c => c.destroy());
 
         const categoryItemTemplate = document.getElementById("categoryFilterItem");
 
-        const create_link = function(hash, text, count) {
-            let display_name = text;
-            let margin_left = 0;
-            if (useSubcategories) {
-                const category_path = text.split("/");
-                display_name = category_path[category_path.length - 1];
-                margin_left = (category_path.length - 1) * 20;
-            }
-
+        const createCategoryLink = (hash, name, count) => {
             const categoryFilterItem = categoryItemTemplate.content.cloneNode(true).firstElementChild;
             categoryFilterItem.id = hash;
             categoryFilterItem.classList.toggle("selectedFilter", hash === selectedCategory);
 
             const span = categoryFilterItem.firstElementChild;
-            span.style.marginLeft = `${margin_left}px`;
-            span.lastChild.textContent = `${display_name} (${count})`;
+            span.lastElementChild.textContent = `${name} (${count})`;
 
             return categoryFilterItem;
+        };
+
+        const createCategoryTree = (category) => {
+            const stack = [{ parent: categoriesFragment, category: category }];
+            while (stack.length > 0) {
+                const { parent, category } = stack.pop();
+                const displayName = category.nameSegments.at(-1);
+                const listItem = createCategoryLink(category.categoryHash, displayName, category.categoryCount);
+                listItem.firstElementChild.style.paddingLeft = `${(category.nameSegments.length - 1) * 20 + 6}px`;
+
+                parent.appendChild(listItem);
+
+                if (category.children.length > 0) {
+                    listItem.querySelector(".categoryToggle").style.visibility = "visible";
+                    const unorderedList = document.createElement("ul");
+                    listItem.appendChild(unorderedList);
+                    for (const subcategory of category.children.reverse())
+                        stack.push({ parent: unorderedList, category: subcategory });
+                }
+                const categoryLocalPref = `category_${category.categoryHash}_collapsed`;
+                const isCollapsed = !category.forceExpand && (LocalPreferences.get(categoryLocalPref, "false") === "true");
+                LocalPreferences.set(categoryLocalPref, listItem.classList.toggle("collapsedCategory", isCollapsed).toString());
+            }
         };
 
         const all = torrentsTable.getRowIds().length;
@@ -479,18 +493,22 @@ window.addEventListener("DOMContentLoaded", () => {
             if (row["full_data"].category.length === 0)
                 uncategorized += 1;
         }
-        categoryList.appendChild(create_link(CATEGORIES_ALL, "QBT_TR(All)QBT_TR[CONTEXT=CategoryFilterModel]", all));
-        categoryList.appendChild(create_link(CATEGORIES_UNCATEGORIZED, "QBT_TR(Uncategorized)QBT_TR[CONTEXT=CategoryFilterModel]", uncategorized));
 
         const sortedCategories = [];
         category_list.forEach((category, hash) => sortedCategories.push({
             categoryName: category.name,
             categoryHash: hash,
-            categoryCount: category.torrents.size
+            categoryCount: category.torrents.size,
+            nameSegments: category.name.split("/"),
+            ...(useSubcategories && {
+                children: [],
+                parentID: null,
+                forceExpand: LocalPreferences.get(`category_${hash}_collapsed`) === null
+            })
         }));
         sortedCategories.sort((left, right) => {
-            const leftSegments = left.categoryName.split("/");
-            const rightSegments = right.categoryName.split("/");
+            const leftSegments = left.nameSegments;
+            const rightSegments = right.nameSegments;
 
             for (let i = 0, iMax = Math.min(leftSegments.length, rightSegments.length); i < iMax; ++i) {
                 const compareResult = window.qBittorrent.Misc.naturalSortCollator.compare(
@@ -502,19 +520,39 @@ window.addEventListener("DOMContentLoaded", () => {
             return leftSegments.length - rightSegments.length;
         });
 
-        for (let i = 0; i < sortedCategories.length; ++i) {
-            const { categoryName, categoryHash } = sortedCategories[i];
-            let { categoryCount } = sortedCategories[i];
+        const categoriesFragment = new DocumentFragment();
+        categoriesFragment.appendChild(createCategoryLink(CATEGORIES_ALL, "QBT_TR(All)QBT_TR[CONTEXT=CategoryFilterModel]", all));
+        categoriesFragment.appendChild(createCategoryLink(CATEGORIES_UNCATEGORIZED, "QBT_TR(Uncategorized)QBT_TR[CONTEXT=CategoryFilterModel]", uncategorized));
 
-            if (useSubcategories) {
+        if (useSubcategories) {
+            categoryList.classList.add("subcategories");
+            for (let i = 0; i < sortedCategories.length; ++i) {
+                const category = sortedCategories[i];
                 for (let j = (i + 1);
-                    ((j < sortedCategories.length) && sortedCategories[j].categoryName.startsWith(categoryName + "/")); ++j)
-                    categoryCount += sortedCategories[j].categoryCount;
-            }
+                    ((j < sortedCategories.length) && sortedCategories[j].categoryName.startsWith(`${category.categoryName}/`)); ++j) {
+                    const subcategory = sortedCategories[j];
+                    category.categoryCount += subcategory.categoryCount;
+                    category.forceExpand ||= subcategory.forceExpand;
 
-            categoryList.appendChild(create_link(categoryHash, categoryName, categoryCount));
+                    const isDirectSubcategory = (subcategory.nameSegments.length - category.nameSegments.length) === 1;
+                    if (isDirectSubcategory) {
+                        subcategory.parentID = category.categoryHash;
+                        category.children.push(subcategory);
+                    }
+                }
+            }
+            for (const category of sortedCategories) {
+                if (category.parentID === null)
+                    createCategoryTree(category);
+            }
+        }
+        else {
+            categoryList.classList.remove("subcategories");
+            for (const { categoryHash, categoryName, categoryCount } of sortedCategories)
+                categoriesFragment.appendChild(createCategoryLink(categoryHash, categoryName, categoryCount));
         }
 
+        categoryList.appendChild(categoriesFragment);
         window.qBittorrent.Filters.categoriesFilterContextMenu.searchAndAddTargets();
     };
 
@@ -523,7 +561,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if (!categoryList)
             return;
 
-        for (const category of categoryList.children)
+        for (const category of categoryList.getElementsByTagName("li"))
             category.classList.toggle("selectedFilter", (Number(category.id) === selectedCategory));
     };
 

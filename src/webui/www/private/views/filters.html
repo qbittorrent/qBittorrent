@@ -44,7 +44,9 @@
 <template id="categoryFilterItem">
     <li class="categoriesFilterContextMenuTarget">
         <span class="link">
-            <img src="images/view-categories.svg" alt="">
+            <button class="categoryToggle" type="button" aria-label="QBT_TR(Collapse/expand category)QBT_TR[CONTEXT=TransferListFiltersWidget]"></button>
+            <img src="images/view-categories.svg" width="16" height="16" alt="">
+            <span></span>
         </span>
     </li>
 </template>
@@ -74,6 +76,11 @@
                 tagsFilterContextMenu: tagsFilterContextMenu,
                 trackersFilterContextMenu: trackersFilterContextMenu
             };
+        };
+
+        const toggleCategoryDisplay = (filterItemID) => {
+            const filterItem = document.getElementById(filterItemID);
+            LocalPreferences.set(`category_${filterItemID}_collapsed`, filterItem.classList.toggle("collapsedCategory").toString());
         };
 
         const categoriesFilterContextMenu = new window.qBittorrent.ContextMenu.CategoriesFilterContextMenu({
@@ -183,10 +190,8 @@
 
         document.getElementById("Filters_pad").addEventListener("click", (event) => {
             const filterItem = event.target.closest("li");
-            if (!filterItem)
+            if (filterItem?.classList?.contains("selectedFilter"))
                 return;
-
-            event.stopImmediatePropagation();
 
             const { id: filterItemID } = filterItem;
             const { id: filterListID } = filterItem.closest("ul[id]");
@@ -216,6 +221,22 @@
 
             const filterList = filterTitle.nextElementSibling.id;
             toggleFilterDisplay(filterList);
+        });
+
+        document.getElementById("categoryFilterList").addEventListener("click", (event) => {
+            if (event.target.className !== "categoryToggle")
+                return;
+
+            event.stopPropagation();
+            toggleCategoryDisplay(event.target.closest("li").id);
+        });
+
+        document.getElementById("categoryFilterList").addEventListener("dblclick", function(event) {
+            const filterItem = event.target.closest("li");
+            if (!this.classList.contains("subcategories") || !(filterItem?.querySelector("ul")))
+                return;
+
+            toggleCategoryDisplay(filterItem.id);
         });
 
         return exports();

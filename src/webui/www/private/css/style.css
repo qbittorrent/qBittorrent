@@ -175,24 +175,17 @@ hr {
     width: 90%;
 }
 
+#Filters {
+    overflow-x: hidden !important; /* override for default mocha inline style */
+}
+
 #Filters ul {
     list-style-type: none;
 }
 
-#Filters ul li {
-    margin-left: -16px;
-}
-
 #Filters ul img {
     height: 16px;
-    padding: 0 4px;
-    vertical-align: middle;
     width: 16px;
-}
-
-.selectedFilter {
-    background-color: var(--color-background-blue) !important;
-    color: var(--color-text-white) !important;
 }
 
 #properties {
@@ -514,55 +507,99 @@ div.formRow {
 }
 
 .filterTitle {
-    display: block;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
     font-weight: bold;
+    gap: 4px;
     overflow: hidden;
-    padding-left: 5px;
-    padding-top: 5px;
+    padding: 4px 0 4px 6px;
     text-overflow: ellipsis;
     text-transform: uppercase;
     white-space: nowrap;
 }
 
 .filterTitle img {
+    box-sizing: border-box;
     height: 16px;
-    margin-bottom: -3px;
-    padding: 0 5px;
+    padding: 2px;
     width: 16px;
 }
 
+.collapsedCategory > ul {
+    display: none;
+}
+
+.collapsedCategory .categoryToggle,
 .filterTitle img.rotate {
-    transform: rotate(270deg);
+    transform: rotate(-90deg);
+}
+
+ul.filterList * {
+    box-sizing: border-box;
 }
 
 ul.filterList {
-    margin: 0 0 0 16px;
+    margin: 0;
     padding-left: 0;
 }
 
-ul.filterList li:hover img,
-ul.filterList .selectedFilter img {
+ul.filterList span.link:hover :is(img, button),
+ul.filterList .selectedFilter > .link :is(img, button) {
     filter: var(--color-icon-hover);
 }
 
 ul.filterList span.link {
-    align-items: center;
-    color: inherit;
     cursor: pointer;
     display: flex;
+    gap: 5px;
     overflow: hidden;
     padding: 4px 6px;
+    white-space: nowrap;
+}
+
+ul.filterList span.link:hover {
+    background-color: var(--color-background-hover);
+    color: var(--color-text-white);
+}
+
+span.link :last-child {
+    min-width: 0;
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-ul.filterList li {
-    color: var(--color-text-default);
+span.link :is(img, button) {
+    flex-shrink: 0;
 }
 
-ul.filterList li:hover {
-    background-color: var(--color-background-hover);
+.selectedFilter > span.link {
+    background-color: var(--color-background-blue);
     color: var(--color-text-white);
+}
+
+.subcategories,
+.subcategories ul {
+    margin: 0;
+    padding: 0;
+}
+
+.subcategories .categoryToggle {
+    display: inline-block;
+    visibility: hidden;
+}
+
+.categoryToggle {
+    background: url("../images/go-down.svg") center center / 10px no-repeat
+        transparent;
+    border: none;
+    display: none;
+    height: 16px;
+    margin-right: -2px;
+    padding: 2px;
+    transition: transform 0.3s;
+    width: 16px;
 }
 
 td.generalLabel {

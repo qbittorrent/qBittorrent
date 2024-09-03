@@ -95,12 +95,12 @@
                                         window.parent.qBittorrent.Client.closeWindows();
                                     },
                                     onFailure: function() {
-                                        alert("QBT_TR(Unable to set category)QBT_TR[CONTEXT=HttpServer]");
+                                        alert("QBT_TR(Unable to set category)QBT_TR[CONTEXT=Category]");
                                     }
                                 }).send();
                             },
                             onFailure: function() {
-                                alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=HttpServer] " + window.qBittorrent.Misc.escapeHtml(categoryName));
+                                alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category] " + window.qBittorrent.Misc.escapeHtml(categoryName));
                             }
                         }).send();
                         break;
@@ -121,7 +121,7 @@
                                 window.parent.qBittorrent.Client.closeWindows();
                             },
                             onFailure: function() {
-                                alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=HttpServer]");
+                                alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category]");
                             }
                         }).send();
                         break;
@@ -138,7 +138,7 @@
                                 window.parent.qBittorrent.Client.closeWindows();
                             },
                             onFailure: function() {
-                                alert("QBT_TR(Unable to edit category)QBT_TR[CONTEXT=HttpServer]");
+                                alert("QBT_TR(Unable to edit category)QBT_TR[CONTEXT=Category]");
                             }
                         }).send();
                         break;
