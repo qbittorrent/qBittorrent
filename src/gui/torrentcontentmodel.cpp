@@ -34,8 +34,10 @@
 #include <QFileIconProvider>
 #include <QFileInfo>
 #include <QIcon>
+#include <QMimeData>
 #include <QPointer>
 #include <QScopeGuard>
+#include <QUrl>
 
 #if defined(Q_OS_MACOS)
 #define QBT_PIXMAP_CACHE_FOR_FILE_ICONS
@@ -434,7 +436,7 @@ Qt::ItemFlags TorrentContentModel::flags(const QModelIndex &index) const
     if (!index.isValid())
         return Qt::NoItemFlags;
 
-    Qt::ItemFlags flags {Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable};
+    Qt::ItemFlags flags {Qt::ItemIsDragEnabled | Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable};
     if (itemType(index) == TorrentContentModelItem::FolderType)
         flags |= Qt::ItemIsAutoTristate;
     if (index.column() == TorrentContentModelItem::COL_PRIO)
@@ -513,6 +515,47 @@ int TorrentContentModel::rowCount(const QModelIndex &parent) const
         ? dynamic_cast<TorrentContentModelFolder *>(static_cast<TorrentContentModelItem *>(parent.internalPointer()))
         : m_rootItem;
     return parentItem ? parentItem->childCount() : 0;
+}
+
+QMimeData *TorrentContentModel::mimeData(const QModelIndexList &indexes) const
+{
+    if (indexes.isEmpty())
+        return nullptr;
+
+    const Path storagePath = contentHandler()->actualStorageLocation();
+
+    QList<QUrl> paths;
+    paths.reserve(indexes.size());
+
+    for (const QModelIndex &index : indexes)
+    {
+        if (!index.isValid())
+            continue;
+        if (index.column() != TorrentContentModelItem::COL_NAME)
+            continue;
+
+        if (itemType(index) == TorrentContentModelItem::FileType)
+        {
+            const int idx = getFileIndex(index);
+            const Path fullPath = storagePath / contentHandler()->actualFilePath(idx);
+            paths.append(QUrl::fromLocalFile(fullPath.data()));
+        }
+        else // folder type
+        {
+            const Path fullPath = storagePath / getItemPath(index);
+            paths.append(QUrl::fromLocalFile(fullPath.data()));
+        }
+    }
+
+    auto *mimeData = new QMimeData; // lifetime will be handled by Qt
+    mimeData->setUrls(paths);
+
+    return mimeData;
+}
+
+QStringList TorrentContentModel::mimeTypes() const
+{
+    return {u"text/uri-list"_s};
 }
 
 void TorrentContentModel::populate()

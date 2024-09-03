@@ -37,6 +37,7 @@
 #include "torrentcontentmodelitem.h"
 
 class QFileIconProvider;
+class QMimeData;
 class QModelIndex;
 class QVariant;
 
@@ -86,6 +87,8 @@ signals:
 private:
     using ColumnInterval = IndexInterval<int>;
 
+    QMimeData *mimeData(const QModelIndexList &indexes) const override;
+    QStringList mimeTypes() const override;
     void populate();
     void updateFilesProgress();
     void updateFilesPriorities();
