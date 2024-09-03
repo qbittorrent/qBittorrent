@@ -175,15 +175,14 @@ window.addEventListener("DOMContentLoaded", () => {
     MochaUI.Desktop.initialize();
 
     const buildTransfersTab = function() {
-        const filt_w = Number(LocalPreferences.get("filters_width", 120));
         new MochaUI.Column({
             id: "filtersColumn",
             placement: "left",
             onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveColumnSizes();
             }),
-            width: filt_w,
-            resizeLimit: [1, 300]
+            width: Number(LocalPreferences.get("filters_width", 210)),
+            resizeLimit: [1, 1000]
         });
         new MochaUI.Column({
             id: "mainColumn",
