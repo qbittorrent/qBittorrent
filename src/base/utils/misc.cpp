@@ -47,6 +47,7 @@
 #include <QStringView>
 #include <QSysInfo>
 
+#include "base/net/downloadmanager.h"
 #include "base/path.h"
 #include "base/unicodestrings.h"
 #include "base/utils/string.h"
@@ -210,6 +211,14 @@ bool Utils::Misc::isPreviewable(const Path &filePath)
         u".WMV"_s
     };
     return multimediaExtensions.contains(filePath.extension().toUpper());
+}
+
+bool Utils::Misc::isTorrentLink(const QString &str)
+{
+    return str.startsWith(u"magnet:", Qt::CaseInsensitive)
+        || str.endsWith(TORRENT_FILE_EXTENSION, Qt::CaseInsensitive)
+        || (!str.startsWith(u"file:", Qt::CaseInsensitive)
+            && Net::DownloadManager::hasSupportedScheme(str));
 }
 
 QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglong maxCap, const TimeResolution resolution)

@@ -78,6 +78,7 @@ namespace Utils::Misc
     qint64 sizeInBytes(qreal size, SizeUnit unit);
 
     bool isPreviewable(const Path &filePath);
+    bool isTorrentLink(const QString &str);
 
     // Take a number of seconds and return a user-friendly
     // time duration like "1d 2h 10m".
