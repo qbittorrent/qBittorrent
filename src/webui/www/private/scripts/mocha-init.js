@@ -597,10 +597,7 @@ const initializeWindows = function() {
                 paddingVertical: 0,
                 paddingHorizontal: 0,
                 width: 400,
-                height: 150,
-                onCloseComplete: function() {
-                    updateMainData();
-                }
+                height: 150
             });
         }
     };
@@ -642,7 +639,6 @@ const initializeWindows = function() {
             width: 400,
             height: 150
         });
-        updateMainData();
     };
 
     createSubcategoryFN = function(categoryHash) {
@@ -662,7 +658,6 @@ const initializeWindows = function() {
             width: 400,
             height: 150
         });
-        updateMainData();
     };
 
     editCategoryFN = function(categoryHash) {
@@ -682,7 +677,6 @@ const initializeWindows = function() {
             width: 400,
             height: 150
         });
-        updateMainData();
     };
 
     removeCategoryFN = function(categoryHash) {
@@ -692,9 +686,12 @@ const initializeWindows = function() {
             method: "post",
             data: {
                 categories: categoryName
+            },
+            onSuccess: function() {
+                setCategoryFilter(CATEGORIES_ALL);
+                updateMainData();
             }
         }).send();
-        setCategoryFilter(CATEGORIES_ALL);
     };
 
     deleteUnusedCategoriesFN = function() {
@@ -709,9 +706,12 @@ const initializeWindows = function() {
             method: "post",
             data: {
                 categories: categories.join("\n")
+            },
+            onSuccess: function() {
+                setCategoryFilter(CATEGORIES_ALL);
+                updateMainData();
             }
         }).send();
-        setCategoryFilter(CATEGORIES_ALL);
     };
 
     startTorrentsByCategoryFN = function(categoryHash) {
