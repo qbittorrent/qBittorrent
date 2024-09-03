@@ -259,6 +259,8 @@ namespace BitTorrent
         virtual void setSaveResumeDataInterval(int value) = 0;
         virtual int shutdownTimeout() const = 0;
         virtual void setShutdownTimeout(int value) = 0;
+        virtual int saveStatisticsInterval() const = 0;
+        virtual void setSaveStatisticsInterval(int value) = 0;
         virtual int port() const = 0;
         virtual void setPort(int port) = 0;
         virtual bool isSSLEnabled() const = 0;

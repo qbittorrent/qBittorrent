@@ -374,6 +374,8 @@ void AppController::preferencesAction()
     data[u"resolve_peer_countries"_s] = pref->resolvePeerCountries();
     // Reannounce to all trackers when ip/port changed
     data[u"reannounce_when_address_changed"_s] = session->isReannounceWhenAddressChangedEnabled();
+    // Save statistics interval
+    data[u"save_statistics_interval"_s] = session->saveStatisticsInterval();
 
     // libtorrent preferences
     // Bdecode depth limit
@@ -982,6 +984,9 @@ void AppController::setPreferencesAction()
     // Reannounce to all trackers when ip/port changed
     if (hasKey(u"reannounce_when_address_changed"_s))
         session->setReannounceWhenAddressChangedEnabled(it.value().toBool());
+    // Save statistics interval
+    if (hasKey(u"save_statistics_interval"_s))
+        session->setSaveStatisticsInterval(it.value().toInt());
 
     // libtorrent preferences
     // Bdecode depth limit

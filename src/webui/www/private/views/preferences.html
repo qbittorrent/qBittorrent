@@ -1226,6 +1226,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <input type="text" id="pythonExecutablePath" class="pathFile" placeholder="QBT_TR((Auto detect if empty))QBT_TR[CONTEXT=OptionsDialog]" style="width: 15em;">
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <label for="saveStatisticsInterval">QBT_TR(Save statistics interval:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="text" id="saveStatisticsInterval" style="width: 15em;">&nbsp;&nbsp;QBT_TR(min)QBT_TR[CONTEXT=OptionsDialog]
+                    </td>
+                </tr>
             </tbody>
         </table>
     </fieldset>
@@ -2445,6 +2453,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("refreshInterval").value = pref.refresh_interval;
                     $("resolvePeerCountries").checked = pref.resolve_peer_countries;
                     $("reannounceWhenAddressChanged").checked = pref.reannounce_when_address_changed;
+                    $("saveStatisticsInterval").value = pref.save_statistics_interval;
                     // libtorrent section
                     $("bdecodeDepthLimit").value = pref.bdecode_depth_limit;
                     $("bdecodeTokenLimit").value = pref.bdecode_token_limit;
@@ -2898,6 +2907,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["refresh_interval"] = Number($("refreshInterval").value);
             settings["resolve_peer_countries"] = $("resolvePeerCountries").checked;
             settings["reannounce_when_address_changed"] = $("reannounceWhenAddressChanged").checked;
+            settings["save_statistics_interval"] = Number($("saveStatisticsInterval").value);
 
             // libtorrent section
             settings["bdecode_depth_limit"] = Number($("bdecodeDepthLimit").value);

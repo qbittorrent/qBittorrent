@@ -106,6 +106,7 @@ namespace
         ENABLE_MARK_OF_THE_WEB,
 #endif // Q_OS_MACOS || Q_OS_WIN
         PYTHON_EXECUTABLE_PATH,
+        SAVE_STATISTICS_INTERVAL,
         START_SESSION_PAUSED,
         SESSION_SHUTDOWN_TIMEOUT,
 
@@ -338,6 +339,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setStartPaused(m_checkBoxStartSessionPaused.isChecked());
     // Session shutdown timeout
     session->setShutdownTimeout(m_spinBoxSessionShutdownTimeout.value());
+    // Save statistics interval
+    session->setSaveStatisticsInterval(m_spinBoxSaveStatisticsInterval.value());
     // Choking algorithm
     session->setChokingAlgorithm(m_comboBoxChokingAlgorithm.currentData().value<BitTorrent::ChokingAlgorithm>());
     // Seed choking algorithm
@@ -857,6 +860,13 @@ void AdvancedSettings::loadAdvancedSettings()
     m_pythonExecutablePath.setPlaceholderText(tr("(Auto detect if empty)"));
     m_pythonExecutablePath.setText(pref->getPythonExecutablePath().toString());
     addRow(PYTHON_EXECUTABLE_PATH, tr("Python executable path (may require restart)"), &m_pythonExecutablePath);
+    // Save statistics interval
+    m_spinBoxSaveStatisticsInterval.setMinimum(0);
+    m_spinBoxSaveStatisticsInterval.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxSaveStatisticsInterval.setValue(session->saveStatisticsInterval());
+    m_spinBoxSaveStatisticsInterval.setSuffix(tr(" min", " minutes"));
+    m_spinBoxSaveStatisticsInterval.setSpecialValueText(tr("0 (disabled)"));
+    addRow(SAVE_STATISTICS_INTERVAL, tr("Save statistics interval [0: disabled]", "How often the statistics file is saved."), &m_spinBoxSaveStatisticsInterval);
     // Start session paused
     m_checkBoxStartSessionPaused.setChecked(session->isStartPaused());
     addRow(START_SESSION_PAUSED, tr("Start BitTorrent session in paused state"), &m_checkBoxStartSessionPaused);
@@ -868,7 +878,6 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxSessionShutdownTimeout.setSpecialValueText(tr("-1 (unlimited)"));
     m_spinBoxSessionShutdownTimeout.setToolTip(u"Sets the timeout for the session to be shut down gracefully, at which point it will be forcibly terminated.<br>Note that this does not apply to the saving resume data time."_s);
     addRow(SESSION_SHUTDOWN_TIMEOUT, tr("BitTorrent session shutdown timeout [-1: unlimited]"), &m_spinBoxSessionShutdownTimeout);
-
     // Choking algorithm
     m_comboBoxChokingAlgorithm.addItem(tr("Fixed slots"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::FixedSlots));
     m_comboBoxChokingAlgorithm.addItem(tr("Upload rate based"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::RateBased));
