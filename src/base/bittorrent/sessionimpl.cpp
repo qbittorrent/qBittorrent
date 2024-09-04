@@ -112,7 +112,6 @@ using namespace BitTorrent;
 
 const Path CATEGORIES_FILE_NAME {u"categories.json"_s};
 const int MAX_PROCESSING_RESUMEDATA_COUNT = 50;
-const int DEFAULT_STATISTICS_SAVE_INTERVAL_MIN = 15;
 
 namespace
 {
@@ -482,8 +481,8 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_isBandwidthSchedulerEnabled(BITTORRENT_SESSION_KEY(u"BandwidthSchedulerEnabled"_s), false)
     , m_isPerformanceWarningEnabled(BITTORRENT_SESSION_KEY(u"PerformanceWarning"_s), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY(u"SaveResumeDataInterval"_s), 60)
+    , m_saveStatisticsInterval(BITTORRENT_SESSION_KEY(u"SaveStatisticsInterval"_s), 15)
     , m_shutdownTimeout(BITTORRENT_SESSION_KEY(u"ShutdownTimeout"_s), -1)
-    , m_saveStatisticsInterval(BITTORRENT_SESSION_KEY(u"SaveStatisticsInterval"_s), DEFAULT_STATISTICS_SAVE_INTERVAL_MIN)
     , m_port(BITTORRENT_SESSION_KEY(u"Port"_s), -1)
     , m_sslEnabled(BITTORRENT_SESSION_KEY(u"SSL/Enabled"_s), false)
     , m_sslPort(BITTORRENT_SESSION_KEY(u"SSL/Port"_s), -1)
@@ -3519,16 +3518,6 @@ void SessionImpl::setSaveResumeDataInterval(const int value)
     }
 }
 
-int SessionImpl::shutdownTimeout() const
-{
-    return m_shutdownTimeout;
-}
-
-void SessionImpl::setShutdownTimeout(const int value)
-{
-    m_shutdownTimeout = value;
-}
-
 int SessionImpl::saveStatisticsInterval() const
 {
     return m_saveStatisticsInterval;
@@ -3537,6 +3526,16 @@ int SessionImpl::saveStatisticsInterval() const
 void SessionImpl::setSaveStatisticsInterval(const int timeInMinutes)
 {
     m_saveStatisticsInterval = timeInMinutes;
+}
+
+int SessionImpl::shutdownTimeout() const
+{
+    return m_shutdownTimeout;
+}
+
+void SessionImpl::setShutdownTimeout(const int value)
+{
+    m_shutdownTimeout = value;
 }
 
 int SessionImpl::port() const
@@ -5995,7 +5994,7 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *alert)
     if (m_saveStatisticsInterval > 0)
     {
         const auto saveInterval = std::chrono::milliseconds(std::chrono::minutes(m_saveStatisticsInterval));
-        if(m_statisticsLastUpdateTimer.hasExpired(saveInterval.count()))
+        if (m_statisticsLastUpdateTimer.hasExpired(saveInterval.count()))
         {
             saveStatistics();
         }

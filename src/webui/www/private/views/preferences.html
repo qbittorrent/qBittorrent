@@ -1140,6 +1140,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 </tr>
                 <tr>
                     <td>
+                        <label for="saveStatisticsInterval">QBT_TR(Save statistics interval:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="text" id="saveStatisticsInterval" style="width: 15em;">&nbsp;&nbsp;QBT_TR(min)QBT_TR[CONTEXT=OptionsDialog]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label for="torrentFileSizeLimit">QBT_TR(.torrent file size limit:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
@@ -1224,14 +1232,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     </td>
                     <td>
                         <input type="text" id="pythonExecutablePath" class="pathFile" placeholder="QBT_TR((Auto detect if empty))QBT_TR[CONTEXT=OptionsDialog]" style="width: 15em;">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="saveStatisticsInterval">QBT_TR(Save statistics interval:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                    </td>
-                    <td>
-                        <input type="text" id="saveStatisticsInterval" style="width: 15em;">&nbsp;&nbsp;QBT_TR(min)QBT_TR[CONTEXT=OptionsDialog]
                     </td>
                 </tr>
             </tbody>
@@ -2447,13 +2447,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     updateNetworkInterfaces(pref.current_network_interface, pref.current_interface_name);
                     updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address);
                     $("saveResumeDataInterval").value = pref.save_resume_data_interval;
+                    $("saveStatisticsInterval").value = pref.save_statistics_interval;
                     $("torrentFileSizeLimit").value = (pref.torrent_file_size_limit / 1024 / 1024);
                     $("recheckTorrentsOnCompletion").checked = pref.recheck_completed_torrents;
                     $("appInstanceName").value = pref.app_instance_name;
                     $("refreshInterval").value = pref.refresh_interval;
                     $("resolvePeerCountries").checked = pref.resolve_peer_countries;
                     $("reannounceWhenAddressChanged").checked = pref.reannounce_when_address_changed;
-                    $("saveStatisticsInterval").value = pref.save_statistics_interval;
                     // libtorrent section
                     $("bdecodeDepthLimit").value = pref.bdecode_depth_limit;
                     $("bdecodeTokenLimit").value = pref.bdecode_token_limit;
@@ -2901,13 +2901,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["current_network_interface"] = $("networkInterface").value;
             settings["current_interface_address"] = $("optionalIPAddressToBind").value;
             settings["save_resume_data_interval"] = Number($("saveResumeDataInterval").value);
+            settings["save_statistics_interval"] = Number($("saveStatisticsInterval").value);
             settings["torrent_file_size_limit"] = ($("torrentFileSizeLimit").value * 1024 * 1024);
             settings["recheck_completed_torrents"] = $("recheckTorrentsOnCompletion").checked;
             settings["app_instance_name"] = $("appInstanceName").value;
             settings["refresh_interval"] = Number($("refreshInterval").value);
             settings["resolve_peer_countries"] = $("resolvePeerCountries").checked;
             settings["reannounce_when_address_changed"] = $("reannounceWhenAddressChanged").checked;
-            settings["save_statistics_interval"] = Number($("saveStatisticsInterval").value);
 
             // libtorrent section
             settings["bdecode_depth_limit"] = Number($("bdecodeDepthLimit").value);

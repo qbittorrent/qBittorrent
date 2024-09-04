@@ -362,6 +362,8 @@ void AppController::preferencesAction()
     data[u"current_interface_address"_s] = session->networkInterfaceAddress();
     // Save resume data interval
     data[u"save_resume_data_interval"_s] = session->saveResumeDataInterval();
+    // Save statistics interval
+    data[u"save_statistics_interval"_s] = session->saveStatisticsInterval();
     // .torrent file size limit
     data[u"torrent_file_size_limit"_s] = pref->getTorrentFileSizeLimit();
     // Recheck completed torrents
@@ -374,8 +376,6 @@ void AppController::preferencesAction()
     data[u"resolve_peer_countries"_s] = pref->resolvePeerCountries();
     // Reannounce to all trackers when ip/port changed
     data[u"reannounce_when_address_changed"_s] = session->isReannounceWhenAddressChangedEnabled();
-    // Save statistics interval
-    data[u"save_statistics_interval"_s] = session->saveStatisticsInterval();
 
     // libtorrent preferences
     // Bdecode depth limit
@@ -966,6 +966,9 @@ void AppController::setPreferencesAction()
     // Save resume data interval
     if (hasKey(u"save_resume_data_interval"_s))
         session->setSaveResumeDataInterval(it.value().toInt());
+    // Save statistics interval
+    if (hasKey(u"save_statistics_interval"_s))
+        session->setSaveStatisticsInterval(it.value().toInt());
     // .torrent file size limit
     if (hasKey(u"torrent_file_size_limit"_s))
         pref->setTorrentFileSizeLimit(it.value().toLongLong());
@@ -984,9 +987,6 @@ void AppController::setPreferencesAction()
     // Reannounce to all trackers when ip/port changed
     if (hasKey(u"reannounce_when_address_changed"_s))
         session->setReannounceWhenAddressChangedEnabled(it.value().toBool());
-    // Save statistics interval
-    if (hasKey(u"save_statistics_interval"_s))
-        session->setSaveStatisticsInterval(it.value().toInt());
 
     // libtorrent preferences
     // Bdecode depth limit
