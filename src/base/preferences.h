@@ -430,7 +430,10 @@ public slots:
 
 signals:
     void changed();
+    void webCredentialsChanged();
 
 private:
     static Preferences *m_instance;
+
+    bool m_credentialsChanged = false;
 };
