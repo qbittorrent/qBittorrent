@@ -443,24 +443,43 @@ const initializeWindows = function() {
     deleteFN = function(forceDeleteFiles = false) {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length > 0) {
-            new MochaUI.Modal({
-                ...window.qBittorrent.Dialog.baseModalOptions,
-                id: "confirmDeletionPage",
-                title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
-                data: {
-                    hashes: hashes,
-                    forceDeleteFiles: forceDeleteFiles
-                },
-                contentURL: "views/confirmdeletion.html",
-                onContentLoaded: function(w) {
-                    MochaUI.resizeWindow(w, { centered: true });
-                    MochaUI.centerWindow(w);
-                },
-                onCloseComplete: function() {
-                    // make sure overlay is properly hidden upon modal closing
-                    document.getElementById("modalOverlay").style.display = "none";
-                }
-            });
+            if (window.qBittorrent.Cache.preferences.get().confirm_torrent_deletion) {
+                new MochaUI.Modal({
+                    ...window.qBittorrent.Dialog.baseModalOptions,
+                    id: "confirmDeletionPage",
+                    title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
+                    data: {
+                        hashes: hashes,
+                        forceDeleteFiles: forceDeleteFiles
+                    },
+                    contentURL: "views/confirmdeletion.html",
+                    onContentLoaded: function(w) {
+                        MochaUI.resizeWindow(w, { centered: true });
+                        MochaUI.centerWindow(w);
+                    },
+                    onCloseComplete: function() {
+                        // make sure overlay is properly hidden upon modal closing
+                        document.getElementById("modalOverlay").style.display = "none";
+                    }
+                });
+            }
+            else {
+                new Request({
+                    url: "api/v2/torrents/delete",
+                    method: "post",
+                    data: {
+                        hashes: hashes.join("|"),
+                        deleteFiles: forceDeleteFiles
+                    },
+                    onSuccess: function() {
+                        torrentsTable.deselectAll();
+                        updateMainData();
+                    },
+                    onFailure: function() {
+                        alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
+                    }
+                }).send();
+            }
         }
     };
 
@@ -784,21 +803,40 @@ const initializeWindows = function() {
     deleteTorrentsByCategoryFN = function(categoryHash) {
         const hashes = torrentsTable.getFilteredTorrentsHashes("all", categoryHash, TAGS_ALL, TRACKERS_ALL);
         if (hashes.length > 0) {
-            new MochaUI.Modal({
-                ...window.qBittorrent.Dialog.baseModalOptions,
-                id: "confirmDeletionPage",
-                title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
-                data: { hashes: hashes },
-                contentURL: "views/confirmdeletion.html",
-                onContentLoaded: function(w) {
-                    MochaUI.resizeWindow(w, { centered: true });
-                    MochaUI.centerWindow(w);
-                },
-                onCloseComplete: function() {
-                    // make sure overlay is properly hidden upon modal closing
-                    document.getElementById("modalOverlay").style.display = "none";
-                }
-            });
+            if (window.qBittorrent.Cache.preferences.get().confirm_torrent_deletion) {
+                new MochaUI.Modal({
+                    ...window.qBittorrent.Dialog.baseModalOptions,
+                    id: "confirmDeletionPage",
+                    title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
+                    data: { hashes: hashes },
+                    contentURL: "views/confirmdeletion.html",
+                    onContentLoaded: function(w) {
+                        MochaUI.resizeWindow(w, { centered: true });
+                        MochaUI.centerWindow(w);
+                    },
+                    onCloseComplete: function() {
+                        // make sure overlay is properly hidden upon modal closing
+                        document.getElementById("modalOverlay").style.display = "none";
+                    }
+                });
+            }
+            else {
+                new Request({
+                    url: "api/v2/torrents/delete",
+                    method: "post",
+                    data: {
+                        hashes: hashes.join("|"),
+                        deleteFiles: false,
+                    },
+                    onSuccess: function() {
+                        torrentsTable.deselectAll();
+                        updateMainData();
+                    },
+                    onFailure: function() {
+                        alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
+                    }
+                }).send();
+            }
         }
     };
 
@@ -930,21 +968,40 @@ const initializeWindows = function() {
     deleteTorrentsByTagFN = function(tagHash) {
         const hashes = torrentsTable.getFilteredTorrentsHashes("all", CATEGORIES_ALL, tagHash, TRACKERS_ALL);
         if (hashes.length > 0) {
-            new MochaUI.Modal({
-                ...window.qBittorrent.Dialog.baseModalOptions,
-                id: "confirmDeletionPage",
-                title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
-                data: { hashes: hashes },
-                contentURL: "views/confirmdeletion.html",
-                onContentLoaded: function(w) {
-                    MochaUI.resizeWindow(w, { centered: true });
-                    MochaUI.centerWindow(w);
-                },
-                onCloseComplete: function() {
-                    // make sure overlay is properly hidden upon modal closing
-                    document.getElementById("modalOverlay").style.display = "none";
-                }
-            });
+            if (window.qBittorrent.Cache.preferences.get().confirm_torrent_deletion) {
+                new MochaUI.Modal({
+                    ...window.qBittorrent.Dialog.baseModalOptions,
+                    id: "confirmDeletionPage",
+                    title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
+                    data: { hashes: hashes },
+                    contentURL: "views/confirmdeletion.html",
+                    onContentLoaded: function(w) {
+                        MochaUI.resizeWindow(w, { centered: true });
+                        MochaUI.centerWindow(w);
+                    },
+                    onCloseComplete: function() {
+                        // make sure overlay is properly hidden upon modal closing
+                        document.getElementById("modalOverlay").style.display = "none";
+                    }
+                });
+            }
+            else {
+                new Request({
+                    url: "api/v2/torrents/delete",
+                    method: "post",
+                    data: {
+                        hashes: hashes.join("|"),
+                        deleteFiles: false,
+                    },
+                    onSuccess: function() {
+                        torrentsTable.deselectAll();
+                        updateMainData();
+                    },
+                    onFailure: function() {
+                        alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
+                    }
+                }).send();
+            }
         }
     };
 
@@ -1036,24 +1093,44 @@ const initializeWindows = function() {
         }
 
         if (hashes.length > 0) {
-            new MochaUI.Modal({
-                ...window.qBittorrent.Dialog.baseModalOptions,
-                id: "confirmDeletionPage",
-                title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
-                data: {
-                    hashes: hashes,
-                    filterList: "tracker"
-                },
-                contentURL: "views/confirmdeletion.html",
-                onContentLoaded: function(w) {
-                    MochaUI.resizeWindow(w, { centered: true });
-                    MochaUI.centerWindow(w);
-                },
-                onCloseComplete: function() {
-                    // make sure overlay is properly hidden upon modal closing
-                    document.getElementById("modalOverlay").style.display = "none";
-                }
-            });
+            if (window.qBittorrent.Cache.preferences.get().confirm_torrent_deletion) {
+                new MochaUI.Modal({
+                    ...window.qBittorrent.Dialog.baseModalOptions,
+                    id: "confirmDeletionPage",
+                    title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
+                    data: {
+                        hashes: hashes,
+                        filterList: "tracker"
+                    },
+                    contentURL: "views/confirmdeletion.html",
+                    onContentLoaded: function(w) {
+                        MochaUI.resizeWindow(w, { centered: true });
+                        MochaUI.centerWindow(w);
+                    },
+                    onCloseComplete: function() {
+                        // make sure overlay is properly hidden upon modal closing
+                        document.getElementById("modalOverlay").style.display = "none";
+                    }
+                });
+            }
+            else {
+                new Request({
+                    url: "api/v2/torrents/delete",
+                    method: "post",
+                    data: {
+                        hashes: hashes.join("|"),
+                        deleteFiles: false,
+                    },
+                    onSuccess: function() {
+                        torrentsTable.deselectAll();
+                        setTrackerFilter(TRACKERS_ALL);
+                        updateMainData();
+                    },
+                    onFailure: function() {
+                        alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
+                    },
+                }).send();
+            }
         }
     };
 
