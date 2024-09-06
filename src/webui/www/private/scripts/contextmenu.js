@@ -473,6 +473,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 anchor.href = `#Category/${categoryName}`;
                 anchor.textContent = categoryName;
                 anchor.addEventListener("click", (event) => {
+                    event.preventDefault();
                     torrentSetCategoryFN(categoryHash);
                 });
 
