@@ -988,7 +988,7 @@
             </div>
             <div class="formRow">
                 <input type="checkbox" id="secureCookieCheckbox">
-                <label for="secureCookieCheckbox">QBT_TR(Enable cookie Secure flag (requires HTTPS))QBT_TR[CONTEXT=OptionsDialog]</label>
+                <label for="secureCookieCheckbox">QBT_TR(Enable cookie Secure flag (requires HTTPS or localhost connection))QBT_TR[CONTEXT=OptionsDialog]</label>
             </div>
 
             <fieldset class="settings">
@@ -1965,7 +1965,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const isUseHttpsEnabled = $("use_https_checkbox").checked;
             $("ssl_cert_text").disabled = !isUseHttpsEnabled;
             $("ssl_key_text").disabled = !isUseHttpsEnabled;
-            $("secureCookieCheckbox").disabled = !isUseHttpsEnabled;
         };
 
         const updateBypasssAuthSettings = function() {

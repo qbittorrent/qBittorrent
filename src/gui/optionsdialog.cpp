@@ -1273,7 +1273,6 @@ void OptionsDialog::loadWebUITabOptions()
     // Security
     m_ui->checkClickjacking->setChecked(pref->isWebUIClickjackingProtectionEnabled());
     m_ui->checkCSRFProtection->setChecked(pref->isWebUICSRFProtectionEnabled());
-    m_ui->checkSecureCookie->setEnabled(pref->isWebUIHttpsEnabled());
     m_ui->checkSecureCookie->setChecked(pref->isWebUISecureCookieEnabled());
     m_ui->groupHostHeaderValidation->setChecked(pref->isWebUIHostHeaderValidationEnabled());
     m_ui->textServerDomains->setText(pref->getServerDomains());
@@ -1315,7 +1314,6 @@ void OptionsDialog::loadWebUITabOptions()
 
     connect(m_ui->checkClickjacking, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkCSRFProtection, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkWebUIHttps, &QGroupBox::toggled, m_ui->checkSecureCookie, &QWidget::setEnabled);
     connect(m_ui->checkSecureCookie, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->groupHostHeaderValidation, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textServerDomains, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
