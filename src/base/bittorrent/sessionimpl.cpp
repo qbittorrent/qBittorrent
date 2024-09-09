@@ -3518,14 +3518,14 @@ void SessionImpl::setSaveResumeDataInterval(const int value)
     }
 }
 
-int SessionImpl::saveStatisticsInterval() const
+std::chrono::minutes SessionImpl::saveStatisticsInterval() const
 {
-    return m_saveStatisticsInterval;
+    return std::chrono::minutes(m_saveStatisticsInterval);
 }
 
-void SessionImpl::setSaveStatisticsInterval(const int timeInMinutes)
+void SessionImpl::setSaveStatisticsInterval(const std::chrono::minutes timeInMinutes)
 {
-    m_saveStatisticsInterval = timeInMinutes;
+    m_saveStatisticsInterval = timeInMinutes.count();
 }
 
 int SessionImpl::shutdownTimeout() const
@@ -5993,7 +5993,7 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *alert)
 
     if (m_saveStatisticsInterval > 0)
     {
-        const auto saveInterval = std::chrono::milliseconds(std::chrono::minutes(m_saveStatisticsInterval));
+        const auto saveInterval = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::minutes(m_saveStatisticsInterval));
         if (m_statisticsLastUpdateTimer.hasExpired(saveInterval.count()))
         {
             saveStatistics();

@@ -263,7 +263,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     // Save resume data interval
     session->setSaveResumeDataInterval(m_spinBoxSaveResumeDataInterval.value());
     // Save statistics interval
-    session->setSaveStatisticsInterval(m_spinBoxSaveStatisticsInterval.value());
+    session->setSaveStatisticsInterval(std::chrono::minutes(m_spinBoxSaveStatisticsInterval.value()));
     // .torrent file size limit
     pref->setTorrentFileSizeLimit(m_spinBoxTorrentFileSizeLimit.value() * 1024 * 1024);
     // Outgoing ports
@@ -677,7 +677,7 @@ void AdvancedSettings::loadAdvancedSettings()
     // Save statistics interval
     m_spinBoxSaveStatisticsInterval.setMinimum(0);
     m_spinBoxSaveStatisticsInterval.setMaximum(std::numeric_limits<int>::max());
-    m_spinBoxSaveStatisticsInterval.setValue(session->saveStatisticsInterval());
+    m_spinBoxSaveStatisticsInterval.setValue(session->saveStatisticsInterval().count());
     m_spinBoxSaveStatisticsInterval.setSuffix(tr(" min", " minutes"));
     m_spinBoxSaveStatisticsInterval.setSpecialValueText(tr("0 (disabled)"));
     addRow(SAVE_STATISTICS_INTERVAL, tr("Save statistics interval [0: disabled]", "How often the statistics file is saved."), &m_spinBoxSaveStatisticsInterval);

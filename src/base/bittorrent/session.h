@@ -257,8 +257,8 @@ namespace BitTorrent
         virtual void setPerformanceWarningEnabled(bool enable) = 0;
         virtual int saveResumeDataInterval() const = 0;
         virtual void setSaveResumeDataInterval(int value) = 0;
-        virtual int saveStatisticsInterval() const = 0;
-        virtual void setSaveStatisticsInterval(int value) = 0;
+        virtual std::chrono::minutes saveStatisticsInterval() const = 0;
+        virtual void setSaveStatisticsInterval(std::chrono::minutes value) = 0;
         virtual int shutdownTimeout() const = 0;
         virtual void setShutdownTimeout(int value) = 0;
         virtual int port() const = 0;
