@@ -31,7 +31,6 @@
 
 #include "base/pathfwd.h"
 
-class QIcon;
 class QPixmap;
 class QPoint;
 class QSize;
@@ -44,7 +43,6 @@ namespace Utils::Gui
 {
     bool isDarkTheme();
 
-    QPixmap scaledPixmap(const QIcon &icon, int height);
     QPixmap scaledPixmap(const Path &path, int height = 0);
 
     QSize smallIconSize(const QWidget *widget = nullptr);
