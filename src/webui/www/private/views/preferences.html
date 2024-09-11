@@ -70,6 +70,13 @@
                 <option value="FilesChecked">QBT_TR(Files checked)QBT_TR[CONTEXT=OptionsDialog]</option>
             </select>
         </div>
+        <fieldset class="settings">
+            <legend>QBT_TR(When duplicate torrent is being added)QBT_TR[CONTEXT=OptionsDialog]</legend>
+            <div class="formRow">
+                <input type="checkbox" id="mergeTrackersInput">
+                <label for="mergeTrackersInput">QBT_TR(Merge trackers to existing torrent)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
+        </fieldset>
         <div class="formRow">
             <input type="checkbox" id="deletetorrentfileafter_checkbox" />
             <label for="deletetorrentfileafter_checkbox">QBT_TR(Delete .torrent files afterwards)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -2037,6 +2044,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                             break;
                     }
                     $("stopConditionSelect").getChildren("option")[index].selected = true;
+                    $("mergeTrackersInput").setProperty("checked", pref.merge_trackers);
                     $("deletetorrentfileafter_checkbox").setProperty("checked", pref.auto_delete_mode);
 
                     $("preallocateall_checkbox").setProperty("checked", pref.preallocate_all);
@@ -2422,6 +2430,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["add_to_top_of_queue"] = $("addToTopOfQueueCheckbox").getProperty("checked");
             settings["add_stopped_enabled"] = $("dontstartdownloads_checkbox").getProperty("checked");
             settings["torrent_stop_condition"] = $("stopConditionSelect").getSelected()[0].getProperty("value");
+            settings["merge_trackers"] = $("mergeTrackersInput").getProperty("checked");
             settings["auto_delete_mode"] = Number($("deletetorrentfileafter_checkbox").getProperty("checked"));
 
             settings["preallocate_all"] = $("preallocateall_checkbox").getProperty("checked");
