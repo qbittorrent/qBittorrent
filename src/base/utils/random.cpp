@@ -33,9 +33,10 @@
 #include <QtLogging>
 #include <QtSystemDetection>
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN)
 #include <windows.h>
-#include <ntsecapi.h>
+#include "base/global.h"
+#include "base/utils/os.h"
 #elif defined(Q_OS_LINUX)
 #include <cerrno>
 #include <cstring>
@@ -46,17 +47,9 @@
 #include <cstring>
 #endif
 
-#include <QString>
-
-#include "base/global.h"
-
-#ifdef Q_OS_WIN
-#include "base/utils/os.h"
-#endif
-
 namespace
 {
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN)
     class RandomLayer
     {
     // need to satisfy UniformRandomBitGenerator requirements
@@ -64,10 +57,10 @@ namespace
         using result_type = uint32_t;
 
         RandomLayer()
-            : m_rtlGenRandom {Utils::OS::loadWinAPI<PRTLGENRANDOM>(u"Advapi32.dll"_s, "SystemFunction036")}
+            : m_processPrng {Utils::OS::loadWinAPI<PPROCESSPRNG>(u"BCryptPrimitives.dll"_s, "ProcessPrng")}
         {
-            if (!m_rtlGenRandom)
-                qFatal("Failed to load RtlGenRandom()");
+            if (!m_processPrng)
+                qFatal("Failed to load ProcessPrng().");
         }
 
         static constexpr result_type min()
@@ -83,16 +76,16 @@ namespace
         result_type operator()()
         {
             result_type buf = 0;
-            const bool result = m_rtlGenRandom(&buf, sizeof(buf));
+            const bool result = m_processPrng(reinterpret_cast<PBYTE>(&buf), sizeof(buf));
             if (!result)
-                qFatal("RtlGenRandom() failed");
+                qFatal("ProcessPrng() failed.");
 
             return buf;
         }
 
     private:
-        using PRTLGENRANDOM = BOOLEAN (WINAPI *)(PVOID, ULONG);
-        const PRTLGENRANDOM m_rtlGenRandom;
+        using PPROCESSPRNG = BOOL (WINAPI *)(PBYTE, SIZE_T);
+        const PPROCESSPRNG m_processPrng;
     };
 #elif defined(Q_OS_LINUX)
     class RandomLayer
