@@ -30,12 +30,17 @@
 
 #include <random>
 
+#include <QtLogging>
 #include <QtSystemDetection>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
 #include <ntsecapi.h>
-#else  // Q_OS_WIN
+#elif defined(Q_OS_LINUX)
+#include <cerrno>
+#include <cstring>
+#include <sys/random.h>
+#else
 #include <cerrno>
 #include <cstdio>
 #include <cstring>
@@ -89,7 +94,46 @@ namespace
         using PRTLGENRANDOM = BOOLEAN (WINAPI *)(PVOID, ULONG);
         const PRTLGENRANDOM m_rtlGenRandom;
     };
-#else  // Q_OS_WIN
+#elif defined(Q_OS_LINUX)
+    class RandomLayer
+    {
+    // need to satisfy UniformRandomBitGenerator requirements
+    public:
+        using result_type = uint32_t;
+
+        RandomLayer()
+        {
+        }
+
+        static constexpr result_type min()
+        {
+            return std::numeric_limits<result_type>::min();
+        }
+
+        static constexpr result_type max()
+        {
+            return std::numeric_limits<result_type>::max();
+        }
+
+        result_type operator()()
+        {
+            const int RETRY_MAX = 3;
+
+            for (int i = 0; i < RETRY_MAX; ++i)
+            {
+                result_type buf = 0;
+                const ssize_t result = ::getrandom(&buf, sizeof(buf), 0);
+                if (result == sizeof(buf))  // success
+                    return buf;
+
+                if (result < 0)
+                    qFatal("getrandom() error. Reason: %s. Error code: %d.", std::strerror(errno), errno);
+            }
+
+            qFatal("getrandom() failed. Reason: too many retries.");
+        }
+    };
+#else
     class RandomLayer
     {
     // need to satisfy UniformRandomBitGenerator requirements
@@ -100,7 +144,7 @@ namespace
             : m_randDev {fopen("/dev/urandom", "rb")}
         {
             if (!m_randDev)
-                qFatal("Failed to open /dev/urandom. Reason: %s. Error code: %d.\n", std::strerror(errno), errno);
+                qFatal("Failed to open /dev/urandom. Reason: %s. Error code: %d.", std::strerror(errno), errno);
         }
 
         ~RandomLayer()
@@ -122,7 +166,7 @@ namespace
         {
             result_type buf = 0;
             if (fread(&buf, sizeof(buf), 1, m_randDev) != 1)
-                qFatal("Read /dev/urandom error. Reason: %s. Error code: %d.\n", std::strerror(errno), errno);
+                qFatal("Read /dev/urandom error. Reason: %s. Error code: %d.", std::strerror(errno), errno);
 
             return buf;
         }
