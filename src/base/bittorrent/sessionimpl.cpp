@@ -2711,8 +2711,39 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     if (m_loadingTorrents.contains(id) || (infoHash.isHybrid() && m_loadingTorrents.contains(altID)))
         return false;
 
-    if (findTorrent(infoHash))
+    if (Torrent *torrent = findTorrent(infoHash))
+    {
+        // a duplicate torrent is being added
+
+        if (hasMetadata)
+        {
+            // Trying to set metadata to existing torrent in case if it has none
+            torrent->setMetadata(*source.info());
+        }
+
+        if (!isMergeTrackersEnabled())
+        {
+            LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2")
+                    .arg(torrent->name(), tr("Merging of trackers is disabled")));
+            return false;
+        }
+
+        const bool isPrivate = torrent->isPrivate() || (hasMetadata && source.info()->isPrivate());
+        if (isPrivate)
+        {
+            LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2")
+                    .arg(torrent->name(), tr("Trackers cannot be merged because it is a private torrent")));
+            return false;
+        }
+
+        // merge trackers and web seeds
+        torrent->addTrackers(source.trackers());
+        torrent->addUrlSeeds(source.urlSeeds());
+
+        LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2")
+                .arg(torrent->name(), tr("Trackers are merged from new source")));
         return false;
+    }
 
     // It looks illogical that we don't just use an existing handle,
     // but as previous experience has shown, it actually creates unnecessary

@@ -70,6 +70,13 @@
                 <option value="FilesChecked">QBT_TR(Files checked)QBT_TR[CONTEXT=OptionsDialog]</option>
             </select>
         </div>
+        <fieldset class="settings">
+            <legend>QBT_TR(When duplicate torrent is being added)QBT_TR[CONTEXT=OptionsDialog]</legend>
+            <div class="formRow">
+                <input type="checkbox" id="mergeTrackersInput">
+                <label for="mergeTrackersInput">QBT_TR(Merge trackers to existing torrent)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
+        </fieldset>
         <div class="formRow">
             <input type="checkbox" id="deletetorrentfileafter_checkbox" />
             <label for="deletetorrentfileafter_checkbox">QBT_TR(Delete .torrent files afterwards)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -144,6 +151,10 @@
         <div class="formRow">
             <input type="checkbox" id="use_subcategories_checkbox" />
             <label for="use_subcategories_checkbox">QBT_TR(Use Subcategories)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
+            <input type="checkbox" id="categoryPathsManualModeCheckbox" title="QBT_TR(Resolve relative Save Path against appropriate Category path instead of Default one)QBT_TR[CONTEXT=OptionsDialog]">
+            <label for="categoryPathsManualModeCheckbox">QBT_TR(Use Category paths in Manual Mode)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
         <table>
             <tr>
@@ -2033,6 +2044,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                             break;
                     }
                     $("stopConditionSelect").getChildren("option")[index].selected = true;
+                    $("mergeTrackersInput").setProperty("checked", pref.merge_trackers);
                     $("deletetorrentfileafter_checkbox").setProperty("checked", pref.auto_delete_mode);
 
                     $("preallocateall_checkbox").setProperty("checked", pref.preallocate_all);
@@ -2045,6 +2057,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("save_path_changed_tmm_combobox").setProperty("value", pref.save_path_changed_tmm_enabled);
                     $("category_changed_tmm_combobox").setProperty("value", pref.category_changed_tmm_enabled);
                     $("use_subcategories_checkbox").setProperty("checked", pref.use_subcategories);
+                    $("categoryPathsManualModeCheckbox").setProperty("checked", pref.use_category_paths_in_manual_mode);
                     $("savepath_text").setProperty("value", pref.save_path);
                     $("temppath_checkbox").setProperty("checked", pref.temp_path_enabled);
                     $("temppath_text").setProperty("value", pref.temp_path);
@@ -2417,6 +2430,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["add_to_top_of_queue"] = $("addToTopOfQueueCheckbox").getProperty("checked");
             settings["add_stopped_enabled"] = $("dontstartdownloads_checkbox").getProperty("checked");
             settings["torrent_stop_condition"] = $("stopConditionSelect").getSelected()[0].getProperty("value");
+            settings["merge_trackers"] = $("mergeTrackersInput").getProperty("checked");
             settings["auto_delete_mode"] = Number($("deletetorrentfileafter_checkbox").getProperty("checked"));
 
             settings["preallocate_all"] = $("preallocateall_checkbox").getProperty("checked");
@@ -2429,6 +2443,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["save_path_changed_tmm_enabled"] = ($("save_path_changed_tmm_combobox").getProperty("value") === "true");
             settings["category_changed_tmm_enabled"] = ($("category_changed_tmm_combobox").getProperty("value") === "true");
             settings["use_subcategories"] = $("use_subcategories_checkbox").getProperty("checked");
+            settings["use_category_paths_in_manual_mode"] = $("categoryPathsManualModeCheckbox").getProperty("checked");
             settings["save_path"] = $("savepath_text").getProperty("value");
             settings["temp_path_enabled"] = $("temppath_checkbox").getProperty("checked");
             settings["temp_path"] = $("temppath_text").getProperty("value");

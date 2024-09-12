@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -113,8 +113,10 @@ private:
     void fillFilterComboBoxes();
     NameFilteringMode filteringMode() const;
     QHeaderView *header() const;
-    void setRowColor(int row, const QColor &color);
     int visibleColumnsCount() const;
+    void setRowColor(int row, const QColor &color);
+    void setRowVisited(int row);
+    void onUIThemeChanged();
 
     void downloadTorrents(AddTorrentOption option = AddTorrentOption::Default);
     void openTorrentPages() const;
