@@ -207,15 +207,21 @@ window.qBittorrent.ContextMenu ??= (() => {
             }, this);
 
             /* menu items */
-            this.menu.getElements("a").each(function(item) {
-                item.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    if (!item.hasClass("disabled")) {
-                        this.execute(item.href.split("#")[1], $(this.options.element));
-                        this.fireEvent("click", [item, e]);
-                    }
-                });
-            }, this);
+            this.menu.addEventListener("click", (e) => {
+                const menuItem = e.target.closest("li");
+                if (!menuItem)
+                    return;
+
+                e.preventDefault();
+                if (!menuItem.classList.contains("disabled")) {
+                    const anchor = menuItem.firstElementChild;
+                    this.execute(anchor.href.split("#")[1], this.options.element);
+                    this.fireEvent("click", [anchor, e]);
+                }
+                else {
+                    e.stopPropagation();
+                }
+            });
 
             // hide on body click
             $(document.body).addEventListener("click", () => {
@@ -264,6 +270,12 @@ window.qBittorrent.ContextMenu ??= (() => {
         // show an item
         showItem: function(item) {
             this.menu.getElement("a[href$=" + item + "]").parentNode.removeClass("invisible");
+            return this;
+        },
+
+        // enable/disable an item
+        setEnabled: function(item, enabled) {
+            this.menu.querySelector(`:scope a[href$="${item}"]`).parentElement.classList.toggle("disabled", !enabled);
             return this;
         },
 
