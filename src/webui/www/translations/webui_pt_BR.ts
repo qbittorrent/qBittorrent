@@ -97,14 +97,6 @@
         <translation>Remover categorias não usadas</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Retomar torrents</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Pausar torrents</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Nova categoria</translation>
     </message>
@@ -122,11 +114,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Iniciar torrents</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Parar torrents</translation>
     </message>
 </context>
 <context>
@@ -384,28 +376,28 @@
         <translation>É necessário o JavaScript! Deverá ativar o JavaScript para a interface web de forma a poder funcionar corretamente</translation>
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>Incapaz de fazer login; o qBittorrent provavelmente é inalcançável.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>Não foi possível contatar o qBittorrent</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Senha</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Nome de usuário</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>Nome de usuário ou senha inválidos.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>Login</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>Opções...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Retomar</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Barra de Ferramentas no Topo</translation>
     </message>
@@ -455,24 +443,12 @@
         <translation>Doar!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Retomar Todos</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Estatísticas</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Sobre</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Pausar</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Pausar Todos</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -615,14 +591,6 @@
         <translation>Remover</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Você gostaria de retomar todos os torrents?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Você gostaria de pausar todos os torrents?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Registro de execução</translation>
     </message>
@@ -635,28 +603,28 @@
         <translation>[D: %1, U: %2]</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Start All</source>
-        <translation type="unfinished" />
+        <source>Would you like to start all torrents?</source>
+        <translation>Gostaria de iniciar todos os torrents?</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Parar</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Gostaria de parar todos os torrents?</translation>
     </message>
     <message>
-        <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
+        <source>Start All</source>
+        <translation>Iniciar todos</translation>
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
+        <translation>Parar todos</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Iniciar</translation>
     </message>
 </context>
 <context>
@@ -704,10 +672,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Torrents na Fila</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Automaticamente adicionar estes trackers aos novos downloads:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1202,10 +1166,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>Upload mais rápido</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Pausar torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1856,31 +1816,47 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation>Personalizar nome da instância do aplicativo:</translation>
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stop torrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Automatically append these trackers to new downloads:</source>
-        <translation type="unfinished" />
+        <source>Send test email</source>
+        <translation>Enviar e-mail de teste</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation type="unfinished" />
+        <translation>Tentativa de enviar e-mail. Verifique sua caixa de entrada para confirmar o sucesso</translation>
+    </message>
+    <message>
+        <source>Automatically append these trackers to new downloads:</source>
+        <translation>Automaticamente adicionar estes rastreadores aos novos downloads:</translation>
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation>Parar torrent</translation>
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
+        <translation>Mover arquivos para a Lixeira (se possível)</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
-        <translation type="unfinished" />
+        <translation>Modo de remoção de conteúdo do torrent:</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
+        <translation>Excluir arquivos permanentemente</translation>
+    </message>
+    <message>
+        <source>Merge trackers to existing torrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2248,24 +2224,24 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation>Match all occurrences</translation>
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>Popularidade:</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation type="unfinished" />
+        <translation>Proporção / Tempo ativo (em meses), indica o quão popular o torrent é</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Sim</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Não</translation>
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>Privado:</translation>
     </message>
 </context>
 <context>
@@ -2396,14 +2372,6 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation>Completado (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Retomado (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Pausado (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Ativo (0)</translation>
     </message>
@@ -2430,14 +2398,6 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     <message>
         <source>Completed (%1)</source>
         <translation>Completado (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Pausado (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Retomado (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2492,20 +2452,20 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation>Movendo (0)</translation>
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <source>Running (%1)</source>
+        <translation>Em andamento (%1)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>Parado (0)</translation>
     </message>
     <message>
-        <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <source>Stopped (%1)</source>
+        <translation>Parado (%1)</translation>
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation>Em andamento (0)</translation>
     </message>
 </context>
 <context>
@@ -2522,11 +2482,6 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Tamanho</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Concluido</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2665,27 +2620,27 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <translation>Popularidade</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Progresso</translation>
+    </message>
+    <message>
+        <source>Info Hash v1</source>
+        <translation>Informações do Hash v1</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>Informações do Hash v2</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>Caminho de salvamento incompleto</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privado</translation>
     </message>
 </context>
 <context>
@@ -2822,10 +2777,6 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation>%1 atrás</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Pausado</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Completado</translation>
     </message>
@@ -2891,11 +2842,11 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Parado</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/D</translation>
     </message>
 </context>
 <context>
@@ -2934,21 +2885,6 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     <message>
         <source>Rename</source>
         <translation>Renomear</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Retomar</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Forçar Retomada</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Pausar</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3121,16 +3057,16 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation>Comentário</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Parar</translation>
     </message>
     <message>
         <source>Force Start</source>
-        <translation type="unfinished" />
+        <translation>Forçar início</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Iniciar</translation>
     </message>
 </context>
 <context>
@@ -3170,16 +3106,12 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Também excluir permanentemente os arquivos</translation>
-    </message>
-    <message>
         <source>Remove torrent(s)</source>
         <translation>Remover torrent(s)</translation>
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation type="unfinished" />
+        <translation>Remover também os arquivos de conteúdo</translation>
     </message>
 </context>
 <context>
@@ -3383,7 +3315,7 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Start a search above.</source>
-        <translation type="unfinished" />
+        <translation>Inicie uma pesquisa acima.</translation>
     </message>
 </context>
 <context>
@@ -3449,7 +3381,7 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Published On</source>
-        <translation type="unfinished" />
+        <translation>Publicado em</translation>
     </message>
 </context>
 <context>
@@ -3517,14 +3449,6 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation>Etiqueta:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Pausar torrents</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Retomar torrents</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Remover etiquetas não usadas</translation>
     </message>
@@ -3542,11 +3466,11 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Iniciar torrents</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Parar torrents</translation>
     </message>
 </context>
 <context>
@@ -3689,20 +3613,20 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation>Link do download</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>Procurando...</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>A busca foi concluída</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>Um erro ocorreu durante a busca...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Busca abortada</translation>
     </message>
 </context>
 <context>
@@ -4002,10 +3926,6 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation>Se as ordem das palavras é importante, use * ao invés de espaço em branco.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Adicionar pausado:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Por favor digite o nome da nova regra de download.</translation>
     </message>
@@ -4065,15 +3985,11 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
     </message>
     <message>
         <source>Add Stopped:</source>
-        <translation type="unfinished" />
+        <translation>Adicionar parado(s):</translation>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Retomar torrents</translation>
-    </message>
     <message>
         <source>All (%1)</source>
         <translation>Todos (%1)</translation>
@@ -4083,20 +3999,16 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
         <translation>Sem tracker (%1)</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Pausar torrents</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation>Remover torrents</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Iniciar torrents</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Parar torrents</translation>
     </message>
 </context>
 <context>
@@ -4249,7 +4161,7 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Fechar aba</translation>
     </message>
 </context>
 </TS>

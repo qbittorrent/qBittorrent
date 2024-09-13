@@ -97,14 +97,6 @@
         <translation>Niet-gebruikte categorieën verwijderen</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Torrents hervatten</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Torrents pauzeren</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Nieuwe categorie</translation>
     </message>
@@ -122,11 +114,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents starten</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents stoppen</translation>
     </message>
 </context>
 <context>
@@ -373,39 +365,39 @@
     </message>
     <message>
         <source>The port used for the WebUI must be between 1 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>De poort gebruikt voor de WebUI moet tussen 1 en 65535 liggen.</translation>
     </message>
     <message>
         <source>%1 has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>%1 werd afgesloten</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Could not contact qBittorrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
+        <translation>JavaScript vereist! U moet JavaScript inschakelen om de WebUI goed te laten werken</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>Kan niet inloggen, qBittorrent is waarschijnlijk onbereikbaar.</translation>
+    </message>
+    <message>
+        <source>Could not contact qBittorrent</source>
+        <translation>Kon geen contact opnemen met qBittorrent</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Wachtwoord</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Gebruikersnaam</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>Ongeldige gebruikersnaam of wachtwoord.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>Login</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>Opties...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Hervatten</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Bovenste werkbalk</translation>
     </message>
@@ -455,24 +443,12 @@
         <translation>Doneren!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Alles hervatten</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Statistieken</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Over</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Pauzeren</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Alles pauzeren</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -615,14 +591,6 @@
         <translation>Verwijderen</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Wilt u alle torrents hervatten?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Wilt u alle torrents pauzeren?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Uitvoeringslog</translation>
     </message>
@@ -632,31 +600,31 @@
     </message>
     <message>
         <source>[D: %1, U: %2]</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Start All</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stop</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
+        <translation>[D: %1, U: %2]</translation>
     </message>
     <message>
         <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Wilt u alle torrents starten?</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Stoppen</translation>
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
+        <translation>Wilt u alle torrents stoppen?</translation>
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation>Alles starten</translation>
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
+        <translation>Alles stoppen</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Starten</translation>
     </message>
 </context>
 <context>
@@ -704,10 +672,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Torrents in wachtrij plaatsen</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Deze trackers automatisch toevoegen aan nieuwe downloads:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1202,10 +1166,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>Snelste upload</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Torrent pauzeren</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1777,15 +1737,15 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>I2P outbound quantity:</source>
-        <translation type="unfinished" />
+        <translation>I2P uitgaande hoeveelheid:</translation>
     </message>
     <message>
         <source>I2P inbound quantity:</source>
-        <translation type="unfinished" />
+        <translation>I2P inkomende hoeveelheid:</translation>
     </message>
     <message>
         <source>Hashing threads:</source>
-        <translation type="unfinished" />
+        <translation>Hashing-threads:</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit:</source>
@@ -1793,7 +1753,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Use alternative WebUI</source>
-        <translation type="unfinished" />
+        <translation>Alternatieve WebUI gebruiken</translation>
     </message>
     <message>
         <source>Disk cache expiry interval:</source>
@@ -1801,15 +1761,15 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>I2P outbound length:</source>
-        <translation type="unfinished" />
+        <translation>I2P uitgaande lengte:</translation>
     </message>
     <message>
         <source>I2P (Experimental)</source>
-        <translation type="unfinished" />
+        <translation>I2P (experimenteel)</translation>
     </message>
     <message>
         <source>Disk IO type (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Type schijf-IO (opnieuw starten vereist):</translation>
     </message>
     <message>
         <source>The alternative WebUI files location cannot be blank.</source>
@@ -1825,7 +1785,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>WebUI</source>
-        <translation type="unfinished" />
+        <translation>WebUI</translation>
     </message>
     <message>
         <source>The WebUI password must be at least 6 characters long.</source>
@@ -1833,15 +1793,15 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes:</source>
-        <translation type="unfinished" />
+        <translation>Lezen en schrijven combineren:</translation>
     </message>
     <message>
         <source>I2P inbound length:</source>
-        <translation type="unfinished" />
+        <translation>I2P inkomende lengte:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="unfinished" />
+        <translation>Het voegt de tekst toe aan de venstertitel om qBittorrent-instanties te helpen onderscheiden</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -1849,38 +1809,54 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Same host request delay:</source>
-        <translation type="unfinished" />
+        <translation>Vertraging voor verzoek van dezelfde host:</translation>
     </message>
     <message>
         <source>Customize application instance name:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stop torrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Automatically append these trackers to new downloads:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Torrent content removing mode:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Delete files permanently</source>
-        <translation type="unfinished" />
+        <translation>Naam van instantie van toepassing aanpassen:</translation>
     </message>
     <message>
         <source>Send test email</source>
+        <translation>Test e-mail versturen</translation>
+    </message>
+    <message>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <translation>Geprobeerd e-mail te verzenden. Controleer uw inbox voor bevestiging</translation>
+    </message>
+    <message>
+        <source>Automatically append these trackers to new downloads:</source>
+        <translation>Deze trackers automatisch toevoegen aan nieuwe downloads:</translation>
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation>Torrent stoppen</translation>
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
+        <translation>Bestanden naar prullenbak verplaatsen (indien mogelijk)</translation>
+    </message>
+    <message>
+        <source>Torrent content removing mode:</source>
+        <translation>Modus voor verwijderen van torrent-inhoud:</translation>
+    </message>
+    <message>
+        <source>Delete files permanently</source>
+        <translation>Bestanden permanent verwijderen</translation>
+    </message>
+    <message>
+        <source>Merge trackers to existing torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2248,24 +2224,24 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>Overeenkomen met alle resultaten</translation>
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>Populariteit:</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation type="unfinished" />
+        <translation>Verhouding / tijd actief (in maanden), geeft aan hoe populair de torrent is</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Ja</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Nee</translation>
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>Privé:</translation>
     </message>
 </context>
 <context>
@@ -2396,14 +2372,6 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>Voltooid (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Hervat (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Gepauzeerd (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Actief (0)</translation>
     </message>
@@ -2430,14 +2398,6 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     <message>
         <source>Completed (%1)</source>
         <translation>Voltooid (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Gepauzeerd (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Hervat (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2492,20 +2452,20 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>Verplaatsen (0)</translation>
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <source>Running (%1)</source>
+        <translation>Actief (%1)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>Gestopt (0)</translation>
     </message>
     <message>
-        <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <source>Stopped (%1)</source>
+        <translation>Gestopt (%1)</translation>
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation>Actief (0)</translation>
     </message>
 </context>
 <context>
@@ -2522,11 +2482,6 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Grootte</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Klaar</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2665,27 +2620,27 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <translation>Populariteit</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Voortgang</translation>
+    </message>
+    <message>
+        <source>Info Hash v1</source>
+        <translation>Info-hash v1</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>Info-hash v2</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>Onvolledig opslagpad</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privé</translation>
     </message>
 </context>
 <context>
@@ -2822,10 +2777,6 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>%1 geleden</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Gepauzeerd</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Voltooid</translation>
     </message>
@@ -2891,11 +2842,11 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Gestopt</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/B</translation>
     </message>
 </context>
 <context>
@@ -2934,21 +2885,6 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     <message>
         <source>Rename</source>
         <translation>Naam wijzigen</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Hervatten</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Geforceerd hervatten</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Pauzeren</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3121,16 +3057,16 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>Opmerking</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Stoppen</translation>
     </message>
     <message>
         <source>Force Start</source>
-        <translation type="unfinished" />
+        <translation>Geforceerd starten</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Starten</translation>
     </message>
 </context>
 <context>
@@ -3170,16 +3106,12 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Bestanden ook permanent verwijderen</translation>
-    </message>
-    <message>
         <source>Remove torrent(s)</source>
         <translation>Torrent(s) verwijderen</translation>
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation type="unfinished" />
+        <translation>Ook de inhoud-bestanden verwijderen</translation>
     </message>
 </context>
 <context>
@@ -3383,7 +3315,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Start a search above.</source>
-        <translation type="unfinished" />
+        <translation>Start hierboven een zoekopdracht.</translation>
     </message>
 </context>
 <context>
@@ -3449,7 +3381,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Published On</source>
-        <translation type="unfinished" />
+        <translation>Verschenen op</translation>
     </message>
 </context>
 <context>
@@ -3517,14 +3449,6 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>Label:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Torrents pauzeren</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Torrents hervatten</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Niet-gebruikte labels verwijderen</translation>
     </message>
@@ -3542,11 +3466,11 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents starten</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents stoppen</translation>
     </message>
 </context>
 <context>
@@ -3689,20 +3613,20 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>Downloadkoppeling</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>Zoeken...</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Zoeken is voltooid</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>Er trad een fout op tijdens het zoeken...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Zoeken afgebroken</translation>
     </message>
 </context>
 <context>
@@ -4002,10 +3926,6 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>Gebruik * in plaats van een spatie als woordvolgorde belangrijk is.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Gepauzeerd toevoegen:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Typ de naam van de nieuwe downloadregel.</translation>
     </message>
@@ -4065,15 +3985,11 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     </message>
     <message>
         <source>Add Stopped:</source>
-        <translation type="unfinished" />
+        <translation>Gestopt toevoegen:</translation>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Torrents hervatten</translation>
-    </message>
     <message>
         <source>All (%1)</source>
         <translation>Alle (%1)</translation>
@@ -4083,20 +3999,16 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
         <translation>Zonder trackers (%1)</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Torrents pauzeren</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation>Torrents verwijderen</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents starten</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents stoppen</translation>
     </message>
 </context>
 <context>
@@ -4249,7 +4161,7 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Tabblad sluiten</translation>
     </message>
 </context>
 </TS>

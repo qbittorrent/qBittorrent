@@ -97,14 +97,6 @@
         <translation>Kullanılmayan kategorileri kaldır</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Torrent'lere devam et</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Torrent'leri duraklat</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Yeni Kategori</translation>
     </message>
@@ -122,11 +114,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrent'leri başlat</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrent'leri durdur</translation>
     </message>
 </context>
 <context>
@@ -384,28 +376,28 @@
         <translation>JavaScript Gerekli! Web Arayüzünün düzgün çalışması için JavaScript'i etkinleştirmek zorundasınız</translation>
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>Oturum açılamıyor, qBittorrent'e muhtemelen ulaşılamıyor.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent’le bağlantı kurulamadı</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Parola</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Kullanıcı adı</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>Geçersiz Kullanıcı Adı veya Parola.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>Oturum Aç</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>Seçenekler...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Devam</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Üst Araç Çubuğu</translation>
     </message>
@@ -455,24 +443,12 @@
         <translation>Bağış Yap!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Tümüne Devam</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>İstatistikler</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Hakkında</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Duraklat</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Tümünü Duraklat</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -615,14 +591,6 @@
         <translation>Kaldır</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Tüm torrent’leri devam ettirmek ister misiniz?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Tüm torrent’leri duraklatmak ister misiniz?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Çalıştırma Günlüğü</translation>
     </message>
@@ -635,28 +603,28 @@
         <translation>[İ: %1, G: %2]</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Start All</source>
-        <translation type="unfinished" />
+        <source>Would you like to start all torrents?</source>
+        <translation>Tüm torrent’leri başlatmak ister misiniz?</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Durdur</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Tüm torrent’leri durdurmak ister misiniz?</translation>
     </message>
     <message>
-        <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
+        <source>Start All</source>
+        <translation>Tümünü Başlat</translation>
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
+        <translation>Tümünü Durdur</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Başlat</translation>
     </message>
 </context>
 <context>
@@ -704,10 +672,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Torrent Kuyruğu</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Bu izleyicileri otomatik olarak yeni indirmelere ekle:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1202,10 +1166,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>En hızlı gönderme</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Torrent'i duraklat</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1856,31 +1816,47 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Uygulama örneği adını özelleştir:</translation>
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stop torrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Automatically append these trackers to new downloads:</source>
-        <translation type="unfinished" />
+        <source>Send test email</source>
+        <translation>Deneme e-postası gönder</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation type="unfinished" />
+        <translation>E-posta gönderilmeye çalışıldı. Başarılı olup olmadığını onaylamak için gelen kutunuzu gözden geçirin</translation>
+    </message>
+    <message>
+        <source>Automatically append these trackers to new downloads:</source>
+        <translation>Bu izleyicileri yeni indirmelere otomatik olarak ekle:</translation>
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation>Torrent'i durdur</translation>
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
+        <translation>Dosyaları çöp kutusuna taşı (mümkünse)</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
-        <translation type="unfinished" />
+        <translation>Torrent içeriğini kaldırma kipi:</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
+        <translation>Dosyaları kalıcı olarak sil</translation>
+    </message>
+    <message>
+        <source>Merge trackers to existing torrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2248,24 +2224,24 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Tüm oluşumları eşleştir</translation>
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>Yaygınlık:</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation type="unfinished" />
+        <translation>Oran / Etkin Süre (ay cinsinden), torrent'in ne kadar popüler olduğunu gösterir</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Evet</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Hayır</translation>
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>Özel:</translation>
     </message>
 </context>
 <context>
@@ -2396,14 +2372,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Tamamlandı (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Devam Edildi (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Duraklatıldı (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Etkin (0)</translation>
     </message>
@@ -2432,14 +2400,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Tamamlandı (%1)</translation>
     </message>
     <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Duraklatıldı (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Devam Edildi (%1)</translation>
-    </message>
-    <message>
         <source>Active (%1)</source>
         <translation>Etkin (%1)</translation>
     </message>
@@ -2453,27 +2413,27 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation>Durdurulan Gönderme (%1)</translation>
+        <translation>Duran Gönderme (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation>Durdurulan İndirme (%1)</translation>
+        <translation>Duran İndirme (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation>Durdurulan İndirme (0)</translation>
+        <translation>Duran İndirme (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation>Durduruldu (0)</translation>
+        <translation>Durdu (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation>Durdurulan Gönderme (0)</translation>
+        <translation>Duran Gönderme (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation>Durduruldu (%1)</translation>
+        <translation>Durdu (%1)</translation>
     </message>
     <message>
         <source>Checking (%1)</source>
@@ -2492,20 +2452,20 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Taşınıyor (0)</translation>
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <source>Running (%1)</source>
+        <translation>Çalışıyor (%1)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>Durduruldu (0)</translation>
     </message>
     <message>
-        <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <source>Stopped (%1)</source>
+        <translation>Durduruldu (%1)</translation>
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation>Çalışıyor (0)</translation>
     </message>
 </context>
 <context>
@@ -2522,11 +2482,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Boyut</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Tamamlanma</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2665,27 +2620,27 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <translation>Yaygınlık</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>İlerleme</translation>
+    </message>
+    <message>
+        <source>Info Hash v1</source>
+        <translation>Bilgi Adreslemesi v1</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>Bilgi Adreslemesi v2</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>Tamamlanmamış Kaydetme Yolu</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Özel</translation>
     </message>
 </context>
 <context>
@@ -2822,10 +2777,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>%1 önce</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Duraklatıldı</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Tamamlanan</translation>
     </message>
@@ -2879,7 +2830,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Stalled</source>
-        <translation>Durduruldu</translation>
+        <translation>Durdu</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
@@ -2891,11 +2842,11 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Durduruldu</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Yok</translation>
     </message>
 </context>
 <context>
@@ -2934,21 +2885,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <source>Rename</source>
         <translation>Yeniden adlandır</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Devam</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Devam Etmeye Zorla</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Duraklat</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3121,16 +3057,16 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Açıklama</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Durdur</translation>
     </message>
     <message>
         <source>Force Start</source>
-        <translation type="unfinished" />
+        <translation>Başlatmaya Zorla</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Başlat</translation>
     </message>
 </context>
 <context>
@@ -3170,16 +3106,12 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Ayrıca dosyaları kalıcı olarak sil</translation>
-    </message>
-    <message>
         <source>Remove torrent(s)</source>
         <translation>Torrent'(ler)i kaldır</translation>
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation type="unfinished" />
+        <translation>Ayrıca içerik dosyalarını kaldır</translation>
     </message>
 </context>
 <context>
@@ -3383,7 +3315,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Start a search above.</source>
-        <translation type="unfinished" />
+        <translation>Yukarıda bir arama başlatın.</translation>
     </message>
 </context>
 <context>
@@ -3449,7 +3381,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Published On</source>
-        <translation type="unfinished" />
+        <translation>Published On</translation>
     </message>
 </context>
 <context>
@@ -3517,14 +3449,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Etiket:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Torrent'leri duraklat</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Torrent'lere devam et</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Kullanılmayan etiketleri kaldır</translation>
     </message>
@@ -3542,11 +3466,11 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrent'leri başlat</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrent'leri durdur</translation>
     </message>
 </context>
 <context>
@@ -3689,20 +3613,20 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>İndirme bağlantısı</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>Aranıyor...</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Arama tamamlandı</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>Arama sırasında bir hata meydana geldi...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Arama iptal edildi</translation>
     </message>
 </context>
 <context>
@@ -4002,10 +3926,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Eğer kelime sırası önemliyse boşluk yerine * kullanın.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Duraklatıldı Olarak Ekle:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Lütfen yeni indirme kuralı adını yazın.</translation>
     </message>
@@ -4065,15 +3985,11 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
     </message>
     <message>
         <source>Add Stopped:</source>
-        <translation type="unfinished" />
+        <translation>Durduruldu Olarak Ekle:</translation>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Torrent'lere devam et</translation>
-    </message>
     <message>
         <source>All (%1)</source>
         <translation>Tümü (%1)</translation>
@@ -4083,20 +3999,16 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
         <translation>İzleyicisiz (%1)</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Torrent'leri duraklat</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation>Torrent'leri kaldır</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrent'leri başlat</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrent'leri durdur</translation>
     </message>
 </context>
 <context>
@@ -4249,7 +4161,7 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Sekmeyi kapat</translation>
     </message>
 </context>
 </TS>

@@ -926,17 +926,17 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="478"/>
         <source>Delete files permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>Trajno izbriši datoteke</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="479"/>
         <source>Move files to trash (if possible)</source>
-        <translation type="unfinished"></translation>
+        <translation>Premakni datoteke v koš (če je mogoče)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="481"/>
         <source>Torrent content removing mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Način odstranjevanja vsebine torrentov</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="488"/>
@@ -1159,12 +1159,12 @@
         <location filename="../gui/advancedsettings.cpp" line="867"/>
         <source> sec</source>
         <comment> seconds</comment>
-        <translation type="unfinished">sec</translation>
+        <translation>sec</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="868"/>
         <source>-1 (unlimited)</source>
-        <translation type="unfinished"></translation>
+        <translation>-1 (neomejeno)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="870"/>
@@ -1360,7 +1360,7 @@
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="1165"/>
         <source>Invalid mode, allowed values: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neveljaven način, dovoljene vrednosti: %1</translation>
     </message>
 </context>
 <context>
@@ -1420,12 +1420,12 @@
     <message>
         <location filename="../app/application.cpp" line="903"/>
         <source>Couldn&apos;t add torrent &apos;%1&apos;, reason: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta %1 ni bilo mogoče dodati, razlog: %2.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="952"/>
         <source>The WebUI administrator username is: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Uporabniško ime skrbnika WebUI je: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="953"/>
@@ -1513,12 +1513,12 @@ Razlog: %2</translation>
     <message>
         <location filename="../app/application.cpp" line="687"/>
         <source>This is a test email.</source>
-        <translation type="unfinished"></translation>
+        <translation>To je preizkusno e-poštno sporočilo.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="694"/>
         <source>Test email</source>
-        <translation type="unfinished"></translation>
+        <translation>Preizkusno sporočilo</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="891"/>
@@ -2162,8 +2162,8 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1670"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1671"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1672"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3632"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4476"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3663"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4507"/>
         <source>ON</source>
         <translation>VKLJUČENO</translation>
     </message>
@@ -2175,8 +2175,8 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1670"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1671"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1672"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3632"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4476"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3663"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4507"/>
         <source>OFF</source>
         <translation>IZKLJUČENO</translation>
     </message>
@@ -2249,19 +2249,19 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1671"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4476"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4507"/>
         <source>Anonymous mode: %1</source>
         <translation>Anonimni način: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1672"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3631"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3662"/>
         <source>Encryption support: %1</source>
         <translation>Podpora za šifriranje: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1672"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3632"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3663"/>
         <source>FORCED</source>
         <translation>PRISILJENO</translation>
     </message>
@@ -2286,21 +2286,31 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <translation>Torrent: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6282"/>
-        <source>Failed to remove partfile. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;.</source>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2726"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2734"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2743"/>
+        <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Removed torrent.</source>
-        <translation type="vanished">Torrent odstranjen.</translation>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2727"/>
+        <source>Merging of trackers is disabled</source>
+        <translation type="unfinished">Združevanje sledilnikov je onemogočeno</translation>
     </message>
     <message>
-        <source>Removed torrent and deleted its content.</source>
-        <translation type="vanished">Torrent odstranjen in njegova vsebina izbrisana.</translation>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
+        <source>Trackers cannot be merged because it is a private torrent</source>
+        <translation type="unfinished">Sledilnikov ni mogoče združiti, ker gre za zasebni torrent</translation>
     </message>
     <message>
-        <source>Torrent paused.</source>
-        <translation type="vanished">Torrent začasno ustavljen.</translation>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2744"/>
+        <source>Trackers are merged from new source</source>
+        <translation type="unfinished">Sledilniki so združeni iz novega vira</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6313"/>
+        <source>Failed to remove partfile. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2312"/>
@@ -2318,17 +2328,17 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5451"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5482"/>
         <source>Failed to load torrent. Reason: &quot;%1&quot;</source>
         <translation>Torrenta ni bilo mogoče naložiti. Razlog: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6129"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6160"/>
         <source>I2P error. Message: &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka I2P. Sporočilo: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2916"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2947"/>
         <source>UPnP/NAT-PMP support: ON</source>
         <translation>Podpora za UPnP/NAT-PMP: VKLJUČENA</translation>
     </message>
@@ -2350,289 +2360,277 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2296"/>
         <source>Removing torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranjevanje torrenta.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2301"/>
         <source>Removing torrent and deleting its content.</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranjevanje torrenta in brisanje njegove vsebine.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2307"/>
         <source>Torrent stopped.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent zaustavljen.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2346"/>
         <source>Torrent content removed. Torrent: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Vsebina torrenta odstranjena. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2350"/>
         <source>Failed to remove torrent content. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Vsebine torrenta ni bilo mogoče odstraniti. Torrent: &quot;%1&quot;. Napaka: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2462"/>
         <source>Torrent removed. Torrent: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent odstranjen. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2935"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2966"/>
         <source>UPnP/NAT-PMP support: OFF</source>
         <translation>Podpora za UPnP/NAT-PMP: IZKLJUČENA</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3065"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3096"/>
         <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Torrenta ni bilo mogoče izvoziti. Torrent: &quot;%1&quot;. Cilj: &quot;%2&quot;. Razlog: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3108"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3139"/>
         <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3230"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3261"/>
         <source>The configured network address is invalid. Address: &quot;%1&quot;</source>
         <translation>Nastavljeni omrežni naslov je neveljaven. Naslov: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3271"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3305"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3302"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3336"/>
         <source>Failed to find the configured network address to listen on. Address: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3284"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3315"/>
         <source>The configured network interface is invalid. Interface: &quot;%1&quot;</source>
         <translation>Nastavljeni omrežni vmesnik je neveljaven. Vmesnik: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3952"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3983"/>
         <source>Rejected invalid IP address while applying the list of banned IP addresses. IP: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4991"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5022"/>
         <source>Added tracker to torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>Sledilnik dodan torrentu. Torrent: &quot;%1&quot;. Sledilnik: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4998"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5029"/>
         <source>Removed tracker from torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>Sledilnik odstranjen iz torrenta. Torrent: &quot;%1&quot;. Sledilnik: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5010"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5041"/>
         <source>Added URL seed to torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>URL sejalca dodan torrentu. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5016"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5047"/>
         <source>Removed URL seed from torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Torrent paused. Torrent: &quot;%1&quot;</source>
-        <translation type="vanished">Torrent začasno ustavljen. Torrent: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5045"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5076"/>
         <source>Torrent resumed. Torrent: &quot;%1&quot;</source>
         <translation>Torrent se nadaljuje. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6084"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6115"/>
         <source>Torrent download finished. Torrent: &quot;%1&quot;</source>
         <translation>Prejemanje torrenta dokončano. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5110"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5141"/>
         <source>Torrent move canceled. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>Premik torrenta preklican. Torrent: &quot;%1&quot;. Vir: &quot;%2&quot;. Cilj: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5039"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5070"/>
         <source>Torrent stopped. Torrent: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent zaustavljen. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5121"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5152"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: torrent is currently moving to the destination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5130"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5161"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot; Destination: &quot;%3&quot;. Reason: both paths point to the same location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5138"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5169"/>
         <source>Enqueued torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5155"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5186"/>
         <source>Start moving torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>Začetek premikanja torrenta. Torrent: &quot;%1&quot;. Cilj: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5204"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5235"/>
         <source>Failed to save Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Nastavitev kategorij ni bilo mogoče shraniti. Datoteka: &quot;%1&quot;. Napaka: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5251"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5282"/>
         <source>Failed to parse Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Nastavitev kategorij ni bilo mogoče razčleniti. Datoteka: &quot;%1&quot;. Napaka: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5378"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5409"/>
         <source>Successfully parsed the IP filter file. Number of rules applied: %1</source>
         <translation>Datoteka s filtri IP uspešno razčlenjena. Število uveljavljenih pravil: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5388"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5419"/>
         <source>Failed to parse the IP filter file</source>
         <translation>Datoteke s filtri IP ni bilo mogoče razčleniti</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5688"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5719"/>
         <source>Restored torrent. Torrent: &quot;%1&quot;</source>
         <translation>Torrent obnovljen. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5692"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5723"/>
         <source>Added new torrent. Torrent: &quot;%1&quot;</source>
         <translation>Nov torrent dodan. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5698"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5729"/>
         <source>Torrent errored. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Napaka torrenta. Torrent: &quot;%1&quot;. Napaka: &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Removed torrent. Torrent: &quot;%1&quot;</source>
-        <translation type="vanished">Torrent odstranjen. Torrent: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Removed torrent and deleted its content. Torrent: &quot;%1&quot;</source>
-        <translation type="vanished">Torrent odstranjen in njegova vsebina izbrisana. Torrent: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5746"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5777"/>
         <source>Torrent is missing SSL parameters. Torrent: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5796"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5827"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Opozorilo o napaki datoteke. Torrent: &quot;%1&quot;. Datoteka: &quot;%2&quot;. Vzrok: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5807"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5838"/>
         <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5813"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5844"/>
         <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5822"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5853"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
         <translation>Filter IP</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5825"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5856"/>
         <source>filtered port (%1)</source>
         <comment>this peer was blocked. Reason: filtered port (8899).</comment>
         <translation>filtrirana vrata (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5831"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5862"/>
         <source>privileged port (%1)</source>
         <comment>this peer was blocked. Reason: privileged port (80).</comment>
         <translation>vrata s prednostmi (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5904"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5935"/>
         <source>BitTorrent session encountered a serious error. Reason: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6119"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6150"/>
         <source>SOCKS5 proxy error. Address: %1. Message: &quot;%2&quot;.</source>
         <translation>Napaka posrednika SOCKS5. Naslov: %1. Sporočilo: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5828"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5859"/>
         <source>%1 mixed mode restrictions</source>
         <comment>this peer was blocked. Reason: I2P mixed mode restrictions.</comment>
         <translation>%1 omejiitve mešanega načina</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5243"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5274"/>
         <source>Failed to load Categories. %1</source>
         <translation>Kategorij ni bilo mogoče naložiti. %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5258"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5289"/>
         <source>Failed to load Categories configuration. File: &quot;%1&quot;. Error: &quot;Invalid data format&quot;</source>
         <translation>Nastavitev kategorij ni bilo mogoče naložiti. Datoteka: &quot;%1&quot;. Napaka: &quot;Neveljavna oblika podatkov&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5834"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5865"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: uTP is disabled.</comment>
         <translation>%1 je onemogočen</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5837"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5868"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: TCP is disabled.</comment>
         <translation>%1 je onemogočen</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5861"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5892"/>
         <source>URL seed DNS lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5867"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5898"/>
         <source>Received error message from URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5876"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5907"/>
         <source>Successfully listening on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;</source>
         <translation>Uspešno poslušanje na IP. IP: &quot;%1&quot;. Vrata: &quot;%2/%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5883"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5914"/>
         <source>Failed to listen on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>Neuspešno poslušanje na IP. IP: &quot;%1&quot;. Vrata: &quot;%2/%3&quot;. Razlog: &quot;%4&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5891"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5922"/>
         <source>Detected external IP. IP: &quot;%1&quot;</source>
         <translation>Zaznan zunanji IP. IP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6006"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6037"/>
         <source>Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6028"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6059"/>
         <source>Moved torrent successfully. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>Torrent uspešno prestavljen. Torrent: &quot;%1&quot;. Cilj: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6051"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6082"/>
         <source>Failed to move torrent. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>Torrenta ni bilo mogoče premakniti. Torrent: &quot;%1&quot;. Vir: &quot;%2&quot;. Cilj: &quot;%3&quot;. Razlog: &quot;%4&quot;</translation>
     </message>
@@ -2642,7 +2640,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../base/bittorrent/torrentcreationtask.cpp" line="71"/>
         <source>Failed to start seeding.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sejanja ni bilo mogoče začeti.</translation>
     </message>
 </context>
 <context>
@@ -2674,7 +2672,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="874"/>
         <source>Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznani so nepričakovani podatki. Torrent: %1. Podatki: total_wanted=%2 total_wanted_done=%3.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1247"/>
@@ -2699,7 +2697,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1903"/>
         <source>Failed to reload torrent. Torrent: %1. Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta ni bilo mogoče znova naložiti. Torrent: %1. Razlog: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2241"/>
@@ -2760,11 +2758,6 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <translation>Pričakovano število v okoljski spremenljivki &apos;%1&apos;, ampak dobljeno &apos;%2&apos;</translation>
     </message>
     <message>
-        <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
-        <comment>e.g. Parameter &apos;--add-paused&apos; must follow syntax &apos;--add-paused=&lt;true|false&gt;&apos;</comment>
-        <translation type="vanished">Parameter &apos;%1&apos; mora slediti sintaksi &apos;%1=%2&apos;</translation>
-    </message>
-    <message>
         <location filename="../app/cmdoptions.cpp" line="292"/>
         <source>Expected %1 in environment variable &apos;%2&apos;, but got &apos;%3&apos;</source>
         <translation>Pričakovano %1 v okoljski spremenljivki &apos;%2&apos;, ampak dobljeno &apos;%3&apos;</translation>
@@ -2804,7 +2797,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <location filename="../app/cmdoptions.cpp" line="265"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
         <comment>e.g. Parameter &apos;--add-stopped&apos; must follow syntax &apos;--add-stopped=&lt;true|false&gt;&apos;</comment>
-        <translation type="unfinished">Parameter &apos;%1&apos; mora slediti sintaksi &apos;%1=%2&apos;</translation>
+        <translation>Parameter &apos;%1&apos; mora slediti sintaksi &apos;%1=%2&apos;</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="500"/>
@@ -2820,7 +2813,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../app/cmdoptions.cpp" line="502"/>
         <source>Change the WebUI port</source>
-        <translation type="unfinished"></translation>
+        <translation>Spremeni vrata WebUI</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="505"/>
@@ -2893,10 +2886,6 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <location filename="../app/cmdoptions.cpp" line="526"/>
         <source>Add torrents as running or stopped</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add torrents as started or paused</source>
-        <translation type="vanished">Dodaj torrente kot začete ali ustavljene</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="527"/>
@@ -2987,20 +2976,12 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="131"/>
         <source>Start torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Začni torrente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="133"/>
         <source>Stop torrents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Nadaljuj torrente</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Ustavi torrente</translation>
+        <translation>Ustavi torrente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="135"/>
@@ -3023,7 +3004,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../gui/uithemedialog.cpp" line="132"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistem</translation>
     </message>
 </context>
 <context>
@@ -3072,7 +3053,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../gui/uithemesource.cpp" line="271"/>
         <source>Failed to load custom theme colors. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Barv teme po meri ni bilo mogoče naložiti. %1</translation>
     </message>
 </context>
 <context>
@@ -3080,7 +3061,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../gui/uithemesource.cpp" line="164"/>
         <source>Failed to load default theme colors. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Barv privzete teme ni bilo mogoče naložiti. %1</translation>
     </message>
 </context>
 <context>
@@ -3098,11 +3079,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../gui/deletionconfirmationdialog.ui" line="91"/>
         <source>Also remove the content files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Trajno izbriši tudi datoteke</translation>
+        <translation>Odstrani tudi datoteke z vsebino</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.cpp" line="47"/>
@@ -3314,12 +3291,12 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../gui/filterpatternformatmenu.cpp" line="36"/>
         <source>Pattern Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Vzorčna oblika</translation>
     </message>
     <message>
         <location filename="../gui/filterpatternformatmenu.cpp" line="41"/>
         <source>Plain text</source>
-        <translation type="unfinished"></translation>
+        <translation>Golo besedilo</translation>
     </message>
     <message>
         <location filename="../gui/filterpatternformatmenu.cpp" line="45"/>
@@ -3493,7 +3470,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../app/legalnotice.cpp" line="67"/>
         <source>Press &apos;Enter&apos; key to continue...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pritisnite tipko Enter za nadaljevanje ...</translation>
     </message>
 </context>
 <context>
@@ -3610,10 +3587,6 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <translation>&amp;Možnosti ...</translation>
     </message>
     <message>
-        <source>&amp;Resume</source>
-        <translation type="vanished">&amp;Nadaljuj</translation>
-    </message>
-    <message>
         <location filename="../gui/mainwindow.ui" line="212"/>
         <source>&amp;Remove</source>
         <translation>Od&amp;strani</translation>
@@ -3688,10 +3661,6 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <location filename="../gui/mainwindow.ui" line="479"/>
         <source>Close Window</source>
         <translation>Zapri okno</translation>
-    </message>
-    <message>
-        <source>R&amp;esume All</source>
-        <translation type="vanished">&amp;Nadaljuj vse</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="431"/>
@@ -3832,14 +3801,6 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <location filename="../gui/mainwindow.ui" line="187"/>
         <source>&amp;About</source>
         <translation>&amp;O programu</translation>
-    </message>
-    <message>
-        <source>&amp;Pause</source>
-        <translation type="vanished">&amp;Premor</translation>
-    </message>
-    <message>
-        <source>P&amp;ause All</source>
-        <translation type="vanished">P&amp;remor vseh</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="169"/>
@@ -4119,7 +4080,7 @@ Najnižja podprta različica: %2.</translation>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1927"/>
         <source>Paused</source>
-        <translation type="unfinished">Premor</translation>
+        <translation>V premoru</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1938"/>
@@ -5817,10 +5778,6 @@ Namestite Python ročno.</translation>
         <translation>Vedno</translation>
     </message>
     <message>
-        <source>Paused torrents only</source>
-        <translation type="vanished">Samo ustavljeni torrenti</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="280"/>
         <source>Action on double-click</source>
         <translation>Dejanje ob dvojnem kliku</translation>
@@ -5932,17 +5889,17 @@ Namestite Python ročno.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="973"/>
         <source>When duplicate torrent is being added</source>
-        <translation type="unfinished"></translation>
+        <translation>Ob dodajanju podvojene vsebine</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="979"/>
         <source>Merge trackers to existing torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Pripoji sledilnike obstoječemu torrentu</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1074"/>
         <source>Keep unselected files in &quot;.unwanted&quot; folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizbrane datoteke hrani v mapi &quot;.unwanted&quot;</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1377"/>
@@ -5967,7 +5924,7 @@ Namestite Python ročno.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1565"/>
         <source>Send test email</source>
-        <translation type="unfinished"></translation>
+        <translation>Pošlji preizkusno sporočilo</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1671"/>
@@ -5982,7 +5939,7 @@ Namestite Python ročno.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1880"/>
         <source>I2P (experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation>I2P (poskusno)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1939"/>
@@ -6101,10 +6058,6 @@ Onemogoči šifriranje: poveži se samo s soležniki brez šifriranja protokola<
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>A&amp;utomatically add these trackers to new downloads:</source>
-        <translation type="vanished">S&amp;amodejno dodaj te sledilnike novim prenosom:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="3125"/>
         <source>RSS Reader</source>
         <translation>Bralnik RSS</translation>
@@ -6141,10 +6094,6 @@ Onemogoči šifriranje: poveži se samo s soležniki brez šifriranja protokola<
         <location filename="../gui/optionsdialog.ui" line="2931"/>
         <source>Seeding Limits</source>
         <translation>Omejitve sejanja</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Začasno ustavi torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3038"/>
@@ -6576,10 +6525,6 @@ Uporabi &apos;;&apos; da razčleniš vnose. Lahko uporbiš nadomestni znak &apos
         <location filename="../gui/optionsdialog.ui" line="778"/>
         <source>Log performance warnings</source>
         <translation>Beleži opozorila o učinkovitosti delovanja</translation>
-    </message>
-    <message>
-        <source>The torrent will be added to download list in a paused state</source>
-        <translation type="vanished">Torrent bo na seznam prejemov dodan ustavljen</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="920"/>
@@ -7125,12 +7070,12 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.ui" line="3033"/>
         <source>Stop torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustavi torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3059"/>
         <source>A&amp;utomatically append these trackers to new downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Novim prenosom s&amp;amodejno dodaj te sledilnike:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3379"/>
@@ -7330,7 +7275,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="711"/>
         <source>Test email</source>
-        <translation type="unfinished"></translation>
+        <translation>Preizkusno sporočilo</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="711"/>
@@ -7804,27 +7749,27 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
 <context>
     <name>PiecesBar</name>
     <message>
-        <location filename="../gui/properties/piecesbar.cpp" line="282"/>
+        <location filename="../gui/properties/piecesbar.cpp" line="287"/>
         <source>Files in this piece:</source>
         <translation>Datoteke v tem kosu:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/piecesbar.cpp" line="284"/>
+        <location filename="../gui/properties/piecesbar.cpp" line="289"/>
         <source>File in this piece:</source>
         <translation>Datoteka v tem kosu:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/piecesbar.cpp" line="286"/>
+        <location filename="../gui/properties/piecesbar.cpp" line="291"/>
         <source>File in these pieces:</source>
         <translation>Datoteka v teh kosih:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/piecesbar.cpp" line="305"/>
+        <location filename="../gui/properties/piecesbar.cpp" line="310"/>
         <source>Wait until metadata become available to see detailed information</source>
         <translation>Za ogled podrobnejših informacij počakajte, da podatki postanejo dostopni</translation>
     </message>
     <message>
-        <location filename="../gui/properties/piecesbar.cpp" line="307"/>
+        <location filename="../gui/properties/piecesbar.cpp" line="312"/>
         <source>Hold Shift key for detailed information</source>
         <translation>Drži tipko Shift za podrobnejše informacije</translation>
     </message>
@@ -8371,12 +8316,12 @@ Tisti vtičniki so bili onemogočeni.</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="340"/>
         <source>Yes</source>
-        <translation type="unfinished">Da</translation>
+        <translation>Da</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="340"/>
         <source>No</source>
-        <translation type="unfinished">Ne</translation>
+        <translation>Ne</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="422"/>
@@ -8832,7 +8777,7 @@ Tisti vtičniki so bili onemogočeni.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="512"/>
         <source>Feed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Vir:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="514"/>
@@ -8949,146 +8894,142 @@ Tisti vtičniki so bili onemogočeni.</translation>
         <translation>Velikost:</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="69"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="82"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation>Ime</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="70"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="83"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation>Velikost</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="71"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="84"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
         <translation>Sejalci</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="72"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="85"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
         <translation>Pijavke</translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="vanished">Iskalnik</translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="73"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="86"/>
         <source>Engine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="74"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="87"/>
         <source>Engine URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="75"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="88"/>
         <source>Published On</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="128"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="141"/>
         <source>Filter search results...</source>
         <translation>Rezultati filtriranega iskanja...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="299"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="337"/>
         <source>Results (showing &lt;i&gt;%1&lt;/i&gt; out of &lt;i&gt;%2&lt;/i&gt;):</source>
         <comment>i.e: Search results</comment>
         <translation>Rezultati (prikazanih &lt;i&gt;%1&lt;/i&gt; od &lt;i&gt;%2&lt;/i&gt;):</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="350"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="388"/>
         <source>Torrent names only</source>
         <translation>Samo imena torrentov</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="351"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="389"/>
         <source>Everywhere</source>
         <translation>Povsod</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="374"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="412"/>
         <source>Use regular expressions</source>
         <translation>Uporabi regularne izraze</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="389"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="427"/>
         <source>Open download window</source>
         <translation>Odpri okno prejema</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="391"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="429"/>
         <source>Download</source>
         <translation>Prejem</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="393"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="431"/>
         <source>Open description page</source>
         <translation>Odpri stran z opisom</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="397"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="435"/>
         <source>Copy</source>
         <translation>Kopiraj</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="399"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="437"/>
         <source>Name</source>
         <translation>Ime</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="401"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="439"/>
         <source>Download link</source>
         <translation>Povezava za prejem</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="403"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="441"/>
         <source>Description page URL</source>
         <translation>URL strani z opisom</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="414"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="452"/>
         <source>Searching...</source>
         <translation>Iskanje ...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="416"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="454"/>
         <source>Search has finished</source>
         <translation>Iskanje je končano</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="418"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="456"/>
         <source>Search aborted</source>
         <translation>Iskanje je prekinjeno</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="420"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="458"/>
         <source>An error occurred during search...</source>
         <translation>Med iskanjem je prišlo do napake ...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="422"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="460"/>
         <source>Search returned no results</source>
         <translation>Iskanje ni vrnilo rezultatov</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="459"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="497"/>
         <source>Column visibility</source>
         <translation>Vidnost stolpca</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="482"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="520"/>
         <source>Resize columns</source>
         <translation>Spremeni velikost stolpcev</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="491"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="529"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
         <translation>Prilagodi velikost vseh prikazanih stolpcev na širino njihove vsebine</translation>
     </message>
@@ -9779,14 +9720,6 @@ Klikni na gumb &quot;Vstavki iskanja ...&quot; spodaj desno da jih namestite.</t
         <translation>Dokončani (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">V nadaljevanju (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">V premoru (0)</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="59"/>
         <source>Running (0)</source>
         <translation type="unfinished"></translation>
@@ -9869,16 +9802,12 @@ Klikni na gumb &quot;Vstavki iskanja ...&quot; spodaj desno da jih namestite.</t
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="221"/>
         <source>Start torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Začni torrente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="223"/>
         <source>Stop torrents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">V premoru (%1)</translation>
+        <translation>Ustavi torrente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="178"/>
@@ -9886,21 +9815,9 @@ Klikni na gumb &quot;Vstavki iskanja ...&quot; spodaj desno da jih namestite.</t
         <translation>Premikanje (%1)</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Nadaljuj torrente</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Premor torrentov</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="225"/>
         <source>Remove torrents</source>
         <translation>Odstrani torrente</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">V nadaljevanju (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="172"/>
@@ -9974,22 +9891,14 @@ Klikni na gumb &quot;Vstavki iskanja ...&quot; spodaj desno da jih namestite.</t
         <translation>Odstrani neuporabljene oznake</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Nadaljuj torrente</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Ustavi torrente</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="120"/>
         <source>Start torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Začni torrente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="122"/>
         <source>Stop torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustavi torrente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="124"/>
@@ -10323,17 +10232,17 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../webui/api/torrentcreatorcontroller.cpp" line="141"/>
         <source>Too many active tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>Preveč dejavnih opravil</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentcreatorcontroller.cpp" line="228"/>
         <source>Torrent creation is still unfinished.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustvarjanje torrenta še ni dokončano.</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentcreatorcontroller.cpp" line="231"/>
         <source>Torrent creation failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustvarjanje torrenta ni uspelo.</translation>
     </message>
 </context>
 <context>
@@ -10499,7 +10408,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="293"/>
         <source>Add torrent to transfer list failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodajanje torrenta na seznam prenosov ni uspelo.</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="293"/>
@@ -10666,22 +10575,6 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <translation>Omejitve izmenjave torrenta</translation>
     </message>
     <message>
-        <source>Use global share limit</source>
-        <translation type="vanished">Uporabi splošno omejitev izmenjave</translation>
-    </message>
-    <message>
-        <source>Set no share limit</source>
-        <translation type="vanished">Ne nastavi omejitve izmenjave</translation>
-    </message>
-    <message>
-        <source>Set share limit to</source>
-        <translation type="vanished">Nastavi omejitev izmenjave na</translation>
-    </message>
-    <message>
-        <source>ratio</source>
-        <translation type="vanished">razmerje</translation>
-    </message>
-    <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="170"/>
         <source>Disable DHT for this torrent</source>
         <translation>Onemogoči DHT za ta torrent</translation>
@@ -10722,14 +10615,6 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <source>Not applicable to private torrents</source>
         <translation>Za zasebne torrente ta možnost ni primerna</translation>
     </message>
-    <message>
-        <source>No share limit method selected</source>
-        <translation type="vanished">Ni izbranega načina omejitve izmenjave</translation>
-    </message>
-    <message>
-        <source>Please select a limit method first</source>
-        <translation type="vanished">Najprej izberite način omejitve</translation>
-    </message>
 </context>
 <context>
     <name>TorrentShareLimitsWidget</name>
@@ -10746,44 +10631,44 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <location filename="../gui/torrentsharelimitswidget.ui" line="112"/>
         <location filename="../gui/torrentsharelimitswidget.ui" line="134"/>
         <source>Unlimited</source>
-        <translation type="unfinished"></translation>
+        <translation>Neomejeno</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="33"/>
         <location filename="../gui/torrentsharelimitswidget.ui" line="117"/>
         <location filename="../gui/torrentsharelimitswidget.ui" line="139"/>
         <source>Set to</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavi na</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="147"/>
         <source>Seeding time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Čas sejanja:</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="158"/>
         <source>Action when the limit is reached:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dejanje, ko se doseže omejitev:</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="174"/>
         <source>Stop torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustavi torrent</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="179"/>
         <source>Remove torrent</source>
-        <translation type="unfinished">Odstrani torrent</translation>
+        <translation>Odstrani torrent</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="184"/>
         <source>Remove torrent and its content</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstrani torrent in njegovo vsebino</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="189"/>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished">Omogoči super sejanje za torrent</translation>
+        <translation>Omogoči super sejanje za torrent</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="44"/>
@@ -10799,12 +10684,12 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="64"/>
         <source>Inactive seeding time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Trajanje nedejavnega sejanja:</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="57"/>
         <source>Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Razmerje:</translation>
     </message>
 </context>
 <context>
@@ -10812,7 +10697,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/torrenttagsdialog.ui" line="14"/>
         <source>Torrent Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Oznake torrenta</translation>
     </message>
     <message>
         <location filename="../gui/torrenttagsdialog.cpp" line="100"/>
@@ -10832,7 +10717,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/torrenttagsdialog.cpp" line="107"/>
         <source>Tag name &apos;%1&apos; is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ime oznake &quot;%1&quot; je neveljavno.</translation>
     </message>
     <message>
         <location filename="../gui/torrenttagsdialog.cpp" line="111"/>
@@ -10931,7 +10816,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="596"/>
         <source>&quot;%1&quot; is not a valid file index.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;%1&quot; ni veljaven indeks datoteke.</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="598"/>
@@ -11024,12 +10909,12 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/trackerlist/trackerlistmodel.cpp" line="83"/>
         <source>Tracker error</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka sledilnika</translation>
     </message>
     <message>
         <location filename="../gui/trackerlist/trackerlistmodel.cpp" line="85"/>
         <source>Unreachable</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedosegljiv</translation>
     </message>
     <message>
         <location filename="../gui/trackerlist/trackerlistmodel.cpp" line="87"/>
@@ -11049,7 +10934,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/trackerlist/trackerlistmodel.cpp" line="495"/>
         <source>BT Protocol</source>
-        <translation type="unfinished"></translation>
+        <translation>Protokol BT</translation>
     </message>
     <message>
         <location filename="../gui/trackerlist/trackerlistmodel.cpp" line="509"/>
@@ -11239,12 +11124,12 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="101"/>
         <source>Tracker error (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka sledilnika (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="103"/>
         <source>Other error (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Druga napaka (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="567"/>
@@ -11254,20 +11139,12 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="572"/>
         <source>Start torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Začni torrente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="574"/>
         <source>Stop torrents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Nadaljuj torrente</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Ustavi torrente</translation>
+        <translation>Ustavi torrente</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="576"/>
@@ -11277,17 +11154,17 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="641"/>
         <source>Removal confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Potrditev odstranjevanja</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="642"/>
         <source>Are you sure you want to remove tracker &quot;%1&quot; from all torrents?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ali ste prepričani, da želite odstraniti sledilnik &quot;%1&quot; iz vseh prejemov?</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="644"/>
         <source>Don&apos;t ask me again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne sprašuj več.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="97"/>
@@ -11392,10 +11269,6 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <translation>Preverjanje podatkov za nadaljevanje</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Premor</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistmodel.cpp" line="110"/>
         <source>Completed</source>
         <translation>Dokončan</translation>
@@ -11436,20 +11309,15 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <translation>Napredek</translation>
     </message>
     <message>
-        <source>Status</source>
-        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="vanished">Stanje</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistmodel.cpp" line="109"/>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustavljeno</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="164"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, stopped)</comment>
-        <translation type="unfinished">Stanje</translation>
+        <translation>Stanje</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="165"/>
@@ -11565,22 +11433,17 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="184"/>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not stopped)</comment>
-        <translation type="unfinished">Čas aktivnosti</translation>
+        <translation>Čas delovanja</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="366"/>
         <source>Yes</source>
-        <translation type="unfinished">Da</translation>
+        <translation>Da</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="366"/>
         <source>No</source>
-        <translation type="unfinished">Ne</translation>
-    </message>
-    <message>
-        <source>Time Active</source>
-        <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="vanished">Čas aktivnosti</translation>
+        <translation>Ne</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="185"/>
@@ -11646,7 +11509,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="195"/>
         <source>Reannounce In</source>
         <comment>Indicates the time until next trackers reannounce</comment>
-        <translation type="unfinished"></translation>
+        <translation>Znova sporoči čez</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="196"/>
@@ -11710,22 +11573,6 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <location filename="../gui/transferlistwidget.cpp" line="357"/>
         <source>Choose save path</source>
         <translation>Izberite mesto za shranjevanje</translation>
-    </message>
-    <message>
-        <source>Confirm pause</source>
-        <translation type="vanished">Potrditev premora</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Ali ste prepričani, da želite začasno ustaviti vse torrente?</translation>
-    </message>
-    <message>
-        <source>Confirm resume</source>
-        <translation type="vanished">Potrditev nadaljevanja</translation>
-    </message>
-    <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Ali ste prepričani, da želite nadaljevati vse torrente?</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="620"/>
@@ -11808,21 +11655,6 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <translation>Ime oznake: &apos;%1&apos; je neveljavno</translation>
     </message>
     <message>
-        <source>&amp;Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">&amp;Nadaljuj</translation>
-    </message>
-    <message>
-        <source>&amp;Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">&amp;Premor</translation>
-    </message>
-    <message>
-        <source>Force Resu&amp;me</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Prisi&amp;lno nadaljuj</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
         <source>Pre&amp;view file...</source>
         <translation>Pr&amp;edogled datoteke ...</translation>
@@ -11889,7 +11721,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="991"/>
         <source>&amp;Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Komentar</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="993"/>
@@ -12025,10 +11857,6 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <translation>Samodejni način pomeni, da so različne lastnosti torrenta (npr. pot za shranjevanje) določene na podlagi dodeljene kategorije</translation>
     </message>
     <message>
-        <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
-        <translation type="vanished">Prisilno vnovično sporočanje ni mogoče, če je torrent začasno ustavljen, v čakalni vrsti, ima napako ali se preverja</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="999"/>
         <source>Super seeding mode</source>
         <translation>Način super sejanja</translation>
@@ -12092,12 +11920,12 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <location filename="../gui/uithemedialog.cpp" line="382"/>
         <location filename="../gui/uithemedialog.cpp" line="391"/>
         <source>Couldn&apos;t remove icon file. File: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datoteke z ikono ni bilo mogoče odstraniti. Datoteka: %1.</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="400"/>
         <source>Couldn&apos;t copy icon file. Source: %1. Destination: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datoteke z ikono ni bilo mogoče kopirati. Vir: %1. Cilj: %2.</translation>
     </message>
 </context>
 <context>
@@ -12191,7 +12019,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../base/utils/io.cpp" line="83"/>
         <source>File open error. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka pri odpiranju datoteke. Datoteka: &quot;%1&quot;. Napaka: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/utils/io.cpp" line="91"/>
@@ -12315,12 +12143,12 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="547"/>
         <source>Web server error. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka spletnega strežnika. %1</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="567"/>
         <source>Web server error. Unknown error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka spletnega strežnika. Neznana napaka.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="794"/>
@@ -12348,7 +12176,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../webui/webui.cpp" line="64"/>
         <source>Credentials are not set</source>
-        <translation type="unfinished"></translation>
+        <translation>Poverilnice niso nastavljene</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="115"/>
@@ -12376,7 +12204,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../base/utils/fs.cpp" line="345"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Neznana napaka</translation>
+        <translation>Neznana napaka</translation>
     </message>
 </context>
 <context>
@@ -12433,7 +12261,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <location filename="../base/utils/misc.cpp" line="230"/>
         <source>%1s</source>
         <comment>e.g: 10 seconds</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 s</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="235"/>

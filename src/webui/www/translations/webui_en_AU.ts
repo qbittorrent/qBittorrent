@@ -97,14 +97,6 @@
         <translation>Remove unused categories</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Resume torrents</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Pause torrents</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>New Category</translation>
     </message>
@@ -384,28 +376,28 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>Unable to log in, qBittorrent is probably unreachable.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Password</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Username</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>Invalid Username or Password.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>Login</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>Options...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Resume</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Top Toolbar</translation>
     </message>
@@ -455,24 +443,12 @@
         <translation>Donate!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Resume All</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Statistics</translation>
     </message>
     <message>
         <source>About</source>
         <translation>About</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Pause</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Pause All</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -615,14 +591,6 @@
         <translation>Remove</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Would you like to resume all torrents?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Would you like to pause all torrents?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Execution Log</translation>
     </message>
@@ -635,7 +603,15 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Start</source>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Stop</translation>
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -643,19 +619,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -704,10 +672,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Torrent Queueing</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Automatically add these trackers to new downloads:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1202,10 +1166,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>Fastest upload</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Pause torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1841,7 +1801,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="unfinished" />
+        <translation>It appends the text to the window title to help distinguish qBittorent instances</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -1849,18 +1809,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Same host request delay:</source>
-        <translation type="unfinished" />
+        <translation>Same host request delay:</translation>
     </message>
     <message>
         <source>Customize application instance name:</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
+        <source>Send test email</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop torrent</source>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1868,7 +1828,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1880,7 +1844,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>Merge trackers to existing torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2248,20 +2224,20 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation>Match all occurrences</translation>
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Yes</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>No</translation>
     </message>
     <message>
         <source>Private:</source>
@@ -2396,14 +2372,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation>Completed (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Resumed (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Paused (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Active (0)</translation>
     </message>
@@ -2430,14 +2398,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Completed (%1)</source>
         <translation>Completed (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Paused (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Resumed (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2492,11 +2452,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation>Moving (0)</translation>
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
+        <source>Running (%1)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2504,7 +2460,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Running (%1)</source>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2522,11 +2482,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Size</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Done</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2668,20 +2623,20 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <source>Progress</source>
+        <translation>Progress</translation>
     </message>
     <message>
-        <source>Progress</source>
-        <translation type="unfinished" />
+        <source>Info Hash v1</source>
+        <translation>Info Hash v1</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>Info Hash v2</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>Incomplete Save Path</translation>
     </message>
     <message>
         <source>Private</source>
@@ -2822,10 +2777,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation>%1 ago</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Paused</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Completed</translation>
     </message>
@@ -2891,11 +2842,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Stopped</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
 </context>
 <context>
@@ -2934,21 +2885,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Rename</source>
         <translation>Rename</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Resume</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Force Resume</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Pause</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3121,15 +3057,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation>Comment</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Stop</translation>
     </message>
     <message>
         <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3169,10 +3105,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </context>
 <context>
     <name>confirmDeletionDlg</name>
-    <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Also permanently delete the files</translation>
-    </message>
     <message>
         <source>Remove torrent(s)</source>
         <translation>Remove torrent(s)</translation>
@@ -3517,14 +3449,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation>Tag:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Pause torrents</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Resume torrents</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Remove unused tags</translation>
     </message>
@@ -3689,20 +3613,20 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation>Download link</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>Searching...</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Search has finished</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>An error occurred during search...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Search aborted</translation>
     </message>
 </context>
 <context>
@@ -4002,10 +3926,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <translation>If word order is important use * instead of white-space.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Add Paused:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Please type the name of the new download rule.</translation>
     </message>
@@ -4071,20 +3991,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Resume torrents</translation>
-    </message>
-    <message>
         <source>All (%1)</source>
         <translation>All (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
         <translation>Tracker-less (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Pause torrents</translation>
     </message>
     <message>
         <source>Remove torrents</source>
@@ -4249,7 +4161,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Close tab</translation>
     </message>
 </context>
 </TS>

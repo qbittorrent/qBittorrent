@@ -97,14 +97,6 @@
         <translation>Forigi neuzatajn kategoriojn</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Reaktivigi la torentojn</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Paŭzigi la torentojn</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation type="unfinished" />
     </message>
@@ -384,28 +376,28 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>Ne eblis ensaluti, qBittorrent eblas esti neatingebla.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Password</source>
+        <translation>Pasvorto</translation>
+    </message>
+    <message>
+        <source>Username</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>Malvalida uzantnomo aŭ pasvorto.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>Ensaluti</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>Opcioj</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Reaktivigi</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation type="unfinished" />
     </message>
@@ -455,24 +443,12 @@
         <translation>Donacu!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Reaktivigu Ĉion</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Statistikoj</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Pri</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Paŭzigu</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Paŭzigu Ĉion</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -627,7 +603,15 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Start</source>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Halti</translation>
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -635,19 +619,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -696,10 +672,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Torent-envicigado</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Aŭtomate aldoni tiujn spurilojn al novaj elŝutoj:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1840,11 +1812,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
+        <source>Send test email</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop torrent</source>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1852,7 +1824,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1864,7 +1840,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>Merge trackers to existing torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2232,20 +2220,20 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Jes</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Ne</translation>
     </message>
     <message>
         <source>Private:</source>
@@ -2380,14 +2368,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Finite (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Reaktiviĝita (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Paŭzinta (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Aktiva (0)</translation>
     </message>
@@ -2414,14 +2394,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Completed (%1)</source>
         <translation>Finite (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Paŭzinta (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Reaktiviĝita (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2476,11 +2448,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
+        <source>Running (%1)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2488,7 +2456,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Running (%1)</source>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2506,11 +2478,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Grando</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Finita</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2652,11 +2619,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <source>Progress</source>
+        <translation>Progreso</translation>
     </message>
     <message>
-        <source>Progress</source>
+        <source>Info Hash v1</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2806,10 +2773,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>antaŭ %1</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Paŭzinta</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Finita</translation>
     </message>
@@ -2875,11 +2838,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Haltinta</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
 </context>
 <context>
@@ -2918,21 +2881,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Rename</source>
         <translation>Renomi...</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Reaktivigi</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Devigi reaktivigado</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Paŭzigi</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3105,15 +3053,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Halti</translation>
     </message>
     <message>
         <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3497,14 +3445,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Etikedo</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Paŭzigi la torentojn</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Reaktivigi la torentojn</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Forigi neuzitajn etikedojn</translation>
     </message>
@@ -3669,20 +3609,20 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>Serĉante...</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Serĉo finiĝis</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>Eraro okazis dum la serĉo...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Serĉo ĉesiĝis</translation>
     </message>
 </context>
 <context>
@@ -3982,10 +3922,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Aldoni Paŭzinte:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Bonvolu tajpi la nomon de la nova elŝutregulo.</translation>
     </message>
@@ -4050,20 +3986,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Reaktivigi la torentojn</translation>
-    </message>
-    <message>
         <source>All (%1)</source>
         <translation>Ĉio (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
         <translation>Senspurila (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Paŭzigi la torentojn</translation>
     </message>
     <message>
         <source>Remove torrents</source>

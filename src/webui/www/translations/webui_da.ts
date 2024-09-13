@@ -97,14 +97,6 @@
         <translation>Fjern ubrugte kategorier</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Genoptag torrents</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Sæt torrents på pause</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Ny kategori</translation>
     </message>
@@ -384,28 +376,28 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>Kan ikke logge ind, qBittorrent er formodentligt ikke til at få kontakt med.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Adgangskode</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Brugernavn</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>Ugyldigt brugernavn eller adgangskode.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>Login</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>Indstillinger...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Genoptag</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Øverste værktøjslinje</translation>
     </message>
@@ -455,24 +443,12 @@
         <translation>Donér!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Genoptag alle</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Statistik</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Om</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Sæt på pause</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Sæt alle på pause</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -627,7 +603,15 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Start</source>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Stop</translation>
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -635,19 +619,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -696,10 +672,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Torrent sat i kø</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Tilføj automatisk disse trackere til nye downloads:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1194,10 +1166,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>Hurtigste upload</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Sæt torrent på pause</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1848,11 +1816,11 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
+        <source>Send test email</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop torrent</source>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1860,7 +1828,11 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1872,7 +1844,19 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>Merge trackers to existing torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2240,20 +2224,20 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Ja</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Nej</translation>
     </message>
     <message>
         <source>Private:</source>
@@ -2388,14 +2372,6 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation>Færdige (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Genoptaget (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Sat på pause (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Aktive (0)</translation>
     </message>
@@ -2422,14 +2398,6 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     <message>
         <source>Completed (%1)</source>
         <translation>Færdige (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Sat på pause (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Genoptaget (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2484,11 +2452,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
+        <source>Running (%1)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2496,7 +2460,11 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Running (%1)</source>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2514,11 +2482,6 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Størrelse</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Færdig</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2660,11 +2623,11 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <source>Progress</source>
+        <translation>Forløb</translation>
     </message>
     <message>
-        <source>Progress</source>
+        <source>Info Hash v1</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2814,10 +2777,6 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation>%1 siden</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Sat på pause</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Færdige</translation>
     </message>
@@ -2883,11 +2842,11 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Stoppet</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>-</translation>
     </message>
 </context>
 <context>
@@ -2926,21 +2885,6 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     <message>
         <source>Rename</source>
         <translation>Omdøb</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Genoptag</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Tving genoptag</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Sæt på pause</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3113,15 +3057,15 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Stop</translation>
     </message>
     <message>
         <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3505,14 +3449,6 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation>Mærkat:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Sæt torrents på pause</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Genoptag torrents</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Fjern ubrugte mærkater</translation>
     </message>
@@ -3677,20 +3613,20 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation>Downloadlink</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>Søger...</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Søgningen er færdig</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>Der opstod en fejl under søgningen...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Søgning afbrudt</translation>
     </message>
 </context>
 <context>
@@ -3990,10 +3926,6 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
         <translation>Hvis rækkefølgen på ord er vigtig, så brug * i stedet for blanktegn.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Tilføj sat på pause:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Skriv venligst navnet på den nye downloadregel.</translation>
     </message>
@@ -4058,20 +3990,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Genoptag torrents</translation>
-    </message>
-    <message>
         <source>All (%1)</source>
         <translation>Alle (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
         <translation>Trackerløs (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Sæt torrents på pause</translation>
     </message>
     <message>
         <source>Remove torrents</source>
@@ -4236,7 +4160,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Luk faneblad</translation>
     </message>
 </context>
 </TS>

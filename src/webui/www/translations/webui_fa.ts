@@ -97,14 +97,6 @@
         <translation>حذف دسته استفاده نشده</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">ادامه دانلود تورنتها</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">توقف دانلود تورنتها</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>دسته بندی جدید</translation>
     </message>
@@ -114,7 +106,7 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>حذف تورنت‌‌ها</translation>
     </message>
     <message>
         <source>Add subcategory...</source>
@@ -384,11 +376,7 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -396,16 +384,20 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>کلمه عبور</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>نام کاربری</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>نام کاربری یا کلمه عبور نامعتبر</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>ورود</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>تنظیمات...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">ادامه</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>نوار ابزار بالا</translation>
     </message>
@@ -455,24 +443,12 @@
         <translation>حمایت مالی!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">ادامه همه</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>آمار</translation>
     </message>
     <message>
         <source>About</source>
         <translation>درباره</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">توقف</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">توقف همه</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -620,26 +596,10 @@
     </message>
     <message>
         <source>Log</source>
-        <translation type="unfinished" />
+        <translation>گزارش</translation>
     </message>
     <message>
         <source>[D: %1, U: %2]</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Start All</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stop</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -647,8 +607,24 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop All</source>
+        <source>Stop</source>
+        <translation>توقف</translation>
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation>شروع همه</translation>
+    </message>
+    <message>
+        <source>Stop All</source>
+        <translation>توقف همه</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>شروع</translation>
     </message>
 </context>
 <context>
@@ -679,7 +655,7 @@
     </message>
     <message>
         <source>User Interface Language:</source>
-        <translation type="unfinished" />
+        <translation>زبان رابط کاربری:</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -711,7 +687,7 @@
     </message>
     <message>
         <source>Use HTTPS instead of HTTP</source>
-        <translation type="unfinished" />
+        <translation>از HTTPS به‌جای HTTP استفاده شود</translation>
     </message>
     <message>
         <source>Bypass authentication for clients on localhost</source>
@@ -1021,7 +997,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>کیلوبایت/ثانیه</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
@@ -1053,7 +1029,7 @@
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation type="unfinished" />
+        <translation>مکان ذخیره‌سازی پیش‌فرض:</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1125,7 +1101,7 @@
     </message>
     <message>
         <source>When adding a torrent</source>
-        <translation type="unfinished" />
+        <translation>هنگام افزودن تورنت جدید</translation>
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
@@ -1190,10 +1166,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>سریعترین بارگذاری</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">توقف تورنت</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1321,7 +1293,7 @@
     </message>
     <message>
         <source>Add custom HTTP headers</source>
-        <translation type="unfinished" />
+        <translation>افزودن هدرهای HTTP سفارشی</translation>
     </message>
     <message>
         <source>Filters:</source>
@@ -1345,7 +1317,7 @@
     </message>
     <message>
         <source>Network interface:</source>
-        <translation type="unfinished" />
+        <translation>رابط شبکه:</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -1533,7 +1505,7 @@
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation>میلی‌ثانیه</translation>
     </message>
     <message>
         <source>Excluded file names</source>
@@ -1840,11 +1812,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
+        <source>Send test email</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop torrent</source>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1852,7 +1824,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1864,7 +1840,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>Merge trackers to existing torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2232,20 +2220,20 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>بله</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>نه</translation>
     </message>
     <message>
         <source>Private:</source>
@@ -2283,7 +2271,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>SpeedLimitDialog</name>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>کیلوبایت/ثانیه</translation>
     </message>
 </context>
 <context>
@@ -2408,14 +2396,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>کامل شده (%1)</translation>
     </message>
     <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">متوقف شده (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">ادامه دانلود (%1)</translation>
-    </message>
-    <message>
         <source>Active (%1)</source>
         <translation>فعال (%1)</translation>
     </message>
@@ -2468,11 +2448,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
+        <source>Running (%1)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2480,7 +2456,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Running (%1)</source>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2639,11 +2619,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <source>Progress</source>
+        <translation>پیشرفت</translation>
     </message>
     <message>
-        <source>Progress</source>
+        <source>Info Hash v1</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2793,10 +2773,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">متوقف شده</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>کامل شده</translation>
     </message>
@@ -2862,11 +2838,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>متوقف شده</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>در دسترس نیست</translation>
     </message>
 </context>
 <context>
@@ -2905,21 +2881,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Rename</source>
         <translation>تغییر نام</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">ادامه</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">اجبار به ادامه</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">توقف</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3092,16 +3053,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>توقف</translation>
     </message>
     <message>
         <source>Force Start</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>شروع</translation>
     </message>
 </context>
 <context>
@@ -3314,7 +3275,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>از</translation>
     </message>
     <message>
         <source>Everywhere</source>
@@ -3334,11 +3295,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>نتایج</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>درحال نمایش</translation>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
@@ -3484,14 +3445,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>برچسب‌:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">توقف دانلود تورنتها</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">ادامه دانلود تورنتها</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>حذف برچسب‌های استفاده نشده</translation>
     </message>
@@ -3505,7 +3458,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>حذف تورنت‌‌ها</translation>
     </message>
     <message>
         <source>Start torrents</source>
@@ -3656,20 +3609,20 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>لینک بارگیری</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>در حال جستجو...</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>جستجو به پایان رسید</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>جستجو با یک خطا مواجه شد...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>جستجو به پایان نرسید</translation>
     </message>
 </context>
 <context>
@@ -3969,10 +3922,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">افزودن در حالت متوقف شده:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>لطفا نام قانون جدید دانلود را بنویسید.</translation>
     </message>
@@ -4037,10 +3986,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">ادامه دانلود تورنتها</translation>
-    </message>
-    <message>
         <source>All (%1)</source>
         <translation>همه (%1)</translation>
     </message>
@@ -4049,12 +3994,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>بدون ترکر (%1)</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">توقف دانلود تورنتها</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>حذف تورنت‌‌ها</translation>
     </message>
     <message>
         <source>Start torrents</source>
@@ -4096,7 +4037,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>درحال نمایش</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -4140,7 +4081,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>از</translation>
     </message>
     <message>
         <source>Status</source>
@@ -4164,11 +4105,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Reason</source>
-        <translation type="unfinished" />
+        <translation>دلیل</translation>
     </message>
     <message>
         <source>item</source>
-        <translation type="unfinished" />
+        <translation>مورد</translation>
     </message>
     <message>
         <source>IP</source>
@@ -4176,7 +4117,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Banned</source>
-        <translation type="unfinished" />
+        <translation>بن شده</translation>
     </message>
     <message>
         <source>Normal Messages</source>
@@ -4184,11 +4125,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Critical</source>
-        <translation type="unfinished" />
+        <translation>بحرانی</translation>
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation type="unfinished" />
+        <translation>پیام‌های بحرانی</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -4196,15 +4137,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>items</source>
-        <translation type="unfinished" />
+        <translation>مورد</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>نتایج</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished" />
+        <translation>اطلاع</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
@@ -4215,7 +4156,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>بستن زبانه</translation>
     </message>
 </context>
 </TS>

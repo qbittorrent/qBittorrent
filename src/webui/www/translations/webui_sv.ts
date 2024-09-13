@@ -97,14 +97,6 @@
         <translation>Ta bort oanvända kategorier</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Återuppta torrenter</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Pausa torrenter</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Ny kategori</translation>
     </message>
@@ -122,11 +114,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Starta torrenter</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Stoppa torrenter</translation>
     </message>
 </context>
 <context>
@@ -384,28 +376,28 @@
         <translation>JavaScript krävs! Du måste aktivera JavaScript för att webbgränssnittet ska fungera korrekt</translation>
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>Det gick inte att logga in. qBittorrent är troligtvis inte nåbart.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>Kunde inte kontakta qBittorrent</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Lösenord</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Användarnamn</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>Felaktigt användarnamn eller lösenord.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>Inloggning</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>Alternativ...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Återuppta</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Översta verktygsfältet</translation>
     </message>
@@ -455,24 +443,12 @@
         <translation>Donera!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Återuppta alla</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Statistik</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Om</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Pausa</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Pausa alla</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -615,14 +591,6 @@
         <translation>Ta bort</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Vill du återuppta alla torrenter?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Vill du pausa alla torrenter?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Exekveringslogg</translation>
     </message>
@@ -635,28 +603,28 @@
         <translation>[N: %1, U: %2]</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Start All</source>
-        <translation type="unfinished" />
+        <source>Would you like to start all torrents?</source>
+        <translation>Vill du starta alla torrenter?</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Stoppa</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Vill du stoppa alla torrenter?</translation>
     </message>
     <message>
-        <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
+        <source>Start All</source>
+        <translation>Starta alla</translation>
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
+        <translation>Stoppa alla</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Starta</translation>
     </message>
 </context>
 <context>
@@ -704,10 +672,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Torrentkö</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Lägg a&amp;utomatiskt till de här spårarna till nya hämtningar:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1202,10 +1166,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>Snabbaste sändning</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Pausa torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1856,31 +1816,47 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>Anpassa applikationsinstansens namn:</translation>
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stop torrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Automatically append these trackers to new downloads:</source>
-        <translation type="unfinished" />
+        <source>Send test email</source>
+        <translation>Skicka detta e-postmeddelande</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation type="unfinished" />
+        <translation>Försökte skicka e-post. Kontrollera din inkorg för att bekräfta att det lyckades</translation>
+    </message>
+    <message>
+        <source>Automatically append these trackers to new downloads:</source>
+        <translation>Lägg automatiskt till dessa spårare till nya hämtningar:</translation>
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation>Stoppa torrent</translation>
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
+        <translation>Flytta filer till papperskorgen (om möjligt)</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
-        <translation type="unfinished" />
+        <translation>Torrent-innehåll borttagningsläge:</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
+        <translation>Ta bort filerna permanent</translation>
+    </message>
+    <message>
+        <source>Merge trackers to existing torrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2248,24 +2224,24 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>Matcha alla händelser</translation>
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>Popularitet:</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation type="unfinished" />
+        <translation>Förhållande / Aktiv tid (i månader), indikerar hur populär torrenten är</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Ja</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Nej</translation>
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>Privat:</translation>
     </message>
 </context>
 <context>
@@ -2396,14 +2372,6 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>Slutförda (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Återupptagen (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Pausad (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Aktiva (0)</translation>
     </message>
@@ -2430,14 +2398,6 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     <message>
         <source>Completed (%1)</source>
         <translation>Slutförda (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Pausad (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Återupptagna (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2492,20 +2452,20 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>Flyttar (0)</translation>
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <source>Running (%1)</source>
+        <translation>Körs (%1)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>Stoppad (0)</translation>
     </message>
     <message>
-        <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <source>Stopped (%1)</source>
+        <translation>Stoppad (%1)</translation>
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation>Körs (0)</translation>
     </message>
 </context>
 <context>
@@ -2522,11 +2482,6 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Storlek</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Slutfört</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2665,27 +2620,27 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <translation>Popularitet</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Förlopp</translation>
+    </message>
+    <message>
+        <source>Info Hash v1</source>
+        <translation>Info-hash v1</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>Info-hash v2</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>Ofullständig sparsökväg</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privat</translation>
     </message>
 </context>
 <context>
@@ -2822,10 +2777,6 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>%1 sedan</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Pausade</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Klar</translation>
     </message>
@@ -2891,11 +2842,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Stoppad</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Ingen</translation>
     </message>
 </context>
 <context>
@@ -2934,21 +2885,6 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     <message>
         <source>Rename</source>
         <translation>Byt namn</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Återuppta</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Tvinga återuppta</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Pausa</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3121,16 +3057,16 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>Kommentar</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Stoppa</translation>
     </message>
     <message>
         <source>Force Start</source>
-        <translation type="unfinished" />
+        <translation>Tvinga start</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Starta</translation>
     </message>
 </context>
 <context>
@@ -3170,16 +3106,12 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Ta också bort filerna permanent</translation>
-    </message>
-    <message>
         <source>Remove torrent(s)</source>
         <translation>Ta bort torrenter</translation>
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation type="unfinished" />
+        <translation>Ta även bort innehållsfilerna</translation>
     </message>
 </context>
 <context>
@@ -3383,7 +3315,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Start a search above.</source>
-        <translation type="unfinished" />
+        <translation>Starta en sökning ovan.</translation>
     </message>
 </context>
 <context>
@@ -3449,7 +3381,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Published On</source>
-        <translation type="unfinished" />
+        <translation>Publicerad den</translation>
     </message>
 </context>
 <context>
@@ -3517,14 +3449,6 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>Tagg:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Pausa torrenter</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Återuppta torrenter</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Ta bort oanvända taggar</translation>
     </message>
@@ -3542,11 +3466,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Starta torrenter</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Stoppa torrenter</translation>
     </message>
 </context>
 <context>
@@ -3689,20 +3613,20 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>Hämtningslänk</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>Söker...</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Sökningen är klar</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>Ett fel uppstod under sökningen...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Sökningen avbruten</translation>
     </message>
 </context>
 <context>
@@ -4002,10 +3926,6 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>Om ordordning är viktig, använd * istället för blanksteg.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Lägg till pausad:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Skriv namnet på den nya hämtningsregeln.</translation>
     </message>
@@ -4065,15 +3985,11 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Add Stopped:</source>
-        <translation type="unfinished" />
+        <translation>Lägg till stoppad:</translation>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Återuppta torrenter</translation>
-    </message>
     <message>
         <source>All (%1)</source>
         <translation>Alla (%1)</translation>
@@ -4083,20 +3999,16 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <translation>Utan spårare (%1)</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Pausa torrenter</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation>Ta bort torrenter</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Starta torrenter</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Stoppa torrenter</translation>
     </message>
 </context>
 <context>
@@ -4249,7 +4161,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Stäng flik</translation>
     </message>
 </context>
 </TS>

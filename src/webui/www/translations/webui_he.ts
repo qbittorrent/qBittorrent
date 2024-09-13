@@ -97,14 +97,6 @@
         <translation>הסר קטגוריות שאינן בשימוש</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">המשך טורנטים</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">השהה טורנטים</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>קטגוריה חדשה</translation>
     </message>
@@ -122,11 +114,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>התחל טורנטים</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>עצור טורנטים</translation>
     </message>
 </context>
 <context>
@@ -384,28 +376,28 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>לא היה ניתן להיכנס, qBittorrent כנראה בלתי נגיש.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>סיסמה</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>שם משתמש</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>שם משתמש או סיסמה בלתי תקפים.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>היכנס</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>אפשרויות…</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">המשך</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>סרגל כלים עליון</translation>
     </message>
@@ -455,24 +443,12 @@
         <translation>תרום!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">המשך הכול</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>סטטיסטיקה</translation>
     </message>
     <message>
         <source>About</source>
         <translation>אודות</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">השהה</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">השהה הכול</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -615,14 +591,6 @@
         <translation>הסר</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">האם אתה רוצה להמשיך את כל הטורנטים ?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">האם אתה רוצה לעצור את כל הטורנטים ?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>דוח ביצוע</translation>
     </message>
@@ -635,7 +603,15 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Start</source>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>עצור</translation>
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -643,19 +619,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -704,10 +672,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>תור טורנטים</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">הוסף באופן אוטומטי גששים אלו אל הורדות חדשות:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1202,10 +1166,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>ההעלאה הכי מהירה</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">השהה טורנט</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1733,7 +1693,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation type="unfinished" />
+        <translation>מתאפס אל ברירת מחדל אם זה ריק</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
@@ -1856,11 +1816,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
+        <source>Send test email</source>
+        <translation>שלח דוא״ל בחינה</translation>
     </message>
     <message>
-        <source>Stop torrent</source>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1868,8 +1828,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation type="unfinished" />
+        <source>Stop torrent</source>
+        <translation>עצור טורנט</translation>
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
+        <translation>העבר קבצים אל סל המיחזור (אם אפשרי)</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
@@ -1877,10 +1841,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Delete files permanently</source>
+        <translation>מחק קבצים לצמיתות</translation>
+    </message>
+    <message>
+        <source>Merge trackers to existing torrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1952,7 +1928,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Copy IP:port</source>
-        <translation>העתק IP:פתחה</translation>
+        <translation>העתקת IP:פתחה</translation>
     </message>
     <message>
         <source>Country/Region</source>
@@ -2248,24 +2224,24 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>פופולריות:</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Yes</source>
+        <translation>כן</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>לא</translation>
+    </message>
+    <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>פרטי:</translation>
     </message>
 </context>
 <context>
@@ -2396,14 +2372,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>הושלם (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">מומשך (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">מושהה (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>פעיל (0)</translation>
     </message>
@@ -2430,14 +2398,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Completed (%1)</source>
         <translation>הושלם (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">מושהה (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">מומשך (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2492,20 +2452,20 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>מעביר (0)</translation>
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <source>Running (%1)</source>
+        <translation>רץ (%1)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>נעצר (0)</translation>
     </message>
     <message>
-        <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <source>Stopped (%1)</source>
+        <translation>נעצר (%1)</translation>
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation>רץ (0)</translation>
     </message>
 </context>
 <context>
@@ -2522,11 +2482,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>גודל</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">בוצע</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2665,14 +2620,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <translation>פופולריות</translation>
     </message>
     <message>
         <source>Progress</source>
+        <translation>התקדמות</translation>
+    </message>
+    <message>
+        <source>Info Hash v1</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2685,7 +2640,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>פרטי</translation>
     </message>
 </context>
 <context>
@@ -2822,10 +2777,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>%1 קודם לכן</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">מושהה</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>הושלם</translation>
     </message>
@@ -2891,11 +2842,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>נעצר</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>לא זמין</translation>
     </message>
 </context>
 <context>
@@ -2934,21 +2885,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Rename</source>
         <translation>שינוי שם</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">המשך</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">אלץ המשכה</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">השהה</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3121,15 +3057,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>עצור</translation>
     </message>
     <message>
         <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3169,10 +3105,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </context>
 <context>
     <name>confirmDeletionDlg</name>
-    <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">בנוסף מחק את הקבצים לצמיתות</translation>
-    </message>
     <message>
         <source>Remove torrent(s)</source>
         <translation>הסר טורנט(ים)</translation>
@@ -3449,7 +3381,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Published On</source>
-        <translation type="unfinished" />
+        <translation>פורסם</translation>
     </message>
 </context>
 <context>
@@ -3517,14 +3449,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>תגית:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">השהה טורנטים</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">המשך טורנטים</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>הסר תגיות שאינן בשימוש</translation>
     </message>
@@ -3542,11 +3466,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>התחל טורנטים</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>עצור טורנטים</translation>
     </message>
 </context>
 <context>
@@ -3682,27 +3606,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Open description page</source>
-        <translation>פתח דף תיאור</translation>
+        <translation>פתיחת דף התיאור</translation>
     </message>
     <message>
         <source>Download link</source>
         <translation>קישור הורדה</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>מחפש…</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>החיפוש הסתיים</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>שגיאה התרחשה במהלך החיפוש…</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>החיפוש בוטל</translation>
     </message>
 </context>
 <context>
@@ -3764,7 +3688,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Open news URL</source>
-        <translation>פתח כתובת חדשות</translation>
+        <translation>פתיחת כתובת חדשות</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -4002,10 +3926,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>אם סדר מילים חשוב, השתמש ב־* במקום רווח לבן.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">הוסף מושהים:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>אנא הקלד את השם של כלל ההורדה החדש.</translation>
     </message>
@@ -4071,10 +3991,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">המשך טורנטים</translation>
-    </message>
-    <message>
         <source>All (%1)</source>
         <translation>הכול (%1)</translation>
     </message>
@@ -4083,20 +3999,16 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>חסר־גששים (%1)</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">השהה טורנטים</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation>הסר טורנטים</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>התחל טורנטים</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>עצור טורנטים</translation>
     </message>
 </context>
 <context>
@@ -4249,7 +4161,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>סגור לשונית</translation>
     </message>
 </context>
 </TS>

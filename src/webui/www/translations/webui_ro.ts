@@ -97,14 +97,6 @@
         <translation>Elimină categoriile neutilizate</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Reia torentele</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Întrerupe torentele</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Categorie nouă</translation>
     </message>
@@ -384,28 +376,28 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>Nu se poate autentifica, probabil qBittorrent nu poate fi contactat.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Parolă</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Nume de utilizator</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>Numele de utilizator sau parola nu sunt valide.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>Autentifică</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>Opțiuni…</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Reia</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Bara de unelte superioară</translation>
     </message>
@@ -455,24 +443,12 @@
         <translation>Donați!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Reia toate</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Statistici</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Despre</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Întrerupe</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Întrerupe toate</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -615,14 +591,6 @@
         <translation>Elimină</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Doriți să reluați toate torentele?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Doriți să întrerupeți toate torentele?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Jurnal de execuție</translation>
     </message>
@@ -635,7 +603,15 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Start</source>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Oprește</translation>
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -643,19 +619,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -704,10 +672,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Coadă torente</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Adaugă automat aceste urmăritoare la noile descărcări:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1202,10 +1166,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>Încărcarea cea mai rapidă</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Întrerupe torentul</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1852,11 +1812,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
+        <source>Send test email</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop torrent</source>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1864,7 +1824,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1876,7 +1840,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>Merge trackers to existing torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2244,20 +2220,20 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Da</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Nu</translation>
     </message>
     <message>
         <source>Private:</source>
@@ -2392,14 +2368,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Încheiate (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Reluate (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Suspendate (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Active (0)</translation>
     </message>
@@ -2426,14 +2394,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Completed (%1)</source>
         <translation>Încheiate (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Suspendate (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Reluate (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2488,11 +2448,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Se mută (0)</translation>
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
+        <source>Running (%1)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2500,7 +2456,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Running (%1)</source>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2518,11 +2478,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Dimensiune</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Gata</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2664,20 +2619,20 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <source>Progress</source>
+        <translation>Progres</translation>
     </message>
     <message>
-        <source>Progress</source>
-        <translation type="unfinished" />
+        <source>Info Hash v1</source>
+        <translation>Info Hash v1</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>Info Hash v2</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>Cale de salvare incompletă</translation>
     </message>
     <message>
         <source>Private</source>
@@ -2818,10 +2773,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>acum %1</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Întrerupt</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Încheiat</translation>
     </message>
@@ -2887,11 +2838,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Oprită</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Indisp.</translation>
     </message>
 </context>
 <context>
@@ -2930,21 +2881,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Rename</source>
         <translation>Redenumește</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Reia</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Forțează reluarea</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Întrerupe</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3117,15 +3053,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Oprește</translation>
     </message>
     <message>
         <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3165,10 +3101,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </context>
 <context>
     <name>confirmDeletionDlg</name>
-    <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Șterge permanent și fișierele</translation>
-    </message>
     <message>
         <source>Remove torrent(s)</source>
         <translation>Elimină torent(e)</translation>
@@ -3513,14 +3445,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Marcaj:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Întrerupe torente</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Reia torentele</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Elimină marcaje nefolosite</translation>
     </message>
@@ -3685,20 +3609,20 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Legătură pentru descărcare</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>Se caută…</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Căutarea s-a încheiat</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>A apărut o eroare în timpul căutării...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Căutarea a fost abandonată</translation>
     </message>
 </context>
 <context>
@@ -3998,10 +3922,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Dacă ordinea cuvintelor este importantă utilizați * în loc de spațiu alb (gol).</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Adaugă suspendate:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Introduceți numele noii reguli de descărcare.</translation>
     </message>
@@ -4067,20 +3987,12 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Reia torrentele</translation>
-    </message>
-    <message>
         <source>All (%1)</source>
         <translation>Toate (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
         <translation>Fără urmăritoare (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Întrerupe torente</translation>
     </message>
     <message>
         <source>Remove torrents</source>
@@ -4245,7 +4157,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Închide fila</translation>
     </message>
 </context>
 </TS>

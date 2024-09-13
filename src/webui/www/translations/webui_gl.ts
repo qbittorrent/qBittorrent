@@ -97,14 +97,6 @@
         <translation>Eliminar as categorías sen usar</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Continuar os torrents</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Deter os torrents</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Nova categoría</translation>
     </message>
@@ -122,11 +114,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Iniciar torrents</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Deter torrents</translation>
     </message>
 </context>
 <context>
@@ -385,28 +377,28 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Requírese JavaScript! Debes activar JavaScript para que a WebUI funcione correctamente</translation>
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>Non é posíbel iniciar sesión. Probabelmente o qBittorrent non está accesíbel.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Contrasinal</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Nome do usuario</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>O usuario ou o contrasinal son incorrectos.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>Iniciar sesión</translation>
     </message>
 </context>
 <context>
@@ -436,10 +428,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Opcións...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Continuar</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Barra superior</translation>
     </message>
@@ -456,24 +444,12 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Doar!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Continuar todo</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Estadísticas</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Sobre</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Deter</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Pausar todo</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -616,14 +592,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Eliminar</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Queres retomar todos os torrents?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Queres poñer en pausa todos os torrents?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Rexistro de execución</translation>
     </message>
@@ -636,7 +604,15 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>[D: %1, U: %2]</translation>
     </message>
     <message>
-        <source>Start</source>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Parar</translation>
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -644,19 +620,11 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -705,10 +673,6 @@ Non use caracteres especiais no nome da categoría.</translation>
     <message>
         <source>Torrent Queueing</source>
         <translation>Cola de torrents</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Engadir automaticamente estes localizadores ás novas descargas:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1203,10 +1167,6 @@ Non use caracteres especiais no nome da categoría.</translation>
     <message>
         <source>Fastest upload</source>
         <translation>Envío máis rápido</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Deter o torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1798,19 +1758,19 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Disk cache expiry interval:</source>
-        <translation type="unfinished" />
+        <translation>Intervalo de caducidade da caché do disco:</translation>
     </message>
     <message>
         <source>I2P outbound length:</source>
-        <translation type="unfinished" />
+        <translation>Lonxitude de saída I2P:</translation>
     </message>
     <message>
         <source>I2P (Experimental)</source>
-        <translation type="unfinished" />
+        <translation>I2P (experimental)</translation>
     </message>
     <message>
         <source>Disk IO type (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Tipo de E/S de disco (require reinicio):</translation>
     </message>
     <message>
         <source>The alternative WebUI files location cannot be blank.</source>
@@ -1818,7 +1778,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Disk cache:</source>
-        <translation type="unfinished" />
+        <translation>Caché de disco:</translation>
     </message>
     <message>
         <source>Write-through</source>
@@ -1826,7 +1786,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>WebUI</source>
-        <translation type="unfinished" />
+        <translation>WebUI</translation>
     </message>
     <message>
         <source>The WebUI password must be at least 6 characters long.</source>
@@ -1834,11 +1794,11 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes:</source>
-        <translation type="unfinished" />
+        <translation>Fusión de lecturas e escrituras:</translation>
     </message>
     <message>
         <source>I2P inbound length:</source>
-        <translation type="unfinished" />
+        <translation>Lonxitude de entrada I2P:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
@@ -1854,23 +1814,27 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Customize application instance name:</source>
-        <translation type="unfinished" />
+        <translation>Personalizar o nome da instancia da aplicación:</translation>
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
+        <source>Send test email</source>
+        <translation>Enviar correo electrónico de proba</translation>
     </message>
     <message>
-        <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <translation>Tentouse enviar correo electrónico. Comprobe a súa caixa de entrada para confirmar o éxito</translation>
     </message>
     <message>
         <source>Automatically append these trackers to new downloads:</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation type="unfinished" />
+        <source>Stop torrent</source>
+        <translation>Deter torrent</translation>
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
+        <translation>Mover ficheiros á papeleira (se é posible)</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
@@ -1878,10 +1842,22 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Delete files permanently</source>
+        <translation>Eliminar ficheiros permanentemente</translation>
+    </message>
+    <message>
+        <source>Merge trackers to existing torrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2194,79 +2170,79 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation>Nome do ficheiro</translation>
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation type="unfinished" />
+        <translation>Nome do ficheiro + extensión</translation>
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation type="unfinished" />
+        <translation>Enumerar ficheiros</translation>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
+        <translation>Fallou o cambio de nome: o ficheiro ou cartafol xa existe</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
-        <translation type="unfinished" />
+        <translation>Alternar selección</translation>
     </message>
     <message>
         <source>Replacement Input</source>
-        <translation type="unfinished" />
+        <translation>Entrada de substitución</translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation>Substituir</translation>
     </message>
     <message>
         <source>Extension</source>
-        <translation type="unfinished" />
+        <translation>Extensión</translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished" />
+        <translation>Substituír todo</translation>
     </message>
     <message>
         <source>Include files</source>
-        <translation type="unfinished" />
+        <translation>Incluír ficheiros</translation>
     </message>
     <message>
         <source>Include folders</source>
-        <translation type="unfinished" />
+        <translation>Incluír cartafois</translation>
     </message>
     <message>
         <source>Search Files</source>
-        <translation type="unfinished" />
+        <translation>Buscar ficheiros</translation>
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished" />
+        <translation>Sensible a maiúsculas e minúsculas</translation>
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
+        <translation>Coincide con todas as ocorrencias</translation>
     </message>
     <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>Popularidade:</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation type="unfinished" />
+        <translation>Ratio / Tempo activo (en meses), indica a popularidade do torrent</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Si</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Non</translation>
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>Privado:</translation>
     </message>
 </context>
 <context>
@@ -2397,14 +2373,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <translation>Completados (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Comezados (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Detidos (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Activos (0)</translation>
     </message>
@@ -2431,14 +2399,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     <message>
         <source>Completed (%1)</source>
         <translation>Completados (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Detidos (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Comezados (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2493,20 +2453,20 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <translation>Movendo (0)</translation>
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <source>Running (%1)</source>
+        <translation>En execución (%1)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>Detido (0)</translation>
     </message>
     <message>
-        <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <source>Stopped (%1)</source>
+        <translation>Detido (%1)</translation>
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation>En execución (0)</translation>
     </message>
 </context>
 <context>
@@ -2523,11 +2483,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Tamaño</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Feito</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2666,27 +2621,27 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <translation>Popularidade</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Progreso</translation>
+    </message>
+    <message>
+        <source>Info Hash v1</source>
+        <translation>Hash de información v1</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>Hash de información v2</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>Ruta de gardado incompleta</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privado</translation>
     </message>
 </context>
 <context>
@@ -2797,7 +2752,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Renamed</source>
-        <translation type="unfinished" />
+        <translation>Renomeado</translation>
     </message>
     <message>
         <source>Original</source>
@@ -2821,10 +2776,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>Hai %1</translation>
-    </message>
-    <message>
-        <source>Paused</source>
-        <translation type="vanished">Detido</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2892,11 +2843,11 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Parado</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/D</translation>
     </message>
 </context>
 <context>
@@ -2919,7 +2870,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished" />
+        <translation>Contraer/expandir</translation>
     </message>
 </context>
 <context>
@@ -2935,21 +2886,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     <message>
         <source>Rename</source>
         <translation>Cambiar o nome</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Continuar</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Forzar continuación</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Deter</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3103,7 +3039,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Export .torrent</source>
-        <translation type="unfinished" />
+        <translation>Exportar .torrent</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -3111,7 +3047,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Rename Files...</source>
-        <translation type="unfinished" />
+        <translation>Cambiar o nome dos ficheiros...</translation>
     </message>
     <message>
         <source>Renaming</source>
@@ -3119,18 +3055,18 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Comment</source>
+        <translation>Comentario</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Parar</translation>
+    </message>
+    <message>
+        <source>Force Start</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stop</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Force Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3171,16 +3107,12 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Tamén elimina permanentemente os ficheiros</translation>
-    </message>
-    <message>
         <source>Remove torrent(s)</source>
         <translation>Eliminar torrent(s)</translation>
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation type="unfinished" />
+        <translation>Elimina tamén os ficheiros de contido</translation>
     </message>
 </context>
 <context>
@@ -3376,11 +3308,11 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation type="unfinished" />
+        <translation>Fai clic no botón "Buscar complementos..." na parte inferior dereita da xanela para instalar algúns.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
-        <translation type="unfinished" />
+        <translation>Non hai ningún complemento de busca instalado.</translation>
     </message>
     <message>
         <source>Start a search above.</source>
@@ -3450,7 +3382,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Published On</source>
-        <translation type="unfinished" />
+        <translation>Publicado o</translation>
     </message>
 </context>
 <context>
@@ -3518,14 +3450,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <translation>Etiqueta:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Deter os torrents</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Continuar os torrents</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Eliminar as etiquetas non usadas</translation>
     </message>
@@ -3543,11 +3467,11 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Iniciar torrents</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Deter torrents</translation>
     </message>
 </context>
 <context>
@@ -3641,11 +3565,11 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>q Mascota de Bittorrent</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>Icona de qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -3690,20 +3614,20 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <translation>Descargar ligazón</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>Buscando...</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>A busca rematou</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>Produciuse un erro durante a busca...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Busca cancelada</translation>
     </message>
 </context>
 <context>
@@ -4003,10 +3927,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <translation>Se a orde das palabras importa, use * no canto dun espazo en branco.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Engadir como detidos:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Escriba o nome da regra de descarga nova.</translation>
     </message>
@@ -4062,7 +3982,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Engadir etiquetas:</translation>
     </message>
     <message>
         <source>Add Stopped:</source>
@@ -4072,10 +3992,6 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Continuar os torrents</translation>
-    </message>
-    <message>
         <source>All (%1)</source>
         <translation>Todo (%1)</translation>
     </message>
@@ -4084,20 +4000,16 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
         <translation>Sen localizador (%1)</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Deter os torrents</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation>Eliminar torrents</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Iniciar torrents</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Deter torrents</translation>
     </message>
 </context>
 <context>
@@ -4119,7 +4031,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Blocked</source>
-        <translation type="unfinished" />
+        <translation>Bloqueado</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -4143,11 +4055,11 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished" />
+        <translation>ID</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation type="unfinished" />
+        <translation>Tipo de rexistro</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -4167,7 +4079,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Filter logs</source>
-        <translation type="unfinished" />
+        <translation>Filtrar rexistros</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
@@ -4183,11 +4095,11 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Timestamp</source>
-        <translation type="unfinished" />
+        <translation>Selo de tempo</translation>
     </message>
     <message>
         <source>Clear All</source>
-        <translation type="unfinished" />
+        <translation>Borrar todo</translation>
     </message>
     <message>
         <source>Message</source>
@@ -4195,15 +4107,15 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation type="unfinished" />
+        <translation>Niveis de rexistro:</translation>
     </message>
     <message>
         <source>Reason</source>
-        <translation type="unfinished" />
+        <translation>Razón</translation>
     </message>
     <message>
         <source>item</source>
-        <translation type="unfinished" />
+        <translation>elemento</translation>
     </message>
     <message>
         <source>IP</source>
@@ -4211,7 +4123,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Banned</source>
-        <translation type="unfinished" />
+        <translation>Prohibido</translation>
     </message>
     <message>
         <source>Normal Messages</source>
@@ -4219,7 +4131,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Critical</source>
-        <translation type="unfinished" />
+        <translation>Crítico</translation>
     </message>
     <message>
         <source>Critical Messages</source>
@@ -4231,7 +4143,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>items</source>
-        <translation type="unfinished" />
+        <translation>elementos</translation>
     </message>
     <message>
         <source>Results</source>
@@ -4239,18 +4151,18 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished" />
+        <translation>Información</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation type="unfinished" />
+        <translation>Escolle un nivel de rexistro...</translation>
     </message>
 </context>
 <context>
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Pechar lapela</translation>
     </message>
 </context>
 </TS>

@@ -97,14 +97,6 @@
         <translation>移除未使用的分類</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">繼續 torrent</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">暫停 torrent</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>新分類</translation>
     </message>
@@ -122,11 +114,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>啟動 torrent</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>停止 torrent</translation>
     </message>
 </context>
 <context>
@@ -384,28 +376,28 @@
         <translation>需要 JavaScript！您必須啟用 JavaScript 以讓 WebUI 正常運作</translation>
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>無法登入，qBittorrent 可能無法連線。</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>無法聯絡 qBittorrent</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>密碼</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>使用者名稱</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>無效的使用者名稱或密碼。</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>登入</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>選項…</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">繼續</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>頂端工具列</translation>
     </message>
@@ -455,24 +443,12 @@
         <translation>捐款！</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">全部繼續</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>統計資料</translation>
     </message>
     <message>
         <source>About</source>
         <translation>關於</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">暫停</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">全部暫停</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -615,14 +591,6 @@
         <translation>移除</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">您想要繼續所有 torrents 嗎？</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">您想要暫停所有 torrents 嗎？</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>執行紀錄檔</translation>
     </message>
@@ -635,28 +603,28 @@
         <translation>[下載：%1，上傳：%2]</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Start All</source>
-        <translation type="unfinished" />
+        <source>Would you like to start all torrents?</source>
+        <translation>您想要啟動所有 torrent 嗎？</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>停止</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
+        <translation>您想要停止所有 torrent 嗎？</translation>
     </message>
     <message>
-        <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
+        <source>Start All</source>
+        <translation>全部啟動</translation>
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
+        <translation>全部停止</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>啟動</translation>
     </message>
 </context>
 <context>
@@ -704,10 +672,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Torrent 佇列</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">自動新增這些 Tracker 到新的下載中：</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1202,10 +1166,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>上傳最快</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">暫停 torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1856,31 +1816,47 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>自訂應用程式實體名稱：</translation>
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stop torrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Automatically append these trackers to new downloads:</source>
-        <translation type="unfinished" />
+        <source>Send test email</source>
+        <translation>傳送測試電子郵件</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation type="unfinished" />
+        <translation>嘗試發送電子郵件。請檢查您的收件匣以確認是否成功</translation>
+    </message>
+    <message>
+        <source>Automatically append these trackers to new downloads:</source>
+        <translation>自動將這些追蹤器附加到新下載中：</translation>
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation>停止 torrent</translation>
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
+        <translation>移動檔案到回收桶（若可能）</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
-        <translation type="unfinished" />
+        <translation>Torrent 內容移除模式：</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
+        <translation>永久刪除檔案</translation>
+    </message>
+    <message>
+        <source>Merge trackers to existing torrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2248,24 +2224,24 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>符合所有出現的狀況</translation>
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>人氣：</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation type="unfinished" />
+        <translation>比例 / 活躍時間（以月為單位），表示該 torrent 的受歡迎程度</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>是</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>否</translation>
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>私人：</translation>
     </message>
 </context>
 <context>
@@ -2396,14 +2372,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>已完成 (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">繼續 (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">暫停 (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>活躍的 (0)</translation>
     </message>
@@ -2430,14 +2398,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Completed (%1)</source>
         <translation>已完成 (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">暫停 (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">繼續 (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2492,20 +2452,20 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>移動中 (0)</translation>
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <source>Running (%1)</source>
+        <translation>正在執行 (%1)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>已停止 (0)</translation>
     </message>
     <message>
-        <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <source>Stopped (%1)</source>
+        <translation>已停止 (%1)</translation>
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation>正在執行 (0)</translation>
     </message>
 </context>
 <context>
@@ -2522,11 +2482,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>大小</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">完成</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2665,27 +2620,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <translation>人氣</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>進度</translation>
+    </message>
+    <message>
+        <source>Info Hash v1</source>
+        <translation>資訊雜湊值 v1</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>資訊雜湊值 v2</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>不完整的儲存路徑</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>私人</translation>
     </message>
 </context>
 <context>
@@ -2822,10 +2777,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>%1 前</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">暫停</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>已完成</translation>
     </message>
@@ -2891,11 +2842,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>已停止</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
 </context>
 <context>
@@ -2934,21 +2885,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Rename</source>
         <translation>重新命名</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">繼續</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">強制繼續</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">暫停</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3121,16 +3057,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>註解</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>停止</translation>
     </message>
     <message>
         <source>Force Start</source>
-        <translation type="unfinished" />
+        <translation>強制啟動</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>啟動</translation>
     </message>
 </context>
 <context>
@@ -3170,16 +3106,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">同時永久刪除檔案</translation>
-    </message>
-    <message>
         <source>Remove torrent(s)</source>
         <translation>移除 torrent(s)</translation>
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation type="unfinished" />
+        <translation>也移除內容檔案</translation>
     </message>
 </context>
 <context>
@@ -3383,7 +3315,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Start a search above.</source>
-        <translation type="unfinished" />
+        <translation>在上方開始搜尋。</translation>
     </message>
 </context>
 <context>
@@ -3449,7 +3381,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Published On</source>
-        <translation type="unfinished" />
+        <translation>發佈於</translation>
     </message>
 </context>
 <context>
@@ -3517,14 +3449,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>標籤：</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">暫停 torrent</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">繼續 torrent</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>移除未使用的標籤</translation>
     </message>
@@ -3542,11 +3466,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>啟動 torrent</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>停止 torrent</translation>
     </message>
 </context>
 <context>
@@ -3689,20 +3613,20 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>下載連結</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>正在搜尋…</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>搜尋完成</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>搜尋時遇到錯誤…</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>搜尋中止</translation>
     </message>
 </context>
 <context>
@@ -4002,10 +3926,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>若文字順序很重要請使用 * 而非空格。</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">加入已暫停的：</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>請輸入新下載規則的名稱。</translation>
     </message>
@@ -4065,15 +3985,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add Stopped:</source>
-        <translation type="unfinished" />
+        <translation>新增已停止的：</translation>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">繼續 torrent</translation>
-    </message>
     <message>
         <source>All (%1)</source>
         <translation>全部 (%1)</translation>
@@ -4083,20 +3999,16 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>缺少 Tracker (%1)</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">暫停 torrent</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation>移除 torrents</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>啟動 torrent</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>停止 torrent</translation>
     </message>
 </context>
 <context>
@@ -4249,7 +4161,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>關閉分頁</translation>
     </message>
 </context>
 </TS>

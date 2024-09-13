@@ -97,14 +97,6 @@
         <translation>Fjern ubrukte kategorier</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Gjenoppta torrenter</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Sett torrenter på pause</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Ny kategori</translation>
     </message>
@@ -384,28 +376,28 @@
         <translation>JavaScript kreves. Du må aktivere JavaScript for at nettgrensesnittet skal virke.</translation>
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>Ikke i stand til å logge inn, qBittorrent er sannsynligvis unåelig.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Passord</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Brukernavn</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>Ugyldig brukernavn eller passord.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>Logg inn</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>Alternativer …</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Gjenoppta</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Topp-verktøyslinje</translation>
     </message>
@@ -455,24 +443,12 @@
         <translation>Doner!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Gjenoppta alle</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Statistikk</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Om</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Sett på pause</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Sett alt på pause</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -615,14 +591,6 @@
         <translation>Fjern</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Vil du gjenoppta alle torrenter?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Vil du sette alle torrenter på pause?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Utførelseslogg</translation>
     </message>
@@ -635,7 +603,15 @@
         <translation>[D: %1, U: %2]</translation>
     </message>
     <message>
-        <source>Start</source>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Stopp</translation>
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -643,19 +619,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -704,10 +672,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Torrentkødanning</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Automatisk legg disse sporerne til nye nedlastinger:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1202,10 +1166,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>Raskeste opplasting</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Sett torrent på pause</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1856,11 +1816,11 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation>Tilpass instansnavn:</translation>
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
+        <source>Send test email</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop torrent</source>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1868,7 +1828,11 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1880,7 +1844,19 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>Merge trackers to existing torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2248,20 +2224,20 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation>Treff alle forekomster</translation>
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Ja</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Nei</translation>
     </message>
     <message>
         <source>Private:</source>
@@ -2396,14 +2372,6 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation>Fullførte (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Gjenopptatte (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Satt på pause (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Aktive (0)</translation>
     </message>
@@ -2430,14 +2398,6 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     <message>
         <source>Completed (%1)</source>
         <translation>Fullførte (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Satt på pause (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Gjenopptatte (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2492,11 +2452,7 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation>Flytter (0)</translation>
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
+        <source>Running (%1)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2504,7 +2460,11 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Running (%1)</source>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2522,11 +2482,6 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Størrelse</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Ferdig</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2668,20 +2623,20 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <source>Progress</source>
+        <translation>Framdrift</translation>
     </message>
     <message>
-        <source>Progress</source>
-        <translation type="unfinished" />
+        <source>Info Hash v1</source>
+        <translation>Info-hash v1</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>Info-hash v2</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>Ufullstendig lagringssti</translation>
     </message>
     <message>
         <source>Private</source>
@@ -2822,10 +2777,6 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation>%1 siden</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Pauset</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Fullført</translation>
     </message>
@@ -2891,11 +2842,11 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Stoppet</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Irrelevant</translation>
     </message>
 </context>
 <context>
@@ -2934,21 +2885,6 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     <message>
         <source>Rename</source>
         <translation>Gi nytt navn</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Gjenoppta</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Påtving gjenopptakelse</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Sett på pause</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3121,15 +3057,15 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation>Kommentar</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Stopp</translation>
     </message>
     <message>
         <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3169,10 +3105,6 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </context>
 <context>
     <name>confirmDeletionDlg</name>
-    <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Slett også filene permanent</translation>
-    </message>
     <message>
         <source>Remove torrent(s)</source>
         <translation>Fjern torrent(er)</translation>
@@ -3517,14 +3449,6 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation>Etikett:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Sett torrenter på pause</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Gjenoppta torrenter</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Fjern ubrukte etiketter</translation>
     </message>
@@ -3689,20 +3613,20 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation>Nedlastingslenke</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>Søker …</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Søket er ferdig</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>En feil oppstod under søket …</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Søket ble avbrutt</translation>
     </message>
 </context>
 <context>
@@ -4002,10 +3926,6 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
         <translation>Bruk * i stedet for tomrom hvis ord-rekkefølgen er viktig.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Legg til uten å starte:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Skriv navnet på den nye nedlastingsregelen.</translation>
     </message>
@@ -4071,20 +3991,12 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Gjenoppta torrenter</translation>
-    </message>
-    <message>
         <source>All (%1)</source>
         <translation>Alle (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
         <translation>Sporerløse (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Sett torrenter på pause</translation>
     </message>
     <message>
         <source>Remove torrents</source>
@@ -4249,7 +4161,7 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Lukk fane</translation>
     </message>
 </context>
 </TS>

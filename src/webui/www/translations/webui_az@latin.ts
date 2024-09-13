@@ -97,14 +97,6 @@
         <translation>İstifadə olunmayan kateqoriyanı silmək</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Torrentləri davam etdirmək</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Torrentlərə fasilə</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Yeni kateqriya</translation>
     </message>
@@ -384,28 +376,28 @@
         <translation>JavaScript tələb olunur! Düzgün şəkildə işləməsi üçün Veb istifadəçi interfeysi üçün JavaScript'i aktiv etməlisiniz</translation>
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>Giriş mümkün olmadı, qBittorrent çox güman ki, əlçatmazdır.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Şifrə</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>İstifadəçi adı</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>İstifadəçi adı və Şifrə səhvdir.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>Giriş</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>Seçimlər...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Davam etdirmək</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Üst alətlər paneli</translation>
     </message>
@@ -455,24 +443,12 @@
         <translation>İanə etmək!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Hamısına davam</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Statistikalar</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Haqqında</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Fasilə</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Hamısına fasilə</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -615,14 +591,6 @@
         <translation>Silin</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Bütün torrentlər davam etdirilsin?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Bütün torrenlərə fasilə verilsin?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>İcra jurnalı</translation>
     </message>
@@ -635,7 +603,15 @@
         <translation>[D: %1, U: %2]</translation>
     </message>
     <message>
-        <source>Start</source>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Dayandırmaq</translation>
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -643,19 +619,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -704,10 +672,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Torrent növbələnməsi</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Bu izləyiciləri avtomatik yeni yükləmələrə əlavə edin:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1202,10 +1166,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>Ən sürətli yükləmə</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Torrentə fasilə</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1856,11 +1816,11 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>Tətbiq nümunəsi adını özünüz seçin:</translation>
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
+        <source>Send test email</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop torrent</source>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1868,7 +1828,11 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1880,7 +1844,19 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>Merge trackers to existing torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2248,20 +2224,20 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>Bütün hadisələri uyğunlaşdırın</translation>
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Bəli</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Xeyr</translation>
     </message>
     <message>
         <source>Private:</source>
@@ -2396,14 +2372,6 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>Tamamlanan (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Davam etdirilən (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Fasilədə (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Aktiv (0)</translation>
     </message>
@@ -2430,14 +2398,6 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>Completed (%1)</source>
         <translation>Başa çatdı (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Fasilədə (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Davam etdirilən (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2492,11 +2452,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>Köçürülür (0)</translation>
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
+        <source>Running (%1)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2504,7 +2460,11 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Running (%1)</source>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2522,11 +2482,6 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Ölçü</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">İcra olundu</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2668,20 +2623,20 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <source>Progress</source>
+        <translation>Gedişat</translation>
     </message>
     <message>
-        <source>Progress</source>
-        <translation type="unfinished" />
+        <source>Info Hash v1</source>
+        <translation>Məlumat heş-i v1</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>Məlumat heş-i v2</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>Tamamlanmayanların saxlama yolu</translation>
     </message>
     <message>
         <source>Private</source>
@@ -2822,10 +2777,6 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>%1 əvvəl</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Fasilədə</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Başa çatdı</translation>
     </message>
@@ -2895,7 +2846,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Ə/D</translation>
     </message>
 </context>
 <context>
@@ -2934,21 +2885,6 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>Rename</source>
         <translation>Adını dəyişmək</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Davam etdirmək</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Məcburi davam etdirmək</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Fasilə</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3121,15 +3057,15 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>Şərh</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Dayandırmaq</translation>
     </message>
     <message>
         <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3169,10 +3105,6 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </context>
 <context>
     <name>confirmDeletionDlg</name>
-    <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Həmçinin bu faylı birdəfəlik silin</translation>
-    </message>
     <message>
         <source>Remove torrent(s)</source>
         <translation>Torrent(lər)i silin</translation>
@@ -3517,14 +3449,6 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>Etiket:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Torrentlərə fasilə</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Torrentləri davam etdirmək</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>İstifadəsiz etiketləri silmək</translation>
     </message>
@@ -3689,20 +3613,20 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>Endirmə keçidi</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>Axtarılır...</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Axtarış sona çatdı</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>Axtarış zamanı xəta baş verdi...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Axtarış ləğv edildi</translation>
     </message>
 </context>
 <context>
@@ -4002,10 +3926,6 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>Əgər sözlərin sıralanmasının istifadəsi vacibdirsə boşluq əvəzinə «*» istifadə edin.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Fasilədə, kimi əlavə edin:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Lütfən, yeni endirmə qaydasının adını yazın.</translation>
     </message>
@@ -4071,20 +3991,12 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Torrentləri davam etdirmək</translation>
-    </message>
-    <message>
         <source>All (%1)</source>
         <translation>Hamısı (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
         <translation>İzləyicilərsiz (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Torrentlərə fasilə</translation>
     </message>
     <message>
         <source>Remove torrents</source>
@@ -4249,7 +4161,7 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Vərəqi bağlayın</translation>
     </message>
 </context>
 </TS>

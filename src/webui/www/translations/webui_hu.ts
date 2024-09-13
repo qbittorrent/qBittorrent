@@ -97,14 +97,6 @@
         <translation>Nem használt kategóriák eltávolítása</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Torrentek folytatása</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Torrentek szüneteltetése</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Új kategória</translation>
     </message>
@@ -122,11 +114,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentek indítása</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentek leállítása</translation>
     </message>
 </context>
 <context>
@@ -384,28 +376,28 @@
         <translation>JavaScript szükséges! A WebUI megfelelő működéséhez engedélyeznie kell a JavaScriptet.</translation>
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>Nem sikerült bejelentkezni, qBittorrent talán elérhetetlen.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>Nem sikerült kapcsolatba lépni a qBittorrenttel</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Jelszó</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Felhasználónév</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>Érvénytelen felhasználónév vagy Jelszó.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>Bejelentkezés</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>Beállítások...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Folytatás</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Felső eszköztár</translation>
     </message>
@@ -455,24 +443,12 @@
         <translation>Adományozz!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Összes folytatása</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Statisztika</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Névjegy</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Szünet</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Összes szüneteltetése</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -615,14 +591,6 @@
         <translation>Eltávolítás</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Folytatja az összes torrentet?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Szünetelteti az összes torrentet?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Napló</translation>
     </message>
@@ -635,28 +603,28 @@
         <translation>[L: %1, F: %2]</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Start All</source>
-        <translation type="unfinished" />
+        <source>Would you like to start all torrents?</source>
+        <translation>Szeretné elindítani az összes torrentet?</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Leállítás</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Szeretné leállítani az összes torrentet?</translation>
     </message>
     <message>
-        <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
+        <source>Start All</source>
+        <translation>Összes indítása</translation>
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
+        <translation>Összes leállítása</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Start</translation>
     </message>
 </context>
 <context>
@@ -704,10 +672,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Torrent ütemezés</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Ezen trackerek automatikus hozzáadása az új letöltésekhez:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1202,10 +1166,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>Leggyorsabb feltöltés</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Torrent szüneteltetése</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1856,31 +1816,47 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <translation>Alkalmazáspéldány nevének testreszabása:</translation>
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stop torrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Automatically append these trackers to new downloads:</source>
-        <translation type="unfinished" />
+        <source>Send test email</source>
+        <translation>Teszt email küldése</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation type="unfinished" />
+        <translation>Email küldés megkísérelve. Ellenőrizze a megadott email fiókot a sikeres küldés megerősítéséhez.</translation>
+    </message>
+    <message>
+        <source>Automatically append these trackers to new downloads:</source>
+        <translation>Ezen trackerek automatikus hozzáadása az új letöltésekhez:</translation>
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation>Torrent leállítása</translation>
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
+        <translation>Fájlok áthelyezése a kukába (ha lehetséges)</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
-        <translation type="unfinished" />
+        <translation>Torrent tartalom eltávolítási mód:</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
+        <translation>Fájlok végleges törlése</translation>
+    </message>
+    <message>
+        <source>Merge trackers to existing torrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2248,24 +2224,24 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <translation>Minden előfordulás egyezzen</translation>
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>Népszerűség:</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation type="unfinished" />
+        <translation>Arány / Aktív idő (hónapokban), jelzi, mennyire népszerű a torrent</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Igen</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Nem</translation>
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>Privát</translation>
     </message>
 </context>
 <context>
@@ -2396,14 +2372,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <translation>Kész (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Folytatott (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Szüneteltetett (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Aktív (0)</translation>
     </message>
@@ -2430,14 +2398,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     <message>
         <source>Completed (%1)</source>
         <translation>Kész (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Szüneteltetett (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Folytatott (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2492,20 +2452,20 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <translation>Áthelyezés (0)</translation>
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <source>Running (%1)</source>
+        <translation>Folyamatban (%1)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>Megállítva (0)</translation>
     </message>
     <message>
-        <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <source>Stopped (%1)</source>
+        <translation>Megállítva (%1)</translation>
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation>Folyamatban (0)</translation>
     </message>
 </context>
 <context>
@@ -2522,11 +2482,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Méret</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Elkészült</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2665,27 +2620,27 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <translation>Népszerűség</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Folyamat</translation>
+    </message>
+    <message>
+        <source>Info Hash v1</source>
+        <translation>Info Hash v1</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>Info Hash v2</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>Befejezetlen mentés helye</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privát</translation>
     </message>
 </context>
 <context>
@@ -2822,10 +2777,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <translation>%1 ideje</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Szüneteltetett</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Befejezett</translation>
     </message>
@@ -2891,11 +2842,11 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Megállítva</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
 </context>
 <context>
@@ -2934,21 +2885,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     <message>
         <source>Rename</source>
         <translation>Átnevezés</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Folytatás</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Kényszerített folytatás</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Szünet</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3121,16 +3057,16 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <translation>Megjegyzés</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Leállítás</translation>
     </message>
     <message>
         <source>Force Start</source>
-        <translation type="unfinished" />
+        <translation>Kényszerített indítás</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Start</translation>
     </message>
 </context>
 <context>
@@ -3170,16 +3106,12 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Törölje véglegesen a fájlokat is</translation>
-    </message>
-    <message>
         <source>Remove torrent(s)</source>
         <translation>Torrent(ek) eltávolítása</translation>
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation type="unfinished" />
+        <translation>Tartalom fájlokat is távolítsa el</translation>
     </message>
 </context>
 <context>
@@ -3383,7 +3315,7 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Start a search above.</source>
-        <translation type="unfinished" />
+        <translation>Indítson keresést fent.</translation>
     </message>
 </context>
 <context>
@@ -3449,7 +3381,7 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Published On</source>
-        <translation type="unfinished" />
+        <translation>Közzétéve</translation>
     </message>
 </context>
 <context>
@@ -3517,14 +3449,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <translation>Címke:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Torrentek szüneteltetése</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Torrentek folytatása</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Nem használt címkék eltávolítása</translation>
     </message>
@@ -3542,11 +3466,11 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentek indítása</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentek leállítása</translation>
     </message>
 </context>
 <context>
@@ -3689,20 +3613,20 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <translation>Letöltési link</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>Keresés…</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>A keresés befejeződött</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>Hiba történt a keresés közben…</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Keresés megszakítva</translation>
     </message>
 </context>
 <context>
@@ -4002,10 +3926,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <translation>Ha a szósorrend fontos, akkor használjon *-ot üres karakter helyett</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Hozzáad szüneteltetve:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Kérlek add meg az új letöltési szabály nevét.</translation>
     </message>
@@ -4065,15 +3985,11 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Add Stopped:</source>
-        <translation type="unfinished" />
+        <translation>Hozzáad megállítva:</translation>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Torrentek folytatása</translation>
-    </message>
     <message>
         <source>All (%1)</source>
         <translation>Összes (%1)</translation>
@@ -4083,20 +3999,16 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
         <translation>Tracker nélküli (%1)</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Torrentek szüneteltetése</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation>Torrentek eltávolítása</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentek indítása</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentek leállítása</translation>
     </message>
 </context>
 <context>
@@ -4249,7 +4161,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Fül bezárása</translation>
     </message>
 </context>
 </TS>

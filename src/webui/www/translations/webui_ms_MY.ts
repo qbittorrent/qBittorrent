@@ -97,14 +97,6 @@
         <translation>Buang kategori yang tidak digunakan</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Sambung semula torrent</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Jeda torrent</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Kategori Baharu</translation>
     </message>
@@ -384,28 +376,28 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>Tidak boleh daftar masuk, qBittorrent berkemungkinan tidak boleh dicapai.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Kata Laluan</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Nama pengguna</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>Nama Pengguna atau Kata Laluan tidak sah.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>Daftar Masuk</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>Pilihan...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Sambung Semula</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Palang Alat Atas</translation>
     </message>
@@ -455,24 +443,12 @@
         <translation>Beri Derma!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Sambung Semula Semua</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Statistik</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Perihal</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Jeda</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Jeda Semua</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -627,7 +603,15 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Start</source>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Henti</translation>
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -635,19 +619,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -696,10 +672,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Pembarisan Gilir Torrent</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Tambah penjejak ini secara automatik ke muat turun baharu:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1194,10 +1166,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>Muat naik terpantas</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Jeda torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1848,11 +1816,11 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
+        <source>Send test email</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop torrent</source>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1860,7 +1828,11 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1872,7 +1844,19 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>Merge trackers to existing torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2240,20 +2224,20 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Ya</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Tidak</translation>
     </message>
     <message>
         <source>Private:</source>
@@ -2388,14 +2372,6 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
         <translation>Selesai (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Disambung Semula (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Dijeda (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Aktif (0)</translation>
     </message>
@@ -2422,14 +2398,6 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     <message>
         <source>Completed (%1)</source>
         <translation>Selesai (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Dijeda (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Disambung Semula (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2484,11 +2452,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
+        <source>Running (%1)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2496,7 +2460,11 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Running (%1)</source>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2514,11 +2482,6 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Saiz</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Selesai</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2660,11 +2623,11 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <source>Progress</source>
+        <translation>Kemajuan</translation>
     </message>
     <message>
-        <source>Progress</source>
+        <source>Info Hash v1</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2814,10 +2777,6 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
         <translation>%1 yang lalu</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Dijeda</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Selesai</translation>
     </message>
@@ -2887,7 +2846,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>T/A</translation>
     </message>
 </context>
 <context>
@@ -2926,21 +2885,6 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     <message>
         <source>Rename</source>
         <translation>Nama semula</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Sambung Semula</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Paksa Sambung Semula</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Jeda</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3113,15 +3057,15 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Henti</translation>
     </message>
     <message>
         <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3505,14 +3449,6 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
         <translation>Tag:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Jeda torrent</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Sambung semula torrent</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Buang tag yang tidak digunakan</translation>
     </message>
@@ -3677,20 +3613,20 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
         <translation>Pautan muat turun</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>Menggelintar...</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Gelintar selesai</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>Satu ralat berlaku ketika menggelintar...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Gelintar dihenti paksa</translation>
     </message>
 </context>
 <context>
@@ -3990,10 +3926,6 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
         <translation>Jika tertib perkataan adalah mustahak guna * selain dari ruang putih.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Tambah Dijeda:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Sila taip nama bagi peraturan muat turun baharu.</translation>
     </message>
@@ -4058,20 +3990,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Sambung semula torrent</translation>
-    </message>
-    <message>
         <source>All (%1)</source>
         <translation>Semua (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
         <translation>Tanpa Penjejak (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Jeda torrent</translation>
     </message>
     <message>
         <source>Remove torrents</source>

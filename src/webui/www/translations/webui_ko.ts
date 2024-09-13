@@ -97,14 +97,6 @@
         <translation>미사용 범주 제거</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">토렌트 이어받기</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">토렌트 일시정지</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>새 범주</translation>
     </message>
@@ -384,28 +376,28 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>로그인 할 수 없습니다. qBittorrent가 접근할 수 없는 것 같습니다.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>암호</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>사용자 이름</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>사용자 이름/암호가 올바르지 않습니다.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>로그인</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>옵션…</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">이어받기</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>기본 도구모음</translation>
     </message>
@@ -455,24 +443,12 @@
         <translation>기부!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">모두 이어받기</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>통계</translation>
     </message>
     <message>
         <source>About</source>
         <translation>정보</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">일시정지</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">모두 일시정지</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -615,14 +591,6 @@
         <translation>제거</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">모든 토렌트를 이어받기하시겠습니까?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">모든 토렌트를 일시 정지하시겠습니까?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>실행 로그</translation>
     </message>
@@ -635,7 +603,15 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Start</source>
+        <source>Would you like to start all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>정지</translation>
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -643,19 +619,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -704,10 +672,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>토렌트 대기열</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">새 내려받기에 자동 추가할 트래커:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1202,10 +1166,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>가장 빠른 올려주기</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">토렌트 일시정지</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1856,11 +1816,11 @@ DNS 재결합 공격을 방어하기 위해
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
+        <source>Send test email</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop torrent</source>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1868,7 +1828,11 @@ DNS 재결합 공격을 방어하기 위해
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <source>Stop torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1880,7 +1844,19 @@ DNS 재결합 공격을 방어하기 위해
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>Merge trackers to existing torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2248,20 +2224,20 @@ DNS 재결합 공격을 방어하기 위해
         <translation>모든 항목 일치</translation>
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>예</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>아니요</translation>
     </message>
     <message>
         <source>Private:</source>
@@ -2396,14 +2372,6 @@ DNS 재결합 공격을 방어하기 위해
         <translation>완료 (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">이어받기됨 (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">일시정지됨 (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>활성 (0)</translation>
     </message>
@@ -2430,14 +2398,6 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <source>Completed (%1)</source>
         <translation>완료됨 (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">일시정지됨 (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">이어받기됨 (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2492,11 +2452,7 @@ DNS 재결합 공격을 방어하기 위해
         <translation>이동 중 (0)</translation>
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
+        <source>Running (%1)</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2504,7 +2460,11 @@ DNS 재결합 공격을 방어하기 위해
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Running (%1)</source>
+        <source>Stopped (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Running (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2522,11 +2482,6 @@ DNS 재결합 공격을 방어하기 위해
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>크기</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">완료</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2668,20 +2623,20 @@ DNS 재결합 공격을 방어하기 위해
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <source>Progress</source>
+        <translation>진행률</translation>
     </message>
     <message>
-        <source>Progress</source>
-        <translation type="unfinished" />
+        <source>Info Hash v1</source>
+        <translation>정보 해시 v1</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>정보 해시 v2</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>불완전한 저장 경로</translation>
     </message>
     <message>
         <source>Private</source>
@@ -2822,10 +2777,6 @@ DNS 재결합 공격을 방어하기 위해
         <translation>%1 전</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">일시정지됨</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>완료됨</translation>
     </message>
@@ -2891,11 +2842,11 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>정지됨</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>해당사항 없음</translation>
     </message>
 </context>
 <context>
@@ -2934,21 +2885,6 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <source>Rename</source>
         <translation>이름 바꾸기</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">이어받기</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">이어받기 강제 적용</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">일시정지</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3121,15 +3057,15 @@ DNS 재결합 공격을 방어하기 위해
         <translation>주석</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>정지</translation>
     </message>
     <message>
         <source>Force Start</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3169,10 +3105,6 @@ DNS 재결합 공격을 방어하기 위해
     </context>
 <context>
     <name>confirmDeletionDlg</name>
-    <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">또한 파일을 영구적으로 삭제합니다</translation>
-    </message>
     <message>
         <source>Remove torrent(s)</source>
         <translation>토렌트 제거</translation>
@@ -3517,14 +3449,6 @@ DNS 재결합 공격을 방어하기 위해
         <translation>태그:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">토렌트 일시정지</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">토렌트 이어받기</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>미사용 태그 제거</translation>
     </message>
@@ -3689,20 +3613,20 @@ DNS 재결합 공격을 방어하기 위해
         <translation>내려받기 링크</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>검색 중…</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>검색이 완료되었습니다</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>검색 중 오류 발생…</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>검색 중단됨</translation>
     </message>
 </context>
 <context>
@@ -4002,10 +3926,6 @@ DNS 재결합 공격을 방어하기 위해
         <translation>단어 순서가 중요하면 공백 대신 *를 사용하세요.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">일시정지해서 추가:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>새 내려받기 규칙 이름을 입력하세요.</translation>
     </message>
@@ -4071,20 +3991,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">토렌트 이어받기</translation>
-    </message>
-    <message>
         <source>All (%1)</source>
         <translation>전체 (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
         <translation>트래커 없음 (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">토렌트 일시정지</translation>
     </message>
     <message>
         <source>Remove torrents</source>
@@ -4249,7 +4161,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>탭 닫기</translation>
     </message>
 </context>
 </TS>

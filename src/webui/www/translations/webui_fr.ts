@@ -97,14 +97,6 @@
         <translation>Retirer les catégories inutilisées</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Reprendre les torrents</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Mettre en pause les torrents</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Nouvelle catégorie</translation>
     </message>
@@ -122,11 +114,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Démarrer les torrents</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Stopper les torrents</translation>
     </message>
 </context>
 <context>
@@ -384,28 +376,28 @@
         <translation>JavaScript est requis ! Vous devez activer JavaScript pour que l'IU Web fonctionne correctement</translation>
     </message>
     <message>
-        <source>Login</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Username</source>
-        <translation type="unfinished" />
+        <source>Unable to log in, qBittorrent is probably unreachable.</source>
+        <translation>Impossible de se connecter, qBittorrent est probablement inaccessible.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>Ne peux pas contacter qBittorrent</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Mot de passe</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Nom d'utilisateur</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>Nom d'utilisateur ou mot de passe invalide.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>Se connecter</translation>
     </message>
 </context>
 <context>
@@ -435,10 +427,6 @@
         <translation>Options…</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Reprendre</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Barre d'outils</translation>
     </message>
@@ -455,24 +443,12 @@
         <translation>Faire un don !</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Tout reprendre</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Statistiques</translation>
     </message>
     <message>
         <source>About</source>
         <translation>À propos</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Mettre en pause</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Tout mettre en pause</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -615,14 +591,6 @@
         <translation>Retirer</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Souhaitez-vous reprendre tous les torrents ?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Souhaitez-vous mettre en pause tous les torrents ?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Journal d'exécution</translation>
     </message>
@@ -635,28 +603,28 @@
         <translation>[R : %1, E : %2]</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Start All</source>
-        <translation type="unfinished" />
+        <source>Would you like to start all torrents?</source>
+        <translation>Voulez-vous démarrer tous les torrents ?</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Arrêter</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Voulez-vous stopper tous les torrents ?</translation>
     </message>
     <message>
-        <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
+        <source>Start All</source>
+        <translation>Démarrer tout</translation>
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
+        <translation>Stopper tout</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Démarrer</translation>
     </message>
 </context>
 <context>
@@ -704,10 +672,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>File d'attente des torrents</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Ajouter automatiquement ces trackers aux nouveaux téléchargements :</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1202,10 +1166,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>Envoi le plus rapide</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Mettre en pause le torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1855,31 +1815,47 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Personnaliser le nom de l'instance d'application :</translation>
     </message>
     <message>
-        <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stop torrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Automatically append these trackers to new downloads:</source>
-        <translation type="unfinished" />
+        <source>Send test email</source>
+        <translation>Envoyer un e-mail de test</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation type="unfinished" />
+        <translation>Tentative d'envoi d'e-mail. Vérifiez votre boîte de réception pour confirmer la réussite</translation>
+    </message>
+    <message>
+        <source>Automatically append these trackers to new downloads:</source>
+        <translation>Ajouter automatiquement ces trackers aux nouveaux téléchargements :</translation>
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation>Stopper les torrent</translation>
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
+        <translation>Déplacer dans la corbeille (si possible)</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
-        <translation type="unfinished" />
+        <translation>Mode de retrait de contenu du torrent :</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
+        <translation>Supprimer les fichiers définitivement</translation>
+    </message>
+    <message>
+        <source>Merge trackers to existing torrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Send test email</source>
+        <source>When duplicate torrent is being added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2247,24 +2223,24 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Correspondance de toutes les occurrences</translation>
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>Popularité :</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation type="unfinished" />
+        <translation>Ratio / Temps Actif (en mois), indique la popularité du torrent</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Oui</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Non</translation>
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>Privé :</translation>
     </message>
 </context>
 <context>
@@ -2275,7 +2251,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Override Save Location</source>
-        <translation>Remplacer l'emplacement de sauvegarde</translation>
+        <translation>Remplacer l'emplacement de destination</translation>
     </message>
     <message>
         <source>Monitored folder</source>
@@ -2283,7 +2259,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Default save location</source>
-        <translation>Emplacement de sauvegarde par défaut</translation>
+        <translation>Emplacement de destination par défaut</translation>
     </message>
     <message>
         <source>Other...</source>
@@ -2395,14 +2371,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Terminés (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Repris (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">En pause (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Actifs (0)</translation>
     </message>
@@ -2429,14 +2397,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>Completed (%1)</source>
         <translation>Terminés (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">En pause (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Repris (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2491,20 +2451,20 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>En déplacement (0)</translation>
     </message>
     <message>
-        <source>Running (0)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <source>Running (%1)</source>
+        <translation>En cours (%1)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>Stoppé (0)</translation>
     </message>
     <message>
-        <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <source>Stopped (%1)</source>
+        <translation>Stoppé (%1)</translation>
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation>En cours (0)</translation>
     </message>
 </context>
 <context>
@@ -2521,11 +2481,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Taille</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Terminé</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2664,27 +2619,27 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <translation>Popularité</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Progression</translation>
+    </message>
+    <message>
+        <source>Info Hash v1</source>
+        <translation>Info hash v1</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>Info hash v2</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>Répertoire de destination incomplet</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privé</translation>
     </message>
 </context>
 <context>
@@ -2821,10 +2776,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Il y a %1</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">En pause</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Terminé</translation>
     </message>
@@ -2890,11 +2841,11 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Arrêté</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/D</translation>
     </message>
 </context>
 <context>
@@ -2933,21 +2884,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>Rename</source>
         <translation>Renommer</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Reprendre</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Forcer la reprise</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Mettre en pause</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3120,16 +3056,16 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Commentaire</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Arrêter</translation>
     </message>
     <message>
         <source>Force Start</source>
-        <translation type="unfinished" />
+        <translation>Forcer le démarrage</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Démarrer</translation>
     </message>
 </context>
 <context>
@@ -3169,16 +3105,12 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Supprimer également les fichiers de manière définitive</translation>
-    </message>
-    <message>
         <source>Remove torrent(s)</source>
         <translation>Retirer le(s) torrent(s)</translation>
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation type="unfinished" />
+        <translation>Retirer également les fichiers de contenu</translation>
     </message>
 </context>
 <context>
@@ -3382,7 +3314,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Start a search above.</source>
-        <translation type="unfinished" />
+        <translation>Démarrer une recherche ci-dessous.</translation>
     </message>
 </context>
 <context>
@@ -3448,7 +3380,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Published On</source>
-        <translation type="unfinished" />
+        <translation>Publié sur</translation>
     </message>
 </context>
 <context>
@@ -3516,14 +3448,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Étiquette :</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Mettre en pause les torrents</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Reprendre les torrents</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Retirer les étiquettes inutilisées</translation>
     </message>
@@ -3541,11 +3465,11 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Démarrer les torrents</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Stopper les torrents</translation>
     </message>
 </context>
 <context>
@@ -3688,20 +3612,20 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Télécharger le lien</translation>
     </message>
     <message>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <source>Searching...</source>
+        <translation>Recherche en cours…</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>La recherche est terminée</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>Une erreur s'est produite lors de la recherche…</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Recherche annulée</translation>
     </message>
 </context>
 <context>
@@ -4001,10 +3925,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Si l'ordre des mots est important, utilisez * au lieu d'un espace.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Ajouter en pause :</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Veuillez entrer le nom de la nouvelle règle de téléchargement.</translation>
     </message>
@@ -4064,15 +3984,11 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Add Stopped:</source>
-        <translation type="unfinished" />
+        <translation>Ajouter stoppé :</translation>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Reprendre les torrents</translation>
-    </message>
     <message>
         <source>All (%1)</source>
         <translation>Tous (%1)</translation>
@@ -4082,20 +3998,16 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
         <translation>Sans tracker (%1)</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Mettre en pause les torrents</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation>Retirer les torrents</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Démarrer les torrents</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Stopper les torrents</translation>
     </message>
 </context>
 <context>
@@ -4248,7 +4160,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Fermer l'onglet</translation>
     </message>
 </context>
 </TS>
