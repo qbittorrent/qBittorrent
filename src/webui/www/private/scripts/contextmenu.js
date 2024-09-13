@@ -315,6 +315,8 @@ window.qBittorrent.ContextMenu ??= (() => {
             let all_are_super_seeding = true;
             let all_are_auto_tmm = true;
             let there_are_auto_tmm = false;
+            let thereAreV1Hashes = false;
+            let thereAreV2Hashes = false;
             const tagCount = new Map();
             const categoryCount = new Map();
 
@@ -351,6 +353,12 @@ window.qBittorrent.ContextMenu ??= (() => {
                     there_are_auto_tmm = true;
                 else
                     all_are_auto_tmm = false;
+
+                if (data["infohash_v1"] !== "")
+                    thereAreV1Hashes = true;
+
+                if (data["infohash_v2"] !== "")
+                    thereAreV2Hashes = true;
 
                 const torrentTags = data["tags"].split(", ");
                 for (const tag of torrentTags) {
@@ -429,6 +437,9 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.showItem("autoTorrentManagement");
                 this.setItemChecked("autoTorrentManagement", all_are_auto_tmm);
             }
+
+            this.setEnabled("copyInfohash1", thereAreV1Hashes);
+            this.setEnabled("copyInfohash2", thereAreV2Hashes);
 
             const contextTagList = $("contextTagList");
             tagList.forEach((tag, tagHash) => {
