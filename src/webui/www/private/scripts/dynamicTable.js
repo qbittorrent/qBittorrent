@@ -898,6 +898,11 @@ window.qBittorrent.DynamicTable ??= (() => {
     const TorrentsTable = new Class({
         Extends: DynamicTable,
 
+        setup: function(dynamicTableDivId, dynamicTableFixedHeaderDivId, contextMenu) {
+            this.parent(dynamicTableDivId, dynamicTableFixedHeaderDivId, contextMenu);
+            this.rows = new Map();
+        },
+
         initColumns: function() {
             this.newColumn("priority", "", "#", 30, true);
             this.newColumn("state_icon", "cursor: default", "", 22, true);
@@ -1504,12 +1509,30 @@ window.qBittorrent.DynamicTable ??= (() => {
             return true;
         },
 
+        removeRow: function(rowId) {
+            this.selectedRows.erase(rowId);
+            this.rows.delete(rowId);
+            const tr = this.getTrByRowId(rowId);
+            tr?.destroy();
+        },
+
+        clear: function() {
+            this.deselectAll();
+            this.rows.clear();
+            const trs = this.tableBody.getElements("tr");
+            while (trs.length > 0)
+                trs.pop().destroy();
+        },
+
+        getRowIds: function() {
+            return this.rows.keys();
+        },
+
         getFilteredTorrentsNumber: function(filterName, categoryHash, tagHash, trackerHash) {
             let cnt = 0;
-            const rows = this.rows.getValues();
 
-            for (let i = 0; i < rows.length; ++i) {
-                if (this.applyFilter(rows[i], filterName, categoryHash, tagHash, trackerHash, null))
+            for (const row of this.rows.values()) {
+                if (this.applyFilter(row, filterName, categoryHash, tagHash, trackerHash, null))
                     ++cnt;
             }
             return cnt;
@@ -1517,11 +1540,10 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         getFilteredTorrentsHashes: function(filterName, categoryHash, tagHash, trackerHash) {
             const rowsHashes = [];
-            const rows = this.rows.getValues();
 
-            for (let i = 0; i < rows.length; ++i) {
-                if (this.applyFilter(rows[i], filterName, categoryHash, tagHash, trackerHash, null))
-                    rowsHashes.push(rows[i]["rowId"]);
+            for (const row of this.rows.values()) {
+                if (this.applyFilter(row, filterName, categoryHash, tagHash, trackerHash, null))
+                    rowsHashes.push(row["rowId"]);
             }
 
             return rowsHashes;
@@ -1542,11 +1564,10 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return filteredRows;
             }
 
-            const rows = this.rows.getValues();
-            for (let i = 0; i < rows.length; ++i) {
-                if (this.applyFilter(rows[i], selectedStatus, selectedCategory, selectedTag, selectedTracker, filterTerms)) {
-                    filteredRows.push(rows[i]);
-                    filteredRows[rows[i].rowId] = rows[i];
+            for (const row of this.rows.values()) {
+                if (this.applyFilter(row, selectedStatus, selectedCategory, selectedTag, selectedTracker, filterTerms)) {
+                    filteredRows.push(row);
+                    filteredRows[row.rowId] = row;
                 }
             }
 
