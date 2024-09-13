@@ -127,6 +127,8 @@ void AppController::preferencesAction()
     // Language
     data[u"locale"_s] = pref->getLocale();
     data[u"performance_warning"_s] = session->isPerformanceWarningEnabled();
+    // Transfer List
+    data[u"confirm_torrent_deletion"_s] = pref->confirmTorrentDeletion();
     // Log file
     data[u"file_log_enabled"_s] = app()->isFileLoggerEnabled();
     data[u"file_log_path"_s] = app()->fileLoggerPath().toString();
@@ -504,6 +506,9 @@ void AppController::setPreferencesAction()
     }
     if (hasKey(u"performance_warning"_s))
         session->setPerformanceWarningEnabled(it.value().toBool());
+    // Transfer List
+    if (hasKey(u"confirm_torrent_deletion"_s))
+        pref->setConfirmTorrentDeletion(it.value().toBool());
     // Log file
     if (hasKey(u"file_log_enabled"_s))
         app()->setFileLoggerEnabled(it.value().toBool());

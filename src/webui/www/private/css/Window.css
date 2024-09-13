@@ -205,7 +205,7 @@ div.mochaToolbarWrapper.bottom {
 ---------------------------------------------------------------- */
 
 #modalOverlay {
-    background: #000;
+    background: hsla(0deg 0 0 / 30%);
     display: none;
     left: 0;
     opacity: 0;

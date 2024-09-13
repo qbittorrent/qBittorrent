@@ -9,6 +9,10 @@
 
     <fieldset class="settings">
         <legend>QBT_TR(Transfer list)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow" style="margin-bottom: 3px;" title="QBT_TR(Shows a confirmation dialog upon torrent deletion)QBT_TR[CONTEXT=OptionsDialog]">
+            <input type="checkbox" id="confirmTorrentDeletion">
+            <label for="confirmTorrentDeletion">QBT_TR(Confirm when deleting torrents)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
         <div class="formRow" style="margin-bottom: 3px;">
             <input type="checkbox" id="useAltRowColorsInput">
             <label for="useAltRowColorsInput">QBT_TR(Use alternating row colors)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -2107,6 +2111,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("hideZeroFiltersCheckbox").checked = (LocalPreferences.get("hide_zero_status_filters", "false") === "true");
                     $("dblclickDownloadSelect").value = LocalPreferences.get("dblclick_download", "1");
                     $("dblclickCompleteSelect").value = LocalPreferences.get("dblclick_complete", "1");
+                    document.getElementById("confirmTorrentDeletion").checked = pref.confirm_torrent_deletion;
                     document.getElementById("useAltRowColorsInput").checked = (LocalPreferences.get("use_alt_row_colors", "true") === "true");
                     $("filelog_checkbox").checked = pref.file_log_enabled;
                     $("filelog_save_path_input").value = pref.file_log_path;
@@ -2522,6 +2527,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             LocalPreferences.set("hide_zero_status_filters", document.getElementById("hideZeroFiltersCheckbox").checked.toString());
             LocalPreferences.set("dblclick_download", $("dblclickDownloadSelect").value);
             LocalPreferences.set("dblclick_complete", $("dblclickCompleteSelect").value);
+            settings["confirm_torrent_deletion"] = document.getElementById("confirmTorrentDeletion").checked;
             LocalPreferences.set("use_alt_row_colors", document.getElementById("useAltRowColorsInput").checked.toString());
             settings["file_log_enabled"] = $("filelog_checkbox").checked;
             settings["file_log_path"] = $("filelog_save_path_input").value;
