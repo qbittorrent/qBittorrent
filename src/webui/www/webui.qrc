@@ -23,6 +23,7 @@
         <file>private/images/application-rss.svg</file>
         <file>private/images/application-url.svg</file>
         <file>private/images/arrow-right.gif</file>
+        <file>private/images/browser-cookies.svg</file>
         <file>private/images/checked-completed.svg</file>
         <file>private/images/collapse.svg</file>
         <file>private/images/configure.svg</file>
@@ -422,6 +423,7 @@
         <file>private/views/aboutToolbar.html</file>
         <file>private/views/confirmdeletion.html</file>
         <file>private/views/confirmRecheck.html</file>
+        <file>private/views/cookies.html</file>
         <file>private/views/filters.html</file>
         <file>private/views/installsearchplugin.html</file>
         <file>private/views/log.html</file>
