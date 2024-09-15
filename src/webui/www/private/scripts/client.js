@@ -923,7 +923,17 @@ window.addEventListener("DOMContentLoaded", () => {
             + window.qBittorrent.Client.mainTitle();
 
         $("freeSpaceOnDisk").textContent = "QBT_TR(Free space: %1)QBT_TR[CONTEXT=HttpServer]".replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.free_space_on_disk));
-        $("DHTNodes").textContent = "QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]".replace("%1", serverState.dht_nodes);
+
+        const dhtElement = document.getElementById("DHTNodes");
+        if (window.qBittorrent.Cache.preferences.get().dht) {
+            dhtElement.textContent = "QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]".replace("%1", serverState.dht_nodes);
+            dhtElement.classList.remove("invisible");
+            dhtElement.previousElementSibling.classList.remove("invisible");
+        }
+        else {
+            dhtElement.classList.add("invisible");
+            dhtElement.previousElementSibling.classList.add("invisible");
+        }
 
         // Statistics dialog
         if (document.getElementById("statisticsContent")) {
