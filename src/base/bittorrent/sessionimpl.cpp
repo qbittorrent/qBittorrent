@@ -112,7 +112,6 @@ using namespace BitTorrent;
 
 const Path CATEGORIES_FILE_NAME {u"categories.json"_s};
 const int MAX_PROCESSING_RESUMEDATA_COUNT = 50;
-const int STATISTICS_SAVE_INTERVAL = std::chrono::milliseconds(15min).count();
 
 namespace
 {
@@ -482,6 +481,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_isBandwidthSchedulerEnabled(BITTORRENT_SESSION_KEY(u"BandwidthSchedulerEnabled"_s), false)
     , m_isPerformanceWarningEnabled(BITTORRENT_SESSION_KEY(u"PerformanceWarning"_s), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY(u"SaveResumeDataInterval"_s), 60)
+    , m_saveStatisticsInterval(BITTORRENT_SESSION_KEY(u"SaveStatisticsInterval"_s), 15)
     , m_shutdownTimeout(BITTORRENT_SESSION_KEY(u"ShutdownTimeout"_s), -1)
     , m_port(BITTORRENT_SESSION_KEY(u"Port"_s), -1)
     , m_sslEnabled(BITTORRENT_SESSION_KEY(u"SSL/Enabled"_s), false)
@@ -3549,6 +3549,16 @@ void SessionImpl::setSaveResumeDataInterval(const int value)
     }
 }
 
+std::chrono::minutes SessionImpl::saveStatisticsInterval() const
+{
+    return std::chrono::minutes(m_saveStatisticsInterval);
+}
+
+void SessionImpl::setSaveStatisticsInterval(const std::chrono::minutes timeInMinutes)
+{
+    m_saveStatisticsInterval = timeInMinutes.count();
+}
+
 int SessionImpl::shutdownTimeout() const
 {
     return m_shutdownTimeout;
@@ -6012,8 +6022,14 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *alert)
     m_status.allTimeDownload = m_previouslyDownloaded + m_status.totalDownload;
     m_status.allTimeUpload = m_previouslyUploaded + m_status.totalUpload;
 
-    if (m_statisticsLastUpdateTimer.hasExpired(STATISTICS_SAVE_INTERVAL))
-        saveStatistics();
+    if (m_saveStatisticsInterval > 0)
+    {
+        const auto saveInterval = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::minutes(m_saveStatisticsInterval));
+        if (m_statisticsLastUpdateTimer.hasExpired(saveInterval.count()))
+        {
+            saveStatistics();
+        }
+    }
 
     m_cacheStatus.totalUsedBuffers = stats[m_metricIndices.disk.diskBlocksInUse];
     m_cacheStatus.jobQueueLength = stats[m_metricIndices.disk.queuedDiskJobs];

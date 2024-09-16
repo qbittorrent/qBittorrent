@@ -76,6 +76,7 @@ namespace
         NETWORK_IFACE_ADDRESS,
         // behavior
         SAVE_RESUME_DATA_INTERVAL,
+        SAVE_STATISTICS_INTERVAL,
         TORRENT_FILE_SIZE_LIMIT,
         CONFIRM_RECHECK_TORRENT,
         RECHECK_COMPLETED,
@@ -261,6 +262,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setSocketBacklogSize(m_spinBoxSocketBacklogSize.value());
     // Save resume data interval
     session->setSaveResumeDataInterval(m_spinBoxSaveResumeDataInterval.value());
+    // Save statistics interval
+    session->setSaveStatisticsInterval(std::chrono::minutes(m_spinBoxSaveStatisticsInterval.value()));
     // .torrent file size limit
     pref->setTorrentFileSizeLimit(m_spinBoxTorrentFileSizeLimit.value() * 1024 * 1024);
     // Outgoing ports
@@ -671,6 +674,13 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxSaveResumeDataInterval.setSuffix(tr(" min", " minutes"));
     m_spinBoxSaveResumeDataInterval.setSpecialValueText(tr("0 (disabled)"));
     addRow(SAVE_RESUME_DATA_INTERVAL, tr("Save resume data interval [0: disabled]", "How often the fastresume file is saved."), &m_spinBoxSaveResumeDataInterval);
+    // Save statistics interval
+    m_spinBoxSaveStatisticsInterval.setMinimum(0);
+    m_spinBoxSaveStatisticsInterval.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxSaveStatisticsInterval.setValue(session->saveStatisticsInterval().count());
+    m_spinBoxSaveStatisticsInterval.setSuffix(tr(" min", " minutes"));
+    m_spinBoxSaveStatisticsInterval.setSpecialValueText(tr("0 (disabled)"));
+    addRow(SAVE_STATISTICS_INTERVAL, tr("Save statistics interval [0: disabled]", "How often the statistics file is saved."), &m_spinBoxSaveStatisticsInterval);
     // .torrent file size limit
     m_spinBoxTorrentFileSizeLimit.setMinimum(1);
     m_spinBoxTorrentFileSizeLimit.setMaximum(std::numeric_limits<int>::max() / 1024 / 1024);
@@ -868,7 +878,6 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxSessionShutdownTimeout.setSpecialValueText(tr("-1 (unlimited)"));
     m_spinBoxSessionShutdownTimeout.setToolTip(u"Sets the timeout for the session to be shut down gracefully, at which point it will be forcibly terminated.<br>Note that this does not apply to the saving resume data time."_s);
     addRow(SESSION_SHUTDOWN_TIMEOUT, tr("BitTorrent session shutdown timeout [-1: unlimited]"), &m_spinBoxSessionShutdownTimeout);
-
     // Choking algorithm
     m_comboBoxChokingAlgorithm.addItem(tr("Fixed slots"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::FixedSlots));
     m_comboBoxChokingAlgorithm.addItem(tr("Upload rate based"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::RateBased));
