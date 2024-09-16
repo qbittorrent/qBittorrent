@@ -39,7 +39,6 @@
 
 #include <QApplication>
 #include <QDesktopServices>
-#include <QIcon>
 #include <QPixmap>
 #include <QPixmapCache>
 #include <QPoint>
@@ -58,13 +57,6 @@
 #include "base/tag.h"
 #include "base/utils/fs.h"
 #include "base/utils/version.h"
-
-QPixmap Utils::Gui::scaledPixmap(const QIcon &icon, const int height)
-{
-    Q_ASSERT(height > 0);
-
-    return icon.pixmap(height);
-}
 
 QPixmap Utils::Gui::scaledPixmap(const Path &path, const int height)
 {
