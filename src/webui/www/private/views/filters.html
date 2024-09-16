@@ -153,10 +153,13 @@
             }
         });
 
-        const trackersFilterContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
+        const trackersFilterContextMenu = new window.qBittorrent.ContextMenu.TrackersFilterContextMenu({
             targets: ".trackersFilterContextMenuTarget",
             menu: "trackersFilterMenu",
             actions: {
+                deleteTracker: function(element, ref) {
+                    deleteTrackerFN(element.id);
+                },
                 startTorrentsByTracker: function(element, ref) {
                     startTorrentsByTrackerFN(element.id);
                 },

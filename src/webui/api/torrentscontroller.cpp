@@ -969,13 +969,34 @@ void TorrentsController::removeTrackersAction()
 {
     requireParams({u"hash"_s, u"urls"_s});
 
-    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
-    if (!torrent)
-        throw APIError(APIErrorType::NotFound);
+    const QString hashParam = params()[u"hash"_s];
+    const QStringList urlsParam = params()[u"urls"_s].split(u'|', Qt::SkipEmptyParts);
 
-    const QStringList urls = params()[u"urls"_s].split(u'|');
-    torrent->removeTrackers(urls);
+    QStringList urls;
+    urls.reserve(urlsParam.size());
+    for (const QString &urlStr : urlsParam)
+        urls << QUrl::fromPercentEncoding(urlStr.toLatin1());
+
+    QList<BitTorrent::Torrent *> torrents;
+
+    if (hashParam == u"*"_s)
+    {
+        // remove trackers from all torrents
+        torrents = BitTorrent::Session::instance()->torrents();
+    }
+    else
+    {
+        // remove trackers from specified torrent
+        const auto id = BitTorrent::TorrentID::fromString(hashParam);
+        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+        if (!torrent)
+            throw APIError(APIErrorType::NotFound);
+
+        torrents.append(torrent);
+    }
+
+    for (BitTorrent::Torrent *const torrent : asConst(torrents))
+        torrent->removeTrackers(urls);
 }
 
 void TorrentsController::addPeersAction()
