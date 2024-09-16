@@ -368,6 +368,8 @@ void AppController::preferencesAction()
     data[u"save_statistics_interval"_s] = static_cast<int>(session->saveStatisticsInterval().count());
     // .torrent file size limit
     data[u"torrent_file_size_limit"_s] = pref->getTorrentFileSizeLimit();
+    // Confirm torrent recheck
+    data[u"confirm_torrent_recheck"_s] = pref->confirmTorrentRecheck();
     // Recheck completed torrents
     data[u"recheck_completed_torrents"_s] = pref->recheckTorrentsOnCompletion();
     // Customize application instance name
@@ -977,6 +979,9 @@ void AppController::setPreferencesAction()
     // .torrent file size limit
     if (hasKey(u"torrent_file_size_limit"_s))
         pref->setTorrentFileSizeLimit(it.value().toLongLong());
+    // Confirm torrent recheck
+    if (hasKey(u"confirm_torrent_recheck"_s))
+        pref->setConfirmTorrentRecheck(it.value().toBool());
     // Recheck completed torrents
     if (hasKey(u"recheck_completed_torrents"_s))
         pref->recheckTorrentsOnCompletion(it.value().toBool());

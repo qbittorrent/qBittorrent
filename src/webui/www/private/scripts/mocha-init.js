@@ -555,15 +555,31 @@ const initializeWindows = function() {
 
     recheckFN = function() {
         const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length) {
-            new Request({
-                url: "api/v2/torrents/recheck",
-                method: "post",
-                data: {
-                    hashes: hashes.join("|"),
-                }
-            }).send();
-            updateMainData();
+        if (hashes.length > 0) {
+            if (window.qBittorrent.Cache.preferences.get().confirm_torrent_recheck) {
+                new MochaUI.Modal({
+                    ...window.qBittorrent.Dialog.baseModalOptions,
+                    id: "confirmRecheckDialog",
+                    title: "QBT_TR(Recheck confirmation)QBT_TR[CONTEXT=confirmRecheckDialog]",
+                    data: { hashes: hashes },
+                    contentURL: "views/confirmRecheck.html"
+                });
+            }
+            else {
+                new Request({
+                    url: "api/v2/torrents/recheck",
+                    method: "post",
+                    data: {
+                        "hashes": hashes.join("|"),
+                    },
+                    onSuccess: function() {
+                        updateMainData();
+                    },
+                    onFailure: function() {
+                        alert("QBT_TR(Unable to recheck torrents.)QBT_TR[CONTEXT=HttpServer]");
+                    }
+                }).send();
+            }
         }
     };
 
