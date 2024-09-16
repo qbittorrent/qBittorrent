@@ -48,14 +48,24 @@ window.qBittorrent.Dialog ??= (() => {
 
     const deepFreeze = (obj) => {
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze#examples
+        // accounts for circular refs
+        const frozen = new WeakSet();
+        const deepFreezeSafe = (obj) => {
+            if (frozen.has(obj))
+                return;
 
-        const keys = Reflect.ownKeys(obj);
-        for (const key of keys) {
-            const value = obj[key];
-            if ((value && (typeof value === "object")) || (typeof value === "function"))
-                deepFreeze(value);
-        }
-        Object.freeze(obj);
+            frozen.add(obj);
+
+            const keys = Reflect.ownKeys(obj);
+            for (const key of keys) {
+                const value = obj[key];
+                if ((value && (typeof value === "object")) || (typeof value === "function"))
+                    deepFreezeSafe(value);
+            }
+            Object.freeze(obj);
+        };
+
+        deepFreezeSafe(obj);
     };
 
     const baseModalOptions = Object.assign(Object.create(null), {
@@ -76,7 +86,11 @@ window.qBittorrent.Dialog ??= (() => {
             left: 5
         },
         resizable: true,
-        width: 480
+        width: 480,
+        onCloseComplete: function() {
+            // make sure overlay is properly hidden upon modal closing
+            document.getElementById("modalOverlay").style.display = "none";
+        }
     });
 
     deepFreeze(baseModalOptions);
