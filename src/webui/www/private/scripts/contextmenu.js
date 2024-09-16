@@ -207,15 +207,21 @@ window.qBittorrent.ContextMenu ??= (() => {
             }, this);
 
             /* menu items */
-            this.menu.getElements("a").each(function(item) {
-                item.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    if (!item.hasClass("disabled")) {
-                        this.execute(item.href.split("#")[1], $(this.options.element));
-                        this.fireEvent("click", [item, e]);
-                    }
-                });
-            }, this);
+            this.menu.addEventListener("click", (e) => {
+                const menuItem = e.target.closest("li");
+                if (!menuItem)
+                    return;
+
+                e.preventDefault();
+                if (!menuItem.classList.contains("disabled")) {
+                    const anchor = menuItem.firstElementChild;
+                    this.execute(anchor.href.split("#")[1], this.options.element);
+                    this.fireEvent("click", [anchor, e]);
+                }
+                else {
+                    e.stopPropagation();
+                }
+            });
 
             // hide on body click
             $(document.body).addEventListener("click", () => {
@@ -267,6 +273,12 @@ window.qBittorrent.ContextMenu ??= (() => {
             return this;
         },
 
+        // enable/disable an item
+        setEnabled: function(item, enabled) {
+            this.menu.querySelector(`:scope a[href$="${item}"]`).parentElement.classList.toggle("disabled", !enabled);
+            return this;
+        },
+
         // disable the entire menu
         disable: function() {
             this.options.disabled = true;
@@ -303,6 +315,8 @@ window.qBittorrent.ContextMenu ??= (() => {
             let all_are_super_seeding = true;
             let all_are_auto_tmm = true;
             let there_are_auto_tmm = false;
+            let thereAreV1Hashes = false;
+            let thereAreV2Hashes = false;
             const tagCount = new Map();
             const categoryCount = new Map();
 
@@ -339,6 +353,12 @@ window.qBittorrent.ContextMenu ??= (() => {
                     there_are_auto_tmm = true;
                 else
                     all_are_auto_tmm = false;
+
+                if (data["infohash_v1"] !== "")
+                    thereAreV1Hashes = true;
+
+                if (data["infohash_v2"] !== "")
+                    thereAreV2Hashes = true;
 
                 const torrentTags = data["tags"].split(", ");
                 for (const tag of torrentTags) {
@@ -417,6 +437,9 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.showItem("autoTorrentManagement");
                 this.setItemChecked("autoTorrentManagement", all_are_auto_tmm);
             }
+
+            this.setEnabled("copyInfohash1", thereAreV1Hashes);
+            this.setEnabled("copyInfohash2", thereAreV2Hashes);
 
             const contextTagList = $("contextTagList");
             tagList.forEach((tag, tagHash) => {

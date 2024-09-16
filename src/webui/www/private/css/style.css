@@ -225,6 +225,18 @@ a.propButton img {
 .contextMenu li {
     margin: 0;
     padding: 0;
+    user-select: none;
+}
+
+.contextMenu li.disabled {
+    background-color: transparent;
+    cursor: default;
+    filter: grayscale(1);
+    opacity: 0.6;
+}
+
+.contextMenu li.disabled a {
+    pointer-events: none;
 }
 
 .contextMenu li a {
@@ -248,14 +260,6 @@ a.propButton img {
     filter: var(--color-icon-hover);
 }
 
-.contextMenu li a.disabled {
-    font-style: italic;
-}
-
-.contextMenu li a.disabled:hover {
-    color: var(--color-text-disabled);
-}
-
 .contextMenu li ul {
     background: var(--color-background-default);
     border: 1px solid var(--color-border-default);
@@ -272,19 +276,13 @@ a.propButton img {
     position: relative;
 }
 
-.contextMenu li a.arrow-right,
-.contextMenu li a:hover.arrow-right {
+.contextMenu li:not(.disabled) .arrow-right {
     background-image: url("../images/arrow-right.gif");
     background-position: right center;
     background-repeat: no-repeat;
 }
 
-.contextMenu li:hover ul,
-.contextMenu li.ieHover ul,
-.contextMenu li li.ieHover ul,
-.contextMenu li li li.ieHover ul,
-.contextMenu li li:hover ul,
-.contextMenu li li li:hover ul {
+.contextMenu li:not(.disabled):hover > ul {
     /* lists nested under hovered list items */
     left: auto;
 }
