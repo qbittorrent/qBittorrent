@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="cs">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Vytvořit podsložku</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nevytvářet podsložku</translation>
     </message>
     <message>
@@ -100,7 +102,7 @@
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Zastavit torrenty</translation>
+        <translation>Pozastavit torrenty</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -454,11 +456,11 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation>Zastavit</translation>
+        <translation>Pozastavit</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Zastavit vše</translation>
+        <translation>Pozastavit vše</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -991,8 +993,8 @@
         <translation>%T: Současný tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Tip: Ohraničit parametr uvozovkami, aby nedošlo k odstřižení textu za mezerou (např. &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Tip: Ohraničit parametr uvozovkami, aby nedošlo k odstřižení textu za mezerou (např. "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1188,7 +1190,7 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation>Zastavit torrent</translation>
+        <translation>Pozastavit torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1411,7 +1413,7 @@
         <translation>Originál</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nevytvářet podsložku</translation>
     </message>
     <message>
@@ -1547,12 +1549,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Seznam povolených pro filtrování hodnot HTTP hlaviček hostitele.
 Pro obranu proti DNS rebinding útokům
 best měli vložit doménové názvy použité pro WebUI server.
 
-Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &apos;*&apos;.</translation>
+Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1563,8 +1565,8 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
         <translation>HTTPS certifikát nemá být prázdný</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation>Uveďte IP adresy (nebo podsítě, např. 0.0.0.0/24) reverzních proxy pro přeposlání adresy klienta (atribut X-Forwarded-For), použijte &apos;;&apos; pro rozdělení více položek.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation>Uveďte IP adresy (nebo podsítě, např. 0.0.0.0/24) reverzních proxy pro přeposlání adresy klienta (atribut X-Forwarded-For), použijte ';' pro rozdělení více položek.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -2276,7 +2278,7 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation>Zastaveno (0)</translation>
+        <translation>Pozastaveno (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -2308,7 +2310,7 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation>Zastaveno (%1)</translation>
+        <translation>Pozastaveno (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
@@ -2646,7 +2648,7 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
     </message>
     <message>
         <source>Paused</source>
-        <translation>Zastaveno</translation>
+        <translation>Pozastaveno</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2763,7 +2765,7 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Zastavit</translation>
+        <translation>Pozastavit</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3083,7 +3085,7 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
     </message>
     <message>
         <source>URL or local directory</source>
-        <translation>URL nebo místní složka</translation>
+        <translation>URL nebo místní adresář</translation>
     </message>
     <message>
         <source>Install plugin</source>
@@ -3169,11 +3171,11 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
         <translation>zobrazeno</translation>
     </message>
     <message>
-        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
-        <translation>Klikněte na tlačítko &quot;Vyhledávácí pluginy...&quot; dole vpravo v okně, abyste nějaké nainstalovali.</translation>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation>Klikněte na tlačítko "Vyhledávácí pluginy..." dole vpravo v okně, abyste nějaké nainstalovali.</translation>
     </message>
     <message>
-        <source>There aren&apos;t any search plugins installed.</source>
+        <source>There aren't any search plugins installed.</source>
         <translation>Žádné vyhledávací pluginy nejsou instalovány.</translation>
     </message>
 </context>
@@ -3204,7 +3206,7 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
         <translation>Zapnuto</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Varování: Ujistěte se, že dodržujete zákony Vaší země o ochraně duševního vlastnictví když stahujete torrenty z kteréhokoliv z těchto vyhledávačů.</translation>
     </message>
     <message>
@@ -3305,7 +3307,7 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Zastavení torrentů</translation>
+        <translation>Pozastavit torrenty</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -3766,7 +3768,7 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation>Přidat zastavený:</translation>
+        <translation>Přidat pozastavený:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -3819,7 +3821,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
         <translation>Originál</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nevytvářet podsložku</translation>
     </message>
     <message>
@@ -3843,7 +3845,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Zastavit torrenty</translation>
+        <translation>Pozastavit torrenty</translation>
     </message>
     <message>
         <source>Remove torrents</source>

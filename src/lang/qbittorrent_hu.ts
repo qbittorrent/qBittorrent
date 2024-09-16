@@ -3048,12 +3048,12 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
         <translation>Letöltés</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>Nem lett URL cím megadva</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>Kérem adjon meg legalább egy URL-t.</translation>
     </message>

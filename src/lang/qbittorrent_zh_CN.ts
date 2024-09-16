@@ -3048,12 +3048,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>下载</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>没有输入 URL</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>请输入至少一个 URL。</translation>
     </message>
@@ -4724,7 +4724,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="247"/>
         <source>Hong Kong</source>
-        <translation>香港</translation>
+        <translation>中国香港</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="248"/>
@@ -5364,7 +5364,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="300"/>
         <source>Macao</source>
-        <translation>澳门</translation>
+        <translation>中国澳门</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="333"/>
@@ -5409,7 +5409,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="380"/>
         <source>Taiwan</source>
-        <translation>台湾</translation>
+        <translation>中国台湾</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="381"/>

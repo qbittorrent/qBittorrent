@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="it">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="it">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Crea sottocartella</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Non creare sottocartella</translation>
     </message>
     <message>
@@ -139,7 +141,7 @@
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Il limite alternativo per l&apos;upload deve essere maggiore di 0 o disattivato.</translation>
+        <translation>Il limite alternativo per l'upload deve essere maggiore di 0 o disattivato.</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
@@ -187,11 +189,11 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>La porta usata per l&apos;interfaccia web deve essere compresa tra 1 e 65535.</translation>
+        <translation>La porta usata per l'interfaccia web deve essere compresa tra 1 e 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Impossibile effettuare l&apos;accesso, probabilmente qBittorrent non è raggiungibile.</translation>
+        <translation>Impossibile effettuare l'accesso, probabilmente qBittorrent non è raggiungibile.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
@@ -391,7 +393,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation>Sei sicuro di voler rimuovere i torrent selezionati dall&apos;elenco di trasferimento?</translation>
+        <translation>Sei sicuro di voler rimuovere i torrent selezionati dall'elenco di trasferimento?</translation>
     </message>
 </context>
 <context>
@@ -666,7 +668,7 @@
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>Pianifica l&apos;uso di limiti di rapporto alternativi</translation>
+        <translation>Pianifica l'uso di limiti di rapporto alternativi</translation>
     </message>
     <message>
         <source>Torrent Queueing</source>
@@ -722,7 +724,7 @@
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>Aggiungi l&apos;estensione .!qB ai file incompleti</translation>
+        <translation>Aggiungi l'estensione .!qB ai file incompleti</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
@@ -991,16 +993,16 @@
         <translation>%T: Server traccia attuale</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Suggerimento: Incapsula i parametri con i segni di quotazione per evitare tagli del testo negli spazi bianchi (per esempio &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Suggerimento: Incapsula i parametri con i segni di quotazione per evitare tagli del testo negli spazi bianchi (per esempio "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Il nome utente per l&apos;interfaccia web deve essere lungo almeno 3 caratteri.</translation>
+        <translation>Il nome utente per l'interfaccia web deve essere lungo almeno 3 caratteri.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>La password per l&apos;interfaccia web deve essere lunga almeno 6 caratteri.</translation>
+        <translation>La password per l'interfaccia web deve essere lunga almeno 6 caratteri.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1411,7 +1413,7 @@
         <translation>Originale</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Non creare sottocartella</translation>
     </message>
     <message>
@@ -1432,7 +1434,7 @@
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>Riannuncia a tutti i tracker quando l&apos;IP o la porta sono cambiati:</translation>
+        <translation>Riannuncia a tutti i tracker quando l'IP o la porta sono cambiati:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1496,7 +1498,7 @@
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation>Controlla l&apos;intervallo di aggiornamento dello stato interno che a sua volta influenzerà gli aggiornamenti dell&apos;interfaccia utente</translation>
+        <translation>Controlla l'intervallo di aggiornamento dello stato interno che a sua volta influenzerà gli aggiornamenti dell'interfaccia utente</translation>
     </message>
     <message>
         <source>Disk IO read mode:</source>
@@ -1547,13 +1549,13 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
-        <translation>Elenco autorizzati per filtrare valori nell&apos;intestazione host HTTP.
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
+        <translation>Elenco autorizzati per filtrare valori nell'intestazione host HTTP.
 Per difendersi da attacchi DSN rebinding, dovresti inserire
-i nomi dominio usati dal server dell&apos;interfaccia web.
+i nomi dominio usati dal server dell'interfaccia web.
 
-Usa &apos;;&apos; per dividere voci multiple. Si può usare il carattere
-jolly &apos;*&apos;.</translation>
+Usa ';' per dividere voci multiple. Si può usare il carattere
+jolly '*'.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1564,9 +1566,9 @@ jolly &apos;*&apos;.</translation>
         <translation>Il certificato HTTPS non può essere vuoto</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation>Per usare l&apos;indirizzo client inoltrato (intestazione X-Forwarded-For) specifica gli IP del proxy inverso (o le sottoreti, ad esempio 0.0.0.0/24).
-Usa &apos;;&apos; per dividere più voci.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation>Per usare l'indirizzo client inoltrato (intestazione X-Forwarded-For) specifica gli IP del proxy inverso (o le sottoreti, ad esempio 0.0.0.0/24).
+Usa ';' per dividere più voci.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1759,7 +1761,7 @@ Usa &apos;;&apos; per dividere più voci.</translation>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
         <translation>Se la &amp;quot;modalità mista&amp;quot; è abilitata, i torrent I2P possono ottenere peer anche da sorgenti diverse dal tracker e connettersi a IP regolari, senza fornire alcuna anonimizzazione. 
-Ciò può essere utile se l&apos;utente non è interessato all&apos;anonimizzazione di I2P, ma vuole comunque potersi connettere ai peer I2P.</translation>
+Ciò può essere utile se l'utente non è interessato all'anonimizzazione di I2P, ma vuole comunque potersi connettere ai peer I2P.</translation>
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
@@ -1987,7 +1989,7 @@ Ciò può essere utile se l&apos;utente non è interessato all&apos;anonimizzazi
     </message>
     <message>
         <source>Last Seen Complete:</source>
-        <translation>Visto completo l&apos;ultima volta:</translation>
+        <translation>Visto completo l'ultima volta:</translation>
     </message>
     <message>
         <source>Total Size:</source>
@@ -2497,7 +2499,7 @@ Ciò può essere utile se l&apos;utente non è interessato all&apos;anonimizzazi
     <message>
         <source>Last Seen Complete</source>
         <comment>Indicates the time when the torrent was last seen complete/whole</comment>
-        <translation>Visto completo l&apos;ultima volta</translation>
+        <translation>Visto completo l'ultima volta</translation>
     </message>
     <message>
         <source>Last Activity</source>
@@ -2806,7 +2808,7 @@ Ciò può essere utile se l&apos;utente non è interessato all&apos;anonimizzazi
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation>Scarica la prima e l&apos;ultima parte per prime</translation>
+        <translation>Scarica la prima e l'ultima parte per prime</translation>
     </message>
     <message>
         <source>Automatic Torrent Management</source>
@@ -3172,12 +3174,12 @@ Ciò può essere utile se l&apos;utente non è interessato all&apos;anonimizzazi
         <translation>visualizzando</translation>
     </message>
     <message>
-        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
-        <translation>Per installare i plugin seleziona &quot;Cerca plugin...&quot; in basso a destra nella finestra.</translation>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation>Per installare i plugin seleziona "Cerca plugin..." in basso a destra nella finestra.</translation>
     </message>
     <message>
-        <source>There aren&apos;t any search plugins installed.</source>
-        <translation>Non c&apos;è nessun plugin di ricerca installato.</translation>
+        <source>There aren't any search plugins installed.</source>
+        <translation>Non c'è nessun plugin di ricerca installato.</translation>
     </message>
 </context>
 <context>
@@ -3207,7 +3209,7 @@ Ciò può essere utile se l&apos;utente non è interessato all&apos;anonimizzazi
         <translation>Abilitati</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Attenzione: assicurati di essere inr egola con la tua legge locale sul copyright quando scarichi torrent da uno di questi motori di ricerca.</translation>
     </message>
     <message>
@@ -3564,7 +3566,7 @@ Il database è concesso in licenza con la licenza internazionale Creative Common
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
         <translation>Il recupero dei feed RSS è disabilitato! 
-Puoi abilitarlo nelle impostazioni dell&apos;applicazione.</translation>
+Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
@@ -3608,7 +3610,7 @@ Puoi abilitarlo nelle impostazioni dell&apos;applicazione.</translation>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
         <translation>Il download automatico dei torrent RSS è disabilitato! 
-Puoi abilitarlo nelle impostazioni dell&apos;applicazione.</translation>
+Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
@@ -3660,7 +3662,7 @@ Puoi abilitarlo nelle impostazioni dell&apos;applicazione.</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
-        <translation>Un&apos;espressione con una clausola %1 vuota (ad esempio %2)</translation>
+        <translation>Un'espressione con una clausola %1 vuota (ad esempio %2)</translation>
     </message>
     <message>
         <source>Example: </source>
@@ -3672,7 +3674,7 @@ Puoi abilitarlo nelle impostazioni dell&apos;applicazione.</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation>Sei sicuro di voler cancellare l&apos;elenco degli episodi scaricati per la regola selezionata?</translation>
+        <translation>Sei sicuro di voler cancellare l'elenco degli episodi scaricati per la regola selezionata?</translation>
     </message>
     <message>
         <source>Must Contain:</source>
@@ -3692,7 +3694,7 @@ Puoi abilitarlo nelle impostazioni dell&apos;applicazione.</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation>Numero singolo: &lt;b&gt;1x25;&lt;/b&gt; corrisponde all&apos;episodio 25 della prima stagione</translation>
+        <translation>Numero singolo: &lt;b&gt;1x25;&lt;/b&gt; corrisponde all'episodio 25 della prima stagione</translation>
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
@@ -3768,7 +3770,7 @@ Puoi abilitarlo nelle impostazioni dell&apos;applicazione.</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
-        <translation>Se l&apos;ordine delle parole è importante, usa * al posto degli spazi.</translation>
+        <translation>Se l'ordine delle parole è importante, usa * al posto degli spazi.</translation>
     </message>
     <message>
         <source>Add Paused:</source>
@@ -3809,7 +3811,7 @@ Puoi abilitarlo nelle impostazioni dell&apos;applicazione.</translation>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation>Il Filtro Intelligente Episodi controllerà il numero dell&apos;episodio per evitare il download di duplicati. Supporta i formati: S01E01, 1x1, 2017.12.31 e 31.12.2017 (I formati a data supportano anche - come separatore)</translation>
+        <translation>Il Filtro Intelligente Episodi controllerà il numero dell'episodio per evitare il download di duplicati. Supporta i formati: S01E01, 1x1, 2017.12.31 e 31.12.2017 (I formati a data supportano anche - come separatore)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -3824,7 +3826,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Originale</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Non creare sottocartella</translation>
     </message>
     <message>

@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="sk">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="sk">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Vytvoriť podpriečinok</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nevytvárať podpriečinok</translation>
     </message>
     <message>
@@ -991,8 +993,8 @@
         <translation>%T: Aktuálny tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Tip: Ohraničiť parameter úvodzovkami, aby nedošlo k odstrihnutiu textu za medzerou (napr. &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Tip: Ohraničiť parameter úvodzovkami, aby nedošlo k odstrihnutiu textu za medzerou (napr. "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1411,7 +1413,7 @@
         <translation>Originál</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nevytvárajte podpriečinok</translation>
     </message>
     <message>
@@ -1547,12 +1549,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Zoznam povolených pre filtrovanie hodnôt HTTP hlaviček hostiteľa.
 Pre obranu proti DNS rebinding útokom,
 mali vložiť doménové názvy použité pre WebUI server.
 
-Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť masku &apos;*&apos;.</translation>
+Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1563,8 +1565,8 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
         <translation>HTTPS certifikát by nemal byť prázdny</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation>Uveďte IP adresy (alebo podsiete, napr. 0.0.0.0/24) reverzného proxy pre preposlanie adresy klienta (hlavička X-Forwarded-For). Použite &apos;;&apos; pre rozdelenie viacerých položiek.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation>Uveďte IP adresy (alebo podsiete, napr. 0.0.0.0/24) reverzného proxy pre preposlanie adresy klienta (hlavička X-Forwarded-For). Použite ';' pre rozdelenie viacerých položiek.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -3169,12 +3171,12 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
         <translation>zobrazené</translation>
     </message>
     <message>
-        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
         <translation>Žiadne vyhľadávacie pluginy nie sú nainštalované.
-Kliknite na tlačidlo &quot;Vyhľadať pluginy...&quot; vpravo dole v okne, aby ste nejaké nainštalovali.</translation>
+Kliknite na tlačidlo "Vyhľadať pluginy..." vpravo dole v okne, aby ste nejaké nainštalovali.</translation>
     </message>
     <message>
-        <source>There aren&apos;t any search plugins installed.</source>
+        <source>There aren't any search plugins installed.</source>
         <translation>Nie sú nainštalované žiadne pluginy.</translation>
     </message>
 </context>
@@ -3205,7 +3207,7 @@ Kliknite na tlačidlo &quot;Vyhľadať pluginy...&quot; vpravo dole v okne, aby 
         <translation>Zapnuté</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Varovanie: Uistite sa, že dodržiavate zákony Vašej krajiny o ochrane duševného vlastníctva keď sťahujete torrenty z ktoréhokoľvek z týchto vyhľadávačov.</translation>
     </message>
     <message>
@@ -3820,7 +3822,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
         <translation>Pôvodný</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nevytvárať podzložku</translation>
     </message>
     <message>

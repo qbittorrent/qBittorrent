@@ -518,7 +518,7 @@ Error: %2</translation>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="366"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrents that have metadata initially will be added as stopped.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="636"/>
@@ -1978,7 +1978,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="299"/>
         <source>Mismatching info-hash detected in resume data</source>
-        <translation type="unfinished"></translation>
+        <translation>Mismatching info-hash detected in resume data</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="395"/>
@@ -3048,12 +3048,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Download</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>No URL entered</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>Please type at least one URL.</translation>
     </message>
@@ -7271,7 +7271,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="519"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrents that have metadata initially will be added as stopped.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="865"/>

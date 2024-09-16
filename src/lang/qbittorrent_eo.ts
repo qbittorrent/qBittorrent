@@ -3044,12 +3044,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Elŝuti</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>Neniu URL-adreso eniĝis</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>Bonvolu tajpi almenaŭ unu URL-adreson.</translation>
     </message>
@@ -10121,7 +10121,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="259"/>
         <source>32 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">16 MiB {32 ?}</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="267"/>

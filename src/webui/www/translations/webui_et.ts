@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="et">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="et">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Loo alamkaust</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Ära loo alamkausta</translation>
     </message>
     <message>
@@ -54,7 +56,7 @@
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Stop condition:</source>
@@ -62,7 +64,7 @@
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -295,7 +297,7 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>Lae alla Torrentid nende URL&apos;idest või Magnet linkidest</translation>
+        <translation>Lae alla Torrentid nende URL'idest või Magnet linkidest</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
@@ -311,7 +313,7 @@
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
@@ -323,7 +325,7 @@
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Edit</source>
@@ -343,7 +345,7 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
@@ -363,7 +365,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>JavaScript Vajalik! Peate sisselülitama JavaScript&apos;i, et Web UI toimiks korrektselt</translation>
+        <translation>JavaScript Vajalik! Peate sisselülitama JavaScript'i, et Web UI toimiks korrektselt</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -670,7 +672,7 @@
     </message>
     <message>
         <source>Torrent Queueing</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -690,15 +692,15 @@
     </message>
     <message>
         <source>Use HTTPS instead of HTTP</source>
-        <translation>Kasuta HTTPS&apos;i HTTP asemel</translation>
+        <translation>Kasuta HTTPS'i HTTP asemel</translation>
     </message>
     <message>
         <source>Bypass authentication for clients on localhost</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Update my dynamic domain name</source>
@@ -762,7 +764,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>Kasuta UPnP / NAT-PMP port forwarding&apos;ut minu ruuterist</translation>
+        <translation>Kasuta UPnP / NAT-PMP port forwarding'ut minu ruuterist</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -814,11 +816,11 @@
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation>Kasuta proxy&apos;t ühendustel partneritega</translation>
+        <translation>Kasuta proxy't ühendustel partneritega</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
@@ -936,7 +938,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Certificate:</source>
@@ -968,11 +970,11 @@
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>%D: Save path</source>
@@ -991,8 +993,8 @@
         <translation>%T: Praegune jälitaja</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Vihje: ümbritsege parameeter jutumärkidega, et vältida teksti katkestamist tühimikes (nt &quot;%N&quot;).</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Vihje: ümbritsege parameeter jutumärkidega, et vältida teksti katkestamist tühimikes (nt "%N").</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1012,11 +1014,11 @@
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation>Luba clickjacking&apos;ute kaitse</translation>
+        <translation>Luba clickjacking'ute kaitse</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
@@ -1040,7 +1042,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>Kasuta alternatiivset Web UI&apos;d</translation>
+        <translation>Kasuta alternatiivset Web UI'd</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1064,11 +1066,11 @@
     </message>
     <message>
         <source>Relocate affected torrents</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
-        <translation>Määra kiiruse limiit partneritele LAN&apos;is</translation>
+        <translation>Määra kiiruse limiit partneritele LAN'is</translation>
     </message>
     <message>
         <source>0 means unlimited</source>
@@ -1084,7 +1086,7 @@
     </message>
     <message>
         <source>Enable Host header validation</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Security</source>
@@ -1140,7 +1142,7 @@
     </message>
     <message>
         <source>Socket backlog size:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
@@ -1148,11 +1150,11 @@
     </message>
     <message>
         <source>Prefer TCP</source>
-        <translation>Eelista TCP&apos;ed</translation>
+        <translation>Eelista TCP'ed</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Anti-leech</source>
@@ -1168,7 +1170,7 @@
     </message>
     <message>
         <source>File pool size:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Any interface</source>
@@ -1176,7 +1178,7 @@
     </message>
     <message>
         <source>Always announce to all tiers:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Embedded tracker port:</source>
@@ -1200,7 +1202,7 @@
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>libtorrent Section</source>
@@ -1228,7 +1230,7 @@
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>s</source>
@@ -1280,7 +1282,7 @@
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Save resume data interval:</source>
@@ -1288,7 +1290,7 @@
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Session timeout:</source>
@@ -1308,11 +1310,11 @@
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Add custom HTTP headers</source>
@@ -1328,7 +1330,7 @@
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
@@ -1360,11 +1362,11 @@
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Maksimum kogus artikleid feed&apos;idel:</translation>
+        <translation>Maksimum kogus artikleid feed'idel:</translation>
     </message>
     <message>
         <source> min</source>
@@ -1372,11 +1374,11 @@
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
@@ -1384,7 +1386,7 @@
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
-        <translation>Luba RSS&apos;i torrentite automaatne allalaadimine</translation>
+        <translation>Luba RSS'i torrentite automaatne allalaadimine</translation>
     </message>
     <message>
         <source>RSS Smart Episode Filter</source>
@@ -1411,7 +1413,7 @@
         <translation>Originaal</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Ära loo alamkausta</translation>
     </message>
     <message>
@@ -1444,11 +1446,11 @@
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
@@ -1460,11 +1462,11 @@
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Log performance warnings</source>
@@ -1496,31 +1498,31 @@
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Disk IO read mode:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Disable OS cache</source>
-        <translation>Keela OS&apos;i puhver</translation>
+        <translation>Keela OS'i puhver</translation>
     </message>
     <message>
         <source>Disk IO write mode:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation>Luba OS&apos;i puhver</translation>
+        <translation>Luba OS'i puhver</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
@@ -1536,7 +1538,7 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Run external program on torrent finished</source>
@@ -1547,8 +1549,8 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
-        <translation type="unfinished"/>
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1559,8 +1561,8 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>HTTPS sertifikaat ei tohiks olla tühi</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation type="unfinished"/>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1572,15 +1574,15 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Metadata received</source>
@@ -1592,7 +1594,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
@@ -1648,7 +1650,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Use proxy for general purposes</source>
@@ -1660,7 +1662,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
@@ -1668,23 +1670,23 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Use Subcategories</source>
@@ -1692,7 +1694,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1700,31 +1702,31 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>(None)</source>
@@ -1732,7 +1734,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>.torrent file size limit:</source>
@@ -1740,7 +1742,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
@@ -1748,31 +1750,31 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>I2P inbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>I2P (Experimental) (requires libtorrent &amp;gt;= 2.0)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>I2P outbound quantity (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>I2P outbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>I2P inbound length (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1855,7 +1857,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1924,7 +1926,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>ETA:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Uploaded:</source>
@@ -1976,7 +1978,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Reannounce In:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Last Seen Complete:</source>
@@ -2060,7 +2062,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Info Hash v2:</source>
@@ -2092,7 +2094,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
@@ -2100,11 +2102,11 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Toggle Selection</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Replacement Input</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Replace</source>
@@ -2112,7 +2114,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Extension</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Replace All</source>
@@ -2132,11 +2134,11 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2201,19 +2203,19 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>All-time share ratio:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>All-time download:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Session waste:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>All-time upload:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Total buffer size:</source>
@@ -2237,7 +2239,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Total queued size:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2268,7 +2270,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Paused (0)</source>
@@ -2284,7 +2286,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Errored (0)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>All (%1)</source>
@@ -2308,7 +2310,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2320,7 +2322,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Errored (%1)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
@@ -2408,7 +2410,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Category</source>
@@ -2455,12 +2457,12 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Remaining</source>
@@ -2563,7 +2565,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>Muuda jälitaja URL&apos;i...</translation>
+        <translation>Muuda jälitaja URL'i...</translation>
     </message>
     <message>
         <source>Tracker editing</source>
@@ -2587,7 +2589,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Tier</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Download Priority</source>
@@ -2615,7 +2617,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Renamed</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Original</source>
@@ -2702,11 +2704,11 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation>[S] Allalaaditakse metadata&apos;t</translation>
+        <translation>[S] Allalaaditakse metadata't</translation>
     </message>
 </context>
 <context>
@@ -2729,7 +2731,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2817,7 +2819,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <source>Reset</source>
         <comment>Reset category</comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Force recheck</source>
@@ -2853,7 +2855,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Edit Category</source>
@@ -2901,15 +2903,15 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation>Torrent&apos;i ID</translation>
+        <translation>Torrent'i ID</translation>
     </message>
     <message>
         <source>Export .torrent</source>
@@ -2952,11 +2954,11 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>total minutes</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2970,14 +2972,14 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Remove torrent(s)</source>
-        <translation>Eemalda torrent(&apos;eid)</translation>
+        <translation>Eemalda torrent('eid)</translation>
     </message>
 </context>
 <context>
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation>Lae alla URL&apos;idelt</translation>
+        <translation>Lae alla URL'idelt</translation>
     </message>
     <message>
         <source>Download</source>
@@ -3075,7 +3077,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Plugin path:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>URL or local directory</source>
@@ -3098,7 +3100,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>All plugins</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Size:</source>
@@ -3114,7 +3116,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Search plugins...</source>
-        <translation>Otsi plugin&apos;aid...</translation>
+        <translation>Otsi plugin'aid...</translation>
     </message>
     <message>
         <source>All categories</source>
@@ -3138,7 +3140,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Everywhere</source>
@@ -3154,7 +3156,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Results</source>
@@ -3165,12 +3167,12 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>kuvatakse</translation>
     </message>
     <message>
-        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
-        <translation type="unfinished"/>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation type="unfinished" />
     </message>
     <message>
-        <source>There aren&apos;t any search plugins installed.</source>
-        <translation type="unfinished"/>
+        <source>There aren't any search plugins installed.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3185,7 +3187,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
-        <translation>Siit saate uusi plugin&apos;aid otsingu mootorile:</translation>
+        <translation>Siit saate uusi plugin'aid otsingu mootorile:</translation>
     </message>
     <message>
         <source>Close</source>
@@ -3193,14 +3195,14 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     </message>
     <message>
         <source>Installed search plugins:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enabled</source>
         <translation>Lubatud</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Hoiatus: Veenduge, et järgite oma riigi autoriõiguste seadusi, enne torrentite allalaadimist siit otsingu mootorite abil.</translation>
     </message>
     <message>
@@ -3815,7 +3817,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
         <translation>Algne</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Ära loo alamkausta</translation>
     </message>
     <message>
@@ -3917,11 +3919,11 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>Blokeeritud IP&apos;d</translation>
+        <translation>Blokeeritud IP'd</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Status</source>
@@ -3949,7 +3951,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>item</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>IP</source>
@@ -3957,7 +3959,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Banned</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Normal Messages</source>
@@ -3977,7 +3979,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>items</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Results</source>

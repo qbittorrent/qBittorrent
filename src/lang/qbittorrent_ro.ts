@@ -3048,12 +3048,12 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
         <translation>Descarcă</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>Niciun URL introdus</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>Introduceți măcar un URL.</translation>
     </message>

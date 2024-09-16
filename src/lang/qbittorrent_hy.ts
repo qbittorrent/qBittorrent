@@ -3045,12 +3045,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Ներբեռնել</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>URL մուտքագրված չէ</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>Նշեք գոնե մեկ հղում։</translation>
     </message>
@@ -9272,7 +9272,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="73"/>
         <source>3 Hours</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">24 ժամ {3 ?}</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="75"/>
@@ -11970,7 +11970,7 @@ Please choose a different name and try again.</source>
         <location filename="../base/utils/misc.cpp" line="390"/>
         <source>%1y %2d</source>
         <comment>e.g: 2years 10days</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 օր %2 ժ {1y?} {2d?}</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="269"/>

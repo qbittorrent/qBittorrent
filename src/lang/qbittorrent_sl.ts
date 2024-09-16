@@ -1477,7 +1477,7 @@ Ali želite nastaviti qBittorrent kot privzeti program za te vrste?</translation
     <message>
         <location filename="../app/application.cpp" line="921"/>
         <source>The WebUI administrator username is: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Uporabniško ime skrbnika WebUI je: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="922"/>
@@ -2509,7 +2509,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6160"/>
         <source>I2P error. Message: &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka I2P. Sporočilo: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5882"/>
@@ -2614,7 +2614,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="790"/>
         <source>Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznani so nepričakovani podatki. Torrent: %1. Podatki: total_wanted=%2 total_wanted_done=%3.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1145"/>
@@ -2745,7 +2745,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../app/cmdoptions.cpp" line="512"/>
         <source>Change the WebUI port</source>
-        <translation type="unfinished"></translation>
+        <translation>Spremeni vrata WebUI</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="515"/>
@@ -2980,7 +2980,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../gui/uithemesource.cpp" line="266"/>
         <source>Failed to load custom theme colors. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Barv teme po meri ni bilo mogoče naložiti. %1</translation>
     </message>
 </context>
 <context>
@@ -2988,7 +2988,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <message>
         <location filename="../gui/uithemesource.cpp" line="159"/>
         <source>Failed to load default theme colors. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Barv privzete teme ni bilo mogoče naložiti. %1</translation>
     </message>
 </context>
 <context>
@@ -3049,12 +3049,12 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <translation>Prejem</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>Ni bilo vnesenega URLja</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>Vpišite vsaj en URL.</translation>
     </message>
@@ -5786,12 +5786,12 @@ Namestite Python ročno.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="956"/>
         <source>When duplicate torrent is being added</source>
-        <translation type="unfinished"></translation>
+        <translation>Ob dodajanju podvojene vsebine</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="962"/>
         <source>Merge trackers to existing torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Pripoji sledilnike obstoječemu torrentu</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1353"/>
@@ -5826,7 +5826,7 @@ Namestite Python ročno.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1843"/>
         <source>I2P (experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation>I2P (poskusno)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1902"/>
@@ -10429,12 +10429,12 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="214"/>
         <source>total minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>skupno minut</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="244"/>
         <source>inactive minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>nedejavnih minut</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="268"/>
@@ -10493,7 +10493,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/torrenttagsdialog.ui" line="14"/>
         <source>Torrent Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Oznake torrenta</translation>
     </message>
     <message>
         <location filename="../gui/torrenttagsdialog.cpp" line="101"/>
@@ -10513,7 +10513,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../gui/torrenttagsdialog.cpp" line="107"/>
         <source>Tag name &apos;%1&apos; is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ime oznake &quot;%1&quot; je neveljavno.</translation>
     </message>
     <message>
         <location filename="../gui/torrenttagsdialog.cpp" line="111"/>
@@ -10612,7 +10612,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="564"/>
         <source>&quot;%1&quot; is not a valid file index.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;%1&quot; ni veljaven indeks datoteke.</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="566"/>
@@ -11670,12 +11670,12 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <location filename="../gui/uithemedialog.cpp" line="367"/>
         <location filename="../gui/uithemedialog.cpp" line="376"/>
         <source>Couldn&apos;t remove icon file. File: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datoteke z ikono ni bilo mogoče odstraniti. Datoteka: %1.</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="385"/>
         <source>Couldn&apos;t copy icon file. Source: %1. Destination: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datoteke z ikono ni bilo mogoče kopirati. Vir: %1. Cilj: %2.</translation>
     </message>
 </context>
 <context>
@@ -11748,7 +11748,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../base/utils/io.cpp" line="81"/>
         <source>File open error. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka pri odpiranju datoteke. Datoteka: &quot;%1&quot;. Napaka: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/utils/io.cpp" line="89"/>
@@ -11872,12 +11872,12 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="534"/>
         <source>Web server error. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka spletnega strežnika. %1</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="554"/>
         <source>Web server error. Unknown error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka spletnega strežnika. Neznana napaka.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="780"/>
@@ -11905,7 +11905,7 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
     <message>
         <location filename="../webui/webui.cpp" line="63"/>
         <source>Credentials are not set</source>
-        <translation type="unfinished"></translation>
+        <translation>Poverilnice niso nastavljene</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="114"/>

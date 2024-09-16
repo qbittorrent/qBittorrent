@@ -518,7 +518,7 @@ Hata: %2</translation>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="366"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
-        <translation>Başlangıçta üstverileri olan torrent&apos;ler durdurulmuş olarak eklenecektir.</translation>
+        <translation>Başlangıçta üstverileri olan torrent&apos;ler durduruldu olarak eklenecektir.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="636"/>
@@ -3048,12 +3048,12 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
         <translation>İndir</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>Girilmiş URL yok</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>Lütfen en az bir URL yazın.</translation>
     </message>
@@ -3993,12 +3993,12 @@ Lütfen el ile yükleyin.</translation>
     <message>
         <location filename="../gui/mainwindow.cpp" line="202"/>
         <source>Filter torrents...</source>
-        <translation>Torrent&apos;leri süz...</translation>
+        <translation>Torrent&apos;leri süzün...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="207"/>
         <source>Filter by:</source>
-        <translation>Şuna göre süz:</translation>
+        <translation>Süzme şekli:</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="628"/>
@@ -5681,7 +5681,7 @@ Lütfen el ile yükleyin.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="283"/>
         <source>Paused torrents only</source>
-        <translation>Sadece duraklatılmış torrent&apos;leri</translation>
+        <translation>Sadece duraklatılmış torrent&apos;ler</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="306"/>
@@ -5946,7 +5946,7 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3022"/>
         <source>A&amp;utomatically add these trackers to new downloads:</source>
-        <translation>Bu izleyicileri &amp;otomatik olarak yeni indirmelere ekle:</translation>
+        <translation>Bu izleyicileri yeni indirmelere &amp;otomatik olarak ekle:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3088"/>
@@ -7271,7 +7271,7 @@ benioku[0-9].txt: &apos;benioku1.txt&apos;, &apos;benioku2.txt&apos; dosyasını
     <message>
         <location filename="../gui/optionsdialog.cpp" line="519"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
-        <translation>Başlangıçta üstverileri olan torrent&apos;ler durdurulmuş olarak eklenecektir.</translation>
+        <translation>Başlangıçta üstverileri olan torrent&apos;ler durduruldu olarak eklenecektir.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="865"/>
@@ -9553,17 +9553,17 @@ Bazılarını yüklemek için pencerenin sağ altındaki &quot;Arama eklentileri
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="71"/>
         <source>Stalled (0)</source>
-        <translation>Durduruldu (0)</translation>
+        <translation>Durdu (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="74"/>
         <source>Stalled Uploading (0)</source>
-        <translation>Durdurulan Gönderme (0)</translation>
+        <translation>Duran Gönderme (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="77"/>
         <source>Stalled Downloading (0)</source>
-        <translation>Durdurulan İndirme (0)</translation>
+        <translation>Duran İndirme (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="80"/>
@@ -9643,17 +9643,17 @@ Bazılarını yüklemek için pencerenin sağ altındaki &quot;Arama eklentileri
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="174"/>
         <source>Stalled (%1)</source>
-        <translation>Durduruldu (%1)</translation>
+        <translation>Durdu (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="175"/>
         <source>Stalled Uploading (%1)</source>
-        <translation>Durdurulan Gönderme (%1)</translation>
+        <translation>Duran Gönderme (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="176"/>
         <source>Stalled Downloading (%1)</source>
-        <translation>Durdurulan İndirme (%1)</translation>
+        <translation>Duran İndirme (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="177"/>
@@ -10995,7 +10995,7 @@ Lütfen farklı bir isim seçin ve tekrar deneyin.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="97"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
-        <translation>Durduruldu</translation>
+        <translation>Durdu</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="98"/>

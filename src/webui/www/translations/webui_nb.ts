@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="nb">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="nb">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Lag undermappe</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Ikke lag undermappe</translation>
     </message>
     <message>
@@ -991,8 +993,8 @@
         <translation>%T: Nåværende sporer</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Tips: Innkapsle parameter med anførselstegn for å unngå at teksten blir avskåret ved mellomrom (f.eks., &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Tips: Innkapsle parameter med anførselstegn for å unngå at teksten blir avskåret ved mellomrom (f.eks., "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1411,7 +1413,7 @@
         <translation>Opprinnelig</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Ikke lag undermappe</translation>
     </message>
     <message>
@@ -1547,12 +1549,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Hviteliste for filtrering av HTTP-vertshodeverdier.
 For å kunne beskytte mot DNS-ombindingsangrep,
 burde du skrive inn domenenavn brukt av vevgrensesnittjeneren.
 
-Bruk &quot;;&quot; for å splitte flerfoldige oppføringer. Jokertegnet &quot;*&quot; kan brukes.</translation>
+Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1563,7 +1565,7 @@ Bruk &quot;;&quot; for å splitte flerfoldige oppføringer. Jokertegnet &quot;*&
         <translation>HTTPS-sertifikatet kan ikke være tomt</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
         <translation>Angi IP-er til reverserte mellomtjenere (f.eks. 0.0.0.0/24 for subnett) for å bruke videresendte klientaddresser (attributtet X-Forwarded-For). Bruk «;» for å adskille flere oppføringer.</translation>
     </message>
     <message>
@@ -3169,11 +3171,11 @@ Bruk &quot;;&quot; for å splitte flerfoldige oppføringer. Jokertegnet &quot;*&
         <translation>viser</translation>
     </message>
     <message>
-        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
         <translation>Klikk knappen «Søk etter programtillegg …» nederst til høyre i vinduet for å installere det.</translation>
     </message>
     <message>
-        <source>There aren&apos;t any search plugins installed.</source>
+        <source>There aren't any search plugins installed.</source>
         <translation>Ingen søkeprogramtillegg installert.</translation>
     </message>
 </context>
@@ -3204,7 +3206,7 @@ Bruk &quot;;&quot; for å splitte flerfoldige oppføringer. Jokertegnet &quot;*&
         <translation>Aktivert</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Advarsel: Sørg for å overholde ditt lands opphavsrettslovgivning når du laster ned torrenter fra noen av disse søkemotorene.</translation>
     </message>
     <message>
@@ -3819,7 +3821,7 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
         <translation>Opprinnelig</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Ikke lag undermappe</translation>
     </message>
     <message>

@@ -2116,7 +2116,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="684"/>
         <source>Restart is required to toggle Peer Exchange (PeX) support</source>
-        <translation>Kvůli přepnutí podpory Výměny protějšků (PEX) je nutný restart</translation>
+        <translation>Kvůli přepnutí podpory Výměny peerů (PEX) je nutný restart</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1290"/>
@@ -2233,7 +2233,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2223"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2266"/>
         <source>Torrent paused.</source>
-        <translation>Torrent zastaven.</translation>
+        <translation>Torrent pozastaven.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2185"/>
@@ -2369,7 +2369,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5026"/>
         <source>Torrent paused. Torrent: &quot;%1&quot;</source>
-        <translation>Torrent zastaven. Torrent: &quot;%1&quot;</translation>
+        <translation>Torrent pozastaven. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5032"/>
@@ -2816,7 +2816,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <location filename="../app/cmdoptions.cpp" line="536"/>
         <source>Add torrents as started or paused</source>
-        <translation>Přidat torrenty jako spuštěné nebo zastavené</translation>
+        <translation>Přidat torrenty jako spuštěné nebo pozastavené</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="537"/>
@@ -2912,7 +2912,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="135"/>
         <source>Pause torrents</source>
-        <translation>Zastavit torrenty</translation>
+        <translation>Pozastavit torrenty</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="137"/>
@@ -3048,12 +3048,12 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
         <translation>Stahování</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>Nebylo vloženo žádné URL</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>Prosím napište alespoň jedno URL.</translation>
     </message>
@@ -5681,7 +5681,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="283"/>
         <source>Paused torrents only</source>
-        <translation>Pouze zastavené torrenty</translation>
+        <translation>Pouze pozastavené torrenty</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="306"/>
@@ -5984,7 +5984,7 @@ Zakázat šifrování: Připojí se pouze k peerům bez šifrování protokolu</
     <message>
         <location filename="../gui/optionsdialog.ui" line="2996"/>
         <source>Pause torrent</source>
-        <translation>Zastavit torrent</translation>
+        <translation>Pozastavit torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3001"/>
@@ -6420,7 +6420,7 @@ Použijte &apos;;&apos; pro oddělení více položek. Můžete použít masku &
     <message>
         <location filename="../gui/optionsdialog.ui" line="900"/>
         <source>The torrent will be added to download list in a paused state</source>
-        <translation>Torrent bude přidán do seznamu stahování v zastaveném stavu</translation>
+        <translation>Torrent bude přidán do seznamu stahování v pozastaveném stavu</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="903"/>
@@ -9538,7 +9538,7 @@ Klikněte na tlačítko &quot;Vyhledávácí pluginy...&quot; dole vpravo v okn�
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="62"/>
         <source>Paused (0)</source>
-        <translation>Zastaveno (0)</translation>
+        <translation>Pozastaveno (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="65"/>
@@ -9603,7 +9603,7 @@ Klikněte na tlačítko &quot;Vyhledávácí pluginy...&quot; dole vpravo v okn�
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="171"/>
         <source>Paused (%1)</source>
-        <translation>Zastaveno (%1)</translation>
+        <translation>Pozastaveno (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="178"/>
@@ -9618,7 +9618,7 @@ Klikněte na tlačítko &quot;Vyhledávácí pluginy...&quot; dole vpravo v okn�
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="223"/>
         <source>Pause torrents</source>
-        <translation>Zastavit torrenty</translation>
+        <translation>Pozastavit torrenty</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="225"/>
@@ -9709,7 +9709,7 @@ Klikněte na tlačítko &quot;Vyhledávácí pluginy...&quot; dole vpravo v okn�
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="125"/>
         <source>Pause torrents</source>
-        <translation>Zastavení torrentů</translation>
+        <translation>Pozastavení torrentů</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="127"/>
@@ -10938,7 +10938,7 @@ Prosím zvolte jiný název kategorie a zkuste to znovu.</translation>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="461"/>
         <source>Pause torrents</source>
-        <translation>Zastavit torrenty</translation>
+        <translation>Pozastavit torrenty</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="463"/>
@@ -11051,7 +11051,7 @@ Prosím zvolte jiný název kategorie a zkuste to znovu.</translation>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="109"/>
         <source>Paused</source>
-        <translation>Zastaveno</translation>
+        <translation>Pozastaveno</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="110"/>
@@ -11616,7 +11616,7 @@ Prosím zvolte jiný název kategorie a zkuste to znovu.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1258"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
-        <translation>Není možné vynutit oznámení trackeru u torrentu, který je zastavený/ve frontě/chybný/kontrolovaný</translation>
+        <translation>Není možné vynutit oznámení trackeru u torrentu, který je pozastavený/ve frontě/chybný/kontrolovaný</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="995"/>

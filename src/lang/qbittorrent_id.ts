@@ -895,7 +895,7 @@ Galat: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="586"/>
         <source>Use piece extent affinity</source>
-        <translation type="unfinished"></translation>
+        <translation>Gunakan afinitas tingkat potongan</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="589"/>
@@ -929,17 +929,17 @@ Galat: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="672"/>
         <source>0 (permanent lease)</source>
-        <translation type="unfinished"></translation>
+        <translation>0 (sewa permanen)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="673"/>
         <source>UPnP lease duration [0: permanent lease]</source>
-        <translation type="unfinished"></translation>
+        <translation>Durasi sewa UPnP [0: sewa permanen]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="766"/>
         <source>Stop tracker timeout [0: disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Hentikan batas waktu pelacak [0: dinonaktifkan]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="782"/>
@@ -949,7 +949,7 @@ Galat: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="872"/>
         <source>Maximum outstanding requests to a single peer</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksimum permintaan yang belum terselesaikan ke satu rekan kerja</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="551"/>
@@ -998,7 +998,7 @@ Galat: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="558"/>
         <source>POSIX-compliant</source>
-        <translation type="unfinished"></translation>
+        <translation>POSIX-compliant</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="560"/>
@@ -1019,7 +1019,7 @@ Galat: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="573"/>
         <source>Write-through</source>
-        <translation type="unfinished"></translation>
+        <translation>Write-through</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="576"/>
@@ -1292,7 +1292,7 @@ Galat: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="750"/>
         <source>Optional IP address to bind to</source>
-        <translation type="unfinished"></translation>
+        <translation>Opsional alamat IP untuk menghubungkan ke</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="759"/>
@@ -1367,7 +1367,7 @@ Galat: %2</translation>
     <message>
         <location filename="../app/application.cpp" line="568"/>
         <source>Running external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
-        <translation type="unfinished"></translation>
+        <translation>Jalankan program eksternal. Torrent: &quot;%1&quot;. Perintah: &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="569"/>
@@ -1377,7 +1377,7 @@ Galat: %2</translation>
     <message>
         <location filename="../app/application.cpp" line="666"/>
         <source>Torrent &quot;%1&quot; has finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent &quot;%1%&quot; sudah selesai diunduh.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="772"/>
@@ -1486,7 +1486,7 @@ Do you want to make qBittorrent the default application for these?</source>
     <message>
         <location filename="../app/application.cpp" line="923"/>
         <source>You should set your own password in program preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Anda harus mengatur kata sandimu sendiri di preferensi program.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="955"/>
@@ -1872,7 +1872,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="474"/>
         <source>Failed to read the file. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Gagal membaca file ini: %1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="687"/>
@@ -3046,12 +3046,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Unduh</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>Tiada URL dimasukan</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>Mohon masukan setidaknya satu URL</translation>
     </message>
@@ -11771,7 +11771,7 @@ Mohon memilih nama lain dan coba lagi.</translation>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="22"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Will watch the folder and all its subfolders. In Manual torrent management mode it will also add subfolder name to the selected Save path.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Akan mengawasi folder dan semua subfoldernya. Dalam mode manajemen torrent Manual, mode ini juga akan menambahkan nama subfolder ke jalur Simpan yang dipilih.</translation>
     </message>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="25"/>
@@ -11794,12 +11794,12 @@ Mohon memilih nama lain dan coba lagi.</translation>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="106"/>
         <source>Watched folder path cannot be empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jalur folder yang ditonton tidak boleh kosong.</translation>
     </message>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="109"/>
         <source>Watched folder path cannot be relative.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jalur folder yang diawasi harus absolut.</translation>
     </message>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="112"/>
@@ -11862,7 +11862,7 @@ Mohon memilih nama lain dan coba lagi.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="534"/>
         <source>Web server error. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Web server error. %1</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="554"/>

@@ -3182,12 +3182,12 @@ Per esempio, per disabilitare la schermata d&apos;avvio: </translation>
         <translation>Download</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>Nessun indirizzo web inserito</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>Inserire almeno un indirizzo web.</translation>
     </message>

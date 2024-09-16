@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="hr">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="hr">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Stvori podmapu</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Ne stvaraj podmapu</translation>
     </message>
     <message>
@@ -183,7 +185,7 @@
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Vremensko ograničenje &apos;seedinga&apos; mora biti između 0 i 525600 minuta.</translation>
+        <translation>Vremensko ograničenje 'seedinga' mora biti između 0 i 525600 minuta.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -991,8 +993,8 @@
         <translation>%T: Trenutni tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Savjet: Enkapsulirajte parametar s navodnicima kako biste izbjegli odsijecanje teksta na razmaku (npr. &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Savjet: Enkapsulirajte parametar s navodnicima kako biste izbjegli odsijecanje teksta na razmaku (npr. "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1411,7 +1413,7 @@
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nemoj stvarati podmapu</translation>
     </message>
     <message>
@@ -1547,12 +1549,12 @@
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
-Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Popis dopuštenih za filtriranje vrijednosti zaglavlja HTTP hosta.
 U svrhu obrane od napada ponovnog povezivanja DNS-a,
 trebali biste unijeti nazive domena koje koristi WebUI poslužitelj.
 
-Koristite &apos;;&apos; za razdvajanje više unosa. Može koristiti zamjenski znak &apos;*&apos;.</translation>
+Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1563,8 +1565,8 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Može koristiti zamjenski zn
         <translation>HTTPS certifikat ne smije biti prazan</translation>
     </message>
     <message>
-        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation>Navedite obrnute proxy IP adrese (ili podmreže, npr. 0.0.0.0/24) kako biste koristili prosljeđenu adresu klijenta (X-Prosljeđeno-Za zaglavlje). Koristite &apos;;&apos; za razdvajanje više unosa.</translation>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation>Navedite obrnute proxy IP adrese (ili podmreže, npr. 0.0.0.0/24) kako biste koristili prosljeđenu adresu klijenta (X-Prosljeđeno-Za zaglavlje). Koristite ';' za razdvajanje više unosa.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -3169,11 +3171,11 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Može koristiti zamjenski zn
         <translation>pokazivanje</translation>
     </message>
     <message>
-        <source>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
-        <translation>Pritisnite gumb &quot;Traži dodatke...&quot; u donjem desnom kutu prozora da biste instalirali neke.</translation>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation>Pritisnite gumb "Traži dodatke..." u donjem desnom kutu prozora da biste instalirali neke.</translation>
     </message>
     <message>
-        <source>There aren&apos;t any search plugins installed.</source>
+        <source>There aren't any search plugins installed.</source>
         <translation>Nema instaliranih dodataka za pretraživanje.</translation>
     </message>
 </context>
@@ -3204,7 +3206,7 @@ Koristite &apos;;&apos; za razdvajanje više unosa. Može koristiti zamjenski zn
         <translation>Omogućeno</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Upozorenje: Budite u skladu sa zakonima o autorskim pravima vaše zemlje kada preuzimate torrente s bilo koje od ovih tražilica.</translation>
     </message>
     <message>
@@ -3818,7 +3820,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Nemoj stvarati podmapu</translation>
     </message>
     <message>

@@ -84,7 +84,7 @@
     <message>
         <location filename="../gui/aboutdialog.ui" line="353"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiatu arbelera</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -459,7 +459,7 @@ Akatsa: %2</translation>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="368"/>
         <source>This will also download metadata if it wasn&apos;t there initially.</source>
-        <translation type="unfinished"></translation>
+        <translation>Honek metadatuak deskargatu ditu ez bazeuden hasieratik.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="664"/>
@@ -503,7 +503,7 @@ Akatsa: %2</translation>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="1027"/>
         <source>Cannot create v2 torrent until its data is fully downloaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin da v2 torrenta sortu bere datuak guztiz deskargatu arte.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="1115"/>
@@ -518,7 +518,7 @@ Akatsa: %2</translation>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="366"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hasieran metadatuak dituzten torrentak geldituta gehituko dira.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="636"/>
@@ -529,7 +529,7 @@ Akatsa: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="644"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="701"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Do you want to merge trackers from new source?</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; torrenta transferentzia zerrendan dago jada. Iturburu berriko jarraitzaileak batu nahi dituzu?</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="1006"/>
@@ -579,7 +579,7 @@ Akatsa: %2</translation>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="62"/>
         <source>Note: the current defaults are displayed for reference.</source>
-        <translation type="unfinished"></translation>
+        <translation>Oharra: uneko balio lehenetsiak erreferentzia gisa erakusten dira.</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="74"/>
@@ -790,7 +790,7 @@ Akatsa: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="449"/>
         <source>Fastresume files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fastresume fitxategiak</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="450"/>
@@ -835,7 +835,7 @@ Akatsa: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="461"/>
         <source>Physical memory (RAM) usage limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Memoria fisikoaren (RAM) erabilera-muga</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="491"/>
@@ -879,7 +879,7 @@ Akatsa: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="552"/>
         <source>Disk queue size</source>
-        <translation type="unfinished"></translation>
+        <translation>Diskoaren ilara tamaina</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="565"/>
@@ -908,48 +908,48 @@ Akatsa: %2</translation>
         <location filename="../gui/advancedsettings.cpp" line="663"/>
         <location filename="../gui/advancedsettings.cpp" line="765"/>
         <source>0 (disabled)</source>
-        <translation type="unfinished"></translation>
+        <translation>0 (desgaituta)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="644"/>
         <source>Save resume data interval [0: disabled]</source>
         <comment>How often the fastresume file is saved.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Gorde berrekintze-datu tartea: [0: desgaituta]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="656"/>
         <source>Outgoing ports (Min) [0: disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Irteera atakak (Gutx) [0: desgaituta]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="664"/>
         <source>Outgoing ports (Max) [0: disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Irteera atakak (Geh) [0: desgaituta]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="672"/>
         <source>0 (permanent lease)</source>
-        <translation type="unfinished"></translation>
+        <translation>0 (alokatze iraunkorra)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="673"/>
         <source>UPnP lease duration [0: permanent lease]</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP esleipenaren iraupena [0: esleipen iraunkorra]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="766"/>
         <source>Stop tracker timeout [0: disabled]</source>
-        <translation type="unfinished"></translation>
+        <translation>Aztarnaria gelditzeko denbora-muga: [0: desgaituta]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="782"/>
         <source>Notification timeout [0: infinite, -1: system default]</source>
-        <translation type="unfinished"></translation>
+        <translation>Jakinarazpenen denbora-muga [0: infinitua, -1: sistemak lehenetsia]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="872"/>
         <source>Maximum outstanding requests to a single peer</source>
-        <translation type="unfinished"></translation>
+        <translation>Gehienezko eskaerak parekide bakar bati</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="551"/>
@@ -963,12 +963,12 @@ Akatsa: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="364"/>
         <source> (infinite)</source>
-        <translation type="unfinished"></translation>
+        <translation> (infinitua)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="366"/>
         <source> (system default)</source>
-        <translation type="unfinished"></translation>
+        <translation> (sistemak lehenetsia)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="459"/>
@@ -978,12 +978,12 @@ Akatsa: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="479"/>
         <source>Bdecode depth limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Bdecode sakoneraren muga</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="485"/>
         <source>Bdecode token limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Bdecode token muga</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="556"/>
@@ -1003,28 +1003,28 @@ Akatsa: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="560"/>
         <source>Disk IO type (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Diskoaren SI mota (berrabiarazi behar da)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="564"/>
         <location filename="../gui/advancedsettings.cpp" line="570"/>
         <source>Disable OS cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Desgaitu SE cachea</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="567"/>
         <source>Disk IO read mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Diskoaren SI irakurtze modua</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="573"/>
         <source>Write-through</source>
-        <translation type="unfinished"></translation>
+        <translation>Igarotze-idazketa</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="576"/>
         <source>Disk IO write mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Diskoaren SI idazte modua</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="596"/>
@@ -1050,17 +1050,17 @@ Akatsa: %2</translation>
         <location filename="../gui/advancedsettings.cpp" line="621"/>
         <location filename="../gui/advancedsettings.cpp" line="629"/>
         <source>0 (system default)</source>
-        <translation type="unfinished"></translation>
+        <translation>0 (sistemak lehenetsia)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="622"/>
         <source>Socket send buffer size [0: system default]</source>
-        <translation type="unfinished"></translation>
+        <translation>Socket bidaltzeko buffer tamaina [0: sistemak lehenetsita]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="630"/>
         <source>Socket receive buffer size [0: system default]</source>
-        <translation type="unfinished"></translation>
+        <translation>Socket jasotzeko buffer tamaina [0: sistemak lehenetsita]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="636"/>
@@ -1070,7 +1070,7 @@ Akatsa: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="650"/>
         <source>.torrent file size limit</source>
-        <translation type="unfinished"></translation>
+        <translation>.torrent fitxategiaren tamaina muga</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="679"/>
@@ -1105,7 +1105,7 @@ Akatsa: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="705"/>
         <source>Server-side request forgery (SSRF) mitigation</source>
-        <translation type="unfinished"></translation>
+        <translation>Zerbitzariaren aldeko eskaera faltsutzea (SSRF) saihestea</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="710"/>
@@ -1115,12 +1115,12 @@ Akatsa: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="719"/>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Barne-egoera eguneratzeko tartea kontrolatzen du eta horrek, aldi berean, UI eguneratzeei eragingo die</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="720"/>
         <source>Refresh interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Freskatze-tartea</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="726"/>
@@ -1130,7 +1130,7 @@ Akatsa: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="753"/>
         <source>IP address reported to trackers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aztarnariei jakinarazitako IP helbidea (berrabiarazi behar da)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="786"/>
@@ -1150,7 +1150,7 @@ Akatsa: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="815"/>
         <source>Enable port forwarding for embedded tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Gaitu ataka-birbidaltzea kapsulatutako aztarnarientzat</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="854"/>
@@ -1170,22 +1170,22 @@ Akatsa: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="878"/>
         <source>I2P inbound quantity</source>
-        <translation type="unfinished"></translation>
+        <translation>I2P sarrerako kantitatea</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="883"/>
         <source>I2P outbound quantity</source>
-        <translation type="unfinished"></translation>
+        <translation>I2P irteerako kantitatea</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="888"/>
         <source>I2P inbound length</source>
-        <translation type="unfinished"></translation>
+        <translation>I2P sarrerako luzera</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="893"/>
         <source>I2P outbound length</source>
-        <translation type="unfinished"></translation>
+        <translation>I2P irteerako luzera</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="770"/>
@@ -1367,28 +1367,28 @@ Akatsa: %2</translation>
     <message>
         <location filename="../app/application.cpp" line="568"/>
         <source>Running external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanpoko programa exekutatzen. Torrenta: &quot;%1&quot;. Komandoa: `%2`</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="569"/>
         <source>Failed to run external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanpoko programa exekutatzeak huts egin du. Torrenta: &quot;%1&quot;. Komandoa: `%2`</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="666"/>
         <source>Torrent &quot;%1&quot; has finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;% 1&quot; torrenta deskargatzen amaitu da</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="772"/>
         <source>WebUI will be started shortly after internal preparations. Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI barne prestaketak egin eta gutxira hasiko dira. Mesedez, itxaron...</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="794"/>
         <location filename="../app/application.cpp" line="955"/>
         <source>Loading torrents...</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentak kargatzen...</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="797"/>
@@ -1434,7 +1434,7 @@ Zergaitia: %2</translation>
     <message>
         <location filename="../app/application.cpp" line="862"/>
         <source>Download completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Deskarga osatu da</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="862"/>
@@ -1471,22 +1471,22 @@ Do you want to make qBittorrent the default application for these?</source>
     <message>
         <location filename="../app/application.cpp" line="916"/>
         <source>To control qBittorrent, access the WebUI at: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent kontrolatzeko, sartu WebUI-ra hemen: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="921"/>
         <source>The WebUI administrator username is: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI administratzailearen erabiltzaile-izena hau da: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="922"/>
         <source>The WebUI administrator password was not set. A temporary password is provided for this session: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI administratzailearen pasahitza ez da ezarri. Saio honetarako aldi baterako pasahitz bat eman da: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="923"/>
         <source>You should set your own password in program preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zure pasahitza ezarri beharko zenuke programaren hobespenetan.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="955"/>
@@ -1496,22 +1496,22 @@ Do you want to make qBittorrent the default application for these?</source>
     <message>
         <location filename="../app/application.cpp" line="1090"/>
         <source>Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da memoria fisikoaren (RAM) erabilera-muga ezarri. Errore kodea: %1. Errore mezua: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="1125"/>
         <source>Failed to set physical memory (RAM) usage hard limit. Requested size: %1. System hard limit: %2. Error code: %3. Error message: &quot;%4&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da memoria fisikoaren (RAM) erabilera muga gogorra ezarri. Eskatutako tamaina: %1. Sistemaren muga gogorra: %2. Errore kodea: %3. Errore mezua: &quot;%4&quot;</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="1228"/>
         <source>qBittorrent termination initiated</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent-en amaiera hasi da</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="1234"/>
         <source>qBittorrent is shutting down...</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent itzaltzen ari da...</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="1248"/>
@@ -1521,7 +1521,7 @@ Do you want to make qBittorrent the default application for these?</source>
     <message>
         <location filename="../app/application.cpp" line="1282"/>
         <source>qBittorrent is now ready to exit</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent irteteko prest dago</translation>
     </message>
 </context>
 <context>
@@ -1585,17 +1585,17 @@ Do you want to make qBittorrent the default application for these?</source>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="28"/>
         <source>Auto downloading of RSS torrents is currently disabled. You can enable it in application settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS torrenten deskarga automatikoa desgaituta dago une honetan. Aplikazioaren ezarpenetan gaitu dezakezu.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="68"/>
         <source>Rename selected rule. You can also use the F2 hotkey to rename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Berrizendatu hautatutako araua. F2 laster-tekla ere erabil dezakezu berrizendatzeko.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="147"/>
         <source>Priority:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lehentasuna:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="188"/>
@@ -1868,12 +1868,12 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="473"/>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="491"/>
         <source>Import error</source>
-        <translation type="unfinished"></translation>
+        <translation>Inportazio errorea</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="474"/>
         <source>Failed to read the file. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxategia irakurtzeak huts egin du. %1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="687"/>
@@ -1961,23 +1961,23 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="214"/>
         <source>Cannot parse resume data: invalid format</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin dira berrekiteko datuak analizatu: formatu baliogabea</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="281"/>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="288"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin da torrentaren informazioa analizatu: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="284"/>
         <source>Cannot parse torrent info: invalid format</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin da torrentaren informazioa analizatu: formatu baliogabea</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="299"/>
         <source>Mismatching info-hash detected in resume data</source>
-        <translation type="unfinished"></translation>
+        <translation>Info-hash baterazina detektatu da berrekiteko datuetan</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="395"/>
@@ -1987,22 +1987,22 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="422"/>
         <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan dira torrentaren berrekite datuak gorde &apos;%1&apos;. Errorea: %2.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="177"/>
         <source>Couldn&apos;t load torrents queue: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da torrent ilara kargatu: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="211"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin dira berrekiteko datuak analizatu: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="318"/>
         <source>Resume data is invalid: neither metadata nor info-hash was found</source>
-        <translation type="unfinished"></translation>
+        <translation>Berrekite datuak baliogabeak dira: ez dira ez metadatuak ez info-hash aurkitu</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="447"/>
@@ -2020,33 +2020,33 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="386"/>
         <source>Couldn&apos;t load resume data of torrent &apos;%1&apos;. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan dira &apos;%1&apos; torrenteko berrekite datuak kargatu. Errorea: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="470"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="475"/>
         <source>Database is corrupted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datu-basea kaltetuta dago.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="488"/>
         <source>Couldn&apos;t enable Write-Ahead Logging (WAL) journaling mode. Error: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da Write-Ahead Logging (WAL) egunkari-modua gaitu. Errorea: %1.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="654"/>
         <source>Couldn&apos;t obtain query result.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da eskaeraren emaitza lortu.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="658"/>
         <source>WAL mode is probably unsupported due to filesystem limitations.</source>
-        <translation type="unfinished"></translation>
+        <translation>WAL modua ziurrenik ez da onartzen fitxategi-sistemaren mugak direla eta.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="707"/>
         <source>Couldn&apos;t begin transaction. Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da transakzioa hasi. Errorea: %1</translation>
     </message>
 </context>
 <context>
@@ -2059,17 +2059,17 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="883"/>
         <source>Couldn&apos;t store resume data for torrent &apos;%1&apos;. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan dira &apos;%1&apos; torrenteko berrekite datuak gorde. Errorea: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="911"/>
         <source>Couldn&apos;t delete resume data of torrent &apos;%1&apos;. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan dira &apos;%1&apos; torrenteko berrekite datuak ezabatu. Errorea: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="945"/>
         <source>Couldn&apos;t store torrents queue positions. Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan dira torrenten ilararen posizioak gorde. Errorea: %1</translation>
     </message>
 </context>
 <context>
@@ -2078,7 +2078,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
         <location filename="../base/bittorrent/sessionimpl.cpp" line="655"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1562"/>
         <source>Distributed Hash Table (DHT) support: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Distributed Hash Table (DHT) euskarria: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="655"/>
@@ -2110,80 +2110,80 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
         <location filename="../base/bittorrent/sessionimpl.cpp" line="670"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1563"/>
         <source>Local Peer Discovery support: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tokiko parekideen aurkikuntza euskarria: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="684"/>
         <source>Restart is required to toggle Peer Exchange (PeX) support</source>
-        <translation type="unfinished"></translation>
+        <translation>Berrabiarazi behar da Peer Exchange (PeX) euskarria aldatzeko</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1290"/>
         <source>Failed to resume torrent. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta berrekiteak huts egin du. Torrenta: &quot;%1&quot;. Arrazoia: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1344"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1354"/>
         <source>Failed to resume torrent: inconsistent torrent ID is detected. Torrent: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta berrezartzeak huts egin du: torrent ID inkoherentea hauteman da. Torrenta: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1388"/>
         <source>Detected inconsistent data: category is missing from the configuration file. Category will be recovered but its settings will be reset to default. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Datu inkoherenteak hauteman dira: kategoria falta da konfigurazio fitxategian. Kategoria berreskuratuko da, baina bere ezarpenak lehenetsiko dira. Torrenta: &quot;%1&quot;. Kategoria: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1395"/>
         <source>Detected inconsistent data: invalid category. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Datu inkoherenteak hauteman dira: kategoria baliogabea. Torrenta: &quot;%1&quot;. Kategoria: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1410"/>
         <source>Detected mismatch between the save paths of the recovered category and the current save path of the torrent. Torrent is now switched to Manual mode. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Berreskuratutako kategoriaren eta torrentaren uneko artean bat ez datozen gordetze bide-izenak hauteman dira. Torrenta eskuzko modura aldatu da orain. Torrenta: &quot;%1&quot;. Kategoria: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1424"/>
         <source>Detected inconsistent data: tag is missing from the configuration file. Tag will be recovered. Torrent: &quot;%1&quot;. Tag: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Datu inkoherenteak hauteman dira: etiketa falta da konfigurazio fitxategian. Etiketa berreskuratuko da. Torrenta: &quot;%1&quot;. Etiketa: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1430"/>
         <source>Detected inconsistent data: invalid tag. Torrent: &quot;%1&quot;. Tag: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Datu inkoherenteak hauteman dira: etiketa baliogabea. Torrenta: &quot;%1&quot;. Etiketa: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1499"/>
         <source>System wake-up event detected. Re-announcing to all the trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistema esnatzeko gertaera detektatu da. Aztarnari guztiei berriro iragartzen...</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1560"/>
         <source>Peer ID: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Hartzailearen ID-a: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1561"/>
         <source>HTTP User-Agent: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP erabiltzaile-agentea: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1564"/>
         <source>Peer Exchange (PeX) support: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Peer Exchange (PeX) euskarria: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1565"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="4472"/>
         <source>Anonymous mode: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Modu anonimoa: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1566"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3696"/>
         <source>Encryption support: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Zifratze euskarria: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1566"/>
@@ -2194,24 +2194,24 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1990"/>
         <source>Could not find GUID of network interface. Interface: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da sareko interfazearen GUIDa aurkitu. Interfazea: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2005"/>
         <source>Trying to listen on the following list of IP addresses: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>IP helbideen zerrenda hau entzuten saiatzen: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2164"/>
         <source>Torrent reached the share ratio limit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent partekatze-ratioaren mugara iritsi da.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2165"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2208"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2251"/>
         <source>Torrent: &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2169"/>
@@ -2239,23 +2239,23 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2228"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2271"/>
         <source>Super seeding enabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Super emaritza gaituta.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2207"/>
         <source>Torrent reached the seeding time limit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentek emaritze denbora-mugara iritsi da.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2250"/>
         <source>Torrent reached the inactive seeding time limit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta emaritza inaktiboaren denbora-mugara iritsi da.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2290"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5483"/>
         <source>Failed to load torrent. Reason: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da torrenta kargatu. Arrazoia: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2625"/>
@@ -2285,22 +2285,22 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2995"/>
         <source>UPnP/NAT-PMP support: ON</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP/NAT-PMP euskarria: AKTIBO</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3014"/>
         <source>UPnP/NAT-PMP support: OFF</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP/NAT-PMP euskarria: EZ</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3139"/>
         <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da torrenta esportatu. Torrenta: &quot;%1&quot;. Helburua: &quot;%2&quot;. Arrazoia: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3194"/>
         <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Berrekite datuak gordetzeari utzi zaio. Torrent nabarmenen kopurua: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3307"/>
@@ -2327,43 +2327,43 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3339"/>
         <source>The configured network address is invalid. Address: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguratutako sare helbidea ez da baliozkoa. Helbidea: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3380"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3414"/>
         <source>Failed to find the configured network address to listen on. Address: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Entzuteko konfiguratutako sare helbidea aurkitzeak huts egin du. Helbidea: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3393"/>
         <source>The configured network interface is invalid. Interface: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguratutako sare interfazea ez da baliozkoa. Helbidea: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3997"/>
         <source>Rejected invalid IP address while applying the list of banned IP addresses. IP: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>IP helbide baliogabea baztertu da debekatutako IP helbideen zerrenda aplikatzean. IPa: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="4982"/>
         <source>Added tracker to torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Aztarnaria gehitu da torrentera. Torrenta: &quot;%1&quot;. Aztarnaria: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="4992"/>
         <source>Removed tracker from torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Aztarnaria kendu da torrentetik. Torrenta: &quot;%1&quot;. Aztarnaria: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5007"/>
         <source>Added URL seed to torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>URL bidezko emailea gehitu da torrentera. Torrenta: &quot;%1&quot;. URLa: &quot;% 2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5013"/>
         <source>Removed URL seed from torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>URL bidezko emailea kendu da torrentetik. Torrenta: &quot;%1&quot;. URLa: &quot;% 2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5026"/>
@@ -2373,52 +2373,52 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5032"/>
         <source>Torrent resumed. Torrent: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta berrekita. Torrenta: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5043"/>
         <source>Torrent download finished. Torrent: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentaren deskarga bukatu da. Torrenta: &quot;% 1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5120"/>
         <source>Torrent move canceled. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta mugitzea bertan behera utzi da. Torrenat: &quot;%1&quot;. Iturria: &quot;%2&quot;. Helmuga: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5131"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: torrent is currently moving to the destination</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta mugitzea ilaran jartzeak huts egin du. Torrenta: &quot;%1&quot;. Iturria: &quot;%2&quot;. Helmuga: &quot;%3&quot;. Arrazoia: torrent helburura mugitzen ari da une honetan</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5140"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot; Destination: &quot;%3&quot;. Reason: both paths point to the same location</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta mugitzea ilaran jartzeak huts egin du. Torrenta: &quot;%1&quot;. Iturria: &quot;%2&quot;. Helburua: &quot;%3&quot;. Arrazoia: bide-izenek kokaleku berdinera daramate</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5148"/>
         <source>Enqueued torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentaren mugimendua ilaran jarri da. Torrenta: &quot;%1&quot;. Iturria: &quot;%2&quot;. Helburua: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5165"/>
         <source>Start moving torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Hasi torrenta mugitzen. Torrenta: &quot;%1&quot;. Helmuga: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5214"/>
         <source>Failed to save Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorien konfigurazioa gordetzeak huts egin du. Fitxategia: &quot;%1&quot;. Errorea: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5261"/>
         <source>Failed to parse Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorien konfigurazioa analizatzeak huts egin du. Fitxategia: &quot;%1&quot;. Errorea: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5363"/>
         <source>Recursive download .torrent file within torrent. Source torrent: &quot;%1&quot;. File: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Deskargatu errekurtsiboki .torrent fitxategia torrent barruan. Iturburu torrenta: &quot;%1&quot;. Fitxategia: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5376"/>
@@ -2428,27 +2428,27 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5420"/>
         <source>Successfully parsed the IP filter file. Number of rules applied: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Behar bezala analizatu da IP iragazkien fitxategia. Aplikaturiko arau kopurua: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5430"/>
         <source>Failed to parse the IP filter file</source>
-        <translation type="unfinished"></translation>
+        <translation>IP iragazkien fitxategia analizatzeak huts egin du</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5720"/>
         <source>Restored torrent. Torrent: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta berrezarrita. Torrenta: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5724"/>
         <source>Added new torrent. Torrent: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent berria gehitu da. Torrenta: &quot;% 1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5730"/>
         <source>Torrent errored. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentak errore bat izan du. Torrenta: &quot;%1&quot;. Errorea: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5748"/>
@@ -2464,17 +2464,17 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5850"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxategiaren errorearen alerta. Torrenta: &quot;%1&quot;. Fitxategia: &quot;%2&quot;. Arrazoia: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5861"/>
         <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP/NAT-PMP ataka mapatzeak huts egin du. Mezua: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5867"/>
         <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP/NAT-PMP ataken mapatzea ongi burutu da. Mezua: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5876"/>
@@ -2486,28 +2486,28 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5879"/>
         <source>filtered port (%1)</source>
         <comment>this peer was blocked. Reason: filtered port (8899).</comment>
-        <translation type="unfinished"></translation>
+        <translation>iragazitako ataka (%1)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5885"/>
         <source>privileged port (%1)</source>
         <comment>this peer was blocked. Reason: privileged port (80).</comment>
-        <translation type="unfinished"></translation>
+        <translation>ataka pribilegiatua (%1)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5958"/>
         <source>BitTorrent session encountered a serious error. Reason: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>BitTorrent saioak errore larri bat aurkitu du. Arrazoia: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6150"/>
         <source>SOCKS5 proxy error. Address: %1. Message: &quot;%2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>SOCKS5 proxy errorea. Helbidea: %1. Mezua: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6160"/>
         <source>I2P error. Message: &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>I2P errorea. Mezua: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5882"/>
@@ -2518,12 +2518,12 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5253"/>
         <source>Failed to load Categories. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan dira kategoriak kargatu. %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5268"/>
         <source>Failed to load Categories configuration. File: &quot;%1&quot;. Error: &quot;Invalid data format&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorien konfigurazioa kargatzeak huts egin du. Fitxategia: &quot;%1&quot;. Errorea: &quot;Datu formatu baliogabea&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5793"/>
@@ -2545,42 +2545,42 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5915"/>
         <source>URL seed DNS lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>URL emaritzaren DNS bilaketak huts egin du. Torrent: &quot;%1&quot;. URLa: &quot;%2&quot;. Errorea: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5921"/>
         <source>Received error message from URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>URL emailetik errore-mezua jaso da. Torrenta: &quot;%1&quot;. URLa: &quot;%2&quot;. Mezua: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5930"/>
         <source>Successfully listening on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>IPan ondo entzuten. IP: &quot;%1&quot;. Ataka: &quot;%2/%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5937"/>
         <source>Failed to listen on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;. Reason: &quot;%4&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>IPan entzuteak huts egin du. IP: &quot;%1&quot;. Portua: &quot;%2/%3&quot;. Arrazoia: &quot;%4&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5945"/>
         <source>Detected external IP. IP: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanpoko IP detektatu da. IP-a: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6060"/>
         <source>Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: &quot;%1&quot;. Message: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Errorea: Barneko alerta-ilara beteta dago eta alertak kendu egin dira, baliteke errendimendu hondatua ikustea. Alerta mota jaitsi da: &quot;%1&quot;. Mezua: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6082"/>
         <source>Moved torrent successfully. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta ondo mugitu da. Torrenta: &quot;%1&quot;. Helmuga: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6105"/>
         <source>Failed to move torrent. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: &quot;%4&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent mugitzeak huts egin du. Torrenta: &quot;%1&quot;. Iturria: &quot;%2&quot;. Helburua: &quot;%3&quot;. Arrazoia: &quot;%4&quot;</translation>
     </message>
 </context>
 <context>
@@ -2594,7 +2594,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
         <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="219"/>
         <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="223"/>
         <source>Create new torrent file failed. Reason: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent fitxategi berria sortzeak huts egin du. Arrazoia: %1.</translation>
     </message>
 </context>
 <context>
@@ -2612,12 +2612,12 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="790"/>
         <source>Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustekabeko datuak hauteman dira. Torrenta: %1. Datuak: total_wanted=%2 total_wanted_done=%3.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1145"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da fitxategian idatzi. Arrazoia: &quot;%1&quot;. Torrenta &quot;kargatu soilik&quot; moduan dago orain.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1580"/>
@@ -2637,17 +2637,17 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2104"/>
         <source>Generate resume data failed. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Berrekite datuak sortzeak huts egin du. Torrenta: &quot;%1&quot;. Arrazoia: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2115"/>
         <source>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta berresteak huts egin du. Fitxategiak lekuz aldatu dira edo biltegiratzea ez da erabilgarri. Torrenta: &quot;%1&quot;. Arrazoia: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2610"/>
         <source>Missing metadata</source>
-        <translation type="unfinished"></translation>
+        <translation>Metadatuak falta dira</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2158"/>
@@ -2657,7 +2657,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2220"/>
         <source>Performance alert: %1. More info: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Errendimendu alerta: %1. Informazio gehiago: %2</translation>
     </message>
 </context>
 <context>
@@ -2717,7 +2717,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../app/cmdoptions.cpp" line="504"/>
         <source>[options] [(&lt;filename&gt; | &lt;url&gt;)...]</source>
-        <translation type="unfinished"></translation>
+        <translation>[aukerak] [(&lt;filename&gt; | &lt;url&gt;)...]</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="506"/>
@@ -2743,12 +2743,12 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../app/cmdoptions.cpp" line="512"/>
         <source>Change the WebUI port</source>
-        <translation type="unfinished"></translation>
+        <translation>Aldatu WebUI ataka</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="515"/>
         <source>Change the torrenting port</source>
-        <translation type="unfinished"></translation>
+        <translation>Aldatu torrent ataka</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="518"/>
@@ -2916,7 +2916,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="137"/>
         <source>Remove torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Kendu torrentak</translation>
     </message>
 </context>
 <context>
@@ -2924,7 +2924,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../gui/uithemedialog.cpp" line="99"/>
         <source>Edit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Editatu...</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="100"/>
@@ -2973,12 +2973,12 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../gui/uithemesource.cpp" line="242"/>
         <source>Failed to load custom theme style sheet. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Gaiaren estilo-orri pertsonalizatua kargatzeak huts egin du. %1</translation>
     </message>
     <message>
         <location filename="../gui/uithemesource.cpp" line="266"/>
         <source>Failed to load custom theme colors. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Gaiaren kolore pertsonalizatuak kargatzeak huts egin du. %1</translation>
     </message>
 </context>
 <context>
@@ -2986,7 +2986,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../gui/uithemesource.cpp" line="159"/>
         <source>Failed to load default theme colors. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Gaiaren kolore lehenetsiak kargatzeak huts egin du. %1</translation>
     </message>
 </context>
 <context>
@@ -2994,7 +2994,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../gui/deletionconfirmationdialog.ui" line="20"/>
         <source>Remove torrent(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kendu torrenta(k)</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.ui" line="67"/>
@@ -3010,13 +3010,13 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
         <location filename="../gui/deletionconfirmationdialog.cpp" line="45"/>
         <source>Are you sure you want to remove &apos;%1&apos; from the transfer list?</source>
         <comment>Are you sure you want to remove &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ziur &apos;%1&apos; transferentzia zerrendatik kendu nahi duzula?</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.cpp" line="47"/>
         <source>Are you sure you want to remove these %1 torrents from the transfer list?</source>
         <comment>Are you sure you want to remove these 5 torrents from the transfer list?</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ziur %1 torrent hauek transferentzia zerrendatik kendu nahi dituzula?</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.cpp" line="58"/>
@@ -3047,12 +3047,12 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
         <translation>Jeitsi</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>Ez da URL-rik sartu</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>Mesedez idatzi URL bat gutxinez.</translation>
     </message>
@@ -3260,7 +3260,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/http/connection.cpp" line="110"/>
         <source>Bad Http request method, closing socket. IP: %1. Method: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Http eskaera-metodo txarra, socketa ixten da. IPa: %1. Metodoa: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/http/connection.cpp" line="123"/>
@@ -3316,12 +3316,12 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../gui/uithemedialog.cpp" line="199"/>
         <source>Select icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Hautatu ikonoa</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="200"/>
         <source>Supported image files</source>
-        <translation type="unfinished"></translation>
+        <translation>Onartutako irudi fitxategiak</translation>
     </message>
 </context>
 <context>
@@ -3376,13 +3376,13 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../app/main.cpp" line="330"/>
         <source>An unrecoverable error occurred.</source>
-        <translation type="unfinished"></translation>
+        <translation>Berreskuraezina den errore bat gertatu da.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="338"/>
         <location filename="../app/main.cpp" line="342"/>
         <source>qBittorrent has encountered an unrecoverable error.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent-ek errore berreskuraezin bat aurkitu du.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="353"/>
@@ -3473,7 +3473,7 @@ Ez dira jakinarazpen gehiago egingo.</translation>
     <message>
         <location filename="../gui/mainwindow.ui" line="211"/>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kendu</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="224"/>
@@ -3539,7 +3539,7 @@ Ez dira jakinarazpen gehiago egingo.</translation>
     <message>
         <location filename="../gui/mainwindow.ui" line="402"/>
         <source>&amp;Do nothing</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ez egin ezer</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="478"/>
@@ -3882,7 +3882,7 @@ Ez dira jakinarazpen gehiago egingo.</translation>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1403"/>
         <source>Options saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aukerak gordeta.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1542"/>
@@ -3950,13 +3950,15 @@ Jadanik azken bertsioa ari zara erabiltzen.</translation>
         <location filename="../gui/mainwindow.cpp" line="1729"/>
         <source>Your Python version (%1) is outdated. Minimum requirement: %2.
 Do you want to install a newer version now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Zure Python bertsioa (%1) zaharkituta dago. Beharrezko gutxienekoa: %2.
+Bertsio berriago bat instalatu nahi duzu orain?</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1736"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zure Python bertsioa (%1) zaharkituta dago. Mesedez, eguneratu azken bertsiora bilatzaileek funtziona dezaten.
+Beharrezko gutxiena: %2.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1963"/>
@@ -3989,17 +3991,17 @@ Mesedez ezarri eskuz.</translation>
     <message>
         <location filename="../gui/mainwindow.cpp" line="202"/>
         <source>Filter torrents...</source>
-        <translation type="unfinished"></translation>
+        <translation>Iragazi torrentak...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="207"/>
         <source>Filter by:</source>
-        <translation type="unfinished"></translation>
+        <translation>Iragazi honekin:</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="628"/>
         <source>The password must be at least 3 characters long</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasahitzak 3 karaktere izan behar ditu gutxienez</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="664"/>
@@ -4011,7 +4013,7 @@ Mesedez ezarri eskuz.</translation>
     <message>
         <location filename="../gui/mainwindow.cpp" line="931"/>
         <source>The torrent &apos;%1&apos; contains .torrent files, do you want to proceed with their downloads?</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; torrentak .torrent fitxategiak ditu, haien deskargarekin jarraitu nahi duzu?</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1013"/>
@@ -4082,12 +4084,12 @@ Mesedez ezarri eskuz.</translation>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="218"/>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please submit a bug report at https://bugs.qbittorrent.org.</source>
-        <translation type="unfinished"></translation>
+        <translation>DNS dinamikoaren errorea: zerbitzuak qBittorrent zerrenda beltzean sartu su, bidali akatsen txostena https://bugs.qbittorrent.org helbidera.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="226"/>
         <source>Dynamic DNS error: %1 was returned by the service, please submit a bug report at https://bugs.qbittorrent.org.</source>
-        <translation type="unfinished"></translation>
+        <translation>DNS dinamikoaren errorea: zerbitzuak %1 itzuli du, mesedez bidali akatsen txostena https://bugs.qbittorrent.org helbidera.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="234"/>
@@ -4116,7 +4118,7 @@ Mesedez ezarri eskuz.</translation>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="151"/>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="159"/>
         <source>I/O Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>S/I errorea: %1</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="178"/>
@@ -5315,7 +5317,7 @@ Mesedez ezarri eskuz.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="466"/>
         <source>Couldn&apos;t save downloaded IP geolocation database file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da deskargatutako IP geokokapen datu-basearen fitxategia gorde. Arrazoia: %1</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="462"/>
@@ -5543,47 +5545,47 @@ Mesedez ezarri eskuz.</translation>
     <message>
         <location filename="../base/net/smtp.cpp" line="213"/>
         <source>Connection failed, unrecognized reply: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Konexioak huts egin du, erantzun ezezaguna: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtp.cpp" line="253"/>
         <source>Authentication failed, msg: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentifikazioak huts egin du, mez: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtp.cpp" line="266"/>
         <source>&lt;mail from&gt; was rejected by server, msg: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;mail from&gt; zerbitzariarengatik ukatua izan da, mez: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtp.cpp" line="279"/>
         <source>&lt;Rcpt to&gt; was rejected by server, msg: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Rcpt to&gt; zerbitzariarengatik ukatua izan da, mez: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtp.cpp" line="292"/>
         <source>&lt;data&gt; was rejected by server, msg: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;data&gt; zerbitzariarengatik ukatua izan da, mez: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtp.cpp" line="306"/>
         <source>Message was rejected by the server, error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Mezua zerbitzariarengatik ukatua izan da, mez: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtp.cpp" line="394"/>
         <source>Both EHLO and HELO failed, msg: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>EHLO eta HELO-k huts egin dute, mez: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtp.cpp" line="475"/>
         <source>The SMTP server does not seem to support any of the authentications modes we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, knowing it is likely to fail... Server Auth Modes: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Badirudi SMTP zerbitzariak ez duela onartzen ditugun autentifikazio-modurik [CRAM-MD5|PLAIN|LOGIN], autentifikazioa saltatzen, seguruenik huts egingo duela jakinda... Zerbitzariaren autentifikazio-moduak: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtp.cpp" line="563"/>
         <source>Email Notification Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>E-posta jakinarazpen errorea: %1</translation>
     </message>
 </context>
 <context>
@@ -5636,7 +5638,7 @@ Mesedez ezarri eskuz.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="216"/>
         <source>Customize UI Theme...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pertsonalizatu UI gaia...</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="226"/>
@@ -5715,7 +5717,7 @@ Mesedez ezarri eskuz.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="403"/>
         <source>Auto hide zero status filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezkutatu automatikoki zero egoera iragazkiak</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="413"/>
@@ -5770,7 +5772,7 @@ Mesedez ezarri eskuz.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="890"/>
         <source>The torrent will be added to the top of the download queue</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta deskarga-ilararen goiko aldean gehituko da</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="893"/>
@@ -5781,12 +5783,12 @@ Mesedez ezarri eskuz.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="956"/>
         <source>When duplicate torrent is being added</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent bikoiztua gehitzen ari denean</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="962"/>
         <source>Merge trackers to existing torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Batu aztarnariak lehendik dagoen torrentarekin</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1353"/>
@@ -5821,57 +5823,57 @@ Mesedez ezarri eskuz.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1843"/>
         <source>I2P (experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation>I2P (esperimentala)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1902"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;mixed mode&amp;quot; is enabled I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&amp;quot;modu mistoa&amp;quot; gaituta dago I2P torrentek aztarnaria ez den beste iturri batzuetatik parekoak ere lortzeko eta ohiko IPetara konektatzeko baimena dute, anonimotasunik eman gabe. Hau erabilgarria izan daiteke erabiltzaileari I2Pren anonimotasuna interesatzen ez bazaio, baina hala ere I2P parekideekin konektatu ahal izan nahi badu.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1905"/>
         <source>Mixed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modu mistoa</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1986"/>
         <source>Some options are incompatible with the chosen proxy type!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aukera batzuk ez dira bateragarriak aukeratutako proxy-motarekin!</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1993"/>
         <source>If checked, hostname lookups are done via the proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Hautatzen bada, ostalari-izenen bilaketak proxy bidez egiten dira</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1996"/>
         <source>Perform hostname lookup via proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Egin ostalari-izenen bilaketa proxy bidez</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2056"/>
         <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished"></translation>
+        <translation>Erabili proxy BitTorrent helburuetarako</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2081"/>
         <source>RSS feeds will use proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS jarioek proxya erabiliko dute</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2084"/>
         <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished"></translation>
+        <translation>Erabili proxy RSS helburuetarako</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2094"/>
         <source>Search engine, software updates or anything else will use proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Bilatzaileak, software eguneratzeak edo beste edozerk proxya erabiliko du</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2097"/>
         <source>Use proxy for general purposes</source>
-        <translation type="unfinished"></translation>
+        <translation>Erabili proxy helburu orokorretarako</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2110"/>
@@ -5922,7 +5924,7 @@ Ezagaitu enkriptaketa: Elkartu hartzaileetara enkriptaketa protokolo gabe bakarr
     <message>
         <location filename="../gui/optionsdialog.ui" line="2680"/>
         <source>Maximum active checking torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gehienezko egiaztapen-torrent aktibo:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2715"/>
@@ -5932,12 +5934,12 @@ Ezagaitu enkriptaketa: Elkartu hartzaileetara enkriptaketa protokolo gabe bakarr
     <message>
         <location filename="../gui/optionsdialog.ui" line="2936"/>
         <source>When total seeding time reaches</source>
-        <translation type="unfinished"></translation>
+        <translation>Emaritza denbora osoa honetara heltzen denean</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2959"/>
         <source>When inactive seeding time reaches</source>
-        <translation type="unfinished"></translation>
+        <translation>Emaritza denbora inaktiboa honetara heltzen denean</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3022"/>
@@ -6122,7 +6124,7 @@ Erabili &apos;;&apos; sarrera ugari banantzeko. &apos;*&apos; ordez-hizkia erabi
     <message>
         <location filename="../gui/optionsdialog.ui" line="3673"/>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zehaztu alderantzizko proxy IPak (edo azpisareak, adib. 0.0.0.0/24) birbidalitako bezeroaren helbidea (X-Forwarded-For goiburua) erabiltzeko. Erabili &apos;;&apos; hainbat sarrera banatzeko.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3685"/>
@@ -6342,7 +6344,7 @@ Erabili &apos;;&apos; sarrera ugari banantzeko. &apos;*&apos; ordez-hizkia erabi
         <location filename="../gui/optionsdialog.ui" line="338"/>
         <location filename="../gui/optionsdialog.ui" line="374"/>
         <source>Show torrent options</source>
-        <translation type="unfinished"></translation>
+        <translation>Erakutsi torrentaren aukerak</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="467"/>
@@ -6427,7 +6429,7 @@ Erabili &apos;;&apos; sarrera ugari banantzeko. &apos;*&apos; ordez-hizkia erabi
     <message>
         <location filename="../gui/optionsdialog.ui" line="985"/>
         <source>Whether the .torrent file should be deleted after adding it</source>
-        <translation type="unfinished"></translation>
+        <translation>.torrent fitxategia gehitu ondoren ezabatu behar den ala ez</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1040"/>
@@ -6459,7 +6461,7 @@ Eskuzkoa: Torrent ezaugarri ugari (adib. gordetze helburua) eskuz esleitu behar 
     <message>
         <location filename="../gui/optionsdialog.ui" line="1158"/>
         <source>When Default Save/Incomplete Path changed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gorde/Osagabe bide-izen lehenetsia aldatzen denean:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1199"/>
@@ -6469,32 +6471,32 @@ Eskuzkoa: Torrent ezaugarri ugari (adib. gordetze helburua) eskuz esleitu behar 
     <message>
         <location filename="../gui/optionsdialog.ui" line="1252"/>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Erabili kategorien bide-izenak eskuzko moduan</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1249"/>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation type="unfinished"></translation>
+        <translation>Ebatzi gordetze bide-izen erlatiboa kategoriaren bide egokiaren aurka lehenetsitako baten ordez</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="209"/>
         <source>Use icons from system theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Erabili sistemaren gaiaren ikonoak</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="438"/>
         <source>Window state on start up:</source>
-        <translation type="unfinished"></translation>
+        <translation>Leihoaren egoera abiaraztean:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="445"/>
         <source>qBittorrent window state on start up</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent leihoaren egoera abiaraztean</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="912"/>
         <source>Torrent stop condition:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentaren gelditze-baldintza:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="923"/>
@@ -6517,7 +6519,7 @@ Eskuzkoa: Torrent ezaugarri ugari (adib. gordetze helburua) eskuz esleitu behar 
     <message>
         <location filename="../gui/optionsdialog.ui" line="972"/>
         <source>Ask for merging trackers when torrent is being added manually</source>
-        <translation type="unfinished"></translation>
+        <translation>Eskatu aztarnariak bateratzea torrenta eskuz gehitzen denean</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1271"/>
@@ -6532,7 +6534,7 @@ Eskuzkoa: Torrent ezaugarri ugari (adib. gordetze helburua) eskuz esleitu behar 
     <message>
         <location filename="../gui/optionsdialog.ui" line="1400"/>
         <source>Excluded file names</source>
-        <translation type="unfinished"></translation>
+        <translation>Baztertutako fitxategi-izenak</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1412"/>
@@ -6549,7 +6551,19 @@ Examples
 readme.txt: filter exact file name.
 ?.txt: filter &apos;a.txt&apos;, &apos;b.txt&apos; but not &apos;aa.txt&apos;.
 readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not &apos;readme10.txt&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zerrenda beltzean gehitu hainbat fitxategien izen torrent(etatik) deskargatu ez daitezen.
+Zerrenda honetako edozein iragazkirekin bat datozen fitxategiek &quot;Ez deskargatu&quot; lehentasuna automatikoki ezarriko dute.
+
+Erabili lerro berriak hainbat sarrera bereizteko. Komodinak erabil ditzake behean azaltzen den moduan.
+*: edozein karaktereren zero edo gehiagorekin bat dator.
+?: edozein karaktere bakarrarekin bat dator.
+[...]: karaktere multzoak kortxete artean irudika daitezke.
+
+Adibideak
+*.exe: iragazkia &apos;.exe&apos; fitxategi-luzapena.
+readme.txt: iragazi fitxategiaren izen zehatza.
+?.txt: iragazi &apos;a.txt&apos;, &apos;b.txt&apos; baina ez &apos;aa.txt&apos;.
+readme[0-9].txt: iragazi &apos;readme1.txt&apos;, &apos;readme2.txt&apos; baina ez &apos;readme10.txt&apos;.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1454"/>
@@ -6608,17 +6622,17 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.ui" line="1538"/>
         <source>Run external program</source>
-        <translation type="unfinished"></translation>
+        <translation>Exekutatu kanpoko programa</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1544"/>
         <source>Run on torrent added</source>
-        <translation type="unfinished"></translation>
+        <translation>Exekutatu torrenta gehitzean</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1562"/>
         <source>Run on torrent finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Exekutatu torrenta bukatzean</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1580"/>
@@ -7072,17 +7086,17 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="282"/>
         <source>Minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimizatuta</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="284"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezkutatuta</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="299"/>
         <source>Disabled due to failed to detect system tray presence</source>
-        <translation type="unfinished"></translation>
+        <translation>Desgaituta dago sistemaren erretiluaren presentzia detektatu ez delako</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="517"/>
@@ -7102,7 +7116,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="521"/>
         <source>This will also download metadata if it wasn&apos;t there initially.</source>
-        <translation type="unfinished"></translation>
+        <translation>Honek metadatuak deskargatu ditu ez bazeuden hasieratik.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="625"/>
@@ -7182,7 +7196,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1233"/>
         <source>WebUI configuration failed. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI konfigurazioak huts egin du. Arrazoia: %1</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1770"/>
@@ -7197,12 +7211,12 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1891"/>
         <source>The WebUI username must be at least 3 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI erabiltzaile-izenak 3 karaktere izan behar ditu gutxienez.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1898"/>
         <source>The WebUI password must be at least 6 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI pasahitzak 6 karaktere izan behar ditu gutxienez.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1908"/>
@@ -7223,7 +7237,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="238"/>
         <source>qBittorrent UI Theme file (*.qbtheme config.json)</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent UI gaiaren fitxategia (*.qbtheme config.json)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="627"/>
@@ -7233,17 +7247,17 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="634"/>
         <source>%I: Info hash v1 (or &apos;-&apos; if unavailable)</source>
-        <translation type="unfinished"></translation>
+        <translation>%I: info hash v1 (edo &apos;-&apos; erabilgarri ez badago)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="635"/>
         <source>%J: Info hash v2 (or &apos;-&apos; if unavailable)</source>
-        <translation type="unfinished"></translation>
+        <translation>%J: info hash v2 (edo &apos;-&apos; erabilgarri ez badago)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="636"/>
         <source>%K: Torrent ID (either sha-1 info hash for v1 torrent or truncated sha-256 info hash for v2/hybrid torrent)</source>
-        <translation type="unfinished"></translation>
+        <translation>%K: Torrent IDa (sha-1 info hash v1 torrenterako edo sha-256 info hash moztua v2/hybrid torrenterako)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="328"/>
@@ -7255,7 +7269,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="519"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hasieran metadatuak dituzten torrentak geldituta gehituko dira.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="865"/>
@@ -7270,7 +7284,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1908"/>
         <source>The alternative WebUI files location cannot be blank.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordezko WebUIaren fitxategien kokalekua ezin da hutsik egon.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1945"/>
@@ -7325,32 +7339,32 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="298"/>
         <source>Interested (local) and choked (peer)</source>
-        <translation type="unfinished"></translation>
+        <translation>Interesatua (bertakoa) eta itota (parekoa)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="303"/>
         <source>Interested (local) and unchoked (peer)</source>
-        <translation type="unfinished"></translation>
+        <translation>Interesatua (bertakoa) eta ito gabea (parekoa)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="312"/>
         <source>Interested (peer) and choked (local)</source>
-        <translation type="unfinished"></translation>
+        <translation>Interesatua (parekidea) eta itota (bertakoa)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="317"/>
         <source>Interested (peer) and unchoked (local)</source>
-        <translation type="unfinished"></translation>
+        <translation>Interesatua (parekidea) eta ito gabea (bertakoa)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="323"/>
         <source>Not interested (local) and unchoked (peer)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez interesatua (bertakoa) eta ito gabea (parekidea)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="327"/>
         <source>Not interested (peer) and unchoked (local)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez interesatua (parekidea) eta ito gabea (bertakoa)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="331"/>
@@ -7360,7 +7374,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="335"/>
         <source>Peer snubbed</source>
-        <translation type="unfinished"></translation>
+        <translation>Hartzailea baztertuta</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="339"/>
@@ -7403,7 +7417,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="124"/>
         <source>IP/Address</source>
-        <translation type="unfinished"></translation>
+        <translation>IP/Helbidea</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="125"/>
@@ -7430,7 +7444,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/properties/peerlistwidget.cpp" line="129"/>
         <source>Peer ID Client</source>
         <comment>i.e.: Client resolved from Peer ID</comment>
-        <translation type="unfinished"></translation>
+        <translation>Parekidearen bezeroaren ID-a</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="130"/>
@@ -7519,22 +7533,22 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="328"/>
         <source>Cannot add peers to a private torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin dira parekideak gehitu torrent pribatu batera</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="330"/>
         <source>Cannot add peers when the torrent is checking</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin dira parekideak gehitu torrenta egiaztatzen ari denean</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="332"/>
         <source>Cannot add peers when the torrent is queued</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin dira parekideak gehitu torrenta ilaran dagoenean</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="336"/>
         <source>No peer was selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez da parekiderik hautatu</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="361"/>
@@ -7618,12 +7632,12 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/properties/piecesbar.cpp" line="274"/>
         <source>File in this piece:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxategia atal honetan:</translation>
     </message>
     <message>
         <location filename="../gui/properties/piecesbar.cpp" line="276"/>
         <source>File in these pieces:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxategia atal hauetan:</translation>
     </message>
     <message>
         <location filename="../gui/properties/piecesbar.cpp" line="295"/>
@@ -7677,7 +7691,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="96"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Bilatzaileen plugin berriak lor ditzakezu hemen: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="108"/>
@@ -7896,27 +7910,27 @@ Plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../gui/fspathedit_p.cpp" line="306"/>
         <source>Path does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Bide-izena ez da existitzen</translation>
     </message>
     <message>
         <location filename="../gui/fspathedit_p.cpp" line="308"/>
         <source>Path does not point to a directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Bide-izenak ez du direktorio batera seinalatzen</translation>
     </message>
     <message>
         <location filename="../gui/fspathedit_p.cpp" line="310"/>
         <source>Path does not point to a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Bide-izenak ez du fitxategi batera seinalatzen</translation>
     </message>
     <message>
         <location filename="../gui/fspathedit_p.cpp" line="312"/>
         <source>Don&apos;t have read permission to path</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez daukazu bide-izen honetan irakurtzeko baimenik</translation>
     </message>
     <message>
         <location filename="../gui/fspathedit_p.cpp" line="314"/>
         <source>Don&apos;t have write permission to path</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez daukazu bide-izen honetan idazteko baimenik</translation>
     </message>
 </context>
 <context>
@@ -8187,12 +8201,12 @@ Plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="559"/>
         <source>Speed graphs are disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Abiadura grafikoak desgaituta daude</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="559"/>
         <source>You can enable it in Advanced Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Aukera aurreratuetan gaitu dezakezu</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="572"/>
@@ -8243,12 +8257,12 @@ Plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="471"/>
         <source>RSS article &apos;%1&apos; is accepted by rule &apos;%2&apos;. Trying to add torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; RSS artikulua &apos;%2&apos; arauak onartzen du. Torrenta gehitzen saiatzen...</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="507"/>
         <source>Failed to read RSS AutoDownloader rules. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS deskarga automatikoko arauak irakurtzeak huts egin du. %1</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="525"/>
@@ -8284,12 +8298,12 @@ Plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../base/rss/feed_serializer.cpp" line="57"/>
         <source>Failed to read RSS session data. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS saioaren datuak irakurtzeak huts egin du. %1</translation>
     </message>
     <message>
         <location filename="../base/rss/feed_serializer.cpp" line="79"/>
         <source>Failed to save RSS feed in &apos;%1&apos;, Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da RSS jarioa gorde &apos;%1&apos;-n, Arrazoia: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/feed_serializer.cpp" line="90"/>
@@ -8325,12 +8339,12 @@ Plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="76"/>
         <source>Couldn&apos;t save RSS session configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da RSS saioaren konfigurazioa gorde. Fitxategia: &quot;%1&quot;. Errorea: &quot;% 2&quot;</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="85"/>
         <source>Couldn&apos;t save RSS session data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan dira RSS saioko datuak gorde. Fitxategia: &quot;%1&quot;. Errorea: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="153"/>
@@ -8341,7 +8355,7 @@ Plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="173"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jarioa ez da existitzen: %1.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="200"/>
@@ -8357,7 +8371,7 @@ Plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="220"/>
         <source>Couldn&apos;t move folder into itself.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da karpeta bere burura mugitu.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="237"/>
@@ -8367,42 +8381,42 @@ Plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="278"/>
         <source>Failed to read RSS session data. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS saioaren datuak irakurtzeak huts egin du. %1</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="286"/>
         <source>Failed to parse RSS session data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS saioko datuak analizatzeak huts egin du. Fitxategia: &quot;%1&quot;. Errorea: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="293"/>
         <source>Failed to load RSS session data. File: &quot;%1&quot;. Error: &quot;Invalid data format.&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan dira RSS saioko datuak kargatu. Fitxategia: &quot;%1&quot;. Errorea: &quot;Datu formatu baliogabea.&quot;</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="324"/>
         <source>Couldn&apos;t load RSS feed. Feed: &quot;%1&quot;. Reason: URL is required.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da RSS jarioa kargatu. Jarioa: &quot;%1&quot;. Arrazoia: URLa beharrezkoa da.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="335"/>
         <source>Couldn&apos;t load RSS feed. Feed: &quot;%1&quot;. Reason: UID is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da RSS jarioa kargatu. Jarioa: &quot;%1&quot;. Arrazoia: UIDa baliogabea da.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="342"/>
         <source>Duplicate RSS feed found. UID: &quot;%1&quot;. Error: Configuration seems to be corrupted.</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS jario bikoiztua aurkitu da. UID: &quot;%1&quot;. Errorea: konfigurazioa hondatuta dagoela dirudi.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="364"/>
         <source>Couldn&apos;t load RSS item. Item: &quot;%1&quot;. Invalid data format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da RSS elementua kargatu. Elementua: &quot;%1&quot;. Datu-formatu baliogabea.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="378"/>
         <source>Corrupted RSS list, not loading it.</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS zerrenda hondatua, ez da kargatzen.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="410"/>
@@ -8520,12 +8534,12 @@ Plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="202"/>
         <source>Edit feed URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>Editatu jarioaren URL-a...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="205"/>
         <source>Edit feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Editatu jarioaren URL-a</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="233"/>
@@ -8649,32 +8663,32 @@ Plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="69"/>
         <source>Set minimum and maximum allowed number of seeders</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezarri baimendutako emaile-kopuru minimo eta maximoa</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="79"/>
         <source>Minimum number of seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Gutxieneko hazi kopurua</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="96"/>
         <source>Maximum number of seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Gehienezko hazi kopurua</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="125"/>
         <source>Set minimum and maximum allowed size of a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezarri baimendutako gutxieneko eta gehienezko torrent baten tamaina</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="137"/>
         <source>Minimum torrent size</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentaren tamaina minimoa</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="161"/>
         <source>Maximum torrent size</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentaren tamaina maximoa</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="72"/>
@@ -8756,7 +8770,7 @@ Plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="394"/>
         <source>Open download window</source>
-        <translation type="unfinished"></translation>
+        <translation>Ireki deskarga-leihoa</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="396"/>
@@ -9557,7 +9571,7 @@ Klikatu &quot;Bilatu pluginak...&quot; botoia leihoaren behe eskuinean zenbait e
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="83"/>
         <source>Moving (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mugitzen (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="86"/>
@@ -9592,7 +9606,7 @@ Klikatu &quot;Bilatu pluginak...&quot; botoia leihoaren behe eskuinean zenbait e
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="178"/>
         <source>Moving (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mugitzen (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="221"/>
@@ -9607,7 +9621,7 @@ Klikatu &quot;Bilatu pluginak...&quot; botoia leihoaren behe eskuinean zenbait e
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="225"/>
         <source>Remove torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Kendu torrentak</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="170"/>
@@ -9698,7 +9712,7 @@ Klikatu &quot;Bilatu pluginak...&quot; botoia leihoaren behe eskuinean zenbait e
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="127"/>
         <source>Remove torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Kendu torrentak</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="171"/>
@@ -9746,7 +9760,7 @@ Klikatu &quot;Bilatu pluginak...&quot; botoia leihoaren behe eskuinean zenbait e
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="64"/>
         <source>Save path for incomplete torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gordetze bide-izena osatu gabeko torrentetarako:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="72"/>
@@ -9963,7 +9977,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/torrentcontentwidget.cpp" line="392"/>
         <source>Open containing folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Ireki edukiaren karpeta</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentwidget.cpp" line="395"/>
@@ -10269,32 +10283,32 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="172"/>
         <source>Failed to load Watched Folders configuration. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikusitako karpeten konfigurazioa kargatzeak huts egin du. %1</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="180"/>
         <source>Failed to parse Watched Folders configuration from %1. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>%1-(e)tik ikusitako karpeten konfigurazioa analizatzeak huts egin du. Errorea: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="187"/>
         <source>Failed to load Watched Folders configuration from %1. Error: &quot;Invalid data format.&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>%1-tik ikusitako karpeten konfigurazioa kargatzeak huts egin du. Errorea: &quot;Datu formatu baliogabea.&quot;</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="260"/>
         <source>Couldn&apos;t store Watched Folders configuration to %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da ikusitako karpeten konfigurazioa %1-en gorde. Errorea: %2</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="279"/>
         <source>Watched folder Path cannot be empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikusitako karpeta bide-izena ezin da hutsik egon.</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="282"/>
         <source>Watched folder Path cannot be relative.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikusitako karpeta bide-izena ezin da erlatiboa izan.</translation>
     </message>
 </context>
 <context>
@@ -10302,7 +10316,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="426"/>
         <source>Magnet file too big. File: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet fitxategia handiegia. Fitxategia: %1</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="431"/>
@@ -10312,7 +10326,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="503"/>
         <source>Rejecting failed torrent file: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Huts egin duen torrent fitxategia baztertzen: %1</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="542"/>
@@ -10325,7 +10339,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../base/bittorrent/torrentinfo.cpp" line="117"/>
         <source>Failed to allocate memory when reading file. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxategia irakurtzean memoria esleitzeak  huts egin du. Fitxategia: &quot;%1&quot;. Errorea: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentinfo.cpp" line="127"/>
@@ -10425,12 +10439,12 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="214"/>
         <source>total minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>minutuak guztira</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="244"/>
         <source>inactive minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>minutu inaktibo</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="268"/>
@@ -10460,7 +10474,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.cpp" line="66"/>
         <source>Currently used categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Unean erabilitako kategoriak</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.cpp" line="76"/>
@@ -10489,7 +10503,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/torrenttagsdialog.ui" line="14"/>
         <source>Torrent Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent etiketak</translation>
     </message>
     <message>
         <location filename="../gui/torrenttagsdialog.cpp" line="101"/>
@@ -10509,7 +10523,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/torrenttagsdialog.cpp" line="107"/>
         <source>Tag name &apos;%1&apos; is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; etiketaren izena baliogabea da.</translation>
     </message>
     <message>
         <location filename="../gui/torrenttagsdialog.cpp" line="111"/>
@@ -10572,7 +10586,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <location filename="../webui/api/torrentscontroller.cpp" line="1134"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="1158"/>
         <source>Cannot create target directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin da helburuko direktorioa sortu</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1239"/>
@@ -10593,7 +10607,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1432"/>
         <source>Unable to export torrent file. Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin da torrent fitxategia esportatu. Errorea: %1</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1111"/>
@@ -10608,7 +10622,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="564"/>
         <source>&quot;%1&quot; is not a valid file index.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;%1&quot; ez da baliozko fitxategi-indizea.</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="566"/>
@@ -10802,7 +10816,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="576"/>
         <source>Add trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Gehitu aztarnariak...</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="625"/>
@@ -10825,7 +10839,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.ui" line="14"/>
         <source>Add trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>Gehitu aztarnariak</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.ui" line="20"/>
@@ -10840,7 +10854,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.ui" line="49"/>
         <source>Download trackers list</source>
-        <translation type="unfinished"></translation>
+        <translation>Deskargatu aztarnarien zerrenda</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.cpp" line="56"/>
@@ -10850,22 +10864,22 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.cpp" line="86"/>
         <source>Trackers list URL error</source>
-        <translation type="unfinished"></translation>
+        <translation>Aztarnarien zerrendako URL errorea</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.cpp" line="86"/>
         <source>The trackers list URL cannot be empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Aztarnarien zerrendaren URLa ezin da hutsik egon</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.cpp" line="106"/>
         <source>Download trackers list error</source>
-        <translation type="unfinished"></translation>
+        <translation>Aztarnarien zerrendaren deskarga errorea</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.cpp" line="107"/>
         <source>Error occurred when downloading the trackers list. Reason: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore bat gertatu da aztarnarien zerrenda deskargatzean. Arrazoia: &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
@@ -10927,7 +10941,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="463"/>
         <source>Remove torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Kendu torrentak</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="500"/>
@@ -10942,7 +10956,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../webui/api/transfercontroller.cpp" line="128"/>
         <source>&apos;mode&apos;: invalid argument</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;mode&apos;: argumentu baliogabea</translation>
     </message>
 </context>
 <context>
@@ -11198,13 +11212,13 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="188"/>
         <source>Save Path</source>
         <comment>Torrent save path</comment>
-        <translation type="unfinished"></translation>
+        <translation>Gordetze bide-izena</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="189"/>
         <source>Incomplete Save Path</source>
         <comment>Torrent incomplete save path</comment>
-        <translation type="unfinished"></translation>
+        <translation>Gordetze helburu osatugabea</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="190"/>
@@ -11246,13 +11260,13 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="196"/>
         <source>Info Hash v1</source>
         <comment>i.e: torrent info hash v1</comment>
-        <translation type="unfinished"></translation>
+        <translation>Info Hash v1</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="197"/>
         <source>Info Hash v2</source>
         <comment>i.e: torrent info hash v2</comment>
-        <translation type="unfinished"></translation>
+        <translation>Info Hash v2</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="249"/>
@@ -11348,12 +11362,12 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="742"/>
         <source>Enable automatic torrent management</source>
-        <translation type="unfinished"></translation>
+        <translation>Gaitu torrent kudeaketa automatikoa</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="743"/>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ziur torrent kudeaketa automatikoa gaitu nahi duzula hautatutako torrente(t)an? Lekuz alda daitezke.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="761"/>
@@ -11363,22 +11377,22 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="806"/>
         <source>Choose folder to save exported .torrent files</source>
-        <translation type="unfinished"></translation>
+        <translation>Aukeratu karpeta esportatutako .torrent fitxategiak gordetzeko</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="820"/>
         <source>Export .torrent file failed. Torrent: &quot;%1&quot;. Save path: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>.torrent fitxategia esportatzeak huts egin du. Torrenta: &quot;%1&quot;. Biltegia: &quot;%2&quot;. Arrazoia: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="829"/>
         <source>A file with the same name already exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Badago izen bereko fitxategi bat</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="845"/>
         <source>Export .torrent file error</source>
-        <translation type="unfinished"></translation>
+        <translation>.torrent fitxategiaren esportazio errorea</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="856"/>
@@ -11426,91 +11440,91 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="965"/>
         <source>Pre&amp;view file...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aurreikusi fitxategia...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
         <source>Torrent &amp;options...</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentaren au&amp;kerak...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="969"/>
         <source>Open destination &amp;folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Ireki helburuko &amp;karpeta</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="971"/>
         <source>Move &amp;up</source>
         <comment>i.e. move up in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Mugitu &amp;gora</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="973"/>
         <source>Move &amp;down</source>
         <comment>i.e. Move down in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Mugitu &amp;behera</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="975"/>
         <source>Move to &amp;top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Mugitu &amp;goraino</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="977"/>
         <source>Move to &amp;bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Mugitu &amp;beheraino</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="979"/>
         <source>Set loc&amp;ation...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezarri koka&amp;lekua</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="981"/>
         <source>Force rec&amp;heck</source>
-        <translation type="unfinished"></translation>
+        <translation>Behartu berr&amp;egiaztapena</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="983"/>
         <source>Force r&amp;eannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Behartu berr&amp;iragarpena</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="985"/>
         <source>&amp;Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Magnet esteka</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="987"/>
         <source>Torrent &amp;ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent I&amp;D</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="989"/>
         <source>&amp;Name</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Izena</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="991"/>
         <source>Info &amp;hash v1</source>
-        <translation type="unfinished"></translation>
+        <translation>Info &amp;hash v1</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="993"/>
         <source>Info h&amp;ash v2</source>
-        <translation type="unfinished"></translation>
+        <translation>Info h&amp;ash v2</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="997"/>
         <source>Re&amp;name...</source>
-        <translation type="unfinished"></translation>
+        <translation>Berrize&amp;ndatu...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1006"/>
         <source>Edit trac&amp;kers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Editatu az&amp;tarnariak...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1008"/>
@@ -11564,7 +11578,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1281"/>
         <source>Exported torrent is not necessarily the same as the imported</source>
-        <translation type="unfinished"></translation>
+        <translation>Esportatutako torrenta ez da zertan inportatutakoaren berdina izan</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="999"/>
@@ -11574,13 +11588,13 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="846"/>
         <source>Errors occurred when exporting .torrent files. Check execution log for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erroreak gertatu dira .torrent fitxategiak esportatzean. Egiaztatu exekuzio erregistroa xehetasunetarako.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="963"/>
         <source>&amp;Remove</source>
         <comment>Remove the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kendu</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1001"/>
@@ -11613,65 +11627,65 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/uithemedialog.ui" line="14"/>
         <source>UI Theme Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>UI gaiaren konfigurazioa</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.ui" line="33"/>
         <source>Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Koloreak</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.ui" line="85"/>
         <source>Color ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolorearen IDa</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.ui" line="97"/>
         <location filename="../gui/uithemedialog.ui" line="200"/>
         <source>Light Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modu argia</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.ui" line="109"/>
         <location filename="../gui/uithemedialog.ui" line="212"/>
         <source>Dark Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modu iluna</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.ui" line="136"/>
         <source>Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikonoak</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.ui" line="188"/>
         <source>Icon ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikonoaren ID-a</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="251"/>
         <source>UI Theme Configuration.</source>
-        <translation type="unfinished"></translation>
+        <translation>UI gaiaren konfigurazioa.</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="252"/>
         <source>The UI Theme changes could not be fully applied. The details can be found in the Log.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan dira UI gaiaren aldaketak guztiz aplikatu. Xehetasunak erregistroan aurki daitezke.</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="336"/>
         <source>Couldn&apos;t save UI Theme configuration. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da UI gaiaren konfigurazioa gorde. Arrazoia: %1</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="367"/>
         <location filename="../gui/uithemedialog.cpp" line="376"/>
         <source>Couldn&apos;t remove icon file. File: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da ikono-fitxategia kendu. Fitxategia: %1.</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="385"/>
         <source>Couldn&apos;t copy icon file. Source: %1. Destination: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da kopiatu ikono-fitxategia. Iturria: %1. Helmuga: %2.</translation>
     </message>
 </context>
 <context>
@@ -11687,12 +11701,12 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/uithemesource.cpp" line="54"/>
         <source>Couldn&apos;t parse UI Theme configuration file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da UI gaiaren konfigurazio fitxategia analizatu. Arrazoia: %1</translation>
     </message>
     <message>
         <location filename="../gui/uithemesource.cpp" line="61"/>
         <source>UI Theme configuration file has invalid format. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>UI gaiaren konfigurazio fitxategiak formatu baliogabea du. Arrazoia: %1</translation>
     </message>
     <message>
         <location filename="../gui/uithemesource.cpp" line="62"/>
@@ -11723,7 +11737,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <location filename="../app/upgrade.cpp" line="227"/>
         <location filename="../app/upgrade.cpp" line="365"/>
         <source>Invalid value found in configuration file, reverting it to default. Key: &quot;%1&quot;. Invalid value: &quot;%2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Balio baliogabea aurkitu da konfigurazio-fitxategian, lehenespenera itzultzen da. Gakoa: &quot;%1&quot;. Balio baliogabea: &quot;%2&quot;.</translation>
     </message>
 </context>
 <context>
@@ -11744,27 +11758,27 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../base/utils/io.cpp" line="81"/>
         <source>File open error. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Errorea fitxategia irekitzean. Fitxategia: &quot;%1&quot;. Errorea: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/utils/io.cpp" line="89"/>
         <source>File size exceeds limit. File: &quot;%1&quot;. File size: %2. Size limit: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxategiaren tamainak muga gainditzen du. Fitxategia: &quot;%1&quot;. Fitxategiaren tamaina: %2. Tamaina muga: %3</translation>
     </message>
     <message>
         <location filename="../base/utils/io.cpp" line="102"/>
         <source>File size exceeds data size limit. File: &quot;%1&quot;. File size: %2. Array limit: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxategiaren tamainak datuen tamainaren muga gainditzen du. Fitxategia: &quot;%1&quot;. Fitxategiaren tamaina: %2. Array muga: %3</translation>
     </message>
     <message>
         <location filename="../base/utils/io.cpp" line="112"/>
         <source>File read error. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Errorea fitxategia irakurtzean. Fitxategia: &quot;%1&quot;. Errorea: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/utils/io.cpp" line="127"/>
         <source>Read size mismatch. File: &quot;%1&quot;. Expected: %2. Actual: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Irakurritako tamaina desegokia. Fitxategia: &quot;%1&quot;. Esperotakoa: %2. Benetakoa: %3</translation>
     </message>
 </context>
 <context>
@@ -11777,12 +11791,12 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="22"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Will watch the folder and all its subfolders. In Manual torrent management mode it will also add subfolder name to the selected Save path.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Karpeta eta bere azpikarpeta guztiak ikusiko ditu. Eskuzko torrent kudeaketa moduan, hautatutako gordetze bide-izenari azpikarpetaren izena ere gehituko dio.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="25"/>
         <source>Recursive mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modu errekurtsiboa</translation>
     </message>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="47"/>
@@ -11800,17 +11814,17 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="106"/>
         <source>Watched folder path cannot be empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikusitako karpetaren bide-izena ezin da hutsik egon.</translation>
     </message>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="109"/>
         <source>Watched folder path cannot be relative.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikusitako karpetaren bide-izena ezin da erlatiboa izan.</translation>
     </message>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="112"/>
         <source>Folder &apos;%1&apos; is already in watch list.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; karpeta dagoeneko ikusitako zerrendan dago.</translation>
     </message>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="116"/>
@@ -11828,7 +11842,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="173"/>
         <source>Unacceptable session cookie name is specified: &apos;%1&apos;. Default one is used.</source>
-        <translation type="unfinished"></translation>
+        <translation>Saioko cookie-izen onartezina zehaztu da: &apos;%1&apos;. Lehenetsitako bat erabiltzen da.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="223"/>
@@ -11843,22 +11857,22 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="400"/>
         <source>Using built-in WebUI.</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI integratua erabiltzen.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="402"/>
         <source>Using custom WebUI. Location: &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI pertsonalizatua erabiltzen. Kokalekua: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="414"/>
         <source>WebUI translation for selected locale (%1) has been successfully loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hautatutako tokiko (%1) WebUI itzulpena behar bezala kargatu da.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="419"/>
         <source>Couldn&apos;t load WebUI translation for selected locale (%1).</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin izan da kargatu WebUI-aren itzulpena hautatutako hizkuntzarako (%1).</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="470"/>
@@ -11868,12 +11882,12 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="534"/>
         <source>Web server error. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Web zerbitzariaren errorea. %1</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="554"/>
         <source>Web server error. Unknown error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Web zerbitzariaren errorea. Errore ezezaguna.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="780"/>
@@ -11901,27 +11915,27 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../webui/webui.cpp" line="63"/>
         <source>Credentials are not set</source>
-        <translation type="unfinished"></translation>
+        <translation>Kredentzialak ez daude ezarrita</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="114"/>
         <source>WebUI: HTTPS setup successful</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI: HTTPS konfigurazioa ongi egin da</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="116"/>
         <source>WebUI: HTTPS setup failed, fallback to HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI: HTTPS konfigurazioak huts egin du, HTTP-ra itzultzen</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="128"/>
         <source>WebUI: Now listening on IP: %1, port: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI: Unean IP honetan entzuten: %1, ataka: %2</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="132"/>
         <source>Unable to bind to IP: %1, port: %2. Reason: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezin da IParekin lotu: %1, ataka: %2. Arrazoia: %3</translation>
     </message>
 </context>
 <context>

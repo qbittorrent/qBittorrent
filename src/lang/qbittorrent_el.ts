@@ -3048,12 +3048,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Λήψη</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>Δεν έχετε εισάγει URL</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>Παρακαλώ εισάγετε τουλάχιστον ένα URL.</translation>
     </message>
@@ -8660,7 +8660,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="46"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everything returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ορισμένες μηχανές αναζήτησης αναζητούν στην περιγραφή του torrent όπως και στα ονόματα αρχείων των torrent. Το αν θα εμφανίζονται τέτοια αποτελέσματα στην παρακάτω λίστα ελέγχεται από αυτήν τη λειτουργία.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Παντού&lt;/span&gt;απενεργοποιεί τα φίλτρα και εμφανίζει όλα όσα επιστρέφουν οι μηχανές αναζήτησης.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Μόνο σε ονόματα των torrent&lt;/span&gt;εμφανίζει μόνο torrents των οποίων τα ονόματα ταιριάζουν με το ερώτημα της αναζήτησης.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ορισμένες μηχανές αναζήτησης αναζητούν στην περιγραφή του torrent όπως και στα ονόματα αρχείων των torrent. Το αν θα εμφανίζονται τέτοια αποτελέσματα στην παρακάτω λίστα ελέγχεται από αυτήν τη λειτουργία.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Παντού &lt;/span&gt;απενεργοποιεί τα φίλτρα και εμφανίζει όλα όσα επιστρέφουν οι μηχανές αναζήτησης.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Μόνο σε ονόματα των torrent&lt;/span&gt; εμφανίζει μόνο torrents των οποίων τα ονόματα ταιριάζουν με το ερώτημα της αναζήτησης.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="69"/>

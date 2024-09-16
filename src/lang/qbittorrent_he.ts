@@ -770,7 +770,7 @@ Error: %2</source>
         <location filename="../gui/advancedsettings.cpp" line="435"/>
         <location filename="../gui/advancedsettings.cpp" line="443"/>
         <source>Open documentation</source>
-        <translation>פתח תיעוד</translation>
+        <translation>פתיחת התיעוד</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="391"/>
@@ -1874,7 +1874,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="474"/>
         <source>Failed to read the file. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>כישלון בקריאת הקובץ. %1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="687"/>
@@ -3048,12 +3048,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>הורד</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>לא הוכנסה כתובת</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>אנא הקלד לפחת כתובת אחת.</translation>
     </message>
@@ -3091,7 +3091,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/executionlogwidget.cpp" line="95"/>
         <source>Copy</source>
-        <translation>העתק</translation>
+        <translation>העתקה</translation>
     </message>
     <message>
         <location filename="../gui/executionlogwidget.cpp" line="99"/>
@@ -5640,7 +5640,7 @@ Please install it manually.</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="216"/>
         <source>Customize UI Theme...</source>
-        <translation type="unfinished"></translation>
+        <translation>התאם אישית ערכת נושא…</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="226"/>
@@ -8774,7 +8774,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="402"/>
         <source>Copy</source>
-        <translation>העתק</translation>
+        <translation>העתקה</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="404"/>
@@ -10750,7 +10750,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="585"/>
         <source>Copy tracker URL</source>
-        <translation>העתק כתובת עוקבן</translation>
+        <translation>העתקת כתובת העוקבן</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="591"/>
@@ -11249,13 +11249,13 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="196"/>
         <source>Info Hash v1</source>
         <comment>i.e: torrent info hash v1</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">גיבוב מידע גרסה 2: {1?}</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="197"/>
         <source>Info Hash v2</source>
         <comment>i.e: torrent info hash v2</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">גיבוב מידע גרסה 2: {2?}</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="249"/>

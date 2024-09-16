@@ -3048,12 +3048,12 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
         <translation>Laadi alla</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>URL on sisestamata</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>Palun sisesta vähemalt üks URL.</translation>
     </message>
@@ -11243,13 +11243,13 @@ Palun vali teine nimi ja proovi uuesti.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="196"/>
         <source>Info Hash v1</source>
         <comment>i.e: torrent info hash v1</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Info räsi v2: {1?}</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="197"/>
         <source>Info Hash v2</source>
         <comment>i.e: torrent info hash v2</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Info räsi v2: {2?}</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="249"/>
@@ -11571,7 +11571,7 @@ Palun vali teine nimi ja proovi uuesti.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="846"/>
         <source>Errors occurred when exporting .torrent files. Check execution log for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ilmnesid vead .torrent failide eksportimisega. Kontrollige toimingute logi, et näha lisainfot.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="963"/>

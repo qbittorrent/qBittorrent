@@ -94,7 +94,7 @@
     <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
         <source>Copyright %1 2006-2024 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation>کپی رایت %1 2006-2024 - پروژه کیوبیت‌تورنت</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -2914,7 +2914,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/transferlistfilters/categoryfilterwidget.cpp" line="137"/>
         <source>Remove torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>حذف تورنت‌‌ها</translation>
     </message>
 </context>
 <context>
@@ -3045,12 +3045,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>بارگیری</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>آدرسی وارد نشده است</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>لطفا حداقل یک URL تایپ کنید</translation>
     </message>
@@ -3576,7 +3576,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/mainwindow.ui" line="473"/>
         <source>Critical Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>پیام‌های بحرانی</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="103"/>
@@ -6185,7 +6185,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="816"/>
         <source>When adding a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>هنگام افزودن تورنت جدید</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="831"/>
@@ -6262,7 +6262,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="1261"/>
         <source>Default Save Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>مکان ذخیره‌سازی پیش‌فرض:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1281"/>
@@ -6998,7 +6998,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.ui" line="3633"/>
         <source>Add custom HTTP headers</source>
-        <translation type="unfinished"></translation>
+        <translation>افزودن هدرهای HTTP سفارشی</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3645"/>
@@ -9592,7 +9592,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="225"/>
         <source>Remove torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>حذف تورنت‌‌ها</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="170"/>
@@ -9683,7 +9683,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="127"/>
         <source>Remove torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>حذف تورنت‌‌ها</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/tagfilterwidget.cpp" line="171"/>
@@ -10904,7 +10904,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="463"/>
         <source>Remove torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>حذف تورنت‌‌ها</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="500"/>

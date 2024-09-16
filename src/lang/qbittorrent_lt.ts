@@ -968,7 +968,7 @@ Klaida: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="366"/>
         <source> (system default)</source>
-        <translation type="unfinished"></translation>
+        <translation> (sistemos numatytasis)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="459"/>
@@ -2256,7 +2256,7 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2290"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5483"/>
         <source>Failed to load torrent. Reason: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko įkelti torento. Priežastis: „%1“</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2625"/>
@@ -2369,12 +2369,12 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5026"/>
         <source>Torrent paused. Torrent: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torentas pristabdytas. Torentas: „%1“</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5032"/>
         <source>Torrent resumed. Torrent: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torentas pratęstas. Torentas: „%1“</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5043"/>
@@ -2519,7 +2519,7 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5253"/>
         <source>Failed to load Categories. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko įkelti kategorijų. %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5268"/>
@@ -2566,7 +2566,7 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5945"/>
         <source>Detected external IP. IP: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Aptiktas išorinis IP adresas. IP: „%1“</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6060"/>
@@ -3048,12 +3048,12 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
         <translation>Atsiųsti</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>No URL entered</source>
         <translation>Neįvestas URL</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="135"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="136"/>
         <source>Please type at least one URL.</source>
         <translation>Įveskite bent vieną URL adresą.</translation>
     </message>
@@ -3506,7 +3506,7 @@ Daugiau apie tai nebus rodoma jokių pranešimų.</translation>
     <message>
         <location filename="../gui/mainwindow.ui" line="316"/>
         <source>Filters Sidebar</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrų šoninė juosta</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="324"/>
@@ -5861,7 +5861,7 @@ Užklausta operacija šiam protokolui yra neteisinga</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2081"/>
         <source>RSS feeds will use proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS kanalai naudos įgaliotąjį serverį</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2084"/>
@@ -6341,7 +6341,7 @@ pakaitos simbolį &quot;*&quot;.</translation>
         <location filename="../gui/optionsdialog.ui" line="333"/>
         <location filename="../gui/optionsdialog.ui" line="369"/>
         <source>Preview file, otherwise open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Peržiūrėti failą, priešingu atveju atverti paskirties aplanką</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="338"/>
@@ -6498,7 +6498,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="912"/>
         <source>Torrent stop condition:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torento sustabdymo sąlyga:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="923"/>
@@ -6612,7 +6612,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.ui" line="1538"/>
         <source>Run external program</source>
-        <translation type="unfinished"></translation>
+        <translation>Paleisti išorinę programą</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1544"/>
@@ -8281,7 +8281,7 @@ Atsiprašome, tačiau negalime parodyti šio failo: &quot;%1&quot;.</translation
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="223"/>
         <source>RSS feed at &apos;%1&apos; is successfully downloaded. Starting to parse it.</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS kanalas, esantis „%1“, yra sėkmingai atsisiųstas. Pradedama jį nagrinėti.</translation>
     </message>
 </context>
 <context>
@@ -8289,12 +8289,12 @@ Atsiprašome, tačiau negalime parodyti šio failo: &quot;%1&quot;.</translation
     <message>
         <location filename="../base/rss/feed_serializer.cpp" line="57"/>
         <source>Failed to read RSS session data. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko perskaityti RSS seanso duomenų. %1</translation>
     </message>
     <message>
         <location filename="../base/rss/feed_serializer.cpp" line="79"/>
         <source>Failed to save RSS feed in &apos;%1&apos;, Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko įrašyti RSS kanalo ties „%1“, Priežastis: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/feed_serializer.cpp" line="90"/>
@@ -8346,7 +8346,7 @@ Atsiprašome, tačiau negalime parodyti šio failo: &quot;%1&quot;.</translation
     <message>
         <location filename="../base/rss/rss_session.cpp" line="173"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanalo nėra: %1.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="200"/>
@@ -8362,7 +8362,7 @@ Atsiprašome, tačiau negalime parodyti šio failo: &quot;%1&quot;.</translation
     <message>
         <location filename="../base/rss/rss_session.cpp" line="220"/>
         <source>Couldn&apos;t move folder into itself.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko perkelti aplanko į jį patį</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="237"/>
@@ -8372,7 +8372,7 @@ Atsiprašome, tačiau negalime parodyti šio failo: &quot;%1&quot;.</translation
     <message>
         <location filename="../base/rss/rss_session.cpp" line="278"/>
         <source>Failed to read RSS session data. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko perskaityti RSS seanso duomenų. %1</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="286"/>
@@ -8387,17 +8387,17 @@ Atsiprašome, tačiau negalime parodyti šio failo: &quot;%1&quot;.</translation
     <message>
         <location filename="../base/rss/rss_session.cpp" line="324"/>
         <source>Couldn&apos;t load RSS feed. Feed: &quot;%1&quot;. Reason: URL is required.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko įkelti RSS kanalo. Kanalas: „%1“. Priežastis: Reikia URL adreso.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="335"/>
         <source>Couldn&apos;t load RSS feed. Feed: &quot;%1&quot;. Reason: UID is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko įkelti RSS kanalo. Kanalas: „%1“. Priežastis: Neteisingas UID.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="342"/>
         <source>Duplicate RSS feed found. UID: &quot;%1&quot;. Error: Configuration seems to be corrupted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Rastas besidubliuojantis RSS kanalas. UID: „%1“. Klaida: Atrodo, kad konfigūracija yra sugadinta.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="364"/>
@@ -8525,12 +8525,12 @@ Atsiprašome, tačiau negalime parodyti šio failo: &quot;%1&quot;.</translation
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="202"/>
         <source>Edit feed URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>Taisyti kanalo URL...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="205"/>
         <source>Edit feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Taisyti kanalo URL</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="233"/>
@@ -9557,12 +9557,12 @@ Norėdami juos įdiegti, spustelėkite lango apatinėje dešinėje mygtuką &quo
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="80"/>
         <source>Checking (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tikrinami (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="83"/>
         <source>Moving (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Perkeliami (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="86"/>
@@ -9597,7 +9597,7 @@ Norėdami juos įdiegti, spustelėkite lango apatinėje dešinėje mygtuką &quo
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="178"/>
         <source>Moving (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Perkeliami (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="221"/>
@@ -9647,7 +9647,7 @@ Norėdami juos įdiegti, spustelėkite lango apatinėje dešinėje mygtuką &quo
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="177"/>
         <source>Checking (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tikrinami (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="179"/>
@@ -10343,7 +10343,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="14"/>
         <source>Torrent Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Torento parinktys</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="20"/>
@@ -10373,7 +10373,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="86"/>
         <source>Torrent speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Torento greičio apribojimai</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="92"/>
@@ -11373,7 +11373,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="829"/>
         <source>A file with the same name already exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Failas tokiu pavadinimu jau yra</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="845"/>
@@ -11465,7 +11465,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="979"/>
         <source>Set loc&amp;ation...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nustatyti vie&amp;tą...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="981"/>
@@ -11480,17 +11480,17 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="985"/>
         <source>&amp;Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Magnet nuoroda</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="987"/>
         <source>Torrent &amp;ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Torento &amp;ID</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="989"/>
         <source>&amp;Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Pavadi&amp;nimas</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="991"/>
@@ -11515,12 +11515,12 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1008"/>
         <source>E&amp;xport .torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>E&amp;ksportuoti .torrent...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1154"/>
         <source>Categor&amp;y</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategor&amp;ija</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1156"/>
@@ -11666,12 +11666,12 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <location filename="../gui/uithemedialog.cpp" line="367"/>
         <location filename="../gui/uithemedialog.cpp" line="376"/>
         <source>Couldn&apos;t remove icon file. File: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko pašalinti piktogramos failo. Failas: %1.</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="385"/>
         <source>Couldn&apos;t copy icon file. Source: %1. Destination: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko nukopijuoti piktogramos failo. Šaltinis: %1. Paskirtis: %2.</translation>
     </message>
 </context>
 <context>
@@ -11759,7 +11759,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../base/utils/io.cpp" line="112"/>
         <source>File read error. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Failo skaitymo klaida. Failas: „%1“. Klaida: „%2“</translation>
     </message>
     <message>
         <location filename="../base/utils/io.cpp" line="127"/>
@@ -11901,7 +11901,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../webui/webui.cpp" line="63"/>
         <source>Credentials are not set</source>
-        <translation type="unfinished"></translation>
+        <translation>Nėra nustatyti prisijungimo duomenys</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="114"/>
