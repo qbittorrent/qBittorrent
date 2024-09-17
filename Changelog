@@ -1,7 +1,7 @@
 Mon Sep 16th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.7
     - BUGFIX: The updater will launch the link to the build variant you're currently using (sledgehammer999)
+    - BUGFIX: Focus on Download button if torrent link retrieved from the clipboard (glassez)
     - WEBUI: RSS: The list of feeds wouldn't load for Apply Rule (glassez)
-    - WEBUI: Focus on Download button if torrent link retrieved from the clipboard (glassez)
 
 Sun Aug 18th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.6
     - BUGFIX: Fix handling of tags containing '&' character (glassez)
