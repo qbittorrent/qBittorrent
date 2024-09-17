@@ -42,7 +42,7 @@
 
 WebUI::WebUI(IApplication *app, const QByteArray &tempPasswordHash)
     : ApplicationComponent(app)
-    , m_passwordHash {tempPasswordHash}
+    , m_tempPasswordHash {tempPasswordHash}
 {
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &WebUI::configure);
@@ -54,12 +54,17 @@ void WebUI::configure()
     m_errorMsg.clear();
 
     const Preferences *pref = Preferences::instance();
+
     m_isEnabled = pref->isWebUIEnabled();
     const QString username = pref->getWebUIUsername();
-    if (const QByteArray passwordHash = pref->getWebUIPassword(); !passwordHash.isEmpty())
-        m_passwordHash = passwordHash;
+    QByteArray passwordHash = m_tempPasswordHash;
+    if (const QByteArray prefPasswordHash = pref->getWebUIPassword(); !prefPasswordHash.isEmpty())
+    {
+        passwordHash = prefPasswordHash;
+        m_tempPasswordHash.clear();
+    }
 
-    if (m_isEnabled && (username.isEmpty() || m_passwordHash.isEmpty()))
+    if (m_isEnabled && (username.isEmpty() || passwordHash.isEmpty()))
     {
         setError(tr("Credentials are not set"));
     }
@@ -98,7 +103,7 @@ void WebUI::configure()
         }
 
         m_webapp->setUsername(username);
-        m_webapp->setPasswordHash(m_passwordHash);
+        m_webapp->setPasswordHash(passwordHash);
 
         if (pref->isWebUIHttpsEnabled())
         {

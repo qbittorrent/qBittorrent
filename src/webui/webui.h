@@ -77,5 +77,5 @@ private:
     QPointer<Net::DNSUpdater> m_dnsUpdater;
     QPointer<WebApplication> m_webapp;
 
-    QByteArray m_passwordHash;
+    QByteArray m_tempPasswordHash;
 };
