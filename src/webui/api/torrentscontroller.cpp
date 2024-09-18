@@ -1895,6 +1895,43 @@ void TorrentsController::parseMetadataAction()
     setResult(result);
 }
 
+void TorrentsController::saveMetadataAction()
+{
+    requireParams({u"source"_s});
+
+    const QString sourceParam = params()[u"source"_s].trimmed();
+    if (sourceParam.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("Must specify URI or hash"));
+
+    const QString source = QUrl::fromPercentEncoding(sourceParam.toLatin1());
+
+    BitTorrent::InfoHash infoHash;
+    if (const auto sourceTorrentDescr = BitTorrent::TorrentDescriptor::parse(source))
+        infoHash = sourceTorrentDescr.value().infoHash();
+    else if (const auto cachedInfoHash = m_torrentSourceCache.get(source))
+        infoHash = cachedInfoHash.value();
+
+    if (infoHash != BitTorrent::InfoHash {})
+    {
+        if (const auto torrentDescr = m_torrentMetadataCache.get(infoHash))
+        {
+            const nonstd::expected<QByteArray, QString> result = torrentDescr.value().saveToBuffer();
+            if (!result)
+                throw APIError(APIErrorType::Conflict, tr("Unable to export torrent metadata. Error: %1").arg(result.error()));
+
+            setResult(result.value(), u"application/x-bittorrent"_s, (infoHash.toTorrentID().toString() + u".torrent"));
+        }
+        else
+        {
+            throw APIError(APIErrorType::Conflict, tr("Metadata is not yet available"));
+        }
+    }
+    else
+    {
+        throw APIError(APIErrorType::NotFound);
+    }
+}
+
 void TorrentsController::onDownloadFinished(const Net::DownloadResult &result)
 {
     const QString source = result.url;
