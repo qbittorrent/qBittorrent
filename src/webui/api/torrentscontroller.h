@@ -106,6 +106,7 @@ private slots:
     void setSSLParametersAction();
     void fetchMetadataAction();
     void parseMetadataAction();
+    void saveMetadataAction();
 
 private:
     void onMetadataDownloaded(const BitTorrent::TorrentInfo &info);
