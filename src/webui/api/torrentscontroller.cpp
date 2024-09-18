@@ -997,9 +997,9 @@ void TorrentsController::addAction()
     if (!filePrioritiesParam.isEmpty())
     {
         if (urls.size() > 1)
-            throw APIError(APIErrorType::BadParams, tr("You cannot specify filePriorities when adding multiple torrents"));
+            throw APIError(APIErrorType::BadParams, tr("Cannot specify filePriorities when adding multiple torrents"));
         if (!torrents.isEmpty())
-            throw APIError(APIErrorType::BadParams, tr("You cannot specify filePriorities when uploading torrent files"));
+            throw APIError(APIErrorType::BadParams, tr("Cannot specify filePriorities when uploading torrent files"));
 
         filePriorities.reserve(filePrioritiesParam.size());
         for (const QString &priorityStr : filePrioritiesParam)
@@ -2033,6 +2033,36 @@ void TorrentsController::parseMetadataAction()
     }
 
     setResult(result);
+}
+
+void TorrentsController::saveMetadataAction()
+{
+    requireParams({u"source"_s});
+
+    const QString sourceParam = params()[u"source"_s].trimmed();
+    if (sourceParam.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("Must specify URI or hash"));
+
+    const QString source = QUrl::fromPercentEncoding(sourceParam.toLatin1());
+
+    BitTorrent::InfoHash infoHash;
+    if (const auto iter = m_torrentSourceCache.constFind(source); iter != m_torrentSourceCache.constEnd())
+        infoHash = iter.value();
+    else if (const auto sourceTorrentDescr = BitTorrent::TorrentDescriptor::parse(source))
+        infoHash = sourceTorrentDescr.value().infoHash();
+
+    if (!infoHash.isValid())
+        throw APIError(APIErrorType::NotFound);
+
+    const BitTorrent::TorrentDescriptor &torrentDescr = m_torrentMetadataCache.value(infoHash);
+    if (!torrentDescr.info().has_value())
+        throw APIError(APIErrorType::Conflict, tr("Metadata is not yet available"));
+
+    const nonstd::expected<QByteArray, QString> result = torrentDescr.saveToBuffer();
+    if (!result)
+        throw APIError(APIErrorType::Conflict, tr("Unable to export torrent metadata. Error: %1").arg(result.error()));
+
+    setResult(result.value(), u"application/x-bittorrent"_s, (infoHash.toTorrentID().toString() + u".torrent"));
 }
 
 void TorrentsController::onDownloadFinished(const Net::DownloadResult &result)
