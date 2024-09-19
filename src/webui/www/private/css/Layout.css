@@ -155,7 +155,8 @@ Required by:
     width: 5px;
 }
 
-#desktopNavbar li ul li a {
+#desktopNavbar li ul li a,
+#desktopNavbar li ul li div.anchor {
     color: var(--color-text-default);
     font-weight: normal;
     min-width: 155px;
@@ -163,7 +164,8 @@ Required by:
     position: relative;
 }
 
-#desktopNavbar li ul li a:hover {
+#desktopNavbar li ul li a:hover,
+#desktopNavbar li ul li div.anchor:hover {
     background-color: var(--color-background-hover);
     color: var(--color-text-white);
 }

@@ -184,6 +184,16 @@ div.mochaToolbarWrapper.bottom {
     width: 16px;
 }
 
+.mochaErrorIcon {
+    background: url("../images/error.svg") no-repeat;
+    background-size: 16px;
+    bottom: 7px;
+    height: 16px;
+    left: 6px;
+    position: absolute;
+    width: 16px;
+}
+
 .mochaIframe {
     width: 100%;
 }
