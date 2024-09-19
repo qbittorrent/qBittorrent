@@ -121,17 +121,39 @@ window.qBittorrent.Download ??= (() => {
     };
 
     const changeTMM = function(item) {
+        const savepath = document.getElementById("savepath");
+        const useDownloadPath = document.getElementById("useDownloadPath");
         if (item.selectedIndex === 1) {
-            $("savepath").disabled = true;
+            savepath.disabled = true;
 
             const categorySelect = $("categorySelect");
             const categoryName = categorySelect.options[categorySelect.selectedIndex].value;
             const category = categories[categoryName];
-            $("savepath").value = (category === undefined) ? "" : category["savePath"];
+            savepath.value = (category === undefined) ? "" : category["savePath"];
+
+            useDownloadPath.disabled = true;
+            useDownloadPath.checked = false;
+            changeUseDownloadPath(useDownloadPath);
         }
         else {
-            $("savepath").disabled = false;
-            $("savepath").value = defaultSavePath;
+            savepath.disabled = false;
+            savepath.value = defaultSavePath;
+
+            useDownloadPath.disabled = false;
+        }
+
+        changeUseDownloadPath(useDownloadPath);
+    };
+
+    const changeUseDownloadPath = function(elem) {
+        const downloadPath = document.getElementById("downloadPath");
+        if (elem.checked) {
+            downloadPath.disabled = false;
+            downloadPath.value = defaultSavePath;
+        }
+        else {
+            downloadPath.disabled = true;
+            downloadPath.value = "";
         }
     };
 
@@ -211,6 +233,10 @@ window.qBittorrent.Download ??= (() => {
     $(window).addEventListener("load", () => {
         getPreferences();
         getCategories();
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("useDownloadPath").addEventListener("change", (e) => changeUseDownloadPath(e.target));
     });
 
     return exports();
