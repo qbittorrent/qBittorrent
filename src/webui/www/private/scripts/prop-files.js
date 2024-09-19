@@ -41,7 +41,7 @@ window.qBittorrent.PropFiles ??= (() => {
 
     const onFilePriorityChanged = (fileIds, priority) => {
         // ignore folders
-        fileIds = fileIds.map(id => parseInt(id, 10)).filter(id => !window.qBittorrent.TorrentContent.isFolder(id));
+        fileIds = fileIds.map(id => Number(id)).filter(id => !window.qBittorrent.TorrentContent.isFolder(id));
 
         clearTimeout(loadTorrentFilesDataTimer);
         loadTorrentFilesDataTimer = -1;
