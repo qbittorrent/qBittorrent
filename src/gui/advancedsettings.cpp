@@ -100,6 +100,7 @@ namespace
         TRACKER_STATUS,
         TRACKER_PORT,
         TRACKER_PORT_FORWARDING,
+        IGNORE_SSL_ERRORS,
         // libtorrent section
         LIBTORRENT_HEADER,
         BDECODE_DEPTH_LIMIT,
@@ -319,6 +320,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     pref->setTrackerPortForwardingEnabled(m_checkBoxTrackerPortForwarding.isChecked());
     session->setTrackerEnabled(m_checkBoxTrackerStatus.isChecked());
 
+    // Ignore SSL errors
+    pref->setIgnoreSSLErrors(m_checkBoxIgnoreSSLErrors.isChecked());
     // Choking algorithm
     session->setChokingAlgorithm(m_comboBoxChokingAlgorithm.currentData().value<BitTorrent::ChokingAlgorithm>());
     // Seed choking algorithm
@@ -813,6 +816,10 @@ void AdvancedSettings::loadAdvancedSettings()
     // Tracker port forwarding
     m_checkBoxTrackerPortForwarding.setChecked(pref->isTrackerPortForwardingEnabled());
     addRow(TRACKER_PORT_FORWARDING, tr("Enable port forwarding for embedded tracker"), &m_checkBoxTrackerPortForwarding);
+    // Ignore SSL errors
+    m_checkBoxIgnoreSSLErrors.setChecked(pref->isIgnoreSSLErrors());
+    m_checkBoxIgnoreSSLErrors.setToolTip(tr("Affects certificate validation and non-torrent protocol activities (e.g. RSS feeds, program updates, torrent files, geoip db, etc)"));
+    addRow(IGNORE_SSL_ERRORS, tr("Ignore SSL errors"), &m_checkBoxIgnoreSSLErrors);
     // Choking algorithm
     m_comboBoxChokingAlgorithm.addItem(tr("Fixed slots"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::FixedSlots));
     m_comboBoxChokingAlgorithm.addItem(tr("Upload rate based"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::RateBased));

@@ -348,6 +348,8 @@ void AppController::preferencesAction()
     data[u"resolve_peer_countries"_s] = pref->resolvePeerCountries();
     // Reannounce to all trackers when ip/port changed
     data[u"reannounce_when_address_changed"_s] = session->isReannounceWhenAddressChangedEnabled();
+    // Ignore SSL errors
+    data[u"ignore_ssl_errors"_s] = pref->isIgnoreSSLErrors();
 
     // libtorrent preferences
     // Bdecode depth limit
@@ -915,6 +917,9 @@ void AppController::setPreferencesAction()
     // Reannounce to all trackers when ip/port changed
     if (hasKey(u"reannounce_when_address_changed"_s))
         session->setReannounceWhenAddressChangedEnabled(it.value().toBool());
+    // Ignore SLL errors
+    if (hasKey(u"ignore_ssl_errors"_s))
+        pref->setIgnoreSSLErrors(it.value().toBool());
 
     // libtorrent preferences
     // Bdecode depth limit

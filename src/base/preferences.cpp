@@ -1331,6 +1331,19 @@ void Preferences::setTrackerPortForwardingEnabled(const bool enabled)
     setValue(u"Preferences/Advanced/trackerPortForwarding"_s, enabled);
 }
 
+bool Preferences::isIgnoreSSLErrors() const
+{
+    return value(u"Preferences/Advanced/IgnoreSSLErrors"_s, false);
+}
+
+void Preferences::setIgnoreSSLErrors(const bool enabled)
+{
+    if (enabled == isIgnoreSSLErrors())
+        return;
+
+    setValue(u"Preferences/Advanced/IgnoreSSLErrors"_s, enabled);
+}
+
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 bool Preferences::isUpdateCheckEnabled() const
 {

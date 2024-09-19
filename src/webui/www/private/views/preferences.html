@@ -1077,6 +1077,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <input type="checkbox" id="embeddedTrackerPortForwarding" />
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <label for="ignoreSSLErrors">QBT_TR(Ignore SSL errors:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="ignoreSSLErrors">
+                </td>
+            </tr>
         </table>
     </fieldset>
     <fieldset class="settings">
@@ -2268,6 +2276,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         $('refreshInterval').setProperty('value', pref.refresh_interval);
                         $('resolvePeerCountries').setProperty('checked', pref.resolve_peer_countries);
                         $('reannounceWhenAddressChanged').setProperty('checked', pref.reannounce_when_address_changed);
+                        $('ignoreSSLErrors').setProperty('checked', pref.ignore_ssl_errors);
                         // libtorrent section
                         $('bdecodeDepthLimit').setProperty('value', pref.bdecode_depth_limit);
                         $('bdecodeTokenLimit').setProperty('value', pref.bdecode_token_limit);
@@ -2709,6 +2718,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings.set('refresh_interval', $('refreshInterval').getProperty('value'));
             settings.set('resolve_peer_countries', $('resolvePeerCountries').getProperty('checked'));
             settings.set('reannounce_when_address_changed', $('reannounceWhenAddressChanged').getProperty('checked'));
+            settings.set('ignore_ssl_errors', $('ignoreSSLErrors').getProperty('checked'));
 
             // libtorrent section
             settings.set('bdecode_depth_limit', $('bdecodeDepthLimit').getProperty('value'));
