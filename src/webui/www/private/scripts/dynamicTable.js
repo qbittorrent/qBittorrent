@@ -2190,12 +2190,13 @@ window.qBittorrent.DynamicTable ??= (() => {
         populateTable(root) {
             this.fileTree.setRoot(root);
             root.children.each((node) => {
-                this.#addNodeToTable(node, 0);
+                this.#addNodeToTable(node, 0, root);
             });
         }
 
-        #addNodeToTable(node, depth) {
+        #addNodeToTable(node, depth, parent) {
             node.depth = depth;
+            node.parent = parent;
 
             if (node.isFolder) {
                 const data = {
@@ -2218,7 +2219,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
 
             node.children.each((child) => {
-                this.#addNodeToTable(child, depth + 1);
+                this.#addNodeToTable(child, depth + 1, node);
             });
         }
 
@@ -2720,12 +2721,13 @@ window.qBittorrent.DynamicTable ??= (() => {
         populateTable(root) {
             this.fileTree.setRoot(root);
             root.children.each((node) => {
-                this.#addNodeToTable(node, 0);
+                this.#addNodeToTable(node, 0, root);
             });
         }
 
-        #addNodeToTable(node, depth) {
+        #addNodeToTable(node, depth, parent) {
             node.depth = depth;
+            node.parent = parent;
 
             if (node.isFolder) {
                 if (!this.collapseState.has(node.rowId))
@@ -2736,7 +2738,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     checked: node.checked,
                     remaining: node.remaining,
                     progress: node.progress,
-                    priority: window.qBittorrent.PropFiles.normalizePriority(node.priority),
+                    priority: window.qBittorrent.TorrentContent.normalizePriority(node.priority),
                     availability: node.availability,
                     fileId: -1,
                     name: node.name
@@ -2753,7 +2755,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
 
             node.children.each((child) => {
-                this.#addNodeToTable(child, depth + 1);
+                this.#addNodeToTable(child, depth + 1, node);
             });
         }
 
@@ -2814,9 +2816,9 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 const downloadCheckbox = td.children[1];
                 if (downloadCheckbox === undefined)
-                    td.append(window.qBittorrent.PropFiles.createDownloadCheckbox(id, row.full_data.fileId, value));
+                    td.append(window.qBittorrent.TorrentContent.createDownloadCheckbox(id, row.full_data.fileId, value));
                 else
-                    window.qBittorrent.PropFiles.updateDownloadCheckbox(downloadCheckbox, id, row.full_data.fileId, value);
+                    window.qBittorrent.TorrentContent.updateDownloadCheckbox(downloadCheckbox, id, row.full_data.fileId, value);
 
             };
             this.columns["checked"].staticWidth = 50;
@@ -2906,9 +2908,9 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 const priorityCombo = td.firstElementChild;
                 if (priorityCombo === null)
-                    td.append(window.qBittorrent.PropFiles.createPriorityCombo(id, row.full_data.fileId, value));
+                    td.append(window.qBittorrent.TorrentContent.createPriorityCombo(id, row.full_data.fileId, value));
                 else
-                    window.qBittorrent.PropFiles.updatePriorityCombo(priorityCombo, id, row.full_data.fileId, value);
+                    window.qBittorrent.TorrentContent.updatePriorityCombo(priorityCombo, id, row.full_data.fileId, value);
             };
             this.columns["priority"].staticWidth = 140;
 
