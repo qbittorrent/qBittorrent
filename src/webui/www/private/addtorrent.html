@@ -7,8 +7,10 @@
     <link rel="stylesheet" type="text/css" href="css/dynamicTable.css?v=${CACHEID}">
     <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
     <link rel="stylesheet" href="css/Window.css?v=${CACHEID}" type="text/css">
+    <link rel="stylesheet" href="css/vanillaSelectBox.css" type="text/css">
     <script defer src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
     <script defer src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
+    <script defer src="scripts/lib/vanillaSelectBox.js"></script>
     <script defer src="scripts/localpreferences.js?v=${CACHEID}"></script>
     <script defer src="scripts/color-scheme.js?v=${CACHEID}"></script>
     <script defer src="scripts/addtorrent.js?locale=${LANG}&v=${CACHEID}"></script>
@@ -84,6 +86,13 @@
                 window.qBittorrent.AddTorrent.loadMetadata(source);
         });
     </script>
+
+    <style>
+        #btn-group-tagsSelect button {
+            background-color: initial;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -163,6 +172,17 @@
                                             <option selected value="\other"></option>
                                         </select>
                                         <input type="text" name="category" aria-labelledby="categoryLabel">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label id="tagsLabel" for="tagsSelect">QBT_TR(Tags:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                                </td>
+                                <td>
+                                    <div>
+                                        <input type="hidden" id="tags" name="tags">
+                                        <select id="tagsSelect" name="tagsSelect" multiple></select>
                                     </div>
                                 </td>
                             </tr>

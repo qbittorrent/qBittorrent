@@ -37,6 +37,7 @@ window.qBittorrent.AddTorrent ??= (() => {
     };
 
     let categories = {};
+    let tags = [];
     let defaultSavePath = "";
     let windowId = "";
     let source;
@@ -63,6 +64,38 @@ window.qBittorrent.AddTorrent ??= (() => {
                     option.textContent = category.name;
                     document.getElementById("categorySelect").appendChild(option);
                 }
+            });
+    };
+
+    const getTags = () => {
+        fetch("api/v2/torrents/tags", {
+                method: "GET",
+                cache: "no-store"
+            })
+            .then(async (response) => {
+                if (!response.ok)
+                    return;
+
+                const data = await response.json();
+
+                tags = data;
+                const tagsSelect = document.getElementById("tagsSelect");
+                for (const tag of tags) {
+                    const option = document.createElement("option");
+                    option.value = tag;
+                    option.textContent = tag;
+                    tagsSelect.appendChild(option);
+                }
+
+                new vanillaSelectBox("#tagsSelect", {
+                    maxHeight: 200,
+                    search: false,
+                    disableSelectAll: true,
+                    translations: {
+                        all: tags.length === 0 ? "" : "QBT_TR(All)QBT_TR[CONTEXT=AddNewTorrentDialog]",
+                    },
+                    keepInlineStyles: false
+                });
             });
     };
 
@@ -120,6 +153,11 @@ window.qBittorrent.AddTorrent ??= (() => {
                 document.getElementById("savepath").value = savePath;
             }
         }
+    };
+
+    const changeTagsSelect = (element) => {
+        const tags = [...element.options].filter(opt => opt.selected).map(opt => opt.value);
+        document.getElementById("tags").value = tags.join(",");
     };
 
     const changeTMM = (item) => {
@@ -240,10 +278,12 @@ window.qBittorrent.AddTorrent ??= (() => {
 
         getPreferences();
         getCategories();
+        getTags();
     });
 
     window.addEventListener("DOMContentLoaded", () => {
         document.getElementById("useDownloadPath").addEventListener("change", (e) => changeUseDownloadPath(e.target));
+        document.getElementById("tagsSelect").addEventListener("change", (e) => changeTagsSelect(e.target));
     });
 
     return exports();
