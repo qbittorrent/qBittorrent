@@ -418,6 +418,7 @@
         <file>private/scripts/rename-files.js</file>
         <file>private/scripts/search.js</file>
         <file>private/scripts/speedslider.js</file>
+        <file>private/scripts/torrent-content.js</file>
         <file>private/setlocation.html</file>
         <file>private/shareratio.html</file>
         <file>private/upload.html</file>
