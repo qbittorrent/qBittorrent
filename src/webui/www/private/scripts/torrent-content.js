@@ -319,7 +319,6 @@ window.qBittorrent.TorrentContent ??= (() => {
         if (onFilePriorityChanged)
             onFilePriorityChanged(fileIds, priority);
 
-
         const ignore = (priority === FilePriority.Ignored);
         ids.forEach((_id) => {
             _id = _id.toString();
@@ -544,7 +543,6 @@ window.qBittorrent.TorrentContent ??= (() => {
     const init = function(tableId, tableClass, onFilePriorityChangedHandler = undefined, onFileRenameHandler = undefined) {
         if (onFilePriorityChangedHandler !== undefined)
             onFilePriorityChanged = onFilePriorityChangedHandler;
-
 
         torrentFilesTable = new tableClass();
 
