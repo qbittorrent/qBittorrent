@@ -52,6 +52,26 @@ window.qBittorrent.AddTorrent ??= (() => {
         }
     };
 
+    const getTags = () => {
+        const tagsSelect = document.getElementById("tagsSelect");
+        for (const tag of window.parent.qBittorrent.Client.tagMap.keys()) {
+            const option = document.createElement("option");
+            option.value = tag;
+            option.textContent = tag;
+            tagsSelect.appendChild(option);
+        }
+
+        new vanillaSelectBox("#tagsSelect", {
+            maxHeight: 200,
+            search: false,
+            disableSelectAll: true,
+            translations: {
+                all: (window.parent.qBittorrent.Client.tagMap.length === 0) ? "" : "QBT_TR(All)QBT_TR[CONTEXT=AddNewTorrentDialog]",
+            },
+            keepInlineStyles: false
+        });
+    };
+
     const getPreferences = () => {
         const pref = window.parent.qBittorrent.Cache.preferences.get();
 
@@ -135,6 +155,11 @@ window.qBittorrent.AddTorrent ??= (() => {
                 changeUseDownloadPath(downloadPathEnabled);
             }
         }
+    };
+
+    const changeTagsSelect = (element) => {
+        const tags = [...element.options].filter(opt => opt.selected).map(opt => opt.value);
+        document.getElementById("tags").value = tags.join(",");
     };
 
     const isAutoTMMEnabled = () => {
@@ -285,10 +310,12 @@ window.qBittorrent.AddTorrent ??= (() => {
 
         getPreferences();
         getCategories();
+        getTags();
     });
 
     window.addEventListener("DOMContentLoaded", (event) => {
         document.getElementById("useDownloadPath").addEventListener("change", (e) => changeUseDownloadPath(e.target.checked));
+        document.getElementById("tagsSelect").addEventListener("change", (e) => changeTagsSelect(e.target));
     });
 
     return exports();
