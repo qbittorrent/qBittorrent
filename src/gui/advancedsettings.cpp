@@ -105,6 +105,7 @@ namespace
 #if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
         ENABLE_MARK_OF_THE_WEB,
 #endif // Q_OS_MACOS || Q_OS_WIN
+        IGNORE_SSL_ERRORS,
         PYTHON_EXECUTABLE_PATH,
         START_SESSION_PAUSED,
         SESSION_SHUTDOWN_TIMEOUT,
@@ -332,6 +333,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     // Mark-of-the-Web
     pref->setMarkOfTheWebEnabled(m_checkBoxMarkOfTheWeb.isChecked());
 #endif // Q_OS_MACOS || Q_OS_WIN
+    // Ignore SSL errors
+    pref->setIgnoreSSLErrors(m_checkBoxIgnoreSSLErrors.isChecked());
     // Python executable path
     pref->setPythonExecutablePath(Path(m_pythonExecutablePath.text().trimmed()));
     // Start session paused
@@ -853,6 +856,10 @@ void AdvancedSettings::loadAdvancedSettings()
     m_checkBoxMarkOfTheWeb.setChecked(pref->isMarkOfTheWebEnabled());
     addRow(ENABLE_MARK_OF_THE_WEB, motwLabel, &m_checkBoxMarkOfTheWeb);
 #endif // Q_OS_MACOS || Q_OS_WIN
+    // Ignore SSL errors
+    m_checkBoxIgnoreSSLErrors.setChecked(pref->isIgnoreSSLErrors());
+    m_checkBoxIgnoreSSLErrors.setToolTip(tr("Affects certificate validation and non-torrent protocol activities (e.g. RSS feeds, program updates, torrent files, geoip db, etc)"));
+    addRow(IGNORE_SSL_ERRORS, tr("Ignore SSL errors"), &m_checkBoxIgnoreSSLErrors);
     // Python executable path
     m_pythonExecutablePath.setPlaceholderText(tr("(Auto detect if empty)"));
     m_pythonExecutablePath.setText(pref->getPythonExecutablePath().toString());

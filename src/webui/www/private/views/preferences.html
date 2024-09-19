@@ -1134,6 +1134,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             </tr>
             <tr>
                 <td>
+                    <label for="ignoreSSLErrors">QBT_TR(Ignore SSL errors:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="ignoreSSLErrors">
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="pythonExecutablePath">QBT_TR(Python executable path (may require restart):)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
@@ -2353,6 +2361,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("refreshInterval").setProperty("value", pref.refresh_interval);
                     $("resolvePeerCountries").setProperty("checked", pref.resolve_peer_countries);
                     $("reannounceWhenAddressChanged").setProperty("checked", pref.reannounce_when_address_changed);
+                    $("ignoreSSLErrors").setProperty("checked", pref.ignore_ssl_errors);
                     // libtorrent section
                     $("bdecodeDepthLimit").setProperty("value", pref.bdecode_depth_limit);
                     $("bdecodeTokenLimit").setProperty("value", pref.bdecode_token_limit);
@@ -2802,6 +2811,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["refresh_interval"] = Number($("refreshInterval").getProperty("value"));
             settings["resolve_peer_countries"] = $("resolvePeerCountries").getProperty("checked");
             settings["reannounce_when_address_changed"] = $("reannounceWhenAddressChanged").getProperty("checked");
+            settings["ignore_ssl_errors"] = $("ignoreSSLErrors").getProperty("checked");
 
             // libtorrent section
             settings["bdecode_depth_limit"] = Number($("bdecodeDepthLimit").getProperty("value"));
