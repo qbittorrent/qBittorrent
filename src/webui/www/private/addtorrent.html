@@ -65,6 +65,16 @@
                             </tr>
                         </tbody>
                     </table>
+                    <fieldset class="settings">
+                        <legend>
+                            <input type="checkbox" id="useDownloadPath" name="useDownloadPath" value="true">
+                            <label for="useDownloadPath">QBT_TR(Use another path for incomplete torrent)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                        </legend>
+                        <div class="formRow">
+                            <label for="downloadPath">QBT_TR(Save path:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                            <input type="text" id="downloadPath" name="downloadPath" class="pathDirectory" disabled>
+                        </div>
+                    </fieldset>
                 </fieldset>
                 <fieldset class="settings" style="text-align: left;">
                     <legend>QBT_TR(Torrent settings)QBT_TR[CONTEXT=AddNewTorrentDialog]</legend>

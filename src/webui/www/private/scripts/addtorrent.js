@@ -123,17 +123,39 @@ window.qBittorrent.AddTorrent ??= (() => {
     };
 
     const changeTMM = (item) => {
+        const savepath = document.getElementById("savepath");
+        const useDownloadPath = document.getElementById("useDownloadPath");
         if (item.selectedIndex === 1) {
-            document.getElementById("savepath").disabled = true;
+            savepath.disabled = true;
 
             const categorySelect = document.getElementById("categorySelect");
             const categoryName = categorySelect.options[categorySelect.selectedIndex].value;
             const category = categories[categoryName];
-            document.getElementById("savepath").value = (category === undefined) ? "" : category["savePath"];
+            savepath.value = (category === undefined) ? "" : category["savePath"];
+
+            useDownloadPath.disabled = true;
+            useDownloadPath.checked = false;
+            changeUseDownloadPath(useDownloadPath);
         }
         else {
-            document.getElementById("savepath").disabled = false;
-            document.getElementById("savepath").value = defaultSavePath;
+            savepath.disabled = false;
+            savepath.value = defaultSavePath;
+
+            useDownloadPath.disabled = false;
+        }
+
+        changeUseDownloadPath(useDownloadPath);
+    };
+
+    const changeUseDownloadPath = (elem) => {
+        const downloadPath = document.getElementById("downloadPath");
+        if (elem.checked) {
+            downloadPath.disabled = false;
+            downloadPath.value = defaultSavePath;
+        }
+        else {
+            downloadPath.disabled = true;
+            downloadPath.value = "";
         }
     };
 
@@ -218,6 +240,10 @@ window.qBittorrent.AddTorrent ??= (() => {
 
         getPreferences();
         getCategories();
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("useDownloadPath").addEventListener("change", (e) => changeUseDownloadPath(e.target));
     });
 
     return exports();
