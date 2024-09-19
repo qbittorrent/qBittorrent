@@ -58,7 +58,15 @@
                     <li>
                         <a class="returnFalse">QBT_TR(File)QBT_TR[CONTEXT=MainWindow]</a>
                         <ul>
-                            <li><a id="uploadLink"><img class="MyMenuIcon" alt="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" src="images/list-add.svg" width="16" height="16">QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li>
+                                <div id="uploadLink" class="anchor">
+                                    <label id="uploadLinkLabel" for="fileselectLink" style="cursor: pointer;">
+                                        <img class="MyMenuIcon" alt="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" src="images/list-add.svg" width="16" height="16">
+                                        <span>QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]</span>
+                                    </label>
+                                    <input type="file" id="fileselectLink" accept=".torrent, application/x-bittorrent" name="fileselect[]" multiple style="display: none;">
+                                </div>
+                            </li>
                             <li><a id="downloadLink"><img class="MyMenuIcon" alt="QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]" src="images/insert-link.svg" width="16" height="16">QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]</a></li>
                             <li class="divider"><a id="logoutLink"><img class="MyMenuIcon" alt="QBT_TR(Logout)QBT_TR[CONTEXT=HttpServer]" src="images/system-log-out.svg" width="16" height="16">QBT_TR(Logout)QBT_TR[CONTEXT=HttpServer]</a></li>
                             <li><a id="shutdownLink"><img class="MyMenuIcon" alt="QBT_TR(Exit qBittorrent)QBT_TR[CONTEXT=HttpServer]" src="images/application-exit.svg" width="16" height="16">QBT_TR(Exit qBittorrent)QBT_TR[CONTEXT=HttpServer]</a></li>
@@ -112,7 +120,12 @@
             <div id="mochaToolbar">
                 &nbsp;&nbsp;
                 <a id="downloadButton"><img class="mochaToolButton" title="QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]" src="images/insert-link.svg" alt="QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
-                <a id="uploadButton"><img class="mochaToolButton" title="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" src="images/list-add.svg" alt="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
+                <div id="uploadButton" style="display: inline-block;">
+                    <label for="fileselectButton" style="cursor: pointer;">
+                        <img class="mochaToolButton" title="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" src="images/list-add.svg" alt="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" width="24" height="24">
+                    </label>
+                    <input type="file" id="fileselectButton" accept=".torrent, application/x-bittorrent" name="fileselect[]" multiple style="display: none;">
+                </div>
                 <a id="deleteButton"><img class="mochaToolButton" title="QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]" src="images/list-remove.svg" alt="QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24"></a>
                 <a id="startButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Start)QBT_TR[CONTEXT=TransferListWidget]" src="images/torrent-start.svg" alt="QBT_TR(Start)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24"></a>
                 <a id="stopButton"><img class="mochaToolButton" title="QBT_TR(Stop)QBT_TR[CONTEXT=TransferListWidget]" src="images/torrent-stop.svg" alt="QBT_TR(Stop)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24"></a>

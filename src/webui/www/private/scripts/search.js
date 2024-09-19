@@ -488,15 +488,10 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const downloadSearchTorrent = () => {
-        const urls = [];
-        for (const rowID of searchResultsTable.selectedRowsIds())
-            urls.push(searchResultsTable.getRow(rowID).full_data.fileUrl);
-
-        // only proceed if at least 1 row was selected
-        if (!urls.length)
-            return;
-
-        showDownloadPage(urls);
+        for (const rowID of searchResultsTable.selectedRowsIds()) {
+            const { fileName, fileUrl } = searchResultsTable.getRow(rowID).full_data;
+            qBittorrent.Client.createAddTorrentWindow(fileName, fileUrl);
+        }
     };
 
     const manageSearchPlugins = () => {

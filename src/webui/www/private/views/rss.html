@@ -292,10 +292,10 @@
                 menu: "rssArticleMenu",
                 actions: {
                     Download: (el) => {
-                        let dlString = "";
-                        for (const rowID of rssArticleTable.selectedRows)
-                            dlString += `${rssArticleTable.getRow(rowID).full_data.torrentURL}\n`;
-                        showDownloadPage([dlString]);
+                        for (const rowID of rssArticleTable.selectedRows) {
+                            const { name, torrentURL } = rssArticleTable.getRow(rowID).full_data;
+                            window.qBittorrent.Client.createAddTorrentWindow(name, torrentURL);
+                        }
                     },
                     OpenNews: (el) => {
                         for (const rowID of rssArticleTable.selectedRows)

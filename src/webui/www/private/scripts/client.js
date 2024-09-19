@@ -42,7 +42,9 @@ window.qBittorrent.Client ??= (() => {
             showLogViewer: showLogViewer,
             isShowSearchEngine: isShowSearchEngine,
             isShowRssReader: isShowRssReader,
-            isShowLogViewer: isShowLogViewer
+            isShowLogViewer: isShowLogViewer,
+            createAddTorrentWindow: createAddTorrentWindow,
+            uploadTorrentFiles: uploadTorrentFiles
         };
     };
 
@@ -115,6 +117,83 @@ window.qBittorrent.Client ??= (() => {
     };
     const isShowLogViewer = () => {
         return showingLogViewer;
+    };
+
+    const createAddTorrentWindow = (title, source, metadata = undefined) => {
+        const isFirefox = navigator.userAgent.includes("Firefox");
+        const isSafari = navigator.userAgent.includes("AppleWebKit") && !navigator.userAgent.includes("Chrome");
+        let height = 855;
+        if (isSafari)
+            height -= 40;
+        else if (isFirefox)
+            height -= 10;
+
+        const staticId = "uploadPage";
+        const id = `${staticId}-${encodeURIComponent(source)}`;
+        new MochaUI.Window({
+            id: id,
+            icon: "images/qbittorrent-tray.svg",
+            title: title,
+            loadMethod: "iframe",
+            contentURL: new URI("addtorrent.html").setData("source", source).setData("fetch", metadata === undefined).setData("windowId", id).toString(),
+            addClass: "windowFrame", // fixes iframe scrolling on iOS Safari
+            scrollbars: true,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: loadWindowWidth(staticId, 980),
+            height: loadWindowHeight(staticId, height),
+            onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
+                saveWindowSize(staticId, id);
+            }),
+            onContentLoaded: () => {
+                if (metadata !== undefined)
+                    document.getElementById(`${id}_iframe`).contentWindow.postMessage(metadata, window.origin);
+            }
+        });
+    };
+
+    const uploadTorrentFiles = (files) => {
+        const fileNames = [];
+        const formData = new FormData();
+        for (const file of files) {
+            fileNames.push(file.name);
+            formData.append("file", file);
+        }
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "api/v2/torrents/parseMetadata");
+        xhr.addEventListener("readystatechange", () => {
+            if (xhr.readyState === 4) { // DONE state
+                if ((xhr.status >= 200) && (xhr.status < 300)) {
+                    let response;
+                    try {
+                        response = JSON.parse(xhr.responseText);
+                    }
+                    catch (error) {
+                        alert("QBT_TR(Unable to parse response)QBT_TR[CONTEXT=HttpServer]");
+                        return;
+                    }
+
+                    for (const fileName of fileNames) {
+                        let title = fileName;
+                        const metadata = response[fileName];
+                        if (metadata !== undefined)
+                            title = metadata.name;
+
+                        createAddTorrentWindow(title, metadata.hash, metadata);
+                    }
+                }
+                else if (xhr.responseText) {
+                    alert(xhr.responseText);
+                }
+            }
+        });
+        xhr.addEventListener("error", () => {
+            if (xhr.responseText)
+                alert(xhr.responseText);
+        });
+        xhr.send(formData);
     };
 
     return exports();
@@ -1658,32 +1737,11 @@ window.addEventListener("DOMContentLoaded", () => {
                 // can't handle folder due to cannot put the filelist (from dropped folder)
                 // to <input> `files` field
                 for (const item of ev.dataTransfer.items) {
-                    if (item.webkitGetAsEntry().isDirectory)
+                    if ((item.kind !== "file") || (item.webkitGetAsEntry().isDirectory))
                         return;
                 }
 
-                const id = "uploadPage";
-                new MochaUI.Window({
-                    id: id,
-                    icon: "images/qbittorrent-tray.svg",
-                    title: "QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]",
-                    loadMethod: "iframe",
-                    contentURL: new URI("upload.html").toString(),
-                    addClass: "windowFrame", // fixes iframe scrolling on iOS Safari
-                    scrollbars: true,
-                    maximizable: false,
-                    paddingVertical: 0,
-                    paddingHorizontal: 0,
-                    width: loadWindowWidth(id, 500),
-                    height: loadWindowHeight(id, 460),
-                    onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
-                        saveWindowSize(id);
-                    }),
-                    onContentLoaded: () => {
-                        const fileInput = $(`${id}_iframe`).contentDocument.getElementById("fileselect");
-                        fileInput.files = droppedFiles;
-                    }
-                });
+                window.qBittorrent.Client.uploadTorrentFiles(droppedFiles);
             }
 
             const droppedText = ev.dataTransfer.getData("text");
@@ -1701,29 +1759,8 @@ window.addEventListener("DOMContentLoaded", () => {
                             || ((str.length === 32) && !(/[^2-7A-Z]/i.test(str))); // v1 Base32 encoded SHA-1 info-hash
                     });
 
-                if (urls.length <= 0)
-                    return;
-
-                const id = "downloadPage";
-                const contentURI = new URI("download.html").setData("urls", urls.map(encodeURIComponent).join("|"));
-                new MochaUI.Window({
-                    id: id,
-                    icon: "images/qbittorrent-tray.svg",
-                    title: "QBT_TR(Download from URLs)QBT_TR[CONTEXT=downloadFromURL]",
-                    loadMethod: "iframe",
-                    contentURL: contentURI.toString(),
-                    addClass: "windowFrame", // fixes iframe scrolling on iOS Safari
-                    scrollbars: true,
-                    maximizable: false,
-                    closable: true,
-                    paddingVertical: 0,
-                    paddingHorizontal: 0,
-                    width: loadWindowWidth(id, 500),
-                    height: loadWindowHeight(id, 600),
-                    onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
-                        saveWindowSize(id);
-                    })
-                });
+                for (const url of urls)
+                    qBittorrent.Client.createAddTorrentWindow(url, url);
             }
         });
     };
