@@ -149,7 +149,7 @@
                                     <label for="autoTMM">QBT_TR(Torrent Management Mode:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
                                 </td>
                                 <td class="fullWidth">
-                                    <select id="autoTMM" name="autoTMM" onchange="qBittorrent.AddTorrent.changeTMM(this)">
+                                    <select id="autoTMM" name="autoTMM" onchange="qBittorrent.AddTorrent.changeTMM()">
                                         <option selected value="false">QBT_TR(Manual)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
                                         <option value="true">QBT_TR(Automatic)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
                                     </select>
@@ -165,6 +165,17 @@
                             </tr>
                         </tbody>
                     </table>
+                    <fieldset class="settings">
+                        <legend>
+                            <input type="checkbox" id="useDownloadPath">
+                            <input type="hidden" id="useDownloadPathHidden" name="useDownloadPath">
+                            <label for="useDownloadPath">QBT_TR(Use another path for incomplete torrent)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                        </legend>
+                        <div class="formRow" style="display: flex; align-items: center;">
+                            <label for="downloadPath">QBT_TR(Save path:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                            <input type="text" id="downloadPath" name="downloadPath" class="pathDirectory" disabled style="flex-grow: 1; margin-left: 5px; margin-right: 5px;">
+                        </div>
+                    </fieldset>
                 </fieldset>
                 <fieldset class="settings" style="text-align: left;">
                     <legend>QBT_TR(Torrent settings)QBT_TR[CONTEXT=AddNewTorrentDialog]</legend>
