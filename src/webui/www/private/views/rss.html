@@ -156,6 +156,7 @@
     <li><a href="#update"><img src="images/view-refresh.svg" alt="QBT_TR(Update)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Update)QBT_TR[CONTEXT=RSSWidget]</a></li>
     <li><a href="#markRead"><img src="images/task-complete.svg" alt="QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]</a></li>
     <li class="separator"><a href="#rename"><img src="images/edit-rename.svg" alt="QBT_TR(Rename...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Rename...)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#edit"><img src="images/edit-rename.svg" alt="QBT_TR(Edit feed URL...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Edit feed URL...)QBT_TR[CONTEXT=RSSWidget]</a></li>
     <li><a href="#delete"><img src="images/edit-clear.svg" alt="QBT_TR(Delete)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Delete)QBT_TR[CONTEXT=RSSWidget]</a></li>
 
     <li class="separator"><a href="#newSubscription"><img src="images/list-add.svg" alt="QBT_TR(New subscription...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(New subscription...)QBT_TR[CONTEXT=RSSWidget]</a></li>
@@ -235,6 +236,10 @@
                     markRead: markSelectedAsRead,
                     rename: (el) => {
                         moveItem(rssFeedTable.getRow(rssFeedTable.selectedRows[0]).full_data.dataPath);
+                    },
+                    edit: (el) => {
+                        const data = rssFeedTable.getRow(rssFeedTable.selectedRows[0]).full_data;
+                        editUrl(data.dataPath, data.dataUrl);
                     },
                     delete: (el) => {
                         const selectedDatapaths = rssFeedTable.selectedRows
@@ -499,7 +504,8 @@
                         match = true;
                         for (let i = 0; i < flattenedResp.length; ++i) {
                             if (((flattenedResp[i].uid ? flattenedResp[i].uid : "") !== rssFeedRows[i + 1].full_data.dataUid)
-                                || (flattenedResp[i].fullName !== rssFeedRows[i + 1].full_data.dataPath)) {
+                                || (flattenedResp[i].fullName !== rssFeedRows[i + 1].full_data.dataPath)
+                                || (flattenedResp[i].url !== rssFeedRows[i + 1].full_data.dataUrl)) {
                                 match = false;
                                 break;
                             }
@@ -721,6 +727,21 @@
                 title: "QBT_TR(Please choose a new name for this RSS feed)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
                 contentURL: "rename_feed.html?oldPath=" + encodeURIComponent(oldPath),
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                width: 350,
+                height: 100
+            });
+        };
+
+        const editUrl = (path, url) => {
+            new MochaUI.Window({
+                id: "editFeedURL",
+                icon: "images/qbittorrent-tray.svg",
+                title: "QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
+                loadMethod: "iframe",
+                contentURL: new URI("editfeedurl.html").setData("path", path).setData("url", url).toString(),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
