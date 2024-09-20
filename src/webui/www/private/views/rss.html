@@ -223,22 +223,23 @@
                 actions: {
                     update: (el) => {
                         const feedsToUpdate = new Set();
-                        rssFeedTable.selectedRows.each((rowId) => {
-                            const selectedPath = rssFeedTable.rows[rowId].full_data.dataPath;
-                            rssFeedTable.rows.filter((row) => row.full_data.dataPath.slice(0, selectedPath.length) === selectedPath)
-                                .filter((row) => row.full_data.dataUid !== "")
-                                .each((row) => feedsToUpdate.add(row));
-                        });
+                        for (const rowId of rssFeedTable.selectedRows) {
+                            const selectedPath = rssFeedTable.getRow(rowId).full_data.dataPath;
+                            for (const row of rssFeedTable.getRowValues()) {
+                                if ((row.full_data.dataPath.slice(0, selectedPath.length) === selectedPath) && (row.full_data.dataUid !== ""))
+                                    feedsToUpdate.add(row);
+                            }
+                        };
                         feedsToUpdate.forEach((feed) => refreshFeed(feed.full_data.dataUid));
                     },
                     markRead: markSelectedAsRead,
                     rename: (el) => {
-                        moveItem(rssFeedTable.rows[rssFeedTable.selectedRows[0]].full_data.dataPath);
+                        moveItem(rssFeedTable.getRow(rssFeedTable.selectedRows[0]).full_data.dataPath);
                     },
                     delete: (el) => {
                         const selectedDatapaths = rssFeedTable.selectedRows
-                            .filter((e) => e !== 0)
-                            .map((sRow) => rssFeedTable.rows[sRow].full_data.dataPath);
+                            .filter((rowID) => rowID !== "0")
+                            .map((rowID) => rssFeedTable.getRow(rowID).full_data.dataPath);
                         // filter children
                         const reducedDatapaths = selectedDatapaths.filter((path) =>
                             selectedDatapaths.filter((innerPath) => path.slice(0, innerPath.length) === innerPath).length === 1
@@ -262,7 +263,7 @@
                 rssFeedTable.deselectRow();
             });
             $("rssFeedTableDiv").addEventListener("contextmenu", (e) => {
-                if (e.toElement.nodeName === "DIV") {
+                if (e.target.nodeName === "DIV") {
                     rssFeedTable.deselectAll();
                     rssFeedTable.deselectRow();
                     rssFeedContextMenu.updateMenuItems();
@@ -272,9 +273,11 @@
             new ClipboardJS("#CopyFeedURL", {
                 text: () => {
                     let joined = "";
-                    rssFeedTable.selectedRows
-                        .filter((row) => rssFeedTable.rows[row].full_data.dataUid !== "")
-                        .each((row) => joined += rssFeedTable.rows[row].full_data.dataUrl + "\n");
+                    for (const rowID of rssFeedTable.selectedRows) {
+                        const row = rssFeedTable.getRow(rowID);
+                        if (row.full_data.dataUid !== "")
+                            joined += `${row.full_data.dataUrl}\n`;
+                    }
                     return joined.slice(0, -1);
                 }
             });
@@ -286,15 +289,13 @@
                 actions: {
                     Download: (el) => {
                         let dlString = "";
-                        rssArticleTable.selectedRows.each((row) => {
-                            dlString += rssArticleTable.rows[row].full_data.torrentURL + "\n";
-                        });
+                        for (const rowID of rssArticleTable.selectedRows)
+                            dlString += `${rssArticleTable.getRow(rowID).full_data.torrentURL}\n`;
                         showDownloadPage([dlString]);
                     },
                     OpenNews: (el) => {
-                        rssArticleTable.selectedRows.each((row) => {
-                            window.open(rssArticleTable.rows[row].full_data.link);
-                        });
+                        for (const rowID of rssArticleTable.selectedRows)
+                            window.open(rssArticleTable.getRow(rowID).full_data.link);
                     }
                 },
                 offsets: {
@@ -322,7 +323,7 @@
         const addRSSFeed = () => {
             let path = "";
             if (rssFeedTable.selectedRows.length !== 0) {
-                const row = rssFeedTable.rows[rssFeedTable.selectedRows[0]];
+                const row = rssFeedTable.getRow(rssFeedTable.selectedRows[0]);
                 if (row.full_data.dataUid === "") {
                     path = row.full_data.dataPath;
                 }
@@ -350,7 +351,7 @@
         const addFolder = () => {
             let path = "";
             if (rssFeedTable.selectedRows.length !== 0) {
-                const row = rssFeedTable.rows[rssFeedTable.selectedRows[0]];
+                const row = rssFeedTable.getRow(rssFeedTable.selectedRows[0]);
                 if (row.full_data.dataUid === "") {
                     path = row.full_data.dataPath;
                 }
@@ -380,9 +381,10 @@
             let rowCount = 0;
 
             const childFeeds = new Set();
-            rssFeedTable.rows.filter((row) => row.full_data.dataPath.slice(0, path.length) === path)
-                .filter((row) => row.full_data.dataUid !== "")
-                .each((row) => childFeeds.add(row.full_data.dataUid));
+            for (const row of rssFeedTable.getRowValues()) {
+                if ((row.full_data.dataPath.slice(0, path.length) === path) && (row.full_data.dataUid !== ""))
+                    childFeeds.add(row.full_data.dataUid);
+            }
 
             let visibleArticles = [];
             for (const feedEntry in feedData) {
@@ -490,12 +492,14 @@
                     recFlatten(response);
 
                     // check if rows matches flattened response
+                    const rssFeedRows = [...rssFeedTable.getRowValues()];
                     let match = false;
-                    if ((rssFeedTable.rows.getLength() - 1) === flattenedResp.length) {
+                    // subtract 'unread' row
+                    if ((rssFeedRows.length - 1) === flattenedResp.length) {
                         match = true;
                         for (let i = 0; i < flattenedResp.length; ++i) {
-                            if (((flattenedResp[i].uid ? flattenedResp[i].uid : "") !== rssFeedTable.rows[i + 1].full_data.dataUid)
-                                || (flattenedResp[i].fullName !== rssFeedTable.rows[i + 1].full_data.dataPath)) {
+                            if (((flattenedResp[i].uid ? flattenedResp[i].uid : "") !== rssFeedRows[i + 1].full_data.dataUid)
+                                || (flattenedResp[i].fullName !== rssFeedRows[i + 1].full_data.dataPath)) {
                                 match = false;
                                 break;
                             }
@@ -507,7 +511,7 @@
                         // update status
                         let statusDiffers = false;
                         for (let i = 0; i < flattenedResp.length; ++i) {
-                            const oldStatus = rssFeedTable.rows[i + 1].full_data.status;
+                            const oldStatus = rssFeedRows[i + 1].full_data.status;
                             let status = "default";
                             if (flattenedResp[i].hasError)
                                 status = "hasError";
@@ -530,8 +534,8 @@
                         // get currently opened feed
                         let openedFeedPath = undefined;
                         if (rssFeedTable.selectedRows.length !== 0) {
-                            const lastSelectedRow = rssFeedTable.selectedRows[rssFeedTable.selectedRows.length - 1];
-                            openedFeedPath = rssFeedTable.rows[lastSelectedRow].full_data.dataPath;
+                            const lastSelectedRow = rssFeedTable.selectedRows.at(-1);
+                            openedFeedPath = rssFeedTable.getRow(lastSelectedRow).full_data.dataPath;
                         }
 
                         // check if list of articles differs
@@ -554,8 +558,11 @@
                                     const unreadDifference = newUnread - oldUnread;
 
                                     // find all parents (and self) and add unread difference
-                                    rssFeedTable.rows.filter((row) => r.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
-                                        .each((row) => row.full_data.unread += unreadDifference);
+                                    for (const row of rssFeedTable.getRowValues()) {
+                                        if (r.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
+                                            row.full_data.unread += unreadDifference;
+                                    }
+
                                     needsUpdate = true;
 
                                     // update data
@@ -582,15 +589,20 @@
                                     if (readChanged) {
                                         needsUpdate = true;
                                         // find all items that contain this rss feed and add read difference
-                                        rssFeedTable.rows.filter((row) => r.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
-                                            .each((row) => row.full_data.unread += readDifference);
+                                        for (const row of rssFeedTable.getRowValues()) {
+                                            if (r.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
+                                                row.full_data.unread += readDifference;
+                                        }
 
                                         // if feed that is opened changed update dynamically
                                         if ((openedFeedPath !== undefined) && (r.fullName.slice(0, openedFeedPath.length) === openedFeedPath)) {
                                             for (let i = 0; i < r.articles.length; ++i) {
-                                                const matchingRow = rssArticleTable.rows.filter((row) => row.full_data.feedUid === r.uid)
-                                                    .filter((row) => row.full_data.dataId === r.articles[i].id);
-                                                matchingRow[Object.keys(matchingRow)[0]].full_data.isRead = r.articles[i].isRead;
+                                                for (const row of rssArticleTable.getRowValues()) {
+                                                    if ((row.full_data.feedUid === r.uid) && (row.full_data.dataId === r.articles[i].id)) {
+                                                        row.full_data.isRead = r.articles[i].isRead;
+                                                        break;
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -605,6 +617,7 @@
                     else {
                         // full refresh
                         rssFeedTable.clear();
+                        rssArticleTable.clear();
                         feedData = {};
                         pathByFeedId = new Map();
 
@@ -655,8 +668,10 @@
                                 // calculate number of unread
                                 const numberOfUnread = dataEntry.articles.map((art) => !art.isRead).filter((v) => v).length;
                                 // find all items that contain this rss feed and add unread count
-                                rssFeedTable.rows.filter((row) => dataEntry.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
-                                    .each((row) => row.full_data.unread += numberOfUnread);
+                                for (const row of rssFeedTable.getRowValues()) {
+                                    if (dataEntry.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
+                                        row.full_data.unread += numberOfUnread;
+                                }
 
                                 pathByFeedId.set(dataEntry.uid, dataEntry.fullName);
                                 feedData[dataEntry.uid] = dataEntry.articles;
@@ -672,10 +687,10 @@
 
         const refreshFeed = (feedUid) => {
             // set icon to loading
-            rssFeedTable.rows.forEach((row) => {
+            for (const row of rssFeedTable.getRowValues()) {
                 if (row.full_data.dataUid === feedUid)
                     row.full_data.status = "isLoading";
-            });
+            }
             rssFeedTable.updateIcons();
 
             new Request({
@@ -738,24 +753,29 @@
             }
 
             // mark rows as read
-            rssArticleTable.rows.each((el) => el.full_data.isRead = true);
+            for (const row of rssArticleTable.getRowValues())
+                row.full_data.isRead = true;
 
             // find all children and set unread count to 0
-            rssFeedTable.rows.filter((row) => (row.full_data.dataPath.slice(0, path.length) === path) && (path !== row.full_data.dataPath))
-                .each((row) => row.full_data.unread = 0);
+            for (const row of rssFeedTable.getRowValues()) {
+                if ((row.full_data.dataPath.slice(0, path.length) === path) && (path !== row.full_data.dataPath))
+                    row.full_data.unread = 0;
+            }
 
             // find selected row
             let rowId, prevUnreadCount;
-            rssFeedTable.rows.forEach((row) => {
+            for (const row of rssFeedTable.getRowValues()) {
                 if (row.full_data.dataPath === path) {
                     rowId = row.full_data.rowId;
                     prevUnreadCount = row.full_data.unread;
                 }
-            });
+            }
 
             // find all parents (and self) and subtract previous unread count
-            rssFeedTable.rows.filter((row) => path.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
-                .each((row) => row.full_data.unread -= prevUnreadCount);
+            for (const row of rssFeedTable.getRowValues()) {
+                if (path.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
+                    row.full_data.unread -= prevUnreadCount;
+            }
 
             rssArticleTable.updateTable(false);
             rssFeedTable.updateTable(true);
@@ -777,14 +797,15 @@
         const markArticleAsRead = (path, id) => {
             // find row
             let rowId, name, uid, unread;
-            rssFeedTable.rows.forEach((row) => {
+            for (const row of rssFeedTable.getRowValues()) {
                 if (row.full_data.dataPath === path) {
                     rowId = row.full_data.rowId;
                     name = row.full_data.dataPath;
                     uid = row.full_data.dataUid;
                     unread = row.full_data.unread;
                 }
-            });
+            }
+
             // update feed data
             let prevReadState = true;
             feedData[uid].each((article) => {
@@ -796,8 +817,10 @@
 
             if (!prevReadState) {
                 // find all items that contain this feed and subtract 1
-                rssFeedTable.rows.filter((row) => path.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
-                    .each((row) => row.full_data.unread -= 1);
+                for (const row of rssFeedTable.getRowValues()) {
+                    if (path.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
+                        row.full_data.unread -= 1;
+                }
 
                 rssFeedTable.updateTable(true);
 
@@ -818,7 +841,7 @@
 
         const markSelectedAsRead = () => {
             const selectedDatapaths = rssFeedTable.selectedRows
-                .map((sRow) => rssFeedTable.rows[sRow].full_data.dataPath);
+                .map((sRow) => rssFeedTable.getRow(sRow).full_data.dataPath);
             // filter children
             const reducedDatapaths = selectedDatapaths.filter((path) =>
                 selectedDatapaths.filter((innerPath) => path.slice(0, innerPath.length) === innerPath).length === 1
