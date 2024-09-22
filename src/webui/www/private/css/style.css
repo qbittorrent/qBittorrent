@@ -567,6 +567,7 @@ div.formRow {
     padding: 4px 0 4px 6px;
     text-overflow: ellipsis;
     text-transform: uppercase;
+    user-select: none;
     white-space: nowrap;
 }
 

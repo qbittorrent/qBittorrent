@@ -19,6 +19,7 @@ Required by:
 
 .toolbarTabs {
     overflow: visible;
+    user-select: none;
 }
 
 .tab-menu {
