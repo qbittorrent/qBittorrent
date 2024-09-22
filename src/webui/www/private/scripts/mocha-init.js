@@ -534,22 +534,36 @@ const initializeWindows = function() {
 
     autoTorrentManagementFN = function() {
         const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length) {
-            let enable = false;
-            hashes.each((hash, index) => {
-                const row = torrentsTable.getRow(hash);
-                if (!row.full_data.auto_tmm)
-                    enable = true;
-            });
-            new Request({
-                url: "api/v2/torrents/setAutoManagement",
-                method: "post",
-                data: {
-                    hashes: hashes.join("|"),
-                    enable: enable
-                }
-            }).send();
-            updateMainData();
+        if (hashes.length > 0) {
+            const enableAutoTMM = hashes.some((hash) => !(torrentsTable.getRow(hash).full_data.auto_tmm));
+            if (enableAutoTMM) {
+                new MochaUI.Modal({
+                    ...window.qBittorrent.Dialog.baseModalOptions,
+                    id: "confirmAutoTMMDialog",
+                    title: "QBT_TR(Enable automatic torrent management)QBT_TR[CONTEXT=confirmAutoTMMDialog]",
+                    data: {
+                        hashes: hashes,
+                        enable: enableAutoTMM
+                    },
+                    contentURL: "views/confirmAutoTMM.html"
+                });
+            }
+            else {
+                new Request({
+                    url: "api/v2/torrents/setAutoManagement",
+                    method: "post",
+                    data: {
+                        hashes: hashes.join("|"),
+                        enable: enableAutoTMM
+                    },
+                    onSuccess: () => {
+                        updateMainData();
+                    },
+                    onFailure: () => {
+                        alert("QBT_TR(Unable to set Auto Torrent Management for the selected torrents.)QBT_TR[CONTEXT=HttpServer]");
+                    }
+                }).send();
+            }
         }
     };
 
