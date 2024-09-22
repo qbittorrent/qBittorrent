@@ -755,23 +755,23 @@ td.statusBarSeparator {
     color: var(--color-text-white);
 }
 
-/* Confirm deletion dialog */
+/* Modals */
 
-#confirmDeletionPage * {
+.modalDialog * {
     box-sizing: border-box;
 }
 
-#confirmDeletionPage_content {
+.modalDialog .mochaContent.pad {
     display: flex !important; /* override for default mocha inline style */
     flex-direction: column;
     height: 100%;
 }
 
-#confirmDeletionPage_content > :last-child {
+.modalDialog .mochaContent.pad > :last-child {
     align-self: flex-end;
 }
 
-#confirmDeletionDialog {
+.modalDialog .mochaContent.pad > :first-child {
     margin: auto 0;
 }
 
@@ -792,10 +792,11 @@ td.statusBarSeparator {
     vertical-align: -1px;
 }
 
-#deleteTorrentMessage {
+.dialogMessage {
     overflow-wrap: anywhere;
 }
 
+.genericConfirmGrid,
 .confirmDeletionGrid {
     align-items: center;
     display: grid;
@@ -804,6 +805,7 @@ td.statusBarSeparator {
     margin-bottom: 10px;
 }
 
+.confirmGridItem,
 .deletionGridItem {
     padding: 3px;
 }
@@ -812,8 +814,13 @@ td.statusBarSeparator {
     justify-self: center;
 }
 
+.confirmWarning,
 .confirmDialogWarning {
     background: url("../images/dialog-warning.svg") center center no-repeat;
     height: 38px;
     width: 38px;
+}
+
+.confirmWarning {
+    background-image: url("../images/help-about.svg");
 }

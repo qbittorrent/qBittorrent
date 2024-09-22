@@ -1170,6 +1170,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 </tr>
                 <tr>
                     <td>
+                        <label for="confirmTorrentRecheck">QBT_TR(Confirm torrent recheck:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="confirmTorrentRecheck">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label for="recheckTorrentsOnCompletion">QBT_TR(Recheck torrents on completion:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
@@ -2464,6 +2472,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("saveResumeDataInterval").value = pref.save_resume_data_interval;
                     $("saveStatisticsInterval").value = pref.save_statistics_interval;
                     $("torrentFileSizeLimit").value = (pref.torrent_file_size_limit / 1024 / 1024);
+                    document.getElementById("confirmTorrentRecheck").checked = pref.confirm_torrent_recheck;
                     $("recheckTorrentsOnCompletion").checked = pref.recheck_completed_torrents;
                     $("appInstanceName").value = pref.app_instance_name;
                     $("refreshInterval").value = pref.refresh_interval;
@@ -2920,6 +2929,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["save_resume_data_interval"] = Number($("saveResumeDataInterval").value);
             settings["save_statistics_interval"] = Number($("saveStatisticsInterval").value);
             settings["torrent_file_size_limit"] = ($("torrentFileSizeLimit").value * 1024 * 1024);
+            settings["confirm_torrent_recheck"] = document.getElementById("confirmTorrentRecheck").checked;
             settings["recheck_completed_torrents"] = $("recheckTorrentsOnCompletion").checked;
             settings["app_instance_name"] = $("appInstanceName").value;
             settings["refresh_interval"] = Number($("refreshInterval").value);
