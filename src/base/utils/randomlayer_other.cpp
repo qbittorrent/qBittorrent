@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017-2024  Mike Tzou (Chocobo1)
+ * Copyright (C) 2024  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,26 +26,54 @@
  * exception statement from your version.
  */
 
-#include "random.h"
+#include <limits>
 
-#include <random>
+#include <cerrno>
+#include <cstdio>
+#include <cstring>
 
-#include <QtSystemDetection>
+#include <QtLogging>
 
-#if defined(Q_OS_LINUX)
-#include "randomlayer_linux.cpp"
-#elif defined(Q_OS_WIN)
-#include "randomlayer_win.cpp"
-#else
-#include "randomlayer_other.cpp"
-#endif
-
-uint32_t Utils::Random::rand(const uint32_t min, const uint32_t max)
+namespace
 {
-    static RandomLayer layer;
+    class RandomLayer
+    {
+    // need to satisfy UniformRandomBitGenerator requirements
+    public:
+        using result_type = uint32_t;
 
-    // new distribution is cheap: https://stackoverflow.com/a/19036349
-    std::uniform_int_distribution<uint32_t> uniform(min, max);
+        RandomLayer()
+            : m_randDev {fopen("/dev/urandom", "rb")}
+        {
+            if (!m_randDev)
+                qFatal("Failed to open /dev/urandom. Reason: %s. Error code: %d.", std::strerror(errno), errno);
+        }
 
-    return uniform(layer);
+        ~RandomLayer()
+        {
+            fclose(m_randDev);
+        }
+
+        static constexpr result_type min()
+        {
+            return std::numeric_limits<result_type>::min();
+        }
+
+        static constexpr result_type max()
+        {
+            return std::numeric_limits<result_type>::max();
+        }
+
+        result_type operator()() const
+        {
+            result_type buf = 0;
+            if (fread(&buf, sizeof(buf), 1, m_randDev) != 1)
+                qFatal("Read /dev/urandom error. Reason: %s. Error code: %d.", std::strerror(errno), errno);
+
+            return buf;
+        }
+
+    private:
+        FILE *m_randDev = nullptr;
+    };
 }

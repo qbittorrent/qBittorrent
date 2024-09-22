@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017-2024  Mike Tzou (Chocobo1)
+ * Copyright (C) 2024  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,26 +26,52 @@
  * exception statement from your version.
  */
 
-#include "random.h"
+#include <cerrno>
+#include <cstring>
+#include <limits>
 
-#include <random>
+#include <sys/random.h>
 
-#include <QtSystemDetection>
+#include <QtLogging>
 
-#if defined(Q_OS_LINUX)
-#include "randomlayer_linux.cpp"
-#elif defined(Q_OS_WIN)
-#include "randomlayer_win.cpp"
-#else
-#include "randomlayer_other.cpp"
-#endif
-
-uint32_t Utils::Random::rand(const uint32_t min, const uint32_t max)
+namespace
 {
-    static RandomLayer layer;
+    class RandomLayer
+    {
+    // need to satisfy UniformRandomBitGenerator requirements
+    public:
+        using result_type = uint32_t;
 
-    // new distribution is cheap: https://stackoverflow.com/a/19036349
-    std::uniform_int_distribution<uint32_t> uniform(min, max);
+        RandomLayer()
+        {
+        }
 
-    return uniform(layer);
+        static constexpr result_type min()
+        {
+            return std::numeric_limits<result_type>::min();
+        }
+
+        static constexpr result_type max()
+        {
+            return std::numeric_limits<result_type>::max();
+        }
+
+        result_type operator()()
+        {
+            const int RETRY_MAX = 3;
+
+            for (int i = 0; i < RETRY_MAX; ++i)
+            {
+                result_type buf = 0;
+                const ssize_t result = ::getrandom(&buf, sizeof(buf), 0);
+                if (result == sizeof(buf))  // success
+                    return buf;
+
+                if (result < 0)
+                    qFatal("getrandom() error. Reason: %s. Error code: %d.", std::strerror(errno), errno);
+            }
+
+            qFatal("getrandom() failed. Reason: too many retries.");
+        }
+    };
 }
