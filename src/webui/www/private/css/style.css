@@ -758,8 +758,27 @@ td.statusBarSeparator {
 }
 
 /* Statistics window */
-.statisticsValue {
-    text-align: right;
+#statisticspage * {
+    box-sizing: border-box;
+}
+
+#statisticsContent {
+    & table {
+        background-color: var(--color-background-default);
+        border-radius: 6px;
+        margin-bottom: 6px;
+        padding: 6px 10px;
+
+        & .statisticsValue {
+            text-align: right;
+        }
+    }
+
+    & h3 {
+        color: var(--color-text-default);
+        margin-bottom: 1px;
+        padding: 2px;
+    }
 }
 
 /* Search tab */

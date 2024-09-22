@@ -427,8 +427,8 @@ const initializeWindows = function() {
             contentURL: new URI("views/statistics.html").toString(),
             maximizable: false,
             padding: 10,
-            width: loadWindowWidth(id, 275),
-            height: loadWindowHeight(id, 370),
+            width: loadWindowWidth(id, 285),
+            height: loadWindowHeight(id, 415),
             onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveWindowSize(id);
             })
