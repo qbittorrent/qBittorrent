@@ -225,6 +225,17 @@ private:
     bool m_isAltUIUsed = false;
     Path m_rootFolder;
 
+    const QHash<QString, QString> m_mimeTypes =
+    {
+        // <extension, mime type>
+        {u".html"_s, u"text/html"_s},
+        {u".css"_s, u"text/css"_s},
+        {u".js"_s, u"text/javascript"_s},
+        {u".svg"_s, u"image/svg+xml"_s},
+        {u".png"_s, u"image/png"_s},
+        {u".gif"_s, u"image/gif"_s},
+    };
+
     struct TranslatedFile
     {
         QByteArray data;

@@ -573,8 +573,12 @@ void WebApplication::sendFile(const Path &path)
     }
 
     QByteArray data = readResult.value();
-    const QMimeType mimeType = QMimeDatabase().mimeTypeForFileNameAndData(path.data(), data);
-    const bool isTranslatable = !m_isAltUIUsed && mimeType.inherits(u"text/plain"_s);
+    QString mimeType = m_mimeTypes.value(path.extension().toLower());
+
+    if (mimeType.isNull())
+        mimeType = QMimeDatabase().mimeTypeForFileNameAndData(path.data(), data).name();
+
+    const bool isTranslatable = !m_isAltUIUsed && mimeType.startsWith(u"text/"_s);
 
     if (isTranslatable)
     {
@@ -587,11 +591,11 @@ void WebApplication::sendFile(const Path &path)
             dataStr.replace(u"${LANGUAGE_OPTIONS}"_s, createLanguagesOptionsHtml());
 
         data = dataStr.toUtf8();
-        m_translatedFiles[path] = {data, mimeType.name(), lastModified}; // caching translated file
+        m_translatedFiles[path] = {data, mimeType, lastModified}; // caching translated file
     }
 
-    print(data, mimeType.name());
-    setHeader({Http::HEADER_CACHE_CONTROL, getCachingInterval(mimeType.name())});
+    print(data, mimeType);
+    setHeader({Http::HEADER_CACHE_CONTROL, getCachingInterval(mimeType)});
 }
 
 Http::Response WebApplication::processRequest(const Http::Request &request, const Http::Environment &env)
