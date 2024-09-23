@@ -61,7 +61,7 @@ QString AutoExpandableDialog::getText(QWidget *parent, const QString &title, con
     d.m_ui->textEdit->selectAll();
     if (excludeExtension)
     {
-        const QString extension = Path(text).extension();
+        const QString extension = Path(text).mimeExtension();
         if (!extension.isEmpty())
             d.m_ui->textEdit->setSelection(0, (text.length() - extension.length()));
     }
