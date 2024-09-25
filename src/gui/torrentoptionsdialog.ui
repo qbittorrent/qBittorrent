@@ -256,6 +256,23 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>checkAutoTMM</tabstop>
+  <tabstop>savePath</tabstop>
+  <tabstop>checkUseDownloadPath</tabstop>
+  <tabstop>downloadPath</tabstop>
+  <tabstop>comboCategory</tabstop>
+  <tabstop>sliderUploadLimit</tabstop>
+  <tabstop>spinUploadLimit</tabstop>
+  <tabstop>sliderDownloadLimit</tabstop>
+  <tabstop>spinDownloadLimit</tabstop>
+  <tabstop>torrentShareLimitsBox</tabstop>
+  <tabstop>checkDisableDHT</tabstop>
+  <tabstop>checkSequential</tabstop>
+  <tabstop>checkDisablePEX</tabstop>
+  <tabstop>checkFirstLastPieces</tabstop>
+  <tabstop>checkDisableLSD</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -208,6 +208,15 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>comboBoxRatioMode</tabstop>
+  <tabstop>spinBoxRatioValue</tabstop>
+  <tabstop>comboBoxSeedingTimeMode</tabstop>
+  <tabstop>spinBoxSeedingTimeValue</tabstop>
+  <tabstop>comboBoxInactiveSeedingTimeMode</tabstop>
+  <tabstop>spinBoxInactiveSeedingTimeValue</tabstop>
+  <tabstop>comboBoxAction</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
