@@ -232,7 +232,7 @@
 
         document.getElementById("Filters_pad").addEventListener("click", (event) => {
             const filterItem = event.target.closest("li");
-            if (filterItem?.classList?.contains("selectedFilter"))
+            if (!filterItem || filterItem.classList.contains("selectedFilter"))
                 return;
 
             const { id: filterItemID } = filterItem;
