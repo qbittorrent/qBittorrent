@@ -417,14 +417,18 @@
   <tabstop>textInputPath</tabstop>
   <tabstop>addFileButton</tabstop>
   <tabstop>addFolderButton</tabstop>
+  <tabstop>comboTorrentFormat</tabstop>
   <tabstop>comboPieceSize</tabstop>
+  <tabstop>buttonCalcTotalPieces</tabstop>
   <tabstop>checkPrivate</tabstop>
   <tabstop>checkStartSeeding</tabstop>
   <tabstop>checkIgnoreShareLimits</tabstop>
   <tabstop>checkOptimizeAlignment</tabstop>
+  <tabstop>spinPaddedFileSizeLimit</tabstop>
   <tabstop>trackersList</tabstop>
   <tabstop>URLSeedsList</tabstop>
   <tabstop>txtComment</tabstop>
+  <tabstop>lineEditSource</tabstop>
  </tabstops>
  <resources/>
  <connections/>
