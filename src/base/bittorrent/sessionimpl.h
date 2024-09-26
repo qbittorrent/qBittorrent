@@ -57,7 +57,6 @@
 #include "trackerentrystatus.h"
 
 class QString;
-class QThread;
 class QThreadPool;
 class QTimer;
 class QUrl;

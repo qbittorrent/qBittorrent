@@ -62,7 +62,10 @@ BitTorrent::TorrentCreationManager::TorrentCreationManager(IApplication *app, QO
     , m_maxTasks {SETTINGS_KEY(u"MaxTasks"_s), 256}
     , m_numThreads {SETTINGS_KEY(u"NumThreads"_s), 1}
     , m_tasks {std::make_unique<TaskSet>()}
+    , m_threadPool(this)
 {
+    m_threadPool.setObjectName("TorrentCreationManager m_threadPool");
+
     if (m_numThreads > 0)
         m_threadPool.setMaxThreadCount(m_numThreads);
 }

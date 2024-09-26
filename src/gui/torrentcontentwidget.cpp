@@ -37,7 +37,6 @@
 #include <QMessageBox>
 #include <QModelIndexList>
 #include <QShortcut>
-#include <QThread>
 #include <QWheelEvent>
 
 #include "base/bittorrent/torrentcontenthandler.h"

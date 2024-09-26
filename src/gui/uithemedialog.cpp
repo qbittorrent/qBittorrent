@@ -75,7 +75,7 @@ public:
         , m_defaultColor {defaultColor}
         , m_currentColor {currentColor}
     {
-        setObjectName(u"colorWidget"_s);
+        setObjectName("colorWidget");
         setFrameShape(QFrame::Box);
         setFrameShadow(QFrame::Plain);
         setAlignment(Qt::AlignCenter);
@@ -159,7 +159,7 @@ public:
         : QLabel(parent)
         , m_defaultPath {defaultPath}
     {
-        setObjectName(u"iconWidget"_s);
+        setObjectName("iconWidget");
         setAlignment(Qt::AlignCenter);
 
         setCurrentPath(currentPath);

@@ -123,6 +123,7 @@ AutoDownloader::AutoDownloader(IApplication *app)
                .arg(fileName.toString(), errorString), Log::CRITICAL);
     });
 
+    m_ioThread->setObjectName("RSS::AutoDownloader m_ioThread");
     m_ioThread->start();
 
     connect(app->addTorrentManager(), &AddTorrentManager::torrentAdded

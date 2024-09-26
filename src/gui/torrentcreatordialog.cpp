@@ -109,6 +109,7 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
     updateInputPath(defaultPath);
 
     m_threadPool.setMaxThreadCount(1);
+    m_threadPool.setObjectName("TorrentCreatorDialog m_threadPool");
 
 #ifdef QBT_USES_LIBTORRENT2
     m_ui->checkOptimizeAlignment->hide();

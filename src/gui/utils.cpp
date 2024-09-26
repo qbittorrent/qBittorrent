@@ -134,6 +134,7 @@ void Utils::Gui::openPath(const Path &path)
             ::CoUninitialize();
         }
     });
+    thread->setObjectName("Utils::Gui::openPath thread");
     QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
     thread->start();
 #else
@@ -168,6 +169,7 @@ void Utils::Gui::openFolderSelect(const Path &path)
             ::CoUninitialize();
         }
     });
+    thread->setObjectName("Utils::Gui::openFolderSelect thread");
     QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
     thread->start();
 #elif defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)

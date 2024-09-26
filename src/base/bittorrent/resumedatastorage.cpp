@@ -35,6 +35,8 @@
 #include <QMutexLocker>
 #include <QThread>
 
+#include "base/global.h"
+
 const int TORRENTIDLIST_TYPEID = qRegisterMetaType<QList<BitTorrent::TorrentID>>();
 
 BitTorrent::ResumeDataStorage::ResumeDataStorage(const Path &path, QObject *parent)
@@ -56,6 +58,7 @@ void BitTorrent::ResumeDataStorage::loadAll() const
     {
         doLoadAll();
     });
+    loadingThread->setObjectName("ResumeDataStorage::loadAll loadingThread");
     connect(loadingThread, &QThread::finished, loadingThread, &QObject::deleteLater);
     loadingThread->start();
 }
