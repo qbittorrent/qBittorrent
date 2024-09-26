@@ -348,6 +348,10 @@ void AppController::preferencesAction()
     data[u"resolve_peer_countries"_s] = pref->resolvePeerCountries();
     // Reannounce to all trackers when ip/port changed
     data[u"reannounce_when_address_changed"_s] = session->isReannounceWhenAddressChangedEnabled();
+    // Embedded tracker
+    data[u"enable_embedded_tracker"_s] = session->isTrackerEnabled();
+    data[u"embedded_tracker_port"_s] = pref->getTrackerPort();
+    data[u"embedded_tracker_port_forwarding"_s] = pref->isTrackerPortForwardingEnabled();
     // Ignore SSL errors
     data[u"ignore_ssl_errors"_s] = pref->isIgnoreSSLErrors();
 
@@ -412,10 +416,6 @@ void AppController::preferencesAction()
     data[u"ssrf_mitigation"_s] = session->isSSRFMitigationEnabled();
     // Disallow connection to peers on privileged ports
     data[u"block_peers_on_privileged_ports"_s] = session->blockPeersOnPrivilegedPorts();
-    // Embedded tracker
-    data[u"enable_embedded_tracker"_s] = session->isTrackerEnabled();
-    data[u"embedded_tracker_port"_s] = pref->getTrackerPort();
-    data[u"embedded_tracker_port_forwarding"_s] = pref->isTrackerPortForwardingEnabled();
     // Choking algorithm
     data[u"upload_slots_behavior"_s] = static_cast<int>(session->chokingAlgorithm());
     // Seed choking algorithm
@@ -917,6 +917,13 @@ void AppController::setPreferencesAction()
     // Reannounce to all trackers when ip/port changed
     if (hasKey(u"reannounce_when_address_changed"_s))
         session->setReannounceWhenAddressChangedEnabled(it.value().toBool());
+    // Embedded tracker
+    if (hasKey(u"embedded_tracker_port"_s))
+        pref->setTrackerPort(it.value().toInt());
+    if (hasKey(u"embedded_tracker_port_forwarding"_s))
+        pref->setTrackerPortForwardingEnabled(it.value().toBool());
+    if (hasKey(u"enable_embedded_tracker"_s))
+        session->setTrackerEnabled(it.value().toBool());
     // Ignore SLL errors
     if (hasKey(u"ignore_ssl_errors"_s))
         pref->setIgnoreSSLErrors(it.value().toBool());
@@ -1014,13 +1021,6 @@ void AppController::setPreferencesAction()
     // Disallow connection to peers on privileged ports
     if (hasKey(u"block_peers_on_privileged_ports"_s))
         session->setBlockPeersOnPrivilegedPorts(it.value().toBool());
-    // Embedded tracker
-    if (hasKey(u"embedded_tracker_port"_s))
-        pref->setTrackerPort(it.value().toInt());
-    if (hasKey(u"embedded_tracker_port_forwarding"_s))
-        pref->setTrackerPortForwardingEnabled(it.value().toBool());
-    if (hasKey(u"enable_embedded_tracker"_s))
-        session->setTrackerEnabled(it.value().toBool());
     // Choking algorithm
     if (hasKey(u"upload_slots_behavior"_s))
         session->setChokingAlgorithm(static_cast<BitTorrent::ChokingAlgorithm>(it.value().toInt()));
