@@ -775,7 +775,9 @@ QIcon TransferListModel::getIconByState(const BitTorrent::TorrentState state) co
     case BitTorrent::TorrentState::Error:
         return m_errorIcon;
     default:
-        Q_ASSERT(false);
-        return m_errorIcon;
+        Q_UNREACHABLE();
+        break;
     }
+
+    return {};
 }

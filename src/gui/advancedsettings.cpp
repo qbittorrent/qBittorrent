@@ -410,7 +410,7 @@ void AdvancedSettings::updateInterfaceAddressCombo()
         case QAbstractSocket::IPv6Protocol:
             return Utils::Net::canonicalIPv6Addr(address).toString();
         default:
-            Q_ASSERT(false);
+            Q_UNREACHABLE();
             break;
         }
         return {};

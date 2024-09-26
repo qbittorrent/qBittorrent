@@ -102,7 +102,7 @@ bool BandwidthScheduler::isTimeForAlternative() const
                 alternative = !alternative;
             break;
         default:
-            Q_ASSERT(false);
+            Q_UNREACHABLE();
             break;
         }
     }
