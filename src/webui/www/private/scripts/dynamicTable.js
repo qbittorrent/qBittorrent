@@ -1485,7 +1485,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     if (tracker) {
                         let found = false;
                         for (const torrents of tracker.trackerTorrentMap.values()) {
-                            if (torrents.includes(row["full_data"].rowId)) {
+                            if (torrents.has(row["full_data"].rowId)) {
                                 found = true;
                                 break;
                             }
