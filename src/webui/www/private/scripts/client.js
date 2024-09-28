@@ -483,9 +483,8 @@ window.addEventListener("DOMContentLoaded", () => {
             }
         };
 
-        const all = torrentsTable.rows.size;
         let uncategorized = 0;
-        for (const { full_data: { category } } of torrentsTable.rows.values()) {
+        for (const { full_data: { category } } of torrentsTable.getRowValues()) {
             if (category.length === 0)
                 uncategorized += 1;
         }
@@ -517,7 +516,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
 
         const categoriesFragment = new DocumentFragment();
-        categoriesFragment.appendChild(createCategoryLink(CATEGORIES_ALL, "QBT_TR(All)QBT_TR[CONTEXT=CategoryFilterModel]", all));
+        categoriesFragment.appendChild(createCategoryLink(CATEGORIES_ALL, "QBT_TR(All)QBT_TR[CONTEXT=CategoryFilterModel]", torrentsTable.getRowSize()));
         categoriesFragment.appendChild(createCategoryLink(CATEGORIES_UNCATEGORIZED, "QBT_TR(Uncategorized)QBT_TR[CONTEXT=CategoryFilterModel]", uncategorized));
 
         if (useSubcategories) {
@@ -581,14 +580,13 @@ window.addEventListener("DOMContentLoaded", () => {
             return tagFilterItem;
         };
 
-        const torrentsCount = torrentsTable.rows.size;
         let untagged = 0;
-        for (const { full_data: { tags } } of torrentsTable.rows.values()) {
+        for (const { full_data: { tags } } of torrentsTable.getRowValues()) {
             if (tags.length === 0)
                 untagged += 1;
         }
 
-        tagFilterList.appendChild(createLink(TAGS_ALL, "QBT_TR(All)QBT_TR[CONTEXT=TagFilterModel]", torrentsCount));
+        tagFilterList.appendChild(createLink(TAGS_ALL, "QBT_TR(All)QBT_TR[CONTEXT=TagFilterModel]", torrentsTable.getRowSize()));
         tagFilterList.appendChild(createLink(TAGS_UNTAGGED, "QBT_TR(Untagged)QBT_TR[CONTEXT=TagFilterModel]", untagged));
 
         const sortedTags = [];
@@ -634,14 +632,13 @@ window.addEventListener("DOMContentLoaded", () => {
             return trackerFilterItem;
         };
 
-        const torrentsCount = torrentsTable.rows.size;
         let trackerlessTorrentsCount = 0;
-        for (const { full_data: { trackers_count: trackersCount } } of torrentsTable.rows.values()) {
+        for (const { full_data: { trackers_count: trackersCount } } of torrentsTable.getRowValues()) {
             if (trackersCount === 0)
                 trackerlessTorrentsCount += 1;
         }
 
-        trackerFilterList.appendChild(createLink(TRACKERS_ALL, "QBT_TR(All (%1))QBT_TR[CONTEXT=TrackerFiltersList]", torrentsCount));
+        trackerFilterList.appendChild(createLink(TRACKERS_ALL, "QBT_TR(All (%1))QBT_TR[CONTEXT=TrackerFiltersList]", torrentsTable.getRowSize()));
         trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, "QBT_TR(Trackerless (%1))QBT_TR[CONTEXT=TrackerFiltersList]", trackerlessTorrentsCount));
 
         // Remove unused trackers

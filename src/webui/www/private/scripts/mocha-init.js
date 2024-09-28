@@ -310,7 +310,7 @@ const initializeWindows = function() {
             // check if all selected torrents have same share ratio
             for (let i = 0; i < hashes.length; ++i) {
                 const hash = hashes[i];
-                const row = torrentsTable.rows.get(hash).full_data;
+                const row = torrentsTable.getRow(hash).full_data;
                 const origValues = row.ratio_limit + "|" + row.seeding_time_limit + "|" + row.inactive_seeding_time_limit + "|"
                     + row.max_ratio + "|" + row.max_seeding_time + "|" + row.max_inactive_seeding_time;
 
@@ -537,7 +537,7 @@ const initializeWindows = function() {
         if (hashes.length) {
             let enable = false;
             hashes.each((hash, index) => {
-                const row = torrentsTable.rows.get(hash);
+                const row = torrentsTable.getRow(hash);
                 if (!row.full_data.auto_tmm)
                     enable = true;
             });
@@ -601,7 +601,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             const hash = hashes[0];
-            const row = torrentsTable.rows.get(hash);
+            const row = torrentsTable.getRow(hash);
 
             new MochaUI.Window({
                 id: "setLocationPage",
@@ -624,7 +624,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length === 1) {
             const hash = hashes[0];
-            const row = torrentsTable.rows.get(hash);
+            const row = torrentsTable.getRow(hash);
             if (row) {
                 new MochaUI.Window({
                     id: "renamePage",
@@ -648,7 +648,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length === 1) {
             const hash = hashes[0];
-            const row = torrentsTable.rows.get(hash);
+            const row = torrentsTable.getRow(hash);
             if (row) {
                 new MochaUI.Window({
                     id: "multiRenamePage",
@@ -1265,7 +1265,7 @@ const initializeWindows = function() {
     exportTorrentFN = async function() {
         const hashes = torrentsTable.selectedRowsIds();
         for (const hash of hashes) {
-            const row = torrentsTable.rows.get(hash);
+            const row = torrentsTable.getRow(hash);
             if (!row)
                 continue;
 

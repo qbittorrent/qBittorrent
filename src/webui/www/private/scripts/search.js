@@ -352,7 +352,7 @@ window.qBittorrent.Search ??= (() => {
             searchResultsTable.reselectRows(rowsToSelect);
 
         $("numSearchResultsVisible").textContent = searchResultsTable.getFilteredAndSortedRows().length;
-        $("numSearchResultsTotal").textContent = searchResultsTable.getRowIds().length;
+        $("numSearchResultsTotal").textContent = searchResultsTable.getRowSize();
 
         setupSearchTableEvents(true);
     };
@@ -445,15 +445,14 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const openSearchTorrentDescriptionUrl = function() {
-        searchResultsTable.selectedRowsIds().each((rowId) => {
-            window.open(searchResultsTable.rows.get(rowId).full_data.descrLink, "_blank");
-        });
+        for (const rowID of searchResultsTable.selectedRowsIds())
+            window.open(searchResultsTable.getRow(rowID).full_data.descrLink, "_blank");
     };
 
     const copySearchTorrentName = function() {
         const names = [];
         searchResultsTable.selectedRowsIds().each((rowId) => {
-            names.push(searchResultsTable.rows.get(rowId).full_data.fileName);
+            names.push(searchResultsTable.getRow(rowId).full_data.fileName);
         });
         return names.join("\n");
     };
@@ -461,7 +460,7 @@ window.qBittorrent.Search ??= (() => {
     const copySearchTorrentDownloadLink = function() {
         const urls = [];
         searchResultsTable.selectedRowsIds().each((rowId) => {
-            urls.push(searchResultsTable.rows.get(rowId).full_data.fileUrl);
+            urls.push(searchResultsTable.getRow(rowId).full_data.fileUrl);
         });
         return urls.join("\n");
     };
@@ -469,16 +468,15 @@ window.qBittorrent.Search ??= (() => {
     const copySearchTorrentDescriptionUrl = function() {
         const urls = [];
         searchResultsTable.selectedRowsIds().each((rowId) => {
-            urls.push(searchResultsTable.rows.get(rowId).full_data.descrLink);
+            urls.push(searchResultsTable.getRow(rowId).full_data.descrLink);
         });
         return urls.join("\n");
     };
 
     const downloadSearchTorrent = function() {
         const urls = [];
-        searchResultsTable.selectedRowsIds().each((rowId) => {
-            urls.push(searchResultsTable.rows.get(rowId).full_data.fileUrl);
-        });
+        for (const rowID of searchResultsTable.selectedRowsIds())
+            urls.push(searchResultsTable.getRow(rowID).full_data.fileUrl);
 
         // only proceed if at least 1 row was selected
         if (!urls.length)
@@ -836,7 +834,7 @@ window.qBittorrent.Search ??= (() => {
                             searchResultsTable.updateRowData(row);
 
                         $("numSearchResultsVisible").textContent = searchResultsTable.getFilteredAndSortedRows().length;
-                        $("numSearchResultsTotal").textContent = searchResultsTable.getRowIds().length;
+                        $("numSearchResultsTotal").textContent = searchResultsTable.getRowSize();
 
                         searchResultsTable.updateTable();
                     }

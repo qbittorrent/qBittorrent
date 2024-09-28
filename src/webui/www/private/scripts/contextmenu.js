@@ -323,7 +323,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             const selectedRows = torrentsTable.selectedRowsIds();
             selectedRows.forEach((item, index) => {
-                const data = torrentsTable.rows.get(item).full_data;
+                const data = torrentsTable.getRow(item).full_data;
 
                 if (data["seq_dl"] !== true)
                     all_are_seq_dl = false;
@@ -374,7 +374,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             // hide renameFiles when more than 1 torrent is selected
             if (selectedRows.length === 1) {
-                const data = torrentsTable.rows.get(selectedRows[0]).full_data;
+                const data = torrentsTable.getRow(selectedRows[0]).full_data;
                 const metadata_downloaded = !((data["state"] === "metaDL") || (data["state"] === "forcedMetaDL") || (data["total_size"] === -1));
 
                 // hide renameFiles when metadata hasn't been downloaded yet
@@ -655,7 +655,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                     this.hideItem("copyFeedURL");
                     break;
                 case 1:
-                    if (selectedRows[0] === 0) {
+                    if (selectedRows[0] === "0") {
                         // menu when "unread" feed selected
                         this.showItem("update");
                         this.showItem("markRead");
@@ -666,7 +666,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                         this.hideItem("updateAll");
                         this.hideItem("copyFeedURL");
                     }
-                    else if (window.qBittorrent.Rss.rssFeedTable.rows[selectedRows[0]].full_data.dataUid === "") {
+                    else if (window.qBittorrent.Rss.rssFeedTable.getRow(selectedRows[0]).full_data.dataUid === "") {
                         // menu when single folder selected
                         this.showItem("update");
                         this.showItem("markRead");

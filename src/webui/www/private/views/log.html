@@ -332,7 +332,7 @@
                 curTab = currentSelectedTab;
 
             $("numFilteredLogs").textContent = tableInfo[curTab].instance.filteredLength();
-            $("numTotalLogs").textContent = tableInfo[curTab].instance.getRowIds().length;
+            $("numTotalLogs").textContent = tableInfo[curTab].instance.getRowSize();
         };
 
         const syncLogData = (curTab) => {
@@ -413,8 +413,8 @@
         new ClipboardJS(".copyLogDataToClipboard", {
             text: function() {
                 const msg = [];
-                tableInfo[currentSelectedTab].instance.selectedRowsIds().each((rowId) => {
-                    msg.push(tableInfo[currentSelectedTab].instance.rows.get(rowId).full_data[(currentSelectedTab === "main") ? "message" : "ip"]);
+                tableInfo[currentSelectedTab].instance.selectedRowsIds().forEach((rowId) => {
+                    msg.push(tableInfo[currentSelectedTab].instance.getRow(rowId).full_data[(currentSelectedTab === "main") ? "message" : "ip"]);
                 });
 
                 return msg.join("\n");

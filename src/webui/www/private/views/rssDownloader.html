@@ -404,11 +404,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     addRule: addRule,
                     deleteRule: removeSelectedRule,
                     renameRule: (el) => {
-                        renameRule(rssDownloaderRulesTable.rows[rssDownloaderRulesTable.selectedRows[0]].full_data.name);
+                        renameRule(rssDownloaderRulesTable.getRow(rssDownloaderRulesTable.selectedRows[0]).full_data.name);
                     },
                     clearDownloadedEpisodes: (el) => {
                         clearDownloadedEpisodes(rssDownloaderRulesTable.selectedRows
-                            .map((sRow) => rssDownloaderRulesTable.rows[sRow].full_data.name));
+                            .map((sRow) => rssDownloaderRulesTable.getRow(sRow).full_data.name));
                     }
                 },
                 offsets: {
@@ -552,7 +552,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             if (rssDownloaderRulesTable.selectedRows.length === 0)
                 return;
             removeRules(rssDownloaderRulesTable.selectedRows.map((sRow) =>
-                rssDownloaderRulesTable.rows[sRow].full_data.name));
+                rssDownloaderRulesTable.getRow(sRow).full_data.name));
         };
 
         const removeRules = (rules) => {
@@ -588,8 +588,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         };
 
         const saveSettings = () => {
-            const lastSelectedRow = rssDownloaderRulesTable.selectedRows[rssDownloaderRulesTable.selectedRows.length - 1];
-            const rule = rssDownloaderRulesTable.rows[lastSelectedRow].full_data.name;
+            const lastSelectedRow = rssDownloaderRulesTable.selectedRows.at(-1);
+            const rule = rssDownloaderRulesTable.getRow(lastSelectedRow).full_data.name;
 
             rulesList[rule].useRegex = $("useRegEx").checked;
             rulesList[rule].mustContain = $("mustContainText").value;
@@ -597,9 +597,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             rulesList[rule].episodeFilter = $("episodeFilterText").value;
             rulesList[rule].smartFilter = $("useSmartFilter").checked;
             rulesList[rule].ignoreDays = parseInt($("ignoreDaysValue").value, 10);
-            rulesList[rule].affectedFeeds = rssDownloaderFeedSelectionTable.rows.filter((row) => row.full_data.checked)
-                .map((row) => row.full_data.url)
-                .getValues();
+            rulesList[rule].affectedFeeds = [...rssDownloaderFeedSelectionTable.getRowValues()]
+                .filter((row) => row.full_data.checked)
+                .map((row) => row.full_data.url);
 
             rulesList[rule].torrentParams.category = $("assignCategoryCombobox").value;
             rulesList[rule].torrentParams.tags = $("ruleAddTags").value.split(",");

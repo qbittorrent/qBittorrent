@@ -536,7 +536,7 @@ window.qBittorrent.PropFiles ??= (() => {
         const rowId = torrentFilesTable.selectedRowsIds()[0];
         if (rowId === undefined)
             return;
-        const row = torrentFilesTable.rows[rowId];
+        const row = torrentFilesTable.rows.get(rowId);
         if (!row)
             return;
 
