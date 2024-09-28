@@ -14,10 +14,10 @@
    <item>
     <widget class="QScrollArea" name="scrollArea_2">
      <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
+      <enum>QFrame::Shape::NoFrame</enum>
      </property>
      <property name="sizeAdjustPolicy">
-      <enum>QAbstractScrollArea::AdjustToContents</enum>
+      <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
      </property>
      <property name="widgetResizable">
       <bool>true</bool>
@@ -47,7 +47,7 @@
        <item>
         <widget class="QSplitter" name="splitter">
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Horizontal</enum>
          </property>
          <property name="childrenCollapsible">
           <bool>false</bool>
@@ -95,7 +95,7 @@
              <item>
               <spacer name="horizontalSpacer">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -139,7 +139,7 @@
                 <item>
                  <spacer name="horizontalSpacer_5">
                   <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                   <enum>Qt::Orientation::Horizontal</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -188,13 +188,13 @@
                    <bool>true</bool>
                   </property>
                   <property name="insertPolicy">
-                   <enum>QComboBox::InsertAtTop</enum>
+                   <enum>QComboBox::InsertPolicy::InsertAtTop</enum>
                   </property>
                  </widget>
                 </item>
                </layout>
               </item>
-              <item alignment="Qt::AlignRight">
+              <item alignment="Qt::AlignmentFlag::AlignRight">
                <widget class="QCheckBox" name="defaultCategoryCheckbox">
                 <property name="text">
                  <string>Set as default category</string>
@@ -260,15 +260,14 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QComboBox" name="stopConditionComboBox">
-                   </widget>
+                   <widget class="QComboBox" name="stopConditionComboBox"/>
                   </item>
                  </layout>
                 </item>
                 <item row="0" column="2">
                  <spacer name="horizontalSpacer_3">
                   <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                   <enum>Qt::Orientation::Horizontal</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -352,7 +351,7 @@
                 <item>
                  <spacer name="horizontalSpacer_4">
                   <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                   <enum>Qt::Orientation::Horizontal</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -395,10 +394,10 @@
               <item row="4" column="1">
                <widget class="QScrollArea" name="scrollArea">
                 <property name="frameShape">
-                 <enum>QFrame::NoFrame</enum>
+                 <enum>QFrame::Shape::NoFrame</enum>
                 </property>
                 <property name="sizeAdjustPolicy">
-                 <enum>QAbstractScrollArea::AdjustToContents</enum>
+                 <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
                 </property>
                 <property name="widgetResizable">
                  <bool>true</bool>
@@ -428,10 +427,10 @@
                   <item>
                    <widget class="QLabel" name="labelCommentData">
                     <property name="textFormat">
-                     <enum>Qt::RichText</enum>
+                     <enum>Qt::TextFormat::RichText</enum>
                     </property>
                     <property name="alignment">
-                     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
                     </property>
                     <property name="wordWrap">
                      <bool>true</bool>
@@ -440,7 +439,7 @@
                      <bool>true</bool>
                     </property>
                     <property name="textInteractionFlags">
-                     <set>Qt::TextBrowserInteraction</set>
+                     <set>Qt::TextInteractionFlag::TextBrowserInteraction</set>
                     </property>
                    </widget>
                   </item>
@@ -454,7 +453,7 @@
                  <string>Comment:</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                 <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
                 </property>
                </widget>
               </item>
@@ -468,7 +467,7 @@
               <item row="2" column="1">
                <widget class="QLabel" name="labelInfohash1Data">
                 <property name="textInteractionFlags">
-                 <set>Qt::TextSelectableByMouse</set>
+                 <set>Qt::TextInteractionFlag::TextSelectableByMouse</set>
                 </property>
                </widget>
               </item>
@@ -489,7 +488,7 @@
               <item row="3" column="1">
                <widget class="QLabel" name="labelInfohash2Data">
                 <property name="textInteractionFlags">
-                 <set>Qt::TextSelectableByMouse</set>
+                 <set>Qt::TextInteractionFlag::TextSelectableByMouse</set>
                 </property>
                </widget>
               </item>
@@ -519,7 +518,7 @@
              <item>
               <spacer name="horizontalSpacer_6">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -540,10 +539,10 @@
               </sizepolicy>
              </property>
              <property name="contextMenuPolicy">
-              <enum>Qt::CustomContextMenu</enum>
+              <enum>Qt::ContextMenuPolicy::CustomContextMenu</enum>
              </property>
              <property name="selectionMode">
-              <enum>QAbstractItemView::ExtendedSelection</enum>
+              <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
              </property>
              <property name="sortingEnabled">
               <bool>true</bool>
@@ -570,7 +569,7 @@
      <item>
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -624,7 +623,7 @@
      <item>
       <widget class="QDialogButtonBox" name="buttonBox">
        <property name="standardButtons">
-        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+        <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
        </property>
       </widget>
      </item>
