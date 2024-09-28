@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>QBT_TR(Add web seeds)QBT_TR[CONTEXT=HttpServer]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
+    <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
+    <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
+    <script>
+        "use strict";
+
+        window.addEventListener("DOMContentLoaded", () => {
+            new Keyboard({
+                defaultEventType: "keydown",
+                events: {
+                    "Escape": function(event) {
+                        window.parent.qBittorrent.Client.closeWindows();
+                        event.preventDefault();
+                    },
+                    "Esc": function(event) {
+                        window.parent.qBittorrent.Client.closeWindows();
+                        event.preventDefault();
+                    }
+                }
+            }).activate();
+
+            $("urls").focus();
+            $("addWebSeedsButton").addEvent("click", (e) => {
+                e.stopPropagation();
+                const hash = new URI().getData("hash");
+                new Request({
+                    url: "api/v2/torrents/addWebSeeds",
+                    method: "post",
+                    data: {
+                        hash: hash,
+                        urls: $("urls").value.split("\n").map(w => encodeURIComponent(w.trim())).filter(w => (w.length > 0)).join("|")
+                    },
+                    onComplete: function() {
+                        window.parent.qBittorrent.Client.closeWindows();
+                    }
+                }).send();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <br>
+        <label for="urls">QBT_TR(List of web seeds to add (one per line):)QBT_TR[CONTEXT=HttpServer]</label>
+        <textarea name="list" id="urls" rows="10" cols="1"></textarea>
+        <br>
+        <input type="button" value="QBT_TR(Add)QBT_TR[CONTEXT=HttpServer]" id="addWebSeedsButton">
+    </div>
+</body>
+
+</html>
