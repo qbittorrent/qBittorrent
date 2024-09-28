@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="contextMenuPolicy">
-   <enum>Qt::CustomContextMenu</enum>
+   <enum>Qt::ContextMenuPolicy::CustomContextMenu</enum>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="centralWidgetLayout">
@@ -135,10 +135,10 @@
     <bool>false</bool>
    </property>
    <property name="orientation">
-    <enum>Qt::Horizontal</enum>
+    <enum>Qt::Orientation::Horizontal</enum>
    </property>
    <property name="toolButtonStyle">
-    <enum>Qt::ToolButtonFollowStyle</enum>
+    <enum>Qt::ToolButtonStyle::ToolButtonFollowStyle</enum>
    </property>
    <property name="floatable">
     <bool>false</bool>
@@ -199,7 +199,7 @@
   </action>
   <action name="actionResumeSession">
    <property name="text">
-    <string>&amp;Resume Session</string>
+    <string>R&amp;esume Session</string>
    </property>
   </action>
   <action name="actionPauseSession">
@@ -392,7 +392,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>S&amp;hutdown System</string>
+    <string>Sh&amp;utdown System</string>
    </property>
   </action>
   <action name="actionAutoShutdownDisabled">
