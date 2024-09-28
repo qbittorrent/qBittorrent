@@ -33,7 +33,7 @@
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -81,7 +81,7 @@
         <item>
          <spacer name="downloadPathSpacer">
           <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+           <enum>Qt::Orientation::Horizontal</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -120,14 +120,14 @@
         <bool>true</bool>
        </property>
        <property name="insertPolicy">
-        <enum>QComboBox::InsertAtTop</enum>
+        <enum>QComboBox::InsertPolicy::InsertAtTop</enum>
        </property>
       </widget>
      </item>
      <item>
       <spacer name="categorySpacer">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
