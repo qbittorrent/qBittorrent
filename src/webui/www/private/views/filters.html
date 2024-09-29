@@ -102,14 +102,14 @@
                 deleteUnusedCategories: function(element, ref) {
                     deleteUnusedCategoriesFN();
                 },
-                startTorrentsByCategory: function(element, ref) {
-                    startTorrentsByCategoryFN(Number(element.id));
+                startTorrents: (element, ref) => {
+                    startVisibleTorrentsFN();
                 },
-                stopTorrentsByCategory: function(element, ref) {
-                    stopTorrentsByCategoryFN(Number(element.id));
+                stopTorrents: (element, ref) => {
+                    stopVisibleTorrentsFN();
                 },
-                deleteTorrentsByCategory: function(element, ref) {
-                    deleteTorrentsByCategoryFN(Number(element.id));
+                deleteTorrents: (element, ref) => {
+                    deleteVisibleTorrentsFN();
                 }
             },
             offsets: {
@@ -134,14 +134,14 @@
                 deleteUnusedTags: function(element, ref) {
                     deleteUnusedTagsFN();
                 },
-                startTorrentsByTag: function(element, ref) {
-                    startTorrentsByTagFN(Number(element.id));
+                startTorrents: (element, ref) => {
+                    startVisibleTorrentsFN();
                 },
-                stopTorrentsByTag: function(element, ref) {
-                    stopTorrentsByTagFN(Number(element.id));
+                stopTorrents: (element, ref) => {
+                    stopVisibleTorrentsFN();
                 },
-                deleteTorrentsByTag: function(element, ref) {
-                    deleteTorrentsByTagFN(Number(element.id));
+                deleteTorrents: (element, ref) => {
+                    deleteVisibleTorrentsFN();
                 }
             },
             offsets: {
@@ -160,14 +160,14 @@
                 deleteTracker: function(element, ref) {
                     deleteTrackerFN(element.id);
                 },
-                startTorrentsByTracker: function(element, ref) {
-                    startTorrentsByTrackerFN(element.id);
+                startTorrents: (element, ref) => {
+                    startVisibleTorrentsFN();
                 },
-                stopTorrentsByTracker: function(element, ref) {
-                    stopTorrentsByTrackerFN(element.id);
+                stopTorrents: (element, ref) => {
+                    stopVisibleTorrentsFN();
                 },
-                deleteTorrentsByTracker: function(element, ref) {
-                    deleteTorrentsByTrackerFN(element.id);
+                deleteTorrents: (element, ref) => {
+                    deleteVisibleTorrentsFN();
                 }
             },
             offsets: {

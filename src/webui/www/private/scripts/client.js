@@ -1650,7 +1650,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     return;
                 if (event.target.isContentEditable)
                     return;
-                deleteFN();
+                deleteSelectedTorrentsFN();
                 event.preventDefault();
             },
             "shift+delete": (event) => {
@@ -1658,7 +1658,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     return;
                 if (event.target.isContentEditable)
                     return;
-                deleteFN(true);
+                deleteSelectedTorrentsFN(true);
                 event.preventDefault();
             }
         }
