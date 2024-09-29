@@ -36,6 +36,7 @@
 #include <QMetaObject>
 #include <QRegularExpression>
 #include <QStringList>
+#include <QTimeZone>
 #include <QVariant>
 #include <QXmlStreamEntityResolver>
 #include <QXmlStreamReader>
@@ -521,7 +522,7 @@ namespace
             return QDateTime::currentDateTime();
 
         const QTime qTime(hour, minute, second);
-        QDateTime result(qDate, qTime, Qt::UTC);
+        QDateTime result(qDate, qTime, QTimeZone::UTC);
         if (offset)
             result = result.addSecs(-offset);
         if (!result.isValid())
