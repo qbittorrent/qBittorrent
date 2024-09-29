@@ -117,7 +117,11 @@
                 y: 2
             },
             onShow: function() {
-                this.options.element.click();
+                this.startTorrentObserver();
+                setCategoryFilter(this.options.element.id);
+            },
+            onHide: function() {
+                this.stopTorrentObserver();
             }
         });
 
@@ -149,7 +153,11 @@
                 y: 2
             },
             onShow: function() {
-                this.options.element.click();
+                this.startTorrentObserver();
+                setTagFilter(this.options.element.id);
+            },
+            onHide: function() {
+                this.stopTorrentObserver();
             }
         });
 
@@ -175,7 +183,11 @@
                 y: 2
             },
             onShow: function() {
-                this.options.element.click();
+                this.startTorrentObserver();
+                setTrackerFilter(this.options.element.id);
+            },
+            onHide: function() {
+                this.stopTorrentObserver();
             }
         });
 

@@ -300,6 +300,31 @@ window.qBittorrent.ContextMenu ??= (() => {
         }
     });
 
+    const FilterListContextMenu = new Class({
+        Extends: ContextMenu,
+        initialize: function(options) {
+            this.parent(options);
+            this.torrentObserver = new MutationObserver((records, observer) => {
+                this.updateTorrentActions();
+            });
+        },
+
+        startTorrentObserver: function() {
+            this.torrentObserver.observe(torrentsTable.tableBody, { childList: true });
+        },
+
+        stopTorrentObserver: function() {
+            this.torrentObserver.disconnect();
+        },
+
+        updateTorrentActions: function() {
+            const torrentsVisible = torrentsTable.tableBody.children.length > 0;
+            this.setEnabled("startTorrents", torrentsVisible)
+                .setEnabled("stopTorrents", torrentsVisible)
+                .setEnabled("deleteTorrents", torrentsVisible);
+        }
+    });
+
     const TorrentsTableContextMenu = new Class({
         Extends: ContextMenu,
 
@@ -575,7 +600,7 @@ window.qBittorrent.ContextMenu ??= (() => {
     });
 
     const CategoriesFilterContextMenu = new Class({
-        Extends: ContextMenu,
+        Extends: FilterListContextMenu,
         updateMenuItems: function() {
             const id = Number(this.options.element.id);
             if ((id !== CATEGORIES_ALL) && (id !== CATEGORIES_UNCATEGORIZED)) {
@@ -591,28 +616,34 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.hideItem("deleteCategory");
                 this.hideItem("createSubcategory");
             }
+
+            this.updateTorrentActions();
         }
     });
 
     const TagsFilterContextMenu = new Class({
-        Extends: ContextMenu,
+        Extends: FilterListContextMenu,
         updateMenuItems: function() {
             const id = Number(this.options.element.id);
             if ((id !== TAGS_ALL) && (id !== TAGS_UNTAGGED))
                 this.showItem("deleteTag");
             else
                 this.hideItem("deleteTag");
+
+            this.updateTorrentActions();
         }
     });
 
     const TrackersFilterContextMenu = new Class({
-        Extends: ContextMenu,
+        Extends: FilterListContextMenu,
         updateMenuItems: function() {
             const id = Number(this.options.element.id);
             if ((id !== TRACKERS_ALL) && (id !== TRACKERS_TRACKERLESS))
                 this.showItem("deleteTracker");
             else
                 this.hideItem("deleteTracker");
+
+            this.updateTorrentActions();
         }
     });
 

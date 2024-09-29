@@ -275,6 +275,10 @@ a.propButton img {
     border-top: 1px solid var(--color-border-default);
 }
 
+.contextMenu .separatorBottom {
+    border-bottom: 1px solid var(--color-border-default);
+}
+
 .contextMenu li {
     margin: 0;
     padding: 0;
@@ -284,8 +288,7 @@ a.propButton img {
 .contextMenu li.disabled {
     background-color: transparent;
     cursor: default;
-    filter: grayscale(1);
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
 .contextMenu li.disabled a {
