@@ -34,6 +34,7 @@ window.qBittorrent.ContextMenu ??= (() => {
         return {
             ContextMenu: ContextMenu,
             TorrentsTableContextMenu: TorrentsTableContextMenu,
+            StatusesFilterContextMenu: StatusesFilterContextMenu,
             CategoriesFilterContextMenu: CategoriesFilterContextMenu,
             TagsFilterContextMenu: TagsFilterContextMenu,
             TrackersFilterContextMenu: TrackersFilterContextMenu,
@@ -596,6 +597,13 @@ window.qBittorrent.ContextMenu ??= (() => {
 
                 contextTagList.appendChild(setTagItem);
             }
+        }
+    });
+
+    const StatusesFilterContextMenu = new Class({
+        Extends: FilterListContextMenu,
+        updateMenuItems: function() {
+            this.updateTorrentActions();
         }
     });
 
