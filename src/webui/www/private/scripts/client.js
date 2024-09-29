@@ -641,12 +641,6 @@ window.addEventListener("DOMContentLoaded", () => {
         trackerFilterList.appendChild(createLink(TRACKERS_ALL, "QBT_TR(All (%1))QBT_TR[CONTEXT=TrackerFiltersList]", torrentsTable.getRowSize()));
         trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, "QBT_TR(Trackerless (%1))QBT_TR[CONTEXT=TrackerFiltersList]", trackerlessTorrentsCount));
 
-        // Remove unused trackers
-        for (const [key, { trackerTorrentMap }] of trackerList) {
-            if (trackerTorrentMap.size === 0)
-                trackerList.delete(key);
-        }
-
         // Sort trackers by hostname
         const sortedList = [];
         trackerList.forEach(({ host, trackerTorrentMap }, hash) => {
@@ -815,8 +809,17 @@ window.addEventListener("DOMContentLoaded", () => {
                             const host = window.qBittorrent.Misc.getHost(tracker);
                             const hash = window.qBittorrent.Misc.genHash(host);
                             const trackerListEntry = trackerList.get(hash);
-                            if (trackerListEntry)
+                            if (trackerListEntry) {
                                 trackerListEntry.trackerTorrentMap.delete(tracker);
+                                // Remove unused trackers
+                                if (trackerListEntry.trackerTorrentMap.size === 0) {
+                                    trackerList.delete(hash);
+                                    if (selectedTracker === hash) {
+                                        selectedTracker = TRACKERS_ALL;
+                                        LocalPreferences.set("selected_tracker", selectedTracker.toString());
+                                    }
+                                }
+                            }
                         }
                         updateTrackers = true;
                     }
