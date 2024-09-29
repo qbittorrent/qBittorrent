@@ -2294,17 +2294,17 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2727"/>
         <source>Merging of trackers is disabled</source>
-        <translation type="unfinished">A fusão de trackers está desativada</translation>
+        <translation>A fusão de trackers está desativada</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
-        <translation type="unfinished">Os trackers não podem ser fundidos porque se trata de um torrent privado</translation>
+        <translation>Os trackers não podem ser fundidos porque se trata de um torrent privado</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2744"/>
         <source>Trackers are merged from new source</source>
-        <translation type="unfinished">Os trackers são fundidos a partir da nova fonte</translation>
+        <translation>Os trackers são fundidos a partir da nova fonte</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6313"/>

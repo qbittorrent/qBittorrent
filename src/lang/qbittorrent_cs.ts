@@ -2289,22 +2289,22 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2734"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2743"/>
         <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozpoznán pokus o přidání duplicitního torrentu. Stávající torrent: %1. Výsledek: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2727"/>
         <source>Merging of trackers is disabled</source>
-        <translation type="unfinished">Slučování trackerů je vypnuto</translation>
+        <translation>Slučování trackerů je vypnuto</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
-        <translation type="unfinished">Trackery nemohou být sloučeny, protože jde o soukromý torrent</translation>
+        <translation>Trackery nemohou být sloučeny, protože jde o soukromý torrent</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2744"/>
         <source>Trackers are merged from new source</source>
-        <translation type="unfinished">Trackery jsou sloučeny z nového zdroje</translation>
+        <translation>Trackery jsou sloučeny z nového zdroje</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6313"/>

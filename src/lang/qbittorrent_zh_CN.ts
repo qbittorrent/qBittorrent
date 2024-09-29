@@ -2289,22 +2289,22 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2734"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2743"/>
         <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>检测到尝试添加重复 Torrent 文件。现有 Torrent 文件：%1。结果：%2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2727"/>
         <source>Merging of trackers is disabled</source>
-        <translation type="unfinished">合并 Tracker 已禁用</translation>
+        <translation>合并 Tracker 已禁用</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>无法合并 Tracker，因为这是一个私有 Torrent</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2744"/>
         <source>Trackers are merged from new source</source>
-        <translation type="unfinished">来自新来源的 Tracker 已经合并</translation>
+        <translation>来自新来源的 Tracker 已经合并</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6313"/>

@@ -2289,22 +2289,22 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2734"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2743"/>
         <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Upptäckte ett försök att lägga till en dubblettorrent. Befintlig torrent: %1. Resultat: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2727"/>
         <source>Merging of trackers is disabled</source>
-        <translation type="unfinished">Sammanfogning av spårare är inaktiverad</translation>
+        <translation>Sammanfogning av spårare är inaktiverad</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
-        <translation type="unfinished">Spårare kan inte sammanfogas därför att det är en privat torrent</translation>
+        <translation>Spårare kan inte sammanfogas därför att det är en privat torrent</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2744"/>
         <source>Trackers are merged from new source</source>
-        <translation type="unfinished">Spårare har sammanfogas från ny källa</translation>
+        <translation>Spårare har sammanfogas från ny källa</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6313"/>

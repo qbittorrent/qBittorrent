@@ -2289,22 +2289,22 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2734"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2743"/>
         <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopya bir torrent ekleme girişimi algılandı. Varolan torrent: %1. Sonuç: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2727"/>
         <source>Merging of trackers is disabled</source>
-        <translation type="unfinished">İzleyicilerin birleştirilmesi etkisizleştirildi</translation>
+        <translation>İzleyicilerin birleştirilmesi etkisizleştirildi</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
-        <translation type="unfinished">İzleyiciler özel bir torrent olduğundan birleştirilemez</translation>
+        <translation>İzleyiciler özel bir torrent olduğundan birleştirilemez</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2744"/>
         <source>Trackers are merged from new source</source>
-        <translation type="unfinished">İzleyiciler yeni kaynaktan birleştirildi</translation>
+        <translation>İzleyiciler yeni kaynaktan birleştirildi</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6313"/>

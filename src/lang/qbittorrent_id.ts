@@ -2293,17 +2293,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2727"/>
         <source>Merging of trackers is disabled</source>
-        <translation type="unfinished">Penggabungan pelacak dinonaktifkan</translation>
+        <translation>Penggabungan pelacak dinonaktifkan</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
-        <translation type="unfinished">Pelacak tidak dapat digabungkan karena merupakan torrent privat</translation>
+        <translation>Pelacak tidak dapat digabungkan karena merupakan torrent privat</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2744"/>
         <source>Trackers are merged from new source</source>
-        <translation type="unfinished">Pelacak digabungkan dari sumber baru</translation>
+        <translation>Pelacak digabungkan dari sumber baru</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6313"/>

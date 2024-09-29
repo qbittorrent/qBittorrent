@@ -1845,19 +1845,19 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
-        <translation type="unfinished" />
+        <translation>Trackers samenvoegen in bestaande torrent</translation>
     </message>
     <message>
         <source>When duplicate torrent is being added</source>
-        <translation type="unfinished" />
+        <translation>Wanneer een dubbele torrent toegevoegd wordt</translation>
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation type="unfinished" />
+        <translation>Relatief opslagpad omzetten in het juiste categoriepad in plaats van het standaardpad</translation>
     </message>
     <message>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>Categoriepaden gebruiken in handmatige modus</translation>
     </message>
 </context>
 <context>

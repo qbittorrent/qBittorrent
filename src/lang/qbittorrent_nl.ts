@@ -2289,22 +2289,22 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2734"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2743"/>
         <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Poging gedetecteerd om een dubbele torrent toe te voegen. Bestaande torrent: %1. Resultaat: %2.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2727"/>
         <source>Merging of trackers is disabled</source>
-        <translation type="unfinished">Samenvoegen van trackers is uitgeschakeld</translation>
+        <translation>Samenvoegen van trackers is uitgeschakeld</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
-        <translation type="unfinished">Trackers kunnen niet worden samengevoegd omdat het een privétorrent is</translation>
+        <translation>Trackers kunnen niet worden samengevoegd omdat het een privétorrent is</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2744"/>
         <source>Trackers are merged from new source</source>
-        <translation type="unfinished">Trackers worden samengevoegd vanaf nieuwe bron</translation>
+        <translation>Trackers worden samengevoegd vanaf nieuwe bron</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6313"/>

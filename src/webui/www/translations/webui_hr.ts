@@ -1845,19 +1845,19 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
-        <translation type="unfinished" />
+        <translation>Spojite trackere na postojeći torrent</translation>
     </message>
     <message>
         <source>When duplicate torrent is being added</source>
-        <translation type="unfinished" />
+        <translation>Kada se dodaje dvostruki torrent</translation>
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation type="unfinished" />
+        <translation>Razriješi relativnu putanju spremanja s odgovarajućom putanjom kategorije umjesto zadane</translation>
     </message>
     <message>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>Koristite putanje kategorija u ručnom načinu rada</translation>
     </message>
 </context>
 <context>

@@ -2299,7 +2299,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
-        <translation type="unfinished">Seurantapalvelimia ei voida yhdistää, koska torrent on yksityinen</translation>
+        <translation>Seurantapalvelimia ei voida yhdistää, koska torrent on yksityinen</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2744"/>

@@ -2294,17 +2294,17 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2727"/>
         <source>Merging of trackers is disabled</source>
-        <translation type="unfinished">Trakeru apvienošanas iespēja ir atslēgta</translation>
+        <translation>Trakeru apvienošanas iespēja ir atslēgta</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
-        <translation type="unfinished">Trakerus nevar apvienot, jo torrents ir privāts.</translation>
+        <translation>Trakerus nevar apvienot, jo torrents ir privāts.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2744"/>
         <source>Trackers are merged from new source</source>
-        <translation type="unfinished">Pievienots trakeris no jaunā avota</translation>
+        <translation>Pievienots trakeris no jaunā avota</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6313"/>

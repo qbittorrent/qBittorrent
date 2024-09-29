@@ -1850,11 +1850,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation type="unfinished" />
+        <translation>Решавай относителен път на запазване срещу подходящ път на категория вместо такъв по подразбиране</translation>
     </message>
     <message>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>Използвай Категория пътища в ръчен режим</translation>
     </message>
 </context>
 <context>

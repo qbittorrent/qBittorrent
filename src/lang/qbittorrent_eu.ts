@@ -2294,17 +2294,17 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2727"/>
         <source>Merging of trackers is disabled</source>
-        <translation type="unfinished">Aztarnarien fusioa desgaituta dago</translation>
+        <translation>Aztarnarien fusioa desgaituta dago</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
-        <translation type="unfinished">Ezin dira aztarnariak fusionatu torrenta pribatua delako</translation>
+        <translation>Ezin dira aztarnariak fusionatu torrenta pribatua delako</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2744"/>
         <source>Trackers are merged from new source</source>
-        <translation type="unfinished">Aztarnariak fusionatu dira iturri berritik</translation>
+        <translation>Aztarnariak fusionatu dira iturri berritik</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6313"/>

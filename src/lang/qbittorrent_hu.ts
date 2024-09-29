@@ -2289,22 +2289,22 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2734"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2743"/>
         <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplikált torrent hozzáadásának kísérlete észlelve. Létező torrent: %1. Eredmény: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2727"/>
         <source>Merging of trackers is disabled</source>
-        <translation type="unfinished">Trackerek összevonása ki van kapcsolva</translation>
+        <translation>Trackerek összevonása ki van kapcsolva</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
-        <translation type="unfinished">Trackereket nem lehetett összevonni mert ez egy privát torrent</translation>
+        <translation>Trackereket nem lehetett összevonni mert ez egy privát torrent</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2744"/>
         <source>Trackers are merged from new source</source>
-        <translation type="unfinished">Trackerek összevonva az új forrásból</translation>
+        <translation>Trackerek összevonva új forrásból</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6313"/>
@@ -6575,7 +6575,7 @@ Kézi: A különböző torrenttulajdonságokat (például a mentési útvonalat)
     <message>
         <location filename="../gui/optionsdialog.ui" line="1276"/>
         <source>Use Category paths in Manual Mode</source>
-        <translation>Használja a kategória elérési útjait kézi módban</translation>
+        <translation>Kategória útvonalak használata Kézi Módban</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1273"/>

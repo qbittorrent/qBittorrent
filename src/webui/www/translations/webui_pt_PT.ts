@@ -1853,11 +1853,11 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation type="unfinished" />
+        <translation>Resolver o 'Caminho para guardar' relativo contra o 'Caminho da categoria' apropriado ao invés do 'Caminho padrão'</translation>
     </message>
     <message>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>Utilizar os caminhos de 'Categoria' no 'Modo manual'</translation>
     </message>
 </context>
 <context>

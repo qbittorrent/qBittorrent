@@ -1845,19 +1845,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
-        <translation type="unfinished" />
+        <translation>دمج المتتبعات في التورنت الموجودة</translation>
     </message>
     <message>
         <source>When duplicate torrent is being added</source>
-        <translation type="unfinished" />
+        <translation>عندما يتم إضافة تورنت مكررة</translation>
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation type="unfinished" />
+        <translation>حل مسار الحفظ النسبي مقابل مسار الفئة المناسب بدلاً من المسار الافتراضي</translation>
     </message>
     <message>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>استخدم مسارات الفئات في الوضع اليدوي</translation>
     </message>
 </context>
 <context>

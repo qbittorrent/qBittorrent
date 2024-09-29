@@ -382,7 +382,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Non se puido contactar con qBittorrent</translation>
     </message>
     <message>
         <source>Password</source>
@@ -605,7 +605,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Queres comezar todos os torrents?</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -613,19 +613,19 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Queres parar todos os torrents?</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation type="unfinished" />
+        <translation>Comezar todos</translation>
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
+        <translation>Parar todos</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Comezar</translation>
     </message>
 </context>
 <context>
@@ -1826,7 +1826,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Automatically append these trackers to new downloads:</source>
-        <translation type="unfinished" />
+        <translation>Engadir automaticamente estes rastrexadores a novas descargas:</translation>
     </message>
     <message>
         <source>Stop torrent</source>
@@ -1838,7 +1838,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Torrent content removing mode:</source>
-        <translation type="unfinished" />
+        <translation>Modo de eliminación de contido de torrents:</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
@@ -1846,19 +1846,19 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
-        <translation type="unfinished" />
+        <translation>Combina rastrexadores co torrent existente</translation>
     </message>
     <message>
         <source>When duplicate torrent is being added</source>
-        <translation type="unfinished" />
+        <translation>Cando se engade torrent duplicado</translation>
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation type="unfinished" />
+        <translation>Determinar a Ruta Onde Gardar relativa segundo a ruta da Categoría apropiada no canto da predeterminada.</translation>
     </message>
     <message>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>Usar as rutas de Categoría no modo manual</translation>
     </message>
 </context>
 <context>
@@ -3063,11 +3063,11 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Force Start</source>
-        <translation type="unfinished" />
+        <translation>Forzar inicio</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Comezar</translation>
     </message>
 </context>
 <context>
@@ -3316,7 +3316,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Start a search above.</source>
-        <translation type="unfinished" />
+        <translation>Comeza unha busca arriba.</translation>
     </message>
 </context>
 <context>
@@ -3986,7 +3986,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Add Stopped:</source>
-        <translation type="unfinished" />
+        <translation>Engadir detido:</translation>
     </message>
 </context>
 <context>

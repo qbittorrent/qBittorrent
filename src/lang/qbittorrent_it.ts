@@ -2333,22 +2333,24 @@ Interfaccia: &quot;%1&quot;</translation>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2734"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2743"/>
         <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Rilevato un tentativo di aggiungere un torrent duplicato. 
+Torrente esistente: %1. 
+Risultato: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2727"/>
         <source>Merging of trackers is disabled</source>
-        <translation type="unfinished">L&apos;unione dei tracker è disabilitata</translation>
+        <translation>L&apos;unione dei tracker è disabilitata</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
-        <translation type="unfinished">I tracker non possono essere uniti perché è un torrent privato</translation>
+        <translation>I tracker non possono essere uniti perché è un torrent privato</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2744"/>
         <source>Trackers are merged from new source</source>
-        <translation type="unfinished">I trackersono stati uniti dalla nuova sorgente</translation>
+        <translation>I trackersono stati uniti dalla nuova sorgente</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6313"/>

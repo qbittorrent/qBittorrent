@@ -1845,19 +1845,19 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
-        <translation type="unfinished" />
+        <translation>既存のTorrentにトラッカーをマージする</translation>
     </message>
     <message>
         <source>When duplicate torrent is being added</source>
-        <translation type="unfinished" />
+        <translation>重複したTorrentの追加時</translation>
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation type="unfinished" />
+        <translation>相対的な保存パスを、デフォルトのパスではなく適切なカテゴリーのパスで解決します</translation>
     </message>
     <message>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>手動モードでカテゴリーのパスを使用する</translation>
     </message>
 </context>
 <context>
