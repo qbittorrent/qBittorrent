@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
+    <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
+    <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
+    <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script>
+        "use strict";
+
+        new Keyboard({
+            defaultEventType: "keydown",
+            events: {
+                "Enter": (event) => {
+                    event.preventDefault();
+                    $("submitButton").click();
+                },
+                "Escape": (event) => {
+                    event.preventDefault();
+                    window.parent.qBittorrent.Client.closeWindow("editFeedURL");
+                },
+                "Esc": (event) => {
+                    event.preventDefault();
+                    window.parent.qBittorrent.Client.closeWindow("editFeedURL");
+                }
+            }
+        }).activate();
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const currentUrl = new URI().getData("url");
+
+            $("url").value = currentUrl;
+            $("url").focus();
+            $("url").setSelectionRange(0, currentUrl.length);
+
+            $("submitButton").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // check field
+                const newUrl = $("url").value.trim();
+                if (newUrl === "") {
+                    alert("QBT_TR(URL cannot be empty)QBT_TR[CONTEXT=RSSWidget]");
+                    return;
+                }
+
+                if (newUrl === currentUrl) {
+                    alert("QBT_TR(URL is unchanged)QBT_TR[CONTEXT=RSSWidget]");
+                    return;
+                }
+
+                $("submitButton").disabled = true;
+
+                new Request({
+                    url: "api/v2/rss/setFeedURL",
+                    method: "post",
+                    data: {
+                        path: new URI().getData("path"),
+                        url: newUrl
+                    },
+                    onSuccess: (response) => {
+                        window.parent.qBittorrent.Rss.updateRssFeedList();
+                        window.parent.qBittorrent.Client.closeWindow("editFeedURL");
+                    },
+                    onFailure: (response) => {
+                        if (response.status === 409)
+                            alert(response.responseText);
+                        else
+                            alert("QBT_TR(Unable to update URL)QBT_TR[CONTEXT=RSSWidget]");
+                        $("submitButton").disabled = false;
+                    }
+                }).send();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div style="padding: 10px 10px 0px 10px;">
+        <label for="url" style="font-weight: bold;">QBT_TR(Feed URL:)QBT_TR[CONTEXT=RSSWidget]</label>
+        <input type="text" id="url" style="width: 320px;">
+        <div style="text-align: center; padding-top: 10px;">
+            <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="submitButton">
+        </div>
+    </div>
+</body>
+
+</html>

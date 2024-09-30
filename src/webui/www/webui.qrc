@@ -18,6 +18,7 @@
         <file>private/css/Window.css</file>
         <file>private/download.html</file>
         <file>private/downloadlimit.html</file>
+        <file>private/editfeedurl.html</file>
         <file>private/edittracker.html</file>
         <file>private/editwebseed.html</file>
         <file>private/images/3-state-checkbox.gif</file>
