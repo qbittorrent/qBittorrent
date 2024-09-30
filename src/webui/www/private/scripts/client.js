@@ -805,8 +805,7 @@ window.addEventListener("DOMContentLoaded", () => {
                                 trackerListItem = { host: host, trackerTorrentMap: new Map() };
                                 trackerList.set(hash, trackerListItem);
                             }
-
-                            trackerListItem.trackerTorrentMap.set(tracker, [...torrents]);
+                            trackerListItem.trackerTorrentMap.set(tracker, new Set(torrents));
                         }
                         updateTrackers = true;
                     }
