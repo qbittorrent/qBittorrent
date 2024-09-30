@@ -43,7 +43,6 @@
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QFileSystemWatcher>
-#include <QKeyEvent>
 #include <QLabel>
 #include <QMenu>
 #include <QMessageBox>
@@ -113,14 +112,6 @@ namespace
 #define EXECUTIONLOG_SETTINGS_KEY(name) (SETTINGS_KEY(u"Log/"_s) name)
 
     const std::chrono::seconds PREVENT_SUSPEND_INTERVAL {60};
-
-    bool isTorrentLink(const QString &str)
-    {
-        return str.startsWith(u"magnet:", Qt::CaseInsensitive)
-            || str.endsWith(TORRENT_FILE_EXTENSION, Qt::CaseInsensitive)
-            || (!str.startsWith(u"file:", Qt::CaseInsensitive)
-                && Net::DownloadManager::hasSupportedScheme(str));
-    }
 }
 
 MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, const QString &titleSuffix)
@@ -241,7 +232,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     m_ui->toolBar->insertWidget(m_columnFilterAction, spacer);
 
     // Transfer List tab
-    m_transferListWidget = new TransferListWidget(hSplitter, this);
+    m_transferListWidget = new TransferListWidget(app, this);
     m_propertiesWidget = new PropertiesWidget(hSplitter);
     connect(m_transferListWidget, &TransferListWidget::currentTorrentChanged, m_propertiesWidget, &PropertiesWidget::loadTorrentInfos);
     hSplitter->addWidget(m_transferListWidget);
@@ -347,8 +338,6 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated, this, &MainWindow::loadSessionStats);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated, this, &MainWindow::reloadTorrentStats);
 
-    // Accept drag 'n drops
-    setAcceptDrops(true);
     createKeyboardShortcuts();
 
 #ifdef Q_OS_MACOS
@@ -1124,16 +1113,13 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     if (event->matches(QKeySequence::Paste))
     {
         const QMimeData *mimeData = QGuiApplication::clipboard()->mimeData();
-
         if (mimeData->hasText())
         {
             const QStringList lines = mimeData->text().split(u'\n', Qt::SkipEmptyParts);
-
             for (QString line : lines)
             {
                 line = line.trimmed();
-
-                if (!isTorrentLink(line))
+                if (!Utils::Misc::isTorrentLink(line))
                     continue;
 
                 app()->addTorrentManager()->addTorrent(line);
@@ -1282,66 +1268,6 @@ bool MainWindow::event(QEvent *e)
 #endif // Q_OS_MACOS
 
     return QMainWindow::event(e);
-}
-
-// action executed when a file is dropped
-void MainWindow::dropEvent(QDropEvent *event)
-{
-    event->acceptProposedAction();
-
-    // remove scheme
-    QStringList files;
-    if (event->mimeData()->hasUrls())
-    {
-        for (const QUrl &url : asConst(event->mimeData()->urls()))
-        {
-            if (url.isEmpty())
-                continue;
-
-            files << ((url.scheme().compare(u"file", Qt::CaseInsensitive) == 0)
-                ? url.toLocalFile()
-                : url.toString());
-        }
-    }
-    else
-    {
-        files = event->mimeData()->text().split(u'\n');
-    }
-
-    // differentiate ".torrent" files/links & magnet links from others
-    QStringList torrentFiles, otherFiles;
-    for (const QString &file : asConst(files))
-    {
-        if (isTorrentLink(file))
-            torrentFiles << file;
-        else
-            otherFiles << file;
-    }
-
-    // Download torrents
-    for (const QString &file : asConst(torrentFiles))
-        app()->addTorrentManager()->addTorrent(file);
-    if (!torrentFiles.isEmpty()) return;
-
-    // Create torrent
-    for (const QString &file : asConst(otherFiles))
-    {
-        createTorrentTriggered(Path(file));
-
-        // currently only handle the first entry
-        // this is a stub that can be expanded later to create many torrents at once
-        break;
-    }
-}
-
-// Decode if we accept drag 'n drop or not
-void MainWindow::dragEnterEvent(QDragEnterEvent *event)
-{
-    for (const QString &mime : asConst(event->mimeData()->formats()))
-        qDebug("mimeData: %s", mime.toLocal8Bit().data());
-
-    if (event->mimeData()->hasFormat(u"text/plain"_s) || event->mimeData()->hasFormat(u"text/uri-list"_s))
-        event->acceptProposedAction();
 }
 
 // Display a dialog to allow user to add
