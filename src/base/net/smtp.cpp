@@ -565,29 +565,11 @@ void Smtp::logError(const QString &msg)
 
 QString Smtp::getCurrentDateTime() const
 {
-    // return date & time in the format specified in RFC 2822, section 3.3
-    const QDateTime nowDateTime = QDateTime::currentDateTime();
-    const QDate nowDate = nowDateTime.date();
-    const QLocale eng(QLocale::English);
-
-    const QString timeStr = nowDateTime.time().toString(u"HH:mm:ss");
-    const QString weekDayStr = eng.dayName(nowDate.dayOfWeek(), QLocale::ShortFormat);
-    const QString dayStr = QString::number(nowDate.day());
-    const QString monthStr = eng.monthName(nowDate.month(), QLocale::ShortFormat);
-    const QString yearStr = QString::number(nowDate.year());
-
-    QDateTime tmp = nowDateTime;
-    tmp.setTimeSpec(Qt::UTC);
-    const int timeOffsetHour = nowDateTime.secsTo(tmp) / 3600;
-    const int timeOffsetMin = nowDateTime.secsTo(tmp) / 60 - (60 * timeOffsetHour);
-    const int timeOffset = timeOffsetHour * 100 + timeOffsetMin;
-    // buf size = 11 to avoid format truncation warnings from snprintf
-    char buf[11] = {0};
-    std::snprintf(buf, sizeof(buf), "%+05d", timeOffset);
-    const auto timeOffsetStr = QString::fromUtf8(buf);
-
-    const QString ret = weekDayStr + u", " + dayStr + u' ' + monthStr + u' ' + yearStr + u' ' + timeStr + u' ' + timeOffsetStr;
-    return ret;
+    // [rfc2822] 3.3. Date and Time Specification
+    const auto now = QDateTime::currentDateTime();
+    const QLocale eng {QLocale::English};
+    const QString weekday = eng.dayName(now.date().dayOfWeek(), QLocale::ShortFormat);
+    return (weekday + u", " + now.toString(Qt::RFC2822Date));
 }
 
 void Smtp::error(QAbstractSocket::SocketError socketError)

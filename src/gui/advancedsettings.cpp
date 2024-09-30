@@ -30,6 +30,7 @@
 
 #include <limits>
 
+#include <QtVersionChecks>
 #include <QHeaderView>
 #include <QHostAddress>
 #include <QLabel>
@@ -981,7 +982,13 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
     setCellWidget(row, VALUE, widget);
 
     if constexpr (std::is_same_v<T, QCheckBox>)
+    {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
+        connect(widget, &QCheckBox::checkStateChanged, this, &AdvancedSettings::settingsChanged);
+#else
         connect(widget, &QCheckBox::stateChanged, this, &AdvancedSettings::settingsChanged);
+#endif
+    }
     else if constexpr (std::is_same_v<T, QSpinBox>)
         connect(widget, qOverload<int>(&QSpinBox::valueChanged), this, &AdvancedSettings::settingsChanged);
     else if constexpr (std::is_same_v<T, QComboBox>)
