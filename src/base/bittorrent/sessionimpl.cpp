@@ -1638,6 +1638,13 @@ void SessionImpl::initializeNativeSession()
 #ifdef QBT_USES_LIBTORRENT2
     // preserve the same behavior as in earlier libtorrent versions
     pack.set_bool(lt::settings_pack::enable_set_file_valid_data, true);
+
+    // This is a special case. We use MMap disk IO but tweak it to always fallback to pread/pwrite.
+    if (diskIOType() == DiskIOType::SimplePreadPwrite)
+    {
+        pack.set_int(lt::settings_pack::mmap_file_size_cutoff, std::numeric_limits<int>::max());
+        pack.set_int(lt::settings_pack::disk_write_mode, lt::settings_pack::mmap_write_mode_t::always_pwrite);
+    }
 #endif
 
     lt::session_params sessionParams {std::move(pack), {}};
@@ -1648,6 +1655,7 @@ void SessionImpl::initializeNativeSession()
         sessionParams.disk_io_constructor = customPosixDiskIOConstructor;
         break;
     case DiskIOType::MMap:
+    case DiskIOType::SimplePreadPwrite:
         sessionParams.disk_io_constructor = customMMapDiskIOConstructor;
         break;
     default:
