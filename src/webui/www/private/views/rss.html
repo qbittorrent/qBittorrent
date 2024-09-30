@@ -817,13 +817,11 @@
 
         const markArticleAsRead = (path, id) => {
             // find row
-            let rowId, name, uid, unread;
+            let uid;
             for (const row of rssFeedTable.getRowValues()) {
                 if (row.full_data.dataPath === path) {
-                    rowId = row.full_data.rowId;
-                    name = row.full_data.dataPath;
                     uid = row.full_data.dataUid;
-                    unread = row.full_data.unread;
+                    break;
                 }
             }
 

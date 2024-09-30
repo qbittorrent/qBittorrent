@@ -175,7 +175,6 @@
             }
         };
 
-        let customSyncLogDataInterval = null;
         let logFilterTimer = -1;
         let inputtedFilterText = "";
         let selectBox;
@@ -239,7 +238,6 @@
         };
 
         const load = () => {
-            customSyncLogDataInterval = null;
             syncLogWithInterval(100);
         };
 
@@ -267,7 +265,7 @@
         };
 
         const getSyncLogDataInterval = () => {
-            return customSyncLogDataInterval ? customSyncLogDataInterval : serverSyncMainDataInterval;
+            return serverSyncMainDataInterval;
         };
 
         const logLevelChanged = () => {
