@@ -505,9 +505,13 @@
                         for (let i = 0; i < flattenedResp.length; ++i) {
                             const newData = flattenedResp[i];
                             const existingData = rssFeedRows[i + 1].full_data;
-                            if (((newData.uid ? newData.uid : "") !== existingData.dataUid)
-                                || (newData.fullName !== existingData.dataPath)
-                                || (!newData.isFolder && (newData.url !== existingData.dataUrl))) {
+
+                            if (newData.fullName !== existingData.dataPath) {
+                                match = false;
+                                break;
+                            }
+                            // only non-folders have these properties
+                            if (!newData.isFolder && ((newData.uid !== existingData.dataUid) || (newData.url !== existingData.dataUrl))) {
                                 match = false;
                                 break;
                             }
