@@ -41,6 +41,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QNetworkCookie>
 #include <QNetworkInterface>
 #include <QRegularExpression>
 #include <QStringList>
@@ -50,6 +51,7 @@
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/interfaces/iapplication.h"
+#include "base/net/downloadmanager.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/path.h"
@@ -58,6 +60,7 @@
 #include "base/rss/rss_session.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfileswatcher.h"
+#include "base/utils/datetime.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
@@ -68,6 +71,12 @@
 #include "../webapplication.h"
 
 using namespace std::chrono_literals;
+
+const QString KEY_COOKIE_NAME = u"name"_s;
+const QString KEY_COOKIE_DOMAIN = u"domain"_s;
+const QString KEY_COOKIE_PATH = u"path"_s;
+const QString KEY_COOKIE_VALUE = u"value"_s;
+const QString KEY_COOKIE_EXPIRATION_DATE = u"expirationDate"_s;
 
 void AppController::webapiVersionAction()
 {
@@ -1185,6 +1194,63 @@ void AppController::getDirectoryContentAction()
     while (it.hasNext())
         ret.append(it.next());
     setResult(ret);
+}
+
+void AppController::cookiesAction()
+{
+    const QList<QNetworkCookie> cookies = Net::DownloadManager::instance()->allCookies();
+    QJsonArray ret;
+    for (const QNetworkCookie &cookie : cookies)
+    {
+        ret << QJsonObject {
+            {KEY_COOKIE_NAME, QString::fromLatin1(cookie.name())},
+            {KEY_COOKIE_DOMAIN, cookie.domain()},
+            {KEY_COOKIE_PATH, cookie.path()},
+            {KEY_COOKIE_VALUE, QString::fromLatin1(cookie.value())},
+            {KEY_COOKIE_EXPIRATION_DATE, Utils::DateTime::toSecsSinceEpoch(cookie.expirationDate())},
+        };
+    }
+
+    setResult(ret);
+}
+
+void AppController::setCookiesAction()
+{
+    requireParams({u"cookies"_s});
+    const QString cookiesParam {params()[u"cookies"_s].trimmed()};
+
+    QJsonParseError jsonError;
+    const auto cookiesJsonDocument = QJsonDocument::fromJson(cookiesParam.toUtf8(), &jsonError);
+    if (jsonError.error != QJsonParseError::NoError)
+        throw APIError(APIErrorType::BadParams, jsonError.errorString());
+    if (!cookiesJsonDocument.isArray())
+        throw APIError(APIErrorType::BadParams, tr("cookies must be array"));
+
+    const QJsonArray cookiesJsonArr = cookiesJsonDocument.array();
+    QList<QNetworkCookie> cookies;
+    cookies.reserve(cookiesJsonArr.size());
+    for (const QJsonValue &jsonVal : cookiesJsonArr)
+    {
+        if (!jsonVal.isObject())
+            throw APIError(APIErrorType::BadParams);
+
+        QNetworkCookie cookie;
+        const QJsonObject jsonObj = jsonVal.toObject();
+        if (jsonObj.contains(KEY_COOKIE_NAME))
+            cookie.setName(jsonObj.value(KEY_COOKIE_NAME).toString().toLatin1());
+        if (jsonObj.contains(KEY_COOKIE_DOMAIN))
+            cookie.setDomain(jsonObj.value(KEY_COOKIE_DOMAIN).toString());
+        if (jsonObj.contains(KEY_COOKIE_PATH))
+            cookie.setPath(jsonObj.value(KEY_COOKIE_PATH).toString());
+        if (jsonObj.contains(KEY_COOKIE_VALUE))
+            cookie.setValue(jsonObj.value(KEY_COOKIE_VALUE).toString().toUtf8());
+        if (jsonObj.contains(KEY_COOKIE_EXPIRATION_DATE))
+            cookie.setExpirationDate(QDateTime::fromSecsSinceEpoch(jsonObj.value(KEY_COOKIE_EXPIRATION_DATE).toInteger()));
+
+        cookies << cookie;
+    }
+
+    Net::DownloadManager::instance()->setAllCookies(cookies);
 }
 
 void AppController::networkInterfaceListAction()

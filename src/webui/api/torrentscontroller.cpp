@@ -34,7 +34,6 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QList>
-#include <QNetworkCookie>
 #include <QRegularExpression>
 #include <QUrl>
 
@@ -53,7 +52,6 @@
 #include "base/interfaces/iapplication.h"
 #include "base/global.h"
 #include "base/logger.h"
-#include "base/net/downloadmanager.h"
 #include "base/torrentfilter.h"
 #include "base/utils/datetime.h"
 #include "base/utils/fs.h"
@@ -787,7 +785,6 @@ void TorrentsController::pieceStatesAction()
 void TorrentsController::addAction()
 {
     const QString urls = params()[u"urls"_s];
-    const QString cookie = params()[u"cookie"_s];
 
     const bool skipChecking = parseBool(params()[u"skip_checking"_s]).value_or(false);
     const bool seqDownload = parseBool(params()[u"sequentialDownload"_s]).value_or(false);
@@ -817,23 +814,6 @@ void TorrentsController::addAction()
     const std::optional<BitTorrent::TorrentContentLayout> contentLayout = (!contentLayoutParam.isEmpty()
             ? Utils::String::toEnum(contentLayoutParam, BitTorrent::TorrentContentLayout::Original)
             : std::optional<BitTorrent::TorrentContentLayout> {});
-
-    QList<QNetworkCookie> cookies;
-    if (!cookie.isEmpty())
-    {
-        const QStringList cookiesStr = cookie.split(u"; "_s);
-        for (QString cookieStr : cookiesStr)
-        {
-            cookieStr = cookieStr.trimmed();
-            int index = cookieStr.indexOf(u'=');
-            if (index > 1)
-            {
-                QByteArray name = cookieStr.left(index).toLatin1();
-                QByteArray value = cookieStr.right(cookieStr.length() - index - 1).toLatin1();
-                cookies += QNetworkCookie(name, value);
-            }
-        }
-    }
 
     const BitTorrent::AddTorrentParams addTorrentParams
     {
@@ -875,7 +855,6 @@ void TorrentsController::addAction()
         url = url.trimmed();
         if (!url.isEmpty())
         {
-            Net::DownloadManager::instance()->setCookiesFromUrl(cookies, QUrl::fromEncoded(url.toUtf8()));
             partialSuccess |= app()->addTorrentManager()->addTorrent(url, addTorrentParams);
         }
     }

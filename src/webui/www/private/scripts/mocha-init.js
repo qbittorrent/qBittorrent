@@ -239,6 +239,27 @@ const initializeWindows = function() {
         });
     });
 
+    addClickEvent("manageCookies", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const id = "cookiesPage";
+        new MochaUI.Window({
+            id: id,
+            title: "QBT_TR(Manage Cookies)QBT_TR[CONTEXT=CookiesDialog]",
+            loadMethod: "xhr",
+            contentURL: new URI("views/cookies.html").toString(),
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: loadWindowWidth(id, 900),
+            height: loadWindowHeight(id, 400),
+            onResize: function() {
+                saveWindowSize(id);
+            }
+        });
+    });
+
     addClickEvent("upload", (e) => {
         e.preventDefault();
         e.stopPropagation();

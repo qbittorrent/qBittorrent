@@ -50,6 +50,8 @@ private slots:
     void defaultSavePathAction();
     void sendTestEmailAction();
     void getDirectoryContentAction();
+    void cookiesAction();
+    void setCookiesAction();
 
     void networkInterfaceListAction();
     void networkInterfaceAddressListAction();

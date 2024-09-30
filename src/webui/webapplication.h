@@ -152,6 +152,7 @@ private:
     {
         // <<controller name, action name>, HTTP method>
         {{u"app"_s, u"sendTestEmail"_s}, Http::METHOD_POST},
+        {{u"app"_s, u"setCookies"_s}, Http::METHOD_POST},
         {{u"app"_s, u"setPreferences"_s}, Http::METHOD_POST},
         {{u"app"_s, u"shutdown"_s}, Http::METHOD_POST},
         {{u"auth"_s, u"login"_s}, Http::METHOD_POST},
