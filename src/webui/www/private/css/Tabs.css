@@ -1,5 +1,3 @@
-@import url("palette.css");
-
 /*
 
 Tabs.css for Mocha UI
@@ -21,6 +19,7 @@ Required by:
 
 .toolbarTabs {
     overflow: visible;
+    user-select: none;
 }
 
 .tab-menu {
