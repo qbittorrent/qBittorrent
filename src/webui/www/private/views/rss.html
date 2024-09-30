@@ -505,7 +505,7 @@
                         for (let i = 0; i < flattenedResp.length; ++i) {
                             if (((flattenedResp[i].uid ? flattenedResp[i].uid : "") !== rssFeedRows[i + 1].full_data.dataUid)
                                 || (flattenedResp[i].fullName !== rssFeedRows[i + 1].full_data.dataPath)
-                                || (flattenedResp[i].url !== rssFeedRows[i + 1].full_data.dataUrl)) {
+                                || (!flattenedResp[i].isFolder && (flattenedResp[i].url !== rssFeedRows[i + 1].full_data.dataUrl))) {
                                 match = false;
                                 break;
                             }
