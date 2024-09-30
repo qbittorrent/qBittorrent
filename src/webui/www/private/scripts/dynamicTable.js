@@ -1728,7 +1728,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("fileSize", "", "QBT_TR(Size)QBT_TR[CONTEXT=SearchResultsTable]", 100, true);
             this.newColumn("nbSeeders", "", "QBT_TR(Seeders)QBT_TR[CONTEXT=SearchResultsTable]", 100, true);
             this.newColumn("nbLeechers", "", "QBT_TR(Leechers)QBT_TR[CONTEXT=SearchResultsTable]", 100, true);
-            this.newColumn("siteUrl", "", "QBT_TR(Search engine)QBT_TR[CONTEXT=SearchResultsTable]", 250, true);
+            this.newColumn("engineName", "", "QBT_TR(Engine)QBT_TR[CONTEXT=SearchResultsTable]", 100, true);
+            this.newColumn("siteUrl", "", "QBT_TR(Engine URL)QBT_TR[CONTEXT=SearchResultsTable]", 250, true);
             this.newColumn("pubDate", "", "QBT_TR(Published On)QBT_TR[CONTEXT=SearchResultsTable]", 200, true);
 
             this.initColumnsFunctions();
