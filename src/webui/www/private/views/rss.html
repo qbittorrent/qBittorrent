@@ -503,9 +503,11 @@
                     if ((rssFeedRows.length - 1) === flattenedResp.length) {
                         match = true;
                         for (let i = 0; i < flattenedResp.length; ++i) {
-                            if (((flattenedResp[i].uid ? flattenedResp[i].uid : "") !== rssFeedRows[i + 1].full_data.dataUid)
-                                || (flattenedResp[i].fullName !== rssFeedRows[i + 1].full_data.dataPath)
-                                || (!flattenedResp[i].isFolder && (flattenedResp[i].url !== rssFeedRows[i + 1].full_data.dataUrl))) {
+                            const newData = flattenedResp[i];
+                            const existingData = rssFeedRows[i + 1].full_data;
+                            if (((newData.uid ? newData.uid : "") !== existingData.dataUid)
+                                || (newData.fullName !== existingData.dataPath)
+                                || (!newData.isFolder && (newData.url !== existingData.dataUrl))) {
                                 match = false;
                                 break;
                             }
