@@ -13,7 +13,7 @@ repos:
           - ts
 
   - repo: https://github.com/pre-commit/pre-commit-hooks.git
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
     - id: check-json
       name: Check JSON files
@@ -63,7 +63,7 @@ repos:
         - ts
 
   - repo: https://github.com/codespell-project/codespell.git
-    rev: v2.2.6
+    rev: v2.3.0
     hooks:
     - id: codespell
       name: Check spelling (codespell)
@@ -72,10 +72,8 @@ repos:
         (?x)^(
           .*\.desktop |
           .*\.qrc |
-          build-aux/.* |
           Changelog |
           dist/windows/installer-translations/.* |
-          m4/.* |
           src/base/3rdparty/.* |
           src/searchengine/nova3/socks.py |
           src/webui/www/private/scripts/lib/.*
@@ -84,7 +82,7 @@ repos:
         - ts
 
   - repo: https://github.com/crate-ci/typos.git
-    rev: v1.16.18
+    rev: v1.25.0
     hooks:
     - id: typos
       name: Check spelling (typos)
@@ -95,11 +93,8 @@ repos:
           .*\.desktop |
           .*\.qrc |
           \.pre-commit-config\.yaml |
-          build-aux/.* |
           Changelog |
-          configure.* |
           dist/windows/installer-translations/.* |
-          m4/.* |
           src/base/3rdparty/.* |
           src/searchengine/nova3/socks.py |
           src/webui/www/private/scripts/lib/.*
