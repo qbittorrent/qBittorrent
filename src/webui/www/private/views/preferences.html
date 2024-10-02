@@ -1059,6 +1059,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 <input type="text" id="webUIReverseProxiesListTextarea" title="QBT_TR(Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.)QBT_TR[CONTEXT=OptionsDialog]">
             </div>
             <div class="formRow">
+                <label for="webUIBasePathTextarea">QBT_TR(URL base path:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <input type="text" id="webUIBasePathTextarea" title="QBT_TR(Specify the URL path qBittorent will be made accessible at (e.g. '/qbittorrent/').)QBT_TR[CONTEXT=OptionsDialog]">
+            </div>
+            <div class="formRow">
                 <a href="https://github.com/qbittorrent/qBittorrent/wiki#reverse-proxy-setup-for-webui-access" target="_blank">QBT_TR(Reverse proxy setup examples)QBT_TR[CONTEXT=HttpServer]</a>
             </div>
         </fieldset>
@@ -2045,6 +2049,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const updateWebUIReverseProxySettings = () => {
             const isEnabled = $("webUIReverseProxySupportCheckbox").checked;
             $("webUIReverseProxiesListTextarea").disabled = !isEnabled;
+            $("webUIBasePathTextarea").disabled = !isEnabled;
         };
 
         const updateDynDnsSettings = () => {
@@ -2490,6 +2495,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Reverse Proxy
                     $("webUIReverseProxySupportCheckbox").checked = pref.web_ui_reverse_proxy_enabled;
                     $("webUIReverseProxiesListTextarea").value = pref.web_ui_reverse_proxies_list;
+                    $("webUIBasePathTextarea").value = pref.web_ui_base_path;
                     updateWebUIReverseProxySettings();
 
                     // Update my dynamic domain name
@@ -2957,6 +2963,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Reverse Proxy
             settings["web_ui_reverse_proxy_enabled"] = $("webUIReverseProxySupportCheckbox").checked;
             settings["web_ui_reverse_proxies_list"] = $("webUIReverseProxiesListTextarea").value;
+            settings["web_ui_base_path"] = $("webUIBasePathTextarea").value;
 
             // Update my dynamic domain name
             settings["dyndns_enabled"] = $("use_dyndns_checkbox").checked;

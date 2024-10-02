@@ -342,6 +342,7 @@ void AppController::preferencesAction()
     // Reverse proxy
     data[u"web_ui_reverse_proxy_enabled"_s] = pref->isWebUIReverseProxySupportEnabled();
     data[u"web_ui_reverse_proxies_list"_s] = pref->getWebUITrustedReverseProxiesList();
+    data[u"web_ui_base_path"_s] = pref->getWebUIBasePath();
     // Update my dynamic domain name
     data[u"dyndns_enabled"_s] = pref->isDynDNSEnabled();
     data[u"dyndns_service"_s] = static_cast<int>(pref->getDynDNSService());
@@ -924,6 +925,18 @@ void AppController::setPreferencesAction()
         pref->setWebUIReverseProxySupportEnabled(it.value().toBool());
     if (hasKey(u"web_ui_reverse_proxies_list"_s))
         pref->setWebUITrustedReverseProxiesList(it.value().toString());
+    if (hasKey(u"web_ui_base_path"_s))
+    {
+        QString path = it.value().toString();
+        if (!path.startsWith(u"/"_s))
+            path.prepend(u"/");
+        if (!path.endsWith(u"/"_s))
+            path.append(u"/");
+        QUrl url;
+        url.setPath(path, QUrl::StrictMode);
+        if (url.isValid())
+            pref->setWebUIBasePath(url.path());
+    }
     // Update my dynamic domain name
     if (hasKey(u"dyndns_enabled"_s))
         pref->setDynDNSEnabled(it.value().toBool());
