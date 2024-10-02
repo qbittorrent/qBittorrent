@@ -55,7 +55,7 @@ window.qBittorrent.Cache ??= (() => {
 
         init() {
             new Request.JSON({
-                url: "api/v2/app/buildInfo",
+                url: "${BASE_PATH}api/v2/app/buildInfo",
                 method: "get",
                 noCache: true,
                 onSuccess: (responseJSON) => {
@@ -82,7 +82,7 @@ window.qBittorrent.Cache ??= (() => {
         // }
         init(obj = {}) {
             new Request.JSON({
-                url: "api/v2/app/preferences",
+                url: "${BASE_PATH}api/v2/app/preferences",
                 method: "get",
                 noCache: true,
                 onFailure: (xhr) => {
@@ -118,7 +118,7 @@ window.qBittorrent.Cache ??= (() => {
                 throw new Error("`data` is not an object.");
 
             new Request({
-                url: "api/v2/app/setPreferences",
+                url: "${BASE_PATH}api/v2/app/setPreferences",
                 method: "post",
                 data: {
                     "json": JSON.stringify(obj.data)
@@ -150,7 +150,7 @@ window.qBittorrent.Cache ??= (() => {
 
         init() {
             new Request({
-                url: "api/v2/app/version",
+                url: "${BASE_PATH}api/v2/app/version",
                 method: "get",
                 noCache: true,
                 onSuccess: (responseText) => {
