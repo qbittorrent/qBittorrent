@@ -99,7 +99,7 @@ jobs:
 
       - name: Build qBittorrent
         run: |
-          CXXFLAGS="$CXXFLAGS -Werror -Wno-error=deprecated-declarations" \
+          CXXFLAGS="$CXXFLAGS -DQT_FORCE_ASSERTS -Werror -Wno-error=deprecated-declarations" \
           LDFLAGS="$LDFLAGS -gz" \
           cmake \
             -B build \
