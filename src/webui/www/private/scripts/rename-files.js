@@ -241,7 +241,7 @@ window.qBittorrent.MultiRename ??= (() => {
                     ? parentPath + window.qBittorrent.Filesystem.PathSeparator + newName
                     : newName;
                 const renameRequest = new Request({
-                    url: isFolder ? "api/v2/torrents/renameFolder" : "api/v2/torrents/renameFile",
+                    url: isFolder ? "${BASE_PATH}api/v2/torrents/renameFolder" : "${BASE_PATH}api/v2/torrents/renameFile",
                     method: "post",
                     data: {
                         hash: this.hash,

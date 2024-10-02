@@ -33,7 +33,7 @@ function submitLoginForm(event) {
     const errorMsgElement = document.getElementById("error_msg");
 
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "api/v2/auth/login", true);
+    xhr.open("POST", "${BASE_PATH}api/v2/auth/login", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
     xhr.addEventListener("readystatechange", () => {
         if (xhr.readyState === 4) { // DONE state

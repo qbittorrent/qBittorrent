@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>QBT_TR(Torrent Upload Speed Limiting)QBT_TR[CONTEXT=TransferListWidget]</title>
-    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
-    <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
-    <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
-    <script src="scripts/lib/mocha.min.js"></script>
-    <script src="scripts/speedslider.js?v=${CACHEID}"></script>
+    <link rel="stylesheet" href="${BASE_PATH}css/style.css?v=${CACHEID}" type="text/css">
+    <script src="${BASE_PATH}scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
+    <script src="${BASE_PATH}scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
+    <script src="${BASE_PATH}scripts/lib/mocha.min.js"></script>
+    <script src="${BASE_PATH}scripts/speedslider.js?v=${CACHEID}"></script>
 </head>
 
 <body>
@@ -36,7 +36,7 @@
             const limit = $("uplimitUpdatevalue").value.toInt() * 1024;
             if (hashes[0] === "global") {
                 new Request({
-                    url: "api/v2/transfer/setUploadLimit",
+                    url: "${BASE_PATH}api/v2/transfer/setUploadLimit",
                     method: "post",
                     data: {
                         "limit": limit
@@ -49,7 +49,7 @@
             }
             else {
                 new Request({
-                    url: "api/v2/torrents/setUploadLimit",
+                    url: "${BASE_PATH}api/v2/torrents/setUploadLimit",
                     method: "post",
                     data: {
                         "hashes": hashes.join("|"),

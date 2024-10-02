@@ -64,7 +64,7 @@ window.qBittorrent.pathAutofill ??= (() => {
         if (partialPath === "")
             return;
 
-        fetch(`api/v2/app/getDirectoryContent?dirPath=${partialPath}&mode=${mode}`)
+        fetch(`${BASE_PATH}api/v2/app/getDirectoryContent?dirPath=${partialPath}&mode=${mode}`)
             .then(response => response.json())
             .then(filesList => { showInputSuggestions(element, filesList); })
             .catch(error => {});
