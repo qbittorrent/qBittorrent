@@ -412,7 +412,7 @@ void WebApplication::configure()
     {
         m_isAltUIUsed = isAltUIUsed;
         m_rootFolder = rootFolder;
-        m_translatedFiles.clear();
+        m_cachedFiles.clear();
         if (!m_isAltUIUsed)
             LogMsg(tr("Using built-in WebUI."));
         else
@@ -423,7 +423,7 @@ void WebApplication::configure()
     if (m_currentLocale != newLocale)
     {
         m_currentLocale = newLocale;
-        m_translatedFiles.clear();
+        m_cachedFiles.clear();
 
         m_translationFileLoaded = m_translator.load((m_rootFolder / Path(u"translations/webui_"_s) + newLocale).data());
         if (m_translationFileLoaded)
@@ -539,8 +539,8 @@ void WebApplication::sendFile(const Path &path)
     // find translated file in cache
     if (!m_isAltUIUsed)
     {
-        if (const auto it = m_translatedFiles.constFind(path);
-            (it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified))
+        if (const auto it = m_cachedFiles.constFind(path);
+            (it != m_cachedFiles.constEnd()) && (lastModified <= it->lastModified))
         {
             print(it->data, it->mimeType);
             setHeader({Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType)});
@@ -589,7 +589,7 @@ void WebApplication::sendFile(const Path &path)
             dataStr.replace(u"${LANGUAGE_OPTIONS}"_s, createLanguagesOptionsHtml());
 
         data = dataStr.toUtf8();
-        m_translatedFiles[path] = {data, mimeType.name(), lastModified}; // caching translated file
+        m_cachedFiles[path] = {data, mimeType.name(), lastModified}; // caching translated file
     }
 
     print(data, mimeType.name());
