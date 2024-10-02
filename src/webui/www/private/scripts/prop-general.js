@@ -37,7 +37,7 @@ window.qBittorrent.PropGeneral ??= (() => {
     };
 
     const piecesBar = new window.qBittorrent.PiecesBar.PiecesBar([], {
-        height: 16
+        height: 18
     });
     $("progress").appendChild(piecesBar);
 

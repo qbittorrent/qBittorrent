@@ -55,10 +55,32 @@
 
 /* Reset */
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
 a img,
 :link img,
 :visited img {
     border: none;
+}
+
+ul,
+ol {
+    list-style: none;
 }
 
 /* Forms */
@@ -72,26 +94,30 @@ select {
     border: 1px solid var(--color-border-default);
     border-radius: 3px;
     color: var(--color-text-default);
+    padding: 3px;
+}
+
+select {
     padding: 4px;
 }
 
 input[type="checkbox"],
 input[type="radio"] {
     accent-color: var(--color-accent-blue);
+    margin: 3px 3px 3px 4px;
 }
 
 input[type="button"],
 input[type="submit"],
 button {
     cursor: pointer;
-    padding: 4px 16px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 button:disabled {
     cursor: initial;
 }
-
-/*table { border-collapse: collapse; border-spacing: 0; }*/
 
 :focus {
     outline: none;
@@ -103,8 +129,7 @@ body {
     color: var(--color-text-default);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
-    line-height: 18px;
-    margin: 0;
+    line-height: 1.5;
     text-align: left;
 }
 
@@ -123,7 +148,6 @@ h3,
 h4 {
     font-size: 12px;
     font-weight: bold;
-    margin: 0;
     padding: 0 0 5px;
 }
 
@@ -164,16 +188,10 @@ a:hover {
 }
 
 p {
-    margin: 0;
     padding: 0 0 9px;
 }
 
 /* List Elements */
-
-ul {
-    list-style: outside;
-    margin: 0 0 9px 16px;
-}
 
 dt {
     font-weight: bold;
@@ -187,7 +205,8 @@ dd {
 
 fieldset {
     border: 1px solid var(--color-border-default);
-    border-radius: 5px;
+    border-radius: 1px;
+    margin: 0 2px;
 }
 
 /* Code */
@@ -212,6 +231,7 @@ hr {
     border: 0px;
     color: var(--color-text-default);
     height: 1px;
+    margin-bottom: 6px;
 }
 
 .vcenter {
@@ -224,16 +244,14 @@ hr {
 }
 
 #trackersUrls {
+    display: block;
     height: 100%;
+    margin: 0 auto 10px;
     width: 90%;
 }
 
 #Filters {
     overflow-x: hidden !important; /* override for default mocha inline style */
-}
-
-#Filters ul {
-    list-style-type: none;
 }
 
 #Filters ul img {
@@ -249,7 +267,6 @@ a.propButton {
     border: 1px solid rgb(85 81 91);
     margin-left: 3px;
     margin-right: 3px;
-    /*border-radius: 3px;*/
     padding: 2px;
 }
 
@@ -267,7 +284,6 @@ a.propButton img {
     background-color: var(--color-background-default);
     border: 1px solid var(--color-border-default);
     display: none;
-    list-style-type: none;
     padding: 0;
 }
 
@@ -276,7 +292,6 @@ a.propButton img {
 }
 
 .contextMenu li {
-    margin: 0;
     padding: 0;
     user-select: none;
 }
@@ -296,9 +311,7 @@ a.propButton img {
     align-items: center;
     color: var(--color-text-default);
     display: flex;
-    font-family: Tahoma, Arial, sans-serif;
-    font-size: 12px;
-    gap: 7px;
+    gap: 2px;
     padding: 5px 20px 5px 5px;
     text-decoration: none;
     white-space: nowrap;
@@ -317,11 +330,10 @@ a.propButton img {
     background: var(--color-background-default);
     border: 1px solid var(--color-border-default);
     left: -999em;
-    list-style-type: none;
     margin: -29px 0 0 100%;
     padding: 0;
     position: absolute;
-    width: 164px;
+    width: max-content;
     z-index: 8000;
 }
 
@@ -342,16 +354,18 @@ a.propButton img {
 
 .contextMenu li img {
     height: 16px;
+    margin-right: 0.5em;
     width: 16px;
 }
 
 .contextMenu li input[type="checkbox"] {
-    position: relative;
-    top: 3px;
+    margin: 0 0.5em 0 0;
+    width: 16px;
 }
 
 #contextCategoryList img {
     border: 1px solid transparent;
+    box-sizing: content-box;
     padding: 1px;
 }
 
@@ -387,7 +401,6 @@ a.propButton img {
     height: 7px;
     left: 0;
     line-height: 1px;
-    margin: 0;
     overflow: hidden;
     padding: 0;
     position: absolute;
@@ -435,9 +448,7 @@ a.propButton img {
 }
 
 .MyMenuIcon {
-    margin-bottom: -3px;
-    margin-left: -18px;
-    padding-right: 5px;
+    margin: 0 6px -3px -18px;
 }
 
 #mainWindowTabs {
@@ -459,7 +470,7 @@ a.propButton img {
     border: 1px solid var(--color-border-default);
     border-radius: 3px;
     min-width: 160px;
-    padding: 4px 4px 4px 25px;
+    padding: 2px 12px 2px 25px;
 }
 
 #torrentsFilterRegexBox {
@@ -507,8 +518,11 @@ a.propButton img {
     background-position: left;
     background-repeat: no-repeat;
     background-size: 1.5em;
+    margin-top: -1px;
+    padding-bottom: 1px;
     padding-left: 2em;
-    width: 250px;
+    padding-top: 1px;
+    width: 190px;
 }
 
 /* Tri-state checkbox */
@@ -534,8 +548,7 @@ label.partial {
 
 fieldset.settings {
     border: 1px solid var(--color-border-default);
-    border-radius: 8px;
-    padding: 4px 4px 4px 10px;
+    padding: 4px 4px 6px 6px;
 }
 
 fieldset.settings legend {
@@ -558,7 +571,6 @@ div.formRow {
 }
 
 .filterTitle {
-    box-sizing: border-box;
     cursor: pointer;
     display: flex;
     font-weight: bold;
@@ -572,7 +584,6 @@ div.formRow {
 }
 
 .filterTitle img {
-    box-sizing: border-box;
     height: 16px;
     padding: 2px;
     width: 16px;
@@ -587,10 +598,6 @@ div.formRow {
     transform: rotate(-90deg);
 }
 
-ul.filterList * {
-    box-sizing: border-box;
-}
-
 ul.filterList {
     margin: 0;
     padding-left: 0;
@@ -602,6 +609,7 @@ ul.filterList .selectedFilter > .link :is(img, button) {
 }
 
 ul.filterList span.link {
+    align-items: center;
     cursor: pointer;
     display: flex;
     gap: 5px;
@@ -661,6 +669,11 @@ td.generalLabel {
     width: 1px;
 }
 
+#tristate_cb {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
 .filesTableCollapseIcon {
     cursor: pointer;
     height: 15px;
@@ -707,8 +720,8 @@ td.generalLabel {
 }
 
 .select-watched-folder-editable {
-    border: solid grey 1px;
-    height: 20px;
+    border: 1px solid var(--color-border-default);
+    height: 22px;
     position: relative;
     width: 160px;
 }
@@ -717,16 +730,16 @@ td.generalLabel {
     border: none;
     bottom: 0px;
     left: 0px;
-    margin: 0;
+    padding: 0;
     position: absolute;
     top: 0px;
-    width: 160px;
+    width: 158px;
 }
 
 .select-watched-folder-editable input {
     border: none;
     left: 0px;
-    padding: 1px;
+    padding: 0;
     position: absolute;
     top: 0px;
     width: 140px;
@@ -747,6 +760,7 @@ td.generalLabel {
 
 .combo_priority {
     font-size: 1em;
+    padding: 2px 6px;
 }
 
 td.statusBarSeparator {
@@ -754,14 +768,10 @@ td.statusBarSeparator {
     background-position: center 1px;
     background-repeat: no-repeat;
     background-size: 2px 18px;
-    width: 22px;
+    width: 24px;
 }
 
 /* Statistics window */
-#statisticspage * {
-    box-sizing: border-box;
-}
-
 #statisticsContent {
     & table {
         background-color: var(--color-background-default);
@@ -829,11 +839,6 @@ td.statusBarSeparator {
 }
 
 /* Modals */
-
-.modalDialog * {
-    box-sizing: border-box;
-}
-
 .modalDialog .mochaContent.pad {
     display: flex !important; /* override for default mocha inline style */
     flex-direction: column;

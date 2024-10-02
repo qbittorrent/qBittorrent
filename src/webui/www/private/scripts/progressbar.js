@@ -58,6 +58,7 @@ window.qBittorrent.ProgressBar ??= (() => {
                 "class": "progressbar_wrapper",
                 "styles": {
                     "border": "1px solid var(--color-border-default)",
+                    "box-sizing": "content-box",
                     "width": vals.width,
                     "height": vals.height,
                     "position": "relative",
@@ -73,6 +74,7 @@ window.qBittorrent.ProgressBar ??= (() => {
                     "width": vals.width,
                     "height": vals.height,
                     "background": vals.darkbg,
+                    "box-sizing": "content-box",
                     "color": vals.darkfg,
                     "position": "absolute",
                     "text-align": "center",
@@ -88,6 +90,7 @@ window.qBittorrent.ProgressBar ??= (() => {
                     "width": vals.width,
                     "height": vals.height,
                     "background": vals.lightbg,
+                    "box-sizing": "content-box",
                     "color": vals.lightfg,
                     "position": "absolute",
                     "text-align": "center",

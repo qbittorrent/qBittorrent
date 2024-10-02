@@ -345,12 +345,12 @@
         <div class="formRow">
             <input type="checkbox" id="autorunOnTorrentAddedCheckbox" onclick="qBittorrent.Preferences.updateAutoRunOnTorrentAdded();">
             <label id="autorunOnTorrentAddedLabel" for="autorunOnTorrentAddedCheckbox">QBT_TR(Run on torrent added:)QBT_TR[CONTEXT=OptionsDialog]</label>
-            <input type="text" id="autorunOnTorrentAddedProgram" aria-labelledby="autorunOnTorrentAddedLabel" style="width: 400px;">
+            <input type="text" id="autorunOnTorrentAddedProgram" aria-labelledby="autorunOnTorrentAddedLabel" style="width: 100%;">
         </div>
         <div class="formRow">
             <input type="checkbox" id="autorun_checkbox" onclick="qBittorrent.Preferences.updateAutoRun();">
             <label id="autorunLabel" for="autorun_checkbox">QBT_TR(Run on torrent finished:)QBT_TR[CONTEXT=OptionsDialog]</label>
-            <input type="text" id="autorunProg_txt" aria-labelledby="autorunLabel" style="width: 400px;">
+            <input type="text" id="autorunProg_txt" aria-labelledby="autorunLabel" style="width: 100%;">
         </div>
         <div style="font-style: italic;">QBT_TR(Supported parameters (case sensitive):)QBT_TR[CONTEXT=OptionsDialog]
             <ul>
@@ -385,8 +385,8 @@
         <legend>QBT_TR(Listening Port)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <div class="formRow">
             <label for="port_value">QBT_TR(Port used for incoming connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
-            <input type="text" id="port_value" style="width: 4em;" title="QBT_TR(Set to 0 to let your system pick an unused port)QBT_TR[CONTEXT=OptionsDialog]">
-            <button type="button" style="margin-left: 1em;" onclick="qBittorrent.Preferences.generateRandomPort();">QBT_TR(Random)QBT_TR[CONTEXT=OptionsDialog]</button>
+            <input type="text" id="port_value" style="width: 6em;" title="QBT_TR(Set to 0 to let your system pick an unused port)QBT_TR[CONTEXT=OptionsDialog]">
+            <button type="button" onclick="qBittorrent.Preferences.generateRandomPort();">QBT_TR(Random)QBT_TR[CONTEXT=OptionsDialog]</button>
         </div>
         <div class="formRow">
             <input type="checkbox" id="upnp_checkbox">
@@ -403,28 +403,28 @@
                         <input type="checkbox" id="max_connec_checkbox" onclick="qBittorrent.Preferences.updateMaxConnecEnabled();">
                         <label id="maxConnectionsLabel" for="max_connec_checkbox">QBT_TR(Global maximum number of connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
-                    <td><input type="text" id="max_connec_value" aria-labelledby="maxConnectionsLabel" style="width: 4em;"></td>
+                    <td><input type="text" id="max_connec_value" aria-labelledby="maxConnectionsLabel" style="width: 6em;"></td>
                 </tr>
                 <tr>
                     <td>
                         <input type="checkbox" id="max_connec_per_torrent_checkbox" onclick="qBittorrent.Preferences.updateMaxConnecPerTorrentEnabled();">
                         <label id="maxConnectionsPerTorrentLabel" for="max_connec_per_torrent_checkbox">QBT_TR(Maximum number of connections per torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
-                    <td><input type="text" id="max_connec_per_torrent_value" aria-labelledby="maxConnectionsPerTorrentLabel" style="width: 4em;"></td>
+                    <td><input type="text" id="max_connec_per_torrent_value" aria-labelledby="maxConnectionsPerTorrentLabel" style="width: 6em;"></td>
                 </tr>
                 <tr>
                     <td>
                         <input type="checkbox" id="max_uploads_checkbox" onclick="qBittorrent.Preferences.updateMaxUploadsEnabled();">
                         <label id="maxUploadsLabel" for="max_uploads_checkbox">QBT_TR(Global maximum number of upload slots:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
-                    <td><input type="text" id="max_uploads_value" aria-labelledby="maxUploadsLabel" style="width: 4em;"></td>
+                    <td><input type="text" id="max_uploads_value" aria-labelledby="maxUploadsLabel" style="width: 6em;"></td>
                 </tr>
                 <tr>
                     <td>
                         <input type="checkbox" id="max_uploads_per_torrent_checkbox" onclick="qBittorrent.Preferences.updateMaxUploadsPerTorrentEnabled();">
                         <label id="maxUploadsPerTorrentLabel" for="max_uploads_per_torrent_checkbox">QBT_TR(Maximum number of upload slots per torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
-                    <td><input type="text" id="max_uploads_per_torrent_value" aria-labelledby="maxUploadsPerTorrentLabel" style="width: 4em;"></td>
+                    <td><input type="text" id="max_uploads_per_torrent_value" aria-labelledby="maxUploadsPerTorrentLabel" style="width: 6em;"></td>
                 </tr>
             </tbody>
         </table>
@@ -448,7 +448,7 @@
                         <label for="i2pPort">QBT_TR(Port:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="number" id="i2pPort" min="0" max="65535" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 5em;">
+                        <input type="number" id="i2pPort" min="0" max="65535" onchange="qBittorrent.Preferences.numberInputLimiter(this);" style="width: 6em;">
                     </td>
                 </tr>
             </tbody>
@@ -485,7 +485,7 @@
                         <label for="peer_proxy_port_value">QBT_TR(Port:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="peer_proxy_port_value" style="width: 4em;">
+                        <input type="text" id="peer_proxy_port_value" style="width: 6em;">
                     </td>
                 </tr>
             </tbody>
@@ -575,14 +575,14 @@
             <tbody>
                 <tr>
                     <td rowspan="2">
-                        <img src="images/slow_off.svg" style="height: 1.5em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
+                        <img src="images/slow_off.svg" style="height: 2.5em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
                     </td>
                     <td><label for="up_limit_value">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                    <td><input type="number" id="up_limit_value" style="width: 4em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
+                    <td><input type="number" id="up_limit_value" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
                 </tr>
                 <tr>
                     <td><label for="dl_limit_value">QBT_TR(Download:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                    <td><input type="number" id="dl_limit_value" style="width: 4em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
+                    <td><input type="number" id="dl_limit_value" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
                 </tr>
             </tbody>
         </table>
@@ -595,14 +595,14 @@
             <tbody>
                 <tr>
                     <td rowspan="2">
-                        <img src="images/slow.svg" style="height: 1.5em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
+                        <img src="images/slow.svg" style="height: 2.5em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
                     </td>
                     <td><label for="alt_up_limit_value">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                    <td><input type="number" id="alt_up_limit_value" style="width: 4em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
+                    <td><input type="number" id="alt_up_limit_value" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
                 </tr>
                 <tr>
                     <td><label for="alt_dl_limit_value">QBT_TR(Download:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                    <td><input type="number" id="alt_dl_limit_value" style="width: 4em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
+                    <td><input type="number" id="alt_dl_limit_value" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
                 </tr>
             </tbody>
         </table>
@@ -615,9 +615,9 @@
             </legend>
             <div class="formRow">
                 <label id="scheduleFromHourLabel">QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                <input type="text" id="schedule_from_hour" aria-labelledby="scheduleFromHourLabel" style="width: 1.5em;">:<input type="text" id="schedule_from_min" aria-labelledby="scheduleFromHourLabel" style="width: 1.5em;">
+                <input type="text" id="schedule_from_hour" aria-labelledby="scheduleFromHourLabel" style="width: 3.6em;">:<input type="text" id="schedule_from_min" aria-labelledby="scheduleFromHourLabel" style="width: 3.6em;">
                 <label id="scheduleToHourLabel">QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                <input type="text" id="schedule_to_hour" aria-labelledby="scheduleToHourLabel" style="width: 1.5em;">:<input type="text" id="schedule_to_min" aria-labelledby="scheduleToHourLabel" style="width: 1.5em;">
+                <input type="text" id="schedule_to_hour" aria-labelledby="scheduleToHourLabel" style="width: 3.6em;">:<input type="text" id="schedule_to_min" aria-labelledby="scheduleToHourLabel" style="width: 3.6em;">
             </div>
             <div class="formRow">
                 <label for="schedule_freq_select">QBT_TR(When:)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -685,7 +685,7 @@
 
     <div class="formRow">
         <label for="maxActiveCheckingTorrents">QBT_TR(Max active checking torrents:)QBT_TR[CONTEXT=OptionsDialog]</label>
-        <input type="number" id="maxActiveCheckingTorrents" style="width: 4em;" min="-1">
+        <input type="number" id="maxActiveCheckingTorrents" style="width: 6em;" min="-1">
     </div>
 
     <fieldset class="settings">
@@ -700,7 +700,7 @@
                         <label for="max_active_dl_value">QBT_TR(Maximum active downloads:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="max_active_dl_value" style="width: 4em;">
+                        <input type="text" id="max_active_dl_value" style="width: 6em;">
                     </td>
                 </tr>
                 <tr>
@@ -708,7 +708,7 @@
                         <label for="max_active_up_value">QBT_TR(Maximum active uploads:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="max_active_up_value" style="width: 4em;">
+                        <input type="text" id="max_active_up_value" style="width: 6em;">
                     </td>
                 </tr>
                 <tr>
@@ -716,7 +716,7 @@
                         <label for="max_active_to_value">QBT_TR(Maximum active torrents:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="max_active_to_value" style="width: 4em;">
+                        <input type="text" id="max_active_to_value" style="width: 6em;">
                     </td>
                 </tr>
             </tbody>
@@ -733,7 +733,7 @@
                             <label for="dl_rate_threshold">QBT_TR(Download rate threshold:)QBT_TR[CONTEXT=OptionsDialog]</label>
                         </td>
                         <td>
-                            <input type="text" id="dl_rate_threshold" style="width: 4em;">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]
+                            <input type="text" id="dl_rate_threshold" style="width: 6em;">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]
                         </td>
                     </tr>
                     <tr>
@@ -741,7 +741,7 @@
                             <label for="ul_rate_threshold">QBT_TR(Upload rate threshold:)QBT_TR[CONTEXT=OptionsDialog]</label>
                         </td>
                         <td>
-                            <input type="text" id="ul_rate_threshold" style="width: 4em;">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]
+                            <input type="text" id="ul_rate_threshold" style="width: 6em;">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]
                         </td>
                     </tr>
                     <tr>
@@ -749,7 +749,7 @@
                             <label for="torrent_inactive_timer">QBT_TR(Torrent inactivity timer:)QBT_TR[CONTEXT=OptionsDialog]</label>
                         </td>
                         <td>
-                            <input type="text" id="torrent_inactive_timer" style="width: 4em;">&nbsp;&nbsp;QBT_TR(seconds)QBT_TR[CONTEXT=OptionsDialog]
+                            <input type="text" id="torrent_inactive_timer" style="width: 6em;">&nbsp;&nbsp;QBT_TR(seconds)QBT_TR[CONTEXT=OptionsDialog]
                         </td>
                     </tr>
                 </tbody>
@@ -767,7 +767,7 @@
                         <label id="maxRatioLabel" for="max_ratio_checkbox">QBT_TR(When ratio reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="max_ratio_value" style="width: 4em;" aria-labelledby="maxRatioLabel">
+                        <input type="text" id="max_ratio_value" style="width: 6em;" aria-labelledby="maxRatioLabel">
                     </td>
                 </tr>
                 <tr>
@@ -776,7 +776,7 @@
                         <label id="maxSeedingTimeLabel" for="max_seeding_time_checkbox">QBT_TR(When total seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="max_seeding_time_value" style="width: 4em;" aria-labelledby="maxSeedingTimeLabel">QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
+                        <input type="text" id="max_seeding_time_value" style="width: 6em;" aria-labelledby="maxSeedingTimeLabel">QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
                     </td>
                 </tr>
                 <tr>
@@ -785,7 +785,7 @@
                         <label id="maxInactiveSeedingTimeLabel" for="max_inactive_seeding_time_checkbox">QBT_TR(When inactive seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="max_inactive_seeding_time_value" style="width: 4em;" aria-labelledby="maxInactiveSeedingTimeLabel">QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
+                        <input type="text" id="max_inactive_seeding_time_value" style="width: 6em;" aria-labelledby="maxInactiveSeedingTimeLabel">QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
                     </td>
                 </tr>
                 <tr>
@@ -826,7 +826,7 @@
                         <label for="feed_refresh_interval">QBT_TR(Feeds refresh interval:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="feed_refresh_interval" style="width: 4em;">&nbsp;&nbsp;QBT_TR( min)QBT_TR[CONTEXT=OptionsDialog]
+                        <input type="text" id="feed_refresh_interval" style="width: 6em;">&nbsp;&nbsp;QBT_TR( min)QBT_TR[CONTEXT=OptionsDialog]
                     </td>
                 </tr>
                 <tr>
@@ -834,7 +834,7 @@
                         <label for="feedFetchDelay">QBT_TR(Same host request delay:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="feedFetchDelay" style="width: 4em;">&nbsp;&nbsp;QBT_TR( sec)QBT_TR[CONTEXT=OptionsDialog]
+                        <input type="text" id="feedFetchDelay" style="width: 6em;">&nbsp;&nbsp;QBT_TR( sec)QBT_TR[CONTEXT=OptionsDialog]
                     </td>
                 </tr>
                 <tr>
@@ -842,7 +842,7 @@
                         <label for="maximum_article_number">QBT_TR(Maximum number of articles per feed:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="maximum_article_number" style="width: 4em;">
+                        <input type="text" id="maximum_article_number" style="width: 6em;">
                     </td>
                 </tr>
             </tbody>
@@ -882,7 +882,7 @@
                     <td>
                         <input type="text" id="webui_address_value">
                         <label for="webui_port_value" style="margin-left: 10px;">QBT_TR(Port:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                        <input type="text" id="webui_port_value" style="width: 4em;">
+                        <input type="text" id="webui_port_value" style="width: 6em;">
                     </td>
                 </tr>
             </tbody>
@@ -956,11 +956,11 @@
                 <tbody>
                     <tr>
                         <td><label for="webUIMaxAuthFailCountInput">QBT_TR(Ban client after consecutive failures:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                        <td><input type="number" id="webUIMaxAuthFailCountInput" style="width: 4em;" min="0"></td>
+                        <td><input type="number" id="webUIMaxAuthFailCountInput" style="width: 6em;" min="0"></td>
                     </tr>
                     <tr>
                         <td style="text-align: right;"><label for="webUIBanDurationInput">QBT_TR(ban for:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                        <td><input type="number" id="webUIBanDurationInput" style="width: 4em;" min="1">QBT_TR(seconds)QBT_TR[CONTEXT=OptionsDialog]</td>
+                        <td><input type="number" id="webUIBanDurationInput" style="width: 6em;" min="1">QBT_TR(seconds)QBT_TR[CONTEXT=OptionsDialog]</td>
                     </tr>
                 </tbody>
             </table>
@@ -968,7 +968,7 @@
                 <tbody>
                     <tr>
                         <td><label for="webUISessionTimeoutInput">QBT_TR(Session timeout:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                        <td><input type="number" id="webUISessionTimeoutInput" style="width: 4em;" min="0">&nbsp;&nbsp;QBT_TR(seconds)QBT_TR[CONTEXT=OptionsDialog]</td>
+                        <td><input type="number" id="webUISessionTimeoutInput" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(seconds)QBT_TR[CONTEXT=OptionsDialog]</td>
                     </tr>
                 </tbody>
             </table>

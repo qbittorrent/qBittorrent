@@ -111,7 +111,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
             }
         },
         offsets: {
-            x: -15,
+            x: 0,
             y: 2
         },
         onShow: function() {
@@ -150,7 +150,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: 500,
-            height: 250,
+            height: 260,
             onCloseComplete: function() {
                 updateData();
             }
