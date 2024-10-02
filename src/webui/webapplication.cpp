@@ -495,6 +495,13 @@ void WebApplication::configure()
     }
 
     m_isReverseProxySupportEnabled = pref->isWebUIReverseProxySupportEnabled();
+    const QString newBasePath = m_isReverseProxySupportEnabled ? pref->getWebUIBasePath() : u"/"_s;
+    if (m_basePath != newBasePath)
+    {
+        m_cachedFiles.clear();
+        m_basePath = newBasePath;
+    }
+
     if (m_isReverseProxySupportEnabled)
     {
         const QStringList proxyList = pref->getWebUITrustedReverseProxiesList().split(u';', Qt::SkipEmptyParts);
@@ -576,20 +583,25 @@ void WebApplication::sendFile(const Path &path)
 
     QByteArray data = readResult.value();
     const QMimeType mimeType = QMimeDatabase().mimeTypeForFileNameAndData(path.data(), data);
-    const bool isTranslatable = !m_isAltUIUsed && mimeType.inherits(u"text/plain"_s);
-
-    if (isTranslatable)
+    const bool isTextFile = mimeType.inherits(u"text/plain"_s);
+    if (isTextFile)
     {
         auto dataStr = QString::fromUtf8(data);
-        // Translate the file
-        translateDocument(dataStr);
+        dataStr.replace(u"${BASE_PATH}"_s, m_basePath);
 
-        // Add the language options
-        if (path == (m_rootFolder / Path(PRIVATE_FOLDER) / Path(u"views/preferences.html"_s)))
-            dataStr.replace(u"${LANGUAGE_OPTIONS}"_s, createLanguagesOptionsHtml());
+        const bool isTranslatable = !m_isAltUIUsed;
+        if (isTranslatable)
+        {
+            // Translate the file
+            translateDocument(dataStr);
+
+            // Add the language options
+            if (path == (m_rootFolder / Path(PRIVATE_FOLDER) / Path(u"views/preferences.html"_s)))
+                dataStr.replace(u"${LANGUAGE_OPTIONS}"_s, createLanguagesOptionsHtml());
+        }
 
         data = dataStr.toUtf8();
-        m_cachedFiles[path] = {data, mimeType.name(), lastModified}; // caching translated file
+        m_cachedFiles[path] = {data, mimeType.name(), lastModified};
     }
 
     print(data, mimeType.name());

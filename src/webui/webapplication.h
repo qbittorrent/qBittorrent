@@ -225,6 +225,7 @@ private:
     };
     bool m_isAltUIUsed = false;
     Path m_rootFolder;
+    QString m_basePath;
 
     struct CachedFile
     {
