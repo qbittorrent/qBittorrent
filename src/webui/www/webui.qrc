@@ -423,6 +423,7 @@
         <file>private/uploadlimit.html</file>
         <file>private/views/about.html</file>
         <file>private/views/aboutToolbar.html</file>
+        <file>private/views/confirmAutoTMM.html</file>
         <file>private/views/confirmdeletion.html</file>
         <file>private/views/confirmRecheck.html</file>
         <file>private/views/cookies.html</file>
