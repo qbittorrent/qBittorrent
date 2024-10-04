@@ -529,7 +529,7 @@ ul.filterList {
 
 ul.filterList a,
 ul.filterList span.link {
-    color: var(--color-text-default);
+    color: inherit;
     cursor: pointer;
     display: block;
     overflow: hidden;
