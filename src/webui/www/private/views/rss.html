@@ -784,11 +784,11 @@
             }
 
             // find selected row
-            let rowId, prevUnreadCount;
+            let prevUnreadCount;
             for (const row of rssFeedTable.getRowValues()) {
                 if (row.full_data.dataPath === path) {
-                    rowId = row.full_data.rowId;
                     prevUnreadCount = row.full_data.unread;
+                    break;
                 }
             }
 
