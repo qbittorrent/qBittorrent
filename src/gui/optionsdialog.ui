@@ -1309,15 +1309,15 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                  <item row="2" column="1">
                   <widget class="FileSystemPathLineEdit" name="textExportDir" native="true"/>
                  </item>
-                 <item row="3" column="1">
-                  <widget class="FileSystemPathLineEdit" name="textExportDirFin" native="true"/>
-                 </item>
                  <item row="3" column="0">
                   <widget class="QCheckBox" name="checkExportDirFin">
                    <property name="text">
                     <string>Copy .torrent files for finished downloads to:</string>
                    </property>
                   </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="FileSystemPathLineEdit" name="textExportDirFin" native="true"/>
                  </item>
                 </layout>
                </item>
@@ -3920,25 +3920,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
  </customwidgets>
  <tabstops>
   <tabstop>tabOption</tabstop>
+  <tabstop>tabSelection</tabstop>
   <tabstop>comboI18n</tabstop>
   <tabstop>checkUseCustomTheme</tabstop>
   <tabstop>customThemeFilePath</tabstop>
-  <tabstop>checkAddStopped</tabstop>
-  <tabstop>stopConditionComboBox</tabstop>
-  <tabstop>spinPort</tabstop>
-  <tabstop>checkUPnP</tabstop>
-  <tabstop>textWebUIUsername</tabstop>
-  <tabstop>checkWebUI</tabstop>
-  <tabstop>textSavePath</tabstop>
-  <tabstop>scrollArea_7</tabstop>
-  <tabstop>scrollArea_2</tabstop>
-  <tabstop>spinWebUIPort</tabstop>
-  <tabstop>textWebUIPassword</tabstop>
-  <tabstop>buttonBox</tabstop>
-  <tabstop>tabSelection</tabstop>
-  <tabstop>scrollArea</tabstop>
+  <tabstop>checkUseSystemIcon</tabstop>
+  <tabstop>buttonCustomizeUITheme</tabstop>
   <tabstop>confirmDeletion</tabstop>
   <tabstop>checkAltRowColors</tabstop>
+  <tabstop>checkHideZero</tabstop>
+  <tabstop>comboHideZero</tabstop>
   <tabstop>actionTorrentDlOnDblClBox</tabstop>
   <tabstop>actionTorrentFnOnDblClBox</tabstop>
   <tabstop>checkBoxHideZeroStatusFilters</tabstop>
@@ -3946,48 +3937,89 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>checkShowSplash</tabstop>
   <tabstop>windowStateComboBox</tabstop>
   <tabstop>checkProgramExitConfirm</tabstop>
+  <tabstop>checkProgramAutoExitConfirm</tabstop>
   <tabstop>checkShowSystray</tabstop>
   <tabstop>checkMinimizeToSysTray</tabstop>
   <tabstop>checkCloseToSystray</tabstop>
+  <tabstop>comboTrayIcon</tabstop>
   <tabstop>checkAssociateTorrents</tabstop>
   <tabstop>checkAssociateMagnetLinks</tabstop>
+  <tabstop>checkProgramUpdates</tabstop>
   <tabstop>checkPreventFromSuspendWhenDownloading</tabstop>
   <tabstop>checkPreventFromSuspendWhenSeeding</tabstop>
+  <tabstop>checkFileLog</tabstop>
+  <tabstop>textFileLogPath</tabstop>
+  <tabstop>checkFileLogBackup</tabstop>
+  <tabstop>spinFileLogSize</tabstop>
+  <tabstop>checkFileLogDelete</tabstop>
+  <tabstop>spinFileLogAge</tabstop>
+  <tabstop>comboFileLogAgeType</tabstop>
+  <tabstop>checkBoxPerformanceWarning</tabstop>
+  <tabstop>scrollArea</tabstop>
   <tabstop>checkAdditionDialog</tabstop>
   <tabstop>checkAdditionDialogFront</tabstop>
+  <tabstop>contentLayoutComboBox</tabstop>
+  <tabstop>checkAddToQueueTop</tabstop>
+  <tabstop>checkAddStopped</tabstop>
+  <tabstop>stopConditionComboBox</tabstop>
+  <tabstop>checkMergeTrackers</tabstop>
+  <tabstop>checkConfirmMergeTrackers</tabstop>
+  <tabstop>deleteTorrentBox</tabstop>
+  <tabstop>deleteCancelledTorrentBox</tabstop>
   <tabstop>checkPreallocateAll</tabstop>
-  <tabstop>checkUseDownloadPath</tabstop>
-  <tabstop>textDownloadPath</tabstop>
   <tabstop>checkAppendqB</tabstop>
   <tabstop>checkUnwantedFolder</tabstop>
-  <tabstop>scanFoldersView</tabstop>
-  <tabstop>addWatchedFolderButton</tabstop>
-  <tabstop>editWatchedFolderButton</tabstop>
-  <tabstop>removeWatchedFolderButton</tabstop>
+  <tabstop>checkRecursiveDownload</tabstop>
+  <tabstop>comboSavingMode</tabstop>
+  <tabstop>comboTorrentCategoryChanged</tabstop>
+  <tabstop>comboCategoryDefaultPathChanged</tabstop>
+  <tabstop>comboCategoryChanged</tabstop>
+  <tabstop>checkUseSubcategories</tabstop>
+  <tabstop>checkUseCategoryPaths</tabstop>
+  <tabstop>textSavePath</tabstop>
+  <tabstop>checkUseDownloadPath</tabstop>
+  <tabstop>textDownloadPath</tabstop>
   <tabstop>checkExportDir</tabstop>
   <tabstop>textExportDir</tabstop>
   <tabstop>checkExportDirFin</tabstop>
   <tabstop>textExportDirFin</tabstop>
+  <tabstop>scanFoldersView</tabstop>
+  <tabstop>addWatchedFolderButton</tabstop>
+  <tabstop>editWatchedFolderButton</tabstop>
+  <tabstop>removeWatchedFolderButton</tabstop>
+  <tabstop>groupExcludedFileNames</tabstop>
+  <tabstop>textExcludedFileNames</tabstop>
   <tabstop>groupMailNotification</tabstop>
+  <tabstop>senderEmailTxt</tabstop>
   <tabstop>lineEditDestEmail</tabstop>
   <tabstop>lineEditSmtpServer</tabstop>
+  <tabstop>checkSmtpSSL</tabstop>
   <tabstop>groupMailNotifAuth</tabstop>
   <tabstop>mailNotifUsername</tabstop>
   <tabstop>mailNotifPassword</tabstop>
   <tabstop>sendTestEmail</tabstop>
-  <tabstop>checkSmtpSSL</tabstop>
+  <tabstop>groupBoxRunOnAdded</tabstop>
   <tabstop>lineEditRunOnAdded</tabstop>
+  <tabstop>groupBoxRunOnFinished</tabstop>
   <tabstop>lineEditRunOnFinished</tabstop>
-  <tabstop>scrollArea_3</tabstop>
+  <tabstop>autoRunConsole</tabstop>
+  <tabstop>scrollArea_2</tabstop>
+  <tabstop>comboProtocol</tabstop>
+  <tabstop>spinPort</tabstop>
   <tabstop>randomButton</tabstop>
+  <tabstop>checkUPnP</tabstop>
   <tabstop>checkMaxConnections</tabstop>
   <tabstop>spinMaxConnec</tabstop>
   <tabstop>checkMaxConnectionsPerTorrent</tabstop>
   <tabstop>spinMaxConnecPerTorrent</tabstop>
-  <tabstop>checkMaxUploadsPerTorrent</tabstop>
-  <tabstop>spinMaxUploadsPerTorrent</tabstop>
   <tabstop>checkMaxUploads</tabstop>
   <tabstop>spinMaxUploads</tabstop>
+  <tabstop>checkMaxUploadsPerTorrent</tabstop>
+  <tabstop>spinMaxUploadsPerTorrent</tabstop>
+  <tabstop>groupI2P</tabstop>
+  <tabstop>textI2PHost</tabstop>
+  <tabstop>spinI2PPort</tabstop>
+  <tabstop>checkI2PMixed</tabstop>
   <tabstop>comboProxyType</tabstop>
   <tabstop>textProxyIP</tabstop>
   <tabstop>spinProxyPort</tabstop>
@@ -4002,39 +4034,87 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>checkIPFilter</tabstop>
   <tabstop>textFilterPath</tabstop>
   <tabstop>IpFilterRefreshBtn</tabstop>
+  <tabstop>banListButton</tabstop>
   <tabstop>checkIpFilterTrackers</tabstop>
-  <tabstop>scrollArea_9</tabstop>
+  <tabstop>scrollArea_3</tabstop>
   <tabstop>spinUploadLimit</tabstop>
   <tabstop>spinDownloadLimit</tabstop>
-  <tabstop>groupBoxSchedule</tabstop>
-  <tabstop>timeEditScheduleTo</tabstop>
-  <tabstop>timeEditScheduleFrom</tabstop>
-  <tabstop>comboBoxScheduleDays</tabstop>
   <tabstop>spinUploadLimitAlt</tabstop>
   <tabstop>spinDownloadLimitAlt</tabstop>
-  <tabstop>checkLimitLocalPeerRate</tabstop>
+  <tabstop>groupBoxSchedule</tabstop>
+  <tabstop>timeEditScheduleFrom</tabstop>
+  <tabstop>timeEditScheduleTo</tabstop>
+  <tabstop>comboBoxScheduleDays</tabstop>
+  <tabstop>checkLimituTPConnections</tabstop>
   <tabstop>checkLimitTransportOverhead</tabstop>
-  <tabstop>scrollArea_4</tabstop>
+  <tabstop>checkLimitLocalPeerRate</tabstop>
+  <tabstop>scrollArea_9</tabstop>
   <tabstop>checkDHT</tabstop>
   <tabstop>checkPeX</tabstop>
   <tabstop>checkLSD</tabstop>
   <tabstop>comboEncryption</tabstop>
   <tabstop>checkAnonymousMode</tabstop>
+  <tabstop>spinBoxMaxActiveCheckingTorrents</tabstop>
   <tabstop>checkEnableQueueing</tabstop>
   <tabstop>spinMaxActiveDownloads</tabstop>
   <tabstop>spinMaxActiveUploads</tabstop>
   <tabstop>spinMaxActiveTorrents</tabstop>
+  <tabstop>checkIgnoreSlowTorrentsForQueueing</tabstop>
+  <tabstop>spinDownloadRateForSlowTorrents</tabstop>
+  <tabstop>spinUploadRateForSlowTorrents</tabstop>
+  <tabstop>spinSlowTorrentsInactivityTimer</tabstop>
+  <tabstop>checkMaxRatio</tabstop>
+  <tabstop>spinMaxRatio</tabstop>
+  <tabstop>checkMaxSeedingMinutes</tabstop>
+  <tabstop>spinMaxSeedingMinutes</tabstop>
+  <tabstop>checkMaxInactiveSeedingMinutes</tabstop>
+  <tabstop>spinMaxInactiveSeedingMinutes</tabstop>
+  <tabstop>comboRatioLimitAct</tabstop>
+  <tabstop>checkEnableAddTrackers</tabstop>
+  <tabstop>textTrackers</tabstop>
+  <tabstop>scrollArea_4</tabstop>
+  <tabstop>checkRSSEnable</tabstop>
+  <tabstop>spinRSSRefreshInterval</tabstop>
+  <tabstop>spinRSSFetchDelay</tabstop>
+  <tabstop>spinRSSMaxArticlesPerFeed</tabstop>
+  <tabstop>checkRSSAutoDownloaderEnable</tabstop>
+  <tabstop>btnEditRules</tabstop>
+  <tabstop>checkSmartFilterDownloadRepacks</tabstop>
+  <tabstop>textSmartEpisodeFilters</tabstop>
+  <tabstop>scrollArea_5</tabstop>
+  <tabstop>checkWebUI</tabstop>
+  <tabstop>textWebUIAddress</tabstop>
+  <tabstop>spinWebUIPort</tabstop>
   <tabstop>checkWebUIUPnP</tabstop>
   <tabstop>checkWebUIHttps</tabstop>
+  <tabstop>textWebUIHttpsCert</tabstop>
+  <tabstop>textWebUIHttpsKey</tabstop>
+  <tabstop>textWebUIUsername</tabstop>
+  <tabstop>textWebUIPassword</tabstop>
   <tabstop>checkBypassLocalAuth</tabstop>
   <tabstop>checkBypassAuthSubnetWhitelist</tabstop>
   <tabstop>IPSubnetWhitelistButton</tabstop>
+  <tabstop>spinBanCounter</tabstop>
+  <tabstop>spinBanDuration</tabstop>
+  <tabstop>spinSessionTimeout</tabstop>
+  <tabstop>groupAltWebUI</tabstop>
+  <tabstop>textWebUIRootFolder</tabstop>
+  <tabstop>checkClickjacking</tabstop>
+  <tabstop>checkCSRFProtection</tabstop>
+  <tabstop>checkSecureCookie</tabstop>
+  <tabstop>groupHostHeaderValidation</tabstop>
+  <tabstop>textServerDomains</tabstop>
+  <tabstop>groupWebUIAddCustomHTTPHeaders</tabstop>
+  <tabstop>textWebUICustomHTTPHeaders</tabstop>
+  <tabstop>groupEnableReverseProxySupport</tabstop>
+  <tabstop>textTrustedReverseProxiesList</tabstop>
   <tabstop>checkDynDNS</tabstop>
   <tabstop>comboDNSService</tabstop>
   <tabstop>registerDNSBtn</tabstop>
   <tabstop>domainNameTxt</tabstop>
   <tabstop>DNSUsernameTxt</tabstop>
   <tabstop>DNSPasswordTxt</tabstop>
+  <tabstop>scrollArea_7</tabstop>
  </tabstops>
  <resources/>
  <connections/>
