@@ -37,7 +37,7 @@
       <item row="0" column="2">
        <widget class="QSlider" name="sliderUploadLimit">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
        </widget>
       </item>
@@ -53,7 +53,7 @@
          <number>2000000</number>
         </property>
         <property name="stepType">
-         <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+         <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
         </property>
        </widget>
       </item>
@@ -67,7 +67,7 @@
       <item row="1" column="2">
        <widget class="QSlider" name="sliderDownloadLimit">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
        </widget>
       </item>
@@ -83,7 +83,7 @@
          <number>2000000</number>
         </property>
         <property name="stepType">
-         <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+         <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
         </property>
        </widget>
       </item>
@@ -113,7 +113,7 @@
       <item row="0" column="2">
        <widget class="QSlider" name="sliderAltUploadLimit">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
        </widget>
       </item>
@@ -129,7 +129,7 @@
          <number>2000000</number>
         </property>
         <property name="stepType">
-         <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+         <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
         </property>
        </widget>
       </item>
@@ -143,7 +143,7 @@
       <item row="1" column="2">
        <widget class="QSlider" name="sliderAltDownloadLimit">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
        </widget>
       </item>
@@ -159,7 +159,7 @@
          <number>2000000</number>
         </property>
         <property name="stepType">
-         <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+         <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
         </property>
        </widget>
       </item>
@@ -169,7 +169,7 @@
    <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -182,7 +182,7 @@
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
      </property>
     </widget>
    </item>

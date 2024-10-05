@@ -17,32 +17,32 @@
    <item>
     <widget class="QSplitter" name="hsplitter">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <property name="childrenCollapsible">
       <bool>false</bool>
      </property>
      <widget class="QListWidget" name="tabSelection">
       <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
+       <enum>Qt::LayoutDirection::LeftToRight</enum>
       </property>
       <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
+       <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
       </property>
       <property name="movement">
-       <enum>QListView::Static</enum>
+       <enum>QListView::Movement::Static</enum>
       </property>
       <property name="flow">
-       <enum>QListView::TopToBottom</enum>
+       <enum>QListView::Flow::TopToBottom</enum>
       </property>
       <property name="isWrapping" stdset="0">
        <bool>false</bool>
       </property>
       <property name="resizeMode">
-       <enum>QListView::Adjust</enum>
+       <enum>QListView::ResizeMode::Adjust</enum>
       </property>
       <property name="viewMode">
-       <enum>QListView::IconMode</enum>
+       <enum>QListView::ViewMode::IconMode</enum>
       </property>
       <property name="currentRow">
        <number>0</number>
@@ -158,7 +158,7 @@
                <item row="1" column="2">
                 <spacer name="horizontalSpacer_111">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -262,7 +262,7 @@
                  <item>
                   <spacer name="horizontalSpacer_10">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -358,7 +358,7 @@
                   <item row="0" column="2">
                    <spacer name="horizontalSpacer_12">
                     <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
+                     <enum>Qt::Orientation::Horizontal</enum>
                     </property>
                     <property name="sizeHint" stdset="0">
                      <size>
@@ -423,7 +423,7 @@
                  <item>
                   <spacer name="windowStateSpacer">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -521,7 +521,7 @@
                     <item>
                      <spacer name="horizontalSpacer_13">
                       <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
+                       <enum>Qt::Orientation::Horizontal</enum>
                       </property>
                       <property name="sizeHint" stdset="0">
                        <size>
@@ -698,7 +698,7 @@
                  <item>
                   <spacer name="horizontalSpacer_100">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -757,7 +757,7 @@
                  <item>
                   <spacer name="horizontalSpacer_16">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -782,7 +782,7 @@
             <item>
              <spacer name="verticalSpacer_4">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -889,7 +889,7 @@
                  <item>
                   <spacer name="horizontalSpacer_20">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -955,7 +955,7 @@
                  <item>
                   <spacer name="stopConditionSpacer">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -1126,7 +1126,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                    <item>
                     <spacer name="horizontalSpacer_160">
                      <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
+                      <enum>Qt::Orientation::Horizontal</enum>
                      </property>
                      <property name="sizeHint" stdset="0">
                       <size>
@@ -1164,7 +1164,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                    <item>
                     <spacer name="horizontalSpacer_17">
                      <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
+                      <enum>Qt::Orientation::Horizontal</enum>
                      </property>
                      <property name="sizeHint" stdset="0">
                       <size>
@@ -1205,7 +1205,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                    <item>
                     <spacer name="horizontalSpacer_18">
                      <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
+                      <enum>Qt::Orientation::Horizontal</enum>
                      </property>
                      <property name="sizeHint" stdset="0">
                       <size>
@@ -1246,7 +1246,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                    <item>
                     <spacer name="horizontalSpacer_19">
                      <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
+                      <enum>Qt::Orientation::Horizontal</enum>
                      </property>
                      <property name="sizeHint" stdset="0">
                       <size>
@@ -1347,16 +1347,16 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                     </size>
                    </property>
                    <property name="editTriggers">
-                    <set>QAbstractItemView::AllEditTriggers</set>
+                    <set>QAbstractItemView::EditTrigger::AllEditTriggers</set>
                    </property>
                    <property name="selectionMode">
-                    <enum>QAbstractItemView::SingleSelection</enum>
+                    <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
                    </property>
                    <property name="selectionBehavior">
-                    <enum>QAbstractItemView::SelectRows</enum>
+                    <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
                    </property>
                    <property name="textElideMode">
-                    <enum>Qt::ElideNone</enum>
+                    <enum>Qt::TextElideMode::ElideNone</enum>
                    </property>
                    <property name="rootIsDecorated">
                     <bool>false</bool>
@@ -1401,7 +1401,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                    <item>
                     <spacer name="verticalSpacer_6">
                      <property name="orientation">
-                      <enum>Qt::Vertical</enum>
+                      <enum>Qt::Orientation::Vertical</enum>
                      </property>
                      <property name="sizeHint" stdset="0">
                       <size>
@@ -1448,7 +1448,7 @@ readme.txt: filter exact file name.
 readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</string>
                  </property>
                  <property name="lineWrapMode">
-                  <enum>QPlainTextEdit::NoWrap</enum>
+                  <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
                  </property>
                 </widget>
                </item>
@@ -1546,7 +1546,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   <item row="1" column="1">
                    <widget class="QLineEdit" name="mailNotifPassword">
                     <property name="echoMode">
-                     <enum>QLineEdit::Password</enum>
+                     <enum>QLineEdit::EchoMode::Password</enum>
                     </property>
                    </widget>
                   </item>
@@ -1694,7 +1694,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
               <item>
                <spacer name="horizontalSpacer_23">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1744,7 +1744,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  <item>
                   <spacer name="horizontalSpacer_4">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -1861,7 +1861,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <item row="0" column="2">
                 <spacer name="horizontalSpacer_3">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -1921,7 +1921,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  <item>
                   <spacer name="horizontalSpacer_22">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -2000,7 +2000,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  <item>
                   <spacer name="horizontalSpacer_24">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -2071,7 +2071,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                     <item row="1" column="1">
                      <widget class="QLineEdit" name="textProxyPassword">
                       <property name="echoMode">
-                       <enum>QLineEdit::Password</enum>
+                       <enum>QLineEdit::EchoMode::Password</enum>
                       </property>
                      </widget>
                     </item>
@@ -2194,7 +2194,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <item>
              <spacer name="verticalSpacer_3">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -2256,11 +2256,11 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  <property name="maximum">
                   <number>2000000</number>
                  </property>
+                 <property name="stepType">
+                  <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
+                 </property>
                  <property name="value">
                   <number>100</number>
-                 </property>
-                 <property name="stepType">
-                  <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
                  </property>
                 </widget>
                </item>
@@ -2275,11 +2275,11 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  <property name="maximum">
                   <number>2000000</number>
                  </property>
+                 <property name="stepType">
+                  <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
+                 </property>
                  <property name="value">
                   <number>100</number>
-                 </property>
-                 <property name="stepType">
-                  <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
                  </property>
                 </widget>
                </item>
@@ -2289,7 +2289,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <item row="0" column="3">
                 <spacer name="horizontalSpacer">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -2333,11 +2333,11 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  <property name="maximum">
                   <number>2000000</number>
                  </property>
+                 <property name="stepType">
+                  <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
+                 </property>
                  <property name="value">
                   <number>10</number>
-                 </property>
-                 <property name="stepType">
-                  <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
                  </property>
                 </widget>
                </item>
@@ -2448,7 +2448,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   <item row="0" column="4">
                    <spacer name="horizontalSpacer_8">
                     <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
+                     <enum>Qt::Orientation::Horizontal</enum>
                     </property>
                     <property name="sizeHint" stdset="0">
                      <size>
@@ -2472,18 +2472,18 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  <property name="maximum">
                   <number>2000000</number>
                  </property>
+                 <property name="stepType">
+                  <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
+                 </property>
                  <property name="value">
                   <number>10</number>
-                 </property>
-                 <property name="stepType">
-                  <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
                  </property>
                 </widget>
                </item>
                <item row="0" column="3">
                 <spacer name="horizontalSpacer_5">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -2543,7 +2543,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <item>
              <spacer name="verticalSpacer_2">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -2669,7 +2669,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  <item>
                   <spacer>
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -2706,7 +2706,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  <item>
                   <spacer name="horizontalSpacer_14">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -2746,7 +2746,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
               <item>
                <spacer name="horizontalSpacer_21">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -2833,7 +2833,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                <item row="0" column="2">
                 <spacer name="horizontalSpacer_7">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -2863,11 +2863,11 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                     <property name="maximum">
                      <number>2000000</number>
                     </property>
+                    <property name="stepType">
+                     <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
+                    </property>
                     <property name="value">
                      <number>2</number>
-                    </property>
-                    <property name="stepType">
-                     <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
                     </property>
                    </widget>
                   </item>
@@ -2879,11 +2879,11 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                     <property name="maximum">
                      <number>2000000</number>
                     </property>
+                    <property name="stepType">
+                     <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
+                    </property>
                     <property name="value">
                      <number>2</number>
-                    </property>
-                    <property name="stepType">
-                     <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
                     </property>
                    </widget>
                   </item>
@@ -2904,7 +2904,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   <item row="0" column="2">
                    <spacer name="horizontalSpacer_9">
                     <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
+                     <enum>Qt::Orientation::Horizontal</enum>
                     </property>
                     <property name="sizeHint" stdset="0">
                      <size>
@@ -2975,7 +2975,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                <item row="0" column="2">
                 <spacer name="horizontalSpacer_2">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -3037,7 +3037,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   <string>then</string>
                  </property>
                  <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
@@ -3092,7 +3092,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
             <item>
              <spacer name="verticalSpacer_8">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -3198,7 +3198,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  <item row="0" column="2">
                   <spacer name="horizontalSpacer_6">
                    <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                    <enum>Qt::Orientation::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
@@ -3282,7 +3282,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
             <item>
              <spacer name="verticalSpacer_5">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -3480,7 +3480,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                     <item row="1" column="1">
                      <widget class="QLineEdit" name="textWebUIPassword">
                       <property name="echoMode">
-                       <enum>QLineEdit::Password</enum>
+                       <enum>QLineEdit::EchoMode::Password</enum>
                       </property>
                       <property name="placeholderText">
                        <string>Change current password</string>
@@ -3528,7 +3528,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                     <item row="0" column="2">
                      <spacer name="horizontalSpacer_15">
                       <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
+                       <enum>Qt::Orientation::Horizontal</enum>
                       </property>
                       <property name="sizeHint" stdset="0">
                        <size>
@@ -3554,7 +3554,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                        <string>ban for:</string>
                       </property>
                       <property name="alignment">
-                       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                       </property>
                      </widget>
                     </item>
@@ -3598,7 +3598,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                     <item>
                      <spacer name="horizontalSpacer_11">
                       <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
+                       <enum>Qt::Orientation::Horizontal</enum>
                       </property>
                       <property name="sizeHint" stdset="0">
                        <size>
@@ -3728,7 +3728,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                   <item>
                    <widget class="QPlainTextEdit" name="textWebUICustomHTTPHeaders">
                     <property name="lineWrapMode">
-                     <enum>QPlainTextEdit::NoWrap</enum>
+                     <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
                     </property>
                     <property name="placeholderText">
                      <string>Header: value pairs, one per line</string>
@@ -3853,7 +3853,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                   <item row="3" column="1">
                    <widget class="QLineEdit" name="DNSPasswordTxt">
                     <property name="echoMode">
-                     <enum>QLineEdit::Password</enum>
+                     <enum>QLineEdit::EchoMode::Password</enum>
                     </property>
                    </widget>
                   </item>
@@ -3866,7 +3866,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
             <item>
              <spacer name="verticalSpacer">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -3904,7 +3904,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="standardButtons">
-      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::StandardButton::Apply|QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
      </property>
     </widget>
    </item>

@@ -26,7 +26,7 @@
    <item>
     <widget class="QTabWidget" name="tabConsole">
      <property name="tabPosition">
-      <enum>QTabWidget::East</enum>
+      <enum>QTabWidget::TabPosition::East</enum>
      </property>
      <property name="currentIndex">
       <number>0</number>
