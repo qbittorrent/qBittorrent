@@ -15,7 +15,7 @@ LangString inst_magnet ${LANG_LUXEMBOURGISH} "Magnet-Linken mat qBittorrent opma
 ;LangString inst_firewall ${LANG_ENGLISH} "Add Windows Firewall rule"
 LangString inst_firewall ${LANG_LUXEMBOURGISH} "Reegel an der Windows Firewall dobäisetzen"
 ;LangString inst_pathlimit ${LANG_ENGLISH} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
-LangString inst_pathlimit ${LANG_LUXEMBOURGISH} "D'Windows path lenght (Padlängtbeschränkung) desaktivéieren (260 Zeechen MAX_PATH Beschränkung, erfuerdert min. Windows 10 1607)"
+LangString inst_pathlimit ${LANG_LUXEMBOURGISH} "D'Windows path length (Padlängtbeschränkung) desaktivéieren (260 Zeechen MAX_PATH Beschränkung, erfuerdert min. Windows 10 1607)"
 ;LangString inst_firewallinfo ${LANG_ENGLISH} "Adding Windows Firewall rule"
 LangString inst_firewallinfo ${LANG_LUXEMBOURGISH} "Reegel an der Windows Firewall dobäisetzen"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
