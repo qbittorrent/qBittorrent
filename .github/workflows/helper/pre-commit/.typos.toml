@@ -16,3 +16,5 @@ ths = "ths"
 [default.extend-words]
 BA = "BA"
 helo = "helo"
+Pn = "Pn"
+UIU = "UIU"
