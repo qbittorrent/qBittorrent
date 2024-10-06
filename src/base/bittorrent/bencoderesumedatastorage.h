@@ -37,7 +37,6 @@
 #include "resumedatastorage.h"
 
 class QByteArray;
-class QThread;
 
 namespace BitTorrent
 {

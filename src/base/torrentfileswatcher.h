@@ -36,8 +36,6 @@
 #include "base/path.h"
 #include "base/utils/thread.h"
 
-class QThread;
-
 /*
  * Watches the configured directories for new .torrent files in order
  * to add torrents to BitTorrent session. Supports Network File System

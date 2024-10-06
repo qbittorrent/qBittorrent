@@ -184,6 +184,7 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
 
     m_freeDiskSpaceChecker->moveToThread(m_workerThread.get());
     connect(m_workerThread.get(), &QThread::finished, m_freeDiskSpaceChecker, &QObject::deleteLater);
+    m_workerThread->setObjectName("WebApplication m_workerThread");
     m_workerThread->start();
 
     m_freeDiskSpaceCheckingTimer->setInterval(FREEDISKSPACE_CHECK_TIMEOUT);

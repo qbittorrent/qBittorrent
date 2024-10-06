@@ -41,7 +41,6 @@
 #include "base/settingvalue.h"
 #include "base/utils/thread.h"
 
-class QThread;
 class QTimer;
 
 class Application;

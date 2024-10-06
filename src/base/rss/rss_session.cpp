@@ -90,6 +90,7 @@ Session::Session()
 
     m_itemsByPath.insert(u""_s, new Folder); // root folder
 
+    m_workingThread->setObjectName("RSS::Session m_workingThread");
     m_workingThread->start();
     load();
 

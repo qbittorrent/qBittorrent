@@ -325,7 +325,6 @@ namespace BitTorrent
 
 BitTorrent::DBResumeDataStorage::DBResumeDataStorage(const Path &dbPath, QObject *parent)
     : ResumeDataStorage(dbPath, parent)
-    , m_ioThread {new QThread}
 {
     const bool needCreateDB = !dbPath.exists();
 

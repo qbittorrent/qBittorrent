@@ -536,6 +536,7 @@ SessionImpl::SessionImpl(QObject *parent)
 {
     // It is required to perform async access to libtorrent sequentially
     m_asyncWorker->setMaxThreadCount(1);
+    m_asyncWorker->setObjectName("SessionImpl m_asyncWorker");
 
     if (port() < 0)
         m_port = Utils::Random::rand(1024, 65535);
@@ -600,6 +601,7 @@ SessionImpl::SessionImpl(QObject *parent)
     connect(m_ioThread.get(), &QThread::finished, m_torrentContentRemover, &QObject::deleteLater);
     connect(m_torrentContentRemover, &TorrentContentRemover::jobFinished, this, &SessionImpl::torrentContentRemovingFinished);
 
+    m_ioThread->setObjectName("SessionImpl m_ioThread");
     m_ioThread->start();
 
     initMetrics();
@@ -659,6 +661,7 @@ SessionImpl::~SessionImpl()
         qDebug("Deleting libtorrent session...");
         delete nativeSessionProxy;
     });
+    sessionTerminateThread->setObjectName("~SessionImpl sessionTerminateThread");
     connect(sessionTerminateThread, &QThread::finished, sessionTerminateThread, &QObject::deleteLater);
     sessionTerminateThread->start();
     if (sessionTerminateThread->wait(shutdownDeadlineTimer))

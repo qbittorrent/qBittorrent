@@ -39,7 +39,6 @@
 #include <QSplitter>
 #include <QShortcut>
 #include <QStackedWidget>
-#include <QThread>
 #include <QUrl>
 
 #include "base/bittorrent/infohash.h"

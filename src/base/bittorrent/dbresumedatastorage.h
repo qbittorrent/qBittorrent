@@ -34,8 +34,6 @@
 #include "base/utils/thread.h"
 #include "resumedatastorage.h"
 
-class QThread;
-
 namespace BitTorrent
 {
     class DBResumeDataStorage final : public ResumeDataStorage
@@ -60,8 +58,6 @@ namespace BitTorrent
         void createDB() const;
         void updateDB(int fromVersion) const;
         void enableWALMode() const;
-
-        Utils::Thread::UniquePtr m_ioThread;
 
         class Worker;
         Worker *m_asyncWorker = nullptr;
