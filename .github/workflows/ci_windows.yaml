@@ -127,7 +127,7 @@ jobs:
 
       - name: Build qBittorrent
         run: |
-          $env:CXXFLAGS+=" /WX"
+          $env:CXXFLAGS+="/DQT_FORCE_ASSERTS /WX"
           cmake `
             -B build `
             -G "Ninja" `
