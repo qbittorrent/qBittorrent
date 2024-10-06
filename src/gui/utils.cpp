@@ -203,6 +203,9 @@ void Utils::Gui::openFolderSelect(const Path &path)
     {
         proc.startDetached(u"konqueror"_s, {u"--select"_s, path.toString()});
     }
+    else if (output == u"thunar.desktop"){
+        proc.startDetached(u"thunar"_s, {path.toString()});
+    }
     else
     {
         // "caja" manager can't pinpoint the file, see: https://github.com/qbittorrent/qBittorrent/issues/5003
