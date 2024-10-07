@@ -300,6 +300,28 @@ window.qBittorrent.PropFiles ??= (() => {
         return true;
     };
 
+    const removeFile = function(ids, fileIds) {
+        if (current_hash === "")
+            return;
+
+        clearTimeout(loadTorrentFilesDataTimer);
+        loadTorrentFilesDataTimer = -1;
+
+        new Request({
+            url: "api/v2/torrents/removeFile",
+            method: "post",
+            data: {
+                "hash": current_hash,
+                "id": fileIds.join("|")
+            },
+            onComplete: function() {
+                loadTorrentFilesDataTimer = loadTorrentFilesData.delay(1000);
+            }
+        }).send();
+        torrentFilesTable.updateTable(false);
+    };
+
+
     const setFilePriority = function(ids, fileIds, priority) {
         if (current_hash === "")
             return;
