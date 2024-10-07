@@ -1,4 +1,4 @@
-#VERSION: 1.46
+#VERSION: 1.47
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -37,12 +37,11 @@ import importlib
 import pathlib
 import sys
 import urllib.parse
-from collections.abc import Iterable, Iterator, Sequence
 from enum import Enum
 from glob import glob
 from multiprocessing import Pool, cpu_count
 from os import path
-from typing import Dict, List, Optional, Set, Tuple, Type
+from typing import Dict, Iterable, Iterator, List, Optional, Sequence, Set, Tuple, Type
 
 THREADED: bool = True
 try:
