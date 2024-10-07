@@ -5,19 +5,13 @@
 # treat value specified by the CXX_STANDARD target property as a requirement by default
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD 20)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTORCC_OPTIONS --compress-algo best --threshold 5)
 
 add_library(qbt_common_cfg INTERFACE)
-
-# C++ 20 support is required
-# See also https://cmake.org/cmake/help/latest/prop_gbl/CMAKE_CXX_KNOWN_FEATURES.html
-# for a breakdown of the features that CMake recognizes for each C++ standard
-target_compile_features(qbt_common_cfg INTERFACE
-    cxx_std_20
-)
 
 target_compile_definitions(qbt_common_cfg INTERFACE
     QT_DISABLE_DEPRECATED_UP_TO=0x060500
