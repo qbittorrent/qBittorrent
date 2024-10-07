@@ -215,13 +215,15 @@ add_library(qbt_base STATIC
     utils/version.cpp
 )
 
+find_package(libtorrent REQUIRED)
+
 target_link_libraries(qbt_base
     PRIVATE
         OpenSSL::Crypto
         OpenSSL::SSL
         ZLIB::ZLIB
     PUBLIC
-        LibtorrentRasterbar::torrent-rasterbar
+        libtorrent
         Qt::Core
         Qt::CorePrivate
         Qt::Network
