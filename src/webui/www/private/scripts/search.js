@@ -86,6 +86,25 @@ window.qBittorrent.Search ??= (() => {
         maxUnit: 3
     };
 
+    const searchResultsTabsContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
+        targets: ".searchTab",
+        menu: "searchResultsTabsMenu",
+        actions: {
+            closeTab: (tab) => { closeSearchTab(tab); },
+            closeAllTabs: () => {
+                for (const tab of document.querySelectorAll("#searchTabs .searchTab"))
+                    closeSearchTab(tab);
+            }
+        },
+        offsets: {
+            x: -15,
+            y: -53
+        },
+        onShow: function() {
+            setActiveTab(this.options.element);
+        }
+    });
+
     const init = function() {
         // load "Search in" preference from local storage
         $("searchInTorrentName").value = (LocalPreferences.get("search_in_filter") === "names") ? "names" : "everywhere";
@@ -168,7 +187,7 @@ window.qBittorrent.Search ??= (() => {
             width: "8",
             height: "8",
             style: "padding-right: 7px; margin-bottom: -1px; margin-left: -5px",
-            onclick: "qBittorrent.Search.closeSearchTab(event, this);",
+            onclick: "qBittorrent.Search.closeSearchTab(this);",
         });
         closeTabElem.inject(tabElem, "top");
 
@@ -176,13 +195,14 @@ window.qBittorrent.Search ??= (() => {
 
         const listItem = document.createElement("li");
         listItem.id = newTabId;
-        listItem.classList.add("selected");
+        listItem.classList.add("selected", "searchTab");
         listItem.addEventListener("click", (e) => {
             setActiveTab(listItem);
             document.getElementById("startSearchButton").lastChild.textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
         });
         listItem.appendChild(tabElem);
         $("searchTabs").appendChild(listItem);
+        searchResultsTabsContextMenu.addTarget(listItem);
 
         // unhide the results elements
         if (numSearchTabs() >= 1) {
@@ -214,10 +234,11 @@ window.qBittorrent.Search ??= (() => {
         updateSearchResultsData(searchId);
     };
 
-    const closeSearchTab = function(e, el) {
-        e.stopPropagation();
+    const closeSearchTab = function(el) {
+        const tab = el.closest("li.searchTab");
+        if (!tab)
+            return;
 
-        const tab = el.parentElement.parentElement;
         const searchId = getSearchIdFromTab(tab);
         const isTabSelected = tab.hasClass("selected");
         const newTabToSelect = isTabSelected ? (tab.nextSibling || tab.previousSibling) : null;
