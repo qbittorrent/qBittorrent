@@ -1,4 +1,4 @@
-#VERSION: 1.47
+#VERSION: 1.48
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
