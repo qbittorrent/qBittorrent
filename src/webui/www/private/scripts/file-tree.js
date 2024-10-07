@@ -114,6 +114,7 @@ window.qBittorrent.FileTree ??= (() => {
         name = "";
         path = "";
         rowId = null;
+        fileId = null;
         size = 0;
         checked = TriState.Unchecked;
         remaining = 0;
@@ -122,9 +123,22 @@ window.qBittorrent.FileTree ??= (() => {
         availability = 0;
         depth = 0;
         root = null;
-        data = null;
         isFolder = false;
         children = [];
+
+        serialize() {
+            return {
+                name: this.name,
+                path: this.path,
+                fileId: this.fileId,
+                size: this.size,
+                checked: this.checked,
+                remaining: this.remaining,
+                progress: this.progress,
+                priority: this.priority,
+                availability: this.availability
+            };
+        }
     }
 
     class FolderNode extends FileNode {
@@ -133,6 +147,7 @@ window.qBittorrent.FileTree ??= (() => {
          */
         autoCheckFolders = true;
         isFolder = true;
+        fileId = -1;
 
         addChild(node) {
             this.children.push(node);
