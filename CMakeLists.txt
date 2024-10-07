@@ -20,6 +20,9 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
 include(FeatureSummary)
 include(FeatureOptionsSetup)
 
+# add dependencies
+include(cmake/CPM.cmake)
+
 # features, list is loosely sorted by user's interests
 feature_option(GUI "Build GUI application" ON)
 feature_option(WEBUI "Enable built-in HTTP server for remote control" ON)
