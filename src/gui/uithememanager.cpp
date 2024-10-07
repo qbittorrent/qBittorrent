@@ -37,6 +37,10 @@
 #include <QStyle>
 #include <QStyleHints>
 
+#ifdef Q_OS_WIN
+#include <QOperatingSystemVersion>
+#endif
+
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/path.h"
@@ -80,6 +84,12 @@ UIThemeManager::UIThemeManager()
     , m_useSystemIcons {Preferences::instance()->useSystemIcons()}
 #endif
 {
+#ifdef Q_OS_WIN
+    const QString defaultStyle = (QOperatingSystemVersion::current() >= QOperatingSystemVersion::Windows10) ? u"Fusion"_s : QString();
+    if (const QString styleName = Preferences::instance()->getStyle(); !QApplication::setStyle(styleName.isEmpty() ? defaultStyle : styleName))
+        LogMsg(tr("Unknown style: \"%1\"").arg(styleName), Log::WARNING);
+#endif
+
     // NOTE: Qt::QueuedConnection can be omitted as soon as support for Qt 6.5 is dropped
     connect(QApplication::styleHints(), &QStyleHints::colorSchemeChanged, this, &UIThemeManager::onColorSchemeChanged, Qt::QueuedConnection);
 

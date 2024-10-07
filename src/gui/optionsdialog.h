@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -143,6 +143,7 @@ private:
 
     // General options
     void initializeLanguageCombo();
+    void initializeStyleCombo();
     QString getLocale() const;
     bool isSplashScreenDisabled() const;
 #ifdef Q_OS_WIN
