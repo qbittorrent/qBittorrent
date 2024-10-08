@@ -101,9 +101,7 @@ namespace BitTorrent
         {
             DisableOSCache = 0,
             EnableOSCache = 1,
-#ifdef QBT_USES_LIBTORRENT2
             WriteThrough = 2
-#endif
         };
         Q_ENUM_NS(DiskIOWriteMode)
 

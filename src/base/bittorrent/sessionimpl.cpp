@@ -188,31 +188,22 @@ namespace
     {
         switch (socketType)
         {
-#ifdef QBT_USES_LIBTORRENT2
-        case lt::socket_type_t::http:
+case lt::socket_type_t::http:
             return u"HTTP"_s;
         case lt::socket_type_t::http_ssl:
             return u"HTTP_SSL"_s;
-#endif
         case lt::socket_type_t::i2p:
             return u"I2P"_s;
         case lt::socket_type_t::socks5:
             return u"SOCKS5"_s;
-#ifdef QBT_USES_LIBTORRENT2
-        case lt::socket_type_t::socks5_ssl:
+case lt::socket_type_t::socks5_ssl:
             return u"SOCKS5_SSL"_s;
-#endif
         case lt::socket_type_t::tcp:
             return u"TCP"_s;
         case lt::socket_type_t::tcp_ssl:
             return u"TCP_SSL"_s;
-#ifdef QBT_USES_LIBTORRENT2
         case lt::socket_type_t::utp:
             return u"UTP"_s;
-#else
-        case lt::socket_type_t::udp:
-            return u"UDP"_s;
-#endif
         case lt::socket_type_t::utp_ssl:
             return u"UTP_SSL"_s;
         }
@@ -322,10 +313,8 @@ struct BitTorrent::SessionImpl::ResumeSessionContext final : public QObject
     bool isLoadFinished = false;
     bool isLoadedResumeDataHandlingEnqueued = false;
     QSet<QString> recoveredCategories;
-#ifdef QBT_USES_LIBTORRENT2
     QSet<TorrentID> indexedTorrents;
     QSet<TorrentID> skippedIDs;
-#endif
 };
 
 const int addTorrentParamsId = qRegisterMetaType<AddTorrentParams>();
@@ -1312,9 +1301,7 @@ void SessionImpl::prepareStartup()
             , [this, context](const QList<TorrentID> &torrents)
     {
         context->totalResumeDataCount = torrents.size();
-#ifdef QBT_USES_LIBTORRENT2
         context->indexedTorrents = QSet<TorrentID>(torrents.cbegin(), torrents.cend());
-#endif
 
         handleLoadedResumeData(context);
     });
@@ -1386,10 +1373,8 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
     const LoadedResumeData loadedResumeDataItem = context->loadedResumeData.takeFirst();
 
     TorrentID torrentID = loadedResumeDataItem.torrentID;
-#ifdef QBT_USES_LIBTORRENT2
     if (context->skippedIDs.contains(torrentID))
         return;
-#endif
 
     const nonstd::expected<LoadTorrentParams, QString> &loadResumeDataResult = loadedResumeDataItem.result;
     if (!loadResumeDataResult)
@@ -1402,7 +1387,6 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
     LoadTorrentParams resumeData = *loadResumeDataResult;
     bool needStore = false;
 
-#ifdef QBT_USES_LIBTORRENT2
     const InfoHash infoHash {(resumeData.ltAddTorrentParams.ti
                 ? resumeData.ltAddTorrentParams.ti->info_hashes()
                 : resumeData.ltAddTorrentParams.info_hashes)};
@@ -1452,17 +1436,6 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
                .arg(torrentID.toString()), Log::WARNING);
         return;
     }
-#else
-    const lt::sha1_hash infoHash = (resumeData.ltAddTorrentParams.ti
-                                      ? resumeData.ltAddTorrentParams.ti->info_hash()
-                                      : resumeData.ltAddTorrentParams.info_hash);
-    if (torrentID != TorrentID::fromInfoHash(infoHash))
-    {
-        LogMsg(tr("Failed to resume torrent: inconsistent torrent ID is detected. Torrent: \"%1\"")
-               .arg(torrentID.toString()), Log::WARNING);
-        return;
-    }
-#endif
 
     if (m_resumeDataStorage != context->startupStorage)
        needStore = true;
@@ -1540,20 +1513,15 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
     });
 
     resumeData.ltAddTorrentParams.userdata = LTClientData(new ExtensionData);
-#ifndef QBT_USES_LIBTORRENT2
-    resumeData.ltAddTorrentParams.storage = customStorageConstructor;
-#endif
 
     qDebug() << "Starting up torrent" << torrentID.toString() << "...";
     m_loadingTorrents.insert(torrentID, resumeData);
-#ifdef QBT_USES_LIBTORRENT2
     if (infoHash.isHybrid())
     {
         // this allows to know the being added hybrid torrent by its v1 info hash
         // without having yet another mapping table
         m_hybridTorrentsByAltID.insert(torrentIDv1, nullptr);
     }
-#endif
     m_nativeSession->async_add_torrent(resumeData.ltAddTorrentParams);
     ++context->processingResumeDataCount;
 }
@@ -1638,7 +1606,6 @@ void SessionImpl::initializeNativeSession()
     pack.set_bool(lt::settings_pack::enable_upnp, false);
     pack.set_bool(lt::settings_pack::enable_natpmp, false);
 
-#ifdef QBT_USES_LIBTORRENT2
     // preserve the same behavior as in earlier libtorrent versions
     pack.set_bool(lt::settings_pack::enable_set_file_valid_data, true);
 
@@ -1648,10 +1615,8 @@ void SessionImpl::initializeNativeSession()
         pack.set_int(lt::settings_pack::mmap_file_size_cutoff, std::numeric_limits<int>::max());
         pack.set_int(lt::settings_pack::disk_write_mode, lt::settings_pack::mmap_write_mode_t::always_pwrite);
     }
-#endif
 
     lt::session_params sessionParams {std::move(pack), {}};
-#ifdef QBT_USES_LIBTORRENT2
     switch (diskIOType())
     {
     case DiskIOType::Posix:
@@ -1665,7 +1630,6 @@ void SessionImpl::initializeNativeSession()
         sessionParams.disk_io_constructor = customDiskIOConstructor;
         break;
     }
-#endif
 
 #if LIBTORRENT_VERSION_NUM < 20100
     m_nativeSession = new lt::session(sessionParams, lt::session::paused);
@@ -1752,9 +1716,6 @@ void SessionImpl::initMetrics()
         {
             .diskBlocksInUse = findMetricIndex("disk.disk_blocks_in_use"),
             .numBlocksRead = findMetricIndex("disk.num_blocks_read"),
-#ifndef QBT_USES_LIBTORRENT2
-            .numBlocksCacheHits = findMetricIndex("disk.num_blocks_cache_hits"),
-#endif
             .writeJobs = findMetricIndex("disk.num_write_ops"),
             .readJobs = findMetricIndex("disk.num_read_ops"),
             .hashJobs = findMetricIndex("disk.num_blocks_hashed"),
@@ -1813,7 +1774,7 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::active_checking, maxActiveCheckingTorrents());
 
     // I2P
-#if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
+#if TORRENT_USE_I2P
     if (isI2PEnabled())
     {
         settingsPack.set_str(lt::settings_pack::i2p_hostname, I2PAddress().toStdString());
@@ -1886,25 +1847,14 @@ lt::settings_pack SessionImpl::loadLTSettings() const
 
     settingsPack.set_int(lt::settings_pack::max_out_request_queue, requestQueueSize());
 
-#ifdef QBT_USES_LIBTORRENT2
     settingsPack.set_int(lt::settings_pack::metadata_token_limit, Preferences::instance()->getBdecodeTokenLimit());
-#endif
 
     settingsPack.set_int(lt::settings_pack::aio_threads, asyncIOThreads());
-#ifdef QBT_USES_LIBTORRENT2
     settingsPack.set_int(lt::settings_pack::hashing_threads, hashingThreads());
-#endif
     settingsPack.set_int(lt::settings_pack::file_pool_size, filePoolSize());
 
     const int checkingMemUsageSize = checkingMemUsage() * 64;
     settingsPack.set_int(lt::settings_pack::checking_mem_usage, checkingMemUsageSize);
-
-#ifndef QBT_USES_LIBTORRENT2
-    const int cacheSize = (diskCacheSize() > -1) ? (diskCacheSize() * 64) : -1;
-    settingsPack.set_int(lt::settings_pack::cache_size, cacheSize);
-    settingsPack.set_int(lt::settings_pack::cache_expiry, diskCacheTTL());
-#endif
-
     settingsPack.set_int(lt::settings_pack::max_queued_disk_bytes, diskQueueSize());
 
     switch (diskIOReadMode())
@@ -1927,17 +1877,10 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     default:
         settingsPack.set_int(lt::settings_pack::disk_io_write_mode, lt::settings_pack::enable_os_cache);
         break;
-#ifdef QBT_USES_LIBTORRENT2
     case DiskIOWriteMode::WriteThrough:
         settingsPack.set_int(lt::settings_pack::disk_io_write_mode, lt::settings_pack::write_through);
         break;
-#endif
     }
-
-#ifndef QBT_USES_LIBTORRENT2
-    settingsPack.set_bool(lt::settings_pack::coalesce_reads, isCoalesceReadWriteEnabled());
-    settingsPack.set_bool(lt::settings_pack::coalesce_writes, isCoalesceReadWriteEnabled());
-#endif
 
     settingsPack.set_bool(lt::settings_pack::piece_extent_affinity, usePieceExtentAffinity());
 
@@ -2487,7 +2430,6 @@ bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
     if (!nativeHandle.is_valid())
         return true;
 
-#ifdef QBT_USES_LIBTORRENT2
     const InfoHash infoHash {nativeHandle.info_hashes()};
     if (infoHash.isHybrid())
     {
@@ -2496,7 +2438,6 @@ bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
         const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
         m_downloadedMetadata.remove(altID);
     }
-#endif
 
     m_nativeSession->remove_torrent(nativeHandle);
     return true;
@@ -2915,9 +2856,6 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     p.max_uploads = maxUploadsPerTorrent();
 
     p.userdata = LTClientData(new ExtensionData);
-#ifndef QBT_USES_LIBTORRENT2
-    p.storage = customStorageConstructor;
-#endif
 
     m_loadingTorrents.insert(id, loadTorrentParams);
     if (infoHash.isHybrid())
@@ -3073,10 +3011,6 @@ bool SessionImpl::downloadMetadata(const TorrentDescriptor &torrentDescr)
 
     // Solution to avoid accidental file writes
     p.flags |= lt::torrent_flags::upload_mode;
-
-#ifndef QBT_USES_LIBTORRENT2
-    p.storage = customStorageConstructor;
-#endif
 
     // Adding torrent to libtorrent session
     m_nativeSession->async_add_torrent(p);
@@ -5197,11 +5131,7 @@ bool SessionImpl::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &new
 
 void SessionImpl::moveTorrentStorage(const MoveStorageJob &job) const
 {
-#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(job.torrentHandle.info_hashes());
-#else
-    const auto id = TorrentID::fromInfoHash(job.torrentHandle.info_hash());
-#endif
     const TorrentImpl *torrent = m_torrents.value(id);
     const QString torrentName = (torrent ? torrent->name() : id.toString());
     LogMsg(tr("Start moving torrent. Torrent: \"%1\". Destination: \"%2\"").arg(torrentName, job.path.toString()));
@@ -5506,13 +5436,9 @@ void SessionImpl::handleAddTorrentAlert(const lt::add_torrent_alert *alert)
         const lt::add_torrent_params &params = alert->params;
         const bool hasMetadata = (params.ti && params.ti->is_valid());
 
-#ifdef QBT_USES_LIBTORRENT2
         const InfoHash infoHash {(hasMetadata ? params.ti->info_hashes() : params.info_hashes)};
         if (infoHash.isHybrid())
             m_hybridTorrentsByAltID.remove(TorrentID::fromSHA1Hash(infoHash.v1()));
-#else
-        const InfoHash infoHash {(hasMetadata ? params.ti->info_hash() : params.info_hash)};
-#endif
         if (const auto loadingTorrentsIter = m_loadingTorrents.find(TorrentID::fromInfoHash(infoHash))
                 ; loadingTorrentsIter != m_loadingTorrents.end())
         {
@@ -5534,11 +5460,7 @@ void SessionImpl::handleAddTorrentAlert(const lt::add_torrent_alert *alert)
         return;
     }
 
-#ifdef QBT_USES_LIBTORRENT2
     const InfoHash infoHash {alert->handle.info_hashes()};
-#else
-    const InfoHash infoHash {alert->handle.info_hash()};
-#endif
     const auto torrentID = TorrentID::fromInfoHash(infoHash);
 
     if (const auto loadingTorrentsIter = m_loadingTorrents.find(torrentID)
@@ -5569,9 +5491,7 @@ void SessionImpl::handleAlert(const lt::alert *alert)
     {
         switch (alert->type())
         {
-#ifdef QBT_USES_LIBTORRENT2
         case lt::file_prio_alert::alert_type:
-#endif
         case lt::file_renamed_alert::alert_type:
         case lt::file_rename_failed_alert::alert_type:
         case lt::file_completed_alert::alert_type:
@@ -5658,11 +5578,9 @@ void SessionImpl::handleAlert(const lt::alert *alert)
         case lt::i2p_alert::alert_type:
             handleI2PAlert(static_cast<const lt::i2p_alert *>(alert));
             break;
-#ifdef QBT_USES_LIBTORRENT2
         case lt::torrent_conflict_alert::alert_type:
             handleTorrentConflictAlert(static_cast<const lt::torrent_conflict_alert *>(alert));
             break;
-#endif
         }
     }
     catch (const std::exception &exc)
@@ -5684,14 +5602,12 @@ void SessionImpl::dispatchTorrentAlert(const lt::torrent_alert *alert)
 
     const TorrentID torrentID {alert->handle.info_hash()};
     TorrentImpl *torrent = m_torrents.value(torrentID);
-#ifdef QBT_USES_LIBTORRENT2
     if (!torrent && (alert->type() == lt::metadata_received_alert::alert_type))
     {
         const InfoHash infoHash {alert->handle.info_hashes()};
         if (infoHash.isHybrid())
             torrent = m_torrents.value(TorrentID::fromSHA1Hash(infoHash.v1()));
     }
-#endif
 
     if (torrent)
     {
@@ -5761,32 +5677,20 @@ void SessionImpl::handleTorrentRemovedAlert(const lt::torrent_removed_alert */*a
 
 void SessionImpl::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *alert)
 {
-#ifdef QBT_USES_LIBTORRENT2
     const auto torrentID = TorrentID::fromInfoHash(alert->info_hashes);
-#else
-    const auto torrentID = TorrentID::fromInfoHash(alert->info_hash);
-#endif
     handleRemovedTorrent(torrentID);
 }
 
 void SessionImpl::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *alert)
 {
-#ifdef QBT_USES_LIBTORRENT2
     const auto torrentID = TorrentID::fromInfoHash(alert->info_hashes);
-#else
-    const auto torrentID = TorrentID::fromInfoHash(alert->info_hash);
-#endif
     const auto errorMessage = alert->error ? QString::fromLocal8Bit(alert->error.message().c_str()) : QString();
     handleRemovedTorrent(torrentID, errorMessage);
 }
 
 void SessionImpl::handleTorrentNeedCertAlert(const lt::torrent_need_cert_alert *alert)
 {
-#ifdef QBT_USES_LIBTORRENT2
     const InfoHash infoHash {alert->handle.info_hashes()};
-#else
-    const InfoHash infoHash {alert->handle.info_hash()};
-#endif
     const auto torrentID = TorrentID::fromInfoHash(infoHash);
 
     TorrentImpl *const torrent = m_torrents.value(torrentID);
@@ -5810,7 +5714,6 @@ void SessionImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert 
         found = true;
         m_downloadedMetadata.erase(iter);
     }
-#ifdef QBT_USES_LIBTORRENT2
     const InfoHash infoHash {alert->handle.info_hashes()};
     if (infoHash.isHybrid())
     {
@@ -5821,7 +5724,6 @@ void SessionImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert 
             m_downloadedMetadata.erase(iter);
         }
     }
-#endif
     if (found)
     {
         const TorrentInfo metadata {*alert->handle.torrent_file()};
@@ -6045,12 +5947,6 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *alert)
     m_cacheStatus.totalUsedBuffers = stats[m_metricIndices.disk.diskBlocksInUse];
     m_cacheStatus.jobQueueLength = stats[m_metricIndices.disk.queuedDiskJobs];
 
-#ifndef QBT_USES_LIBTORRENT2
-    const int64_t numBlocksRead = stats[m_metricIndices.disk.numBlocksRead];
-    const int64_t numBlocksCacheHits = stats[m_metricIndices.disk.numBlocksCacheHits];
-    m_cacheStatus.readRatio = static_cast<qreal>(numBlocksCacheHits) / std::max<int64_t>((numBlocksCacheHits + numBlocksRead), 1);
-#endif
-
     const int64_t totalJobs = stats[m_metricIndices.disk.writeJobs] + stats[m_metricIndices.disk.readJobs]
                   + stats[m_metricIndices.disk.hashJobs];
     m_cacheStatus.averageJobTime = (totalJobs > 0)
@@ -6075,11 +5971,7 @@ void SessionImpl::handleStorageMovedAlert(const lt::storage_moved_alert *alert)
     const Path newPath {QString::fromUtf8(alert->storage_path())};
     Q_ASSERT(newPath == currentJob.path);
 
-#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(currentJob.torrentHandle.info_hashes());
-#else
-    const auto id = TorrentID::fromInfoHash(currentJob.torrentHandle.info_hash());
-#endif
 
     TorrentImpl *torrent = m_torrents.value(id);
     const QString torrentName = (torrent ? torrent->name() : id.toString());
@@ -6095,11 +5987,7 @@ void SessionImpl::handleStorageMovedFailedAlert(const lt::storage_moved_failed_a
     const MoveStorageJob &currentJob = m_moveStorageQueue.first();
     Q_ASSERT(currentJob.torrentHandle == alert->handle);
 
-#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(currentJob.torrentHandle.info_hashes());
-#else
-    const auto id = TorrentID::fromInfoHash(currentJob.torrentHandle.info_hash());
-#endif
 
     TorrentImpl *torrent = m_torrents.value(id);
     const QString torrentName = (torrent ? torrent->name() : id.toString());
@@ -6119,11 +6007,7 @@ void SessionImpl::handleStateUpdateAlert(const lt::state_update_alert *alert)
 
     for (const lt::torrent_status &status : alert->status)
     {
-#ifdef QBT_USES_LIBTORRENT2
         const auto id = TorrentID::fromInfoHash(status.info_hashes);
-#else
-        const auto id = TorrentID::fromInfoHash(status.info_hash);
-#endif
         TorrentImpl *const torrent = m_torrents.value(id);
         if (!torrent)
             continue;
@@ -6200,16 +6084,11 @@ void SessionImpl::handleTrackerAlert(const lt::tracker_alert *alert)
     if (alert->type() == lt::tracker_reply_alert::alert_type)
     {
         const int numPeers = static_cast<const lt::tracker_reply_alert *>(alert)->num_peers;
-#ifdef QBT_USES_LIBTORRENT2
         const int protocolVersionNum = (static_cast<const lt::tracker_reply_alert *>(alert)->version == lt::protocol_version::V1) ? 1 : 2;
-#else
-        const int protocolVersionNum = 1;
-#endif
         updateInfo.insert(protocolVersionNum, numPeers);
     }
 }
 
-#ifdef QBT_USES_LIBTORRENT2
 void SessionImpl::handleTorrentConflictAlert(const lt::torrent_conflict_alert *alert)
 {
     const auto torrentIDv1 = TorrentID::fromSHA1Hash(alert->metadata->info_hashes().v1);
@@ -6255,7 +6134,6 @@ void SessionImpl::handleTorrentConflictAlert(const lt::torrent_conflict_alert *a
     if (!torrent1 || !torrent2)
         emit metadataDownloaded(TorrentInfo(*alert->metadata));
 }
-#endif
 
 void SessionImpl::processTrackerStatuses()
 {

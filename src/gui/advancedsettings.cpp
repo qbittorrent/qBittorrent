@@ -65,7 +65,7 @@ namespace
         QBITTORRENT_HEADER,
         RESUME_DATA_STORAGE,
         TORRENT_CONTENT_REMOVE_OPTION,
-#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
+#if !defined(Q_OS_MACOS)
         MEMORY_WORKING_SET_LIMIT,
 #endif
 #if defined(Q_OS_WIN)
@@ -116,25 +116,13 @@ namespace
         BDECODE_DEPTH_LIMIT,
         BDECODE_TOKEN_LIMIT,
         ASYNC_IO_THREADS,
-#ifdef QBT_USES_LIBTORRENT2
         HASHING_THREADS,
-#endif
         FILE_POOL_SIZE,
         CHECKING_MEM_USAGE,
-#ifndef QBT_USES_LIBTORRENT2
-        // cache
-        DISK_CACHE,
-        DISK_CACHE_TTL,
-#endif
         DISK_QUEUE_SIZE,
-#ifdef QBT_USES_LIBTORRENT2
         DISK_IO_TYPE,
-#endif
         DISK_IO_READ_MODE,
         DISK_IO_WRITE_MODE,
-#ifndef QBT_USES_LIBTORRENT2
-        COALESCE_RW,
-#endif
         PIECE_EXTENT_AFFINITY,
         SUGGEST_MODE,
         SEND_BUF_WATERMARK,
@@ -169,7 +157,7 @@ namespace
         PEER_TURNOVER_INTERVAL,
         REQUEST_QUEUE_SIZE,
         DHT_BOOTSTRAP_NODES,
-#if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
+#if TORRENT_USE_I2P
         I2P_INBOUND_QUANTITY,
         I2P_OUTBOUND_QUANTITY,
         I2P_INBOUND_LENGTH,
@@ -206,7 +194,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     BitTorrent::Session *const session = BitTorrent::Session::instance();
 
     session->setResumeDataStorageType(m_comboBoxResumeDataStorage.currentData().value<BitTorrent::ResumeDataStorageType>());
-#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
+#if !defined(Q_OS_MACOS)
     // Physical memory (RAM) usage limit
     app()->setMemoryWorkingSetLimit(m_spinBoxMemoryWorkingSetLimit.value());
 #endif
@@ -219,32 +207,19 @@ void AdvancedSettings::saveAdvancedSettings() const
     pref->setBdecodeTokenLimit(m_spinBoxBdecodeTokenLimit.value());
     // Async IO threads
     session->setAsyncIOThreads(m_spinBoxAsyncIOThreads.value());
-#ifdef QBT_USES_LIBTORRENT2
     // Hashing threads
     session->setHashingThreads(m_spinBoxHashingThreads.value());
-#endif
     // File pool size
     session->setFilePoolSize(m_spinBoxFilePoolSize.value());
     // Checking Memory Usage
     session->setCheckingMemUsage(m_spinBoxCheckingMemUsage.value());
-#ifndef QBT_USES_LIBTORRENT2
-    // Disk write cache
-    session->setDiskCacheSize(m_spinBoxCache.value());
-    session->setDiskCacheTTL(m_spinBoxCacheTTL.value());
-#endif
     // Disk queue size
     session->setDiskQueueSize(m_spinBoxDiskQueueSize.value() * 1024);
-#ifdef QBT_USES_LIBTORRENT2
     session->setDiskIOType(m_comboBoxDiskIOType.currentData().value<BitTorrent::DiskIOType>());
-#endif
     // Disk IO read mode
     session->setDiskIOReadMode(m_comboBoxDiskIOReadMode.currentData().value<BitTorrent::DiskIOReadMode>());
     // Disk IO write mode
     session->setDiskIOWriteMode(m_comboBoxDiskIOWriteMode.currentData().value<BitTorrent::DiskIOWriteMode>());
-#ifndef QBT_USES_LIBTORRENT2
-    // Coalesce reads & writes
-    session->setCoalesceReadWriteEnabled(m_checkBoxCoalesceRW.isChecked());
-#endif
     // Piece extent affinity
     session->setPieceExtentAffinity(m_checkBoxPieceExtentAffinity.isChecked());
     // Suggest mode
@@ -362,7 +337,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setRequestQueueSize(m_spinBoxRequestQueueSize.value());
     // DHT bootstrap nodes
     session->setDHTBootstrapNodes(m_lineEditDHTBootstrapNodes.text());
-#if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
+#if TORRENT_USE_I2P
     // I2P session options
     session->setI2PInboundQuantity(m_spinBoxI2PInboundQuantity.value());
     session->setI2POutboundQuantity(m_spinBoxI2POutboundQuantity.value());
@@ -372,18 +347,6 @@ void AdvancedSettings::saveAdvancedSettings() const
 
     session->setTorrentContentRemoveOption(m_comboBoxTorrentContentRemoveOption.currentData().value<BitTorrent::TorrentContentRemoveOption>());
 }
-
-#ifndef QBT_USES_LIBTORRENT2
-void AdvancedSettings::updateCacheSpinSuffix(const int value)
-{
-    if (value == 0)
-        m_spinBoxCache.setSuffix(tr(" (disabled)"));
-    else if (value < 0)
-        m_spinBoxCache.setSuffix(tr(" (auto)"));
-    else
-        m_spinBoxCache.setSuffix(tr(" MiB"));
-}
-#endif
 
 #ifdef QBT_USES_DBUS
 void AdvancedSettings::updateNotificationTimeoutSuffix(const int value)
@@ -484,7 +447,7 @@ void AdvancedSettings::loadAdvancedSettings()
     m_comboBoxTorrentContentRemoveOption.setCurrentIndex(m_comboBoxTorrentContentRemoveOption.findData(QVariant::fromValue(session->torrentContentRemoveOption())));
     addRow(TORRENT_CONTENT_REMOVE_OPTION, tr("Torrent content removing mode"), &m_comboBoxTorrentContentRemoveOption);
 
-#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
+#if !defined(Q_OS_MACOS)
     // Physical memory (RAM) usage limit
     m_spinBoxMemoryWorkingSetLimit.setMinimum(1);
     m_spinBoxMemoryWorkingSetLimit.setMaximum(std::numeric_limits<int>::max());
@@ -524,14 +487,12 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(ASYNC_IO_THREADS, (tr("Asynchronous I/O threads") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#aio_threads", u"(?)"))
             , &m_spinBoxAsyncIOThreads);
 
-#ifdef QBT_USES_LIBTORRENT2
     // Hashing threads
     m_spinBoxHashingThreads.setMinimum(1);
     m_spinBoxHashingThreads.setMaximum(1024);
     m_spinBoxHashingThreads.setValue(session->hashingThreads());
     addRow(HASHING_THREADS, (tr("Hashing threads") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#hashing_threads", u"(?)"))
             , &m_spinBoxHashingThreads);
-#endif
 
     // File pool size
     m_spinBoxFilePoolSize.setMinimum(1);
@@ -553,30 +514,6 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxCheckingMemUsage.setSuffix(tr(" MiB"));
     addRow(CHECKING_MEM_USAGE, (tr("Outstanding memory when checking torrents") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#checking_mem_usage", u"(?)"))
             , &m_spinBoxCheckingMemUsage);
-#ifndef QBT_USES_LIBTORRENT2
-    // Disk write cache
-    m_spinBoxCache.setMinimum(-1);
-    // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes.
-#ifdef QBT_APP_64BIT
-    m_spinBoxCache.setMaximum(33554431);  // 32768GiB
-#else
-    // allocate 1536MiB and leave 512MiB to the rest of program data in RAM
-    m_spinBoxCache.setMaximum(1536);
-#endif
-    m_spinBoxCache.setValue(session->diskCacheSize());
-    updateCacheSpinSuffix(m_spinBoxCache.value());
-    connect(&m_spinBoxCache, qOverload<int>(&QSpinBox::valueChanged)
-            , this, &AdvancedSettings::updateCacheSpinSuffix);
-    addRow(DISK_CACHE, (tr("Disk cache") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#cache_size", u"(?)"))
-            , &m_spinBoxCache);
-    // Disk cache expiry
-    m_spinBoxCacheTTL.setMinimum(1);
-    m_spinBoxCacheTTL.setMaximum(std::numeric_limits<int>::max());
-    m_spinBoxCacheTTL.setValue(session->diskCacheTTL());
-    m_spinBoxCacheTTL.setSuffix(tr(" s", " seconds"));
-    addRow(DISK_CACHE_TTL, (tr("Disk cache expiry interval") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#cache_expiry", u"(?)"))
-            , &m_spinBoxCacheTTL);
-#endif
     // Disk queue size
     m_spinBoxDiskQueueSize.setMinimum(1);
     m_spinBoxDiskQueueSize.setMaximum(std::numeric_limits<int>::max() / 1024);
@@ -584,7 +521,6 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxDiskQueueSize.setSuffix(tr(" KiB"));
     addRow(DISK_QUEUE_SIZE, (tr("Disk queue size") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#max_queued_disk_bytes", u"(?)"))
             , &m_spinBoxDiskQueueSize);
-#ifdef QBT_USES_LIBTORRENT2
     // Disk IO type
     m_comboBoxDiskIOType.addItem(tr("Default"), QVariant::fromValue(BitTorrent::DiskIOType::Default));
     m_comboBoxDiskIOType.addItem(tr("Memory mapped files"), QVariant::fromValue(BitTorrent::DiskIOType::MMap));
@@ -593,7 +529,6 @@ void AdvancedSettings::loadAdvancedSettings()
     m_comboBoxDiskIOType.setCurrentIndex(m_comboBoxDiskIOType.findData(QVariant::fromValue(session->diskIOType())));
     addRow(DISK_IO_TYPE, tr("Disk IO type (requires restart)") + u' ' + makeLink(u"https://www.libtorrent.org/single-page-ref.html#default-disk-io-constructor", u"(?)")
            , &m_comboBoxDiskIOType);
-#endif
     // Disk IO read mode
     m_comboBoxDiskIOReadMode.addItem(tr("Disable OS cache"), QVariant::fromValue(BitTorrent::DiskIOReadMode::DisableOSCache));
     m_comboBoxDiskIOReadMode.addItem(tr("Enable OS cache"), QVariant::fromValue(BitTorrent::DiskIOReadMode::EnableOSCache));
@@ -603,18 +538,10 @@ void AdvancedSettings::loadAdvancedSettings()
     // Disk IO write mode
     m_comboBoxDiskIOWriteMode.addItem(tr("Disable OS cache"), QVariant::fromValue(BitTorrent::DiskIOWriteMode::DisableOSCache));
     m_comboBoxDiskIOWriteMode.addItem(tr("Enable OS cache"), QVariant::fromValue(BitTorrent::DiskIOWriteMode::EnableOSCache));
-#ifdef QBT_USES_LIBTORRENT2
     m_comboBoxDiskIOWriteMode.addItem(tr("Write-through"), QVariant::fromValue(BitTorrent::DiskIOWriteMode::WriteThrough));
-#endif
     m_comboBoxDiskIOWriteMode.setCurrentIndex(m_comboBoxDiskIOWriteMode.findData(QVariant::fromValue(session->diskIOWriteMode())));
     addRow(DISK_IO_WRITE_MODE, (tr("Disk IO write mode") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#disk_io_write_mode", u"(?)"))
             , &m_comboBoxDiskIOWriteMode);
-#ifndef QBT_USES_LIBTORRENT2
-    // Coalesce reads & writes
-    m_checkBoxCoalesceRW.setChecked(session->isCoalesceReadWriteEnabled());
-    addRow(COALESCE_RW, (tr("Coalesce reads & writes") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#coalesce_reads", u"(?)"))
-            , &m_checkBoxCoalesceRW);
-#endif
     // Piece extent affinity
     m_checkBoxPieceExtentAffinity.setChecked(session->usePieceExtentAffinity());
     addRow(PIECE_EXTENT_AFFINITY, (tr("Use piece extent affinity") + u' ' + makeLink(u"https://libtorrent.org/single-page-ref.html#piece_extent_affinity", u"(?)")), &m_checkBoxPieceExtentAffinity);
@@ -947,7 +874,7 @@ void AdvancedSettings::loadAdvancedSettings()
     m_lineEditDHTBootstrapNodes.setText(session->getDHTBootstrapNodes());
     addRow(DHT_BOOTSTRAP_NODES, (tr("DHT bootstrap nodes") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#dht_bootstrap_nodes", u"(?)"))
         , &m_lineEditDHTBootstrapNodes);
-#if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
+#if TORRENT_USE_I2P
     // I2P session options
     m_spinBoxI2PInboundQuantity.setMinimum(1);
     m_spinBoxI2PInboundQuantity.setMaximum(16);

@@ -33,7 +33,6 @@
 #include "base/utils/fs.h"
 #include "common.h"
 
-#ifdef QBT_USES_LIBTORRENT2
 #include <libtorrent/mmap_disk_io.hpp>
 #include <libtorrent/posix_disk_io.hpp>
 #include <libtorrent/session.hpp>
@@ -235,69 +234,3 @@ void CustomDiskIOThread::handleCompleteFiles(lt::storage_index_t storage, const 
         }
     }
 }
-
-#else
-
-lt::storage_interface *customStorageConstructor(const lt::storage_params &params, lt::file_pool &pool)
-{
-    return new CustomStorage(params, pool);
-}
-
-CustomStorage::CustomStorage(const lt::storage_params &params, lt::file_pool &filePool)
-    : lt::default_storage(params, filePool)
-    , m_savePath {params.path}
-{
-}
-
-bool CustomStorage::verify_resume_data(const lt::add_torrent_params &rd, const lt::aux::vector<std::string, lt::file_index_t> &links, lt::storage_error &ec)
-{
-    handleCompleteFiles(m_savePath);
-    return lt::default_storage::verify_resume_data(rd, links, ec);
-}
-
-void CustomStorage::set_file_priority(lt::aux::vector<lt::download_priority_t, lt::file_index_t> &priorities, lt::storage_error &ec)
-{
-    m_filePriorities = priorities;
-    lt::default_storage::set_file_priority(priorities, ec);
-}
-
-lt::status_t CustomStorage::move_storage(const std::string &savePath, lt::move_flags_t flags, lt::storage_error &ec)
-{
-    const Path newSavePath {savePath};
-
-    if (flags == lt::move_flags_t::dont_replace)
-        handleCompleteFiles(newSavePath);
-
-    const lt::status_t ret = lt::default_storage::move_storage(savePath, flags, ec);
-    if ((ret != lt::status_t::fatal_disk_error) && (ret != lt::status_t::file_exist))
-        m_savePath = newSavePath;
-
-    return ret;
-}
-
-void CustomStorage::handleCompleteFiles(const Path &savePath)
-{
-    const lt::file_storage &fileStorage = files();
-    for (const lt::file_index_t fileIndex : fileStorage.file_range())
-    {
-        // ignore files that have priority 0
-        if ((m_filePriorities.end_index() > fileIndex) && (m_filePriorities[fileIndex] == lt::dont_download))
-            continue;
-
-        // ignore pad files
-        if (fileStorage.pad_file_at(fileIndex)) continue;
-
-        const Path filePath {fileStorage.file_path(fileIndex)};
-        if (filePath.hasExtension(QB_EXT))
-        {
-            const Path incompleteFilePath = savePath / filePath;
-            const Path completeFilePath = incompleteFilePath.removedExtension(QB_EXT);
-            if (completeFilePath.exists())
-            {
-                Utils::Fs::removeFile(incompleteFilePath);
-                Utils::Fs::renameFile(completeFilePath, incompleteFilePath);
-            }
-        }
-    }
-}
-#endif

@@ -38,12 +38,10 @@ BitTorrent::InfoHash::InfoHash(const WrappedType &nativeHash)
 {
 }
 
-#ifdef QBT_USES_LIBTORRENT2
 BitTorrent::InfoHash::InfoHash(const SHA1Hash &v1, const SHA256Hash &v2)
     : InfoHash {WrappedType(v1, v2)}
 {
 }
-#endif
 
 bool BitTorrent::InfoHash::isValid() const
 {
@@ -52,38 +50,22 @@ bool BitTorrent::InfoHash::isValid() const
 
 bool BitTorrent::InfoHash::isHybrid() const
 {
-#ifdef QBT_USES_LIBTORRENT2
-    return (m_nativeHash.has_v1() && m_nativeHash.has_v2());
-#else
-    return false;
-#endif
+return (m_nativeHash.has_v1() && m_nativeHash.has_v2());
 }
 
 SHA1Hash BitTorrent::InfoHash::v1() const
 {
-#ifdef QBT_USES_LIBTORRENT2
-    return (m_nativeHash.has_v1() ? SHA1Hash(m_nativeHash.v1) : SHA1Hash());
-#else
-    return {m_nativeHash};
-#endif
+return (m_nativeHash.has_v1() ? SHA1Hash(m_nativeHash.v1) : SHA1Hash());
 }
 
 SHA256Hash BitTorrent::InfoHash::v2() const
 {
-#ifdef QBT_USES_LIBTORRENT2
-    return (m_nativeHash.has_v2() ? SHA256Hash(m_nativeHash.v2) : SHA256Hash());
-#else
-    return {};
-#endif
+return (m_nativeHash.has_v2() ? SHA256Hash(m_nativeHash.v2) : SHA256Hash());
 }
 
 BitTorrent::TorrentID BitTorrent::InfoHash::toTorrentID() const
 {
-#ifdef QBT_USES_LIBTORRENT2
-    return m_nativeHash.get_best();
-#else
-    return {m_nativeHash};
-#endif
+return m_nativeHash.get_best();
 }
 
 BitTorrent::InfoHash::operator WrappedType() const

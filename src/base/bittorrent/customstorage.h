@@ -35,17 +35,12 @@
 
 #include "base/path.h"
 
-#ifdef QBT_USES_LIBTORRENT2
 #include <libtorrent/disk_interface.hpp>
 #include <libtorrent/file_storage.hpp>
 #include <libtorrent/io_context.hpp>
 
 #include <QHash>
-#else
-#include <libtorrent/storage.hpp>
-#endif
 
-#ifdef QBT_USES_LIBTORRENT2
 std::unique_ptr<lt::disk_interface> customDiskIOConstructor(
         lt::io_context &ioContext, lt::settings_interface const &settings, lt::counters &counters);
 std::unique_ptr<lt::disk_interface> customPosixDiskIOConstructor(
@@ -102,24 +97,3 @@ private:
     };
     QHash<lt::storage_index_t, StorageData> m_storageData;
 };
-
-#else
-
-lt::storage_interface *customStorageConstructor(const lt::storage_params &params, lt::file_pool &pool);
-
-class CustomStorage final : public lt::default_storage
-{
-public:
-    explicit CustomStorage(const lt::storage_params &params, lt::file_pool &filePool);
-
-    bool verify_resume_data(const lt::add_torrent_params &rd, const lt::aux::vector<std::string, lt::file_index_t> &links, lt::storage_error &ec) override;
-    void set_file_priority(lt::aux::vector<lt::download_priority_t, lt::file_index_t> &priorities, lt::storage_error &ec) override;
-    lt::status_t move_storage(const std::string &savePath, lt::move_flags_t flags, lt::storage_error &ec) override;
-
-private:
-    void handleCompleteFiles(const Path &savePath);
-
-    lt::aux::vector<lt::download_priority_t, lt::file_index_t> m_filePriorities;
-    Path m_savePath;
-};
-#endif

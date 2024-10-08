@@ -308,12 +308,8 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
 
         p.ti = torrentInfo;
 
-#ifdef QBT_USES_LIBTORRENT2
         if (((p.info_hashes.has_v1() && (p.info_hashes.v1 != p.ti->info_hashes().v1))
                 || (p.info_hashes.has_v2() && (p.info_hashes.v2 != p.ti->info_hashes().v2))))
-#else
-        if (!p.info_hash.is_all_zeros() && (p.info_hash != p.ti->info_hash()))
-#endif
         {
             return nonstd::make_unexpected(tr("Mismatching info-hash detected in resume data"));
         }

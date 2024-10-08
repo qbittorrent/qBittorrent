@@ -223,7 +223,7 @@ target_link_libraries(qbt_base
         OpenSSL::SSL
         ZLIB::ZLIB
     PUBLIC
-        libtorrent
+        torrent-rasterbar
         Qt::Core
         Qt::CorePrivate
         Qt::Network

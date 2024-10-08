@@ -28,9 +28,7 @@
 
 #pragma once
 
-#ifdef QBT_USES_LIBTORRENT2
 #include <libtorrent/info_hash.hpp>
-#endif
 
 #include <QMetaType>
 
@@ -61,17 +59,11 @@ namespace BitTorrent
     class InfoHash
     {
     public:
-#ifdef QBT_USES_LIBTORRENT2
         using WrappedType = lt::info_hash_t;
-#else
-        using WrappedType = lt::sha1_hash;
-#endif
 
         InfoHash() = default;
         InfoHash(const WrappedType &nativeHash);
-#ifdef QBT_USES_LIBTORRENT2
         InfoHash(const SHA1Hash &v1, const SHA256Hash &v2);
-#endif
 
         bool isValid() const;
         bool isHybrid() const;

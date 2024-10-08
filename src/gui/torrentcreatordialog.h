@@ -70,11 +70,7 @@ private:
     void setInteractionEnabled(bool enabled) const;
 
     int getPieceSize() const;
-#ifdef QBT_USES_LIBTORRENT2
     BitTorrent::TorrentFormat getTorrentFormat() const;
-#else
-    int getPaddedFileSizeLimit() const;
-#endif
 
     Ui::TorrentCreatorDialog *m_ui = nullptr;
     QThreadPool m_threadPool;
@@ -85,12 +81,7 @@ private:
     SettingValue<bool> m_storePrivateTorrent;
     SettingValue<bool> m_storeStartSeeding;
     SettingValue<bool> m_storeIgnoreRatio;
-#ifdef QBT_USES_LIBTORRENT2
     SettingValue<int> m_storeTorrentFormat;
-#else
-    SettingValue<bool> m_storeOptimizeAlignment;
-    SettingValue<int> m_paddedFileSizeLimit;
-#endif
     SettingValue<Path> m_storeLastAddPath;
     SettingValue<QString> m_storeTrackerList;
     SettingValue<QString> m_storeWebSeedList;

@@ -42,10 +42,7 @@
 #include <libtorrent/session.hpp>
 #include <libtorrent/storage_defs.hpp>
 #include <libtorrent/time.hpp>
-
-#ifdef QBT_USES_LIBTORRENT2
 #include <libtorrent/info_hash.hpp>
-#endif
 
 #include <QtSystemDetection>
 #include <QByteArray>
@@ -76,10 +73,6 @@
 #if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
 #include "base/utils/os.h"
 #endif // Q_OS_MACOS || Q_OS_WIN
-
-#ifndef QBT_USES_LIBTORRENT2
-#include "customstorage.h"
-#endif
 
 using namespace BitTorrent;
 
@@ -137,14 +130,9 @@ namespace
 
             for (const auto protocolVersion : btProtocols)
             {
-#ifdef QBT_USES_LIBTORRENT2
                 Q_ASSERT((protocolVersion == 1) || (protocolVersion == 2));
                 const auto ltProtocolVersion = (protocolVersion == 1) ? lt::protocol_version::V1 : lt::protocol_version::V2;
                 const lt::announce_infohash &ltAnnounceInfo = ltAnnounceEndpoint.info_hashes[ltProtocolVersion];
-#else
-                Q_ASSERT(protocolVersion == 1);
-                const lt::announce_endpoint &ltAnnounceInfo = ltAnnounceEndpoint;
-#endif
                 const QMap<int, int> &endpointUpdateInfo = updateInfo[ltAnnounceEndpoint.local_endpoint];
                 TrackerEndpointStatus &trackerEndpointStatus = trackerEntryStatus.endpoints[std::make_pair(endpointName, protocolVersion)];
 
@@ -290,11 +278,7 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
     , m_session(session)
     , m_nativeSession(nativeSession)
     , m_nativeHandle(nativeHandle)
-#ifdef QBT_USES_LIBTORRENT2
     , m_infoHash(m_nativeHandle.info_hashes())
-#else
-    , m_infoHash(m_nativeHandle.info_hash())
-#endif
     , m_name(params.name)
     , m_savePath(params.savePath)
     , m_downloadPath(params.downloadPath)
@@ -1342,7 +1326,7 @@ QList<qreal> TorrentImpl::filesProgress() const
         return {};
 
     if (m_completedFiles.count(true) == count)
-        return QList<qreal>(count, 1);
+        return {static_cast<double>(count), 1};
 
     QList<qreal> result;
     result.reserve(count);
@@ -1759,16 +1743,12 @@ TrackerEntryStatus TorrentImpl::updateTrackerEntryStatus(const lt::announce_entr
     if (it == m_trackerEntryStatuses.end()) [[unlikely]]
         return {};
 
-#ifdef QBT_USES_LIBTORRENT2
     QSet<int> btProtocols;
     const auto &infoHashes = nativeHandle().info_hashes();
     if (infoHashes.has(lt::protocol_version::V1))
         btProtocols.insert(1);
     if (infoHashes.has(lt::protocol_version::V2))
         btProtocols.insert(2);
-#else
-    const QSet<int> btProtocols {1};
-#endif
     ::updateTrackerEntryStatus(*it, announceEntry, btProtocols, updateInfo);
     return *it;
 }
@@ -1895,9 +1875,6 @@ void TorrentImpl::reload()
 
         auto *const extensionData = new ExtensionData;
         p.userdata = LTClientData(extensionData);
-#ifndef QBT_USES_LIBTORRENT2
-        p.storage = customStorageConstructor;
-#endif
         m_nativeHandle = m_nativeSession->add_torrent(p);
 
         m_nativeStatus = extensionData->status;
@@ -2277,11 +2254,7 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     if (oldFilePath.data() == newFilePath.data())
     {
         // Remove empty ".unwanted" folders
-#ifdef QBT_USES_LIBTORRENT2
         const Path oldActualFilePath {QString::fromUtf8(p->old_name())};
-#else
-        const Path oldActualFilePath;
-#endif
         const Path oldActualParentPath = oldActualFilePath.parentPath();
         const Path newActualParentPath = newActualFilePath.parentPath();
         if (newActualParentPath.filename() == UNWANTED_FOLDER_NAME)
@@ -2295,18 +2268,11 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
 #endif
             }
         }
-#ifdef QBT_USES_LIBTORRENT2
         else if (oldActualParentPath.filename() == UNWANTED_FOLDER_NAME)
         {
             if (newActualParentPath.filename() != UNWANTED_FOLDER_NAME)
                 Utils::Fs::rmdir(actualStorageLocation() / oldActualParentPath);
         }
-#else
-        else
-        {
-            Utils::Fs::rmdir(actualStorageLocation() / newActualParentPath / Path(UNWANTED_FOLDER_NAME));
-        }
-#endif
     }
     else
     {
@@ -2383,23 +2349,19 @@ void TorrentImpl::handleFileErrorAlert(const lt::file_error_alert *p)
     m_lastFileError = {p->error, p->op};
 }
 
-#ifdef QBT_USES_LIBTORRENT2
 void TorrentImpl::handleFilePrioAlert(const lt::file_prio_alert *)
 {
     deferredRequestResumeData();
 }
-#endif
 
 void TorrentImpl::handleMetadataReceivedAlert([[maybe_unused]] const lt::metadata_received_alert *p)
 {
     qDebug("Metadata received for torrent %s.", qUtf8Printable(name()));
 
-#ifdef QBT_USES_LIBTORRENT2
     const InfoHash prevInfoHash = infoHash();
     m_infoHash = InfoHash(m_nativeHandle.info_hashes());
     if (prevInfoHash != infoHash())
         m_session->handleTorrentInfoHashChanged(this, prevInfoHash);
-#endif
 
     m_maintenanceJob = MaintenanceJob::HandleMetadata;
     deferredRequestResumeData();
@@ -2437,11 +2399,9 @@ void TorrentImpl::handleAlert(const lt::alert *a)
 {
     switch (a->type())
     {
-#ifdef QBT_USES_LIBTORRENT2
     case lt::file_prio_alert::alert_type:
         handleFilePrioAlert(static_cast<const lt::file_prio_alert*>(a));
         break;
-#endif
     case lt::file_renamed_alert::alert_type:
         handleFileRenamedAlert(static_cast<const lt::file_renamed_alert*>(a));
         break;
@@ -2540,12 +2500,7 @@ void TorrentImpl::setMetadata(const TorrentInfo &torrentInfo)
     {
         try
         {
-#ifdef QBT_USES_LIBTORRENT2
             nativeHandle.set_metadata(torrentInfo.nativeInfo()->info_section());
-#else
-            const std::shared_ptr<lt::torrent_info> nativeInfo = torrentInfo.nativeInfo();
-            nativeHandle.set_metadata(lt::span<const char>(nativeInfo->metadata().get(), nativeInfo->metadata_size()));
-#endif
         }
         catch (const std::exception &) {}
     });
@@ -2851,12 +2806,8 @@ nonstd::expected<lt::entry, QString> TorrentImpl::exportTorrent() const
 
     try
     {
-#ifdef QBT_USES_LIBTORRENT2
         const std::shared_ptr<lt::torrent_info> completeTorrentInfo = m_nativeHandle.torrent_file_with_hashes();
         const std::shared_ptr<lt::torrent_info> torrentInfo = (completeTorrentInfo ? completeTorrentInfo : info().nativeInfo());
-#else
-        const std::shared_ptr<lt::torrent_info> torrentInfo = info().nativeInfo();
-#endif
         lt::create_torrent creator {*torrentInfo};
 
         for (const TrackerEntryStatus &status : asConst(trackers()))
@@ -2946,7 +2897,7 @@ void TorrentImpl::fetchPieceAvailability(std::function<void (QList<int>)> result
         {
             std::vector<int> piecesAvailability;
             nativeHandle.piece_availability(piecesAvailability);
-            return QList<int>(piecesAvailability.cbegin(), piecesAvailability.cend());
+            return {piecesAvailability.cbegin(), piecesAvailability.cend()};
         }
         catch (const std::exception &) {}
 
@@ -2961,15 +2912,10 @@ void TorrentImpl::fetchDownloadingPieces(std::function<void (QBitArray)> resultH
     {
         try
         {
-#ifdef QBT_USES_LIBTORRENT2
-            const std::vector<lt::partial_piece_info> queue = nativeHandle.get_download_queue();
-#else
-            std::vector<lt::partial_piece_info> queue;
-            nativeHandle.get_download_queue(queue);
-#endif
+            const auto queue = nativeHandle.get_download_queue();
             QBitArray result;
             result.resize(torrentInfo.piecesCount());
-            for (const lt::partial_piece_info &info : queue)
+            for (const auto &info : queue)
                 result.setBit(LT::toUnderlyingType(info.piece_index));
             return result;
         }
@@ -2994,7 +2940,7 @@ void TorrentImpl::fetchAvailableFileFractions(std::function<void (QList<qreal>)>
             const int filesCount = torrentInfo.filesCount();
             // libtorrent returns empty array for seeding only torrents
             if (piecesAvailability.empty())
-                return QList<qreal>(filesCount, -1);
+                return {static_cast<double>(filesCount), -1};
 
             QList<qreal> result;
             result.reserve(filesCount);
@@ -3066,7 +3012,7 @@ QList<qreal> TorrentImpl::availableFileFractions() const
 
     const QList<int> piecesAvailability = pieceAvailability();
     // libtorrent returns empty array for seeding only torrents
-    if (piecesAvailability.empty()) return QList<qreal>(filesCount, -1);
+    if (piecesAvailability.empty()) return {static_cast<double>(filesCount), -1};
 
     QList<qreal> res;
     res.reserve(filesCount);

@@ -117,9 +117,7 @@ namespace BitTorrent
         {
             int diskBlocksInUse = -1;
             int numBlocksRead = -1;
-#ifndef QBT_USES_LIBTORRENT2
             int numBlocksCacheHits = -1;
-#endif
             int writeJobs = -1;
             int readJobs = -1;
             int hashJobs = -1;
@@ -580,9 +578,7 @@ namespace BitTorrent
         void handleSocks5Alert(const lt::socks5_alert *alert) const;
         void handleI2PAlert(const lt::i2p_alert *alert) const;
         void handleTrackerAlert(const lt::tracker_alert *alert);
-#ifdef QBT_USES_LIBTORRENT2
         void handleTorrentConflictAlert(const lt::torrent_conflict_alert *alert);
-#endif
 
         TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
 

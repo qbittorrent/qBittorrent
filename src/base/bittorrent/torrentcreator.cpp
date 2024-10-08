@@ -56,7 +56,6 @@ namespace
         return !Path(f).filename().startsWith(u'.');
     }
 
-#ifdef QBT_USES_LIBTORRENT2
     lt::create_flags_t toNativeTorrentFormatFlag(const BitTorrent::TorrentFormat torrentFormat)
     {
         switch (torrentFormat)
@@ -70,7 +69,6 @@ namespace
         }
         return {};
     }
-#endif
 }
 
 using namespace BitTorrent;
@@ -158,12 +156,7 @@ void TorrentCreator::run()
 
         checkInterruptionRequested();
 
-#ifdef QBT_USES_LIBTORRENT2
         lt::create_torrent newTorrent {fs, m_params.pieceSize, toNativeTorrentFormatFlag(m_params.torrentFormat)};
-#else
-        lt::create_torrent newTorrent(fs, m_params.pieceSize, m_params.paddedFileSizeLimit
-            , (m_params.isAlignmentOptimized ? lt::create_torrent::optimize_alignment : lt::create_flags_t {}));
-#endif
 
         // Add url seeds
         for (QString seed : asConst(m_params.urlSeeds))
@@ -246,11 +239,7 @@ const TorrentCreatorParams &TorrentCreator::params() const
     return m_params;
 }
 
-#ifdef QBT_USES_LIBTORRENT2
 int TorrentCreator::calculateTotalPieces(const Path &inputPath, const int pieceSize, const TorrentFormat torrentFormat)
-#else
-int TorrentCreator::calculateTotalPieces(const Path &inputPath, const int pieceSize, const bool isAlignmentOptimized, const int paddedFileSizeLimit)
-#endif
 {
     if (inputPath.isEmpty())
         return 0;
@@ -258,10 +247,5 @@ int TorrentCreator::calculateTotalPieces(const Path &inputPath, const int pieceS
     lt::file_storage fs;
     lt::add_files(fs, inputPath.toString().toStdString(), fileFilter);
 
-#ifdef QBT_USES_LIBTORRENT2
     return lt::create_torrent {fs, pieceSize, toNativeTorrentFormatFlag(torrentFormat)}.num_pieces();
-#else
-    return lt::create_torrent(fs, pieceSize, paddedFileSizeLimit
-        , (isAlignmentOptimized ? lt::create_torrent::optimize_alignment : lt::create_flags_t {})).num_pieces();
-#endif
 }

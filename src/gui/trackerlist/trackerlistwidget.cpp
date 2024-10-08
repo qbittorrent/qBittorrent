@@ -48,7 +48,6 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentrystatus.h"
-#include "base/global.h"
 #include "base/preferences.h"
 #include "gui/autoexpandabledialog.h"
 #include "gui/trackersadditiondialog.h"
@@ -60,10 +59,7 @@
 TrackerListWidget::TrackerListWidget(QWidget *parent)
     : QTreeView(parent)
 {
-#ifdef QBT_USES_LIBTORRENT2
     setColumnHidden(TrackerListModel::COL_PROTOCOL, true); // Must be set before calling loadSettings()
-#endif
-
     setExpandsOnDoubleClick(false);
     setAllColumnsShowFocus(true);
     setSelectionMode(QAbstractItemView::ExtendedSelection);

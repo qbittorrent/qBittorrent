@@ -846,7 +846,7 @@ void OptionsDialog::loadConnectionTabOptions()
         m_ui->spinMaxUploadsPerTorrent->setEnabled(false);
     }
 
-#if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
+#if TORRENT_USE_I2P
     m_ui->textI2PHost->setText(session->I2PAddress());
     m_ui->spinI2PPort->setValue(session->I2PPort());
     m_ui->checkI2PMixed->setChecked(session->I2PMixedMode());
@@ -909,7 +909,7 @@ void OptionsDialog::loadConnectionTabOptions()
     connect(m_ui->textProxyIP, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinProxyPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
-#if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
+#if TORRENT_USE_I2P
     connect(m_ui->textI2PHost, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinI2PPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkI2PMixed, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
@@ -947,7 +947,7 @@ void OptionsDialog::saveConnectionTabOptions() const
     session->setMaxUploads(getMaxUploads());
     session->setMaxUploadsPerTorrent(getMaxUploadsPerTorrent());
 
-#if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
+#if TORRENT_USE_I2P
     session->setI2PEnabled(m_ui->groupI2P->isChecked());
     session->setI2PAddress(m_ui->textI2PHost->text().trimmed());
     session->setI2PPort(m_ui->spinI2PPort->value());

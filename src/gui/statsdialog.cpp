@@ -55,10 +55,8 @@ StatsDialog::StatsDialog(QWidget *parent)
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated
             , this, &StatsDialog::update);
 
-#ifdef QBT_USES_LIBTORRENT2
     m_ui->labelCacheHitsText->hide();
     m_ui->labelCacheHits->hide();
-#endif
 
     if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
         resize(dialogSize);
@@ -87,13 +85,6 @@ void StatsDialog::update()
                 ((atd > 0) && (atu > 0))
                 ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2)
                 : u"-"_s);
-#ifndef QBT_USES_LIBTORRENT2
-    // Cache hits
-    const qreal readRatio = cs.readRatio;
-    m_ui->labelCacheHits->setText(u"%1%"_s.arg((readRatio > 0)
-        ? Utils::String::fromDouble((100 * readRatio), 2)
-        : u"0"_s));
-#endif
     // Buffers size
     m_ui->labelTotalBuf->setText(Utils::Misc::friendlyUnit(cs.totalUsedBuffers * 16 * 1024));
     // Disk overload (100%) equivalent

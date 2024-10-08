@@ -56,10 +56,6 @@ signals:
 private slots:
     void updateInterfaceAddressCombo();
 
-#ifndef QBT_USES_LIBTORRENT2
-    void updateCacheSpinSuffix(int value);
-#endif
-
 #ifdef QBT_USES_DBUS
     void updateNotificationTimeoutSuffix(int value);
 #endif
@@ -84,19 +80,14 @@ private:
               m_comboBoxSeedChokingAlgorithm, m_comboBoxResumeDataStorage, m_comboBoxTorrentContentRemoveOption;
     QLineEdit m_lineEditAppInstanceName, m_pythonExecutablePath, m_lineEditAnnounceIP, m_lineEditDHTBootstrapNodes;
 
-#ifndef QBT_USES_LIBTORRENT2
-    QSpinBox m_spinBoxCache, m_spinBoxCacheTTL;
-    QCheckBox m_checkBoxCoalesceRW;
-#else
     QComboBox m_comboBoxDiskIOType;
     QSpinBox m_spinBoxHashingThreads;
-#endif
 
-#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
+#if !defined(Q_OS_MACOS)
     QSpinBox m_spinBoxMemoryWorkingSetLimit;
 #endif
 
-#if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
+#if TORRENT_USE_I2P
     QSpinBox m_spinBoxI2PInboundQuantity, m_spinBoxI2POutboundQuantity, m_spinBoxI2PInboundLength, m_spinBoxI2POutboundLength;
 #endif
 

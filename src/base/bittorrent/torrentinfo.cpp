@@ -35,10 +35,8 @@
 #include <QString>
 #include <QUrl>
 
-#include "base/global.h"
 #include "base/path.h"
 #include "infohash.h"
-#include "trackerentry.h"
 
 using namespace BitTorrent;
 
@@ -77,11 +75,7 @@ InfoHash TorrentInfo::infoHash() const
 {
     if (!isValid()) return {};
 
-#ifdef QBT_USES_LIBTORRENT2
     return m_nativeInfo->info_hashes();
-#else
-    return m_nativeInfo->info_hash();
-#endif
 }
 
 QString TorrentInfo::name() const
@@ -182,12 +176,8 @@ qlonglong TorrentInfo::fileOffset(const int index) const
 QByteArray TorrentInfo::rawData() const
 {
     if (!isValid()) return {};
-#ifdef QBT_USES_LIBTORRENT2
     const lt::span<const char> infoSection {m_nativeInfo->info_section()};
     return {infoSection.data(), static_cast<int>(infoSection.size())};
-#else
-    return {m_nativeInfo->metadata().get(), m_nativeInfo->metadata_size()};
-#endif
 }
 
 PathList TorrentInfo::filesForPiece(const int pieceIndex) const

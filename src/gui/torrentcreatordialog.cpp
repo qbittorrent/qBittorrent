@@ -68,12 +68,7 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
     , m_storePrivateTorrent(SETTINGS_KEY(u"PrivateTorrent"_s))
     , m_storeStartSeeding(SETTINGS_KEY(u"StartSeeding"_s))
     , m_storeIgnoreRatio(SETTINGS_KEY(u"IgnoreRatio"_s))
-#ifdef QBT_USES_LIBTORRENT2
     , m_storeTorrentFormat(SETTINGS_KEY(u"TorrentFormat"_s))
-#else
-    , m_storeOptimizeAlignment(SETTINGS_KEY(u"OptimizeAlignment"_s))
-    , m_paddedFileSizeLimit(SETTINGS_KEY(u"PaddedFileSizeLimit"_s))
-#endif
     , m_storeLastAddPath(SETTINGS_KEY(u"LastAddPath"_s))
     , m_storeTrackerList(SETTINGS_KEY(u"TrackerList"_s))
     , m_storeWebSeedList(SETTINGS_KEY(u"WebSeedList"_s))
@@ -106,12 +101,7 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
 
     m_threadPool.setMaxThreadCount(1);
     m_threadPool.setObjectName("TorrentCreatorDialog m_threadPool");
-
-#ifdef QBT_USES_LIBTORRENT2
     m_ui->checkOptimizeAlignment->hide();
-#else
-    m_ui->widgetTorrentFormat->hide();
-#endif
 }
 
 TorrentCreatorDialog::~TorrentCreatorDialog()
@@ -148,7 +138,6 @@ int TorrentCreatorDialog::getPieceSize() const
     return m_ui->comboPieceSize->currentData().toInt();
 }
 
-#ifdef QBT_USES_LIBTORRENT2
 BitTorrent::TorrentFormat TorrentCreatorDialog::getTorrentFormat() const
 {
     switch (m_ui->comboTorrentFormat->currentIndex())
@@ -162,13 +151,6 @@ BitTorrent::TorrentFormat TorrentCreatorDialog::getTorrentFormat() const
     }
     return BitTorrent::TorrentFormat::Hybrid;
 }
-#else
-int TorrentCreatorDialog::getPaddedFileSizeLimit() const
-{
-    const int value = m_ui->spinPaddedFileSizeLimit->value();
-    return ((value >= 0) ? (value * 1024) : -1);
-}
-#endif
 
 void TorrentCreatorDialog::dropEvent(QDropEvent *event)
 {
@@ -227,12 +209,7 @@ void TorrentCreatorDialog::onCreateButtonClicked()
     const BitTorrent::TorrentCreatorParams params
     {
         .isPrivate = m_ui->checkPrivate->isChecked(),
-#ifdef QBT_USES_LIBTORRENT2
         .torrentFormat = getTorrentFormat(),
-#else
-        .isAlignmentOptimized = m_ui->checkOptimizeAlignment->isChecked(),
-        .paddedFileSizeLimit = getPaddedFileSizeLimit(),
-#endif
         .pieceSize = getPieceSize(),
         .sourcePath = inputPath,
         .torrentFilePath = destPath,
@@ -301,14 +278,8 @@ void TorrentCreatorDialog::updateProgressBar(int progress)
 void TorrentCreatorDialog::updatePiecesCount()
 {
     const Path path = m_ui->textInputPath->selectedPath();
-#ifdef QBT_USES_LIBTORRENT2
     const int count = BitTorrent::TorrentCreator::calculateTotalPieces(
         path, getPieceSize(), getTorrentFormat());
-#else
-    const bool isAlignmentOptimized = m_ui->checkOptimizeAlignment->isChecked();
-    const int count = BitTorrent::TorrentCreator::calculateTotalPieces(path
-        , getPieceSize(), isAlignmentOptimized, getPaddedFileSizeLimit());
-#endif
     m_ui->labelTotalPieces->setText(QString::number(count));
 }
 
@@ -327,12 +298,7 @@ void TorrentCreatorDialog::setInteractionEnabled(const bool enabled) const
     m_ui->checkStartSeeding->setEnabled(enabled);
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(enabled);
     m_ui->checkIgnoreShareLimits->setEnabled(enabled && m_ui->checkStartSeeding->isChecked());
-#ifdef QBT_USES_LIBTORRENT2
     m_ui->widgetTorrentFormat->setEnabled(enabled);
-#else
-    m_ui->checkOptimizeAlignment->setEnabled(enabled);
-    m_ui->spinPaddedFileSizeLimit->setEnabled(enabled);
-#endif
 }
 
 void TorrentCreatorDialog::saveSettings()
@@ -343,13 +309,7 @@ void TorrentCreatorDialog::saveSettings()
     m_storePrivateTorrent = m_ui->checkPrivate->isChecked();
     m_storeStartSeeding = m_ui->checkStartSeeding->isChecked();
     m_storeIgnoreRatio = m_ui->checkIgnoreShareLimits->isChecked();
-#ifdef QBT_USES_LIBTORRENT2
     m_storeTorrentFormat = m_ui->comboTorrentFormat->currentIndex();
-#else
-    m_storeOptimizeAlignment = m_ui->checkOptimizeAlignment->isChecked();
-    m_paddedFileSizeLimit = m_ui->spinPaddedFileSizeLimit->value();
-#endif
-
     m_storeTrackerList = m_ui->trackersList->toPlainText();
     m_storeWebSeedList = m_ui->URLSeedsList->toPlainText();
     m_storeComments = m_ui->txtComment->toPlainText();
@@ -367,13 +327,7 @@ void TorrentCreatorDialog::loadSettings()
     m_ui->checkStartSeeding->setChecked(m_storeStartSeeding);
     m_ui->checkIgnoreShareLimits->setChecked(m_storeIgnoreRatio);
     m_ui->checkIgnoreShareLimits->setEnabled(m_ui->checkStartSeeding->isChecked());
-#ifdef QBT_USES_LIBTORRENT2
     m_ui->comboTorrentFormat->setCurrentIndex(m_storeTorrentFormat.get(1));
-#else
-    m_ui->checkOptimizeAlignment->setChecked(m_storeOptimizeAlignment.get(true));
-    m_ui->spinPaddedFileSizeLimit->setValue(m_paddedFileSizeLimit.get(-1));
-#endif
-
     m_ui->trackersList->setPlainText(m_storeTrackerList);
     m_ui->URLSeedsList->setPlainText(m_storeWebSeedList);
     m_ui->txtComment->setPlainText(m_storeComments);

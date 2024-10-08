@@ -40,24 +40,17 @@
 
 namespace BitTorrent
 {
-#ifdef QBT_USES_LIBTORRENT2
     enum class TorrentFormat
     {
         V1,
         V2,
         Hybrid
     };
-#endif
 
     struct TorrentCreatorParams
     {
         bool isPrivate = false;
-#ifdef QBT_USES_LIBTORRENT2
         TorrentFormat torrentFormat = TorrentFormat::Hybrid;
-#else
-        bool isAlignmentOptimized = false;
-        int paddedFileSizeLimit = 0;
-#endif
         int pieceSize = 0;
         Path sourcePath;
         Path torrentFilePath;
@@ -87,12 +80,7 @@ namespace BitTorrent
 
         void run() override;
 
-#ifdef QBT_USES_LIBTORRENT2
         static int calculateTotalPieces(const Path &inputPath, int pieceSize, TorrentFormat torrentFormat);
-#else
-        static int calculateTotalPieces(const Path &inputPath, const int pieceSize
-                , const bool isAlignmentOptimized, int paddedFileSizeLimit);
-#endif
 
     public slots:
         void requestInterruption();

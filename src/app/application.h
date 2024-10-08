@@ -167,7 +167,7 @@ private:
     void runExternalProgram(const QString &programTemplate, const BitTorrent::Torrent *torrent) const;
     void sendNotificationEmail(const BitTorrent::Torrent *torrent);
 
-#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
+#if !defined(Q_OS_MACOS)
     void applyMemoryWorkingSetLimit() const;
 #endif
 

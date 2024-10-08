@@ -152,11 +152,7 @@ BitTorrent::TorrentDescriptor::TorrentDescriptor(lt::add_torrent_params ltAddTor
 
 BitTorrent::InfoHash BitTorrent::TorrentDescriptor::infoHash() const
 {
-#ifdef QBT_USES_LIBTORRENT2
     return m_ltAddTorrentParams.info_hashes;
-#else
-    return m_ltAddTorrentParams.info_hash;
-#endif
 }
 
 QString BitTorrent::TorrentDescriptor::name() const
@@ -196,11 +192,7 @@ void BitTorrent::TorrentDescriptor::setTorrentInfo(TorrentInfo torrentInfo)
     {
         m_info = std::move(torrentInfo);
         m_ltAddTorrentParams.ti = m_info->nativeInfo();
-#ifdef QBT_USES_LIBTORRENT2
         m_ltAddTorrentParams.info_hashes = m_ltAddTorrentParams.ti->info_hashes();
-#else
-        m_ltAddTorrentParams.info_hash = m_ltAddTorrentParams.ti->info_hash();
-#endif
     }
 }
 
