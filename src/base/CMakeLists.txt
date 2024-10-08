@@ -215,8 +215,6 @@ add_library(qbt_base STATIC
     utils/version.cpp
 )
 
-find_package(libtorrent REQUIRED)
-
 target_link_libraries(qbt_base
     PRIVATE
         OpenSSL::Crypto
