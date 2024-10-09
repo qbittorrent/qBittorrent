@@ -48,6 +48,11 @@
 
 #define SETTINGS_KEY(name) u"PreviewSelectDialog/" name
 
+enum Roles
+{
+    SortRole = Qt::UserRole
+};
+
 PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torrent *torrent)
     : QDialog(parent)
     , m_ui {new Ui::PreviewSelectDialog}
@@ -71,6 +76,7 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
     previewListModel->setHeaderData(NAME, Qt::Horizontal, tr("Name"));
     previewListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
     previewListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
+    previewListModel->setHeaderData(FILE_INDEX, Qt::Horizontal, tr("Index"));
 
     m_ui->previewList->setAlternatingRowColors(pref->useAlternatingRowColors());
     m_ui->previewList->setUniformRowHeights(true);
@@ -89,13 +95,19 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
         {
             int row = previewListModel->rowCount();
             previewListModel->insertRow(row);
-            previewListModel->setData(previewListModel->index(row, NAME), filePath.filename());
-            previewListModel->setData(previewListModel->index(row, SIZE), Utils::Misc::friendlyUnit(torrent->fileSize(i)));
-            previewListModel->setData(previewListModel->index(row, PROGRESS), fp[i]);
-            previewListModel->setData(previewListModel->index(row, FILE_INDEX), i);
+            previewListModel->setData(previewListModel->index(row, NAME), filePath.filename(), Qt::DisplayRole);
+            previewListModel->setData(previewListModel->index(row, NAME), filePath.filename(), SortRole);
+            // Sorting file size by bytes, while displaying by human readable format
+            previewListModel->setData(previewListModel->index(row, SIZE), Utils::Misc::friendlyUnit(torrent->fileSize(i)), Qt::DisplayRole);
+            previewListModel->setData(previewListModel->index(row, SIZE), torrent->fileSize(i), SortRole);
+            previewListModel->setData(previewListModel->index(row, PROGRESS), fp[i], Qt::DisplayRole);
+            previewListModel->setData(previewListModel->index(row, PROGRESS), fp[i], SortRole);
+            previewListModel->setData(previewListModel->index(row, FILE_INDEX), i, Qt::DisplayRole);
+            previewListModel->setData(previewListModel->index(row, FILE_INDEX), i, SortRole);
         }
     }
 
+    previewListModel->setSortRole(SortRole);
     previewListModel->sort(NAME);
     m_ui->previewList->header()->setContextMenuPolicy(Qt::CustomContextMenu);
     m_ui->previewList->header()->setFirstSectionMovable(true);
