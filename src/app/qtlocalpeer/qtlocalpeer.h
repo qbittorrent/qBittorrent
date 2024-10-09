@@ -69,10 +69,8 @@
 #pragma once
 
 #include <QString>
-
-#include "qtlockedfile.h"
-
-class QLocalServer;
+#include <QLockFile>
+#include <QLocalServer>
 
 class QtLocalPeer final : public QObject
 {
@@ -94,6 +92,6 @@ private slots:
 
 private:
     QString m_socketName;
-    QLocalServer *m_server = nullptr;
-    QtLP_Private::QtLockedFile m_lockFile;
+    QLocalServer *m_server = new QLocalServer(this);
+    QLockFile m_lockFile;
 };
