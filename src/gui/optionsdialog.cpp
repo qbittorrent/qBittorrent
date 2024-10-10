@@ -1282,6 +1282,7 @@ void OptionsDialog::loadWebUITabOptions()
     // Reverse proxy
     m_ui->groupEnableReverseProxySupport->setChecked(pref->isWebUIReverseProxySupportEnabled());
     m_ui->textTrustedReverseProxiesList->setText(pref->getWebUITrustedReverseProxiesList());
+    m_ui->textWebUIBasePath->setText(pref->getWebUIBasePath());
     // DynDNS
     m_ui->checkDynDNS->setChecked(pref->isDynDNSEnabled());
     m_ui->comboDNSService->setCurrentIndex(static_cast<int>(pref->getDynDNSService()));
@@ -1323,6 +1324,7 @@ void OptionsDialog::loadWebUITabOptions()
 
     connect(m_ui->groupEnableReverseProxySupport, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textTrustedReverseProxiesList, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->textWebUIBasePath, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkDynDNS, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboDNSService, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
@@ -1369,6 +1371,15 @@ void OptionsDialog::saveWebUITabOptions() const
     // Reverse proxy
     pref->setWebUIReverseProxySupportEnabled(m_ui->groupEnableReverseProxySupport->isChecked());
     pref->setWebUITrustedReverseProxiesList(m_ui->textTrustedReverseProxiesList->text());
+
+    QString path = m_ui->textWebUIBasePath->text();
+    if (!path.endsWith(u"/"_s))
+        path += u"/"_s;
+    QUrl url;
+    url.setPath(path, QUrl::StrictMode);
+    if (url.isValid())
+        pref->setWebUIBasePath(url.path());
+
     // DynDNS
     pref->setDynDNSEnabled(m_ui->checkDynDNS->isChecked());
     pref->setDynDNSService(static_cast<DNS::Service>(m_ui->comboDNSService->currentIndex()));

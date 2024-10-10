@@ -233,6 +233,8 @@ public:
     void setWebUIReverseProxySupportEnabled(bool enabled);
     QString getWebUITrustedReverseProxiesList() const;
     void setWebUITrustedReverseProxiesList(const QString &addr);
+    QString getWebUIBasePath() const;
+    void setWebUIBasePath(const QString &path);
 
     // Dynamic DNS
     bool isDynDNSEnabled() const;

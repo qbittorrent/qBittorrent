@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>QBT_TR(Rule deletion confirmation)QBT_TR[CONTEXT=AutomatedRssDownloader]</title>
-    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
-    <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
-    <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
+    <link rel="stylesheet" href="${BASE_PATH}css/style.css?v=${CACHEID}" type="text/css">
+    <script src="${BASE_PATH}scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
+    <script src="${BASE_PATH}scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script>
         "use strict";
 
@@ -26,7 +26,7 @@
                 let completionCount = 0;
                 rules.forEach((rule) => {
                     new Request({
-                        url: "api/v2/rss/removeRule",
+                        url: "${BASE_PATH}api/v2/rss/removeRule",
                         method: "post",
                         data: {
                             ruleName: decodeURIComponent(rule)
