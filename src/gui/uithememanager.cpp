@@ -87,7 +87,7 @@ UIThemeManager::UIThemeManager()
 #ifdef Q_OS_WIN
     const QString defaultStyle = (QOperatingSystemVersion::current() >= QOperatingSystemVersion::Windows10) ? u"Fusion"_s : QString();
     if (const QString styleName = Preferences::instance()->getStyle(); !QApplication::setStyle(styleName.isEmpty() ? defaultStyle : styleName))
-        LogMsg(tr("Unknown style: \"%1\"").arg(styleName), Log::WARNING);
+        LogMsg(tr("Set app style failed. Unknown style: \"%1\"").arg(styleName), Log::WARNING);
 #endif
 
     // NOTE: Qt::QueuedConnection can be omitted as soon as support for Qt 6.5 is dropped

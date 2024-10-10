@@ -1690,8 +1690,7 @@ void OptionsDialog::initializeStyleCombo()
     const QString prefStyleName = Preferences::instance()->getStyle();
     const QString selectedStyleName = prefStyleName.isEmpty() ? QApplication::style()->name() : prefStyleName;
     QStringList styleNames = QStyleFactory::keys();
-    const qsizetype stylesCount = styleNames.size();
-    for (int i = 1; i < stylesCount; ++i)
+    for (qsizetype i = 1, stylesCount = styleNames.size(); i < stylesCount; ++i)
     {
         if (selectedStyleName.compare(styleNames.at(i), Qt::CaseInsensitive) == 0)
         {
