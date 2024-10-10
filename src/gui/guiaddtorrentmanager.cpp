@@ -189,26 +189,37 @@ bool GUIAddTorrentManager::processTorrent(const QString &source, const BitTorren
             torrent->setMetadata(*torrentDescr.info());
         }
 
-        if (torrent->isPrivate() || (hasMetadata && torrentDescr.info()->isPrivate()))
+        const bool isPrivate = torrent->isPrivate() || (hasMetadata && torrentDescr.info()->isPrivate());
+        const bool showConfirmDialog = !isPrivate && Preferences::instance()->confirmMergeTrackers();
+        bool mergeTrackers = btSession()->isMergeTrackersEnabled();
+        if (showConfirmDialog)
         {
-            handleDuplicateTorrent(source, torrent, tr("Trackers cannot be merged because it is a private torrent"));
+            const QMessageBox::StandardButton btn = RaisedMessageBox::question(app()->mainWindow(), tr("Torrent is already present")
+                    , tr("Torrent '%1' is already in the transfer list. Do you want to merge trackers from new source?").arg(torrent->name())
+                    , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
+            mergeTrackers = (btn == QMessageBox::Yes);
         }
-        else
-        {
-            bool mergeTrackers = btSession()->isMergeTrackersEnabled();
-            if (Preferences::instance()->confirmMergeTrackers())
-            {
-                const QMessageBox::StandardButton btn = RaisedMessageBox::question(app()->mainWindow(), tr("Torrent is already present")
-                        , tr("Torrent '%1' is already in the transfer list. Do you want to merge trackers from new source?").arg(torrent->name())
-                        , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
-                mergeTrackers = (btn == QMessageBox::Yes);
-            }
 
+        if (mergeTrackers && !isPrivate)
+        {
+            torrent->addTrackers(torrentDescr.trackers());
+            torrent->addUrlSeeds(torrentDescr.urlSeeds());
+        }
+
+        // We should notify the user about a duplicate torrent, but we do not do this
+        // if we have already shown a confirmation dialog for merging trackers.
+        if (!showConfirmDialog)
+        {
+            QString message = tr("Torrent '%1' is already in the transfer list.").arg(torrent->name());
             if (mergeTrackers)
             {
-                torrent->addTrackers(torrentDescr.trackers());
-                torrent->addUrlSeeds(torrentDescr.urlSeeds());
+                if (isPrivate)
+                    message += u" " + tr("Trackers cannot be merged because it is a private torrent.");
+                else
+                    message += u" " + tr("Trackers merged from new source.");
             }
+
+            RaisedMessageBox::warning(app()->mainWindow(), tr("Torrent is already present"), message);
         }
 
         return false;
