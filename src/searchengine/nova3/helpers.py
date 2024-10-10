@@ -1,4 +1,4 @@
-#VERSION: 1.47
+#VERSION: 1.48
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -39,8 +39,7 @@ import tempfile
 import urllib.error
 import urllib.parse
 import urllib.request
-from collections.abc import Mapping
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Mapping, Match, Optional
 
 
 def getBrowserUserAgent() -> str:
@@ -75,7 +74,7 @@ if "sock_proxy" in os.environ and len(os.environ["sock_proxy"].strip()) > 0:
 def htmlentitydecode(s: str) -> str:
     # First convert alpha entities (such as &eacute;)
     # (Inspired from http://mail.python.org/pipermail/python-list/2007-June/443813.html)
-    def entity2char(m: re.Match[str]) -> str:
+    def entity2char(m: Match[str]) -> str:
         entity = m.group(1)
         if entity in html.entities.name2codepoint:
             return chr(html.entities.name2codepoint[entity])

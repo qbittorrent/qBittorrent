@@ -1,4 +1,4 @@
-#VERSION: 1.50
+#VERSION: 1.51
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -25,8 +25,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import re
-from collections.abc import Mapping
-from typing import Any, Union
+from typing import Any, Mapping, Pattern, Union
 
 # TODO: enable the following when using Python >= 3.8
 #SearchResults = TypedDict('SearchResults', {
@@ -59,7 +58,7 @@ def prettyPrinter(dictionary: SearchResults) -> None:
         print(outtext, file=utf8stdout)
 
 
-sizeUnitRegex: re.Pattern[str] = re.compile(r"^(?P<size>\d*\.?\d+) *(?P<unit>[a-z]+)?", re.IGNORECASE)
+sizeUnitRegex: Pattern[str] = re.compile(r"^(?P<size>\d*\.?\d+) *(?P<unit>[a-z]+)?", re.IGNORECASE)
 
 
 def anySizeToBytes(size_string: Union[float, int, str]) -> int:
