@@ -80,9 +80,14 @@
         </table>
     </fieldset>
 
-    <div class="formRow" style="margin-bottom: 5px;">
+    <div class="formRow" style="margin-bottom: 3px;">
         <input type="checkbox" id="performanceWarning">
         <label for="performanceWarning">QBT_TR(Log performance warnings)QBT_TR[CONTEXT=OptionsDialog]</label>
+    </div>
+
+    <div class="formRow" style="margin-bottom: 5px;">
+        <input type="checkbox" id="statusBarExternalIP">
+        <label for="statusBarExternalIP">QBT_TR(Show external IP in status bar)QBT_TR[CONTEXT=OptionsDialog]</label>
     </div>
 
     <fieldset class="settings">
@@ -2412,6 +2417,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Language
                     updateWebuiLocaleSelect(pref.locale);
                     $("performanceWarning").checked = pref.performance_warning;
+                    $("statusBarExternalIP").checked = pref.status_bar_external_ip;
 
                     // HTTP Server
                     $("webui_domain_textarea").value = pref.web_ui_domain_list;
@@ -2837,6 +2843,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Language
             settings["locale"] = $("locale_select").value;
             settings["performance_warning"] = $("performanceWarning").checked;
+            settings["status_bar_external_ip"] = $("statusBarExternalIP").checked;
 
             // HTTP Server
             settings["web_ui_domain_list"] = $("webui_domain_textarea").value;

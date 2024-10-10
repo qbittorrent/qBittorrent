@@ -86,6 +86,9 @@ StatusBar::StatusBar(QWidget *parent)
     m_upSpeedLbl->setStyleSheet(u"text-align:left;"_s);
     m_upSpeedLbl->setMinimumWidth(200);
 
+    m_lastExternalIPsLbl = new QLabel(tr("External IP: N/A"));
+    m_lastExternalIPsLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+
     m_DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0), this);
     m_DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
 
@@ -129,14 +132,21 @@ StatusBar::StatusBar(QWidget *parent)
 #ifndef Q_OS_MACOS
     statusSep4->setFrameShadow(QFrame::Raised);
 #endif
-    layout->addWidget(m_DHTLbl);
+    QFrame *statusSep5 = new QFrame(this);
+    statusSep5->setFrameStyle(QFrame::VLine);
+#ifndef Q_OS_MACOS
+    statusSep5->setFrameShadow(QFrame::Raised);
+#endif
+    layout->addWidget(m_lastExternalIPsLbl);
     layout->addWidget(statusSep1);
-    layout->addWidget(m_connecStatusLblIcon);
+    layout->addWidget(m_DHTLbl);
     layout->addWidget(statusSep2);
+    layout->addWidget(m_connecStatusLblIcon);
+    layout->addWidget(statusSep3);
     layout->addWidget(m_altSpeedsBtn);
     layout->addWidget(statusSep4);
     layout->addWidget(m_dlSpeedLbl);
-    layout->addWidget(statusSep3);
+    layout->addWidget(statusSep5);
     layout->addWidget(m_upSpeedLbl);
 
     addPermanentWidget(container);
@@ -168,6 +178,11 @@ void StatusBar::showRestartRequired()
     auto *restartLbl = new QLabel(this);
     restartLbl->setText(restartText);
     insertWidget(1, restartLbl);
+}
+
+void StatusBar::showStatusBarExternalIP(bool display)
+{
+    m_lastExternalIPsLbl->setVisible(display);
 }
 
 void StatusBar::updateConnectionStatus()
@@ -212,6 +227,34 @@ void StatusBar::updateDHTNodesNumber()
     }
 }
 
+void StatusBar::updateExternalAddressesLabel()
+{
+    const QString lastExternalIPv4Address = BitTorrent::Session::instance()->lastExternalIPv4Address();
+    const QString lastExternalIPv6Address = BitTorrent::Session::instance()->lastExternalIPv6Address();
+    QString addressText = tr("External IP: N/A");
+
+    const bool hasIPv4Address = !lastExternalIPv4Address.isEmpty();
+    const bool hasIPv6Address = !lastExternalIPv6Address.isEmpty();
+
+    if (hasIPv4Address || hasIPv6Address)
+    {
+        if (hasIPv4Address && hasIPv6Address)
+        {
+            addressText = tr("External IPs: %1, %2")
+                    .arg(BitTorrent::Session::instance()->lastExternalIPv4Address())
+                    .arg(BitTorrent::Session::instance()->lastExternalIPv6Address());
+        }
+        else
+        {
+            addressText = tr("External IP: %1%2")
+                    .arg(BitTorrent::Session::instance()->lastExternalIPv4Address())
+                    .arg(BitTorrent::Session::instance()->lastExternalIPv6Address());
+        }
+    }
+
+    m_lastExternalIPsLbl->setText(addressText);
+}
+
 void StatusBar::updateSpeedLabels()
 {
     const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
@@ -235,6 +278,7 @@ void StatusBar::refresh()
 {
     updateConnectionStatus();
     updateDHTNodesNumber();
+    updateExternalAddressesLabel();
     updateSpeedLabels();
 }
 
