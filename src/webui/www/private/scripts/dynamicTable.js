@@ -954,6 +954,28 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["num_leechs"].dataProperties.push("num_incomplete");
             this.columns["time_active"].dataProperties.push("seeding_time");
 
+            this.columns["status"].sortOrder = {
+                "unknown": -1,
+                "forcedDL": 0,
+                "downloading": 1,
+                "forcedMetaDL": 2,
+                "metaDL": 3,
+                "stalledDL": 4,
+                "forcedUP": 5,
+                "uploading": 6,
+                "stalledUP": 7,
+                "checkingResumeData": 8,
+                "queuedDL": 9,
+                "queuedUP": 10,
+                "checkingUP": 11,
+                "checkingDL": 12,
+                "stoppedDL": 13,
+                "stoppedUP": 14,
+                "moving": 15,
+                "missingFiles": 16,
+                "error": 17
+            };
+
             this.initColumnsFunctions();
         },
 
@@ -1100,6 +1122,12 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 td.textContent = status;
                 td.title = status;
+            };
+
+            this.columns["status"].compareRows = function(row1, row2) {
+                const state1 = this.getRowValue(row1);
+                const state2 = this.getRowValue(row2);
+                return compareNumbers(this.sortOrder[state1], this.sortOrder[state2]);
             };
 
             // priority
