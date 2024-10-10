@@ -45,7 +45,6 @@ tr.dynamicTableHeader {
 
 .dynamicTable th {
     border-right: 1px solid var(--color-border-default);
-    box-sizing: border-box;
     padding: 4px 2px;
     white-space: nowrap;
 }
@@ -68,9 +67,9 @@ tr.dynamicTableHeader {
 
 .dynamicTable th.sorted {
     background-image: url("../images/go-up.svg");
-    background-position: right;
+    background-position: right 3px center;
     background-repeat: no-repeat;
-    background-size: 15px;
+    background-size: 12px;
 }
 
 .dynamicTable th.sorted.reverse {
@@ -85,6 +84,11 @@ tr.dynamicTableHeader {
 
 .dynamicTableFixedHeaderDiv {
     overflow: hidden;
+}
+
+#propertiesPanel .dynamicTableFixedHeaderDiv,
+#torrentsTableFixedHeaderDiv {
+    border-bottom: 1px solid var(--color-border-default);
 }
 
 .dynamicTableDiv {

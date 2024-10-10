@@ -116,8 +116,8 @@ window.qBittorrent.Search ??= (() => {
                 OpenDescriptionUrl: openSearchTorrentDescriptionUrl
             },
             offsets: {
-                x: -15,
-                y: -53
+                x: 0,
+                y: -60
             }
         });
         searchResultsTable = new window.qBittorrent.DynamicTable.SearchResultsTable();
@@ -184,9 +184,8 @@ window.qBittorrent.Search ??= (() => {
             alt: "QBT_TR(Close tab)QBT_TR[CONTEXT=SearchWidget]",
             title: "QBT_TR(Close tab)QBT_TR[CONTEXT=SearchWidget]",
             src: "images/application-exit.svg",
-            width: "8",
-            height: "8",
-            style: "padding-right: 7px; margin-bottom: -1px; margin-left: -5px",
+            width: "10",
+            height: "10",
             onclick: "qBittorrent.Search.closeSearchTab(this);",
         });
         closeTabElem.inject(tabElem, "top");
@@ -384,9 +383,8 @@ window.qBittorrent.Search ??= (() => {
             title: text,
             src: image,
             class: "statusIcon",
-            width: "10",
-            height: "10",
-            style: "margin-bottom: -2px; margin-left: 7px",
+            width: "12",
+            height: "12",
         });
     };
 

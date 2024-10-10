@@ -608,7 +608,7 @@ window.qBittorrent.PropFiles ??= (() => {
             }
         },
         offsets: {
-            x: -15,
+            x: 0,
             y: 2
         },
         onShow: function() {

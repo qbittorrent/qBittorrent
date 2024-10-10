@@ -367,7 +367,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 actions: actions,
                 menu: menuId,
                 offsets: {
-                    x: -15,
+                    x: 0,
                     y: 2
                 }
             });
@@ -2098,7 +2098,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                         const dirImg = new Element("img", {
                             src: "images/directory.svg",
                             styles: {
-                                "width": 15,
+                                "width": 20,
                                 "padding-right": 5,
                                 "margin-bottom": -3,
                                 "margin-left": (node.depth * 20)
@@ -2431,7 +2431,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                         const dirImg = new Element("img", {
                             src: "images/directory.svg",
                             styles: {
-                                "width": 15,
+                                "width": 20,
                                 "padding-right": 5,
                                 "margin-bottom": -3
                             },

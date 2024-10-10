@@ -24,9 +24,7 @@ Required by:
 
 .tab-menu {
     font-size: 11px;
-    line-height: 16px;
-    list-style: none;
-    margin: 0;
+    list-style-type: none;
     padding: 0;
 }
 
@@ -43,14 +41,17 @@ Required by:
 .tab-menu li a {
     align-items: center;
     background-color: var(--color-background-default);
-    border-radius: 5px 5px 0 0;
+    border-radius: 3px 3px 0 0;
     color: var(--color-text-default);
     display: flex;
-    font-weight: normal;
     gap: 5px;
     margin-left: 6px;
-    padding: 5px 8px;
+    padding: 5px 7px 3px;
     text-align: center;
+}
+
+.tab-menu li:first-child a {
+    margin-left: 4px;
 }
 
 .tab-menu li:hover a {
