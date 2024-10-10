@@ -293,7 +293,6 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
 
     if (!metadata.isEmpty())
     {
-        const auto *pref = Preferences::instance();
         const lt::bdecode_node torentInfoRoot = lt::bdecode(metadata, ec
                 , nullptr, pref->getBdecodeDepthLimit(), pref->getBdecodeTokenLimit());
         if (ec)
