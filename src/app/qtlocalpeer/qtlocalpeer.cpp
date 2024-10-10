@@ -78,29 +78,16 @@
 #include <QFileInfo>
 #include <QLocalServer>
 #include <QLocalSocket>
-
-namespace QtLP_Private
-{
-#include "qtlockedfile.cpp"
-
-#if defined(Q_OS_WIN)
-#include "qtlockedfile_win.cpp"
-#else
-#include "qtlockedfile_unix.cpp"
-#endif
-}
+#include <QLockFile>
 
 const char ACK[] = "ack";
 
 QtLocalPeer::QtLocalPeer(const QString &path, QObject *parent)
     : QObject(parent)
     , m_socketName(path + u"/ipc-socket")
-    , m_server(new QLocalServer(this))
+    , m_lockFile(path + u"/lockfile")
 {
     m_server->setSocketOptions(QLocalServer::UserAccessOption);
-
-    m_lockFile.setFileName(path + u"/lockfile");
-    m_lockFile.open(QIODevice::ReadWrite);
 }
 
 QtLocalPeer::~QtLocalPeer()
@@ -108,7 +95,6 @@ QtLocalPeer::~QtLocalPeer()
     if (!isClient())
     {
         m_lockFile.unlock();
-        m_lockFile.remove();
     }
 }
 
@@ -117,7 +103,7 @@ bool QtLocalPeer::isClient()
     if (m_lockFile.isLocked())
         return false;
 
-    if (!m_lockFile.lock(QtLP_Private::QtLockedFile::WriteLock, false))
+    if (!m_lockFile.lock())
         return true;
 
     bool res = m_server->listen(m_socketName);
@@ -150,18 +136,18 @@ bool QtLocalPeer::sendMessage(const QString &message, const int timeout)
         connOk = socket.waitForConnected(timeout/2);
         if (connOk || i)
             break;
-        int ms = 250;
+        const int ms = 250;
 #if defined(Q_OS_WIN)
         ::Sleep(DWORD(ms));
 #else
-        struct timespec ts = { ms / 1000, (ms % 1000) * 1000 * 1000 };
+        const struct timespec ts = { ms / 1000, (ms % 1000) * 1000 * 1000 };
         ::nanosleep(&ts, nullptr);
 #endif
     }
     if (!connOk)
         return false;
 
-    QByteArray uMsg(message.toUtf8());
+    const QByteArray uMsg(message.toUtf8());
     QDataStream ds(&socket);
     ds.writeBytes(uMsg.constData(), uMsg.size());
     bool res = socket.waitForBytesWritten(timeout);
@@ -188,14 +174,14 @@ void QtLocalPeer::receiveConnection()
             delete socket;
             return;
         }
-        if (socket->bytesAvailable() >= qint64(sizeof(quint32)))
+        if (socket->bytesAvailable() >= int64_t(sizeof(int32_t)))
             break;
         socket->waitForReadyRead();
     }
 
     QDataStream ds(socket);
     QByteArray uMsg;
-    quint32 remaining;
+    uint32_t remaining;
     ds >> remaining;
     if (remaining > 65535)
     {
