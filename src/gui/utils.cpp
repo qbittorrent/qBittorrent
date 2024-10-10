@@ -203,7 +203,8 @@ void Utils::Gui::openFolderSelect(const Path &path)
     {
         proc.startDetached(u"konqueror"_s, {u"--select"_s, path.toString()});
     }
-    else if (output == u"thunar.desktop"){
+    else if (output == u"thunar.desktop")
+    {
         proc.startDetached(u"thunar"_s, {path.toString()});
     }
     else
