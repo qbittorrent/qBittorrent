@@ -115,7 +115,7 @@ let setForceStartFN = function() {};
 let globalDownloadLimitFN = function() {};
 let StatisticsLinkFN = function() {};
 let downloadLimitFN = function() {};
-let deleteFN = function() {};
+let deleteSelectedTorrentsFN = function() {};
 let stopFN = function() {};
 let startFN = function() {};
 let autoTorrentManagementFN = function() {};
@@ -124,6 +124,9 @@ let reannounceFN = function() {};
 let setLocationFN = function() {};
 let renameFN = function() {};
 let renameFilesFN = function() {};
+let startVisibleTorrentsFN = function() {};
+let stopVisibleTorrentsFN = function() {};
+let deleteVisibleTorrentsFN = function() {};
 let torrentNewCategoryFN = function() {};
 let torrentSetCategoryFN = function() {};
 let createCategoryFN = function() {};
@@ -131,21 +134,12 @@ let createSubcategoryFN = function() {};
 let editCategoryFN = function() {};
 let removeCategoryFN = function() {};
 let deleteUnusedCategoriesFN = function() {};
-let startTorrentsByCategoryFN = function() {};
-let stopTorrentsByCategoryFN = function() {};
-let deleteTorrentsByCategoryFN = function() {};
 let torrentAddTagsFN = function() {};
 let torrentSetTagsFN = function() {};
 let torrentRemoveAllTagsFN = function() {};
 let createTagFN = function() {};
 let removeTagFN = function() {};
 let deleteUnusedTagsFN = function() {};
-let startTorrentsByTagFN = function() {};
-let stopTorrentsByTagFN = function() {};
-let deleteTorrentsByTagFN = function() {};
-let startTorrentsByTrackerFN = function() {};
-let stopTorrentsByTrackerFN = function() {};
-let deleteTorrentsByTrackerFN = function() {};
 let deleteTrackerFN = function() {};
 let copyNameFN = function() {};
 let copyInfohashFN = function(policy) {};
@@ -476,7 +470,7 @@ const initializeWindows = function() {
         }
     };
 
-    deleteFN = function(forceDeleteFiles = false) {
+    deleteSelectedTorrentsFN = function(forceDeleteFiles = false) {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length > 0) {
             if (window.qBittorrent.Cache.preferences.get().confirm_torrent_deletion) {
@@ -510,6 +504,7 @@ const initializeWindows = function() {
                     onSuccess: function() {
                         torrentsTable.deselectAll();
                         updateMainData();
+                        updatePropertiesPanel();
                     },
                     onFailure: function() {
                         alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
@@ -522,7 +517,7 @@ const initializeWindows = function() {
     addClickEvent("delete", (e) => {
         e.preventDefault();
         e.stopPropagation();
-        deleteFN();
+        deleteSelectedTorrentsFN();
     });
 
     stopFN = function() {
@@ -705,6 +700,86 @@ const initializeWindows = function() {
         }
     };
 
+    startVisibleTorrentsFN = function() {
+        const hashes = torrentsTable.getFilteredTorrentsHashes(selectedStatus, selectedCategory, selectedTag, selectedTracker);
+        if (hashes.length > 0) {
+            new Request({
+                url: "api/v2/torrents/start",
+                method: "post",
+                data: {
+                    hashes: hashes.join("|")
+                },
+                onSuccess: () => {
+                    updateMainData();
+                    updatePropertiesPanel();
+                },
+                onFailure: () => {
+                    alert("QBT_TR(Unable to start torrents.)QBT_TR[CONTEXT=HttpServer]");
+                }
+            }).send();
+        }
+    };
+
+    stopVisibleTorrentsFN = function() {
+        const hashes = torrentsTable.getFilteredTorrentsHashes(selectedStatus, selectedCategory, selectedTag, selectedTracker);
+        if (hashes.length > 0) {
+            new Request({
+                url: "api/v2/torrents/stop",
+                method: "post",
+                data: {
+                    hashes: hashes.join("|")
+                },
+                onSuccess: () => {
+                    updateMainData();
+                    updatePropertiesPanel();
+                },
+                onFailure: () => {
+                    alert("QBT_TR(Unable to stop torrents.)QBT_TR[CONTEXT=HttpServer]");
+                }
+            }).send();
+        }
+    };
+
+    deleteVisibleTorrentsFN = function() {
+        const hashes = torrentsTable.getFilteredTorrentsHashes(selectedStatus, selectedCategory, selectedTag, selectedTracker);
+        if (hashes.length > 0) {
+            if (window.qBittorrent.Cache.preferences.get().confirm_torrent_deletion) {
+                new MochaUI.Modal({
+                    ...window.qBittorrent.Dialog.baseModalOptions,
+                    id: "confirmDeletionPage",
+                    title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
+                    data: {
+                        hashes: hashes,
+                        isDeletingVisibleTorrents: true
+                    },
+                    contentURL: "views/confirmdeletion.html",
+                    onContentLoaded: function(w) {
+                        MochaUI.resizeWindow(w, { centered: true });
+                        MochaUI.centerWindow(w);
+                    }
+                });
+            }
+            else {
+                new Request({
+                    url: "api/v2/torrents/delete",
+                    method: "post",
+                    data: {
+                        hashes: hashes.join("|"),
+                        deleteFiles: false,
+                    },
+                    onSuccess: () => {
+                        torrentsTable.deselectAll();
+                        updateMainData();
+                        updatePropertiesPanel();
+                    },
+                    onFailure: () => {
+                        alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
+                    }
+                }).send();
+            }
+        }
+    };
+
     torrentNewCategoryFN = function() {
         const action = "set";
         const hashes = torrentsTable.selectedRowsIds();
@@ -838,74 +913,6 @@ const initializeWindows = function() {
         }).send();
     };
 
-    startTorrentsByCategoryFN = function(categoryHash) {
-        const hashes = torrentsTable.getFilteredTorrentsHashes("all", categoryHash, TAGS_ALL, TRACKERS_ALL);
-        if (hashes.length) {
-            new Request({
-                url: "api/v2/torrents/start",
-                method: "post",
-                data: {
-                    hashes: hashes.join("|")
-                }
-            }).send();
-            updateMainData();
-        }
-    };
-
-    stopTorrentsByCategoryFN = function(categoryHash) {
-        const hashes = torrentsTable.getFilteredTorrentsHashes("all", categoryHash, TAGS_ALL, TRACKERS_ALL);
-        if (hashes.length) {
-            new Request({
-                url: "api/v2/torrents/stop",
-                method: "post",
-                data: {
-                    hashes: hashes.join("|")
-                }
-            }).send();
-            updateMainData();
-        }
-    };
-
-    deleteTorrentsByCategoryFN = function(categoryHash) {
-        const hashes = torrentsTable.getFilteredTorrentsHashes("all", categoryHash, TAGS_ALL, TRACKERS_ALL);
-        if (hashes.length > 0) {
-            if (window.qBittorrent.Cache.preferences.get().confirm_torrent_deletion) {
-                new MochaUI.Modal({
-                    ...window.qBittorrent.Dialog.baseModalOptions,
-                    id: "confirmDeletionPage",
-                    title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
-                    data: { hashes: hashes },
-                    contentURL: "views/confirmdeletion.html",
-                    onContentLoaded: function(w) {
-                        MochaUI.resizeWindow(w, { centered: true });
-                        MochaUI.centerWindow(w);
-                    },
-                    onCloseComplete: function() {
-                        // make sure overlay is properly hidden upon modal closing
-                        document.getElementById("modalOverlay").style.display = "none";
-                    }
-                });
-            }
-            else {
-                new Request({
-                    url: "api/v2/torrents/delete",
-                    method: "post",
-                    data: {
-                        hashes: hashes.join("|"),
-                        deleteFiles: false,
-                    },
-                    onSuccess: function() {
-                        torrentsTable.deselectAll();
-                        updateMainData();
-                    },
-                    onFailure: function() {
-                        alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
-                    }
-                }).send();
-            }
-        }
-    };
-
     torrentAddTagsFN = function() {
         const action = "set";
         const hashes = torrentsTable.selectedRowsIds();
@@ -1001,203 +1008,6 @@ const initializeWindows = function() {
             }
         }).send();
         setTagFilter(TAGS_ALL);
-    };
-
-    startTorrentsByTagFN = function(tagHash) {
-        const hashes = torrentsTable.getFilteredTorrentsHashes("all", CATEGORIES_ALL, tagHash, TRACKERS_ALL);
-        if (hashes.length) {
-            new Request({
-                url: "api/v2/torrents/start",
-                method: "post",
-                data: {
-                    hashes: hashes.join("|")
-                }
-            }).send();
-            updateMainData();
-        }
-    };
-
-    stopTorrentsByTagFN = function(tagHash) {
-        const hashes = torrentsTable.getFilteredTorrentsHashes("all", CATEGORIES_ALL, tagHash, TRACKERS_ALL);
-        if (hashes.length) {
-            new Request({
-                url: "api/v2/torrents/stop",
-                method: "post",
-                data: {
-                    hashes: hashes.join("|")
-                }
-            }).send();
-            updateMainData();
-        }
-    };
-
-    deleteTorrentsByTagFN = function(tagHash) {
-        const hashes = torrentsTable.getFilteredTorrentsHashes("all", CATEGORIES_ALL, tagHash, TRACKERS_ALL);
-        if (hashes.length > 0) {
-            if (window.qBittorrent.Cache.preferences.get().confirm_torrent_deletion) {
-                new MochaUI.Modal({
-                    ...window.qBittorrent.Dialog.baseModalOptions,
-                    id: "confirmDeletionPage",
-                    title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
-                    data: { hashes: hashes },
-                    contentURL: "views/confirmdeletion.html",
-                    onContentLoaded: function(w) {
-                        MochaUI.resizeWindow(w, { centered: true });
-                        MochaUI.centerWindow(w);
-                    },
-                    onCloseComplete: function() {
-                        // make sure overlay is properly hidden upon modal closing
-                        document.getElementById("modalOverlay").style.display = "none";
-                    }
-                });
-            }
-            else {
-                new Request({
-                    url: "api/v2/torrents/delete",
-                    method: "post",
-                    data: {
-                        hashes: hashes.join("|"),
-                        deleteFiles: false,
-                    },
-                    onSuccess: function() {
-                        torrentsTable.deselectAll();
-                        updateMainData();
-                    },
-                    onFailure: function() {
-                        alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
-                    }
-                }).send();
-            }
-        }
-    };
-
-    startTorrentsByTrackerFN = function(trackerHash) {
-        const trackerHashInt = Number.parseInt(trackerHash, 10);
-        let hashes = [];
-        switch (trackerHashInt) {
-            case TRACKERS_ALL:
-                hashes = torrentsTable.getFilteredTorrentsHashes("all", CATEGORIES_ALL, TAGS_ALL, TRACKERS_ALL);
-                break;
-            case TRACKERS_TRACKERLESS:
-                hashes = torrentsTable.getFilteredTorrentsHashes("all", CATEGORIES_ALL, TAGS_ALL, TRACKERS_TRACKERLESS);
-                break;
-            default: {
-                const uniqueTorrents = new Set();
-                for (const torrents of trackerList.get(trackerHashInt).trackerTorrentMap.values()) {
-                    for (const torrent of torrents)
-                        uniqueTorrents.add(torrent);
-                }
-                hashes = [...uniqueTorrents];
-                break;
-            }
-        }
-
-        if (hashes.length > 0) {
-            new Request({
-                url: "api/v2/torrents/start",
-                method: "post",
-                data: {
-                    hashes: hashes.join("|")
-                }
-            }).send();
-            updateMainData();
-        }
-    };
-
-    stopTorrentsByTrackerFN = function(trackerHash) {
-        const trackerHashInt = Number.parseInt(trackerHash, 10);
-        let hashes = [];
-        switch (trackerHashInt) {
-            case TRACKERS_ALL:
-                hashes = torrentsTable.getFilteredTorrentsHashes("all", CATEGORIES_ALL, TAGS_ALL, TRACKERS_ALL);
-                break;
-            case TRACKERS_TRACKERLESS:
-                hashes = torrentsTable.getFilteredTorrentsHashes("all", CATEGORIES_ALL, TAGS_ALL, TRACKERS_TRACKERLESS);
-                break;
-            default: {
-                const uniqueTorrents = new Set();
-                for (const torrents of trackerList.get(trackerHashInt).trackerTorrentMap.values()) {
-                    for (const torrent of torrents)
-                        uniqueTorrents.add(torrent);
-                }
-                hashes = [...uniqueTorrents];
-                break;
-            }
-        }
-
-        if (hashes.length) {
-            new Request({
-                url: "api/v2/torrents/stop",
-                method: "post",
-                data: {
-                    hashes: hashes.join("|")
-                }
-            }).send();
-            updateMainData();
-        }
-    };
-
-    deleteTorrentsByTrackerFN = function(trackerHash) {
-        const trackerHashInt = Number.parseInt(trackerHash, 10);
-        let hashes = [];
-        switch (trackerHashInt) {
-            case TRACKERS_ALL:
-                hashes = torrentsTable.getFilteredTorrentsHashes("all", CATEGORIES_ALL, TAGS_ALL, TRACKERS_ALL);
-                break;
-            case TRACKERS_TRACKERLESS:
-                hashes = torrentsTable.getFilteredTorrentsHashes("all", CATEGORIES_ALL, TAGS_ALL, TRACKERS_TRACKERLESS);
-                break;
-            default: {
-                const uniqueTorrents = new Set();
-                for (const torrents of trackerList.get(trackerHashInt).trackerTorrentMap.values()) {
-                    for (const torrent of torrents)
-                        uniqueTorrents.add(torrent);
-                }
-                hashes = [...uniqueTorrents];
-                break;
-            }
-        }
-
-        if (hashes.length > 0) {
-            if (window.qBittorrent.Cache.preferences.get().confirm_torrent_deletion) {
-                new MochaUI.Modal({
-                    ...window.qBittorrent.Dialog.baseModalOptions,
-                    id: "confirmDeletionPage",
-                    title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
-                    data: {
-                        hashes: hashes,
-                        filterList: "tracker"
-                    },
-                    contentURL: "views/confirmdeletion.html",
-                    onContentLoaded: function(w) {
-                        MochaUI.resizeWindow(w, { centered: true });
-                        MochaUI.centerWindow(w);
-                    },
-                    onCloseComplete: function() {
-                        // make sure overlay is properly hidden upon modal closing
-                        document.getElementById("modalOverlay").style.display = "none";
-                    }
-                });
-            }
-            else {
-                new Request({
-                    url: "api/v2/torrents/delete",
-                    method: "post",
-                    data: {
-                        hashes: hashes.join("|"),
-                        deleteFiles: false,
-                    },
-                    onSuccess: function() {
-                        torrentsTable.deselectAll();
-                        setTrackerFilter(TRACKERS_ALL);
-                        updateMainData();
-                    },
-                    onFailure: function() {
-                        alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
-                    },
-                }).send();
-            }
-        }
     };
 
     deleteTrackerFN = function(trackerHash) {

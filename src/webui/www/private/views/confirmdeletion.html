@@ -35,8 +35,8 @@
 
         const {
             hashes,
+            isDeletingVisibleTorrents = false,
             forceDeleteFiles = false,
-            filterList = null
         } = window.MUI.Windows.instances["confirmDeletionPage"].options.data;
         let prefDeleteContentFiles = window.qBittorrent.Cache.preferences.get().delete_torrent_content_files;
         deleteCB.checked = forceDeleteFiles || prefDeleteContentFiles;
@@ -72,7 +72,11 @@
         cancelButton.addEventListener("click", (e) => { window.qBittorrent.Client.closeWindows(); });
 
         confirmButton.addEventListener("click", (e) => {
-            torrentsTable.deselectAll();
+            // Some torrents might be removed when waiting for user input, so refetch the torrent list
+            const hashes = isDeletingVisibleTorrents
+                ? torrentsTable.getFilteredTorrentsHashes(selectedStatus, selectedCategory, selectedTag, selectedTracker)
+                : torrentsTable.selectedRowsIds();
+
             new Request({
                 url: "api/v2/torrents/delete",
                 method: "post",
@@ -81,9 +85,9 @@
                     "deleteFiles": deleteCB.checked
                 },
                 onSuccess: function() {
-                    if (filterList === "tracker")
-                        setTrackerFilter(TRACKERS_ALL);
+                    torrentsTable.deselectAll();
                     updateMainData();
+                    updatePropertiesPanel();
                     window.qBittorrent.Client.closeWindows();
                 },
                 onFailure: function() {

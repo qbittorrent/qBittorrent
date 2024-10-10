@@ -1525,9 +1525,20 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         getFilteredTorrentsHashes: function(filterName, categoryHash, tagHash, trackerHash) {
             const rowsHashes = [];
+            const useRegex = document.getElementById("torrentsFilterRegexBox").checked;
+            const filterText = document.getElementById("torrentsFilterInput").value.trim().toLowerCase();
+            let filterTerms;
+            try {
+                filterTerms = (filterText.length > 0)
+                    ? (useRegex ? new RegExp(filterText) : filterText.split(" "))
+                    : null;
+            }
+            catch (e) { // SyntaxError: Invalid regex pattern
+                return filteredRows;
+            }
 
             for (const row of this.rows.values()) {
-                if (this.applyFilter(row, filterName, categoryHash, tagHash, trackerHash, null))
+                if (this.applyFilter(row, filterName, categoryHash, tagHash, trackerHash, filterTerms))
                     rowsHashes.push(row["rowId"]);
             }
 
