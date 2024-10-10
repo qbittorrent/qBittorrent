@@ -44,6 +44,7 @@
 #include <QMap>
 #include <QPointer>
 #include <QSet>
+#include <QThreadPool>
 
 #include "base/path.h"
 #include "base/settingvalue.h"
@@ -57,7 +58,6 @@
 #include "trackerentrystatus.h"
 
 class QString;
-class QThreadPool;
 class QTimer;
 class QUrl;
 
@@ -482,7 +482,11 @@ namespace BitTorrent
             QMetaObject::invokeMethod(this, std::forward<Func>(func), Qt::QueuedConnection);
         }
 
-        void invokeAsync(std::function<void ()> func);
+        template <typename Func>
+        void invokeAsync(Func &&func)
+        {
+            m_asyncWorker->start(std::forward<Func>(func));
+        }
 
     signals:
         void addTorrentAlertsReceived(qsizetype count);

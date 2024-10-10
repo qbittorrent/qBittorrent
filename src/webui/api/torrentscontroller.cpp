@@ -28,6 +28,7 @@
 
 #include "torrentscontroller.h"
 
+#include <concepts>
 #include <functional>
 
 #include <QBitArray>
@@ -135,7 +136,9 @@ namespace
 
     const QSet<QString> SUPPORTED_WEB_SEED_SCHEMES {u"http"_s, u"https"_s, u"ftp"_s};
 
-    void applyToTorrents(const QStringList &idList, const std::function<void (BitTorrent::Torrent *torrent)> &func)
+    template <typename Func>
+    void applyToTorrents(const QStringList &idList, Func func)
+        requires std::invocable<Func, BitTorrent::Torrent *>
     {
         if ((idList.size() == 1) && (idList[0] == u"all"))
         {

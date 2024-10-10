@@ -71,7 +71,6 @@
 #include <QRegularExpression>
 #include <QString>
 #include <QThread>
-#include <QThreadPool>
 #include <QTimer>
 #include <QUuid>
 
@@ -3011,11 +3010,6 @@ void SessionImpl::removeMappedPorts(const QSet<quint16> &ports)
             return true;
         });
     });
-}
-
-void SessionImpl::invokeAsync(std::function<void ()> func)
-{
-    m_asyncWorker->start(std::move(func));
 }
 
 // Add a torrent to libtorrent session in hidden mode
