@@ -59,6 +59,7 @@ public:
     QString filename() const;
 
     QString extension() const;
+    QString mimeExtension() const;
     bool hasExtension(QStringView ext) const;
     void removeExtension();
     Path removedExtension() const;

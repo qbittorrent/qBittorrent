@@ -183,14 +183,16 @@ QString Path::filename() const
 
 QString Path::extension() const
 {
-    const QString suffix = QMimeDatabase().suffixForFileName(m_pathStr);
-    if (!suffix.isEmpty())
-        return (u"." + suffix);
-
     const int slashIndex = m_pathStr.lastIndexOf(u'/');
     const auto filename = QStringView(m_pathStr).mid(slashIndex + 1);
     const int dotIndex = filename.lastIndexOf(u'.', -2);
     return ((dotIndex == -1) ? QString() : filename.mid(dotIndex).toString());
+}
+
+QString Path::mimeExtension() const
+{
+    const QString suffix = QMimeDatabase().suffixForFileName(m_pathStr);
+    return (suffix.isEmpty() ? extension() : (u"." + suffix));
 }
 
 bool Path::hasExtension(const QStringView ext) const
