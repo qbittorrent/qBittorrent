@@ -71,6 +71,8 @@ namespace
 TorrentContentWidget::TorrentContentWidget(QWidget *parent)
     : QTreeView(parent)
 {
+    setDragEnabled(true);
+    setDragDropMode(QAbstractItemView::DragOnly);
     setExpandsOnDoubleClick(false);
     setSortingEnabled(true);
     setUniformRowHeights(true);
