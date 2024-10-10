@@ -648,6 +648,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                     this.hideItem("update");
                     this.hideItem("markRead");
                     this.hideItem("rename");
+                    this.hideItem("edit");
                     this.hideItem("delete");
                     this.showItem("newSubscription");
                     this.showItem("newFolder");
@@ -660,6 +661,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                         this.showItem("update");
                         this.showItem("markRead");
                         this.hideItem("rename");
+                        this.hideItem("edit");
                         this.hideItem("delete");
                         this.showItem("newSubscription");
                         this.hideItem("newFolder");
@@ -671,6 +673,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                         this.showItem("update");
                         this.showItem("markRead");
                         this.showItem("rename");
+                        this.hideItem("edit");
                         this.showItem("delete");
                         this.showItem("newSubscription");
                         this.showItem("newFolder");
@@ -682,6 +685,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                         this.showItem("update");
                         this.showItem("markRead");
                         this.showItem("rename");
+                        this.showItem("edit");
                         this.showItem("delete");
                         this.showItem("newSubscription");
                         this.hideItem("newFolder");
@@ -694,6 +698,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                     this.showItem("update");
                     this.showItem("markRead");
                     this.hideItem("rename");
+                    this.hideItem("edit");
                     this.showItem("delete");
                     this.hideItem("newSubscription");
                     this.hideItem("newFolder");
