@@ -30,6 +30,7 @@
 
 #include "optionsdialog.h"
 
+#include <algorithm>
 #include <chrono>
 #include <cstdlib>
 #include <limits>
@@ -60,6 +61,7 @@
 #include "base/rss/rss_session.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfileswatcher.h"
+#include "base/utils/compare.h"
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
@@ -1687,18 +1689,12 @@ bool OptionsDialog::isSplashScreenDisabled() const
 void OptionsDialog::initializeStyleCombo()
 {
 #ifdef Q_OS_WIN
+    QStringList styleNames = QStyleFactory::keys();
+    std::sort(styleNames.begin(), styleNames.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
+    m_ui->comboStyle->addItems(styleNames);
     const QString prefStyleName = Preferences::instance()->getStyle();
     const QString selectedStyleName = prefStyleName.isEmpty() ? QApplication::style()->name() : prefStyleName;
-    QStringList styleNames = QStyleFactory::keys();
-    for (qsizetype i = 1, stylesCount = styleNames.size(); i < stylesCount; ++i)
-    {
-        if (selectedStyleName.compare(styleNames.at(i), Qt::CaseInsensitive) == 0)
-        {
-            styleNames.swapItemsAt(0, i);
-            break;
-        }
-    }
-    m_ui->comboStyle->addItems(styleNames);
+    m_ui->comboStyle->setCurrentText(selectedStyleName);
 #else
     m_ui->labelStyle->hide();
     m_ui->comboStyle->hide();
