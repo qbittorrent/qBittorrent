@@ -52,6 +52,7 @@
 #include "base/bittorrent/trackerentrystatus.h"
 #include "base/interfaces/iapplication.h"
 #include "base/global.h"
+#include "base/http/types.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/torrentfilter.h"
@@ -1749,7 +1750,7 @@ void TorrentsController::exportAction()
     if (!result)
         throw APIError(APIErrorType::Conflict, tr("Unable to export torrent file. Error: %1").arg(result.error()));
 
-    setResult(result.value(), u"application/x-bittorrent"_s, (id.toString() + u".torrent"));
+    setResult(result.value(), Http::CONTENT_TYPE_TORRENT_FILE, (id.toString() + u".torrent"));
 }
 
 void TorrentsController::SSLParametersAction()
@@ -1945,7 +1946,7 @@ void TorrentsController::saveMetadataAction()
             if (!result)
                 throw APIError(APIErrorType::Conflict, tr("Unable to export torrent metadata. Error: %1").arg(result.error()));
 
-            setResult(result.value(), u"application/x-bittorrent"_s, (infoHash.toTorrentID().toString() + u".torrent"));
+            setResult(result.value(), Http::CONTENT_TYPE_TORRENT_FILE, (infoHash.toTorrentID().toString() + u".torrent"));
             return;
         }
 
