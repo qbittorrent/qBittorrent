@@ -225,7 +225,7 @@ const initializeWindows = function() {
             closable: true,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: loadWindowWidth(id, 700),
+            width: loadWindowWidth(id, 730),
             height: loadWindowHeight(id, 600),
             onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveWindowSize(id);
@@ -292,7 +292,7 @@ const initializeWindows = function() {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: 424,
-            height: 80
+            height: 100
         });
     };
 
@@ -311,7 +311,7 @@ const initializeWindows = function() {
                 paddingVertical: 0,
                 paddingHorizontal: 0,
                 width: 424,
-                height: 80
+                height: 100
             });
         }
     };
@@ -352,7 +352,7 @@ const initializeWindows = function() {
                 paddingVertical: 0,
                 paddingHorizontal: 0,
                 width: 424,
-                height: 200
+                height: 220
             });
         }
     };
@@ -428,7 +428,7 @@ const initializeWindows = function() {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: 424,
-            height: 80
+            height: 100
         });
     };
 
@@ -465,7 +465,7 @@ const initializeWindows = function() {
                 paddingVertical: 0,
                 paddingHorizontal: 0,
                 width: 424,
-                height: 80
+                height: 100
             });
         }
     };
@@ -1223,7 +1223,7 @@ const initializeWindows = function() {
             toolbar: true,
             toolbarURL: "views/aboutToolbar.html",
             padding: 10,
-            width: loadWindowWidth(id, 550),
+            width: loadWindowWidth(id, 570),
             height: loadWindowHeight(id, 360),
             onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveWindowSize(id);

@@ -6,7 +6,7 @@
     }
 
     #searchPluginsContainer button {
-        padding: 2px;
+        padding: 3px;
     }
 
     #searchPluginsContainer span {
@@ -16,7 +16,7 @@
 
     #searchPluginsTable {
         width: 100%;
-        height: calc(100% - 150px);
+        height: calc(100% - 135px);
     }
 
     #searchPluginsTable .dynamicTable {
@@ -170,8 +170,8 @@
             prevOffsetTop = document.getElementById("searchPlugins").getBoundingClientRect().top;
 
             return {
-                x: -(prevOffsetLeft + 20),
-                y: -(prevOffsetTop + 2)
+                x: -prevOffsetLeft,
+                y: -prevOffsetTop
             };
         };
 
