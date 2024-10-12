@@ -35,6 +35,7 @@
 
 #include "base/global.h"
 #include "base/bittorrent/torrentcreationmanager.h"
+#include "base/http/types.h"
 #include "base/preferences.h"
 #include "base/utils/io.h"
 #include "base/utils/string.h"
@@ -234,7 +235,7 @@ void TorrentCreatorController::torrentFileAction()
     if (!readResult)
         throw APIError(APIErrorType::Conflict, readResult.error().message);
 
-    setResult(readResult.value(), u"application/x-bittorrent"_s, (id + u".torrent"));
+    setResult(readResult.value(), Http::CONTENT_TYPE_TORRENT_FILE, (id + u".torrent"));
 }
 
 void TorrentCreatorController::deleteTaskAction()
