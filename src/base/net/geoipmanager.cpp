@@ -456,15 +456,15 @@ void GeoIPManager::downloadFinished(const DownloadResult &result)
                 Utils::Fs::mkpath(targetPath);
 
             const auto path = targetPath / Path(GEODB_FILENAME);
-            const nonstd::expected<void, QString> result = Utils::IO::saveToFile(path, data);
-            if (result)
+            const nonstd::expected<void, QString> saveResult = Utils::IO::saveToFile(path, data);
+            if (saveResult)
             {
                 LogMsg(tr("Successfully updated IP geolocation database."), Log::INFO);
             }
             else
             {
                 LogMsg(tr("Couldn't save downloaded IP geolocation database file. Reason: %1")
-                    .arg(result.error()), Log::WARNING);
+                    .arg(saveResult.error()), Log::WARNING);
             }
         }
         else
