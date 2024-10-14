@@ -2009,6 +2009,17 @@ void TorrentImpl::renameFile(const int index, const Path &path)
     doRenameFile(index, targetActualPath);
 }
 
+// void TorrentImpl::removeFile(const int index)
+// {
+//     Q_ASSERT((index >= 0) && (index < filesCount()));
+//     if ((index < 0) || (index >= filesCount())) [[unlikely]]
+//         return;
+
+//     const Path filePath = filePath(index);
+//     const Path targetActualPath = makeActualPath(index, filePath);
+//     doRemoveFile(index, targetActualPath);
+// }
+
 void TorrentImpl::handleStateUpdate(const lt::torrent_status &nativeStatus)
 {
     updateStatus(nativeStatus);
@@ -2525,6 +2536,19 @@ void TorrentImpl::doRenameFile(const int index, const Path &path)
     ++m_renameCount;
     m_nativeHandle.rename_file(nativeIndexes[index], path.toString().toStdString());
 }
+
+// void TorrentImpl::doRemoveFile(const int index, const Path &path)
+// {
+//     const QList<lt::file_index_t> nativeIndexes = m_torrentInfo.nativeIndexes();
+
+//     Q_ASSERT(index >= 0);
+//     Q_ASSERT(index < nativeIndexes.size());
+//     if ((index < 0) || (index >= nativeIndexes.size())) [[unlikely]]
+//         return;
+
+//     ++m_renameCount;
+//     m_nativeHandle.rename_file(nativeIndexes[index], path.toString().toStdString());
+// }
 
 lt::torrent_handle TorrentImpl::nativeHandle() const
 {
