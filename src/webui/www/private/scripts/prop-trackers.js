@@ -101,7 +101,8 @@ window.qBittorrent.PropTrackers ??= (() => {
                             seeds: (tracker.num_seeds >= 0) ? tracker.num_seeds : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
                             leeches: (tracker.num_leeches >= 0) ? tracker.num_leeches : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
                             downloaded: (tracker.num_downloaded >= 0) ? tracker.num_downloaded : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
-                            message: tracker.msg
+                            message: tracker.msg,
+                            _sortable: !tracker.url.startsWith("** [")
                         };
 
                         torrentTrackersTable.updateRowData(row);
