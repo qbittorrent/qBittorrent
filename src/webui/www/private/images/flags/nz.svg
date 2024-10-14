@@ -8,24 +8,24 @@
       <use xlink:href="#nz-a" transform="scale(-1 1)"/>
       <use xlink:href="#nz-a" transform="rotate(72 0 0)"/>
       <use xlink:href="#nz-a" transform="rotate(-72 0 0)"/>
-      <use xlink:href="#nz-a" transform="scale(-1 1) rotate(72)"/>
+      <use xlink:href="#nz-a" transform="scale(-1 1)rotate(72)"/>
     </g>
   </defs>
   <path fill="#00247d" fill-rule="evenodd" d="M0 0h640v480H0z"/>
-  <g transform="translate(-111 36.1) scale(.66825)">
-    <use xlink:href="#nz-b" width="100%" height="100%" fill="#fff" transform="matrix(45.4 0 0 45.4 900 120)"/>
+  <g transform="translate(-111 36.1)scale(.66825)">
+    <use xlink:href="#nz-b" width="100%" height="100%" fill="#fff" transform="translate(900 120)scale(45.4)"/>
     <use xlink:href="#nz-b" width="100%" height="100%" fill="#cc142b" transform="matrix(30 0 0 30 900 120)"/>
   </g>
-  <g transform="rotate(82 525.2 114.6) scale(.66825)">
-    <use xlink:href="#nz-b" width="100%" height="100%" fill="#fff" transform="rotate(-82 519 -457.7) scale(40.4)"/>
-    <use xlink:href="#nz-b" width="100%" height="100%" fill="#cc142b" transform="rotate(-82 519 -457.7) scale(25)"/>
+  <g transform="rotate(82 525.2 114.6)scale(.66825)">
+    <use xlink:href="#nz-b" width="100%" height="100%" fill="#fff" transform="rotate(-82 519 -457.7)scale(40.4)"/>
+    <use xlink:href="#nz-b" width="100%" height="100%" fill="#cc142b" transform="rotate(-82 519 -457.7)scale(25)"/>
   </g>
-  <g transform="rotate(82 525.2 114.6) scale(.66825)">
-    <use xlink:href="#nz-b" width="100%" height="100%" fill="#fff" transform="rotate(-82 668.6 -327.7) scale(45.4)"/>
-    <use xlink:href="#nz-b" width="100%" height="100%" fill="#cc142b" transform="rotate(-82 668.6 -327.7) scale(30)"/>
+  <g transform="rotate(82 525.2 114.6)scale(.66825)">
+    <use xlink:href="#nz-b" width="100%" height="100%" fill="#fff" transform="rotate(-82 668.6 -327.7)scale(45.4)"/>
+    <use xlink:href="#nz-b" width="100%" height="100%" fill="#cc142b" transform="rotate(-82 668.6 -327.7)scale(30)"/>
   </g>
-  <g transform="translate(-111 36.1) scale(.66825)">
-    <use xlink:href="#nz-b" width="100%" height="100%" fill="#fff" transform="matrix(50.4 0 0 50.4 900 480)"/>
+  <g transform="translate(-111 36.1)scale(.66825)">
+    <use xlink:href="#nz-b" width="100%" height="100%" fill="#fff" transform="translate(900 480)scale(50.4)"/>
     <use xlink:href="#nz-b" width="100%" height="100%" fill="#cc142b" transform="matrix(35 0 0 35 900 480)"/>
   </g>
   <path fill="#012169" d="M0 0h320v240H0z"/>

@@ -44,6 +44,10 @@
 #include <QSystemTrayIcon>
 #include <QTranslator>
 
+#ifdef Q_OS_WIN
+#include <QStyleFactory>
+#endif
+
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sharelimitaction.h"
 #include "base/exceptions.h"
@@ -236,6 +240,8 @@ void OptionsDialog::loadBehaviorTabOptions()
     initializeLanguageCombo();
     setLocale(pref->getLocale());
 
+    initializeStyleCombo();
+
     m_ui->checkUseCustomTheme->setChecked(Preferences::instance()->useCustomUITheme());
     m_ui->customThemeFilePath->setSelectedPath(Preferences::instance()->customUIThemePath());
     m_ui->customThemeFilePath->setMode(FileSystemPathEdit::Mode::FileOpen);
@@ -345,7 +351,11 @@ void OptionsDialog::loadBehaviorTabOptions()
 
     m_ui->checkBoxPerformanceWarning->setChecked(session->isPerformanceWarningEnabled());
 
-    connect(m_ui->comboI18n, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->comboLanguage, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+
+#ifdef Q_OS_WIN
+    connect(m_ui->comboStyle, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+#endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     connect(m_ui->checkUseSystemIcon, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -442,6 +452,10 @@ void OptionsDialog::saveBehaviorTabOptions() const
         qApp->installTranslator(translator);
     }
     pref->setLocale(locale);
+
+#ifdef Q_OS_WIN
+    pref->setStyle(m_ui->comboStyle->currentText());
+#endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     pref->useSystemIcons(m_ui->checkUseSystemIcon->isChecked());
@@ -1387,7 +1401,7 @@ void OptionsDialog::initializeLanguageCombo()
     for (const QString &langFile : langFiles)
     {
         const QString langCode = QStringView(langFile).sliced(12).chopped(3).toString(); // remove "qbittorrent_" and ".qm"
-        m_ui->comboI18n->addItem(Utils::Misc::languageToLocalizedString(langCode), langCode);
+        m_ui->comboLanguage->addItem(Utils::Misc::languageToLocalizedString(langCode), langCode);
     }
 }
 
@@ -1672,6 +1686,30 @@ bool OptionsDialog::isSplashScreenDisabled() const
     return !m_ui->checkShowSplash->isChecked();
 }
 
+void OptionsDialog::initializeStyleCombo()
+{
+#ifdef Q_OS_WIN
+    const QString prefStyleName = Preferences::instance()->getStyle();
+    const QString selectedStyleName = prefStyleName.isEmpty() ? QApplication::style()->name() : prefStyleName;
+    QStringList styleNames = QStyleFactory::keys();
+    for (qsizetype i = 1, stylesCount = styleNames.size(); i < stylesCount; ++i)
+    {
+        if (selectedStyleName.compare(styleNames.at(i), Qt::CaseInsensitive) == 0)
+        {
+            styleNames.swapItemsAt(0, i);
+            break;
+        }
+    }
+    m_ui->comboStyle->addItems(styleNames);
+#else
+    m_ui->labelStyle->hide();
+    m_ui->comboStyle->hide();
+    m_ui->UISettingsBoxLayout->removeWidget(m_ui->labelStyle);
+    m_ui->UISettingsBoxLayout->removeWidget(m_ui->comboStyle);
+    m_ui->UISettingsBoxLayout->removeItem(m_ui->spacerStyle);
+#endif
+}
+
 #ifdef Q_OS_WIN
 bool OptionsDialog::WinStartup() const
 {
@@ -1721,7 +1759,7 @@ QString OptionsDialog::getProxyPassword() const
 // Locale Settings
 QString OptionsDialog::getLocale() const
 {
-    return m_ui->comboI18n->itemData(m_ui->comboI18n->currentIndex(), Qt::UserRole).toString();
+    return m_ui->comboLanguage->itemData(m_ui->comboLanguage->currentIndex(), Qt::UserRole).toString();
 }
 
 void OptionsDialog::setLocale(const QString &localeStr)
@@ -1746,7 +1784,7 @@ void OptionsDialog::setLocale(const QString &localeStr)
             name = locale.name();
     }
     // Attempt to find exact match
-    int index = m_ui->comboI18n->findData(name, Qt::UserRole);
+    int index = m_ui->comboLanguage->findData(name, Qt::UserRole);
     if (index < 0)
     {
         //Attempt to find a language match without a country
@@ -1754,16 +1792,16 @@ void OptionsDialog::setLocale(const QString &localeStr)
         if (pos > -1)
         {
             QString lang = name.left(pos);
-            index = m_ui->comboI18n->findData(lang, Qt::UserRole);
+            index = m_ui->comboLanguage->findData(lang, Qt::UserRole);
         }
     }
     if (index < 0)
     {
         // Unrecognized, use US English
-        index = m_ui->comboI18n->findData(u"en"_s, Qt::UserRole);
+        index = m_ui->comboLanguage->findData(u"en"_s, Qt::UserRole);
         Q_ASSERT(index >= 0);
     }
-    m_ui->comboI18n->setCurrentIndex(index);
+    m_ui->comboLanguage->setCurrentIndex(index);
 }
 
 Path OptionsDialog::getTorrentExportDir() const

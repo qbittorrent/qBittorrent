@@ -10,10 +10,10 @@
   <use xlink:href="#tj-b" width="100%" height="100%" fill="#f8c300" transform="rotate(9.4 320 551.3)"/>
   <use xlink:href="#tj-b" width="100%" height="100%" fill="#f8c300" transform="rotate(18.7 320 551.3)"/>
   <path fill="none" stroke="#f8c300" stroke-width="11" d="M253.5 327.8a233.1 233.1 0 0 1 133 0"/>
-  <g fill="#f8c300" transform="translate(320 164.6) scale(.68571)">
+  <g fill="#f8c300" transform="translate(320 164.6)scale(.68571)">
     <path id="tj-c" d="m301930 415571-790463-574305h977066l-790463 574305L0-513674z" transform="scale(.00005)"/>
   </g>
-  <g id="tj-d" fill="#f8c300" transform="translate(320 260.6) scale(.68571)">
+  <g id="tj-d" fill="#f8c300" transform="translate(320 260.6)scale(.68571)">
     <use xlink:href="#tj-c" width="100%" height="100%" transform="translate(-70 -121.2)"/>
     <use xlink:href="#tj-c" width="100%" height="100%" transform="translate(-121.2 -70)"/>
     <use xlink:href="#tj-c" width="100%" height="100%" transform="translate(-140)"/>

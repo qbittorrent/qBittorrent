@@ -526,7 +526,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_I2POutboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/OutboundQuantity"_s), 3}
     , m_I2PInboundLength {BITTORRENT_SESSION_KEY(u"I2P/InboundLength"_s), 3}
     , m_I2POutboundLength {BITTORRENT_SESSION_KEY(u"I2P/OutboundLength"_s), 3}
-    , m_torrentContentRemoveOption {BITTORRENT_SESSION_KEY(u"TorrentContentRemoveOption"_s), TorrentContentRemoveOption::MoveToTrash}
+    , m_torrentContentRemoveOption {BITTORRENT_SESSION_KEY(u"TorrentContentRemoveOption"_s), TorrentContentRemoveOption::Delete}
     , m_startPaused {BITTORRENT_SESSION_KEY(u"StartPaused"_s)}
     , m_seedingLimitTimer {new QTimer(this)}
     , m_resumeDataTimer {new QTimer(this)}
@@ -5206,6 +5206,9 @@ void SessionImpl::handleMoveTorrentStorageJobFinished(const Path &newPath)
     if (torrent)
     {
         torrent->handleMoveStorageJobFinished(newPath, finishedJob.context, torrentHasOutstandingJob);
+        // The torrent may become "finished" at the end of the move if it was moved
+        // from the "incomplete" location after downloading finished.
+        processPendingFinishedTorrents();
     }
     else if (!torrentHasOutstandingJob)
     {
@@ -5215,6 +5218,32 @@ void SessionImpl::handleMoveTorrentStorageJobFinished(const Path &newPath)
         if (removingTorrentData.removeOption == TorrentRemoveOption::KeepContent)
             m_nativeSession->remove_torrent(nativeHandle, lt::session::delete_partfile);
     }
+}
+
+void SessionImpl::processPendingFinishedTorrents()
+{
+    if (m_pendingFinishedTorrents.isEmpty())
+        return;
+
+    for (TorrentImpl *torrent : asConst(m_pendingFinishedTorrents))
+    {
+        LogMsg(tr("Torrent download finished. Torrent: \"%1\"").arg(torrent->name()));
+        emit torrentFinished(torrent);
+
+        if (const Path exportPath = finishedTorrentExportDirectory(); !exportPath.isEmpty())
+            exportTorrentFile(torrent, exportPath);
+
+        processTorrentShareLimits(torrent);
+    }
+
+    m_pendingFinishedTorrents.clear();
+
+    const bool hasUnfinishedTorrents = std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
+    {
+        return !(torrent->isFinished() || torrent->isStopped() || torrent->isErrored());
+    });
+    if (!hasUnfinishedTorrents)
+        emit allTorrentsFinished();
 }
 
 void SessionImpl::storeCategories() const
@@ -6108,28 +6137,7 @@ void SessionImpl::handleStateUpdateAlert(const lt::state_update_alert *alert)
     if (!updatedTorrents.isEmpty())
         emit torrentsUpdated(updatedTorrents);
 
-    if (!m_pendingFinishedTorrents.isEmpty())
-    {
-        for (TorrentImpl *torrent : m_pendingFinishedTorrents)
-        {
-            LogMsg(tr("Torrent download finished. Torrent: \"%1\"").arg(torrent->name()));
-            emit torrentFinished(torrent);
-
-            if (const Path exportPath = finishedTorrentExportDirectory(); !exportPath.isEmpty())
-                exportTorrentFile(torrent, exportPath);
-
-            processTorrentShareLimits(torrent);
-        }
-
-        m_pendingFinishedTorrents.clear();
-
-        const bool hasUnfinishedTorrents = std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
-        {
-            return !(torrent->isFinished() || torrent->isStopped() || torrent->isErrored());
-        });
-        if (!hasUnfinishedTorrents)
-            emit allTorrentsFinished();
-    }
+    processPendingFinishedTorrents();
 
     if (m_needSaveTorrentsQueue)
         saveTorrentsQueue();
