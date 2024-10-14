@@ -1102,6 +1102,10 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.title = status;
             };
 
+            this.columns["status"].compareRows = function(row1, row2) {
+                return compareNumbers(row1.full_data._statusOrder, row2.full_data._statusOrder);
+            };
+
             // priority
             this.columns["priority"].updateTd = function(td, row) {
                 const queuePos = this.getRowValue(row);
