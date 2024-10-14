@@ -36,10 +36,10 @@
         --color-text-blue: hsl(210deg 88.1% 73.5%);
         --color-text-orange: hsl(26deg 65% 70%);
         --color-text-default: hsl(0deg 0% 90%);
-        --color-background-blue: hsl(210deg 42% 48%);
+        --color-background-blue: hsl(210deg 42% 30%);
         --color-background-popup: hsl(0deg 0% 20%);
-        --color-background-default: hsl(0deg 0% 25%);
-        --color-background-hover: hsl(26deg 50% 55%);
+        --color-background-default: hsl(0deg 0% 12%);
+        --color-background-hover: hsl(26deg 80% 20%);
         --color-border-default: hsl(0deg 0% 33%);
 
         color-scheme: dark;
