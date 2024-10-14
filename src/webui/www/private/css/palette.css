@@ -1,7 +1,7 @@
 /* Adaptive color palette */
 
 /* Default rules */
-* {
+:root {
     --color-accent-blue: hsl(210deg 65% 55%);
     --color-text-blue: hsl(210deg 100% 55%);
     --color-text-orange: hsl(26deg 100% 45%);
@@ -16,26 +16,12 @@
     --color-background-hover: hsl(26deg 80% 60%);
     --color-border-blue: hsl(210deg 42% 48%);
     --color-border-default: hsl(0deg 0% 85%);
-}
 
-:root {
-    color-scheme: light dark;
-}
-
-/* Light corrections */
-@media (prefers-color-scheme: light) {
-    :root {
+    &:not(.dark) {
         color-scheme: light;
     }
-}
 
-/* Dark corrections */
-@media (prefers-color-scheme: dark) {
-    :root {
-        color-scheme: dark;
-    }
-
-    * {
+    &.dark {
         --color-accent-blue: hsl(210deg 42% 48%);
         --color-text-blue: hsl(210deg 88.1% 73.5%);
         --color-text-orange: hsl(26deg 65% 70%);
@@ -45,5 +31,7 @@
         --color-background-default: hsl(0deg 0% 25%);
         --color-background-hover: hsl(26deg 50% 55%);
         --color-border-default: hsl(0deg 0% 33%);
+
+        color-scheme: dark;
     }
 }
