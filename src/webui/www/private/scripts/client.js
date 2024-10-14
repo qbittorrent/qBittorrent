@@ -152,6 +152,11 @@ let selectedStatus = LocalPreferences.get("selected_filter", "all");
 let setStatusFilter = function() {};
 let toggleFilterDisplay = function() {};
 
+$("colorThemeCheckbox").addEventListener("change", (e) => {
+    const colorScheme = e.target.checked ? "light" : "dark";
+    LocalPreferences.set("colorScheme", colorScheme);
+});
+
 window.addEventListener("DOMContentLoaded", () => {
     let isSearchPanelLoaded = false;
     let isLogPanelLoaded = false;
@@ -1655,6 +1660,25 @@ window.addEventListener("load", () => {
     window.qBittorrent.Cache.buildInfo.init();
     window.qBittorrent.Cache.preferences.init();
     window.qBittorrent.Cache.qbtVersion.init();
+
+    // Setup color scheme switching
+    const firstRun = true;
+    const updateColorScheme = () => {
+        const checkbox = $("colorThemeCheckbox");
+        const colorScheme = LocalPreferences.get("colorScheme");
+        if (colorScheme != null) {
+            if (firstRun)
+                checkbox.checked = (colorScheme === "light"); // This doesn't emit the 'change' event
+            return;
+        }
+        const isDark = window?.matchMedia?.("(prefers-color-scheme:dark)")?.matches ?? false;
+        checkbox.checked = !isDark; // This doesn't emit the 'change' event
+    };
+    if(window.matchMedia) {
+        const colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        colorSchemeQuery.addEventListener("change", updateColorScheme);
+    }
+    updateColorScheme();
 
     // switch to previously used tab
     const previouslyUsedTab = LocalPreferences.get("selected_window_tab", "transfers");
