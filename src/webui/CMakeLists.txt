@@ -2,6 +2,7 @@ add_library(qbt_webui STATIC
     # headers
     api/apicontroller.h
     api/apierror.h
+    api/apistatus.h
     api/appcontroller.h
     api/authcontroller.h
     api/isessionmanager.h
