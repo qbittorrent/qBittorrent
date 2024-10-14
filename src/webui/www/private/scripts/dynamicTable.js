@@ -1898,7 +1898,25 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("leeches", "", "QBT_TR(Leeches)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
             this.newColumn("downloaded", "", "QBT_TR(Times Downloaded)QBT_TR[CONTEXT=TrackerListWidget]", 100, true);
             this.newColumn("message", "", "QBT_TR(Message)QBT_TR[CONTEXT=TrackerListWidget]", 250, true);
+
+            this.initColumnsFunctions();
         },
+
+        initColumnsFunctions: function() {
+            const compareRows = function(row1, row2) {
+                if (!row1.full_data._sortable || !row2.full_data._sortable)
+                    return 0;
+
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                if ((typeof(value1) === "number") && (typeof(value2) === "number"))
+                    return compareNumbers(value1, value2);
+                return window.qBittorrent.Misc.naturalSortCollator.compare(value1, value2);
+            };
+
+            for (const column of this.columns)
+                column.compareRows = compareRows;
+        }
     });
 
     const BulkRenameTorrentFilesTable = new Class({
