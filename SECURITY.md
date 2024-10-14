@@ -5,7 +5,7 @@ If you believe you have found a security vulnerability in qBittorrent, please re
 
 ## Reporting Security Issues
 
-Please do not report security vulnerabilities through public GitHub issues. Instead, please use GitHubs private vulnerability reporting functionality associated to this repository.
+Please do not report security vulnerabilities through public GitHub issues. Instead, please use GitHubs private vulnerability reporting functionality associated to this repository. Additionally, you may email us with all security-related inquiries and notifications at `security@qbittorrent.org`.
 
 Please include the requested information listed below (as much as you can provide) to help us better understand the nature and scope of the possible issue:
 1. Type of issue
