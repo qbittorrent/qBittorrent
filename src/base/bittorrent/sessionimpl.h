@@ -598,6 +598,7 @@ namespace BitTorrent
 
         void moveTorrentStorage(const MoveStorageJob &job) const;
         void handleMoveTorrentStorageJobFinished(const Path &newPath);
+        void processPendingFinishedTorrents();
 
         void loadCategories();
         void storeCategories() const;
