@@ -44,6 +44,7 @@
 #include <QMessageBox>
 #include <QSystemTrayIcon>
 #include <QTranslator>
+#include <qstylehints.h>
 
 #ifdef Q_OS_WIN
 #include <QStyleFactory>
@@ -243,6 +244,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     setLocale(pref->getLocale());
 
     initializeStyleCombo();
+    initializeColorSchemeOptions();
 
     m_ui->checkUseCustomTheme->setChecked(Preferences::instance()->useCustomUITheme());
     m_ui->customThemeFilePath->setSelectedPath(Preferences::instance()->customUIThemePath());
@@ -359,6 +361,12 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->comboStyle, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 #endif
 
+#ifdef QBT_HAS_COLORSCHEME_OPTION
+    connect(m_ui->radioColorSchemeSystem, &QRadioButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->radioColorSchemeLight, &QRadioButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->radioColorSchemeDark, &QRadioButton::toggled, this, &ThisType::enableApplyButton);
+#endif
+
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     connect(m_ui->checkUseSystemIcon, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 #endif
@@ -457,6 +465,15 @@ void OptionsDialog::saveBehaviorTabOptions() const
 
 #ifdef Q_OS_WIN
     pref->setStyle(m_ui->comboStyle->currentText());
+#endif
+
+#ifdef QBT_HAS_COLORSCHEME_OPTION
+    if (m_ui->radioColorSchemeSystem->isChecked())
+        UIThemeManager::instance()->setColorScheme(ColorScheme::System);
+    else if (m_ui->radioColorSchemeLight->isChecked())
+        UIThemeManager::instance()->setColorScheme(ColorScheme::Light);
+    else if (m_ui->radioColorSchemeDark->isChecked())
+        UIThemeManager::instance()->setColorScheme(ColorScheme::Dark);
 #endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
@@ -1701,6 +1718,28 @@ void OptionsDialog::initializeStyleCombo()
     m_ui->UISettingsBoxLayout->removeWidget(m_ui->labelStyle);
     m_ui->UISettingsBoxLayout->removeWidget(m_ui->comboStyle);
     m_ui->UISettingsBoxLayout->removeItem(m_ui->spacerStyle);
+#endif
+}
+
+void OptionsDialog::initializeColorSchemeOptions()
+{
+#ifdef QBT_HAS_COLORSCHEME_OPTION
+    switch (UIThemeManager::instance()->colorScheme())
+    {
+    case ColorScheme::System:
+    default:
+        m_ui->radioColorSchemeSystem->setChecked(true);
+        break;
+    case ColorScheme::Light:
+        m_ui->radioColorSchemeLight->setChecked(true);
+        break;
+    case ColorScheme::Dark:
+        m_ui->radioColorSchemeDark->setChecked(true);
+        break;
+    }
+#else
+    m_ui->groupColorScheme->hide();
+    m_ui->UISettingsBoxLayout->removeWidget(m_ui->groupColorScheme);
 #endif
 }
 

@@ -192,6 +192,49 @@
                 </spacer>
                </item>
                <item row="3" column="0" colspan="3">
+                <widget class="QGroupBox" name="groupColorScheme">
+                 <property name="title">
+                  <string>Color scheme</string>
+                 </property>
+                 <layout class="QHBoxLayout" name="layoutColorScheme">
+                  <item>
+                   <widget class="QRadioButton" name="radioColorSchemeSystem">
+                    <property name="text">
+                     <string>System</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="radioColorSchemeLight">
+                    <property name="text">
+                     <string>Light</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="radioColorSchemeDark">
+                    <property name="text">
+                     <string>Dark</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="spacerColorScheme">
+                    <property name="orientation">
+                     <enum>Qt::Orientation::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="3">
                 <widget class="QGroupBox" name="checkUseCustomTheme">
                  <property name="title">
                   <string>Use custom UI Theme</string>
@@ -213,14 +256,14 @@
                  </layout>
                 </widget>
                </item>
-               <item row="4" column="0" colspan="2">
+               <item row="5" column="0" colspan="2">
                 <widget class="QCheckBox" name="checkUseSystemIcon">
                  <property name="text">
                   <string>Use icons from system theme</string>
                  </property>
                 </widget>
                </item>
-               <item row="5" column="0" colspan="2">
+               <item row="6" column="0" colspan="2">
                 <widget class="QPushButton" name="buttonCustomizeUITheme">
                  <property name="text">
                   <string>Customize UI Theme...</string>
@@ -3945,6 +3988,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>tabOption</tabstop>
   <tabstop>tabSelection</tabstop>
   <tabstop>comboLanguage</tabstop>
+  <tabstop>comboStyle</tabstop>
+  <tabstop>radioColorSchemeSystem</tabstop>
+  <tabstop>radioColorSchemeLight</tabstop>
+  <tabstop>radioColorSchemeDark</tabstop>
   <tabstop>checkUseCustomTheme</tabstop>
   <tabstop>customThemeFilePath</tabstop>
   <tabstop>checkUseSystemIcon</tabstop>
