@@ -225,14 +225,15 @@ private:
     };
     bool m_isAltUIUsed = false;
     Path m_rootFolder;
+    QString m_basePath;
 
-    struct TranslatedFile
+    struct CachedFile
     {
         QByteArray data;
         QString mimeType;
         QDateTime lastModified;
     };
-    QHash<Path, TranslatedFile> m_translatedFiles;
+    QHash<Path, CachedFile> m_cachedFiles;
     QString m_currentLocale;
     QTranslator m_translator;
     bool m_translationFileLoaded = false;

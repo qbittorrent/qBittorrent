@@ -78,7 +78,7 @@
                 : torrentsTable.selectedRowsIds();
 
             new Request({
-                url: "api/v2/torrents/delete",
+                url: "${BASE_PATH}api/v2/torrents/delete",
                 method: "post",
                 data: {
                     "hashes": hashes.join("|"),
