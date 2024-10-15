@@ -19,29 +19,25 @@
                 window.qBittorrent = window.parent.qBittorrent;
             window.qBittorrent = window.parent.qBittorrent;
 
-            const TriState = window.qBittorrent.FileTree.TriState;
             const data = window.MUI.Windows.instances["multiRenamePage"].options.data;
-            let bulkRenameFilesContextMenu;
-            if (!bulkRenameFilesContextMenu) {
-                bulkRenameFilesContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
-                    targets: "#bulkRenameFilesTableDiv tr",
-                    menu: "multiRenameFilesMenu",
-                    actions: {
-                        ToggleSelection: function(element, ref) {
-                            const rowId = parseInt(element.getAttribute("data-row-id"), 10);
-                            const row = bulkRenameFilesTable.getNode(rowId);
-                            const checkState = (row.checked === 1) ? 0 : 1;
-                            bulkRenameFilesTable.toggleNodeTreeCheckbox(rowId, checkState);
-                            bulkRenameFilesTable.updateGlobalCheckbox();
-                            bulkRenameFilesTable.onRowSelectionChange(bulkRenameFilesTable.getSelectedRows());
-                        }
-                    },
-                    offsets: {
-                        x: 0,
-                        y: 2
+            const bulkRenameFilesContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
+                targets: "#bulkRenameFilesTableDiv tr",
+                menu: "multiRenameFilesMenu",
+                actions: {
+                    ToggleSelection: function(element, ref) {
+                        const rowId = parseInt(element.getAttribute("data-row-id"), 10);
+                        const row = bulkRenameFilesTable.getNode(rowId);
+                        const checkState = (row.checked === 1) ? 0 : 1;
+                        bulkRenameFilesTable.toggleNodeTreeCheckbox(rowId, checkState);
+                        bulkRenameFilesTable.updateGlobalCheckbox();
+                        bulkRenameFilesTable.onRowSelectionChange(bulkRenameFilesTable.getSelectedRows());
                     }
-                });
-            }
+                },
+                offsets: {
+                    x: 0,
+                    y: 2
+                }
+            });
 
             // Setup the dynamic table for bulk renaming
             const bulkRenameFilesTable = new window.qBittorrent.DynamicTable.BulkRenameTorrentFilesTable();
@@ -49,11 +45,8 @@
 
             // Inject checkbox into the first column of the table header
             const tableHeaders = $$("#bulkRenameFilesTableFixedHeaderDiv .dynamicTableHeader th");
-            let checkboxHeader;
             if (tableHeaders.length > 0) {
-                if (checkboxHeader)
-                    checkboxHeader.remove();
-                checkboxHeader = new Element("input");
+                const checkboxHeader = new Element("input");
                 checkboxHeader.type = "checkbox";
                 checkboxHeader.id = "rootMultiRename_cb";
                 checkboxHeader.addEventListener("click", (e) => {
@@ -68,23 +61,20 @@
 
             // Register keyboard events to modal window
             // https://github.com/qbittorrent/qBittorrent/pull/18687#discussion_r1135045726
-            let keyboard;
-            if (!keyboard) {
-                keyboard = new Keyboard({
-                    defaultEventType: "keydown",
-                    events: {
-                        "Escape": function(event) {
-                            window.parent.qBittorrent.Client.closeWindows();
-                            event.preventDefault();
-                        },
-                        "Esc": function(event) {
-                            window.parent.qBittorrent.Client.closeWindows();
-                            event.preventDefault();
-                        }
+            const keyboard = new Keyboard({
+                defaultEventType: "keydown",
+                events: {
+                    "Escape": function(event) {
+                        window.parent.qBittorrent.Client.closeWindows();
+                        event.preventDefault();
+                    },
+                    "Esc": function(event) {
+                        window.parent.qBittorrent.Client.closeWindows();
+                        event.preventDefault();
                     }
-                });
-                keyboard.activate();
-            }
+                }
+            });
+            keyboard.activate();
 
             const fileRenamer = new window.qBittorrent.MultiRename.RenameFiles();
             fileRenamer.hash = data.hash;
