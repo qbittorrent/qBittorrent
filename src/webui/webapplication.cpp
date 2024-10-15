@@ -70,7 +70,7 @@
 #include "freediskspacechecker.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
-const QString DEFAULT_SESSION_COOKIE_NAME = u"SID"_s;
+const QString DEFAULT_SESSION_COOKIE_NAME = u"QBT_SID"_s;
 
 const QString WWW_FOLDER = u":/www"_s;
 const QString PUBLIC_FOLDER = u"/public"_s;
@@ -179,7 +179,7 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
             LogMsg(tr("Unacceptable session cookie name is specified: '%1'. Default one is used.")
                    .arg(m_sessionCookieName), Log::WARNING);
         }
-        m_sessionCookieName = DEFAULT_SESSION_COOKIE_NAME;
+        m_sessionCookieName = DEFAULT_SESSION_COOKIE_NAME + QString::number(m_webUiPort);
     }
 
     m_freeDiskSpaceChecker->moveToThread(m_workerThread.get());
@@ -440,6 +440,7 @@ void WebApplication::configure()
     m_isAuthSubnetWhitelistEnabled = pref->isWebUIAuthSubnetWhitelistEnabled();
     m_authSubnetWhitelist = pref->getWebUIAuthSubnetWhitelist();
     m_sessionTimeout = pref->getWebUISessionTimeout();
+    m_webUiPort = pref->getWebUIPort();
 
     m_domainList = pref->getServerDomains().split(u';', Qt::SkipEmptyParts);
     std::for_each(m_domainList.begin(), m_domainList.end(), [](QString &entry) { entry = entry.trimmed(); });
