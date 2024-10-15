@@ -1369,6 +1369,7 @@ void MainWindow::loadPreferences()
     }
 
     showStatusBar(pref->isStatusbarDisplayed());
+    m_statusBar->showStatusBarExternalIP(pref->isStatusbarExternalIPDisplayed());
 
     m_transferListWidget->setAlternatingRowColors(pref->useAlternatingRowColors());
     m_propertiesWidget->getFilesList()->setAlternatingRowColors(pref->useAlternatingRowColors());
