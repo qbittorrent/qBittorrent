@@ -44,7 +44,6 @@
 #include <QMessageBox>
 #include <QSystemTrayIcon>
 #include <QTranslator>
-#include <qstylehints.h>
 
 #ifdef Q_OS_WIN
 #include <QStyleFactory>
