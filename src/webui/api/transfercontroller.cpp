@@ -65,7 +65,8 @@ const QString KEY_TRANSFER_CONNECTION_STATUS = u"connection_status"_s;
 //   - "connection_status": Connection status
 void TransferController::infoAction()
 {
-    const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
+    const auto *btSession = BitTorrent::Session::instance();
+    const BitTorrent::SessionStatus &sessionStatus = btSession->status();
 
     QJsonObject dict;
 
@@ -73,12 +74,12 @@ void TransferController::infoAction()
     dict[KEY_TRANSFER_DLDATA] = static_cast<qint64>(sessionStatus.totalPayloadDownload);
     dict[KEY_TRANSFER_UPSPEED] = static_cast<qint64>(sessionStatus.payloadUploadRate);
     dict[KEY_TRANSFER_UPDATA] = static_cast<qint64>(sessionStatus.totalPayloadUpload);
-    dict[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadSpeedLimit();
-    dict[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
-    dict[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4] = BitTorrent::Session::instance()->lastExternalIPv4Address();
-    dict[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6] = BitTorrent::Session::instance()->lastExternalIPv6Address();
+    dict[KEY_TRANSFER_DLRATELIMIT] = btSession->downloadSpeedLimit();
+    dict[KEY_TRANSFER_UPRATELIMIT] = btSession->uploadSpeedLimit();
+    dict[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4] = btSession->lastExternalIPv4Address();
+    dict[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6] = btSession->lastExternalIPv6Address();
     dict[KEY_TRANSFER_DHT_NODES] = static_cast<qint64>(sessionStatus.dhtNodes);
-    if (!BitTorrent::Session::instance()->isListening())
+    if (!btSession->isListening())
         dict[KEY_TRANSFER_CONNECTION_STATUS] = u"disconnected"_s;
     else
         dict[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.hasIncomingConnections ? u"connected"_s : u"firewalled"_s;
