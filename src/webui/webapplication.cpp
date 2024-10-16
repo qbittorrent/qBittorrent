@@ -940,6 +940,7 @@ void WebSession::registerAPIController(const QString &scope, APIController *cont
 {
     Q_ASSERT(controller);
     m_apiControllers[scope] = controller;
+    controller->setParent(this);
 }
 
 APIController *WebSession::getAPIController(const QString &scope) const
