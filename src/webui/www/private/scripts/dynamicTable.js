@@ -291,21 +291,18 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         setupDynamicTableHeaderContextMenuClass: function() {
-            if (!DynamicTableHeaderContextMenuClass) {
-                DynamicTableHeaderContextMenuClass = new Class({
-                    Extends: window.qBittorrent.ContextMenu.ContextMenu,
-                    updateMenuItems: function() {
-                        for (let i = 0; i < this.dynamicTable.columns.length; ++i) {
-                            if (this.dynamicTable.columns[i].caption === "")
-                                continue;
-                            if (this.dynamicTable.columns[i].visible !== "0")
-                                this.setItemChecked(this.dynamicTable.columns[i].name, true);
-                            else
-                                this.setItemChecked(this.dynamicTable.columns[i].name, false);
-                        }
+            DynamicTableHeaderContextMenuClass ??= class extends window.qBittorrent.ContextMenu.ContextMenu {
+                updateMenuItems() {
+                    for (let i = 0; i < this.dynamicTable.columns.length; ++i) {
+                        if (this.dynamicTable.columns[i].caption === "")
+                            continue;
+                        if (this.dynamicTable.columns[i].visible !== "0")
+                            this.setItemChecked(this.dynamicTable.columns[i].name, true);
+                        else
+                            this.setItemChecked(this.dynamicTable.columns[i].name, false);
                     }
-                });
-            }
+                }
+            };
         },
 
         showColumn: function(columnName, show) {
