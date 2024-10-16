@@ -40,6 +40,11 @@ class QTreeWidgetItem;
 class ArticleListWidget;
 class FeedListWidget;
 
+namespace RSS
+{
+    class Article;
+}
+
 namespace Ui
 {
     class RSSWidget;
@@ -85,6 +90,9 @@ private slots:
     void handleUnreadCountChanged();
 
 private:
+    bool eventFilter(QObject *obj, QEvent *event) override;
+    void renderArticle(const RSS::Article *article) const;
+
     Ui::RSSWidget *m_ui = nullptr;
     ArticleListWidget *m_articleListWidget = nullptr;
     FeedListWidget *m_feedListWidget = nullptr;
