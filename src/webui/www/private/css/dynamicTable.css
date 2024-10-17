@@ -101,3 +101,42 @@ tr.dynamicTableHeader {
     padding-bottom: 0px !important;
     padding-top: 0px !important;
 }
+
+#transferList {
+    overflow: hidden !important; /* override for mocha inline styles */
+
+    & #transferList_pad {
+        display: flex !important;
+        flex-direction: column;
+        height: inherit;
+
+        & #torrentsTableDiv {
+            flex: 1;
+        }
+    }
+}
+
+#propertiesPanel {
+    & #propertiesPanel_pad {
+        height: inherit;
+    }
+
+    & .dynamicTableDiv {
+        flex: 1;
+    }
+
+    & .propertiesTabContent:not(#propGeneral, .invisible) {
+        display: flex;
+        flex-direction: column;
+        height: inherit;
+    }
+}
+
+#torrentFiles {
+    display: flex;
+    flex-direction: column;
+
+    & #bulkRenameFilesTableDiv {
+        flex: 1;
+    }
+}

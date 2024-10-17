@@ -100,33 +100,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             tableDiv.addEventListener("scroll", () => {
                 tableElement.style.left = `${-tableDiv.scrollLeft}px`;
             });
-
-            // if the table exists within a panel
-            const parentPanel = tableDiv.getParent(".panel");
-            if (parentPanel) {
-                const resizeFn = (entries) => {
-                    const panel = entries[0].target;
-                    let h = panel.getBoundingClientRect().height - tableFixedHeaderDiv.getBoundingClientRect().height;
-                    tableDiv.style.height = `${h}px`;
-
-                    // Workaround due to inaccurate calculation of elements heights by browser
-                    let n = 2;
-
-                    // is panel vertical scrollbar visible or does panel content not fit?
-                    while (((panel.clientWidth !== panel.offsetWidth) || (panel.clientHeight !== panel.scrollHeight)) && (n > 0)) {
-                        --n;
-                        h -= 0.5;
-                        tableDiv.style.height = `${h}px`;
-                    }
-                };
-
-                const resizeDebouncer = window.qBittorrent.Misc.createDebounceHandler(100, (entries) => {
-                    resizeFn(entries);
-                });
-
-                const resizeObserver = new ResizeObserver(resizeDebouncer);
-                resizeObserver.observe(parentPanel, { box: "border-box" });
-            }
         },
 
         setupHeaderEvents: function() {
