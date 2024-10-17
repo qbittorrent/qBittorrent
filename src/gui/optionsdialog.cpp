@@ -361,9 +361,7 @@ void OptionsDialog::loadBehaviorTabOptions()
 #endif
 
 #ifdef QBT_HAS_COLORSCHEME_OPTION
-    connect(m_ui->radioColorSchemeSystem, &QRadioButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->radioColorSchemeLight, &QRadioButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->radioColorSchemeDark, &QRadioButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->comboColorScheme, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 #endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
@@ -467,12 +465,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
 #endif
 
 #ifdef QBT_HAS_COLORSCHEME_OPTION
-    if (m_ui->radioColorSchemeSystem->isChecked())
-        UIThemeManager::instance()->setColorScheme(ColorScheme::System);
-    else if (m_ui->radioColorSchemeLight->isChecked())
-        UIThemeManager::instance()->setColorScheme(ColorScheme::Light);
-    else if (m_ui->radioColorSchemeDark->isChecked())
-        UIThemeManager::instance()->setColorScheme(ColorScheme::Dark);
+    UIThemeManager::instance()->setColorScheme(m_ui->comboColorScheme->currentData().value<ColorScheme>());
 #endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
@@ -1723,22 +1716,16 @@ void OptionsDialog::initializeStyleCombo()
 void OptionsDialog::initializeColorSchemeOptions()
 {
 #ifdef QBT_HAS_COLORSCHEME_OPTION
-    switch (UIThemeManager::instance()->colorScheme())
-    {
-    case ColorScheme::System:
-    default:
-        m_ui->radioColorSchemeSystem->setChecked(true);
-        break;
-    case ColorScheme::Light:
-        m_ui->radioColorSchemeLight->setChecked(true);
-        break;
-    case ColorScheme::Dark:
-        m_ui->radioColorSchemeDark->setChecked(true);
-        break;
-    }
+    m_ui->comboColorScheme->addItem(tr("Dark", "Dark color scheme"), QVariant::fromValue(ColorScheme::Dark));
+    m_ui->comboColorScheme->addItem(tr("Light", "Light color scheme"), QVariant::fromValue(ColorScheme::Light));
+    m_ui->comboColorScheme->addItem(tr("System", "System color scheme"), QVariant::fromValue(ColorScheme::System));
+    m_ui->comboColorScheme->setCurrentIndex(m_ui->comboColorScheme->findData(QVariant::fromValue(UIThemeManager::instance()->colorScheme())));
 #else
-    m_ui->groupColorScheme->hide();
-    m_ui->UISettingsBoxLayout->removeWidget(m_ui->groupColorScheme);
+    m_ui->labelColorScheme->hide();
+    m_ui->comboColorScheme->hide();
+    m_ui->UISettingsBoxLayout->removeWidget(m_ui->labelColorScheme);
+    m_ui->UISettingsBoxLayout->removeWidget(m_ui->comboColorScheme);
+    m_ui->UISettingsBoxLayout->removeItem(m_ui->spacerColorScheme);
 #endif
 }
 
