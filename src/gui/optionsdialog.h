@@ -144,6 +144,7 @@ private:
     // General options
     void initializeLanguageCombo();
     void initializeStyleCombo();
+    void initializeColorSchemeOptions();
     QString getLocale() const;
     bool isSplashScreenDisabled() const;
 #ifdef Q_OS_WIN

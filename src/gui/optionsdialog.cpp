@@ -243,6 +243,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     setLocale(pref->getLocale());
 
     initializeStyleCombo();
+    initializeColorSchemeOptions();
 
     m_ui->checkUseCustomTheme->setChecked(Preferences::instance()->useCustomUITheme());
     m_ui->customThemeFilePath->setSelectedPath(Preferences::instance()->customUIThemePath());
@@ -359,6 +360,10 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->comboStyle, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 #endif
 
+#ifdef QBT_HAS_COLORSCHEME_OPTION
+    connect(m_ui->comboColorScheme, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+#endif
+
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     connect(m_ui->checkUseSystemIcon, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 #endif
@@ -457,6 +462,10 @@ void OptionsDialog::saveBehaviorTabOptions() const
 
 #ifdef Q_OS_WIN
     pref->setStyle(m_ui->comboStyle->currentText());
+#endif
+
+#ifdef QBT_HAS_COLORSCHEME_OPTION
+    UIThemeManager::instance()->setColorScheme(m_ui->comboColorScheme->currentData().value<ColorScheme>());
 #endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
@@ -1701,6 +1710,22 @@ void OptionsDialog::initializeStyleCombo()
     m_ui->UISettingsBoxLayout->removeWidget(m_ui->labelStyle);
     m_ui->UISettingsBoxLayout->removeWidget(m_ui->comboStyle);
     m_ui->UISettingsBoxLayout->removeItem(m_ui->spacerStyle);
+#endif
+}
+
+void OptionsDialog::initializeColorSchemeOptions()
+{
+#ifdef QBT_HAS_COLORSCHEME_OPTION
+    m_ui->comboColorScheme->addItem(tr("Dark", "Dark color scheme"), QVariant::fromValue(ColorScheme::Dark));
+    m_ui->comboColorScheme->addItem(tr("Light", "Light color scheme"), QVariant::fromValue(ColorScheme::Light));
+    m_ui->comboColorScheme->addItem(tr("System", "System color scheme"), QVariant::fromValue(ColorScheme::System));
+    m_ui->comboColorScheme->setCurrentIndex(m_ui->comboColorScheme->findData(QVariant::fromValue(UIThemeManager::instance()->colorScheme())));
+#else
+    m_ui->labelColorScheme->hide();
+    m_ui->comboColorScheme->hide();
+    m_ui->UISettingsBoxLayout->removeWidget(m_ui->labelColorScheme);
+    m_ui->UISettingsBoxLayout->removeWidget(m_ui->comboColorScheme);
+    m_ui->UISettingsBoxLayout->removeItem(m_ui->spacerColorScheme);
 #endif
 }
 

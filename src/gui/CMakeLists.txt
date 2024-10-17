@@ -46,6 +46,7 @@ add_library(qbt_gui STATIC
     autoexpandabledialog.h
     banlistoptionsdialog.h
     color.h
+    colorscheme.h
     cookiesdialog.h
     cookiesmodel.h
     deletionconfirmationdialog.h
