@@ -1898,7 +1898,53 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("leeches", "", "QBT_TR(Leeches)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
             this.newColumn("downloaded", "", "QBT_TR(Times Downloaded)QBT_TR[CONTEXT=TrackerListWidget]", 100, true);
             this.newColumn("message", "", "QBT_TR(Message)QBT_TR[CONTEXT=TrackerListWidget]", 250, true);
+
+            this.initColumnsFunctions();
         },
+
+        initColumnsFunctions: function() {
+            this.columns["url"].compareRows = function(row1, row2) {
+                if (!row1.full_data._sortable || !row2.full_data._sortable)
+                    return 0;
+
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                return window.qBittorrent.Misc.naturalSortCollator.compare(value1, value2);
+            };
+
+            this.columns["status"].compareRows = this.columns["url"].compareRows;
+            this.columns["message"].compareRows = this.columns["url"].compareRows;
+
+            this.columns["tier"].compareRows = function(row1, row2) {
+                if (!row1.full_data._sortable || !row2.full_data._sortable)
+                    return 0;
+
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                if (value1 === "")
+                    return -1;
+                if (value2 === "")
+                    return 1;
+                return compareNumbers(value1, value2);
+            };
+
+            this.columns["peers"].compareRows = function(row1, row2) {
+                if (!row1.full_data._sortable || !row2.full_data._sortable)
+                    return 0;
+
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                if (value1 === "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]")
+                    return -1;
+                if (value2 === "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]")
+                    return 1;
+                return compareNumbers(value1, value2);
+            };
+
+            this.columns["seeds"].compareRows = this.columns["peers"].compareRows;
+            this.columns["leeches"].compareRows = this.columns["peers"].compareRows;
+            this.columns["downloaded"].compareRows = this.columns["peers"].compareRows;
+        }
     });
 
     const BulkRenameTorrentFilesTable = new Class({
