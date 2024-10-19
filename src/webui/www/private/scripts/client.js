@@ -672,6 +672,28 @@ window.addEventListener("DOMContentLoaded", () => {
             tracker.classList.toggle("selectedFilter", (Number(tracker.id) === selectedTracker));
     };
 
+    const statusSortOrder = Object.freeze({
+        "unknown": -1,
+        "forcedDL": 0,
+        "downloading": 1,
+        "forcedMetaDL": 2,
+        "metaDL": 3,
+        "stalledDL": 4,
+        "forcedUP": 5,
+        "uploading": 6,
+        "stalledUP": 7,
+        "checkingResumeData": 8,
+        "queuedDL": 9,
+        "queuedUP": 10,
+        "checkingUP": 11,
+        "checkingDL": 12,
+        "stoppedDL": 13,
+        "stoppedUP": 14,
+        "moving": 15,
+        "missingFiles": 16,
+        "error": 17
+    });
+
     let syncMainDataTimeoutID = -1;
     let syncRequestInProgress = false;
     const syncMainData = function() {
@@ -800,8 +822,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
                             response["torrents"][key]["hash"] = key;
                             response["torrents"][key]["rowId"] = key;
-                            if (response["torrents"][key]["state"])
-                                response["torrents"][key]["status"] = response["torrents"][key]["state"];
+                            if (response["torrents"][key]["state"]) {
+                                const state = response["torrents"][key]["state"];
+                                response["torrents"][key]["status"] = state;
+                                response["torrents"][key]["_statusOrder"] = statusSortOrder[state];
+                            }
                             torrentsTable.updateRowData(response["torrents"][key]);
                             if (addTorrentToCategoryList(response["torrents"][key]))
                                 update_categories = true;
