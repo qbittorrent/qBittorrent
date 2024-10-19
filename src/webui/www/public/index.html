@@ -9,14 +9,14 @@
 
     <title>QBT_TR(qBittorrent WebUI)QBT_TR[CONTEXT=Login]</title>
 
-    <link rel="icon" type="image/png" href="images/qbittorrent32.png">
-    <link rel="icon" type="image/svg+xml" href="images/qbittorrent-tray.svg">
-    <link rel="stylesheet" type="text/css" href="css/login.css?v=${CACHEID}">
+    <link rel="icon" type="image/png" href="${BASE_PATH}images/qbittorrent32.png">
+    <link rel="icon" type="image/svg+xml" href="${BASE_PATH}images/qbittorrent-tray.svg">
+    <link rel="stylesheet" type="text/css" href="${BASE_PATH}css/login.css?v=${CACHEID}">
     <noscript>
-        <link rel="stylesheet" type="text/css" href="css/noscript.css?v=${CACHEID}">
+        <link rel="stylesheet" type="text/css" href="${BASE_PATH}css/noscript.css?v=${CACHEID}">
     </noscript>
 
-    <script defer src="scripts/login.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script defer src="${BASE_PATH}scripts/login.js?locale=${LANG}&v=${CACHEID}"></script>
 </head>
 
 <body>
@@ -26,7 +26,7 @@
     <div id="main">
         <h1>QBT_TR(qBittorrent WebUI)QBT_TR[CONTEXT=Login]</h1>
         <div id="logo" class="col">
-            <img src="images/qbittorrent-tray.svg" alt="qBittorrent logo">
+            <img src="${BASE_PATH}images/qbittorrent-tray.svg" alt="qBittorrent logo">
         </div>
         <div id="formplace" class="col">
             <form id="loginform">
