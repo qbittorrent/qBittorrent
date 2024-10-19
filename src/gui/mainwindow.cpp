@@ -1879,7 +1879,7 @@ void MainWindow::installPython()
 {
     setCursor(QCursor(Qt::WaitCursor));
     // Download python
-    const auto installerURL = u"https://www.python.org/ftp/python/3.12.4/python-3.12.4-amd64.exe"_s;
+    const auto installerURL = u"https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe"_s;
     Net::DownloadManager::instance()->download(
             Net::DownloadRequest(installerURL).saveToFile(true)
             , Preferences::instance()->useProxyForGeneralPurposes()
