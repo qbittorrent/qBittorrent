@@ -32,6 +32,11 @@
     vertical-align: middle;
 }
 
+#transferList #transferList_pad {
+    /* override for default mocha inline style */
+    display: flex !important;
+}
+
 tr.dynamicTableHeader {
     cursor: pointer;
 }
@@ -82,7 +87,14 @@ tr.dynamicTableHeader {
     padding-left: 25px;
 }
 
+div:has(> div.dynamicTableFixedHeaderDiv):not(.invisible) {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .dynamicTableFixedHeaderDiv {
+    flex-shrink: 0;
     overflow: hidden;
 }
 
@@ -92,6 +104,7 @@ tr.dynamicTableHeader {
 }
 
 .dynamicTableDiv {
+    flex-grow: 1;
     overflow: auto;
 }
 
