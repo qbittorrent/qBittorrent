@@ -2817,6 +2817,19 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
                 loadTorrentParams.name = contentName;
         }
 
+        const auto nativeIndexes = torrentInfo.nativeIndexes();
+
+        Q_ASSERT(p.file_priorities.empty());
+        Q_ASSERT(addTorrentParams.filePriorities.isEmpty() || (addTorrentParams.filePriorities.size() == nativeIndexes.size()));
+        QList<DownloadPriority> filePriorities = addTorrentParams.filePriorities;
+
+        // Filename filter should be applied before `findIncompleteFiles()` is called.
+        if (filePriorities.isEmpty() && isExcludedFileNamesEnabled())
+        {
+            // Check file name blacklist when priorities are not explicitly set
+            applyFilenameFilter(filePaths, filePriorities);
+        }
+
         if (!loadTorrentParams.hasFinishedStatus)
         {
             const Path actualDownloadPath = useAutoTMM
@@ -2825,22 +2838,10 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
             isFindingIncompleteFiles = true;
         }
 
-        const auto nativeIndexes = torrentInfo.nativeIndexes();
         if (!isFindingIncompleteFiles)
         {
             for (int index = 0; index < filePaths.size(); ++index)
                 p.renamed_files[nativeIndexes[index]] = filePaths.at(index).toString().toStdString();
-        }
-
-        Q_ASSERT(p.file_priorities.empty());
-        Q_ASSERT(addTorrentParams.filePriorities.isEmpty() || (addTorrentParams.filePriorities.size() == nativeIndexes.size()));
-
-        QList<DownloadPriority> filePriorities = addTorrentParams.filePriorities;
-
-        if (filePriorities.isEmpty() && isExcludedFileNamesEnabled())
-        {
-            // Check file name blacklist when priorities are not explicitly set
-            applyFilenameFilter(filePaths, filePriorities);
         }
 
         const int internalFilesCount = torrentInfo.nativeInfo()->files().num_files(); // including .pad files
