@@ -1,5 +1,6 @@
 <style type="text/css">
     #logTopBar {
+        flex-shrink: 0;
         margin-top: 1em;
     }
 
@@ -22,13 +23,16 @@
     }
 
     #logView {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
         padding: 0 20px;
         overflow: auto;
     }
 
     #logContentView {
-        display: block;
-        vertical-align: top;
+        flex-grow: 1;
+        overflow: auto;
     }
 
     #logMessageTableFixedHeaderDiv .dynamicTableHeader,
@@ -227,7 +231,6 @@
             tableInfo["peer"].instance.setup("logPeerTableDiv", "logPeerTableFixedHeaderDiv", logTableContextMenu);
 
             MUI.Panels.instances.LogPanel.contentEl.style.height = "100%";
-            $("logView").style.height = "inherit";
 
             load();
         };
