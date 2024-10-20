@@ -2154,6 +2154,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             window.parent.qBittorrent.Cache.preferences.init({
                 onSuccess: (pref) => {
                     // Behavior tab
+                    // Language
+                    updateWebuiLocaleSelect(pref.locale);
+                    updateColoSchemeSelect();
+                    $("performanceWarning").checked = pref.performance_warning;
                     document.getElementById("displayFullURLTrackerColumn").checked = (LocalPreferences.get("full_url_tracker_column", "false") === "true");
                     document.getElementById("hideZeroFiltersCheckbox").checked = (LocalPreferences.get("hide_zero_status_filters", "false") === "true");
                     $("dblclickDownloadSelect").value = LocalPreferences.get("dblclick_download", "1");
@@ -2439,11 +2443,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("rss_filter_textarea").value = pref.rss_smart_episode_filters;
 
                     // WebUI tab
-                    // Language
-                    updateWebuiLocaleSelect(pref.locale);
-                    updateColoSchemeSelect();
-                    $("performanceWarning").checked = pref.performance_warning;
-
                     // HTTP Server
                     $("webui_domain_textarea").value = pref.web_ui_domain_list;
                     $("webui_address_value").value = pref.web_ui_address;
@@ -2574,6 +2573,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Validate form data
 
             // Behavior tab
+            // Language
+            settings["locale"] = $("locale_select").value;
+            const colorScheme = Number(document.getElementById("colorSchemeSelect").value);
+            if (colorScheme === 0)
+                LocalPreferences.remove("color_scheme");
+            else if (colorScheme === 1)
+                LocalPreferences.set("color_scheme", "light");
+            else
+                LocalPreferences.set("color_scheme", "dark");
+            settings["performance_warning"] = $("performanceWarning").checked;
             LocalPreferences.set("full_url_tracker_column", document.getElementById("displayFullURLTrackerColumn").checked.toString());
             LocalPreferences.set("hide_zero_status_filters", document.getElementById("hideZeroFiltersCheckbox").checked.toString());
             LocalPreferences.set("dblclick_download", $("dblclickDownloadSelect").value);
@@ -2866,17 +2875,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["rss_smart_episode_filters"] = $("rss_filter_textarea").value;
 
             // WebUI tab
-            // Language
-            settings["locale"] = $("locale_select").value;
-            const colorScheme = Number(document.getElementById("colorSchemeSelect").value);
-            if (colorScheme === 0)
-                LocalPreferences.remove("color_scheme");
-            else if (colorScheme === 1)
-                LocalPreferences.set("color_scheme", "light");
-            else
-                LocalPreferences.set("color_scheme", "dark");
-            settings["performance_warning"] = $("performanceWarning").checked;
-
             // HTTP Server
             settings["web_ui_domain_list"] = $("webui_domain_textarea").value;
             const web_ui_address = $("webui_address_value").value.toString();
