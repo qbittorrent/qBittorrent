@@ -179,17 +179,13 @@
                 <widget class="QComboBox" name="comboStyle"/>
                </item>
                <item row="2" column="2">
-                <spacer name="spacerStyle">
-                 <property name="orientation">
-                  <enum>Qt::Orientation::Horizontal</enum>
+                <widget class="QLabel" name="labelStyleHint">
+                 <property name="font">
+                  <font>
+                   <italic>true</italic>
+                  </font>
                  </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
+                </widget>
                </item>
                <item row="3" column="0">
                 <widget class="QLabel" name="labelColorScheme">
