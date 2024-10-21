@@ -724,15 +724,15 @@ void WebApplication::sessionStart()
     m_currentSession = new WebSession(generateSid(), app());
     m_sessions[m_currentSession->id()] = m_currentSession;
 
-    m_currentSession->registerAPIController(u"app"_s, new AppController(app(), this));
-    m_currentSession->registerAPIController(u"log"_s, new LogController(app(), this));
-    m_currentSession->registerAPIController(u"torrentcreator"_s, new TorrentCreatorController(m_torrentCreationManager, app(), this));
-    m_currentSession->registerAPIController(u"rss"_s, new RSSController(app(), this));
-    m_currentSession->registerAPIController(u"search"_s, new SearchController(app(), this));
-    m_currentSession->registerAPIController(u"torrents"_s, new TorrentsController(app(), this));
-    m_currentSession->registerAPIController(u"transfer"_s, new TransferController(app(), this));
+    m_currentSession->registerAPIController(u"app"_s, new AppController(app(), m_currentSession));
+    m_currentSession->registerAPIController(u"log"_s, new LogController(app(), m_currentSession));
+    m_currentSession->registerAPIController(u"torrentcreator"_s, new TorrentCreatorController(m_torrentCreationManager, app(), m_currentSession));
+    m_currentSession->registerAPIController(u"rss"_s, new RSSController(app(), m_currentSession));
+    m_currentSession->registerAPIController(u"search"_s, new SearchController(app(), m_currentSession));
+    m_currentSession->registerAPIController(u"torrents"_s, new TorrentsController(app(), m_currentSession));
+    m_currentSession->registerAPIController(u"transfer"_s, new TransferController(app(), m_currentSession));
 
-    auto *syncController = new SyncController(app(), this);
+    auto *syncController = new SyncController(app(), m_currentSession);
     syncController->updateFreeDiskSpace(m_freeDiskSpaceChecker->lastResult());
     connect(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, syncController, &SyncController::updateFreeDiskSpace);
     m_currentSession->registerAPIController(u"sync"_s, syncController);
