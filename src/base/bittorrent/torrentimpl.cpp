@@ -1819,7 +1819,7 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
         m_filePriorities.append(LT::fromNative(p.file_priorities[LT::toUnderlyingType(nativeIndex)]));
     }
 
-    m_session->applyFilenameFilter(fileNames, m_filePriorities);
+    m_session->applyFilenameFilter(m_filePaths, m_filePriorities);
     for (int i = 0; i < m_filePriorities.size(); ++i)
         p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = LT::toNative(m_filePriorities[i]);
 

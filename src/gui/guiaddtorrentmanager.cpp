@@ -175,7 +175,8 @@ void GUIAddTorrentManager::onMetadataDownloaded(const BitTorrent::TorrentInfo &m
     }
 }
 
-bool GUIAddTorrentManager::processTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr, const BitTorrent::AddTorrentParams &params)
+bool GUIAddTorrentManager::processTorrent(const QString &source
+        , const BitTorrent::TorrentDescriptor &torrentDescr, const BitTorrent::AddTorrentParams &params)
 {
     const bool hasMetadata = torrentDescr.info().has_value();
     const BitTorrent::InfoHash infoHash = torrentDescr.infoHash();
@@ -183,32 +184,39 @@ bool GUIAddTorrentManager::processTorrent(const QString &source, const BitTorren
     // Prevent showing the dialog if download is already present
     if (BitTorrent::Torrent *torrent = btSession()->findTorrent(infoHash))
     {
-        if (hasMetadata)
+        if (Preferences::instance()->confirmMergeTrackers())
         {
-            // Trying to set metadata to existing torrent in case if it has none
-            torrent->setMetadata(*torrentDescr.info());
-        }
+            if (hasMetadata)
+            {
+                // Trying to set metadata to existing torrent in case if it has none
+                torrent->setMetadata(*torrentDescr.info());
+            }
 
-        if (torrent->isPrivate() || (hasMetadata && torrentDescr.info()->isPrivate()))
-        {
-            handleDuplicateTorrent(source, torrent, tr("Trackers cannot be merged because it is a private torrent"));
+            const bool isPrivate = torrent->isPrivate() || (hasMetadata && torrentDescr.info()->isPrivate());
+            const QString dialogCaption = tr("Torrent is already present");
+            if (isPrivate)
+            {
+                // We cannot merge trackers for private torrent but we still notify user
+                // about duplicate torrent if confirmation dialog is enabled.
+                RaisedMessageBox::warning(app()->mainWindow(), dialogCaption
+                        , tr("Trackers cannot be merged because it is a private torrent."));
+            }
+            else
+            {
+                const bool mergeTrackers = btSession()->isMergeTrackersEnabled();
+                const QMessageBox::StandardButton btn = RaisedMessageBox::question(app()->mainWindow(), dialogCaption
+                        , tr("Torrent '%1' is already in the transfer list. Do you want to merge trackers from new source?").arg(torrent->name())
+                        , (QMessageBox::Yes | QMessageBox::No), (mergeTrackers ? QMessageBox::Yes : QMessageBox::No));
+                if (btn == QMessageBox::Yes)
+                {
+                    torrent->addTrackers(torrentDescr.trackers());
+                    torrent->addUrlSeeds(torrentDescr.urlSeeds());
+                }
+            }
         }
         else
         {
-            bool mergeTrackers = btSession()->isMergeTrackersEnabled();
-            if (Preferences::instance()->confirmMergeTrackers())
-            {
-                const QMessageBox::StandardButton btn = RaisedMessageBox::question(app()->mainWindow(), tr("Torrent is already present")
-                        , tr("Torrent '%1' is already in the transfer list. Do you want to merge trackers from new source?").arg(torrent->name())
-                        , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
-                mergeTrackers = (btn == QMessageBox::Yes);
-            }
-
-            if (mergeTrackers)
-            {
-                torrent->addTrackers(torrentDescr.trackers());
-                torrent->addUrlSeeds(torrentDescr.urlSeeds());
-            }
+            handleDuplicateTorrent(source, torrentDescr, torrent);
         }
 
         return false;

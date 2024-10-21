@@ -132,9 +132,9 @@
               <property name="title">
                <string>Interface</string>
               </property>
-              <layout class="QGridLayout" name="gridLayout_81">
+              <layout class="QGridLayout" name="UISettingsBoxLayout">
                <item row="0" column="0" colspan="3">
-                <widget class="QLabel" name="label_15">
+                <widget class="QLabel" name="labelRestartRequired">
                  <property name="font">
                   <font>
                    <italic>true</italic>
@@ -146,17 +146,17 @@
                 </widget>
                </item>
                <item row="1" column="0">
-                <widget class="QLabel" name="label_9">
+                <widget class="QLabel" name="labelLanguage">
                  <property name="text">
                   <string>Language:</string>
                  </property>
                 </widget>
                </item>
                <item row="1" column="1">
-                <widget class="QComboBox" name="comboI18n"/>
+                <widget class="QComboBox" name="comboLanguage"/>
                </item>
                <item row="1" column="2">
-                <spacer name="horizontalSpacer_111">
+                <spacer name="spacerLanguage">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -168,7 +168,26 @@
                  </property>
                 </spacer>
                </item>
-               <item row="2" column="0" colspan="3">
+               <item row="2" column="0">
+                <widget class="QLabel" name="labelStyle">
+                 <property name="text">
+                  <string>Style:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QComboBox" name="comboStyle"/>
+               </item>
+               <item row="2" column="2">
+                <widget class="QLabel" name="labelStyleHint">
+                 <property name="font">
+                  <font>
+                   <italic>true</italic>
+                  </font>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="3">
                 <widget class="QGroupBox" name="checkUseCustomTheme">
                  <property name="title">
                   <string>Use custom UI Theme</string>
@@ -190,14 +209,14 @@
                  </layout>
                 </widget>
                </item>
-               <item row="3" column="0" colspan="2">
+               <item row="4" column="0" colspan="2">
                 <widget class="QCheckBox" name="checkUseSystemIcon">
                  <property name="text">
                   <string>Use icons from system theme</string>
                  </property>
                 </widget>
                </item>
-               <item row="4" column="0" colspan="2">
+               <item row="5" column="0" colspan="2">
                 <widget class="QPushButton" name="buttonCustomizeUITheme">
                  <property name="text">
                   <string>Customize UI Theme...</string>
@@ -3881,7 +3900,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
  </customwidgets>
  <tabstops>
   <tabstop>tabOption</tabstop>
-  <tabstop>comboI18n</tabstop>
+  <tabstop>comboLanguage</tabstop>
   <tabstop>checkUseCustomTheme</tabstop>
   <tabstop>customThemeFilePath</tabstop>
   <tabstop>checkAddStopped</tabstop>

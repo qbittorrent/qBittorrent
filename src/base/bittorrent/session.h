@@ -92,7 +92,8 @@ namespace BitTorrent
         {
             Default = 0,
             MMap = 1,
-            Posix = 2
+            Posix = 2,
+            SimplePreadPwrite = 3
         };
         Q_ENUM_NS(DiskIOType)
 

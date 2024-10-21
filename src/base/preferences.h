@@ -130,6 +130,8 @@ public:
 #ifdef Q_OS_WIN
     bool WinStartup() const;
     void setWinStartup(bool b);
+    QString getStyle() const;
+    void setStyle(const QString &styleName);
 #endif
 
     // Downloads

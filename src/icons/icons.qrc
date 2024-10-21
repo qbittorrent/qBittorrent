@@ -24,7 +24,6 @@
         <file>filter-inactive.svg</file>
         <file>filter-stalled.svg</file>
         <file>firewalled.svg</file>
-        <file>flags/ac.svg</file>
         <file>flags/ad.svg</file>
         <file>flags/ae.svg</file>
         <file>flags/af.svg</file>
@@ -212,6 +211,7 @@
         <file>flags/nz.svg</file>
         <file>flags/om.svg</file>
         <file>flags/pa.svg</file>
+        <file>flags/pc.svg</file>
         <file>flags/pe.svg</file>
         <file>flags/pf.svg</file>
         <file>flags/pg.svg</file>
@@ -237,6 +237,9 @@
         <file>flags/sd.svg</file>
         <file>flags/se.svg</file>
         <file>flags/sg.svg</file>
+        <file>flags/sh-ac.svg</file>
+        <file>flags/sh-hl.svg</file>
+        <file>flags/sh-ta.svg</file>
         <file>flags/sh.svg</file>
         <file>flags/si.svg</file>
         <file>flags/sj.svg</file>
@@ -252,7 +255,6 @@
         <file>flags/sx.svg</file>
         <file>flags/sy.svg</file>
         <file>flags/sz.svg</file>
-        <file>flags/ta.svg</file>
         <file>flags/tc.svg</file>
         <file>flags/td.svg</file>
         <file>flags/tf.svg</file>

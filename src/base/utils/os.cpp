@@ -271,6 +271,11 @@ Path Utils::OS::windowsSystemPath()
 #if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
 bool Utils::OS::applyMarkOfTheWeb(const Path &file, const QString &url)
 {
+    // Trying to apply this to a non-existent file is unacceptable,
+    // as it may unexpectedly create such a file.
+    if (!file.exists())
+        return false;
+
     Q_ASSERT(url.isEmpty() || url.startsWith(u"http:") || url.startsWith(u"https:"));
 
 #ifdef Q_OS_MACOS
