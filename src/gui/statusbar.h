@@ -47,6 +47,8 @@ public:
     StatusBar(QWidget *parent = nullptr);
     ~StatusBar() override;
 
+    void showStatusBarExternalIP(bool display);
+
 signals:
     void alternativeSpeedsButtonClicked();
     void connectionButtonClicked();
@@ -62,10 +64,12 @@ private slots:
 private:
     void updateConnectionStatus();
     void updateDHTNodesNumber();
+    void updateExternalAddressesLabel();
     void updateSpeedLabels();
 
     QPushButton *m_dlSpeedLbl = nullptr;
     QPushButton *m_upSpeedLbl = nullptr;
+    QLabel *m_lastExternalIPsLbl = nullptr;
     QLabel *m_DHTLbl = nullptr;
     QPushButton *m_connecStatusLblIcon = nullptr;
     QPushButton *m_altSpeedsBtn = nullptr;

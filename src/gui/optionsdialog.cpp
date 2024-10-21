@@ -353,6 +353,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkFileLog->setChecked(app()->isFileLoggerEnabled());
 
     m_ui->checkBoxPerformanceWarning->setChecked(session->isPerformanceWarningEnabled());
+    m_ui->checkBoxExternalIPStatusBar->setChecked(pref->isStatusbarExternalIPDisplayed());
 
     connect(m_ui->comboLanguage, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
@@ -440,6 +441,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->comboFileLogAgeType, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkBoxPerformanceWarning, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkBoxExternalIPStatusBar, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 }
 
 void OptionsDialog::saveBehaviorTabOptions() const
@@ -535,6 +537,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
     app()->setStartUpWindowState(m_ui->windowStateComboBox->currentData().value<WindowState>());
 
     session->setPerformanceWarningEnabled(m_ui->checkBoxPerformanceWarning->isChecked());
+    pref->setStatusbarExternalIPDisplayed(m_ui->checkBoxExternalIPStatusBar->isChecked());
 }
 
 void OptionsDialog::loadDownloadsTabOptions()
