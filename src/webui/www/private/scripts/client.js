@@ -720,6 +720,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     let update_categories = false;
                     let updateTags = false;
                     let updateTrackers = false;
+                    let updateTorrents = false;
                     const full_update = (response["full_update"] === true);
                     if (full_update) {
                         torrentsTableSelectedRows = torrentsTable.selectedRowsIds();
@@ -820,6 +821,9 @@ window.addEventListener("DOMContentLoaded", () => {
                             if (!Object.hasOwn(response["torrents"], key))
                                 continue;
 
+                            if (Object.keys(response["torrents"][key]).length === 0)
+                                continue;
+
                             response["torrents"][key]["hash"] = key;
                             response["torrents"][key]["rowId"] = key;
                             if (response["torrents"][key]["state"]) {
@@ -832,6 +836,7 @@ window.addEventListener("DOMContentLoaded", () => {
                                 update_categories = true;
                             if (addTorrentToTagList(response["torrents"][key]))
                                 updateTags = true;
+                            updateTorrents = true;
                         }
                     }
                     if (response["torrents_removed"]) {
@@ -842,8 +847,13 @@ window.addEventListener("DOMContentLoaded", () => {
                             removeTorrentFromTagList(hash);
                             updateTags = true; // Always to update All tag
                         });
+                        updateTorrents = true;
                     }
-                    torrentsTable.updateTable(full_update);
+
+                    // don't update the table unnecessarily
+                    if (full_update || updateTorrents)
+                        torrentsTable.updateTable(full_update);
+
                     if (response["server_state"]) {
                         const tmp = response["server_state"];
                         for (const k in tmp) {

@@ -698,7 +698,11 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
     {
         QJsonObject torrents;
         for (auto it = m_maindataSyncBuf.torrents.cbegin(); it != m_maindataSyncBuf.torrents.cend(); ++it)
-            torrents[it.key()] = QJsonObject::fromVariantMap(it.value());
+        {
+            const QVariantMap &value = it.value();
+            if (!value.isEmpty())
+                torrents[it.key()] = QJsonObject::fromVariantMap(value);
+        }
         syncData[KEY_TORRENTS] = torrents;
     }
     if (!m_maindataSyncBuf.removedTorrents.isEmpty())
