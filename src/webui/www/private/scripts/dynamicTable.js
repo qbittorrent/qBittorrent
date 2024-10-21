@@ -721,7 +721,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     const tr = new Element("tr");
                     // set tabindex so element receives keydown events
                     // more info: https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event
-                    tr.tabindex = "-1";
+                    tr.tabIndex = -1;
 
                     const rowId = rows[rowPos]["rowId"];
                     tr.setAttribute("data-row-id", rowId);
@@ -765,10 +765,10 @@ window.qBittorrent.DynamicTable ??= (() => {
                     }, { passive: true });
                     tr.addEventListener("keydown", function(event) {
                         switch (event.key) {
-                            case "up":
+                            case "ArrowUp":
                                 this._this.selectPreviousRow();
                                 return false;
-                            case "down":
+                            case "ArrowDown":
                                 this._this.selectNextRow();
                                 return false;
                         }
@@ -2294,10 +2294,10 @@ window.qBittorrent.DynamicTable ??= (() => {
         setupTr: function(tr) {
             tr.addEventListener("keydown", function(event) {
                 switch (event.key) {
-                    case "left":
+                    case "ArrowLeft":
                         qBittorrent.PropFiles.collapseFolder(this._this.getSelectedRowId());
                         return false;
-                    case "right":
+                    case "ArrowRight":
                         qBittorrent.PropFiles.expandFolder(this._this.getSelectedRowId());
                         return false;
                 }
@@ -2623,10 +2623,10 @@ window.qBittorrent.DynamicTable ??= (() => {
         setupTr: function(tr) {
             tr.addEventListener("keydown", function(event) {
                 switch (event.key) {
-                    case "left":
+                    case "ArrowLeft":
                         qBittorrent.PropFiles.collapseFolder(this._this.getSelectedRowId());
                         return false;
-                    case "right":
+                    case "ArrowRight":
                         qBittorrent.PropFiles.expandFolder(this._this.getSelectedRowId());
                         return false;
                 }
