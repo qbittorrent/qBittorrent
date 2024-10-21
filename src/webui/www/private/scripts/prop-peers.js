@@ -32,7 +32,8 @@ window.qBittorrent ??= {};
 window.qBittorrent.PropPeers ??= (() => {
     const exports = () => {
         return {
-            updateData: updateData
+            updateData: updateData,
+            clear: clear
         };
     };
 
@@ -53,7 +54,6 @@ window.qBittorrent.PropPeers ??= (() => {
             syncTorrentPeersLastResponseId = 0;
             torrentPeersTable.clear();
             clearTimeout(loadTorrentPeersTimer);
-            loadTorrentPeersTimer = loadTorrentPeersData.delay(window.qBittorrent.Client.getSyncMainDataInterval());
             return;
         }
         const url = new URI("api/v2/sync/torrentPeers");
@@ -110,6 +110,10 @@ window.qBittorrent.PropPeers ??= (() => {
         clearTimeout(loadTorrentPeersTimer);
         loadTorrentPeersTimer = -1;
         loadTorrentPeersData();
+    };
+
+    const clear = function() {
+        torrentPeersTable.clear();
     };
 
     const torrentPeersContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({

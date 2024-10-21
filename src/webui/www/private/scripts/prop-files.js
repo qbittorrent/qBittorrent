@@ -42,7 +42,8 @@ window.qBittorrent.PropFiles ??= (() => {
             updateData: updateData,
             collapseIconClicked: collapseIconClicked,
             expandFolder: expandFolder,
-            collapseFolder: collapseFolder
+            collapseFolder: collapseFolder,
+            clear: clear
         };
     };
 
@@ -343,7 +344,6 @@ window.qBittorrent.PropFiles ??= (() => {
         if (new_hash === "") {
             torrentFilesTable.clear();
             clearTimeout(loadTorrentFilesDataTimer);
-            loadTorrentFilesDataTimer = loadTorrentFilesData.delay(5000);
             return;
         }
         let loadedNewTorrent = false;
@@ -762,6 +762,10 @@ window.qBittorrent.PropFiles ??= (() => {
 
             _collapseNode(child, shouldCollapse, applyToChildren, true);
         });
+    };
+
+    const clear = function() {
+        torrentFilesTable.clear();
     };
 
     return exports();

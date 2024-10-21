@@ -32,7 +32,8 @@ window.qBittorrent ??= {};
 window.qBittorrent.PropGeneral ??= (() => {
     const exports = () => {
         return {
-            updateData: updateData
+            updateData: updateData,
+            clear: clear
         };
     };
 
@@ -83,7 +84,6 @@ window.qBittorrent.PropGeneral ??= (() => {
         if (current_id === "") {
             clearData();
             clearTimeout(loadTorrentDataTimer);
-            loadTorrentDataTimer = loadTorrentData.delay(5000);
             return;
         }
         const url = new URI("api/v2/torrents/properties?hash=" + current_id);
@@ -252,6 +252,10 @@ window.qBittorrent.PropGeneral ??= (() => {
         clearTimeout(loadTorrentDataTimer);
         loadTorrentDataTimer = -1;
         loadTorrentData();
+    };
+
+    const clear = function() {
+        clearData();
     };
 
     return exports();
