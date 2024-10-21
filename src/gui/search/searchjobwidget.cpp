@@ -395,8 +395,12 @@ void SearchJobWidget::fillFilterComboBoxes()
 
 void SearchJobWidget::filterSearchResults(const QString &name)
 {
-    const QString pattern = (Preferences::instance()->getRegexAsFilteringPatternForSearchJob()
-                    ? name : Utils::String::wildcardToRegexPattern(name));
+    QString pattern = name;
+    if (!Preferences::instance()->getRegexAsFilteringPatternForSearchJob())
+    {
+        pattern.replace(QRegularExpression(u"[-.\\s_]+"_s), u"[-. _]"_s);
+        pattern = Utils::String::wildcardToRegexPattern(pattern);
+    }
     m_proxyModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
     updateResultsCount();
 }
