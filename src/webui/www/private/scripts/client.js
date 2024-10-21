@@ -1506,6 +1506,10 @@ window.addEventListener("DOMContentLoaded", () => {
                 const showFilesFilter = (selectedTab.id === "propFilesLink") && !this.isCollapsed;
                 document.getElementById("torrentFilesFilterToolbar").classList.toggle("invisible", !showFilesFilter);
             });
+
+            const showFilesFilter = (lastUsedTab === "propFilesLink") && !this.isCollapsed;
+            if (showFilesFilter)
+                document.getElementById("torrentFilesFilterToolbar").classList.remove("invisible");
         },
         column: "mainColumn",
         height: prop_h
