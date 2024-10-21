@@ -1899,7 +1899,57 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("leeches", "", "QBT_TR(Leeches)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
             this.newColumn("downloaded", "", "QBT_TR(Times Downloaded)QBT_TR[CONTEXT=TrackerListWidget]", 100, true);
             this.newColumn("message", "", "QBT_TR(Message)QBT_TR[CONTEXT=TrackerListWidget]", 250, true);
+
+            this.initColumnsFunctions();
         },
+
+        initColumnsFunctions: function() {
+            const naturalSort = function(row1, row2) {
+                if (!row1.full_data._sortable || !row2.full_data._sortable)
+                    return 0;
+
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                return window.qBittorrent.Misc.naturalSortCollator.compare(value1, value2);
+            };
+
+            this.columns["url"].compareRows = naturalSort;
+            this.columns["status"].compareRows = naturalSort;
+            this.columns["message"].compareRows = naturalSort;
+
+            const sortNumbers = function(row1, row2) {
+                if (!row1.full_data._sortable || !row2.full_data._sortable)
+                    return 0;
+
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                if (value1 === "")
+                    return -1;
+                if (value2 === "")
+                    return 1;
+                return compareNumbers(value1, value2);
+            };
+
+            this.columns["tier"].compareRows = sortNumbers;
+
+            const sortMixed = function(row1, row2) {
+                if (!row1.full_data._sortable || !row2.full_data._sortable)
+                    return 0;
+
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                if (value1 === "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]")
+                    return -1;
+                if (value2 === "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]")
+                    return 1;
+                return compareNumbers(value1, value2);
+            };
+
+            this.columns["peers"].compareRows = sortMixed;
+            this.columns["seeds"].compareRows = sortMixed;
+            this.columns["leeches"].compareRows = sortMixed;
+            this.columns["downloaded"].compareRows = sortMixed;
+        }
     });
 
     const BulkRenameTorrentFilesTable = new Class({
