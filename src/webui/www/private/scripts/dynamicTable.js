@@ -233,7 +233,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 resetElementBorderStyle(this.lastHoverTh);
                 el.style.backgroundColor = "";
                 if (this.currentHeaderAction === "resize")
-                    LocalPreferences.set("column_" + this.resizeTh.columnName + "_width_" + this.dynamicTableDivId, this.columns[this.resizeTh.columnName].width);
+                    this.saveColumnWidth(this.resizeTh.columnName);
                 if ((this.currentHeaderAction === "drag") && (el !== this.lastHoverTh)) {
                     this.saveColumnsOrder();
                     const val = LocalPreferences.get("columns_order_" + this.dynamicTableDivId).split(",");
@@ -260,13 +260,28 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             const onCancel = function(el) {
                 this.currentHeaderAction = "";
-                this.setSortedColumn(el.columnName);
+
+                // ignore click/touch events performed when on the column's resize area
+                if (!this.canResize)
+                    this.setSortedColumn(el.columnName);
             }.bind(this);
 
             const onTouch = function(e) {
                 const column = e.target.columnName;
                 this.currentHeaderAction = "";
                 this.setSortedColumn(column);
+            }.bind(this);
+
+            const onDoubleClick = function(e) {
+                e.preventDefault();
+                this.currentHeaderAction = "";
+
+                // only resize when hovering on the column's resize area
+                if (this.canResize) {
+                    this.currentHeaderAction = "resize";
+                    this.autoResizeColumn(e.target.columnName);
+                    onComplete(e.target);
+                }
             }.bind(this);
 
             const ths = this.fixedTableHeader.getElements("th");
@@ -276,6 +291,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 th.addEventListener("mousemove", mouseMoveFn);
                 th.addEventListener("mouseout", mouseOutFn);
                 th.addEventListener("touchend", onTouch, { passive: true });
+                th.addEventListener("dblclick", onDoubleClick);
                 th.makeResizable({
                     modifiers: {
                         x: "",
@@ -311,6 +327,58 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.updateColumn(columnName);
         },
 
+        _calculateColumnBodyWidth: function(column) {
+            const columnIndex = this.getColumnPos(column.name);
+            const bodyColumn = document.getElementById(this.dynamicTableDivId).querySelectorAll("tr>th")[columnIndex];
+            const canvas = document.createElement("canvas");
+            const context = canvas.getContext("2d");
+            context.font = window.getComputedStyle(bodyColumn, null).getPropertyValue("font");
+
+            const longestTd = { value: "", buffer: 0 };
+            for (const tr of this.tableBody.querySelectorAll("tr")) {
+                const tds = tr.querySelectorAll("td");
+                const td = tds[columnIndex];
+
+                const buffer = column.calculateBuffer(tr.rowId);
+                const valueLength = td.textContent.length;
+                if ((valueLength + buffer) > (longestTd.value.length + longestTd.buffer)) {
+                    longestTd.value = td.textContent;
+                    longestTd.buffer = buffer;
+                }
+            }
+
+            return context.measureText(longestTd.value).width + longestTd.buffer;
+        },
+
+        autoResizeColumn: function(columnName) {
+            const column = this.columns[columnName];
+
+            let width = column.staticWidth ?? 0;
+            if (column.staticWidth === null) {
+                // check required min body width
+                const bodyTextWidth = this._calculateColumnBodyWidth(column);
+
+                // check required min header width
+                const columnIndex = this.getColumnPos(column.name);
+                const headColumn = document.getElementById(this.dynamicTableFixedHeaderDivId).querySelectorAll("tr>th")[columnIndex];
+                const canvas = document.createElement("canvas");
+                const context = canvas.getContext("2d");
+                context.font = window.getComputedStyle(headColumn, null).getPropertyValue("font");
+                const columnTitle = column.caption;
+                const headTextWidth = context.measureText(columnTitle).width;
+
+                width = Math.max(headTextWidth, bodyTextWidth) + 20;
+            }
+
+            column.width = width;
+            this.updateColumn(column.name);
+            this.saveColumnWidth(column.name);
+        },
+
+        saveColumnWidth: function(columnName) {
+            LocalPreferences.set(`column_${columnName}_width_${this.dynamicTableDivId}`, this.columns[columnName].width);
+        },
+
         setupHeaderMenu: function() {
             this.setupDynamicTableHeaderContextMenuClass();
 
@@ -337,7 +405,11 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return listItem;
             };
 
-            const actions = {};
+            const actions = {
+                autoResizeAction: function(element, ref, action) {
+                    this.autoResizeColumn(element.columnName);
+                }.bind(this)
+            };
 
             const onMenuItemClicked = function(element, ref, action) {
                 this.showColumn(action, this.columns[action].visible === "0");
@@ -357,10 +429,22 @@ window.qBittorrent.DynamicTable ??= (() => {
                 actions[this.columns[i].name] = onMenuItemClicked;
             }
 
+            // add auto resize option
+            const autoResizeAnchor = document.createElement("a");
+            autoResizeAnchor.href = "#autoResizeAction";
+            autoResizeAnchor.textContent = "Auto resize";
+            const img = document.createElement("img");
+            img.src = "images/configure.svg";
+            autoResizeAnchor.prepend(img);
+            const autoResizeListItem = document.createElement("li");
+            autoResizeListItem.appendChild(autoResizeAnchor);
+            ul.firstChild.classList.add("separator");
+            ul.insertBefore(autoResizeListItem, ul.firstChild);
+
             ul.inject(document.body);
 
             this.headerContextMenu = new DynamicTableHeaderContextMenuClass({
-                targets: "#" + this.dynamicTableFixedHeaderDivId + " tr",
+                targets: "#" + this.dynamicTableFixedHeaderDivId + " tr th",
                 actions: actions,
                 menu: menuId,
                 offsets: {
@@ -402,6 +486,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.title = value;
             };
             column["onResize"] = null;
+            column["staticWidth"] = null;
+            column["calculateBuffer"] = () => 0;
             this.columns.push(column);
             this.columns[name] = column;
 
@@ -1163,7 +1249,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.resized = false;
                 }
             };
-
+            this.columns["progress"].staticWidth = 100;
             this.columns["progress"].onResize = function(columnName) {
                 const pos = this.getColumnPos(columnName);
                 const trs = this.tableBody.getElements("tr");
@@ -1721,6 +1807,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             // relevance
             this.columns["relevance"].updateTd = this.columns["progress"].updateTd;
+            this.columns["relevance"].staticWidth = 100;
 
             // files
             this.columns["files"].updateTd = function(td, row) {
@@ -2088,6 +2175,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 checkbox.indeterminate = false;
                 td.adopt(treeImg, checkbox);
             };
+            this.columns["checked"].staticWidth = 50;
 
             // original
             this.columns["original"].updateTd = function(td, row) {
@@ -2410,6 +2498,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.adopt(treeImg, window.qBittorrent.PropFiles.createDownloadCheckbox(id, row.full_data.fileId, value));
                 }
             };
+            this.columns["checked"].staticWidth = 50;
 
             // name
             this.columns["name"].updateTd = function(td, row) {
@@ -2464,6 +2553,12 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.replaceChildren(span);
                 }
             };
+            this.columns["name"].calculateBuffer = function(rowId) {
+                const node = that.getNode(rowId);
+                // folders add 20px for folder icon and 15px for collapse icon
+                const folderBuffer = node.isFolder ? 35 : 0;
+                return (node.depth * 20) + folderBuffer;
+            };
 
             // size
             this.columns["size"].updateTd = displaySize;
@@ -2484,6 +2579,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     progressBar.setValue(value.toFloat());
                 }
             };
+            this.columns["progress"].staticWidth = 100;
 
             // priority
             this.columns["priority"].updateTd = function(td, row) {
@@ -2495,6 +2591,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 else
                     td.adopt(window.qBittorrent.PropFiles.createPriorityCombo(id, row.full_data.fileId, value));
             };
+            this.columns["priority"].staticWidth = 140;
 
             // remaining, availability
             this.columns["remaining"].updateTd = displaySize;
@@ -2892,6 +2989,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     $("cbRssDlRule" + row.rowId).checked = row.full_data.checked;
                 }
             };
+            this.columns["checked"].staticWidth = 50;
         },
         setupHeaderMenu: function() {},
         setupHeaderEvents: function() {},
@@ -2983,6 +3081,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     $("cbRssDlFeed" + row.rowId).checked = row.full_data.checked;
                 }
             };
+            this.columns["checked"].staticWidth = 50;
         },
         setupHeaderMenu: function() {},
         setupHeaderEvents: function() {},
