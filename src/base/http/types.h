@@ -74,6 +74,7 @@ namespace Http
     inline const QString CONTENT_TYPE_PNG = u"image/png"_s;
     inline const QString CONTENT_TYPE_FORM_ENCODED = u"application/x-www-form-urlencoded"_s;
     inline const QString CONTENT_TYPE_FORM_DATA = u"multipart/form-data"_s;
+    inline const QString CONTENT_TYPE_TORRENT_FILE = u"application/x-bittorrent"_s;
 
     // portability: "\r\n" doesn't guarantee mapping to the correct symbol
     inline const char CRLF[] = {0x0D, 0x0A, '\0'};
