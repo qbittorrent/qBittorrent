@@ -243,6 +243,7 @@ private:
     QList<Utils::Net::Subnet> m_authSubnetWhitelist;
     int m_sessionTimeout = 0;
     QString m_sessionCookieName;
+    quint16 m_webUiPort;
 
     // security related
     QStringList m_domainList;
