@@ -461,7 +461,10 @@ void OptionsDialog::saveBehaviorTabOptions() const
     pref->setLocale(locale);
 
 #ifdef Q_OS_WIN
-    pref->setStyle(m_ui->comboStyle->currentText());
+    if (const QVariant systemStyle = m_ui->comboStyle->currentData(); systemStyle.isValid())
+        pref->setStyle(systemStyle.toString());
+    else
+        pref->setStyle(m_ui->comboStyle->currentText());
 #endif
 
 #ifdef QBT_HAS_COLORSCHEME_OPTION
@@ -1698,18 +1701,27 @@ bool OptionsDialog::isSplashScreenDisabled() const
 void OptionsDialog::initializeStyleCombo()
 {
 #ifdef Q_OS_WIN
+    m_ui->labelStyleHint->setText(tr("%1 is recommended for best compatibility with Windows dark mode"
+                        , "Fusion is recommended for best compatibility with Windows dark mode").arg(u"Fusion"_s));
+    m_ui->comboStyle->addItem(tr("System", "System default Qt style"), u"system"_s);
+    m_ui->comboStyle->setItemData(0, tr("Let Qt decide the style for this system"), Qt::ToolTipRole);
+    m_ui->comboStyle->insertSeparator(1);
+
     QStringList styleNames = QStyleFactory::keys();
     std::sort(styleNames.begin(), styleNames.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
     m_ui->comboStyle->addItems(styleNames);
     const QString prefStyleName = Preferences::instance()->getStyle();
     const QString selectedStyleName = prefStyleName.isEmpty() ? QApplication::style()->name() : prefStyleName;
-    m_ui->comboStyle->setCurrentText(selectedStyleName);
+
+    if (selectedStyleName.compare(u"system"_s, Qt::CaseInsensitive) != 0)
+        m_ui->comboStyle->setCurrentText(selectedStyleName);
 #else
     m_ui->labelStyle->hide();
     m_ui->comboStyle->hide();
+    m_ui->labelStyleHint->hide();
     m_ui->UISettingsBoxLayout->removeWidget(m_ui->labelStyle);
     m_ui->UISettingsBoxLayout->removeWidget(m_ui->comboStyle);
-    m_ui->UISettingsBoxLayout->removeItem(m_ui->spacerStyle);
+    m_ui->UISettingsBoxLayout->removeWidget(m_ui->labelStyleHint);
 #endif
 }
 

@@ -37,10 +37,6 @@
 #include <QStyle>
 #include <QStyleHints>
 
-#ifdef Q_OS_WIN
-#include <QOperatingSystemVersion>
-#endif
-
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/path.h"
@@ -88,9 +84,11 @@ UIThemeManager::UIThemeManager()
 #endif
 {
 #ifdef Q_OS_WIN
-    const QString defaultStyle = (QOperatingSystemVersion::current() >= QOperatingSystemVersion::Windows10) ? u"Fusion"_s : QString();
-    if (const QString styleName = Preferences::instance()->getStyle(); !QApplication::setStyle(styleName.isEmpty() ? defaultStyle : styleName))
-        LogMsg(tr("Set app style failed. Unknown style: \"%1\"").arg(styleName), Log::WARNING);
+    if (const QString styleName = Preferences::instance()->getStyle(); styleName.compare(u"system", Qt::CaseInsensitive) != 0)
+    {
+        if (!QApplication::setStyle(styleName.isEmpty() ? u"Fusion"_s : styleName))
+            LogMsg(tr("Set app style failed. Unknown style: \"%1\"").arg(styleName), Log::WARNING);
+    }
 #endif
 
 #ifdef QBT_HAS_COLORSCHEME_OPTION
