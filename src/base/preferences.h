@@ -293,6 +293,8 @@ public:
     void setTrackerPortForwardingEnabled(bool enabled);
     bool isMarkOfTheWebEnabled() const;
     void setMarkOfTheWebEnabled(bool enabled);
+    bool isIgnoreSSLErrors() const;
+    void setIgnoreSSLErrors(bool enabled);
     Path getPythonExecutablePath() const;
     void setPythonExecutablePath(const Path &path);
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
