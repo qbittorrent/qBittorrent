@@ -777,6 +777,7 @@ void Preferences::setWebUIUsername(const QString &username)
         return;
 
     setValue(u"Preferences/WebUI/Username"_s, username);
+    m_credentialsChanged = true;
 }
 
 QByteArray Preferences::getWebUIPassword() const
@@ -790,6 +791,7 @@ void Preferences::setWebUIPassword(const QByteArray &password)
         return;
 
     setValue(u"Preferences/WebUI/Password_PBKDF2"_s, password);
+    m_credentialsChanged = true;
 }
 
 int Preferences::getWebUIMaxAuthFailCount() const
@@ -2003,5 +2005,11 @@ void Preferences::setAddNewTorrentDialogSavePathHistoryLength(const int value)
 void Preferences::apply()
 {
     if (SettingsStorage::instance()->save())
+    {
         emit changed();
+        if (m_credentialsChanged) {
+            emit webCredentialsChanged();
+            m_credentialsChanged = false;
+        }
+    }
 }
