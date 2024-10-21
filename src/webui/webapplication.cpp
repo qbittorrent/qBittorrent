@@ -359,6 +359,17 @@ void WebApplication::doProcessRequest()
     try
     {
         const APIResult result = controller->run(action, m_params, data);
+        switch (result.status)
+        {
+        case APIStatus::Async:
+            status(202);
+            break;
+        case APIStatus::Ok:
+        default:
+            status(200);
+            break;
+        }
+
         switch (result.data.userType())
         {
         case QMetaType::QJsonDocument:
@@ -466,7 +477,7 @@ void WebApplication::configure()
     const QString contentSecurityPolicy =
         (m_isAltUIUsed
             ? QString()
-            : u"default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none'; form-action 'self';"_s)
+            : u"default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none'; form-action 'self'; frame-src 'self' blob:;"_s)
         + (isClickjackingProtectionEnabled ? u" frame-ancestors 'self';"_s : QString())
         + (m_isHttpsEnabled ? u" upgrade-insecure-requests;"_s : QString());
     if (!contentSecurityPolicy.isEmpty())

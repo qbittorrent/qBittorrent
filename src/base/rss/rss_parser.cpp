@@ -42,6 +42,7 @@
 #include <QXmlStreamReader>
 
 #include "base/global.h"
+#include "base/http/types.h"
 #include "rss_article.h"
 
 namespace
@@ -623,7 +624,7 @@ void RSS::Private::Parser::parseRssArticle(QXmlStreamReader &xml)
             }
             else if (name == u"enclosure")
             {
-                if (xml.attributes().value(u"type"_s) == u"application/x-bittorrent")
+                if (xml.attributes().value(u"type"_s) == Http::CONTENT_TYPE_TORRENT_FILE)
                     article[Article::KeyTorrentURL] = xml.attributes().value(u"url"_s).toString();
                 else if (xml.attributes().value(u"type"_s).isEmpty())
                     altTorrentUrl = xml.attributes().value(u"url"_s).toString();

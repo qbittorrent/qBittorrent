@@ -28,12 +28,19 @@ window.qBittorrent.Download ??= (() => {
     const exports = () => {
         return {
             changeCategorySelect: changeCategorySelect,
-            changeTMM: changeTMM
+            changeTMM: changeTMM,
+            loadMetadata: loadMetadata,
+            metadataCompleted: metadataCompleted,
+            populateMetadata: populateMetadata,
+            setWindowId: setWindowId
         };
     };
 
     let categories = {};
+    let tags = [];
     let defaultSavePath = "";
+    let windowId = "";
+    let source;
 
     const getCategories = function() {
         new Request.JSON({
@@ -53,6 +60,37 @@ window.qBittorrent.Download ??= (() => {
                         option.textContent = category.name;
                         $("categorySelect").appendChild(option);
                     }
+                }
+            }
+        }).send();
+    };
+
+    const getTags = function() {
+        new Request.JSON({
+            url: "api/v2/torrents/tags",
+            method: "get",
+            noCache: true,
+            onSuccess: function(data) {
+                if (data) {
+                    tags = data;
+
+                    const tagsSelect = document.getElementById("tagsSelect");
+                    for (const tag of tags) {
+                        const option = document.createElement("option");
+                        option.value = tag;
+                        option.textContent = tag;
+                        tagsSelect.appendChild(option);
+                    }
+
+                    new vanillaSelectBox("#tagsSelect", {
+                        maxHeight: 200,
+                        search: false,
+                        disableSelectAll: true,
+                        translations: {
+                            all: tags.length === 0 ? "" : "QBT_TR(All)QBT_TR[CONTEXT=AddNewTorrentDialog]",
+                        },
+                        keepInlineStyles: false
+                    });
                 }
             }
         }).send();
@@ -114,24 +152,130 @@ window.qBittorrent.Download ??= (() => {
         }
     };
 
+    const changeTagsSelect = function(element) {
+        const tags = [...element.options].filter(opt => opt.selected).map(opt => opt.value);
+        document.getElementById("tags").value = tags.join(",");
+    };
+
     const changeTMM = function(item) {
+        const savepath = document.getElementById("savepath");
+        const useDownloadPath = document.getElementById("useDownloadPath");
         if (item.selectedIndex === 1) {
-            $("savepath").disabled = true;
+            savepath.disabled = true;
 
             const categorySelect = $("categorySelect");
             const categoryName = categorySelect.options[categorySelect.selectedIndex].value;
             const category = categories[categoryName];
-            $("savepath").value = (category === undefined) ? "" : category["savePath"];
+            savepath.value = (category === undefined) ? "" : category["savePath"];
+
+            useDownloadPath.disabled = true;
+            useDownloadPath.checked = false;
+            changeUseDownloadPath(useDownloadPath);
         }
         else {
-            $("savepath").disabled = false;
-            $("savepath").value = defaultSavePath;
+            savepath.disabled = false;
+            savepath.value = defaultSavePath;
+
+            useDownloadPath.disabled = false;
+        }
+
+        changeUseDownloadPath(useDownloadPath);
+    };
+
+    const changeUseDownloadPath = function(elem) {
+        const downloadPath = document.getElementById("downloadPath");
+        if (elem.checked) {
+            downloadPath.disabled = false;
+            downloadPath.value = defaultSavePath;
+        }
+        else {
+            downloadPath.disabled = true;
+            downloadPath.value = "";
         }
     };
 
-    $(window).addEventListener("load", () => {
+    let loadMetadataTimer;
+    const loadMetadata = function(sourceUrl = undefined) {
+        if (sourceUrl)
+            source = sourceUrl;
+
+        const request = new Request.JSON({
+            url: "api/v2/torrents/fetchMetadata",
+            method: "post",
+            noCache: true,
+            data: {
+                source: source,
+            },
+            onFailure: function() {
+                metadataFailed();
+            },
+            onSuccess: function(response) {
+                populateMetadata(response);
+
+                if (request.status === 200)
+                    metadataCompleted();
+                else
+                    loadMetadataTimer = loadMetadata.delay(1000);
+            }
+        }).send();
+    };
+
+    function metadataCompleted(showDownloadButton = true) {
+        clearTimeout(loadMetadataTimer);
+
+        document.getElementById("metadataStatus").destroy();
+        document.getElementById("loading_spinner").style.display = "none";
+
+        if (showDownloadButton)
+            document.getElementById("saveTorrent").classList.remove("invisible");
+    }
+
+    const metadataFailed = function() {
+        clearTimeout(loadMetadataTimer);
+
+        document.getElementById("metadataStatus").textContent = "Metadata retrieval failed";
+        document.getElementById("loading_spinner").style.display = "none";
+    };
+
+    const populateMetadata = function(metadata) {
+        // update window title
+        if (metadata.name)
+            window.parent.$(`${windowId}_title`).textContent = metadata.name;
+
+        document.getElementById("infoHashV1").textContent = metadata.infohash_v1 || "N/A";
+        document.getElementById("infoHashV2").textContent = metadata.infohash_v2 || "N/A";
+
+        if (metadata.total_size)
+            document.getElementById("size").textContent = window.qBittorrent.Misc.friendlyUnit(metadata.total_size, false);
+        if (metadata.creation_date && (metadata.creation_date > 1))
+            document.getElementById("createdDate").textContent = new Date(metadata.creation_date * 1000).toLocaleString();;
+        if (metadata.comment)
+            document.getElementById("comment").textContent = metadata.comment;
+
+        if (metadata.files) {
+            const files = metadata.files.map(file => ({
+                index: file.index,
+                name: file.name,
+                size: file.size,
+                priority: window.qBittorrent.FileTree.FilePriority.Normal,
+            }));
+            window.qBittorrent.TorrentContent.updateData(files);
+        }
+    };
+
+    const setWindowId = function(id) {
+        windowId = id;
+    };
+
+    window.addEventListener("load", () => {
         getPreferences();
         getCategories();
+        getTags();
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("useDownloadPath").addEventListener("change", (e) => changeUseDownloadPath(e.target));
+        document.getElementById("tagsSelect").addEventListener("change", (e) => changeTagsSelect(e.target));
     });
 
     return exports();

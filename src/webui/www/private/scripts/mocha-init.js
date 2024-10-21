@@ -150,8 +150,9 @@ let setQueuePositionFN = function() {};
 let exportTorrentFN = function() {};
 
 const initializeWindows = function() {
-    saveWindowSize = function(windowId) {
-        const size = $(windowId).getSize();
+    saveWindowSize = function(windowId, size = undefined) {
+        if (size === undefined)
+            size = $(windowId).getSize();
         LocalPreferences.set("window_" + windowId + "_width", size.x);
         LocalPreferences.set("window_" + windowId + "_height", size.y);
     };
@@ -197,7 +198,7 @@ const initializeWindows = function() {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: loadWindowWidth(id, 500),
-            height: loadWindowHeight(id, 600),
+            height: loadWindowHeight(id, 300),
             onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveWindowSize(id);
             })
@@ -254,30 +255,30 @@ const initializeWindows = function() {
         });
     });
 
-    addClickEvent("upload", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        const id = "uploadPage";
-        new MochaUI.Window({
-            id: id,
-            icon: "images/qbittorrent-tray.svg",
-            title: "QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]",
-            loadMethod: "iframe",
-            contentURL: new URI("upload.html").toString(),
-            addClass: "windowFrame", // fixes iframe scrolling on iOS Safari
-            scrollbars: true,
-            maximizable: false,
-            paddingVertical: 0,
-            paddingHorizontal: 0,
-            width: loadWindowWidth(id, 500),
-            height: loadWindowHeight(id, 460),
-            onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
-                saveWindowSize(id);
-            })
-        });
-        updateMainData();
+    document.querySelector("#uploadButton #fileselectButton").addEventListener("click", function() {
+        // clear the value so that reselecting the same file(s) still triggers the 'change' event
+        this.value = null;
     });
+
+    // make the entire anchor tag trigger the input, despite the input's label not spanning the entire anchor
+    document.querySelector("#uploadLink").addEventListener("click", (e) => {
+        // clear the value so that reselecting the same file(s) still triggers the 'change' event
+        // $("fileselectLink").value = null;
+        if (e.target === $("fileselectLink")) {
+            e.target.value = null;
+        }
+        else {
+            e.preventDefault();
+            document.getElementById("fileselectLink").click();
+        }
+    });
+
+    document.querySelectorAll("#uploadButton #fileselectButton, #uploadLink #fileselectLink").forEach((element) => element.addEventListener("change", () => {
+        if (element.files.length === 0)
+            return;
+
+        window.qBittorrent.Client.uploadTorrentFiles(element.files);
+    }));
 
     globalUploadLimitFN = function() {
         new MochaUI.Window({
@@ -1115,16 +1116,10 @@ const initializeWindows = function() {
                 continue;
 
             const name = row.full_data.name;
-            const url = new URI("api/v2/torrents/export");
-            url.setData("hash", hash);
+            const url = new URI("api/v2/torrents/export").setData("hash", hash).toString();
 
             // download response to file
-            const element = document.createElement("a");
-            element.href = url;
-            element.download = (name + ".torrent");
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
+            window.qBittorrent.Misc.downloadFile(url, `${name}.torrent`, "QBT_TR(Unable to export torrent file)QBT_TR[CONTEXT=MainWindow]");
 
             // https://stackoverflow.com/questions/53560991/automatic-file-downloads-limited-to-10-files-on-chrome-browser
             await window.qBittorrent.Misc.sleep(200);
@@ -1270,4 +1265,7 @@ const initializeWindows = function() {
             e.stopPropagation();
         });
     });
+
+    if ((Browser.platform === "ios") || ((Browser.platform === "mac") && (navigator.maxTouchPoints > 1)))
+        document.getElementById("fileselect").accept = ".torrent";
 };

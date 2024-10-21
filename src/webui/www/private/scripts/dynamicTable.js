@@ -44,6 +44,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             TorrentTrackersTable: TorrentTrackersTable,
             BulkRenameTorrentFilesTable: BulkRenameTorrentFilesTable,
             TorrentFilesTable: TorrentFilesTable,
+            AddTorrentFilesTable: AddTorrentFilesTable,
             LogMessageTable: LogMessageTable,
             LogPeerTable: LogPeerTable,
             RssFeedTable: RssFeedTable,
@@ -1916,12 +1917,13 @@ window.qBittorrent.DynamicTable ??= (() => {
         populateTable: function(root) {
             this.fileTree.setRoot(root);
             root.children.each((node) => {
-                this._addNodeToTable(node, 0);
+                this._addNodeToTable(node, 0, root);
             });
         },
 
-        _addNodeToTable: function(node, depth) {
+        _addNodeToTable: function(node, depth, parent) {
             node.depth = depth;
+            node.parent = parent;
 
             if (node.isFolder) {
                 const data = {
@@ -1944,7 +1946,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
 
             node.children.each((child) => {
-                this._addNodeToTable(child, depth + 1);
+                this._addNodeToTable(child, depth + 1, node);
             });
         },
 
@@ -2295,10 +2297,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             tr.addEventListener("keydown", function(event) {
                 switch (event.key) {
                     case "left":
-                        qBittorrent.PropFiles.collapseFolder(this._this.getSelectedRowId());
+                        qBittorrent.TorrentContent.collapseFolder(this._this.getSelectedRowId());
                         return false;
                     case "right":
-                        qBittorrent.PropFiles.expandFolder(this._this.getSelectedRowId());
+                        qBittorrent.TorrentContent.expandFolder(this._this.getSelectedRowId());
                         return false;
                 }
             });
@@ -2319,12 +2321,13 @@ window.qBittorrent.DynamicTable ??= (() => {
         populateTable: function(root) {
             this.fileTree.setRoot(root);
             root.children.each((node) => {
-                this._addNodeToTable(node, 0);
+                this._addNodeToTable(node, 0, root);
             });
         },
 
-        _addNodeToTable: function(node, depth) {
+        _addNodeToTable: function(node, depth, parent) {
             node.depth = depth;
+            node.parent = parent;
 
             if (node.isFolder) {
                 const data = {
@@ -2333,7 +2336,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     checked: node.checked,
                     remaining: node.remaining,
                     progress: node.progress,
-                    priority: window.qBittorrent.PropFiles.normalizePriority(node.priority),
+                    priority: window.qBittorrent.TorrentContent.normalizePriority(node.priority),
                     availability: node.availability,
                     fileId: -1,
                     name: node.name
@@ -2350,7 +2353,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
 
             node.children.each((child) => {
-                this._addNodeToTable(child, depth + 1);
+                this._addNodeToTable(child, depth + 1, node);
             });
         },
 
@@ -2397,8 +2400,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const id = row.rowId;
                 const value = this.getRowValue(row);
 
-                if (window.qBittorrent.PropFiles.isDownloadCheckboxExists(id)) {
-                    window.qBittorrent.PropFiles.updateDownloadCheckbox(id, value);
+                if (window.qBittorrent.TorrentContent.isDownloadCheckboxExists(id)) {
+                    window.qBittorrent.TorrentContent.updateDownloadCheckbox(id, value);
                 }
                 else {
                     const treeImg = new Element("img", {
@@ -2407,7 +2410,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                             "margin-bottom": -2
                         }
                     });
-                    td.adopt(treeImg, window.qBittorrent.PropFiles.createDownloadCheckbox(id, row.full_data.fileId, value));
+                    td.adopt(treeImg, window.qBittorrent.TorrentContent.createDownloadCheckbox(id, row.full_data.fileId, value));
                 }
             };
 
@@ -2434,7 +2437,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                             class: "filesTableCollapseIcon",
                             id: collapseIconId,
                             "data-id": id,
-                            onclick: "qBittorrent.PropFiles.collapseIconClicked(this)"
+                            onclick: "qBittorrent.TorrentContent.collapseIconClicked(this)"
                         });
                         const span = new Element("span", {
                             text: value,
@@ -2469,36 +2472,40 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["size"].updateTd = displaySize;
 
             // progress
-            this.columns["progress"].updateTd = function(td, row) {
-                const id = row.rowId;
-                const value = this.getRowValue(row);
+            if (this.columns["progress"]) {
+                this.columns["progress"].updateTd = function(td, row) {
+                    const id = row.rowId;
+                    const value = this.getRowValue(row);
 
-                const progressBar = $("pbf_" + id);
-                if (progressBar === null) {
-                    td.adopt(new window.qBittorrent.ProgressBar.ProgressBar(value.toFloat(), {
-                        id: "pbf_" + id,
-                        width: 80
-                    }));
-                }
-                else {
-                    progressBar.setValue(value.toFloat());
-                }
-            };
+                    const progressBar = $("pbf_" + id);
+                    if (progressBar === null) {
+                        td.adopt(new window.qBittorrent.ProgressBar.ProgressBar(value.toFloat(), {
+                            id: "pbf_" + id,
+                            width: 80
+                        }));
+                    }
+                    else {
+                        progressBar.setValue(value.toFloat());
+                    }
+                };
+            }
 
             // priority
             this.columns["priority"].updateTd = function(td, row) {
                 const id = row.rowId;
                 const value = this.getRowValue(row);
 
-                if (window.qBittorrent.PropFiles.isPriorityComboExists(id))
-                    window.qBittorrent.PropFiles.updatePriorityCombo(id, value);
+                if (window.qBittorrent.TorrentContent.isPriorityComboExists(id))
+                    window.qBittorrent.TorrentContent.updatePriorityCombo(id, value);
                 else
-                    td.adopt(window.qBittorrent.PropFiles.createPriorityCombo(id, row.full_data.fileId, value));
+                    td.adopt(window.qBittorrent.TorrentContent.createPriorityCombo(id, row.full_data.fileId, value));
             };
 
             // remaining, availability
-            this.columns["remaining"].updateTd = displaySize;
-            this.columns["availability"].updateTd = displayPercentage;
+            if (this.columns["remaining"])
+                this.columns["remaining"].updateTd = displaySize;
+            if (this.columns["availability"])
+                this.columns["availability"].updateTd = displayPercentage;
         },
 
         _sortNodesByColumn: function(nodes, column) {
@@ -2624,14 +2631,28 @@ window.qBittorrent.DynamicTable ??= (() => {
             tr.addEventListener("keydown", function(event) {
                 switch (event.key) {
                     case "left":
-                        qBittorrent.PropFiles.collapseFolder(this._this.getSelectedRowId());
+                        qBittorrent.TorrentContent.collapseFolder(this._this.getSelectedRowId());
                         return false;
                     case "right":
-                        qBittorrent.PropFiles.expandFolder(this._this.getSelectedRowId());
+                        qBittorrent.TorrentContent.expandFolder(this._this.getSelectedRowId());
                         return false;
                 }
             });
         }
+    });
+
+    const AddTorrentFilesTable = new Class({
+        Extends: TorrentFilesTable,
+
+        initColumns: function() {
+            this.newColumn("checked", "", "", 50, true);
+            this.newColumn("name", "", "QBT_TR(Name)QBT_TR[CONTEXT=TrackerListWidget]", 190, true);
+            this.newColumn("size", "", "QBT_TR(Total Size)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
+            this.newColumn("priority", "", "QBT_TR(Download Priority)QBT_TR[CONTEXT=TrackerListWidget]", 140, true);
+
+            this.initColumnsFunctions();
+        },
+
     });
 
     const RssFeedTable = new Class({
@@ -2806,7 +2827,8 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
         setupTr: function(tr) {
             tr.addEventListener("dblclick", function(e) {
-                showDownloadPage([this._this.rows.get(this.rowId).full_data.torrentURL]);
+                const { name, torrentURL } = this._this.rows.get(this.rowId).full_data;
+                qBittorrent.Client.createDownloadWindow(name, torrentURL);
                 return true;
             });
             tr.addClass("torrentsTableContextMenuTarget");
