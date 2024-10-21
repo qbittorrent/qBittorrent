@@ -42,7 +42,6 @@
 #include "base/indexrange.h"
 #include "base/path.h"
 #include "base/utils/misc.h"
-#include "gui/uithememanager.h"
 
 namespace
 {
@@ -119,13 +118,7 @@ PiecesBar::PiecesBar(QWidget *parent)
     : QWidget(parent)
 {
     setMouseTracking(true);
-
     updateColorsImpl();
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, [this]
-    {
-        updateColors();
-        redraw();
-    });
 }
 
 void PiecesBar::setTorrent(const BitTorrent::Torrent *torrent)
@@ -143,10 +136,17 @@ void PiecesBar::clear()
 
 bool PiecesBar::event(QEvent *e)
 {
-    if (e->type() == QEvent::ToolTip)
+    const QEvent::Type eventType = e->type();
+    if (eventType == QEvent::ToolTip)
     {
         showToolTip(static_cast<QHelpEvent *>(e));
         return true;
+    }
+
+    if (eventType == QEvent::PaletteChange)
+    {
+        updateColors();
+        redraw();
     }
 
     return base::event(e);
