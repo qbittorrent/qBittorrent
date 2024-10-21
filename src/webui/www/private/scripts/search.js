@@ -205,10 +205,10 @@ window.qBittorrent.Search ??= (() => {
 
         // unhide the results elements
         if (numSearchTabs() >= 1) {
-            $("searchResultsNoSearches").style.display = "none";
-            $("searchResultsFilters").style.display = "block";
-            $("searchResultsTableContainer").style.display = "block";
-            $("searchTabsToolbar").style.display = "block";
+            $("searchResultsNoSearches").classList.add("invisible");
+            $("searchResultsFilters").classList.remove("invisible");
+            $("searchResultsTableContainer").classList.remove("invisible");
+            $("searchTabsToolbar").classList.remove("invisible");
         }
 
         // select new tab
@@ -271,10 +271,10 @@ window.qBittorrent.Search ??= (() => {
 
             $("numSearchResultsVisible").textContent = 0;
             $("numSearchResultsTotal").textContent = 0;
-            $("searchResultsNoSearches").style.display = "block";
-            $("searchResultsFilters").style.display = "none";
-            $("searchResultsTableContainer").style.display = "none";
-            $("searchTabsToolbar").style.display = "none";
+            $("searchResultsNoSearches").classList.remove("invisible");
+            $("searchResultsFilters").classList.add("invisible");
+            $("searchResultsTableContainer").classList.add("invisible");
+            $("searchTabsToolbar").classList.add("invisible");
         }
         else if (isTabSelected && newTabToSelect) {
             setActiveTab(newTabToSelect);
@@ -670,9 +670,9 @@ window.qBittorrent.Search ??= (() => {
 
                     const searchPluginsEmpty = (searchPlugins.length === 0);
                     if (!searchPluginsEmpty) {
-                        $("searchResultsNoPlugins").style.display = "none";
+                        $("searchResultsNoPlugins").classList.add("invisible");
                         if (numSearchTabs() === 0)
-                            $("searchResultsNoSearches").style.display = "block";
+                            $("searchResultsNoSearches").classList.remove("invisible");
 
                         // sort plugins alphabetically
                         const allPlugins = searchPlugins.sort((left, right) => {

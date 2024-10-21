@@ -246,6 +246,7 @@ li.divider {
 }
 
 .pad {
+    height: 100%;
     padding: 8px;
 }
 
