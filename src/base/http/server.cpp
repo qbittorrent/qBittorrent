@@ -107,7 +107,6 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
 
     m_sslConfig.setCiphers(safeCipherList());
     m_sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    m_sslConfig.setProtocol(QSsl::TlsV1_2OrLater);
 
     auto *dropConnectionTimer = new QTimer(this);
     connect(dropConnectionTimer, &QTimer::timeout, this, &Server::dropTimedOutConnection);
