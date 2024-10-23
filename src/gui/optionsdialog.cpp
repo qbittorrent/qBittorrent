@@ -1915,7 +1915,7 @@ Path OptionsDialog::getFilter() const
 void OptionsDialog::webUIHttpsCertChanged(const Path &path)
 {
     const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
-    const bool isCertValid = !Utils::SSLKey::load(readResult.value_or(QByteArray())).isNull();
+    const bool isCertValid = Utils::Net::isSSLCertificatesValid(readResult.value_or(QByteArray()));
 
     m_ui->textWebUIHttpsCert->setSelectedPath(path);
     m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
