@@ -1134,6 +1134,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             </tr>
             <tr>
                 <td>
+                    <label for="ignoreSSLErrors">QBT_TR(Ignore SSL errors:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="ignoreSSLErrors">
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="pythonExecutablePath">QBT_TR(Python executable path (may require restart):)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
@@ -2353,6 +2361,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("refreshInterval").setProperty("value", pref.refresh_interval);
                     $("resolvePeerCountries").setProperty("checked", pref.resolve_peer_countries);
                     $("reannounceWhenAddressChanged").setProperty("checked", pref.reannounce_when_address_changed);
+                    $("enableEmbeddedTracker").setProperty("checked", pref.enable_embedded_tracker);
+                    $("embeddedTrackerPort").setProperty("value", pref.embedded_tracker_port);
+                    $("embeddedTrackerPortForwarding").setProperty("checked", pref.embedded_tracker_port_forwarding);
+                    $("markOfTheWeb").setProperty("checked", pref.mark_of_the_web);
+                    $("ignoreSSLErrors").setProperty("checked", pref.ignore_ssl_errors);
+                    $("pythonExecutablePath").setProperty("value", pref.python_executable_path);
                     // libtorrent section
                     $("bdecodeDepthLimit").setProperty("value", pref.bdecode_depth_limit);
                     $("bdecodeTokenLimit").setProperty("value", pref.bdecode_token_limit);
@@ -2386,11 +2400,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("validateHTTPSTrackerCertificate").setProperty("checked", pref.validate_https_tracker_certificate);
                     $("mitigateSSRF").setProperty("checked", pref.ssrf_mitigation);
                     $("blockPeersOnPrivilegedPorts").setProperty("checked", pref.block_peers_on_privileged_ports);
-                    $("enableEmbeddedTracker").setProperty("checked", pref.enable_embedded_tracker);
-                    $("embeddedTrackerPort").setProperty("value", pref.embedded_tracker_port);
-                    $("embeddedTrackerPortForwarding").setProperty("checked", pref.embedded_tracker_port_forwarding);
-                    $("markOfTheWeb").setProperty("checked", pref.mark_of_the_web);
-                    $("pythonExecutablePath").setProperty("value", pref.python_executable_path);
                     $("uploadSlotsBehavior").setProperty("value", pref.upload_slots_behavior);
                     $("uploadChokingAlgorithm").setProperty("value", pref.upload_choking_algorithm);
                     $("announceAllTrackers").setProperty("checked", pref.announce_to_all_trackers);
@@ -2802,6 +2811,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["refresh_interval"] = Number($("refreshInterval").getProperty("value"));
             settings["resolve_peer_countries"] = $("resolvePeerCountries").getProperty("checked");
             settings["reannounce_when_address_changed"] = $("reannounceWhenAddressChanged").getProperty("checked");
+            settings["enable_embedded_tracker"] = $("enableEmbeddedTracker").getProperty("checked");
+            settings["embedded_tracker_port"] = Number($("embeddedTrackerPort").getProperty("value"));
+            settings["embedded_tracker_port_forwarding"] = $("embeddedTrackerPortForwarding").getProperty("checked");
+            settings["mark_of_the_web"] = $("markOfTheWeb").getProperty("checked");
+            settings["ignore_ssl_errors"] = $("ignoreSSLErrors").getProperty("checked");
+            settings["python_executable_path"] = $("pythonExecutablePath").getProperty("value");
 
             // libtorrent section
             settings["bdecode_depth_limit"] = Number($("bdecodeDepthLimit").getProperty("value"));
@@ -2836,11 +2851,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["validate_https_tracker_certificate"] = $("validateHTTPSTrackerCertificate").getProperty("checked");
             settings["ssrf_mitigation"] = $("mitigateSSRF").getProperty("checked");
             settings["block_peers_on_privileged_ports"] = $("blockPeersOnPrivilegedPorts").getProperty("checked");
-            settings["enable_embedded_tracker"] = $("enableEmbeddedTracker").getProperty("checked");
-            settings["embedded_tracker_port"] = Number($("embeddedTrackerPort").getProperty("value"));
-            settings["embedded_tracker_port_forwarding"] = $("embeddedTrackerPortForwarding").getProperty("checked");
-            settings["mark_of_the_web"] = $("markOfTheWeb").getProperty("checked");
-            settings["python_executable_path"] = $("pythonExecutablePath").getProperty("value");
             settings["upload_slots_behavior"] = Number($("uploadSlotsBehavior").getProperty("value"));
             settings["upload_choking_algorithm"] = Number($("uploadChokingAlgorithm").getProperty("value"));
             settings["announce_to_all_trackers"] = $("announceAllTrackers").getProperty("checked");
