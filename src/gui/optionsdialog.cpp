@@ -30,6 +30,7 @@
 
 #include "optionsdialog.h"
 
+#include <algorithm>
 #include <chrono>
 #include <cstdlib>
 #include <limits>
@@ -44,6 +45,10 @@
 #include <QSystemTrayIcon>
 #include <QTranslator>
 
+#ifdef Q_OS_WIN
+#include <QStyleFactory>
+#endif
+
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sharelimitaction.h"
 #include "base/exceptions.h"
@@ -56,6 +61,7 @@
 #include "base/rss/rss_session.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfileswatcher.h"
+#include "base/utils/compare.h"
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
@@ -236,6 +242,8 @@ void OptionsDialog::loadBehaviorTabOptions()
     initializeLanguageCombo();
     setLocale(pref->getLocale());
 
+    initializeStyleCombo();
+
     m_ui->checkUseCustomTheme->setChecked(Preferences::instance()->useCustomUITheme());
     m_ui->customThemeFilePath->setSelectedPath(Preferences::instance()->customUIThemePath());
     m_ui->customThemeFilePath->setMode(FileSystemPathEdit::Mode::FileOpen);
@@ -345,7 +353,11 @@ void OptionsDialog::loadBehaviorTabOptions()
 
     m_ui->checkBoxPerformanceWarning->setChecked(session->isPerformanceWarningEnabled());
 
-    connect(m_ui->comboI18n, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->comboLanguage, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+
+#ifdef Q_OS_WIN
+    connect(m_ui->comboStyle, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+#endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     connect(m_ui->checkUseSystemIcon, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -442,6 +454,13 @@ void OptionsDialog::saveBehaviorTabOptions() const
         qApp->installTranslator(translator);
     }
     pref->setLocale(locale);
+
+#ifdef Q_OS_WIN
+    if (const QVariant systemStyle = m_ui->comboStyle->currentData(); systemStyle.isValid())
+        pref->setStyle(systemStyle.toString());
+    else
+        pref->setStyle(m_ui->comboStyle->currentText());
+#endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     pref->useSystemIcons(m_ui->checkUseSystemIcon->isChecked());
@@ -1387,7 +1406,7 @@ void OptionsDialog::initializeLanguageCombo()
     for (const QString &langFile : langFiles)
     {
         const QString langCode = QStringView(langFile).sliced(12).chopped(3).toString(); // remove "qbittorrent_" and ".qm"
-        m_ui->comboI18n->addItem(Utils::Misc::languageToLocalizedString(langCode), langCode);
+        m_ui->comboLanguage->addItem(Utils::Misc::languageToLocalizedString(langCode), langCode);
     }
 }
 
@@ -1672,6 +1691,33 @@ bool OptionsDialog::isSplashScreenDisabled() const
     return !m_ui->checkShowSplash->isChecked();
 }
 
+void OptionsDialog::initializeStyleCombo()
+{
+#ifdef Q_OS_WIN
+    m_ui->labelStyleHint->setText(tr("%1 is recommended for best compatibility with Windows dark mode"
+                        , "Fusion is recommended for best compatibility with Windows dark mode").arg(u"Fusion"_s));
+    m_ui->comboStyle->addItem(tr("System", "System default Qt style"), u"system"_s);
+    m_ui->comboStyle->setItemData(0, tr("Let Qt decide the style for this system"), Qt::ToolTipRole);
+    m_ui->comboStyle->insertSeparator(1);
+
+    QStringList styleNames = QStyleFactory::keys();
+    std::sort(styleNames.begin(), styleNames.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
+    m_ui->comboStyle->addItems(styleNames);
+    const QString prefStyleName = Preferences::instance()->getStyle();
+    const QString selectedStyleName = prefStyleName.isEmpty() ? QApplication::style()->name() : prefStyleName;
+
+    if (selectedStyleName.compare(u"system"_s, Qt::CaseInsensitive) != 0)
+        m_ui->comboStyle->setCurrentText(selectedStyleName);
+#else
+    m_ui->labelStyle->hide();
+    m_ui->comboStyle->hide();
+    m_ui->labelStyleHint->hide();
+    m_ui->UISettingsBoxLayout->removeWidget(m_ui->labelStyle);
+    m_ui->UISettingsBoxLayout->removeWidget(m_ui->comboStyle);
+    m_ui->UISettingsBoxLayout->removeWidget(m_ui->labelStyleHint);
+#endif
+}
+
 #ifdef Q_OS_WIN
 bool OptionsDialog::WinStartup() const
 {
@@ -1721,7 +1767,7 @@ QString OptionsDialog::getProxyPassword() const
 // Locale Settings
 QString OptionsDialog::getLocale() const
 {
-    return m_ui->comboI18n->itemData(m_ui->comboI18n->currentIndex(), Qt::UserRole).toString();
+    return m_ui->comboLanguage->itemData(m_ui->comboLanguage->currentIndex(), Qt::UserRole).toString();
 }
 
 void OptionsDialog::setLocale(const QString &localeStr)
@@ -1746,7 +1792,7 @@ void OptionsDialog::setLocale(const QString &localeStr)
             name = locale.name();
     }
     // Attempt to find exact match
-    int index = m_ui->comboI18n->findData(name, Qt::UserRole);
+    int index = m_ui->comboLanguage->findData(name, Qt::UserRole);
     if (index < 0)
     {
         //Attempt to find a language match without a country
@@ -1754,16 +1800,16 @@ void OptionsDialog::setLocale(const QString &localeStr)
         if (pos > -1)
         {
             QString lang = name.left(pos);
-            index = m_ui->comboI18n->findData(lang, Qt::UserRole);
+            index = m_ui->comboLanguage->findData(lang, Qt::UserRole);
         }
     }
     if (index < 0)
     {
         // Unrecognized, use US English
-        index = m_ui->comboI18n->findData(u"en"_s, Qt::UserRole);
+        index = m_ui->comboLanguage->findData(u"en"_s, Qt::UserRole);
         Q_ASSERT(index >= 0);
     }
-    m_ui->comboI18n->setCurrentIndex(index);
+    m_ui->comboLanguage->setCurrentIndex(index);
 }
 
 Path OptionsDialog::getTorrentExportDir() const
@@ -1869,7 +1915,7 @@ Path OptionsDialog::getFilter() const
 void OptionsDialog::webUIHttpsCertChanged(const Path &path)
 {
     const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
-    const bool isCertValid = !Utils::SSLKey::load(readResult.value_or(QByteArray())).isNull();
+    const bool isCertValid = Utils::Net::isSSLCertificatesValid(readResult.value_or(QByteArray()));
 
     m_ui->textWebUIHttpsCert->setSelectedPath(path);
     m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(

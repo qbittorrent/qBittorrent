@@ -157,10 +157,36 @@ void AddTorrentManager::handleAddTorrentFailed(const QString &source, const QStr
     emit addTorrentFailed(source, reason);
 }
 
-void AddTorrentManager::handleDuplicateTorrent(const QString &source, BitTorrent::Torrent *torrent, const QString &message)
+void AddTorrentManager::handleDuplicateTorrent(const QString &source
+        , const BitTorrent::TorrentDescriptor &torrentDescr, BitTorrent::Torrent *existingTorrent)
 {
+    const bool hasMetadata = torrentDescr.info().has_value();
+    if (hasMetadata)
+    {
+        // Trying to set metadata to existing torrent in case if it has none
+        existingTorrent->setMetadata(*torrentDescr.info());
+    }
+
+    const bool isPrivate = existingTorrent->isPrivate() || (hasMetadata && torrentDescr.info()->isPrivate());
+    QString message;
+    if (!btSession()->isMergeTrackersEnabled())
+    {
+        message = tr("Merging of trackers is disabled");
+    }
+    else if (isPrivate)
+    {
+        message = tr("Trackers cannot be merged because it is a private torrent");
+    }
+    else
+    {
+        // merge trackers and web seeds
+        existingTorrent->addTrackers(torrentDescr.trackers());
+        existingTorrent->addUrlSeeds(torrentDescr.urlSeeds());
+        message = tr("Trackers are merged from new source");
+    }
+
     LogMsg(tr("Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3")
-            .arg(source, torrent->name(), message));
+            .arg(source, existingTorrent->name(), message));
     emit addTorrentFailed(source, message);
 }
 
@@ -184,32 +210,7 @@ bool AddTorrentManager::processTorrent(const QString &source, const BitTorrent::
     if (BitTorrent::Torrent *torrent = btSession()->findTorrent(infoHash))
     {
         // a duplicate torrent is being added
-
-        const bool hasMetadata = torrentDescr.info().has_value();
-        if (hasMetadata)
-        {
-            // Trying to set metadata to existing torrent in case if it has none
-            torrent->setMetadata(*torrentDescr.info());
-        }
-
-        if (!btSession()->isMergeTrackersEnabled())
-        {
-            handleDuplicateTorrent(source, torrent, tr("Merging of trackers is disabled"));
-            return false;
-        }
-
-        const bool isPrivate = torrent->isPrivate() || (hasMetadata && torrentDescr.info()->isPrivate());
-        if (isPrivate)
-        {
-            handleDuplicateTorrent(source, torrent, tr("Trackers cannot be merged because it is a private torrent"));
-            return false;
-        }
-
-        // merge trackers and web seeds
-        torrent->addTrackers(torrentDescr.trackers());
-        torrent->addUrlSeeds(torrentDescr.urlSeeds());
-
-        handleDuplicateTorrent(source, torrent, tr("Trackers are merged from new source"));
+        handleDuplicateTorrent(source, torrentDescr, torrent);
         return false;
     }
 

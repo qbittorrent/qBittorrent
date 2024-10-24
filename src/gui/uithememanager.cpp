@@ -80,6 +80,14 @@ UIThemeManager::UIThemeManager()
     , m_useSystemIcons {Preferences::instance()->useSystemIcons()}
 #endif
 {
+#ifdef Q_OS_WIN
+    if (const QString styleName = Preferences::instance()->getStyle(); styleName.compare(u"system", Qt::CaseInsensitive) != 0)
+    {
+        if (!QApplication::setStyle(styleName.isEmpty() ? u"Fusion"_s : styleName))
+            LogMsg(tr("Set app style failed. Unknown style: \"%1\"").arg(styleName), Log::WARNING);
+    }
+#endif
+
     // NOTE: Qt::QueuedConnection can be omitted as soon as support for Qt 6.5 is dropped
     connect(QApplication::styleHints(), &QStyleHints::colorSchemeChanged, this, &UIThemeManager::onColorSchemeChanged, Qt::QueuedConnection);
 

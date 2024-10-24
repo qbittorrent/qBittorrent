@@ -126,6 +126,8 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
             , this, &RSSWidget::handleSessionProcessingStateChanged);
     connect(RSS::Session::instance()->rootFolder(), &RSS::Folder::unreadCountChanged
             , this, &RSSWidget::handleUnreadCountChanged);
+
+    m_ui->textBrowser->installEventFilter(this);
 }
 
 RSSWidget::~RSSWidget()
@@ -494,60 +496,11 @@ void RSSWidget::handleCurrentArticleItemChanged(QListWidgetItem *currentItem, QL
         article->markAsRead();
     }
 
-    if (!currentItem) return;
+    if (!currentItem)
+        return;
 
     auto *article = m_articleListWidget->getRSSArticle(currentItem);
-    Q_ASSERT(article);
-
-    const QString highlightedBaseColor = m_ui->textBrowser->palette().color(QPalette::Highlight).name();
-    const QString highlightedBaseTextColor = m_ui->textBrowser->palette().color(QPalette::HighlightedText).name();
-    const QString alternateBaseColor = m_ui->textBrowser->palette().color(QPalette::AlternateBase).name();
-
-    QString html =
-        u"<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>" +
-        u"<div style='background-color: \"%1\"; font-weight: bold; color: \"%2\";'>%3</div>"_s.arg(highlightedBaseColor, highlightedBaseTextColor, article->title());
-    if (article->date().isValid())
-        html += u"<div style='background-color: \"%1\";'><b>%2</b>%3</div>"_s.arg(alternateBaseColor, tr("Date: "), QLocale::system().toString(article->date().toLocalTime()));
-    if (m_feedListWidget->currentItem() == m_feedListWidget->stickyUnreadItem())
-        html += u"<div style='background-color: \"%1\";'><b>%2</b>%3</div>"_s.arg(alternateBaseColor, tr("Feed: "), article->feed()->title());
-    if (!article->author().isEmpty())
-        html += u"<div style='background-color: \"%1\";'><b>%2</b>%3</div>"_s.arg(alternateBaseColor, tr("Author: "), article->author());
-    html += u"</div>"
-            u"<div style='margin-left: 5px; margin-right: 5px;'>";
-    if (Qt::mightBeRichText(article->description()))
-    {
-        html += article->description();
-    }
-    else
-    {
-        QString description = article->description();
-        QRegularExpression rx;
-        // If description is plain text, replace BBCode tags with HTML and wrap everything in <pre></pre> so it looks nice
-        rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption
-            | QRegularExpression::CaseInsensitiveOption);
-
-        rx.setPattern(u"\\[img\\](.+)\\[/img\\]"_s);
-        description = description.replace(rx, u"<img src=\"\\1\">"_s);
-
-        rx.setPattern(u"\\[url=(\")?(.+)\\1\\]"_s);
-        description = description.replace(rx, u"<a href=\"\\2\">"_s);
-        description = description.replace(u"[/url]"_s, u"</a>"_s, Qt::CaseInsensitive);
-
-        rx.setPattern(u"\\[(/)?([bius])\\]"_s);
-        description = description.replace(rx, u"<\\1\\2>"_s);
-
-        rx.setPattern(u"\\[color=(\")?(.+)\\1\\]"_s);
-        description = description.replace(rx, u"<span style=\"color:\\2\">"_s);
-        description = description.replace(u"[/color]"_s, u"</span>"_s, Qt::CaseInsensitive);
-
-        rx.setPattern(u"\\[size=(\")?(.+)\\d\\1\\]"_s);
-        description = description.replace(rx, u"<span style=\"font-size:\\2px\">"_s);
-        description = description.replace(u"[/size]"_s, u"</span>"_s, Qt::CaseInsensitive);
-
-        html += u"<pre>" + description + u"</pre>";
-    }
-    html += u"</div>";
-    m_ui->textBrowser->setHtml(html);
+    renderArticle(article);
 }
 
 void RSSWidget::saveSlidersPosition()
@@ -589,4 +542,74 @@ void RSSWidget::handleSessionProcessingStateChanged(bool enabled)
 void RSSWidget::handleUnreadCountChanged()
 {
     emit unreadCountUpdated(RSS::Session::instance()->rootFolder()->unreadCount());
+}
+
+bool RSSWidget::eventFilter(QObject *obj, QEvent *event)
+{
+    if ((obj == m_ui->textBrowser) && (event->type() == QEvent::PaletteChange))
+    {
+        QListWidgetItem *currentItem = m_articleListWidget->currentItem();
+        if (currentItem)
+        {
+            const RSS::Article *article = m_articleListWidget->getRSSArticle(currentItem);
+            renderArticle(article);
+        }
+    }
+
+    return false;
+}
+
+void RSSWidget::renderArticle(const RSS::Article *article) const
+{
+    Q_ASSERT(article);
+
+    const QString highlightedBaseColor = m_ui->textBrowser->palette().color(QPalette::Active, QPalette::Highlight).name();
+    const QString highlightedBaseTextColor = m_ui->textBrowser->palette().color(QPalette::Active, QPalette::HighlightedText).name();
+    const QString alternateBaseColor = m_ui->textBrowser->palette().color(QPalette::Active, QPalette::AlternateBase).name();
+
+    QString html =
+        u"<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>" +
+        u"<div style='background-color: \"%1\"; font-weight: bold; color: \"%2\";'>%3</div>"_s.arg(highlightedBaseColor, highlightedBaseTextColor, article->title());
+    if (article->date().isValid())
+        html += u"<div style='background-color: \"%1\";'><b>%2</b>%3</div>"_s.arg(alternateBaseColor, tr("Date: "), QLocale::system().toString(article->date().toLocalTime()));
+    if (m_feedListWidget->currentItem() == m_feedListWidget->stickyUnreadItem())
+        html += u"<div style='background-color: \"%1\";'><b>%2</b>%3</div>"_s.arg(alternateBaseColor, tr("Feed: "), article->feed()->title());
+    if (!article->author().isEmpty())
+        html += u"<div style='background-color: \"%1\";'><b>%2</b>%3</div>"_s.arg(alternateBaseColor, tr("Author: "), article->author());
+    html += u"</div>"
+            u"<div style='margin-left: 5px; margin-right: 5px;'>";
+    if (Qt::mightBeRichText(article->description()))
+    {
+        html += article->description();
+    }
+    else
+    {
+        QString description = article->description();
+        QRegularExpression rx;
+        // If description is plain text, replace BBCode tags with HTML and wrap everything in <pre></pre> so it looks nice
+        rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption
+                             | QRegularExpression::CaseInsensitiveOption);
+
+        rx.setPattern(u"\\[img\\](.+)\\[/img\\]"_s);
+        description = description.replace(rx, u"<img src=\"\\1\">"_s);
+
+        rx.setPattern(u"\\[url=(\")?(.+)\\1\\]"_s);
+        description = description.replace(rx, u"<a href=\"\\2\">"_s);
+        description = description.replace(u"[/url]"_s, u"</a>"_s, Qt::CaseInsensitive);
+
+        rx.setPattern(u"\\[(/)?([bius])\\]"_s);
+        description = description.replace(rx, u"<\\1\\2>"_s);
+
+        rx.setPattern(u"\\[color=(\")?(.+)\\1\\]"_s);
+        description = description.replace(rx, u"<span style=\"color:\\2\">"_s);
+        description = description.replace(u"[/color]"_s, u"</span>"_s, Qt::CaseInsensitive);
+
+        rx.setPattern(u"\\[size=(\")?(.+)\\d\\1\\]"_s);
+        description = description.replace(rx, u"<span style=\"font-size:\\2px\">"_s);
+        description = description.replace(u"[/size]"_s, u"</span>"_s, Qt::CaseInsensitive);
+
+        html += u"<pre>" + description + u"</pre>";
+    }
+    html += u"</div>";
+    m_ui->textBrowser->setHtml(html);
 }
