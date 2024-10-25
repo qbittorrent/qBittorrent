@@ -41,8 +41,8 @@
 #include <QDebug>
 #include <QEvent>
 #include <QList>
-#include <QMessageBox>
 #include <QMenu>
+#include <QMessageBox>
 #include <QMouseEvent>
 #include <QObject>
 #include <QRegularExpression>
@@ -84,10 +84,9 @@ namespace
     }
 }
 
-SearchWidget::SearchWidget(IGUIApplication *app, MainWindow *mainWindow)
-    : GUIApplicationComponent(app, mainWindow)
+SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
+    : GUIApplicationComponent(app, parent)
     , m_ui {new Ui::SearchWidget()}
-    , m_mainWindow {mainWindow}
 {
     m_ui->setupUi(this);
     m_ui->tabWidget->tabBar()->installEventFilter(this);
@@ -175,6 +174,7 @@ bool SearchWidget::eventFilter(QObject *object, QEvent *event)
         }
         return false;
     }
+
     return QWidget::eventFilter(object, event);
 }
 
@@ -373,7 +373,7 @@ void SearchWidget::tabStatusChanged(QWidget *tab)
     {
         Q_ASSERT(m_activeSearchTab->status() != SearchJobWidget::Status::Ongoing);
 
-        if (app()->desktopIntegration()->isNotificationsEnabled() && (m_mainWindow->currentTabWidget() != this))
+        if (app()->desktopIntegration()->isNotificationsEnabled() && (app()->mainWindow()->currentTabWidget() != this))
         {
             if (m_activeSearchTab->status() == SearchJobWidget::Status::Error)
                 app()->desktopIntegration()->showNotification(tr("Search Engine"), tr("Search has failed"));
