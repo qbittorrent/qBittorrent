@@ -53,7 +53,7 @@ window.qBittorrent.Misc ??= (() => {
         };
     };
 
-    const genHash = function(string) {
+    const genHash = (string) => {
         // origins:
         // https://stackoverflow.com/a/8831937
         // https://gist.github.com/hyamamoto/fd435505d29ebfa3d9716fd2be8d42f0
@@ -64,7 +64,7 @@ window.qBittorrent.Misc ??= (() => {
     };
 
     // getHost emulate the GUI version `QString getHost(const QString &url)`
-    const getHost = function(url) {
+    const getHost = (url) => {
         // We want the hostname.
         // If failed to parse the domain, original input should be returned
 
@@ -102,7 +102,7 @@ window.qBittorrent.Misc ??= (() => {
     /*
      * JS counterpart of the function in src/misc.cpp
      */
-    const friendlyUnit = function(value, isSpeed) {
+    const friendlyUnit = (value, isSpeed) => {
         const units = [
             "QBT_TR(B)QBT_TR[CONTEXT=misc]",
             "QBT_TR(KiB)QBT_TR[CONTEXT=misc]",
@@ -122,14 +122,14 @@ window.qBittorrent.Misc ??= (() => {
             ++i;
         }
 
-        function friendlyUnitPrecision(sizeUnit) {
+        const friendlyUnitPrecision = (sizeUnit) => {
             if (sizeUnit <= 2) // KiB, MiB
                 return 1;
             else if (sizeUnit === 3) // GiB
                 return 2;
             else // TiB, PiB, EiB
                 return 3;
-        }
+        };
 
         let ret;
         if (i === 0) {
@@ -150,7 +150,7 @@ window.qBittorrent.Misc ??= (() => {
     /*
      * JS counterpart of the function in src/misc.cpp
      */
-    const friendlyDuration = function(seconds, maxCap = -1) {
+    const friendlyDuration = (seconds, maxCap = -1) => {
         if ((seconds < 0) || ((seconds >= maxCap) && (maxCap >= 0)))
             return "∞";
         if (seconds === 0)
@@ -173,7 +173,7 @@ window.qBittorrent.Misc ??= (() => {
         return "QBT_TR(%1y %2d)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(years)).replace("%2", Math.floor(days));
     };
 
-    const friendlyPercentage = function(value) {
+    const friendlyPercentage = (value) => {
         let percentage = (value * 100).round(1);
         if (isNaN(percentage) || (percentage < 0))
             percentage = 0;
@@ -182,19 +182,19 @@ window.qBittorrent.Misc ??= (() => {
         return percentage.toFixed(1) + "%";
     };
 
-    const friendlyFloat = function(value, precision) {
+    const friendlyFloat = (value, precision) => {
         return parseFloat(value).toFixed(precision);
     };
 
     /*
      * JS counterpart of the function in src/misc.cpp
      */
-    const parseHtmlLinks = function(text) {
+    const parseHtmlLinks = (text) => {
         const exp = /(\b(https?|ftp|file):\/\/[-\w+&@#/%?=~|!:,.;]*[-\w+&@#/%=~|])/gi;
         return text.replace(exp, "<a target='_blank' rel='noopener noreferrer' href='$1'>$1</a>");
     };
 
-    const parseVersion = function(versionString) {
+    const parseVersion = (versionString) => {
         const failure = {
             valid: false
         };
@@ -228,7 +228,7 @@ window.qBittorrent.Misc ??= (() => {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#parameters
     const naturalSortCollator = new Intl.Collator(undefined, { numeric: true, usage: "sort" });
 
-    const safeTrim = function(value) {
+    const safeTrim = (value) => {
         try {
             return value.trim();
         }
@@ -239,7 +239,7 @@ window.qBittorrent.Misc ??= (() => {
         }
     };
 
-    const toFixedPointString = function(number, digits) {
+    const toFixedPointString = (number, digits) => {
         // Do not round up number
         const power = Math.pow(10, digits);
         return (Math.floor(power * number) / power).toFixed(digits);
@@ -251,7 +251,7 @@ window.qBittorrent.Misc ??= (() => {
      * @param {Array<String>} terms terms to search for within the text
      * @returns {Boolean} true if all terms match the text, false otherwise
      */
-    const containsAllTerms = function(text, terms) {
+    const containsAllTerms = (text, terms) => {
         const textToSearch = text.toLowerCase();
         return terms.every((term) => {
             const isTermRequired = (term[0] === "+");

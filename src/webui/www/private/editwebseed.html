@@ -44,7 +44,7 @@
                         origUrl: origUrl,
                         newUrl: encodeURIComponent($("url").value.trim()),
                     },
-                    onComplete: function() {
+                    onComplete: () => {
                         window.parent.qBittorrent.Client.closeWindows();
                     }
                 }).send();

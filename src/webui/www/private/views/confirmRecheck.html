@@ -32,11 +32,11 @@
                 data: {
                     hashes: hashes.join("|"),
                 },
-                onSuccess: function() {
+                onSuccess: () => {
                     updateMainData();
                     window.qBittorrent.Client.closeWindow("confirmRecheckDialog");
                 },
-                onFailure: function() {
+                onFailure: () => {
                     alert("QBT_TR(Unable to recheck torrents.)QBT_TR[CONTEXT=HttpServer]");
                 }
             }).send();

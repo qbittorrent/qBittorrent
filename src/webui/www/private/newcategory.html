@@ -60,7 +60,7 @@
                 const savePath = $("savePath").value.trim();
                 const categoryName = $("categoryName").value.trim();
 
-                const verifyCategoryName = function(name) {
+                const verifyCategoryName = (name) => {
                     if ((name === null) || (name === ""))
                         return false;
                     if (name.match("^([^\\\\\\/]|[^\\\\\\/]([^\\\\\\/]|\\/(?=[^\\/]))*[^\\\\\\/])$") === null) {
@@ -82,7 +82,7 @@
                                 category: categoryName,
                                 savePath: savePath
                             },
-                            onSuccess: function() {
+                            onSuccess: () => {
                                 new Request({
                                     url: "api/v2/torrents/setCategory",
                                     method: "post",
@@ -90,16 +90,16 @@
                                         hashes: uriHashes,
                                         category: categoryName
                                     },
-                                    onSuccess: function() {
+                                    onSuccess: () => {
                                         window.parent.updateMainData();
                                         window.parent.qBittorrent.Client.closeWindows();
                                     },
-                                    onFailure: function() {
+                                    onFailure: () => {
                                         alert("QBT_TR(Unable to set category)QBT_TR[CONTEXT=Category]");
                                     }
                                 }).send();
                             },
-                            onFailure: function() {
+                            onFailure: () => {
                                 alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category] " + window.qBittorrent.Misc.escapeHtml(categoryName));
                             }
                         }).send();
@@ -116,11 +116,11 @@
                                 category: categoryName,
                                 savePath: savePath
                             },
-                            onSuccess: function() {
+                            onSuccess: () => {
                                 window.parent.updateMainData();
                                 window.parent.qBittorrent.Client.closeWindows();
                             },
-                            onFailure: function() {
+                            onFailure: () => {
                                 alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category]");
                             }
                         }).send();
@@ -133,11 +133,11 @@
                                 category: uriCategoryName, // category name can't be changed
                                 savePath: savePath
                             },
-                            onSuccess: function() {
+                            onSuccess: () => {
                                 window.parent.updateMainData();
                                 window.parent.qBittorrent.Client.closeWindows();
                             },
-                            onFailure: function() {
+                            onFailure: () => {
                                 alert("QBT_TR(Unable to edit category)QBT_TR[CONTEXT=Category]");
                             }
                         }).send();

@@ -88,7 +88,7 @@ window.qBittorrent.FileTree ??= (() => {
                 : this.nodeMap[rowId];
         },
 
-        getRowId: function(node) {
+        getRowId: (node) => {
             return node.rowId;
         },
 

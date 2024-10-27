@@ -56,10 +56,10 @@
                         hashes: hashesList,
                         location: location
                     },
-                    onSuccess: function() {
+                    onSuccess: () => {
                         window.parent.qBittorrent.Client.closeWindows();
                     },
-                    onFailure: function(xhr) {
+                    onFailure: (xhr) => {
                         $("error_div").textContent = xhr.response;
                     }
                 }).send();

@@ -112,14 +112,14 @@
                         seedingTimeLimit: seedingTimeLimitValue,
                         inactiveSeedingTimeLimit: inactiveSeedingTimeLimitValue
                     },
-                    onComplete: function() {
+                    onComplete: () => {
                         window.parent.qBittorrent.Client.closeWindows();
                     }
                 }).send();
             });
         });
 
-        function getSelectedRadioValue(name) {
+        const getSelectedRadioValue = (name) => {
             const radios = document.getElementsByName(name);
 
             for (let i = 0; i < radios.length; ++i) {
@@ -127,9 +127,9 @@
                 if (radio.checked)
                     return radio.value;
             }
-        }
+        };
 
-        function setSelectedRadioValue(name, value) {
+        const setSelectedRadioValue = (name, value) => {
             const radios = document.getElementsByName(name);
 
             for (let i = 0; i < radios.length; ++i) {
@@ -137,9 +137,9 @@
                 if (radio.value === value)
                     radio.checked = true;
             }
-        }
+        };
 
-        function shareLimitChanged() {
+        const shareLimitChanged = () => {
             const customShareLimit = getSelectedRadioValue("shareLimit") === "custom";
             $("setRatio").disabled = !customShareLimit;
             $("setTotalMinutes").disabled = !customShareLimit;
@@ -148,20 +148,20 @@
             enableInputBoxes();
 
             $("save").disabled = !isFormValid();
-        }
+        };
 
-        function enableInputBoxes() {
+        const enableInputBoxes = () => {
             $("ratio").disabled = $("setRatio").disabled || !$("setRatio").checked;
             $("totalMinutes").disabled = $("setTotalMinutes").disabled || !$("setTotalMinutes").checked;
             $("inactiveMinutes").disabled = $("setInactiveMinutes").disabled || !$("setInactiveMinutes").checked;
 
             $("save").disabled = !isFormValid();
-        }
+        };
 
-        function isFormValid() {
+        const isFormValid = () => {
             return !((getSelectedRadioValue("shareLimit") === "custom") && !$("setRatio").checked
                 && !$("setTotalMinutes").checked && !$("setInactiveMinutes").checked);
-        }
+        };
     </script>
 </head>
 

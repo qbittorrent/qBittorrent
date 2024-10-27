@@ -13,6 +13,7 @@
     "@stylistic/eslint-plugin": "*",
     "eslint": "*",
     "eslint-plugin-html": "*",
+    "eslint-plugin-prefer-arrow-functions": "*",
     "eslint-plugin-regexp": "*",
     "html-validate": "*",
     "js-beautify": "*",

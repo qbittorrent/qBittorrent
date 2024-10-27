@@ -61,7 +61,7 @@
                 data: {
                     "delete_torrent_content_files": deleteCB.checked
                 },
-                onSuccess: function() {
+                onSuccess: () => {
                     prefDeleteContentFiles = deleteCB.checked;
                     setRememberBtnEnabled(false);
                 }
@@ -84,13 +84,13 @@
                     "hashes": hashes.join("|"),
                     "deleteFiles": deleteCB.checked
                 },
-                onSuccess: function() {
+                onSuccess: () => {
                     torrentsTable.deselectAll();
                     updateMainData();
                     updatePropertiesPanel();
                     window.qBittorrent.Client.closeWindows();
                 },
-                onFailure: function() {
+                onFailure: () => {
                     alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
                 },
             }).send();

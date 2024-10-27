@@ -46,7 +46,7 @@ window.qBittorrent.PiecesBar ??= (() => {
 
     let piecesBarUniqueId = 0;
     const PiecesBar = new Class({
-        initialize(pieces, parameters) {
+        initialize: (pieces, parameters) => {
             const vals = {
                 "id": "piecesbar_" + (piecesBarUniqueId++),
                 "width": 0,
@@ -253,7 +253,7 @@ window.qBittorrent.PiecesBar ??= (() => {
         }
     }
 
-    function checkForParent(id) {
+    const checkForParent = (id) => {
         const obj = $(id);
         if (!obj)
             return;
@@ -261,7 +261,7 @@ window.qBittorrent.PiecesBar ??= (() => {
             return setTimeout(() => { checkForParent(id); }, 100);
 
         obj.refresh();
-    }
+    };
 
     return exports();
 })();

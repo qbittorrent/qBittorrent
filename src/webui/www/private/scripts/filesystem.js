@@ -46,21 +46,21 @@ window.qBittorrent.Filesystem ??= (() => {
     /**
      * Returns the file extension part of a file name.
      */
-    const fileExtension = function(filename) {
+    const fileExtension = (filename) => {
         const pointIndex = filename.lastIndexOf(".");
         if (pointIndex === -1)
             return "";
         return filename.substring(pointIndex + 1);
     };
 
-    const fileName = function(filepath) {
+    const fileName = (filepath) => {
         const slashIndex = filepath.lastIndexOf(PathSeparator);
         if (slashIndex === -1)
             return filepath;
         return filepath.substring(slashIndex + 1);
     };
 
-    const folderName = function(filepath) {
+    const folderName = (filepath) => {
         const slashIndex = filepath.lastIndexOf(PathSeparator);
         if (slashIndex === -1)
             return "";

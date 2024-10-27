@@ -44,7 +44,7 @@
 
                 const tagName = $("tagName").value.trim();
 
-                const verifyTagName = function(name) {
+                const verifyTagName = (name) => {
                     if ((name === null) || (name === ""))
                         return false;
                     if (name.includes(",")) {
@@ -66,7 +66,7 @@
                                 hashes: uriHashes,
                                 tags: tagName,
                             },
-                            onComplete: function() {
+                            onComplete: () => {
                                 window.parent.qBittorrent.Client.closeWindows();
                             }
                         }).send();
@@ -82,7 +82,7 @@
                             data: {
                                 tags: tagName,
                             },
-                            onComplete: function() {
+                            onComplete: () => {
                                 window.parent.qBittorrent.Client.closeWindows();
                             }
                         }).send();
