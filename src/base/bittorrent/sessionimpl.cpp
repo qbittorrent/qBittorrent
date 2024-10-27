@@ -445,6 +445,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_ignoreLimitsOnLAN(BITTORRENT_SESSION_KEY(u"IgnoreLimitsOnLAN"_s), false)
     , m_includeOverheadInLimits(BITTORRENT_SESSION_KEY(u"IncludeOverheadInLimits"_s), false)
     , m_announceIP(BITTORRENT_SESSION_KEY(u"AnnounceIP"_s))
+    , m_announcePort(BITTORRENT_SESSION_KEY(u"AnnouncePort"_s), 0)
     , m_maxConcurrentHTTPAnnounces(BITTORRENT_SESSION_KEY(u"MaxConcurrentHTTPAnnounces"_s), 50)
     , m_isReannounceWhenAddressChangedEnabled(BITTORRENT_SESSION_KEY(u"ReannounceWhenAddressChanged"_s), false)
     , m_stopTrackerTimeout(BITTORRENT_SESSION_KEY(u"StopTrackerTimeout"_s), 2)
@@ -2004,6 +2005,10 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_bool(lt::settings_pack::rate_limit_ip_overhead, includeOverheadInLimits());
     // IP address to announce to trackers
     settingsPack.set_str(lt::settings_pack::announce_ip, announceIP().toStdString());
+#if LIBTORRENT_VERSION_NUM >= 20011
+    // Port to announce to trackers
+    settingsPack.set_int(lt::settings_pack::announce_port, announcePort());
+#endif
     // Max concurrent HTTP announces
     settingsPack.set_int(lt::settings_pack::max_concurrent_http_announces, maxConcurrentHTTPAnnounces());
     // Stop tracker timeout
@@ -4875,6 +4880,20 @@ void SessionImpl::setAnnounceIP(const QString &ip)
     if (ip != m_announceIP)
     {
         m_announceIP = ip;
+        configureDeferred();
+    }
+}
+
+int SessionImpl::announcePort() const
+{
+    return m_announcePort;
+}
+
+void SessionImpl::setAnnouncePort(const int port)
+{
+    if (port != m_announcePort)
+    {
+        m_announcePort = port;
         configureDeferred();
     }
 }

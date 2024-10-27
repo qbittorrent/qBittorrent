@@ -1623,6 +1623,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 </tr>
                 <tr>
                     <td>
+                        <label for="announcePort">QBT_TR(Port reported to trackers (requires restart) [0: listening port]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#announce_port" target="_blank">(?)</a></label>
+                    </td>
+                    <td>
+                        <input type="text" id="announcePort" style="width: 15em;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label for="maxConcurrentHTTPAnnounces">QBT_TR(Max concurrent HTTP announces:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#max_concurrent_http_announces" target="_blank">(?)</a></label>
                     </td>
                     <td>
@@ -2593,6 +2601,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("announceAllTrackers").checked = pref.announce_to_all_trackers;
                     $("announceAllTiers").checked = pref.announce_to_all_tiers;
                     $("announceIP").value = pref.announce_ip;
+                    $("announcePort").value = pref.announce_port;
                     $("maxConcurrentHTTPAnnounces").value = pref.max_concurrent_http_announces;
                     $("stopTrackerTimeout").value = pref.stop_tracker_timeout;
                     $("peerTurnover").value = pref.peer_turnover;
@@ -3061,6 +3070,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["announce_to_all_trackers"] = $("announceAllTrackers").checked;
             settings["announce_to_all_tiers"] = $("announceAllTiers").checked;
             settings["announce_ip"] = $("announceIP").value;
+            const announcePort = Number($("announcePort").value);
+            if (Number.isNaN(announcePort) || (announcePort < 0) || (announcePort > 65535)) {
+                alert("QBT_TR(The announce port must be between 0 and 65535.)QBT_TR[CONTEXT=OptionsDialog]");
+                return;
+            }
+            settings["announce_port"] = announcePort;
             settings["max_concurrent_http_announces"] = Number($("maxConcurrentHTTPAnnounces").value);
             settings["stop_tracker_timeout"] = Number($("stopTrackerTimeout").value);
             settings["peer_turnover"] = Number($("peerTurnover").value);
