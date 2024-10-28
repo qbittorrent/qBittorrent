@@ -1,3 +1,23 @@
+Mon Oct 28th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.1
+    - FEATURE: Add "Simple pread/pwrite" disk IO type (Hanabishi)
+    - BUGFIX: Don't ignore SSL errors (sledgehammer999)
+    - BUGFIX: Don't try to apply Mark-of-the-Web to nonexistent files (glassez)
+    - BUGFIX: Disable "Move to trash" option by default (glassez)
+    - BUGFIX: Disable the ability to create torrents with a piece size of 256MiB (stalkerok)
+    - BUGFIX: Allow to choose Qt style (glassez)
+    - BUGFIX: Always notify user about duplicate torrent (glassez)
+    - BUGFIX: Correctly handle "torrent finished after move" event (glassez)
+    - BUGFIX: Correctly apply filename filter when `!qB` extension is enabled (glassez)
+    - BUGFIX: Improve color scheme change detection (glassez)
+    - BUGFIX: Fix button state for SSL certificate check (Chocobo1)
+    - WEBUI: Fix CSS that results in hidden torrent list in some browsers (skomerko)
+    - WEBUI: Use proper text color to highlight items in all filter lists (skomerko)
+    - WEBUI: Fix 'rename files' dialog cannot be opened more than once (Chocobo1)
+    - WEBUI: Fix UI of Advanced Settings to show all settings (glassez)
+    - WEBUI: Free resources allocated by web session once it is destructed (dyseg)
+    - SEARCH: Import correct libraries (Chocobo1)
+    - OTHER: Sync flag icons with upstream (xavier2k6)
+
 Sun Sep 29th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - FEATURE: Support creating .torrent with larger piece size (Chocobo1)
     - FEATURE: Improve tracker entries handling (glassez)
