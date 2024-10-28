@@ -229,32 +229,63 @@ window.addEventListener("DOMContentLoaded", () => {
     buildLogTab();
     MochaUI.initializeTabs("mainWindowTabsList");
 
+    const handleFilterSelectionChange = function(prevSelectedTorrent, currSelectedTorrent) {
+        // clear properties panels when filter changes (e.g. selected torrent is no longer visible)
+        if (prevSelectedTorrent !== currSelectedTorrent) {
+            window.qBittorrent.PropGeneral.clear();
+            window.qBittorrent.PropTrackers.clear();
+            window.qBittorrent.PropPeers.clear();
+            window.qBittorrent.PropWebseeds.clear();
+            window.qBittorrent.PropFiles.clear();
+        }
+    };
+
     setStatusFilter = function(name) {
+        const currentHash = torrentsTable.getCurrentTorrentID();
+
         LocalPreferences.set("selected_filter", name);
         selectedStatus = name;
         highlightSelectedStatus();
         updateMainData();
+
+        const newHash = torrentsTable.getCurrentTorrentID();
+        handleFilterSelectionChange(currentHash, newHash);
     };
 
     setCategoryFilter = function(hash) {
+        const currentHash = torrentsTable.getCurrentTorrentID();
+
         LocalPreferences.set("selected_category", hash);
         selectedCategory = Number(hash);
         highlightSelectedCategory();
         updateMainData();
+
+        const newHash = torrentsTable.getCurrentTorrentID();
+        handleFilterSelectionChange(currentHash, newHash);
     };
 
     setTagFilter = function(hash) {
+        const currentHash = torrentsTable.getCurrentTorrentID();
+
         LocalPreferences.set("selected_tag", hash);
         selectedTag = Number(hash);
         highlightSelectedTag();
         updateMainData();
+
+        const newHash = torrentsTable.getCurrentTorrentID();
+        handleFilterSelectionChange(currentHash, newHash);
     };
 
     setTrackerFilter = function(hash) {
+        const currentHash = torrentsTable.getCurrentTorrentID();
+
         LocalPreferences.set("selected_tracker", hash);
         selectedTracker = Number(hash);
         highlightSelectedTracker();
         updateMainData();
+
+        const newHash = torrentsTable.getCurrentTorrentID();
+        handleFilterSelectionChange(currentHash, newHash);
     };
 
     toggleFilterDisplay = function(filterListID) {

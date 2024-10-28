@@ -32,7 +32,8 @@ window.qBittorrent ??= {};
 window.qBittorrent.PropTrackers ??= (() => {
     const exports = () => {
         return {
-            updateData: updateData
+            updateData: updateData,
+            clear: clear
         };
     };
 
@@ -51,7 +52,6 @@ window.qBittorrent.PropTrackers ??= (() => {
         if (new_hash === "") {
             torrentTrackersTable.clear();
             clearTimeout(loadTrackersDataTimer);
-            loadTrackersDataTimer = loadTrackersData.delay(10000);
             return;
         }
         if (new_hash !== current_hash) {
@@ -226,6 +226,10 @@ window.qBittorrent.PropTrackers ??= (() => {
                 updateData();
             }
         }).send();
+    };
+
+    const clear = function() {
+        torrentTrackersTable.clear();
     };
 
     new ClipboardJS("#CopyTrackerUrl", {

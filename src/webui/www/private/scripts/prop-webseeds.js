@@ -32,7 +32,8 @@ window.qBittorrent ??= {};
 window.qBittorrent.PropWebseeds ??= (() => {
     const exports = () => {
         return {
-            updateData: updateData
+            updateData: updateData,
+            clear: clear
         };
     };
 
@@ -51,7 +52,6 @@ window.qBittorrent.PropWebseeds ??= (() => {
         if (new_hash === "") {
             torrentWebseedsTable.clear();
             clearTimeout(loadWebSeedsDataTimer);
-            loadWebSeedsDataTimer = loadWebSeedsData.delay(10000);
             return;
         }
         if (new_hash !== current_hash) {
@@ -202,6 +202,10 @@ window.qBittorrent.PropWebseeds ??= (() => {
                 updateData();
             }
         }).send();
+    };
+
+    const clear = function() {
+        torrentWebseedsTable.clear();
     };
 
     new ClipboardJS("#CopyWebseedUrl", {
