@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/www">
         <file>private/addpeers.html</file>
+        <file>private/addtorrent.html</file>
         <file>private/addtrackers.html</file>
         <file>private/addwebseeds.html</file>
         <file>private/confirmfeeddeletion.html</file>
@@ -424,7 +425,6 @@
         <file>private/setlocation.html</file>
         <file>private/shareratio.html</file>
         <file>private/speedlimit.html</file>
-        <file>private/upload.html</file>
         <file>private/views/about.html</file>
         <file>private/views/aboutToolbar.html</file>
         <file>private/views/confirmAutoTMM.html</file>
