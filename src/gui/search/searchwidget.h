@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2020, Will Da Silva <will@willdasilva.xyz>
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -66,6 +66,7 @@ private slots:
 private:
     bool eventFilter(QObject *object, QEvent *event) override;
     void tabChanged(int index);
+    void tabMoved(int from, int to);
     void closeTab(int index);
     void closeAllTabs();
     void tabStatusChanged(QWidget *tab);
