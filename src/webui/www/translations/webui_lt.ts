@@ -1861,6 +1861,14 @@ pakaitos simbolį "*".</translation>
         <source>Use Category paths in Manual Mode</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Ignore SSL errors:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Simple pread/pwrite</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2745,7 +2753,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Times Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Parsiųsta kartų</translation>
     </message>
     <message>
         <source>Add trackers...</source>

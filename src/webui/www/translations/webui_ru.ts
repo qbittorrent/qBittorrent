@@ -1729,7 +1729,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation>Ставить веб-метку (MOTW) на загруженные файлы (требует macOS или Windows):</translation>
+        <translation>Ставить веб-метку (MOTW) на загруженные файлы (в macOS и Windows):</translation>
     </message>
     <message>
         <source> sec</source>
@@ -1817,7 +1817,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Send test email</source>
-        <translation>Отправить проверочное электронное письмо</translation>
+        <translation>Отправить проверочное письмо</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
@@ -1833,7 +1833,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
-        <translation>Убрать файлы в корзину (если возможно)</translation>
+        <translation>Убирать файлы в корзину (если возможно)</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
@@ -1858,6 +1858,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Use Category paths in Manual Mode</source>
         <translation>Использовать пути категорий в ручном режиме</translation>
+    </message>
+    <message>
+        <source>Ignore SSL errors:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Simple pread/pwrite</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2081,11 +2089,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Added On:</source>
-        <translation>Добавлен:</translation>
+        <translation>Дата добавления:</translation>
     </message>
     <message>
         <source>Completed On:</source>
-        <translation>Завершён:</translation>
+        <translation>Дата завершения:</translation>
     </message>
     <message>
         <source>Created On:</source>
@@ -2225,11 +2233,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Popularity:</source>
-        <translation>Популярность:</translation>
+        <translation>Спрос:</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation>Рейтинг / время активности (в месяцах), показывает популярность торрента</translation>
+        <translation>Рейтинг / время работы (в месяцах), показывает востребованность торрента</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -2620,7 +2628,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Popularity</source>
-        <translation>Популярность</translation>
+        <translation>Спрос</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -2743,7 +2751,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Times Downloaded</source>
-        <translation>Число загрузок</translation>
+        <translation>Всего загрузок</translation>
     </message>
     <message>
         <source>Add trackers...</source>
@@ -3520,7 +3528,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Передовой клиент сети БитТоррент, созданный с использованием языка C++ и библиотек Qt и libtorrent-rasterbar.</translation>
+        <translation>Передовой клиент сети БитТоррент, созданный при помощи языка C++ и библиотек Qt и libtorrent-rasterbar.</translation>
     </message>
     <message>
         <source>Name:</source>

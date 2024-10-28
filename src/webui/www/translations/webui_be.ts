@@ -5,14 +5,14 @@
     <name>AboutDlg</name>
     <message>
         <source>About</source>
-        <translation type="vanished">Пра праґраму</translation>
+        <translation type="vanished">Аб праграме</translation>
     </message>
 </context>
 <context>
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Category:</source>
-        <translation>Катэґорыя:</translation>
+        <translation>Катэгорыя:</translation>
     </message>
     <message>
         <source>Start torrent</source>
@@ -114,11 +114,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Запусціць торэнты</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Спыніць торэнты</translation>
     </message>
 </context>
 <context>
@@ -1365,7 +1365,7 @@
     </message>
     <message>
         <source>RSS Smart Episode Filter</source>
-        <translation>RSS Smart Episode Filter</translation>
+        <translation>Разумны фільтр эпізодаў з RSS</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1817,7 +1817,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Send test email</source>
-        <translation type="unfinished" />
+        <translation>Адправіць праверачны ліст</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
@@ -1829,11 +1829,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Спыніць торэнт</translation>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
+        <translation>Перамяшчаць файлы ў сметніцу (калі магчыма)</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
@@ -1841,7 +1841,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
-        <translation type="unfinished" />
+        <translation>Выдаляць файлы незваротна</translation>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
@@ -1858,6 +1858,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Use Category paths in Manual Mode</source>
         <translation>Use Category paths in Manual Mode</translation>
+    </message>
+    <message>
+        <source>Ignore SSL errors:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Simple pread/pwrite</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2225,11 +2233,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>Папулярнасць:</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation type="unfinished" />
+        <translation>Рэйтынг/ час актыўнасці (у месяцах), паказвае папулярнасць торэнта</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -2241,7 +2249,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>Прыватны:</translation>
     </message>
 </context>
 <context>
@@ -2453,19 +2461,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <translation>Запушчаны (%1)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>Спынены (0)</translation>
     </message>
     <message>
         <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <translation>Спынены (%1)</translation>
     </message>
     <message>
         <source>Running (0)</source>
-        <translation type="unfinished" />
+        <translation>Запушчаны (0)</translation>
     </message>
 </context>
 <context>
@@ -2620,7 +2628,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
+        <translation>Папулярнасць</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -2640,7 +2648,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Прыватны</translation>
     </message>
 </context>
 <context>
@@ -3111,7 +3119,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation type="unfinished" />
+        <translation>Таксама выдаліць спампаваныя файлы</translation>
     </message>
 </context>
 <context>
@@ -3381,7 +3389,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Published On</source>
-        <translation type="unfinished" />
+        <translation>Апублікавана</translation>
     </message>
 </context>
 <context>
@@ -3466,11 +3474,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Запусціць торэнты</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Спыніць торэнты</translation>
     </message>
 </context>
 <context>
@@ -3759,7 +3767,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Episode filter rules: </source>
-        <translation>Правілы фільтру выпускаў: </translation>
+        <translation>Правілы фільтравання эпізодаў: </translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
@@ -3791,7 +3799,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
-        <translation>Распазнае артыкулы паводле фільтру выпускаў.</translation>
+        <translation>Распазнае артыкулы паводле фільтру эпізодаў.</translation>
     </message>
     <message>
         <source>Assign Category:</source>
@@ -3807,7 +3815,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
-        <translation>Ачысціць спампаваныя выпускі</translation>
+        <translation>Ачысціць спампаваныя эпізоды</translation>
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
@@ -3835,7 +3843,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
-        <translation>Бясконцы дыяпазон: &lt;b&gt;1x25-;&lt;/b&gt; адпавядае выпускам першага сезона з 25-га вышэй, і ўсе выпускі наступных сезонаў</translation>
+        <translation>Бясконцы дыяпазон: &lt;b&gt;1x25-;&lt;/b&gt; адпавядае эпізодам першага сезона з 25-га далей, а таксама ўсім эпізодам з наступных сезонаў</translation>
     </message>
     <message>
         <source>Save to a Different Directory</source>
@@ -3847,11 +3855,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation>Адзіны нумар: &lt;b&gt;1x25;&lt;/b&gt; распазнае 25-ы выпуск першага сезону</translation>
+        <translation>Адзіночны нумар: &lt;b&gt;1x25;&lt;/b&gt; адпавядае 25-му эпізоду з першага сезона</translation>
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation>Падтрымліваюцца тры тыпы дыяпазонаў выпускаў: </translation>
+        <translation>Для эпізодаў падтрымліваецца тры тыпы дыяпазонаў: </translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
@@ -3863,7 +3871,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation>Звычайны дыяпазон: &lt;b&gt;1x25-40;&lt;/b&gt; распазнае выпускі з 25-га па 40-ы першага сезону</translation>
+        <translation>Звычайны дыяпазон: &lt;b&gt;1x25-40;&lt;/b&gt; адпавядае эпізодам першага сезона з 25-га па 40-ы</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
@@ -3879,11 +3887,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
-        <translation>Нумар выпуска з'яўляецца абавязковым ненулявым значэннем</translation>
+        <translation>Нумар эпізоду абавязкова павінен мець дадатнае значэнне</translation>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation> распазнае 2, 5, з 8 па 15, 30 і далейшыя выпускі першага сезону</translation>
+        <translation> адпавядае 2, 5, эпізодам з 8 па 15, 30 і наступным эпізодам з першага сезона</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
@@ -3895,7 +3903,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Episode Filter:</source>
-        <translation>Фільтр выпускаў:</translation>
+        <translation>Фільтр эпізодаў:</translation>
     </message>
     <message>
         <source>Rss Downloader</source>
@@ -3919,7 +3927,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
-        <translation>Выкарыстоўваць разумны фільтр выпускаў</translation>
+        <translation>Выкарыстоўваць разумны фільтр эпізодаў</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
@@ -3955,13 +3963,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
-        <translation>Ачысціць спампаваныя выпускі...</translation>
+        <translation>Ачысціць спампаваныя эпізоды...</translation>
     </message>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation>Разумны фільтр выпускаў праверыць нумары, каб не дапусціць спампоўвання паўтораў.
-Падтрымлівае фарматы: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Таксама падтрымліваецца «-», як раздзяляльнікам кампанентаў даты)</translation>
+        <translation>Разумны фільтр праверыць нумары эпізодаў, каб прадухіліць спампоўванне паўтораў.
+Падтрымліваюцца фарматы: S01E01, 1x1, 2017.12.31 і 31.12.2017 (таксама, як раздзяляльнік у датах, падтрымліваецца злучок - )</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -4004,11 +4012,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Запусціць торэнты</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Спыніць торэнты</translation>
     </message>
 </context>
 <context>

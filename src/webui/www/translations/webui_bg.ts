@@ -1856,6 +1856,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Use Category paths in Manual Mode</source>
         <translation>Използвай Категория пътища в ръчен режим</translation>
     </message>
+    <message>
+        <source>Ignore SSL errors:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Simple pread/pwrite</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>

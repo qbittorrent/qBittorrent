@@ -381,7 +381,7 @@
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Không thể liên hệ với qBittorrent</translation>
     </message>
     <message>
         <source>Password</source>
@@ -604,7 +604,7 @@
     </message>
     <message>
         <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Bạn có muốn bắt đầu tất cả các torrent không?</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -612,19 +612,19 @@
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Bạn có muốn dừng tất cả các torrent không?</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation type="unfinished" />
+        <translation>Chạy Tất Cả</translation>
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
+        <translation>Dừng Tất Cả</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Chạy</translation>
     </message>
 </context>
 <context>
@@ -1817,19 +1817,19 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Send test email</source>
-        <translation type="unfinished" />
+        <translation>Gửi email kiểm tra</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation type="unfinished" />
+        <translation>Đã cố gắng gửi email. Kiểm tra hộp thư đến của bạn để xác nhận thành công</translation>
     </message>
     <message>
         <source>Automatically append these trackers to new downloads:</source>
-        <translation type="unfinished" />
+        <translation>Tự động thêm các máy theo dõi này vào bản tải xuống mới:</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Dừng torrents</translation>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
@@ -1837,7 +1837,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Torrent content removing mode:</source>
-        <translation type="unfinished" />
+        <translation>Chế độ xóa nội dung torrent:</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
@@ -1858,6 +1858,14 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     <message>
         <source>Use Category paths in Manual Mode</source>
         <translation>Dùng đường dẫn Danh Mục ở Chế Độ Thủ Công</translation>
+    </message>
+    <message>
+        <source>Ignore SSL errors:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Simple pread/pwrite</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2225,11 +2233,11 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>Phổ biến:</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation type="unfinished" />
+        <translation>Tỷ lệ / Thời gian hoạt động (tính theo tháng), cho biết mức độ phổ biến của torrent</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -2241,7 +2249,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>Riêng tư:</translation>
     </message>
 </context>
 <context>
@@ -2453,19 +2461,19 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <translation>Đang chạy (%1)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>Đã dừng (0)</translation>
     </message>
     <message>
         <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <translation>Đã dừng (%1)</translation>
     </message>
     <message>
         <source>Running (0)</source>
-        <translation type="unfinished" />
+        <translation>Đang chạy (0)</translation>
     </message>
 </context>
 <context>
@@ -2620,7 +2628,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
+        <translation>Phổ biến</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -2640,7 +2648,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Riêng tư</translation>
     </message>
 </context>
 <context>
@@ -3062,11 +3070,11 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Force Start</source>
-        <translation type="unfinished" />
+        <translation>Buộc Chạy</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Chạy</translation>
     </message>
 </context>
 <context>
@@ -3315,7 +3323,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Start a search above.</source>
-        <translation type="unfinished" />
+        <translation>Bắt đầu tìm kiếm ở trên.</translation>
     </message>
 </context>
 <context>
@@ -3381,7 +3389,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Published On</source>
-        <translation type="unfinished" />
+        <translation>Đã Xuất Bản Lúc</translation>
     </message>
 </context>
 <context>
@@ -3985,7 +3993,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Add Stopped:</source>
-        <translation type="unfinished" />
+        <translation>Thêm Đã Dừng:</translation>
     </message>
 </context>
 <context>

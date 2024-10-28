@@ -1817,7 +1817,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation type="unfinished" />
+        <translation>Prooviti saata e-kiri. Kontrollige postkasti, et kas saabus edukalt</translation>
     </message>
     <message>
         <source>Automatically append these trackers to new downloads:</source>
@@ -1854,6 +1854,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Use Category paths in Manual Mode</source>
         <translation>Kasuta kategooria asukohti manuaalses režiimis</translation>
+    </message>
+    <message>
+        <source>Ignore SSL errors:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Simple pread/pwrite</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

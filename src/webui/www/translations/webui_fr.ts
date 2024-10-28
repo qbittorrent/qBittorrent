@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation>Stopper les torrents</translation>
+        <translation>Arrêter les torrents</translation>
     </message>
 </context>
 <context>
@@ -612,7 +612,7 @@
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
-        <translation>Voulez-vous stopper tous les torrents ?</translation>
+        <translation>Voulez-vous arrêter tous les torrents ?</translation>
     </message>
     <message>
         <source>Start All</source>
@@ -620,7 +620,7 @@
     </message>
     <message>
         <source>Stop All</source>
-        <translation>Stopper tout</translation>
+        <translation>Arrêter tout</translation>
     </message>
     <message>
         <source>Start</source>
@@ -659,7 +659,7 @@
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation>Notification par courriel à la fin du téléchargement</translation>
+        <translation>Notifier par courriel une fois le téléchargement complété</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -675,7 +675,7 @@
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
-        <translation>Interface utilisateur Web (contrôle distant)</translation>
+        <translation>Activer l'interface utilisateur Web (contrôle distant)</translation>
     </message>
     <message>
         <source>IP address:</source>
@@ -731,11 +731,11 @@
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
-        <translation>Ce serveur nécessite une connexion sécurisée (SSL)</translation>
+        <translation>Nécessite une connexion sécurisée (SSL)</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation>Authentification</translation>
+        <translation>Nécessite une authentification</translation>
     </message>
     <message>
         <source>Username:</source>
@@ -1509,7 +1509,7 @@
     </message>
     <message>
         <source>Excluded file names</source>
-        <translation>Noms de fichiers exclus</translation>
+        <translation>Exclure les noms de fichiers</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
@@ -1764,7 +1764,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>I2P (Experimental)</source>
-        <translation>I2P (expérimental)</translation>
+        <translation>Activer I2P (expérimental)</translation>
     </message>
     <message>
         <source>Disk IO type (requires restart):</source>
@@ -1816,11 +1816,11 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Send test email</source>
-        <translation>Envoyer un e-mail de test</translation>
+        <translation>Envoyer un courriel test</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation>Tentative d'envoi d'e-mail. Vérifiez votre boîte de réception pour confirmer la réussite</translation>
+        <translation>Tentative d'envoi d'un courriel. Vérifiez votre boîte de réception pour confirmer la réussite</translation>
     </message>
     <message>
         <source>Automatically append these trackers to new downloads:</source>
@@ -1828,7 +1828,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation>Stopper les torrent</translation>
+        <translation>Arrêter les torrents</translation>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
@@ -1857,6 +1857,14 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>Use Category paths in Manual Mode</source>
         <translation>Utiliser les chemins des catégories en mode manuel</translation>
+    </message>
+    <message>
+        <source>Ignore SSL errors:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Simple pread/pwrite</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2084,7 +2092,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Completed On:</source>
-        <translation>Terminé le :</translation>
+        <translation>Complété le :</translation>
     </message>
     <message>
         <source>Created On:</source>
@@ -2368,7 +2376,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Completed (0)</source>
-        <translation>Terminés (0)</translation>
+        <translation>Complétés (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -2396,7 +2404,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Completed (%1)</source>
-        <translation>Terminés (%1)</translation>
+        <translation>Complétés (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2416,19 +2424,19 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation>Bloqués en téléchargement (%1)</translation>
+        <translation>Bloqués en réception (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation>Bloqué en téléchargement (0)</translation>
+        <translation>Bloqués en réception (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation>Bloqué (0)</translation>
+        <translation>Bloqués (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation>Bloqué en envoi (0)</translation>
+        <translation>Bloqués en envoi (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
@@ -2456,11 +2464,11 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation>Stoppé (0)</translation>
+        <translation>Arrêtés (0)</translation>
     </message>
     <message>
         <source>Stopped (%1)</source>
-        <translation>Stoppé (%1)</translation>
+        <translation>Arrêtés (%1)</translation>
     </message>
     <message>
         <source>Running (0)</source>
@@ -2533,7 +2541,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Terminé le</translation>
+        <translation>Complété le</translation>
     </message>
     <message>
         <source>Tracker</source>
@@ -2587,7 +2595,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>Completed</source>
         <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation>Terminé</translation>
+        <translation>Complété</translation>
     </message>
     <message>
         <source>Ratio Limit</source>
@@ -2777,7 +2785,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Completed</source>
-        <translation>Terminé</translation>
+        <translation>Complété</translation>
     </message>
     <message>
         <source>Moving</source>
@@ -3469,7 +3477,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation>Stopper les torrents</translation>
+        <translation>Arrêter les torrents</translation>
     </message>
 </context>
 <context>
@@ -3984,7 +3992,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Add Stopped:</source>
-        <translation>Ajouter stoppé :</translation>
+        <translation>Ajouter arrêté :</translation>
     </message>
 </context>
 <context>
@@ -4007,7 +4015,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation>Stopper les torrents</translation>
+        <translation>Arrêter les torrents</translation>
     </message>
 </context>
 <context>

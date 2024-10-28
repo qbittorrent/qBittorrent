@@ -1862,6 +1862,14 @@ Ciò può essere utile se l'utente non è interessato all'anonimizzazione di I2P
         <source>Use Category paths in Manual Mode</source>
         <translation>Usa percorsi categorie in modalità manuale</translation>
     </message>
+    <message>
+        <source>Ignore SSL errors:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Simple pread/pwrite</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>

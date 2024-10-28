@@ -1859,6 +1859,14 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <source>Use Category paths in Manual Mode</source>
         <translation>手動モードでカテゴリーのパスを使用する</translation>
     </message>
+    <message>
+        <source>Ignore SSL errors:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Simple pread/pwrite</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>

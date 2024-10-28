@@ -114,11 +114,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>토렌트 시작</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>토렌트 정지</translation>
     </message>
 </context>
 <context>
@@ -1809,7 +1809,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Same host request delay:</source>
-        <translation type="unfinished" />
+        <translation>동일 호스트 요청 지연 시간:</translation>
     </message>
     <message>
         <source>Customize application instance name:</source>
@@ -1817,7 +1817,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Send test email</source>
-        <translation type="unfinished" />
+        <translation>테스트 이메일 보내기</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
@@ -1829,11 +1829,11 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>토렌트 정지</translation>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
+        <translation>쓰레기통으로 파일 이동 (가능한 경우)</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
@@ -1841,7 +1841,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Delete files permanently</source>
-        <translation type="unfinished" />
+        <translation>파일 영구적 삭제</translation>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
@@ -1858,6 +1858,14 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <source>Use Category paths in Manual Mode</source>
         <translation>수동 모드에서 범주 경로 사용</translation>
+    </message>
+    <message>
+        <source>Ignore SSL errors:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Simple pread/pwrite</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2225,7 +2233,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>인지도:</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
@@ -2241,7 +2249,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>비공개:</translation>
     </message>
 </context>
 <context>
@@ -2453,19 +2461,19 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <translation>실행 중 (%1)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>정지됨 (0)</translation>
     </message>
     <message>
         <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <translation>정지됨 (%1)</translation>
     </message>
     <message>
         <source>Running (0)</source>
-        <translation type="unfinished" />
+        <translation>실행 중 (0)</translation>
     </message>
 </context>
 <context>
@@ -2620,7 +2628,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
+        <translation>인지도</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -2640,7 +2648,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>비공개</translation>
     </message>
 </context>
 <context>
@@ -3111,7 +3119,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation type="unfinished" />
+        <translation>내용 파일 또한 제거</translation>
     </message>
 </context>
 <context>
@@ -3466,11 +3474,11 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>토렌트 시작</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>토렌트 정지</translation>
     </message>
 </context>
 <context>
@@ -4004,11 +4012,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>토렌트 시작</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>토렌트 정지</translation>
     </message>
 </context>
 <context>

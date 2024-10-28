@@ -616,15 +616,15 @@
     </message>
     <message>
         <source>Start All</source>
-        <translation type="unfinished" />
+        <translation>Zaženi vse</translation>
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
+        <translation>Ustavi vse</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Zaženi</translation>
     </message>
 </context>
 <context>
@@ -1009,7 +1009,7 @@
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
-        <translation type="unfinished" />
+        <translation>Po tem izbriši datoteke .torrent</translation>
     </message>
     <message>
         <source>Download rate threshold:</source>
@@ -1053,7 +1053,7 @@
     </message>
     <message>
         <source>0 means unlimited</source>
-        <translation type="unfinished" />
+        <translation>0 pomeni brez omejitve</translation>
     </message>
     <message>
         <source>Relocate torrent</source>
@@ -1077,7 +1077,7 @@
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished" />
+        <translation>sekund</translation>
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
@@ -1859,6 +1859,14 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <source>Use Category paths in Manual Mode</source>
         <translation>Uporabi poti kategorij v ročnem načinu</translation>
     </message>
+    <message>
+        <source>Ignore SSL errors:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Simple pread/pwrite</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2217,7 +2225,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished" />
+        <translation>Razlikuj velike in male črke</translation>
     </message>
     <message>
         <source>Match all occurrences</source>
@@ -2225,11 +2233,11 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>Priljubljenost:</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation type="unfinished" />
+        <translation>Razmerje/časom dejavnosti (v mesecih) – pove, kako pogosto se torrent prejema</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -2241,7 +2249,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>Zaseben:</translation>
     </message>
 </context>
 <context>
@@ -2453,19 +2461,19 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <translation>Zagnani (%1)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>Ustavljeni (0)</translation>
     </message>
     <message>
         <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <translation>Ustavljeni (%1)</translation>
     </message>
     <message>
         <source>Running (0)</source>
-        <translation type="unfinished" />
+        <translation>Zagnani (0)</translation>
     </message>
 </context>
 <context>
@@ -2620,7 +2628,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
+        <translation>Priljubljenost</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -2640,7 +2648,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Zaseben</translation>
     </message>
 </context>
 <context>
@@ -2982,7 +2990,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Edit Category</source>
-        <translation type="unfinished" />
+        <translation>Uredi kategorijo</translation>
     </message>
     <message>
         <source>Save path</source>
@@ -3038,7 +3046,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Export .torrent</source>
-        <translation type="unfinished" />
+        <translation>Izvozi .torrent</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -3046,7 +3054,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Rename Files...</source>
-        <translation type="unfinished" />
+        <translation>Preimenuj datoteke ...</translation>
     </message>
     <message>
         <source>Renaming</source>
@@ -3054,7 +3062,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Komentar</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -3066,7 +3074,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Zaženi</translation>
     </message>
 </context>
 <context>
