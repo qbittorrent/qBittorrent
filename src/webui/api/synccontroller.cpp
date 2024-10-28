@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,8 +27,6 @@
  */
 
 #include "synccontroller.h"
-
-#include <algorithm>
 
 #include <QJsonArray>
 #include <QJsonObject>
@@ -119,9 +117,9 @@ namespace
     const QString KEY_FULL_UPDATE = u"full_update"_s;
     const QString KEY_RESPONSE_ID = u"rid"_s;
 
-    void processMap(const QVariantMap &prevData, const QVariantMap &data, QVariantMap &syncData);
-    void processHash(QVariantHash prevData, const QVariantHash &data, QVariantMap &syncData, QVariantList &removedItems);
-    void processList(QVariantList prevData, const QVariantList &data, QVariantList &syncData, QVariantList &removedItems);
+    QVariantMap processMap(const QVariantMap &prevData, const QVariantMap &data);
+    std::pair<QVariantMap, QVariantList> processHash(QVariantHash prevData, const QVariantHash &data);
+    std::pair<QVariantList, QVariantList> processList(QVariantList prevData, const QVariantList &data);
     QJsonObject generateSyncData(int acceptedResponseId, const QVariantMap &data, QVariantMap &lastAcceptedData, QVariantMap &lastData);
 
     QVariantMap getTransferInfo()
@@ -171,31 +169,28 @@ namespace
 
     // Compare two structures (prevData, data) and calculate difference (syncData).
     // Structures encoded as map.
-    void processMap(const QVariantMap &prevData, const QVariantMap &data, QVariantMap &syncData)
+    QVariantMap processMap(const QVariantMap &prevData, const QVariantMap &data)
     {
         // initialize output variable
-        syncData.clear();
+        QVariantMap syncData;
 
         for (auto i = data.cbegin(); i != data.cend(); ++i)
         {
             const QString &key = i.key();
             const QVariant &value = i.value();
-            QVariantList removedItems;
 
             switch (value.userType())
             {
             case QMetaType::QVariantMap:
                 {
-                    QVariantMap map;
-                    processMap(prevData[key].toMap(), value.toMap(), map);
+                    const QVariantMap map = processMap(prevData[key].toMap(), value.toMap());
                     if (!map.isEmpty())
                         syncData[key] = map;
                 }
                 break;
             case QMetaType::QVariantHash:
                 {
-                    QVariantMap map;
-                    processHash(prevData[key].toHash(), value.toHash(), map, removedItems);
+                    const auto [map, removedItems] = processHash(prevData[key].toHash(), value.toHash());
                     if (!map.isEmpty())
                         syncData[key] = map;
                     if (!removedItems.isEmpty())
@@ -204,8 +199,7 @@ namespace
                 break;
             case QMetaType::QVariantList:
                 {
-                    QVariantList list;
-                    processList(prevData[key].toList(), value.toList(), list, removedItems);
+                    const auto [list, removedItems] = processList(prevData[key].toList(), value.toList());
                     if (!list.isEmpty())
                         syncData[key] = list;
                     if (!removedItems.isEmpty())
@@ -228,21 +222,22 @@ namespace
                 break;
             default:
                 Q_ASSERT_X(false, "processMap"
-                           , u"Unexpected type: %1"_s
-                           .arg(QString::fromLatin1(value.metaType().name()))
-                           .toUtf8().constData());
+                        , u"Unexpected type: %1"_s.arg(QString::fromLatin1(value.metaType().name()))
+                                .toUtf8().constData());
             }
         }
+
+        return syncData;
     }
 
     // Compare two lists of structures (prevData, data) and calculate difference (syncData, removedItems).
     // Structures encoded as map.
     // Lists are encoded as hash table (indexed by structure key value) to improve ease of searching for removed items.
-    void processHash(QVariantHash prevData, const QVariantHash &data, QVariantMap &syncData, QVariantList &removedItems)
+    std::pair<QVariantMap, QVariantList> processHash(QVariantHash prevData, const QVariantHash &data)
     {
         // initialize output variables
-        syncData.clear();
-        removedItems.clear();
+        std::pair<QVariantMap, QVariantList> result;
+        auto &[syncData, removedItems] = result;
 
         if (prevData.isEmpty())
         {
@@ -264,8 +259,7 @@ namespace
                     }
                     else
                     {
-                        QVariantMap map;
-                        processMap(prevData[i.key()].toMap(), i.value().toMap(), map);
+                        const QVariantMap map = processMap(prevData[i.key()].toMap(), i.value().toMap());
                         // existing list item found - remove it from prevData
                         prevData.remove(i.key());
                         if (!map.isEmpty())
@@ -283,9 +277,7 @@ namespace
                     }
                     else
                     {
-                        QVariantList list;
-                        QVariantList removedList;
-                        processList(prevData[i.key()].toList(), i.value().toList(), list, removedList);
+                        const auto [list, removedList] = processList(prevData[i.key()].toList(), i.value().toList());
                         // existing list item found - remove it from prevData
                         prevData.remove(i.key());
                         if (!list.isEmpty() || !removedList.isEmpty())
@@ -309,14 +301,16 @@ namespace
                     removedItems << i.key();
             }
         }
+
+        return result;
     }
 
     // Compare two lists of simple value (prevData, data) and calculate difference (syncData, removedItems).
-    void processList(QVariantList prevData, const QVariantList &data, QVariantList &syncData, QVariantList &removedItems)
+    std::pair<QVariantList, QVariantList> processList(QVariantList prevData, const QVariantList &data)
     {
         // initialize output variables
-        syncData.clear();
-        removedItems.clear();
+        std::pair<QVariantList, QVariantList> result;
+        auto &[syncData, removedItems] = result;
 
         if (prevData.isEmpty())
         {
@@ -346,6 +340,8 @@ namespace
                 removedItems = prevData;
             }
         }
+
+        return result;
     }
 
     QJsonObject generateSyncData(int acceptedResponseId, const QVariantMap &data, QVariantMap &lastAcceptedData, QVariantMap &lastData)
@@ -373,7 +369,7 @@ namespace
         }
         else
         {
-            processMap(lastAcceptedData, data, syncData);
+            syncData = processMap(lastAcceptedData, data);
         }
 
         const int responseId = (lastResponseId % 1000000) + 1;  // cycle between 1 and 1000000
@@ -595,8 +591,11 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
         category.insert(u"name"_s, categoryName);
 
         auto &categorySnapshot = m_maindataSnapshot.categories[categoryName];
-        processMap(categorySnapshot, category, m_maindataSyncBuf.categories[categoryName]);
-        categorySnapshot = category;
+        if (const QVariantMap syncData = processMap(categorySnapshot, category); !syncData.isEmpty())
+        {
+            m_maindataSyncBuf.categories[categoryName] = syncData;
+            categorySnapshot = category;
+        }
     }
     m_updatedCategories.clear();
 
@@ -630,8 +629,12 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
         serializedTorrent.remove(KEY_TORRENT_ID);
 
         auto &torrentSnapshot = m_maindataSnapshot.torrents[torrentID.toString()];
-        processMap(torrentSnapshot, serializedTorrent, m_maindataSyncBuf.torrents[torrentID.toString()]);
-        torrentSnapshot = serializedTorrent;
+
+        if (const QVariantMap syncData = processMap(torrentSnapshot, serializedTorrent); !syncData.isEmpty())
+        {
+            m_maindataSyncBuf.torrents[torrentID.toString()] = syncData;
+            torrentSnapshot = serializedTorrent;
+        }
     }
     m_updatedTorrents.clear();
 
@@ -668,8 +671,11 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
     serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
     serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = session->refreshInterval();
     serverState[KEY_SYNC_MAINDATA_USE_SUBCATEGORIES] = session->isSubcategoriesEnabled();
-    processMap(m_maindataSnapshot.serverState, serverState, m_maindataSyncBuf.serverState);
-    m_maindataSnapshot.serverState = serverState;
+    if (const QVariantMap syncData = processMap(m_maindataSnapshot.serverState, serverState); !syncData.isEmpty())
+    {
+        m_maindataSyncBuf.serverState = syncData;
+        m_maindataSnapshot.serverState = serverState;
+    }
 
     QJsonObject syncData;
     syncData[KEY_RESPONSE_ID] = id;
