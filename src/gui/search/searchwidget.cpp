@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2020, Will Da Silva <will@willdasilva.xyz>
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -120,6 +120,7 @@ SearchWidget::SearchWidget(IGUIApplication *app, MainWindow *mainWindow)
 #endif
     connect(m_ui->tabWidget, &QTabWidget::tabCloseRequested, this, &SearchWidget::closeTab);
     connect(m_ui->tabWidget, &QTabWidget::currentChanged, this, &SearchWidget::tabChanged);
+    connect(m_ui->tabWidget->tabBar(), &QTabBar::tabMoved, this, &SearchWidget::tabMoved);
 
     const auto *searchManager = SearchPluginManager::instance();
     const auto onPluginChanged = [this]()
@@ -260,6 +261,11 @@ void SearchWidget::tabChanged(const int index)
     // when we switch from a tab that is not empty to another that is empty
     // the download button doesn't have to be available
     m_currentSearchTab = ((index < 0) ? nullptr : m_allTabs.at(m_ui->tabWidget->currentIndex()));
+}
+
+void SearchWidget::tabMoved(const int from, const int to)
+{
+    m_allTabs.move(from, to);
 }
 
 void SearchWidget::selectMultipleBox([[maybe_unused]] const int index)
