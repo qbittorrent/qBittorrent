@@ -155,6 +155,7 @@ let toggleFilterDisplay = function() {};
 window.addEventListener("DOMContentLoaded", () => {
     let isSearchPanelLoaded = false;
     let isLogPanelLoaded = false;
+    let isRssPanelLoaded = false;
 
     const saveColumnSizes = function() {
         const filters_width = $("Filters").getSize().x;
@@ -1274,6 +1275,16 @@ window.addEventListener("DOMContentLoaded", () => {
         let rssTabInitialized = false;
 
         return () => {
+            // we must wait until the panel is fully loaded before proceeding.
+            // this include's the panel's custom js, which is loaded via MochaUI.Panel's 'require' field.
+            // MochaUI loads these files asynchronously and thus all required libs may not be available immediately
+            if (!isRssPanelLoaded) {
+                setTimeout(() => {
+                    showRssTab();
+                }, 100);
+                return;
+            }
+
             if (!rssTabInitialized) {
                 window.qBittorrent.Rss.init();
                 rssTabInitialized = true;
@@ -1374,6 +1385,9 @@ window.addEventListener("DOMContentLoaded", () => {
             },
             loadMethod: "xhr",
             contentURL: "views/rss.html",
+            onContentLoaded: () => {
+                isRssPanelLoaded = true;
+            },
             content: "",
             column: "rssTabColumn",
             height: null
