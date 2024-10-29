@@ -2,7 +2,8 @@
 Description=qBittorrent-nox service for user %I
 Documentation=man:qbittorrent-nox(1)
 Wants=network-online.target
-After=local-fs.target network-online.target nss-lookup.target
+After=network-online.target nss-lookup.target
+Requires=local-fs.target
 
 [Service]
 Type=simple
