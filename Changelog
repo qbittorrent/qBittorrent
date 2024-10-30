@@ -1,5 +1,25 @@
 Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.1.0
 
+Mon Oct 28th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.1
+    - FEATURE: Add "Simple pread/pwrite" disk IO type (Hanabishi)
+    - BUGFIX: Don't ignore SSL errors (sledgehammer999)
+    - BUGFIX: Don't try to apply Mark-of-the-Web to nonexistent files (glassez)
+    - BUGFIX: Disable "Move to trash" option by default (glassez)
+    - BUGFIX: Disable the ability to create torrents with a piece size of 256MiB (stalkerok)
+    - BUGFIX: Allow to choose Qt style (glassez)
+    - BUGFIX: Always notify user about duplicate torrent (glassez)
+    - BUGFIX: Correctly handle "torrent finished after move" event (glassez)
+    - BUGFIX: Correctly apply filename filter when `!qB` extension is enabled (glassez)
+    - BUGFIX: Improve color scheme change detection (glassez)
+    - BUGFIX: Fix button state for SSL certificate check (Chocobo1)
+    - WEBUI: Fix CSS that results in hidden torrent list in some browsers (skomerko)
+    - WEBUI: Use proper text color to highlight items in all filter lists (skomerko)
+    - WEBUI: Fix 'rename files' dialog cannot be opened more than once (Chocobo1)
+    - WEBUI: Fix UI of Advanced Settings to show all settings (glassez)
+    - WEBUI: Free resources allocated by web session once it is destructed (dyseg)
+    - SEARCH: Import correct libraries (Chocobo1)
+    - OTHER: Sync flag icons with upstream (xavier2k6)
+
 Sun Sep 29th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - FEATURE: Support creating .torrent with larger piece size (Chocobo1)
     - FEATURE: Improve tracker entries handling (glassez)
@@ -85,6 +105,42 @@ Sun Sep 29th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.0
     - OTHER: Drop support for Qt5, qmake, autotools, Windows < 10, Windows 32-bit
     - OTHER: Minimum supported versions: Qt: 6.5, Boost: 1.76, OpenSSL: 3.0.2
     - OTHER: Switch to C++20
+
+Mon Sep 16th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.7
+    - BUGFIX: The updater will launch the link to the build variant you're currently using (sledgehammer999)
+    - BUGFIX: Focus on Download button if torrent link retrieved from the clipboard (glassez)
+    - WEBUI: RSS: The list of feeds wouldn't load for Apply Rule (glassez)
+
+Sun Aug 18th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.6
+    - BUGFIX: Fix handling of tags containing '&' character (glassez)
+    - BUGFIX: Show scroll bar in Torrent Tags dialog (glassez)
+    - BUGFIX: Apply bulk changes to correct content widget items (glassez)
+    - BUGFIX: Hide zero status filters when torrents are removed (glassez)
+    - BUGFIX: Fix `Incomplete Save Path` cannot be changed for torrents without metadata (glassez)
+    - WEBUI: Correctly apply changed "save path" of RSS rules (glassez)
+    - WEBUI: Clear tracker list on full update (skomerko)
+    - OTHER: Update User-Agent string for internal downloader and search engines (cayenne17)
+
+Sun May 26th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.5
+    - BUGFIX: Prevent app from being closed when disabling system tray icon (glassez)
+    - BUGFIX: Fix <kbd>Enter</kbd> key behavior in Add new torrent dialog (glassez)
+    - BUGFIX: Prevent invalid status filter index from being used (glassez)
+    - BUGFIX: Add extra offset for dialog frame (glassez)
+    - BUGFIX: Don't overwrite stored layout of main window with incorrect one (glassez)
+    - BUGFIX: Don't forget to resume "missing files" torrent when rechecking (glassez)
+    - WEBUI: Restore ability to use server-side translation by custom WebUI (glassez)
+    - WEBUI: Fix wrong peer number (Chocobo1)
+    - LINUX: Improve AppStream metadata (Chocobo1)
+
+Sun Mar 24th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.4
+    - BUGFIX: Correctly adjust "Add New torrent" dialog position in all the cases (glassez)
+    - BUGFIX: Change "metadata received" stop condition behavior (glassez)
+    - BUGFIX: Add a small delay before processing the key input of search boxes (Chocobo1)
+    - BUGFIX: Ensure the profile path is pointing to a directory (Chocobo1)
+    - RSS: Use better icons for RSS articles (glassez)
+    - WINDOWS: NSIS: Update French, Hungarian translations (MarcDrieu, foxi69)
+    - LINUX: Fix sorting when ICU isn't used (Chocobo1)
+    - LINUX: Fix invisible tray icon on Plasma 6 (tehcneko)
 
 Mon Jan 15th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.6.3
     - BUGFIX: Correctly update number of filtered items (glassez)
