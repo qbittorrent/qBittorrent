@@ -37,8 +37,9 @@
 
 #include <QtLogging>
 #include <QNetworkProxy>
+#include <QSslCertificate>
 #include <QSslCipher>
-#include <QSslConfiguration>
+#include <QSslKey>
 #include <QSslSocket>
 #include <QStringList>
 #include <QTimer>
@@ -100,13 +101,12 @@ using namespace Http;
 Server::Server(IRequestHandler *requestHandler, QObject *parent)
     : QTcpServer(parent)
     , m_requestHandler(requestHandler)
+    , m_sslConfig {QSslConfiguration::defaultConfiguration()}
 {
     setProxy(QNetworkProxy::NoProxy);
 
-    QSslConfiguration sslConf {QSslConfiguration::defaultConfiguration()};
-    sslConf.setProtocol(QSsl::TlsV1_2OrLater);
-    sslConf.setCiphers(safeCipherList());
-    QSslConfiguration::setDefaultConfiguration(sslConf);
+    m_sslConfig.setCiphers(safeCipherList());
+    m_sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
 
     auto *dropConnectionTimer = new QTimer(this);
     connect(dropConnectionTimer, &QTimer::timeout, this, &Server::dropTimedOutConnection);
@@ -115,7 +115,7 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
 
 void Server::incomingConnection(const qintptr socketDescriptor)
 {
-    std::unique_ptr<QTcpSocket> serverSocket = m_https ? std::make_unique<QSslSocket>(this) : std::make_unique<QTcpSocket>(this);
+    std::unique_ptr<QTcpSocket> serverSocket = isHttps() ? std::make_unique<QSslSocket>(this) : std::make_unique<QTcpSocket>(this);
     if (!serverSocket->setSocketDescriptor(socketDescriptor))
         return;
 
@@ -127,13 +127,10 @@ void Server::incomingConnection(const qintptr socketDescriptor)
 
     try
     {
-        if (m_https)
+        if (isHttps())
         {
             auto *sslSocket = static_cast<QSslSocket *>(serverSocket.get());
-            sslSocket->setProtocol(QSsl::SecureProtocols);
-            sslSocket->setPrivateKey(m_key);
-            sslSocket->setLocalCertificateChain(m_certificates);
-            sslSocket->setPeerVerifyMode(QSslSocket::VerifyNone);
+            sslSocket->setSslConfiguration(m_sslConfig);
             sslSocket->startServerEncryption();
         }
 
@@ -178,17 +175,17 @@ bool Server::setupHttps(const QByteArray &certificates, const QByteArray &privat
         return false;
     }
 
-    m_key = key;
-    m_certificates = certs;
+    m_sslConfig.setLocalCertificateChain(certs);
+    m_sslConfig.setPrivateKey(key);
     m_https = true;
     return true;
 }
 
 void Server::disableHttps()
 {
+    m_sslConfig.setLocalCertificateChain({});
+    m_sslConfig.setPrivateKey({});
     m_https = false;
-    m_certificates.clear();
-    m_key.clear();
 }
 
 bool Server::isHttps() const
