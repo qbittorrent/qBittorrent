@@ -36,7 +36,7 @@
                         hash: hash,
                         urls: $("urls").value.split("\n").map(w => encodeURIComponent(w.trim())).filter(w => (w.length > 0)).join("|")
                     },
-                    onComplete: function() {
+                    onComplete: () => {
                         window.parent.qBittorrent.Client.closeWindows();
                     }
                 }).send();

@@ -105,7 +105,7 @@ window.qBittorrent.Search ??= (() => {
         }
     });
 
-    const init = function() {
+    const init = () => {
         // load "Search in" preference from local storage
         $("searchInTorrentName").value = (LocalPreferences.get("search_in_filter") === "names") ? "names" : "everywhere";
         const searchResultsTableContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
@@ -166,15 +166,15 @@ window.qBittorrent.Search ??= (() => {
             createSearchTab(id, pattern);
     };
 
-    const numSearchTabs = function() {
+    const numSearchTabs = () => {
         return $("searchTabs").getElements("li").length;
     };
 
-    const getSearchIdFromTab = function(tab) {
+    const getSearchIdFromTab = (tab) => {
         return Number(tab.id.substring(searchTabIdPrefix.length));
     };
 
-    const createSearchTab = function(searchId, pattern) {
+    const createSearchTab = (searchId, pattern) => {
         const newTabId = `${searchTabIdPrefix}${searchId}`;
         const tabElem = new Element("a", {
             text: pattern,
@@ -233,7 +233,7 @@ window.qBittorrent.Search ??= (() => {
         updateSearchResultsData(searchId);
     };
 
-    const closeSearchTab = function(el) {
+    const closeSearchTab = (el) => {
         const tab = el.closest("li.searchTab");
         if (!tab)
             return;
@@ -282,7 +282,7 @@ window.qBittorrent.Search ??= (() => {
         }
     };
 
-    const saveCurrentTabState = function() {
+    const saveCurrentTabState = () => {
         const currentSearchId = getSelectedSearchId();
         if (!currentSearchId)
             return;
@@ -313,7 +313,7 @@ window.qBittorrent.Search ??= (() => {
         state.selectedRowIds = [...searchResultsTable.selectedRows];
     };
 
-    const setActiveTab = function(tab) {
+    const setActiveTab = (tab) => {
         const searchId = getSearchIdFromTab(tab);
         if (searchId === getSelectedSearchId())
             return;
@@ -377,7 +377,7 @@ window.qBittorrent.Search ??= (() => {
         setupSearchTableEvents(true);
     };
 
-    const getStatusIconElement = function(text, image) {
+    const getStatusIconElement = (text, image) => {
         return new Element("img", {
             alt: text,
             title: text,
@@ -388,7 +388,7 @@ window.qBittorrent.Search ??= (() => {
         });
     };
 
-    const updateStatusIconElement = function(searchId, text, image) {
+    const updateStatusIconElement = (searchId, text, image) => {
         const searchTab = $(`${searchTabIdPrefix}${searchId}`);
         if (searchTab) {
             const statusIcon = searchTab.getElement(".statusIcon");
@@ -398,7 +398,7 @@ window.qBittorrent.Search ??= (() => {
         }
     };
 
-    const startSearch = function(pattern, category, plugins) {
+    const startSearch = (pattern, category, plugins) => {
         searchPatternChanged = false;
 
         const url = new URI("api/v2/search/start");
@@ -422,7 +422,7 @@ window.qBittorrent.Search ??= (() => {
         }).send();
     };
 
-    const stopSearch = function(searchId) {
+    const stopSearch = (searchId) => {
         const url = new URI("api/v2/search/stop");
         new Request({
             url: url,
@@ -430,7 +430,7 @@ window.qBittorrent.Search ??= (() => {
             data: {
                 id: searchId
             },
-            onSuccess: function(response) {
+            onSuccess: (response) => {
                 resetSearchState(searchId);
                 // not strictly necessary to do this when the tab is being closed, but there's no harm in it
                 updateStatusIconElement(searchId, "QBT_TR(Search aborted)QBT_TR[CONTEXT=SearchJobWidget]", "images/task-reject.svg");
@@ -438,12 +438,12 @@ window.qBittorrent.Search ??= (() => {
         }).send();
     };
 
-    const getSelectedSearchId = function() {
+    const getSelectedSearchId = () => {
         const selectedTab = $("searchTabs").getElement("li.selected");
         return selectedTab ? getSearchIdFromTab(selectedTab) : null;
     };
 
-    const startStopSearch = function() {
+    const startStopSearch = () => {
         const currentSearchId = getSelectedSearchId();
         const state = searchState.get(currentSearchId);
         const isSearchRunning = state && state.running;
@@ -463,12 +463,12 @@ window.qBittorrent.Search ??= (() => {
         }
     };
 
-    const openSearchTorrentDescriptionUrl = function() {
+    const openSearchTorrentDescriptionUrl = () => {
         for (const rowID of searchResultsTable.selectedRowsIds())
             window.open(searchResultsTable.getRow(rowID).full_data.descrLink, "_blank");
     };
 
-    const copySearchTorrentName = function() {
+    const copySearchTorrentName = () => {
         const names = [];
         searchResultsTable.selectedRowsIds().each((rowId) => {
             names.push(searchResultsTable.getRow(rowId).full_data.fileName);
@@ -476,7 +476,7 @@ window.qBittorrent.Search ??= (() => {
         return names.join("\n");
     };
 
-    const copySearchTorrentDownloadLink = function() {
+    const copySearchTorrentDownloadLink = () => {
         const urls = [];
         searchResultsTable.selectedRowsIds().each((rowId) => {
             urls.push(searchResultsTable.getRow(rowId).full_data.fileUrl);
@@ -484,7 +484,7 @@ window.qBittorrent.Search ??= (() => {
         return urls.join("\n");
     };
 
-    const copySearchTorrentDescriptionUrl = function() {
+    const copySearchTorrentDescriptionUrl = () => {
         const urls = [];
         searchResultsTable.selectedRowsIds().each((rowId) => {
             urls.push(searchResultsTable.getRow(rowId).full_data.descrLink);
@@ -492,7 +492,7 @@ window.qBittorrent.Search ??= (() => {
         return urls.join("\n");
     };
 
-    const downloadSearchTorrent = function() {
+    const downloadSearchTorrent = () => {
         const urls = [];
         for (const rowID of searchResultsTable.selectedRowsIds())
             urls.push(searchResultsTable.getRow(rowID).full_data.fileUrl);
@@ -504,7 +504,7 @@ window.qBittorrent.Search ??= (() => {
         showDownloadPage(urls);
     };
 
-    const manageSearchPlugins = function() {
+    const manageSearchPlugins = () => {
         const id = "searchPlugins";
         if (!$(id)) {
             new MochaUI.Window({
@@ -522,10 +522,10 @@ window.qBittorrent.Search ??= (() => {
                 onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                     saveWindowSize(id);
                 }),
-                onBeforeBuild: function() {
+                onBeforeBuild: () => {
                     loadSearchPlugins();
                 },
-                onClose: function() {
+                onClose: () => {
                     clearTimeout(loadSearchPluginsTimer);
                     loadSearchPluginsTimer = -1;
                 }
@@ -533,12 +533,12 @@ window.qBittorrent.Search ??= (() => {
         }
     };
 
-    const loadSearchPlugins = function() {
+    const loadSearchPlugins = () => {
         getPlugins();
         loadSearchPluginsTimer = loadSearchPlugins.delay(2000);
     };
 
-    const onSearchPatternChanged = function() {
+    const onSearchPatternChanged = () => {
         const currentSearchId = getSelectedSearchId();
         const state = searchState.get(currentSearchId);
         const currentSearchPattern = $("searchPattern").value.trim();
@@ -553,11 +553,11 @@ window.qBittorrent.Search ??= (() => {
         }
     };
 
-    const categorySelected = function() {
+    const categorySelected = () => {
         selectedCategory = $("categorySelect").value;
     };
 
-    const pluginSelected = function() {
+    const pluginSelected = () => {
         selectedPlugin = $("pluginsSelect").value;
 
         if (selectedPlugin !== prevSelectedPlugin) {
@@ -566,7 +566,7 @@ window.qBittorrent.Search ??= (() => {
         }
     };
 
-    const reselectCategory = function() {
+    const reselectCategory = () => {
         for (let i = 0; i < $("categorySelect").options.length; ++i) {
             if ($("categorySelect").options[i].get("value") === selectedCategory)
                 $("categorySelect").options[i].selected = true;
@@ -575,7 +575,7 @@ window.qBittorrent.Search ??= (() => {
         categorySelected();
     };
 
-    const reselectPlugin = function() {
+    const reselectPlugin = () => {
         for (let i = 0; i < $("pluginsSelect").options.length; ++i) {
             if ($("pluginsSelect").options[i].get("value") === selectedPlugin)
                 $("pluginsSelect").options[i].selected = true;
@@ -584,7 +584,7 @@ window.qBittorrent.Search ??= (() => {
         pluginSelected();
     };
 
-    const resetSearchState = function(searchId) {
+    const resetSearchState = (searchId) => {
         document.getElementById("startSearchButton").lastChild.textContent = "QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]";
         const state = searchState.get(searchId);
         if (state) {
@@ -642,7 +642,7 @@ window.qBittorrent.Search ??= (() => {
         reselectCategory();
     };
 
-    const getPlugins = function() {
+    const getPlugins = () => {
         new Request.JSON({
             url: new URI("api/v2/search/plugins"),
             method: "get",
@@ -706,7 +706,7 @@ window.qBittorrent.Search ??= (() => {
         }).send();
     };
 
-    const getPlugin = function(name) {
+    const getPlugin = (name) => {
         for (let i = 0; i < searchPlugins.length; ++i) {
             if (searchPlugins[i].name === name)
                 return searchPlugins[i];
@@ -715,7 +715,7 @@ window.qBittorrent.Search ??= (() => {
         return null;
     };
 
-    const resetFilters = function() {
+    const resetFilters = () => {
         searchText.filterPattern = "";
         $("searchInNameFilter").value = "";
 
@@ -734,23 +734,23 @@ window.qBittorrent.Search ??= (() => {
         $("searchMaxSizePrefix").value = searchSizeFilter.maxUnit;
     };
 
-    const getSearchInTorrentName = function() {
+    const getSearchInTorrentName = () => {
         return ($("searchInTorrentName").value === "names") ? "names" : "everywhere";
     };
 
-    const searchInTorrentName = function() {
+    const searchInTorrentName = () => {
         LocalPreferences.set("search_in_filter", getSearchInTorrentName());
         searchFilterChanged();
     };
 
-    const searchSeedsFilterChanged = function() {
+    const searchSeedsFilterChanged = () => {
         searchSeedsFilter.min = $("searchMinSeedsFilter").value;
         searchSeedsFilter.max = $("searchMaxSeedsFilter").value;
 
         searchFilterChanged();
     };
 
-    const searchSizeFilterChanged = function() {
+    const searchSizeFilterChanged = () => {
         searchSizeFilter.min = $("searchMinSizeFilter").value;
         searchSizeFilter.minUnit = $("searchMinSizePrefix").value;
         searchSizeFilter.max = $("searchMaxSizeFilter").value;
@@ -759,17 +759,17 @@ window.qBittorrent.Search ??= (() => {
         searchFilterChanged();
     };
 
-    const searchSizeFilterPrefixChanged = function() {
+    const searchSizeFilterPrefixChanged = () => {
         if ((Number($("searchMinSizeFilter").value) !== 0) || (Number($("searchMaxSizeFilter").value) !== 0))
             searchSizeFilterChanged();
     };
 
-    const searchFilterChanged = function() {
+    const searchFilterChanged = () => {
         searchResultsTable.updateTable();
         $("numSearchResultsVisible").textContent = searchResultsTable.getFilteredAndSortedRows().length;
     };
 
-    const setupSearchTableEvents = function(enable) {
+    const setupSearchTableEvents = (enable) => {
         const clickHandler = (e) => { downloadSearchTorrent(); };
         if (enable) {
             $$(".searchTableRow").each((target) => {
@@ -881,7 +881,7 @@ window.qBittorrent.Search ??= (() => {
     };
 
     new ClipboardJS(".copySearchDataToClipboard", {
-        text: function(trigger) {
+        text: (trigger) => {
             switch (trigger.id) {
                 case "copySearchTorrentName":
                     return copySearchTorrentName();

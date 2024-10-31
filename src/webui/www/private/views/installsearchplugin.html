@@ -37,7 +37,7 @@
             };
         };
 
-        const setup = function() {
+        const setup = () => {
             new Keyboard({
                 defaultEventType: "keydown",
                 events: {
@@ -58,7 +58,7 @@
             $("newPluginPath").select();
         };
 
-        const newPluginOk = function() {
+        const newPluginOk = () => {
             const path = $("newPluginPath").value.trim();
             if (path) {
                 new Request({
@@ -67,7 +67,7 @@
                     data: {
                         sources: path,
                     },
-                    onRequest: function() {
+                    onRequest: () => {
                         window.qBittorrent.SearchPlugins.closeSearchWindow("installSearchPlugin");
                     }
                 }).send();

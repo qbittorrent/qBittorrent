@@ -93,7 +93,7 @@
             };
         };
 
-        const addCookie = function() {
+        const addCookie = () => {
             const newRow = document.querySelector("#manageCookiesTable tr.newRow").cloneNode(true);
             newRow.querySelector(".removeCookie").addEventListener("click", (event) => {
                 deleteCookie(event.target);
@@ -103,11 +103,11 @@
             return newRow;
         };
 
-        const deleteCookie = function(element) {
+        const deleteCookie = (element) => {
             element.closest("tr").destroy();
         };
 
-        const save = function() {
+        const save = () => {
             const rows = [...document.querySelectorAll("#manageCookiesTable tbody tr")].filter(e => !e.hasClass("invisible"));
             const cookies = rows.map(row => {
                 const expDateValue = row.querySelector("td.expDate input").valueAsNumber;
@@ -142,7 +142,7 @@
             }).send();
         };
 
-        const loadCookies = function() {
+        const loadCookies = () => {
             new Request.JSON({
                 url: "api/v2/app/cookies",
                 method: "get",
@@ -171,7 +171,7 @@
             }).send();
         };
 
-        const setup = function() {
+        const setup = () => {
             loadCookies();
 
             document.querySelector(".addCookie").addEventListener("click", (event) => {

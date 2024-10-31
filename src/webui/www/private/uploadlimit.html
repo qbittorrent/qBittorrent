@@ -32,7 +32,7 @@
         "use strict";
 
         const hashes = new URI().getData("hashes").split("|");
-        const setUpLimit = function() {
+        const setUpLimit = () => {
             const limit = $("uplimitUpdatevalue").value.toInt() * 1024;
             if (hashes[0] === "global") {
                 new Request({
@@ -41,7 +41,7 @@
                     data: {
                         "limit": limit
                     },
-                    onComplete: function() {
+                    onComplete: () => {
                         window.parent.updateMainData();
                         window.parent.qBittorrent.Client.closeWindows();
                     }
@@ -55,7 +55,7 @@
                         "hashes": hashes.join("|"),
                         "limit": limit
                     },
-                    onComplete: function() {
+                    onComplete: () => {
                         window.parent.qBittorrent.Client.closeWindows();
                     }
                 }).send();

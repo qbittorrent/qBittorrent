@@ -29,7 +29,7 @@
 "use strict";
 
 MochaUI.extend({
-    addUpLimitSlider: function(hashes) {
+    addUpLimitSlider: (hashes) => {
         if ($("uplimitSliderarea")) {
             // Get global upload limit
             let maximum = 500;
@@ -37,7 +37,7 @@ MochaUI.extend({
                 url: "api/v2/transfer/uploadLimit",
                 method: "get",
                 data: {},
-                onSuccess: function(data) {
+                onSuccess: (data) => {
                     if (data) {
                         const tmp = data.toInt();
                         if (tmp > 0) {
@@ -61,7 +61,7 @@ MochaUI.extend({
                             steps: maximum,
                             offset: 0,
                             initialStep: up_limit.round(),
-                            onChange: function(pos) {
+                            onChange: (pos) => {
                                 if (pos > 0) {
                                     $("uplimitUpdatevalue").value = pos;
                                     $("upLimitUnit").style.visibility = "visible";
@@ -70,7 +70,7 @@ MochaUI.extend({
                                     $("uplimitUpdatevalue").value = "∞";
                                     $("upLimitUnit").style.visibility = "hidden";
                                 }
-                            }.bind(this)
+                            }
                         });
                         // Set default value
                         if (up_limit === 0) {
@@ -89,7 +89,7 @@ MochaUI.extend({
                             data: {
                                 hashes: hashes.join("|")
                             },
-                            onSuccess: function(data) {
+                            onSuccess: (data) => {
                                 if (data) {
                                     let up_limit = data[hashes[0]];
                                     for (const key in data) {
@@ -104,7 +104,7 @@ MochaUI.extend({
                                         steps: maximum,
                                         offset: 0,
                                         initialStep: (up_limit / 1024.0).round(),
-                                        onChange: function(pos) {
+                                        onChange: (pos) => {
                                             if (pos > 0) {
                                                 $("uplimitUpdatevalue").value = pos;
                                                 $("upLimitUnit").style.visibility = "visible";
@@ -113,7 +113,7 @@ MochaUI.extend({
                                                 $("uplimitUpdatevalue").value = "∞";
                                                 $("upLimitUnit").style.visibility = "hidden";
                                             }
-                                        }.bind(this)
+                                        }
                                     });
                                     // Set default value
                                     if (up_limit === 0) {
@@ -133,7 +133,7 @@ MochaUI.extend({
         }
     },
 
-    addDlLimitSlider: function(hashes) {
+    addDlLimitSlider: (hashes) => {
         if ($("dllimitSliderarea")) {
             // Get global upload limit
             let maximum = 500;
@@ -141,7 +141,7 @@ MochaUI.extend({
                 url: "api/v2/transfer/downloadLimit",
                 method: "get",
                 data: {},
-                onSuccess: function(data) {
+                onSuccess: (data) => {
                     if (data) {
                         const tmp = data.toInt();
                         if (tmp > 0) {
@@ -165,7 +165,7 @@ MochaUI.extend({
                             steps: maximum,
                             offset: 0,
                             initialStep: dl_limit.round(),
-                            onChange: function(pos) {
+                            onChange: (pos) => {
                                 if (pos > 0) {
                                     $("dllimitUpdatevalue").value = pos;
                                     $("dlLimitUnit").style.visibility = "visible";
@@ -174,7 +174,7 @@ MochaUI.extend({
                                     $("dllimitUpdatevalue").value = "∞";
                                     $("dlLimitUnit").style.visibility = "hidden";
                                 }
-                            }.bind(this)
+                            }
                         });
                         // Set default value
                         if (dl_limit === 0) {
@@ -193,7 +193,7 @@ MochaUI.extend({
                             data: {
                                 hashes: hashes.join("|")
                             },
-                            onSuccess: function(data) {
+                            onSuccess: (data) => {
                                 if (data) {
                                     let dl_limit = data[hashes[0]];
                                     for (const key in data) {
@@ -208,7 +208,7 @@ MochaUI.extend({
                                         steps: maximum,
                                         offset: 0,
                                         initialStep: (dl_limit / 1024.0).round(),
-                                        onChange: function(pos) {
+                                        onChange: (pos) => {
                                             if (pos > 0) {
                                                 $("dllimitUpdatevalue").value = pos;
                                                 $("dlLimitUnit").style.visibility = "visible";
@@ -217,7 +217,7 @@ MochaUI.extend({
                                                 $("dllimitUpdatevalue").value = "∞";
                                                 $("dlLimitUnit").style.visibility = "hidden";
                                             }
-                                        }.bind(this)
+                                        }
                                     });
                                     // Set default value
                                     if (dl_limit === 0) {

@@ -35,12 +35,12 @@ window.qBittorrent.Download ??= (() => {
     let categories = {};
     let defaultSavePath = "";
 
-    const getCategories = function() {
+    const getCategories = () => {
         new Request.JSON({
             url: "api/v2/torrents/categories",
             method: "get",
             noCache: true,
-            onSuccess: function(data) {
+            onSuccess: (data) => {
                 if (data) {
                     categories = data;
                     for (const i in data) {
@@ -58,7 +58,7 @@ window.qBittorrent.Download ??= (() => {
         }).send();
     };
 
-    const getPreferences = function() {
+    const getPreferences = () => {
         const pref = window.parent.qBittorrent.Cache.preferences.get();
 
         defaultSavePath = pref.save_path;
@@ -89,7 +89,7 @@ window.qBittorrent.Download ??= (() => {
             $("contentLayout").selectedIndex = 0;
     };
 
-    const changeCategorySelect = function(item) {
+    const changeCategorySelect = (item) => {
         if (item.value === "\\other") {
             item.nextElementSibling.hidden = false;
             item.nextElementSibling.value = "";
@@ -114,7 +114,7 @@ window.qBittorrent.Download ??= (() => {
         }
     };
 
-    const changeTMM = function(item) {
+    const changeTMM = (item) => {
         if (item.selectedIndex === 1) {
             $("savepath").disabled = true;
 

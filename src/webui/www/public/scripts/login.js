@@ -28,7 +28,7 @@
 
 "use strict";
 
-function submitLoginForm(event) {
+const submitLoginForm = (event) => {
     event.preventDefault();
     const errorMsgElement = document.getElementById("error_msg");
 
@@ -56,7 +56,7 @@ function submitLoginForm(event) {
 
     // clear the field
     passwordElement.value = "";
-}
+};
 
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("loginform");

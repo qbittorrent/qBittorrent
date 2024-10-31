@@ -46,10 +46,10 @@
                         hashes: hash,
                         peers: peers.join("|")
                     },
-                    onFailure: function() {
+                    onFailure: () => {
                         alert("QBT_TR(Unable to add peers. Please ensure you are adhering to the IP:port format.)QBT_TR[CONTEXT=HttpServer]");
                     },
-                    onSuccess: function() {
+                    onSuccess: () => {
                         window.parent.qBittorrent.Client.closeWindows();
                     }
                 }).send();

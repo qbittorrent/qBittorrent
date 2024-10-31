@@ -54,7 +54,7 @@
                             hash: hash,
                             name: name
                         },
-                        onComplete: function() {
+                        onComplete: () => {
                             window.parent.qBittorrent.Client.closeWindows();
                         }
                     }).send();

@@ -92,7 +92,7 @@
         let prevOffsetLeft;
         let prevOffsetTop;
 
-        const setup = function() {
+        const setup = () => {
             searchPluginsTable = new window.qBittorrent.DynamicTable.SearchPluginsTable();
             searchPluginsTableContextMenu = new window.qBittorrent.ContextMenu.SearchPluginsTableContextMenu({
                 targets: ".searchPluginsTableRow",
@@ -107,11 +107,11 @@
             updateTable();
         };
 
-        const closeSearchWindow = function(id) {
+        const closeSearchWindow = (id) => {
             window.parent.MochaUI.closeWindow(window.parent.$(id));
         };
 
-        const installPlugin = function(path) {
+        const installPlugin = (path) => {
             new MochaUI.Window({
                 id: "installSearchPlugin",
                 icon: "images/qbittorrent-tray.svg",
@@ -128,7 +128,7 @@
             });
         };
 
-        const uninstallPlugin = function() {
+        const uninstallPlugin = () => {
             const plugins = searchPluginsTable.selectedRowsIds().join("|");
             const url = new URI("api/v2/search/uninstallPlugin");
             new Request({
@@ -140,7 +140,7 @@
             }).send();
         };
 
-        const enablePlugin = function() {
+        const enablePlugin = () => {
             const plugins = searchPluginsTable.selectedRowsIds();
             let enable = true;
             if (plugins && plugins.length)
@@ -157,7 +157,7 @@
             }).send();
         };
 
-        const checkForUpdates = function() {
+        const checkForUpdates = () => {
             const url = new URI("api/v2/search/updatePlugins");
             new Request({
                 url: url,
@@ -165,7 +165,7 @@
             }).send();
         };
 
-        const calculateContextMenuOffsets = function() {
+        const calculateContextMenuOffsets = () => {
             prevOffsetLeft = document.getElementById("searchPlugins").getBoundingClientRect().left;
             prevOffsetTop = document.getElementById("searchPlugins").getBoundingClientRect().top;
 
@@ -175,13 +175,13 @@
             };
         };
 
-        const updateSearchPluginsTableContextMenuOffset = function() {
+        const updateSearchPluginsTableContextMenuOffset = () => {
             // only re-calculate if window has moved
             if ((prevOffsetLeft !== document.getElementById("searchPlugins").getBoundingClientRect().left) || (prevOffsetTop !== document.getElementById("searchPlugins").getBoundingClientRect().top))
                 searchPluginsTableContextMenu.options.offsets = calculateContextMenuOffsets();
         };
 
-        const setupSearchPluginTableEvents = function(enable) {
+        const setupSearchPluginTableEvents = (enable) => {
             const clickHandler = (e) => { enablePlugin(); };
             const menuHandler = (e) => { updateSearchPluginsTableContextMenuOffset(); };
             if (enable) {
@@ -198,7 +198,7 @@
             }
         };
 
-        const updateTable = function() {
+        const updateTable = () => {
             // clear event listeners
             setupSearchPluginTableEvents(false);
 

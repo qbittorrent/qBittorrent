@@ -42,7 +42,7 @@ window.qBittorrent.PropTrackers ??= (() => {
     const torrentTrackersTable = new window.qBittorrent.DynamicTable.TorrentTrackersTable();
     let loadTrackersDataTimer = -1;
 
-    const loadTrackersData = function() {
+    const loadTrackersData = () => {
         if ($("propTrackers").hasClass("invisible")
             || $("propertiesPanel_collapseToggle").hasClass("panel-expand")) {
             // Tab changed, don't do anything
@@ -63,11 +63,11 @@ window.qBittorrent.PropTrackers ??= (() => {
             url: url,
             method: "get",
             noCache: true,
-            onComplete: function() {
+            onComplete: () => {
                 clearTimeout(loadTrackersDataTimer);
                 loadTrackersDataTimer = loadTrackersData.delay(10000);
             },
-            onSuccess: function(trackers) {
+            onSuccess: (trackers) => {
                 const selectedTrackers = torrentTrackersTable.selectedRowsIds();
                 torrentTrackersTable.clear();
 
@@ -117,7 +117,7 @@ window.qBittorrent.PropTrackers ??= (() => {
         }).send();
     };
 
-    const updateData = function() {
+    const updateData = () => {
         clearTimeout(loadTrackersDataTimer);
         loadTrackersDataTimer = -1;
         loadTrackersData();
@@ -127,15 +127,15 @@ window.qBittorrent.PropTrackers ??= (() => {
         targets: "#torrentTrackersTableDiv",
         menu: "torrentTrackersMenu",
         actions: {
-            AddTracker: function(element, ref) {
+            AddTracker: (element, ref) => {
                 addTrackerFN();
             },
-            EditTracker: function(element, ref) {
+            EditTracker: (element, ref) => {
                 // only allow editing of one row
                 element.firstChild.click();
                 editTrackerFN(element);
             },
-            RemoveTracker: function(element, ref) {
+            RemoveTracker: (element, ref) => {
                 removeTrackerFN(element);
             }
         },
@@ -162,7 +162,7 @@ window.qBittorrent.PropTrackers ??= (() => {
         }
     });
 
-    const addTrackerFN = function() {
+    const addTrackerFN = () => {
         if (current_hash.length === 0)
             return;
         new MochaUI.Window({
@@ -179,13 +179,13 @@ window.qBittorrent.PropTrackers ??= (() => {
             paddingHorizontal: 0,
             width: 500,
             height: 260,
-            onCloseComplete: function() {
+            onCloseComplete: () => {
                 updateData();
             }
         });
     };
 
-    const editTrackerFN = function(element) {
+    const editTrackerFN = (element) => {
         if (current_hash.length === 0)
             return;
 
@@ -204,13 +204,13 @@ window.qBittorrent.PropTrackers ??= (() => {
             paddingHorizontal: 0,
             width: 500,
             height: 150,
-            onCloseComplete: function() {
+            onCloseComplete: () => {
                 updateData();
             }
         });
     };
 
-    const removeTrackerFN = function(element) {
+    const removeTrackerFN = (element) => {
         if (current_hash.length === 0)
             return;
 
@@ -222,18 +222,18 @@ window.qBittorrent.PropTrackers ??= (() => {
                 hash: current_hash,
                 urls: selectedTrackers.map(encodeURIComponent).join("|")
             },
-            onSuccess: function() {
+            onSuccess: () => {
                 updateData();
             }
         }).send();
     };
 
-    const clear = function() {
+    const clear = () => {
         torrentTrackersTable.clear();
     };
 
     new ClipboardJS("#CopyTrackerUrl", {
-        text: function(trigger) {
+        text: (trigger) => {
             return torrentTrackersTable.selectedRowsIds().join("\n");
         }
     });

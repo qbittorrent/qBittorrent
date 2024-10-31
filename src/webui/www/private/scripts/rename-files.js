@@ -44,10 +44,10 @@ window.qBittorrent.MultiRename ??= (() => {
         replaceAll: false,
         fileEnumerationStart: 0,
 
-        onChanged: function(rows) {},
-        onInvalidRegex: function(err) {},
-        onRenamed: function(rows) {},
-        onRenameError: function(err) {},
+        onChanged: (rows) => {},
+        onInvalidRegex: (err) => {},
+        onRenamed: (rows) => {},
+        onRenameError: (err) => {},
 
         _inner_update: function() {
             const findMatches = (regex, str) => {

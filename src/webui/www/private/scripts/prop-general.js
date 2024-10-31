@@ -42,7 +42,7 @@ window.qBittorrent.PropGeneral ??= (() => {
     });
     $("progress").appendChild(piecesBar);
 
-    const clearData = function() {
+    const clearData = () => {
         $("time_elapsed").textContent = "";
         $("eta").textContent = "";
         $("nb_connections").textContent = "";
@@ -74,7 +74,7 @@ window.qBittorrent.PropGeneral ??= (() => {
     };
 
     let loadTorrentDataTimer = -1;
-    const loadTorrentData = function() {
+    const loadTorrentData = () => {
         if ($("propGeneral").hasClass("invisible")
             || $("propertiesPanel_collapseToggle").hasClass("panel-expand")) {
             // Tab changed, don't do anything
@@ -91,12 +91,12 @@ window.qBittorrent.PropGeneral ??= (() => {
             url: url,
             method: "get",
             noCache: true,
-            onFailure: function() {
+            onFailure: () => {
                 $("error_div").textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                 clearTimeout(loadTorrentDataTimer);
                 loadTorrentDataTimer = loadTorrentData.delay(10000);
             },
-            onSuccess: function(data) {
+            onSuccess: (data) => {
                 $("error_div").textContent = "";
                 if (data) {
                     // Update Torrent data
@@ -229,12 +229,12 @@ window.qBittorrent.PropGeneral ??= (() => {
             url: piecesUrl,
             method: "get",
             noCache: true,
-            onFailure: function() {
+            onFailure: () => {
                 $("error_div").textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                 clearTimeout(loadTorrentDataTimer);
                 loadTorrentDataTimer = loadTorrentData.delay(10000);
             },
-            onSuccess: function(data) {
+            onSuccess: (data) => {
                 $("error_div").textContent = "";
 
                 if (data)
@@ -248,13 +248,13 @@ window.qBittorrent.PropGeneral ??= (() => {
         }).send();
     };
 
-    const updateData = function() {
+    const updateData = () => {
         clearTimeout(loadTorrentDataTimer);
         loadTorrentDataTimer = -1;
         loadTorrentData();
     };
 
-    const clear = function() {
+    const clear = () => {
         clearData();
     };
 

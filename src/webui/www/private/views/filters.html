@@ -114,19 +114,19 @@
             targets: ".categoriesFilterContextMenuTarget",
             menu: "categoriesFilterMenu",
             actions: {
-                createCategory: function(element, ref) {
+                createCategory: (element, ref) => {
                     createCategoryFN();
                 },
-                createSubcategory: function(element, ref) {
+                createSubcategory: (element, ref) => {
                     createSubcategoryFN(Number(element.id));
                 },
-                editCategory: function(element, ref) {
+                editCategory: (element, ref) => {
                     editCategoryFN(Number(element.id));
                 },
-                deleteCategory: function(element, ref) {
+                deleteCategory: (element, ref) => {
                     removeCategoryFN(Number(element.id));
                 },
-                deleteUnusedCategories: function(element, ref) {
+                deleteUnusedCategories: (element, ref) => {
                     deleteUnusedCategoriesFN();
                 },
                 startTorrents: (element, ref) => {
@@ -156,13 +156,13 @@
             targets: ".tagsFilterContextMenuTarget",
             menu: "tagsFilterMenu",
             actions: {
-                createTag: function(element, ref) {
+                createTag: (element, ref) => {
                     createTagFN();
                 },
-                deleteTag: function(element, ref) {
+                deleteTag: (element, ref) => {
                     removeTagFN(Number(element.id));
                 },
-                deleteUnusedTags: function(element, ref) {
+                deleteUnusedTags: (element, ref) => {
                     deleteUnusedTagsFN();
                 },
                 startTorrents: (element, ref) => {
@@ -192,7 +192,7 @@
             targets: ".trackersFilterContextMenuTarget",
             menu: "trackersFilterMenu",
             actions: {
-                deleteTracker: function(element, ref) {
+                deleteTracker: (element, ref) => {
                     deleteTrackerFN(element.id);
                 },
                 startTorrents: (element, ref) => {

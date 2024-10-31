@@ -38,7 +38,7 @@
                         hash: hash,
                         urls: $("trackersUrls").value
                     },
-                    onComplete: function() {
+                    onComplete: () => {
                         window.parent.qBittorrent.Client.closeWindows();
                     }
                 }).send();

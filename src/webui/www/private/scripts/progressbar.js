@@ -38,7 +38,7 @@ window.qBittorrent.ProgressBar ??= (() => {
 
     let ProgressBars = 0;
     const ProgressBar = new Class({
-        initialize: function(value, parameters) {
+        initialize: (value, parameters) => {
             const vals = {
                 "id": "progressbar_" + (ProgressBars++),
                 "value": [value, 0].pick(),
@@ -107,7 +107,7 @@ window.qBittorrent.ProgressBar ??= (() => {
             if (vals.width)
                 obj.setValue(vals.value);
             else
-                setTimeout('ProgressBar_checkForParent("' + obj.id + '")');
+                setTimeout(ProgressBar_checkForParent, 0, obj.id);
             return obj;
         }
     });
@@ -142,19 +142,19 @@ window.qBittorrent.ProgressBar ??= (() => {
         }
     }
 
-    function ProgressBar_checkForParent(id) {
+    const ProgressBar_checkForParent = (id) => {
         const obj = $(id);
         if (!obj)
             return;
         if (!obj.parentNode)
-            return setTimeout('ProgressBar_checkForParent("' + id + '")', 100);
+            return setTimeout(ProgressBar_checkForParent, 100, id);
         obj.style.width = "100%";
         const w = obj.offsetWidth;
         obj.vals.dark.style.width = `${w}px`;
         obj.vals.light.style.width = `${w}px`;
         obj.vals.width = w;
         obj.setValue(obj.vals.value);
-    }
+    };
 
     return exports();
 })();

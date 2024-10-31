@@ -71,10 +71,10 @@
                         oldPath: oldPath,
                         newPath: newPath
                     },
-                    onSuccess: function() {
+                    onSuccess: () => {
                         window.parent.qBittorrent.Client.closeWindows();
                     },
-                    onFailure: function() {
+                    onFailure: () => {
                         alert("QBT_TR(Failed to update name)QBT_TR[CONTEXT=HttpServer]");
                         $("renameButton").disabled = false;
                     }

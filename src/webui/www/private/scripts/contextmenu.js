@@ -642,7 +642,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
     class SearchPluginsTableContextMenu extends ContextMenu {
         updateMenuItems() {
-            const enabledColumnIndex = function(text) {
+            const enabledColumnIndex = (text) => {
                 const columns = $("searchPluginsTableFixedHeaderRow").getChildren("th");
                 for (let i = 0; i < columns.length; ++i) {
                     if (columns[i].textContent === "Enabled")

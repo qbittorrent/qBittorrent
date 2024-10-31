@@ -1,6 +1,7 @@
 import Globals from "globals";
 import Html from "eslint-plugin-html";
 import Js from "@eslint/js";
+import PreferArrowFunctions from "eslint-plugin-prefer-arrow-functions";
 import Stylistic from "@stylistic/eslint-plugin";
 import * as RegexpPlugin from "eslint-plugin-regexp";
 
@@ -22,6 +23,7 @@ export default [
         },
         plugins: {
             Html,
+            PreferArrowFunctions,
             RegexpPlugin,
             Stylistic
         },
@@ -36,6 +38,7 @@ export default [
             "prefer-arrow-callback": "error",
             "prefer-const": "error",
             "radix": "error",
+            "PreferArrowFunctions/prefer-arrow-functions": "error",
             "Stylistic/no-mixed-operators": [
                 "error",
                 {

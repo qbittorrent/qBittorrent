@@ -361,14 +361,14 @@
                 url: url,
                 method: "get",
                 noCache: true,
-                onFailure: function(response) {
+                onFailure: (response) => {
                     const errorDiv = $("error_div");
                     if (errorDiv)
                         errorDiv.textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                     tableInfo[curTab].progress = false;
                     syncLogWithInterval(10000);
                 },
-                onSuccess: function(response) {
+                onSuccess: (response) => {
                     $("error_div").textContent = "";
 
                     if ($("logTabColumn").hasClass("invisible"))
@@ -412,7 +412,7 @@
         };
 
         new ClipboardJS(".copyLogDataToClipboard", {
-            text: function() {
+            text: () => {
                 const msg = [];
                 tableInfo[currentSelectedTab].instance.selectedRowsIds().forEach((rowId) => {
                     msg.push(tableInfo[currentSelectedTab].instance.getRow(rowId).full_data[(currentSelectedTab === "main") ? "message" : "ip"]);

@@ -37,14 +37,14 @@ window.qBittorrent.LocalPreferences ??= (() => {
     };
 
     const LocalPreferencesClass = new Class({
-        get: function(key, defaultValue) {
+        get: (key, defaultValue) => {
             const value = localStorage.getItem(key);
             return ((value === null) && (defaultValue !== undefined))
                 ? defaultValue
                 : value;
         },
 
-        set: function(key, value) {
+        set: (key, value) => {
             try {
                 localStorage.setItem(key, value);
             }
@@ -53,7 +53,7 @@ window.qBittorrent.LocalPreferences ??= (() => {
             }
         },
 
-        remove: function(key) {
+        remove: (key) => {
             try {
                 localStorage.removeItem(key);
             }
