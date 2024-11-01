@@ -69,7 +69,7 @@
         });
 
         cancelButton.focus();
-        cancelButton.addEventListener("click", (e) => { window.qBittorrent.Client.closeWindows(); });
+        cancelButton.addEventListener("click", (e) => { window.qBittorrent.Client.closeWindow("confirmDeletionPage"); });
 
         confirmButton.addEventListener("click", (e) => {
             // Some torrents might be removed when waiting for user input, so refetch the torrent list
@@ -88,7 +88,7 @@
                     torrentsTable.deselectAll();
                     updateMainData();
                     updatePropertiesPanel();
-                    window.qBittorrent.Client.closeWindows();
+                    window.qBittorrent.Client.closeWindow("confirmDeletionPage");
                 },
                 onFailure: () => {
                     alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");

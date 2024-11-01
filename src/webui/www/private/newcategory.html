@@ -20,11 +20,11 @@
                     event.preventDefault();
                 },
                 "Escape": function(event) {
-                    window.parent.qBittorrent.Client.closeWindows();
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
                     event.preventDefault();
                 },
                 "Esc": function(event) {
-                    window.parent.qBittorrent.Client.closeWindows();
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
                     event.preventDefault();
                 }
             }
@@ -92,7 +92,7 @@
                                     },
                                     onSuccess: () => {
                                         window.parent.updateMainData();
-                                        window.parent.qBittorrent.Client.closeWindows();
+                                        window.parent.qBittorrent.Client.closeFrameWindow(window);
                                     },
                                     onFailure: () => {
                                         alert("QBT_TR(Unable to set category)QBT_TR[CONTEXT=Category]");
@@ -118,7 +118,7 @@
                             },
                             onSuccess: () => {
                                 window.parent.updateMainData();
-                                window.parent.qBittorrent.Client.closeWindows();
+                                window.parent.qBittorrent.Client.closeFrameWindow(window);
                             },
                             onFailure: () => {
                                 alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category]");
@@ -135,7 +135,7 @@
                             },
                             onSuccess: () => {
                                 window.parent.updateMainData();
-                                window.parent.qBittorrent.Client.closeWindows();
+                                window.parent.qBittorrent.Client.closeFrameWindow(window);
                             },
                             onFailure: () => {
                                 alert("QBT_TR(Unable to edit category)QBT_TR[CONTEXT=Category]");

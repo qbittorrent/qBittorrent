@@ -185,7 +185,7 @@
 
         $("download_frame").addEventListener("load", () => {
             if (submitted)
-                window.parent.qBittorrent.Client.closeWindows();
+                window.parent.qBittorrent.Client.closeFrameWindow(window);
         });
 
         window.qBittorrent.pathAutofill.attachPathAutofill();

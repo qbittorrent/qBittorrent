@@ -3035,12 +3035,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 data: settings,
                 onFailure: () => {
                     alert("QBT_TR(Unable to save program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
-                    window.parent.qBittorrent.Client.closeWindows();
+                    window.parent.qBittorrent.Client.closeWindow("preferencesPage");
                 },
                 onSuccess: () => {
                     // Close window
                     window.parent.location.reload();
-                    window.parent.qBittorrent.Client.closeWindows();
+                    window.parent.qBittorrent.Client.closeWindow("preferencesPage");
                 }
             });
         };

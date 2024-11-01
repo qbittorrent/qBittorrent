@@ -30,7 +30,7 @@ window.qBittorrent.Client ??= (() => {
     const exports = () => {
         return {
             closeWindow: closeWindow,
-            closeWindows: closeWindows,
+            closeFrameWindow: closeFrameWindow,
             getSyncMainDataInterval: getSyncMainDataInterval,
             isStopped: isStopped,
             stop: stop,
@@ -51,8 +51,8 @@ window.qBittorrent.Client ??= (() => {
         MochaUI.closeWindow(window);
     };
 
-    const closeWindows = () => {
-        MochaUI.closeAll();
+    const closeFrameWindow = (window) => {
+        closeWindow(window.frameElement.closest("div.mocha").id);
     };
 
     const getSyncMainDataInterval = () => {

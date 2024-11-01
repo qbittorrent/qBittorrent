@@ -65,11 +65,11 @@
                 defaultEventType: "keydown",
                 events: {
                     "Escape": function(event) {
-                        window.parent.qBittorrent.Client.closeWindows();
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
                         event.preventDefault();
                     },
                     "Esc": function(event) {
-                        window.parent.qBittorrent.Client.closeWindows();
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
                         event.preventDefault();
                     }
                 }
@@ -285,7 +285,7 @@
                 $("renameButton").value = replaceOperation;
             });
             $("closeButton").addEventListener("click", () => {
-                window.parent.qBittorrent.Client.closeWindows();
+                window.parent.qBittorrent.Client.closeFrameWindow(window);
                 event.preventDefault();
             });
             // synchronize header scrolling to table body

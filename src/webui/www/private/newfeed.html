@@ -19,11 +19,11 @@
                     event.preventDefault();
                 },
                 "Escape": (event) => {
-                    window.parent.qBittorrent.Client.closeWindows();
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
                     event.preventDefault();
                 },
                 "Esc": (event) => {
-                    window.parent.qBittorrent.Client.closeWindows();
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
                     event.preventDefault();
                 }
             }
@@ -53,7 +53,7 @@
                     },
                     onSuccess: (response) => {
                         window.parent.qBittorrent.Rss.updateRssFeedList();
-                        window.parent.qBittorrent.Client.closeWindows();
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
                     },
                     onFailure: (response) => {
                         if (response.status === 409)
