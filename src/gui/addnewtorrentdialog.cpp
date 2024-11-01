@@ -821,6 +821,8 @@ void AddNewTorrentDialog::reject()
     if (!m_currentContext) [[unlikely]]
         return;
 
+    emit torrentRejected(m_currentContext->torrentDescr);
+
     const BitTorrent::TorrentDescriptor &torrentDescr = m_currentContext->torrentDescr;
     const bool hasMetadata = torrentDescr.info().has_value();
     if (!hasMetadata)
