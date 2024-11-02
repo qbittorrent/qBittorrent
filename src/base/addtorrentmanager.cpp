@@ -195,11 +195,9 @@ void AddTorrentManager::setTorrentFileGuard(const QString &source, std::shared_p
     m_guardedTorrentFiles.emplace(source, std::move(torrentFileGuard));
 }
 
-void AddTorrentManager::releaseTorrentFileGuard(const QString &source)
+std::shared_ptr<TorrentFileGuard> AddTorrentManager::releaseTorrentFileGuard(const QString &source)
 {
-    auto torrentFileGuard = m_guardedTorrentFiles.take(source);
-    if (torrentFileGuard)
-        torrentFileGuard->setAutoRemove(false);
+    return m_guardedTorrentFiles.take(source);
 }
 
 bool AddTorrentManager::processTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr
