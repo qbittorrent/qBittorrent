@@ -394,15 +394,11 @@ void TrackersFilterWidget::handleTrackerStatusesUpdated(const BitTorrent::Torren
     {
         if (trackerEntryStatus.state == BitTorrent::TrackerEndpointState::Working)
         {
+            // remove tracker from "error" and "tracker error" categories
             if (errorHashesIt != m_errors.end())
-            {
                 errorHashesIt->remove(trackerEntryStatus.url);
-            }
-
             if (trackerErrorHashesIt != m_trackerErrors.end())
-            {
                 trackerErrorHashesIt->remove(trackerEntryStatus.url);
-            }
 
             const bool hasNoWarningMessages = std::all_of(trackerEntryStatus.endpoints.cbegin(), trackerEntryStatus.endpoints.cend()
                 , [](const BitTorrent::TrackerEndpointStatus &endpointEntry)
@@ -426,12 +422,24 @@ void TrackersFilterWidget::handleTrackerStatusesUpdated(const BitTorrent::Torren
         else if ((trackerEntryStatus.state == BitTorrent::TrackerEndpointState::NotWorking)
             || (trackerEntryStatus.state == BitTorrent::TrackerEndpointState::Unreachable))
         {
+            // remove tracker from "tracker error" and  "warning" categories
+            if (warningHashesIt != m_warnings.end())
+                warningHashesIt->remove(trackerEntryStatus.url);
+            if (trackerErrorHashesIt != m_trackerErrors.end())
+                trackerErrorHashesIt->remove(trackerEntryStatus.url);
+
             if (errorHashesIt == m_errors.end())
                 errorHashesIt = m_errors.insert(id, {});
             errorHashesIt->insert(trackerEntryStatus.url);
         }
         else if (trackerEntryStatus.state == BitTorrent::TrackerEndpointState::TrackerError)
         {
+            // remove tracker from "error" and  "warning" categories
+            if (warningHashesIt != m_warnings.end())
+                warningHashesIt->remove(trackerEntryStatus.url);
+            if (errorHashesIt != m_errors.end())
+                errorHashesIt->remove(trackerEntryStatus.url);
+
             if (trackerErrorHashesIt == m_trackerErrors.end())
                 trackerErrorHashesIt = m_trackerErrors.insert(id, {});
             trackerErrorHashesIt->insert(trackerEntryStatus.url);
