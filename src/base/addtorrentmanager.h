@@ -74,7 +74,7 @@ protected:
     void handleAddTorrentFailed(const QString &source, const QString &reason);
     void handleDuplicateTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr, BitTorrent::Torrent *existingTorrent);
     void setTorrentFileGuard(const QString &source, std::shared_ptr<TorrentFileGuard> torrentFileGuard);
-    void releaseTorrentFileGuard(const QString &source);
+    std::shared_ptr<TorrentFileGuard> releaseTorrentFileGuard(const QString &source);
 
 private:
     void onDownloadFinished(const Net::DownloadResult &result);

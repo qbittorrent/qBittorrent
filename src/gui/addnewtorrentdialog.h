@@ -66,6 +66,7 @@ public:
 
 signals:
     void torrentAccepted(const BitTorrent::TorrentDescriptor &torrentDescriptor, const BitTorrent::AddTorrentParams &addTorrentParams);
+    void torrentRejected(const BitTorrent::TorrentDescriptor &torrentDescriptor);
 
 private slots:
     void updateDiskSpaceLabel();
