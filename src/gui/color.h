@@ -46,7 +46,7 @@ namespace Color
             inline const QColor accentFg = 0x58a6ff;
             inline const QColor dangerFg = 0xf85149;
             inline const QColor doneFg = 0xa371f7;
-            inline const QColor fgMuted = 0x8b949e;
+            inline const QColor fgMuted = 0xf0883e;
             inline const QColor fgSubtle = 0x6e7681;
             inline const QColor severeFg = 0xdb6d28;
             inline const QColor successEmphasis = 0x238636;
@@ -62,7 +62,7 @@ namespace Color
             inline const QColor accentFg = 0x0969da;
             inline const QColor dangerFg = 0xcf222e;
             inline const QColor doneFg = 0x8250df;
-            inline const QColor fgMuted = 0x57606a;
+            inline const QColor fgMuted = 0xe16f24;
             inline const QColor fgSubtle = 0x6e7781;
             inline const QColor severeFg = 0xbc4c00;
             inline const QColor successEmphasis = 0x2da44e;
