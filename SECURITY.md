@@ -15,4 +15,4 @@ Please include the requested information listed below (as much as you can provid
 
 This information will help us triage your report more quickly. Any and all CVEs will be requested and issued through GitHubs private vulnerability reporting functionality, which will be published alongside the disclosure.
 
-This security policy only applies to the most recent stable version of qBittorrent. Flaws in old stable versions that are not present in the current stable version will not be fixed.
+This security policy only applies to the most recent stable branch of qBittorrent. Flaws in old versions that are not present in the current stable branch will not be fixed.
