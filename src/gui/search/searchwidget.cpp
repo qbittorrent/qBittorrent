@@ -120,7 +120,6 @@ SearchWidget::SearchWidget(IGUIApplication *app, MainWindow *mainWindow)
 #endif
     connect(m_ui->tabWidget, &QTabWidget::tabCloseRequested, this, &SearchWidget::closeTab);
     connect(m_ui->tabWidget, &QTabWidget::currentChanged, this, &SearchWidget::tabChanged);
-    connect(m_ui->tabWidget->tabBar(), &QTabBar::tabMoved, this, &SearchWidget::tabMoved);
 
     const auto *searchManager = SearchPluginManager::instance();
     const auto onPluginChanged = [this]()
@@ -260,12 +259,9 @@ void SearchWidget::tabChanged(const int index)
 {
     // when we switch from a tab that is not empty to another that is empty
     // the download button doesn't have to be available
-    m_currentSearchTab = ((index < 0) ? nullptr : m_allTabs.at(m_ui->tabWidget->currentIndex()));
-}
-
-void SearchWidget::tabMoved(const int from, const int to)
-{
-    m_allTabs.move(from, to);
+    m_currentSearchTab = (index >= 0)
+        ? static_cast<SearchJobWidget *>(m_ui->tabWidget->widget(index))
+        : nullptr;
 }
 
 void SearchWidget::selectMultipleBox([[maybe_unused]] const int index)
@@ -353,7 +349,6 @@ void SearchWidget::on_searchButton_clicked()
 
     // Tab Addition
     auto *newTab = new SearchJobWidget(searchHandler, app(), this);
-    m_allTabs.append(newTab);
 
     QString tabName = pattern;
     tabName.replace(QRegularExpression(u"&{1}"_s), u"&&"_s);
@@ -391,9 +386,9 @@ void SearchWidget::tabStatusChanged(QWidget *tab)
     }
 }
 
-void SearchWidget::closeTab(int index)
+void SearchWidget::closeTab(const int index)
 {
-    SearchJobWidget *tab = m_allTabs.takeAt(index);
+    const QWidget *tab = m_ui->tabWidget->widget(index);
     if (tab == m_activeSearchTab)
         m_ui->searchButton->setText(tr("Search"));
 
@@ -402,6 +397,6 @@ void SearchWidget::closeTab(int index)
 
 void SearchWidget::closeAllTabs()
 {
-    for (int i = (m_allTabs.size() - 1); i >= 0; --i)
+    for (int i = (m_ui->tabWidget->count() - 1); i >= 0; --i)
         closeTab(i);
 }
