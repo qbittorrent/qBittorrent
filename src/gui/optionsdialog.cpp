@@ -1703,11 +1703,10 @@ void OptionsDialog::initializeStyleCombo()
     QStringList styleNames = QStyleFactory::keys();
     std::sort(styleNames.begin(), styleNames.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
     m_ui->comboStyle->addItems(styleNames);
+
     const QString prefStyleName = Preferences::instance()->getStyle();
     const QString selectedStyleName = prefStyleName.isEmpty() ? QApplication::style()->name() : prefStyleName;
-
-    if (selectedStyleName.compare(u"system"_s, Qt::CaseInsensitive) != 0)
-        m_ui->comboStyle->setCurrentText(selectedStyleName);
+    m_ui->comboStyle->setCurrentIndex(m_ui->comboStyle->findText(selectedStyleName, Qt::MatchFixedString));
 #else
     m_ui->labelStyle->hide();
     m_ui->comboStyle->hide();
