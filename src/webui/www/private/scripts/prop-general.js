@@ -43,6 +43,7 @@ window.qBittorrent.PropGeneral ??= (() => {
     $("progress").appendChild(piecesBar);
 
     const clearData = () => {
+        document.getElementById("progressPercentage").textContent = "";
         $("time_elapsed").textContent = "";
         $("eta").textContent = "";
         $("nb_connections").textContent = "";
@@ -100,6 +101,8 @@ window.qBittorrent.PropGeneral ??= (() => {
                 $("error_div").textContent = "";
                 if (data) {
                     // Update Torrent data
+
+                    document.getElementById("progressPercentage").textContent = window.qBittorrent.Misc.friendlyPercentage(data.progress);
 
                     const timeElapsed = (data.seeding_time > 0)
                         ? "QBT_TR(%1 (seeded for %2))QBT_TR[CONTEXT=PropertiesWidget]"

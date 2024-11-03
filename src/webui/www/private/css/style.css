@@ -700,6 +700,22 @@ td.generalLabel {
     padding: 2px;
 }
 
+#propProgressWrapper {
+    align-items: center;
+    display: flex;
+    height: auto;
+    margin: 5px 2px;
+
+    & > span:not(:first-child, :empty) {
+        margin-left: 6px;
+        min-width: 3.5em;
+    }
+
+    & #progress {
+        flex: 1;
+    }
+}
+
 .piecesbarWrapper {
     position: relative;
     width: 100%;
