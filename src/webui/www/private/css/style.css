@@ -270,6 +270,14 @@ a.propButton img {
     overflow: hidden auto;
 }
 
+.propertiesTabContent {
+    height: 100%;
+
+    > div {
+        height: 100%;
+    }
+}
+
 /* context menu specific */
 
 .contextMenu {

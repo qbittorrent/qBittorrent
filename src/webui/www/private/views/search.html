@@ -113,7 +113,7 @@
         <span></span>
     </div>
 
-    <div id="searchResultsNoSearches" style="display: none">
+    <div id="searchResultsNoSearches" class="invisible">
         <table>
             <tbody>
                 <tr>
@@ -126,13 +126,13 @@
         <span></span>
     </div>
 
-    <div id="searchTabsToolbar" class="toolbarTabs" style="border-bottom: 1px solid var(--color-border-default); display: none">
+    <div id="searchTabsToolbar" class="toolbarTabs invisible" style="border-bottom: 1px solid var(--color-border-default);">
         <ul id="searchTabs" class="tab-menu"></ul>
         <div class="clear"></div>
     </div>
 
-    <div id="searchResultsFilters" style="display: none;">
-        <input type="text" id="searchInNameFilter" placeholder="QBT_TR(Filter)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocapitalize="none">
+    <div id="searchResultsFilters" class="invisible">
+        <input type="text" id="searchInNameFilter" placeholder="QBT_TR(Filter)QBT_TR[CONTEXT=SearchEngineWidget]" aria-label="QBT_TR(Filter)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocapitalize="none">
 
         <span>QBT_TR(Results)QBT_TR[CONTEXT=SearchEngineWidget] (QBT_TR(showing)QBT_TR[CONTEXT=SearchEngineWidget] <span id="numSearchResultsVisible" class="numSearchResults">0</span> QBT_TR(out of)QBT_TR[CONTEXT=SearchEngineWidget] <span id="numSearchResultsTotal" class="numSearchResults">0</span>):</span>
 
@@ -146,14 +146,14 @@
             <img id="searchResultsGranularFiltersWarning" src="images/dialog-warning.svg" title="QBT_TR(Increase window width to display additional filters)QBT_TR[CONTEXT=SearchEngineWidget]" alt="QBT_TR(Warning)QBT_TR[CONTEXT=SearchEngineWidget]" width="24" height="24">
 
             <div id="searchResultsGranularFilters">
-                <span style="margin-left: 15px;">QBT_TR(Seeds:)QBT_TR[CONTEXT=SearchEngineWidget]</span>
+                <label for="searchMinSeedsFilter" style="margin-left: 15px;">QBT_TR(Seeds:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
                 <input type="number" min="0" max="1000" id="searchMinSeedsFilter" value="0" onchange="qBittorrent.Search.searchSeedsFilterChanged()">
-                <span>QBT_TR(to)QBT_TR[CONTEXT=SearchEngineWidget]</span>
+                <label for="searchMaxSeedsFilter">QBT_TR(to)QBT_TR[CONTEXT=SearchEngineWidget]</label>
                 <input type="number" min="0" max="1000" id="searchMaxSeedsFilter" value="0" onchange="qBittorrent.Search.searchSeedsFilterChanged()">
 
-                <span style="margin-left: 15px;">QBT_TR(Size:)QBT_TR[CONTEXT=SearchEngineWidget]</span>
+                <label for="searchMinSizeFilter" style="margin-left: 15px;">QBT_TR(Size:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
                 <input type="number" min="0" max="1000" step=".01" value="0.00" id="searchMinSizeFilter" onchange="qBittorrent.Search.searchSizeFilterChanged()">
-                <select id="searchMinSizePrefix" onchange="qBittorrent.Search.searchSizeFilterPrefixChanged()">
+                <select id="searchMinSizePrefix" onchange="qBittorrent.Search.searchSizeFilterPrefixChanged()" aria-label="QBT_TR(Min size prefix)QBT_TR[CONTEXT=SearchEngineWidget]">
                     <option value="0">QBT_TR(B)QBT_TR[CONTEXT=misc]</option>
                     <option value="1">QBT_TR(KiB)QBT_TR[CONTEXT=misc]</option>
                     <option value="2" selected>QBT_TR(MiB)QBT_TR[CONTEXT=misc]</option>
@@ -162,9 +162,9 @@
                     <option value="5">QBT_TR(PiB)QBT_TR[CONTEXT=misc]</option>
                     <option value="6">QBT_TR(EiB)QBT_TR[CONTEXT=misc]</option>
                 </select>
-                <span>QBT_TR(to)QBT_TR[CONTEXT=SearchEngineWidget]</span>
+                <label for="searchMaxSizeFilter">QBT_TR(to)QBT_TR[CONTEXT=SearchEngineWidget]</label>
                 <input type="number" min="0" max="1000" step=".01" value="0.00" id="searchMaxSizeFilter" onchange="qBittorrent.Search.searchSizeFilterChanged()">
-                <select id="searchMaxSizePrefix" onchange="qBittorrent.Search.searchSizeFilterPrefixChanged()">
+                <select id="searchMaxSizePrefix" onchange="qBittorrent.Search.searchSizeFilterPrefixChanged()" aria-label="QBT_TR(Max size prefix)QBT_TR[CONTEXT=SearchEngineWidget]">
                     <option value="0">QBT_TR(B)QBT_TR[CONTEXT=misc]</option>
                     <option value="1">QBT_TR(KiB)QBT_TR[CONTEXT=misc]</option>
                     <option value="2">QBT_TR(MiB)QBT_TR[CONTEXT=misc]</option>
@@ -177,7 +177,7 @@
         </div>
     </div>
 
-    <div id="searchResultsTableContainer" style="display: none">
+    <div id="searchResultsTableContainer" class="invisible">
         <div id="searchResultsTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
             <table class="dynamicTable unselectable" style="position:relative;">
                 <thead>

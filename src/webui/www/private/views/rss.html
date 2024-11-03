@@ -2,13 +2,18 @@
     #rssView {
         padding: 20px 20px 0 20px;
         height: calc(100% - 20px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    #rssTopBar {
+        flex-shrink: 0;
     }
 
     #rssContentView {
-        display: table;
         width: 100%;
-        height: calc(100% - 30px);
-        vertical-align: top;
+        flex-grow: 1;
+        overflow: auto;
     }
 
     #rssFeedFixedHeaderDiv .dynamicTableHeader,
@@ -45,6 +50,7 @@
 
     #rightRssColumn {
         overflow: auto;
+        height: 100%;
     }
 
     #rssFeedTableDiv,
@@ -53,17 +59,21 @@
     }
 
     #rssTorrentDetailsName {
+        flex-shrink: 0;
         background-color: var(--color-background-blue);
         padding: 0;
         color: var(--color-text-white);
     }
 
     #rssTorrentDetailsDate {
+        flex-shrink: 1;
         background-color: var(--color-background-default);
     }
 
     #rssDetailsView {
-        height: calc(100vh - 135px);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
         overflow: auto;
     }
 
@@ -85,6 +95,7 @@
     }
 
     #rssDescription {
+        flex-grow: 2;
         width: 100%;
         border: none;
     }
@@ -205,18 +216,6 @@
 
             if (!pref.rss_processing_enabled)
                 $("rssFetchingDisabled").removeClass("invisible");
-
-            // recalculate heights
-            const nonPageHeight = $("rssTopBar").getBoundingClientRect().height
-                + $("desktopHeader").getBoundingClientRect().height
-                + $("desktopFooterWrapper").getBoundingClientRect().height + 20;
-            $("rssDetailsView").style.height = "calc(100vh - " + nonPageHeight + "px)";
-
-            const nonTableHeight = nonPageHeight + $("rssFeedFixedHeaderDiv").getBoundingClientRect().height;
-            $("rssFeedTableDiv").style.height = "calc(100vh - " + nonTableHeight + "px)";
-            $("rssArticleTableDiv").style.height = "calc(100vh - " + nonTableHeight + "px)";
-
-            $("rssContentView").style.height = "calc(100% - " + $("rssTopBar").getBoundingClientRect().height + "px)";
 
             const rssFeedContextMenu = new window.qBittorrent.ContextMenu.RssFeedContextMenu({
                 targets: ".rssFeedContextMenuTarget",
@@ -451,11 +450,6 @@
                 const torrentDescription = document.createRange().createContextualFragment('<iframe sandbox id="rssDescription"></iframe>');
                 $("rssDetailsView").append(torrentDescription);
                 document.getElementById("rssDescription").srcdoc = '<html><head><link rel="stylesheet" type="text/css" href="css/style.css"></head><body>' + article.description + "</body></html>";
-
-                // calculate height to fill screen
-                document.getElementById("rssDescription").style.height =
-                    "calc(100% - " + document.getElementById("rssTorrentDetailsName").offsetHeight + "px - "
-                    + document.getElementById("rssTorrentDetailsDate").offsetHeight + "px - 5px)";
             }
         };
 
