@@ -487,6 +487,7 @@ a.propButton img {
     background-size: 1.5em;
     border: 1px solid var(--color-border-default);
     border-radius: 4px;
+    cursor: pointer;
     display: inline-block;
     height: 26px;
     margin-bottom: -9px;
