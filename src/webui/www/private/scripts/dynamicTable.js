@@ -811,7 +811,6 @@ window.qBittorrent.DynamicTable ??= (() => {
                     });
                     tr.addEventListener("click", function(e) {
                         e.preventDefault();
-                        e.stopPropagation();
 
                         if (e.ctrlKey || e.metaKey) {
                             // CTRL/CMD ⌘ key was pressed
