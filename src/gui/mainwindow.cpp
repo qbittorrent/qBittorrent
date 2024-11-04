@@ -112,6 +112,8 @@ namespace
 #define EXECUTIONLOG_SETTINGS_KEY(name) (SETTINGS_KEY(u"Log/"_s) name)
 
     const std::chrono::seconds PREVENT_SUSPEND_INTERVAL {60};
+
+    const QString PYTHON_INSTALLER_URL = u"https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe"_s;
 }
 
 MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, const QString &titleSuffix)
@@ -1877,20 +1879,28 @@ void MainWindow::checkProgramUpdate(const bool invokedByUser)
 #ifdef Q_OS_WIN
 void MainWindow::installPython()
 {
-    setCursor(QCursor(Qt::WaitCursor));
+    m_ui->actionSearchWidget->setEnabled(false);
+    m_ui->actionSearchWidget->setToolTip(tr("Python installation in progress..."));
+    setCursor(Qt::WaitCursor);
     // Download python
-    const auto installerURL = u"https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe"_s;
     Net::DownloadManager::instance()->download(
-            Net::DownloadRequest(installerURL).saveToFile(true)
+            Net::DownloadRequest(PYTHON_INSTALLER_URL).saveToFile(true)
             , Preferences::instance()->useProxyForGeneralPurposes()
             , this, &MainWindow::pythonDownloadFinished);
 }
 
 void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
 {
+    const auto restoreWidgetsState = [this]
+    {
+        m_ui->actionSearchWidget->setEnabled(true);
+        m_ui->actionSearchWidget->setToolTip({});
+        setCursor(Qt::ArrowCursor);
+    };
+
     if (result.status != Net::DownloadStatus::Success)
     {
-        setCursor(QCursor(Qt::ArrowCursor));
+        restoreWidgetsState();
         QMessageBox::warning(
                     this, tr("Download error")
                     , tr("Python setup could not be downloaded, reason: %1.\nPlease install it manually.")
@@ -1898,29 +1908,39 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
         return;
     }
 
-    setCursor(QCursor(Qt::ArrowCursor));
-    QProcess installer;
-    qDebug("Launching Python installer in passive mode...");
-
     const Path exePath = result.filePath + u".exe";
     Utils::Fs::renameFile(result.filePath, exePath);
-    installer.start(exePath.toString(), {u"/passive"_s});
 
-    // Wait for setup to complete
-    installer.waitForFinished(10 * 60 * 1000);
-
-    qDebug("Installer stdout: %s", installer.readAllStandardOutput().data());
-    qDebug("Installer stderr: %s", installer.readAllStandardError().data());
-    qDebug("Setup should be complete!");
-
-    // Delete temp file
-    Utils::Fs::removeFile(exePath);
-
-    // Reload search engine
-    if (Utils::ForeignApps::pythonInfo().isSupportedVersion())
+    // launch installer
+    auto *installer = new QProcess(this);
+    installer->connect(installer, &QProcess::finished, this, [this, exePath, installer, restoreWidgetsState](const int exitCode, const QProcess::ExitStatus exitStatus)
     {
-        m_ui->actionSearchWidget->setChecked(true);
-        displaySearchTab(true);
-    }
+        restoreWidgetsState();
+        installer->deleteLater();
+
+        if ((exitStatus == QProcess::NormalExit) && (exitCode == 0))
+        {
+            LogMsg(tr("Python installation success."), Log::INFO);
+
+            // Delete installer
+            Utils::Fs::removeFile(exePath);
+
+            // Reload search engine
+            if (Utils::ForeignApps::pythonInfo().isSupportedVersion())
+            {
+                m_ui->actionSearchWidget->setChecked(true);
+                displaySearchTab(true);
+            }
+        }
+        else
+        {
+            const QString errorInfo = (exitStatus == QProcess::NormalExit)
+                ? tr("Exit code: %1.").arg(QString::number(exitCode))
+                : tr("Reason: installer crashed.");
+            LogMsg(u"%1 %2"_s.arg(tr("Python installation failed."), errorInfo), Log::WARNING);
+        }
+    });
+    LogMsg(tr("Launching Python installer. File: \"%1\".").arg(exePath.toString()), Log::INFO);
+    installer->start(exePath.toString(), {u"/passive"_s});
 }
 #endif // Q_OS_WIN
