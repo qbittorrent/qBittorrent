@@ -1667,19 +1667,6 @@ window.addEventListener("load", () => {
     window.qBittorrent.Cache.preferences.init();
     window.qBittorrent.Cache.qbtVersion.init();
 
-    // Setup color scheme switching
-    const colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const updateColorScheme = () => {
-        const root = document.documentElement;
-        const colorScheme = LocalPreferences.get("color_scheme");
-        const validScheme = (colorScheme === "light") || (colorScheme === "dark");
-        const isDark = colorSchemeQuery.matches;
-        root.classList.toggle("dark", ((!validScheme && isDark) || (colorScheme === "dark")));
-    };
-
-    colorSchemeQuery.addEventListener("change", updateColorScheme);
-    updateColorScheme();
-
     // switch to previously used tab
     const previouslyUsedTab = LocalPreferences.get("selected_window_tab", "transfers");
     switch (previouslyUsedTab) {
