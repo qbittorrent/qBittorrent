@@ -4065,14 +4065,29 @@ bool SessionImpl::isPaused() const
 
 void SessionImpl::pause()
 {
-    if (!m_isPaused)
-    {
-        if (isRestored())
-            m_nativeSession->pause();
+    if (m_isPaused)
+        return;
 
-        m_isPaused = true;
-        emit paused();
+    if (isRestored())
+    {
+        m_nativeSession->pause();
+
+        for (TorrentImpl *torrent : asConst(m_torrents))
+        {
+            torrent->resetTrackerEntryStatuses();
+
+            const QList<TrackerEntryStatus> trackers = torrent->trackers();
+            QHash<QString, TrackerEntryStatus> updatedTrackers;
+            updatedTrackers.reserve(trackers.size());
+
+            for (const TrackerEntryStatus &status : trackers)
+                updatedTrackers.emplace(status.url, status);
+            emit trackerEntryStatusesUpdated(torrent, updatedTrackers);
+        }
     }
+
+    m_isPaused = true;
+    emit paused();
 }
 
 void SessionImpl::resume()
