@@ -113,16 +113,6 @@ namespace
 
         trackerEntryStatus.tier = nativeEntry.tier;
 
-        // remove outdated endpoints
-        trackerEntryStatus.endpoints.removeIf([&nativeEntry](const QHash<std::pair<QString, int>, TrackerEndpointStatus>::iterator &iter)
-        {
-            return std::none_of(nativeEntry.endpoints.cbegin(), nativeEntry.endpoints.cend()
-                    , [&endpointName = std::get<0>(iter.key())](const auto &existingEndpoint)
-            {
-                return (endpointName == toString(existingEndpoint.local_endpoint));
-            });
-        });
-
         const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size()) * btProtocols.size();
 
         int numUpdating = 0;
@@ -203,6 +193,19 @@ namespace
                     trackerEndpointStatus.message.clear();
                 }
             }
+        }
+
+        if (trackerEntryStatus.endpoints.size() > numEndpoints)
+        {
+            // remove outdated endpoints
+            trackerEntryStatus.endpoints.removeIf([&nativeEntry](const QHash<std::pair<QString, int>, TrackerEndpointStatus>::iterator &iter)
+            {
+                return std::none_of(nativeEntry.endpoints.cbegin(), nativeEntry.endpoints.cend()
+                        , [&endpointName = std::get<0>(iter.key())](const auto &existingEndpoint)
+                {
+                    return (endpointName == toString(existingEndpoint.local_endpoint));
+                });
+            });
         }
 
         if (numEndpoints > 0)
