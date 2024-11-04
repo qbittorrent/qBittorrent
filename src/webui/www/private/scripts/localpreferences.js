@@ -36,24 +36,24 @@ window.qBittorrent.LocalPreferences ??= (() => {
         };
     };
 
-    const LocalPreferencesClass = new Class({
-        get: (key, defaultValue) => {
+    class LocalPreferencesClass {
+        get(key, defaultValue) {
             const value = localStorage.getItem(key);
             return ((value === null) && (defaultValue !== undefined))
                 ? defaultValue
                 : value;
-        },
+        }
 
-        set: (key, value) => {
+        set(key, value) {
             try {
                 localStorage.setItem(key, value);
             }
             catch (err) {
                 console.error(err);
             }
-        },
+        }
 
-        remove: (key) => {
+        remove(key) {
             try {
                 localStorage.removeItem(key);
             }
@@ -61,7 +61,7 @@ window.qBittorrent.LocalPreferences ??= (() => {
                 console.error(err);
             }
         }
-    });
+    };
 
     return exports();
 })();
