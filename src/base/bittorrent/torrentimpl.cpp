@@ -100,7 +100,7 @@ namespace
     template <typename FromLTTimePoint32Func>
     void updateTrackerEntryStatus(TrackerEntryStatus &trackerEntryStatus, const lt::announce_entry &nativeEntry
             , const QSet<int> &btProtocols, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo
-            , FromLTTimePoint32Func fromLTTimePoint32)
+            , const FromLTTimePoint32Func &fromLTTimePoint32)
     {
         Q_ASSERT(trackerEntryStatus.url == QString::fromStdString(nativeEntry.url));
 
