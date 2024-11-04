@@ -79,9 +79,9 @@ ol {
 
 @supports (scrollbar-width: auto) {
     :root[slick-uniqueid], /* targets iframe mocha dialogs */
-    .panel,
-    .mochaContentWrapper,
     .dynamicTableDiv,
+    .mochaContentWrapper,
+    .panel,
     #rssDetailsView {
         scrollbar-width: thin;
     }
