@@ -86,6 +86,7 @@
 #include "base/utils/net.h"
 #include "base/utils/number.h"
 #include "base/utils/random.h"
+#include "base/utils/string.h"
 #include "base/version.h"
 #include "bandwidthscheduler.h"
 #include "bencoderesumedatastorage.h"
@@ -222,7 +223,7 @@ namespace
     {
         try
         {
-            return QString::fromLatin1(address.to_string().c_str());
+            return Utils::String::fromLatin1(address.to_string());
         }
         catch (const std::exception &)
         {
@@ -5831,7 +5832,7 @@ void SessionImpl::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed
 #else
     const auto torrentID = TorrentID::fromInfoHash(alert->info_hash);
 #endif
-    const auto errorMessage = alert->error ? QString::fromLocal8Bit(alert->error.message().c_str()) : QString();
+    const auto errorMessage = alert->error ? Utils::String::fromLocal8Bit(alert->error.message()) : QString();
     handleRemovedTorrent(torrentID, errorMessage);
 }
 
@@ -5989,7 +5990,7 @@ void SessionImpl::handleListenFailedAlert(const lt::listen_failed_alert *alert)
     const QString proto {toString(alert->socket_type)};
     LogMsg(tr("Failed to listen on IP. IP: \"%1\". Port: \"%2/%3\". Reason: \"%4\"")
         .arg(toString(alert->address), proto, QString::number(alert->port)
-            , QString::fromLocal8Bit(alert->error.message().c_str())), Log::CRITICAL);
+            , Utils::String::fromLocal8Bit(alert->error.message())), Log::CRITICAL);
 }
 
 void SessionImpl::handleExternalIPAlert(const lt::external_ip_alert *alert)
@@ -6215,7 +6216,7 @@ void SessionImpl::handleSocks5Alert(const lt::socks5_alert *alert) const
         const QString endpoint = (addr.is_v6() ? u"[%1]:%2"_s : u"%1:%2"_s)
                 .arg(QString::fromStdString(addr.to_string()), QString::number(alert->ip.port()));
         LogMsg(tr("SOCKS5 proxy error. Address: %1. Message: \"%2\".")
-                .arg(endpoint, QString::fromLocal8Bit(alert->error.message().c_str()))
+                .arg(endpoint, Utils::String::fromLocal8Bit(alert->error.message()))
                 , Log::WARNING);
     }
 }

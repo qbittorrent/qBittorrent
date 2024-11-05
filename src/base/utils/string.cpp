@@ -49,6 +49,16 @@ QString Utils::String::fromDouble(const double n, const int precision)
     return QLocale::system().toString(std::floor(n * prec) / prec, 'f', precision);
 }
 
+QString Utils::String::fromLatin1(const std::string &string)
+{
+    return QString::fromLatin1(string.c_str(), string.size());
+}
+
+QString Utils::String::fromLocal8Bit(const std::string &string)
+{
+    return QString::fromLocal8Bit(string.c_str(), string.size());
+}
+
 QString Utils::String::wildcardToRegexPattern(const QString &pattern)
 {
     return QRegularExpression::wildcardToRegularExpression(pattern, QRegularExpression::UnanchoredWildcardConversion);

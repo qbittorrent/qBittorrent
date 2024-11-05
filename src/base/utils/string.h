@@ -66,6 +66,8 @@ namespace Utils::String
     QStringList splitCommand(const QString &command);
 
     QString fromDouble(double n, int precision);
+    QString fromLatin1(const std::string &string);
+    QString fromLocal8Bit(const std::string &string);
 
     template <typename Container>
     QString joinIntoString(const Container &container, const QString &separator)
