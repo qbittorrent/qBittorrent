@@ -77,7 +77,7 @@ ol {
 
 /* Scrollbars */
 
-@supports (scrollbar-width: auto) {
+@supports (scrollbar-width: auto) and (selector(::-webkit-scrollbar)) {
     :root[slick-uniqueid], /* targets iframe mocha dialogs */
     .dynamicTableDiv,
     .mochaContentWrapper,
