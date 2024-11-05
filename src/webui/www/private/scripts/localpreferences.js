@@ -32,11 +32,11 @@ window.qBittorrent ??= {};
 window.qBittorrent.LocalPreferences ??= (() => {
     const exports = () => {
         return {
-            LocalPreferencesClass: LocalPreferencesClass
+            LocalPreferences: LocalPreferences
         };
     };
 
-    class LocalPreferencesClass {
+    class LocalPreferences {
         get(key, defaultValue) {
             const value = localStorage.getItem(key);
             return ((value === null) && (defaultValue !== undefined))
