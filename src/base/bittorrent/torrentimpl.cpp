@@ -92,22 +92,15 @@ namespace
         return entry;
     }
 
-    QDateTime fromLTTimePoint32(const lt::time_point32 &timePoint)
-    {
-        const auto ltNow = lt::clock_type::now();
-        const auto qNow = QDateTime::currentDateTime();
-        const auto secsSinceNow = lt::duration_cast<lt::seconds>(timePoint - ltNow + lt::milliseconds(500)).count();
-
-        return qNow.addSecs(secsSinceNow);
-    }
-
     QString toString(const lt::tcp::endpoint &ltTCPEndpoint)
     {
         return QString::fromStdString((std::stringstream() << ltTCPEndpoint).str());
     }
 
+    template <typename FromLTTimePoint32Func>
     void updateTrackerEntryStatus(TrackerEntryStatus &trackerEntryStatus, const lt::announce_entry &nativeEntry
-            , const QSet<int> &btProtocols, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo)
+            , const QSet<int> &btProtocols, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo
+            , const FromLTTimePoint32Func &fromLTTimePoint32)
     {
         Q_ASSERT(trackerEntryStatus.url == QString::fromStdString(nativeEntry.url));
 
@@ -1769,7 +1762,13 @@ TrackerEntryStatus TorrentImpl::updateTrackerEntryStatus(const lt::announce_entr
 #else
     const QSet<int> btProtocols {1};
 #endif
-    ::updateTrackerEntryStatus(*it, announceEntry, btProtocols, updateInfo);
+
+    const auto fromLTTimePoint32 = [this](const lt::time_point32 &timePoint)
+    {
+        return m_session->fromLTTimePoint32(timePoint);
+    };
+    ::updateTrackerEntryStatus(*it, announceEntry, btProtocols, updateInfo, fromLTTimePoint32);
+
     return *it;
 }
 
