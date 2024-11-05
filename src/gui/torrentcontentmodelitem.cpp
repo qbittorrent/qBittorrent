@@ -140,9 +140,11 @@ QString TorrentContentModelItem::displayData(const int column) const
             return (value + u'%');
         }
     default:
-        Q_ASSERT(false);
-        return {};
+        Q_UNREACHABLE();
+        break;
     }
+
+    return {};
 }
 
 QVariant TorrentContentModelItem::underlyingData(const int column) const
@@ -165,9 +167,11 @@ QVariant TorrentContentModelItem::underlyingData(const int column) const
     case COL_AVAILABILITY:
         return availability();
     default:
-        Q_ASSERT(false);
-        return {};
+        Q_UNREACHABLE();
+        break;
     }
+
+    return {};
 }
 
 int TorrentContentModelItem::row() const

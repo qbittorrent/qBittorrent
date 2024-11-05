@@ -153,7 +153,7 @@ QString DNSUpdater::getUpdateUrl() const
         break;
     default:
         qWarning() << "Unrecognized Dynamic DNS service!";
-        Q_ASSERT(false);
+        Q_UNREACHABLE();
         break;
     }
     url.setPath(u"/nic/update"_s);
@@ -305,7 +305,7 @@ QUrl DNSUpdater::getRegistrationUrl(const DNS::Service service)
     case DNS::Service::NoIP:
         return {u"https://www.noip.com/remote-access"_s};
     default:
-        Q_ASSERT(false);
+        Q_UNREACHABLE();
         break;
     }
     return {};

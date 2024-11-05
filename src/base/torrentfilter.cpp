@@ -205,9 +205,11 @@ bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
     case Errored:
         return torrent->isErrored();
     default:
-        Q_ASSERT(false);
-        return false;
+        Q_UNREACHABLE();
+        break;
     }
+
+    return false;
 }
 
 bool TorrentFilter::matchHash(const BitTorrent::Torrent *const torrent) const

@@ -396,7 +396,8 @@ void WebApplication::doProcessRequest()
         case APIErrorType::NotFound:
             throw NotFoundHTTPError(error.message());
         default:
-            Q_ASSERT(false);
+            Q_UNREACHABLE();
+            break;
         }
     }
 }

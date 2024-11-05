@@ -296,14 +296,15 @@ namespace
     {
         switch (mode)
         {
-        default:
-            Q_ASSERT(false);
         case MoveStorageMode::FailIfExist:
             return lt::move_flags_t::fail_if_exist;
         case MoveStorageMode::KeepExistingFiles:
             return lt::move_flags_t::dont_replace;
         case MoveStorageMode::Overwrite:
             return lt::move_flags_t::always_replace_files;
+        default:
+            Q_UNREACHABLE();
+            break;
         }
     }
 }

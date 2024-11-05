@@ -160,7 +160,7 @@ void Connection::read()
             break;
 
         default:
-            Q_ASSERT(false);
+            Q_UNREACHABLE();
             return;
         }
     }
