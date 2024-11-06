@@ -5238,9 +5238,6 @@ void SessionImpl::handleMoveTorrentStorageJobFinished(const Path &newPath)
     if (torrent)
     {
         torrent->handleMoveStorageJobFinished(newPath, finishedJob.context, torrentHasOutstandingJob);
-        // The torrent may become "finished" at the end of the move if it was moved
-        // from the "incomplete" location after downloading finished.
-        processPendingFinishedTorrents();
     }
     else if (!torrentHasOutstandingJob)
     {
@@ -5534,6 +5531,9 @@ void SessionImpl::readAlerts()
             m_loadedTorrents.clear();
         }
     }
+
+    // Some torrents may become "finished" after different alerts handling.
+    processPendingFinishedTorrents();
 
     processTrackerStatuses();
 }
@@ -6179,8 +6179,6 @@ void SessionImpl::handleStateUpdateAlert(const lt::state_update_alert *alert)
 
     if (!updatedTorrents.isEmpty())
         emit torrentsUpdated(updatedTorrents);
-
-    processPendingFinishedTorrents();
 
     if (m_needSaveTorrentsQueue)
         saveTorrentsQueue();
