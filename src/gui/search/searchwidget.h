@@ -30,7 +30,6 @@
 
 #pragma once
 
-#include <QList>
 #include <QPointer>
 #include <QWidget>
 
@@ -38,9 +37,7 @@
 
 class QEvent;
 class QObject;
-class QTabWidget;
 
-class MainWindow;
 class SearchJobWidget;
 
 namespace Ui
@@ -54,7 +51,7 @@ class SearchWidget : public GUIApplicationComponent<QWidget>
     Q_DISABLE_COPY_MOVE(SearchWidget)
 
 public:
-    explicit SearchWidget(IGUIApplication *app, MainWindow *mainWindow);
+    explicit SearchWidget(IGUIApplication *app, QWidget *parent);
     ~SearchWidget() override;
 
     void giveFocusToSearchInput();
@@ -83,6 +80,5 @@ private:
     Ui::SearchWidget *m_ui = nullptr;
     QPointer<SearchJobWidget> m_currentSearchTab; // Selected tab
     QPointer<SearchJobWidget> m_activeSearchTab; // Tab with running search
-    MainWindow *m_mainWindow = nullptr;
     bool m_isNewQueryString = false;
 };
