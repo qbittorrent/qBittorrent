@@ -1635,9 +1635,19 @@ void TorrentImpl::forceRecheck()
         return;
 
     m_nativeHandle.force_recheck();
+
     // We have to force update the cached state, otherwise someone will be able to get
     // an incorrect one during the interval until the cached state is updated in a regular way.
     m_nativeStatus.state = lt::torrent_status::checking_resume_data;
+    m_nativeStatus.pieces.clear_all();
+    m_nativeStatus.num_pieces = 0;
+    m_ltAddTorrentParams.have_pieces.clear();
+    m_ltAddTorrentParams.verified_pieces.clear();
+    m_ltAddTorrentParams.unfinished_pieces.clear();
+    m_completedFiles.fill(false);
+    m_filesProgress.fill(0);
+    m_pieces.fill(false);
+    m_unchecked = false;
 
     if (m_hasMissingFiles)
     {
@@ -1649,14 +1659,6 @@ void TorrentImpl::forceRecheck()
                 m_nativeHandle.resume();
         }
     }
-
-    m_unchecked = false;
-
-    m_completedFiles.fill(false);
-    m_filesProgress.fill(0);
-    m_pieces.fill(false);
-    m_nativeStatus.pieces.clear_all();
-    m_nativeStatus.num_pieces = 0;
 
     if (isStopped())
     {
@@ -2151,6 +2153,7 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
 
         m_ltAddTorrentParams.have_pieces.clear();
         m_ltAddTorrentParams.verified_pieces.clear();
+        m_ltAddTorrentParams.unfinished_pieces.clear();
 
         m_nativeStatus.torrent_file = m_ltAddTorrentParams.ti;
 
@@ -2193,23 +2196,37 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
 
 void TorrentImpl::prepareResumeData(const lt::add_torrent_params &params)
 {
-    if (m_hasMissingFiles)
     {
-        const auto havePieces = m_ltAddTorrentParams.have_pieces;
-        const auto unfinishedPieces = m_ltAddTorrentParams.unfinished_pieces;
-        const auto verifiedPieces = m_ltAddTorrentParams.verified_pieces;
+        decltype(params.have_pieces) havePieces;
+        decltype(params.unfinished_pieces) unfinishedPieces;
+        decltype(params.verified_pieces) verifiedPieces;
 
-        // Update recent resume data but preserve existing progress
-        m_ltAddTorrentParams = params;
-        m_ltAddTorrentParams.have_pieces = havePieces;
-        m_ltAddTorrentParams.unfinished_pieces = unfinishedPieces;
-        m_ltAddTorrentParams.verified_pieces = verifiedPieces;
-    }
-    else
-    {
-        const bool preserveSeedMode = (!hasMetadata() && (m_ltAddTorrentParams.flags & lt::torrent_flags::seed_mode));
+        // The resume data obtained from libtorrent contains an empty "progress" in the following cases:
+        //   1. when it was requested at a time when the initial resume data has not yet been checked,
+        //   2. when initial resume data was rejected
+        // We should preserve the initial "progress" in such cases.
+        const bool needPreserveProgress = m_hasMissingFiles
+                || (!m_ltAddTorrentParams.have_pieces.empty() && params.have_pieces.empty());
+        const bool preserveSeedMode = !m_hasMissingFiles && !hasMetadata()
+                && (m_ltAddTorrentParams.flags & lt::torrent_flags::seed_mode);
+
+        if (needPreserveProgress)
+        {
+            havePieces = std::move(m_ltAddTorrentParams.have_pieces);
+            unfinishedPieces = std::move(m_ltAddTorrentParams.unfinished_pieces);
+            verifiedPieces = std::move(m_ltAddTorrentParams.verified_pieces);
+        }
+
         // Update recent resume data
         m_ltAddTorrentParams = params;
+
+        if (needPreserveProgress)
+        {
+            m_ltAddTorrentParams.have_pieces = std::move(havePieces);
+            m_ltAddTorrentParams.unfinished_pieces = std::move(unfinishedPieces);
+            m_ltAddTorrentParams.verified_pieces = std::move(verifiedPieces);
+        }
+
         if (preserveSeedMode)
             m_ltAddTorrentParams.flags |= lt::torrent_flags::seed_mode;
     }
