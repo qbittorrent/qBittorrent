@@ -49,6 +49,7 @@
 
 #include <QtSystemDetection>
 #include <QByteArray>
+#include <QCache>
 #include <QDebug>
 #include <QPointer>
 #include <QSet>
@@ -94,7 +95,15 @@ namespace
 
     QString toString(const lt::tcp::endpoint &ltTCPEndpoint)
     {
-        return QString::fromStdString((std::stringstream() << ltTCPEndpoint).str());
+        static QCache<lt::tcp::endpoint, QString> cache;
+
+        if (const QString *endpointName = cache.object(ltTCPEndpoint))
+            return *endpointName;
+
+        const std::string tmp = (std::ostringstream() << ltTCPEndpoint).str();
+        const auto endpointName = QString::fromLatin1(tmp.c_str(), tmp.size());
+        cache.insert(ltTCPEndpoint, new QString(endpointName));
+        return endpointName;
     }
 
     template <typename FromLTTimePoint32Func>
