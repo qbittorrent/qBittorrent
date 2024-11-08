@@ -47,16 +47,9 @@ namespace
 {
     bool isDarkTheme()
     {
-        switch (qApp->styleHints()->colorScheme())
-        {
-        case Qt::ColorScheme::Dark:
-            return true;
-        case Qt::ColorScheme::Light:
-            return false;
-        default:
-            // fallback to custom method
-            return (qApp->palette().color(QPalette::Active, QPalette::Base).lightness() < 127);
-        }
+        const QPalette palette = qApp->palette();
+        const QColor &color = palette.color(QPalette::Active, QPalette::Base);
+        return (color.lightness() < 127);
     }
 }
 
