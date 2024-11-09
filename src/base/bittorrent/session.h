@@ -468,6 +468,9 @@ namespace BitTorrent
         virtual void topTorrentsQueuePos(const QList<TorrentID> &ids) = 0;
         virtual void bottomTorrentsQueuePos(const QList<TorrentID> &ids) = 0;
 
+        virtual QString lastExternalIPv4Address() const = 0;
+        virtual QString lastExternalIPv6Address() const = 0;
+
     signals:
         void startupProgressUpdated(int progress);
         void addTorrentFailed(const InfoHash &infoHash, const QString &reason);

@@ -90,6 +90,11 @@
         </table>
     </fieldset>
 
+    <div class="formRow" style="margin-bottom: 3px;">
+        <input type="checkbox" id="statusBarExternalIP">
+        <label for="statusBarExternalIP">QBT_TR(Show external IP in status bar)QBT_TR[CONTEXT=OptionsDialog]</label>
+    </div>
+
     <div class="formRow" style="margin-bottom: 5px;">
         <input type="checkbox" id="performanceWarning">
         <label for="performanceWarning">QBT_TR(Log performance warnings)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -2157,6 +2162,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Language
                     updateWebuiLocaleSelect(pref.locale);
                     updateColoSchemeSelect();
+                    $("statusBarExternalIP").checked = pref.status_bar_external_ip;
                     $("performanceWarning").checked = pref.performance_warning;
                     document.getElementById("displayFullURLTrackerColumn").checked = (LocalPreferences.get("full_url_tracker_column", "false") === "true");
                     document.getElementById("hideZeroFiltersCheckbox").checked = (LocalPreferences.get("hide_zero_status_filters", "false") === "true");
@@ -2582,6 +2588,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 LocalPreferences.set("color_scheme", "light");
             else
                 LocalPreferences.set("color_scheme", "dark");
+            settings["status_bar_external_ip"] = $("statusBarExternalIP").checked;
             settings["performance_warning"] = $("performanceWarning").checked;
             LocalPreferences.set("full_url_tracker_column", document.getElementById("displayFullURLTrackerColumn").checked.toString());
             LocalPreferences.set("hide_zero_status_filters", document.getElementById("hideZeroFiltersCheckbox").checked.toString());

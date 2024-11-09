@@ -815,6 +815,13 @@
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="checkBoxExternalIPStatusBar">
+              <property name="text">
+               <string>Show external IP in status bar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QCheckBox" name="checkBoxPerformanceWarning">
               <property name="text">
                <string>Log performance warnings</string>
