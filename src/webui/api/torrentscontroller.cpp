@@ -116,6 +116,7 @@ const QString KEY_PROP_SSL_CERTIFICATE = u"ssl_certificate"_s;
 const QString KEY_PROP_SSL_PRIVATEKEY = u"ssl_private_key"_s;
 const QString KEY_PROP_SSL_DHPARAMS = u"ssl_dh_params"_s;
 const QString KEY_PROP_HAS_METADATA = u"has_metadata"_s;
+const QString KEY_PROP_PROGRESS = u"progress"_s;
 
 
 // File keys
@@ -503,7 +504,8 @@ void TorrentsController::propertiesAction()
         {KEY_PROP_SAVE_PATH, torrent->savePath().toString()},
         {KEY_PROP_DOWNLOAD_PATH, torrent->downloadPath().toString()},
         {KEY_PROP_COMMENT, torrent->comment()},
-        {KEY_PROP_HAS_METADATA, torrent->hasMetadata()}
+        {KEY_PROP_HAS_METADATA, torrent->hasMetadata()},
+        {KEY_PROP_PROGRESS, torrent->progress()}
     };
 
     setResult(ret);
