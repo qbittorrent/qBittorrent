@@ -29,6 +29,7 @@ body {
 
 #error_msg {
     color: #f00;
+    white-space: pre;
 }
 
 #loginButton {

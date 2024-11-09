@@ -30,32 +30,35 @@
 
 const submitLoginForm = (event) => {
     event.preventDefault();
-    const errorMsgElement = document.getElementById("error_msg");
 
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "api/v2/auth/login", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
-    xhr.addEventListener("readystatechange", () => {
-        if (xhr.readyState === 4) { // DONE state
-            if ((xhr.status === 200) && (xhr.responseText === "Ok."))
-                location.replace(location);
-            else
-                errorMsgElement.textContent = "QBT_TR(Invalid Username or Password.)QBT_TR[CONTEXT=Login]";
-        }
-    });
-    xhr.addEventListener("error", () => {
-        errorMsgElement.textContent = (xhr.responseText !== "")
-            ? xhr.responseText
-            : "QBT_TR(Unable to log in, server is probably unreachable.)QBT_TR[CONTEXT=Login]";
-    });
+    const errorMsgElement = document.getElementById("error_msg");
+    errorMsgElement.textContent = ""; // clear previous error
 
     const usernameElement = document.getElementById("username");
     const passwordElement = document.getElementById("password");
-    const queryString = "username=" + encodeURIComponent(usernameElement.value) + "&password=" + encodeURIComponent(passwordElement.value);
-    xhr.send(queryString);
 
-    // clear the field
-    passwordElement.value = "";
+    const query = new URLSearchParams();
+    query.set("username", usernameElement.value);
+    query.set("password", passwordElement.value);
+    passwordElement.value = ""; // clear previous value
+
+    fetch("api/v2/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+            },
+            body: query.toString()
+        })
+        .then(async (response) => {
+                const responseText = await response.text();
+                if (response.ok && (responseText === "Ok."))
+                    location.replace(location); // redirect
+                else
+                    errorMsgElement.textContent = `QBT_TR(Invalid Username or Password.)QBT_TR[CONTEXT=Login]\nQBT_TR(Server response:)QBT_TR[CONTEXT=Login] ${responseText}`;
+            },
+            (error) => {
+                errorMsgElement.textContent = `QBT_TR(Unable to log in, server is probably unreachable.)QBT_TR[CONTEXT=Login]\n${error}`;
+            });
 };
 
 document.addEventListener("DOMContentLoaded", () => {
