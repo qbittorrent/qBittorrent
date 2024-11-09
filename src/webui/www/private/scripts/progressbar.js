@@ -127,7 +127,7 @@ window.qBittorrent.ProgressBar ??= (() => {
         this.vals.dark.textContent = displayedValue;
         this.vals.light.textContent = displayedValue;
 
-        const r = parseInt((this.vals.width * (value / 100)), 10);
+        const r = Number(this.vals.width * (value / 100));
         this.vals.dark.style.clipPath = `inset(0 calc(100% - ${r}px) 0 0)`;
         this.vals.light.style.clipPath = `inset(0 0 0 ${r}px)`;
     }

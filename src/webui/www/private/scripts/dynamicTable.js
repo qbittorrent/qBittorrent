@@ -184,7 +184,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const onStart = function(el, event) {
                 if (this.canResize) {
                     this.currentHeaderAction = "resize";
-                    this.startWidth = parseInt(this.resizeTh.style.width, 10);
+                    this.startWidth = Number(this.resizeTh.style.width);
                 }
                 else {
                     this.currentHeaderAction = "drag";
@@ -3259,7 +3259,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["type"].updateTd = function(td, row) {
                 // Type of the message: Log::NORMAL: 1, Log::INFO: 2, Log::WARNING: 4, Log::CRITICAL: 8
                 let logLevel, addClass;
-                switch (this.getRowValue(row).toInt()) {
+                switch (Number(this.getRowValue(row))) {
                     case 1:
                         logLevel = "QBT_TR(Normal)QBT_TR[CONTEXT=ExecutionLogWidget]";
                         addClass = "logNormal";

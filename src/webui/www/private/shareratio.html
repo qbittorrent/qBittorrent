@@ -40,11 +40,11 @@
 
             const values = {
                 ratioLimit: window.qBittorrent.Misc.friendlyFloat(origValues[0], 2),
-                seedingTimeLimit: parseInt(origValues[1], 10),
-                inactiveSeedingTimeLimit: parseInt(origValues[2], 10),
+                seedingTimeLimit: Number(origValues[1]),
+                inactiveSeedingTimeLimit: Number(origValues[2]),
                 maxRatio: window.qBittorrent.Misc.friendlyFloat(origValues[3], 2),
-                maxSeedingTime: parseInt(origValues[4], 10),
-                maxInactiveSeedingTime: parseInt(origValues[5], 10)
+                maxSeedingTime: Number(origValues[4]),
+                maxInactiveSeedingTime: Number(origValues[5])
             };
 
             // select default when orig values not passed. using double equals to compare string and int
