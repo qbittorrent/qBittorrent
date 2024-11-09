@@ -47,6 +47,7 @@ window.qBittorrent.Misc ??= (() => {
             toFixedPointString: toFixedPointString,
             containsAllTerms: containsAllTerms,
             sleep: sleep,
+            downloadFile: downloadFile,
             // variables
             FILTER_INPUT_DELAY: 400,
             MAX_ETA: 8640000
@@ -273,6 +274,36 @@ window.qBittorrent.Misc ??= (() => {
         return new Promise((resolve) => {
             setTimeout(resolve, ms);
         });
+    };
+
+    const downloadFile = (url, defaultFileName, errorMessage = undefined) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.responseType = "blob";
+        xhr.onload = function(event) {
+            if ((xhr.status >= 200) && (xhr.status < 300)) {
+                const blob = xhr.response;
+                let fileName = defaultFileName;
+                const prefix = "filename=";
+                for (const part of (xhr.getResponseHeader("content-disposition") ?? "").split(";").map(s => s.trim())) {
+                    if (part.startsWith(prefix)) {
+                        fileName = part.substring(prefix.length);
+                        if (fileName.startsWith("\"") && fileName.endsWith("\""))
+                            fileName = fileName.substring(1, fileName.length - 1);
+                        break;
+                    }
+                }
+
+                const link = document.createElement("a");
+                link.href = window.URL.createObjectURL(blob);
+                link.download = fileName;
+                link.click();
+            }
+            else {
+                alert(errorMessage ?? "QBT_TR(Unable to download file)QBT_TR[CONTEXT=HttpServer]");
+            }
+        };
+        xhr.send();
     };
 
     return exports();
