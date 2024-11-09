@@ -393,6 +393,7 @@
         <file>private/rename_rule.html</file>
         <file>private/scripts/cache.js</file>
         <file>private/scripts/client.js</file>
+        <file>private/scripts/color-scheme.js</file>
         <file>private/scripts/contextmenu.js</file>
         <file>private/scripts/download.js</file>
         <file>private/scripts/dynamicTable.js</file>
