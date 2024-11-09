@@ -36,7 +36,7 @@ window.qBittorrent.ColorScheme ??= (() => {
         };
     };
 
-    const LocalPreferences = new window.qBittorrent.LocalPreferences.LocalPreferencesClass();
+    const LocalPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
     const colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
     const update = () => {
