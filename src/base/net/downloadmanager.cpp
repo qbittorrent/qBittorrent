@@ -124,10 +124,20 @@ Net::DownloadManager::DownloadManager(QObject *parent)
         QStringList errorList;
         for (const QSslError &error : errors)
             errorList += error.errorString();
-        LogMsg(tr("Ignoring SSL error, URL: \"%1\", errors: \"%2\"").arg(reply->url().toString(), errorList.join(u". ")), Log::WARNING);
 
-        // Ignore all SSL errors
-        reply->ignoreSslErrors();
+        QString errorMsg;
+        if (!Preferences::instance()->isIgnoreSSLErrors())
+        {
+            errorMsg = tr("SSL error, URL: \"%1\", errors: \"%2\"");
+        }
+        else
+        {
+            errorMsg = tr("Ignoring SSL error, URL: \"%1\", errors: \"%2\"");
+            // Ignore all SSL errors
+            reply->ignoreSslErrors();
+        }
+
+        LogMsg(errorMsg.arg(reply->url().toString(), errorList.join(u". ")), Log::WARNING);
     });
 
     connect(ProxyConfigurationManager::instance(), &ProxyConfigurationManager::proxyConfigurationChanged
