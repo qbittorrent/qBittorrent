@@ -8,6 +8,16 @@
     </fieldset>
 
     <fieldset class="settings">
+        <legend>QBT_TR(Interface)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <label for="colorSchemeSelect">QBT_TR(Color scheme:)QBT_TR[CONTEXT=OptionsDialog]</label>
+        <select id="colorSchemeSelect">
+            <option value="0">QBT_TR(Auto)QBT_TR[CONTEXT=OptionsDialog]</option>
+            <option value="1">QBT_TR(Light)QBT_TR[CONTEXT=OptionsDialog]</option>
+            <option value="2">QBT_TR(Dark)QBT_TR[CONTEXT=OptionsDialog]</option>
+        </select>
+    </fieldset>
+
+    <fieldset class="settings">
         <legend>
             <input type="checkbox" id="filelog_checkbox" onclick="qBittorrent.Preferences.updateFileLogEnabled();" />
             <label for="filelog_checkbox">QBT_TR(Log file)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -2011,10 +2021,26 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             $("locale_select").setProperty("value", selected);
         };
 
+        const updateColoSchemeSelect = () => {
+            const combobox = document.getElementById("colorSchemeSelect");
+            const colorScheme = LocalPreferences.get("color_scheme");
+
+            if (colorScheme === "light")
+                combobox.options[1].selected = true;
+            else if (colorScheme === "dark")
+                combobox.options[2].selected = true;
+            else
+                combobox.options[0].selected = true;
+        };
+
         const loadPreferences = function() {
             window.parent.qBittorrent.Cache.preferences.init({
                 onSuccess: (pref) => {
                     // Behavior tab
+                    // Language
+                    updateWebuiLocaleSelect(pref.locale);
+                    updateColoSchemeSelect();
+                    $("performanceWarning").setProperty("checked", pref.performance_warning);
                     $("filelog_checkbox").setProperty("checked", pref.file_log_enabled);
                     $("filelog_save_path_input").setProperty("value", pref.file_log_path);
                     $("filelog_backup_checkbox").setProperty("checked", pref.file_log_backup_enabled);
@@ -2294,10 +2320,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("rss_filter_textarea").setProperty("value", pref.rss_smart_episode_filters);
 
                     // WebUI tab
-                    // Language
-                    updateWebuiLocaleSelect(pref.locale);
-                    $("performanceWarning").setProperty("checked", pref.performance_warning);
-
                     // HTTP Server
                     $("webui_domain_textarea").setProperty("value", pref.web_ui_domain_list);
                     $("webui_address_value").setProperty("value", pref.web_ui_address);
@@ -2426,6 +2448,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Validate form data
 
             // Behavior tab
+            // Language
+            settings["locale"] = $("locale_select").getProperty("value");
+            const colorScheme = Number(document.getElementById("colorSchemeSelect").value);
+            if (colorScheme === 0)
+                LocalPreferences.remove("color_scheme");
+            else if (colorScheme === 1)
+                LocalPreferences.set("color_scheme", "light");
+            else
+                LocalPreferences.set("color_scheme", "dark");
+            settings["performance_warning"] = $("performanceWarning").getProperty("checked");
             settings["file_log_enabled"] = $("filelog_checkbox").getProperty("checked");
             settings["file_log_path"] = $("filelog_save_path_input").getProperty("value");
             settings["file_log_backup_enabled"] = $("filelog_backup_checkbox").getProperty("checked");
@@ -2712,10 +2744,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["rss_smart_episode_filters"] = $("rss_filter_textarea").getProperty("value");
 
             // WebUI tab
-            // Language
-            settings["locale"] = $("locale_select").getProperty("value");
-            settings["performance_warning"] = $("performanceWarning").getProperty("checked");
-
             // HTTP Server
             settings["web_ui_domain_list"] = $("webui_domain_textarea").getProperty("value");
             const web_ui_address = $("webui_address_value").getProperty("value").toString();
