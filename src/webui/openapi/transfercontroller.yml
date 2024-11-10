@@ -1,0 +1,172 @@
+info:
+  get:
+    summary: Get the global transfer information
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dl_info_speed:
+                  description: Global download rate in bytes per second
+                  type: number
+                dl_info_data:
+                  description: Data downloaded this session in bytes
+                  type: number
+                dl_rate_limit:
+                  description: Download rate limit in bytes per second
+                  type: number
+                up_info_speed:
+                  description: Global upload rate in bytes per second
+                  type: number
+                up_info_data:
+                  description: Data uploaded this session in bytes
+                  type: number
+                up_rate_limit:
+                  description: Upload rate limit in bytes per second
+                  type: number
+                dht_nodes:
+                  description: Number of DHT nodes connected to
+                  type: number
+                connection_status:
+                  description: Connection status
+                  type: string
+                  enum:
+                  - connected
+                  - firewalled
+                  - disconnected
+              required:
+                - 'dl_info_speed'
+                - 'dl_info_data'
+                - 'dl_rate_limit'
+                - 'up_info_speed'
+                - 'up_info_data'
+                - 'up_rate_limit'
+                - 'dht_nodes'
+                - 'connection_status'
+      '403':
+        $ref: 'main.yml#/components/responses/403forbidden'
+uploadLimit:
+  get:
+    summary: Get upload speed limit
+    responses:
+      '200':
+        $ref: 'main.yml#/components/responses/200TextOK'
+      '403':
+        $ref: 'main.yml#/components/responses/403forbidden'
+downloadLimit:
+  get:
+    summary: Get download speed limit
+    responses:
+      '200':
+        $ref: 'main.yml#/components/responses/200TextOK'
+      '403':
+        $ref: 'main.yml#/components/responses/403forbidden'
+setUploadLimit:
+  post:
+    summary: Set upload speed limit
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              limit:
+                description: Speed limit in bytes per second. Negative values disable the limit. Non-negative values below 1024 are clamped to 1024.
+                type: number
+            required: ['limit']
+    responses:
+      '200':
+        $ref: 'main.yml#/components/responses/200simpleOK'
+      '403':
+        $ref: 'main.yml#/components/responses/403forbidden'
+setDownloadLimit:
+  post:
+    summary: Set download speed limit
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              limit:
+                description: Speed limit in bytes per second. Negative values disable the limit. Non-negative values below 1024 are clamped to 1024.
+                type: number
+            required: ['limit']
+    responses:
+      '200':
+        $ref: 'main.yml#/components/responses/200simpleOK'
+      '403':
+        $ref: 'main.yml#/components/responses/403forbidden'
+toggleSpeedLimitsMode:
+  post:
+    summary: Toggle speed limit mode
+    description: Toggle speed limit mode between normal and alternative
+    responses:
+      '200':
+        $ref: 'main.yml#/components/responses/200simpleOK'
+      '403':
+        $ref: 'main.yml#/components/responses/403forbidden'
+speedLimitsMode:
+  get:
+    summary: Get speed limit mode
+    description: '`1` means alternative mode and `0` normal mode'
+    responses:
+      '200':
+        description: OK
+        content:
+          text/plain; charset=UTF-8:
+            schema:
+              type: number
+              enum:
+                  - 0
+                  - 1
+      '403':
+        $ref: 'main.yml#/components/responses/403forbidden'
+setSpeedLimitsMode:
+  post:
+    summary: Set speed limit mode
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              mode:
+                description: '`1` means alternative mode and `0` normal mode.'
+                type: number
+                enum:
+                  - 0
+                  - 1
+            required: ['mode']
+    responses:
+      '200':
+        $ref: 'main.yml#/components/responses/200simpleOK'
+      '400':
+        $ref: 'main.yml#/components/responses/400badRequest'
+      '403':
+        $ref: 'main.yml#/components/responses/403forbidden'
+banPeers:
+    post:
+      summary: Ban peers
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                peers:
+                  description: List of peer IPs to ban. Each list item is separated by the `|` character.
+                  type: string
+              required: ['peers']
+      responses:
+        '200':
+          $ref: 'main.yml#/components/responses/200simpleOK'
+        '403':
+          $ref: 'main.yml#/components/responses/403forbidden'

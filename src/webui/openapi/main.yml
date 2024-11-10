@@ -1,0 +1,99 @@
+openapi: '3.1.0'
+info:
+  description: This is the specification for qBittorrent's web API
+  title: qBittorrent WebAPI
+  version: '2.11.2'
+servers:
+  - url: 'https://localhost:{port}/api/v2'
+    variables:
+      port:
+        default: "8080"
+components:
+  securitySchemes:
+    defaultApiKey:
+      description: API key cookie provided when logged in successfully. The cookie name might be configured to a different name by the user.
+      type: apiKey
+      name: SID
+      in: cookie
+  responses:
+    200simpleOK:
+        description: OK
+    200TextOK:
+        description: OK
+        content:
+          text/plain; charset=UTF-8:
+            schema:
+              type: string
+    400badRequest:
+        description: Bad Request
+        content:
+          text/plain; charset=UTF-8:
+            schema:
+              type: string
+    401unauthorized:
+        description: Unauthorized
+        content:
+          text/plain; charset=UTF-8:
+            schema:
+              type: string
+    403forbidden:
+        description: Forbidden
+        content:
+          text/plain; charset=UTF-8:
+            schema:
+              type: string
+    404notFound:
+        description: Not Found
+        content:
+          text/plain; charset=UTF-8:
+            schema:
+              type: string
+    405methodNotAllowed:
+        description: Method Not Allowed
+        content:
+          text/plain; charset=UTF-8:
+            schema:
+              type: string
+    409conflict:
+        description: Conflict
+        content:
+          text/plain; charset=UTF-8:
+            schema:
+              type: string
+    415unsupportedMediaType:
+        description: Unsupported Media Type
+        content:
+          text/plain; charset=UTF-8:
+            schema:
+              type: string
+    500internalServerError:
+        description: Internal Server Error
+        content:
+          text/plain; charset=UTF-8:
+            schema:
+              type: string
+security:
+  - defaultApiKey: []
+paths:
+  /transfer/info:
+    $ref: 'transfercontroller.yml#/info'
+  /transfer/uploadLimit:
+    $ref: 'transfercontroller.yml#/uploadLimit'
+  /transfer/downloadLimit:
+    $ref: 'transfercontroller.yml#/downloadLimit'
+  /transfer/setUploadLimit:
+    $ref: 'transfercontroller.yml#/setUploadLimit'
+  /transfer/setDownloadLimit:
+    $ref: 'transfercontroller.yml#/setDownloadLimit'
+  /transfer/toggleSpeedLimitsMode:
+    $ref: 'transfercontroller.yml#/toggleSpeedLimitsMode'
+  /transfer/speedLimitsMode:
+    $ref: 'transfercontroller.yml#/speedLimitsMode'
+  /transfer/setSpeedLimitsMode:
+    $ref: 'transfercontroller.yml#/setSpeedLimitsMode'
+  /transfer/banPeers:
+    $ref: 'transfercontroller.yml#/banPeers'
+  /auth/login:
+    $ref: 'authcontroller.yml#/login'
+  /auth/logout:
+    $ref: 'authcontroller.yml#/logout'
