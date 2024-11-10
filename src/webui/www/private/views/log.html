@@ -188,12 +188,8 @@
         let selectedLogLevels = JSON.parse(LocalPreferences.get("qbt_selected_log_levels")) || ["1", "2", "4", "8"];
 
         const init = () => {
-            $("logLevelSelect").getElements("option").each((x) => {
-                if (selectedLogLevels.indexOf(x.value.toString()) !== -1)
-                    x.selected = true;
-                else
-                    x.selected = false;
-            });
+            for (const option of $("logLevelSelect").options)
+                option.setAttribute("selected", selectedLogLevels.includes(option.value));
 
             selectBox = new vanillaSelectBox("#logLevelSelect", {
                 maxHeight: 200,
