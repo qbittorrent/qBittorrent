@@ -728,6 +728,16 @@ void MainWindow::displaySearchTab(bool enable)
         if (!m_searchWidget)
         {
             m_searchWidget = new SearchWidget(app(), this);
+            connect(m_searchWidget, &SearchWidget::activeSearchFinished, this, [this](const bool failed)
+            {
+                if (app()->desktopIntegration()->isNotificationsEnabled() && (currentTabWidget() != m_searchWidget))
+                {
+                    if (failed)
+                        app()->desktopIntegration()->showNotification(tr("Search Engine"), tr("Search has failed"));
+                    else
+                        app()->desktopIntegration()->showNotification(tr("Search Engine"), tr("Search has finished"));
+                }
+            });
             m_tabs->insertTab(1, m_searchWidget,
 #ifndef Q_OS_MACOS
                 UIThemeManager::instance()->getIcon(u"edit-find"_s),
