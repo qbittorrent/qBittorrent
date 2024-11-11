@@ -63,6 +63,7 @@
 #include "base/types.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
+#include "base/utils/string.h"
 #include "common.h"
 #include "downloadpriority.h"
 #include "extensiondata.h"
@@ -100,8 +101,7 @@ namespace
         if (const QString *endpointName = cache.object(ltTCPEndpoint))
             return *endpointName;
 
-        const std::string tmp = (std::ostringstream() << ltTCPEndpoint).str();
-        const auto endpointName = QString::fromLatin1(tmp.c_str(), tmp.size());
+        const auto endpointName = Utils::String::fromLatin1((std::ostringstream() << ltTCPEndpoint).str());
         cache.insert(ltTCPEndpoint, new QString(endpointName));
         return endpointName;
     }
@@ -1255,12 +1255,12 @@ int TorrentImpl::queuePosition() const
 QString TorrentImpl::error() const
 {
     if (m_nativeStatus.errc)
-        return QString::fromLocal8Bit(m_nativeStatus.errc.message().c_str());
+        return Utils::String::fromLocal8Bit(m_nativeStatus.errc.message());
 
     if (m_nativeStatus.flags & lt::torrent_flags::upload_mode)
     {
         return tr("Couldn't write to file. Reason: \"%1\". Torrent is now in \"upload only\" mode.")
-            .arg(QString::fromLocal8Bit(m_lastFileError.error.message().c_str()));
+            .arg(Utils::String::fromLocal8Bit(m_lastFileError.error.message()));
     }
 
     return {};
@@ -2277,7 +2277,7 @@ void TorrentImpl::handleSaveResumeDataFailedAlert(const lt::save_resume_data_fai
     if (p->error != lt::errors::resume_data_not_modified)
     {
         LogMsg(tr("Generate resume data failed. Torrent: \"%1\". Reason: \"%2\"")
-            .arg(name(), QString::fromLocal8Bit(p->error.message().c_str())), Log::CRITICAL);
+            .arg(name(), Utils::String::fromLocal8Bit(p->error.message())), Log::CRITICAL);
     }
 }
 
@@ -2365,7 +2365,7 @@ void TorrentImpl::handleFileRenameFailedAlert(const lt::file_rename_failed_alert
     Q_ASSERT(fileIndex >= 0);
 
     LogMsg(tr("File rename failed. Torrent: \"%1\", file: \"%2\", reason: \"%3\"")
-        .arg(name(), filePath(fileIndex).toString(), QString::fromLocal8Bit(p->error.message().c_str())), Log::WARNING);
+        .arg(name(), filePath(fileIndex).toString(), Utils::String::fromLocal8Bit(p->error.message())), Log::WARNING);
 
     --m_renameCount;
     while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
