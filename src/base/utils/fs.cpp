@@ -60,7 +60,6 @@
 #include <QRegularExpression>
 #include <QStorageInfo>
 
-#include "base/global.h"
 #include "base/path.h"
 
 /**

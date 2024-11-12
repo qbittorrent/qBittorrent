@@ -29,6 +29,7 @@
 
 #pragma once
 
+#include <QByteArray>
 #include <QHostAddress>
 #include <QList>
 #include <QString>
@@ -76,7 +77,7 @@ namespace Http
     inline const QString CONTENT_TYPE_FORM_DATA = u"multipart/form-data"_s;
 
     // portability: "\r\n" doesn't guarantee mapping to the correct symbol
-    inline const char CRLF[] = {0x0D, 0x0A, '\0'};
+    inline const QByteArray CRLF = QByteArrayLiteral("\x0D\x0A");
 
     struct Environment
     {

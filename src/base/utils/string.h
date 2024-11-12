@@ -32,6 +32,7 @@
 
 #include <numeric>
 #include <optional>
+#include <string_view>
 
 #include <QChar>
 #include <QMetaEnum>
@@ -66,8 +67,8 @@ namespace Utils::String
     QStringList splitCommand(const QString &command);
 
     QString fromDouble(double n, int precision);
-    QString fromLatin1(const std::string &string);
-    QString fromLocal8Bit(const std::string &string);
+    QString fromLatin1(std::string_view string);
+    QString fromLocal8Bit(std::string_view string);
 
     template <typename Container>
     QString joinIntoString(const Container &container, const QString &separator)

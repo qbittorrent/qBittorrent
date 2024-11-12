@@ -120,36 +120,35 @@ namespace
         QString placeholder;
     };
 
-    Column makeColumn(const char *columnName)
+    Column makeColumn(const QString &columnName)
     {
-        const QString name = QString::fromLatin1(columnName);
-        return {.name = name, .placeholder = (u':' + name)};
+        return {.name = columnName, .placeholder = (u':' + columnName)};
     }
 
-    const Column DB_COLUMN_ID = makeColumn("id");
-    const Column DB_COLUMN_TORRENT_ID = makeColumn("torrent_id");
-    const Column DB_COLUMN_QUEUE_POSITION = makeColumn("queue_position");
-    const Column DB_COLUMN_NAME = makeColumn("name");
-    const Column DB_COLUMN_CATEGORY = makeColumn("category");
-    const Column DB_COLUMN_TAGS = makeColumn("tags");
-    const Column DB_COLUMN_TARGET_SAVE_PATH = makeColumn("target_save_path");
-    const Column DB_COLUMN_DOWNLOAD_PATH = makeColumn("download_path");
-    const Column DB_COLUMN_CONTENT_LAYOUT = makeColumn("content_layout");
-    const Column DB_COLUMN_RATIO_LIMIT = makeColumn("ratio_limit");
-    const Column DB_COLUMN_SEEDING_TIME_LIMIT = makeColumn("seeding_time_limit");
-    const Column DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT = makeColumn("inactive_seeding_time_limit");
-    const Column DB_COLUMN_SHARE_LIMIT_ACTION = makeColumn("share_limit_action");
-    const Column DB_COLUMN_HAS_OUTER_PIECES_PRIORITY = makeColumn("has_outer_pieces_priority");
-    const Column DB_COLUMN_HAS_SEED_STATUS = makeColumn("has_seed_status");
-    const Column DB_COLUMN_OPERATING_MODE = makeColumn("operating_mode");
-    const Column DB_COLUMN_STOPPED = makeColumn("stopped");
-    const Column DB_COLUMN_STOP_CONDITION = makeColumn("stop_condition");
-    const Column DB_COLUMN_SSL_CERTIFICATE = makeColumn("ssl_certificate");
-    const Column DB_COLUMN_SSL_PRIVATE_KEY = makeColumn("ssl_private_key");
-    const Column DB_COLUMN_SSL_DH_PARAMS = makeColumn("ssl_dh_params");
-    const Column DB_COLUMN_RESUMEDATA = makeColumn("libtorrent_resume_data");
-    const Column DB_COLUMN_METADATA = makeColumn("metadata");
-    const Column DB_COLUMN_VALUE = makeColumn("value");
+    const Column DB_COLUMN_ID = makeColumn(u"id"_s);
+    const Column DB_COLUMN_TORRENT_ID = makeColumn(u"torrent_id"_s);
+    const Column DB_COLUMN_QUEUE_POSITION = makeColumn(u"queue_position"_s);
+    const Column DB_COLUMN_NAME = makeColumn(u"name"_s);
+    const Column DB_COLUMN_CATEGORY = makeColumn(u"category"_s);
+    const Column DB_COLUMN_TAGS = makeColumn(u"tags"_s);
+    const Column DB_COLUMN_TARGET_SAVE_PATH = makeColumn(u"target_save_path"_s);
+    const Column DB_COLUMN_DOWNLOAD_PATH = makeColumn(u"download_path"_s);
+    const Column DB_COLUMN_CONTENT_LAYOUT = makeColumn(u"content_layout"_s);
+    const Column DB_COLUMN_RATIO_LIMIT = makeColumn(u"ratio_limit"_s);
+    const Column DB_COLUMN_SEEDING_TIME_LIMIT = makeColumn(u"seeding_time_limit"_s);
+    const Column DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT = makeColumn(u"inactive_seeding_time_limit"_s);
+    const Column DB_COLUMN_SHARE_LIMIT_ACTION = makeColumn(u"share_limit_action"_s);
+    const Column DB_COLUMN_HAS_OUTER_PIECES_PRIORITY = makeColumn(u"has_outer_pieces_priority"_s);
+    const Column DB_COLUMN_HAS_SEED_STATUS = makeColumn(u"has_seed_status"_s);
+    const Column DB_COLUMN_OPERATING_MODE = makeColumn(u"operating_mode"_s);
+    const Column DB_COLUMN_STOPPED = makeColumn(u"stopped"_s);
+    const Column DB_COLUMN_STOP_CONDITION = makeColumn(u"stop_condition"_s);
+    const Column DB_COLUMN_SSL_CERTIFICATE = makeColumn(u"ssl_certificate"_s);
+    const Column DB_COLUMN_SSL_PRIVATE_KEY = makeColumn(u"ssl_private_key"_s);
+    const Column DB_COLUMN_SSL_DH_PARAMS = makeColumn(u"ssl_dh_params"_s);
+    const Column DB_COLUMN_RESUMEDATA = makeColumn(u"libtorrent_resume_data"_s);
+    const Column DB_COLUMN_METADATA = makeColumn(u"metadata"_s);
+    const Column DB_COLUMN_VALUE = makeColumn(u"value"_s);
 
     template <typename LTStr>
     QString fromLTString(const LTStr &str)
@@ -214,9 +213,9 @@ namespace
                 .arg(quoted(constraint.name), names, values);
     }
 
-    QString makeColumnDefinition(const Column &column, const char *definition)
+    QString makeColumnDefinition(const Column &column, const QString &definition)
     {
-        return u"%1 %2"_s.arg(quoted(column.name), QString::fromLatin1(definition));
+        return u"%1 %2"_s.arg(quoted(column.name), definition);
     }
 
     LoadTorrentParams parseQueryResultRow(const QSqlQuery &query)
@@ -511,9 +510,9 @@ void BitTorrent::DBResumeDataStorage::createDB() const
     try
     {
         const QStringList tableMetaItems = {
-            makeColumnDefinition(DB_COLUMN_ID, "INTEGER PRIMARY KEY"),
-            makeColumnDefinition(DB_COLUMN_NAME, "TEXT NOT NULL UNIQUE"),
-            makeColumnDefinition(DB_COLUMN_VALUE, "BLOB")
+            makeColumnDefinition(DB_COLUMN_ID, u"INTEGER PRIMARY KEY"_s),
+            makeColumnDefinition(DB_COLUMN_NAME, u"TEXT NOT NULL UNIQUE"_s),
+            makeColumnDefinition(DB_COLUMN_VALUE, u"BLOB"_s)
         };
         const QString createTableMetaQuery = makeCreateTableStatement(DB_TABLE_META, tableMetaItems);
         if (!query.exec(createTableMetaQuery))
@@ -530,29 +529,29 @@ void BitTorrent::DBResumeDataStorage::createDB() const
             throw RuntimeError(query.lastError().text());
 
         const QStringList tableTorrentsItems = {
-            makeColumnDefinition(DB_COLUMN_ID, "INTEGER PRIMARY KEY"),
-            makeColumnDefinition(DB_COLUMN_TORRENT_ID, "BLOB NOT NULL UNIQUE"),
-            makeColumnDefinition(DB_COLUMN_QUEUE_POSITION, "INTEGER NOT NULL DEFAULT -1"),
-            makeColumnDefinition(DB_COLUMN_NAME, "TEXT"),
-            makeColumnDefinition(DB_COLUMN_CATEGORY, "TEXT"),
-            makeColumnDefinition(DB_COLUMN_TAGS, "TEXT"),
-            makeColumnDefinition(DB_COLUMN_TARGET_SAVE_PATH, "TEXT"),
-            makeColumnDefinition(DB_COLUMN_DOWNLOAD_PATH, "TEXT"),
-            makeColumnDefinition(DB_COLUMN_CONTENT_LAYOUT, "TEXT NOT NULL"),
-            makeColumnDefinition(DB_COLUMN_RATIO_LIMIT, "INTEGER NOT NULL"),
-            makeColumnDefinition(DB_COLUMN_SEEDING_TIME_LIMIT, "INTEGER NOT NULL"),
-            makeColumnDefinition(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT, "INTEGER NOT NULL"),
-            makeColumnDefinition(DB_COLUMN_SHARE_LIMIT_ACTION, "TEXT NOT NULL DEFAULT `Default`"),
-            makeColumnDefinition(DB_COLUMN_HAS_OUTER_PIECES_PRIORITY, "INTEGER NOT NULL"),
-            makeColumnDefinition(DB_COLUMN_HAS_SEED_STATUS, "INTEGER NOT NULL"),
-            makeColumnDefinition(DB_COLUMN_OPERATING_MODE, "TEXT NOT NULL"),
-            makeColumnDefinition(DB_COLUMN_STOPPED, "INTEGER NOT NULL"),
-            makeColumnDefinition(DB_COLUMN_STOP_CONDITION, "TEXT NOT NULL DEFAULT `None`"),
-            makeColumnDefinition(DB_COLUMN_SSL_CERTIFICATE, "TEXT"),
-            makeColumnDefinition(DB_COLUMN_SSL_PRIVATE_KEY, "TEXT"),
-            makeColumnDefinition(DB_COLUMN_SSL_DH_PARAMS, "TEXT"),
-            makeColumnDefinition(DB_COLUMN_RESUMEDATA, "BLOB NOT NULL"),
-            makeColumnDefinition(DB_COLUMN_METADATA, "BLOB")
+            makeColumnDefinition(DB_COLUMN_ID, u"INTEGER PRIMARY KEY"_s),
+            makeColumnDefinition(DB_COLUMN_TORRENT_ID, u"BLOB NOT NULL UNIQUE"_s),
+            makeColumnDefinition(DB_COLUMN_QUEUE_POSITION, u"INTEGER NOT NULL DEFAULT -1"_s),
+            makeColumnDefinition(DB_COLUMN_NAME, u"TEXT"_s),
+            makeColumnDefinition(DB_COLUMN_CATEGORY, u"TEXT"_s),
+            makeColumnDefinition(DB_COLUMN_TAGS, u"TEXT"_s),
+            makeColumnDefinition(DB_COLUMN_TARGET_SAVE_PATH, u"TEXT"_s),
+            makeColumnDefinition(DB_COLUMN_DOWNLOAD_PATH, u"TEXT"_s),
+            makeColumnDefinition(DB_COLUMN_CONTENT_LAYOUT, u"TEXT NOT NULL"_s),
+            makeColumnDefinition(DB_COLUMN_RATIO_LIMIT, u"INTEGER NOT NULL"_s),
+            makeColumnDefinition(DB_COLUMN_SEEDING_TIME_LIMIT, u"INTEGER NOT NULL"_s),
+            makeColumnDefinition(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT, u"INTEGER NOT NULL"_s),
+            makeColumnDefinition(DB_COLUMN_SHARE_LIMIT_ACTION, u"TEXT NOT NULL DEFAULT `Default`"_s),
+            makeColumnDefinition(DB_COLUMN_HAS_OUTER_PIECES_PRIORITY, u"INTEGER NOT NULL"_s),
+            makeColumnDefinition(DB_COLUMN_HAS_SEED_STATUS, u"INTEGER NOT NULL"_s),
+            makeColumnDefinition(DB_COLUMN_OPERATING_MODE, u"TEXT NOT NULL"_s),
+            makeColumnDefinition(DB_COLUMN_STOPPED, u"INTEGER NOT NULL"_s),
+            makeColumnDefinition(DB_COLUMN_STOP_CONDITION, u"TEXT NOT NULL DEFAULT `None`"_s),
+            makeColumnDefinition(DB_COLUMN_SSL_CERTIFICATE, u"TEXT"_s),
+            makeColumnDefinition(DB_COLUMN_SSL_PRIVATE_KEY, u"TEXT"_s),
+            makeColumnDefinition(DB_COLUMN_SSL_DH_PARAMS, u"TEXT"_s),
+            makeColumnDefinition(DB_COLUMN_RESUMEDATA, u"BLOB NOT NULL"_s),
+            makeColumnDefinition(DB_COLUMN_METADATA, u"BLOB"_s)
         };
         const QString createTableTorrentsQuery = makeCreateTableStatement(DB_TABLE_TORRENTS, tableTorrentsItems);
         if (!query.exec(createTableTorrentsQuery))
@@ -590,7 +589,7 @@ void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
 
     try
     {
-        const auto addColumn = [&query](const QString &table, const Column &column, const char *definition)
+        const auto addColumn = [&query](const QString &table, const Column &column, const QString &definition)
         {
             const auto testQuery = u"SELECT COUNT(%1) FROM %2;"_s.arg(quoted(column.name), quoted(table));
             if (query.exec(testQuery))
@@ -602,10 +601,10 @@ void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
         };
 
         if (fromVersion <= 1)
-            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_DOWNLOAD_PATH, "TEXT");
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_DOWNLOAD_PATH, u"TEXT"_s);
 
         if (fromVersion <= 2)
-            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_STOP_CONDITION, "TEXT NOT NULL DEFAULT `None`");
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_STOP_CONDITION, u"TEXT NOT NULL DEFAULT `None`"_s);
 
         if (fromVersion <= 3)
         {
@@ -617,17 +616,17 @@ void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
         }
 
         if (fromVersion <= 4)
-            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT, "INTEGER NOT NULL DEFAULT -2");
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT, u"INTEGER NOT NULL DEFAULT -2"_s);
 
         if (fromVersion <= 5)
         {
-            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_SSL_CERTIFICATE, "TEXT");
-            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_SSL_PRIVATE_KEY, "TEXT");
-            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_SSL_DH_PARAMS, "TEXT");
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_SSL_CERTIFICATE, u"TEXT"_s);
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_SSL_PRIVATE_KEY, u"TEXT"_s);
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_SSL_DH_PARAMS, u"TEXT"_s);
         }
 
         if (fromVersion <= 6)
-            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_SHARE_LIMIT_ACTION, "TEXTNOT NULL DEFAULT `Default`");
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_SHARE_LIMIT_ACTION, u"TEXTNOT NULL DEFAULT `Default`"_s);
 
         const QString updateMetaVersionQuery = makeUpdateStatement(DB_TABLE_META, {DB_COLUMN_NAME, DB_COLUMN_VALUE});
         if (!query.prepare(updateMetaVersionQuery))

@@ -36,6 +36,7 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <QProcessEnvironment>
+#include <QStringView>
 
 #if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
 #include <QMessageBox>
@@ -60,7 +61,7 @@ namespace
     class Option
     {
     protected:
-        explicit constexpr Option(const char *name, char shortcut = 0)
+        explicit constexpr Option(const QStringView name, const QChar shortcut = QChar::Null)
             : m_name {name}
             , m_shortcut {shortcut}
         {
@@ -68,23 +69,23 @@ namespace
 
         QString fullParameter() const
         {
-            return u"--" + QString::fromLatin1(m_name);
+            return u"--" + m_name.toString();
         }
 
         QString shortcutParameter() const
         {
-            return u"-" + QChar::fromLatin1(m_shortcut);
+            return u"-" + m_shortcut;
         }
 
         bool hasShortcut() const
         {
-            return m_shortcut != 0;
+            return !m_shortcut.isNull();
         }
 
         QString envVarName() const
         {
             return u"QBT_"
-                   + QString::fromLatin1(m_name).toUpper().replace(u'-', u'_');
+                   + m_name.toString().toUpper().replace(u'-', u'_');
         }
 
     public:
@@ -99,15 +100,15 @@ namespace
         }
 
     private:
-        const char *m_name = nullptr;
-        const char m_shortcut;
+        const QStringView m_name;
+        const QChar m_shortcut;
     };
 
     // Boolean option.
     class BoolOption : protected Option
     {
     public:
-        explicit constexpr BoolOption(const char *name, char shortcut = 0)
+        explicit constexpr BoolOption(const QStringView name, const QChar shortcut = QChar::Null)
             : Option {name, shortcut}
         {
         }
@@ -139,8 +140,8 @@ namespace
     struct StringOption : protected Option
     {
     public:
-        explicit constexpr StringOption(const char *name)
-            : Option {name, 0}
+        explicit constexpr StringOption(const QStringView name)
+            : Option {name, QChar::Null}
         {
         }
 
@@ -181,7 +182,7 @@ namespace
     class IntOption : protected StringOption
     {
     public:
-        explicit constexpr IntOption(const char *name)
+        explicit constexpr IntOption(const QStringView name)
             : StringOption {name}
         {
         }
@@ -229,8 +230,8 @@ namespace
     class TriStateBoolOption : protected Option
     {
     public:
-        constexpr TriStateBoolOption(const char *name, bool defaultValue)
-            : Option {name, 0}
+        constexpr TriStateBoolOption(const QStringView name, const bool defaultValue)
+            : Option {name, QChar::Null}
             , m_defaultValue(defaultValue)
         {
         }
@@ -299,31 +300,32 @@ namespace
             return arg.section(u'=', 0, 0) == option.fullParameter();
         }
 
-        bool m_defaultValue;
+    private:
+        bool m_defaultValue = false;
     };
 
-    constexpr const BoolOption SHOW_HELP_OPTION {"help", 'h'};
+    constexpr const BoolOption SHOW_HELP_OPTION {u"help", u'h'};
 #if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
-    constexpr const BoolOption SHOW_VERSION_OPTION {"version", 'v'};
+    constexpr const BoolOption SHOW_VERSION_OPTION {u"version", u'v'};
 #endif
-    constexpr const BoolOption CONFIRM_LEGAL_NOTICE {"confirm-legal-notice"};
+    constexpr const BoolOption CONFIRM_LEGAL_NOTICE {u"confirm-legal-notice"};
 #if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
-    constexpr const BoolOption DAEMON_OPTION {"daemon", 'd'};
+    constexpr const BoolOption DAEMON_OPTION {u"daemon", u'd'};
 #else
-    constexpr const BoolOption NO_SPLASH_OPTION {"no-splash"};
+    constexpr const BoolOption NO_SPLASH_OPTION {u"no-splash"};
 #endif
-    constexpr const IntOption WEBUI_PORT_OPTION {"webui-port"};
-    constexpr const IntOption TORRENTING_PORT_OPTION {"torrenting-port"};
-    constexpr const StringOption PROFILE_OPTION {"profile"};
-    constexpr const StringOption CONFIGURATION_OPTION {"configuration"};
-    constexpr const BoolOption RELATIVE_FASTRESUME {"relative-fastresume"};
-    constexpr const StringOption SAVE_PATH_OPTION {"save-path"};
-    constexpr const TriStateBoolOption STOPPED_OPTION {"add-stopped", true};
-    constexpr const BoolOption SKIP_HASH_CHECK_OPTION {"skip-hash-check"};
-    constexpr const StringOption CATEGORY_OPTION {"category"};
-    constexpr const BoolOption SEQUENTIAL_OPTION {"sequential"};
-    constexpr const BoolOption FIRST_AND_LAST_OPTION {"first-and-last"};
-    constexpr const TriStateBoolOption SKIP_DIALOG_OPTION {"skip-dialog", true};
+    constexpr const IntOption WEBUI_PORT_OPTION {u"webui-port"};
+    constexpr const IntOption TORRENTING_PORT_OPTION {u"torrenting-port"};
+    constexpr const StringOption PROFILE_OPTION {u"profile"};
+    constexpr const StringOption CONFIGURATION_OPTION {u"configuration"};
+    constexpr const BoolOption RELATIVE_FASTRESUME {u"relative-fastresume"};
+    constexpr const StringOption SAVE_PATH_OPTION {u"save-path"};
+    constexpr const TriStateBoolOption STOPPED_OPTION {u"add-stopped", true};
+    constexpr const BoolOption SKIP_HASH_CHECK_OPTION {u"skip-hash-check"};
+    constexpr const StringOption CATEGORY_OPTION {u"category"};
+    constexpr const BoolOption SEQUENTIAL_OPTION {u"sequential"};
+    constexpr const BoolOption FIRST_AND_LAST_OPTION {u"first-and-last"};
+    constexpr const TriStateBoolOption SKIP_DIALOG_OPTION {u"skip-dialog", true};
 }
 
 QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &env)
