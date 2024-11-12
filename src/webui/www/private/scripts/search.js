@@ -109,7 +109,7 @@ window.qBittorrent.Search ??= (() => {
         // load "Search in" preference from local storage
         $("searchInTorrentName").value = (LocalPreferences.get("search_in_filter") === "names") ? "names" : "everywhere";
         const searchResultsTableContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
-            targets: ".searchTableRow",
+            targets: "#searchResultsTableDiv tr",
             menu: "searchResultsTableMenu",
             actions: {
                 Download: downloadSearchTorrent,
@@ -123,6 +123,8 @@ window.qBittorrent.Search ??= (() => {
         searchResultsTable = new window.qBittorrent.DynamicTable.SearchResultsTable();
         searchResultsTable.setup("searchResultsTableDiv", "searchResultsTableFixedHeaderDiv", searchResultsTableContextMenu);
         getPlugins();
+
+        searchResultsTable.dynamicTableDiv.addEventListener("dblclick", (e) => { downloadSearchTorrent(); });
 
         // listen for changes to searchInNameFilter
         let searchInNameFilterTimer = -1;
@@ -373,8 +375,6 @@ window.qBittorrent.Search ??= (() => {
 
         $("numSearchResultsVisible").textContent = searchResultsTable.getFilteredAndSortedRows().length;
         $("numSearchResultsTotal").textContent = searchResultsTable.getRowSize();
-
-        setupSearchTableEvents(true);
     };
 
     const getStatusIconElement = (text, image) => {
@@ -769,20 +769,6 @@ window.qBittorrent.Search ??= (() => {
         $("numSearchResultsVisible").textContent = searchResultsTable.getFilteredAndSortedRows().length;
     };
 
-    const setupSearchTableEvents = (enable) => {
-        const clickHandler = (e) => { downloadSearchTorrent(); };
-        if (enable) {
-            $$(".searchTableRow").each((target) => {
-                target.addEventListener("dblclick", clickHandler);
-            });
-        }
-        else {
-            $$(".searchTableRow").each((target) => {
-                target.removeEventListener("dblclick", clickHandler);
-            });
-        }
-    };
-
     const loadSearchResultsData = function(searchId) {
         const state = searchState.get(searchId);
 
@@ -820,8 +806,6 @@ window.qBittorrent.Search ??= (() => {
                 }
 
                 if (response) {
-                    setupSearchTableEvents(false);
-
                     const state = searchState.get(searchId);
                     const newRows = [];
 
@@ -858,8 +842,6 @@ window.qBittorrent.Search ??= (() => {
 
                         searchResultsTable.updateTable();
                     }
-
-                    setupSearchTableEvents(true);
 
                     if ((response.status === "Stopped") && (state.rowId >= response.total)) {
                         resetSearchState(searchId);

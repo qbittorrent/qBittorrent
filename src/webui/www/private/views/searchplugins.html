@@ -95,7 +95,7 @@
         const setup = () => {
             searchPluginsTable = new window.qBittorrent.DynamicTable.SearchPluginsTable();
             searchPluginsTableContextMenu = new window.qBittorrent.ContextMenu.SearchPluginsTableContextMenu({
-                targets: ".searchPluginsTableRow",
+                targets: "#searchPluginsTableDiv tr",
                 menu: "searchPluginsTableMenu",
                 actions: {
                     Enabled: enablePlugin,
@@ -104,6 +104,12 @@
                 offsets: calculateContextMenuOffsets()
             });
             searchPluginsTable.setup("searchPluginsTableDiv", "searchPluginsTableFixedHeaderDiv", searchPluginsTableContextMenu);
+
+            searchPluginsTable.dynamicTableDiv.addEventListener("dblclick", (e) => { enablePlugin(); });
+            searchPluginsTable.dynamicTableDiv.addEventListener("contextmenu", (e) => {
+                updateSearchPluginsTableContextMenuOffset();
+            }, true);
+
             updateTable();
         };
 
@@ -181,27 +187,7 @@
                 searchPluginsTableContextMenu.options.offsets = calculateContextMenuOffsets();
         };
 
-        const setupSearchPluginTableEvents = (enable) => {
-            const clickHandler = (e) => { enablePlugin(); };
-            const menuHandler = (e) => { updateSearchPluginsTableContextMenuOffset(); };
-            if (enable) {
-                $$(".searchPluginsTableRow").each((target) => {
-                    target.addEventListener("dblclick", clickHandler);
-                    target.addEventListener("contextmenu", menuHandler, true);
-                });
-            }
-            else {
-                $$(".searchPluginsTableRow").each((target) => {
-                    target.removeEventListener("dblclick", clickHandler);
-                    target.removeEventListener("contextmenu", menuHandler, true);
-                });
-            }
-        };
-
         const updateTable = () => {
-            // clear event listeners
-            setupSearchPluginTableEvents(false);
-
             const oldPlugins = [...searchPluginsTable.getRowIds()];
             // remove old rows from the table
             for (let i = 0; i < oldPlugins.length; ++i) {
@@ -222,9 +208,6 @@
             }
 
             searchPluginsTable.updateTable();
-
-            // add event listeners
-            setupSearchPluginTableEvents(true);
         };
 
         return exports();

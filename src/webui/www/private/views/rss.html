@@ -218,7 +218,7 @@
                 $("rssFetchingDisabled").removeClass("invisible");
 
             const rssFeedContextMenu = new window.qBittorrent.ContextMenu.RssFeedContextMenu({
-                targets: ".rssFeedContextMenuTarget",
+                targets: "#rssFeedTableDiv tr",
                 menu: "rssFeedMenu",
                 actions: {
                     update: (el) => {
@@ -288,7 +288,7 @@
             rssFeedTable.setup("rssFeedTableDiv", "rssFeedFixedHeaderDiv", rssFeedContextMenu);
 
             const rssArticleContextMenu = new window.qBittorrent.ContextMenu.RssArticleContextMenu({
-                targets: ".rssArticleElement",
+                targets: "#rssArticleTableDiv tr",
                 menu: "rssArticleMenu",
                 actions: {
                     Download: (el) => {

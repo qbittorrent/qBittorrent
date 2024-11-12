@@ -22,10 +22,6 @@
     color: var(--color-text-white);
 }
 
-#transferList tr:hover {
-    cursor: pointer;
-}
-
 #transferList img.stateIcon {
     height: 1.3em;
     margin-bottom: -1px;
@@ -35,10 +31,6 @@
 #transferList #transferList_pad {
     /* override for default mocha inline style */
     display: flex !important;
-}
-
-tr.dynamicTableHeader {
-    cursor: pointer;
 }
 
 .dynamicTable {
@@ -52,6 +44,10 @@ tr.dynamicTableHeader {
     border-right: 1px solid var(--color-border-default);
     padding: 4px 2px;
     white-space: nowrap;
+}
+
+.dynamicTable tr:hover {
+    cursor: pointer;
 }
 
 .dynamicTable tr:is(:hover, .selected) img:not(.flags) {
