@@ -29,6 +29,7 @@ window.qBittorrent ??= {};
 window.qBittorrent.Client ??= (() => {
     const exports = () => {
         return {
+            setup: setup,
             closeWindow: closeWindow,
             closeWindows: closeWindows,
             getSyncMainDataInterval: getSyncMainDataInterval,
@@ -42,6 +43,13 @@ window.qBittorrent.Client ??= (() => {
             isShowRssReader: isShowRssReader,
             isShowLogViewer: isShowLogViewer
         };
+    };
+
+    const setup = () => {
+        // fetch various data and store it in memory
+        window.qBittorrent.Cache.buildInfo.init();
+        window.qBittorrent.Cache.preferences.init();
+        window.qBittorrent.Cache.qbtVersion.init();
     };
 
     const closeWindow = (windowID) => {
@@ -103,6 +111,8 @@ window.qBittorrent.Client ??= (() => {
     return exports();
 })();
 Object.freeze(window.qBittorrent.Client);
+
+window.qBittorrent.Client.setup();
 
 // TODO: move global functions/variables into some namespace/scope
 
@@ -1755,11 +1765,6 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 window.addEventListener("load", () => {
-    // fetch various data and store it in memory
-    window.qBittorrent.Cache.buildInfo.init();
-    window.qBittorrent.Cache.preferences.init();
-    window.qBittorrent.Cache.qbtVersion.init();
-
     // switch to previously used tab
     const previouslyUsedTab = LocalPreferences.get("selected_window_tab", "transfers");
     switch (previouslyUsedTab) {
