@@ -114,3 +114,26 @@ div:has(> div.dynamicTableFixedHeaderDiv):not(.invisible) {
     padding-bottom: 0px !important;
     padding-top: 0px !important;
 }
+
+/* Trackers table */
+#torrentTrackersTableDiv tr:not(.selected, :hover) {
+    & .trackerDisabled {
+        color: var(--color-tracker-disabled);
+    }
+
+    & .trackerNotContacted {
+        color: var(--color-tracker-not-contacted);
+    }
+
+    & .trackerWorking {
+        color: var(--color-tracker-working);
+    }
+
+    & .trackerUpdating {
+        color: var(--color-tracker-updating);
+    }
+
+    & .trackerNotWorking {
+        color: var(--color-tracker-not-working);
+    }
+}

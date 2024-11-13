@@ -19,6 +19,14 @@
     --color-icon-hover: brightness(0) invert(100%) sepia(100%) saturate(0%)
         hue-rotate(108deg) brightness(104%) contrast(104%);
 
+    & #torrentTrackersTableDiv tr {
+        --color-tracker-disabled: hsl(240deg 4% 46%);
+        --color-tracker-not-contacted: hsl(32deg 95% 44%);
+        --color-tracker-working: hsl(142deg 76% 36%);
+        --color-tracker-updating: hsl(210deg 100% 55%);
+        --color-tracker-not-working: hsl(0deg 100% 65%);
+    }
+
     &:not(.dark) {
         color-scheme: light;
     }
@@ -33,6 +41,14 @@
         --color-background-default: hsl(0deg 0% 25%);
         --color-background-hover: hsl(26deg 50% 55%);
         --color-border-default: hsl(0deg 0% 33%);
+
+        & #torrentTrackersTableDiv tr {
+            --color-tracker-disabled: hsl(240deg 6% 83%);
+            --color-tracker-not-contacted: hsl(39deg 100% 72%);
+            --color-tracker-working: hsl(142deg 69% 58%);
+            --color-tracker-updating: hsl(210deg 88.1% 73.5%);
+            --color-tracker-not-working: hsl(0deg 100% 71%);
+        }
 
         color-scheme: dark;
 
