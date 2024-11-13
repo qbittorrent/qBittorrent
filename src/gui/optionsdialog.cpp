@@ -53,6 +53,7 @@
 #include "base/bittorrent/sharelimitaction.h"
 #include "base/exceptions.h"
 #include "base/global.h"
+#include "base/net/downloadmanager.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/path.h"
@@ -1148,6 +1149,10 @@ void OptionsDialog::loadBittorrentTabOptions()
     m_ui->checkEnableAddTrackers->setChecked(session->isAddTrackersEnabled());
     m_ui->textTrackers->setPlainText(session->additionalTrackers());
 
+    m_ui->checkAddTrackersFromURL->setChecked(session->isAddTrackersFromURLEnabled());
+    m_ui->textTrackersURL->setText(session->additionalTrackersURL());
+    m_ui->textTrackersFromURL->setPlainText(session->additionalTrackersFromURL());
+
     connect(m_ui->checkDHT, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkPeX, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLSD, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -1181,6 +1186,9 @@ void OptionsDialog::loadBittorrentTabOptions()
 
     connect(m_ui->checkEnableAddTrackers, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textTrackers, &QPlainTextEdit::textChanged, this, &ThisType::enableApplyButton);
+
+    connect(m_ui->checkAddTrackersFromURL, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->textTrackersURL, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
 }
 
 void OptionsDialog::saveBittorrentTabOptions() const
@@ -1218,6 +1226,9 @@ void OptionsDialog::saveBittorrentTabOptions() const
 
     session->setAddTrackersEnabled(m_ui->checkEnableAddTrackers->isChecked());
     session->setAdditionalTrackers(m_ui->textTrackers->toPlainText());
+
+    session->setAddTrackersFromURLEnabled(m_ui->checkAddTrackersFromURL->isChecked());
+    session->setAdditionalTrackersURL(m_ui->textTrackersURL->text());
 }
 
 void OptionsDialog::loadRSSTabOptions()
