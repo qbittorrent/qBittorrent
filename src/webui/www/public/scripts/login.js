@@ -52,7 +52,7 @@ const submitLoginForm = (event) => {
         .then(async (response) => {
                 const responseText = await response.text();
                 if (response.ok && (responseText === "Ok."))
-                    location.replace(location); // redirect
+                    location.reload(); // reload after login
                 else
                     errorMsgElement.textContent = `QBT_TR(Invalid Username or Password.)QBT_TR[CONTEXT=Login]\nQBT_TR(Server response:)QBT_TR[CONTEXT=Login] ${responseText}`;
             },
