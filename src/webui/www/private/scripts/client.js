@@ -52,15 +52,12 @@ window.qBittorrent.Client ??= (() => {
         window.qBittorrent.Cache.qbtVersion.init();
     };
 
-    const closeWindow = (windowID) => {
-        const window = document.getElementById(windowID);
-        if (!window)
-            return;
+    const closeWindow = (window) => {
         MochaUI.closeWindow(window);
     };
 
     const closeFrameWindow = (window) => {
-        closeWindow(window.frameElement.closest("div.mocha").id);
+        MochaUI.closeWindow(window.frameElement.closest("div.mocha"));
     };
 
     const getSyncMainDataInterval = () => {

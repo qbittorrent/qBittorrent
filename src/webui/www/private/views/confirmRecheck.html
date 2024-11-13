@@ -24,7 +24,9 @@
 
         confirmText.textContent = "QBT_TR(Are you sure you want to recheck the selected torrent(s)?)QBT_TR[CONTEXT=confirmRecheckDialog]";
 
-        cancelButton.addEventListener("click", (e) => { window.qBittorrent.Client.closeWindow("confirmRecheckDialog"); });
+        cancelButton.addEventListener("click", (e) => {
+            window.qBittorrent.Client.closeWindow(document.getElementById("confirmRecheckDialog"));
+        });
         confirmButton.addEventListener("click", (e) => {
             new Request({
                 url: "api/v2/torrents/recheck",
@@ -34,7 +36,7 @@
                 },
                 onSuccess: () => {
                     updateMainData();
-                    window.qBittorrent.Client.closeWindow("confirmRecheckDialog");
+                    window.qBittorrent.Client.closeWindow(document.getElementById("confirmRecheckDialog"));
                 },
                 onFailure: () => {
                     alert("QBT_TR(Unable to recheck torrents.)QBT_TR[CONTEXT=HttpServer]");
@@ -51,7 +53,7 @@
                     confirmButton.click();
                     break;
                 case "Escape":
-                    window.qBittorrent.Client.closeWindow("confirmRecheckDialog");
+                    window.qBittorrent.Client.closeWindow(document.getElementById("confirmRecheckDialog"));
                     break;
             }
         });
