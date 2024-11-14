@@ -31,6 +31,8 @@
 #include "os.h"
 
 #ifdef Q_OS_WIN
+#include <algorithm>
+
 #include <windows.h>
 #include <powrprof.h>
 #include <shlobj.h>
@@ -41,6 +43,8 @@
 #include <CoreFoundation/CoreFoundation.h>
 #include <CoreServices/CoreServices.h>
 #endif // Q_OS_MACOS
+
+#include <QScopeGuard>
 
 #ifdef QBT_USES_DBUS
 #include <QDBusInterface>
@@ -283,34 +287,49 @@ bool Utils::OS::applyMarkOfTheWeb(const Path &file, const QString &url)
     // https://searchfox.org/mozilla-central/rev/ffdc4971dc18e1141cb2a90c2b0b776365650270/xpcom/io/CocoaFileUtils.mm#230
     // https://github.com/transmission/transmission/blob/f62f7427edb1fd5c430e0ef6956bbaa4f03ae597/macosx/Torrent.mm#L1945-L1955
 
+    const CFStringRef fileString = file.toString().toCFString();
+    [[maybe_unused]] const auto fileStringGuard = qScopeGuard([&fileString] { ::CFRelease(fileString); });
+    const CFURLRef fileURL = ::CFURLCreateWithFileSystemPath(kCFAllocatorDefault
+        , fileString, kCFURLPOSIXPathStyle, false);
+    [[maybe_unused]] const auto fileURLGuard = qScopeGuard([&fileURL] { ::CFRelease(fileURL); });
+
+    if (CFDictionaryRef currentProperties = nullptr;
+        ::CFURLCopyResourcePropertyForKey(fileURL, kCFURLQuarantinePropertiesKey, &currentProperties, NULL)
+            && currentProperties)
+    {
+        [[maybe_unused]] const auto currentPropertiesGuard = qScopeGuard([&currentProperties] { ::CFRelease(currentProperties); });
+
+        if (CFStringRef quarantineType = nullptr;
+            ::CFDictionaryGetValueIfPresent(currentProperties, kLSQuarantineTypeKey, reinterpret_cast<const void **>(&quarantineType))
+                && quarantineType)
+        {
+            if (::CFStringCompare(quarantineType, kLSQuarantineTypeOtherDownload, 0) == kCFCompareEqualTo)
+                return true;
+        }
+    }
+
     CFMutableDictionaryRef properties = ::CFDictionaryCreateMutable(kCFAllocatorDefault, 0
         , &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-    if (properties == NULL)
+    if (!properties)
         return false;
+    [[maybe_unused]] const auto propertiesGuard = qScopeGuard([&properties] { ::CFRelease(properties); });
 
     ::CFDictionarySetValue(properties, kLSQuarantineTypeKey, kLSQuarantineTypeOtherDownload);
     if (!url.isEmpty())
         ::CFDictionarySetValue(properties, kLSQuarantineDataURLKey, url.toCFString());
 
-    const CFStringRef fileString = file.toString().toCFString();
-    const CFURLRef fileURL = ::CFURLCreateWithFileSystemPath(kCFAllocatorDefault
-        , fileString, kCFURLPOSIXPathStyle, false);
-
     const Boolean success = ::CFURLSetResourcePropertyForKey(fileURL, kCFURLQuarantinePropertiesKey
         , properties, NULL);
-
-    ::CFRelease(fileURL);
-    ::CFRelease(fileString);
-    ::CFRelease(properties);
-
     return success;
 #elif defined(Q_OS_WIN)
     const QString zoneIDStream = file.toString() + u":Zone.Identifier";
-    HANDLE handle = ::CreateFileW(zoneIDStream.toStdWString().c_str(), GENERIC_WRITE
+
+    HANDLE handle = ::CreateFileW(zoneIDStream.toStdWString().c_str(), (GENERIC_READ | GENERIC_WRITE)
         , (FILE_SHARE_DELETE | FILE_SHARE_READ | FILE_SHARE_WRITE)
         , nullptr, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
     if (handle == INVALID_HANDLE_VALUE)
         return false;
+    [[maybe_unused]] const auto handleGuard = qScopeGuard([&handle] { ::CloseHandle(handle); });
 
     // 5.6.1 Zone.Identifier Stream Name
     // https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fscc/6e3f7352-d11c-4d76-8c39-2516a9df36e8
@@ -318,10 +337,27 @@ bool Utils::OS::applyMarkOfTheWeb(const Path &file, const QString &url)
     const QByteArray zoneID = QByteArrayLiteral("[ZoneTransfer]\r\nZoneId=3\r\n")
         + u"HostUrl=%1\r\n"_s.arg(hostURL).toUtf8();
 
+    if (LARGE_INTEGER streamSize = {0};
+        ::GetFileSizeEx(handle, &streamSize) && (streamSize.QuadPart > 0))
+    {
+        const DWORD expectedReadSize = std::min<LONGLONG>(streamSize.QuadPart, 1024);
+        QByteArray buf {expectedReadSize, '\0'};
+
+        if (DWORD actualReadSize = 0;
+            ::ReadFile(handle, buf.data(), expectedReadSize, &actualReadSize, nullptr) && (actualReadSize == expectedReadSize))
+        {
+            if (buf.startsWith("[ZoneTransfer]\r\n") && buf.contains("\r\nZoneId=3\r\n") && buf.contains("\r\nHostUrl="))
+                return true;
+        }
+    }
+
+    if (!::SetFilePointerEx(handle, {0}, nullptr, FILE_BEGIN))
+        return false;
+    if (!::SetEndOfFile(handle))
+        return false;
+
     DWORD written = 0;
     const BOOL writeResult = ::WriteFile(handle, zoneID.constData(), zoneID.size(), &written, nullptr);
-    ::CloseHandle(handle);
-
     return writeResult && (written == zoneID.size());
 #endif
 }
