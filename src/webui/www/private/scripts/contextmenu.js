@@ -392,6 +392,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 const data = torrentsTable.getRow(selectedRows[0]).full_data;
                 const metadata_downloaded = !((data["state"] === "metaDL") || (data["state"] === "forcedMetaDL") || (data["total_size"] === -1));
 
+                this.showItem("rename");
                 // hide renameFiles when metadata hasn't been downloaded yet
                 metadata_downloaded
                     ? this.showItem("renameFiles")
@@ -399,6 +400,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             }
             else {
                 this.hideItem("renameFiles");
+                this.hideItem("rename");
             }
 
             if (all_are_downloaded) {
