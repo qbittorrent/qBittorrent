@@ -219,7 +219,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     this.loadColumnsOrder();
                     this.updateTableHeaders();
                     while (this.tableBody.firstChild)
-                        this.tableBody.removeChild(this.tableBody.firstChild);
+                        this.tableBody.firstChild.remove();
                     this.updateTable(true);
                 }
                 if (this.currentHeaderAction === "drag") {
@@ -398,7 +398,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             // recreate child nodes when reusing (enables the context menu to work correctly)
             if (ul.hasChildNodes()) {
                 while (ul.firstChild)
-                    ul.removeChild(ul.lastChild);
+                    ul.lastChild.remove();
             }
 
             for (let i = 0; i < this.columns.length; ++i) {

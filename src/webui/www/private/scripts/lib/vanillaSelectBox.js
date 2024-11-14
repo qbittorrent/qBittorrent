@@ -862,7 +862,7 @@ vanillaSelectBox.prototype.remoteSearchIntegrateIt = function (data) {
     let self = this;
     if (data == null || data.length == 0) return;
     while(self.root.firstChild)
-    self.root.removeChild(self.root.firstChild);
+    self.root.firstChild.remove();
     
     self.buildSelect(data);
     self.reloadTree();

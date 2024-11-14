@@ -1124,7 +1124,7 @@ const initializeWindows = () => {
             element.download = (name + ".torrent");
             document.body.appendChild(element);
             element.click();
-            document.body.removeChild(element);
+            element.remove();
 
             // https://stackoverflow.com/questions/53560991/automatic-file-downloads-limited-to-10-files-on-chrome-browser
             await window.qBittorrent.Misc.sleep(200);
