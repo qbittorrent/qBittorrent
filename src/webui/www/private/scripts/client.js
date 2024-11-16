@@ -759,6 +759,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     torrentsFilterInputTimer = -1;
 
                     let torrentsTableSelectedRows;
+                    let updateStatuses = false;
                     let update_categories = false;
                     let updateTags = false;
                     let updateTrackers = false;
@@ -766,6 +767,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     const full_update = (response["full_update"] === true);
                     if (full_update) {
                         torrentsTableSelectedRows = torrentsTable.selectedRowsIds();
+                        updateStatuses = true;
                         update_categories = true;
                         updateTags = true;
                         updateTrackers = true;
@@ -870,6 +872,7 @@ window.addEventListener("DOMContentLoaded", () => {
                                 const state = response["torrents"][key]["state"];
                                 response["torrents"][key]["status"] = state;
                                 response["torrents"][key]["_statusOrder"] = statusSortOrder[state];
+                                updateStatuses = true;
                             }
                             torrentsTable.updateRowData(response["torrents"][key]);
                             if (addTorrentToCategoryList(response["torrents"][key]))
@@ -888,6 +891,7 @@ window.addEventListener("DOMContentLoaded", () => {
                             updateTags = true; // Always to update All tag
                         });
                         updateTorrents = true;
+                        updateStatuses = true;
                     }
 
                     // don't update the table unnecessarily
@@ -903,7 +907,10 @@ window.addEventListener("DOMContentLoaded", () => {
                         }
                         processServerState();
                     }
-                    updateFiltersList();
+
+                    if (updateStatuses)
+                        updateFiltersList();
+
                     if (update_categories) {
                         updateCategoryList();
                         window.qBittorrent.TransferList.contextMenu.updateCategoriesSubMenu(category_list);
