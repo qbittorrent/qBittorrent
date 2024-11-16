@@ -397,7 +397,7 @@
                                 };
                             }
                             tableInfo[curTab].instance.updateRowData(row);
-                            tableInfo[curTab].last_id = Math.max(response[i].id.toInt(), tableInfo[curTab].last_id);
+                            tableInfo[curTab].last_id = Math.max(Number(response[i].id), tableInfo[curTab].last_id);
                         }
 
                         tableInfo[curTab].instance.updateTable();

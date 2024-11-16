@@ -197,7 +197,7 @@ window.qBittorrent.PropFiles ??= (() => {
 
     const updatePriorityCombo = (id, selectedPriority) => {
         const combobox = $("comboPrio" + id);
-        if (parseInt(combobox.value, 10) !== selectedPriority)
+        if (Number(combobox.value) !== selectedPriority)
             selectComboboxPriority(combobox, selectedPriority);
     };
 
@@ -205,7 +205,7 @@ window.qBittorrent.PropFiles ??= (() => {
         const options = combobox.options;
         for (let i = 0; i < options.length; ++i) {
             const option = options[i];
-            if (parseInt(option.value, 10) === priority)
+            if (Number(option.value) === priority)
                 option.selected = true;
             else
                 option.selected = false;

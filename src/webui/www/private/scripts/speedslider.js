@@ -39,7 +39,7 @@ MochaUI.extend({
                 data: {},
                 onSuccess: (data) => {
                     if (data) {
-                        const tmp = data.toInt();
+                        const tmp = Number(data);
                         if (tmp > 0) {
                             maximum = tmp / 1024.0;
                         }
@@ -143,7 +143,7 @@ MochaUI.extend({
                 data: {},
                 onSuccess: (data) => {
                     if (data) {
-                        const tmp = data.toInt();
+                        const tmp = Number(data);
                         if (tmp > 0) {
                             maximum = tmp / 1024.0;
                         }

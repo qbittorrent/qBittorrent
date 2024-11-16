@@ -1011,7 +1011,7 @@ const initializeWindows = () => {
     };
 
     deleteTrackerFN = (trackerHash) => {
-        const trackerHashInt = Number.parseInt(trackerHash, 10);
+        const trackerHashInt = Number(trackerHash);
         if ((trackerHashInt === TRACKERS_ALL) || (trackerHashInt === TRACKERS_TRACKERLESS))
             return;
 

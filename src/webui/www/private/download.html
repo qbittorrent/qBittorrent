@@ -178,8 +178,8 @@
         $("downloadForm").addEventListener("submit", () => {
             $("startTorrentHidden").value = $("startTorrent").checked ? "false" : "true";
 
-            $("dlLimitHidden").value = $("dlLimitText").value.toInt() * 1024;
-            $("upLimitHidden").value = $("upLimitText").value.toInt() * 1024;
+            $("dlLimitHidden").value = Number($("dlLimitText").value) * 1024;
+            $("upLimitHidden").value = Number($("upLimitText").value) * 1024;
 
             $("download_spinner").style.display = "block";
             submitted = true;
