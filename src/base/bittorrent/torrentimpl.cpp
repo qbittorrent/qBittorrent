@@ -2378,7 +2378,8 @@ void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
 
 #if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
     // only apply Mark-of-the-Web to new download files
-    if (Preferences::instance()->isMarkOfTheWebEnabled() && isDownloading())
+    if (Preferences::instance()->isMarkOfTheWebEnabled()
+        && (m_nativeStatus.state == lt::torrent_status::downloading))
     {
         const Path fullpath = actualStorageLocation() / actualPath;
         Utils::OS::applyMarkOfTheWeb(fullpath);
