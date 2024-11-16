@@ -18,7 +18,7 @@
             $("cancelBtn").addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                window.parent.qBittorrent.Client.closeWindows();
+                window.parent.qBittorrent.Client.closeFrameWindow(window);
             });
             $("confirmBtn").addEventListener("click", (e) => {
                 e.preventDefault();
@@ -36,7 +36,7 @@
                             ++completionCount;
                             if (completionCount === paths.length) {
                                 window.parent.qBittorrent.Rss.updateRssFeedList();
-                                window.parent.qBittorrent.Client.closeWindows();
+                                window.parent.qBittorrent.Client.closeFrameWindow(window);
                             }
                         }
                     }).send();

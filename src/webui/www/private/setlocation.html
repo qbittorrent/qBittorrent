@@ -21,11 +21,11 @@
                     event.preventDefault();
                 },
                 "Escape": function(event) {
-                    window.parent.qBittorrent.Client.closeWindows();
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
                     event.preventDefault();
                 },
                 "Esc": function(event) {
-                    window.parent.qBittorrent.Client.closeWindows();
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
                     event.preventDefault();
                 }
             }
@@ -59,7 +59,7 @@
                         location: location
                     },
                     onSuccess: () => {
-                        window.parent.qBittorrent.Client.closeWindows();
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
                     },
                     onFailure: (xhr) => {
                         $("error_div").textContent = xhr.response;

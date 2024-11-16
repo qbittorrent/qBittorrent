@@ -21,11 +21,11 @@
                     event.preventDefault();
                 },
                 "Escape": function(event) {
-                    window.parent.qBittorrent.Client.closeWindows();
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
                     event.preventDefault();
                 },
                 "Esc": function(event) {
-                    window.parent.qBittorrent.Client.closeWindows();
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
                     event.preventDefault();
                 }
             }
@@ -69,7 +69,7 @@
                                 tags: tagName,
                             },
                             onComplete: () => {
-                                window.parent.qBittorrent.Client.closeWindows();
+                                window.parent.qBittorrent.Client.closeFrameWindow(window);
                             }
                         }).send();
                         break;
@@ -85,7 +85,7 @@
                                 tags: tagName,
                             },
                             onComplete: () => {
-                                window.parent.qBittorrent.Client.closeWindows();
+                                window.parent.qBittorrent.Client.closeFrameWindow(window);
                             }
                         }).send();
                         break;

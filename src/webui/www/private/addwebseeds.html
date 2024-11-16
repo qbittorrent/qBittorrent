@@ -17,11 +17,11 @@
                 defaultEventType: "keydown",
                 events: {
                     "Escape": function(event) {
-                        window.parent.qBittorrent.Client.closeWindows();
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
                         event.preventDefault();
                     },
                     "Esc": function(event) {
-                        window.parent.qBittorrent.Client.closeWindows();
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
                         event.preventDefault();
                     }
                 }
@@ -39,7 +39,7 @@
                         urls: $("urls").value.split("\n").map(w => encodeURIComponent(w.trim())).filter(w => (w.length > 0)).join("|")
                     },
                     onComplete: () => {
-                        window.parent.qBittorrent.Client.closeWindows();
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
                     }
                 }).send();
             });

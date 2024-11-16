@@ -16,11 +16,11 @@
             defaultEventType: "keydown",
             events: {
                 "Escape": function(event) {
-                    window.parent.qBittorrent.Client.closeWindows();
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
                     event.preventDefault();
                 },
                 "Esc": function(event) {
-                    window.parent.qBittorrent.Client.closeWindows();
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
                     event.preventDefault();
                 }
             }
@@ -52,7 +52,7 @@
                         alert("QBT_TR(Unable to add peers. Please ensure you are adhering to the IP:port format.)QBT_TR[CONTEXT=HttpServer]");
                     },
                     onSuccess: () => {
-                        window.parent.qBittorrent.Client.closeWindows();
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
                     }
                 }).send();
             });
@@ -65,7 +65,7 @@
         <label for="peers">QBT_TR(List of peers to add (one IP per line):)QBT_TR[CONTEXT=PeersAdditionDialog]</label>
         <textarea id="peers" rows="10" style="width: 100%;" placeholder="QBT_TR(Format: IPv4:port / [IPv6]:port)QBT_TR[CONTEXT=PeersAdditionDialog]"></textarea>
         <div style="margin-top: 10px; text-align: center;">
-            <button type="button" onclick="parent.qBittorrent.Client.closeWindows();">QBT_TR(Cancel)QBT_TR[CONTEXT=PeersAdditionDialog]</button>
+            <button type="button" onclick="parent.qBittorrent.Client.closeFrameWindow(window);">QBT_TR(Cancel)QBT_TR[CONTEXT=PeersAdditionDialog]</button>
             <button type="button" id="addPeersOk">QBT_TR(Ok)QBT_TR[CONTEXT=PeersAdditionDialog]</button>
         </div>
     </div>

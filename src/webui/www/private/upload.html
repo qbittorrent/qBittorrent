@@ -172,7 +172,7 @@
 
         $("upload_frame").addEventListener("load", () => {
             if (submitted)
-                window.parent.qBittorrent.Client.closeWindows();
+                window.parent.qBittorrent.Client.closeFrameWindow(window);
         });
 
         if ((Browser.platform === "ios") || ((Browser.platform === "mac") && (navigator.maxTouchPoints > 1)))

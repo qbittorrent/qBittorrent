@@ -20,7 +20,7 @@
             $("cancelBtn").focus();
             $("cancelBtn").addEvent("click", (e) => {
                 e.stopPropagation();
-                window.parent.qBittorrent.Client.closeWindows();
+                window.parent.qBittorrent.Client.closeFrameWindow(window);
             });
             $("confirmBtn").addEvent("click", (e) => {
                 e.stopPropagation();
@@ -33,7 +33,7 @@
                         urls: urls,
                     },
                     onComplete: () => {
-                        window.parent.qBittorrent.Client.closeWindows();
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
                     }
                 }).send();
             });
