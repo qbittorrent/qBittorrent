@@ -1,3 +1,17 @@
+Sun Nov 17th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.2
+    - BUGFIX: Remove trackers from previous category when moved to new one (glassez)
+    - BUGFIX: Fix `.torrent` file could not be deleted when torrent is canceled (glassez)
+    - BUGFIX: Reset tracker entries when pausing the session (glassez)
+    - BUGFIX: Check real palette darkness to detect "dark theme" (glassez)
+    - BUGFIX: Correctly handle "torrent finished" events (glassez)
+    - BUGFIX: Preserve initial torrent progress while checking resume data (glassez)
+    - BUGFIX: Avoid reapplying Mark-of-the-Web when it already exists (Chocobo1)
+    - BUGFIX: Don't apply Mark-of-the-Web on existing files (Chocobo1)
+    - WEBUI: Add color scheme switcher (sledgehammer999)
+    - SEARCH: Correctly delete the moved search tab (glassez)
+    - WINDOWS: Correctly save and restore Qt style setting (glassez)
+    - WINDOWS: NSIS: update Luxembourgish, Simplified Chinese and Traditional Chinese translations (Ikko Eltociear Ashimine, 3gf8jv4dv)
+
 Mon Oct 28th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.1
     - FEATURE: Add "Simple pread/pwrite" disk IO type (Hanabishi)
     - BUGFIX: Don't ignore SSL errors (sledgehammer999)
