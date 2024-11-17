@@ -556,7 +556,7 @@
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>Atsiuntimo greičio piktograma</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
@@ -564,7 +564,7 @@
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>Išsiuntimo greičio piktograma</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
@@ -1715,7 +1715,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>Maišyta veiksena</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
@@ -1863,10 +1863,30 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Ignore SSL errors:</source>
-        <translation type="unfinished" />
+        <translation>Nepaisyti SSL klaidų:</translation>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Interface</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Light</source>
         <translation type="unfinished" />
     </message>
 </context>

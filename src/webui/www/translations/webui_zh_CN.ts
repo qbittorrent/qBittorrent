@@ -114,11 +114,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation>启动 torrents</translation>
+        <translation>启动 torrent</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation>停止 torrents</translation>
+        <translation>停止 torrent</translation>
     </message>
 </context>
 <context>
@@ -604,7 +604,7 @@
     </message>
     <message>
         <source>Would you like to start all torrents?</source>
-        <translation>你要启动所有 torrents 吗？</translation>
+        <translation>你要启动所有 torrent 吗？</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -612,11 +612,11 @@
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
-        <translation>你要停止所有 torrents 吗？</translation>
+        <translation>你要停止所有 torrent 吗？</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation>全部开始</translation>
+        <translation>全部启动</translation>
     </message>
     <message>
         <source>Stop All</source>
@@ -719,7 +719,7 @@
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>为不完整的文件添加扩展名 .!qB</translation>
+        <translation>为不完整的文件添加扩展名 ".!qB"</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
@@ -731,7 +731,7 @@
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
-        <translation>该服务器需要安全链接（SSL）</translation>
+        <translation>该服务器需要安全连接（SSL）</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -767,7 +767,7 @@
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation>每 torrent 最大连接数：</translation>
+        <translation>每个 torrent 最大连接数：</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
@@ -819,7 +819,7 @@
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
-        <translation>手动屏蔽 IP 地址...</translation>
+        <translation>手动封禁 IP 地址...</translation>
     </message>
     <message>
         <source>Apply to trackers</source>
@@ -989,7 +989,7 @@
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>提示：使用引号将参数扩起以防止文本被空白符分割（例如："%N"）</translation>
+        <translation>提示：使用引号将参数括起以防止文本被空白符分割（例如："%N"）</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1409,7 +1409,7 @@
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>当 IP 或端口更改时，重新通知所有 trackers：</translation>
+        <translation>当 IP 或端口更改时，重新通知所有 tracker：</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1429,7 +1429,7 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation>IP 地址已报告给 Trackers (需要重启)</translation>
+        <translation>IP 地址已报告给 Tracker (需要重启)</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
@@ -1733,7 +1733,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source> sec</source>
-        <translation>秒</translation>
+        <translation> 秒</translation>
     </message>
     <message>
         <source>I2P outbound quantity:</source>
@@ -1845,7 +1845,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
-        <translation>合并 trackers 到现有 torrent</translation>
+        <translation>合并 tracker 到现有 torrent</translation>
     </message>
     <message>
         <source>When duplicate torrent is being added</source>
@@ -1861,10 +1861,30 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Ignore SSL errors:</source>
-        <translation type="unfinished" />
+        <translation>忽略 SSL 错误：</translation>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
+        <translation>简单预读/预写</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Interface</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Light</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2085,7 +2105,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Created By:</source>
-        <translation>创建：</translation>
+        <translation>创建者：</translation>
     </message>
     <message>
         <source>Added On:</source>
@@ -3119,7 +3139,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation>也删除内容文件</translation>
+        <translation>同时删除已下载的文件</translation>
     </message>
 </context>
 <context>
@@ -3474,11 +3494,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation>启动 torrents</translation>
+        <translation>启动 torrent</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation>停止 torrents</translation>
+        <translation>停止 torrent</translation>
     </message>
 </context>
 <context>
@@ -4012,11 +4032,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Start torrents</source>
-        <translation>启动 torrents</translation>
+        <translation>启动 torrent</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation>停止 torrents</translation>
+        <translation>停止 torrent</translation>
     </message>
 </context>
 <context>

@@ -751,7 +751,7 @@
     </message>
     <message>
         <source>Listening Port</source>
-        <translation>Прослушиваемый порт</translation>
+        <translation>Порт прослушивания</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
@@ -1861,10 +1861,30 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Ignore SSL errors:</source>
-        <translation type="unfinished" />
+        <translation>Игнорировать ошибки SSL:</translation>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
+        <translation>Простой ввод-вывод</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Interface</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Light</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2581,7 +2601,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation>Осталось байт</translation>
+        <translation>Осталось</translation>
     </message>
     <message>
         <source>Time Active</source>
@@ -2723,7 +2743,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remaining</source>
-        <translation>Осталось байт</translation>
+        <translation>Осталось</translation>
     </message>
     <message>
         <source>Availability</source>

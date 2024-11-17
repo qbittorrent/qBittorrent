@@ -1845,7 +1845,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
-        <translation>Slå ihop spårare till befintlig torrent</translation>
+        <translation>Slå samman spårare till befintlig torrent</translation>
     </message>
     <message>
         <source>When duplicate torrent is being added</source>
@@ -1861,10 +1861,30 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Ignore SSL errors:</source>
-        <translation type="unfinished" />
+        <translation>Ignorera SSL-fel:</translation>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
+        <translation>Enkel pread/pwrite</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Interface</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Light</source>
         <translation type="unfinished" />
     </message>
 </context>

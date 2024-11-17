@@ -381,7 +381,7 @@
         <translation>사용할 수 없음</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="904"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="906"/>
         <source>Not available</source>
         <translation>사용할 수 없음</translation>
     </message>
@@ -454,7 +454,7 @@
         <translation>&apos;%1&apos; 토렌트 메타데이터 파일을 내보낼 수 없습니다. 사유: %2.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="872"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="874"/>
         <source>Cannot create v2 torrent until its data is fully downloaded.</source>
         <translation>데이터가 완전히 다운로드될 때까지 v2 토렌트를 만들 수 없습니다.</translation>
     </message>
@@ -464,12 +464,12 @@
         <translation>파일 필터링...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="851"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="853"/>
         <source>Parsing metadata...</source>
         <translation>메타데이터 분석 중…</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="855"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="857"/>
         <source>Metadata retrieval complete</source>
         <translation>메타데이터 복구 완료</translation>
     </message>
@@ -537,7 +537,7 @@
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="74"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation>불완전한 토렌트에 다른 경로 사용:</translation>
+        <translation>불완전한 토렌트에 사용할 다른 경로:</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="107"/>
@@ -2177,7 +2177,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1679"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3672"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4516"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4531"/>
         <source>ON</source>
         <translation>켜짐</translation>
     </message>
@@ -2190,7 +2190,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1679"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3672"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4516"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4531"/>
         <source>OFF</source>
         <translation>꺼짐</translation>
     </message>
@@ -2263,7 +2263,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1679"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4516"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4531"/>
         <source>Anonymous mode: %1</source>
         <translation>익명 모드: %1</translation>
     </message>
@@ -2322,7 +2322,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>새 소스에서 트래커가 병합됨</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6330"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6348"/>
         <source>Failed to remove partfile. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2342,12 +2342,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>토렌트가 비활성 시드 시간 제한에 도달했습니다.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5520"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5540"/>
         <source>Failed to load torrent. Reason: &quot;%1&quot;</source>
         <translation>토렌트를 불러오지 못했습니다. 사유: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6177"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6195"/>
         <source>I2P error. Message: &quot;%1&quot;.</source>
         <translation>I2P 오류. 메시지: &quot;%1&quot;.</translation>
     </message>
@@ -2438,213 +2438,213 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>금지된 IP 주소 목록을 적용하는 동안 잘못된 IP 주소를 거부했습니다. IP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5031"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5046"/>
         <source>Added tracker to torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>토렌트에 트래커를 추가했습니다. 토렌트: &quot;%1&quot;. 트래커: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5038"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5053"/>
         <source>Removed tracker from torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>토렌트에서 트래커를 제거했습니다. 토렌트: &quot;%1&quot;. 트래커: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5050"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5065"/>
         <source>Added URL seed to torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>토렌트에 URL 배포를 추가했습니다. 토렌트: &quot;%1&quot;. URL: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5056"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5071"/>
         <source>Removed URL seed from torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>토렌트에서 URL 배포를 제거했습니다. 토렌트: &quot;%1&quot;. URL: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5085"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5100"/>
         <source>Torrent resumed. Torrent: &quot;%1&quot;</source>
         <translation>토렌트가 이어받기되었습니다. 토렌트: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5239"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5251"/>
         <source>Torrent download finished. Torrent: &quot;%1&quot;</source>
         <translation>토렌트 다운로드를 완료했습니다. 토렌트: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5150"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5165"/>
         <source>Torrent move canceled. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>토렌트 이동이 취소되었습니다. 토렌트: &quot;%1&quot;. 소스: &quot;%2&quot;. 대상: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5079"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5094"/>
         <source>Torrent stopped. Torrent: &quot;%1&quot;</source>
         <translation>토렌트가 정지되었습니다. 토렌트: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5161"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5176"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: torrent is currently moving to the destination</source>
         <translation>토렌트 이동을 대기열에 넣지 못했습니다. 토렌트: &quot;%1&quot;. 소스: &quot;%2&quot;. 대상: &quot;%3&quot;. 사유: 현재 토렌트가 대상으로 이동 중입니다</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5170"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5185"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot; Destination: &quot;%3&quot;. Reason: both paths point to the same location</source>
         <translation>토렌트 이동을 대기열에 넣지 못했습니다. 토렌트: &quot;%1&quot;. 소스: &quot;%2&quot; 대상: &quot;%3&quot;. 사유: 두 경로 모두 동일한 위치를 가리킵니다</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5178"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5193"/>
         <source>Enqueued torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>대기열에 있는 토렌트 이동입니다. 토렌트: &quot;%1&quot;. 소스: &quot;%2&quot;. 대상: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5195"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5210"/>
         <source>Start moving torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>토렌트 이동을 시작합니다. 토렌트: &quot;%1&quot;. 대상: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5273"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5285"/>
         <source>Failed to save Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>범주 구성을 저장하지 못했습니다. 파일: &quot;%1&quot;. 오류: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5320"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5332"/>
         <source>Failed to parse Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>범주 구성을 분석하지 못했습니다. 파일: &quot;%1&quot;. 오류: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5447"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5459"/>
         <source>Successfully parsed the IP filter file. Number of rules applied: %1</source>
         <translation>IP 필터 파일을 성공적으로 분석했습니다. 적용된 규칙 수: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5457"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5469"/>
         <source>Failed to parse the IP filter file</source>
         <translation>IP 필터 파일을 분석하지 못했습니다</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5757"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5777"/>
         <source>Restored torrent. Torrent: &quot;%1&quot;</source>
         <translation>토렌트를 복원했습니다. 토렌트: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5761"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5781"/>
         <source>Added new torrent. Torrent: &quot;%1&quot;</source>
         <translation>새로운 토렌트를 추가했습니다. 토렌트: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5767"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5787"/>
         <source>Torrent errored. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>토렌트 오류가 발생했습니다. 토렌트: &quot;%1&quot;. 오류: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5815"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5835"/>
         <source>Torrent is missing SSL parameters. Torrent: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation>토렌트에 SSL 매개변수가 누락되었습니다. 토렌트: &quot;%1&quot;. 메시지: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5865"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5885"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>파일 오류 경고입니다. 토렌트: &quot;%1&quot;. 파일: &quot;%2&quot; 사유: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5876"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5896"/>
         <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
         <translation>UPnP/NAT-PMP 포트 매핑에 실패했습니다. 메시지: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5882"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5902"/>
         <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
         <translation>UPnP/NAT-PMP 포트 매핑에 성공했습니다. 메시지: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5891"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5911"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
         <translation>IP 필터</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5894"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5914"/>
         <source>filtered port (%1)</source>
         <comment>this peer was blocked. Reason: filtered port (8899).</comment>
         <translation>필터링된 포트 (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5900"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5920"/>
         <source>privileged port (%1)</source>
         <comment>this peer was blocked. Reason: privileged port (80).</comment>
         <translation>특별 허가된 포트 (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5973"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5993"/>
         <source>BitTorrent session encountered a serious error. Reason: &quot;%1&quot;</source>
         <translation>BitTorrent 세션에 심각한 오류가 발생했습니다. 사유: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6167"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6185"/>
         <source>SOCKS5 proxy error. Address: %1. Message: &quot;%2&quot;.</source>
         <translation>SOCKS5 프록시 오류입니다. 주소: %1. 메시지: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5897"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5917"/>
         <source>%1 mixed mode restrictions</source>
         <comment>this peer was blocked. Reason: I2P mixed mode restrictions.</comment>
         <translation>%1 혼합 모드 제한</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5312"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5324"/>
         <source>Failed to load Categories. %1</source>
         <translation>범주를 불러오지 못했습니다. %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5327"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5339"/>
         <source>Failed to load Categories configuration. File: &quot;%1&quot;. Error: &quot;Invalid data format&quot;</source>
         <translation>범주 구성을 불러오지 못했습니다. 파일: &quot;%1&quot;. 오류: &quot;잘못된 데이터 형식&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5903"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5923"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: uTP is disabled.</comment>
         <translation>%1 비활성화됨</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5906"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5926"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: TCP is disabled.</comment>
         <translation>%1 비활성화됨</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5930"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5950"/>
         <source>URL seed DNS lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>URL 배포 DNS를 조회하지 못했습니다. 토렌트: &quot;%1&quot;. URL: &quot;%2&quot;. 오류: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5936"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5956"/>
         <source>Received error message from URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
         <translation>URL 배포에서 오류 메시지를 수신했습니다. 토렌트: &quot;%1&quot;. URL: &quot;%2&quot;. 메시지: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5945"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5965"/>
         <source>Successfully listening on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;</source>
         <translation>IP에서 성공적으로 수신 대기 중입니다. IP: &quot;%1&quot;. 포트: &quot;%2/%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5952"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5972"/>
         <source>Failed to listen on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>IP 수신에 실패했습니다. IP: &quot;%1&quot; 포트: %2/%3. 사유: &quot;%4&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5960"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5980"/>
         <source>Detected external IP. IP: &quot;%1&quot;</source>
         <translation>외부 IP를 감지했습니다. IP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6075"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6095"/>
         <source>Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation>오류: 내부 경고 대기열이 가득 차서 경고가 삭제되었습니다. 성능이 저하될 수 있습니다. 삭제된 경고 유형: &quot;%1&quot;. 메시지: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6097"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6117"/>
         <source>Moved torrent successfully. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>토렌트를 성공적으로 이동했습니다. 토렌트: &quot;%1&quot;. 대상: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6120"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6140"/>
         <source>Failed to move torrent. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>토렌트를 이동하지 못했습니다. 토렌트: &quot;%1&quot;. 소스: &quot;%2&quot;. 대상: %3. 사유: &quot;%4&quot;</translation>
     </message>
@@ -2674,67 +2674,67 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentImpl</name>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="809"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="814"/>
         <source>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</source>
         <translation>&quot;%2&quot; 토렌트에 &quot;%1&quot; 피어를 추가하지 못했습니다. 사유: %3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="814"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="819"/>
         <source>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</source>
         <translation>&quot;%1&quot; 피어를 &quot;%2&quot; 토렌트에 추가했습니다</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="874"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="879"/>
         <source>Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.</source>
         <translation>예기치 않은 데이터가 감지되었습니다. 토렌트: %1. 데이터: total_wanted=%2 total_wanted_done=%3.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1247"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1252"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation>파일에 쓸 수 없습니다. 사유: %1. 토렌트는 이제 &quot;업로드 전용&quot; 모드입니다.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1691"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1698"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
         <translation>처음과 마지막 조각 먼저 다운로드: %1, 토렌트: &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1692"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1699"/>
         <source>On</source>
         <translation>켜기</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1692"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1699"/>
         <source>Off</source>
         <translation>끄기</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1903"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1916"/>
         <source>Failed to reload torrent. Torrent: %1. Reason: %2</source>
         <translation>토렌트를 다시 불러오지 못했습니다. 토렌트: &quot;%1&quot;. 사유: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2241"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2269"/>
         <source>Generate resume data failed. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>이어받기 데이터를 생성하지 못했습니다. 토렌트: &quot;%1&quot;. 사유: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2250"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2278"/>
         <source>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>토렌트를 복원하지 못했습니다. 파일이 이동했거나 저장소에 접속할 수 없습니다. 토렌트: %1. 사유: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2840"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2869"/>
         <source>Missing metadata</source>
         <translation>누락된 메타데이터</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2329"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2357"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
         <translation>파일 이름 바꾸기 실패. 토렌트: &quot;%1&quot;. 파일: &quot;%2&quot;, 사유: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2400"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2429"/>
         <source>Performance alert: %1. More info: %2</source>
         <translation>성능 경고: %1. 추가 정보: %2</translation>
     </message>
@@ -3329,10 +3329,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../gui/guiaddtorrentmanager.cpp" line="102"/>
         <source>Downloading torrent... Source: &quot;%1&quot;</source>
         <translation>토렌트 다운로드 중... 소스 : &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Trackers cannot be merged because it is a private torrent</source>
-        <translation type="vanished">비공개 토렌트이기 때문에 트래커를 병합할 수 없음</translation>
     </message>
     <message>
         <location filename="../gui/guiaddtorrentmanager.cpp" line="196"/>
@@ -6663,7 +6659,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1314"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation>불완전한 토렌트에 다른 경로 사용:</translation>
+        <translation>불완전한 토렌트에 사용할 다른 경로:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1349"/>
@@ -7368,7 +7364,7 @@ readme[0-9].txt: &apos;readme1.txt&apos;, &apos;readme2.txt&apos;를 필터링�
         <location filename="../gui/optionsdialog.cpp" line="1699"/>
         <source>System</source>
         <comment>System default Qt style</comment>
-        <translation type="unfinished">시스템</translation>
+        <translation>시스템</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1700"/>
@@ -7376,27 +7372,27 @@ readme[0-9].txt: &apos;readme1.txt&apos;, &apos;readme2.txt&apos;를 필터링�
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1833"/>
+        <location filename="../gui/optionsdialog.cpp" line="1832"/>
         <source>Select folder to monitor</source>
         <translation>모니터할 폴더 선택</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1855"/>
+        <location filename="../gui/optionsdialog.cpp" line="1854"/>
         <source>Adding entry failed</source>
         <translation>항목을 추가하지 못했습니다</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1954"/>
+        <location filename="../gui/optionsdialog.cpp" line="1953"/>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>WebUI 사용자이름은 3자 이상이어야 합니다.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1961"/>
+        <location filename="../gui/optionsdialog.cpp" line="1960"/>
         <source>The WebUI password must be at least 6 characters long.</source>
         <translation>WebUI 비밀번호는 6자 이상이어야 합니다.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1971"/>
+        <location filename="../gui/optionsdialog.cpp" line="1970"/>
         <source>Location Error</source>
         <translation>위치 오류</translation>
     </message>
@@ -7459,27 +7455,27 @@ readme[0-9].txt: &apos;readme1.txt&apos;, &apos;readme2.txt&apos;를 필터링�
         <translation>지원하는 모든 필터</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1971"/>
+        <location filename="../gui/optionsdialog.cpp" line="1970"/>
         <source>The alternative WebUI files location cannot be blank.</source>
         <translation>대체 WebUI 파일 위치는 비워둘 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2008"/>
+        <location filename="../gui/optionsdialog.cpp" line="2007"/>
         <source>Parsing error</source>
         <translation>분석 오류</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2008"/>
+        <location filename="../gui/optionsdialog.cpp" line="2007"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>제공한 IP 필터를 분석하지 못했습니다</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2010"/>
+        <location filename="../gui/optionsdialog.cpp" line="2009"/>
         <source>Successfully refreshed</source>
         <translation>새로 고쳤습니다</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2010"/>
+        <location filename="../gui/optionsdialog.cpp" line="2009"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>제공한 IP 필터를 분석했습니다: %1개 규칙을 적용했습니다.</translation>
@@ -7490,18 +7486,18 @@ readme[0-9].txt: &apos;readme1.txt&apos;, &apos;readme2.txt&apos;를 필터링�
         <translation>환경설정</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2019"/>
+        <location filename="../gui/optionsdialog.cpp" line="2018"/>
         <source>Time Error</source>
         <translation>시간 오류</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2019"/>
+        <location filename="../gui/optionsdialog.cpp" line="2018"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>시작 시간과 종료 시간은 같을 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1954"/>
-        <location filename="../gui/optionsdialog.cpp" line="1961"/>
+        <location filename="../gui/optionsdialog.cpp" line="1953"/>
+        <location filename="../gui/optionsdialog.cpp" line="1960"/>
         <source>Length Error</source>
         <translation>길이 오류</translation>
     </message>
@@ -9202,10 +9198,10 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="14"/>
         <location filename="../gui/search/searchwidget.ui" line="51"/>
-        <location filename="../gui/search/searchwidget.cpp" line="295"/>
-        <location filename="../gui/search/searchwidget.cpp" line="318"/>
-        <location filename="../gui/search/searchwidget.cpp" line="384"/>
-        <location filename="../gui/search/searchwidget.cpp" line="392"/>
+        <location filename="../gui/search/searchwidget.cpp" line="301"/>
+        <location filename="../gui/search/searchwidget.cpp" line="324"/>
+        <location filename="../gui/search/searchwidget.cpp" line="390"/>
+        <location filename="../gui/search/searchwidget.cpp" line="398"/>
         <source>Search</source>
         <translation>검색</translation>
     </message>
@@ -9244,12 +9240,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation>&lt;b&gt;&amp;quot;foo bar&amp;quot;&lt;/b&gt;: &lt;b&gt;foo bar&lt;/b&gt;에 대해 검색</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="206"/>
+        <location filename="../gui/search/searchwidget.cpp" line="207"/>
         <source>All plugins</source>
         <translation>모든 플러그인</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="205"/>
+        <location filename="../gui/search/searchwidget.cpp" line="206"/>
         <source>Only enabled</source>
         <translation>활성화된 경우만</translation>
     </message>
@@ -9260,54 +9256,54 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation>&lt;b&gt;foo bar&lt;/b&gt;: &lt;b&gt;foo&lt;/b&gt; 및 &lt;b&gt;bar&lt;/b&gt;에 대해 검색</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="171"/>
+        <location filename="../gui/search/searchwidget.cpp" line="172"/>
         <source>Close tab</source>
         <translation>탭 닫기</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="172"/>
+        <location filename="../gui/search/searchwidget.cpp" line="173"/>
         <source>Close all tabs</source>
         <translation>모든 탭 닫기</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="207"/>
+        <location filename="../gui/search/searchwidget.cpp" line="208"/>
         <source>Select...</source>
         <translation>선택…</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="309"/>
-        <location filename="../gui/search/searchwidget.cpp" line="378"/>
-        <location filename="../gui/search/searchwidget.cpp" line="380"/>
+        <location filename="../gui/search/searchwidget.cpp" line="315"/>
+        <location filename="../gui/search/searchwidget.cpp" line="384"/>
+        <location filename="../gui/search/searchwidget.cpp" line="386"/>
         <source>Search Engine</source>
         <translation>검색 엔진</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="309"/>
+        <location filename="../gui/search/searchwidget.cpp" line="315"/>
         <source>Please install Python to use the Search Engine.</source>
         <translation>검색 엔진을 사용하려면 Python을 설치하십시오.</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="329"/>
+        <location filename="../gui/search/searchwidget.cpp" line="335"/>
         <source>Empty search pattern</source>
         <translation>검색 패턴 비우기</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="329"/>
+        <location filename="../gui/search/searchwidget.cpp" line="335"/>
         <source>Please type a search pattern first</source>
         <translation>검색 패턴을 먼저 입력하십시오</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="359"/>
+        <location filename="../gui/search/searchwidget.cpp" line="365"/>
         <source>Stop</source>
         <translation>중지</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="380"/>
+        <location filename="../gui/search/searchwidget.cpp" line="386"/>
         <source>Search has finished</source>
         <translation>검색이 완료되었습니다</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="378"/>
+        <location filename="../gui/search/searchwidget.cpp" line="384"/>
         <source>Search has failed</source>
         <translation>검색이 실패했습니다</translation>
     </message>
@@ -10014,7 +10010,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="72"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation>불완전한 토렌트에 다른 경로 사용:</translation>
+        <translation>불완전한 토렌트에 사용할 다른 경로:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="83"/>
@@ -11190,37 +11186,37 @@ Please choose a different name and try again.</source>
         <translation>기타 오류(%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="567"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="575"/>
         <source>Remove tracker</source>
         <translation>트래커 제거</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="572"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="580"/>
         <source>Start torrents</source>
         <translation>토렌트 시작</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="574"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="582"/>
         <source>Stop torrents</source>
         <translation>토렌트 정지</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="576"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="584"/>
         <source>Remove torrents</source>
         <translation>토렌트 제거</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="641"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="649"/>
         <source>Removal confirmation</source>
         <translation>제거 확인</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="642"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="650"/>
         <source>Are you sure you want to remove tracker &quot;%1&quot; from all torrents?</source>
         <translation>모든 토렌트에서 &quot;%1&quot; 트래커를 제거하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="644"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="652"/>
         <source>Don&apos;t ask me again.</source>
         <translation>다시 묻지 마세요.</translation>
     </message>
@@ -11989,12 +11985,12 @@ Please choose a different name and try again.</source>
 <context>
     <name>UIThemeManager</name>
     <message>
-        <location filename="../gui/uithememanager.cpp" line="87"/>
+        <location filename="../gui/uithememanager.cpp" line="80"/>
         <source>Set app style failed. Unknown style: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/uithememanager.cpp" line="103"/>
+        <location filename="../gui/uithememanager.cpp" line="96"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
         <translation>파일에서 UI 테마 읽기 실패: &quot;%1&quot;</translation>
     </message>
@@ -12358,7 +12354,7 @@ Please choose a different name and try again.</source>
         <translation>알 수 없음</translation>
     </message>
     <message>
-        <location filename="../base/utils/os.cpp" line="88"/>
+        <location filename="../base/utils/os.cpp" line="92"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>모든 다운로드가 완료되었기 때문에 qBittorrent가 지금 컴퓨터의 전원을 끕니다.</translation>
     </message>

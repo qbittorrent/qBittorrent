@@ -133,31 +133,31 @@
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>Global upload rate limit must be greater than 0 or disabled.</translation>
     </message>
     <message>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>Global download rate limit must be greater than 0 or disabled.</translation>
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>Alternative upload rate limit must be greater than 0 or disabled.</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>Alternative download rate limit must be greater than 0 or disabled.</translation>
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
-        <translation type="unfinished" />
+        <translation>Maximum active downloads must be greater than -1.</translation>
     </message>
     <message>
         <source>Maximum active uploads must be greater than -1.</source>
-        <translation type="unfinished" />
+        <translation>Maximum active uploads must be greater than -1.</translation>
     </message>
     <message>
         <source>Maximum active torrents must be greater than -1.</source>
-        <translation type="unfinished" />
+        <translation>Maximum active torrents must be greater than -1.</translation>
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
@@ -181,15 +181,15 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="unfinished" />
+        <translation>Share ratio limit must be between 0 and 9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="unfinished" />
+        <translation>Seeding time limit must be between 0 and 525600 minutes.</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished" />
+        <translation>Apply</translation>
     </message>
     <message>
         <source>Add</source>
@@ -198,7 +198,7 @@
     <message>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation type="unfinished" />
+        <translation>Upload Torrents</translation>
     </message>
     <message>
         <source>Save files to location:</source>
@@ -206,78 +206,78 @@
     </message>
     <message>
         <source>Cookie:</source>
-        <translation type="unfinished" />
+        <translation>Cookie:</translation>
     </message>
     <message>
         <source>More information</source>
-        <translation type="unfinished" />
+        <translation>More information</translation>
     </message>
     <message>
         <source>Information about certificates</source>
-        <translation type="unfinished" />
+        <translation>Information about certificates</translation>
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>Set location</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished" />
+        <translation>Limit upload rate</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished" />
+        <translation>Limit download rate</translation>
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation type="unfinished" />
+        <translation>Rename Torrent</translation>
     </message>
     <message>
         <source>Monday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>Monday</translation>
     </message>
     <message>
         <source>Tuesday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>Tuesday</translation>
     </message>
     <message>
         <source>Wednesday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>Wednesday</translation>
     </message>
     <message>
         <source>Thursday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>Thursday</translation>
     </message>
     <message>
         <source>Friday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>Friday</translation>
     </message>
     <message>
         <source>Saturday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>Saturday</translation>
     </message>
     <message>
         <source>Sunday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>Sunday</translation>
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished" />
+        <translation>Logout</translation>
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation type="unfinished" />
+        <translation>Download Torrents from their URLs or Magnet links</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
-        <translation type="unfinished" />
+        <translation>Upload local torrent</translation>
     </message>
     <message>
         <source>Save</source>
@@ -289,11 +289,11 @@
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>Global number of upload slots limit must be greater than 0 or disabled.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation type="unfinished" />
+        <translation>Invalid category name:\nPlease do not use any special characters in the category name.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
@@ -301,7 +301,7 @@
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation>Upload rate threshold must be greater than 0.</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -309,11 +309,11 @@
     </message>
     <message>
         <source>Free space: %1</source>
-        <translation type="unfinished" />
+        <translation>Free space: %1</translation>
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation>Torrent inactivity timer must be greater than 0.</translation>
     </message>
     <message>
         <source>Saving Management</source>
@@ -321,7 +321,7 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation>Download rate threshold must be greater than 0.</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -329,23 +329,23 @@
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation type="unfinished" />
+        <translation>Register to handle Magnet links...</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation type="unfinished" />
+        <translation>Unable to add peers. Please ensure you are adhering to the IP:port format.</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>Name cannot be empty</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation>Name is unchanged</translation>
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation type="unfinished" />
+        <translation>Failed to update name</translation>
     </message>
     <message>
         <source>OK</source>
@@ -353,7 +353,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>The port used for incoming connections must be between 0 and 65535.</translation>
     </message>
     <message>
         <source>Original author</source>
@@ -361,19 +361,19 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Are you sure you want to remove the selected torrents from the transfer list?</translation>
     </message>
     <message>
         <source>The port used for the WebUI must be between 1 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>The port used for the WebUI must be between 1 and 65535.</translation>
     </message>
     <message>
         <source>%1 has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>%1 has been shutdown</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
-        <translation type="unfinished" />
+        <translation>JavaScript Required! You must enable JavaScript for the WebUI to work properly</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
@@ -428,19 +428,19 @@
     </message>
     <message>
         <source>Top Toolbar</source>
-        <translation type="unfinished" />
+        <translation>Top Toolbar</translation>
     </message>
     <message>
         <source>Status Bar</source>
-        <translation type="unfinished" />
+        <translation>Status Bar</translation>
     </message>
     <message>
         <source>Speed in Title Bar</source>
-        <translation type="unfinished" />
+        <translation>Speed in Title Bar</translation>
     </message>
     <message>
         <source>Donate!</source>
-        <translation type="unfinished" />
+        <translation>Donate!</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -452,7 +452,7 @@
     </message>
     <message>
         <source>Add Torrent File...</source>
-        <translation type="unfinished" />
+        <translation>Add Torrent File...</translation>
     </message>
     <message>
         <source>Documentation</source>
@@ -460,7 +460,7 @@
     </message>
     <message>
         <source>Add Torrent Link...</source>
-        <translation type="unfinished" />
+        <translation>Add Torrent Link...</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -492,7 +492,7 @@
     </message>
     <message>
         <source>Filter torrent list...</source>
-        <translation type="unfinished" />
+        <translation>Filter Torrent list...</translation>
     </message>
     <message>
         <source>Search</source>
@@ -536,39 +536,39 @@
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation type="unfinished" />
+        <translation>Your browser does not support this feature</translation>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation type="unfinished" />
+        <translation>To use this feature, the WebUI needs to be accessed over HTTPS</translation>
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>Connection status: Firewalled</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>Connection status: Connected</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>Alternative speed limits: Off</translation>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>Download speed icon</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>Alternative speed limits: On</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>Upload speed icon</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>Connection status: Disconnected</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -596,11 +596,11 @@
     </message>
     <message>
         <source>Log</source>
-        <translation type="unfinished" />
+        <translation>Log</translation>
     </message>
     <message>
         <source>[D: %1, U: %2]</source>
-        <translation type="unfinished" />
+        <translation>[D: %1, U: %2]</translation>
     </message>
     <message>
         <source>Would you like to start all torrents?</source>
@@ -1009,7 +1009,7 @@
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
-        <translation type="unfinished" />
+        <translation>Delete .torrent files afterwards</translation>
     </message>
     <message>
         <source>Download rate threshold:</source>
@@ -1053,7 +1053,7 @@
     </message>
     <message>
         <source>0 means unlimited</source>
-        <translation type="unfinished" />
+        <translation>0 means unlimited</translation>
     </message>
     <message>
         <source>Relocate torrent</source>
@@ -1077,7 +1077,7 @@
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished" />
+        <translation>seconds</translation>
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
@@ -1109,7 +1109,7 @@
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation type="unfinished" />
+        <translation>μTP-TCP mixed mode algorithm:</translation>
     </message>
     <message>
         <source>Upload rate based</source>
@@ -1121,7 +1121,7 @@
     </message>
     <message>
         <source>Socket backlog size:</source>
-        <translation type="unfinished" />
+        <translation>Socket backlog size:</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
@@ -1133,7 +1133,7 @@
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation type="unfinished" />
+        <translation>Outstanding memory when checking torrents:</translation>
     </message>
     <message>
         <source>Anti-leech</source>
@@ -1145,11 +1145,11 @@
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
-        <translation type="unfinished" />
+        <translation>Allow multiple connections from the same IP address:</translation>
     </message>
     <message>
         <source>File pool size:</source>
-        <translation type="unfinished" />
+        <translation>File pool size:</translation>
     </message>
     <message>
         <source>Any interface</source>
@@ -1157,11 +1157,11 @@
     </message>
     <message>
         <source>Always announce to all tiers:</source>
-        <translation type="unfinished" />
+        <translation>Always announce to all tiers:</translation>
     </message>
     <message>
         <source>Embedded tracker port:</source>
-        <translation type="unfinished" />
+        <translation>Embedded tracker port:</translation>
     </message>
     <message>
         <source>Fastest upload</source>
@@ -1177,7 +1177,7 @@
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation type="unfinished" />
+        <translation>Send buffer watermark factor:</translation>
     </message>
     <message>
         <source>libtorrent Section</source>
@@ -1185,7 +1185,7 @@
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation type="unfinished" />
+        <translation>Recheck torrents on completion:</translation>
     </message>
     <message>
         <source>Allow encryption</source>
@@ -1193,11 +1193,11 @@
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
-        <translation type="unfinished" />
+        <translation>Send upload piece suggestions:</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
-        <translation type="unfinished" />
+        <translation>Enable embedded tracker:</translation>
     </message>
     <message>
         <source>Remove torrent</source>
@@ -1205,15 +1205,15 @@
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
-        <translation type="unfinished" />
+        <translation>Asynchronous I/O threads:</translation>
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation>s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation type="unfinished" />
+        <translation>Send buffer watermark:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
@@ -1229,11 +1229,11 @@
     </message>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>min</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
-        <translation type="unfinished" />
+        <translation>Upload choking algorithm:</translation>
     </message>
     <message>
         <source>Seeding Limits</source>
@@ -1249,7 +1249,7 @@
     </message>
     <message>
         <source>Upload slots behavior:</source>
-        <translation type="unfinished" />
+        <translation>Upload slots behaviour:</translation>
     </message>
     <message>
         <source>MiB</source>
@@ -1257,15 +1257,15 @@
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation type="unfinished" />
+        <translation>Send buffer low watermark:</translation>
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation type="unfinished" />
+        <translation>Save resume data interval:</translation>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
-        <translation type="unfinished" />
+        <translation>Always announce to all trackers in a tier:</translation>
     </message>
     <message>
         <source>Session timeout:</source>
@@ -1273,7 +1273,7 @@
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation>Resolve peer countries:</translation>
     </message>
     <message>
         <source>ban for:</source>
@@ -1305,7 +1305,7 @@
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation type="unfinished" />
+        <translation>Peer turnover threshold percentage:</translation>
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
@@ -1317,7 +1317,7 @@
     </message>
     <message>
         <source>Network interface:</source>
-        <translation type="unfinished" />
+        <translation>Network interface:</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -1337,7 +1337,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation type="unfinished" />
+        <translation>Peer turnover disconnect percentage:</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
@@ -1349,15 +1349,15 @@
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation type="unfinished" />
+        <translation>Peer turnover disconnect interval:</translation>
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
-        <translation type="unfinished" />
+        <translation>Optional IP address to bind to:</translation>
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation type="unfinished" />
+        <translation>Disallow connection to peers on privileged ports:</translation>
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
@@ -1369,7 +1369,7 @@
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
-        <translation type="unfinished" />
+        <translation>Validate HTTPS tracker certificate:</translation>
     </message>
     <message>
         <source>Peer connection protocol:</source>
@@ -1397,7 +1397,7 @@
     </message>
     <message>
         <source>Outgoing connections per second:</source>
-        <translation type="unfinished" />
+        <translation>Outgoing connections per second:</translation>
     </message>
     <message>
         <source>Random</source>
@@ -1405,7 +1405,7 @@
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>%K: Torrent ID</translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
@@ -1421,15 +1421,15 @@
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>%J: Info hash v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>%I: Info hash v1</translation>
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>IP address reported to trackers (requires restart):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
@@ -1437,11 +1437,11 @@
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation type="unfinished" />
+        <translation>Server-side request forgery (SSRF) mitigation:</translation>
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation>Disk queue size:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
@@ -1449,11 +1449,11 @@
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation>Maximum outstanding requests to a single peer:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation type="unfinished" />
+        <translation>Max active checking Torrents:</translation>
     </message>
     <message>
         <source>Memory mapped files</source>
@@ -1477,7 +1477,7 @@
     </message>
     <message>
         <source>Disk IO read mode:</source>
-        <translation type="unfinished" />
+        <translation>Disk IO read mode:</translation>
     </message>
     <message>
         <source>Disable OS cache</source>
@@ -1485,15 +1485,15 @@
     </message>
     <message>
         <source>Disk IO write mode:</source>
-        <translation type="unfinished" />
+        <translation>Disk IO write mode:</translation>
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation type="unfinished" />
+        <translation>Use piece extent affinity:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation type="unfinished" />
+        <translation>Max concurrent HTTP announces:</translation>
     </message>
     <message>
         <source>Enable OS cache</source>
@@ -1501,11 +1501,11 @@
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>Refresh interval:</translation>
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation>ms</translation>
     </message>
     <message>
         <source>Excluded file names</source>
@@ -1513,11 +1513,11 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
-        <translation type="unfinished" />
+        <translation>Support Internationalised Domain Name (IDN):</translation>
     </message>
     <message>
         <source>Run external program on torrent finished</source>
-        <translation type="unfinished" />
+        <translation>Run external program on Torrent finished</translation>
     </message>
     <message>
         <source>Whitelist for filtering HTTP Host header values.
@@ -1533,11 +1533,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
-        <translation type="unfinished" />
+        <translation>Run external program on Torrent added</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
-        <translation type="unfinished" />
+        <translation>HTTPS certificate should not be empty</translation>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
@@ -1545,7 +1545,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
-        <translation type="unfinished" />
+        <translation>HTTPS key should not be empty</translation>
     </message>
     <message>
         <source>Run external program</source>
@@ -1557,11 +1557,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
-        <translation type="unfinished" />
+        <translation>Enable port forwarding for embedded tracker:</translation>
     </message>
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
-        <translation type="unfinished" />
+        <translation>If checked, hostname lookups are done via the proxy.</translation>
     </message>
     <message>
         <source>Metadata received</source>
@@ -1585,7 +1585,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Resume data storage type (requires restart):</translation>
     </message>
     <message>
         <source>Fastresume files</source>
@@ -1601,7 +1601,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>Log file</translation>
     </message>
     <message>
         <source>Behavior</source>
@@ -1629,7 +1629,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
+        <translation>Remember Multi-Rename settings</translation>
     </message>
     <message>
         <source>Use proxy for general purposes</source>
@@ -1641,15 +1641,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation>Socket send buffer size [0: system default]:</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Outgoing ports (Max) [0: disabled]:</translation>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation>Socket receive buffer size [0: system default]:</translation>
     </message>
     <message>
         <source>Use Subcategories</source>
@@ -1661,23 +1661,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Stop tracker timeout [0: disabled]:</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Outgoing ports (Min) [0: disabled]:</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation>UPnP lease duration [0: permanent lease]:</translation>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode depth limit:</translation>
     </message>
     <message>
         <source>Bdecode token limit:</source>
-        <translation type="unfinished" />
+        <translation>Bdecode token limit:</translation>
     </message>
     <message>
         <source>When total seeding time reaches</source>
@@ -1689,7 +1689,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
-        <translation type="unfinished" />
+        <translation>Python executable path (may require restart):</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
@@ -1701,11 +1701,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation type="unfinished" />
+        <translation>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
-        <translation type="unfinished" />
+        <translation>DHT bootstrap nodes:</translation>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
@@ -1717,7 +1717,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation type="unfinished" />
+        <translation>.torrent file size limit:</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
@@ -1729,7 +1729,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation type="unfinished" />
+        <translation>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</translation>
     </message>
     <message>
         <source> sec</source>
@@ -1737,39 +1737,39 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>I2P outbound quantity:</source>
-        <translation type="unfinished" />
+        <translation>I2P outbound quantity:</translation>
     </message>
     <message>
         <source>I2P inbound quantity:</source>
-        <translation type="unfinished" />
+        <translation>I2P inbound quantity:</translation>
     </message>
     <message>
         <source>Hashing threads:</source>
-        <translation type="unfinished" />
+        <translation>Hashing threads:</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
+        <translation>Physical memory (RAM) usage limit:</translation>
     </message>
     <message>
         <source>Use alternative WebUI</source>
-        <translation type="unfinished" />
+        <translation>Use alternative WebUI</translation>
     </message>
     <message>
         <source>Disk cache expiry interval:</source>
-        <translation type="unfinished" />
+        <translation>Disk cache expiry interval:</translation>
     </message>
     <message>
         <source>I2P outbound length:</source>
-        <translation type="unfinished" />
+        <translation>I2P outbound length:</translation>
     </message>
     <message>
         <source>I2P (Experimental)</source>
-        <translation type="unfinished" />
+        <translation>I2P (Experimental)</translation>
     </message>
     <message>
         <source>Disk IO type (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Disk IO type (requires restart):</translation>
     </message>
     <message>
         <source>The alternative WebUI files location cannot be blank.</source>
@@ -1777,7 +1777,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Disk cache:</source>
-        <translation type="unfinished" />
+        <translation>Disk cache:</translation>
     </message>
     <message>
         <source>Write-through</source>
@@ -1785,7 +1785,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>WebUI</source>
-        <translation type="unfinished" />
+        <translation>WebUI</translation>
     </message>
     <message>
         <source>The WebUI password must be at least 6 characters long.</source>
@@ -1793,11 +1793,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes:</source>
-        <translation type="unfinished" />
+        <translation>Coalesce reads &amp;amp; writes:</translation>
     </message>
     <message>
         <source>I2P inbound length:</source>
-        <translation type="unfinished" />
+        <translation>I2P inbound length:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
@@ -1813,7 +1813,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Customize application instance name:</source>
-        <translation type="unfinished" />
+        <translation>Customise application instance name:</translation>
     </message>
     <message>
         <source>Send test email</source>
@@ -1865,6 +1865,26 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Interface</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Light</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2133,11 +2153,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>Download limit:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>Upload limit:</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -2177,59 +2197,59 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation>Filename</translation>
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation type="unfinished" />
+        <translation>Filename + Extension</translation>
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation type="unfinished" />
+        <translation>Enumerate Files</translation>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
+        <translation>Rename failed: file or folder already exists</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
-        <translation type="unfinished" />
+        <translation>Toggle Selection</translation>
     </message>
     <message>
         <source>Replacement Input</source>
-        <translation type="unfinished" />
+        <translation>Replacement Input</translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation>Replace</translation>
     </message>
     <message>
         <source>Extension</source>
-        <translation type="unfinished" />
+        <translation>Extension</translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished" />
+        <translation>Replace All</translation>
     </message>
     <message>
         <source>Include files</source>
-        <translation type="unfinished" />
+        <translation>Include files</translation>
     </message>
     <message>
         <source>Include folders</source>
-        <translation type="unfinished" />
+        <translation>Include folders</translation>
     </message>
     <message>
         <source>Search Files</source>
-        <translation type="unfinished" />
+        <translation>Search Files</translation>
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished" />
+        <translation>Case sensitive</translation>
     </message>
     <message>
         <source>Match all occurrences</source>
-        <translation type="unfinished" />
+        <translation>Match all occurrences</translation>
     </message>
     <message>
         <source>Popularity:</source>
@@ -2276,7 +2296,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation>Type folder here</translation>
     </message>
 </context>
 <context>
@@ -2759,7 +2779,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Renamed</source>
-        <translation type="unfinished" />
+        <translation>Renamed</translation>
     </message>
     <message>
         <source>Original</source>
@@ -2877,7 +2897,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished" />
+        <translation>Collapse/expand</translation>
     </message>
 </context>
 <context>
@@ -2974,15 +2994,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished" />
+        <translation>Location</translation>
     </message>
     <message>
         <source>New name</source>
-        <translation type="unfinished" />
+        <translation>New name</translation>
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>Set location</translation>
     </message>
     <message>
         <source>Force reannounce</source>
@@ -2990,7 +3010,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Edit Category</source>
-        <translation type="unfinished" />
+        <translation>Edit Category</translation>
     </message>
     <message>
         <source>Save path</source>
@@ -3026,7 +3046,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Queue</source>
-        <translation type="unfinished" />
+        <translation>Queue</translation>
     </message>
     <message>
         <source>Add...</source>
@@ -3034,19 +3054,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>Info hash v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>Info hash v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>Torrent ID</translation>
     </message>
     <message>
         <source>Export .torrent</source>
-        <translation type="unfinished" />
+        <translation>Export .torrent</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -3054,7 +3074,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Rename Files...</source>
-        <translation type="unfinished" />
+        <translation>Rename Files...</translation>
     </message>
     <message>
         <source>Renaming</source>
@@ -3062,7 +3082,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Comment</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -3134,7 +3154,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>Add Torrent Links</translation>
     </message>
 </context>
 <context>
@@ -3213,7 +3233,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation type="unfinished" />
+        <translation>Save path is empty</translation>
     </message>
 </context>
 <context>
@@ -3224,19 +3244,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Plugin path:</source>
-        <translation type="unfinished" />
+        <translation>Plugin path:</translation>
     </message>
     <message>
         <source>URL or local directory</source>
-        <translation type="unfinished" />
+        <translation>URL or local directory</translation>
     </message>
     <message>
         <source>Install plugin</source>
-        <translation type="unfinished" />
+        <translation>Install plugin</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>Ok</translation>
     </message>
 </context>
 <context>
@@ -3275,7 +3295,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Filter</source>
-        <translation type="unfinished" />
+        <translation>Filter</translation>
     </message>
     <message>
         <source>Torrent names only</source>
@@ -3287,7 +3307,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>out of</translation>
     </message>
     <message>
         <source>Everywhere</source>
@@ -3299,7 +3319,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
-        <translation type="unfinished" />
+        <translation>Increase window width to display additional filters</translation>
     </message>
     <message>
         <source>to</source>
@@ -3311,15 +3331,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>showing</translation>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation type="unfinished" />
+        <translation>Click the "Search plugins..." button at the bottom right of the window to install some.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
-        <translation type="unfinished" />
+        <translation>There aren't any search plugins installed.</translation>
     </message>
     <message>
         <source>Start a search above.</source>
@@ -3334,11 +3354,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Install new plugin</source>
-        <translation type="unfinished" />
+        <translation>Install new plugin</translation>
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
-        <translation type="unfinished" />
+        <translation>You can get new search engine plugins here:</translation>
     </message>
     <message>
         <source>Close</source>
@@ -3435,7 +3455,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>Ok</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -3572,11 +3592,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent Mascot</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent icon</translation>
     </message>
 </context>
 <context>
@@ -3771,7 +3791,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished" />
+        <translation>Auto downloading of RSS Torrents is disabled now! You can enable it in application settings.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
@@ -3907,7 +3927,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Rss Downloader</source>
-        <translation type="unfinished" />
+        <translation>RSS Downloader</translation>
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
@@ -3989,7 +4009,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Add Tags:</translation>
     </message>
     <message>
         <source>Add Stopped:</source>
@@ -4038,7 +4058,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Blocked</source>
-        <translation type="unfinished" />
+        <translation>Blocked</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -4050,7 +4070,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>showing</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -4062,11 +4082,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished" />
+        <translation>ID</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation type="unfinished" />
+        <translation>Log Type</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -4086,7 +4106,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Filter logs</source>
-        <translation type="unfinished" />
+        <translation>Filter logs</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
@@ -4094,7 +4114,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>out of</translation>
     </message>
     <message>
         <source>Status</source>
@@ -4102,11 +4122,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Timestamp</source>
-        <translation type="unfinished" />
+        <translation>Timestamp</translation>
     </message>
     <message>
         <source>Clear All</source>
-        <translation type="unfinished" />
+        <translation>Clear All</translation>
     </message>
     <message>
         <source>Message</source>
@@ -4114,15 +4134,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation type="unfinished" />
+        <translation>Log Levels:</translation>
     </message>
     <message>
         <source>Reason</source>
-        <translation type="unfinished" />
+        <translation>Reason</translation>
     </message>
     <message>
         <source>item</source>
-        <translation type="unfinished" />
+        <translation>item</translation>
     </message>
     <message>
         <source>IP</source>
@@ -4130,7 +4150,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Banned</source>
-        <translation type="unfinished" />
+        <translation>Banned</translation>
     </message>
     <message>
         <source>Normal Messages</source>
@@ -4138,7 +4158,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Critical</source>
-        <translation type="unfinished" />
+        <translation>Critical</translation>
     </message>
     <message>
         <source>Critical Messages</source>
@@ -4150,7 +4170,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>items</source>
-        <translation type="unfinished" />
+        <translation>items</translation>
     </message>
     <message>
         <source>Results</source>
@@ -4158,11 +4178,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished" />
+        <translation>Info</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation type="unfinished" />
+        <translation>Choose a log level...</translation>
     </message>
 </context>
 <context>

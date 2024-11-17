@@ -1867,6 +1867,26 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
         <source>Simple pread/pwrite</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Interface</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -3315,11 +3335,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>Для ўсталяваньня новых убудоваў націсьніце ў правым ніжнім куце акна кнопку "Пошук убудоваў..."</translation>
+        <translation>Націсніце «Пошукавыя плагіны...» у ніжняй правай частцы акна, каб ўсталяваць.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
-        <translation>Не ўсталявана аніякіх пошукавых убудоваў.</translation>
+        <translation>Пошукавыя плагіны не ўсталяваны.</translation>
     </message>
     <message>
         <source>Start a search above.</source>
