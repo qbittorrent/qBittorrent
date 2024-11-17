@@ -475,6 +475,8 @@ namespace BitTorrent
         void addMappedPorts(const QSet<quint16> &ports);
         void removeMappedPorts(const QSet<quint16> &ports);
 
+        QDateTime fromLTTimePoint32(const lt::time_point32 &timePoint) const;
+
         template <typename Func>
         void invoke(Func &&func)
         {
@@ -819,6 +821,9 @@ namespace BitTorrent
         QDateTime m_wakeupCheckTimestamp;
 
         QList<TorrentImpl *> m_pendingFinishedTorrents;
+
+        QDateTime m_qNow;
+        lt::clock_type::time_point m_ltNow;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();

@@ -4065,14 +4065,29 @@ bool SessionImpl::isPaused() const
 
 void SessionImpl::pause()
 {
-    if (!m_isPaused)
-    {
-        if (isRestored())
-            m_nativeSession->pause();
+    if (m_isPaused)
+        return;
 
-        m_isPaused = true;
-        emit paused();
+    if (isRestored())
+    {
+        m_nativeSession->pause();
+
+        for (TorrentImpl *torrent : asConst(m_torrents))
+        {
+            torrent->resetTrackerEntryStatuses();
+
+            const QList<TrackerEntryStatus> trackers = torrent->trackers();
+            QHash<QString, TrackerEntryStatus> updatedTrackers;
+            updatedTrackers.reserve(trackers.size());
+
+            for (const TrackerEntryStatus &status : trackers)
+                updatedTrackers.emplace(status.url, status);
+            emit trackerEntryStatusesUpdated(torrent, updatedTrackers);
+        }
     }
+
+    m_isPaused = true;
+    emit paused();
 }
 
 void SessionImpl::resume()
@@ -5215,9 +5230,6 @@ void SessionImpl::handleMoveTorrentStorageJobFinished(const Path &newPath)
     if (torrent)
     {
         torrent->handleMoveStorageJobFinished(newPath, finishedJob.context, torrentHasOutstandingJob);
-        // The torrent may become "finished" at the end of the move if it was moved
-        // from the "incomplete" location after downloading finished.
-        processPendingFinishedTorrents();
     }
     else if (!torrentHasOutstandingJob)
     {
@@ -5481,6 +5493,11 @@ void SessionImpl::setTorrentContentLayout(const TorrentContentLayout value)
 // Read alerts sent by libtorrent session
 void SessionImpl::readAlerts()
 {
+    // cache current datetime of Qt and libtorrent clocks in order
+    // to optimize conversion of time points from lt to Qt clocks
+    m_ltNow = lt::clock_type::now();
+    m_qNow = QDateTime::currentDateTime();
+
     const std::vector<lt::alert *> alerts = getPendingAlerts();
 
     Q_ASSERT(m_loadedTorrents.isEmpty());
@@ -5506,6 +5523,9 @@ void SessionImpl::readAlerts()
             m_loadedTorrents.clear();
         }
     }
+
+    // Some torrents may become "finished" after different alerts handling.
+    processPendingFinishedTorrents();
 
     processTrackerStatuses();
 }
@@ -6146,8 +6166,6 @@ void SessionImpl::handleStateUpdateAlert(const lt::state_update_alert *alert)
     if (!updatedTorrents.isEmpty())
         emit torrentsUpdated(updatedTorrents);
 
-    processPendingFinishedTorrents();
-
     if (m_needSaveTorrentsQueue)
         saveTorrentsQueue();
 
@@ -6343,4 +6361,10 @@ void SessionImpl::handleRemovedTorrent(const TorrentID &torrentID, const QString
     }
 
     m_removingTorrents.erase(removingTorrentDataIter);
+}
+
+QDateTime SessionImpl::fromLTTimePoint32(const libtorrent::time_point32 &timePoint) const
+{
+    const auto secsSinceNow = lt::duration_cast<lt::seconds>(timePoint - m_ltNow + lt::milliseconds(500)).count();
+    return m_qNow.addSecs(secsSinceNow);
 }
