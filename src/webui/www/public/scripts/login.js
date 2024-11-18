@@ -51,10 +51,13 @@ const submitLoginForm = (event) => {
         })
         .then(async (response) => {
                 const responseText = await response.text();
-                if (response.ok && (responseText === "Ok."))
+                if (response.ok && (responseText === "Ok.")) {
                     location.replace(location); // redirect
-                else
+                    location.reload(true);
+                }
+                else {
                     errorMsgElement.textContent = `QBT_TR(Invalid Username or Password.)QBT_TR[CONTEXT=Login]\nQBT_TR(Server response:)QBT_TR[CONTEXT=Login] ${responseText}`;
+                }
             },
             (error) => {
                 errorMsgElement.textContent = `QBT_TR(Unable to log in, server is probably unreachable.)QBT_TR[CONTEXT=Login]\n${error}`;
