@@ -1644,7 +1644,7 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
     {
         const QString msg {tr("A new version is available.") + u"<br/>"
             + tr("Do you want to download %1?").arg(newVersion) + u"<br/><br/>"
-            + u"<a href=\"https://www.qbittorrent.org/news.php\">%1</a>"_s.arg(tr("Open changelog..."))};
+            + u"<a href=\"https://www.qbittorrent.org/news\">%1</a>"_s.arg(tr("Open changelog..."))};
         auto *msgBox = new QMessageBox {QMessageBox::Question, tr("qBittorrent Update Available"), msg
             , (QMessageBox::Yes | QMessageBox::No), this};
         msgBox->setAttribute(Qt::WA_DeleteOnClose);
