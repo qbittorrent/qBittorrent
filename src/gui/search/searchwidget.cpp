@@ -54,7 +54,6 @@
 #include "base/utils/foreignapps.h"
 #include "gui/desktopintegration.h"
 #include "gui/interfaces/iguiapplication.h"
-#include "gui/mainwindow.h"
 #include "gui/uithememanager.h"
 #include "pluginselectdialog.h"
 #include "searchjobwidget.h"
@@ -373,13 +372,7 @@ void SearchWidget::tabStatusChanged(QWidget *tab)
     {
         Q_ASSERT(m_activeSearchTab->status() != SearchJobWidget::Status::Ongoing);
 
-        if (app()->desktopIntegration()->isNotificationsEnabled() && (app()->mainWindow()->currentTabWidget() != this))
-        {
-            if (m_activeSearchTab->status() == SearchJobWidget::Status::Error)
-                app()->desktopIntegration()->showNotification(tr("Search Engine"), tr("Search has failed"));
-            else
-                app()->desktopIntegration()->showNotification(tr("Search Engine"), tr("Search has finished"));
-        }
+        emit activeSearchFinished(m_activeSearchTab->status() == SearchJobWidget::Status::Error);
 
         m_activeSearchTab = nullptr;
         m_ui->searchButton->setText(tr("Search"));

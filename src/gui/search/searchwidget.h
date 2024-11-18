@@ -56,6 +56,9 @@ public:
 
     void giveFocusToSearchInput();
 
+signals:
+    void activeSearchFinished(bool failed);
+
 private slots:
     void on_searchButton_clicked();
     void on_pluginsButton_clicked();
