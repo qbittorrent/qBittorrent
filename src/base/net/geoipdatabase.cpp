@@ -28,6 +28,7 @@
 
 #include "geoipdatabase.h"
 
+#include <QByteArray>
 #include <QDateTime>
 #include <QDebug>
 #include <QFile>
@@ -41,7 +42,7 @@ namespace
 {
     const qint32 MAX_FILE_SIZE = 67108864; // 64MB
     const quint32 MAX_METADATA_SIZE = 131072; // 128KB
-    const char METADATA_BEGIN_MARK[] = "\xab\xcd\xefMaxMind.com";
+    const QByteArray METADATA_BEGIN_MARK = QByteArrayLiteral("\xab\xcd\xefMaxMind.com");
     const char DATA_SECTION_SEPARATOR[16] = {0};
 
     enum class DataType
@@ -309,7 +310,7 @@ QVariantHash GeoIPDatabase::readMetadata() const
     {
         if (m_size > MAX_METADATA_SIZE)
             index += (m_size - MAX_METADATA_SIZE); // from begin of all data
-        auto offset = static_cast<quint32>(index + strlen(METADATA_BEGIN_MARK));
+        auto offset = static_cast<quint32>(index + METADATA_BEGIN_MARK.size());
         const QVariant metadata = readDataField(offset);
         if (metadata.userType() == QMetaType::QVariantHash)
             return metadata.toHash();

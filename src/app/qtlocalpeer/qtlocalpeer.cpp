@@ -74,6 +74,7 @@
 #include <windows.h>
 #endif
 
+#include <QByteArray>
 #include <QDataStream>
 #include <QFileInfo>
 #include <QLocalServer>
@@ -90,7 +91,7 @@ namespace QtLP_Private
 #endif
 }
 
-const char ACK[] = "ack";
+const QByteArray ACK = QByteArrayLiteral("ack");
 
 QtLocalPeer::QtLocalPeer(const QString &path, QObject *parent)
     : QObject(parent)
@@ -169,7 +170,7 @@ bool QtLocalPeer::sendMessage(const QString &message, const int timeout)
     {
         res &= socket.waitForReadyRead(timeout);   // wait for ack
         if (res)
-            res &= (socket.read(qstrlen(ACK)) == ACK);
+            res &= (socket.read(ACK.size()) == ACK);
     }
     return res;
 }
@@ -220,7 +221,7 @@ void QtLocalPeer::receiveConnection()
         return;
     }
     QString message(QString::fromUtf8(uMsg));
-    socket->write(ACK, qstrlen(ACK));
+    socket->write(ACK);
     socket->waitForBytesWritten(1000);
     socket->waitForDisconnected(1000); // make sure client reads ack
     delete socket;

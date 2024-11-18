@@ -50,7 +50,7 @@ using QStringPair = std::pair<QString, QString>;
 
 namespace
 {
-    const QByteArray EOH = QByteArray(CRLF).repeated(2);
+    const QByteArray EOH = CRLF.repeated(2);
 
     const QByteArrayView viewWithoutEndingWith(const QByteArrayView in, const QByteArrayView str)
     {
