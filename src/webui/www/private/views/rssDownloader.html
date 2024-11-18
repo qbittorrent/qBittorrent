@@ -422,9 +422,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             rssDownloaderRuleContextMenu.addTarget($("rulesTable"));
             // deselect feed when clicking on empty part of table
             $("rulesTable").addEventListener("click", (e) => {
-                rssDownloaderRulesTable.deselectAll();
-                rssDownloaderRulesTable.deselectRow();
-                showRule("");
+                if (e.target.nodeName === "DIV") {
+                    rssDownloaderRulesTable.deselectAll();
+                    rssDownloaderRulesTable.deselectRow();
+                    showRule("");
+                }
             });
             $("rulesTable").addEventListener("contextmenu", (e) => {
                 if (e.toElement.nodeName === "DIV") {
