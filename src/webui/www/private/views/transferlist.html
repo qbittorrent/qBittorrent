@@ -29,7 +29,7 @@
 
         // create a context menu
         const contextMenu = new window.qBittorrent.ContextMenu.TorrentsTableContextMenu({
-            targets: ".torrentsTableContextMenuTarget",
+            targets: "#torrentsTableDiv tr",
             menu: "torrentsTableMenu",
             actions: {
                 start: (element, ref) => {

@@ -861,10 +861,6 @@ td.statusBarSeparator {
     color: var(--color-text-green);
 }
 
-.searchPluginsTableRow {
-    cursor: pointer;
-}
-
 #torrentFilesTableDiv .dynamicTable tr.nonAlt:hover {
     background-color: var(--color-background-hover);
     color: var(--color-text-white);
