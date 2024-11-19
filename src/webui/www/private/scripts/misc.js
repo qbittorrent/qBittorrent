@@ -278,7 +278,7 @@ window.qBittorrent.Misc ??= (() => {
 
     const downloadFile = async (url, defaultFileName, errorMessage = "QBT_TR(Unable to download file)QBT_TR[CONTEXT=HttpServer]") => {
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, { method: "GET" });
             if (!response.ok) {
                 alert(errorMessage);
                 return;
