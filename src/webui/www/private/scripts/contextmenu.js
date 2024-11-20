@@ -246,13 +246,13 @@ window.qBittorrent.ContextMenu ??= (() => {
         }
 
         setItemChecked(item, checked) {
-            this.menu.getElement("a[href$=" + item + "]").firstChild.style.opacity =
+            this.menu.getElement("a[href$=" + item + "]").firstElementChild.style.opacity =
                 checked ? "1" : "0";
             return this;
         }
 
         getItemChecked(item) {
-            return this.menu.getElement("a[href$=" + item + "]").firstChild.style.opacity !== "0";
+            return this.menu.getElement("a[href$=" + item + "]").firstElementChild.style.opacity !== "0";
         }
 
         // hide an item

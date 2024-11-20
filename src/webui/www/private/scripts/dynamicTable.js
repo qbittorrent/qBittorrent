@@ -492,9 +492,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             const autoResizeAllElement = createResizeElement("Resize All", "#autoResizeAllAction");
             const autoResizeElement = createResizeElement("Resize", "#autoResizeAction");
 
-            ul.firstChild.classList.add("separator");
-            ul.insertBefore(autoResizeAllElement, ul.firstChild);
-            ul.insertBefore(autoResizeElement, ul.firstChild);
+            ul.firstElementChild.classList.add("separator");
+            ul.insertBefore(autoResizeAllElement, ul.firstElementChild);
+            ul.insertBefore(autoResizeElement, ul.firstElementChild);
             ul.inject(document.body);
 
             this.headerContextMenu = new DynamicTableHeaderContextMenuClass({

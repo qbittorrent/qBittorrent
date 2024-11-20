@@ -132,7 +132,7 @@ window.qBittorrent.PropTrackers ??= (() => {
             },
             EditTracker: (element, ref) => {
                 // only allow editing of one row
-                element.firstChild.click();
+                element.firstElementChild.click();
                 editTrackerFN(element);
             },
             RemoveTracker: (element, ref) => {
