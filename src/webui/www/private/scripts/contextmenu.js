@@ -535,8 +535,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
         updateTagsSubMenu(tagList) {
             const contextTagList = $("contextTagList");
-            while (contextTagList.firstChild !== null)
-                contextTagList.removeChild(contextTagList.firstChild);
+            contextTagList.replaceChildren();
 
             const createMenuItem = (text, imgURL, clickFn) => {
                 const anchor = document.createElement("a");
