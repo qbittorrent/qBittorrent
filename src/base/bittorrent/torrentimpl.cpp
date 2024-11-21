@@ -2635,6 +2635,12 @@ bool TorrentImpl::isMoveInProgress() const
 
 void TorrentImpl::updateStatus(const lt::torrent_status &nativeStatus)
 {
+    // Since libtorrent alerts are handled asynchronously there can be obsolete
+    // "state update" event reached here after torrent was reloaded in libtorrent.
+    // Just discard such events.
+    if (nativeStatus.handle != m_nativeHandle) [[unlikely]]
+        return;
+
     const lt::torrent_status oldStatus = std::exchange(m_nativeStatus, nativeStatus);
 
     if (m_nativeStatus.num_pieces != oldStatus.num_pieces)
