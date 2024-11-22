@@ -388,7 +388,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             $("rssDownloaderFeeds").style.height = "calc(100% - " + centerRowNotTableHeight + "px)";
 
             // firefox calculates the height of the table inside fieldset differently and thus doesn't need the offset
-            if (navigator.userAgent.toLowerCase().indexOf("firefox") > -1) {
+            if (navigator.userAgent.toLowerCase().includes("firefox")) {
                 $("rssDownloaderFeedsTable").style.height = "100%";
             }
             else {

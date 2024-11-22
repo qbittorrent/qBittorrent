@@ -2138,7 +2138,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 languages.push($("locale_select").options[i].value);
 
             if (!languages.includes(selected)) {
-                const lang = selected.slice(0, selected.indexOf("_"));
+                const lang = selected.split("_", 1)[0];
                 selected = languages.includes(lang) ? lang : "en";
             }
             $("locale_select").value = selected;

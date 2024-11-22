@@ -1492,7 +1492,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const handleDownloadParam = () => {
         // Extract torrent URL from download param in WebUI URL hash
         const downloadHash = "#download=";
-        if (location.hash.indexOf(downloadHash) !== 0)
+        if (!location.hash.startsWith(downloadHash))
             return;
 
         const url = decodeURIComponent(location.hash.substring(downloadHash.length));

@@ -146,7 +146,7 @@ window.qBittorrent.PropTrackers ??= (() => {
         onShow: function() {
             const selectedTrackers = torrentTrackersTable.selectedRowsIds();
             const containsStaticTracker = selectedTrackers.some((tracker) => {
-                return (tracker.indexOf("** [") === 0);
+                return tracker.startsWith("** [");
             });
 
             if (containsStaticTracker || (selectedTrackers.length === 0)) {
