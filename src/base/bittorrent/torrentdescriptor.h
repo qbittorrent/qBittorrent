@@ -33,15 +33,15 @@
 #include <libtorrent/add_torrent_params.hpp>
 
 #include <QtContainerFwd>
+#include <QDateTime>
 #include <QMetaType>
+#include <QString>
 
 #include "base/3rdparty/expected.hpp"
 #include "base/path.h"
 #include "torrentinfo.h"
 
 class QByteArray;
-class QDateTime;
-class QString;
 class QUrl;
 
 namespace BitTorrent
@@ -77,6 +77,9 @@ namespace BitTorrent
 
         lt::add_torrent_params m_ltAddTorrentParams;
         std::optional<TorrentInfo> m_info;
+        QDateTime m_creationDate;
+        QString m_creator;
+        QString m_comment;
     };
 }
 

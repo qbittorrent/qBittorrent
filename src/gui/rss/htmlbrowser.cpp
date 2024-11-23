@@ -106,10 +106,12 @@ void HtmlBrowser::resourceLoaded(QNetworkReply *reply)
         atts[QNetworkRequest::HttpStatusCodeAttribute] = 200;
         atts[QNetworkRequest::HttpReasonPhraseAttribute] = u"Ok"_s;
         metaData.setAttributes(atts);
-        metaData.setLastModified(QDateTime::currentDateTime());
-        metaData.setExpirationDate(QDateTime::currentDateTime().addDays(1));
+        const auto currentDateTime = QDateTime::currentDateTime();
+        metaData.setLastModified(currentDateTime);
+        metaData.setExpirationDate(currentDateTime.addDays(1));
         QIODevice *dev = m_diskCache->prepare(metaData);
-        if (!dev) return;
+        if (!dev)
+            return;
 
         QApplication::style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32, 32).save(dev, "PNG");
         m_diskCache->insert(dev);

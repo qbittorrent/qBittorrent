@@ -138,7 +138,15 @@ namespace BitTorrent
         int piecesCount() const override;
         int piecesHave() const override;
         qreal progress() const override;
+
         QDateTime addedTime() const override;
+        QDateTime completedTime() const override;
+        QDateTime lastSeenComplete() const override;
+        qlonglong activeTime() const override;
+        qlonglong finishedTime() const override;
+        qlonglong timeSinceUpload() const override;
+        qlonglong timeSinceDownload() const override;
+        qlonglong timeSinceActivity() const override;
 
         qreal ratioLimit() const override;
         void setRatioLimit(qreal limit) override;
@@ -181,8 +189,6 @@ namespace BitTorrent
         QString error() const override;
         qlonglong totalDownload() const override;
         qlonglong totalUpload() const override;
-        qlonglong activeTime() const override;
-        qlonglong finishedTime() const override;
         qlonglong eta() const override;
         QList<qreal> filesProgress() const override;
         int seedsCount() const override;
@@ -191,11 +197,6 @@ namespace BitTorrent
         int totalSeedsCount() const override;
         int totalPeersCount() const override;
         int totalLeechersCount() const override;
-        QDateTime lastSeenComplete() const override;
-        QDateTime completedTime() const override;
-        qlonglong timeSinceUpload() const override;
-        qlonglong timeSinceDownload() const override;
-        qlonglong timeSinceActivity() const override;
         int downloadLimit() const override;
         int uploadLimit() const override;
         bool superSeeding() const override;
@@ -341,6 +342,14 @@ namespace BitTorrent
         SpeedMonitor m_payloadRateMonitor;
 
         InfoHash m_infoHash;
+
+        QDateTime m_creationDate;
+        QString m_creator;
+        QString m_comment;
+
+        QDateTime m_addedTime;
+        QDateTime m_completedTime;
+        QDateTime m_lastSeenComplete;
 
         // m_moveFinishedTriggers is activated only when the following conditions are met:
         // all file rename jobs complete, all file move jobs complete
