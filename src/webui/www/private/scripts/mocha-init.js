@@ -1115,16 +1115,10 @@ const initializeWindows = () => {
                 continue;
 
             const name = row.full_data.name;
-            const url = new URI("api/v2/torrents/export");
-            url.setData("hash", hash);
+            const url = new URI("api/v2/torrents/export").setData("hash", hash).toString();
 
             // download response to file
-            const element = document.createElement("a");
-            element.href = url;
-            element.download = (name + ".torrent");
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
+            await window.qBittorrent.Misc.downloadFile(url, `${name}.torrent`, "QBT_TR(Unable to export torrent file)QBT_TR[CONTEXT=MainWindow]");
 
             // https://stackoverflow.com/questions/53560991/automatic-file-downloads-limited-to-10-files-on-chrome-browser
             await window.qBittorrent.Misc.sleep(200);
