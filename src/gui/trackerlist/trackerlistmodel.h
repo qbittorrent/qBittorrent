@@ -34,6 +34,7 @@
 #include <QtContainerFwd>
 #include <QAbstractItemModel>
 
+#include "base/bittorrent/announcetimepoint.h"
 #include "base/bittorrent/trackerentrystatus.h"
 
 class QTimer;
@@ -114,6 +115,6 @@ private:
     class Items;
     std::unique_ptr<Items> m_items;
 
-    qint64 m_announceTimestamp = 0;
+    BitTorrent::AnnounceTimePoint m_announceTimestamp;
     QTimer *m_announceRefreshTimer = nullptr;
 };

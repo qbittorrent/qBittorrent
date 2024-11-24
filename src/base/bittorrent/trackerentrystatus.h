@@ -31,6 +31,8 @@
 #include <QHash>
 #include <QString>
 
+#include "announcetimepoint.h"
+
 class QStringView;
 
 namespace BitTorrent
@@ -58,8 +60,8 @@ namespace BitTorrent
         int numLeeches = -1;
         int numDownloaded = -1;
 
-        qint64 nextAnnounceTime = 0;
-        qint64 minAnnounceTime = 0;
+        AnnounceTimePoint nextAnnounceTime {};
+        AnnounceTimePoint minAnnounceTime {};
     };
 
     struct TrackerEntryStatus
@@ -75,8 +77,8 @@ namespace BitTorrent
         int numLeeches = -1;
         int numDownloaded = -1;
 
-        qint64 nextAnnounceTime = 0;
-        qint64 minAnnounceTime = 0;
+        AnnounceTimePoint nextAnnounceTime {};
+        AnnounceTimePoint minAnnounceTime {};
 
         QHash<std::pair<QString, int>, TrackerEndpointStatus> endpoints {};
 

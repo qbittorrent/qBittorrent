@@ -7,6 +7,7 @@ add_library(qbt_base STATIC
     asyncfilestorage.h
     bittorrent/abstractfilestorage.h
     bittorrent/addtorrentparams.h
+    bittorrent/announcetimepoint.h
     bittorrent/bandwidthscheduler.h
     bittorrent/bencoderesumedatastorage.h
     bittorrent/cachestatus.h

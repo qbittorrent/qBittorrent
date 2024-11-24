@@ -29,6 +29,7 @@
 
 #pragma once
 
+#include <chrono>
 #include <utility>
 #include <vector>
 
@@ -477,8 +478,6 @@ namespace BitTorrent
         void addMappedPorts(const QSet<quint16> &ports);
         void removeMappedPorts(const QSet<quint16> &ports);
 
-        qint64 toSecsSinceEpoch(const lt::time_point32 &timePoint) const;
-
         template <typename Func>
         void invoke(Func &&func)
         {
@@ -826,12 +825,9 @@ namespace BitTorrent
         QHash<quint16, std::vector<lt::port_mapping_t>> m_mappedPorts;
 
         QTimer *m_wakeupCheckTimer = nullptr;
-        QDateTime m_wakeupCheckTimestamp;
+        std::chrono::steady_clock::time_point m_wakeupCheckTimestamp;
 
         QList<TorrentImpl *> m_pendingFinishedTorrents;
-
-        qint64 m_currentSecsSinceEpoch = 0;
-        lt::clock_type::time_point m_ltNow;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();

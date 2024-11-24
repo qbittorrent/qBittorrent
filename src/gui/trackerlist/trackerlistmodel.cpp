@@ -29,6 +29,7 @@
 
 #include "trackerlistmodel.h"
 
+#include <algorithm>
 #include <chrono>
 
 #include <boost/multi_index_container.hpp>
@@ -46,6 +47,7 @@
 #include <QScopeGuard>
 #include <QTimer>
 
+#include "base/bittorrent/announcetimepoint.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
@@ -142,12 +144,12 @@ struct TrackerListModel::Item final
     int numLeeches = -1;
     int numDownloaded = -1;
 
-    qint64 nextAnnounceTime = 0;
-    qint64 minAnnounceTime = 0;
+    BitTorrent::AnnounceTimePoint nextAnnounceTime;
+    BitTorrent::AnnounceTimePoint minAnnounceTime;
 
     qint64 secsToNextAnnounce = 0;
     qint64 secsToMinAnnounce = 0;
-    qint64 announceTimestamp = 0;
+    BitTorrent::AnnounceTimePoint announceTimestamp;
 
     std::weak_ptr<Item> parentItem {};
 
@@ -212,7 +214,7 @@ void TrackerListModel::Item::fillFrom(const BitTorrent::TrackerEntryStatus &trac
     minAnnounceTime = trackerEntryStatus.minAnnounceTime;
     secsToNextAnnounce = 0;
     secsToMinAnnounce = 0;
-    announceTimestamp = 0;
+    announceTimestamp = {};
 }
 
 void TrackerListModel::Item::fillFrom(const BitTorrent::TrackerEndpointStatus &endpointStatus)
@@ -231,7 +233,7 @@ void TrackerListModel::Item::fillFrom(const BitTorrent::TrackerEndpointStatus &e
     minAnnounceTime = endpointStatus.minAnnounceTime;
     secsToNextAnnounce = 0;
     secsToMinAnnounce = 0;
-    announceTimestamp = 0;
+    announceTimestamp = {};
 }
 
 TrackerListModel::TrackerListModel(BitTorrent::Session *btSession, QObject *parent)
@@ -370,7 +372,7 @@ void TrackerListModel::populate()
     for (const BitTorrent::TrackerEntryStatus &status : trackers)
         addTrackerItem(status);
 
-    m_announceTimestamp = QDateTime::currentSecsSinceEpoch();
+    m_announceTimestamp = BitTorrent::AnnounceTimePoint::clock::now();
     m_announceRefreshTimer->start(ANNOUNCE_TIME_REFRESH_INTERVAL);
 }
 
@@ -449,7 +451,7 @@ void TrackerListModel::refreshAnnounceTimes()
     if (!m_torrent)
         return;
 
-    m_announceTimestamp = QDateTime::currentSecsSinceEpoch();
+    m_announceTimestamp = BitTorrent::AnnounceTimePoint::clock::now();
     emit dataChanged(index(0, COL_NEXT_ANNOUNCE), index((rowCount() - 1), COL_MIN_ANNOUNCE));
     for (int i = 0; i < rowCount(); ++i)
     {
@@ -546,8 +548,12 @@ QVariant TrackerListModel::data(const QModelIndex &index, const int role) const
 
     if (itemPtr->announceTimestamp != m_announceTimestamp)
     {
-        itemPtr->secsToNextAnnounce = std::max<qint64>(0, (itemPtr->nextAnnounceTime - m_announceTimestamp));
-        itemPtr->secsToMinAnnounce = std::max<qint64>(0, (itemPtr->minAnnounceTime - m_announceTimestamp));
+        const auto timeToNextAnnounce = std::chrono::duration_cast<std::chrono::seconds>(itemPtr->nextAnnounceTime - m_announceTimestamp);
+        itemPtr->secsToNextAnnounce = std::max<qint64>(0, timeToNextAnnounce.count());
+
+        const auto timeToMinAnnounce = std::chrono::duration_cast<std::chrono::seconds>(itemPtr->minAnnounceTime - m_announceTimestamp);
+        itemPtr->secsToMinAnnounce = std::max<qint64>(0, timeToMinAnnounce.count());
+
         itemPtr->announceTimestamp = m_announceTimestamp;
     }
 
