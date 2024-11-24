@@ -37,7 +37,6 @@
 #include <libtorrent/torrent_handle.hpp>
 
 #include <QtContainerFwd>
-#include <QDateTime>
 #include <QElapsedTimer>
 #include <QHash>
 #include <QList>
@@ -55,7 +54,6 @@
 #include "session.h"
 #include "sessionstatus.h"
 #include "torrentinfo.h"
-#include "trackerentrystatus.h"
 
 class QString;
 class QTimer;
@@ -479,7 +477,7 @@ namespace BitTorrent
         void addMappedPorts(const QSet<quint16> &ports);
         void removeMappedPorts(const QSet<quint16> &ports);
 
-        QDateTime fromLTTimePoint32(const lt::time_point32 &timePoint) const;
+        qint64 toSecsSinceEpoch(const lt::time_point32 &timePoint) const;
 
         template <typename Func>
         void invoke(Func &&func)
@@ -832,7 +830,7 @@ namespace BitTorrent
 
         QList<TorrentImpl *> m_pendingFinishedTorrents;
 
-        QDateTime m_qNow;
+        qint64 m_currentSecsSinceEpoch = 0;
         lt::clock_type::time_point m_ltNow;
 
         friend void Session::initInstance();

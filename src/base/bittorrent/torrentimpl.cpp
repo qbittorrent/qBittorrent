@@ -106,10 +106,10 @@ namespace
         return endpointName;
     }
 
-    template <typename FromLTTimePoint32Func>
+    template <typename ToSecsSinceEpochFunc>
     void updateTrackerEntryStatus(TrackerEntryStatus &trackerEntryStatus, const lt::announce_entry &nativeEntry
             , const QSet<int> &btProtocols, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo
-            , const FromLTTimePoint32Func &fromLTTimePoint32)
+            , const ToSecsSinceEpochFunc &toSecsSinceEpoch)
     {
         Q_ASSERT(trackerEntryStatus.url == QString::fromStdString(nativeEntry.url));
 
@@ -146,8 +146,8 @@ namespace
                 trackerEndpointStatus.numSeeds = ltAnnounceInfo.scrape_complete;
                 trackerEndpointStatus.numLeeches = ltAnnounceInfo.scrape_incomplete;
                 trackerEndpointStatus.numDownloaded = ltAnnounceInfo.scrape_downloaded;
-                trackerEndpointStatus.nextAnnounceTime = fromLTTimePoint32(ltAnnounceInfo.next_announce);
-                trackerEndpointStatus.minAnnounceTime = fromLTTimePoint32(ltAnnounceInfo.min_announce);
+                trackerEndpointStatus.nextAnnounceTime = toSecsSinceEpoch(ltAnnounceInfo.next_announce);
+                trackerEndpointStatus.minAnnounceTime = toSecsSinceEpoch(ltAnnounceInfo.min_announce);
 
                 if (ltAnnounceInfo.updating)
                 {
@@ -238,8 +238,8 @@ namespace
         trackerEntryStatus.numSeeds = -1;
         trackerEntryStatus.numLeeches = -1;
         trackerEntryStatus.numDownloaded = -1;
-        trackerEntryStatus.nextAnnounceTime = QDateTime();
-        trackerEntryStatus.minAnnounceTime = QDateTime();
+        trackerEntryStatus.nextAnnounceTime = 0;
+        trackerEntryStatus.minAnnounceTime = 0;
         trackerEntryStatus.message.clear();
 
         for (const TrackerEndpointStatus &endpointStatus : asConst(trackerEntryStatus.endpoints))
@@ -251,7 +251,7 @@ namespace
 
             if (endpointStatus.state == trackerEntryStatus.state)
             {
-                if (!trackerEntryStatus.nextAnnounceTime.isValid() || (trackerEntryStatus.nextAnnounceTime > endpointStatus.nextAnnounceTime))
+                if ((trackerEntryStatus.nextAnnounceTime <= 0) || (trackerEntryStatus.nextAnnounceTime > endpointStatus.nextAnnounceTime))
                 {
                     trackerEntryStatus.nextAnnounceTime = endpointStatus.nextAnnounceTime;
                     trackerEntryStatus.minAnnounceTime = endpointStatus.minAnnounceTime;
@@ -1774,11 +1774,11 @@ TrackerEntryStatus TorrentImpl::updateTrackerEntryStatus(const lt::announce_entr
     const QSet<int> btProtocols {1};
 #endif
 
-    const auto fromLTTimePoint32 = [this](const lt::time_point32 &timePoint)
+    const auto toSecsSinceEpoch = [this](const lt::time_point32 &timePoint)
     {
-        return m_session->fromLTTimePoint32(timePoint);
+        return m_session->toSecsSinceEpoch(timePoint);
     };
-    ::updateTrackerEntryStatus(*it, announceEntry, btProtocols, updateInfo, fromLTTimePoint32);
+    ::updateTrackerEntryStatus(*it, announceEntry, btProtocols, updateInfo, toSecsSinceEpoch);
 
     return *it;
 }

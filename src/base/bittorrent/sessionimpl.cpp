@@ -58,6 +58,7 @@
 #include <libtorrent/session_status.hpp>
 #include <libtorrent/torrent_info.hpp>
 
+#include <QDateTime>
 #include <QDeadlineTimer>
 #include <QDebug>
 #include <QDir>
@@ -106,6 +107,7 @@
 #include "torrentimpl.h"
 #include "tracker.h"
 #include "trackerentry.h"
+#include "trackerentrystatus.h"
 
 using namespace std::chrono_literals;
 using namespace BitTorrent;
@@ -5515,7 +5517,7 @@ void SessionImpl::readAlerts()
     // cache current datetime of Qt and libtorrent clocks in order
     // to optimize conversion of time points from lt to Qt clocks
     m_ltNow = lt::clock_type::now();
-    m_qNow = QDateTime::currentDateTime();
+    m_currentSecsSinceEpoch = QDateTime::currentSecsSinceEpoch();
 
     const std::vector<lt::alert *> alerts = getPendingAlerts();
 
@@ -6396,8 +6398,8 @@ void SessionImpl::handleRemovedTorrent(const TorrentID &torrentID, const QString
     m_removingTorrents.erase(removingTorrentDataIter);
 }
 
-QDateTime SessionImpl::fromLTTimePoint32(const lt::time_point32 &timePoint) const
+qint64 SessionImpl::toSecsSinceEpoch(const lt::time_point32 &timePoint) const
 {
     const auto secsSinceNow = lt::duration_cast<lt::seconds>(timePoint - m_ltNow + lt::milliseconds(500)).count();
-    return m_qNow.addSecs(secsSinceNow);
+    return m_currentSecsSinceEpoch + secsSinceNow;
 }
