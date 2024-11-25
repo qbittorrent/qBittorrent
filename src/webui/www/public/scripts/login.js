@@ -37,17 +37,12 @@ const submitLoginForm = (event) => {
     const usernameElement = document.getElementById("username");
     const passwordElement = document.getElementById("password");
 
-    const query = new URLSearchParams();
-    query.set("username", usernameElement.value);
-    query.set("password", passwordElement.value);
-    passwordElement.value = ""; // clear previous value
-
     fetch("api/v2/auth/login", {
             method: "POST",
-            headers: {
-                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-            },
-            body: query.toString()
+            body: new URLSearchParams({
+                "username": usernameElement.value,
+                "password": passwordElement.value
+            })
         })
         .then(async (response) => {
                 const responseText = await response.text();
@@ -62,6 +57,8 @@ const submitLoginForm = (event) => {
             (error) => {
                 errorMsgElement.textContent = `QBT_TR(Unable to log in, server is probably unreachable.)QBT_TR[CONTEXT=Login]\n${error}`;
             });
+
+    passwordElement.value = ""; // clear previous value
 };
 
 document.addEventListener("DOMContentLoaded", () => {
