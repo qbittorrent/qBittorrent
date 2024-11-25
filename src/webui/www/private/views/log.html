@@ -189,7 +189,7 @@
 
         const init = () => {
             for (const option of $("logLevelSelect").options)
-                option.setAttribute("selected", selectedLogLevels.includes(option.value));
+                option.toggleAttribute("selected", selectedLogLevels.includes(option.value));
 
             selectBox = new vanillaSelectBox("#logLevelSelect", {
                 maxHeight: 200,
