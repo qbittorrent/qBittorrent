@@ -224,11 +224,15 @@ window.qBittorrent.DynamicTable ??= (() => {
                             changeBorderSide = "left";
                     }
 
-                    const borderStyle = "initial solid #e60";
-                    if (changeBorderSide === "left")
+                    const borderStyle = "solid #e60";
+                    if (changeBorderSide === "left") {
                         borderChangeElement.style.borderLeft = borderStyle;
-                    else
+                        borderChangeElement.style.borderLeftWidth = "initial";
+                    }
+                    else {
                         borderChangeElement.style.borderRight = borderStyle;
+                        borderChangeElement.style.borderRightWidth = "initial";
+                    }
 
                     resetElementBorderStyle(borderChangeElement, ((changeBorderSide === "right") ? "left" : "right"));
 
