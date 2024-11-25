@@ -13,24 +13,20 @@
     <script>
         "use strict";
 
-        new Keyboard({
-            defaultEventType: "keydown",
-            events: {
-                "Enter": (event) => {
-                    $("renameButton").click();
-                    event.preventDefault();
-                },
-                "Escape": (event) => {
-                    window.parent.qBittorrent.Client.closeFrameWindow(window);
-                    event.preventDefault();
-                },
-                "Esc": (event) => {
-                    window.parent.qBittorrent.Client.closeFrameWindow(window);
-                    event.preventDefault();
-                }
-            }
-        }).activate();
         window.addEventListener("DOMContentLoaded", () => {
+            window.addEventListener("keydown", (event) => {
+                switch (event.key) {
+                    case "Enter":
+                        event.preventDefault();
+                        $("renameButton").click();
+                        break;
+                    case "Escape":
+                        event.preventDefault();
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
+                        break;
+                }
+            });
+
             const oldName = new URI().getData("rule");
 
             $("rename").value = oldName;

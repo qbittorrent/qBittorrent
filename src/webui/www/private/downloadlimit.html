@@ -33,6 +33,19 @@
     <script>
         "use strict";
 
+        window.addEventListener("keydown", (event) => {
+            switch (event.key) {
+                case "Enter":
+                    event.preventDefault();
+                    $("applyButton").click();
+                    break;
+                case "Escape":
+                    event.preventDefault();
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
+                    break;
+            }
+        });
+
         const hashes = new URI().getData("hashes").split("|");
         const setDlLimit = () => {
             const limit = Number($("dllimitUpdatevalue").value) * 1024;
@@ -63,24 +76,6 @@
                 }).send();
             }
         };
-
-        new Keyboard({
-            defaultEventType: "keydown",
-            events: {
-                "Enter": function(event) {
-                    $("applyButton").click();
-                    event.preventDefault();
-                },
-                "Escape": function(event) {
-                    window.parent.qBittorrent.Client.closeFrameWindow(window);
-                    event.preventDefault();
-                },
-                "Esc": function(event) {
-                    window.parent.qBittorrent.Client.closeFrameWindow(window);
-                    event.preventDefault();
-                }
-            }
-        }).activate();
 
         $("dllimitUpdatevalue").focus();
 
