@@ -160,7 +160,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.touchStartAt = null;
                 this.touchStartEvent = null;
 
-                const isTargetUnchanged = (Math.abs(e.event.pageX - touchStartEvent.event.pageX) <= 10) && (Math.abs(e.event.pageY - touchStartEvent.event.pageY) <= 10);
+                const isTargetUnchanged = (Math.abs(e.changedTouches[0].pageX - touchStartEvent.changedTouches[0].pageX) <= 10) && (Math.abs(e.changedTouches[0].pageY - touchStartEvent.changedTouches[0].pageY) <= 10);
                 if (((now - touchStartAt) >= this.options.touchTimer) && isTargetUnchanged)
                     this.triggerMenu(touchStartEvent, elem);
             }, { passive: true });
