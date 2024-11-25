@@ -137,7 +137,7 @@
                     alert(error);
                 },
                 onSuccess: (response) => {
-                    window.qBittorrent.Client.closeWindow("cookiesPage");
+                    window.qBittorrent.Client.closeWindow(document.getElementById("cookiesPage"));
                 }
             }).send();
         };

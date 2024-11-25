@@ -21,11 +21,11 @@
                     event.preventDefault();
                 },
                 "Escape": (event) => {
-                    window.parent.MochaUI.closeWindow(window.parent.$("renameRulePage"));
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
                     event.preventDefault();
                 },
                 "Esc": (event) => {
-                    window.parent.MochaUI.closeWindow(window.parent.$("renameRulePage"));
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
                     event.preventDefault();
                 }
             }
@@ -63,7 +63,7 @@
                     },
                     onSuccess: (response) => {
                         window.parent.qBittorrent.RssDownloader.updateRulesList();
-                        window.parent.MochaUI.closeWindow(window.parent.$("renameRulePage"));
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
                     }
                 }).send();
             });

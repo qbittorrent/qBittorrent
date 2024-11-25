@@ -19,7 +19,7 @@
             $("cancelBtn").addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                window.parent.MochaUI.closeWindow(window.parent.$("removeRulePage"));
+                window.parent.qBittorrent.Client.closeFrameWindow(window);
             });
             $("confirmBtn").addEventListener("click", (e) => {
                 e.preventDefault();
@@ -37,7 +37,7 @@
                             ++completionCount;
                             if (completionCount === rules.length) {
                                 window.parent.qBittorrent.RssDownloader.updateRulesList();
-                                window.parent.MochaUI.closeWindow(window.parent.$("removeRulePage"));
+                                window.parent.qBittorrent.Client.closeFrameWindow(window);
                             }
                         }
                     }).send();
