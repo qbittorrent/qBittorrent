@@ -824,8 +824,7 @@ namespace BitTorrent
         bool m_isPortMappingEnabled = false;
         QHash<quint16, std::vector<lt::port_mapping_t>> m_mappedPorts;
 
-        QTimer *m_wakeupCheckTimer = nullptr;
-        std::chrono::steady_clock::time_point m_wakeupCheckTimestamp;
+        QElapsedTimer m_wakeupCheckTimestamp;
 
         QList<TorrentImpl *> m_pendingFinishedTorrents;
 
