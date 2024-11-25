@@ -30,6 +30,7 @@ window.qBittorrent.Client ??= (() => {
     const exports = () => {
         return {
             setup: setup,
+            initializeCaches: initializeCaches,
             closeWindow: closeWindow,
             closeFrameWindow: closeFrameWindow,
             getSyncMainDataInterval: getSyncMainDataInterval,
@@ -45,11 +46,22 @@ window.qBittorrent.Client ??= (() => {
         };
     };
 
+    let cacheAllSettled;
     const setup = () => {
         // fetch various data and store it in memory
-        window.qBittorrent.Cache.buildInfo.init();
-        window.qBittorrent.Cache.preferences.init();
-        window.qBittorrent.Cache.qbtVersion.init();
+        cacheAllSettled = Promise.allSettled([
+            window.qBittorrent.Cache.buildInfo.init(),
+            window.qBittorrent.Cache.preferences.init(),
+            window.qBittorrent.Cache.qbtVersion.init()
+        ]);
+    };
+
+    const initializeCaches = async () => {
+        const results = await cacheAllSettled;
+        for (const [idx, result] of results.entries()) {
+            if (result.status === "rejected")
+                console.error(`Failed to initialize cache. Index: ${idx}. Reason: "${result.reason}".`);
+        }
     };
 
     const closeWindow = (windowID) => {
@@ -1771,7 +1783,9 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
+    await window.qBittorrent.Client.initializeCaches();
+
     // switch to previously used tab
     const previouslyUsedTab = LocalPreferences.get("selected_window_tab", "transfers");
     switch (previouslyUsedTab) {

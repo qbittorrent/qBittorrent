@@ -53,19 +53,20 @@ window.qBittorrent.Cache ??= (() => {
     class BuildInfoCache {
         #m_store = {};
 
-        init() {
-            new Request.JSON({
-                url: "api/v2/app/buildInfo",
-                method: "get",
-                noCache: true,
-                onSuccess: (responseJSON) => {
-                    if (!responseJSON)
+        async init() {
+            return fetch("api/v2/app/buildInfo", {
+                    method: "GET",
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                    if (!response.ok)
                         return;
 
+                    const responseText = await response.text();
+                    const responseJSON = JSON.parse(responseText);
                     deepFreeze(responseJSON);
                     this.#m_store = responseJSON;
-                }
-            }).send();
+                });
         }
 
         get() {
@@ -80,26 +81,27 @@ window.qBittorrent.Cache ??= (() => {
         //   onFailure: () => {},
         //   onSuccess: () => {}
         // }
-        init(obj = {}) {
-            new Request.JSON({
-                url: "api/v2/app/preferences",
-                method: "get",
-                noCache: true,
-                onFailure: (xhr) => {
-                    if (typeof obj.onFailure === "function")
-                        obj.onFailure(xhr);
-                },
-                onSuccess: (responseJSON, responseText) => {
-                    if (!responseJSON)
-                        return;
+        async init(obj = {}) {
+            return fetch("api/v2/app/preferences", {
+                    method: "GET",
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                        if (!response.ok)
+                            return;
 
-                    deepFreeze(responseJSON);
-                    this.#m_store = responseJSON;
+                        const responseText = await response.text();
+                        const responseJSON = JSON.parse(responseText);
+                        deepFreeze(responseJSON);
+                        this.#m_store = responseJSON;
 
-                    if (typeof obj.onSuccess === "function")
-                        obj.onSuccess(responseJSON, responseText);
-                }
-            }).send();
+                        if (typeof obj.onSuccess === "function")
+                            obj.onSuccess(responseJSON, responseText);
+                    },
+                    (error) => {
+                        if (typeof obj.onFailure === "function")
+                            obj.onFailure(error);
+                    });
         }
 
         get() {
@@ -117,48 +119,53 @@ window.qBittorrent.Cache ??= (() => {
             if (typeof obj.data !== "object")
                 throw new Error("`data` is not an object.");
 
-            new Request({
-                url: "api/v2/app/setPreferences",
-                method: "post",
-                data: {
-                    "json": JSON.stringify(obj.data)
-                },
-                onFailure: (xhr) => {
-                    if (typeof obj.onFailure === "function")
-                        obj.onFailure(xhr);
-                },
-                onSuccess: (responseText, responseXML) => {
-                    this.#m_store = structuredClone(this.#m_store);
-                    for (const key in obj.data) {
-                        if (!Object.hasOwn(obj.data, key))
-                            continue;
+            fetch("api/v2/app/setPreferences", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        "json": JSON.stringify(obj.data)
+                    })
+                })
+                .then(async (response) => {
+                        if (!response.ok)
+                            return;
 
-                        const value = obj.data[key];
-                        this.#m_store[key] = value;
-                    }
-                    deepFreeze(this.#m_store);
+                        this.#m_store = structuredClone(this.#m_store);
+                        for (const key in obj.data) {
+                            if (!Object.hasOwn(obj.data, key))
+                                continue;
 
-                    if (typeof obj.onSuccess === "function")
-                        obj.onSuccess(responseText, responseXML);
-                }
-            }).send();
+                            const value = obj.data[key];
+                            this.#m_store[key] = value;
+                        }
+                        deepFreeze(this.#m_store);
+
+                        if (typeof obj.onSuccess === "function") {
+                            const responseText = await response.text();
+                            obj.onSuccess(responseText);
+                        }
+                    },
+                    (error) => {
+                        if (typeof obj.onFailure === "function")
+                            obj.onFailure(error);
+                    });
         }
     }
 
     class QbtVersionCache {
         #m_store = "";
 
-        init() {
-            new Request({
-                url: "api/v2/app/version",
-                method: "get",
-                noCache: true,
-                onSuccess: (responseText) => {
-                    if (!responseText)
+        async init() {
+            return fetch("api/v2/app/version", {
+                    method: "GET",
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                    if (!response.ok)
                         return;
+
+                    const responseText = await response.text();
                     this.#m_store = responseText;
-                }
-            }).send();
+                });
         }
 
         get() {
