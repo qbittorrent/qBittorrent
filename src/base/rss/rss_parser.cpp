@@ -700,6 +700,7 @@ void RSS::Private::Parser::parseRSSChannel(QXmlStreamReader &xml)
 
 void RSS::Private::Parser::parseAtomArticle(QXmlStreamReader &xml)
 {
+    const auto currentDateTime = QDateTime::currentDateTime();
     QVariantHash article;
     bool doubleContent = false;
 
@@ -756,7 +757,7 @@ void RSS::Private::Parser::parseAtomArticle(QXmlStreamReader &xml)
             {
                 // ATOM uses standard compliant date, don't do fancy stuff
                 const QDateTime articleDate = QDateTime::fromString(xml.readElementText().trimmed(), Qt::ISODate);
-                article[Article::KeyDate] = (articleDate.isValid() ? articleDate : QDateTime::currentDateTime());
+                article[Article::KeyDate] = (articleDate.isValid() ? articleDate : currentDateTime);
             }
             else if (name == u"author")
             {

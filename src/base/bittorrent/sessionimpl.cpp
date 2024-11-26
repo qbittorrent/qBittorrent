@@ -1610,7 +1610,7 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
                 reannounceToAllTrackers();
             }
 
-            m_wakeupCheckTimestamp = QDateTime::currentDateTime();
+            m_wakeupCheckTimestamp = now;
         });
         m_wakeupCheckTimestamp = QDateTime::currentDateTime();
         m_wakeupCheckTimer->start(30s);
@@ -6396,7 +6396,7 @@ void SessionImpl::handleRemovedTorrent(const TorrentID &torrentID, const QString
     m_removingTorrents.erase(removingTorrentDataIter);
 }
 
-QDateTime SessionImpl::fromLTTimePoint32(const libtorrent::time_point32 &timePoint) const
+QDateTime SessionImpl::fromLTTimePoint32(const lt::time_point32 &timePoint) const
 {
     const auto secsSinceNow = lt::duration_cast<lt::seconds>(timePoint - m_ltNow + lt::milliseconds(500)).count();
     return m_qNow.addSecs(secsSinceNow);
