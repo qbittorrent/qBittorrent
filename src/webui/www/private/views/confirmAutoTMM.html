@@ -18,13 +18,13 @@
         const confirmText = document.getElementById("confirmAutoTmmMessage");
 
         const {
-            options: { data: { hashes, enable }, id },
+            options: { data: { hashes, enable } },
             windowEl
         } = window.MUI.Windows.instances["confirmAutoTMMDialog"];
 
         confirmText.textContent = "QBT_TR(Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.)QBT_TR[CONTEXT=confirmAutoTMMDialog]";
 
-        cancelButton.addEventListener("click", (e) => { window.qBittorrent.Client.closeWindow(id); });
+        cancelButton.addEventListener("click", (e) => { window.qBittorrent.Client.closeWindow(windowEl); });
         confirmButton.addEventListener("click", (e) => {
             new Request({
                 url: "api/v2/torrents/setAutoManagement",
@@ -35,7 +35,7 @@
                 },
                 onSuccess: () => {
                     updateMainData();
-                    window.qBittorrent.Client.closeWindow(id);
+                    window.qBittorrent.Client.closeWindow(windowEl);
                 },
                 onFailure: () => {
                     alert("QBT_TR(Unable to set Auto Torrent Management for the selected torrents.)QBT_TR[CONTEXT=HttpServer]");
@@ -52,7 +52,7 @@
                     confirmButton.click();
                     break;
                 case "Escape":
-                    window.qBittorrent.Client.closeWindow(id);
+                    window.qBittorrent.Client.closeWindow(windowEl);
                     break;
             }
         });

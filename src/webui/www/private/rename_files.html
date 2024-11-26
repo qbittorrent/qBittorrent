@@ -15,11 +15,11 @@
         "use strict";
 
         (() => {
-            if (window.parent.qBittorrent !== undefined)
-                window.qBittorrent = window.parent.qBittorrent;
-            window.qBittorrent = window.parent.qBittorrent;
+            const {
+                options: { data },
+                windowEl
+            } = window.MUI.Windows.instances["multiRenamePage"];
 
-            const data = window.MUI.Windows.instances["multiRenamePage"].options.data;
             const bulkRenameFilesContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
                 targets: "#bulkRenameFilesTableDiv tr",
                 menu: "multiRenameFilesMenu",
@@ -65,11 +65,11 @@
                 defaultEventType: "keydown",
                 events: {
                     "Escape": function(event) {
-                        window.parent.qBittorrent.Client.closeFrameWindow(window);
+                        window.qBittorrent.Client.closeWindow(windowEl);
                         event.preventDefault();
                     },
                     "Esc": function(event) {
-                        window.parent.qBittorrent.Client.closeFrameWindow(window);
+                        window.qBittorrent.Client.closeWindow(windowEl);
                         event.preventDefault();
                     }
                 }
@@ -284,9 +284,9 @@
                 LocalPreferences.set("multirename_replaceAll", fileRenamer.replaceAll);
                 $("renameButton").value = replaceOperation;
             });
-            $("closeButton").addEventListener("click", () => {
-                window.parent.qBittorrent.Client.closeFrameWindow(window);
+            $("closeButton").addEventListener("click", (event) => {
                 event.preventDefault();
+                window.qBittorrent.Client.closeWindow(windowEl);
             });
             // synchronize header scrolling to table body
             $("bulkRenameFilesTableDiv").onscroll = function() {
