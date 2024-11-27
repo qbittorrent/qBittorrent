@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]</title>
-    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
-    <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
-    <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
-    <script src="scripts/localpreferences.js?v=${CACHEID}"></script>
-    <script src="scripts/color-scheme.js?v=${CACHEID}"></script>
-    <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
+    <link rel="stylesheet" href="${BASE_PATH}css/style.css?v=${CACHEID}" type="text/css">
+    <script src="${BASE_PATH}scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
+    <script src="${BASE_PATH}scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
+    <script src="${BASE_PATH}scripts/localpreferences.js?v=${CACHEID}"></script>
+    <script src="${BASE_PATH}scripts/color-scheme.js?v=${CACHEID}"></script>
+    <script src="${BASE_PATH}scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
     <script>
         "use strict";
 
@@ -47,7 +47,7 @@
                 $("submitButton").disabled = true;
 
                 new Request({
-                    url: "api/v2/rss/addFeed",
+                    url: "${BASE_PATH}api/v2/rss/addFeed",
                     method: "post",
                     data: {
                         url: feedURL,

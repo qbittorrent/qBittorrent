@@ -29,7 +29,7 @@
         });
         confirmButton.addEventListener("click", (e) => {
             new Request({
-                url: "api/v2/torrents/recheck",
+                url: "${BASE_PATH}api/v2/torrents/recheck",
                 method: "post",
                 data: {
                     hashes: hashes.join("|"),

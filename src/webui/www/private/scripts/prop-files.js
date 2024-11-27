@@ -309,7 +309,7 @@ window.qBittorrent.PropFiles ??= (() => {
         loadTorrentFilesDataTimer = -1;
 
         new Request({
-            url: "api/v2/torrents/filePrio",
+            url: "${BASE_PATH}api/v2/torrents/filePrio",
             method: "post",
             data: {
                 "hash": current_hash,
@@ -352,7 +352,7 @@ window.qBittorrent.PropFiles ??= (() => {
             current_hash = new_hash;
             loadedNewTorrent = true;
         }
-        const url = new URI("api/v2/torrents/files?hash=" + current_hash);
+        const url = new URI("${BASE_PATH}api/v2/torrents/files?hash=" + current_hash);
         new Request.JSON({
             url: url,
             method: "get",
@@ -545,7 +545,7 @@ window.qBittorrent.PropFiles ??= (() => {
 
         new MochaUI.Window({
             id: "renamePage",
-            icon: "images/qbittorrent-tray.svg",
+            icon: "${BASE_PATH}images/qbittorrent-tray.svg",
             title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]",
             loadMethod: "iframe",
             contentURL: "rename_file.html?hash=" + hash + "&isFolder=" + node.isFolder
@@ -563,7 +563,7 @@ window.qBittorrent.PropFiles ??= (() => {
     const multiFileRename = (hash) => {
         new MochaUI.Window({
             id: "multiRenamePage",
-            icon: "images/qbittorrent-tray.svg",
+            icon: "${BASE_PATH}images/qbittorrent-tray.svg",
             title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]",
             data: { hash: hash, selectedRows: torrentFilesTable.selectedRows },
             loadMethod: "xhr",

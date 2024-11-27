@@ -441,7 +441,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 anchor.textContent = text;
 
                 const img = document.createElement("img");
-                img.src = "images/checked-completed.svg";
+                img.src = "${BASE_PATH}images/checked-completed.svg";
                 anchor.prepend(img);
 
                 const listItem = document.createElement("li");
@@ -1059,50 +1059,50 @@ window.qBittorrent.DynamicTable ??= (() => {
                     case "forcedMetaDL":
                     case "downloading":
                         state = "downloading";
-                        img_path = "images/downloading.svg";
+                        img_path = "${BASE_PATH}images/downloading.svg";
                         break;
                     case "forcedUP":
                     case "uploading":
                         state = "uploading";
-                        img_path = "images/upload.svg";
+                        img_path = "${BASE_PATH}images/upload.svg";
                         break;
                     case "stalledUP":
                         state = "stalledUP";
-                        img_path = "images/stalledUP.svg";
+                        img_path = "${BASE_PATH}images/stalledUP.svg";
                         break;
                     case "stalledDL":
                         state = "stalledDL";
-                        img_path = "images/stalledDL.svg";
+                        img_path = "${BASE_PATH}images/stalledDL.svg";
                         break;
                     case "stoppedDL":
                         state = "torrent-stop";
-                        img_path = "images/stopped.svg";
+                        img_path = "${BASE_PATH}images/stopped.svg";
                         break;
                     case "stoppedUP":
                         state = "checked-completed";
-                        img_path = "images/checked-completed.svg";
+                        img_path = "${BASE_PATH}images/checked-completed.svg";
                         break;
                     case "queuedDL":
                     case "queuedUP":
                         state = "queued";
-                        img_path = "images/queued.svg";
+                        img_path = "${BASE_PATH}images/queued.svg";
                         break;
                     case "checkingDL":
                     case "checkingUP":
                     case "queuedForChecking":
                     case "checkingResumeData":
                         state = "force-recheck";
-                        img_path = "images/force-recheck.svg";
+                        img_path = "${BASE_PATH}images/force-recheck.svg";
                         break;
                     case "moving":
                         state = "moving";
-                        img_path = "images/set-location.svg";
+                        img_path = "${BASE_PATH}images/set-location.svg";
                         break;
                     case "error":
                     case "unknown":
                     case "missingFiles":
                         state = "error";
-                        img_path = "images/error.svg";
+                        img_path = "${BASE_PATH}images/error.svg";
                         break;
                     default:
                         break; // do nothing
@@ -1750,7 +1750,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.append(span);
                 }
 
-                span.style.backgroundImage = `url('images/flags/${country_code ?? "xx"}.svg')`;
+                span.style.backgroundImage = `url('${BASE_PATH}images/flags/${country_code ?? "xx"}.svg')`;
                 span.textContent = country;
                 td.title = country;
             };
@@ -2200,7 +2200,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const value = this.getRowValue(row);
 
                 const treeImg = new Element("img", {
-                    src: "images/L.gif",
+                    src: "${BASE_PATH}images/L.gif",
                     styles: {
                         "margin-bottom": -2
                     }
@@ -2244,7 +2244,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                             id: fileNameId
                         });
                         const dirImg = new Element("img", {
-                            src: "images/directory.svg",
+                            src: "${BASE_PATH}images/directory.svg",
                             styles: {
                                 "width": 20,
                                 "padding-right": 5,
@@ -2527,7 +2527,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 }
                 else {
                     const treeImg = new Element("img", {
-                        src: "images/L.gif",
+                        src: "${BASE_PATH}images/L.gif",
                         styles: {
                             "margin-bottom": -2
                         }
@@ -2553,7 +2553,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     }
                     else {
                         const collapseIcon = new Element("img", {
-                            src: "images/go-down.svg",
+                            src: "${BASE_PATH}images/go-down.svg",
                             styles: {
                                 "margin-left": (node.depth * 20)
                             },
@@ -2567,7 +2567,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                             id: fileNameId
                         });
                         const dirImg = new Element("img", {
-                            src: "images/directory.svg",
+                            src: "${BASE_PATH}images/directory.svg",
                             styles: {
                                 "width": 20,
                                 "padding-right": 5,
@@ -2843,19 +2843,19 @@ window.qBittorrent.DynamicTable ??= (() => {
                 let img_path;
                 switch (row.full_data.status) {
                     case "default":
-                        img_path = "images/application-rss.svg";
+                        img_path = "${BASE_PATH}images/application-rss.svg";
                         break;
                     case "hasError":
-                        img_path = "images/task-reject.svg";
+                        img_path = "${BASE_PATH}images/task-reject.svg";
                         break;
                     case "isLoading":
-                        img_path = "images/spinner.gif";
+                        img_path = "${BASE_PATH}images/spinner.gif";
                         break;
                     case "unread":
-                        img_path = "images/mail-inbox.svg";
+                        img_path = "${BASE_PATH}images/mail-inbox.svg";
                         break;
                     case "isFolder":
-                        img_path = "images/folder-documents.svg";
+                        img_path = "${BASE_PATH}images/folder-documents.svg";
                         break;
                 }
                 let td;

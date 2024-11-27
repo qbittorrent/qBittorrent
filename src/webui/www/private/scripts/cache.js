@@ -54,7 +54,7 @@ window.qBittorrent.Cache ??= (() => {
         #m_store = {};
 
         async init() {
-            return fetch("api/v2/app/buildInfo", {
+            return fetch("${BASE_PATH}api/v2/app/buildInfo", {
                     method: "GET",
                     cache: "no-store"
                 })
@@ -82,7 +82,7 @@ window.qBittorrent.Cache ??= (() => {
         //   onSuccess: () => {}
         // }
         async init(obj = {}) {
-            return fetch("api/v2/app/preferences", {
+            return fetch("${BASE_PATH}api/v2/app/preferences", {
                     method: "GET",
                     cache: "no-store"
                 })
@@ -119,7 +119,7 @@ window.qBittorrent.Cache ??= (() => {
             if (typeof obj.data !== "object")
                 throw new Error("`data` is not an object.");
 
-            fetch("api/v2/app/setPreferences", {
+            fetch("${BASE_PATH}api/v2/app/setPreferences", {
                     method: "POST",
                     body: new URLSearchParams({
                         "json": JSON.stringify(obj.data)
@@ -155,7 +155,7 @@ window.qBittorrent.Cache ??= (() => {
         #m_store = "";
 
         async init() {
-            return fetch("api/v2/app/version", {
+            return fetch("${BASE_PATH}api/v2/app/version", {
                     method: "GET",
                     cache: "no-store"
                 })

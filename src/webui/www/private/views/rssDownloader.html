@@ -118,12 +118,12 @@
 
     #newRuleButton {
         float: right;
-        background-image: url('images/list-add.svg');
+        background-image: url('${BASE_PATH}images/list-add.svg');
     }
 
     #deleteRuleButton {
         float: right;
-        background-image: url('images/edit-clear.svg');
+        background-image: url('${BASE_PATH}images/edit-clear.svg');
     }
 
 </style>
@@ -332,10 +332,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 </div>
 
 <ul id="rssDownloaderRuleMenu" class="contextMenu">
-    <li><a href="#addRule"><img src="images/list-add.svg" alt="QBT_TR(Add new rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Add new rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
-    <li><a href="#deleteRule"><img src="images/edit-clear.svg" alt="QBT_TR(Delete rule)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Delete rule)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
-    <li class="separator"><a href="#renameRule"><img src="images/edit-rename.svg" alt="QBT_TR(Rename rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Rename rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
-    <li class="separator"><a href="#clearDownloadedEpisodes"><img src="images/edit-clear.svg" alt="QBT_TR(Clear downloaded episodes...)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Clear downloaded episodes...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
+    <li><a href="#addRule"><img src="${BASE_PATH}images/list-add.svg" alt="QBT_TR(Add new rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Add new rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
+    <li><a href="#deleteRule"><img src="${BASE_PATH}images/edit-clear.svg" alt="QBT_TR(Delete rule)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Delete rule)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
+    <li class="separator"><a href="#renameRule"><img src="${BASE_PATH}images/edit-rename.svg" alt="QBT_TR(Rename rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Rename rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
+    <li class="separator"><a href="#clearDownloadedEpisodes"><img src="${BASE_PATH}images/edit-clear.svg" alt="QBT_TR(Clear downloaded episodes...)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Clear downloaded episodes...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
 </ul>
 
 <script>
@@ -438,7 +438,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             });
             // get all categories and add to combobox
             new Request.JSON({
-                url: "api/v2/torrents/categories",
+                url: "${BASE_PATH}api/v2/torrents/categories",
                 method: "get",
                 noCache: true,
                 onSuccess: (response) => {
@@ -455,7 +455,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             }).send();
             // get all rss feed
             new Request.JSON({
-                url: "api/v2/rss/items",
+                url: "${BASE_PATH}api/v2/rss/items",
                 method: "get",
                 noCache: true,
                 data: {
@@ -483,7 +483,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const updateRulesList = () => {
             // get all rules
             new Request.JSON({
-                url: "api/v2/rss/rules",
+                url: "${BASE_PATH}api/v2/rss/rules",
                 method: "get",
                 noCache: true,
                 onSuccess: (response) => {
@@ -507,7 +507,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const modifyRuleState = (rule, setting, newState, callback = () => {}) => {
             rulesList[rule][setting] = newState;
             new Request({
-                url: "api/v2/rss/setRule",
+                url: "${BASE_PATH}api/v2/rss/setRule",
                 method: "post",
                 data: {
                     ruleName: rule,
@@ -522,7 +522,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const addRule = () => {
             new MochaUI.Window({
                 id: "newRulePage",
-                icon: "images/qbittorrent-tray.svg",
+                icon: "${BASE_PATH}images/qbittorrent-tray.svg",
                 title: "QBT_TR(New rule name)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "iframe",
                 contentURL: "newrule.html",
@@ -537,7 +537,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const renameRule = (rule) => {
             new MochaUI.Window({
                 id: "renameRulePage",
-                icon: "images/qbittorrent-tray.svg",
+                icon: "${BASE_PATH}images/qbittorrent-tray.svg",
                 title: "QBT_TR(Rule renaming)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "iframe",
                 contentURL: "rename_rule.html?rule=" + encodeURIComponent(rule),
@@ -560,7 +560,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             const encodedRules = rules.map((rule) => encodeURIComponent(rule));
             new MochaUI.Window({
                 id: "removeRulePage",
-                icon: "images/qbittorrent-tray.svg",
+                icon: "${BASE_PATH}images/qbittorrent-tray.svg",
                 title: "QBT_TR(Rule deletion confirmation)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "iframe",
                 contentURL: "confirmruledeletion.html?rules=" + encodeURIComponent(encodedRules.join("|")),
@@ -576,7 +576,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             const encodedRules = rules.map((rule) => encodeURIComponent(rule));
             new MochaUI.Window({
                 id: "clearRulesPage",
-                icon: "images/qbittorrent-tray.svg",
+                icon: "${BASE_PATH}images/qbittorrent-tray.svg",
                 title: "QBT_TR(New rule name)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "iframe",
                 contentURL: "confirmruleclear.html?rules=" + encodeURIComponent(encodedRules.join("|")),
@@ -640,7 +640,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             }
 
             new Request({
-                url: "api/v2/rss/setRule",
+                url: "${BASE_PATH}api/v2/rss/setRule",
                 method: "post",
                 data: {
                     ruleName: rule,
@@ -654,7 +654,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
         const updateMatchingArticles = (ruleName) => {
             new Request.JSON({
-                url: "api/v2/rss/matchingArticles",
+                url: "${BASE_PATH}api/v2/rss/matchingArticles",
                 method: "get",
                 noCache: true,
                 data: {

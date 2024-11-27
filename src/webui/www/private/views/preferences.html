@@ -590,7 +590,7 @@
             <tbody>
                 <tr>
                     <td rowspan="2">
-                        <img src="images/slow_off.svg" style="height: 2.5em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
+                        <img src="${BASE_PATH}images/slow_off.svg" style="height: 2.5em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
                     </td>
                     <td><label for="up_limit_value">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                     <td><input type="number" id="up_limit_value" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
@@ -610,7 +610,7 @@
             <tbody>
                 <tr>
                     <td rowspan="2">
-                        <img src="images/slow.svg" style="height: 2.5em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
+                        <img src="${BASE_PATH}images/slow.svg" style="height: 2.5em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
                     </td>
                     <td><label for="alt_up_limit_value">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                     <td><input type="number" id="alt_up_limit_value" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
@@ -1819,7 +1819,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 + "<option value='other'>QBT_TR(Other...)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
                 + "</select>"
                 + "<input id='cb_watch_txt_" + pos + "' type='text' " + (disableInput ? "hidden " : "") + "/>"
-                + "<img src='images/list-add.svg' id='addFolderImg_" + pos + "' alt='Add' style='padding-left:170px;width:16px;cursor:pointer;' onclick='qBittorrent.Preferences.addWatchFolder();'>"
+                + "<img src='${BASE_PATH}images/list-add.svg' id='addFolderImg_" + pos + "' alt='Add' style='padding-left:170px;width:16px;cursor:pointer;' onclick='qBittorrent.Preferences.addWatchFolder();'>"
                 + "</div>";
 
             watchedFoldersTable.push([myinput, mycb]);
@@ -1893,7 +1893,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         const sendTestEmail = () => {
             new Request({
-                url: "api/v2/app/sendTestEmail",
+                url: "${BASE_PATH}api/v2/app/sendTestEmail",
                 method: "post",
                 onFailure: () => {
                     alert("QBT_TR(Could not contact qBittorrent)QBT_TR[CONTEXT=HttpServer]");
@@ -2083,7 +2083,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         // Advanced Tab
         const updateNetworkInterfaces = (default_iface, default_iface_name) => {
-            const url = "api/v2/app/networkInterfaceList";
+            const url = "${BASE_PATH}api/v2/app/networkInterfaceList";
             $("networkInterface").getChildren().each(c => c.destroy());
             new Request.JSON({
                 url: url,
@@ -2110,7 +2110,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const updateInterfaceAddresses = (iface, default_addr) => {
-            const url = "api/v2/app/networkInterfaceAddressList";
+            const url = "${BASE_PATH}api/v2/app/networkInterfaceAddressList";
             $("optionalIPAddressToBind").getChildren().each(c => c.destroy());
             new Request.JSON({
                 url: url,

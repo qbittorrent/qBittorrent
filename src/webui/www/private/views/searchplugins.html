@@ -68,8 +68,8 @@
 </div>
 
 <ul id="searchPluginsTableMenu" class="contextMenu">
-    <li><a href="#Enabled"><img src="images/checked-completed.svg" alt="QBT_TR(Enabled)QBT_TR[CONTEXT=PluginSelectDlg]"> QBT_TR(Enabled)QBT_TR[CONTEXT=PluginSelectDlg]</a></li>
-    <li class="separator"><a href="#Uninstall"><img src="images/list-remove.svg" alt="QBT_TR(Uninstall)QBT_TR[CONTEXT=PluginSelectDlg]"> QBT_TR(Uninstall)QBT_TR[CONTEXT=PluginSelectDlg]</a></li>
+    <li><a href="#Enabled"><img src="${BASE_PATH}images/checked-completed.svg" alt="QBT_TR(Enabled)QBT_TR[CONTEXT=PluginSelectDlg]"> QBT_TR(Enabled)QBT_TR[CONTEXT=PluginSelectDlg]</a></li>
+    <li class="separator"><a href="#Uninstall"><img src="${BASE_PATH}images/list-remove.svg" alt="QBT_TR(Uninstall)QBT_TR[CONTEXT=PluginSelectDlg]"> QBT_TR(Uninstall)QBT_TR[CONTEXT=PluginSelectDlg]</a></li>
 </ul>
 
 <script>
@@ -120,7 +120,7 @@
         const installPlugin = (path) => {
             new MochaUI.Window({
                 id: "installSearchPlugin",
-                icon: "images/qbittorrent-tray.svg",
+                icon: "${BASE_PATH}images/qbittorrent-tray.svg",
                 title: "QBT_TR(Install plugin)QBT_TR[CONTEXT=PluginSourceDlg]",
                 loadMethod: "xhr",
                 contentURL: "views/installsearchplugin.html",
@@ -136,7 +136,7 @@
 
         const uninstallPlugin = () => {
             const plugins = searchPluginsTable.selectedRowsIds().join("|");
-            const url = new URI("api/v2/search/uninstallPlugin");
+            const url = new URI("${BASE_PATH}api/v2/search/uninstallPlugin");
             new Request({
                 url: url,
                 method: "post",
@@ -152,7 +152,7 @@
             if (plugins && plugins.length)
                 enable = !window.qBittorrent.Search.getPlugin(plugins[0]).enabled;
 
-            const url = new URI("api/v2/search/enablePlugin");
+            const url = new URI("${BASE_PATH}api/v2/search/enablePlugin");
             new Request({
                 url: url,
                 method: "post",
@@ -164,7 +164,7 @@
         };
 
         const checkForUpdates = () => {
-            const url = new URI("api/v2/search/updatePlugins");
+            const url = new URI("${BASE_PATH}api/v2/search/updatePlugins");
             new Request({
                 url: url,
                 method: "post"

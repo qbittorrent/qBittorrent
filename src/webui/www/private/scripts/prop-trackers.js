@@ -58,7 +58,7 @@ window.qBittorrent.PropTrackers ??= (() => {
             torrentTrackersTable.clear();
             current_hash = new_hash;
         }
-        const url = new URI("api/v2/torrents/trackers?hash=" + current_hash);
+        const url = new URI("${BASE_PATH}api/v2/torrents/trackers?hash=" + current_hash);
         new Request.JSON({
             url: url,
             method: "get",
@@ -167,7 +167,7 @@ window.qBittorrent.PropTrackers ??= (() => {
             return;
         new MochaUI.Window({
             id: "trackersPage",
-            icon: "images/qbittorrent-tray.svg",
+            icon: "${BASE_PATH}images/qbittorrent-tray.svg",
             title: "QBT_TR(Add trackers)QBT_TR[CONTEXT=TrackersAdditionDialog]",
             loadMethod: "iframe",
             contentURL: "addtrackers.html?hash=" + current_hash,
@@ -192,7 +192,7 @@ window.qBittorrent.PropTrackers ??= (() => {
         const trackerUrl = encodeURIComponent(element.childNodes[1].textContent);
         new MochaUI.Window({
             id: "trackersPage",
-            icon: "images/qbittorrent-tray.svg",
+            icon: "${BASE_PATH}images/qbittorrent-tray.svg",
             title: "QBT_TR(Tracker editing)QBT_TR[CONTEXT=TrackerListWidget]",
             loadMethod: "iframe",
             contentURL: "edittracker.html?hash=" + current_hash + "&url=" + trackerUrl,
@@ -216,7 +216,7 @@ window.qBittorrent.PropTrackers ??= (() => {
 
         const selectedTrackers = torrentTrackersTable.selectedRowsIds();
         new Request({
-            url: "api/v2/torrents/removeTrackers",
+            url: "${BASE_PATH}api/v2/torrents/removeTrackers",
             method: "post",
             data: {
                 hash: current_hash,

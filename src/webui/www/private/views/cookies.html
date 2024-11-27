@@ -62,7 +62,7 @@
                 <td class="name"><input type="text" aria-label="QBT_TR(Name)QBT_TR[CONTEXT=CookiesDialog]" autocomplete="off" autocorrect="off" autocapitalize="none"></td>
                 <td class="value"><input type="text" aria-label="QBT_TR(Value)QBT_TR[CONTEXT=CookiesDialog]" autocomplete="off" autocorrect="off" autocapitalize="none"></td>
                 <td class="expDate"><input type="datetime-local" aria-label="QBT_TR(Expiration Date)QBT_TR[CONTEXT=CookiesDialog]"></td>
-                <td><img class="removeCookie" src="images/list-remove.svg" alt="QBT_TR(Remove)QBT_TR[CONTEXT=CookiesDialog]"></td>
+                <td><img class="removeCookie" src="${BASE_PATH}images/list-remove.svg" alt="QBT_TR(Remove)QBT_TR[CONTEXT=CookiesDialog]"></td>
             </tr>
         </tbody>
         <tfoot>
@@ -72,7 +72,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><img class="addCookie" src="images/list-add.svg" alt="QBT_TR(Add Cookie)QBT_TR[CONTEXT=CookiesDialog]"></td>
+                <td><img class="addCookie" src="${BASE_PATH}images/list-add.svg" alt="QBT_TR(Add Cookie)QBT_TR[CONTEXT=CookiesDialog]"></td>
             </tr>
         </tfoot>
     </table>
@@ -124,7 +124,7 @@
             });
 
             new Request({
-                url: "api/v2/app/setCookies",
+                url: "${BASE_PATH}api/v2/app/setCookies",
                 method: "post",
                 noCache: true,
                 data: {
@@ -144,7 +144,7 @@
 
         const loadCookies = () => {
             new Request.JSON({
-                url: "api/v2/app/cookies",
+                url: "${BASE_PATH}api/v2/app/cookies",
                 method: "get",
                 onFailure: (response) => {
                     let error = "Unable to load cookies";

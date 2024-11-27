@@ -497,8 +497,8 @@ window.qBittorrent.ContextMenu ??= (() => {
 
                 return item;
             };
-            contextCategoryList.appendChild(createMenuItem("QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]", "images/list-add.svg", torrentNewCategoryFN));
-            contextCategoryList.appendChild(createMenuItem("QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]", "images/edit-clear.svg", () => { torrentSetCategoryFN(0); }));
+            contextCategoryList.appendChild(createMenuItem("QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]", "${BASE_PATH}images/list-add.svg", torrentNewCategoryFN));
+            contextCategoryList.appendChild(createMenuItem("QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]", "${BASE_PATH}images/edit-clear.svg", () => { torrentSetCategoryFN(0); }));
 
             const sortedCategories = [];
             categoryList.forEach((category, hash) => sortedCategories.push({
@@ -519,7 +519,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 });
 
                 const img = document.createElement("img");
-                img.src = "images/view-categories.svg";
+                img.src = "${BASE_PATH}images/view-categories.svg";
                 anchor.prepend(img);
 
                 const setCategoryItem = document.createElement("li");
@@ -553,8 +553,8 @@ window.qBittorrent.ContextMenu ??= (() => {
 
                 return item;
             };
-            contextTagList.appendChild(createMenuItem("QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]", "images/list-add.svg", torrentAddTagsFN));
-            contextTagList.appendChild(createMenuItem("QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]", "images/edit-clear.svg", torrentRemoveAllTagsFN));
+            contextTagList.appendChild(createMenuItem("QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]", "${BASE_PATH}images/list-add.svg", torrentAddTagsFN));
+            contextTagList.appendChild(createMenuItem("QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]", "${BASE_PATH}images/edit-clear.svg", torrentRemoveAllTagsFN));
 
             const sortedTags = [];
             tagList.forEach((tag, hash) => sortedTags.push({

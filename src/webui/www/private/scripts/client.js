@@ -748,7 +748,7 @@ window.addEventListener("DOMContentLoaded", () => {
     let syncMainDataTimeoutID = -1;
     let syncRequestInProgress = false;
     const syncMainData = () => {
-        const url = new URI("api/v2/sync/maindata");
+        const url = new URI("${BASE_PATH}api/v2/sync/maindata");
         url.setData("rid", syncMainDataLastResponseId);
         const request = new Request.JSON({
             url: url,
@@ -1033,17 +1033,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
         switch (serverState.connection_status) {
             case "connected":
-                $("connectionStatus").src = "images/connected.svg";
+                $("connectionStatus").src = "${BASE_PATH}images/connected.svg";
                 $("connectionStatus").alt = "QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]";
                 $("connectionStatus").title = "QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]";
                 break;
             case "firewalled":
-                $("connectionStatus").src = "images/firewalled.svg";
+                $("connectionStatus").src = "${BASE_PATH}images/firewalled.svg";
                 $("connectionStatus").alt = "QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]";
                 $("connectionStatus").title = "QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]";
                 break;
             default:
-                $("connectionStatus").src = "images/disconnected.svg";
+                $("connectionStatus").src = "${BASE_PATH}images/disconnected.svg";
                 $("connectionStatus").alt = "QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]";
                 $("connectionStatus").title = "QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]";
                 break;
@@ -1086,12 +1086,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const updateAltSpeedIcon = (enabled) => {
         if (enabled) {
-            $("alternativeSpeedLimits").src = "images/slow.svg";
+            $("alternativeSpeedLimits").src = "${BASE_PATH}images/slow.svg";
             $("alternativeSpeedLimits").alt = "QBT_TR(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]";
             $("alternativeSpeedLimits").title = "QBT_TR(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]";
         }
         else {
-            $("alternativeSpeedLimits").src = "images/slow_off.svg";
+            $("alternativeSpeedLimits").src = "${BASE_PATH}images/slow_off.svg";
             $("alternativeSpeedLimits").alt = "QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]";
             $("alternativeSpeedLimits").title = "QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]";
         }
@@ -1102,7 +1102,7 @@ window.addEventListener("DOMContentLoaded", () => {
         updateAltSpeedIcon(!alternativeSpeedLimits);
 
         new Request({
-            url: "api/v2/transfer/toggleSpeedLimitsMode",
+            url: "${BASE_PATH}api/v2/transfer/toggleSpeedLimitsMode",
             method: "post",
             onComplete: () => {
                 alternativeSpeedLimits = !alternativeSpeedLimits;
@@ -1417,7 +1417,7 @@ window.addEventListener("DOMContentLoaded", () => {
             loadMethod: "xhr",
             contentURL: "views/search.html",
             require: {
-                js: ["scripts/search.js"],
+                js: ["${BASE_PATH}scripts/search.js"],
                 onload: () => {
                     isSearchPanelLoaded = true;
                 },
@@ -1464,8 +1464,8 @@ window.addEventListener("DOMContentLoaded", () => {
             loadMethod: "xhr",
             contentURL: "views/log.html",
             require: {
-                css: ["css/vanillaSelectBox.css"],
-                js: ["scripts/lib/vanillaSelectBox.js"],
+                css: ["${BASE_PATH}css/vanillaSelectBox.css"],
+                js: ["${BASE_PATH}scripts/lib/vanillaSelectBox.js"],
                 onload: () => {
                     isLogPanelLoaded = true;
                 },
@@ -1539,7 +1539,7 @@ window.addEventListener("DOMContentLoaded", () => {
         },
         contentURL: "views/properties.html",
         require: {
-            js: ["scripts/prop-general.js", "scripts/prop-trackers.js", "scripts/prop-peers.js", "scripts/prop-webseeds.js", "scripts/prop-files.js"],
+            js: ["${BASE_PATH}scripts/prop-general.js", "${BASE_PATH}scripts/prop-trackers.js", "${BASE_PATH}scripts/prop-peers.js", "${BASE_PATH}scripts/prop-webseeds.js", "${BASE_PATH}scripts/prop-files.js"],
             onload: () => {
                 updatePropertiesPanel = () => {
                     switch (LocalPreferences.get("selected_properties_tab")) {
@@ -1664,7 +1664,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 const id = "uploadPage";
                 new MochaUI.Window({
                     id: id,
-                    icon: "images/qbittorrent-tray.svg",
+                    icon: "${BASE_PATH}images/qbittorrent-tray.svg",
                     title: "QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]",
                     loadMethod: "iframe",
                     contentURL: new URI("upload.html").toString(),
@@ -1707,7 +1707,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 const contentURI = new URI("download.html").setData("urls", urls.map(encodeURIComponent).join("|"));
                 new MochaUI.Window({
                     id: id,
-                    icon: "images/qbittorrent-tray.svg",
+                    icon: "${BASE_PATH}images/qbittorrent-tray.svg",
                     title: "QBT_TR(Download from URLs)QBT_TR[CONTEXT=downloadFromURL]",
                     loadMethod: "iframe",
                     contentURL: contentURI.toString(),

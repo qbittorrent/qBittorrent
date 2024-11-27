@@ -41,7 +41,7 @@
     }
 
     #filterTextInput {
-        background-image: url("../images/edit-find.svg");
+        background-image: url("${BASE_PATH}images/edit-find.svg");
         background-repeat: no-repeat;
         background-position: left;
         background-size: 1.5em;
@@ -144,8 +144,8 @@
 </div>
 
 <ul id="logTableMenu" class="contextMenu">
-    <li><a href="#" class="copyLogDataToClipboard"><img src="images/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=ExecutionLogWidget]">QBT_TR(Copy)QBT_TR[CONTEXT=ExecutionLogWidget]</a></li>
-    <li><a href="#Clear"><img src="images/list-remove.svg" alt="QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]">QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]</a></li>
+    <li><a href="#" class="copyLogDataToClipboard"><img src="${BASE_PATH}images/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=ExecutionLogWidget]">QBT_TR(Copy)QBT_TR[CONTEXT=ExecutionLogWidget]</a></li>
+    <li><a href="#Clear"><img src="${BASE_PATH}images/list-remove.svg" alt="QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]">QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]</a></li>
 </ul>
 
 <script>
@@ -341,7 +341,7 @@
 
             let url;
             if (curTab === "main") {
-                url = new URI("api/v2/log/main");
+                url = new URI("${BASE_PATH}api/v2/log/main");
                 url.setData({
                     normal: selectedLogLevels.indexOf("1") !== -1,
                     info: selectedLogLevels.indexOf("2") !== -1,
@@ -350,7 +350,7 @@
                 });
             }
             else {
-                url = new URI("api/v2/log/peers");
+                url = new URI("${BASE_PATH}api/v2/log/peers");
             }
 
             url.setData("last_known_id", tableInfo[curTab].last_id);

@@ -27,7 +27,7 @@
         cancelButton.addEventListener("click", (e) => { window.qBittorrent.Client.closeWindow(id); });
         confirmButton.addEventListener("click", (e) => {
             new Request({
-                url: "api/v2/torrents/setAutoManagement",
+                url: "${BASE_PATH}api/v2/torrents/setAutoManagement",
                 method: "post",
                 data: {
                     hashes: hashes.join("|"),

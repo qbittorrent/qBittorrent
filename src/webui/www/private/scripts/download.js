@@ -37,7 +37,7 @@ window.qBittorrent.Download ??= (() => {
 
     const getCategories = () => {
         new Request.JSON({
-            url: "api/v2/torrents/categories",
+            url: "${BASE_PATH}api/v2/torrents/categories",
             method: "get",
             noCache: true,
             onSuccess: (data) => {
