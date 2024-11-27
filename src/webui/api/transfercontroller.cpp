@@ -104,6 +104,8 @@ void TransferController::setUploadLimitAction()
     if (limit == 0) limit = -1;
 
     BitTorrent::Session::instance()->setUploadSpeedLimit(limit);
+
+    setResult(QString());
 }
 
 void TransferController::setDownloadLimitAction()
@@ -113,12 +115,16 @@ void TransferController::setDownloadLimitAction()
     if (limit == 0) limit = -1;
 
     BitTorrent::Session::instance()->setDownloadSpeedLimit(limit);
+
+    setResult(QString());
 }
 
 void TransferController::toggleSpeedLimitsModeAction()
 {
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     session->setAltGlobalSpeedLimitEnabled(!session->isAltGlobalSpeedLimitEnabled());
+
+    setResult(QString());
 }
 
 void TransferController::speedLimitsModeAction()
@@ -136,6 +142,8 @@ void TransferController::setSpeedLimitsModeAction()
 
     // Any non-zero values are considered as alternative mode
     BitTorrent::Session::instance()->setAltGlobalSpeedLimitEnabled(mode != 0);
+
+    setResult(QString());
 }
 
 void TransferController::banPeersAction()
@@ -149,4 +157,6 @@ void TransferController::banPeersAction()
         if (!addr.ip.isNull())
             BitTorrent::Session::instance()->banIP(addr.ip.toString());
     }
+
+    setResult(QString());
 }
