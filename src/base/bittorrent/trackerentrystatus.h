@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,9 +28,10 @@
 
 #pragma once
 
-#include <QDateTime>
 #include <QHash>
 #include <QString>
+
+#include "announcetimepoint.h"
 
 class QStringView;
 
@@ -59,8 +60,8 @@ namespace BitTorrent
         int numLeeches = -1;
         int numDownloaded = -1;
 
-        QDateTime nextAnnounceTime {};
-        QDateTime minAnnounceTime {};
+        AnnounceTimePoint nextAnnounceTime {};
+        AnnounceTimePoint minAnnounceTime {};
     };
 
     struct TrackerEntryStatus
@@ -76,8 +77,8 @@ namespace BitTorrent
         int numLeeches = -1;
         int numDownloaded = -1;
 
-        QDateTime nextAnnounceTime {};
-        QDateTime minAnnounceTime {};
+        AnnounceTimePoint nextAnnounceTime {};
+        AnnounceTimePoint minAnnounceTime {};
 
         QHash<std::pair<QString, int>, TrackerEndpointStatus> endpoints {};
 

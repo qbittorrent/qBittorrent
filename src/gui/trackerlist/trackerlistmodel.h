@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -33,8 +33,8 @@
 
 #include <QtContainerFwd>
 #include <QAbstractItemModel>
-#include <QDateTime>
 
+#include "base/bittorrent/announcetimepoint.h"
 #include "base/bittorrent/trackerentrystatus.h"
 
 class QTimer;
@@ -115,6 +115,6 @@ private:
     class Items;
     std::unique_ptr<Items> m_items;
 
-    QDateTime m_announceTimestamp;
+    BitTorrent::AnnounceTimePoint m_announceTimestamp;
     QTimer *m_announceRefreshTimer = nullptr;
 };

@@ -29,6 +29,7 @@
 
 #pragma once
 
+#include <chrono>
 #include <utility>
 #include <vector>
 
@@ -37,7 +38,6 @@
 #include <libtorrent/torrent_handle.hpp>
 
 #include <QtContainerFwd>
-#include <QDateTime>
 #include <QElapsedTimer>
 #include <QHash>
 #include <QList>
@@ -55,7 +55,6 @@
 #include "session.h"
 #include "sessionstatus.h"
 #include "torrentinfo.h"
-#include "trackerentrystatus.h"
 
 class QString;
 class QTimer;
@@ -479,8 +478,6 @@ namespace BitTorrent
         void addMappedPorts(const QSet<quint16> &ports);
         void removeMappedPorts(const QSet<quint16> &ports);
 
-        QDateTime fromLTTimePoint32(const lt::time_point32 &timePoint) const;
-
         template <typename Func>
         void invoke(Func &&func)
         {
@@ -828,12 +825,9 @@ namespace BitTorrent
         QHash<quint16, std::vector<lt::port_mapping_t>> m_mappedPorts;
 
         QTimer *m_wakeupCheckTimer = nullptr;
-        QDateTime m_wakeupCheckTimestamp;
+        std::chrono::steady_clock::time_point m_wakeupCheckTimestamp;
 
         QList<TorrentImpl *> m_pendingFinishedTorrents;
-
-        QDateTime m_qNow;
-        lt::clock_type::time_point m_ltNow;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();

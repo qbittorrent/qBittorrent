@@ -30,7 +30,6 @@
 #include "sessionimpl.h"
 
 #include <algorithm>
-#include <chrono>
 #include <cstdint>
 #include <ctime>
 #include <queue>
@@ -58,6 +57,7 @@
 #include <libtorrent/session_status.hpp>
 #include <libtorrent/torrent_info.hpp>
 
+#include <QDateTime>
 #include <QDeadlineTimer>
 #include <QDebug>
 #include <QDir>
@@ -106,6 +106,7 @@
 #include "torrentimpl.h"
 #include "tracker.h"
 #include "trackerentry.h"
+#include "trackerentrystatus.h"
 
 using namespace std::chrono_literals;
 using namespace BitTorrent;
@@ -1603,8 +1604,8 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
         m_wakeupCheckTimer = new QTimer(this);
         connect(m_wakeupCheckTimer, &QTimer::timeout, this, [this]
         {
-            const auto now = QDateTime::currentDateTime();
-            if (m_wakeupCheckTimestamp.secsTo(now) > 100)
+            const auto now = std::chrono::steady_clock::now();
+            if ((now - m_wakeupCheckTimestamp) > 100s)
             {
                 LogMsg(tr("System wake-up event detected. Re-announcing to all the trackers..."));
                 reannounceToAllTrackers();
@@ -1612,7 +1613,7 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
 
             m_wakeupCheckTimestamp = now;
         });
-        m_wakeupCheckTimestamp = QDateTime::currentDateTime();
+        m_wakeupCheckTimestamp = std::chrono::steady_clock::now();
         m_wakeupCheckTimer->start(30s);
 
         m_isRestored = true;
@@ -5512,11 +5513,6 @@ void SessionImpl::setTorrentContentLayout(const TorrentContentLayout value)
 // Read alerts sent by libtorrent session
 void SessionImpl::readAlerts()
 {
-    // cache current datetime of Qt and libtorrent clocks in order
-    // to optimize conversion of time points from lt to Qt clocks
-    m_ltNow = lt::clock_type::now();
-    m_qNow = QDateTime::currentDateTime();
-
     const std::vector<lt::alert *> alerts = getPendingAlerts();
 
     Q_ASSERT(m_loadedTorrents.isEmpty());
@@ -6394,10 +6390,4 @@ void SessionImpl::handleRemovedTorrent(const TorrentID &torrentID, const QString
     }
 
     m_removingTorrents.erase(removingTorrentDataIter);
-}
-
-QDateTime SessionImpl::fromLTTimePoint32(const lt::time_point32 &timePoint) const
-{
-    const auto secsSinceNow = lt::duration_cast<lt::seconds>(timePoint - m_ltNow + lt::milliseconds(500)).count();
-    return m_qNow.addSecs(secsSinceNow);
 }
