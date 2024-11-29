@@ -224,11 +224,15 @@ window.qBittorrent.DynamicTable ??= (() => {
                             changeBorderSide = "left";
                     }
 
-                    const borderStyle = "initial solid #e60";
-                    if (changeBorderSide === "left")
+                    const borderStyle = "solid #e60";
+                    if (changeBorderSide === "left") {
                         borderChangeElement.style.borderLeft = borderStyle;
-                    else
+                        borderChangeElement.style.borderLeftWidth = "initial";
+                    }
+                    else {
                         borderChangeElement.style.borderRight = borderStyle;
+                        borderChangeElement.style.borderRightWidth = "initial";
+                    }
 
                     resetElementBorderStyle(borderChangeElement, ((changeBorderSide === "right") ? "left" : "right"));
 
@@ -288,8 +292,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     LocalPreferences.set("columns_order_" + this.dynamicTableDivId, val.join(","));
                     this.loadColumnsOrder();
                     this.updateTableHeaders();
-                    while (this.tableBody.firstChild)
-                        this.tableBody.removeChild(this.tableBody.firstChild);
+                    this.tableBody.replaceChildren();
                     this.updateTable(true);
                 }
                 if (this.currentHeaderAction === "drag") {
@@ -465,11 +468,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                 this.showColumn(action, this.columns[action].visible === "0");
             }.bind(this);
 
-            // recreate child nodes when reusing (enables the context menu to work correctly)
-            if (ul.hasChildNodes()) {
-                while (ul.firstChild)
-                    ul.removeChild(ul.lastChild);
-            }
+            // recreate child elements when reusing (enables the context menu to work correctly)
+            ul.replaceChildren();
 
             for (let i = 0; i < this.columns.length; ++i) {
                 const text = this.columns[i].caption;
@@ -496,9 +496,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             const autoResizeAllElement = createResizeElement("Resize All", "#autoResizeAllAction");
             const autoResizeElement = createResizeElement("Resize", "#autoResizeAction");
 
-            ul.firstChild.classList.add("separator");
-            ul.insertBefore(autoResizeAllElement, ul.firstChild);
-            ul.insertBefore(autoResizeElement, ul.firstChild);
+            ul.firstElementChild.classList.add("separator");
+            ul.insertBefore(autoResizeAllElement, ul.firstElementChild);
+            ul.insertBefore(autoResizeElement, ul.firstElementChild);
             ul.inject(document.body);
 
             this.headerContextMenu = new DynamicTableHeaderContextMenuClass({

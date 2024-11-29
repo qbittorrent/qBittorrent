@@ -160,7 +160,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.touchStartAt = null;
                 this.touchStartEvent = null;
 
-                const isTargetUnchanged = (Math.abs(e.event.pageX - touchStartEvent.event.pageX) <= 10) && (Math.abs(e.event.pageY - touchStartEvent.event.pageY) <= 10);
+                const isTargetUnchanged = (Math.abs(e.changedTouches[0].pageX - touchStartEvent.changedTouches[0].pageX) <= 10) && (Math.abs(e.changedTouches[0].pageY - touchStartEvent.changedTouches[0].pageY) <= 10);
                 if (((now - touchStartAt) >= this.options.touchTimer) && isTargetUnchanged)
                     this.triggerMenu(touchStartEvent, elem);
             }, { passive: true });
@@ -246,13 +246,13 @@ window.qBittorrent.ContextMenu ??= (() => {
         }
 
         setItemChecked(item, checked) {
-            this.menu.getElement("a[href$=" + item + "]").firstChild.style.opacity =
+            this.menu.getElement("a[href$=" + item + "]").firstElementChild.style.opacity =
                 checked ? "1" : "0";
             return this;
         }
 
         getItemChecked(item) {
-            return this.menu.getElement("a[href$=" + item + "]").firstChild.style.opacity !== "0";
+            return this.menu.getElement("a[href$=" + item + "]").firstElementChild.style.opacity !== "0";
         }
 
         // hide an item
@@ -535,8 +535,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
         updateTagsSubMenu(tagList) {
             const contextTagList = $("contextTagList");
-            while (contextTagList.firstChild !== null)
-                contextTagList.removeChild(contextTagList.firstChild);
+            contextTagList.replaceChildren();
 
             const createMenuItem = (text, imgURL, clickFn) => {
                 const anchor = document.createElement("a");

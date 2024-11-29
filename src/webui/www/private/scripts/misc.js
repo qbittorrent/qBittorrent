@@ -255,8 +255,8 @@ window.qBittorrent.Misc ??= (() => {
     const containsAllTerms = (text, terms) => {
         const textToSearch = text.toLowerCase();
         return terms.every((term) => {
-            const isTermRequired = (term[0] === "+");
-            const isTermExcluded = (term[0] === "-");
+            const isTermRequired = term.startsWith("+");
+            const isTermExcluded = term.startsWith("-");
             if (isTermRequired || isTermExcluded) {
                 // ignore lonely +/-
                 if (term.length === 1)
@@ -265,7 +265,7 @@ window.qBittorrent.Misc ??= (() => {
                 term = term.substring(1);
             }
 
-            const textContainsTerm = (textToSearch.indexOf(term) !== -1);
+            const textContainsTerm = textToSearch.includes(term);
             return isTermExcluded ? !textContainsTerm : textContainsTerm;
         });
     };

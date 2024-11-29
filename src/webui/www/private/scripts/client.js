@@ -339,28 +339,28 @@ window.addEventListener("DOMContentLoaded", () => {
     // Show Top Toolbar is enabled by default
     let showTopToolbar = LocalPreferences.get("show_top_toolbar", "true") === "true";
     if (!showTopToolbar) {
-        $("showTopToolbarLink").firstChild.style.opacity = "0";
+        $("showTopToolbarLink").firstElementChild.style.opacity = "0";
         $("mochaToolbar").addClass("invisible");
     }
 
     // Show Status Bar is enabled by default
     let showStatusBar = LocalPreferences.get("show_status_bar", "true") === "true";
     if (!showStatusBar) {
-        $("showStatusBarLink").firstChild.style.opacity = "0";
+        $("showStatusBarLink").firstElementChild.style.opacity = "0";
         $("desktopFooterWrapper").addClass("invisible");
     }
 
     // Show Filters Sidebar is enabled by default
     let showFiltersSidebar = LocalPreferences.get("show_filters_sidebar", "true") === "true";
     if (!showFiltersSidebar) {
-        $("showFiltersSidebarLink").firstChild.style.opacity = "0";
+        $("showFiltersSidebarLink").firstElementChild.style.opacity = "0";
         $("filtersColumn").addClass("invisible");
         $("filtersColumn_handle").addClass("invisible");
     }
 
     let speedInTitle = LocalPreferences.get("speed_in_browser_title_bar") === "true";
     if (!speedInTitle)
-        $("speedInBrowserTitleBarLink").firstChild.style.opacity = "0";
+        $("speedInBrowserTitleBarLink").firstElementChild.style.opacity = "0";
 
     // After showing/hiding the toolbar + status bar
     window.qBittorrent.Client.showSearchEngine(LocalPreferences.get("show_search_engine") !== "false");
@@ -465,7 +465,7 @@ window.addEventListener("DOMContentLoaded", () => {
             if (filterEl.classList.toggle("invisible", hideFilter))
                 return;
         }
-        filterEl.firstElementChild.lastChild.nodeValue = filterTitle.replace("%1", filterTorrentCount);
+        filterEl.firstElementChild.lastChild.textContent = filterTitle.replace("%1", filterTorrentCount);
     };
 
     const updateFiltersList = () => {
@@ -1122,11 +1122,11 @@ window.addEventListener("DOMContentLoaded", () => {
         showTopToolbar = !showTopToolbar;
         LocalPreferences.set("show_top_toolbar", showTopToolbar.toString());
         if (showTopToolbar) {
-            $("showTopToolbarLink").firstChild.style.opacity = "1";
+            $("showTopToolbarLink").firstElementChild.style.opacity = "1";
             $("mochaToolbar").removeClass("invisible");
         }
         else {
-            $("showTopToolbarLink").firstChild.style.opacity = "0";
+            $("showTopToolbarLink").firstElementChild.style.opacity = "0";
             $("mochaToolbar").addClass("invisible");
         }
         MochaUI.Desktop.setDesktopSize();
@@ -1136,11 +1136,11 @@ window.addEventListener("DOMContentLoaded", () => {
         showStatusBar = !showStatusBar;
         LocalPreferences.set("show_status_bar", showStatusBar.toString());
         if (showStatusBar) {
-            $("showStatusBarLink").firstChild.style.opacity = "1";
+            $("showStatusBarLink").firstElementChild.style.opacity = "1";
             $("desktopFooterWrapper").removeClass("invisible");
         }
         else {
-            $("showStatusBarLink").firstChild.style.opacity = "0";
+            $("showStatusBarLink").firstElementChild.style.opacity = "0";
             $("desktopFooterWrapper").addClass("invisible");
         }
         MochaUI.Desktop.setDesktopSize();
@@ -1174,12 +1174,12 @@ window.addEventListener("DOMContentLoaded", () => {
         showFiltersSidebar = !showFiltersSidebar;
         LocalPreferences.set("show_filters_sidebar", showFiltersSidebar.toString());
         if (showFiltersSidebar) {
-            $("showFiltersSidebarLink").firstChild.style.opacity = "1";
+            $("showFiltersSidebarLink").firstElementChild.style.opacity = "1";
             $("filtersColumn").removeClass("invisible");
             $("filtersColumn_handle").removeClass("invisible");
         }
         else {
-            $("showFiltersSidebarLink").firstChild.style.opacity = "0";
+            $("showFiltersSidebarLink").firstElementChild.style.opacity = "0";
             $("filtersColumn").addClass("invisible");
             $("filtersColumn_handle").addClass("invisible");
         }
@@ -1190,9 +1190,9 @@ window.addEventListener("DOMContentLoaded", () => {
         speedInTitle = !speedInTitle;
         LocalPreferences.set("speed_in_browser_title_bar", speedInTitle.toString());
         if (speedInTitle)
-            $("speedInBrowserTitleBarLink").firstChild.style.opacity = "1";
+            $("speedInBrowserTitleBarLink").firstElementChild.style.opacity = "1";
         else
-            $("speedInBrowserTitleBarLink").firstChild.style.opacity = "0";
+            $("speedInBrowserTitleBarLink").firstElementChild.style.opacity = "0";
         processServerState();
     });
 
@@ -1216,42 +1216,42 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const updateTabDisplay = () => {
         if (window.qBittorrent.Client.isShowRssReader()) {
-            $("showRssReaderLink").firstChild.style.opacity = "1";
+            $("showRssReaderLink").firstElementChild.style.opacity = "1";
             $("mainWindowTabs").removeClass("invisible");
             $("rssTabLink").removeClass("invisible");
             if (!MochaUI.Panels.instances.RssPanel)
                 addRssPanel();
         }
         else {
-            $("showRssReaderLink").firstChild.style.opacity = "0";
+            $("showRssReaderLink").firstElementChild.style.opacity = "0";
             $("rssTabLink").addClass("invisible");
             if ($("rssTabLink").hasClass("selected"))
                 $("transfersTabLink").click();
         }
 
         if (window.qBittorrent.Client.isShowSearchEngine()) {
-            $("showSearchEngineLink").firstChild.style.opacity = "1";
+            $("showSearchEngineLink").firstElementChild.style.opacity = "1";
             $("mainWindowTabs").removeClass("invisible");
             $("searchTabLink").removeClass("invisible");
             if (!MochaUI.Panels.instances.SearchPanel)
                 addSearchPanel();
         }
         else {
-            $("showSearchEngineLink").firstChild.style.opacity = "0";
+            $("showSearchEngineLink").firstElementChild.style.opacity = "0";
             $("searchTabLink").addClass("invisible");
             if ($("searchTabLink").hasClass("selected"))
                 $("transfersTabLink").click();
         }
 
         if (window.qBittorrent.Client.isShowLogViewer()) {
-            $("showLogViewerLink").firstChild.style.opacity = "1";
+            $("showLogViewerLink").firstElementChild.style.opacity = "1";
             $("mainWindowTabs").removeClass("invisible");
             $("logTabLink").removeClass("invisible");
             if (!MochaUI.Panels.instances.LogPanel)
                 addLogPanel();
         }
         else {
-            $("showLogViewerLink").firstChild.style.opacity = "0";
+            $("showLogViewerLink").firstElementChild.style.opacity = "0";
             $("logTabLink").addClass("invisible");
             if ($("logTabLink").hasClass("selected"))
                 $("transfersTabLink").click();
@@ -1492,7 +1492,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const handleDownloadParam = () => {
         // Extract torrent URL from download param in WebUI URL hash
         const downloadHash = "#download=";
-        if (location.hash.indexOf(downloadHash) !== 0)
+        if (!location.hash.startsWith(downloadHash))
             return;
 
         const url = decodeURIComponent(location.hash.substring(downloadHash.length));

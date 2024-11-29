@@ -96,8 +96,8 @@
                 <option value="8">QBT_TR(Critical Messages)QBT_TR[CONTEXT=ExecutionLogWidget]</option>
             </select>
 
-            <input type="text" id="filterTextInput" onkeyup="window.qBittorrent.Log.filterTextChanged()" placeholder="QBT_TR(Filter logs)QBT_TR[CONTEXT=ExecutionLogWidget]" aria-label="QBT_TR(Filter logs)QBT_TR[CONTEXT=ExecutionLogWidget]" autocomplete="off" autocorrect="off" autocapitalize="none">
-            <button type="button" title="Clear input" onclick="javascript:document.querySelector('#filterTextInput').value='';window.qBittorrent.Log.filterTextChanged();">QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]</button>
+            <input type="text" id="filterTextInput" oninput="window.qBittorrent.Log.filterTextChanged()" placeholder="QBT_TR(Filter logs)QBT_TR[CONTEXT=ExecutionLogWidget]" aria-label="QBT_TR(Filter logs)QBT_TR[CONTEXT=ExecutionLogWidget]" autocomplete="off" autocorrect="off" autocapitalize="none">
+            <button type="button" title="Clear input" onclick="javascript:document.getElementById('filterTextInput').value='';window.qBittorrent.Log.filterTextChanged();">QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]</button>
         </div>
 
         <div id="logFilterSummary">
@@ -189,7 +189,7 @@
 
         const init = () => {
             for (const option of $("logLevelSelect").options)
-                option.setAttribute("selected", selectedLogLevels.includes(option.value));
+                option.toggleAttribute("selected", selectedLogLevels.includes(option.value));
 
             selectBox = new vanillaSelectBox("#logLevelSelect", {
                 maxHeight: 200,
@@ -343,10 +343,10 @@
             if (curTab === "main") {
                 url = new URI("api/v2/log/main");
                 url.setData({
-                    normal: selectedLogLevels.indexOf("1") !== -1,
-                    info: selectedLogLevels.indexOf("2") !== -1,
-                    warning: selectedLogLevels.indexOf("4") !== -1,
-                    critical: selectedLogLevels.indexOf("8") !== -1
+                    normal: selectedLogLevels.includes("1"),
+                    info: selectedLogLevels.includes("2"),
+                    warning: selectedLogLevels.includes("4"),
+                    critical: selectedLogLevels.includes("8")
                 });
             }
             else {
