@@ -50,30 +50,34 @@
         const setUpLimit = () => {
             const limit = Number($("uplimitUpdatevalue").value) * 1024;
             if (hashes[0] === "global") {
-                new Request({
-                    url: "api/v2/transfer/setUploadLimit",
-                    method: "post",
-                    data: {
-                        "limit": limit
-                    },
-                    onComplete: () => {
+                fetch("api/v2/transfer/setUploadLimit", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            "limit": limit
+                        })
+                    })
+                    .then((response) => {
+                        if (!response.ok)
+                            return;
+
                         window.parent.updateMainData();
                         window.parent.qBittorrent.Client.closeFrameWindow(window);
-                    }
-                }).send();
+                    });
             }
             else {
-                new Request({
-                    url: "api/v2/torrents/setUploadLimit",
-                    method: "post",
-                    data: {
-                        "hashes": hashes.join("|"),
-                        "limit": limit
-                    },
-                    onComplete: () => {
+                fetch("api/v2/torrents/setUploadLimit", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            "hashes": hashes.join("|"),
+                            "limit": limit
+                        })
+                    })
+                    .then((response) => {
+                        if (!response.ok)
+                            return;
+
                         window.parent.qBittorrent.Client.closeFrameWindow(window);
-                    }
-                }).send();
+                    });
             }
         };
 

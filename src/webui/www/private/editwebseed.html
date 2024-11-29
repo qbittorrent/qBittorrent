@@ -32,19 +32,21 @@
 
             $("editWebSeedButton").addEventListener("click", (e) => {
                 e.stopPropagation();
-                const hash = new URI().getData("hash");
-                new Request({
-                    url: "api/v2/torrents/editWebSeed",
-                    method: "post",
-                    data: {
-                        hash: hash,
-                        origUrl: origUrl,
-                        newUrl: encodeURIComponent($("url").value.trim()),
-                    },
-                    onComplete: () => {
+
+                fetch("api/v2/torrents/editWebSeed", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            "hash": new URI().getData("hash"),
+                            "origUrl": origUrl,
+                            "newUrl": encodeURIComponent($("url").value.trim())
+                        })
+                    })
+                    .then((response) => {
+                        if (!response.ok)
+                            return;
+
                         window.parent.qBittorrent.Client.closeFrameWindow(window);
-                    }
-                }).send();
+                    });
             });
         });
     </script>

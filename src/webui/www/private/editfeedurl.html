@@ -51,25 +51,25 @@
 
                 $("submitButton").disabled = true;
 
-                new Request({
-                    url: "api/v2/rss/setFeedURL",
-                    method: "post",
-                    data: {
-                        path: new URI().getData("path"),
-                        url: newUrl
-                    },
-                    onSuccess: (response) => {
+                fetch("api/v2/rss/setFeedURL", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            "path": new URI().getData("path"),
+                            "url": newUrl
+                        })
+                    })
+                    .then(async (response) => {
+                        if (!response.ok) {
+                            alert((response.status === 409)
+                                ? await response.text()
+                                : "QBT_TR(Unable to update URL)QBT_TR[CONTEXT=RSSWidget]");
+                            $("submitButton").disabled = false;
+                            return;
+                        }
+
                         window.parent.qBittorrent.Rss.updateRssFeedList();
                         window.parent.qBittorrent.Client.closeFrameWindow(window);
-                    },
-                    onFailure: (response) => {
-                        if (response.status === 409)
-                            alert(response.responseText);
-                        else
-                            alert("QBT_TR(Unable to update URL)QBT_TR[CONTEXT=RSSWidget]");
-                        $("submitButton").disabled = false;
-                    }
-                }).send();
+                    });
             });
         });
     </script>

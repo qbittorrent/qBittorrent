@@ -56,33 +56,37 @@
                         if (uriHashes === "")
                             return;
 
-                        new Request({
-                            url: "api/v2/torrents/addTags",
-                            method: "post",
-                            data: {
-                                hashes: uriHashes,
-                                tags: tagName,
-                            },
-                            onComplete: () => {
+                        fetch("api/v2/torrents/addTags", {
+                                method: "POST",
+                                body: new URLSearchParams({
+                                    "hashes": uriHashes,
+                                    "tags": tagName
+                                })
+                            })
+                            .then(async (response) => {
+                                if (!response.ok)
+                                    return;
+
                                 window.parent.qBittorrent.Client.closeFrameWindow(window);
-                            }
-                        }).send();
+                            });
                         break;
 
                     case "create":
                         if (!verifyTagName(tagName))
                             return;
 
-                        new Request({
-                            url: "api/v2/torrents/createTags",
-                            method: "post",
-                            data: {
-                                tags: tagName,
-                            },
-                            onComplete: () => {
+                        fetch("api/v2/torrents/createTags", {
+                                method: "POST",
+                                body: new URLSearchParams({
+                                    "tags": tagName
+                                })
+                            })
+                            .then(async (response) => {
+                                if (!response.ok)
+                                    return;
+
                                 window.parent.qBittorrent.Client.closeFrameWindow(window);
-                            }
-                        }).send();
+                            });
                         break;
                 }
             });

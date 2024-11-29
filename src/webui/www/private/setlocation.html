@@ -45,21 +45,21 @@
                     return;
                 }
 
-                const hashesList = new URI().getData("hashes");
-                new Request({
-                    url: "api/v2/torrents/setLocation",
-                    method: "post",
-                    data: {
-                        hashes: hashesList,
-                        location: location
-                    },
-                    onSuccess: () => {
+                fetch("api/v2/torrents/setLocation", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            "hashes": new URI().getData("hashes"),
+                            "location": location
+                        })
+                    })
+                    .then(async (response) => {
+                        if (!response.ok) {
+                            $("error_div").textContent = await response.text();
+                            return;
+                        }
+
                         window.parent.qBittorrent.Client.closeFrameWindow(window);
-                    },
-                    onFailure: (xhr) => {
-                        $("error_div").textContent = xhr.response;
-                    }
-                }).send();
+                    });
             });
         });
     </script>

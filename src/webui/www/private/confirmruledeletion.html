@@ -27,20 +27,22 @@
 
                 let completionCount = 0;
                 rules.forEach((rule) => {
-                    new Request({
-                        url: "api/v2/rss/removeRule",
-                        method: "post",
-                        data: {
-                            ruleName: decodeURIComponent(rule)
-                        },
-                        onComplete: (response) => {
+                    fetch("api/v2/rss/removeRule", {
+                            method: "POST",
+                            body: new URLSearchParams({
+                                "ruleName": decodeURIComponent(rule)
+                            })
+                        })
+                        .then((response) => {
+                            if (!response.ok)
+                                return;
+
                             ++completionCount;
                             if (completionCount === rules.length) {
                                 window.parent.qBittorrent.RssDownloader.updateRulesList();
                                 window.parent.qBittorrent.Client.closeFrameWindow(window);
                             }
-                        }
-                    }).send();
+                        });
                 });
             });
         });

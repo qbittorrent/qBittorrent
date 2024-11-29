@@ -379,17 +379,20 @@
             };
 
             const setupTable = (selectedRows) => {
-                new Request.JSON({
-                    url: new URI("api/v2/torrents/files?hash=" + data.hash),
-                    noCache: true,
-                    method: "get",
-                    onSuccess: (files) => {
+                fetch(new URI("api/v2/torrents/files").setData("hash", data.hash), {
+                        method: "GET",
+                        cache: "no-store"
+                    })
+                    .then(async (response) => {
+                        if (!response.ok)
+                            return;
+
+                        const files = await response.json();
                         if (files.length === 0)
                             bulkRenameFilesTable.clear();
                         else
                             handleTorrentFiles(files, selectedRows);
-                    }
-                }).send();
+                    });
             };
             setupTable(data.selectedRows);
         })();

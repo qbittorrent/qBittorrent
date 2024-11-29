@@ -24,18 +24,20 @@
             });
             $("confirmBtn").addEventListener("click", (e) => {
                 e.stopPropagation();
-                const cmd = "api/v2/torrents/removeTrackers";
-                new Request({
-                    url: cmd,
-                    method: "post",
-                    data: {
-                        hash: "*",
-                        urls: urls,
-                    },
-                    onComplete: () => {
+
+                fetch("api/v2/torrents/removeTrackers", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            "hash": "*",
+                            "urls": urls
+                        })
+                    })
+                    .then((response) => {
+                        if (!response.ok)
+                            return;
+
                         window.parent.qBittorrent.Client.closeFrameWindow(window);
-                    }
-                }).send();
+                    });
             });
         });
     </script>

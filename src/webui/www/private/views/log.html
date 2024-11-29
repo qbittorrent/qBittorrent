@@ -356,48 +356,51 @@
             url.setData("last_known_id", tableInfo[curTab].last_id);
             tableInfo[curTab].progress = true;
 
-            new Request.JSON({
-                url: url,
-                method: "get",
-                noCache: true,
-                onFailure: (response) => {
-                    const errorDiv = $("error_div");
-                    if (errorDiv)
-                        errorDiv.textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
-                    tableInfo[curTab].progress = false;
-                    syncLogWithInterval(10000);
-                },
-                onSuccess: (response) => {
+            fetch(url, {
+                    method: "GET",
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        const errorDiv = $("error_div");
+                        if (errorDiv)
+                            errorDiv.textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
+                        tableInfo[curTab].progress = false;
+                        syncLogWithInterval(10000);
+                        return;
+                    }
+
                     $("error_div").textContent = "";
 
                     if ($("logTabColumn").classList.contains("invisible"))
                         return;
 
-                    if (response.length > 0) {
+                    const responseJSON = await response.json();
+                    if (responseJSON.length > 0) {
                         clearTimeout(logFilterTimer);
                         logFilterTimer = -1;
 
-                        for (let i = 0; i < response.length; ++i) {
+                        for (let i = 0; i < responseJSON.length; ++i) {
                             let row;
                             if (curTab === "main") {
                                 row = {
-                                    rowId: response[i].id,
-                                    message: response[i].message,
-                                    timestamp: response[i].timestamp,
-                                    type: response[i].type,
+                                    rowId: responseJSON[i].id,
+                                    message: responseJSON[i].message,
+                                    timestamp: responseJSON[i].timestamp,
+                                    type: responseJSON[i].type,
                                 };
                             }
                             else {
                                 row = {
-                                    rowId: response[i].id,
-                                    ip: response[i].ip,
-                                    timestamp: response[i].timestamp,
-                                    blocked: response[i].blocked,
-                                    reason: response[i].reason,
+                                    rowId: responseJSON[i].id,
+                                    ip: responseJSON[i].ip,
+                                    timestamp: responseJSON[i].timestamp,
+                                    blocked: responseJSON[i].blocked,
+                                    reason: responseJSON[i].reason,
                                 };
                             }
                             tableInfo[curTab].instance.updateRowData(row);
-                            tableInfo[curTab].last_id = Math.max(Number(response[i].id), tableInfo[curTab].last_id);
+                            tableInfo[curTab].last_id = Math.max(Number(responseJSON[i].id), tableInfo[curTab].last_id);
                         }
 
                         tableInfo[curTab].instance.updateTable();
@@ -406,8 +409,7 @@
 
                     tableInfo[curTab].progress = false;
                     syncLogWithInterval(getSyncLogDataInterval());
-                }
-            }).send();
+                });
         };
 
         new ClipboardJS(".copyLogDataToClipboard", {

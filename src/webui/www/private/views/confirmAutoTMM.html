@@ -26,21 +26,22 @@
 
         cancelButton.addEventListener("click", (e) => { window.qBittorrent.Client.closeWindow(windowEl); });
         confirmButton.addEventListener("click", (e) => {
-            new Request({
-                url: "api/v2/torrents/setAutoManagement",
-                method: "post",
-                data: {
-                    hashes: hashes.join("|"),
-                    enable: enable
-                },
-                onSuccess: () => {
+            fetch("api/v2/torrents/setAutoManagement", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        "hashes": hashes.join("|"),
+                        "enable": enable
+                    })
+                })
+                .then((response) => {
+                    if (!response.ok) {
+                        alert("QBT_TR(Unable to set Auto Torrent Management for the selected torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        return;
+                    }
+
                     updateMainData();
                     window.qBittorrent.Client.closeWindow(windowEl);
-                },
-                onFailure: () => {
-                    alert("QBT_TR(Unable to set Auto Torrent Management for the selected torrents.)QBT_TR[CONTEXT=HttpServer]");
-                }
-            }).send();
+                });
         });
 
         // set tabindex so window element receives keydown events

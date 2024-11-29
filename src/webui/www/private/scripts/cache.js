@@ -62,8 +62,7 @@ window.qBittorrent.Cache ??= (() => {
                     if (!response.ok)
                         return;
 
-                    const responseText = await response.text();
-                    const responseJSON = JSON.parse(responseText);
+                    const responseJSON = await response.json();
                     deepFreeze(responseJSON);
                     this.#m_store = responseJSON;
                 });

@@ -39,18 +39,21 @@
                     return;
                 }
                 $("submitButton").disabled = true;
-                new Request({
-                    url: "api/v2/rss/setRule",
-                    method: "post",
-                    data: {
-                        ruleName: name,
-                        ruleDef: "{}"
-                    },
-                    onSuccess: (response) => {
+
+                fetch("api/v2/rss/setRule", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            "ruleName": name,
+                            "ruleDef": "{}"
+                        })
+                    })
+                    .then((response) => {
+                        if (!response.ok)
+                            return;
+
                         window.parent.qBittorrent.RssDownloader.updateRulesList();
                         window.parent.qBittorrent.Client.closeFrameWindow(window);
-                    }
-                }).send();
+                    });
             });
         });
     </script>
