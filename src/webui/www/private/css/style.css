@@ -10,6 +10,7 @@
     --color-text-white: hsl(0deg 0% 100%);
     --color-text-disabled: hsl(0deg 0% 60%);
     --color-text-default: hsl(0deg 0% 33%);
+    --color-background-primary: hsl(0deg 0% 100%);
     --color-background-blue: hsl(210deg 65% 55%);
     --color-background-popup: hsl(0deg 0% 100%);
     --color-background-default: hsl(0deg 0% 94%);
@@ -36,6 +37,7 @@
         --color-text-blue: hsl(210deg 88.1% 73.5%);
         --color-text-orange: hsl(26deg 65% 70%);
         --color-text-default: hsl(0deg 0% 90%);
+        --color-background-primary: hsl(0deg 0% 7%);
         --color-background-blue: hsl(210deg 42% 48%);
         --color-background-popup: hsl(0deg 0% 20%);
         --color-background-default: hsl(0deg 0% 25%);
@@ -146,11 +148,17 @@ button:disabled {
 /* Structure */
 
 body {
+    background-color: var(--color-background-primary);
     color: var(--color-text-default);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     line-height: 1.5;
     text-align: left;
+}
+
+/* targets dialog windows loaded via iframes */
+body:not(:has(#desktop)) {
+    background-color: var(--color-background-popup);
 }
 
 .aside {
