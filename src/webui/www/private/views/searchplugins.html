@@ -63,7 +63,7 @@
     <div style="width: 100%; margin-top: 10px;">
         <button type="button" style="width: 33%; line-height: 1.4em;" onclick="qBittorrent.SearchPlugins.installPlugin();">QBT_TR(Install new plugin)QBT_TR[CONTEXT=PluginSelectDlg]</button>
         <button type="button" style="width: 33%; line-height: 1.4em;" onclick="qBittorrent.SearchPlugins.checkForUpdates();">QBT_TR(Check for updates)QBT_TR[CONTEXT=PluginSelectDlg]</button>
-        <button type="button" style="width: 32%; line-height: 1.4em;" onclick="qBittorrent.SearchPlugins.closeSearchWindow('searchPlugins');">QBT_TR(Close)QBT_TR[CONTEXT=PluginSelectDlg]</button>
+        <button type="button" style="width: 32%; line-height: 1.4em;" onclick="window.qBittorrent.Client.closeWindow(document.getElementById('searchPlugins'));">QBT_TR(Close)QBT_TR[CONTEXT=PluginSelectDlg]</button>
     </div>
 </div>
 
@@ -79,7 +79,6 @@
     window.qBittorrent.SearchPlugins ??= (() => {
         const exports = () => {
             return {
-                closeSearchWindow: closeSearchWindow,
                 setup: setup,
                 installPlugin: installPlugin,
                 checkForUpdates: checkForUpdates,
@@ -111,10 +110,6 @@
             }, true);
 
             updateTable();
-        };
-
-        const closeSearchWindow = (id) => {
-            window.parent.qBittorrent.Client.closeWindow(window.parent.$(id));
         };
 
         const installPlugin = (path) => {
