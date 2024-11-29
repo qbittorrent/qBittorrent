@@ -2034,6 +2034,32 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["seeds"].compareRows = sortMixed;
             this.columns["leeches"].compareRows = sortMixed;
             this.columns["downloaded"].compareRows = sortMixed;
+
+            this.columns["status"].updateTd = function(td, row) {
+                let statusClass = "trackerUnknown";
+                const status = this.getRowValue(row);
+                switch (status) {
+                    case "QBT_TR(Disabled)QBT_TR[CONTEXT=TrackerListWidget]":
+                        statusClass = "trackerDisabled";
+                        break;
+                    case "QBT_TR(Not contacted yet)QBT_TR[CONTEXT=TrackerListWidget]":
+                        statusClass = "trackerNotContacted";
+                        break;
+                    case "QBT_TR(Working)QBT_TR[CONTEXT=TrackerListWidget]":
+                        statusClass = "trackerWorking";
+                        break;
+                    case "QBT_TR(Updating...)QBT_TR[CONTEXT=TrackerListWidget]":
+                        statusClass = "trackerUpdating";
+                        break;
+                    case "QBT_TR(Not working)QBT_TR[CONTEXT=TrackerListWidget]":
+                        statusClass = "trackerNotWorking";
+                        break;
+                }
+
+                td.className = statusClass;
+                td.textContent = status;
+                td.title = status;
+            };
         }
     });
 
