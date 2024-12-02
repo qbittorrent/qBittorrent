@@ -139,28 +139,25 @@ window.qBittorrent.Search ??= (() => {
             }, window.qBittorrent.Misc.FILTER_INPUT_DELAY);
         });
 
-        new Keyboard({
-            defaultEventType: "keydown",
-            events: {
-                "Enter": function(e) {
-                    // accept enter key as a click
-                    e.preventDefault();
-                    e.stopPropagation();
+        document.getElementById("SearchPanel").addEventListener("keydown", (event) => {
+            switch (event.key) {
+                case "Enter": {
+                    event.preventDefault();
+                    event.stopPropagation();
 
-                    const elem = e.event.srcElement;
-                    if (elem.className.contains("searchInputField")) {
-                        document.getElementById("startSearchButton").click();
-                        return;
-                    }
-
-                    switch (elem.id) {
+                    switch (event.target.id) {
                         case "manageSearchPlugins":
                             manageSearchPlugins();
                             break;
+                        case "searchPattern":
+                            document.getElementById("startSearchButton").click();
+                            break;
                     }
+
+                    break;
                 }
             }
-        }).activate();
+        });
 
         // restore search tabs
         const searchJobs = JSON.parse(LocalPreferences.get("search_jobs", "[]"));

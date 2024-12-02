@@ -38,22 +38,28 @@
         };
 
         const setup = () => {
-            new Keyboard({
-                defaultEventType: "keydown",
-                events: {
-                    "Enter": function(e) {
-                        // accept enter key as a click
-                        e.preventDefault();
-                        e.stopPropagation();
+            const windowEl = document.getElementById("installSearchPlugin");
 
-                        const elem = e.event.srcElement;
-                        if ((elem.id === "newPluginPath") || (elem.id === "newPluginOk"))
-                            newPluginOk();
-                        else if (elem.id === "newPluginCancel")
-                            window.qBittorrent.Client.closeWindow(document.getElementById("installSearchPlugin"));
-                    }
+            windowEl.addEventListener("keydown", (event) => {
+                switch (event.key) {
+                    case "Enter":
+                        // accept enter key as a click
+                        event.preventDefault();
+                        event.stopPropagation();
+
+                        switch (event.target.id) {
+                            case "newPluginCancel":
+                                window.qBittorrent.Client.closeWindow(windowEl);
+                                break;
+                            case "newPluginOk":
+                            case "newPluginPath":
+                                newPluginOk();
+                                break;
+                        }
+
+                        break;
                 }
-            }).activate();
+            });
 
             $("newPluginPath").select();
         };

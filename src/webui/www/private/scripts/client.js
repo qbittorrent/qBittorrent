@@ -1728,35 +1728,30 @@ window.addEventListener("DOMContentLoaded", () => {
     };
     registerDragAndDrop();
 
-    new Keyboard({
-        defaultEventType: "keydown",
-        events: {
-            "ctrl+a": function(event) {
+    window.addEventListener("keydown", (event) => {
+        switch (event.key) {
+            case "a":
+            case "A":
+                if (event.ctrlKey) {
+                    if ((event.target.nodeName === "INPUT") || (event.target.nodeName === "TEXTAREA"))
+                        return;
+                    if (event.target.isContentEditable)
+                        return;
+                    event.preventDefault();
+                    torrentsTable.selectAll();
+                }
+                break;
+
+            case "Delete":
                 if ((event.target.nodeName === "INPUT") || (event.target.nodeName === "TEXTAREA"))
                     return;
                 if (event.target.isContentEditable)
                     return;
-                torrentsTable.selectAll();
                 event.preventDefault();
-            },
-            "delete": function(event) {
-                if ((event.target.nodeName === "INPUT") || (event.target.nodeName === "TEXTAREA"))
-                    return;
-                if (event.target.isContentEditable)
-                    return;
-                deleteSelectedTorrentsFN();
-                event.preventDefault();
-            },
-            "shift+delete": (event) => {
-                if ((event.target.nodeName === "INPUT") || (event.target.nodeName === "TEXTAREA"))
-                    return;
-                if (event.target.isContentEditable)
-                    return;
-                deleteSelectedTorrentsFN(true);
-                event.preventDefault();
-            }
+                deleteSelectedTorrentsFN(event.shiftKey);
+                break;
         }
-    }).activate();
+    });
 
     new ClipboardJS(".copyToClipboard", {
         text: (trigger) => {

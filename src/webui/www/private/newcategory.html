@@ -14,25 +14,20 @@
     <script>
         "use strict";
 
-        new Keyboard({
-            defaultEventType: "keydown",
-            events: {
-                "Enter": function(event) {
-                    $("categoryNameButton").click();
-                    event.preventDefault();
-                },
-                "Escape": function(event) {
-                    window.parent.qBittorrent.Client.closeFrameWindow(window);
-                    event.preventDefault();
-                },
-                "Esc": function(event) {
-                    window.parent.qBittorrent.Client.closeFrameWindow(window);
-                    event.preventDefault();
-                }
-            }
-        }).activate();
-
         window.addEventListener("DOMContentLoaded", () => {
+            window.addEventListener("keydown", (event) => {
+                switch (event.key) {
+                    case "Enter":
+                        event.preventDefault();
+                        $("categoryNameButton").click();
+                        break;
+                    case "Escape":
+                        event.preventDefault();
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
+                        break;
+                }
+            });
+
             const uriAction = window.qBittorrent.Misc.safeTrim(new URI().getData("action"));
             const uriHashes = window.qBittorrent.Misc.safeTrim(new URI().getData("hashes"));
             const uriCategoryName = window.qBittorrent.Misc.safeTrim(new URI().getData("categoryName"));
