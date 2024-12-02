@@ -559,6 +559,41 @@ bool RSSWidget::eventFilter(QObject *obj, QEvent *event)
     return false;
 }
 
+void RSSWidget::convertRelativePathToAbsolute(QString &html, const QString &basePath) const
+{
+    QRegularExpression rx;
+    rx.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
+    // href regex
+    rx.setPattern(
+        uR"(((<a\s+[^>]*?href|<img\s+[^>]*?src)\s*=\s*["'])((https?|ftp):)?(\/\/[^\/]*)?(\/?[^\/"].*?)(["']))"_s);
+
+    QString normalizedBasePath = basePath.endsWith(u'/') ? basePath : basePath + u'/';
+    QRegularExpressionMatchIterator iter = rx.globalMatch(html);
+
+    while (iter.hasNext())
+    {
+        QRegularExpressionMatch match = iter.next();
+        const QString &fullMatch = match.captured(0);
+        const Qstring &prefix = match.captured(1);
+        const QString &scheme = match.captured(4);
+        const QString &host = match.captured(5);
+        QString relativePath = match.captured(6);
+        const QString &suffix = match.captured(7);
+        if (relativePath.startsWith(u'/'))
+            relativePath = relativePath.mid(1);
+        if (!scheme.isEmpty() && !host.isEmpty()) // already absolute path
+            continue;
+        else if (!host.isEmpty())
+            normalizedBasePath = u"http:" + host;
+        else if (!scheme.isEmpty())
+            break; // invalid url, should never happen
+        QString absolutePath = normalizedBasePath + relativePath;
+
+        html.replace(fullMatch,
+                     prefix + absolutePath + suffix);
+    }
+}
+
 void RSSWidget::renderArticle(const RSS::Article *article) const
 {
     Q_ASSERT(article);
@@ -610,6 +645,11 @@ void RSSWidget::renderArticle(const RSS::Article *article) const
 
         html += u"<pre>" + description + u"</pre>";
     }
+    // Supplement relative path to absolute path
+
+    QUrl url {article->link()};
+    QString basePath = url.scheme() + u"://" + url.host();
+    convertRelativePathToAbsolute(html, basePath);
     html += u"</div>";
     m_ui->textBrowser->setHtml(html);
 }
