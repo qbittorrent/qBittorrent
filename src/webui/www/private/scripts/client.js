@@ -1054,12 +1054,12 @@ window.addEventListener("DOMContentLoaded", () => {
             torrentsTable.columns["priority"].force_hide = !queueing_enabled;
             torrentsTable.updateColumn("priority");
             if (queueing_enabled) {
-                $("topQueuePosItem").removeClass("invisible");
-                $("increaseQueuePosItem").removeClass("invisible");
-                $("decreaseQueuePosItem").removeClass("invisible");
-                $("bottomQueuePosItem").removeClass("invisible");
-                $("queueingButtons").removeClass("invisible");
-                $("queueingMenuItems").removeClass("invisible");
+                $("topQueuePosItem").classList.remove("invisible");
+                $("increaseQueuePosItem").classList.remove("invisible");
+                $("decreaseQueuePosItem").classList.remove("invisible");
+                $("bottomQueuePosItem").classList.remove("invisible");
+                $("queueingButtons").classList.remove("invisible");
+                $("queueingMenuItems").classList.remove("invisible");
             }
             else {
                 $("topQueuePosItem").classList.add("invisible");
@@ -1123,7 +1123,7 @@ window.addEventListener("DOMContentLoaded", () => {
         LocalPreferences.set("show_top_toolbar", showTopToolbar.toString());
         if (showTopToolbar) {
             $("showTopToolbarLink").firstElementChild.style.opacity = "1";
-            $("mochaToolbar").removeClass("invisible");
+            $("mochaToolbar").classList.remove("invisible");
         }
         else {
             $("showTopToolbarLink").firstElementChild.style.opacity = "0";
@@ -1137,7 +1137,7 @@ window.addEventListener("DOMContentLoaded", () => {
         LocalPreferences.set("show_status_bar", showStatusBar.toString());
         if (showStatusBar) {
             $("showStatusBarLink").firstElementChild.style.opacity = "1";
-            $("desktopFooterWrapper").removeClass("invisible");
+            $("desktopFooterWrapper").classList.remove("invisible");
         }
         else {
             $("showStatusBarLink").firstElementChild.style.opacity = "0";
@@ -1175,8 +1175,8 @@ window.addEventListener("DOMContentLoaded", () => {
         LocalPreferences.set("show_filters_sidebar", showFiltersSidebar.toString());
         if (showFiltersSidebar) {
             $("showFiltersSidebarLink").firstElementChild.style.opacity = "1";
-            $("filtersColumn").removeClass("invisible");
-            $("filtersColumn_handle").removeClass("invisible");
+            $("filtersColumn").classList.remove("invisible");
+            $("filtersColumn_handle").classList.remove("invisible");
         }
         else {
             $("showFiltersSidebarLink").firstElementChild.style.opacity = "0";
@@ -1217,8 +1217,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const updateTabDisplay = () => {
         if (window.qBittorrent.Client.isShowRssReader()) {
             $("showRssReaderLink").firstElementChild.style.opacity = "1";
-            $("mainWindowTabs").removeClass("invisible");
-            $("rssTabLink").removeClass("invisible");
+            $("mainWindowTabs").classList.remove("invisible");
+            $("rssTabLink").classList.remove("invisible");
             if (!MochaUI.Panels.instances.RssPanel)
                 addRssPanel();
         }
@@ -1231,8 +1231,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
         if (window.qBittorrent.Client.isShowSearchEngine()) {
             $("showSearchEngineLink").firstElementChild.style.opacity = "1";
-            $("mainWindowTabs").removeClass("invisible");
-            $("searchTabLink").removeClass("invisible");
+            $("mainWindowTabs").classList.remove("invisible");
+            $("searchTabLink").classList.remove("invisible");
             if (!MochaUI.Panels.instances.SearchPanel)
                 addSearchPanel();
         }
@@ -1245,8 +1245,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
         if (window.qBittorrent.Client.isShowLogViewer()) {
             $("showLogViewerLink").firstElementChild.style.opacity = "1";
-            $("mainWindowTabs").removeClass("invisible");
-            $("logTabLink").removeClass("invisible");
+            $("mainWindowTabs").classList.remove("invisible");
+            $("logTabLink").classList.remove("invisible");
             if (!MochaUI.Panels.instances.LogPanel)
                 addLogPanel();
         }
@@ -1269,11 +1269,11 @@ window.addEventListener("DOMContentLoaded", () => {
     const showTransfersTab = () => {
         const showFiltersSidebar = LocalPreferences.get("show_filters_sidebar", "true") === "true";
         if (showFiltersSidebar) {
-            $("filtersColumn").removeClass("invisible");
-            $("filtersColumn_handle").removeClass("invisible");
+            $("filtersColumn").classList.remove("invisible");
+            $("filtersColumn_handle").classList.remove("invisible");
         }
-        $("mainColumn").removeClass("invisible");
-        $("torrentsFilterToolbar").removeClass("invisible");
+        $("mainColumn").classList.remove("invisible");
+        $("torrentsFilterToolbar").classList.remove("invisible");
 
         customSyncMainDataInterval = null;
         syncData(100);
@@ -1312,7 +1312,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 searchTabInitialized = true;
             }
 
-            $("searchTabColumn").removeClass("invisible");
+            $("searchTabColumn").classList.remove("invisible");
             customSyncMainDataInterval = 30000;
             hideTransfersTab();
             hideRssTab();
@@ -1349,7 +1349,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 window.qBittorrent.Rss.load();
             }
 
-            $("rssTabColumn").removeClass("invisible");
+            $("rssTabColumn").classList.remove("invisible");
             customSyncMainDataInterval = 30000;
             hideTransfersTab();
             hideSearchTab();
@@ -1387,7 +1387,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 window.qBittorrent.Log.load();
             }
 
-            $("logTabColumn").removeClass("invisible");
+            $("logTabColumn").classList.remove("invisible");
             customSyncMainDataInterval = 30000;
             hideTransfersTab();
             hideSearchTab();

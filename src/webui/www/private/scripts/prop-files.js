@@ -671,7 +671,7 @@ window.qBittorrent.PropFiles ??= (() => {
         if (shouldHide)
             rowElem.classList.add("invisible");
         else
-            rowElem.removeClass("invisible");
+            rowElem.classList.remove("invisible");
     };
 
     /**
@@ -692,7 +692,7 @@ window.qBittorrent.PropFiles ??= (() => {
         if (isCollapsed)
             collapseIcon.classList.add("rotate");
         else
-            collapseIcon.removeClass("rotate");
+            collapseIcon.classList.remove("rotate");
     };
 
     const _isCollapsed = (node) => {

@@ -370,7 +370,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             const pref = window.parent.qBittorrent.Cache.preferences.get();
 
             if (!pref.rss_auto_downloading_enabled)
-                $("rssDownloaderDisabled").removeClass("invisible");
+                $("rssDownloaderDisabled").classList.remove("invisible");
 
             // recalculate height
             const warningHeight = $("rssDownloaderDisabled").getBoundingClientRect().height;

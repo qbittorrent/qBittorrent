@@ -601,7 +601,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if ((this.columns[i].visible === "0") || this.columns[i].force_hide)
                     th.classList.add("invisible");
                 else
-                    th.removeClass("invisible");
+                    th.classList.remove("invisible");
             }
         },
 
@@ -625,10 +625,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             fths[pos].setAttribute("style", style);
 
             if (visible) {
-                ths[pos].removeClass("invisible");
-                fths[pos].removeClass("invisible");
+                ths[pos].classList.remove("invisible");
+                fths[pos].classList.remove("invisible");
                 for (let i = 0; i < trs.length; ++i)
-                    trs[i].getElements("td")[pos].removeClass("invisible");
+                    trs[i].getElements("td")[pos].classList.remove("invisible");
             }
             else {
                 ths[pos].classList.add("invisible");
@@ -679,12 +679,12 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if (isReverse)
                     colElem.classList.add("reverse");
                 else
-                    colElem.removeClass("reverse");
+                    colElem.classList.remove("reverse");
             }
             const oldColElem = getCol(this.dynamicTableFixedHeaderDivId, oldColumn);
             if (oldColElem !== null) {
-                oldColElem.removeClass("sorted");
-                oldColElem.removeClass("reverse");
+                oldColElem.classList.remove("sorted");
+                oldColElem.classList.remove("reverse");
             }
         },
 
@@ -769,7 +769,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if (that.isRowSelected(tr.rowId))
                     tr.classList.add("selected");
                 else
-                    tr.removeClass("selected");
+                    tr.classList.remove("selected");
             });
         },
 
@@ -1960,13 +1960,13 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.textContent = "QBT_TR(Yes)QBT_TR[CONTEXT=SearchPluginsTable]";
                     td.title = "QBT_TR(Yes)QBT_TR[CONTEXT=SearchPluginsTable]";
                     td.getParent("tr").classList.add("green");
-                    td.getParent("tr").removeClass("red");
+                    td.getParent("tr").classList.remove("red");
                 }
                 else {
                     td.textContent = "QBT_TR(No)QBT_TR[CONTEXT=SearchPluginsTable]";
                     td.title = "QBT_TR(No)QBT_TR[CONTEXT=SearchPluginsTable]";
                     td.getParent("tr").classList.add("red");
-                    td.getParent("tr").removeClass("green");
+                    td.getParent("tr").classList.remove("green");
                 }
             };
         },
@@ -2967,7 +2967,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if (row.rowId === rowId) {
                     articleId = row.full_data.dataId;
                     feedUid = row.full_data.feedUid;
-                    this.tableBody.rows[row.rowId].removeClass("unreadArticle");
+                    this.tableBody.rows[row.rowId].classList.remove("unreadArticle");
                     break;
                 }
             }
@@ -2990,7 +2990,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             if (!row.full_data.isRead)
                 tr.classList.add("unreadArticle");
             else
-                tr.removeClass("unreadArticle");
+                tr.classList.remove("unreadArticle");
 
             const tds = tr.getElements("td");
             for (let i = 0; i < this.columns.length; ++i) {
@@ -3261,10 +3261,10 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             if (row.full_data.isFeed) {
                 tr.classList.add("articleTableFeed");
-                tr.removeClass("articleTableArticle");
+                tr.classList.remove("articleTableArticle");
             }
             else {
-                tr.removeClass("articleTableFeed");
+                tr.classList.remove("articleTableFeed");
                 tr.classList.add("articleTableArticle");
             }
 

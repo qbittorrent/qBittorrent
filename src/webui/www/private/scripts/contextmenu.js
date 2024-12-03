@@ -263,7 +263,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
         // show an item
         showItem(item) {
-            this.menu.getElement("a[href$=" + item + "]").parentNode.removeClass("invisible");
+            this.menu.getElement("a[href$=" + item + "]").parentNode.classList.remove("invisible");
             return this;
         }
 
@@ -418,7 +418,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 if (!show_seq_dl && show_f_l_piece_prio)
                     this.menu.getElement("a[href$=firstLastPiecePrio]").parentNode.classList.add("separator");
                 else
-                    this.menu.getElement("a[href$=firstLastPiecePrio]").parentNode.removeClass("separator");
+                    this.menu.getElement("a[href$=firstLastPiecePrio]").parentNode.classList.remove("separator");
 
                 if (show_seq_dl)
                     this.showItem("sequentialDownload");
@@ -434,7 +434,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.setItemChecked("firstLastPiecePrio", all_are_f_l_piece_prio);
 
                 this.showItem("downloadLimit");
-                this.menu.getElement("a[href$=uploadLimit]").parentNode.removeClass("separator");
+                this.menu.getElement("a[href$=uploadLimit]").parentNode.classList.remove("separator");
                 this.hideItem("superSeeding");
             }
 
@@ -665,7 +665,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             switch (selectedRows.length) {
                 case 0:
                     // remove separator on top of newSubscription entry to avoid double line
-                    this.menu.getElement("a[href$=newSubscription]").parentNode.removeClass("separator");
+                    this.menu.getElement("a[href$=newSubscription]").parentNode.classList.remove("separator");
                     // menu when nothing selected
                     this.hideItem("update");
                     this.hideItem("markRead");

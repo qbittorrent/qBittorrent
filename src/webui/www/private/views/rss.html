@@ -215,7 +215,7 @@
             const pref = window.parent.qBittorrent.Cache.preferences.get();
 
             if (!pref.rss_processing_enabled)
-                $("rssFetchingDisabled").removeClass("invisible");
+                $("rssFetchingDisabled").classList.remove("invisible");
 
             const rssFeedContextMenu = new window.qBittorrent.ContextMenu.RssFeedContextMenu({
                 targets: "#rssFeedTableDiv tr",
