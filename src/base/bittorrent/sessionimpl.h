@@ -546,7 +546,6 @@ namespace BitTorrent
         void populateAdditionalTrackers();
         void enableIPFilter();
         void disableIPFilter();
-        void processTrackerStatuses();
         void processTorrentShareLimits(TorrentImpl *torrent);
         void populateExcludedFileNamesRegExpList();
         void prepareStartup();
@@ -610,7 +609,7 @@ namespace BitTorrent
         void saveStatistics() const;
         void loadStatistics();
 
-        void updateTrackerEntryStatuses(lt::torrent_handle torrentHandle, QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>> updatedTrackers);
+        void updateTrackerEntryStatuses(lt::torrent_handle torrentHandle);
 
         void handleRemovedTorrent(const TorrentID &torrentID, const QString &partfileRemoveError = {});
 

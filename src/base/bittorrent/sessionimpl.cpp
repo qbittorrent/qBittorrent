@@ -5541,8 +5541,6 @@ void SessionImpl::readAlerts()
 
     // Some torrents may become "finished" after different alerts handling.
     processPendingFinishedTorrents();
-
-    processTrackerStatuses();
 }
 
 void SessionImpl::handleAddTorrentAlert(const lt::add_torrent_alert *alert)
@@ -6232,7 +6230,10 @@ void SessionImpl::handleTrackerAlert(const lt::tracker_alert *alert)
     if (!torrent)
         return;
 
+    const auto prevSize = m_updatedTrackerStatuses.size();
     QMap<int, int> &updateInfo = m_updatedTrackerStatuses[torrent->nativeHandle()][std::string(alert->tracker_url())][alert->local_endpoint];
+    if (prevSize < m_updatedTrackerStatuses.size())
+        updateTrackerEntryStatuses(torrent->nativeHandle());
 
     if (alert->type() == lt::tracker_reply_alert::alert_type)
     {
@@ -6294,17 +6295,6 @@ void SessionImpl::handleTorrentConflictAlert(const lt::torrent_conflict_alert *a
 }
 #endif
 
-void SessionImpl::processTrackerStatuses()
-{
-    if (m_updatedTrackerStatuses.isEmpty())
-        return;
-
-    for (auto it = m_updatedTrackerStatuses.cbegin(); it != m_updatedTrackerStatuses.cend(); ++it)
-        updateTrackerEntryStatuses(it.key(), it.value());
-
-    m_updatedTrackerStatuses.clear();
-}
-
 void SessionImpl::saveStatistics() const
 {
     if (!m_isStatisticsDirty)
@@ -6329,19 +6319,20 @@ void SessionImpl::loadStatistics()
     m_previouslyUploaded = value[u"AlltimeUL"_s].toLongLong();
 }
 
-void SessionImpl::updateTrackerEntryStatuses(lt::torrent_handle torrentHandle, QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>> updatedTrackers)
+void SessionImpl::updateTrackerEntryStatuses(lt::torrent_handle torrentHandle)
 {
-    invokeAsync([this, torrentHandle = std::move(torrentHandle), updatedTrackers = std::move(updatedTrackers)]() mutable
+    invokeAsync([this, torrentHandle = std::move(torrentHandle)]() mutable
     {
         try
         {
             std::vector<lt::announce_entry> nativeTrackers = torrentHandle.trackers();
-            invoke([this, torrentHandle, nativeTrackers = std::move(nativeTrackers)
-                    , updatedTrackers = std::move(updatedTrackers)]
+            invoke([this, torrentHandle, nativeTrackers = std::move(nativeTrackers)]
             {
                 TorrentImpl *torrent = m_torrents.value(torrentHandle.info_hash());
                 if (!torrent || torrent->isStopped())
                     return;
+
+                QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>> updatedTrackers = m_updatedTrackerStatuses.take(torrentHandle);
 
                 QHash<QString, TrackerEntryStatus> trackers;
                 trackers.reserve(updatedTrackers.size());
