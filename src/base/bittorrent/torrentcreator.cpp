@@ -36,6 +36,7 @@
 #include <libtorrent/file_storage.hpp>
 #include <libtorrent/torrent_info.hpp>
 
+#include <QtSystemDetection>
 #include <QDirIterator>
 #include <QFileInfo>
 #include <QHash>
@@ -123,7 +124,14 @@ void TorrentCreator::run()
             // need to sort the file names by natural sort order
             QStringList dirs = {m_params.sourcePath.data()};
 
-            QDirIterator dirIter {m_params.sourcePath.data(), (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories};
+#ifdef Q_OS_WIN
+            // libtorrent couldn't handle .lnk files on Windows
+            // Also, Windows users do not expect torrent creator to traverse into .lnk files so skip over them
+            const QDir::Filters dirFilters {QDir::AllDirs | QDir::NoDotAndDotDot | QDir::NoSymLinks};
+#else
+            const QDir::Filters dirFilters {QDir::AllDirs | QDir::NoDotAndDotDot};
+#endif
+            QDirIterator dirIter {m_params.sourcePath.data(), dirFilters, QDirIterator::Subdirectories};
             while (dirIter.hasNext())
             {
                 const QString filePath = dirIter.next();
@@ -138,7 +146,12 @@ void TorrentCreator::run()
             {
                 QStringList tmpNames;  // natural sort files within each dir
 
-                QDirIterator fileIter {dir, QDir::Files};
+#ifdef Q_OS_WIN
+                const QDir::Filters fileFilters {QDir::Files | QDir::NoSymLinks};
+#else
+                const QDir::Filters fileFilters {QDir::Files};
+#endif
+                QDirIterator fileIter {dir, fileFilters};
                 while (fileIter.hasNext())
                 {
                     const QFileInfo fileInfo = fileIter.nextFileInfo();
