@@ -179,7 +179,7 @@ window.qBittorrent.PropFiles ??= (() => {
         select.id = "comboPrio" + id;
         select.setAttribute("data-id", id);
         select.setAttribute("data-file-id", fileId);
-        select.addClass("combo_priority");
+        select.classList.add("combo_priority");
         select.addEventListener("change", fileComboboxChanged);
 
         select.appendChild(createOption(FilePriority.Ignored, (FilePriority.Ignored === selectedPriority), "QBT_TR(Do not download)QBT_TR[CONTEXT=PropListDelegate]"));
@@ -669,7 +669,7 @@ window.qBittorrent.PropFiles ??= (() => {
             return;
         const rowElem = span.parentElement.parentElement;
         if (shouldHide)
-            rowElem.addClass("invisible");
+            rowElem.classList.add("invisible");
         else
             rowElem.removeClass("invisible");
     };
@@ -690,7 +690,7 @@ window.qBittorrent.PropFiles ??= (() => {
         // rotate the collapse icon
         const collapseIcon = td.getElementsByClassName("filesTableCollapseIcon")[0];
         if (isCollapsed)
-            collapseIcon.addClass("rotate");
+            collapseIcon.classList.add("rotate");
         else
             collapseIcon.removeClass("rotate");
     };

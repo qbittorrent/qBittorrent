@@ -218,7 +218,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
 
         // start off hidden
-        $("searchTabColumn").addClass("invisible");
+        $("searchTabColumn").classList.add("invisible");
     };
 
     const buildRssTab = () => {
@@ -229,7 +229,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
 
         // start off hidden
-        $("rssTabColumn").addClass("invisible");
+        $("rssTabColumn").classList.add("invisible");
     };
 
     const buildLogTab = () => {
@@ -240,7 +240,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
 
         // start off hidden
-        $("logTabColumn").addClass("invisible");
+        $("logTabColumn").classList.add("invisible");
     };
 
     buildTransfersTab();
@@ -340,22 +340,22 @@ window.addEventListener("DOMContentLoaded", () => {
     let showTopToolbar = LocalPreferences.get("show_top_toolbar", "true") === "true";
     if (!showTopToolbar) {
         $("showTopToolbarLink").firstElementChild.style.opacity = "0";
-        $("mochaToolbar").addClass("invisible");
+        $("mochaToolbar").classList.add("invisible");
     }
 
     // Show Status Bar is enabled by default
     let showStatusBar = LocalPreferences.get("show_status_bar", "true") === "true";
     if (!showStatusBar) {
         $("showStatusBarLink").firstElementChild.style.opacity = "0";
-        $("desktopFooterWrapper").addClass("invisible");
+        $("desktopFooterWrapper").classList.add("invisible");
     }
 
     // Show Filters Sidebar is enabled by default
     let showFiltersSidebar = LocalPreferences.get("show_filters_sidebar", "true") === "true";
     if (!showFiltersSidebar) {
         $("showFiltersSidebarLink").firstElementChild.style.opacity = "0";
-        $("filtersColumn").addClass("invisible");
-        $("filtersColumn_handle").addClass("invisible");
+        $("filtersColumn").classList.add("invisible");
+        $("filtersColumn_handle").classList.add("invisible");
     }
 
     let speedInTitle = LocalPreferences.get("speed_in_browser_title_bar") === "true";
@@ -1062,12 +1062,12 @@ window.addEventListener("DOMContentLoaded", () => {
                 $("queueingMenuItems").removeClass("invisible");
             }
             else {
-                $("topQueuePosItem").addClass("invisible");
-                $("increaseQueuePosItem").addClass("invisible");
-                $("decreaseQueuePosItem").addClass("invisible");
-                $("bottomQueuePosItem").addClass("invisible");
-                $("queueingButtons").addClass("invisible");
-                $("queueingMenuItems").addClass("invisible");
+                $("topQueuePosItem").classList.add("invisible");
+                $("increaseQueuePosItem").classList.add("invisible");
+                $("decreaseQueuePosItem").classList.add("invisible");
+                $("bottomQueuePosItem").classList.add("invisible");
+                $("queueingButtons").classList.add("invisible");
+                $("queueingMenuItems").classList.add("invisible");
             }
         }
 
@@ -1127,7 +1127,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         else {
             $("showTopToolbarLink").firstElementChild.style.opacity = "0";
-            $("mochaToolbar").addClass("invisible");
+            $("mochaToolbar").classList.add("invisible");
         }
         MochaUI.Desktop.setDesktopSize();
     });
@@ -1141,7 +1141,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         else {
             $("showStatusBarLink").firstElementChild.style.opacity = "0";
-            $("desktopFooterWrapper").addClass("invisible");
+            $("desktopFooterWrapper").classList.add("invisible");
         }
         MochaUI.Desktop.setDesktopSize();
     });
@@ -1180,8 +1180,8 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         else {
             $("showFiltersSidebarLink").firstElementChild.style.opacity = "0";
-            $("filtersColumn").addClass("invisible");
-            $("filtersColumn_handle").addClass("invisible");
+            $("filtersColumn").classList.add("invisible");
+            $("filtersColumn_handle").classList.add("invisible");
         }
         MochaUI.Desktop.setDesktopSize();
     });
@@ -1224,7 +1224,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         else {
             $("showRssReaderLink").firstElementChild.style.opacity = "0";
-            $("rssTabLink").addClass("invisible");
+            $("rssTabLink").classList.add("invisible");
             if ($("rssTabLink").hasClass("selected"))
                 $("transfersTabLink").click();
         }
@@ -1238,7 +1238,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         else {
             $("showSearchEngineLink").firstElementChild.style.opacity = "0";
-            $("searchTabLink").addClass("invisible");
+            $("searchTabLink").classList.add("invisible");
             if ($("searchTabLink").hasClass("selected"))
                 $("transfersTabLink").click();
         }
@@ -1252,14 +1252,14 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         else {
             $("showLogViewerLink").firstElementChild.style.opacity = "0";
-            $("logTabLink").addClass("invisible");
+            $("logTabLink").classList.add("invisible");
             if ($("logTabLink").hasClass("selected"))
                 $("transfersTabLink").click();
         }
 
         // display no tabs
         if (!window.qBittorrent.Client.isShowRssReader() && !window.qBittorrent.Client.isShowSearchEngine() && !window.qBittorrent.Client.isShowLogViewer())
-            $("mainWindowTabs").addClass("invisible");
+            $("mainWindowTabs").classList.add("invisible");
     };
 
     $("StatisticsLink").addEventListener("click", () => { StatisticsLinkFN(); });
@@ -1286,10 +1286,10 @@ window.addEventListener("DOMContentLoaded", () => {
     };
 
     const hideTransfersTab = () => {
-        $("filtersColumn").addClass("invisible");
-        $("filtersColumn_handle").addClass("invisible");
-        $("mainColumn").addClass("invisible");
-        $("torrentsFilterToolbar").addClass("invisible");
+        $("filtersColumn").classList.add("invisible");
+        $("filtersColumn_handle").classList.add("invisible");
+        $("mainColumn").classList.add("invisible");
+        $("torrentsFilterToolbar").classList.add("invisible");
         MochaUI.Desktop.resizePanels();
     };
 
@@ -1323,7 +1323,7 @@ window.addEventListener("DOMContentLoaded", () => {
     })();
 
     const hideSearchTab = () => {
-        $("searchTabColumn").addClass("invisible");
+        $("searchTabColumn").classList.add("invisible");
         MochaUI.Desktop.resizePanels();
     };
 
@@ -1360,7 +1360,7 @@ window.addEventListener("DOMContentLoaded", () => {
     })();
 
     const hideRssTab = () => {
-        $("rssTabColumn").addClass("invisible");
+        $("rssTabColumn").classList.add("invisible");
         window.qBittorrent.Rss && window.qBittorrent.Rss.unload();
         MochaUI.Desktop.resizePanels();
     };
@@ -1398,7 +1398,7 @@ window.addEventListener("DOMContentLoaded", () => {
     })();
 
     const hideLogTab = () => {
-        $("logTabColumn").addClass("invisible");
+        $("logTabColumn").classList.add("invisible");
         MochaUI.Desktop.resizePanels();
         window.qBittorrent.Log && window.qBittorrent.Log.unload();
     };

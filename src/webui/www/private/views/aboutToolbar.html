@@ -17,32 +17,32 @@
         MochaUI.initializeTabs("aboutTabs");
 
         $("aboutAboutLink").addEventListener("click", () => {
-            $$(".aboutTabContent").addClass("invisible");
+            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
             $("aboutAboutContent").removeClass("invisible");
         });
 
         $("aboutAuthorLink").addEventListener("click", () => {
-            $$(".aboutTabContent").addClass("invisible");
+            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
             $("aboutAuthorContent").removeClass("invisible");
         });
 
         $("aboutSpecialThanksLink").addEventListener("click", () => {
-            $$(".aboutTabContent").addClass("invisible");
+            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
             $("aboutSpecialThanksContent").removeClass("invisible");
         });
 
         $("aboutTranslatorsLink").addEventListener("click", () => {
-            $$(".aboutTabContent").addClass("invisible");
+            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
             $("aboutTranslatorsContent").removeClass("invisible");
         });
 
         $("aboutLicenseLink").addEventListener("click", () => {
-            $$(".aboutTabContent").addClass("invisible");
+            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
             $("aboutLicenseContent").removeClass("invisible");
         });
 
         $("aboutSoftwareUsedLink").addEventListener("click", () => {
-            $$(".aboutTabContent").addClass("invisible");
+            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
             $("aboutSoftwareUsedContent").removeClass("invisible");
         });
     })();

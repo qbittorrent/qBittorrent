@@ -257,7 +257,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
         // hide an item
         hideItem(item) {
-            this.menu.getElement("a[href$=" + item + "]").parentNode.addClass("invisible");
+            this.menu.getElement("a[href$=" + item + "]").parentNode.classList.add("invisible");
             return this;
         }
 
@@ -405,7 +405,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             if (all_are_downloaded) {
                 this.hideItem("downloadLimit");
-                this.menu.getElement("a[href$=uploadLimit]").parentNode.addClass("separator");
+                this.menu.getElement("a[href$=uploadLimit]").parentNode.classList.add("separator");
                 this.hideItem("sequentialDownload");
                 this.hideItem("firstLastPiecePrio");
                 this.showItem("superSeeding");
@@ -416,7 +416,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 const show_f_l_piece_prio = (all_are_f_l_piece_prio || !there_are_f_l_piece_prio);
 
                 if (!show_seq_dl && show_f_l_piece_prio)
-                    this.menu.getElement("a[href$=firstLastPiecePrio]").parentNode.addClass("separator");
+                    this.menu.getElement("a[href$=firstLastPiecePrio]").parentNode.classList.add("separator");
                 else
                     this.menu.getElement("a[href$=firstLastPiecePrio]").parentNode.removeClass("separator");
 
@@ -525,7 +525,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 const setCategoryItem = document.createElement("li");
                 setCategoryItem.appendChild(anchor);
                 if (first) {
-                    setCategoryItem.addClass("separator");
+                    setCategoryItem.classList.add("separator");
                     first = false;
                 }
 
@@ -583,7 +583,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 const setTagItem = document.createElement("li");
                 setTagItem.appendChild(anchor);
                 if (i === 0)
-                    setTagItem.addClass("separator");
+                    setTagItem.classList.add("separator");
 
                 contextTagList.appendChild(setTagItem);
             }
@@ -661,7 +661,7 @@ window.qBittorrent.ContextMenu ??= (() => {
     class RssFeedContextMenu extends ContextMenu {
         updateMenuItems() {
             const selectedRows = window.qBittorrent.Rss.rssFeedTable.selectedRowsIds();
-            this.menu.getElement("a[href$=newSubscription]").parentNode.addClass("separator");
+            this.menu.getElement("a[href$=newSubscription]").parentNode.classList.add("separator");
             switch (selectedRows.length) {
                 case 0:
                     // remove separator on top of newSubscription entry to avoid double line

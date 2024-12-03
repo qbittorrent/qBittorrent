@@ -307,12 +307,12 @@
             if (currentSelectedTab === "main") {
                 selectBox.enable();
                 $("logMessageView").removeClass("invisible");
-                $("logPeerView").addClass("invisible");
+                $("logPeerView").classList.add("invisible");
                 resetTableTimer("peer");
             }
             else {
                 selectBox.disable();
-                $("logMessageView").addClass("invisible");
+                $("logMessageView").classList.add("invisible");
                 $("logPeerView").removeClass("invisible");
                 resetTableTimer("main");
             }
