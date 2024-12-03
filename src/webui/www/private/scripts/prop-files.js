@@ -668,10 +668,7 @@ window.qBittorrent.PropFiles ??= (() => {
         if (span === null)
             return;
         const rowElem = span.parentElement.parentElement;
-        if (shouldHide)
-            rowElem.classList.add("invisible");
-        else
-            rowElem.classList.remove("invisible");
+        rowElem.classList.toggle("invisible", shouldHide);
     };
 
     /**
@@ -689,10 +686,7 @@ window.qBittorrent.PropFiles ??= (() => {
 
         // rotate the collapse icon
         const collapseIcon = td.getElementsByClassName("filesTableCollapseIcon")[0];
-        if (isCollapsed)
-            collapseIcon.classList.add("rotate");
-        else
-            collapseIcon.classList.remove("rotate");
+        collapseIcon.classList.toggle("rotate", isCollapsed);
     };
 
     const _isCollapsed = (node) => {

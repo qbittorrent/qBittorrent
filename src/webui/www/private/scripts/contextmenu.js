@@ -415,10 +415,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 const show_seq_dl = (all_are_seq_dl || !there_are_seq_dl);
                 const show_f_l_piece_prio = (all_are_f_l_piece_prio || !there_are_f_l_piece_prio);
 
-                if (!show_seq_dl && show_f_l_piece_prio)
-                    this.menu.getElement("a[href$=firstLastPiecePrio]").parentNode.classList.add("separator");
-                else
-                    this.menu.getElement("a[href$=firstLastPiecePrio]").parentNode.classList.remove("separator");
+                this.menu.getElement("a[href$=firstLastPiecePrio]").parentNode.classList.toggle("separator", !show_seq_dl && show_f_l_piece_prio);
 
                 if (show_seq_dl)
                     this.showItem("sequentialDownload");
