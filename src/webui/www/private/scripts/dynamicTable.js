@@ -711,7 +711,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             for (let i = 0; i < trs.length; ++i) {
                 const tr = trs[i];
                 this.selectedRows.push(tr.rowId);
-                if (!tr.hasClass("selected"))
+                if (!tr.classList.contains("selected"))
                     tr.classList.add("selected");
             }
         },

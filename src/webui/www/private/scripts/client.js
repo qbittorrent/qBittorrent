@@ -185,7 +185,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("resize", window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
         // only save sizes if the columns are visible
-        if (!$("mainColumn").hasClass("invisible"))
+        if (!$("mainColumn").classList.contains("invisible"))
             saveColumnSizes();
     }));
 
@@ -1225,7 +1225,7 @@ window.addEventListener("DOMContentLoaded", () => {
         else {
             $("showRssReaderLink").firstElementChild.style.opacity = "0";
             $("rssTabLink").classList.add("invisible");
-            if ($("rssTabLink").hasClass("selected"))
+            if ($("rssTabLink").classList.contains("selected"))
                 $("transfersTabLink").click();
         }
 
@@ -1239,7 +1239,7 @@ window.addEventListener("DOMContentLoaded", () => {
         else {
             $("showSearchEngineLink").firstElementChild.style.opacity = "0";
             $("searchTabLink").classList.add("invisible");
-            if ($("searchTabLink").hasClass("selected"))
+            if ($("searchTabLink").classList.contains("selected"))
                 $("transfersTabLink").click();
         }
 
@@ -1253,7 +1253,7 @@ window.addEventListener("DOMContentLoaded", () => {
         else {
             $("showLogViewerLink").firstElementChild.style.opacity = "0";
             $("logTabLink").classList.add("invisible");
-            if ($("logTabLink").hasClass("selected"))
+            if ($("logTabLink").classList.contains("selected"))
                 $("transfersTabLink").click();
         }
 

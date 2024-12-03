@@ -335,8 +335,8 @@ window.qBittorrent.PropFiles ??= (() => {
 
     let loadTorrentFilesDataTimer = -1;
     const loadTorrentFilesData = () => {
-        if ($("propFiles").hasClass("invisible")
-            || $("propertiesPanel_collapseToggle").hasClass("panel-expand")) {
+        if ($("propFiles").classList.contains("invisible")
+            || $("propertiesPanel_collapseToggle").classList.contains("panel-expand")) {
             // Tab changed, don't do anything
             return;
         }

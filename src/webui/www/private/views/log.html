@@ -370,7 +370,7 @@
                 onSuccess: (response) => {
                     $("error_div").textContent = "";
 
-                    if ($("logTabColumn").hasClass("invisible"))
+                    if ($("logTabColumn").classList.contains("invisible"))
                         return;
 
                     if (response.length > 0) {

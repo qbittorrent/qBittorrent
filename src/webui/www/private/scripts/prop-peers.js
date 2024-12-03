@@ -43,8 +43,8 @@ window.qBittorrent.PropPeers ??= (() => {
     let show_flags = true;
 
     const loadTorrentPeersData = () => {
-        if ($("propPeers").hasClass("invisible")
-            || $("propertiesPanel_collapseToggle").hasClass("panel-expand")) {
+        if ($("propPeers").classList.contains("invisible")
+            || $("propertiesPanel_collapseToggle").classList.contains("panel-expand")) {
             syncTorrentPeersLastResponseId = 0;
             torrentPeersTable.clear();
             return;

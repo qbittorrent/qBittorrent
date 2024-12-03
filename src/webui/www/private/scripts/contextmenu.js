@@ -92,7 +92,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             const scrollableMenuMaxHeight = document.documentElement.clientHeight * 0.75;
 
-            if (this.menu.hasClass("scrollableMenu"))
+            if (this.menu.classList.contains("scrollableMenu"))
                 this.menu.style.maxHeight = `${scrollableMenuMaxHeight}px`;
 
             // draw the menu off-screen to know the menu dimensions
@@ -119,7 +119,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             const uls = this.menu.getElementsByTagName("ul");
             for (let i = 0; i < uls.length; ++i) {
                 const ul = uls[i];
-                if (ul.hasClass("scrollableMenu"))
+                if (ul.classList.contains("scrollableMenu"))
                     ul.style.maxHeight = `${scrollableMenuMaxHeight}px`;
                 const rectParent = ul.parentNode.getBoundingClientRect();
                 const xPosOrigin = rectParent.left;

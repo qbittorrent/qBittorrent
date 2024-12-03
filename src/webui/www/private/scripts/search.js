@@ -238,7 +238,7 @@ window.qBittorrent.Search ??= (() => {
             return;
 
         const searchId = getSearchIdFromTab(tab);
-        const isTabSelected = tab.hasClass("selected");
+        const isTabSelected = tab.classList.contains("selected");
         const newTabToSelect = isTabSelected ? (tab.nextSibling || tab.previousSibling) : null;
 
         const currentSearchId = getSelectedSearchId();
