@@ -589,8 +589,7 @@ void RSSWidget::convertRelativePathToAbsolute(QString &html, const QString &base
             break; // invalid url, should never happen
         QString absolutePath = normalizedBasePath + relativePath;
 
-        html.replace(fullMatch,
-                     prefix + absolutePath + suffix);
+        html.replace(fullMatch, prefix + absolutePath + suffix);
     }
 }
 
