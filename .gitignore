@@ -1,4 +1,3 @@
-.vscode/
 src/gui/geoip/GeoIP.dat
 src/gui/geoip/GeoIP.dat.gz
 src/qbittorrent
@@ -12,6 +11,20 @@ conf.pri
 Makefile*
 *.pyc
 *.log
+#==============================================================================#
+# Directories to ignore (do not add trailing '/'s, they skip symlinks).
+#==============================================================================#
+# VS2017 and VSCode config files.
+.vscode
+.vs
+
+.idea
+.*.sw?
+.sw?
+
+# clangd index. (".clangd" is a config file now, thus trailing slash)
+.clangd/
+.cache
 
 # Compiled object files
 *.o
@@ -40,7 +53,8 @@ src/icons/skin/build-icons/node_modules/
 src/icons/skin/build-icons/icons/*.png
 
 # CMake build directory
-build/
+build*
+cmake-build*
 
 # Web UI tools
 node_modules
