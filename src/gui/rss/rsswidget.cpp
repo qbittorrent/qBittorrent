@@ -572,22 +572,29 @@ void RSSWidget::convertRelativePathToAbsolute(QString &html, const QString &base
 
     while (iter.hasNext())
     {
-        QRegularExpressionMatch match = iter.next();
-        const QString &fullMatch = match.captured(0);
-        const Qstring &prefix = match.captured(1);
+        const QRegularExpressionMatch match = iter.next();
         const QString &scheme = match.captured(4);
         const QString &host = match.captured(5);
+        if (!scheme.isEmpty())
+        {
+            if (host.isEmpty())
+                break; // invalid URL, should never happen
+                
+            // already absolute path
+            continue;
+        }
+
         QString relativePath = match.captured(6);
-        const QString &suffix = match.captured(7);
         if (relativePath.startsWith(u'/'))
             relativePath = relativePath.mid(1);
-        if (!scheme.isEmpty() && !host.isEmpty()) // already absolute path
-            continue;
-        else if (!host.isEmpty())
+
+        if (!host.isEmpty())
             normalizedBasePath = u"http:" + host;
-        else if (!scheme.isEmpty())
-            break; // invalid url, should never happen
-        QString absolutePath = normalizedBasePath + relativePath;
+
+        const QString &fullMatch = match.captured(0);
+        const QString &prefix = match.captured(1);
+        const QString &suffix = match.captured(7);
+        const QString absolutePath = normalizedBasePath + relativePath;
 
         html.replace(fullMatch, prefix + absolutePath + suffix);
     }
@@ -646,8 +653,8 @@ void RSSWidget::renderArticle(const RSS::Article *article) const
     }
     // Supplement relative path to absolute path
 
-    QUrl url {article->link()};
-    QString basePath = url.scheme() + u"://" + url.host();
+    const QUrl url {article->link()};
+    const QString basePath = url.scheme() + u"://" + url.host();
     convertRelativePathToAbsolute(html, basePath);
     html += u"</div>";
     m_ui->textBrowser->setHtml(html);
