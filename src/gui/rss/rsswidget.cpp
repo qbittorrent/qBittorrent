@@ -54,7 +54,7 @@
 #include "feedlistwidget.h"
 #include "ui_rsswidget.h"
 
-void convertRelativePathToAbsolute(QString &html, const QString &basePath);
+void convertRelativeUrlToAbsolute(QString &html, const QString &baseUrl);
 
 RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     : GUIApplicationComponent(app, parent)
@@ -615,18 +615,18 @@ void RSSWidget::renderArticle(const RSS::Article *article) const
 
     // Supplement relative path to absolute path
     const QUrl url {article->link()};
-    const QString basePath = url.toString(QUrl::RemovePath | QUrl::RemoveQuery);
-    convertRelativePathToAbsolute(html, basePath);
+    const QString baseUrl = url.toString(QUrl::RemovePath | QUrl::RemoveQuery);
+    convertRelativeUrlToAbsolute(html, baseUrl);
     html += u"</div>";
     m_ui->textBrowser->setHtml(html);
 }
 
-void convertRelativePathToAbsolute(QString &html, const QString &basePath)
+void convertRelativeUrlToAbsolute(QString &html, const QString &baseUrl)
 {
     const QRegularExpression rx {uR"(((<a\s+[^>]*?href|<img\s+[^>]*?src)\s*=\s*["'])((https?|ftp):)?(\/\/[^\/]*)?(\/?[^\/"].*?)(["']))"_s
         , QRegularExpression::CaseInsensitiveOption};
 
-    QString normalizedBasePath = basePath.endsWith(u'/') ? basePath : basePath + u'/';
+    QString normalizedBaseUrl = baseUrl.endsWith(u'/') ? baseUrl : baseUrl + u'/';
     QRegularExpressionMatchIterator iter = rx.globalMatch(html);
 
     while (iter.hasNext())
@@ -648,12 +648,12 @@ void convertRelativePathToAbsolute(QString &html, const QString &basePath)
             relativePath = relativePath.mid(1);
 
         if (!host.isEmpty())
-            normalizedBasePath = u"http:" + host;
+            normalizedBaseUrl = u"http:" + host;
 
         const QString fullMatch = match.captured(0);
         const QString prefix = match.captured(1);
         const QString suffix = match.captured(7);
-        const QString absolutePath = normalizedBasePath + relativePath;
+        const QString absolutePath = normalizedBaseUrl + relativePath;
 
         html.replace(fullMatch, (prefix + absolutePath + suffix));
     }
