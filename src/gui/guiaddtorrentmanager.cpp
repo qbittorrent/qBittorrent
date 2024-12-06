@@ -249,7 +249,7 @@ bool GUIAddTorrentManager::processTorrent(const QString &source
     {
         releaseTorrentFileGuard(source);
     });
-    connect(dlg, &QDialog::finished, this, [this, source, infoHash]
+    connect(dlg, &QDialog::finished, this, [this, infoHash]
     {
         m_dialogs.remove(infoHash);
     });
