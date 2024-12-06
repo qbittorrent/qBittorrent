@@ -612,10 +612,10 @@ void RSSWidget::renderArticle(const RSS::Article *article) const
 
         html += u"<pre>" + description + u"</pre>";
     }
-    // Supplement relative path to absolute path
 
+    // Supplement relative path to absolute path
     const QUrl url {article->link()};
-    const QString basePath = url.scheme() + u"://" + url.host();
+    const QString basePath = url.toString(QUrl::RemovePath | QUrl::RemoveQuery);
     convertRelativePathToAbsolute(html, basePath);
     html += u"</div>";
     m_ui->textBrowser->setHtml(html);
@@ -623,11 +623,8 @@ void RSSWidget::renderArticle(const RSS::Article *article) const
 
 void convertRelativePathToAbsolute(QString &html, const QString &basePath)
 {
-    QRegularExpression rx;
-    rx.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
-    // href regex
-    rx.setPattern(
-        uR"(((<a\s+[^>]*?href|<img\s+[^>]*?src)\s*=\s*["'])((https?|ftp):)?(\/\/[^\/]*)?(\/?[^\/"].*?)(["']))"_s);
+    const QRegularExpression rx {uR"(((<a\s+[^>]*?href|<img\s+[^>]*?src)\s*=\s*["'])((https?|ftp):)?(\/\/[^\/]*)?(\/?[^\/"].*?)(["']))"_s
+        , QRegularExpression::CaseInsensitiveOption};
 
     QString normalizedBasePath = basePath.endsWith(u'/') ? basePath : basePath + u'/';
     QRegularExpressionMatchIterator iter = rx.globalMatch(html);
@@ -635,8 +632,8 @@ void convertRelativePathToAbsolute(QString &html, const QString &basePath)
     while (iter.hasNext())
     {
         const QRegularExpressionMatch match = iter.next();
-        const QString &scheme = match.captured(4);
-        const QString &host = match.captured(5);
+        const QString scheme = match.captured(4);
+        const QString host = match.captured(5);
         if (!scheme.isEmpty())
         {
             if (host.isEmpty())
@@ -653,11 +650,11 @@ void convertRelativePathToAbsolute(QString &html, const QString &basePath)
         if (!host.isEmpty())
             normalizedBasePath = u"http:" + host;
 
-        const QString &fullMatch = match.captured(0);
-        const QString &prefix = match.captured(1);
-        const QString &suffix = match.captured(7);
+        const QString fullMatch = match.captured(0);
+        const QString prefix = match.captured(1);
+        const QString suffix = match.captured(7);
         const QString absolutePath = normalizedBasePath + relativePath;
 
-        html.replace(fullMatch, prefix + absolutePath + suffix);
+        html.replace(fullMatch, (prefix + absolutePath + suffix));
     }
 }
