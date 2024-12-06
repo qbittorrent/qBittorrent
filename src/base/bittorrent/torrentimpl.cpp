@@ -2845,38 +2845,26 @@ QString TorrentImpl::createMagnetURI() const
 
     const SHA1Hash infoHash1 = infoHash().v1();
     if (infoHash1.isValid())
-    {
         ret += u"xt=urn:btih:" + infoHash1.toString();
-    }
 
-    const SHA256Hash infoHash2 = infoHash().v2();
-    if (infoHash2.isValid())
+    if (const SHA256Hash infoHash2 = infoHash().v2(); infoHash2.isValid())
     {
         if (infoHash1.isValid())
             ret += u'&';
         ret += u"xt=urn:btmh:1220" + infoHash2.toString();
     }
 
-    const QString displayName = name();
-    if (displayName != id().toString())
-    {
+    if (const QString displayName = name(); displayName != id().toString())
         ret += u"&dn=" + QString::fromLatin1(QUrl::toPercentEncoding(displayName));
-    }
 
     if (hasMetadata())
-    {
         ret += u"&xl=" + QString::number(totalSize());
-    }
 
     for (const TrackerEntryStatus &tracker : asConst(trackers()))
-    {
         ret += u"&tr=" + QString::fromLatin1(QUrl::toPercentEncoding(tracker.url));
-    }
 
     for (const QUrl &urlSeed : asConst(urlSeeds()))
-    {
-        ret += u"&ws=" + QString::fromLatin1(urlSeed.toEncoded());
-    }
+        ret += u"&ws=" + urlSeed.toString(QUrl::FullyEncoded);
 
     return ret;
 }
