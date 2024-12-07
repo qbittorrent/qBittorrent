@@ -2866,7 +2866,7 @@ QString TorrentImpl::createMagnetURI() const
     if (hasMetadata())
     {
         ret += u"&xl=" + QString::number(totalSize());
-    }    
+    }
 
     for (const TrackerEntryStatus &tracker : asConst(trackers()))
     {
