@@ -53,9 +53,10 @@
 #include "automatedrssdownloader.h"
 #include "feedlistwidget.h"
 #include "ui_rsswidget.h"
-
+namespace
+{
 void convertRelativeUrlToAbsolute(QString &html, const QString &baseUrl);
-
+}
 RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     : GUIApplicationComponent(app, parent)
     , m_ui {new Ui::RSSWidget}
@@ -613,48 +614,53 @@ void RSSWidget::renderArticle(const RSS::Article *article) const
         html += u"<pre>" + description + u"</pre>";
     }
 
-    // Supplement relative path to absolute path
+    // Supplement relative URLs to absolute ones
     const QUrl url {article->link()};
     const QString baseUrl = url.toString(QUrl::RemovePath | QUrl::RemoveQuery);
     convertRelativeUrlToAbsolute(html, baseUrl);
     html += u"</div>";
     m_ui->textBrowser->setHtml(html);
 }
-
-void convertRelativeUrlToAbsolute(QString &html, const QString &baseUrl)
+namespace
 {
-    const QRegularExpression rx {uR"(((<a\s+[^>]*?href|<img\s+[^>]*?src)\s*=\s*["'])((https?|ftp):)?(\/\/[^\/]*)?(\/?[^\/"].*?)(["']))"_s
-        , QRegularExpression::CaseInsensitiveOption};
-
-    QString normalizedBaseUrl = baseUrl.endsWith(u'/') ? baseUrl : baseUrl + u'/';
-    QRegularExpressionMatchIterator iter = rx.globalMatch(html);
-
-    while (iter.hasNext())
+    void convertRelativeUrlToAbsolute(QString &html, const QString &baseUrl)
     {
-        const QRegularExpressionMatch match = iter.next();
-        const QString scheme = match.captured(4);
-        const QString host = match.captured(5);
-        if (!scheme.isEmpty())
+        const QRegularExpression rx {uR"(((<a\s+[^>]*?href|<img\s+[^>]*?src)\s*=\s*["'])((https?|ftp):)?(\/\/[^\/]*)?(\/?[^\/"].*?)(["']))"_s
+            , QRegularExpression::CaseInsensitiveOption};
+
+        QString normalizedBaseUrl = baseUrl.endsWith(u'/') ? baseUrl : baseUrl + u'/';
+        const QUrl url {normalizedBaseUrl};
+        const QString defaultScheme = url.scheme();
+        QRegularExpressionMatchIterator iter = rx.globalMatch(html);
+
+        while (iter.hasNext())
         {
-            if (host.isEmpty())
-                break; // invalid URL, should never happen
-                
-            // already absolute path
-            continue;
+            const QRegularExpressionMatch match = iter.next();
+            const QString scheme = match.captured(4);
+            const QString host = match.captured(5);
+            if (!scheme.isEmpty())
+            {
+                if (host.isEmpty())
+                    break; // invalid URL, should never happen
+
+                // already absolute URL
+                continue;
+            }
+
+            QString relativePath = match.captured(6);
+            if (relativePath.startsWith(u'/'))
+                relativePath = relativePath.mid(1);
+
+            if (!host.isEmpty())
+            {
+                normalizedBaseUrl = defaultScheme + u":" + host;
+            }
+            const QString fullMatch = match.captured(0);
+            const QString prefix = match.captured(1);
+            const QString suffix = match.captured(7);
+            const QString absoluteUrl = normalizedBaseUrl + relativePath;
+
+            html.replace(fullMatch, (prefix + absoluteUrl + suffix));
         }
-
-        QString relativePath = match.captured(6);
-        if (relativePath.startsWith(u'/'))
-            relativePath = relativePath.mid(1);
-
-        if (!host.isEmpty())
-            normalizedBaseUrl = u"http:" + host;
-
-        const QString fullMatch = match.captured(0);
-        const QString prefix = match.captured(1);
-        const QString suffix = match.captured(7);
-        const QString absolutePath = normalizedBaseUrl + relativePath;
-
-        html.replace(fullMatch, (prefix + absolutePath + suffix));
     }
 }
