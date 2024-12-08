@@ -9,7 +9,6 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.1.0
    - BUGFIX: Fix the tab order in dialogs (thalieht) d73201c098a8f85161c06bb8d02c8726227627ad
    - BUGFIX: Fix filesize sorting in preview dialog (DoubleSpicy) c080fc3aa09400d7bfdecf73ad5fb409e02a8110
    - BUGFIX: Improve the speed icons in the status bar (Mahdi Hosseinzadeh) 928de360931579304128a8203a8ac61e4f32bed8
-   - BUGFIX: Fix incorrect SQL column definition (glassez) 0eba285ff1ebc4bad86434154ae2c8c33a00f072
    - BUGFIX: Update link to news (tinyboxvk) 61ff683f11a653fecd6a3dd0dbfe784cd6aaf63d
    - WEBUI: Implement path autocompletion (Paweł Kotiuk) d87533bf4c141ade034f5f1b0792daefd28ece20
    - WEBUI: Implement double-click behavior controls (Hanabishi) b52fa98a02bfa74766dd4a31d6a667a51ad00843
@@ -29,7 +28,6 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.1.0
    - WEBUI: Support removing tracker from all torrents in WebUI/WebAPI (Thomas Piccirello) d2b2afad233ad41d4a4c98695bd6813e4e293417
    - WEBUI: Display DHT information in the Status bar only when DHT is enabled (skomerko) 183c7c75b1949ca668d6b3d62d6ab2b8b6aeb42d
    - WEBUI: Add 'Confirm torrent recheck' option (skomerko) c3224459db0ff4a058cb35cb73ab5eff76af3070
-   - WEBUI: Fix removing tracker URL with '|' character (Thomas Piccirello) 8a6207d3fc8a63d9989a49b5e7079e3a2dd1c45c
    - WEBUI: Support managing web seeds (Thomas Piccirello) 81def39d8c358587da93f2e4272ac4673933ab12
    - WEBUI: Add colors to log table rows (skomerko) 0e03e4f8a7febffe88f46662b13408ef809320bb
    - WEBUI: Prevent text selection within tabs, menu items (skomerko) 6bfabad92fa4b91857537f10eda943d764c75c87
@@ -51,22 +49,17 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.1.0
    - WEBUI: Display torrent progress percentage in General tab (skomerko) 71f83cf9ba3a4d9ac38598c4f70fd5b3ce968de9
    - WEBUI: Use thin scrollbars (skomerko) 889df72ab3719668ecac3aa8ae1cfbf1e9d0ee1d
    - WEBUI: Show 'Rename...' context menu item only when one torrent is selected (skomerko) e51fcc6ea084b00fc4d95926177f8ac3d4f676da
-   - WEBUI: Fix reloading page after login (Evgenii Ryshkov) 1e851b363762e6474be3a5b19f0899d572beaa16
    - WEBUI: Fix bug where you can't select RSS rules (Patrik Elfström) 530631322de9ccefc1448e9b90d45923a4129ab4
    - WEBUI: Display error when download fails (Thomas Piccirello) 78a5e4ff3e1229b1aef2423d87fd1f48a3153251
    - WEBUI: Add colors to 'Status' column in Trackers table (skomerko) dafbcf870919c3d5efbf23a68bef7fdb8262d44c
    - WEBAPI: Don't reannounce when removing tracker via WebAPI (Thomas Piccirello) 66c1acbce25d435ffb815879213a15b20cf3fb2a
    - WEBAPI: Add WebAPI for managing torrent webseeds (Thomas Piccirello) ea06eb9fe63686e800e842cc2229a7cd2abae6ec
-   - WEBAPI: Fix incorrect key in torrent creator (Bartu Özen) 6ce286910881b39ffa128bb831f550b175c0ed76
    - WEBAPI: Add `forced` parameter to `torrents/add` (Chris B) f022ce8f84c85438fd8f5505a037d7d2f8da6d5c
-   - RSS: Don't add duplicate episodes to previously matched (wavygecko) d11622e3c0e1fecf8550e4f5a70f925424aaec5b
    - SEARCH: Bump Python version minimum requirement (Chocobo1) 8b7fdf0f229d69c63fb0e96780f276fe6c8a620e
    - SEARCH: Simplify tab handling in Search widget (Chocobo1) 6f642776b67e1560332926730913681f8690bf97
    - WINDOWS: Opt into Windows SegmentHeap (Andarwinux) f00c5c9fa3b6e9a3ce02d5fa0ce59dadf086db38
    - WINDOWS: Allow to choose color scheme on Windows (glassez) a47e1cdb487b0b89c1028a7444685381cce79a55
    - WINDOWS: Verify hash of Python installer (Chocobo1) 3ebdb50457b0a76e71f38e9c91d6dc9063d6d338
-   - WINDOWS: Don't follow symlink when creating torrents (Chocobo1) 6f31a13f22079030aa3cd8cc57fc1e2f5193386c
-   - WINDOWS: NSIS: Update Italian translation (Giacomo411) 9f0fa4c215c8eec84acbf4291ebb2ab28b1d5d72
    - LINUX: Add support for Thunar file manager (algebnaly) 6418033cc8d4ec2f31679418cb480af498dafb2c
 
 Mon Oct 28th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.1
