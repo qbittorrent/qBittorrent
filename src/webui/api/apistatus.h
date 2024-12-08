@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024 Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,51 +28,8 @@
 
 #pragma once
 
-#include <QtContainerFwd>
-#include <QObject>
-#include <QString>
-#include <QVariant>
-
-#include "base/applicationcomponent.h"
-#include "apistatus.h"
-
-using DataMap = QHash<QString, QByteArray>;
-using StringMap = QHash<QString, QString>;
-
-struct APIResult
+enum class APIStatus
 {
-    QVariant data;
-    QString mimeType;
-    QString filename;
-    APIStatus status = APIStatus::Ok;
-
-    void clear();
-};
-
-class APIController : public ApplicationComponent<QObject>
-{
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(APIController)
-
-public:
-    explicit APIController(IApplication *app, QObject *parent = nullptr);
-
-    APIResult run(const QString &action, const StringMap &params, const DataMap &data = {});
-
-protected:
-    const StringMap &params() const;
-    const DataMap &data() const;
-    void requireParams(const QList<QString> &requiredParams) const;
-
-    void setResult(const QString &result);
-    void setResult(const QJsonArray &result);
-    void setResult(const QJsonObject &result);
-    void setResult(const QByteArray &result, const QString &mimeType = {}, const QString &filename = {});
-
-    void setStatus(APIStatus status);
-
-private:
-    StringMap m_params;
-    DataMap m_data;
-    APIResult m_result;
+    Ok,
+    Async
 };
