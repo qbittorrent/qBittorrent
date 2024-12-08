@@ -1601,20 +1601,24 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
             m_resumeDataTimer->start();
         }
 
-        m_wakeupCheckTimer = new QTimer(this);
-        connect(m_wakeupCheckTimer, &QTimer::timeout, this, [this]
+        auto wakeupCheckTimer = new QTimer(this);
+        connect(wakeupCheckTimer, &QTimer::timeout, this, [this]
         {
-            const auto now = std::chrono::steady_clock::now();
-            if ((now - m_wakeupCheckTimestamp) > 100s)
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 6, 0))
+            const bool hasSystemSlept = m_wakeupCheckTimestamp.durationElapsed() > 100s;
+#else
+            const bool hasSystemSlept = m_wakeupCheckTimestamp.elapsed() > std::chrono::milliseconds(100s).count();
+#endif
+            if (hasSystemSlept)
             {
                 LogMsg(tr("System wake-up event detected. Re-announcing to all the trackers..."));
                 reannounceToAllTrackers();
             }
 
-            m_wakeupCheckTimestamp = now;
+            m_wakeupCheckTimestamp.start();
         });
-        m_wakeupCheckTimestamp = std::chrono::steady_clock::now();
-        m_wakeupCheckTimer->start(30s);
+        m_wakeupCheckTimestamp.start();
+        wakeupCheckTimer->start(30s);
 
         m_isRestored = true;
         emit startupProgressUpdated(100);
