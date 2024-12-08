@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -29,6 +29,7 @@
 
 #pragma once
 
+#include <QDateTime>
 #include <QList>
 #include <QObject>
 #include <QSet>
@@ -66,6 +67,7 @@ namespace RSS::Private
         void parseAtomChannel(QXmlStreamReader &xml);
         void addArticle(QVariantHash article);
 
+        QDateTime m_fallbackDate;
         QString m_baseUrl;
         ParsingResult m_result;
         QSet<QString> m_articleIDs;

@@ -129,7 +129,7 @@ void TorrentCreatorController::addTaskAction()
         .sourcePath = Path(params()[KEY_SOURCE_PATH]),
         .torrentFilePath = Path(params()[KEY_TORRENT_FILE_PATH]),
         .comment = params()[KEY_COMMENT],
-        .source = params()[KEY_COMMENT],
+        .source = params()[KEY_SOURCE],
         .trackers = params()[KEY_TRACKERS].split(u'|'),
         .urlSeeds = params()[KEY_URL_SEEDS].split(u'|')
     };

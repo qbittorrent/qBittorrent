@@ -67,7 +67,7 @@ namespace
 {
     const QString DB_CONNECTION_NAME = u"ResumeDataStorage"_s;
 
-    const int DB_VERSION = 7;
+    const int DB_VERSION = 8;
 
     const QString DB_TABLE_META = u"meta"_s;
     const QString DB_TABLE_TORRENTS = u"torrents"_s;
@@ -628,7 +628,31 @@ void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
         }
 
         if (fromVersion <= 6)
-            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_SHARE_LIMIT_ACTION, "TEXTNOT NULL DEFAULT `Default`");
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_SHARE_LIMIT_ACTION, "TEXT NOT NULL DEFAULT `Default`");
+
+        if (fromVersion == 7)
+        {
+            const QString TEMP_COLUMN_NAME = DB_COLUMN_SHARE_LIMIT_ACTION.name + u"_temp";
+
+            auto queryStr = u"ALTER TABLE %1 ADD %2 %3"_s
+                    .arg(quoted(DB_TABLE_TORRENTS), TEMP_COLUMN_NAME, u"TEXT NOT NULL DEFAULT `Default`");
+            if (!query.exec(queryStr))
+                throw RuntimeError(query.lastError().text());
+
+            queryStr = u"UPDATE %1 SET %2 = %3"_s
+                    .arg(quoted(DB_TABLE_TORRENTS), quoted(TEMP_COLUMN_NAME), quoted(DB_COLUMN_SHARE_LIMIT_ACTION.name));
+            if (!query.exec(queryStr))
+                throw RuntimeError(query.lastError().text());
+
+            queryStr = u"ALTER TABLE %1 DROP %2"_s.arg(quoted(DB_TABLE_TORRENTS), quoted(DB_COLUMN_SHARE_LIMIT_ACTION.name));
+            if (!query.exec(queryStr))
+                throw RuntimeError(query.lastError().text());
+
+            queryStr = u"ALTER TABLE %1 RENAME %2 TO %3"_s
+                    .arg(quoted(DB_TABLE_TORRENTS), quoted(TEMP_COLUMN_NAME), quoted(DB_COLUMN_SHARE_LIMIT_ACTION.name));
+            if (!query.exec(queryStr))
+                throw RuntimeError(query.lastError().text());
+        }
 
         const QString updateMetaVersionQuery = makeUpdateStatement(DB_TABLE_META, {DB_COLUMN_NAME, DB_COLUMN_VALUE});
         if (!query.prepare(updateMetaVersionQuery))

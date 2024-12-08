@@ -215,7 +215,15 @@ namespace BitTorrent
         virtual int piecesCount() const = 0;
         virtual int piecesHave() const = 0;
         virtual qreal progress() const = 0;
+
         virtual QDateTime addedTime() const = 0;
+        virtual QDateTime completedTime() const = 0;
+        virtual QDateTime lastSeenComplete() const = 0;
+        virtual qlonglong activeTime() const = 0;
+        virtual qlonglong finishedTime() const = 0;
+        virtual qlonglong timeSinceUpload() const = 0;
+        virtual qlonglong timeSinceDownload() const = 0;
+        virtual qlonglong timeSinceActivity() const = 0;
 
         // Share limits
         virtual qreal ratioLimit() const = 0;
@@ -254,8 +262,6 @@ namespace BitTorrent
         virtual QString error() const = 0;
         virtual qlonglong totalDownload() const = 0;
         virtual qlonglong totalUpload() const = 0;
-        virtual qlonglong activeTime() const = 0;
-        virtual qlonglong finishedTime() const = 0;
         virtual qlonglong eta() const = 0;
         virtual int seedsCount() const = 0;
         virtual int peersCount() const = 0;
@@ -263,11 +269,6 @@ namespace BitTorrent
         virtual int totalSeedsCount() const = 0;
         virtual int totalPeersCount() const = 0;
         virtual int totalLeechersCount() const = 0;
-        virtual QDateTime lastSeenComplete() const = 0;
-        virtual QDateTime completedTime() const = 0;
-        virtual qlonglong timeSinceUpload() const = 0;
-        virtual qlonglong timeSinceDownload() const = 0;
-        virtual qlonglong timeSinceActivity() const = 0;
         virtual int downloadLimit() const = 0;
         virtual int uploadLimit() const = 0;
         virtual bool superSeeding() const = 0;

@@ -29,7 +29,7 @@ LangString launch_qbt ${LANG_ITALIAN} "Esegui qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_ITALIAN} "Questo installer funziona solo con versioni di Windows a 64bit."
 ;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 (1809) / Windows Server 2019."
-LangString inst_requires_win10 ${LANG_ITALIAN}  "This installer requires at least Windows 10 (1809) / Windows Server 2019."
+LangString inst_requires_win10 ${LANG_ITALIAN}  "Questo installer richiede almeno Windows 10 (1809) / Windows Server 2019."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_ITALIAN} "Disinstalla qBittorrent"
 

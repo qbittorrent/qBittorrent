@@ -219,7 +219,7 @@ window.qBittorrent.PropTrackers = (function() {
             method: "post",
             data: {
                 hash: current_hash,
-                urls: selectedTrackers.join("|")
+                urls: selectedTrackers.map(encodeURIComponent).join("|")
             },
             onSuccess: function() {
                 updateData();

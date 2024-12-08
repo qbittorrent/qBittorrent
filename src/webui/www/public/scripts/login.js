@@ -37,10 +37,13 @@ function submitLoginForm(event) {
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
     xhr.addEventListener("readystatechange", () => {
         if (xhr.readyState === 4) { // DONE state
-            if ((xhr.status === 200) && (xhr.responseText === "Ok."))
+            if ((xhr.status === 200) && (xhr.responseText === "Ok.")) {
                 location.replace(location);
-            else
+                location.reload(true);
+            }
+            else {
                 errorMsgElement.textContent = "QBT_TR(Invalid Username or Password.)QBT_TR[CONTEXT=HttpServer]";
+            }
         }
     });
     xhr.addEventListener("error", () => {
