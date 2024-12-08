@@ -46,7 +46,7 @@
             // Inject checkbox into the first column of the table header
             const tableHeaders = $$("#bulkRenameFilesTableFixedHeaderDiv .dynamicTableHeader th");
             if (tableHeaders.length > 0) {
-                const checkboxHeader = new Element("input");
+                const checkboxHeader = document.createElement("input");
                 checkboxHeader.type = "checkbox";
                 checkboxHeader.id = "rootMultiRename_cb";
                 checkboxHeader.addEventListener("click", (e) => {
@@ -56,7 +56,7 @@
                 });
 
                 const checkboxTH = tableHeaders[0];
-                checkboxHeader.injectInside(checkboxTH);
+                checkboxTH.appendChild(checkboxHeader);
             }
 
             // Register keyboard events to modal window
