@@ -1824,26 +1824,6 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <string>Connections Limits</string>
               </property>
               <layout class="QGridLayout" name="gridLayout">
-               <item row="3" column="1">
-                <widget class="QSpinBox" name="spinMaxUploadsPerTorrent">
-                 <property name="maximum">
-                  <number>500</number>
-                 </property>
-                 <property name="value">
-                  <number>4</number>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QCheckBox" name="checkMaxConnectionsPerTorrent">
-                 <property name="text">
-                  <string>Maximum number of connections per torrent:</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
                <item row="0" column="0">
                 <widget class="QCheckBox" name="checkMaxConnections">
                  <property name="text">
@@ -1870,6 +1850,29 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                 </widget>
                </item>
+               <item row="0" column="2">
+                <spacer name="horizontalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Orientation::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="0">
+                <widget class="QCheckBox" name="checkMaxConnectionsPerTorrent">
+                 <property name="text">
+                  <string>Maximum number of connections per torrent:</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
                <item row="1" column="1">
                 <widget class="QSpinBox" name="spinMaxConnecPerTorrent">
                  <property name="minimum">
@@ -1880,13 +1883,6 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                  <property name="value">
                   <number>100</number>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0">
-                <widget class="QCheckBox" name="checkMaxUploadsPerTorrent">
-                 <property name="text">
-                  <string>Maximum number of upload slots per torrent:</string>
                  </property>
                 </widget>
                </item>
@@ -1907,18 +1903,22 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                 </widget>
                </item>
-               <item row="0" column="2">
-                <spacer name="horizontalSpacer_3">
-                 <property name="orientation">
-                  <enum>Qt::Orientation::Horizontal</enum>
+               <item row="3" column="0">
+                <widget class="QCheckBox" name="checkMaxUploadsPerTorrent">
+                 <property name="text">
+                  <string>Maximum number of upload slots per torrent:</string>
                  </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QSpinBox" name="spinMaxUploadsPerTorrent">
+                 <property name="maximum">
+                  <number>500</number>
                  </property>
-                </spacer>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
