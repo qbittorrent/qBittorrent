@@ -320,14 +320,11 @@ void Net::DownloadManager::processRequest(DownloadHandlerImpl *downloadHandler)
 
     const DownloadRequest downloadRequest = downloadHandler->downloadRequest();
     QNetworkRequest request {downloadRequest.url()};
-
-    if (downloadRequest.userAgent().isEmpty())
-        request.setRawHeader("User-Agent", getBrowserUserAgent());
-    else
-        request.setRawHeader("User-Agent", downloadRequest.userAgent().toUtf8());
+    request.setHeader(QNetworkRequest::UserAgentHeader, (downloadRequest.userAgent().isEmpty()
+        ? getBrowserUserAgent() : downloadRequest.userAgent().toUtf8()));
 
     // Spoof HTTP Referer to allow adding torrent link from Torcache/KickAssTorrents
-    request.setRawHeader("Referer", request.url().toEncoded().data());
+    request.setRawHeader("Referer", request.url().toEncoded());
 #ifdef QT_NO_COMPRESS
     // The macro "QT_NO_COMPRESS" defined in QT will disable the zlib related features
     // and reply data auto-decompression in QT will also be disabled. But we can support
