@@ -2863,6 +2863,11 @@ QString TorrentImpl::createMagnetURI() const
         ret += u"&dn=" + QString::fromLatin1(QUrl::toPercentEncoding(displayName));
     }
 
+    if (hasMetadata())
+    {
+        ret += u"&xl=" + QString::number(totalSize());
+    }
+
     for (const TrackerEntryStatus &tracker : asConst(trackers()))
     {
         ret += u"&tr=" + QString::fromLatin1(QUrl::toPercentEncoding(tracker.url));
