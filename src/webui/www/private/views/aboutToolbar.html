@@ -17,33 +17,33 @@
         MochaUI.initializeTabs("aboutTabs");
 
         $("aboutAboutLink").addEventListener("click", () => {
-            $$(".aboutTabContent").addClass("invisible");
-            $("aboutAboutContent").removeClass("invisible");
+            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
+            $("aboutAboutContent").classList.remove("invisible");
         });
 
         $("aboutAuthorLink").addEventListener("click", () => {
-            $$(".aboutTabContent").addClass("invisible");
-            $("aboutAuthorContent").removeClass("invisible");
+            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
+            $("aboutAuthorContent").classList.remove("invisible");
         });
 
         $("aboutSpecialThanksLink").addEventListener("click", () => {
-            $$(".aboutTabContent").addClass("invisible");
-            $("aboutSpecialThanksContent").removeClass("invisible");
+            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
+            $("aboutSpecialThanksContent").classList.remove("invisible");
         });
 
         $("aboutTranslatorsLink").addEventListener("click", () => {
-            $$(".aboutTabContent").addClass("invisible");
-            $("aboutTranslatorsContent").removeClass("invisible");
+            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
+            $("aboutTranslatorsContent").classList.remove("invisible");
         });
 
         $("aboutLicenseLink").addEventListener("click", () => {
-            $$(".aboutTabContent").addClass("invisible");
-            $("aboutLicenseContent").removeClass("invisible");
+            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
+            $("aboutLicenseContent").classList.remove("invisible");
         });
 
         $("aboutSoftwareUsedLink").addEventListener("click", () => {
-            $$(".aboutTabContent").addClass("invisible");
-            $("aboutSoftwareUsedContent").removeClass("invisible");
+            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
+            $("aboutSoftwareUsedContent").classList.remove("invisible");
         });
     })();
 </script>

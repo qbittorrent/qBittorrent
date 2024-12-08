@@ -597,11 +597,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                 th.textContent = this.columns[i].caption;
                 th.setAttribute("style", "width: " + this.columns[i].width + "px;" + this.columns[i].style);
                 th.columnName = this.columns[i].name;
-                th.addClass("column_" + th.columnName);
-                if ((this.columns[i].visible === "0") || this.columns[i].force_hide)
-                    th.addClass("invisible");
-                else
-                    th.removeClass("invisible");
+                th.classList.add("column_" + th.columnName);
+                th.classList.toggle("invisible", ((this.columns[i].visible === "0") || this.columns[i].force_hide));
             }
         },
 
@@ -625,16 +622,16 @@ window.qBittorrent.DynamicTable ??= (() => {
             fths[pos].setAttribute("style", style);
 
             if (visible) {
-                ths[pos].removeClass("invisible");
-                fths[pos].removeClass("invisible");
+                ths[pos].classList.remove("invisible");
+                fths[pos].classList.remove("invisible");
                 for (let i = 0; i < trs.length; ++i)
-                    trs[i].getElements("td")[pos].removeClass("invisible");
+                    trs[i].getElements("td")[pos].classList.remove("invisible");
             }
             else {
-                ths[pos].addClass("invisible");
-                fths[pos].addClass("invisible");
+                ths[pos].classList.add("invisible");
+                fths[pos].classList.add("invisible");
                 for (let j = 0; j < trs.length; ++j)
-                    trs[j].getElements("td")[pos].addClass("invisible");
+                    trs[j].getElements("td")[pos].classList.add("invisible");
             }
             if (this.columns[pos].onResize !== null)
                 this.columns[pos].onResize(columnName);
@@ -675,16 +672,13 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             const colElem = getCol(this.dynamicTableFixedHeaderDivId, newColumn);
             if (colElem !== null) {
-                colElem.addClass("sorted");
-                if (isReverse)
-                    colElem.addClass("reverse");
-                else
-                    colElem.removeClass("reverse");
+                colElem.classList.add("sorted");
+                colElem.classList.toggle("reverse", isReverse);
             }
             const oldColElem = getCol(this.dynamicTableFixedHeaderDivId, oldColumn);
             if (oldColElem !== null) {
-                oldColElem.removeClass("sorted");
-                oldColElem.removeClass("reverse");
+                oldColElem.classList.remove("sorted");
+                oldColElem.classList.remove("reverse");
             }
         },
 
@@ -711,8 +705,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             for (let i = 0; i < trs.length; ++i) {
                 const tr = trs[i];
                 this.selectedRows.push(tr.rowId);
-                if (!tr.hasClass("selected"))
-                    tr.addClass("selected");
+                tr.classList.add("selected");
             }
         },
 
@@ -759,18 +752,13 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.selectedRows = rowIds.slice();
             this.tableBody.getElements("tr").each((tr) => {
                 if (rowIds.includes(tr.rowId))
-                    tr.addClass("selected");
+                    tr.classList.add("selected");
             });
         },
 
         setRowClass: function() {
-            const that = this;
-            this.tableBody.getElements("tr").each((tr) => {
-                if (that.isRowSelected(tr.rowId))
-                    tr.addClass("selected");
-                else
-                    tr.removeClass("selected");
-            });
+            for (const tr of this.tableBody.querySelectorAll("tr"))
+                tr.classList.toggle("selected", this.isRowSelected(tr.rowId));
         },
 
         onSelectedRowChanged: () => {},
@@ -874,7 +862,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     for (let k = 0; k < this.columns.length; ++k) {
                         const td = new Element("td");
                         if ((this.columns[k].visible === "0") || this.columns[k].force_hide)
-                            td.addClass("invisible");
+                            td.classList.add("invisible");
                         td.injectInside(tr);
                     }
 
@@ -1959,14 +1947,14 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if (value) {
                     td.textContent = "QBT_TR(Yes)QBT_TR[CONTEXT=SearchPluginsTable]";
                     td.title = "QBT_TR(Yes)QBT_TR[CONTEXT=SearchPluginsTable]";
-                    td.getParent("tr").addClass("green");
-                    td.getParent("tr").removeClass("red");
+                    td.getParent("tr").classList.add("green");
+                    td.getParent("tr").classList.remove("red");
                 }
                 else {
                     td.textContent = "QBT_TR(No)QBT_TR[CONTEXT=SearchPluginsTable]";
                     td.title = "QBT_TR(No)QBT_TR[CONTEXT=SearchPluginsTable]";
-                    td.getParent("tr").addClass("red");
-                    td.getParent("tr").removeClass("green");
+                    td.getParent("tr").classList.add("red");
+                    td.getParent("tr").classList.remove("green");
                 }
             };
         },
@@ -2967,7 +2955,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if (row.rowId === rowId) {
                     articleId = row.full_data.dataId;
                     feedUid = row.full_data.feedUid;
-                    this.tableBody.rows[row.rowId].removeClass("unreadArticle");
+                    this.tableBody.rows[row.rowId].classList.remove("unreadArticle");
                     break;
                 }
             }
@@ -2987,10 +2975,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         updateRow: function(tr, fullUpdate) {
             const row = this.rows.get(tr.rowId);
             const data = row[fullUpdate ? "full_data" : "data"];
-            if (!row.full_data.isRead)
-                tr.addClass("unreadArticle");
-            else
-                tr.removeClass("unreadArticle");
+            tr.classList.toggle("unreadArticle", !row.full_data.isRead);
 
             const tds = tr.getElements("td");
             for (let i = 0; i < this.columns.length; ++i) {
@@ -3260,12 +3245,12 @@ window.qBittorrent.DynamicTable ??= (() => {
             const data = row[fullUpdate ? "full_data" : "data"];
 
             if (row.full_data.isFeed) {
-                tr.addClass("articleTableFeed");
-                tr.removeClass("articleTableArticle");
+                tr.classList.add("articleTableFeed");
+                tr.classList.remove("articleTableArticle");
             }
             else {
-                tr.removeClass("articleTableFeed");
-                tr.addClass("articleTableArticle");
+                tr.classList.remove("articleTableFeed");
+                tr.classList.add("articleTableArticle");
             }
 
             const tds = tr.getElements("td");

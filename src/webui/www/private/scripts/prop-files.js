@@ -179,7 +179,7 @@ window.qBittorrent.PropFiles ??= (() => {
         select.id = "comboPrio" + id;
         select.setAttribute("data-id", id);
         select.setAttribute("data-file-id", fileId);
-        select.addClass("combo_priority");
+        select.classList.add("combo_priority");
         select.addEventListener("change", fileComboboxChanged);
 
         select.appendChild(createOption(FilePriority.Ignored, (FilePriority.Ignored === selectedPriority), "QBT_TR(Do not download)QBT_TR[CONTEXT=PropListDelegate]"));
@@ -335,8 +335,8 @@ window.qBittorrent.PropFiles ??= (() => {
 
     let loadTorrentFilesDataTimer = -1;
     const loadTorrentFilesData = () => {
-        if ($("propFiles").hasClass("invisible")
-            || $("propertiesPanel_collapseToggle").hasClass("panel-expand")) {
+        if ($("propFiles").classList.contains("invisible")
+            || $("propertiesPanel_collapseToggle").classList.contains("panel-expand")) {
             // Tab changed, don't do anything
             return;
         }
@@ -668,10 +668,7 @@ window.qBittorrent.PropFiles ??= (() => {
         if (span === null)
             return;
         const rowElem = span.parentElement.parentElement;
-        if (shouldHide)
-            rowElem.addClass("invisible");
-        else
-            rowElem.removeClass("invisible");
+        rowElem.classList.toggle("invisible", shouldHide);
     };
 
     /**
@@ -689,10 +686,7 @@ window.qBittorrent.PropFiles ??= (() => {
 
         // rotate the collapse icon
         const collapseIcon = td.getElementsByClassName("filesTableCollapseIcon")[0];
-        if (isCollapsed)
-            collapseIcon.addClass("rotate");
-        else
-            collapseIcon.removeClass("rotate");
+        collapseIcon.classList.toggle("rotate", isCollapsed);
     };
 
     const _isCollapsed = (node) => {

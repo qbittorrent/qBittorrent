@@ -185,7 +185,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("resize", window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
         // only save sizes if the columns are visible
-        if (!$("mainColumn").hasClass("invisible"))
+        if (!$("mainColumn").classList.contains("invisible"))
             saveColumnSizes();
     }));
 
@@ -218,7 +218,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
 
         // start off hidden
-        $("searchTabColumn").addClass("invisible");
+        $("searchTabColumn").classList.add("invisible");
     };
 
     const buildRssTab = () => {
@@ -229,7 +229,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
 
         // start off hidden
-        $("rssTabColumn").addClass("invisible");
+        $("rssTabColumn").classList.add("invisible");
     };
 
     const buildLogTab = () => {
@@ -240,7 +240,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
 
         // start off hidden
-        $("logTabColumn").addClass("invisible");
+        $("logTabColumn").classList.add("invisible");
     };
 
     buildTransfersTab();
@@ -340,22 +340,22 @@ window.addEventListener("DOMContentLoaded", () => {
     let showTopToolbar = LocalPreferences.get("show_top_toolbar", "true") === "true";
     if (!showTopToolbar) {
         $("showTopToolbarLink").firstElementChild.style.opacity = "0";
-        $("mochaToolbar").addClass("invisible");
+        $("mochaToolbar").classList.add("invisible");
     }
 
     // Show Status Bar is enabled by default
     let showStatusBar = LocalPreferences.get("show_status_bar", "true") === "true";
     if (!showStatusBar) {
         $("showStatusBarLink").firstElementChild.style.opacity = "0";
-        $("desktopFooterWrapper").addClass("invisible");
+        $("desktopFooterWrapper").classList.add("invisible");
     }
 
     // Show Filters Sidebar is enabled by default
     let showFiltersSidebar = LocalPreferences.get("show_filters_sidebar", "true") === "true";
     if (!showFiltersSidebar) {
         $("showFiltersSidebarLink").firstElementChild.style.opacity = "0";
-        $("filtersColumn").addClass("invisible");
-        $("filtersColumn_handle").addClass("invisible");
+        $("filtersColumn").classList.add("invisible");
+        $("filtersColumn_handle").classList.add("invisible");
     }
 
     let speedInTitle = LocalPreferences.get("speed_in_browser_title_bar") === "true";
@@ -1054,20 +1054,20 @@ window.addEventListener("DOMContentLoaded", () => {
             torrentsTable.columns["priority"].force_hide = !queueing_enabled;
             torrentsTable.updateColumn("priority");
             if (queueing_enabled) {
-                $("topQueuePosItem").removeClass("invisible");
-                $("increaseQueuePosItem").removeClass("invisible");
-                $("decreaseQueuePosItem").removeClass("invisible");
-                $("bottomQueuePosItem").removeClass("invisible");
-                $("queueingButtons").removeClass("invisible");
-                $("queueingMenuItems").removeClass("invisible");
+                $("topQueuePosItem").classList.remove("invisible");
+                $("increaseQueuePosItem").classList.remove("invisible");
+                $("decreaseQueuePosItem").classList.remove("invisible");
+                $("bottomQueuePosItem").classList.remove("invisible");
+                $("queueingButtons").classList.remove("invisible");
+                $("queueingMenuItems").classList.remove("invisible");
             }
             else {
-                $("topQueuePosItem").addClass("invisible");
-                $("increaseQueuePosItem").addClass("invisible");
-                $("decreaseQueuePosItem").addClass("invisible");
-                $("bottomQueuePosItem").addClass("invisible");
-                $("queueingButtons").addClass("invisible");
-                $("queueingMenuItems").addClass("invisible");
+                $("topQueuePosItem").classList.add("invisible");
+                $("increaseQueuePosItem").classList.add("invisible");
+                $("decreaseQueuePosItem").classList.add("invisible");
+                $("bottomQueuePosItem").classList.add("invisible");
+                $("queueingButtons").classList.add("invisible");
+                $("queueingMenuItems").classList.add("invisible");
             }
         }
 
@@ -1123,11 +1123,11 @@ window.addEventListener("DOMContentLoaded", () => {
         LocalPreferences.set("show_top_toolbar", showTopToolbar.toString());
         if (showTopToolbar) {
             $("showTopToolbarLink").firstElementChild.style.opacity = "1";
-            $("mochaToolbar").removeClass("invisible");
+            $("mochaToolbar").classList.remove("invisible");
         }
         else {
             $("showTopToolbarLink").firstElementChild.style.opacity = "0";
-            $("mochaToolbar").addClass("invisible");
+            $("mochaToolbar").classList.add("invisible");
         }
         MochaUI.Desktop.setDesktopSize();
     });
@@ -1137,11 +1137,11 @@ window.addEventListener("DOMContentLoaded", () => {
         LocalPreferences.set("show_status_bar", showStatusBar.toString());
         if (showStatusBar) {
             $("showStatusBarLink").firstElementChild.style.opacity = "1";
-            $("desktopFooterWrapper").removeClass("invisible");
+            $("desktopFooterWrapper").classList.remove("invisible");
         }
         else {
             $("showStatusBarLink").firstElementChild.style.opacity = "0";
-            $("desktopFooterWrapper").addClass("invisible");
+            $("desktopFooterWrapper").classList.add("invisible");
         }
         MochaUI.Desktop.setDesktopSize();
     });
@@ -1175,13 +1175,13 @@ window.addEventListener("DOMContentLoaded", () => {
         LocalPreferences.set("show_filters_sidebar", showFiltersSidebar.toString());
         if (showFiltersSidebar) {
             $("showFiltersSidebarLink").firstElementChild.style.opacity = "1";
-            $("filtersColumn").removeClass("invisible");
-            $("filtersColumn_handle").removeClass("invisible");
+            $("filtersColumn").classList.remove("invisible");
+            $("filtersColumn_handle").classList.remove("invisible");
         }
         else {
             $("showFiltersSidebarLink").firstElementChild.style.opacity = "0";
-            $("filtersColumn").addClass("invisible");
-            $("filtersColumn_handle").addClass("invisible");
+            $("filtersColumn").classList.add("invisible");
+            $("filtersColumn_handle").classList.add("invisible");
         }
         MochaUI.Desktop.setDesktopSize();
     });
@@ -1217,49 +1217,49 @@ window.addEventListener("DOMContentLoaded", () => {
     const updateTabDisplay = () => {
         if (window.qBittorrent.Client.isShowRssReader()) {
             $("showRssReaderLink").firstElementChild.style.opacity = "1";
-            $("mainWindowTabs").removeClass("invisible");
-            $("rssTabLink").removeClass("invisible");
+            $("mainWindowTabs").classList.remove("invisible");
+            $("rssTabLink").classList.remove("invisible");
             if (!MochaUI.Panels.instances.RssPanel)
                 addRssPanel();
         }
         else {
             $("showRssReaderLink").firstElementChild.style.opacity = "0";
-            $("rssTabLink").addClass("invisible");
-            if ($("rssTabLink").hasClass("selected"))
+            $("rssTabLink").classList.add("invisible");
+            if ($("rssTabLink").classList.contains("selected"))
                 $("transfersTabLink").click();
         }
 
         if (window.qBittorrent.Client.isShowSearchEngine()) {
             $("showSearchEngineLink").firstElementChild.style.opacity = "1";
-            $("mainWindowTabs").removeClass("invisible");
-            $("searchTabLink").removeClass("invisible");
+            $("mainWindowTabs").classList.remove("invisible");
+            $("searchTabLink").classList.remove("invisible");
             if (!MochaUI.Panels.instances.SearchPanel)
                 addSearchPanel();
         }
         else {
             $("showSearchEngineLink").firstElementChild.style.opacity = "0";
-            $("searchTabLink").addClass("invisible");
-            if ($("searchTabLink").hasClass("selected"))
+            $("searchTabLink").classList.add("invisible");
+            if ($("searchTabLink").classList.contains("selected"))
                 $("transfersTabLink").click();
         }
 
         if (window.qBittorrent.Client.isShowLogViewer()) {
             $("showLogViewerLink").firstElementChild.style.opacity = "1";
-            $("mainWindowTabs").removeClass("invisible");
-            $("logTabLink").removeClass("invisible");
+            $("mainWindowTabs").classList.remove("invisible");
+            $("logTabLink").classList.remove("invisible");
             if (!MochaUI.Panels.instances.LogPanel)
                 addLogPanel();
         }
         else {
             $("showLogViewerLink").firstElementChild.style.opacity = "0";
-            $("logTabLink").addClass("invisible");
-            if ($("logTabLink").hasClass("selected"))
+            $("logTabLink").classList.add("invisible");
+            if ($("logTabLink").classList.contains("selected"))
                 $("transfersTabLink").click();
         }
 
         // display no tabs
         if (!window.qBittorrent.Client.isShowRssReader() && !window.qBittorrent.Client.isShowSearchEngine() && !window.qBittorrent.Client.isShowLogViewer())
-            $("mainWindowTabs").addClass("invisible");
+            $("mainWindowTabs").classList.add("invisible");
     };
 
     $("StatisticsLink").addEventListener("click", () => { StatisticsLinkFN(); });
@@ -1269,11 +1269,11 @@ window.addEventListener("DOMContentLoaded", () => {
     const showTransfersTab = () => {
         const showFiltersSidebar = LocalPreferences.get("show_filters_sidebar", "true") === "true";
         if (showFiltersSidebar) {
-            $("filtersColumn").removeClass("invisible");
-            $("filtersColumn_handle").removeClass("invisible");
+            $("filtersColumn").classList.remove("invisible");
+            $("filtersColumn_handle").classList.remove("invisible");
         }
-        $("mainColumn").removeClass("invisible");
-        $("torrentsFilterToolbar").removeClass("invisible");
+        $("mainColumn").classList.remove("invisible");
+        $("torrentsFilterToolbar").classList.remove("invisible");
 
         customSyncMainDataInterval = null;
         syncData(100);
@@ -1286,10 +1286,10 @@ window.addEventListener("DOMContentLoaded", () => {
     };
 
     const hideTransfersTab = () => {
-        $("filtersColumn").addClass("invisible");
-        $("filtersColumn_handle").addClass("invisible");
-        $("mainColumn").addClass("invisible");
-        $("torrentsFilterToolbar").addClass("invisible");
+        $("filtersColumn").classList.add("invisible");
+        $("filtersColumn_handle").classList.add("invisible");
+        $("mainColumn").classList.add("invisible");
+        $("torrentsFilterToolbar").classList.add("invisible");
         MochaUI.Desktop.resizePanels();
     };
 
@@ -1312,7 +1312,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 searchTabInitialized = true;
             }
 
-            $("searchTabColumn").removeClass("invisible");
+            $("searchTabColumn").classList.remove("invisible");
             customSyncMainDataInterval = 30000;
             hideTransfersTab();
             hideRssTab();
@@ -1323,7 +1323,7 @@ window.addEventListener("DOMContentLoaded", () => {
     })();
 
     const hideSearchTab = () => {
-        $("searchTabColumn").addClass("invisible");
+        $("searchTabColumn").classList.add("invisible");
         MochaUI.Desktop.resizePanels();
     };
 
@@ -1349,7 +1349,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 window.qBittorrent.Rss.load();
             }
 
-            $("rssTabColumn").removeClass("invisible");
+            $("rssTabColumn").classList.remove("invisible");
             customSyncMainDataInterval = 30000;
             hideTransfersTab();
             hideSearchTab();
@@ -1360,7 +1360,7 @@ window.addEventListener("DOMContentLoaded", () => {
     })();
 
     const hideRssTab = () => {
-        $("rssTabColumn").addClass("invisible");
+        $("rssTabColumn").classList.add("invisible");
         window.qBittorrent.Rss && window.qBittorrent.Rss.unload();
         MochaUI.Desktop.resizePanels();
     };
@@ -1387,7 +1387,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 window.qBittorrent.Log.load();
             }
 
-            $("logTabColumn").removeClass("invisible");
+            $("logTabColumn").classList.remove("invisible");
             customSyncMainDataInterval = 30000;
             hideTransfersTab();
             hideSearchTab();
@@ -1398,7 +1398,7 @@ window.addEventListener("DOMContentLoaded", () => {
     })();
 
     const hideLogTab = () => {
-        $("logTabColumn").addClass("invisible");
+        $("logTabColumn").classList.add("invisible");
         MochaUI.Desktop.resizePanels();
         window.qBittorrent.Log && window.qBittorrent.Log.unload();
     };

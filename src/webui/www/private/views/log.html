@@ -306,14 +306,14 @@
             currentSelectedTab = tab;
             if (currentSelectedTab === "main") {
                 selectBox.enable();
-                $("logMessageView").removeClass("invisible");
-                $("logPeerView").addClass("invisible");
+                $("logMessageView").classList.remove("invisible");
+                $("logPeerView").classList.add("invisible");
                 resetTableTimer("peer");
             }
             else {
                 selectBox.disable();
-                $("logMessageView").addClass("invisible");
-                $("logPeerView").removeClass("invisible");
+                $("logMessageView").classList.add("invisible");
+                $("logPeerView").classList.remove("invisible");
                 resetTableTimer("main");
             }
 
@@ -370,7 +370,7 @@
                 onSuccess: (response) => {
                     $("error_div").textContent = "";
 
-                    if ($("logTabColumn").hasClass("invisible"))
+                    if ($("logTabColumn").classList.contains("invisible"))
                         return;
 
                     if (response.length > 0) {
