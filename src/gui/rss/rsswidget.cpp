@@ -55,7 +55,7 @@
 #include "ui_rsswidget.h"
 namespace
 {
-void convertRelativeUrlToAbsolute(QString &html, const QString &baseUrl);
+    void convertRelativeUrlToAbsolute(QString &html, const QString &baseUrl);
 }
 RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     : GUIApplicationComponent(app, parent)
