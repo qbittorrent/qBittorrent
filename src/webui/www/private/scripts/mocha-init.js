@@ -74,7 +74,7 @@ window.qBittorrent.Dialog ??= (() => {
         cornerRadius: 5,
         draggable: true,
         footerHeight: 20,
-        icon: "images/qbittorrent-tray.svg",
+        icon: "${BASE_PATH}images/qbittorrent-tray.svg",
         loadMethod: "xhr",
         maximizable: false,
         method: "post",
@@ -186,7 +186,7 @@ const initializeWindows = () => {
 
         new MochaUI.Window({
             id: id,
-            icon: "images/qbittorrent-tray.svg",
+            icon: "${BASE_PATH}images/qbittorrent-tray.svg",
             title: "QBT_TR(Download from URLs)QBT_TR[CONTEXT=downloadFromURL]",
             loadMethod: "iframe",
             contentURL: contentUri.toString(),
@@ -212,13 +212,13 @@ const initializeWindows = () => {
         const id = "preferencesPage";
         new MochaUI.Window({
             id: id,
-            icon: "images/qbittorrent-tray.svg",
+            icon: "${BASE_PATH}images/qbittorrent-tray.svg",
             title: "QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]",
             loadMethod: "xhr",
             toolbar: true,
             contentURL: new URI("views/preferences.html").toString(),
             require: {
-                css: ["css/Tabs.css"]
+                css: ["${BASE_PATH}css/Tabs.css"]
             },
             toolbarURL: "views/preferencesToolbar.html",
             maximizable: false,
@@ -261,7 +261,7 @@ const initializeWindows = () => {
         const id = "uploadPage";
         new MochaUI.Window({
             id: id,
-            icon: "images/qbittorrent-tray.svg",
+            icon: "${BASE_PATH}images/qbittorrent-tray.svg",
             title: "QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]",
             loadMethod: "iframe",
             contentURL: new URI("upload.html").toString(),
@@ -282,7 +282,7 @@ const initializeWindows = () => {
     globalUploadLimitFN = () => {
         new MochaUI.Window({
             id: "uploadLimitPage",
-            icon: "images/qbittorrent-tray.svg",
+            icon: "${BASE_PATH}images/qbittorrent-tray.svg",
             title: "QBT_TR(Global Upload Speed Limit)QBT_TR[CONTEXT=MainWindow]",
             loadMethod: "iframe",
             contentURL: new URI("uploadlimit.html").setData("hashes", "global").toString(),
@@ -301,7 +301,7 @@ const initializeWindows = () => {
         if (hashes.length) {
             new MochaUI.Window({
                 id: "uploadLimitPage",
-                icon: "images/qbittorrent-tray.svg",
+                icon: "${BASE_PATH}images/qbittorrent-tray.svg",
                 title: "QBT_TR(Torrent Upload Speed Limiting)QBT_TR[CONTEXT=TransferListWidget]",
                 loadMethod: "iframe",
                 contentURL: new URI("uploadlimit.html").setData("hashes", hashes.join("|")).toString(),
@@ -343,7 +343,7 @@ const initializeWindows = () => {
             const orig = torrentsHaveSameShareRatio ? shareRatio : "";
             new MochaUI.Window({
                 id: "shareRatioPage",
-                icon: "images/qbittorrent-tray.svg",
+                icon: "${BASE_PATH}images/qbittorrent-tray.svg",
                 title: "QBT_TR(Torrent Upload/Download Ratio Limiting)QBT_TR[CONTEXT=UpDownRatioDialog]",
                 loadMethod: "iframe",
                 contentURL: new URI("shareratio.html").setData("hashes", hashes.join("|")).setData("orig", orig).toString(),
@@ -361,7 +361,7 @@ const initializeWindows = () => {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: "api/v2/torrents/toggleSequentialDownload",
+                url: "${BASE_PATH}api/v2/torrents/toggleSequentialDownload",
                 method: "post",
                 data: {
                     hashes: hashes.join("|")
@@ -375,7 +375,7 @@ const initializeWindows = () => {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: "api/v2/torrents/toggleFirstLastPiecePrio",
+                url: "${BASE_PATH}api/v2/torrents/toggleFirstLastPiecePrio",
                 method: "post",
                 data: {
                     hashes: hashes.join("|")
@@ -389,7 +389,7 @@ const initializeWindows = () => {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: "api/v2/torrents/setSuperSeeding",
+                url: "${BASE_PATH}api/v2/torrents/setSuperSeeding",
                 method: "post",
                 data: {
                     value: val,
@@ -404,7 +404,7 @@ const initializeWindows = () => {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: "api/v2/torrents/setForceStart",
+                url: "${BASE_PATH}api/v2/torrents/setForceStart",
                 method: "post",
                 data: {
                     value: "true",
@@ -418,7 +418,7 @@ const initializeWindows = () => {
     globalDownloadLimitFN = () => {
         new MochaUI.Window({
             id: "downloadLimitPage",
-            icon: "images/qbittorrent-tray.svg",
+            icon: "${BASE_PATH}images/qbittorrent-tray.svg",
             title: "QBT_TR(Global Download Speed Limit)QBT_TR[CONTEXT=MainWindow]",
             loadMethod: "iframe",
             contentURL: new URI("downloadlimit.html").setData("hashes", "global").toString(),
@@ -436,7 +436,7 @@ const initializeWindows = () => {
         const id = "statisticspage";
         new MochaUI.Window({
             id: id,
-            icon: "images/qbittorrent-tray.svg",
+            icon: "${BASE_PATH}images/qbittorrent-tray.svg",
             title: "QBT_TR(Statistics)QBT_TR[CONTEXT=StatsDialog]",
             loadMethod: "xhr",
             contentURL: new URI("views/statistics.html").toString(),
@@ -455,7 +455,7 @@ const initializeWindows = () => {
         if (hashes.length) {
             new MochaUI.Window({
                 id: "downloadLimitPage",
-                icon: "images/qbittorrent-tray.svg",
+                icon: "${BASE_PATH}images/qbittorrent-tray.svg",
                 title: "QBT_TR(Torrent Download Speed Limiting)QBT_TR[CONTEXT=TransferListWidget]",
                 loadMethod: "iframe",
                 contentURL: new URI("downloadlimit.html").setData("hashes", hashes.join("|")).toString(),
@@ -495,7 +495,7 @@ const initializeWindows = () => {
             }
             else {
                 new Request({
-                    url: "api/v2/torrents/delete",
+                    url: "${BASE_PATH}api/v2/torrents/delete",
                     method: "post",
                     data: {
                         hashes: hashes.join("|"),
@@ -524,7 +524,7 @@ const initializeWindows = () => {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: "api/v2/torrents/stop",
+                url: "${BASE_PATH}api/v2/torrents/stop",
                 method: "post",
                 data: {
                     hashes: hashes.join("|")
@@ -538,7 +538,7 @@ const initializeWindows = () => {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: "api/v2/torrents/start",
+                url: "${BASE_PATH}api/v2/torrents/start",
                 method: "post",
                 data: {
                     hashes: hashes.join("|")
@@ -566,7 +566,7 @@ const initializeWindows = () => {
             }
             else {
                 new Request({
-                    url: "api/v2/torrents/setAutoManagement",
+                    url: "${BASE_PATH}api/v2/torrents/setAutoManagement",
                     method: "post",
                     data: {
                         hashes: hashes.join("|"),
@@ -597,7 +597,7 @@ const initializeWindows = () => {
             }
             else {
                 new Request({
-                    url: "api/v2/torrents/recheck",
+                    url: "${BASE_PATH}api/v2/torrents/recheck",
                     method: "post",
                     data: {
                         "hashes": hashes.join("|"),
@@ -617,7 +617,7 @@ const initializeWindows = () => {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: "api/v2/torrents/reannounce",
+                url: "${BASE_PATH}api/v2/torrents/reannounce",
                 method: "post",
                 data: {
                     hashes: hashes.join("|"),
@@ -635,7 +635,7 @@ const initializeWindows = () => {
 
             new MochaUI.Window({
                 id: "setLocationPage",
-                icon: "images/qbittorrent-tray.svg",
+                icon: "${BASE_PATH}images/qbittorrent-tray.svg",
                 title: "QBT_TR(Set location)QBT_TR[CONTEXT=TransferListWidget]",
                 loadMethod: "iframe",
                 contentURL: new URI("setlocation.html").setData("hashes", hashes.join("|")).setData("path", encodeURIComponent(row.full_data.save_path)).toString(),
@@ -658,7 +658,7 @@ const initializeWindows = () => {
             if (row) {
                 new MochaUI.Window({
                     id: "renamePage",
-                    icon: "images/qbittorrent-tray.svg",
+                    icon: "${BASE_PATH}images/qbittorrent-tray.svg",
                     title: "QBT_TR(Rename)QBT_TR[CONTEXT=TransferListWidget]",
                     loadMethod: "iframe",
                     contentURL: new URI("rename.html").setData("hash", hash).setData("name", row.full_data.name).toString(),
@@ -682,7 +682,7 @@ const initializeWindows = () => {
             if (row) {
                 new MochaUI.Window({
                     id: "multiRenamePage",
-                    icon: "images/qbittorrent-tray.svg",
+                    icon: "${BASE_PATH}images/qbittorrent-tray.svg",
                     title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TransferListWidget]",
                     data: { hash: hash, selectedRows: [] },
                     loadMethod: "xhr",
@@ -704,7 +704,7 @@ const initializeWindows = () => {
         const hashes = torrentsTable.getFilteredTorrentsHashes(selectedStatus, selectedCategory, selectedTag, selectedTracker);
         if (hashes.length > 0) {
             new Request({
-                url: "api/v2/torrents/start",
+                url: "${BASE_PATH}api/v2/torrents/start",
                 method: "post",
                 data: {
                     hashes: hashes.join("|")
@@ -724,7 +724,7 @@ const initializeWindows = () => {
         const hashes = torrentsTable.getFilteredTorrentsHashes(selectedStatus, selectedCategory, selectedTag, selectedTracker);
         if (hashes.length > 0) {
             new Request({
-                url: "api/v2/torrents/stop",
+                url: "${BASE_PATH}api/v2/torrents/stop",
                 method: "post",
                 data: {
                     hashes: hashes.join("|")
@@ -761,7 +761,7 @@ const initializeWindows = () => {
             }
             else {
                 new Request({
-                    url: "api/v2/torrents/delete",
+                    url: "${BASE_PATH}api/v2/torrents/delete",
                     method: "post",
                     data: {
                         hashes: hashes.join("|"),
@@ -786,7 +786,7 @@ const initializeWindows = () => {
         if (hashes.length) {
             new MochaUI.Window({
                 id: "newCategoryPage",
-                icon: "images/qbittorrent-tray.svg",
+                icon: "${BASE_PATH}images/qbittorrent-tray.svg",
                 title: "QBT_TR(New Category)QBT_TR[CONTEXT=TransferListWidget]",
                 loadMethod: "iframe",
                 contentURL: new URI("newcategory.html").setData("action", action).setData("hashes", hashes.join("|")).toString(),
@@ -810,7 +810,7 @@ const initializeWindows = () => {
             ? category_list.get(categoryHash).name
             : "";
         new Request({
-            url: "api/v2/torrents/setCategory",
+            url: "${BASE_PATH}api/v2/torrents/setCategory",
             method: "post",
             data: {
                 hashes: hashes.join("|"),
@@ -826,7 +826,7 @@ const initializeWindows = () => {
         const action = "create";
         new MochaUI.Window({
             id: "newCategoryPage",
-            icon: "images/qbittorrent-tray.svg",
+            icon: "${BASE_PATH}images/qbittorrent-tray.svg",
             title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
             loadMethod: "iframe",
             contentURL: new URI("newcategory.html").setData("action", action).toString(),
@@ -845,7 +845,7 @@ const initializeWindows = () => {
         const categoryName = category_list.get(categoryHash).name + "/";
         new MochaUI.Window({
             id: "newSubcategoryPage",
-            icon: "images/qbittorrent-tray.svg",
+            icon: "${BASE_PATH}images/qbittorrent-tray.svg",
             title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
             loadMethod: "iframe",
             contentURL: new URI("newcategory.html").setData("action", action).setData("categoryName", categoryName).toString(),
@@ -864,7 +864,7 @@ const initializeWindows = () => {
         const category = category_list.get(categoryHash);
         new MochaUI.Window({
             id: "editCategoryPage",
-            icon: "images/qbittorrent-tray.svg",
+            icon: "${BASE_PATH}images/qbittorrent-tray.svg",
             title: "QBT_TR(Edit Category)QBT_TR[CONTEXT=TransferListWidget]",
             loadMethod: "iframe",
             contentURL: new URI("newcategory.html").setData("action", action).setData("categoryName", category.name).setData("savePath", category.savePath).toString(),
@@ -881,7 +881,7 @@ const initializeWindows = () => {
     removeCategoryFN = (categoryHash) => {
         const categoryName = category_list.get(categoryHash).name;
         new Request({
-            url: "api/v2/torrents/removeCategories",
+            url: "${BASE_PATH}api/v2/torrents/removeCategories",
             method: "post",
             data: {
                 categories: categoryName
@@ -901,7 +901,7 @@ const initializeWindows = () => {
         });
 
         new Request({
-            url: "api/v2/torrents/removeCategories",
+            url: "${BASE_PATH}api/v2/torrents/removeCategories",
             method: "post",
             data: {
                 categories: categories.join("\n")
@@ -919,7 +919,7 @@ const initializeWindows = () => {
         if (hashes.length) {
             new MochaUI.Window({
                 id: "newTagPage",
-                icon: "images/qbittorrent-tray.svg",
+                icon: "${BASE_PATH}images/qbittorrent-tray.svg",
                 title: "QBT_TR(Add tags)QBT_TR[CONTEXT=TransferListWidget]",
                 loadMethod: "iframe",
                 contentURL: new URI("newtag.html").setData("action", action).setData("hashes", hashes.join("|")).toString(),
@@ -941,7 +941,7 @@ const initializeWindows = () => {
 
         const tagName = tagList.has(tagHash) ? tagList.get(tagHash).name : "";
         new Request({
-            url: (isSet ? "api/v2/torrents/addTags" : "api/v2/torrents/removeTags"),
+            url: (isSet ? "${BASE_PATH}api/v2/torrents/addTags" : "${BASE_PATH}api/v2/torrents/removeTags"),
             method: "post",
             data: {
                 hashes: hashes.join("|"),
@@ -954,7 +954,7 @@ const initializeWindows = () => {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: ("api/v2/torrents/removeTags"),
+                url: ("${BASE_PATH}api/v2/torrents/removeTags"),
                 method: "post",
                 data: {
                     hashes: hashes.join("|"),
@@ -967,7 +967,7 @@ const initializeWindows = () => {
         const action = "create";
         new MochaUI.Window({
             id: "newTagPage",
-            icon: "images/qbittorrent-tray.svg",
+            icon: "${BASE_PATH}images/qbittorrent-tray.svg",
             title: "QBT_TR(New Tag)QBT_TR[CONTEXT=TagFilterWidget]",
             loadMethod: "iframe",
             contentURL: new URI("newtag.html").setData("action", action).toString(),
@@ -985,7 +985,7 @@ const initializeWindows = () => {
     removeTagFN = (tagHash) => {
         const tagName = tagList.get(tagHash).name;
         new Request({
-            url: "api/v2/torrents/deleteTags",
+            url: "${BASE_PATH}api/v2/torrents/deleteTags",
             method: "post",
             data: {
                 tags: tagName
@@ -1001,7 +1001,7 @@ const initializeWindows = () => {
                 tags.push(tag.name);
         });
         new Request({
-            url: "api/v2/torrents/deleteTags",
+            url: "${BASE_PATH}api/v2/torrents/deleteTags",
             method: "post",
             data: {
                 tags: tags.join(",")
@@ -1115,7 +1115,7 @@ const initializeWindows = () => {
                 continue;
 
             const name = row.full_data.name;
-            const url = new URI("api/v2/torrents/export").setData("hash", hash).toString();
+            const url = new URI("${BASE_PATH}api/v2/torrents/export").setData("hash", hash).toString();
 
             // download response to file
             await window.qBittorrent.Misc.downloadFile(url, `${name}.torrent`, "QBT_TR(Unable to export torrent file)QBT_TR[CONTEXT=MainWindow]");
@@ -1131,7 +1131,7 @@ const initializeWindows = () => {
 
         if (confirm("QBT_TR(Would you like to stop all torrents?)QBT_TR[CONTEXT=MainWindow]")) {
             new Request({
-                url: "api/v2/torrents/stop",
+                url: "${BASE_PATH}api/v2/torrents/stop",
                 method: "post",
                 data: {
                     hashes: "all"
@@ -1147,7 +1147,7 @@ const initializeWindows = () => {
 
         if (confirm("QBT_TR(Would you like to start all torrents?)QBT_TR[CONTEXT=MainWindow]")) {
             new Request({
-                url: "api/v2/torrents/start",
+                url: "${BASE_PATH}api/v2/torrents/start",
                 method: "post",
                 data: {
                     hashes: "all"
@@ -1166,7 +1166,7 @@ const initializeWindows = () => {
             if (hashes.length) {
                 hashes.each((hash, index) => {
                     new Request({
-                        url: "api/v2/torrents/" + item,
+                        url: "${BASE_PATH}api/v2/torrents/" + item,
                         method: "post",
                         data: {
                             hashes: hash
@@ -1190,7 +1190,7 @@ const initializeWindows = () => {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: "api/v2/torrents/" + cmd,
+                url: "${BASE_PATH}api/v2/torrents/" + cmd,
                 method: "post",
                 data: {
                     hashes: hashes.join("|")
@@ -1207,12 +1207,12 @@ const initializeWindows = () => {
         const id = "aboutpage";
         new MochaUI.Window({
             id: id,
-            icon: "images/qbittorrent-tray.svg",
+            icon: "${BASE_PATH}images/qbittorrent-tray.svg",
             title: "QBT_TR(About qBittorrent)QBT_TR[CONTEXT=AboutDialog]",
             loadMethod: "xhr",
             contentURL: new URI("views/about.html").toString(),
             require: {
-                css: ["css/Tabs.css"]
+                css: ["${BASE_PATH}css/Tabs.css"]
             },
             toolbar: true,
             toolbarURL: "views/aboutToolbar.html",
@@ -1230,7 +1230,7 @@ const initializeWindows = () => {
         e.stopPropagation();
 
         new Request({
-            url: "api/v2/auth/logout",
+            url: "${BASE_PATH}api/v2/auth/logout",
             method: "post",
             onSuccess: () => {
                 window.location.reload(true);
@@ -1244,7 +1244,7 @@ const initializeWindows = () => {
 
         if (confirm("QBT_TR(Are you sure you want to quit qBittorrent?)QBT_TR[CONTEXT=MainWindow]")) {
             new Request({
-                url: "api/v2/app/shutdown",
+                url: "${BASE_PATH}api/v2/app/shutdown",
                 method: "post",
                 onSuccess: () => {
                     const shutdownMessage = "QBT_TR(%1 has been shutdown)QBT_TR[CONTEXT=HttpServer]".replace("%1", window.qBittorrent.Client.mainTitle());

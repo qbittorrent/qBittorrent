@@ -1026,6 +1026,19 @@ void Preferences::setWebUITrustedReverseProxiesList(const QString &addr)
     setValue(u"Preferences/WebUI/TrustedReverseProxiesList"_s, addr);
 }
 
+QString Preferences::getWebUIBasePath() const
+{
+    return value(u"Preferences/WebUI/BasePath"_s, u"/"_s);
+}
+
+void Preferences::setWebUIBasePath(const QString &path)
+{
+    if (path == getWebUIBasePath())
+        return;
+
+    setValue(u"Preferences/WebUI/BasePath"_s, path);
+}
+
 bool Preferences::isDynDNSEnabled() const
 {
     return value(u"Preferences/DynDNS/Enabled"_s, false);

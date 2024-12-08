@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <title>QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]</title>
-    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
-    <link rel="stylesheet" href="css/Window.css?v=${CACHEID}" type="text/css">
-    <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
-    <script src="scripts/localpreferences.js?v=${CACHEID}"></script>
-    <script src="scripts/color-scheme.js?v=${CACHEID}"></script>
-    <script src="scripts/download.js?v=${CACHEID}"></script>
-    <script src="scripts/pathAutofill.js?v=${CACHEID}"></script>
+    <link rel="stylesheet" href="${BASE_PATH}css/style.css?v=${CACHEID}" type="text/css">
+    <link rel="stylesheet" href="${BASE_PATH}css/Window.css?v=${CACHEID}" type="text/css">
+    <script src="${BASE_PATH}scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
+    <script src="${BASE_PATH}scripts/localpreferences.js?v=${CACHEID}"></script>
+    <script src="${BASE_PATH}scripts/color-scheme.js?v=${CACHEID}"></script>
+    <script src="${BASE_PATH}scripts/download.js?v=${CACHEID}"></script>
+    <script src="${BASE_PATH}scripts/pathAutofill.js?v=${CACHEID}"></script>
 </head>
 
 <body>
     <iframe id="upload_frame" name="upload_frame" class="invisible" title="" src="about:blank"></iframe>
-    <form action="api/v2/torrents/add" enctype="multipart/form-data" method="post" id="uploadForm" style="text-align: center;" target="upload_frame" autocorrect="off" autocapitalize="none">
+    <form action="${BASE_PATH}api/v2/torrents/add" enctype="multipart/form-data" method="post" id="uploadForm" style="text-align: center;" target="upload_frame" autocorrect="off" autocapitalize="none">
         <div style="margin-top: 25px; display: inline-block; border: 1px solid lightgrey; border-radius: 4px;">
             <input type="file" id="fileselect" accept=".torrent, application/x-bittorrent" name="fileselect[]" multiple aria-label="QBT_TR(Select .torrent files)QBT_TR[CONTEXT=AddNewTorrentDialog]">
         </div>

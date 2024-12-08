@@ -412,7 +412,7 @@ void WebApplication::configure()
     {
         m_isAltUIUsed = isAltUIUsed;
         m_rootFolder = rootFolder;
-        m_translatedFiles.clear();
+        m_cachedFiles.clear();
         if (!m_isAltUIUsed)
             LogMsg(tr("Using built-in WebUI."));
         else
@@ -423,7 +423,7 @@ void WebApplication::configure()
     if (m_currentLocale != newLocale)
     {
         m_currentLocale = newLocale;
-        m_translatedFiles.clear();
+        m_cachedFiles.clear();
 
         m_translationFileLoaded = m_translator.load((m_rootFolder / Path(u"translations/webui_"_s) + newLocale).data());
         if (m_translationFileLoaded)
@@ -495,6 +495,13 @@ void WebApplication::configure()
     }
 
     m_isReverseProxySupportEnabled = pref->isWebUIReverseProxySupportEnabled();
+    const QString newBasePath = m_isReverseProxySupportEnabled ? pref->getWebUIBasePath() : u"/"_s;
+    if (m_basePath != newBasePath)
+    {
+        m_cachedFiles.clear();
+        m_basePath = newBasePath;
+    }
+
     if (m_isReverseProxySupportEnabled)
     {
         const QStringList proxyList = pref->getWebUITrustedReverseProxiesList().split(u';', Qt::SkipEmptyParts);
@@ -539,8 +546,8 @@ void WebApplication::sendFile(const Path &path)
     // find translated file in cache
     if (!m_isAltUIUsed)
     {
-        if (const auto it = m_translatedFiles.constFind(path);
-            (it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified))
+        if (const auto it = m_cachedFiles.constFind(path);
+            (it != m_cachedFiles.constEnd()) && (lastModified <= it->lastModified))
         {
             print(it->data, it->mimeType);
             setHeader({Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType)});
@@ -576,20 +583,25 @@ void WebApplication::sendFile(const Path &path)
 
     QByteArray data = readResult.value();
     const QMimeType mimeType = QMimeDatabase().mimeTypeForFileNameAndData(path.data(), data);
-    const bool isTranslatable = !m_isAltUIUsed && mimeType.inherits(u"text/plain"_s);
-
-    if (isTranslatable)
+    const bool isTextFile = mimeType.inherits(u"text/plain"_s);
+    if (isTextFile)
     {
         auto dataStr = QString::fromUtf8(data);
-        // Translate the file
-        translateDocument(dataStr);
+        dataStr.replace(u"${BASE_PATH}"_s, m_basePath);
 
-        // Add the language options
-        if (path == (m_rootFolder / Path(PRIVATE_FOLDER) / Path(u"views/preferences.html"_s)))
-            dataStr.replace(u"${LANGUAGE_OPTIONS}"_s, createLanguagesOptionsHtml());
+        const bool isTranslatable = !m_isAltUIUsed;
+        if (isTranslatable)
+        {
+            // Translate the file
+            translateDocument(dataStr);
+
+            // Add the language options
+            if (path == (m_rootFolder / Path(PRIVATE_FOLDER) / Path(u"views/preferences.html"_s)))
+                dataStr.replace(u"${LANGUAGE_OPTIONS}"_s, createLanguagesOptionsHtml());
+        }
 
         data = dataStr.toUtf8();
-        m_translatedFiles[path] = {data, mimeType.name(), lastModified}; // caching translated file
+        m_cachedFiles[path] = {data, mimeType.name(), lastModified};
     }
 
     print(data, mimeType.name());

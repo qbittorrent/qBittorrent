@@ -59,7 +59,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
             current_hash = new_hash;
         }
         new Request.JSON({
-            url: new URI("api/v2/torrents/webseeds").setData("hash", current_hash),
+            url: new URI("${BASE_PATH}api/v2/torrents/webseeds").setData("hash", current_hash),
             method: "get",
             noCache: true,
             onComplete: () => {
@@ -192,7 +192,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
 
         const selectedWebseeds = torrentWebseedsTable.selectedRowsIds();
         new Request({
-            url: "api/v2/torrents/removeWebSeeds",
+            url: "${BASE_PATH}api/v2/torrents/removeWebSeeds",
             method: "post",
             data: {
                 hash: current_hash,
