@@ -360,6 +360,8 @@ namespace BitTorrent
         void setIncludeOverheadInLimits(bool include) override;
         QString announceIP() const override;
         void setAnnounceIP(const QString &ip) override;
+        int announcePort() const override;
+        void setAnnouncePort(int port) override;
         int maxConcurrentHTTPAnnounces() const override;
         void setMaxConcurrentHTTPAnnounces(int value) override;
         bool isReannounceWhenAddressChangedEnabled() const override;
@@ -658,6 +660,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_ignoreLimitsOnLAN;
         CachedSettingValue<bool> m_includeOverheadInLimits;
         CachedSettingValue<QString> m_announceIP;
+        CachedSettingValue<int> m_announcePort;
         CachedSettingValue<int> m_maxConcurrentHTTPAnnounces;
         CachedSettingValue<bool> m_isReannounceWhenAddressChangedEnabled;
         CachedSettingValue<int> m_stopTrackerTimeout;

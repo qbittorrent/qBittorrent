@@ -386,6 +386,8 @@ namespace BitTorrent
         virtual void setIncludeOverheadInLimits(bool include) = 0;
         virtual QString announceIP() const = 0;
         virtual void setAnnounceIP(const QString &ip) = 0;
+        virtual int announcePort() const = 0;
+        virtual void setAnnouncePort(int port) = 0;
         virtual int maxConcurrentHTTPAnnounces() const = 0;
         virtual void setMaxConcurrentHTTPAnnounces(int value) = 0;
         virtual bool isReannounceWhenAddressChangedEnabled() const = 0;
