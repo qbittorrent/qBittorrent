@@ -53,52 +53,51 @@ window.qBittorrent.ProgressBar ??= (() => {
                 Object.append(vals, parameters);
             if (vals.height < 12)
                 vals.height = 12;
-            const obj = new Element("div", {
-                "id": vals.id,
-                "class": "progressbar_wrapper",
-                "styles": {
-                    "border": "1px solid var(--color-border-default)",
-                    "box-sizing": "content-box",
-                    "width": vals.width,
-                    "height": vals.height,
-                    "position": "relative",
-                    "margin": "0 auto"
-                }
-            });
+
+            const obj = document.createElement("div");
+            obj.id = vals.id;
+            obj.className = "progressbar_wrapper";
+            obj.style.border = "1px solid var(--color-border-default)";
+            obj.style.boxSizing = "content-box";
+            obj.style.width = `${vals.width}px`;
+            obj.style.height = `${vals.height}px`;
+            obj.style.position = "relative";
+            obj.style.margin = "0 auto";
             obj.vals = vals;
             obj.vals.value = [value, 0].pick();
-            obj.vals.dark = new Element("div", {
-                "id": vals.id + "_dark",
-                "class": "progressbar_dark",
-                "styles": {
-                    "width": vals.width,
-                    "height": vals.height,
-                    "background": vals.darkbg,
-                    "box-sizing": "content-box",
-                    "color": vals.darkfg,
-                    "position": "absolute",
-                    "text-align": "center",
-                    "left": 0,
-                    "top": 0,
-                    "line-height": vals.height
-                }
-            });
-            obj.vals.light = new Element("div", {
-                "id": vals.id + "_light",
-                "class": "progressbar_light",
-                "styles": {
-                    "width": vals.width,
-                    "height": vals.height,
-                    "background": vals.lightbg,
-                    "box-sizing": "content-box",
-                    "color": vals.lightfg,
-                    "position": "absolute",
-                    "text-align": "center",
-                    "left": 0,
-                    "top": 0,
-                    "line-height": vals.height
-                }
-            });
+
+            const dark = document.createElement("div");
+            dark.id = `${vals.id}_dark`;
+            dark.className = "progressbar_dark";
+            dark.style.width = `${vals.width}px`;
+            dark.style.height = `${vals.height}px`;
+            dark.style.background = vals.darkbg;
+            dark.style.boxSizing = "content-box";
+            dark.style.color = vals.darkfg;
+            dark.style.position = "absolute";
+            dark.style.textAlign = "center";
+            dark.style.left = "0";
+            dark.style.top = "0";
+            dark.style.lineHeight = `${vals.height}px`;
+
+            obj.vals.dark = dark;
+
+            const light = document.createElement("div");
+            light.id = `${vals.id}_light`;
+            light.className = "progressbar_light";
+            light.style.width = `${vals.width}px`;
+            light.style.height = `${vals.height}px`;
+            light.style.background = vals.lightbg;
+            light.style.boxSizing = "content-box";
+            light.style.color = vals.lightfg;
+            light.style.position = "absolute";
+            light.style.textAlign = "center";
+            light.style.left = "0";
+            light.style.top = "0";
+            light.style.lineHeight = `${vals.height}px`;
+
+            obj.vals.light = light;
+
             obj.appendChild(obj.vals.dark);
             obj.appendChild(obj.vals.light);
             obj.getValue = ProgressBar_getValue;

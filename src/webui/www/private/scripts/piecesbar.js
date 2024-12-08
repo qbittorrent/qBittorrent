@@ -61,23 +61,19 @@ window.qBittorrent.PiecesBar ??= (() => {
                 Object.append(vals, parameters);
             vals.height = Math.max(vals.height, 12);
 
-            const obj = new Element("div", {
-                "id": vals.id,
-                "class": "piecesbarWrapper",
-                "styles": {
-                    "border": vals.borderSize.toString() + "px solid " + vals.borderColor,
-                    "height": vals.height.toString() + "px",
-                }
-            });
+            const obj = document.createElement("div");
+            obj.id = vals.id;
+            obj.className = "piecesbarWrapper";
+            obj.style = `border: ${vals.borderSize}px solid ${vals.borderColor}; height: ${vals.height}px;`;
             obj.vals = vals;
             obj.vals.pieces = [pieces, []].pick();
 
-            obj.vals.canvas = new Element("canvas", {
-                "id": vals.id + "_canvas",
-                "class": "piecesbarCanvas",
-                "width": (vals.width - (2 * vals.borderSize)).toString(),
-                "height": "1" // will stretch vertically to take up the height of the parent
-            });
+            const canvas = document.createElement("canvas");
+            canvas.id = `${vals.id}_canvas`;
+            canvas.className = "piecesbarCanvas";
+            canvas.width = `${vals.width - (2 * vals.borderSize)}`;
+            canvas.height = "1"; // will stretch vertically to take up the height of the parent
+            obj.vals.canvas = canvas;
             obj.appendChild(obj.vals.canvas);
 
             obj.setPieces = setPieces;

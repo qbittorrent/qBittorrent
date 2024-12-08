@@ -48,7 +48,7 @@ window.qBittorrent.Download ??= (() => {
                             continue;
 
                         const category = data[i];
-                        const option = new Element("option");
+                        const option = document.createElement("option");
                         option.value = category.name;
                         option.textContent = category.name;
                         $("categorySelect").appendChild(option);
