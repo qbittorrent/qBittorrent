@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024 Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,53 +26,41 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "torrentmetadatacache.h"
 
-#include <QtContainerFwd>
-#include <QObject>
-#include <QString>
-#include <QVariant>
-
-#include "base/applicationcomponent.h"
-#include "apistatus.h"
-
-using DataMap = QHash<QString, QByteArray>;
-using StringMap = QHash<QString, QString>;
-
-struct APIResult
+std::optional<BitTorrent::TorrentDescriptor> TorrentMetadataCache::get(const BitTorrent::InfoHash &infoHash)
 {
-    QVariant data;
-    QString mimeType;
-    QString filename;
-    APIStatus status = APIStatus::Ok;
+    const BitTorrent::TorrentDescriptor torrentDescr = m_torrentMetadata[infoHash];
+    if (isValid(torrentDescr))
+        return torrentDescr;
 
-    void clear();
-};
+    return std::nullopt;
+}
 
-class APIController : public ApplicationComponent<QObject>
+bool TorrentMetadataCache::contains(const BitTorrent::InfoHash &infoHash) const
 {
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(APIController)
+    // we don't need to check for existence in the map, the default constructed info hash won't exist in it
+    return isValid(m_torrentMetadata[infoHash]);
+}
 
-public:
-    explicit APIController(IApplication *app, QObject *parent = nullptr);
+void TorrentMetadataCache::add(const BitTorrent::InfoHash &infoHash, const BitTorrent::TorrentDescriptor &torrentDescr)
+{
+    m_torrentMetadata.insert(infoHash, torrentDescr);
+}
 
-    APIResult run(const QString &action, const StringMap &params, const DataMap &data = {});
+void TorrentMetadataCache::update(const BitTorrent::InfoHash &infoHash, const BitTorrent::TorrentInfo &info)
+{
+    if (auto torrentDescr = m_torrentMetadata.find(infoHash); torrentDescr != m_torrentMetadata.end())
+        torrentDescr.value().setTorrentInfo(info);
+}
 
-protected:
-    const StringMap &params() const;
-    const DataMap &data() const;
-    void requireParams(const QList<QString> &requiredParams) const;
+void TorrentMetadataCache::remove(const BitTorrent::InfoHash &infoHash)
+{
+    m_torrentMetadata.remove(infoHash);
+}
 
-    void setResult(const QString &result);
-    void setResult(const QJsonArray &result);
-    void setResult(const QJsonObject &result);
-    void setResult(const QByteArray &result, const QString &mimeType = {}, const QString &filename = {});
-
-    void setStatus(APIStatus status);
-
-private:
-    StringMap m_params;
-    DataMap m_data;
-    APIResult m_result;
-};
+bool TorrentMetadataCache::isValid(const BitTorrent::TorrentDescriptor &torrentDescr) const
+{
+    const auto &info = torrentDescr.info();
+    return info.has_value();
+}
