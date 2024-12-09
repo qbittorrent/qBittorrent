@@ -629,7 +629,7 @@ window.qBittorrent.PropFiles ??= (() => {
         checkbox.addEventListener("click", switchCheckboxState);
 
         const checkboxTH = tableHeaders[0];
-        checkboxTH.appendChild(checkbox);
+        checkboxTH.append(checkbox);
     }
 
     // default sort by name column

@@ -501,7 +501,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             ul.firstElementChild.classList.add("separator");
             ul.insertBefore(autoResizeAllElement, ul.firstElementChild);
             ul.insertBefore(autoResizeElement, ul.firstElementChild);
-            document.body.appendChild(ul);
+            document.body.append(ul);
 
             this.headerContextMenu = new DynamicTableHeaderContextMenuClass({
                 targets: "#" + this.dynamicTableFixedHeaderDivId + " tr th",
@@ -551,8 +551,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns.push(column);
             this.columns[name] = column;
 
-            this.hiddenTableHeader.appendChild(document.createElement("th"));
-            this.fixedTableHeader.appendChild(document.createElement("th"));
+            this.hiddenTableHeader.append(document.createElement("th"));
+            this.fixedTableHeader.append(document.createElement("th"));
         },
 
         loadColumnsOrder: function() {
@@ -865,7 +865,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                         const td = document.createElement("td");
                         if ((this.columns[k].visible === "0") || this.columns[k].force_hide)
                             td.classList.add("invisible");
-                        tr.appendChild(td);
+                        tr.append(td);
                     }
 
                     // Insert
@@ -1110,7 +1110,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     img.src = img_path;
                     img.className = "stateIcon";
                     img.title = state;
-                    td.appendChild(img);
+                    td.append(img);
                 }
             };
 
@@ -1239,7 +1239,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 else {
                     if (ProgressColumnWidth < 0)
                         ProgressColumnWidth = td.offsetWidth;
-                    td.appendChild(new window.qBittorrent.ProgressBar.ProgressBar(progressFormatted.toFloat(), {
+                    td.append(new window.qBittorrent.ProgressBar.ProgressBar(progressFormatted.toFloat(), {
                         "width": ProgressColumnWidth - 5
                     }));
                     td.resized = false;
@@ -2604,7 +2604,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 const progressBar = $("pbf_" + id);
                 if (progressBar === null) {
-                    td.appendChild(new window.qBittorrent.ProgressBar.ProgressBar(value.toFloat(), {
+                    td.append(new window.qBittorrent.ProgressBar.ProgressBar(value.toFloat(), {
                         id: "pbf_" + id,
                         width: 80
                     }));
@@ -2623,7 +2623,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if (window.qBittorrent.PropFiles.isPriorityComboExists(id))
                     window.qBittorrent.PropFiles.updatePriorityCombo(id, value);
                 else
-                    td.appendChild(window.qBittorrent.PropFiles.createPriorityCombo(id, row.full_data.fileId, value));
+                    td.append(window.qBittorrent.PropFiles.createPriorityCombo(id, row.full_data.fileId, value));
             };
             this.columns["priority"].staticWidth = 140;
 
@@ -2875,7 +2875,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     img.className = "stateIcon";
                     img.width = "22";
                     img.height = "22";
-                    td.appendChild(img);
+                    td.append(img);
                 }
             };
         },
@@ -2912,8 +2912,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns.push(column);
             this.columns[name] = column;
 
-            this.hiddenTableHeader.appendChild(document.createElement("th"));
-            this.fixedTableHeader.appendChild(document.createElement("th"));
+            this.hiddenTableHeader.append(document.createElement("th"));
+            this.fixedTableHeader.append(document.createElement("th"));
         }
     });
 
@@ -3000,8 +3000,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns.push(column);
             this.columns[name] = column;
 
-            this.hiddenTableHeader.appendChild(document.createElement("th"));
-            this.fixedTableHeader.appendChild(document.createElement("th"));
+            this.hiddenTableHeader.append(document.createElement("th"));
+            this.fixedTableHeader.append(document.createElement("th"));
         }
     });
 
@@ -3084,8 +3084,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns.push(column);
             this.columns[name] = column;
 
-            this.hiddenTableHeader.appendChild(document.createElement("th"));
-            this.fixedTableHeader.appendChild(document.createElement("th"));
+            this.hiddenTableHeader.append(document.createElement("th"));
+            this.fixedTableHeader.append(document.createElement("th"));
         },
         selectRow: function(rowId) {
             this.selectedRows.push(rowId);
@@ -3170,8 +3170,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns.push(column);
             this.columns[name] = column;
 
-            this.hiddenTableHeader.appendChild(document.createElement("th"));
-            this.fixedTableHeader.appendChild(document.createElement("th"));
+            this.hiddenTableHeader.append(document.createElement("th"));
+            this.fixedTableHeader.append(document.createElement("th"));
         },
         selectRow: () => {}
     });
@@ -3219,8 +3219,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns.push(column);
             this.columns[name] = column;
 
-            this.hiddenTableHeader.appendChild(document.createElement("th"));
-            this.fixedTableHeader.appendChild(document.createElement("th"));
+            this.hiddenTableHeader.append(document.createElement("th"));
+            this.fixedTableHeader.append(document.createElement("th"));
         },
         selectRow: () => {},
         updateRow: function(tr, fullUpdate) {
