@@ -322,6 +322,11 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
 {
     if (m_ltAddTorrentParams.ti)
     {
+        if (const std::time_t creationDate = m_ltAddTorrentParams.ti->creation_date(); creationDate > 0)
+            m_creationDate = QDateTime::fromSecsSinceEpoch(creationDate);
+        m_creator = QString::fromStdString(m_ltAddTorrentParams.ti->creator());
+        m_comment = QString::fromStdString(m_ltAddTorrentParams.ti->comment());
+
         // Initialize it only if torrent is added with metadata.
         // Otherwise it should be initialized in "Metadata received" handler.
         m_torrentInfo = TorrentInfo(*m_ltAddTorrentParams.ti);
@@ -364,6 +369,12 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
     for (const std::string &urlSeed : extensionData->urlSeeds)
         m_urlSeeds.append(QString::fromStdString(urlSeed));
     m_nativeStatus = extensionData->status;
+
+    m_addedTime = QDateTime::fromSecsSinceEpoch(m_nativeStatus.added_time);
+    if (m_nativeStatus.completed_time > 0)
+        m_completedTime = QDateTime::fromSecsSinceEpoch(m_nativeStatus.completed_time);
+    if (m_nativeStatus.last_seen_complete > 0)
+        m_lastSeenComplete = QDateTime::fromSecsSinceEpoch(m_nativeStatus.last_seen_complete);
 
     if (hasMetadata())
         updateProgress();
@@ -408,17 +419,17 @@ QString TorrentImpl::name() const
 
 QDateTime TorrentImpl::creationDate() const
 {
-    return m_torrentInfo.creationDate();
+    return m_creationDate;
 }
 
 QString TorrentImpl::creator() const
 {
-    return m_torrentInfo.creator();
+    return m_creator;
 }
 
 QString TorrentImpl::comment() const
 {
-    return m_torrentInfo.comment();
+    return m_comment;
 }
 
 bool TorrentImpl::isPrivate() const
@@ -947,7 +958,52 @@ void TorrentImpl::removeAllTags()
 
 QDateTime TorrentImpl::addedTime() const
 {
-    return QDateTime::fromSecsSinceEpoch(m_nativeStatus.added_time);
+    return m_addedTime;
+}
+
+QDateTime TorrentImpl::completedTime() const
+{
+    return m_completedTime;
+}
+
+QDateTime TorrentImpl::lastSeenComplete() const
+{
+    return m_lastSeenComplete;
+}
+
+qlonglong TorrentImpl::activeTime() const
+{
+    return lt::total_seconds(m_nativeStatus.active_duration);
+}
+
+qlonglong TorrentImpl::finishedTime() const
+{
+    return lt::total_seconds(m_nativeStatus.finished_duration);
+}
+
+qlonglong TorrentImpl::timeSinceUpload() const
+{
+    if (m_nativeStatus.last_upload.time_since_epoch().count() == 0)
+        return -1;
+
+    return lt::total_seconds(lt::clock_type::now() - m_nativeStatus.last_upload);
+}
+
+qlonglong TorrentImpl::timeSinceDownload() const
+{
+    if (m_nativeStatus.last_download.time_since_epoch().count() == 0)
+        return -1;
+
+    return lt::total_seconds(lt::clock_type::now() - m_nativeStatus.last_download);
+}
+
+qlonglong TorrentImpl::timeSinceActivity() const
+{
+    const qlonglong upTime = timeSinceUpload();
+    const qlonglong downTime = timeSinceDownload();
+    return ((upTime < 0) != (downTime < 0))
+               ? std::max(upTime, downTime)
+               : std::min(upTime, downTime);
 }
 
 qreal TorrentImpl::ratioLimit() const
@@ -1266,16 +1322,6 @@ qlonglong TorrentImpl::totalUpload() const
     return m_nativeStatus.all_time_upload;
 }
 
-qlonglong TorrentImpl::activeTime() const
-{
-    return lt::total_seconds(m_nativeStatus.active_duration);
-}
-
-qlonglong TorrentImpl::finishedTime() const
-{
-    return lt::total_seconds(m_nativeStatus.finished_duration);
-}
-
 qlonglong TorrentImpl::eta() const
 {
     if (isStopped()) return MAX_ETA;
@@ -1383,45 +1429,6 @@ int TorrentImpl::totalPeersCount() const
 int TorrentImpl::totalLeechersCount() const
 {
     return (m_nativeStatus.num_incomplete > -1) ? m_nativeStatus.num_incomplete : (m_nativeStatus.list_peers - m_nativeStatus.list_seeds);
-}
-
-QDateTime TorrentImpl::lastSeenComplete() const
-{
-    if (m_nativeStatus.last_seen_complete > 0)
-        return QDateTime::fromSecsSinceEpoch(m_nativeStatus.last_seen_complete);
-    else
-        return {};
-}
-
-QDateTime TorrentImpl::completedTime() const
-{
-    if (m_nativeStatus.completed_time > 0)
-        return QDateTime::fromSecsSinceEpoch(m_nativeStatus.completed_time);
-    else
-        return {};
-}
-
-qlonglong TorrentImpl::timeSinceUpload() const
-{
-    if (m_nativeStatus.last_upload.time_since_epoch().count() == 0)
-        return -1;
-    return lt::total_seconds(lt::clock_type::now() - m_nativeStatus.last_upload);
-}
-
-qlonglong TorrentImpl::timeSinceDownload() const
-{
-    if (m_nativeStatus.last_download.time_since_epoch().count() == 0)
-        return -1;
-    return lt::total_seconds(lt::clock_type::now() - m_nativeStatus.last_download);
-}
-
-qlonglong TorrentImpl::timeSinceActivity() const
-{
-    const qlonglong upTime = timeSinceUpload();
-    const qlonglong downTime = timeSinceDownload();
-    return ((upTime < 0) != (downTime < 0))
-        ? std::max(upTime, downTime)
-        : std::min(upTime, downTime);
 }
 
 int TorrentImpl::downloadLimit() const
@@ -2625,10 +2632,22 @@ bool TorrentImpl::isMoveInProgress() const
 
 void TorrentImpl::updateStatus(const lt::torrent_status &nativeStatus)
 {
+    // Since libtorrent alerts are handled asynchronously there can be obsolete
+    // "state update" event reached here after torrent was reloaded in libtorrent.
+    // Just discard such events.
+    if (nativeStatus.handle != m_nativeHandle) [[unlikely]]
+        return;
+
     const lt::torrent_status oldStatus = std::exchange(m_nativeStatus, nativeStatus);
 
     if (m_nativeStatus.num_pieces != oldStatus.num_pieces)
         updateProgress();
+
+    if (m_nativeStatus.completed_time != oldStatus.completed_time)
+        m_completedTime = (m_nativeStatus.completed_time > 0) ? QDateTime::fromSecsSinceEpoch(m_nativeStatus.completed_time) : QDateTime();
+
+    if (m_nativeStatus.last_seen_complete != oldStatus.last_seen_complete)
+        m_lastSeenComplete = QDateTime::fromSecsSinceEpoch(m_nativeStatus.last_seen_complete);
 
     updateState();
 

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -35,9 +35,7 @@
 #include <libtorrent/write_resume_data.hpp>
 
 #include <QByteArray>
-#include <QDateTime>
 #include <QRegularExpression>
-#include <QString>
 #include <QUrl>
 
 #include "base/global.h"
@@ -147,7 +145,13 @@ BitTorrent::TorrentDescriptor::TorrentDescriptor(lt::add_torrent_params ltAddTor
     : m_ltAddTorrentParams {std::move(ltAddTorrentParams)}
 {
     if (m_ltAddTorrentParams.ti && m_ltAddTorrentParams.ti->is_valid())
+    {
         m_info.emplace(*m_ltAddTorrentParams.ti);
+        if (m_ltAddTorrentParams.ti->creation_date() > 0)
+            m_creationDate = QDateTime::fromSecsSinceEpoch(m_ltAddTorrentParams.ti->creation_date());
+        m_creator = QString::fromStdString(m_ltAddTorrentParams.ti->creator());
+        m_comment = QString::fromStdString(m_ltAddTorrentParams.ti->comment());
+    }
 }
 
 BitTorrent::InfoHash BitTorrent::TorrentDescriptor::infoHash() const
@@ -166,18 +170,17 @@ QString BitTorrent::TorrentDescriptor::name() const
 
 QDateTime BitTorrent::TorrentDescriptor::creationDate() const
 {
-    return ((m_ltAddTorrentParams.ti->creation_date() != 0)
-            ? QDateTime::fromSecsSinceEpoch(m_ltAddTorrentParams.ti->creation_date()) : QDateTime());
+    return m_creationDate;
 }
 
 QString BitTorrent::TorrentDescriptor::creator() const
 {
-    return QString::fromStdString(m_ltAddTorrentParams.ti->creator());
+    return m_creator;
 }
 
 QString BitTorrent::TorrentDescriptor::comment() const
 {
-    return QString::fromStdString(m_ltAddTorrentParams.ti->comment());
+    return m_comment;
 }
 
 const std::optional<BitTorrent::TorrentInfo> &BitTorrent::TorrentDescriptor::info() const

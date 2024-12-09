@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -29,11 +29,8 @@
 
 #include "rss_parser.h"
 
-#include <QDateTime>
 #include <QDebug>
-#include <QGlobalStatic>
 #include <QHash>
-#include <QMetaObject>
 #include <QRegularExpression>
 #include <QStringList>
 #include <QVariant>
@@ -359,7 +356,7 @@ namespace
     };
 
     // Ported to Qt from KDElibs4
-    QDateTime parseDate(const QString &string)
+    QDateTime parseDate(const QString &string, const QDateTime &fallbackDate)
     {
         const char16_t shortDay[][4] =
         {
@@ -382,7 +379,7 @@ namespace
 
         const QString str = string.trimmed();
         if (str.isEmpty())
-            return QDateTime::currentDateTime();
+            return fallbackDate;
 
         int nyear  = 6;   // indexes within string to values
         int nmonth = 4;
@@ -402,14 +399,14 @@ namespace
             const bool h1 = (parts[3] == u"-");
             const bool h2 = (parts[5] == u"-");
             if (h1 != h2)
-                return QDateTime::currentDateTime();
+                return fallbackDate;
         }
         else
         {
             // Check for the obsolete form "Wdy Mon DD HH:MM:SS YYYY"
             rx = QRegularExpression {u"^([A-Z][a-z]+)\\s+(\\S+)\\s+(\\d\\d)\\s+(\\d\\d):(\\d\\d):(\\d\\d)\\s+(\\d\\d\\d\\d)$"_s};
             if (str.indexOf(rx, 0, &rxMatch) != 0)
-                return QDateTime::currentDateTime();
+                return fallbackDate;
 
             nyear  = 7;
             nmonth = 2;
@@ -427,14 +424,14 @@ namespace
         const int hour = parts[nhour].toInt(&ok[2]);
         const int minute = parts[nmin].toInt(&ok[3]);
         if (!ok[0] || !ok[1] || !ok[2] || !ok[3])
-            return QDateTime::currentDateTime();
+            return fallbackDate;
 
         int second = 0;
         if (!parts[nsec].isEmpty())
         {
             second = parts[nsec].toInt(&ok[0]);
             if (!ok[0])
-                return QDateTime::currentDateTime();
+                return fallbackDate;
         }
 
         const bool leapSecond = (second == 60);
@@ -518,21 +515,21 @@ namespace
 
         const QDate qDate(year, month + 1, day);   // convert date, and check for out-of-range
         if (!qDate.isValid())
-            return QDateTime::currentDateTime();
+            return fallbackDate;
 
         const QTime qTime(hour, minute, second);
         QDateTime result(qDate, qTime, Qt::UTC);
         if (offset)
             result = result.addSecs(-offset);
         if (!result.isValid())
-            return QDateTime::currentDateTime();    // invalid date/time
+            return fallbackDate;    // invalid date/time
 
         if (leapSecond)
         {
             // Validate a leap second time. Leap seconds are inserted after 23:59:59 UTC.
             // Convert the time to UTC and check that it is 00:00:00.
             if ((hour*3600 + minute*60 + 60 - offset + 86400*5) % 86400)   // (max abs(offset) is 100 hours)
-                return QDateTime::currentDateTime();    // the time isn't the last second of the day
+                return fallbackDate;    // the time isn't the last second of the day
         }
 
         return result;
@@ -550,6 +547,7 @@ RSS::Private::Parser::Parser(const QString &lastBuildDate)
 void RSS::Private::Parser::parse(const QByteArray &feedData)
 {
     QXmlStreamReader xml {feedData};
+    m_fallbackDate = QDateTime::currentDateTime();
     XmlStreamEntityResolver resolver;
     xml.setEntityResolver(&resolver);
     bool foundChannel = false;
@@ -641,7 +639,7 @@ void RSS::Private::Parser::parseRssArticle(QXmlStreamReader &xml)
             }
             else if (name == u"pubDate")
             {
-                article[Article::KeyDate] = parseDate(xml.readElementText().trimmed());
+                article[Article::KeyDate] = parseDate(xml.readElementText().trimmed(), m_fallbackDate);
             }
             else if (name == u"author")
             {
@@ -755,7 +753,7 @@ void RSS::Private::Parser::parseAtomArticle(QXmlStreamReader &xml)
             {
                 // ATOM uses standard compliant date, don't do fancy stuff
                 const QDateTime articleDate = QDateTime::fromString(xml.readElementText().trimmed(), Qt::ISODate);
-                article[Article::KeyDate] = (articleDate.isValid() ? articleDate : QDateTime::currentDateTime());
+                article[Article::KeyDate] = (articleDate.isValid() ? articleDate : m_fallbackDate);
             }
             else if (name == u"author")
             {
