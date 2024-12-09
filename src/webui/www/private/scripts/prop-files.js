@@ -131,7 +131,7 @@ window.qBittorrent.PropFiles ??= (() => {
     };
 
     const createDownloadCheckbox = (id, fileId, checked) => {
-        const checkbox = new Element("input");
+        const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.id = "cbPrio" + id;
         checkbox.setAttribute("data-id", id);
@@ -623,13 +623,13 @@ window.qBittorrent.PropFiles ??= (() => {
     // inject checkbox into table header
     const tableHeaders = $$("#torrentFilesTableFixedHeaderDiv .dynamicTableHeader th");
     if (tableHeaders.length > 0) {
-        const checkbox = new Element("input");
+        const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.id = "tristate_cb";
         checkbox.addEventListener("click", switchCheckboxState);
 
         const checkboxTH = tableHeaders[0];
-        checkbox.injectInside(checkboxTH);
+        checkboxTH.append(checkbox);
     }
 
     // default sort by name column
