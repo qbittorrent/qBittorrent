@@ -64,7 +64,8 @@ window.qBittorrent.PiecesBar ??= (() => {
             const obj = document.createElement("div");
             obj.id = vals.id;
             obj.className = "piecesbarWrapper";
-            obj.style = `border: ${vals.borderSize}px solid ${vals.borderColor}; height: ${vals.height}px;`;
+            obj.style.border = `${vals.borderSize}px solid ${vals.borderColor}`;
+            obj.style.height = `${vals.height}px`;
             obj.vals = vals;
             obj.vals.pieces = [pieces, []].pick();
 

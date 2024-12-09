@@ -380,7 +380,6 @@ window.qBittorrent.Search ??= (() => {
         statusIcon.className = "statusIcon";
         statusIcon.width = "12";
         statusIcon.height = "12";
-
         return statusIcon;
     };
 
