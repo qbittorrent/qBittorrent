@@ -35,7 +35,7 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 
-accepted_exts = [".js", ".html", ".css"]
+accepted_exts = [".js", ".html", ".css", ".json"]
 
 no_obsolete = False
 www_folder = "."
