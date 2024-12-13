@@ -26,9 +26,11 @@
 # but you are not obligated to do so. If you do not wish to do so, delete this
 # exception statement from your version.
 
-from typing import Optional, Sequence
+from collections.abc import Sequence
+from typing import Optional
 import argparse
 import re
+import sys
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
@@ -67,4 +69,4 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
 
 if __name__ == '__main__':
-    exit(main())
+    sys.exit(main())
