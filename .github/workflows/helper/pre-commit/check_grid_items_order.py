@@ -82,6 +82,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             ret = re.sub('<(.+) +/>', r'<\1/>', ret)
 
             if ret != orig:
+                print(f'Tip: run this script to apply the fix: `python {__file__} {filename}`', file=sys.stderr)
+
                 f.seek(0)
                 f.write(ret)
                 f.truncate()

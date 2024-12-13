@@ -173,12 +173,6 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <tabstops>
-  <tabstop>textCategoryName</tabstop>
-  <tabstop>comboSavePath</tabstop>
-  <tabstop>comboUseDownloadPath</tabstop>
-  <tabstop>comboDownloadPath</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

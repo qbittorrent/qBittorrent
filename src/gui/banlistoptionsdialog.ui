@@ -102,12 +102,6 @@
    </item>
   </layout>
  </widget>
- <tabstops>
-  <tabstop>bannedIPList</tabstop>
-  <tabstop>txtIP</tabstop>
-  <tabstop>buttonBanIP</tabstop>
-  <tabstop>buttonDeleteIP</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>
