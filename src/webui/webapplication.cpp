@@ -783,10 +783,6 @@ bool WebApplication::isOriginTrustworthy() const
     if (m_isHttpsEnabled)
         return true;
 
-    // client is on localhost
-    if (env().clientAddress.isLoopback())
-        return true;
-
     return false;
 }
 
