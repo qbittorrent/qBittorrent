@@ -94,6 +94,7 @@
      <property name="orientation">
       <enum>Qt::Orientation::Horizontal</enum>
      </property>
+     <widget class="FeedListWidget" name="feedListWidget"/>
      <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
@@ -119,6 +120,7 @@
          <property name="orientation">
           <enum>Qt::Orientation::Horizontal</enum>
          </property>
+         <widget class="ArticleListWidget" name="articleListWidget"/>
          <widget class="HtmlBrowser" name="textBrowser">
           <property name="openExternalLinks">
            <bool>true</bool>
@@ -210,6 +212,16 @@
    <class>HtmlBrowser</class>
    <extends>QTextBrowser</extends>
    <header>gui/rss/htmlbrowser.h</header>
+  </customwidget>
+  <customwidget>
+   <class>FeedListWidget</class>
+   <extends>QTreeWidget</extends>
+   <header>gui/rss/feedlistwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ArticleListWidget</class>
+   <extends>QListWidget</extends>
+   <header>gui/rss/articlelistwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
