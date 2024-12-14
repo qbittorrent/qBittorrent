@@ -175,20 +175,18 @@ window.qBittorrent.Search ??= (() => {
 
     const createSearchTab = (searchId, pattern) => {
         const newTabId = `${searchTabIdPrefix}${searchId}`;
-        const tabElem = new Element("a", {
-            text: pattern,
-        });
+        const tabElem = document.createElement("a");
+        tabElem.textContent = pattern;
 
-        const closeTabElem = new Element("img", {
-            alt: "QBT_TR(Close tab)QBT_TR[CONTEXT=SearchWidget]",
-            title: "QBT_TR(Close tab)QBT_TR[CONTEXT=SearchWidget]",
-            src: "images/application-exit.svg",
-            width: "10",
-            height: "10",
-            onclick: "qBittorrent.Search.closeSearchTab(this);",
-        });
-        closeTabElem.inject(tabElem, "top");
+        const closeTabElem = document.createElement("img");
+        closeTabElem.alt = "QBT_TR(Close tab)QBT_TR[CONTEXT=SearchWidget]";
+        closeTabElem.title = "QBT_TR(Close tab)QBT_TR[CONTEXT=SearchWidget]";
+        closeTabElem.src = "images/application-exit.svg";
+        closeTabElem.width = "10";
+        closeTabElem.height = "10";
+        closeTabElem.addEventListener("click", function(e) { qBittorrent.Search.closeSearchTab(this); });
 
+        tabElem.prepend(closeTabElem);
         tabElem.appendChild(getStatusIconElement("QBT_TR(Searching...)QBT_TR[CONTEXT=SearchJobWidget]", "images/queued.svg"));
 
         const listItem = document.createElement("li");
@@ -375,14 +373,14 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const getStatusIconElement = (text, image) => {
-        return new Element("img", {
-            alt: text,
-            title: text,
-            src: image,
-            class: "statusIcon",
-            width: "12",
-            height: "12",
-        });
+        const statusIcon = document.createElement("img");
+        statusIcon.alt = text;
+        statusIcon.title = text;
+        statusIcon.src = image;
+        statusIcon.className = "statusIcon";
+        statusIcon.width = "12";
+        statusIcon.height = "12";
+        return statusIcon;
     };
 
     const updateStatusIconElement = (searchId, text, image) => {
