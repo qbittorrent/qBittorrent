@@ -87,7 +87,7 @@ window.qBittorrent.PropGeneral ??= (() => {
             clearTimeout(loadTorrentDataTimer);
             return;
         }
-        const url = new URI("api/v2/torrents/properties?hash=" + current_id);
+        const url = new URI("${BASE_PATH}api/v2/torrents/properties?hash=" + current_id);
         new Request.JSON({
             url: url,
             method: "get",
@@ -227,7 +227,7 @@ window.qBittorrent.PropGeneral ??= (() => {
             }
         }).send();
 
-        const piecesUrl = new URI("api/v2/torrents/pieceStates?hash=" + current_id);
+        const piecesUrl = new URI("${BASE_PATH}api/v2/torrents/pieceStates?hash=" + current_id);
         new Request.JSON({
             url: piecesUrl,
             method: "get",

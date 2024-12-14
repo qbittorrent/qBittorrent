@@ -37,7 +37,7 @@ const submitLoginForm = (event) => {
     const usernameElement = document.getElementById("username");
     const passwordElement = document.getElementById("password");
 
-    fetch("api/v2/auth/login", {
+    fetch("${BASE_PATH}api/v2/auth/login", {
             method: "POST",
             body: new URLSearchParams({
                 "username": usernameElement.value,

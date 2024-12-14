@@ -56,7 +56,7 @@ window.qBittorrent.PropPeers ??= (() => {
             clearTimeout(loadTorrentPeersTimer);
             return;
         }
-        const url = new URI("api/v2/sync/torrentPeers");
+        const url = new URI("${BASE_PATH}api/v2/sync/torrentPeers");
         url.setData("rid", syncTorrentPeersLastResponseId);
         url.setData("hash", current_hash);
         new Request.JSON({
@@ -127,7 +127,7 @@ window.qBittorrent.PropPeers ??= (() => {
 
                 new MochaUI.Window({
                     id: "addPeersPage",
-                    icon: "images/qbittorrent-tray.svg",
+                    icon: "${BASE_PATH}images/qbittorrent-tray.svg",
                     title: "QBT_TR(Add Peers)QBT_TR[CONTEXT=PeersAdditionDialog]",
                     loadMethod: "iframe",
                     contentURL: "addpeers.html?hash=" + hash,
@@ -147,7 +147,7 @@ window.qBittorrent.PropPeers ??= (() => {
 
                 if (confirm("QBT_TR(Are you sure you want to permanently ban the selected peers?)QBT_TR[CONTEXT=PeerListWidget]")) {
                     new Request({
-                        url: "api/v2/transfer/banPeers",
+                        url: "${BASE_PATH}api/v2/transfer/banPeers",
                         method: "post",
                         data: {
                             hash: torrentsTable.getCurrentTorrentID(),
