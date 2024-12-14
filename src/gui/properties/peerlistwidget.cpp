@@ -420,7 +420,8 @@ void PeerListWidget::loadPeers(const BitTorrent::Torrent *torrent)
         for (auto i = m_peerItems.cbegin(); i != m_peerItems.cend(); ++i)
             existingPeers.insert(i.key());
 
-        const bool hideZeroValues = Preferences::instance()->getHideZeroValues();
+        const Preferences *pref = Preferences::instance();
+        const bool hideZeroValues = (pref->getHideZeroValues() && (pref->getHideZeroComboValues() == 0));
         for (const BitTorrent::PeerInfo &peer : peers)
         {
             const PeerEndpoint peerEndpoint {peer.address(), peer.connectionType()};
