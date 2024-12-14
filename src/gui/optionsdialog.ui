@@ -2750,6 +2750,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                    <property name="openExternalLinks">
                     <bool>true</bool>
                    </property>
+                   <property name="textInteractionFlags">
+                    <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -3496,6 +3499,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                     <property name="openExternalLinks">
                      <bool>true</bool>
                     </property>
+                    <property name="textInteractionFlags">
+                     <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse</set>
+                    </property>
                    </widget>
                   </item>
                  </layout>
@@ -3696,6 +3702,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                     <property name="openExternalLinks">
                      <bool>true</bool>
                     </property>
+                    <property name="textInteractionFlags">
+                     <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse</set>
+                    </property>
                    </widget>
                   </item>
                  </layout>
@@ -3817,7 +3826,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                   <item>
                    <widget class="QLabel" name="labelReverseProxyLink">
                     <property name="text">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki#reverse-proxy-setup-for-webui-access&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Reverse proxy setup examples&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     <string>&lt;a href=https://github.com/qbittorrent/qBittorrent/wiki#reverse-proxy-setup-for-webui-access&gt;Reverse proxy setup examples&lt;/a&gt;</string>
+                    </property>
+                    <property name="openExternalLinks">
+                     <bool>true</bool>
+                    </property>
+                    <property name="textInteractionFlags">
+                     <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse</set>
                     </property>
                    </widget>
                   </item>

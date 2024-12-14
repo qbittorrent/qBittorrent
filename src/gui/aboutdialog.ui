@@ -75,6 +75,9 @@
          <property name="openExternalLinks">
           <bool>true</bool>
          </property>
+         <property name="textInteractionFlags">
+          <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse</set>
+         </property>
         </widget>
        </item>
       </layout>
