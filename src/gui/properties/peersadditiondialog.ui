@@ -23,6 +23,9 @@
    </item>
    <item>
     <widget class="QTextEdit" name="textEditPeers">
+     <property name="tabChangesFocus">
+      <bool>true</bool>
+     </property>
      <property name="lineWrapMode">
       <enum>QTextEdit::LineWrapMode::NoWrap</enum>
      </property>

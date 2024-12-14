@@ -325,6 +325,9 @@
             <property name="toolTip">
              <string>You can separate tracker tiers / groups with an empty line.</string>
             </property>
+            <property name="tabChangesFocus">
+             <bool>true</bool>
+            </property>
             <property name="acceptRichText">
              <bool>false</bool>
             </property>
@@ -339,6 +342,9 @@
           </item>
           <item row="1" column="1">
            <widget class="QTextEdit" name="URLSeedsList">
+            <property name="tabChangesFocus">
+             <bool>true</bool>
+            </property>
             <property name="acceptRichText">
              <bool>false</bool>
             </property>
@@ -353,6 +359,9 @@
           </item>
           <item row="2" column="1">
            <widget class="QTextEdit" name="txtComment">
+            <property name="tabChangesFocus">
+             <bool>true</bool>
+            </property>
             <property name="acceptRichText">
              <bool>false</bool>
             </property>

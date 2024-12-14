@@ -1496,6 +1496,9 @@ readme.txt: filter exact file name.
 ?.txt: filter 'a.txt', 'b.txt' but not 'aa.txt'.
 readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</string>
                  </property>
+                 <property name="tabChangesFocus">
+                  <bool>true</bool>
+                 </property>
                  <property name="lineWrapMode">
                   <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
                  </property>
@@ -3136,7 +3139,11 @@ Disable encryption: Only connect to peers without protocol encryption</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_16">
                <item row="0" column="0">
-                <widget class="QPlainTextEdit" name="textTrackers"/>
+                <widget class="QPlainTextEdit" name="textTrackers">
+                 <property name="tabChangesFocus">
+                  <bool>true</bool>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -3326,7 +3333,11 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                 </widget>
                </item>
                <item>
-                <widget class="QPlainTextEdit" name="textSmartEpisodeFilters"/>
+                <widget class="QPlainTextEdit" name="textSmartEpisodeFilters">
+                 <property name="tabChangesFocus">
+                  <bool>true</bool>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -3785,6 +3796,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                  <layout class="QVBoxLayout" name="verticalLayout_8">
                   <item>
                    <widget class="QPlainTextEdit" name="textWebUICustomHTTPHeaders">
+                    <property name="tabChangesFocus">
+                     <bool>true</bool>
+                    </property>
                     <property name="lineWrapMode">
                      <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
                     </property>
