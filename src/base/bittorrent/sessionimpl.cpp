@@ -66,6 +66,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
+#include <QMutexLocker>
 #include <QNetworkAddressEntry>
 #include <QNetworkInterface>
 #include <QRegularExpression>
@@ -6201,6 +6202,8 @@ void SessionImpl::handleTrackerAlert(const lt::tracker_alert *alert)
     if (!torrent)
         return;
 
+    [[maybe_unused]] const QMutexLocker updatedTrackerStatusesLocker {&m_updatedTrackerStatusesMutex};
+
     const auto prevSize = m_updatedTrackerStatuses.size();
     QMap<int, int> &updateInfo = m_updatedTrackerStatuses[torrent->nativeHandle()][std::string(alert->tracker_url())][alert->local_endpoint];
     if (prevSize < m_updatedTrackerStatuses.size())
@@ -6297,13 +6300,16 @@ void SessionImpl::updateTrackerEntryStatuses(lt::torrent_handle torrentHandle)
         try
         {
             std::vector<lt::announce_entry> nativeTrackers = torrentHandle.trackers();
-            invoke([this, torrentHandle, nativeTrackers = std::move(nativeTrackers)]
+
+            QMutexLocker updatedTrackerStatusesLocker {&m_updatedTrackerStatusesMutex};
+            QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>> updatedTrackers = m_updatedTrackerStatuses.take(torrentHandle);
+            updatedTrackerStatusesLocker.unlock();
+
+            invoke([this, torrentHandle, nativeTrackers = std::move(nativeTrackers), updatedTrackers = std::move(updatedTrackers)]
             {
                 TorrentImpl *torrent = m_torrents.value(torrentHandle.info_hash());
                 if (!torrent || torrent->isStopped())
                     return;
-
-                QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>> updatedTrackers = m_updatedTrackerStatuses.take(torrentHandle);
 
                 QHash<QString, TrackerEntryStatus> trackers;
                 trackers.reserve(updatedTrackers.size());
