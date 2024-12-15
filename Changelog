@@ -1,3 +1,15 @@
+Mon Dec 16th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.3
+    - BUGFIX: Discard obsolete "state update" events after torrent is reloaded (glassez)
+    - BUGFIX: Fix incorrect SQL column definition (glassez)
+    - BUGFIX: Avoid redundant requests of announce entries from libtorrent (glassez)
+    - WEBUI: Fix removing tracker URL with '|' character (Thomas Piccirello)
+    - WEBUI: Fix reloading page after login (Evgenii Ryshkov)
+    - WEBAPI: Fix incorrect key in torrent creator (Bartu Özen)
+    - RSS: Don't add duplicate episodes to previously matched (wavygecko)
+    - RSS: Use cached current time when parsing RSS feed (glassez)
+    - WINDOWS: Don't follow symlink when creating torrents on Windows (Chocobo1)
+    - WINDOWS: NSIS: Update Italian translation (Giacomo411)
+
 Sun Nov 17th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.2
     - BUGFIX: Remove trackers from previous category when moved to new one (glassez)
     - BUGFIX: Fix `.torrent` file could not be deleted when torrent is canceled (glassez)
